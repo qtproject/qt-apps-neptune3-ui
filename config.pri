@@ -1,0 +1,3 @@
+isEmpty(INSTALL_PREFIX) {
+INSTALL_PREFIX=/opt
+}

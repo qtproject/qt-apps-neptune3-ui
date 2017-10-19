@@ -1,0 +1,12 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.sheets'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Sheets'
+  de: '---'
+
+categories: [ 'app' ]

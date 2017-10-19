@@ -1,0 +1,12 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.maps'
+icon:    'icon.png'
+code:    'Maps.qml'
+runtime: 'qml'
+name:
+  en: 'Maps'
+  de: 'Karten'
+
+categories: [ 'navigation' ]

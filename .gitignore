@@ -1,0 +1,57 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt-es
+
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*-build-*
+*.qmlc
+
+# QtCreator
+
+*.autosave
+*~
+*.orig
+
+*.qmlproject.user
+*.qmlproject.user*
+.DS_Store
+
+# packaging/checkinstall
+*.tgz
+*.deb
+CMakeCache.txt
+CMakeFiles
+description-pak
+doc-pak
+
+.directory
+core
+*.qmlc
