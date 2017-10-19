@@ -41,7 +41,7 @@ Item {
 
     // TODO: Restart if crashed
     Timer {
-        interval: 1000; running: root.appInfo; repeat: false
+        interval: 1000; running: root.appInfo !== undefined; repeat: false
         onTriggered: {
             root.appInfo.canBeActive = false
             d.application = root.appInfo.application
@@ -54,7 +54,7 @@ Item {
         property var application
     }
     Connections {
-        target: root.appInfo
+        target: root.appInfo ? root.appInfo : null
         onWindowChanged: {
             var window = root.appInfo.window
             if (window) {

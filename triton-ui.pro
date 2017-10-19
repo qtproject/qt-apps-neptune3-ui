@@ -6,6 +6,8 @@ include(config.pri)
 
 SUBDIRS += plugins
 
+SUBDIRS += tests
+
 copydata.file = copydata.pro
 copydata.depends = plugins
 

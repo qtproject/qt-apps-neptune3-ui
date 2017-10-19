@@ -1,0 +1,11 @@
+There are two ways to run qml tests:
+
+1-Execute the automated tests defined inside TestCase{} throughout tst_*.qml files
+  (using a qmltestrunner):
+    build_dir$ make check
+
+2-Try out a test in a window for manual interaction (manual testing).
+    Say you have a component called WidgetDrawer. If it has a test it will
+    be called tst_WidgetDrawer.qml. To show it using triton-qmlscene you run:
+
+    build_dir/tests/qmltests$ make tryWidgetDrawer
