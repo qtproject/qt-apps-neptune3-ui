@@ -55,3 +55,6 @@ doc-pak
 .directory
 core
 *.qmlc
+
+# compressed javascript?
+*.jsc
