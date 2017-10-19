@@ -50,8 +50,6 @@ Image {
 
     source: Style.gfx2(Style.displayBackground)
 
-    property bool widgetEditingMode: false
-
     // Content Elements
     StatusBar {
         id: statusBar
@@ -65,18 +63,6 @@ Image {
         anchors.top: statusBar.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-    }
-    Button {
-        text: "Edit Widgets"
-        anchors.centerIn: root
-        width: Style.hspan(5)
-        opacity: launcher.open ? 1.0 : 0.0
-        Behavior on opacity { NumberAnimation { duration: 270; easing.type: Easing.InOutQuad } }
-        visible: opacity > 0
-        onClicked: {
-            launcher.goHome()
-            root.widgetEditMode = true;
-        }
     }
 
     Item {
@@ -104,7 +90,6 @@ Image {
                 active: StagedStartupModel.loadRest
                 source: "WindowStack.qml"
                 Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Binding { target: windowStackeLoader.item; property: "widgetEditingMode"; value: root.widgetEditingMode }
             }
 
             WidgetDrawer {

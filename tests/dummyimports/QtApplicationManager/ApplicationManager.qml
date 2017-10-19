@@ -56,7 +56,11 @@ ListModel {
 
     signal emitSurface(int index, Item item)
 
+    signal applicationWasActivated(string appId, string appAliasId)
 
+    function application(appId) {
+        return null;
+    }
 
     function setApplicationAudioFocus(appId, appFocus)
     {

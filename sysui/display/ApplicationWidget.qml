@@ -31,7 +31,6 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.3
-import QtApplicationManager 1.0
 
 Item {
     id: root
@@ -44,29 +43,32 @@ Item {
         interval: 1000; running: root.appInfo !== undefined; repeat: false
         onTriggered: {
             root.appInfo.canBeActive = false
-            d.application = root.appInfo.application
-            ApplicationManager.startApplication(d.application.id);
+            root.appInfo.start()
         }
     }
 
-    QtObject {
-        id: d
-        property var application
-    }
     Connections {
         target: root.appInfo ? root.appInfo : null
         onWindowChanged: {
-            var window = root.appInfo.window
-            if (window) {
-                window.parent = root;
-                window.width = Qt.binding(function() { return root.width; });
-                window.height = Qt.binding(function() { return root.height; });
-                window.z = 2
-                root.state = "live"
-                root.appInfo.canBeActive = true;
-            } else {
-                root.state = "loading"
-            }
+            root.updateState()
+        }
+    }
+    onAppInfoChanged: updateState()
+
+    function updateState() {
+        if (!root.appInfo)
+            return;
+
+        var window = root.appInfo.window
+        if (window) {
+            window.parent = root;
+            window.width = Qt.binding(function() { return root.width; });
+            window.height = Qt.binding(function() { return root.height; });
+            window.z = 2
+            root.state = "live"
+            root.appInfo.canBeActive = true;
+        } else {
+            root.state = "loading"
         }
     }
 

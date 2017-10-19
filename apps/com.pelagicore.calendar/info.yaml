@@ -1,0 +1,12 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.calendar'
+icon:    'icon.png'
+code:    'Calendar.qml'
+runtime: 'qml'
+name:
+  en: 'Calendar'
+  de: 'Kalender'
+
+categories: [ 'productivity' ]

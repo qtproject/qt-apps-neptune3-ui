@@ -47,8 +47,6 @@ import QtApplicationManager 1.0
 StackView {
     id: root
 
-    property alias widgetEditingMode: homePage.widgetEditingMode
-
     initialItem: HomePage {
         id: homePage
         opacity: 0

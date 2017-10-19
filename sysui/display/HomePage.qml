@@ -36,51 +36,46 @@ import controls 1.0
 import utils 1.0
 import widgets 1.0
 
-import models.application 1.0
-
 Item {
     id: root
 
-    property bool widgetEditingMode: false
+    property var widgetsList: HomeWidgetsList {}
+
 
     // The widget grid
-    Item {
+    Column {
         id: widgetGrid
         anchors.fill: parent
         anchors.margins: Style.hspan(2)
 
         readonly property int numRows: 5
-        readonly property int numColumns: 2
-        readonly property int columnWidth: width / numColumns
         readonly property int rowHeight: height / numRows
 
-        ApplicationWidget {
-            id: mapWidget
-            x: topLeftColumnIndex * widgetGrid.columnWidth
-            y: topLeftRowIndex * widgetGrid.rowHeight
-            width: widthColumns * widgetGrid.columnWidth
-            height: heightRows * widgetGrid.rowHeight
-            property int topLeftRowIndex: 0
-            property int topLeftColumnIndex: 0
-            property int widthColumns: 2
-            property int heightRows: 3
-            property int minWidthColumns: 1
-            property int minHeightRows: 1
+        Repeater {
+            model: root.widgetsList
+            delegate: ApplicationWidget {
+                width: widgetGrid.width
+                height: appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
 
-            appInfo: ApplicationManagerModel.application('com.pelagicore.maps')
+                appInfo: model.appInfo
 
-            Behavior on x { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-            Behavior on y { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-            Behavior on width { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-            Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-
+                /*
+                Behavior on x { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on y { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on width { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                */
+            }
         }
+
+        /*
         Resizer {
             anchors.fill: mapWidget
             target: mapWidget
             grid: widgetGrid
             visible: root.widgetEditMode
         }
+        */
     }
 
 }

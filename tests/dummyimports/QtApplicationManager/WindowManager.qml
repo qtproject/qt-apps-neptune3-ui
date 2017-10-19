@@ -60,6 +60,9 @@ QtObject {
     signal surfaceItemLost()
     signal raiseApplicationWindow()
     signal surfaceWindowPropertyChanged(Item surfaceItem, string name, var value)
+    signal windowReady(int index, Item item)
+    signal windowLost(int index, Item item)
+    signal windowPropertyChanged(Item window, string name, var value)
 
     function setSurfaceWindowProperty(appItem, type, status) {
         appItem.windowPropertyChanged(type, status)

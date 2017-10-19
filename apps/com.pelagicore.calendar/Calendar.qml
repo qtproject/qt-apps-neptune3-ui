@@ -29,42 +29,37 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtApplicationManager 1.0
+import QtQuick 2.8
+import utils 1.0
 
-/*
-   A wrapper for AppMan Application that adds some more goodies
+AppUIScreen {
+    id: root
+    title: "Triton Calendar"
 
-   Maybe some of those extra bits could be put into Application itself to reduce or even
-   eliminate the need for this wrapper.
- */
-QtObject {
-    // the AppMan Application object
-    property var application
+    Component.onCompleted: {
+        root.setWindowProperty("windowType", "widget");
+    }
 
-    // whether the application is active (on foreground / fullscreen)
-    // false means it's either invisible, minimized, reduced to a widget geometry
-    // or might not even be running at all
-    property bool active: false
+    Rectangle {
+        color: "blue"
+        anchors.fill: parent
 
-    // If false, Application.activated signals won't cause the application to be the active one
-    property bool canBeActive: true
+        Rectangle {
+            color: touchPoint1.pressed ? "red" : "goldenrod"
+            anchors.fill: parent
+            anchors.margins: 30
+        }
+    }
 
-    //  the main window of this application, if any
-    // TODO: try to get rid of this (ie, find a better solution)
-    property var window
+    MultiPointTouchArea {
+        anchors.fill: parent
+        touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
-    // Possible values:
-    // "" (empty) - to be displayed maximized/fullscreen
-    // "home"     - to be displayed as a widget in the home screen
-    // "bottom"   - to be displayed as the bottom widget
-    property string widgetState
-
-    // Widget geometry. Ignored if widgetState is empty
-    property int heightRows: 2
-    property int minHeightRows: 1
-
-    function start() {
-        ApplicationManager.startApplication(application.id);
+        property int count: 0
+        onReleased: {
+            count += 1;
+            root.setWindowProperty("activationCount", count);
+        }
     }
 }
+
