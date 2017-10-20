@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import utils 1.0
+import QtQuick.Controls 2.3
 
 AppUIScreen {
     id: root
@@ -44,6 +45,7 @@ AppUIScreen {
             color: touchPoint1.pressed ? "red" : "green"
             anchors.fill: parent
             anchors.margins: 30
+            Label { text: root.title }
         }
     }
 
