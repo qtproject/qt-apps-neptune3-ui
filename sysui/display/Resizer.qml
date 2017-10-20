@@ -33,25 +33,19 @@ import QtQuick 2.6
 
 import utils 1.0
 
-/*
-    Resizes a given target item while respecting the boundaries of a given grid item
- */
 MultiPointTouchArea {
     id: root
 
-    // The item to be resized
-    property Item target
+    property var topAppInfo
+    property var bottomAppInfo
+
 
     /*
      A grid item is expected to have the following properties:
      numRows: number of rows
-     numColumns: number of columns
-     columnWidth: width of each column
      rowHeight: height of each row
     */
     property Item grid
-
-    property int borderThickness: Style.hspan(3)
 
     touchPoints: [
         TouchPoint {
@@ -60,8 +54,16 @@ MultiPointTouchArea {
             onYChanged: d.onTouchMoved()
             onPressedChanged: {
                 if (pressed) {
-                    d.updateBorders();
                     d.dragging = true;
+
+                    var gridPos = root.mapToItem(root.grid, touch1.x, touch1.y);
+                    d.startGridPosY = gridPos.y
+
+                    d.startTopHeightRows = root.topAppInfo.heightRows;
+
+                    if (root.bottomAppInfo) {
+                        d.startBottomHeightRows = root.bottomAppInfo.heightRows;
+                    }
                 } else {
                     d.dragging = false;
                 }
@@ -72,66 +74,30 @@ MultiPointTouchArea {
     QtObject {
         id: d
 
-        readonly property int widthIncrement: root.grid ? root.grid.columnWidth : 0
         readonly property int heightIncrement: root.grid ? root.grid.rowHeight : 0
-
-        property bool leftBorder: false
-        property bool rightBorder: false
-        property bool topBorder: false
-        property bool bottomBorder: false
 
         property bool dragging: false
 
-        function updateBorders() {
-            var pos = mapToItem(root.target, touch1.x, touch1.y);
-            leftBorder = pos.x <= root.borderThickness;
-            rightBorder = pos.x >= root.target.width - root.borderThickness;
-            topBorder = pos.y <= root.borderThickness;
-            bottomBorder = pos.y >= root.target.height - root.borderThickness;
-        }
+        property real startGridPosY
+        property int startTopHeightRows
+        property int startBottomHeightRows
 
         function onTouchMoved() {
             if (!d.dragging) {
                 return;
             }
 
-            var bounds = grid.mapToItem(root.target.parent, 0, 0, grid.width, grid.height);
-            var pos = mapToItem(root.target.parent, touch1.x, touch1.y);
+            var gridPos = root.mapToItem(root.grid, touch1.x, touch1.y);
+            var deltaRows = Math.round((gridPos.y - d.startGridPosY) / root.grid.rowHeight);
 
-            var snappedPosX = Math.min(bounds.x + bounds.width, Math.max(bounds.x, pos.x));
-            snappedPosX = bounds.x + Math.round((snappedPosX - bounds.x) / d.widthIncrement)*d.widthIncrement;
+            var targetTopHeightRows = Math.max(d.startTopHeightRows + deltaRows, root.topAppInfo.minHeightRows);
+            deltaRows = targetTopHeightRows - d.startTopHeightRows;
 
-            var snappedPosY = Math.min(bounds.y + bounds.height, Math.max(bounds.y, pos.y));
-            snappedPosY = bounds.y + Math.round((snappedPosY - bounds.y) / d.heightIncrement)*d.heightIncrement;
+            var targetBottomHeightRows = Math.max(d.startBottomHeightRows - deltaRows, root.bottomAppInfo.minHeightRows);
+            deltaRows =  -targetBottomHeightRows + d.startBottomHeightRows;
 
-            if (d.leftBorder) {
-                var curRightBorder = root.target.topLeftColumnIndex + root.target.widthColumns;
-                var desiredTopLeftColumnIndex = (snappedPosX - bounds.x) / d.widthIncrement;
-                var maxTopLeftColumnIndex = curRightBorder - root.target.minWidthColumns;
-
-                root.target.topLeftColumnIndex = Math.min(desiredTopLeftColumnIndex, maxTopLeftColumnIndex);
-                root.target.widthColumns = curRightBorder - root.target.topLeftColumnIndex;
-            } else if (d.rightBorder) {
-                var desiredRightBorder = (snappedPosX - bounds.x) / d.widthIncrement;
-                var desiredWidth = desiredRightBorder - root.target.topLeftColumnIndex;
-
-                root.target.widthColumns = Math.max(root.target.minWidthColumns, desiredWidth);
-            }
-
-            if (d.topBorder) {
-                var curBottomIndex = root.target.topLeftRowIndex + root.target.heightRows;
-                var desiredTopLeftRowIndex = (snappedPosY - bounds.y) / d.heightIncrement;
-                var maxTopLeftRowIndex = curBottomIndex - root.target.minHeightRows;
-
-                root.target.topLeftRowIndex = Math.min(desiredTopLeftRowIndex, maxTopLeftRowIndex);
-                root.target.heightRows = curBottomIndex - root.target.topLeftRowIndex;
-            } else if (d.bottomBorder) {
-                var desiredBottomBorder = (snappedPosY - bounds.y) / d.heightIncrement;
-                var desiredHeight = desiredBottomBorder - root.target.topLeftRowIndex;
-
-                root.target.heightRows = Math.max(root.target.minHeightRows, desiredHeight);
-            }
-
+            root.topAppInfo.heightRows = d.startTopHeightRows + deltaRows
+            root.bottomAppInfo.heightRows = d.startBottomHeightRows - deltaRows
         }
     }
 }

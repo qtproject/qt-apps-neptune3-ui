@@ -47,34 +47,47 @@ Item {
         anchors.fill: parent
         anchors.margins: Style.hspan(2)
 
-        readonly property int numRows: 5
+        readonly property int numRows: 4
         readonly property int rowHeight: height / numRows
 
         Repeater {
+            id: repeater
             model: root.widgetsList
-            delegate: ApplicationWidget {
+            delegate: Column {
                 width: widgetGrid.width
                 height: appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
 
-                appInfo: model.appInfo
-
-                /*
                 Behavior on x { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
                 Behavior on y { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
                 Behavior on width { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
                 Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                */
+
+                ApplicationWidget {
+                    id: appWidget
+                    width: parent.width
+                    height: parent.height - resizerHandle.height
+
+                    appInfo: model.appInfo
+                }
+                Rectangle {
+                    id: resizerHandle
+
+                    readonly property bool isAtBottom: model.index === (repeater.count - 1)
+
+                    // the last handle looks different as it separates home screen widgets from the bottom widget
+                    color: isAtBottom ? "black" : "grey"
+                    width: parent.width
+                    height: Style.vspan(0.2)
+                    Resizer {
+                        anchors.fill: parent
+                        topAppInfo: model.appInfo
+                        bottomAppInfo: resizerHandle.isAtBottom ? null : repeater.model.get(model.index + 1).appInfo
+                        grid: widgetGrid
+                    }
+                }
             }
         }
 
-        /*
-        Resizer {
-            anchors.fill: mapWidget
-            target: mapWidget
-            grid: widgetGrid
-            visible: root.widgetEditMode
-        }
-        */
     }
 
 }
