@@ -96,7 +96,12 @@ Image {
                 height: Style.vspan(3)
                 anchors.bottom: parent.bottom
 
-                dragEnabled: !musicAppWindow.active
+                property bool showingHomePage: windowStackLoader.item ? windowStackLoader.item.showingHomePage : false
+                onShowingHomePageChanged: {
+                    if (showingHomePage)
+                        open = true;
+                }
+                dragEnabled: !musicAppWindow.active && !showingHomePage
 
                 ApplicationWidget {
                     id: musicAppWindow

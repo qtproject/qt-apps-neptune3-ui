@@ -49,6 +49,8 @@ StackView {
 
     property alias homeWidgetGridBottomMargin: homePage.gridBottomMargin
 
+    readonly property bool showingHomePage: depth == 1
+
     initialItem: HomePage {
         id: homePage
         opacity: 0
