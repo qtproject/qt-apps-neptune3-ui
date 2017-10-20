@@ -40,7 +40,7 @@ QtObject {
     property string activeAppId
     onActiveAppIdChanged: console.log("******* activeAppId = " + activeAppId)
 
-    signal applicationSurfaceReady(Item item)
+    signal applicationSurfaceReady(ApplicationInfo appInfo, Item item)
 
     property var appInfoMap: new Object
 
@@ -78,6 +78,8 @@ QtObject {
     }
 
     Component.onCompleted: {
+        loadAppInfoMap();
+
         ApplicationManager.applicationWasActivated.connect(applicationActivatedHandler)
         WindowManager.windowReady.connect(windowReadyHandler)
 
@@ -86,6 +88,20 @@ QtObject {
 
         WindowManager.windowLost.connect(windowLostHandler)
         WindowManager.windowPropertyChanged.connect(windowPropertyChangedHandler)
+    }
+
+    function loadAppInfoMap() {
+        // TODO Get it from some file or database
+        var appInfo = application("com.pelagicore.calendar");
+        appInfo.widgetState = "home";
+        appInfo.heightRows = 2;
+
+        appInfo = application("com.pelagicore.maps");
+        appInfo.widgetState = "home"
+        appInfo.heightRows = 3;
+
+        appInfo = application("com.pelagicore.music");
+        appInfo.widgetState = "bottom";
     }
 
     function applicationActivatedHandler(appId, appAliasId) {
@@ -110,7 +126,7 @@ QtObject {
         for (var i = 0; i < WindowManager.count; i++) {
             if (!WindowManager.get(i).isClosing && WindowManager.get(i).applicationId === appId) {
                 var item = WindowManager.get(i).windowItem
-                root.applicationSurfaceReady(item)
+                root.applicationSurfaceReady(appInfo, item)
                 break
             }
         }
@@ -124,7 +140,7 @@ QtObject {
         var appInfo = application(appID);
         appInfo.window = item;
 
-        root.applicationSurfaceReady(item)
+        root.applicationSurfaceReady(appInfo, item)
     }
 
     function windowLostHandler(index, item) {

@@ -107,7 +107,7 @@ StackView {
         }
 
         onApplicationSurfaceReady: {
-            if (WindowManager.windowProperty(item, "windowType") === "widget") {
+            if (appInfo.widgetState !== "") {
                 // leave it alone. Widgets are displayed by their own separate components elsewhere.
                 return;
             }

@@ -34,7 +34,6 @@ import QtQuick.Controls 2.1
 
 import controls 1.0
 import utils 1.0
-import widgets 1.0
 
 Item {
     id: root

@@ -36,10 +36,6 @@ AppUIScreen {
     id: root
     title: "Triton Maps"
 
-    Component.onCompleted: {
-        root.setWindowProperty("windowType", "widget");
-    }
-
     Rectangle {
         color: "blue"
         anchors.fill: parent

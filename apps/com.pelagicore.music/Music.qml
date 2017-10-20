@@ -38,10 +38,6 @@ AppUIScreen {
 
     color: "transparent"
 
-    Component.onCompleted: {
-        root.setWindowProperty("windowType", "widget");
-    }
-
     Rectangle {
         opacity: 0.3
         color: "blue"

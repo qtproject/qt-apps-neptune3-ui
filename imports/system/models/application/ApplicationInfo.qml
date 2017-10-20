@@ -61,7 +61,7 @@ QtObject {
     property string widgetState
 
     // Widget geometry. Ignored if widgetState is empty
-    property int heightRows: 2
+    property int heightRows: 1
     property int minHeightRows: 1
 
     function start() {
