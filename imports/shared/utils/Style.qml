@@ -94,13 +94,14 @@ QtObject {
 
     //StatusBar config
     property real statusBarSpan: 0.5
-    property real statusBarHeight: vspan(statusBarSpan)
+    property real statusBarHeight: vspan(1)
 
     //Popup config
     property real popupWidth: isPotrait ? hspan(12) : hspan(8)
     property real popupHeight: isPotrait ? vspan(5) : vspan(6)
 
-    property real launcherHeight: vspan(launcherSpan)
+    property real launcherWidth: hspan(15)
+    property real launcherHeight: vspan(1.2)
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
     property url drawableUrl: Qt.resolvedUrl(root.assetPath + 'drawable-ldpi')

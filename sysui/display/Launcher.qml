@@ -39,6 +39,8 @@ import models.application 1.0
 
 RowLayout {
     id: root
+
+    width: Style.launcherWidth
     height: gridButton.checked ? expandedHeight : Style.launcherHeight
 
     readonly property real expandedHeight: Style.vspan(10)
@@ -63,14 +65,25 @@ RowLayout {
 
     ToolButton {
         id: homeButton
+        implicitWidth: grid.cellWidth
+        implicitHeight: grid.cellHeight
         Layout.alignment: Qt.AlignTop
-        icon.name: "home"
+
+        // TODO: replace this with the correct asset when available
+        //icon.source: ""
+        text: "home"
+
         checked: true
         onClicked: {
             gridButton.checked = false;
             ApplicationManagerModel.goHome()
         }
+
+        Tracer {
+            visible: true
+        }
     }
+
     GridView {
         id: grid
         Layout.alignment: Qt.AlignTop
@@ -103,12 +116,27 @@ RowLayout {
                     }
                 }
             }
+
+            Tracer {
+                visible: true
+            }
         }
     }
+
     ToolButton {
         id: gridButton
+        implicitWidth: grid.cellWidth
+        implicitHeight: grid.cellHeight
         Layout.alignment: Qt.AlignTop
-        icon.name: "launcher-icongrid"
+
+        // TODO: replace this with the correct asset when available
+        //icon.source: ""
+
+        text: "launch"
         checkable: true
+
+        Tracer {
+            visible: true
+        }
     }
 }

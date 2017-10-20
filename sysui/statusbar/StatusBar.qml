@@ -50,12 +50,11 @@ Pane {
     }
 
     IndicatorTray {
+        Layout.fillHeight: true
         model: StatusBarModel.indicators
+        anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.topMargin: Style.padding
-        anchors.bottomMargin: Style.padding
     }
 
     RowLayout {
@@ -77,5 +76,9 @@ Pane {
             timeFormat: SettingsModel.clockOption.format
             currentDate: StatusBarModel.currentDate
         }
+    }
+
+    Tracer {
+        visible: true
     }
 }

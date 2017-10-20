@@ -45,10 +45,11 @@ import models.application 1.0
 import models.system 1.0
 import models.startup 1.0
 
-Image {
+Rectangle {
     id: root
 
-    source: Style.gfx2(Style.displayBackground)
+    color: "grey"
+    //source: Style.gfx2(Style.displayBackground)
 
     // Content Elements
     StatusBar {
@@ -61,8 +62,7 @@ Image {
     Launcher {
         id: launcher
         anchors.top: statusBar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.horizontalCenter: parent.horizontalCenter
     }
 
     Item {

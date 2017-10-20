@@ -32,26 +32,28 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
-import controls 1.0
 import utils 1.0
 
 Control {
     id: root
 
+    width: Style.hspan(model ? model.length : 0)
+    height: Style.vspan(0.4)
+
     property alias model: repeater.model
 
-    width: Style.hspan(model ? model.length : 0)
-    height: Style.vspan(2)
-
     RowLayout {
+        id: iconLayout
         spacing: Style.paddingXL
         height: parent.height
 
          Repeater {
              id: repeater
 
-             delegate: Image {
-                 source: Style.symbolXS(modelData.name)
+             // TODO: Replace this with real icon when available
+             delegate: Rectangle {
+                 width: root.height
+                 height: width
                  opacity: modelData.active ? 1 : 0.4
              }
          }
