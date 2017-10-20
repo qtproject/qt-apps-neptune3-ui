@@ -45,7 +45,8 @@ Item {
     Column {
         id: widgetGrid
         anchors.fill: parent
-        anchors.margins: Style.hspan(2)
+        anchors.leftMargin: Style.hspan(2)
+        anchors.rightMargin: Style.hspan(2)
 
         readonly property int numRows: 4
         readonly property int rowHeight: height / numRows

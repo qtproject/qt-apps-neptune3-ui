@@ -98,7 +98,7 @@ QtObject {
 
         appInfo = application("com.pelagicore.maps");
         appInfo.widgetState = "home"
-        appInfo.heightRows = 3;
+        appInfo.heightRows = 2;
 
         appInfo = application("com.pelagicore.music");
         appInfo.widgetState = "bottom";
