@@ -65,13 +65,14 @@ RowLayout {
 
     ToolButton {
         id: homeButton
-        implicitWidth: grid.cellWidth
-        implicitHeight: grid.cellHeight
+
+        width: grid.cellWidth
+        height: grid.cellHeight
         Layout.alignment: Qt.AlignTop
 
         // TODO: replace this with the correct asset when available
         //icon.source: ""
-        text: "home"
+        text: "Home"
 
         checked: true
         onClicked: {
@@ -125,14 +126,15 @@ RowLayout {
 
     ToolButton {
         id: gridButton
-        implicitWidth: grid.cellWidth
-        implicitHeight: grid.cellHeight
+
+        width: grid.cellWidth
+        height: grid.cellHeight
         Layout.alignment: Qt.AlignTop
 
         // TODO: replace this with the correct asset when available
         //icon.source: ""
 
-        text: "launch"
+        text: "Apps"
         checkable: true
 
         Tracer {
