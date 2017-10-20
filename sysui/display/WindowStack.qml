@@ -47,6 +47,8 @@ import QtApplicationManager 1.0
 StackView {
     id: root
 
+    property alias homeWidgetGridBottomMargin: homePage.gridBottomMargin
+
     initialItem: HomePage {
         id: homePage
         opacity: 0

@@ -39,14 +39,16 @@ Item {
     id: root
 
     property var widgetsList: HomeWidgetsList {}
+    property real gridBottomMargin
 
 
     // The widget grid
     Column {
         id: widgetGrid
         anchors.fill: parent
-        anchors.leftMargin: Style.hspan(2)
-        anchors.rightMargin: Style.hspan(2)
+        anchors.leftMargin: Style.hspan(0.5)
+        anchors.rightMargin: Style.hspan(0.5)
+        anchors.bottomMargin: root.gridBottomMargin
 
         readonly property int numRows: 4
         readonly property int rowHeight: height / numRows

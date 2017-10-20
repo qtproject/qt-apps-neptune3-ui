@@ -83,13 +83,11 @@ Image {
             StageLoader {
                 id: windowStackLoader
 
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: widgetDrawer.open ?  parent.height - widgetDrawer.height : parent.height
+                anchors.fill: parent
                 active: StagedStartupModel.loadRest
                 source: "WindowStack.qml"
-                Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+
+                Binding { target: windowStackLoader.item; property: "homeWidgetGridBottomMargin"; value: widgetDrawer.height }
             }
 
             WidgetDrawer {
