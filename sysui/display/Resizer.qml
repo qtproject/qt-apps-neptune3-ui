@@ -39,7 +39,6 @@ MultiPointTouchArea {
     property var topAppInfo
     property var bottomAppInfo
 
-
     /*
      A grid item is expected to have the following properties:
      numRows: number of rows
