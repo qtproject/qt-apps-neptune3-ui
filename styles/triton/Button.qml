@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Templates 2.3 as T
+import QtQuick.Templates 2.2 as T
 import com.pelagicore.styles.triton 1.0
 
 T.Button {

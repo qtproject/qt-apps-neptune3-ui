@@ -74,15 +74,20 @@ RowLayout {
         // TODO: replace this with the correct asset when available
         //icon.source: ""
         text: "Home"
-
         checked: true
         onClicked: {
             gridButton.checked = false;
             ApplicationManagerModel.goHome()
         }
 
-        Tracer {
-            visible: true
+        // TODO: Replace this with the correct visualization
+        Rectangle {
+            id: homeDummyChecked
+
+            anchors.fill: parent
+            color: "transparent"
+            border.color: homeButton.checked ? "red" : "transparent"
+            border.width: 2
         }
     }
 
@@ -96,12 +101,29 @@ RowLayout {
         model: ApplicationManager
         cellWidth: width / 4
         cellHeight: Style.vspan(1)
+
         delegate: Tool {
             id: appButton
             width: grid.cellWidth
             height: grid.cellHeight
             symbol: model.icon
             checkable: true
+            opacity: {
+                if (index > 3) {
+                    if (root.open) {
+                        1.0
+                    } else {
+                        0.0
+                    }
+                }
+            }
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                }
+            }
+
             onClicked: {
                 gridButton.checked = false;
                 ApplicationManager.startApplication(model.applicationId)
@@ -119,8 +141,14 @@ RowLayout {
                 }
             }
 
-            Tracer {
-                visible: true
+            // TODO: Replace this with the correct visualization
+            Rectangle {
+                id: dummyChecked
+
+                anchors.fill: parent
+                color: "transparent"
+                border.color: appButton.checked ? "red" : "transparent"
+                border.width: 2
             }
         }
     }
@@ -138,8 +166,14 @@ RowLayout {
         text: "Apps"
         checkable: true
 
-        Tracer {
-            visible: true
+        // TODO: Replace this with the correct visualization
+        Rectangle {
+            id: gridDummyChecked
+
+            anchors.fill: parent
+            color: "transparent"
+            border.color: gridButton.checked ? "red" : "transparent"
+            border.width: 2
         }
     }
 }
