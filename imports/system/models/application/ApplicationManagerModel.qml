@@ -38,7 +38,7 @@ QtObject {
     id: root
 
     property string activeAppId
-    onActiveAppIdChanged: console.log("******* activeAppId = " + activeAppId)
+    onActiveAppIdChanged: console.log(logCategory, "activeAppId = " + activeAppId)
 
     signal applicationSurfaceReady(ApplicationInfo appInfo, Item item)
 
@@ -116,9 +116,10 @@ QtObject {
 
         appInfo.active = true;
 
-        appInfo = appInfoMap[root.activeAppId]
-        if (appInfo) {
-            appInfo.active = false;
+        {
+            var oldAppInfo = appInfoMap[root.activeAppId]
+            if (oldAppInfo)
+                oldAppInfo.active = false;
         }
 
         root.activeAppId = appId
