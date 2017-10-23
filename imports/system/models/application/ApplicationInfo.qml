@@ -54,13 +54,10 @@ QtObject {
     // TODO: try to get rid of this (ie, find a better solution)
     property var window
 
-    // Possible values:
-    // "" (empty) - to be displayed maximized/fullscreen
-    // "home"     - to be displayed as a widget in the home screen
-    // "bottom"   - to be displayed as the bottom widget
-    property string widgetState
+    // Whether the application window should be shown as a widget
+    property bool asWidget: false
 
-    // Widget geometry. Ignored if widgetState is empty
+    // Widget geometry. Ignored if asWidget === false
     property int heightRows: 1
     property int minHeightRows: 1
 

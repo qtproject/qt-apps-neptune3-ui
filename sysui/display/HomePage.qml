@@ -39,8 +39,10 @@ Item {
     id: root
 
     property var widgetsList: HomeWidgetsList {}
-    property real gridBottomMargin
 
+    property Item bottomApplicationWidget
+    readonly property real widgetWidth: widgetGrid.width
+    readonly property real rowHeight: widgetGrid.rowHeight - widgetGrid.resizerHandleHeight
 
     // The widget grid
     Column {
@@ -48,10 +50,11 @@ Item {
         anchors.fill: parent
         anchors.leftMargin: Style.hspan(0.5)
         anchors.rightMargin: Style.hspan(0.5)
-        anchors.bottomMargin: root.gridBottomMargin
 
-        readonly property int numRows: 4
+        readonly property int numRows: 5
         readonly property int rowHeight: height / numRows
+
+        readonly property real resizerHandleHeight: Style.vspan(0.2)
 
         move: Transition {
             id: moveTransition
@@ -89,41 +92,53 @@ Item {
                 width: widgetGrid.width
                 height: appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
 
-                Behavior on x {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on y {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on width {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on height {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on x { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on y { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on width { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on height { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
 
                 property alias appInfo: appWidget.appInfo
                 readonly property int modelIndex: model.index
 
-                ApplicationWidget {
-                    id: appWidget
-                    width: parent.width
-                    height: parent.height - resizerHandle.height
+                readonly property bool isAtBottom: model.index === (repeater.count - 1)
 
-                    appInfo: model.appInfo
+                Binding {
+                    when: repeaterDelegate.isAtBottom
+                    target: root
+                    property: "bottomApplicationWidget"
+                    value: appWidget
+                }
 
-                    onDraggedOntoPos: {
-                        var gridPos = appWidget.mapToItem(widgetGrid, pos.x, pos.y);
-                        widgetGrid.moveWidgetToYPos(repeaterDelegate, gridPos.y);
+                Item {
+                    width: repeaterDelegate.width
+                    height: repeaterDelegate.height - resizerHandle.height
+                    ApplicationWidget {
+                        id: appWidget
+                        anchors.fill: parent
+
+                        appInfo: model.appInfo
+
+                        onDraggedOntoPos: {
+                            var gridPos = appWidget.mapToItem(widgetGrid, pos.x, pos.y);
+                            widgetGrid.moveWidgetToYPos(repeaterDelegate, gridPos.y);
+                        }
+                        onDragStarted: moveTransition.enabled = true
+                        onDragEnded: moveTransition.enabled = false
                     }
-                    onDragStarted: moveTransition.enabled = true
-                    onDragEnded: moveTransition.enabled = false
                 }
                 Rectangle {
                     id: resizerHandle
 
-                    readonly property bool isAtBottom: model.index === (repeater.count - 1)
+                    visible: repeaterDelegate.isAtBottom ? false : true
 
                     // the last handle looks different as it separates home screen widgets from the bottom widget
-                    color: isAtBottom ? "black" : "grey"
+                    color: "grey"
                     width: parent.width
-                    height: Style.vspan(0.2)
+                    height: widgetGrid.resizerHandleHeight
                     Resizer {
                         anchors.fill: parent
                         topAppInfo: model.appInfo
-                        bottomAppInfo: resizerHandle.isAtBottom ? null : repeater.model.get(model.index + 1).appInfo
+                        bottomAppInfo: repeaterDelegate.isAtBottom ? null : repeater.model.get(model.index + 1).appInfo
                         grid: widgetGrid
                     }
                 }

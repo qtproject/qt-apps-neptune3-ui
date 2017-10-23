@@ -86,48 +86,43 @@ Rectangle {
                 anchors.fill: parent
                 active: StagedStartupModel.loadRest
                 source: "WindowStack.qml"
-
-                Binding { target: windowStackLoader.item; property: "homeWidgetGridBottomMargin"; value: widgetDrawer.height }
             }
 
             WidgetDrawer {
                 id: widgetDrawer
                 width: parent.width
-                height: Style.vspan(3)
+                height: homePageRowHeight
                 anchors.bottom: parent.bottom
 
-                property bool showingHomePage: windowStackLoader.item ? windowStackLoader.item.showingHomePage : false
+                // TODO: try to make this parent swapping nicer and more declarative
+                property var previousWidgetParent
                 onShowingHomePageChanged: {
-                    if (showingHomePage)
+                    if (showingHomePage) {
                         open = true;
-                }
-                dragEnabled: !musicAppWindow.active && !showingHomePage
-
-                ApplicationWidget {
-                    id: musicAppWindow
-                    width: parent.width - Style.hspan(1)
-                    height: active ? expandedHeight : Style.vspan(3)
-                    anchors.bottom: parent.bottom
-                    anchors.horizontalCenter: parent.horizontalCenter
-
-                    appInfo: ApplicationManagerModel.application('com.pelagicore.music')
-
-                    // when active the top edge will go all the way up to the bottom of the launcher
-                    property real expandedHeight: mainContentArea.height
-
-                    onActiveChanged: {
-                        if (active) {
-                            widgetDrawer.open = true;
+                        if (previousWidgetParent && homePageBottomApplicationWidget) {
+                            homePageBottomApplicationWidget.parent = previousWidgetParent
                         }
-                    }
-
-                    Behavior on height {
-                        SmoothedAnimation {
-                            easing.type: Easing.InOutQuad
-                            duration: 500
-                        }
+                    } else if (homePageBottomApplicationWidget) {
+                        previousWidgetParent = homePageBottomApplicationWidget.parent
+                        homePageBottomApplicationWidget.parent = applicationWidgetSlot
                     }
                 }
+
+                dragEnabled: homePageBottomApplicationWidget && !homePageBottomApplicationWidget.active && !showingHomePage
+
+                visible: !showingHomePage
+
+                Item {
+                    id: applicationWidgetSlot
+                    width: widgetDrawer.homePageWidgetWidth
+                    height: widgetDrawer.homePageRowHeight
+                    anchors.horizontalCenter: widgetDrawer.horizontalCenter
+                }
+
+                property bool showingHomePage: windowStackLoader.item ? windowStackLoader.item.showingHomePage : false
+                property Item homePageBottomApplicationWidget: windowStackLoader.item ? windowStackLoader.item.homePageBottomApplicationWidget : null
+                property real homePageWidgetWidth: windowStackLoader.item ? windowStackLoader.item.homePageWidgetWidth : 0
+                property real homePageRowHeight: windowStackLoader.item ? windowStackLoader.item.homePageRowHeight : 0
             }
         }
     }

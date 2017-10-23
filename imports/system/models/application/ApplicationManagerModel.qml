@@ -93,15 +93,15 @@ QtObject {
     function loadAppInfoMap() {
         // TODO Get it from some file or database
         var appInfo = application("com.pelagicore.calendar");
-        appInfo.widgetState = "home";
+        appInfo.asWidget = true;
         appInfo.heightRows = 2;
 
         appInfo = application("com.pelagicore.maps");
-        appInfo.widgetState = "home"
+        appInfo.asWidget = true;
         appInfo.heightRows = 2;
 
         appInfo = application("com.pelagicore.music");
-        appInfo.widgetState = "bottom";
+        appInfo.asWidget = true;
     }
 
     function applicationActivatedHandler(appId, appAliasId) {

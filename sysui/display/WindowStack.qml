@@ -47,7 +47,9 @@ import QtApplicationManager 1.0
 StackView {
     id: root
 
-    property alias homeWidgetGridBottomMargin: homePage.gridBottomMargin
+    property alias homePageBottomApplicationWidget: homePage.bottomApplicationWidget
+    property alias homePageWidgetWidth: homePage.widgetWidth
+    property alias homePageRowHeight: homePage.rowHeight
 
     readonly property bool showingHomePage: depth == 1
 
@@ -111,7 +113,7 @@ StackView {
         }
 
         onApplicationSurfaceReady: {
-            if (appInfo.widgetState !== "") {
+            if (appInfo.asWidget) {
                 // leave it alone. Widgets are displayed by their own separate components elsewhere.
                 return;
             }

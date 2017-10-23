@@ -40,6 +40,7 @@ Item {
     signal dragStarted()
     signal dragEnded()
 
+    property alias dragButtonVisible: dragHandle.visible
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
 
