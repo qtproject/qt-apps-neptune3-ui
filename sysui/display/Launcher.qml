@@ -30,7 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.2
+import controls 1.0
 import utils 1.0
 import QtApplicationManager 1.0
 import QtQuick.Layouts 1.0
@@ -95,11 +96,11 @@ RowLayout {
         model: ApplicationManager
         cellWidth: width / 4
         cellHeight: Style.vspan(1)
-        delegate: ToolButton {
+        delegate: Tool {
             id: appButton
             width: grid.cellWidth
             height: grid.cellHeight
-            icon.source: model.icon
+            symbol: model.icon
             checkable: true
             onClicked: {
                 gridButton.checked = false;

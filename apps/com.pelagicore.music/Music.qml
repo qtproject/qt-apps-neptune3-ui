@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import utils 1.0
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.2
 
 AppUIScreen {
     id: root

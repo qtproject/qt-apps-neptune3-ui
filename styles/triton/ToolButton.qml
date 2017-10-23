@@ -30,10 +30,10 @@
 ****************************************************************************/
 
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Controls.impl 2.3
-import QtQuick.Templates 2.3 as T
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.impl 2.2
+import QtQuick.Templates 2.2 as T
 import com.pelagicore.styles.triton 1.0
 import controls 1.0
 
@@ -55,14 +55,9 @@ T.ToolButton {
 
     //icon.width: Symbol.symbolSizeM
     //icon.height: Symbol.symbolSizeM
-    icon.color: checked ? "#f07d00" : "transparent"
+    //icon.color: checked ? "#f07d00" : "transparent"
 
-    contentItem: IconLabel {
-        spacing: control.spacing
-        mirrored: control.mirrored
-        display: control.display
-
-        icon: control.icon
+    contentItem: Label {
         text: control.text
         font: control.font
         color: control.enabled ? (control.visualFocus ? Default.focusColor : Default.textDarkColor) : Default.textDisabledLightColor

@@ -30,21 +30,22 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.2
 import controls 1.0
 import utils 1.0
 
 
-// FIXME: delete-me. Implementation should be using ToolButton directly
 ToolButton {
     id: root
     width: Style.hspan(4)
     height: Style.vspan(2)
     property string symbol
-    property int size
 
     indicator: Image {
+        width: Style.hspan(1.3)
+        height: Style.vspan(0.8)
         anchors.centerIn: parent
-        source: root.symbol ? Style.symbol(root.symbol, root.size, root.checked) : ""
+        fillMode: Image.PreserveAspectFit
+        source: root.symbol ? root.symbol : ""
     }
 }

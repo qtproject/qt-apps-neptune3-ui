@@ -31,7 +31,7 @@
 
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.2
 
 import controls 1.0
 import utils 1.0
