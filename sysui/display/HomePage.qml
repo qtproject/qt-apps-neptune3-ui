@@ -53,17 +53,49 @@ Item {
         readonly property int numRows: 4
         readonly property int rowHeight: height / numRows
 
+        move: Transition {
+            id: moveTransition
+            enabled: false
+            SmoothedAnimation { properties: "x,y,width,height"; easing.type: Easing.InOutQuad; duration: 270 }
+        }
+
+        function moveWidgetToYPos(draggedWidget, yPos) {
+            if (moveTransition.running)
+                return;
+
+            var targetRowIndex = Math.round(yPos / rowHeight);
+            targetRowIndex = Math.max(0, Math.min(targetRowIndex, numRows - 1));
+
+            var i;
+            for (i = 0; i < repeater.count; i++) {
+                if (draggedWidget.modelIndex === i)
+                    continue;
+
+                var widgetDelegate = repeater.itemAt(i);
+                var widgetRowIndex = Math.round(widgetDelegate.y / rowHeight);
+                if (widgetRowIndex === targetRowIndex) {
+                    // swap!
+                    root.widgetsList.move(draggedWidget.modelIndex, i, 1);
+                    return;
+                }
+            }
+        }
+
         Repeater {
             id: repeater
             model: root.widgetsList
             delegate: Column {
+                id: repeaterDelegate
                 width: widgetGrid.width
                 height: appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
 
-                Behavior on x { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on y { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on width { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on height { SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on x {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on y {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on width {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on height {enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+
+                property alias appInfo: appWidget.appInfo
+                readonly property int modelIndex: model.index
 
                 ApplicationWidget {
                     id: appWidget
@@ -71,6 +103,13 @@ Item {
                     height: parent.height - resizerHandle.height
 
                     appInfo: model.appInfo
+
+                    onDraggedOntoPos: {
+                        var gridPos = appWidget.mapToItem(widgetGrid, pos.x, pos.y);
+                        widgetGrid.moveWidgetToYPos(repeaterDelegate, gridPos.y);
+                    }
+                    onDragStarted: moveTransition.enabled = true
+                    onDragEnded: moveTransition.enabled = false
                 }
                 Rectangle {
                     id: resizerHandle
