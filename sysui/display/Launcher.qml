@@ -31,10 +31,11 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+import QtQml.Models 2.1
+import QtQuick.Layouts 1.0
+import QtApplicationManager 1.0
 import controls 1.0
 import utils 1.0
-import QtApplicationManager 1.0
-import QtQuick.Layouts 1.0
 
 import models.application 1.0
 
@@ -67,13 +68,19 @@ RowLayout {
     ToolButton {
         id: homeButton
 
-        width: grid.cellWidth
-        height: grid.cellHeight
+        implicitWidth: Style.hspan(2.3)
+        implicitHeight: Style.vspan(1.6)
         Layout.alignment: Qt.AlignTop
 
         // TODO: replace this with the correct asset when available
         //icon.source: ""
-        text: "Home"
+
+        contentItem: Label {
+            text: "Home"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+        }
+
         checked: true
         onClicked: {
             gridButton.checked = false;
@@ -84,93 +91,62 @@ RowLayout {
         Rectangle {
             id: homeDummyChecked
 
-            anchors.fill: parent
+            width: Style.hspan(2.3)
+            height: Style.vspan(1.6)
             color: "transparent"
             border.color: homeButton.checked ? "red" : "transparent"
             border.width: 2
         }
     }
 
-    GridView {
-        id: grid
-        Layout.alignment: Qt.AlignTop
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        interactive: false
-        clip: true
+    EditableGridView {
+        id: editableLauncher
+
+        anchors.top: parent.top
+        gridOpen: root.open
         model: ApplicationManager
-        cellWidth: width / 4
-        cellHeight: Style.vspan(1)
 
-        delegate: Tool {
-            id: appButton
-            width: grid.cellWidth
-            height: grid.cellHeight
-            symbol: model.icon
-            checkable: true
-            opacity: {
-                if (index > 3) {
-                    if (root.open) {
-                        1.0
-                    } else {
-                        0.0
-                    }
-                }
-            }
-
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: 200
-                }
-            }
-
-            onClicked: {
-                gridButton.checked = false;
-                ApplicationManager.startApplication(model.applicationId)
-            }
-            Component.onCompleted: buttonGroup.addButton(appButton)
-            Component.onDestruction: buttonGroup.removeButton(appButton)
-
-            property var appInfo: ApplicationManagerModel.application(model.applicationId)
-            Connections {
-                target: appInfo
-                onActiveChanged: {
-                    if (appInfo.active) {
-                        appButton.checked = true;
-                    }
-                }
-            }
-
-            // TODO: Replace this with the correct visualization
-            Rectangle {
-                id: dummyChecked
-
-                anchors.fill: parent
-                color: "transparent"
-                border.color: appButton.checked ? "red" : "transparent"
-                border.width: 2
-            }
+        onButtonCreated: buttonGroup.addButton(button)
+        onButtonRemoved: buttonGroup.removeButton(button)
+        onAppButtonClicked: {
+            homeButton.checked = false;
+            gridButton.checked = false;
+            ApplicationManager.startApplication(applicationId);
         }
     }
 
-    ToolButton {
+    Tool {
         id: gridButton
 
-        width: grid.cellWidth
-        height: grid.cellHeight
+        implicitWidth: Style.hspan(2.3)
+        implicitHeight: Style.vspan(1.6)
         Layout.alignment: Qt.AlignTop
 
         // TODO: replace this with the correct asset when available
         //icon.source: ""
 
-        text: "Apps"
+        contentItem: Label {
+            text: editableLauncher.gridEditMode ? "" : "Apps"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        symbol: editableLauncher.gridEditMode ? Style.symbol("close", 0, false) : ""
+
         checkable: true
+
+        onCheckedChanged: {
+            if (checked) {
+                homeButton.checked = false
+            }
+        }
 
         // TODO: Replace this with the correct visualization
         Rectangle {
             id: gridDummyChecked
 
-            anchors.fill: parent
+            width: Style.hspan(2.3)
+            height: Style.vspan(1.6)
             color: "transparent"
             border.color: gridButton.checked ? "red" : "transparent"
             border.width: 2

@@ -100,8 +100,8 @@ QtObject {
     property real popupWidth: isPotrait ? hspan(12) : hspan(8)
     property real popupHeight: isPotrait ? vspan(5) : vspan(6)
 
-    property real launcherWidth: hspan(15)
-    property real launcherHeight: vspan(1.2)
+    property real launcherWidth: hspan(18)
+    property real launcherHeight: vspan(1.6)
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
     property url drawableUrl: Qt.resolvedUrl(root.assetPath + 'drawable-ldpi')
