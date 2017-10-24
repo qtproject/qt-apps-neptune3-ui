@@ -84,18 +84,216 @@ Item {
             }
         }
 
+        property bool resizingWidgets: false
+        property real startResizeDragY
+        property int widgetIndexAboveHandle
+        function onResizeHandlePressed(pos) {
+            startResizeDragY = pos.y;
+
+            var i = 0;
+            var accumulatedHeight = 0;
+            while (true) {
+                var appInfo = root.widgetsList.get(i).appInfo;
+                accumulatedHeight += appInfo.heightRows * rowHeight;
+                if (accumulatedHeight >= pos.y) {
+                    widgetIndexAboveHandle = i;
+                    break;
+                } else {
+                    i++;
+                }
+            }
+
+            animateWidgetResize = false;
+
+            // init resize heights
+            for (i = 0; i < repeater.count; i++) {
+                var delegate = repeater.itemAt(i);
+                delegate.heightWhenResizing = delegate.appInfo.heightRows * widgetGrid.rowHeight;
+            }
+
+            resizingWidgets = true;
+        }
+        function onResizeHandleDragged(pos) {
+            // init resize heights
+            for (i = 0; i < repeater.count; i++) {
+                var delegate = repeater.itemAt(i);
+                delegate.heightWhenResizing = delegate.appInfo.heightRows * widgetGrid.rowHeight;
+            }
+
+            var delta = snapToRowMultiplierIfTooClose(withinBoundsY(pos.y) - startResizeDragY);
+            delta = computeUsableDragDelta(delta);
+
+            // above handle. positive delta enlarges widgets
+            var i = widgetIndexAboveHandle;
+            var remainingDelta = delta;
+            while (remainingDelta !== 0 && i >= 0) {
+                var delegate = repeater.itemAt(i);
+                var appInfo = delegate.appInfo;
+                var minHeight = appInfo.minHeightRows * rowHeight;
+                var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
+
+                if (remainingDelta > 0) {
+                    // no upper limit at the moment on widget height (other than grid size)
+                    delegate.heightWhenResizing = targetHeight;
+                    remainingDelta = 0;
+                } else {
+                    if (targetHeight >= minHeight) {
+                        delegate.heightWhenResizing = targetHeight;
+                        remainingDelta = 0;
+                    } else {
+                        delegate.heightWhenResizing = minHeight;
+                        remainingDelta -= -((appInfo.heightRows * rowHeight) - minHeight)
+                        i--;
+                    }
+                }
+            }
+
+            // below handle. positive delta shrinks widgets
+            i = widgetIndexAboveHandle + 1;
+            remainingDelta = delta;
+            while (remainingDelta !== 0 && i < repeater.count) {
+                var delegate = repeater.itemAt(i);
+                var appInfo = delegate.appInfo;
+                var minHeight = appInfo.minHeightRows * rowHeight;
+                var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
+
+                if (remainingDelta < 0) {
+                    // no upper limit at the moment on widget height (other than grid size)
+                    delegate.heightWhenResizing = targetHeight;
+                    remainingDelta = 0;
+                } else {
+                    if (targetHeight >= minHeight) {
+                        delegate.heightWhenResizing = targetHeight;
+                        remainingDelta = 0;
+                    } else {
+                        delegate.heightWhenResizing = minHeight;
+                        remainingDelta -= (appInfo.heightRows * rowHeight) - minHeight;
+                        i++;
+                    }
+                }
+            }
+        }
+        function onResizeHandleReleased(pos) {
+            // apply sizes
+            var i;
+            for (i = 0; i < repeater.count; i++) {
+                var delegate = repeater.itemAt(i);
+                delegate.appInfo.heightRows = Math.round(delegate.heightWhenResizing / widgetGrid.rowHeight);
+            }
+
+            animateWidgetResize = true;
+            resizingWidgets = false;
+        }
+        function computeUsableDragDelta(delta) {
+            // above handle. positive delta enlarges widgets
+            var i = widgetIndexAboveHandle;
+            var remainingDelta = delta;
+            var usableDeltaAbove = 0
+            while (remainingDelta !== 0 && i >= 0) {
+                var appInfo = root.widgetsList.get(i).appInfo;
+                var minHeight = appInfo.minHeightRows * rowHeight;
+                var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
+
+                if (remainingDelta > 0) {
+                    // no upper limit at the moment on widget height (other than grid size)
+                    usableDeltaAbove += remainingDelta;
+                    remainingDelta = 0;
+                } else {
+                    if (targetHeight >= minHeight) {
+                        usableDeltaAbove += remainingDelta;
+                        remainingDelta = 0;
+                    } else {
+                        var thisWidgetDelta = -((appInfo.heightRows * rowHeight) - minHeight);
+                        usableDeltaAbove += thisWidgetDelta;
+                        remainingDelta -= thisWidgetDelta;
+                        i--;
+                    }
+                }
+            }
+
+            // below handle. positive delta shrinks widgets
+            i = widgetIndexAboveHandle + 1;
+            remainingDelta = usableDeltaAbove;
+            var usableDelta = 0
+            while (remainingDelta !== 0 && i < root.widgetsList.count) {
+                var appInfo = root.widgetsList.get(i).appInfo;
+                var minHeight = appInfo.minHeightRows * rowHeight;
+                var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
+
+                if (remainingDelta < 0) {
+                    // no upper limit at the moment on widget height (other than grid size)
+                    usableDelta += remainingDelta;
+                    remainingDelta = 0;
+                } else {
+                    if (targetHeight >= minHeight) {
+                        usableDelta += remainingDelta;
+                        remainingDelta = 0;
+                    } else {
+                        var thisWidgetDelta = (appInfo.heightRows * rowHeight) - minHeight;
+                        usableDelta += thisWidgetDelta;
+                        remainingDelta -= thisWidgetDelta;
+                        i++;
+                    }
+                }
+            }
+            return usableDelta;
+        }
+        function withinBoundsY(someY) {
+            return Math.max(0, Math.min(someY, height));
+        }
+        function snapToRowMultiplierIfTooClose(delta) {
+            var deltaRows = delta / rowHeight;
+            var snapThreshold = 0.5;
+
+            var floorDiff = deltaRows - Math.floor(deltaRows);
+            var ceilDiff = Math.ceil(deltaRows) - deltaRows;
+
+            if (floorDiff < ceilDiff && floorDiff <= snapThreshold) {
+                //return Math.floor(deltaRows) * rowHeight;
+                return applyEasing(Math.floor(deltaRows)*rowHeight - snapThreshold*rowHeight,
+                                   Math.floor(deltaRows)*rowHeight + snapThreshold*rowHeight, delta);
+            } else if (floorDiff >= ceilDiff && ceilDiff <= snapThreshold) {
+                //return Math.ceil(deltaRows) * rowHeight;
+                return applyEasing(Math.ceil(deltaRows)*rowHeight - snapThreshold*rowHeight,
+                                   Math.ceil(deltaRows)*rowHeight + snapThreshold*rowHeight, delta);
+            } else {
+                return delta;
+            }
+        }
+        function applyEasing(min, max, value) {
+            // apply an OutInCubic easing function, ie:
+            // y=x^3, ranging from -1 (min) to 1 (max)
+
+            // normalize the value to be in the [-1,1] range
+            var x = (((value - min) / (max - min)) * 2) - 1;
+
+            var y = Math.pow(x, 3);
+
+            // and map it back to its original range
+            return (((y + 1) / 2) * (max - min)) + min;
+        }
+
+        property bool animateWidgetResize: true
+
         Repeater {
             id: repeater
             model: root.widgetsList
             delegate: Column {
                 id: repeaterDelegate
                 width: widgetGrid.width
-                height: appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
+                height: {
+                    if (widgetGrid.resizingWidgets) {
+                        return heightWhenResizing
+                    } else {
+                        return appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
+                    }
+                }
+                property real heightWhenResizing
 
-                Behavior on x { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on y { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on width { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on height { enabled:!moveTransition.enabled; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on x { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on y { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on width { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on height { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
 
                 property alias appInfo: appWidget.appInfo
                 readonly property int modelIndex: model.index
@@ -112,7 +310,7 @@ Item {
                 Item {
                     id: appWidgetSlot
                     width: repeaterDelegate.width
-                    height: repeaterDelegate.height - resizerHandle.height
+                    height: repeaterDelegate.height - resizeHandle.height
 
                     ApplicationWidget {
                         id: appWidget
@@ -132,18 +330,18 @@ Item {
                     }
                 }
                 Rectangle {
-                    id: resizerHandle
+                    id: resizeHandle
 
                     visible: repeaterDelegate.isAtBottom ? false : true
 
                     color: "grey"
                     width: parent.width
                     height: widgetGrid.resizerHandleHeight
-                    Resizer {
+                    MouseArea {
                         anchors.fill: parent
-                        topAppInfo: model.appInfo
-                        bottomAppInfo: repeaterDelegate.isAtBottom ? null : repeater.model.get(model.index + 1).appInfo
-                        grid: widgetGrid
+                        onPressed: widgetGrid.onResizeHandlePressed(mapToItem(widgetGrid, mouseX, mouseY))
+                        onReleased: widgetGrid.onResizeHandleReleased(mapToItem(widgetGrid, mouseX, mouseY))
+                        onPositionChanged: widgetGrid.onResizeHandleDragged(mapToItem(widgetGrid, mouseX, mouseY))
                     }
                 }
             }
