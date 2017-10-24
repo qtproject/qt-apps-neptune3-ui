@@ -110,13 +110,18 @@ Item {
                 }
 
                 Item {
+                    id: appWidgetSlot
                     width: repeaterDelegate.width
                     height: repeaterDelegate.height - resizerHandle.height
+
                     ApplicationWidget {
                         id: appWidget
                         anchors.fill: parent
 
                         appInfo: model.appInfo
+
+                        // hide drag button when reparented elsewhere
+                        dragButtonVisible: parent === appWidgetSlot
 
                         onDraggedOntoPos: {
                             var gridPos = appWidget.mapToItem(widgetGrid, pos.x, pos.y);
