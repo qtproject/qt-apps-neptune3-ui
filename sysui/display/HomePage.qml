@@ -136,7 +136,6 @@ Item {
 
                     visible: repeaterDelegate.isAtBottom ? false : true
 
-                    // the last handle looks different as it separates home screen widgets from the bottom widget
                     color: "grey"
                     width: parent.width
                     height: widgetGrid.resizerHandleHeight
