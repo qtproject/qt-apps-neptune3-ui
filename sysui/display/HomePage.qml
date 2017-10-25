@@ -143,7 +143,7 @@ Item {
                         remainingDelta = 0;
                     } else {
                         delegate.heightWhenResizing = minHeight;
-                        remainingDelta -= -((appInfo.heightRows * rowHeight) - minHeight)
+                        remainingDelta -= -((appInfo.heightRows * rowHeight) - minHeight);
                         i--;
                     }
                 }
@@ -215,7 +215,7 @@ Item {
             // below handle. positive delta shrinks widgets
             i = widgetIndexAboveHandle + 1;
             remainingDelta = usableDeltaAbove;
-            var usableDelta = 0
+            var usableDelta = 0;
             while (remainingDelta !== 0 && i < root.widgetsList.count) {
                 var appInfo = root.widgetsList.get(i).appInfo;
                 var minHeight = appInfo.minHeightRows * rowHeight;
