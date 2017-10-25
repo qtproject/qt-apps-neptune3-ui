@@ -40,6 +40,7 @@ import statusbar 1.0
 import notification 1.0
 import popup 1.0
 import windowoverview 1.0
+import launcher 1.0
 
 import models.application 1.0
 import models.system 1.0
