@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
 import QtApplicationManager 1.0
+import animations 1.0
 import controls 1.0
 import utils 1.0
 
@@ -53,12 +54,7 @@ RowLayout {
         homeButton.clicked();
     }
 
-    Behavior on height {
-        SmoothedAnimation {
-            easing.type: Easing.InOutQuad
-            duration: 270
-        }
-    }
+    Behavior on height { DefaultSmoothedAnimation {} }
 
     ButtonGroup {
         id: buttonGroup

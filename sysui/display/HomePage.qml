@@ -34,6 +34,7 @@ import QtQuick.Controls 2.1
 
 import controls 1.0
 import utils 1.0
+import animations 1.0
 
 Item {
     id: root
@@ -59,7 +60,7 @@ Item {
         move: Transition {
             id: moveTransition
             enabled: false
-            SmoothedAnimation { properties: "x,y,width,height"; easing.type: Easing.InOutQuad; duration: 270 }
+            DefaultSmoothedAnimation { properties: "x,y,width,height" }
         }
 
         function moveWidgetToYPos(draggedWidget, yPos) {
@@ -290,10 +291,10 @@ Item {
                 }
                 property real heightWhenResizing
 
-                Behavior on x { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on y { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on width { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
-                Behavior on height { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; SmoothedAnimation { easing.type: Easing.InOutQuad; duration: 270 } }
+                Behavior on x { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
+                Behavior on y { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
+                Behavior on width { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
+                Behavior on height { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
 
                 property alias appInfo: appWidget.appInfo
                 readonly property int modelIndex: model.index
