@@ -90,7 +90,12 @@ Item {
     HomePage {
         id: homePage
         anchors.fill: parent
-        widgetsList: ListModel { id: listModel  }
+        widgetsList: ListModel {
+            id: listModel
+            function application(index) {
+                return get(index).appInfo;
+            }
+        }
         Component.onCompleted: {
             listModel.append({"appInfo":redApp})
             listModel.append({"appInfo":greenApp})

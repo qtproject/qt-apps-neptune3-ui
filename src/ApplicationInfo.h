@@ -28,9 +28,13 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#pragma once
 
-import QtQuick 2.7
-import QtApplicationManager 1.0
+#include <QObject>
+#include <QQuickItem>
+
+// QtAM
+#include <application.h>
 
 /*
    A wrapper for AppMan Application that adds some more goodies
@@ -38,30 +42,68 @@ import QtApplicationManager 1.0
    Maybe some of those extra bits could be put into Application itself to reduce or even
    eliminate the need for this wrapper.
  */
-QtObject {
-    // the AppMan Application object
-    property var application
+class ApplicationInfo : public QObject {
+    Q_OBJECT
 
     // whether the application is active (on foreground / fullscreen)
     // false means it's either invisible, minimized, reduced to a widget geometry
     // or might not even be running at all
-    property bool active: false
+    Q_PROPERTY(bool active READ active NOTIFY activeChanged)
 
     // If false, Application.activated signals won't cause the application to be the active one
-    property bool canBeActive: true
+    // TODO: try to get rid of this (ie, find a better solution)
+    Q_PROPERTY(bool canBeActive READ canBeActive WRITE setCanBeActive NOTIFY canBeActiveChanged)
 
     //  the main window of this application, if any
-    // TODO: try to get rid of this (ie, find a better solution)
-    property var window
+    Q_PROPERTY(QQuickItem* window READ window() NOTIFY windowChanged)
 
     // Whether the application window should be shown as a widget
-    property bool asWidget: false
+    Q_PROPERTY(bool asWidget READ asWidget WRITE setAsWidget NOTIFY asWidgetChanged)
 
     // Widget geometry. Ignored if asWidget === false
-    property int heightRows: 1
-    property int minHeightRows: 1
+    Q_PROPERTY(int heightRows READ heightRows WRITE setHeightRows NOTIFY heightRowsChanged)
+    Q_PROPERTY(int minHeightRows MEMBER m_minHeightRows NOTIFY minHeightRowsChanged)
 
-    function start() {
-        ApplicationManager.startApplication(application.id);
-    }
-}
+    // FIXME: make it constant
+    Q_PROPERTY(const QtAM::Application* application READ application CONSTANT)
+public:
+    ApplicationInfo(const QtAM::Application* application, QObject *parent = nullptr);
+
+    // starts the application. Same as ApplicatioManager.startApplication() but in a object oriented fashion
+    Q_INVOKABLE void start();
+
+    void setAsWidget(bool);
+    bool asWidget() const;
+
+    void setWindow(QQuickItem *);
+    QQuickItem *window() const;
+
+    const QtAM::Application *application() const;
+
+    int heightRows() const;
+    void setHeightRows(int);
+
+    bool active() const;
+    void setActive(bool);
+
+    bool canBeActive() const;
+    void setCanBeActive(bool);
+
+signals:
+    void activeChanged();
+    void canBeActiveChanged();
+    void windowChanged();
+    void asWidgetChanged();
+    void heightRowsChanged();
+    void minHeightRowsChanged();
+private:
+    bool m_active{false};
+    bool m_canBeActive{true};
+    QQuickItem *m_window{nullptr};
+    bool m_asWidget{false};
+    int m_heightRows{1};
+    int m_minHeightRows{1};
+    const QtAM::Application *m_application{nullptr};
+};
+
+Q_DECLARE_METATYPE(ApplicationInfo*)

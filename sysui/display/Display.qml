@@ -49,6 +49,14 @@ Control {
         source: Style.gfx2(Style.displayBackground)
     }
 
+    ApplicationModel {
+        id: applicationModel
+    }
+    WidgetListModel {
+        id: widgetListModel
+        applicationModel: applicationModel
+    }
+
     // Content Elements
 
     StageLoader {
@@ -72,6 +80,7 @@ Control {
         anchors.horizontalCenter: parent.horizontalCenter
         active: StagedStartupModel.loadDisplay
         source: "../launcher/Launcher.qml"
+        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
     }
 
     Item {
@@ -95,6 +104,9 @@ Control {
                 anchors.fill: parent
                 active: StagedStartupModel.loadRest
                 source: "WindowStack.qml"
+                Binding { target: windowStackLoader.item; property: "applicationModel"; value: applicationModel }
+                Binding { target: windowStackLoader.item; property: "widgetListModel"; value: widgetListModel }
+
             }
 
             WidgetDrawer {

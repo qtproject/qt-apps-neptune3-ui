@@ -33,12 +33,9 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
-import QtApplicationManager 1.0
 import animations 1.0
 import controls 1.0
 import utils 1.0
-
-import models.application 1.0
 
 Item {
     id: root
@@ -49,10 +46,7 @@ Item {
     readonly property real expandedHeight: Style.vspan(10)
     readonly property bool open: gridButton.checked
 
-    function goHome() {
-        homeButton.checked = true;
-        homeButton.clicked();
-    }
+    property var applicationModel
 
     Behavior on height { DefaultSmoothedAnimation {} }
 
@@ -81,7 +75,7 @@ Item {
         checked: true
         onClicked: {
             gridButton.checked = false;
-            ApplicationManagerModel.goHome()
+            root.applicationModel.goHome();
         }
 
 //        // TODO: Replace this with the correct visualization
@@ -112,14 +106,13 @@ Item {
 
             anchors.top: parent.top
             gridOpen: root.open
-            model: ApplicationManager
+            model: root.applicationModel
 
             onButtonCreated: buttonGroup.addButton(button)
             onButtonRemoved: buttonGroup.removeButton(button)
             onAppButtonClicked: {
                 homeButton.checked = false;
                 gridButton.checked = false;
-                ApplicationManager.startApplication(applicationId);
             }
         }
 

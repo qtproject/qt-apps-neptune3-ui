@@ -36,8 +36,6 @@ import QtQuick.Layouts 1.0
 import controls 1.0
 import utils 1.0
 
-import models.application 1.0
-
 Item {
     id: root
 
@@ -84,11 +82,10 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter;
                 anchors.verticalCenter: parent.verticalCenter;
 
-                property var appInfo: ApplicationManagerModel.application(model.applicationId)
                 Connections {
-                    target: appButton.appInfo
+                    target: model.appInfo
                     onActiveChanged: {
-                        if (appButton.appInfo.active) {
+                        if (model.appInfo.active) {
                             appButton.checked = true;
                         } else {
                             appButton.checked = false;
@@ -152,6 +149,7 @@ Item {
             onClicked: {
                 if (!grid.editMode) {
                     root.appButtonClicked(model.applicationId);
+                    model.appInfo.start();
                 }
             }
 
@@ -196,6 +194,7 @@ Item {
         width: root.width
         height: Style.vspan(1)
         opacity: grid.editMode ? 1.0 : 0.0
+        visible: opacity > 0
         Behavior on opacity {
             NumberAnimation {
                 duration: 200

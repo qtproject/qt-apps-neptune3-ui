@@ -39,7 +39,7 @@ import animations 1.0
 Item {
     id: root
 
-    property var widgetsList: HomeWidgetsList {}
+    property var widgetsList
 
     property Item bottomApplicationWidget
     readonly property real widgetWidth: widgetGrid.width
@@ -94,7 +94,7 @@ Item {
             var i = 0;
             var accumulatedHeight = 0;
             while (true) {
-                var appInfo = root.widgetsList.get(i).appInfo;
+                var appInfo = root.widgetsList.application(i);
                 accumulatedHeight += appInfo.heightRows * rowHeight;
                 if (accumulatedHeight >= pos.y) {
                     widgetIndexAboveHandle = i;
@@ -191,7 +191,7 @@ Item {
             var remainingDelta = delta;
             var usableDeltaAbove = 0
             while (remainingDelta !== 0 && i >= 0) {
-                var appInfo = root.widgetsList.get(i).appInfo;
+                var appInfo = root.widgetsList.application(i);
                 var minHeight = appInfo.minHeightRows * rowHeight;
                 var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
 
@@ -217,7 +217,7 @@ Item {
             remainingDelta = usableDeltaAbove;
             var usableDelta = 0;
             while (remainingDelta !== 0 && i < root.widgetsList.count) {
-                var appInfo = root.widgetsList.get(i).appInfo;
+                var appInfo = root.widgetsList.application(i);
                 var minHeight = appInfo.minHeightRows * rowHeight;
                 var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
 

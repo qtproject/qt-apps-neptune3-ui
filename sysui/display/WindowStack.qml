@@ -35,17 +35,17 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.1
 import controls 1.0
 import utils 1.0
-import models.application 1.0
 import models.settings 1.0
 import models.system 1.0
-
-import QtApplicationManager 1.0
 
 /*
    A window stack with the home page at the bottom and at most an application window on top of it
 */
 StackView {
     id: root
+
+    property var applicationModel
+    property alias widgetListModel: homePage.widgetsList
 
     property alias homePageBottomApplicationWidget: homePage.bottomApplicationWidget
     property alias homePageWidgetWidth: homePage.widgetWidth
@@ -103,10 +103,10 @@ StackView {
     }
 
     Connections {
-        target: ApplicationManagerModel
+        target: root.applicationModel
 
         onActiveAppIdChanged: {
-            if (ApplicationManagerModel.activeAppId === "" && root.depth > 1) {
+            if (root.applicationModel.activeAppId === "" && root.depth > 1) {
                 // go back to the home screen
                 root.pop();
             }
@@ -132,15 +132,12 @@ StackView {
             }
         }
 
+        /*
         onReleaseApplicationSurface: {
             if (root.currentItem === item) {
                 root.pop()
             }
         }
-
-        onUnhandledSurfaceReceived: {
-            item.visible = false
-            item.parent = dummyitem
-        }
+        */
     }
 }

@@ -44,6 +44,9 @@
 #  include "MouseTouchAdaptor.h"
 #endif
 
+#include "ApplicationInfo.h"
+#include "ApplicationModel.h"
+#include "WidgetListModel.h"
 
 QT_USE_NAMESPACE_AM
 
@@ -95,6 +98,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             searchPaths.prepend(STR(TRITON_ICONS_PATH));
             QIcon::setThemeSearchPaths(searchPaths);
         }
+
+        qmlRegisterUncreatableType<ApplicationInfo>("models.application", 1, 0, "ApplicationInfo", "You canot create ApplicationInfo instances from QML");
+        qRegisterMetaType<ApplicationInfo*>();
+        qmlRegisterType<ApplicationModel>("models.application", 1, 0, "ApplicationModel");
+        qmlRegisterType<WidgetListModel>("models.application", 1, 0, "WidgetListModel");
 
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
         cfg.parse();
