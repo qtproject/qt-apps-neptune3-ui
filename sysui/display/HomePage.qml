@@ -332,6 +332,7 @@ Item {
                 }
                 Rectangle {
                     id: resizeHandle
+                    objectName: "resizeHandle" + model.index
 
                     visible: repeaterDelegate.isAtBottom ? false : true
 
