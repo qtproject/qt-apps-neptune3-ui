@@ -42,10 +42,11 @@ Item {
     id: root
 
     Layout.fillWidth: true
-    height: Style.hspan(3) * Math.ceil(model.count/root.numIconsPerRow)
+    height: Style.hspan(4.5) * Math.ceil(model.count/root.numIconsPerRow)
 
     property alias gridEditMode: grid.editMode
     property alias model: visualModel.model
+    property alias gridCellWidth: grid.cellWidth
     readonly property int numIconsPerRow: 4
 
     property bool gridOpen: false
@@ -71,8 +72,15 @@ Item {
 
             AppButton {
                 id: appButton
-                width: Style.hspan(3)
-                height: width
+                width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.5)
+                height: root.gridOpen ? width : Style.vspan(1.4)
+
+                Behavior on height {
+                    NumberAnimation {
+                        duration: 200
+                    }
+                }
+
                 anchors.horizontalCenter: parent.horizontalCenter;
                 anchors.verticalCenter: parent.verticalCenter;
 
@@ -104,7 +112,9 @@ Item {
                     }
                 }
 
-                editModeBgOpacity: grid.editMode ? 0.2 : 0.0
+                editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
+                editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
+
                 iconSource: model.icon
                 labelText: model.name
                 gridOpen: root.gridOpen
@@ -152,8 +162,10 @@ Item {
             }
 
             onPressAndHold: {
-                grid.editMode = true;
-                drag.target = appButton;
+                if (root.gridOpen) {
+                    grid.editMode = true;
+                    drag.target = appButton;
+                }
             }
             onReleased: {
                 drag.target = undefined;

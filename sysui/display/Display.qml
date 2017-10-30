@@ -46,11 +46,13 @@ import models.application 1.0
 import models.system 1.0
 import models.startup 1.0
 
-Rectangle {
+Control {
     id: root
 
-    color: "grey"
-    //source: Style.gfx2(Style.displayBackground)
+    background: Image {
+        anchors.fill: root
+        source: Style.gfx2(Style.displayBackground)
+    }
 
     // Content Elements
     StatusBar {
@@ -147,15 +149,9 @@ Rectangle {
         Behavior on opacity { NumberAnimation { duration: 270; easing.type: Easing.InOutQuad } }
     }
 
-    StageLoader {
-        id: settingsLoader
-        anchors.top: statusBar.bottom
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../settings/Settings.qml"
-    }
-
     ClimateBar {
         id: climateBar
+        anchors.bottom: parent.bottom
     }
 
     StageLoader {

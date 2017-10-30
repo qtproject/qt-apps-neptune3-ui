@@ -1,0 +1,12 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.phone'
+icon:    'icon.png'
+code:    'Phone.qml'
+runtime: 'qml'
+name:
+  en: 'Phone'
+  de: 'Phone'
+
+categories: [ 'phone' ]

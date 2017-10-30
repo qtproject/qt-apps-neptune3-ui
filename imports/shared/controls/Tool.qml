@@ -45,7 +45,7 @@ ToolButton {
         width: Style.hspan(1.3)
         height: Style.vspan(0.8)
         anchors.centerIn: parent
-        fillMode: Image.PreserveAspectFit
+        fillMode: Image.Pad
         source: root.symbol ? root.symbol : ""
     }
 }

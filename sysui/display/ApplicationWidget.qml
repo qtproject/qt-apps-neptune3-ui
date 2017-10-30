@@ -112,9 +112,13 @@ Item {
             anchors.fill: parent
             opacity: 0.25
         }
-        Label {
+
+        Image {
+            id: icon
+            anchors.fill: parent
             anchors.centerIn: parent
-            text: "↕"
+            source: Style.symbol("ic-widget-draghandle", 0, false)
+            fillMode: Image.Pad
         }
     }
 }

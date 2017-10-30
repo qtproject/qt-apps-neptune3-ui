@@ -43,7 +43,6 @@ Item {
         summary: "Notification Prio 2"
         body: "Notification sample"
         priority: 2
-        icon: Style.symbolM("loop")
     }
 
     NotificationInterface {
@@ -51,7 +50,6 @@ Item {
         summary: "Notification Prio 3"
         body: "Notification sample"
         priority: 3
-        icon: Style.symbolM("mail")
     }
 
     NotificationInterface {
@@ -59,7 +57,6 @@ Item {
         summary: "Notification Prio 9"
         body: "Notification sample"
         priority: 9
-        icon: Style.symbolM("maps")
     }
 
     NotificationInterface {
@@ -67,7 +64,6 @@ Item {
         summary: "Notification Prio 10"
         body: "Notification sample"
         priority: 10
-        icon: Style.symbolM("my_cloud")
     }
 
     PopupInterface {

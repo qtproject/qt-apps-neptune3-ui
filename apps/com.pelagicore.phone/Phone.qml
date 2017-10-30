@@ -29,63 +29,35 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Controls 2.1
-
-import controls 1.0
+import QtQuick 2.8
 import utils 1.0
-import "."
+import QtQuick.Controls 2.2
 
-import QtIvi.Media 1.0
+AppUIScreen {
+    id: root
+    title: "Triton Phone"
 
-Rectangle {
-    width: Style.vspan(10)
-    height: Style.hspan(1)
-
-    color: "black"
-    opacity: indexerControl.state === MediaIndexerControl.Active ? 0.4 : 0
-    Behavior on opacity {
-        NumberAnimation { duration: 800 }
-    }
-
-    MediaIndexerControl {
-        id: indexerControl
-    }
-
-    Column {
+    Rectangle {
+        color: "blue"
         anchors.fill: parent
-        spacing: 2
 
-        Label {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: "Indexing..."
+        Rectangle {
+            color: touchPoint1.pressed ? "red" : "green"
+            anchors.fill: parent
+            anchors.margins: 30
+            Label { text: root.title }
         }
+    }
 
-        Item {
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: Style.vspan(8)
-            height: 4
+    MultiPointTouchArea {
+        anchors.fill: parent
+        touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
-            Rectangle {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                width: parent.width
-                height: 4
-                radius: 4
-                border.color: Qt.lighter(color, 1.1)
-                color: "#999"
-                opacity: 0.25
-            }
-
-            Rectangle {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                width: parent.width * indexerControl.progress
-                height: 4
-                radius: 4
-                color: "white"
-                opacity: 0.25
-            }
+        property int count: 0
+        onReleased: {
+            count += 1;
+            root.setWindowProperty("activationCount", count);
         }
     }
 }
+

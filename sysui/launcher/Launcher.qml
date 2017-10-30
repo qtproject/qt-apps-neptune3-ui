@@ -40,7 +40,7 @@ import utils 1.0
 
 import models.application 1.0
 
-RowLayout {
+Item {
     id: root
 
     width: Style.launcherWidth
@@ -61,21 +61,22 @@ RowLayout {
         buttons: [homeButton]
     }
 
-    ToolButton {
+    Tool {
         id: homeButton
 
-        implicitWidth: Style.hspan(2.3)
-        implicitHeight: Style.vspan(1.6)
+        width: Style.hspan(1.5)
+        height: Style.vspan(0.9)
         Layout.alignment: Qt.AlignTop
+        anchors.left: parent.left
 
-        // TODO: replace this with the correct asset when available
-        //icon.source: ""
-
-        contentItem: Label {
-            text: "Home"
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
+        opacity: root.open ? 0.0 : 1.0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+            }
         }
+
+        symbol: Style.symbol("ic-menu-home", 0, false)
 
         checked: true
         onClicked: {
@@ -83,69 +84,62 @@ RowLayout {
             ApplicationManagerModel.goHome()
         }
 
-        // TODO: Replace this with the correct visualization
+//        // TODO: Replace this with the correct visualization
         Rectangle {
             id: homeDummyChecked
 
-            width: Style.hspan(2.3)
-            height: Style.vspan(1.6)
+            anchors.fill: parent
             color: "transparent"
             border.color: homeButton.checked ? "red" : "transparent"
             border.width: 2
         }
     }
 
-    EditableGridView {
-        id: editableLauncher
+    RowLayout {
+        id: applicationLauncher
 
-        anchors.top: parent.top
-        gridOpen: root.open
-        model: ApplicationManager
-
-        onButtonCreated: buttonGroup.addButton(button)
-        onButtonRemoved: buttonGroup.removeButton(button)
-        onAppButtonClicked: {
-            homeButton.checked = false;
-            gridButton.checked = false;
-            ApplicationManager.startApplication(applicationId);
-        }
-    }
-
-    Tool {
-        id: gridButton
-
-        implicitWidth: Style.hspan(2.3)
-        implicitHeight: Style.vspan(1.6)
-        Layout.alignment: Qt.AlignTop
-
-        // TODO: replace this with the correct asset when available
-        //icon.source: ""
-
-        contentItem: Label {
-            text: editableLauncher.gridEditMode ? "" : "Apps"
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-        }
-
-        symbol: editableLauncher.gridEditMode ? Style.symbol("close", 0, false) : ""
-
-        checkable: true
-
-        onCheckedChanged: {
-            if (checked) {
-                homeButton.checked = false
+        width: root.open ? Style.launcherWidth : Style.hspan(12)
+        Behavior on width {
+            NumberAnimation {
+                duration: 200
             }
         }
 
-        // TODO: Replace this with the correct visualization
-        Rectangle {
-            id: gridDummyChecked
+        anchors.right: parent.right
 
-            width: Style.hspan(2.3)
-            height: Style.vspan(1.6)
-            color: "transparent"
-            border.color: gridButton.checked ? "red" : "transparent"
-            border.width: 2
+        EditableGridView {
+            id: editableLauncher
+
+            anchors.top: parent.top
+            gridOpen: root.open
+            model: ApplicationManager
+
+            onButtonCreated: buttonGroup.addButton(button)
+            onButtonRemoved: buttonGroup.removeButton(button)
+            onAppButtonClicked: {
+                homeButton.checked = false;
+                gridButton.checked = false;
+                ApplicationManager.startApplication(applicationId);
+            }
+        }
+
+        Tool {
+            id: gridButton
+
+            implicitWidth: Style.hspan(2.3)
+            implicitHeight: Style.vspan(0.9)
+
+            Layout.alignment: Qt.AlignTop
+            symbol: editableLauncher.gridEditMode || root.open ? Style.symbol("ic-close", 0, false) : Style.symbol("ic-menu-allapps", 0, false)
+            checkable: true
+
+            onCheckedChanged: {
+                if (checked) {
+                    homeButton.checked = false
+                }
+            }
         }
     }
+
+
 }

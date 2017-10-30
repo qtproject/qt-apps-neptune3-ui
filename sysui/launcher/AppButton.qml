@@ -39,13 +39,13 @@ Item {
     property bool checked: false
     property bool gridOpen: false
     property alias editModeBgOpacity: editModeBg.opacity
+    property alias editModeBgColor: editModeBg.color
     property alias iconSource: icon.source
     property alias labelText: appLabel.text
 
     Rectangle {
         id: editModeBg
         anchors.fill: parent
-        color: "white"
         Behavior on opacity {
             NumberAnimation {
                 duration: 200
@@ -58,14 +58,19 @@ Item {
         width: parent.width
         height: Style.vspan(1)
         anchors.top: parent.top
-        anchors.topMargin: 15
-        fillMode: Image.PreserveAspectFit
+        anchors.topMargin: root.gridOpen ? Style.vspan(0.6) : 0
+        Behavior on anchors.topMargin {
+            NumberAnimation {
+                duration: 200
+            }
+        }
+
+        fillMode: Image.Pad
     }
 
     Label {
         id: appLabel
         anchors.top: icon.bottom
-        anchors.topMargin: 5
         anchors.horizontalCenter: parent.horizontalCenter
         font.pixelSize: Style.fontSizeXS
         opacity: root.gridOpen ? 1.0 : 0.0
@@ -79,12 +84,9 @@ Item {
     // TODO: Replace this with the correct visualization
     Rectangle {
         id: dummyChecked
-
-        implicitWidth: Style.hspan(2.3)
-        implicitHeight: Style.vspan(1.6)
-
+        width: parent.width
+        height: width * 1.3
         anchors.top: parent.top
-        anchors.topMargin: -4
         anchors.horizontalCenter: parent.horizontalCenter
         color: "transparent"
         border.color: root.checked && !root.gridOpen ? "red" : "transparent"

@@ -78,14 +78,7 @@ QtObject {
 
     property int defaultSymbolSize: symbolSizeM
     property int defaultGfxSize: 1
-    property int symbolSizeXS: 32
-    property int symbolSizeS: 48
-    property int symbolSizeM: 72
-    property int symbolSizeL: 96
-    property int symbolSizeXL: 114
-    property int symbolSizeXXL: 192
 
-    property int launcherSpan: 1
     property int notificationCenterSpan: 8
 
     // Cimate config
@@ -100,8 +93,9 @@ QtObject {
     property real popupWidth: isPotrait ? hspan(12) : hspan(8)
     property real popupHeight: isPotrait ? vspan(5) : vspan(6)
 
-    property real launcherWidth: hspan(18)
+    property real launcherWidth: hspan(20)
     property real launcherHeight: vspan(1.6)
+    property int launcherSpan: 1
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
     property url drawableUrl: Qt.resolvedUrl(root.assetPath + 'drawable-ldpi')
@@ -120,7 +114,7 @@ QtObject {
 
     function symbol(name, size, active) {
         size = size || defaultSymbolSize;
-        return symbolUrl + (active ? '/active/' : '/') + name + '@' + size + '.png';
+        return symbolUrl + (active ? '/active/' : '/') + name + '.png';
     }
 
     function symbolXS(name, active) {

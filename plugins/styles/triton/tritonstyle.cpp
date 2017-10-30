@@ -89,7 +89,7 @@ public:
         , fontFactor(1.0)
         , theme(TritonStyle::Light)
         , windowSize(1080, 1920)
-        , backgroundImage("ivi_bg15")
+        , backgroundImage("bg-home")
         , themeData(GlobalDarkThemeData)
     {
         compute();
