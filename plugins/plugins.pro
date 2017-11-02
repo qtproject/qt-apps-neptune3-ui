@@ -1,5 +1,3 @@
 TEMPLATE = subdirs
 
-SUBDIRS = screenmanager \
-          styles \
-          translation
+SUBDIRS = styles \

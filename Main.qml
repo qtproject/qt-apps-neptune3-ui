@@ -47,7 +47,7 @@ Pane {
     padding: 0
 
     //Forwards the keys to the custer to handle it without being the active window
-    Keys.forwardTo: clusterLoader.item ? clusterLoader.item.cluster : (displayLoader.item ? displayLoader.item : null)
+    //Keys.forwardTo: clusterLoader.item ? clusterLoader.item.cluster : (displayLoader.item ? displayLoader.item : null)
 
     StageLoader {
         id: displayLoader
@@ -56,12 +56,12 @@ Pane {
         active: StagedStartupModel.loadDisplay
     }
 
-    StageLoader {
-        id: clusterLoader
-        height: Style.clusterHeight
-        width: Style.clusterWidth
-        source: "sysui/cluster/ClusterMain.qml"
-        active: root.showClusterIfPossible
-        focus: true
-    }
+//    StageLoader {
+//        id: clusterLoader
+//        height: Style.clusterHeight
+//        width: Style.clusterWidth
+//        source: "sysui/cluster/ClusterMain.qml"
+//        active: root.showClusterIfPossible
+//        focus: true
+//    }
 }

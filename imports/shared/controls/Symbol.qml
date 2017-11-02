@@ -40,12 +40,11 @@ Control {
     height: Style.vspan(2)
     property string name
     property bool active
-    property int size: Style.defaultSymbolSize
     property alias rotate: image.rotation
     Image {
         id: image
         anchors.centerIn: parent
-        source: root.name ? Style.symbol(root.name, root.size, root.active) : ""
+        source: root.name ? Style.symbol(root.name, root.active) : ""
         asynchronous: true
     }
 }

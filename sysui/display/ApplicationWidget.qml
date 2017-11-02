@@ -117,7 +117,7 @@ Item {
             id: icon
             anchors.fill: parent
             anchors.centerIn: parent
-            source: Style.symbol("ic-widget-draghandle", 0, false)
+            source: Style.symbol("ic-widget-draghandle", false)
             fillMode: Image.Pad
         }
     }

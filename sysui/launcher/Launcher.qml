@@ -76,7 +76,7 @@ Item {
             }
         }
 
-        symbol: Style.symbol("ic-menu-home", 0, false)
+        symbol: Style.symbol("ic-menu-home", false)
 
         checked: true
         onClicked: {
@@ -130,7 +130,7 @@ Item {
             implicitHeight: Style.vspan(0.9)
 
             Layout.alignment: Qt.AlignTop
-            symbol: editableLauncher.gridEditMode || root.open ? Style.symbol("ic-close", 0, false) : Style.symbol("ic-menu-allapps", 0, false)
+            symbol: editableLauncher.gridEditMode || root.open ? Style.symbol("ic-close", false) : Style.symbol("ic-menu-allapps", false)
             checkable: true
 
             onCheckedChanged: {
@@ -140,6 +140,4 @@ Item {
             }
         }
     }
-
-
 }

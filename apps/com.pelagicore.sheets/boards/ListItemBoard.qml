@@ -125,7 +125,7 @@ BaseBoard {
                     height: Style.vspan(2)
 
                     titleText: "Normal List Item"
-                    iconName: Style.symbol("tire_pressure", Style.defaultSymbolSize, false)
+                    iconName: Style.symbol("tire_pressure", false)
                 }
 
             }

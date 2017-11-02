@@ -33,7 +33,7 @@ pragma Singleton
 import QtQuick 2.6
 
 import com.pelagicore.styles.triton 1.0
-import com.pelagicore.translation 1.0
+//import com.pelagicore.translation 1.0
 
 QtObject {
     id: root
@@ -76,7 +76,6 @@ QtObject {
 
     property bool isPotrait: screenWidth < screenHeight
 
-    property int defaultSymbolSize: symbolSizeM
     property int defaultGfxSize: 1
 
     property int notificationCenterSpan: 8
@@ -103,44 +102,19 @@ QtObject {
     property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
     property url fonts: Qt.resolvedUrl(root.assetPath + 'fonts/')
 
-    property alias languageLocale: translation.languageLocale
-    property QtObject translation: Translation {
-        id: translation
-        Component.onCompleted: {
-            setPath(root.assetPath + "translations/");
-            languageLocale = "en_US";
-        }
-    }
+//  Temporarily disabled. Enable this when needed.
+//    property alias languageLocale: translation.languageLocale
+//    property QtObject translation: Translation {
+//        id: translation
+//        Component.onCompleted: {
+//            setPath(root.assetPath + "translations/");
+//            languageLocale = "en_US";
+//        }
+//    }
 
-    function symbol(name, size, active) {
-        size = size || defaultSymbolSize;
+    function symbol(name, active) {
         return symbolUrl + (active ? '/active/' : '/') + name + '.png';
     }
-
-    function symbolXS(name, active) {
-        return symbol(name, symbolSizeXS, active);
-    }
-
-    function symbolS(name, active) {
-        return symbol(name, symbolSizeS, active);
-    }
-
-    function symbolM(name, active) {
-        return symbol(name, symbolSizeM, active);
-    }
-
-    function symbolL(name, active) {
-        return symbol(name, symbolSizeL, active);
-    }
-
-    function symbolXL(name, active) {
-        return symbol(name, symbolSizeXL, active);
-    }
-
-    function symbolXXL(name, active) {
-        return symbol(name, symbolSizeXXL, active);
-    }
-
 
     function gfx2(name) {
         return gfxUrl + name + '.png'

@@ -1,6 +1,6 @@
 TEMPLATE = lib
 TARGET  = tritonstyle
-QT += quick
+QT += qml quick
 QT += gui-private quick-private quickcontrols2-private
 CONFIG += qt plugin c++11 no_private_qt_headers_warning
 
@@ -20,4 +20,9 @@ HEADERS += \
 RESOURCES += \
     tritonstyle.qrc
 
-
+# Output/Intermediate Dirs
+OBJECTS_DIR             = ./objs
+OBJMOC                  = ./objs
+MOC_DIR                 = ./objs
+UI_DIR                  = ./objs
+RCC_DIR                 = ./objs

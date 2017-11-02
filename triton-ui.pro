@@ -29,6 +29,7 @@ qml.path = $$INSTALL_PREFIX/triton
 INSTALLS += qml
 
 OTHER_FILES += $$files($$PWD/*.qml, true)
+OTHER_FILES += $$files($$PWD/*.qmldir, true)
 OTHER_FILES += $$PWD/plugins.yaml.in
 OTHER_FILES += .qmake.conf
 PLUGINS_DIR = $$OUT_PWD/qml
