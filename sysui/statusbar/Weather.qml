@@ -46,7 +46,7 @@ Control {
         anchors.centerIn: parent
 
         Image {
-            source: Style.icon(ClimateModel.weatherIcon)
+            //source: Style.icon(ClimateModel.weatherIcon)
             asynchronous: true
         }
 

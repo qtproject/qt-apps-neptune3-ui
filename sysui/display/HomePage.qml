@@ -330,13 +330,12 @@ Item {
                         onDragEnded: moveTransition.enabled = false
                     }
                 }
-                Rectangle {
+                Item {
                     id: resizeHandle
                     objectName: "resizeHandle" + model.index
 
                     visible: repeaterDelegate.isAtBottom ? false : true
 
-                    color: "grey"
                     width: parent.width
                     height: widgetGrid.resizerHandleHeight
                     MouseArea {

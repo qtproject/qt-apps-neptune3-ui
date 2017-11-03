@@ -44,7 +44,7 @@ Item {
     id: root
 
     width: Style.launcherWidth
-    height: gridButton.checked ? expandedHeight : Style.launcherHeight
+    height: open ? expandedHeight : Style.launcherHeight
 
     readonly property real expandedHeight: Style.vspan(10)
     readonly property bool open: gridButton.checked

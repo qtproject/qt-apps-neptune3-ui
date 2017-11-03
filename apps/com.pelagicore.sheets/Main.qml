@@ -35,7 +35,7 @@ import utils 1.0
 
 AppUIScreen {
     id: root
-    title: "Triton Sheets App"
+    property string title: "Triton Sheets App"
 
     MenuPane {
         anchors.centerIn: parent

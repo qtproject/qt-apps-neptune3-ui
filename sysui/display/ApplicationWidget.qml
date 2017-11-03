@@ -100,6 +100,7 @@ Item {
         id: dragHandle
         anchors.top: parent.top
         anchors.right: parent.right
+        anchors.margins: 10
         width: Style.hspan(1)
         height: width
         z: 3
@@ -107,11 +108,6 @@ Item {
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
         onPressed: root.dragStarted()
         onReleased: root.dragEnded()
-
-        Rectangle {
-            anchors.fill: parent
-            opacity: 0.25
-        }
 
         Image {
             id: icon

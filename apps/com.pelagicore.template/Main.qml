@@ -37,7 +37,7 @@ import utils 1.0
 
 AppUIScreen {
     id: root
-    title: "Triton Template"
+    property string title: "Triton Template"
 
     UIScreen {
         Content {

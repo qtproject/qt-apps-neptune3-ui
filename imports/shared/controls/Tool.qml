@@ -31,7 +31,6 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
-import controls 1.0
 import utils 1.0
 
 

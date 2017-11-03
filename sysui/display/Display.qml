@@ -35,12 +35,7 @@ import QtQuick.Controls 2.2
 
 import controls 1.0
 import utils 1.0
-import climate 1.0
-import statusbar 1.0
-import notification 1.0
-import popup 1.0
-import windowoverview 1.0
-import launcher 1.0
+import animations 1.0
 
 import models.application 1.0
 import models.system 1.0
@@ -55,31 +50,42 @@ Control {
     }
 
     // Content Elements
-    StatusBar {
-        id: statusBar
+
+    StageLoader {
+        id: statusBarLoader
+        height: Style.statusBarHeight
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
+        active: StagedStartupModel.loadDisplay
+        source: "../statusbar/StatusBar.qml"
     }
 
-    Launcher {
-        id: launcher
-        anchors.top: statusBar.bottom
+    StageLoader {
+        id: launcherLoader
+        width: Style.launcherWidth
+        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
+        Behavior on height { DefaultSmoothedAnimation {} }
+
+        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
+        anchors.top: statusBarLoader.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+        active: StagedStartupModel.loadDisplay
+        source: "../launcher/Launcher.qml"
     }
 
     Item {
         id: mainContentArea
-        y: launcher.y + Style.launcherHeight
+        y: launcherLoader.y + Style.launcherHeight
         anchors.left: parent.left
         anchors.right: parent.right
         height: root.height - Style.statusBarHeight - Style.launcherHeight - Style.climateCollapsedVspan
-        opacity: launcher.open ? 0 : 1
-        Behavior on opacity { NumberAnimation { duration: 270; easing.type: Easing.InOutQuad } }
-        enabled: !launcher.open
+        opacity: launcherLoader.launcherOpen ? 0 : 1
+        Behavior on opacity { DefaultSmoothedAnimation {} }
+        enabled: !launcherLoader.launcherOpen
 
         Item {
-            y: launcher.height - Style.launcherHeight
+            y: launcherLoader.height - Style.launcherHeight
             width: parent.width
             height: parent.height
 
@@ -130,7 +136,6 @@ Control {
         }
     }
 
-
     Rectangle {
         id: mainContentMask
         anchors.fill: mainContentArea
@@ -145,65 +150,70 @@ Control {
         anchors.fill: mainContentArea
         source: mainContentArea
         maskSource: mainContentMask
-        opacity: launcher.open ? 0.1 : 1
-        Behavior on opacity { NumberAnimation { duration: 270; easing.type: Easing.InOutQuad } }
-    }
-
-    ClimateBar {
-        id: climateBar
-        anchors.bottom: parent.bottom
+        opacity: launcherLoader.launcherOpen ? 0.1 : 1
+        Behavior on opacity { DefaultSmoothedAnimation {} }
     }
 
     StageLoader {
-        id: toolBarMonitorLoader
-        width: parent.width
-        height: 200
-        anchors.bottom: parent.bottom
-        active: SystemModel.toolBarMonitorVisible
-        source: "../dev/ProcessMonitor/ToolBarMonitor.qml"
-    }
-
-    StageLoader {
-        id: windowOverviewLoader
-        anchors.fill: parent
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../windowoverview/WindowOverview.qml"
-    }
-
-    StageLoader {
-        id: popupContainerLoader
-        width: Style.popupWidth
-        height: Style.popupHeight
-        anchors.centerIn: parent
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../popup/PopupContainer.qml"
-    }
-
-    StageLoader {
-        id: notificationContainerLoader
+        id: climateLoader
         width: Style.screenWidth
-        height: Style.vspan(2)
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../notification/NotificationContainer.qml"
-    }
-
-    StageLoader {
-        id: notificationCenterLoader
-        width: Style.isPotrait ? Style.hspan(Style.notificationCenterSpan + 5) : Style.hspan(12)
-        height: Style.screenHeight - Style.statusBarHeight
-        anchors.top: statusBar.bottom
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../notification/NotificationCenter.qml"
-    }
-
-    StageLoader {
-        id: keyboardLoader
-        anchors.left: parent.left
-        anchors.right: parent.right
+        height: Style.vspan(2.5)
         anchors.bottom: parent.bottom
-        active: StagedStartupModel.loadBackgroundElements
-        source: "../keyboard/Keyboard.qml"
+        active: StagedStartupModel.loadDisplay
+        source: "../climate/ClimateBar.qml"
     }
+
+// TODO: Update below components according to the newest spec of Triton-UI when available
+//    StageLoader {
+//        id: toolBarMonitorLoader
+//        width: parent.width
+//        height: 200
+//        anchors.bottom: parent.bottom
+//        active: SystemModel.toolBarMonitorVisible
+//        source: "../dev/ProcessMonitor/ToolBarMonitor.qml"
+//    }
+
+//    StageLoader {
+//        id: windowOverviewLoader
+//        anchors.fill: parent
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../windowoverview/WindowOverview.qml"
+//    }
+
+//    StageLoader {
+//        id: popupContainerLoader
+//        width: Style.popupWidth
+//        height: Style.popupHeight
+//        anchors.centerIn: parent
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../popup/PopupContainer.qml"
+//    }
+
+//    StageLoader {
+//        id: notificationContainerLoader
+//        width: Style.screenWidth
+//        height: Style.vspan(2)
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../notification/NotificationContainer.qml"
+//    }
+
+//    StageLoader {
+//        id: notificationCenterLoader
+//        width: Style.isPotrait ? Style.hspan(Style.notificationCenterSpan + 5) : Style.hspan(12)
+//        height: Style.screenHeight - Style.statusBarHeight
+//        anchors.top: statusBar.bottom
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../notification/NotificationCenter.qml"
+//    }
+
+//    StageLoader {
+//        id: keyboardLoader
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.bottom: parent.bottom
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../keyboard/Keyboard.qml"
+//    }
 
     Component.onCompleted: StagedStartupModel.enterMenuState()
 }

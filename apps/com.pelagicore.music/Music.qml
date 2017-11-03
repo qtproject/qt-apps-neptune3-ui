@@ -35,21 +35,53 @@ import QtQuick.Controls 2.2
 
 AppUIScreen {
     id: root
-    title: "Triton Music Player"
+    property string title: "Triton Music Player"
 
-    color: "transparent"
-
+    // Temporary rect until the correct graphic is delivered
     Rectangle {
-        opacity: 0.3
-        color: "blue"
+        id: bg
+        color: "#F1EFED"
+        radius: 30
         anchors.fill: parent
+    }
+
+    // Temporary rect until the correct graphic is delivered
+    Rectangle {
+        id: appToolbar
+        color: "#FA9E54"
+        height: parent.height
+        width: Style.vspan(0.7)
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        radius: 30
 
         Rectangle {
-            color: touchPoint1.pressed ? "red" : "green"
-            anchors.fill: parent
-            anchors.margins: 30
-            Label { text: root.title }
+          id: squareRect
+
+          color: appToolbar.color
+          width: appToolbar.radius
+          anchors.top: appToolbar.top
+          anchors.bottom: appToolbar.bottom
+          anchors.right: appToolbar.right
         }
+
+        Image {
+            width: parent.width
+            source: "icon.png"
+            fillMode: Image.Pad
+            anchors.top: parent.top
+            anchors.margins: 25
+        }
+    }
+
+    Rectangle {
+        color: touchPoint1.pressed ? "yellow" : "violet"
+        height: parent.height - 20
+        width: parent.width * 0.6
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.rightMargin: 60
+        Label { text: root.title }
     }
 
     MultiPointTouchArea {

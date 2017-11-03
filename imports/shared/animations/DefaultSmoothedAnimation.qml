@@ -33,5 +33,7 @@ import QtQuick 2.6
 
 SmoothedAnimation {
     easing.type: Easing.InOutQuad
+
+    //TODO: Check with designer if 270 is the correct number for duration
     duration: 270
 }
