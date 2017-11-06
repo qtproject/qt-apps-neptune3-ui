@@ -121,7 +121,7 @@ Item {
                 delegate.heightWhenResizing = delegate.appInfo.heightRows * widgetGrid.rowHeight;
             }
 
-            var delta = snapToRowMultiplierIfTooClose(withinBoundsY(pos.y) - startResizeDragY);
+            var delta = withinBoundsY(pos.y) - startResizeDragY;
             delta = computeUsableDragDelta(delta);
 
             // above handle. positive delta enlarges widgets
@@ -241,37 +241,6 @@ Item {
         }
         function withinBoundsY(someY) {
             return Math.max(0, Math.min(someY, height));
-        }
-        function snapToRowMultiplierIfTooClose(delta) {
-            var deltaRows = delta / rowHeight;
-            var snapThreshold = 0.5;
-
-            var floorDiff = deltaRows - Math.floor(deltaRows);
-            var ceilDiff = Math.ceil(deltaRows) - deltaRows;
-
-            if (floorDiff < ceilDiff && floorDiff <= snapThreshold) {
-                //return Math.floor(deltaRows) * rowHeight;
-                return applyEasing(Math.floor(deltaRows)*rowHeight - snapThreshold*rowHeight,
-                                   Math.floor(deltaRows)*rowHeight + snapThreshold*rowHeight, delta);
-            } else if (floorDiff >= ceilDiff && ceilDiff <= snapThreshold) {
-                //return Math.ceil(deltaRows) * rowHeight;
-                return applyEasing(Math.ceil(deltaRows)*rowHeight - snapThreshold*rowHeight,
-                                   Math.ceil(deltaRows)*rowHeight + snapThreshold*rowHeight, delta);
-            } else {
-                return delta;
-            }
-        }
-        function applyEasing(min, max, value) {
-            // apply an OutInCubic easing function, ie:
-            // y=x^3, ranging from -1 (min) to 1 (max)
-
-            // normalize the value to be in the [-1,1] range
-            var x = (((value - min) / (max - min)) * 2) - 1;
-
-            var y = Math.pow(x, 3);
-
-            // and map it back to its original range
-            return (((y + 1) / 2) * (max - min)) + min;
         }
 
         property bool animateWidgetResize: true
