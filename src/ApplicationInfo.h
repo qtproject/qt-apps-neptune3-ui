@@ -96,6 +96,7 @@ signals:
     void asWidgetChanged();
     void heightRowsChanged();
     void minHeightRowsChanged();
+    void startRequested();
 private:
     bool m_active{false};
     bool m_canBeActive{true};

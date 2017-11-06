@@ -103,7 +103,9 @@ StackView {
     }
 
     Connections {
-        target: root.applicationModel
+        // Might look redundant, but it saves us from getting "QML Connections: Cannot assign to non-existent property"
+        // while root.applicationModel hasn't been initialized yet
+        target: root.applicationModel ? root.applicationModel : null
 
         onActiveAppIdChanged: {
             if (root.applicationModel.activeAppId === "" && root.depth > 1) {

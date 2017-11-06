@@ -16,13 +16,39 @@ using QtAM::ApplicationManager;
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    auto appMan = ApplicationManager::instance();
-    connect(appMan, &ApplicationManager::applicationWasActivated, this, &ApplicationModel::onApplicationActivated);
+}
 
+ApplicationModel::~ApplicationModel()
+{
+    qDeleteAll(m_appInfoList);
+}
+
+void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
+{
+    if (appMan == m_appMan) {
+        return;
+    }
+
+    beginResetModel();
+
+    if (m_appMan) {
+        disconnect(m_appMan, 0, this, 0);
+    }
+    m_appMan = appMan;
+    if (!appMan) {
+        return;
+    }
+
+    connect(appMan, &ApplicationManager::applicationWasActivated, this, &ApplicationModel::onApplicationActivated);
 
     for (int i = 0; i < appMan->count(); ++i) {
         const QtAM::Application *application = appMan->application(i);
         ApplicationInfo *appInfo = new ApplicationInfo(application);
+        connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
+            if (m_appMan) {
+                m_appMan->startApplication(appInfo->application()->id());
+            }
+        });
         m_appInfoList.append(appInfo);
     }
 
@@ -31,7 +57,20 @@ ApplicationModel::ApplicationModel(QObject *parent)
 
     // TODO: Monitor appMan for Application additions and removals.
 
-    auto windowManager = WindowManager::instance();
+    endResetModel();
+    emit countChanged();
+}
+
+void ApplicationModel::setWindowManager(QtAM::WindowManager *windowManager)
+{
+    if (m_windowManager) {
+        disconnect(m_windowManager, 0, this, 0);
+    }
+    m_windowManager = windowManager;
+    if (!windowManager) {
+        return;
+    }
+
     connect(windowManager, &WindowManager::windowReady, this, &ApplicationModel::onWindowReady);
 
     connect(windowManager, &WindowManager::windowLost, this, [windowManager](int index, QQuickItem *window) {
@@ -39,11 +78,6 @@ ApplicationModel::ApplicationModel(QObject *parent)
         // TODO care about animating before releasing
         windowManager->releaseWindow(window);
     });
-}
-
-ApplicationModel::~ApplicationModel()
-{
-    qDeleteAll(m_appInfoList);
 }
 
 void ApplicationModel::configureApps()

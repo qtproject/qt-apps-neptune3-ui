@@ -42,7 +42,6 @@ void WidgetListModel::setApplicationModel(QAbstractItemModel *appModel)
     fetchAppInfoRoleIndex();
 
     if (appModel->rowCount() > 0) {
-
         trackRowsFromApplicationModel(0, appModel->rowCount() - 1);
     }
 
@@ -60,6 +59,22 @@ void WidgetListModel::setApplicationModel(QAbstractItemModel *appModel)
                     removeApplicationInfo(appInfo);
                     disconnect(appInfo, 0, this, 0);
                 }
+            });
+
+    connect(appModel, &QAbstractItemModel::modelAboutToBeReset, this,
+            [this]()
+            {
+                beginResetModel();
+                m_resetting = true;
+                m_list.clear();
+            });
+
+    connect(appModel, &QAbstractItemModel::modelReset, this,
+            [this]()
+            {
+                trackRowsFromApplicationModel(0, m_applicationModel->rowCount() - 1);
+                m_resetting = false;
+                endResetModel();
             });
 
     connect(appModel, &QObject::destroyed, this,
@@ -121,7 +136,10 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
         return;
     }
 
-    beginInsertRows(QModelIndex(), rowCount()/*first*/, rowCount() + newRows.count() - 1/*last*/);
+    if (!m_resetting) {
+        beginInsertRows(QModelIndex(), rowCount()/*first*/, rowCount() + newRows.count() - 1/*last*/);
+    }
+
     m_list.append(newRows);
     for (auto *appInfo : newRows) {
         connect(appInfo, &ApplicationInfo::asWidgetChanged, this,
@@ -134,7 +152,10 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
                     }
                 });
     }
-    endInsertRows();
+
+    if (!m_resetting) {
+        endInsertRows();
+    }
     emit countChanged();
 }
 

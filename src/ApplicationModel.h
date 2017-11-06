@@ -3,6 +3,11 @@
 #include <QAbstractListModel>
 #include <QList>
 
+namespace QtAM {
+    class ApplicationManager;
+    class WindowManager;
+}
+
 class QQuickItem;
 
 class ApplicationInfo;
@@ -11,6 +16,9 @@ class ApplicationModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QString activeAppId READ activeAppId NOTIFY activeAppIdChanged)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(QtAM::ApplicationManager* applicationManager READ applicationManager WRITE setApplicationManager NOTIFY applicationManagerChanged)
+    Q_PROPERTY(QtAM::WindowManager* windowManager READ windowManager WRITE setWindowManager NOTIFY windowManagerChanged)
 public:
     ApplicationModel(QObject *parent = nullptr);
     virtual ~ApplicationModel();
@@ -41,9 +49,20 @@ public:
 
     QString activeAppId() const { return m_activeAppId; }
 
+    QtAM::ApplicationManager *applicationManager() const { return m_appMan; }
+    void setApplicationManager(QtAM::ApplicationManager *);
+
+    QtAM::WindowManager *windowManager() const { return m_windowManager; }
+    void setWindowManager(QtAM::WindowManager *);
+
+    int count() const { return m_appInfoList.count(); }
+
 signals:
     void applicationSurfaceReady(ApplicationInfo *appInfo, QQuickItem *item);
     void activeAppIdChanged();
+    void applicationManagerChanged();
+    void windowManagerChanged();
+    void countChanged();
 
 private slots:
     void onWindowReady(int index, QQuickItem *window);
@@ -54,5 +73,7 @@ private:
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;
+    QtAM::ApplicationManager *m_appMan{nullptr};
+    QtAM::WindowManager *m_windowManager{nullptr};
 };
 

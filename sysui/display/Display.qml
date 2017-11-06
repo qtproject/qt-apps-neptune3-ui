@@ -32,6 +32,7 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
+import QtApplicationManager 1.0
 
 import controls 1.0
 import utils 1.0
@@ -51,6 +52,8 @@ Control {
 
     ApplicationModel {
         id: applicationModel
+        applicationManager: ApplicationManager
+        windowManager: WindowManager
     }
     WidgetListModel {
         id: widgetListModel

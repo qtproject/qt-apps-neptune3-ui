@@ -104,6 +104,9 @@ Item {
         EditableGridView {
             id: editableLauncher
 
+            Layout.fillWidth: true
+            Layout.preferredHeight: implicitHeight
+
             anchors.top: parent.top
             gridOpen: root.open
             model: root.applicationModel

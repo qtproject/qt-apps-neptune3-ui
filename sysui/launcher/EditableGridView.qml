@@ -39,8 +39,7 @@ import utils 1.0
 Item {
     id: root
 
-    Layout.fillWidth: true
-    height: Style.hspan(4.5) * Math.ceil(model.count/root.numIconsPerRow)
+    implicitHeight: Style.hspan(4.5) * Math.ceil(grid.count/root.numIconsPerRow)
 
     property alias gridEditMode: grid.editMode
     property alias model: visualModel.model

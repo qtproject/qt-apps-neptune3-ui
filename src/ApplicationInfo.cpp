@@ -1,8 +1,5 @@
 #include "ApplicationInfo.h"
 
-// QtAM
-#include <applicationmanager.h>
-
 ApplicationInfo::ApplicationInfo(const QtAM::Application* application, QObject *parent)
     : QObject(parent), m_application(application)
 {
@@ -10,7 +7,7 @@ ApplicationInfo::ApplicationInfo(const QtAM::Application* application, QObject *
 
 void ApplicationInfo::start()
 {
-    QtAM::ApplicationManager::instance()->startApplication(m_application->id());
+    emit startRequested();
 }
 
 void ApplicationInfo::setAsWidget(bool value)

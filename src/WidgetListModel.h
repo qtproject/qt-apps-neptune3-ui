@@ -56,4 +56,5 @@ private:
     int m_appInfoRoleIndex{-1};
     QAbstractItemModel *m_applicationModel{nullptr};
     QList<ApplicationInfo*> m_list;
+    bool m_resetting{false}; // whether the model is being reset
 };
