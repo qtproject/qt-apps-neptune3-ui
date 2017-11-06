@@ -81,7 +81,7 @@ Control {
         anchors.right: parent.right
         height: root.height - Style.statusBarHeight - Style.launcherHeight - Style.climateCollapsedVspan
         opacity: launcherLoader.launcherOpen ? 0 : 1
-        Behavior on opacity { DefaultSmoothedAnimation {} }
+        Behavior on opacity { DefaultNumberAnimation {} }
         enabled: !launcherLoader.launcherOpen
 
         Item {
