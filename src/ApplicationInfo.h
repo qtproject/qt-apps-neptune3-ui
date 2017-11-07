@@ -62,7 +62,7 @@ class ApplicationInfo : public QObject {
 
     // Widget geometry. Ignored if asWidget === false
     Q_PROPERTY(int heightRows READ heightRows WRITE setHeightRows NOTIFY heightRowsChanged)
-    Q_PROPERTY(int minHeightRows MEMBER m_minHeightRows NOTIFY minHeightRowsChanged)
+    Q_PROPERTY(int minHeightRows READ minHeightRows WRITE setMinHeightRows NOTIFY minHeightRowsChanged)
 
     // FIXME: make it constant
     Q_PROPERTY(const QtAM::Application* application READ application CONSTANT)
@@ -82,6 +82,9 @@ public:
 
     int heightRows() const;
     void setHeightRows(int);
+
+    int minHeightRows() const;
+    void setMinHeightRows(int);
 
     bool active() const;
     void setActive(bool);

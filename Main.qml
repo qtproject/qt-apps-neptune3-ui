@@ -29,39 +29,211 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.5
+import QtQuick 2.7
+import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.2
 import QtApplicationManager 1.0
-import QtQuick.Controls 2.0
+
 import controls 1.0
+import display 1.0
 import utils 1.0
+import animations 1.0
+
+import models.application 1.0
+import models.system 1.0
 import models.startup 1.0
 
-Pane {
+ApplicationWindow {
     id: root
-
-    property bool showClusterIfPossible: ApplicationManager.systemProperties.showCluster && Style.withCluster
-    property var cluster
 
     width: Style.screenWidth
     height: Style.screenHeight
-    padding: 0
 
-    //Forwards the keys to the custer to handle it without being the active window
-    //Keys.forwardTo: clusterLoader.item ? clusterLoader.item.cluster : (displayLoader.item ? displayLoader.item : null)
-
-    StageLoader {
-        id: displayLoader
-        anchors.fill: parent
-        source: "sysui/display/Display.qml"
-        active: StagedStartupModel.loadDisplay
+    background: Image {
+        source: Style.gfx2(Style.displayBackground)
     }
 
+    ApplicationModel {
+        id: applicationModel
+        applicationManager: ApplicationManager
+        windowManager: WindowManager
+    }
+    WidgetListModel {
+        id: widgetListModel
+        applicationModel: applicationModel
+    }
+
+    // Content Elements
+
+    StageLoader {
+        id: statusBarLoader
+        height: Style.statusBarHeight
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        active: StagedStartupModel.loadDisplay
+        source: "sysui/statusbar/StatusBar.qml"
+    }
+
+    StageLoader {
+        id: launcherLoader
+        width: Style.launcherWidth
+        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
+        Behavior on height { DefaultSmoothedAnimation {} }
+
+        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
+        anchors.top: statusBarLoader.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        active: StagedStartupModel.loadDisplay
+        source: "sysui/launcher/Launcher.qml"
+        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
+    }
+
+    Item {
+        id: mainContentArea
+        y: launcherLoader.y + Style.launcherHeight
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: root.height - Style.statusBarHeight - Style.launcherHeight - Style.climateCollapsedVspan
+        opacity: launcherLoader.launcherOpen ? 0 : 1
+        Behavior on opacity { DefaultNumberAnimation {} }
+        enabled: !launcherLoader.launcherOpen
+
+        Item {
+            y: launcherLoader.height - Style.launcherHeight
+            width: parent.width
+            height: parent.height
+
+            StageLoader {
+                id: windowStackLoader
+
+                anchors.fill: parent
+                active: true //StagedStartupModel.loadRest
+                source: "sysui/display/WindowStack.qml"
+                Binding { target: windowStackLoader.item; property: "applicationModel"; value: applicationModel }
+                Binding { target: windowStackLoader.item; property: "widgetListModel"; value: widgetListModel }
+
+            }
+
+            WidgetDrawer {
+                id: widgetDrawer
+                width: parent.width
+                height: homePageRowHeight
+                anchors.bottom: parent.bottom
+
+                // TODO: try to make this parent swapping nicer and more declarative
+                property var previousWidgetParent
+                onShowingHomePageChanged: {
+                    if (showingHomePage) {
+                        open = true;
+                        if (previousWidgetParent && homePageBottomApplicationWidget) {
+                            homePageBottomApplicationWidget.parent = previousWidgetParent
+                        }
+                    } else if (homePageBottomApplicationWidget) {
+                        previousWidgetParent = homePageBottomApplicationWidget.parent
+                        homePageBottomApplicationWidget.parent = applicationWidgetSlot
+                    }
+                }
+
+                dragEnabled: homePageBottomApplicationWidget && !homePageBottomApplicationWidget.active && !showingHomePage
+
+                visible: !showingHomePage
+
+                Item {
+                    id: applicationWidgetSlot
+                    width: widgetDrawer.homePageWidgetWidth
+                    height: widgetDrawer.homePageRowHeight
+                    anchors.horizontalCenter: widgetDrawer.horizontalCenter
+                }
+
+                property bool showingHomePage: windowStackLoader.item ? windowStackLoader.item.showingHomePage : false
+                property Item homePageBottomApplicationWidget: windowStackLoader.item ? windowStackLoader.item.homePageBottomApplicationWidget : null
+                property real homePageWidgetWidth: windowStackLoader.item ? windowStackLoader.item.homePageWidgetWidth : 0
+                property real homePageRowHeight: windowStackLoader.item ? windowStackLoader.item.homePageRowHeight : 0
+            }
+        }
+    }
+
+    Rectangle {
+        id: mainContentMask
+        anchors.fill: mainContentArea
+        gradient: Gradient {
+            GradientStop { position: 0.8; color: "#ffffffff" }
+            GradientStop { position: 0.95; color: "#00ffffff" }
+        }
+        visible: false
+    }
+
+    OpacityMask {
+        anchors.fill: mainContentArea
+        source: mainContentArea
+        maskSource: mainContentMask
+        opacity: launcherLoader.launcherOpen ? 0.1 : 1
+        Behavior on opacity { DefaultSmoothedAnimation {} }
+    }
+
+    StageLoader {
+        id: climateLoader
+        width: Style.screenWidth
+        height: Style.vspan(2.5)
+        anchors.bottom: parent.bottom
+        active: StagedStartupModel.loadDisplay
+        source: "sysui/climate/ClimateBar.qml"
+    }
+
+// TODO: Update below components according to the newest spec of Triton-UI when available
 //    StageLoader {
-//        id: clusterLoader
-//        height: Style.clusterHeight
-//        width: Style.clusterWidth
-//        source: "sysui/cluster/ClusterMain.qml"
-//        active: root.showClusterIfPossible
-//        focus: true
+//        id: toolBarMonitorLoader
+//        width: parent.width
+//        height: 200
+//        anchors.bottom: parent.bottom
+//        active: SystemModel.toolBarMonitorVisible
+//        source: "../dev/ProcessMonitor/ToolBarMonitor.qml"
 //    }
+
+//    StageLoader {
+//        id: windowOverviewLoader
+//        anchors.fill: parent
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../windowoverview/WindowOverview.qml"
+//    }
+
+//    StageLoader {
+//        id: popupContainerLoader
+//        width: Style.popupWidth
+//        height: Style.popupHeight
+//        anchors.centerIn: parent
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../popup/PopupContainer.qml"
+//    }
+
+//    StageLoader {
+//        id: notificationContainerLoader
+//        width: Style.screenWidth
+//        height: Style.vspan(2)
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../notification/NotificationContainer.qml"
+//    }
+
+//    StageLoader {
+//        id: notificationCenterLoader
+//        width: Style.isPotrait ? Style.hspan(Style.notificationCenterSpan + 5) : Style.hspan(12)
+//        height: Style.screenHeight - Style.statusBarHeight
+//        anchors.top: statusBar.bottom
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../notification/NotificationCenter.qml"
+//    }
+
+//    StageLoader {
+//        id: keyboardLoader
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.bottom: parent.bottom
+//        active: StagedStartupModel.loadBackgroundElements
+//        source: "../keyboard/Keyboard.qml"
+//    }
+
+    Component.onCompleted: {
+        StagedStartupModel.enterMenuState()
+    }
 }

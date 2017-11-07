@@ -41,6 +41,7 @@ Item {
     signal dragEnded()
 
     property alias dragButtonVisible: dragHandle.visible
+    property alias closeButtonVisible: closeButton.visible
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
 
@@ -96,6 +97,7 @@ Item {
         }
     ]
 
+    // Drag handle
     MouseArea {
         id: dragHandle
         anchors.top: parent.top
@@ -110,10 +112,32 @@ Item {
         onReleased: root.dragEnded()
 
         Image {
-            id: icon
             anchors.fill: parent
             anchors.centerIn: parent
-            source: Style.symbol("ic-widget-draghandle", false)
+            source: Style.symbol("ic-widget-draghandle", false /* active */)
+            fillMode: Image.Pad
+        }
+    }
+
+    // Close button
+    MouseArea {
+        id: closeButton
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.margins: 10
+        width: Style.hspan(1)
+        height: width
+        z: dragHandle.z + 1
+
+        onClicked: {
+            if (root.appInfo)
+                root.appInfo.asWidget = false;
+        }
+
+        Image {
+            anchors.fill: parent
+            anchors.centerIn: parent
+            source: Style.symbol("ic-widget-close", false /* active */)
             fillMode: Image.Pad
         }
     }

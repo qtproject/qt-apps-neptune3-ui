@@ -57,6 +57,8 @@ StackView {
         id: homePage
         opacity: 0
 
+        applicationModel: root.applicationModel
+
         OpacityAnimator {
             target: homePage;
             from: 0;

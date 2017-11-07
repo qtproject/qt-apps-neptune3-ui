@@ -84,6 +84,19 @@ void ApplicationInfo::setHeightRows(int value)
     }
 }
 
+int ApplicationInfo::minHeightRows() const
+{
+    return m_minHeightRows;
+}
+
+void ApplicationInfo::setMinHeightRows(int value)
+{
+    if (value != m_minHeightRows) {
+        m_minHeightRows = value;
+        emit minHeightRowsChanged();
+    }
+}
+
 bool ApplicationInfo::active() const
 {
     return m_active;

@@ -7,7 +7,7 @@ CONFIG += qmltestcase
 IMPORTPATH = $$BUILD_DIR/imports/shared $$BUILD_DIR/imports/system $$SOURCE_DIR/sysui $$SOURCE_DIR/tests/dummyimports
 
 COMPONENT_NAMES = ApplicationWidget
-COMPONENT_NAMES += HomePage
+COMPONENT_NAMES += WidgetGrid
 COMPONENT_NAMES += WidgetDrawer
 
 for(COMPONENT_NAME, COMPONENT_NAMES) {

@@ -157,6 +157,16 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
 
     for (int i = first; i <= last; ++i) {
         auto *appInfo = getApplicationInfoFromModelAt(i);
+        connect(appInfo, &ApplicationInfo::asWidgetChanged, this,
+                [this, appInfo]()
+                {
+                    if (appInfo->asWidget()) {
+                        appendApplicationInfo(appInfo);
+                    } else {
+                        removeApplicationInfo(appInfo);
+                    }
+                });
+
         if (appInfo->asWidget()) {
             newRows.append(appInfo);
         }
@@ -171,17 +181,6 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
     }
 
     m_list.append(newRows);
-    for (auto *appInfo : newRows) {
-        connect(appInfo, &ApplicationInfo::asWidgetChanged, this,
-                [this, appInfo]()
-                {
-                    if (appInfo->asWidget()) {
-                        appendApplicationInfo(appInfo);
-                    } else {
-                        removeApplicationInfo(appInfo);
-                    }
-                });
-    }
 
     if (!m_resetting) {
         endInsertRows();
@@ -192,13 +191,30 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
 void WidgetListModel::appendApplicationInfo(ApplicationInfo *appInfo)
 {
     beginInsertRows(QModelIndex(), rowCount()/*first*/, rowCount()/*last*/);
+
+    // TODO: consider minHeight
+
+    // Shrink existing widgets to make way for the new one
+    if (m_list.count() > 0) {
+        for (int i = m_list.count() - 1; i >= 0; --i) {
+            auto *appInfo = m_list[i];
+            if (appInfo->heightRows() > 1) {
+                appInfo->setHeightRows(appInfo->heightRows() - 1);
+                break;
+            }
+        }
+    }
+
+    appInfo->setHeightRows(1);
+
     m_list.append(appInfo);
+
     endInsertRows();
 }
 
-void WidgetListModel::removeApplicationInfo(ApplicationInfo *appInfo)
+void WidgetListModel::removeApplicationInfo(ApplicationInfo *appInfoToRemove)
 {
-    int index = m_list.indexOf(appInfo);
+    int index = m_list.indexOf(appInfoToRemove);
     Q_ASSERT(index != -1);
     if (index == -1) {
         return;
@@ -206,6 +222,16 @@ void WidgetListModel::removeApplicationInfo(ApplicationInfo *appInfo)
 
     beginRemoveRows(QModelIndex(), index, index);
     m_list.removeAt(index);
+
+    // Make the remaining widgets occupy the space left by the one being removed
+    if (index < m_list.count()) {
+        auto *nextAppInfo = m_list[index];
+        nextAppInfo->setHeightRows(nextAppInfo->heightRows() + appInfoToRemove->heightRows());
+    } else if (index - 1 >= 0) {
+        auto *previousAppInfo = m_list[index - 1];
+        previousAppInfo->setHeightRows(previousAppInfo->heightRows() + appInfoToRemove->heightRows());
+    }
+
     endRemoveRows();
 }
 

@@ -32,7 +32,7 @@
 import QtQuick 2.6
 import QtTest 1.1
 
-// sysui, for getting HomePage
+// sysui, for getting WidgetGrid
 import display 1.0
 
 Item {
@@ -50,6 +50,8 @@ Item {
         property int heightRows: 1
         property int minHeightRows: 1
 
+        property bool asWidget: true
+
         function start() {
             window = loadedWindow;
         }
@@ -65,6 +67,8 @@ Item {
 
         property int heightRows: 2
         property int minHeightRows: 1
+
+        property bool asWidget: true
 
         function start() {
             window = loadedWindow;
@@ -82,13 +86,15 @@ Item {
         property int heightRows: 2
         property int minHeightRows: 1
 
+        property bool asWidget: true
+
         function start() {
             window = loadedWindow;
         }
     }
 
-    HomePage {
-        id: homePage
+    WidgetGrid {
+        id: widgetGrid
         anchors.fill: parent
         widgetsList: ListModel {
             id: listModel
@@ -104,7 +110,7 @@ Item {
     }
 
     TritonTestCase {
-        name: "HomePage"
+        name: "WidgetGrid"
 
         /*
             While dragging a resize handle, if the widget next to it cannot be
@@ -119,13 +125,13 @@ Item {
 
 
             // get the resize handle that's under the first (top) widget, redApp.
-            var resizeHandle = findChild(homePage, "resizeHandle0");
+            var resizeHandle = findChild(widgetGrid, "resizeHandle0");
             verify(resizeHandle);
 
             // drag the top-most resize handle all the way to the bottom of the screen
             touchDrag(resizeHandle,
                       resizeHandle.width/2, resizeHandle.height/2,
-                      resizeHandle.width/2, resizeHandle.height/2 + homePage.height);
+                      resizeHandle.width/2, resizeHandle.height/2 + widgetGrid.height);
 
             // Both the second and the third widget (top to bottom order) should have shrunk to make space for the
             // enlarged top widget
