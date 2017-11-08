@@ -55,26 +55,30 @@ public:
 
 
 static QHash<TritonStyle::SystemColor, QColor>
-GlobalLightColors {
-                      {TritonStyle::DarkColor, QColor(0xFF1F1F1F)},
-                      {TritonStyle::BrightColor, QColor(0xFFFEFEFE)},
+GlobalLightThemeColors {
+                      {TritonStyle::PrimaryTextColor, QColor(0xFF000000)},
+                      {TritonStyle::BackgroundColor, QColor(0xFFFFFFFF)},
+                      {TritonStyle::ButtonColor, QColor(0xFF969696)},
+
                       {TritonStyle::AccentColor, QColor(0xFFF6A623)},
                       {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
                       {TritonStyle::NegativeColor, QColor(0xFF303030)}
                   };
 
 static QHash<TritonStyle::SystemColor, QColor>
-GlobalDarkColors {
-                     {TritonStyle::DarkColor, QColor(0xFF1F1F1F)},
-                     {TritonStyle::BrightColor, QColor(0xFFFEFEFE)},
+GlobalDarkThemeColors {
+                     {TritonStyle::PrimaryTextColor, QColor(0xFFFFFFFF)},
+                     {TritonStyle::BackgroundColor, QColor(0xFF000000)},
+                     {TritonStyle::ButtonColor, QColor(0xFF969696)},
+
                      {TritonStyle::AccentColor, QColor(0xFFF6A623)},
                      {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
                      {TritonStyle::NegativeColor, QColor(0xFF303030)}
                  };
 
 //TODO: replace with typedef
-static ThemeData GlobalDarkThemeData(GlobalDarkColors);
-static ThemeData GlobalLightThemeData(GlobalLightColors);
+static ThemeData GlobalDarkThemeData(GlobalDarkThemeColors);
+static ThemeData GlobalLightThemeData(GlobalLightThemeColors);
 
 static ThemeData& tritonstyle_theme_data(TritonStyle::Theme theme)
 {
@@ -90,7 +94,7 @@ public:
         , theme(TritonStyle::Light)
         , windowSize(1080, 1920)
         , backgroundImage("bg-home")
-        , themeData(GlobalDarkThemeData)
+        , themeData(GlobalLightThemeData)
     {
         compute();
     }
@@ -220,16 +224,6 @@ TritonStyle *TritonStyle::qmlAttachedProperties(QObject *object)
 QColor TritonStyle::systemColor(SystemColor role) const
 {
     return m_data->themeData.colors[role];
-}
-
-QColor TritonStyle::darkColor() const
-{
-    return systemColor(DarkColor);
-}
-
-QColor TritonStyle::brightColor() const
-{
-    return systemColor(BrightColor);
 }
 
 QColor TritonStyle::accentColor() const

@@ -79,6 +79,7 @@ Item {
                 duration: 200
             }
         }
+        color: "white"
     }
 
     // TODO: Replace this with the correct visualization

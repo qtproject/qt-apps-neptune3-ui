@@ -64,10 +64,9 @@ QtObject {
     property int fontSizeL: TritonStyle.fontSizeL
     property int fontSizeXL: TritonStyle.fontSizeXL
     property int fontSizeXXL: TritonStyle.fontSizeXXL
-    property color colorWhite: TritonStyle.brightColor
+    property color colorWhite: "white" //TODO: delete me
     property color colorOrange: TritonStyle.accentColor
-    property color colorGrey: TritonStyle.lighter25(TritonStyle.darkColor)
-    property color colorBlack: TritonStyle.darkColor
+    property color colorBlack: "black" //TODO: delete me
     property bool debugMode: false
     property bool gridMode: false
     property bool fakeBackground: false

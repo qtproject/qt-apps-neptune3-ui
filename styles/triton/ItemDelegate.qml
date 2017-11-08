@@ -61,13 +61,14 @@ T.ItemDelegate {
         verticalAlignment: Text.AlignVCenter
 
         opacity: enabled ? 1.0 : 0.2
-        color: control.TritonStyle.brightColor
+        color: control.TritonStyle.primaryTextColor
     }
 
     background: Rectangle {
         visible: control.down || control.highlighted || control.visualFocus || control.hovered
-        color: control.down ? TritonStyle.lighter25(TritonStyle.darkColor) :
-               control.hovered ? TritonStyle.lighter50(TritonStyle.darkColor) : TritonStyle.lighter50(TritonStyle.darkColor)
+
+        color: TritonStyle.backgroundColor
+
         Rectangle {
             width: parent.width
             height: parent.height

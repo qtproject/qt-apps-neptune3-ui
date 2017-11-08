@@ -60,15 +60,6 @@ BaseBoard {
             solid: true
         }
         Label {
-            id: label
-            text: 'Style.colorGrey'
-            font.pixelSize: Style.fontSizeXS
-        }
-        Marker {
-            color: Style.colorGrey
-            solid: true
-        }
-        Label {
             text: 'Style.colorBlack'
             font.pixelSize: Style.fontSizeXS
         }

@@ -45,6 +45,6 @@ T.ToolBar {
 
     background: Rectangle {
         implicitHeight: 48
-        color: control.TritonStyle.darkColor
+        color: control.TritonStyle.backgroundColor
     }
 }

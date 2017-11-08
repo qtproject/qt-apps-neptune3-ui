@@ -36,7 +36,9 @@ import com.pelagicore.styles.triton 1.0
 T.Label {
     id: control
     verticalAlignment: Text.AlignVCenter
-    color: TritonStyle.brightColor
+
+    color: TritonStyle.primaryTextColor
+
     font.pixelSize: TritonStyle.fontSizeM
     font.family: TritonStyle.fontFamily
 }

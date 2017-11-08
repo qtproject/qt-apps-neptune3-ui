@@ -212,6 +212,7 @@ Item {
             text: exitEditMode.text
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+            color: "white"
         }
 
         text: "Finish Editing"

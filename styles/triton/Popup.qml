@@ -35,6 +35,8 @@ import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
 import com.pelagicore.styles.triton 1.0
 
+import utils 1.0
+
 T.Popup {
     id: control
 
@@ -46,9 +48,9 @@ T.Popup {
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
-    padding: 12
+    padding: Style.hspan(1)
 
     background: Rectangle {
-        border.color: control.TritonStyle.darkColor
+        radius: Style.hspan(0.7)
     }
 }

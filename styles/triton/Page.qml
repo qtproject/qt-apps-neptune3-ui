@@ -49,6 +49,6 @@ T.Page {
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
     background: Rectangle {
-        color: control.TritonStyle.darkColor
+        color: control.TritonStyle.backgroundColor
     }
 }

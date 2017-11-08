@@ -51,8 +51,11 @@ class TritonStyle : public QQuickStyleAttached
 #endif
 {
     Q_OBJECT
-    Q_PROPERTY(QColor darkColor READ darkColor NOTIFY tritonStyleChanged FINAL)
-    Q_PROPERTY(QColor brightColor READ brightColor NOTIFY tritonStyleChanged FINAL)
+
+    Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY tritonStyleChanged FINAL)
+
     Q_PROPERTY(QColor accentColor READ accentColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor positiveColor READ positiveColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor negativeColor READ negativeColor NOTIFY tritonStyleChanged FINAL)
@@ -86,8 +89,9 @@ public:
     Q_ENUM(Theme)
 
     enum SystemColor {
-        DarkColor,
-        BrightColor,
+        PrimaryTextColor,
+        BackgroundColor,
+        ButtonColor,
         AccentColor,
         PositiveColor,
         NegativeColor
@@ -95,8 +99,9 @@ public:
     Q_ENUM(SystemColor)
 
     QColor systemColor(SystemColor role) const;
-    QColor darkColor() const;
-    QColor brightColor() const;
+    QColor primaryTextColor() const { return systemColor(PrimaryTextColor); }
+    QColor backgroundColor() const { return systemColor(BackgroundColor); }
+    QColor buttonColor() const { return systemColor(ButtonColor); }
     QColor accentColor() const;
     QColor positiveColor() const;
     QColor negativeColor() const;

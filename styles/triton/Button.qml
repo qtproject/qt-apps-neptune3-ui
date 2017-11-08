@@ -48,7 +48,7 @@ T.Button {
         text: control.text
         font: control.font
         opacity: enabled || control.highlighted || control.checked ? 1 : 0.3
-        color: control.TritonStyle.brightColor
+        color: control.TritonStyle.primaryTextColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -57,7 +57,7 @@ T.Button {
 
     background: Rectangle {
         visible: !control.flat || control.down || control.checked || control.highlighted
-        color: control.checked ? control.TritonStyle.lighter25(control.TritonStyle.darkColor) : control.TritonStyle.darkColor
+        color: control.TritonStyle.buttonColor
         border.color: control.TritonStyle.lighter25(color)
         border.width: control.visualFocus ? 2 : 1
     }

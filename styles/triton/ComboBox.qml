@@ -83,9 +83,9 @@ T.ComboBox {
         validator: control.validator
 
         font: control.font
-        color: !control.editable && control.visualFocus ? Default.focusColor : control.TritonStyle.brightColor
+        color: !control.editable && control.visualFocus ? Default.focusColor : control.TritonStyle.primaryTextColor
         selectionColor: control.TritonStyle.accentColor
-        selectedTextColor: control.TritonStyle.brightColor
+        selectedTextColor: control.TritonStyle.primaryTextColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
         opacity: control.enabled ? 1 : 0.3
@@ -93,7 +93,7 @@ T.ComboBox {
         background: Rectangle {
             visible: control.editable && !control.flat
             border.width: parent && parent.activeFocus ? 2 : 1
-            border.color: parent && parent.activeFocus ?  control.TritonStyle.accentColor : control.TritonStyle.darkColor
+            border.color: parent && parent.activeFocus ?  control.TritonStyle.accentColor : control.TritonStyle.backgroundColor
         }
     }
 
@@ -102,7 +102,7 @@ T.ComboBox {
         implicitHeight: 40
 
         color: !control.editable && control.visualFocus ? (control.pressed ? Default.focusPressedColor : Default.focusLightColor) :
-            (control.down || popup.visible ? Default.buttonPressedColor : control.TritonStyle.darkColor)
+            (control.down || popup.visible ? Default.buttonPressedColor : control.TritonStyle.backgroundColor)
         border.color: control.TritonStyle.lighter25(color)
         border.width: !control.editable && control.visualFocus ? 2 : 0
         visible: !control.flat || control.down
@@ -136,6 +136,6 @@ T.ComboBox {
             T.ScrollIndicator.vertical: ScrollIndicator { }
         }
 
-        background: Rectangle { color: control.TritonStyle.darkColor}
+        background: Rectangle { color: control.TritonStyle.backgroundColor}
     }
 }

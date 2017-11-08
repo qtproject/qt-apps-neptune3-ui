@@ -61,7 +61,7 @@ T.SwitchDelegate {
 
         text: control.text
         font: control.font
-        color: control.TritonStyle.brightColor
+        color: control.TritonStyle.primaryTextColor
         elide: Text.ElideRight
         visible: control.text
         horizontalAlignment: Text.AlignLeft
@@ -71,6 +71,7 @@ T.SwitchDelegate {
     background: Rectangle {
         implicitHeight: 48
 
-        color: control.highlighted ? control.TritonStyle.lighter50(control.TritonStyle.darkColor) : "transparent"
+        // TODO: use named colors from TritonStyle
+        color: control.highlighted ? "grey" : "transparent"
     }
 }

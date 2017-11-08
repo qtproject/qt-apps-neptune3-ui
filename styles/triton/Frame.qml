@@ -45,7 +45,6 @@ T.Frame {
     padding: 12
 
     background: Rectangle {
-        color: TritonStyle.lighter50(TritonStyle.darkColor)
-        border.color: TritonStyle.darkColor
+        color: TritonStyle.backgroundColor
     }
 }
