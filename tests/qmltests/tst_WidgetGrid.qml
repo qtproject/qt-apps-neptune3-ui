@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtTest 1.1
 
 // sysui, for getting WidgetGrid
-import display 1.0
+import home 1.0
 
 Item {
     width: 600

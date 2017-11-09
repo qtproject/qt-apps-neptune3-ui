@@ -53,6 +53,7 @@ class TritonStyle : public QQuickStyleAttached
     Q_OBJECT
 
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY tritonStyleChanged FINAL)
 
@@ -90,6 +91,7 @@ public:
 
     enum SystemColor {
         PrimaryTextColor,
+        DisabledTextColor,
         BackgroundColor,
         ButtonColor,
         AccentColor,
@@ -100,6 +102,7 @@ public:
 
     QColor systemColor(SystemColor role) const;
     QColor primaryTextColor() const { return systemColor(PrimaryTextColor); }
+    QColor disabledTextColor() const { return systemColor(DisabledTextColor); }
     QColor backgroundColor() const { return systemColor(BackgroundColor); }
     QColor buttonColor() const { return systemColor(ButtonColor); }
     QColor accentColor() const;

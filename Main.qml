@@ -43,11 +43,25 @@ import models.application 1.0
 import models.system 1.0
 import models.startup 1.0
 
+import QtGraphicalEffects 1.0
+
 ApplicationWindow {
     id: root
 
     width: Style.screenWidth
     height: Style.screenHeight
+
+    overlay.modal: Component {
+        Image {
+            source: Style.gfx2(Style.displayBackground)
+            Behavior on opacity { DefaultNumberAnimation {} }
+            FastBlur {
+                anchors.fill: parent
+                radius: Style.hspan(3)
+                source: root.contentItem
+            }
+        }
+    }
 
     background: Image {
         source: Style.gfx2(Style.displayBackground)

@@ -34,6 +34,7 @@ import QtGraphicalEffects 1.0
 
 import QtQuick.Controls 2.1
 import controls 1.0
+import home 1.0
 import utils 1.0
 import models.settings 1.0
 import models.system 1.0

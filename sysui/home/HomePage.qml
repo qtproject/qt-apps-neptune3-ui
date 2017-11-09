@@ -30,13 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Controls 2.1
+import QtQuick.Controls 2.2
 
 import controls 1.0
 import utils 1.0
 import animations 1.0
-
-import QtQuick.Controls 2.2
 
 Item {
     id: root
@@ -77,39 +75,9 @@ Item {
     }
 
     // TODO: Make it look decent
-    Popup {
+    AddWidgetPopup {
         id: popup
-        x: (root.width - popup.width) / 2
-        y: (root.height - popup.height) / 2
-        width: 400
-        height: 400
-        modal: true
-        parent: root
-        transformOrigin: Popup.Bottom
-        enter: Transition {
-            DefaultNumberAnimation { property: "opacity"; from: 0.25; to: 1.0}
-            DefaultNumberAnimation { property: "y"; from: addWidgetButton.y + (addWidgetButton.height/2) - popup.height; to: popup.y}
-            DefaultNumberAnimation { property: "scale"; from: 0.25; to: 1}
-        }
-
-        ListView {
-            anchors.fill: parent
-            clip: true
-            model: root.applicationModel
-            delegate: MouseArea {
-                width: parent.width
-                height: Style.vspan(1)
-                enabled: !model.appInfo.asWidget
-                Text {
-                    anchors.fill: parent
-                    text: model.name
-                    color: parent.enabled ? "black" : "grey"
-                }
-                onClicked: {
-                    model.appInfo.asWidget = true
-                    popup.close()
-                }
-            }
-        }
+        model: root.applicationModel
+        originItem: addWidgetButton
     }
 }
