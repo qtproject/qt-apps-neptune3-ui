@@ -59,18 +59,13 @@ Item {
         widgetsList: root.widgetsList
     }
 
-    MouseArea {
+    Tool {
         id: addWidgetButton
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(1)
         height: width
-        Image {
-            anchors.fill: parent
-            anchors.centerIn: parent
-            source: Style.symbol("ic-addwidget-plus", false /* active */)
-            fillMode: Image.Pad
-        }
+        symbol: Style.symbol("ic-addwidget-plus", false /* active */)
         onClicked: popup.open()
     }
 
