@@ -100,7 +100,7 @@ Column {
         // init resize heights
         for (i = 0; i < repeater.count; i++) {
             var delegate = repeater.itemAt(i);
-            delegate.heightWhenResizing = delegate.appInfo.heightRows * widgetGrid.rowHeight;
+            delegate.heightWhenResizing = delegate.appInfo.heightRows * root.rowHeight;
         }
 
         resizingWidgets = true;
@@ -109,7 +109,7 @@ Column {
         // init resize heights
         for (i = 0; i < repeater.count; i++) {
             var delegate = repeater.itemAt(i);
-            delegate.heightWhenResizing = delegate.appInfo.heightRows * widgetGrid.rowHeight;
+            delegate.heightWhenResizing = delegate.appInfo.heightRows * root.rowHeight;
         }
 
         var delta = withinBoundsY(pos.y) - startResizeDragY;
@@ -170,7 +170,7 @@ Column {
         var i;
         for (i = 0; i < repeater.count; i++) {
             var delegate = repeater.itemAt(i);
-            delegate.appInfo.heightRows = Math.round(delegate.heightWhenResizing / widgetGrid.rowHeight);
+            delegate.appInfo.heightRows = Math.round(delegate.heightWhenResizing / root.rowHeight);
         }
 
         animateWidgetResize = true;
@@ -242,20 +242,20 @@ Column {
 
         delegate: Column {
             id: repeaterDelegate
-            width: widgetGrid.width
+            width: root.width
             height: {
-                if (widgetGrid.resizingWidgets) {
+                if (root.resizingWidgets) {
                     return heightWhenResizing
                 } else {
-                    return appInfo ? appInfo.heightRows * widgetGrid.rowHeight : 0
+                    return appInfo ? appInfo.heightRows * root.rowHeight : 0
                 }
             }
             property real heightWhenResizing
 
-            Behavior on x { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
-            Behavior on y { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
-            Behavior on width { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
-            Behavior on height { enabled:!moveTransition.enabled && widgetGrid.animateWidgetResize; DefaultSmoothedAnimation {} }
+            Behavior on x { enabled:!moveTransition.enabled && root.animateWidgetResize; DefaultSmoothedAnimation {} }
+            Behavior on y { enabled:!moveTransition.enabled && root.animateWidgetResize; DefaultSmoothedAnimation {} }
+            Behavior on width { enabled:!moveTransition.enabled && root.animateWidgetResize; DefaultSmoothedAnimation {} }
+            Behavior on height { enabled:!moveTransition.enabled && root.animateWidgetResize; DefaultSmoothedAnimation {} }
 
             property alias appInfo: appWidget.appInfo
             readonly property int modelIndex: model.index
@@ -286,8 +286,8 @@ Column {
                     closeButtonVisible: repeater.count > 1
 
                     onDraggedOntoPos: {
-                        var gridPos = appWidget.mapToItem(widgetGrid, pos.x, pos.y);
-                        widgetGrid.moveWidgetToYPos(repeaterDelegate, gridPos.y);
+                        var gridPos = appWidget.mapToItem(root, pos.x, pos.y);
+                        root.moveWidgetToYPos(repeaterDelegate, gridPos.y);
                     }
                     onDragStarted: moveTransition.enabled = true
                     onDragEnded: moveTransition.enabled = false
@@ -300,12 +300,12 @@ Column {
                 visible: repeaterDelegate.isAtBottom ? false : true
 
                 width: parent.width
-                height: widgetGrid.resizerHandleHeight
+                height: root.resizerHandleHeight
                 MouseArea {
                     anchors.fill: parent
-                    onPressed: widgetGrid.onResizeHandlePressed(mapToItem(widgetGrid, mouseX, mouseY))
-                    onReleased: widgetGrid.onResizeHandleReleased(mapToItem(widgetGrid, mouseX, mouseY))
-                    onPositionChanged: widgetGrid.onResizeHandleDragged(mapToItem(widgetGrid, mouseX, mouseY))
+                    onPressed: root.onResizeHandlePressed(mapToItem(root, mouseX, mouseY))
+                    onReleased: root.onResizeHandleReleased(mapToItem(root, mouseX, mouseY))
+                    onPositionChanged: root.onResizeHandleDragged(mapToItem(root, mouseX, mouseY))
                 }
             }
         }
