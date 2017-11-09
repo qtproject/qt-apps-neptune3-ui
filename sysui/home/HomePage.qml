@@ -74,7 +74,6 @@ Item {
         onClicked: popup.open()
     }
 
-    // TODO: Make it look decent
     AddWidgetPopup {
         id: popup
         model: root.applicationModel
