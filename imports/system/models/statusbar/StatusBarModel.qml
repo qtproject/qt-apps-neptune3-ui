@@ -38,10 +38,10 @@ QtObject {
     property string clusterTitle: ""
 
     property var indicators: [
-        { name: "battery", active: true },
-        { name: "wifi",  active: true },
-        { name: "break", active: false },
-        { name: "bluetooth", active: false }
+        { id: "reception",  active: true, icon: "ic-statusbar-reception" },
+        { id: "wifi", active: false, icon: "ic-statusbar-wifi" },
+        { id: "bluetooth", active: false, icon: "ic-statusbar-bluetooth" },
+        { id: "battery", active: true, icon: "ic-statusbar-battery" }
     ]
 
     property var currentDate: new Date();

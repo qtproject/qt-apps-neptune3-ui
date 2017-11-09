@@ -41,17 +41,16 @@ Control {
     property var currentDate: new Date()
 
     width: Style.isPotrait ? Style.hspan(2) : Style.hspan(1.5)
-    height: Style.vspan(0.9)
+    height: Style.vspan(0.5)
 
     Label {
         id: clock
 
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
 
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Style.fontSizeM
+        font.pixelSize: Style.fontSizeS
         font.weight: Style.fontWeight
         text: Qt.formatTime(root.currentDate, root.timeFormat)
     }

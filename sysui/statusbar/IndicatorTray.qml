@@ -50,10 +50,11 @@ Control {
          Repeater {
              id: repeater
 
-             // TODO: Replace this with real icon when available
-             delegate: Rectangle {
-                 width: root.height
-                 height: width
+             // TODO: Replace this with real implementation. this is currently just a placeholder.
+             delegate: Image {
+                 height: root.height
+                 source: Style.symbol(modelData.icon, false)
+                 fillMode: Image.Pad
                  opacity: modelData.active ? 1 : 0.4
              }
          }

@@ -52,9 +52,18 @@ Pane {
     IndicatorTray {
         Layout.fillHeight: true
         model: StatusBarModel.indicators
-        anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.top: parent.top
+    }
+
+    // TODO: Update with the real Notification implementation when spec is available.
+    Rectangle {
+        id: notificationCenterHandlePlaceHolder
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: Style.hspan(5)
+        height: Style.vspan(0.04)
+        color: "#3a3a3a"
     }
 
     RowLayout {
@@ -63,9 +72,6 @@ Pane {
         Layout.maximumHeight: Style.statusBarHeight
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.topMargin: Style.padding
-        anchors.bottomMargin: Style.padding
 
         Weather {
             visible: !Style.isPotrait
@@ -76,9 +82,5 @@ Pane {
             timeFormat: SettingsModel.clockOption.format
             currentDate: StatusBarModel.currentDate
         }
-    }
-
-    Tracer {
-        visible: true
     }
 }
