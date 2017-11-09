@@ -72,10 +72,10 @@ Item {
             window.width = Qt.binding(function() { return root.width; });
             window.height = Qt.binding(function() { return root.height; });
             window.z = 2
-            root.state = "live"
+            loadingStateGroup.state = "live"
             root.appInfo.canBeActive = true;
         } else {
-            root.state = "loading"
+            loadingStateGroup.state = "loading"
         }
     }
 
@@ -86,16 +86,19 @@ Item {
         z: 1
     }
 
-    state: "loading"
-    states: [
-        State {
-            name: "loading"
-        },
-        State {
-            name: "live"
-            PropertyChanges { target: busyIndicator; running: false; visible: false }
-        }
-    ]
+    StateGroup {
+        id: loadingStateGroup
+        state: "loading"
+        states: [
+            State {
+                name: "loading"
+            },
+            State {
+                name: "live"
+                PropertyChanges { target: busyIndicator; running: false; visible: false }
+            }
+        ]
+    }
 
     // Drag handle
     MouseArea {

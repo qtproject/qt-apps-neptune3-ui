@@ -119,14 +119,30 @@ ApplicationWindow {
             height: parent.height
 
             StageLoader {
-                id: windowStackLoader
+                id: homePageLoader
 
                 anchors.fill: parent
                 active: true //StagedStartupModel.loadRest
-                source: "sysui/display/WindowStack.qml"
-                Binding { target: windowStackLoader.item; property: "applicationModel"; value: applicationModel }
-                Binding { target: windowStackLoader.item; property: "widgetListModel"; value: widgetListModel }
+                source: "sysui/home/HomePage.qml"
+                Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel }
+                Binding { target: homePageLoader.item; property: "widgetsList"; value: widgetListModel }
 
+                // widgets will reparent themselves to the active application slot when active
+                Binding { target: homePageLoader.item; property: "activeApplicationParent"; value: activeApplicationSlot }
+                Binding { target: homePageLoader.item; property: "moveBottomWidgetToDrawer"; value: !widgetDrawer.showingHomePage }
+                Binding { target: homePageLoader.item; property: "widgetDrawer"; value: widgetDrawerSlot }
+            }
+
+            // slot for the maximized, active, application
+            Item {
+                id: activeApplicationSlot
+                anchors.fill: parent
+
+                ApplicationFrame {
+                    id: activeAppFrame
+                    anchors.fill: parent
+                    appInfo: applicationModel.activeAppInfo && !applicationModel.activeAppInfo.asWidget ? applicationModel.activeAppInfo : null
+                }
             }
 
             WidgetDrawer {
@@ -135,35 +151,25 @@ ApplicationWindow {
                 height: homePageRowHeight
                 anchors.bottom: parent.bottom
 
-                // TODO: try to make this parent swapping nicer and more declarative
-                property var previousWidgetParent
-                onShowingHomePageChanged: {
-                    if (showingHomePage) {
-                        open = true;
-                        if (previousWidgetParent && homePageBottomApplicationWidget) {
-                            homePageBottomApplicationWidget.parent = previousWidgetParent
-                        }
-                    } else if (homePageBottomApplicationWidget) {
-                        previousWidgetParent = homePageBottomApplicationWidget.parent
-                        homePageBottomApplicationWidget.parent = applicationWidgetSlot
-                    }
-                }
-
-                dragEnabled: homePageBottomApplicationWidget && !homePageBottomApplicationWidget.active && !showingHomePage
-
+                dragEnabled: !showingHomePage
                 visible: !showingHomePage
 
                 Item {
-                    id: applicationWidgetSlot
+                    id: widgetDrawerSlot
                     width: widgetDrawer.homePageWidgetWidth
                     height: widgetDrawer.homePageRowHeight
                     anchors.horizontalCenter: widgetDrawer.horizontalCenter
                 }
 
-                property bool showingHomePage: windowStackLoader.item ? windowStackLoader.item.showingHomePage : false
-                property Item homePageBottomApplicationWidget: windowStackLoader.item ? windowStackLoader.item.homePageBottomApplicationWidget : null
-                property real homePageWidgetWidth: windowStackLoader.item ? windowStackLoader.item.homePageWidgetWidth : 0
-                property real homePageRowHeight: windowStackLoader.item ? windowStackLoader.item.homePageRowHeight : 0
+                property bool showingHomePage: applicationModel.activeAppInfo === null
+                onShowingHomePageChanged: {
+                    if (showingHomePage) {
+                        widgetDrawer.open = true;
+                    }
+                }
+
+                property real homePageWidgetWidth: homePageLoader.item ? homePageLoader.item.widgetWidth : 0
+                property real homePageRowHeight: homePageLoader.item ? homePageLoader.item.rowHeight : 0
             }
         }
     }

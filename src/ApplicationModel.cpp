@@ -40,6 +40,8 @@
 
 #include <QDebug>
 
+Q_LOGGING_CATEGORY(appModel, "appmodel")
+
 using QtAM::WindowManager;
 using QtAM::ApplicationManager;
 
@@ -108,6 +110,8 @@ void ApplicationModel::setWindowManager(QtAM::WindowManager *windowManager)
         // TODO care about animating before releasing
         windowManager->releaseWindow(window);
     });
+
+    connect(windowManager, &WindowManager::windowPropertyChanged, this, &ApplicationModel::onWindowPropertyChanged);
 }
 
 void ApplicationModel::configureApps()
@@ -179,6 +183,9 @@ void ApplicationModel::goHome()
 
         m_activeAppId.clear();
         emit activeAppIdChanged();
+        qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
+        m_activeAppInfo = nullptr;
+        emit activeAppInfoChanged();
     }
 }
 
@@ -201,6 +208,9 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
 
     m_activeAppId = appId;
     emit activeAppIdChanged();
+    qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
+    m_activeAppInfo = appInfo;
+    emit activeAppInfoChanged();
 
     auto windowManager = WindowManager::instance();
     for (int i = 0; i < windowManager->count(); ++i) {
@@ -210,5 +220,14 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
             emit applicationSurfaceReady(appInfo, item);
             break;
         }
+    }
+}
+
+void ApplicationModel::onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant & /*value*/) {
+    if (name == "activationCount") {
+        auto windowManager = WindowManager::instance();
+        QString appId = windowManager->get(windowManager->indexOfWindow(window))["applicationId"].toString();
+        emit m_appMan->application(appId)->activated();
+        onApplicationActivated(appId, appId);
     }
 }

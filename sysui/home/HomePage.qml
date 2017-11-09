@@ -42,7 +42,10 @@ Item {
     property var applicationModel
     property var widgetsList
 
-    property alias bottomApplicationWidget: widgetGrid.bottomApplicationWidget
+    property alias activeApplicationParent: widgetGrid.activeApplicationParent
+    property alias moveBottomWidgetToDrawer: widgetGrid.moveBottomWidgetToDrawer
+    property alias widgetDrawer: widgetGrid.widgetDrawer
+
     readonly property real widgetWidth: widgetGrid.width
     readonly property real rowHeight: widgetGrid.rowHeight - widgetGrid.resizerHandleHeight
 

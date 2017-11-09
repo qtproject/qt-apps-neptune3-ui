@@ -44,7 +44,9 @@ Column {
 
     readonly property real resizerHandleHeight: Style.vspan(0.2)
 
-    property Item bottomApplicationWidget
+    property Item activeApplicationParent
+    property bool moveBottomWidgetToDrawer: false
+    property Item widgetDrawer
 
     property var widgetsList
 
@@ -262,13 +264,6 @@ Column {
 
             readonly property bool isAtBottom: model.index === (repeater.count - 1)
 
-            Binding {
-                when: repeaterDelegate.isAtBottom
-                target: root
-                property: "bottomApplicationWidget"
-                value: appWidget
-            }
-
             Item {
                 id: appWidgetSlot
                 width: repeaterDelegate.width
@@ -276,7 +271,6 @@ Column {
 
                 ApplicationWidget {
                     id: appWidget
-                    anchors.fill: parent
 
                     appInfo: model.appInfo
 
@@ -291,6 +285,55 @@ Column {
                     }
                     onDragStarted: moveTransition.enabled = true
                     onDragEnded: moveTransition.enabled = false
+
+                    state: {
+                        if (active && root.activeApplicationParent) {
+                            return "active"
+                        } else if (repeaterDelegate.isAtBottom && root.moveBottomWidgetToDrawer) {
+                            return "drawer"
+                        } else {
+                            return "home"
+                        }
+                    }
+                    states: [
+                        State {
+                            name: "home"
+                            ParentChange {
+                                target: appWidget; parent: appWidgetSlot
+                                x: 0; y: 0;
+                                width: appWidgetSlot.width; height: appWidgetSlot.height
+                            }
+                        },
+                        State {
+                            name: "active"
+                            ParentChange {
+                                target: appWidget; parent: root.activeApplicationParent
+                                x: 0; y: 0;
+                                width: root.activeApplicationParent.width; height: root.activeApplicationParent.height
+                            }
+                        },
+                        State {
+                            name: "drawer"
+                            ParentChange {
+                                target: appWidget; parent: root.widgetDrawer
+                                x: 0; y: 0;
+                                width: root.widgetDrawer.width; height: root.widgetDrawer.height
+                            }
+                        }
+                    ]
+
+                    transitions: Transition {
+                        SequentialAnimation {
+                            id: anim
+                            property int oldDelegateZ
+                            PropertyAction { target: anim; property: "oldDelegateZ"; value: repeaterDelegate.z }
+                            PropertyAction { target: repeaterDelegate; property: "z"; value: 100 }
+                            ParentAnimation {
+                                DefaultNumberAnimation { properties: "x,y,width,height" }
+                            }
+                            PropertyAction { target: repeaterDelegate; property: "z"; value: anim.oldDelegateZ }
+                        }
+                    }
                 }
             }
             Item {
