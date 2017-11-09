@@ -42,7 +42,7 @@ Item {
     readonly property int numRows: 5
     readonly property int rowHeight: height / numRows
 
-    readonly property real resizerHandleHeight: Style.vspan(0.2)
+    readonly property real resizerHandleHeight: Style.vspan(0.4)
 
     property Item activeApplicationParent
     property bool moveBottomWidgetToDrawer: false
@@ -400,6 +400,16 @@ Item {
 
                     width: parent.width
                     height: root.resizerHandleHeight
+
+                    // TODO: need to be replaced with an icon
+                    Rectangle {
+                        id: handlerIcon
+                        width: Style.vspan(1)
+                        height: 2
+                        color: "grey"
+                        anchors.centerIn: parent
+                    }
+
                     MouseArea {
                         anchors.fill: parent
                         onPressed: column.onResizeHandlePressed(mapToItem(root, mouseX, mouseY))
@@ -409,6 +419,5 @@ Item {
                 }
             }
         }
-
     }
 }

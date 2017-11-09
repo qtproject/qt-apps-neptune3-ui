@@ -86,6 +86,44 @@ ApplicationManagerWindow {
 
     default property alias content: content.children
 
+    /*!
+         \qmlproperty AppUIScreen::applicationIcon
+
+         This property specify the application icon and shown in the left widget bar.
+
+    */
+
+    property alias applicationIcon: appIcon.source
+
+    /*!
+         \qmlproperty AppUIScreen::stripeSource
+
+         This property specify the stripe image source of the application.
+
+    */
+
+    property alias stripeSource: widgetStripe.source
+
+    BorderImage {
+        id: widgetStripe
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        border { top: 30; bottom: 30 }
+        horizontalTileMode: BorderImage.Stretch
+        verticalTileMode: BorderImage.Stretch
+        source: Style.gfx2("widget-stripe")
+
+        Image {
+            id: appIcon
+            width: parent.width * 0.6
+            fillMode: Image.PreserveAspectFit
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: widgetStripe.border.top * 0.8
+        }
+    }
+
     Item {
         id: content
         anchors.fill: parent

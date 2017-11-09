@@ -43,7 +43,9 @@ ToolButton {
     indicator: Image {
         width: Style.hspan(1.3)
         height: Style.vspan(0.8)
-        anchors.centerIn: parent
+        anchors.centerIn: root.text !== "" ? undefined : parent
+        anchors.right: root.text !== "" ? parent.right : undefined
+        anchors.verticalCenter: root.text !== "" ? parent.verticalCenter : undefined
         fillMode: Image.Pad
         source: root.symbol ? root.symbol : ""
     }

@@ -44,8 +44,8 @@ Control {
     Item {
         id: climateBarContent
         height: Style.climateCollapsedVspan
-        width: Style.hspan(23)
-        anchors.horizontalCenter: parent.horizontalCenter
+        width: Style.hspan(15)
+        anchors.centerIn: parent
 
         TemperatureLevel {
             id: tempLevelCenter

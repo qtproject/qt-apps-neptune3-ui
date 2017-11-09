@@ -31,35 +31,27 @@
 
 import QtQuick 2.8
 import utils 1.0
+import controls 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-AppUIScreen {
+ColumnLayout {
     id: root
+    spacing: 15
 
-    applicationIcon: "icon.png"
+    property alias currentSongTitle: songTitle.text
+    property alias currentArtisName: artistName.text
 
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
+    Label {
+        id: songTitle
+        color: Style.colorBlack
+        font.pixelSize: Style.fontSizeM
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+    Label {
+        id: artistName
+        color: "#999999"
+        font.pixelSize: Style.fontSizeS
     }
 }
 

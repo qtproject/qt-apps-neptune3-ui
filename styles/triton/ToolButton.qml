@@ -53,9 +53,22 @@ T.ToolButton {
     scale: pressed ? 1.1 : 1.0
     Behavior on scale { NumberAnimation { duration: 50 } }
 
+    // 5.9 does not support icon property and its subsidiaries.
     //icon.width: Symbol.symbolSizeM
     //icon.height: Symbol.symbolSizeM
     //icon.color: checked ? "#f07d00" : "transparent"
+
+    // TODO: We should probably try to find something better than this solution. This will
+    // forward the signal to the control itself. Without this, it can only be clicked on the
+    // the rendered indicator.
+    background: MouseArea {
+        id: mouseArea
+        implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
+        implicitWidth: implicitHeight
+        onPressed: mouse.accepted = false
+        onReleased: mouse.accepted = false
+        onClicked: control.clicked()
+    }
 
     contentItem: Label {
         text: control.text

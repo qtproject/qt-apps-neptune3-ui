@@ -54,6 +54,19 @@ Item {
         }
     }
 
+    BorderImage {
+        id: bgImage
+        anchors.fill: parent
+        anchors.leftMargin: -30
+        anchors.rightMargin: -30
+        anchors.topMargin: -30
+        anchors.bottomMargin: -30
+        border { left: 60; right: 60; top: 60; bottom: 60 }
+        horizontalTileMode: BorderImage.Stretch
+        verticalTileMode: BorderImage.Stretch
+        source: Style.gfx2("widget-bg")
+    }
+
     Connections {
         target: root.appInfo ? root.appInfo : null
         onWindowChanged: {

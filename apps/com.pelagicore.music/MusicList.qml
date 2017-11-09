@@ -31,35 +31,33 @@
 
 import QtQuick 2.8
 import utils 1.0
+import controls 1.0
 import QtQuick.Controls 2.2
 
-AppUIScreen {
+ListView {
     id: root
 
-    applicationIcon: "icon.png"
+    signal itemClicked(var index)
 
-    property string title: "Triton Calendar"
+    clip: true
+    boundsBehavior : Flickable.StopAtBounds
 
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
+    header: Tool {
+        width: Style.hspan(2.5)
+        height: Style.vspan(0.8)
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Next"
+        font.pixelSize: Style.fontSizeS
+        symbol: Style.symbol("ic-expand")
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+    delegate: SongListItem {
+        id: delegatedSong
+        width: root.width
+        height: Style.vspan(1)
+        highlighted: false
+        songTitle: title
+        artistName: artist
+        onClicked: root.itemClicked(index)
     }
 }
-

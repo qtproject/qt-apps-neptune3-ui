@@ -3,7 +3,7 @@ formatType: am-application
 ---
 id:      'com.pelagicore.music'
 icon:    'icon.png'
-code:    'Music.qml'
+code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Music'

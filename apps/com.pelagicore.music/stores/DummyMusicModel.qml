@@ -30,36 +30,62 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import QtQuick.Controls 2.2
 
-AppUIScreen {
+//TODO: USE QTIVI
+ListModel {
     id: root
-
-    applicationIcon: "icon.png"
-
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
+    ListElement {
+        title: "Song 1"
+        artist: "Artist 1"
+        albumArt: "assets/albums/cover_1.png"
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    ListElement {
+        title: "Song 2"
+        artist: "Artist 2"
+        albumArt: "assets/albums/cover_2.png"
+    }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+    ListElement {
+        title: "Song 3"
+        artist: "Artist 2"
+        albumArt: "assets/albums/cover_3.png"
+    }
+
+    ListElement {
+        title: "Song 4"
+        artist: "Artist 1"
+        albumArt: "assets/albums/cover_4.png"
+    }
+
+    ListElement {
+        title: "Song 5"
+        artist: "Artist 3"
+        albumArt: "assets/albums/cover_5.png"
+    }
+
+    ListElement {
+        title: "Song 6"
+        artist: "Artist 3"
+        albumArt: "assets/albums/cover_6.png"
+    }
+
+    ListElement {
+        title: "Song 7"
+        artist: "Artist 2"
+        albumArt: "assets/albums/cover_7.png"
+    }
+
+    ListElement {
+        title: "Song 8"
+        artist: "Artist 2"
+        albumArt: "assets/albums/cover_8.png"
+    }
+
+    ListElement {
+        title: "Song 9"
+        artist: "Artist 2"
+        albumArt: "assets/albums/cover_9.png"
     }
 }
 

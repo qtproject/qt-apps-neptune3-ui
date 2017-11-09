@@ -35,6 +35,7 @@ import QtQuick.Controls 2.2
 
 AppUIScreen {
     id: root
+
     property string title: "Triton Phone"
 
     // Temporary rect until the correct graphic is delivered

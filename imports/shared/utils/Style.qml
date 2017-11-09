@@ -80,7 +80,7 @@ QtObject {
     property int notificationCenterSpan: 8
 
     // Cimate config
-    property int climateCollapsedSpan: 3
+    property real climateCollapsedSpan: 1.4
     property real climateCollapsedVspan: vspan(climateCollapsedSpan)
 
     //StatusBar config

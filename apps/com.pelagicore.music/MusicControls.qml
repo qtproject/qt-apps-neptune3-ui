@@ -31,35 +31,37 @@
 
 import QtQuick 2.8
 import utils 1.0
+import controls 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-AppUIScreen {
+RowLayout {
     id: root
+    spacing: 15
 
-    applicationIcon: "icon.png"
+    signal previousClicked()
+    signal playClicked()
+    signal nextClicked()
 
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
+    Tool {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
+        symbol: Style.symbol("ic_skipprevious")
+        onClicked: root.previousClicked()
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    Tool {
+        anchors.centerIn: parent
+        background:  Image {
+            source: Style.symbol("ic_button-bg")
         }
+        symbol: Style.symbol("ic_play")
+        onClicked: root.playClicked()
+    }
+
+    Tool {
+        anchors.verticalCenter: parent.verticalCenter
+        symbol: Style.symbol("ic_skipnext")
+        onClicked: root.nextClicked()
     }
 }
 

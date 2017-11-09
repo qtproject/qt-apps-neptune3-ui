@@ -35,57 +35,24 @@ import QtQuick.Controls 2.2
 
 AppUIScreen {
     id: root
+
+    applicationIcon: "icon.png"
+
     property string title: "Triton Maps"
-
-    // Temporary rect until the correct graphic is delivered
-    Rectangle {
-        id: bg
-        color: "#F1EFED"
-        radius: 30
-        anchors.fill: parent
-    }
-
-    // Temporary rect until the correct graphic is delivered
-    Rectangle {
-        id: appToolbar
-        color: "#FA9E54"
-        height: parent.height
-        width: Style.vspan(0.7)
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        radius: 30
-
-        Rectangle {
-          id: squareRect
-
-          color: appToolbar.color
-          width: appToolbar.radius
-          anchors.top: appToolbar.top
-          anchors.bottom: appToolbar.bottom
-          anchors.right: appToolbar.right
-        }
-
-        Image {
-            width: parent.width
-            source: "icon.png"
-            fillMode: Image.Pad
-            anchors.top: parent.top
-            anchors.margins: 25
-        }
-    }
 
     Rectangle {
         color: touchPoint1.pressed ? "red" : "grey"
-        height: parent.height - 20
-        width: parent.width * 0.6
+        height: parent.height - 80
+        width: parent.width * 0.5
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: 60
+        anchors.rightMargin: 80
         Label { text: root.title }
     }
 
     MultiPointTouchArea {
         anchors.fill: parent
+        anchors.margins: 30
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
         property int count: 0

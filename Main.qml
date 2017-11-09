@@ -108,7 +108,7 @@ ApplicationWindow {
         y: launcherLoader.y + Style.launcherHeight
         anchors.left: parent.left
         anchors.right: parent.right
-        height: root.height - Style.statusBarHeight - Style.launcherHeight - Style.climateCollapsedVspan
+        height: root.height - Style.statusBarHeight - Style.launcherHeight - climateLoader.height
         opacity: launcherLoader.launcherOpen ? 0 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
         enabled: !launcherLoader.launcherOpen
@@ -195,7 +195,7 @@ ApplicationWindow {
     StageLoader {
         id: climateLoader
         width: Style.screenWidth
-        height: Style.vspan(2.5)
+        height: Style.vspan(1.4)
         anchors.bottom: parent.bottom
         active: StagedStartupModel.loadDisplay
         source: "sysui/climate/ClimateBar.qml"

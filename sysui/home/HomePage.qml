@@ -56,8 +56,8 @@ Item {
         anchors.bottom: addWidgetButton.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: Style.hspan(0.5)
-        anchors.rightMargin: Style.hspan(0.5)
+        anchors.leftMargin: Style.hspan(1)
+        anchors.rightMargin: Style.hspan(1)
 
         widgetsList: root.widgetsList
     }

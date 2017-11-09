@@ -31,35 +31,46 @@
 
 import QtQuick 2.8
 import utils 1.0
+import controls 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-AppUIScreen {
+ItemDelegate {
     id: root
 
-    applicationIcon: "icon.png"
+    property alias songTitle: title.text
+    property alias artistName: artistName.text
 
-    property string title: "Triton Calendar"
+    background: null
 
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
-    }
+    contentItem: Item {
+        anchors.fill: root
+        ColumnLayout {
+            anchors.top: parent.top
+            anchors.topMargin: Style.vspan(0.1)
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            width: parent.width
+            spacing: 10
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+            Label {
+                id: title
+                color: Style.colorBlack
+                font.pixelSize: Style.fontSizeS
+            }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+            Label {
+                id: artistName
+                color: "#999999"
+                font.pixelSize: Style.fontSizeXS
+            }
+        }
+
+        Image {
+            width: parent.width
+            height: 5
+            anchors.bottom: parent.bottom
+            source: Style.gfx2("divider")
         }
     }
 }
-

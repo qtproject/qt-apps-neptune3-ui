@@ -12,4 +12,5 @@ AppUIScreen 1.0 AppUIScreen.qml
 NavigationUIScreen 1.0 NavigationUIScreen.qml
 Layouter 1.0 Layouter.qml
 StageLoader 1.0 StageLoader.qml
+Store 1.0 Store.qml
 singleton Logging 1.0 Logging.qml

@@ -31,35 +31,40 @@
 
 import QtQuick 2.8
 import utils 1.0
-import QtQuick.Controls 2.2
 
-AppUIScreen {
+Store {
     id: root
 
-    applicationIcon: "icon.png"
+    property alias musicModel: dummyModel
+    property int musicCount: musicModel.count
+    property int currentIndex: 0
 
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
+    // TODO: USE QTIVI
+    property ListModel dummyModel: DummyMusicModel {
+        id: dummyModel
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    function getCurrentTitle(index) {
+        return root.musicModel.get(index).title;
+    }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    function getCurrentArtist(index) {
+        return root.musicModel.get(index).artist;
+    }
+
+    function previousSong() {
+        if (root.currentIndex === 0) {
+            root.currentIndex = root.musicModel.count - 1;
+        } else {
+            root.currentIndex -= 1;
+        }
+    }
+
+    function nextSong() {
+        if (root.currentIndex < root.musicModel.count) {
+            root.currentIndex += 1;
+        } else {
+            root.currentIndex = 0;
         }
     }
 }
-

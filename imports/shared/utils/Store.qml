@@ -29,37 +29,21 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import utils 1.0
-import QtQuick.Controls 2.2
+import QtQml 2.2
 
-AppUIScreen {
+/*
+  Store.qml
+
+  Provide a default API for application stores. The store has to be created as a singleton.
+
+  Store is still working in progress, hence, it will be extended at some point.
+*/
+
+QtObject {
     id: root
 
-    applicationIcon: "icon.png"
-
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
-    }
-
-    MultiPointTouchArea {
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
-    }
+    property list<QtObject> children
+    default property var data: root.children
 }
+
 

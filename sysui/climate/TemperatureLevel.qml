@@ -43,7 +43,7 @@ Control {
     property int horizontalAlignment: Qt.AlignLeft
 
     width: Style.hspan(2)
-    height: Style.vspan(3)
+    height: Style.vspan(1.4)
 
     signal clicked()
 

@@ -31,24 +31,15 @@
 
 import QtQuick 2.8
 import utils 1.0
+import animations 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
+import "stores"
 
 AppUIScreen {
     id: root
 
     applicationIcon: "icon.png"
-
-    property string title: "Triton Calendar"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "blue" : "green"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
-        Label { text: root.title }
-    }
 
     MultiPointTouchArea {
         anchors.fill: parent
@@ -61,5 +52,10 @@ AppUIScreen {
             root.setWindowProperty("activationCount", count);
         }
     }
-}
 
+    Music {
+        id: musicAppContent
+        anchors.fill: parent
+        store: MusicStore { }
+    }
+}
