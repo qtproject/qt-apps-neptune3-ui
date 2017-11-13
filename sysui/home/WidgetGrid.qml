@@ -55,7 +55,7 @@ Item {
         move: Transition {
             id: moveTransition
             enabled: false
-            DefaultSmoothedAnimation { properties: "x,y,width,height" }
+            NumberAnimation { properties: "x,y,width,height"; duration: 120; easing.type: Easing.OutQuad }
         }
 
         function moveWidgetToYPos(draggedWidget, yPos) {
