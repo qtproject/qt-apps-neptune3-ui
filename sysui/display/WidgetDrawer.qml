@@ -77,10 +77,12 @@ MouseArea {
                 d.dragging = false;
                 var delta = Math.abs(d.lastX - d.startX);
                 if (delta >= d.minimumDrag) {
-                    if (d.direction == 1) {
+                    if (d.direction == 1 && root.open) {
                         root.open = false;
-                    } else {
+                    } else if (d.direction == -1 && !root.open) {
                         root.open = true;
+                    } else {
+                        d.applyOpenState();
                     }
                 } else {
                     d.applyOpenState();
