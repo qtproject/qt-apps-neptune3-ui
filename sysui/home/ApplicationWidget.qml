@@ -37,7 +37,7 @@ Item {
     id: root
 
     signal draggedOntoPos(var pos)
-    signal dragStarted()
+    signal dragStarted(var pos)
     signal dragEnded()
 
     property alias dragButtonVisible: dragHandle.visible
@@ -111,7 +111,7 @@ Item {
         z: 3
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
-        onPressed: root.dragStarted()
+        onPressed: root.dragStarted(dragHandle.mapToItem(root, mouseX, mouseY))
         onReleased: root.dragEnded()
 
         Image {
