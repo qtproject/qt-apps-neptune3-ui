@@ -58,26 +58,53 @@ Item {
             NumberAnimation { properties: "x,y,width,height"; duration: 120; easing.type: Easing.OutQuad }
         }
 
-        function moveWidgetToYPos(draggedWidget, yPos) {
+        readonly property real swapThreshold: Style.vspan(0.4)
+        function onWidgetMoved(draggedDelegate) {
             if (moveTransition.running)
                 return;
 
-            var targetRowIndex = Math.round(yPos / rowHeight);
-            targetRowIndex = Math.max(0, Math.min(targetRowIndex, numRows - 1));
+            var draggedWidget = draggedDelegate.widget;
+            var deltaY = draggedWidget.y - draggedDelegate.y
 
-            var i;
-            for (i = 0; i < repeater.count; i++) {
-                if (draggedWidget.modelIndex === i)
-                    continue;
+            if (deltaY > 0) {
+                // if the bottom edge of the widget being dragged comes close enough to the
+                // bottom edge of some other widget we swap them.
 
-                var widgetDelegate = repeater.itemAt(i);
-                var widgetRowIndex = Math.round(widgetDelegate.y / rowHeight);
-                if (widgetRowIndex === targetRowIndex) {
-                    // swap!
-                    root.widgetsList.move(draggedWidget.modelIndex, i, 1);
-                    return;
+                var draggedBottom = draggedWidget.y + draggedWidget.height
+
+                var i;
+                for (i = 0; i < repeater.count; i++) {
+                    if (draggedDelegate.modelIndex === i)
+                        continue;
+
+                    var widgetDelegate = repeater.itemAt(i).widget;
+                    var widgetBottom = widgetDelegate.mapToItem(root, 0, 0).y + widgetDelegate.height;
+
+                    if (Math.abs(draggedBottom - widgetBottom) <= swapThreshold) {
+                        // swap!
+                        root.widgetsList.move(draggedDelegate.modelIndex, i, 1);
+                        return;
+                    }
+                }
+            } else {
+                // if the top edge of the widget being dragged comes close enough to the
+                // top edge of some other widget we swap them.
+
+                var i;
+                for (i = 0; i < repeater.count; i++) {
+                    if (draggedDelegate.modelIndex === i)
+                        continue;
+
+                    var widgetDelegateY = repeater.itemAt(i).widget.mapToItem(root, 0, 0).y;
+
+                    if (Math.abs(draggedWidget.y - widgetDelegateY) < swapThreshold) {
+                        // swap!
+                        root.widgetsList.move(draggedDelegate.modelIndex, i, 1);
+                        return;
+                    }
                 }
             }
+
         }
 
         property bool resizingWidgets: false
@@ -266,6 +293,8 @@ Item {
 
                 readonly property bool isAtBottom: model.index === (repeater.count - 1)
 
+                readonly property Item widget: appWidget
+
                 Item {
                     id: appWidgetSlot
                     width: repeaterDelegate.width
@@ -287,7 +316,7 @@ Item {
 
                         onDraggedOntoPos: {
                             dragTouchPosY = appWidget.mapToItem(root, pos.x, pos.y).y;
-                            column.moveWidgetToYPos(repeaterDelegate, dragTouchPosY);
+                            column.onWidgetMoved(repeaterDelegate);
                         }
                         onDragStarted: {
                             moveTransition.enabled = true;
