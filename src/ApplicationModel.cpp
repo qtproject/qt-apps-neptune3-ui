@@ -44,6 +44,7 @@ Q_LOGGING_CATEGORY(appModel, "appmodel")
 
 using QtAM::WindowManager;
 using QtAM::ApplicationManager;
+using QtAM::Application;
 
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -78,7 +79,7 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
         ApplicationInfo *appInfo = new ApplicationInfo(application);
         connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
             if (m_appMan) {
-                m_appMan->startApplication(appInfo->application()->id());
+                m_appMan->startApplication(appInfo->id());
             }
         });
         m_appInfoList.append(appInfo);
@@ -137,15 +138,16 @@ QVariant ApplicationModel::data(const QModelIndex &index, int role) const
 {
     if (index.row() >= 0 && index.row() < m_appInfoList.count()) {
         ApplicationInfo *appInfo = m_appInfoList.at(index.row());
+        auto application = static_cast<const Application*>(appInfo->application());
         if (role == RoleAppInfo) {
             return QVariant::fromValue(appInfo);
         } else if (role == RoleIcon) {
-            return QVariant::fromValue(appInfo->application()->icon());
+            return QVariant::fromValue(application->icon());
         } else if (role == RoleAppId) {
-            return QVariant::fromValue(appInfo->application()->id());
+            return QVariant::fromValue(application->id());
         } else if (role == RoleName) {
             // FIXME: use locale
-            return QVariant::fromValue(appInfo->application()->name(QStringLiteral("en")));
+            return QVariant::fromValue(application->name(QStringLiteral("en")));
         }
     }
     return QVariant();
@@ -166,7 +168,7 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
 ApplicationInfo *ApplicationModel::application(const QString &appId)
 {
     for (auto *appInfo : m_appInfoList) {
-        if (appInfo->application()->id() == appId) {
+        if (appInfo->id() == appId) {
             return appInfo;
         }
     }

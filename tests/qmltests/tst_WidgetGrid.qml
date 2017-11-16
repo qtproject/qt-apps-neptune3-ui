@@ -93,19 +93,21 @@ Item {
         }
     }
 
+    ListModel {
+        id: fakeApplicationModel
+        function application(index) {
+            return get(index).appInfo;
+        }
+    }
+
     WidgetGrid {
         id: widgetGrid
         anchors.fill: parent
-        widgetsList: ListModel {
-            id: listModel
-            function application(index) {
-                return get(index).appInfo;
-            }
-        }
         Component.onCompleted: {
-            listModel.append({"appInfo":redApp})
-            listModel.append({"appInfo":greenApp})
-            listModel.append({"appInfo":blueApp})
+            fakeApplicationModel.append({"appInfo":redApp})
+            fakeApplicationModel.append({"appInfo":greenApp})
+            fakeApplicationModel.append({"appInfo":blueApp})
+            widgetGrid.applicationModel = fakeApplicationModel
         }
     }
 
@@ -118,10 +120,10 @@ Item {
          */
         function test_resizePropagates() {
             // check start conditions
-            compare(listModel.count, 3);
-            compare(listModel.get(0).appInfo.heightRows, 1);
-            compare(listModel.get(1).appInfo.heightRows, 2);
-            compare(listModel.get(2).appInfo.heightRows, 2);
+            compare(fakeApplicationModel.count, 3);
+            compare(fakeApplicationModel.get(0).appInfo.heightRows, 1);
+            compare(fakeApplicationModel.get(1).appInfo.heightRows, 2);
+            compare(fakeApplicationModel.get(2).appInfo.heightRows, 2);
 
 
             // get the resize handle that's under the first (top) widget, redApp.
@@ -135,9 +137,9 @@ Item {
 
             // Both the second and the third widget (top to bottom order) should have shrunk to make space for the
             // enlarged top widget
-            compare(listModel.get(0).appInfo.heightRows, 3);
-            compare(listModel.get(1).appInfo.heightRows, 1);
-            compare(listModel.get(2).appInfo.heightRows, 1);
+            compare(fakeApplicationModel.get(0).appInfo.heightRows, 3);
+            compare(fakeApplicationModel.get(1).appInfo.heightRows, 1);
+            compare(fakeApplicationModel.get(2).appInfo.heightRows, 1);
 
         }
 

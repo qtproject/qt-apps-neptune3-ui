@@ -31,24 +31,26 @@
 #pragma once
 
 #include <QAbstractListModel>
-
-#include "ApplicationInfo.h"
+#include <QObject>
 
 /*
     Filters ApplicationModel to only show the applications that have asWidget==true and also
     keeps its own order of applications, independently of ApplicationModel
 
-    Similar to QSortFilterProxyModel but instead of sorting it keeps track of its own ordering,
-    modified via its public move() function.
+    Also defines the position of widgets in the grid (rowIndex role) and ensures they correctly
+    fill the grid (manipulates ApplicationInfo::heightRows)
  */
 class WidgetListModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel* applicationModel READ applicationModel WRITE setApplicationModel NOTIFY applicationModelChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(bool populating READ populating NOTIFY populatingChanged)
+    Q_PROPERTY(int numRows READ numRows CONSTANT)
 public:
     enum Roles {
         RoleAppInfo = Qt::UserRole,
+        RoleRowIndex = Qt::UserRole + 1,
     };
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -57,34 +59,75 @@ public:
     {
         QHash<int, QByteArray> roleNames;
         roleNames.insert(RoleAppInfo, "appInfo");
+        roleNames.insert(RoleRowIndex, "rowIndex");
         return roleNames;
     }
 
     QAbstractItemModel *applicationModel() const;
     void setApplicationModel(QAbstractItemModel *);
 
-    Q_INVOKABLE ApplicationInfo *application(int index);
+    Q_INVOKABLE QObject *application(int index);
 
     Q_INVOKABLE void move(int fromIndex, int toIndex);
+    Q_INVOKABLE void remove(int index);
 
     int count() const { return rowCount(); }
 
+    bool populating() const { return m_populating; }
+
+    int numRows() const { return m_totalNumRows; }
 
 signals:
     void applicationModelChanged();
     void countChanged();
+    void populatingChanged();
+
+private slots:
+    void onAppWidgetStateChanged();
+    void updateRowIndexes();
 
 private:
     void fetchAppInfoRoleIndex();
 
     void trackRowsFromApplicationModel(int first, int last);
-    void appendApplicationInfo(ApplicationInfo *appInfo);
-    void removeApplicationInfo(ApplicationInfo *appInfo);
+    void appendApplicationInfo(QObject *appInfo);
 
-    ApplicationInfo *getApplicationInfoFromModelAt(int index);
+    // Keep it in the model but don't consider it as occupying the grid (it won't affect position of
+    // other widgets). Useful for animating the widget removal, before it finally leaves the model
+    void detachApplicationInfo(QObject *appInfo);
+
+    int indexFromAppInfo(QObject *appInfo);
+
+    QObject *getApplicationInfoFromModelAt(int index);
+
+    // some helpers to make code more readable when dealing with QObject properties
+    int heightRows(QObject *appInfo) const;
+    void setHeightRows(QObject *appInfo, int value) const;
+    bool asWidget(QObject *appInfo) const;
+    QString id(QObject *appInfo) const;
+
+    void setPopulating(bool);
 
     int m_appInfoRoleIndex{-1};
     QAbstractItemModel *m_applicationModel{nullptr};
-    QList<ApplicationInfo*> m_list;
+
+    struct ListItem {
+        ListItem() : appInfo(nullptr), rowIndex(0) {}
+        ListItem(QObject *appInfo) : appInfo(appInfo),rowIndex(0) {}
+        bool operator==(const ListItem &other) const { return appInfo == other.appInfo && rowIndex == other.rowIndex && detached == other.detached; }
+
+        QObject *appInfo;
+        int rowIndex;
+        bool detached{false};
+    };
+    QList<ListItem*> filterOutDetachedItems(QList<ListItem> &list) const;
+
+    QList<ListItem> m_list;
     bool m_resetting{false}; // whether the model is being reset
+
+    bool m_updatingRowIndexes{false};
+
+    int m_totalNumRows{5};
+
+    bool m_populating{true};
 };

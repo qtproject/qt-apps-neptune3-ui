@@ -30,7 +30,7 @@
 ****************************************************************************/
 #include "ApplicationInfo.h"
 
-ApplicationInfo::ApplicationInfo(const QtAM::Application* application, QObject *parent)
+ApplicationInfo::ApplicationInfo(const QObject* application, QObject *parent)
     : QObject(parent), m_application(application)
 {
 }
@@ -66,7 +66,7 @@ QQuickItem *ApplicationInfo::window() const
     return m_window;
 }
 
-const QtAM::Application *ApplicationInfo::application() const
+const QObject *ApplicationInfo::application() const
 {
     return m_application;
 }
@@ -121,4 +121,9 @@ void ApplicationInfo::setCanBeActive(bool value)
         m_canBeActive = value;
         emit canBeActiveChanged();
     }
+}
+
+QString ApplicationInfo::id() const
+{
+    return m_application->property("id").toString();
 }

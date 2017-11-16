@@ -28,52 +28,22 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#include <QQmlExtensionPlugin>
+#include <QQmlEngine>
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+#include "WidgetListModel.h"
 
-import controls 1.0
-import utils 1.0
-import animations 1.0
+class WidgetGridPlugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
-Item {
-    id: root
-
-    property var applicationModel
-
-    property alias activeApplicationParent: widgetGrid.activeApplicationParent
-    property alias moveBottomWidgetToDrawer: widgetGrid.moveBottomWidgetToDrawer
-    property alias widgetDrawer: widgetGrid.widgetDrawer
-
-    readonly property real widgetWidth: widgetGrid.width
-    readonly property real rowHeight: widgetGrid.rowHeight - widgetGrid.resizerHandleHeight
-
-    WidgetGrid {
-        id: widgetGrid
-
-        anchors.top: parent.top
-        anchors.bottom: addWidgetButton.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.leftMargin: Style.hspan(1)
-        anchors.rightMargin: Style.hspan(1)
-
-        applicationModel: root.applicationModel
+public:
+    void registerTypes(const char *uri)
+    {
+        Q_ASSERT(uri == QLatin1String("TritonWidgetGrid"));
+        qmlRegisterType<WidgetListModel>(uri, 1, 0, "WidgetListModel");
     }
+};
 
-    Tool {
-        id: addWidgetButton
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(1)
-        height: width
-        symbol: Style.symbol("ic-addwidget-plus", false /* active */)
-        onClicked: popup.open()
-    }
-
-    AddWidgetPopup {
-        id: popup
-        model: root.applicationModel
-        originItem: addWidgetButton
-    }
-}
+#include "WidgetGridPlugin.moc"

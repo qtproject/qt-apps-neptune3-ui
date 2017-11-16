@@ -33,9 +33,6 @@
 #include <QObject>
 #include <QQuickItem>
 
-// QtAM
-#include <application.h>
-
 /*
    A wrapper for AppMan Application that adds some more goodies
 
@@ -64,10 +61,12 @@ class ApplicationInfo : public QObject {
     Q_PROPERTY(int heightRows READ heightRows WRITE setHeightRows NOTIFY heightRowsChanged)
     Q_PROPERTY(int minHeightRows READ minHeightRows WRITE setMinHeightRows NOTIFY minHeightRowsChanged)
 
-    // FIXME: make it constant
-    Q_PROPERTY(const QtAM::Application* application READ application CONSTANT)
+    // The QtAM::Application object
+    Q_PROPERTY(const QObject* application READ application CONSTANT)
+    Q_PROPERTY(QString id READ id CONSTANT)
+
 public:
-    ApplicationInfo(const QtAM::Application* application, QObject *parent = nullptr);
+    ApplicationInfo(const QObject* application, QObject *parent = nullptr);
 
     // starts the application. Same as ApplicatioManager.startApplication() but in a object oriented fashion
     Q_INVOKABLE void start();
@@ -78,7 +77,7 @@ public:
     void setWindow(QQuickItem *);
     QQuickItem *window() const;
 
-    const QtAM::Application *application() const;
+    const QObject *application() const;
 
     int heightRows() const;
     void setHeightRows(int);
@@ -91,6 +90,8 @@ public:
 
     bool canBeActive() const;
     void setCanBeActive(bool);
+
+    QString id() const;
 
 signals:
     void activeChanged();
@@ -107,7 +108,7 @@ private:
     bool m_asWidget{false};
     int m_heightRows{1};
     int m_minHeightRows{1};
-    const QtAM::Application *m_application{nullptr};
+    const QObject *m_application{nullptr};
 };
 
 Q_DECLARE_METATYPE(ApplicationInfo*)

@@ -39,6 +39,7 @@ Item {
     signal draggedOntoPos(var pos)
     signal dragStarted(var pos)
     signal dragEnded()
+    signal closeClicked()
 
     property alias dragButtonVisible: dragHandle.visible
     property alias closeButtonVisible: closeButton.visible
@@ -145,10 +146,7 @@ Item {
         height: width
         z: dragHandle.z + 1
 
-        onClicked: {
-            if (root.appInfo)
-                root.appInfo.asWidget = false;
-        }
+        onClicked: root.closeClicked()
 
         Image {
             anchors.fill: parent

@@ -10,8 +10,8 @@ QT *= appman_main-private testlib gui-private
 
 DEFINES *= TRITON_VERSION=\\\"$$VERSION\\\"
 
-SOURCES = main.cpp ApplicationInfo.cpp ApplicationModel.cpp WidgetListModel.cpp
-HEADERS = ApplicationInfo.h ApplicationModel.h WidgetListModel.h
+SOURCES = main.cpp ApplicationInfo.cpp ApplicationModel.cpp
+HEADERS = ApplicationInfo.h ApplicationModel.h
 
 unix:!macos:system($$pkgConfigExecutable() --libs x11 xi xcb) {
     PKGCONFIG *= xcb x11 xi

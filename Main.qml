@@ -72,10 +72,6 @@ ApplicationWindow {
         applicationManager: ApplicationManager
         windowManager: WindowManager
     }
-    WidgetListModel {
-        id: widgetListModel
-        applicationModel: applicationModel
-    }
 
     // Content Elements
 
@@ -125,7 +121,6 @@ ApplicationWindow {
                 active: true //StagedStartupModel.loadRest
                 source: "sysui/home/HomePage.qml"
                 Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel }
-                Binding { target: homePageLoader.item; property: "widgetsList"; value: widgetListModel }
 
                 // widgets will reparent themselves to the active application slot when active
                 Binding { target: homePageLoader.item; property: "activeApplicationParent"; value: activeApplicationSlot }

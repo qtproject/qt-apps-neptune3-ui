@@ -36,11 +36,12 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 
+import TritonWidgetGrid 1.0
+
 Item {
     id: root
 
-    readonly property int numRows: 5
-    readonly property int rowHeight: height / numRows
+    readonly property int rowHeight: height / widgetsList.numRows
 
     readonly property real resizerHandleHeight: Style.vspan(0.4)
 
@@ -48,21 +49,19 @@ Item {
     property bool moveBottomWidgetToDrawer: false
     property Item widgetDrawer
 
-    property var widgetsList
+    property var applicationModel
 
-    Column {
+    WidgetListModel {
+        id: widgetsList
+        applicationModel: root.applicationModel
+    }
+
+    Item {
         id: column
-        move: Transition {
-            id: moveTransition
-            enabled: false
-            NumberAnimation { properties: "x,y,width,height"; duration: 120; easing.type: Easing.OutQuad }
-        }
+        anchors.fill: parent
 
         readonly property real swapThreshold: Style.vspan(0.4)
         function onWidgetMoved(draggedDelegate) {
-            if (moveTransition.running)
-                return;
-
             var draggedWidget = draggedDelegate.widget;
             var deltaY = draggedWidget.y - draggedDelegate.y
 
@@ -77,12 +76,12 @@ Item {
                     if (draggedDelegate.modelIndex === i)
                         continue;
 
-                    var widgetDelegate = repeater.itemAt(i).widget;
-                    var widgetBottom = widgetDelegate.mapToItem(root, 0, 0).y + widgetDelegate.height;
+                    var otherDelegate = repeater.itemAt(i);
+                    var widgetBottom = otherDelegate.yNormal + otherDelegate.heightNormal;
 
                     if (Math.abs(draggedBottom - widgetBottom) <= swapThreshold) {
                         // swap!
-                        root.widgetsList.move(draggedDelegate.modelIndex, i, 1);
+                        widgetsList.move(draggedDelegate.modelIndex, i, 1);
                         return;
                     }
                 }
@@ -95,11 +94,11 @@ Item {
                     if (draggedDelegate.modelIndex === i)
                         continue;
 
-                    var widgetDelegateY = repeater.itemAt(i).widget.mapToItem(root, 0, 0).y;
+                    var widgetDelegateY = repeater.itemAt(i).yNormal;
 
                     if (Math.abs(draggedWidget.y - widgetDelegateY) < swapThreshold) {
                         // swap!
-                        root.widgetsList.move(draggedDelegate.modelIndex, i, 1);
+                        widgetsList.move(draggedDelegate.modelIndex, i, 1);
                         return;
                     }
                 }
@@ -116,7 +115,7 @@ Item {
             var i = 0;
             var accumulatedHeight = 0;
             while (true) {
-                var appInfo = root.widgetsList.application(i);
+                var appInfo = widgetsList.application(i);
                 accumulatedHeight += appInfo.heightRows * rowHeight;
                 if (accumulatedHeight >= pos.y) {
                     widgetIndexAboveHandle = i;
@@ -126,12 +125,11 @@ Item {
                 }
             }
 
-            animateWidgetResize = false;
-
-            // init resize heights
+            // init resize geometry
             for (i = 0; i < repeater.count; i++) {
                 var delegate = repeater.itemAt(i);
-                delegate.heightWhenResizing = delegate.appInfo.heightRows * root.rowHeight;
+                delegate.yWhenResizing = delegate.yNormal;
+                delegate.heightWhenResizing = delegate.heightNormal;
             }
 
             resizingWidgets = true;
@@ -140,7 +138,7 @@ Item {
             // init resize heights
             for (i = 0; i < repeater.count; i++) {
                 var delegate = repeater.itemAt(i);
-                delegate.heightWhenResizing = delegate.appInfo.heightRows * root.rowHeight;
+                delegate.heightWhenResizing = delegate.heightNormal;
             }
 
             var delta = withinBoundsY(pos.y) - startResizeDragY;
@@ -195,6 +193,14 @@ Item {
                     }
                 }
             }
+
+            // update y values according to the new heights
+            var accumulatedY = 0;
+            for (i = 0; i < repeater.count; i++) {
+                var delegate = repeater.itemAt(i);
+                delegate.yWhenResizing = accumulatedY;
+                accumulatedY += delegate.heightWhenResizing
+            }
         }
         function onResizeHandleReleased(pos) {
             // apply sizes
@@ -204,7 +210,6 @@ Item {
                 delegate.appInfo.heightRows = Math.round(delegate.heightWhenResizing / root.rowHeight);
             }
 
-            animateWidgetResize = true;
             resizingWidgets = false;
         }
         function computeUsableDragDelta(delta) {
@@ -213,7 +218,7 @@ Item {
             var remainingDelta = delta;
             var usableDeltaAbove = 0
             while (remainingDelta !== 0 && i >= 0) {
-                var appInfo = root.widgetsList.application(i);
+                var appInfo = widgetsList.application(i);
                 var minHeight = appInfo.minHeightRows * rowHeight;
                 var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
 
@@ -238,8 +243,8 @@ Item {
             i = widgetIndexAboveHandle + 1;
             remainingDelta = usableDeltaAbove;
             var usableDelta = 0;
-            while (remainingDelta !== 0 && i < root.widgetsList.count) {
-                var appInfo = root.widgetsList.application(i);
+            while (remainingDelta !== 0 && i < widgetsList.count) {
+                var appInfo = widgetsList.application(i);
                 var minHeight = appInfo.minHeightRows * rowHeight;
                 var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
 
@@ -265,28 +270,31 @@ Item {
             return Math.max(0, Math.min(someY, height));
         }
 
-        property bool animateWidgetResize: true
-
         Repeater {
             id: repeater
-            model: root.widgetsList
+            model: widgetsList
 
             delegate: Column {
                 id: repeaterDelegate
-                width: root.width
-                height: {
-                    if (column.resizingWidgets) {
-                        return heightWhenResizing
-                    } else {
-                        return appInfo ? appInfo.heightRows * root.rowHeight : 0
-                    }
+
+                Component.onCompleted: {
+                    initialized = true;
                 }
+
+                readonly property real yNormal: model.rowIndex * root.rowHeight
+                property real yWhenResizing
+
+                width: root.width
+
+                readonly property real heightNormal: appInfo? appInfo.heightRows * root.rowHeight : 0
                 property real heightWhenResizing
 
-                Behavior on x { enabled:!moveTransition.enabled && column.animateWidgetResize; DefaultSmoothedAnimation {} }
-                Behavior on y { enabled:!moveTransition.enabled && column.animateWidgetResize; DefaultSmoothedAnimation {} }
-                Behavior on width { enabled:!moveTransition.enabled && column.animateWidgetResize; DefaultSmoothedAnimation {} }
-                Behavior on height { enabled:!moveTransition.enabled && column.animateWidgetResize; DefaultSmoothedAnimation {} }
+
+                property bool geometryBehaviorsEnabled: false
+                Behavior on x { enabled: geometryBehaviorsEnabled ; DefaultSmoothedAnimation {} }
+                Behavior on y { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
+                Behavior on width { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
+                Behavior on height { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
 
                 property alias appInfo: appWidget.appInfo
                 readonly property int modelIndex: model.index
@@ -295,10 +303,56 @@ Item {
 
                 readonly property Item widget: appWidget
 
+                property bool initialized: false
+                state: {
+                    if (initialized) {
+                        return column.resizingWidgets ? "resizing" : "normal"
+                    } else {
+                        return "";
+                    }
+                }
+                states: [
+                    State {
+                        name: "normal"
+                        PropertyChanges {
+                            target: repeaterDelegate; y: yNormal; height: heightNormal
+                            geometryBehaviorsEnabled: true
+                        }
+                    },
+                    State {
+                        name: "resizing"
+                        PropertyChanges { target: repeaterDelegate; y: yWhenResizing; height: heightWhenResizing }
+                    },
+                    State {
+                        name: "closing"
+                        PropertyChanges {
+                            target: repeaterDelegate
+                            y: yNormal; height: heightNormal
+                            scale: 0.75; opacity: 0.0
+                        }
+                    }
+                ]
+                transitions: [
+                    Transition {
+                        to: "closing"
+                        SequentialAnimation {
+                            DefaultNumberAnimation { properties: "opacity,scale" }
+                            ScriptAction { script: { widgetsList.remove(model.index); }}
+                        }
+                    },
+                    Transition {
+                        enabled: !widgetsList.populating
+                        from: ""; to: "normal"
+                        PropertyAction { property: "height" }
+                        DefaultNumberAnimation { property: "y"; from: column.height }
+                    }
+                ]
+
                 Item {
                     id: appWidgetSlot
                     width: repeaterDelegate.width
                     height: repeaterDelegate.height - resizeHandle.height
+
 
                     ApplicationWidget {
                         id: appWidget
@@ -319,14 +373,17 @@ Item {
                             column.onWidgetMoved(repeaterDelegate);
                         }
                         onDragStarted: {
-                            moveTransition.enabled = true;
                             dragStartPosY = appWidget.mapToItem(root, 0, 0).y
                             dragTouchPosY = dragStartTouchPosY = appWidget.mapToItem(root, pos.x, pos.y).y
                             beingDragged = true;
                         }
                         onDragEnded: {
-                            moveTransition.enabled = false;
                             beingDragged = false;
+                        }
+
+                        onCloseClicked: {
+                            repeaterDelegate.state = "closing"
+                            appInfo.asWidget = false;
                         }
 
                         state: {
@@ -348,6 +405,7 @@ Item {
                                     x: 0; y: 0;
                                     width: appWidgetSlot.width; height: appWidgetSlot.height
                                 }
+                                PropertyChanges { target: appWidget; dragButtonVisible: repeater.count > 1 }
                             },
                             State {
                                 name: "active"
