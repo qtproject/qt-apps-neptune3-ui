@@ -236,7 +236,7 @@ void WidgetListModel::appendApplicationInfo(QObject *appInfo)
     m_list.append(ListItem(appInfo));
     updateRowIndexes();
     endInsertRows();
-
+    emit countChanged();
 }
 
 void WidgetListModel::detachApplicationInfo(QObject *appInfoToRemove)
@@ -249,32 +249,63 @@ void WidgetListModel::detachApplicationInfo(QObject *appInfoToRemove)
 
     m_list[index].detached = true;
 
-    if (filterOutDetachedItems(m_list).count() == 1) {
+    QList<ListItem*> attachedItems = filterOutDetachedItems(m_list);
+
+    if (attachedItems.count() == 1) {
         // Special case when there's only one widget left
+        setHeightRows(attachedItems[0]->appInfo, m_maxWidgetHeightRows);
         updateRowIndexes();
     } else {
-        // Make a neighbouring widget occupy the space left by the one being detached
-        int i = index + 1;
-        bool neighborExpanded = false;
-        while (i < m_list.count() && !neighborExpanded) {
-            auto &listItem = m_list[i];
-            if (listItem.detached) {
-                ++i;
+        distributeHeightOfDetachedAppInfo(index);
+    }
+}
+
+/*
+    Distribute the height of the given detached application among there remaining ones.
+
+    From closest to farthest neighbor.
+ */
+void WidgetListModel::distributeHeightOfDetachedAppInfo(int indexOfDetacheItem)
+{
+    int remainingHeight = heightRows(m_list[indexOfDetacheItem].appInfo);
+    int iAbove = indexOfDetacheItem - 1;
+    int iBelow = indexOfDetacheItem + 1;
+
+    auto giveRemainingHeight = [&](QObject *appInfo) {
+        int availableHeight = m_maxWidgetHeightRows - heightRows(appInfo);
+        int heightIncrement = qMin(availableHeight, qMin(remainingHeight, m_maxWidgetHeightRows));
+        setHeightRows(appInfo, heightRows(appInfo) + heightIncrement);
+        remainingHeight -= heightIncrement;
+    };
+
+    while (remainingHeight > 0) {
+        while (true) {
+            if (iAbove < 0) {
+                // no items left above
+                break;
+            } else if (m_list[iAbove].detached) {
+                // try the previous one
+                --iAbove;
             } else {
-                auto *nextAppInfo = listItem.appInfo;
-                setHeightRows(nextAppInfo, heightRows(nextAppInfo) + heightRows(appInfoToRemove));
-                neighborExpanded = true;
+                // do it
+                giveRemainingHeight(m_list[iAbove].appInfo);
+                --iAbove;
+                break;
             }
         }
-        i = index - 1;
-        while (i >= 0 && !neighborExpanded) {
-            auto &listItem  = m_list[i];
-            if (listItem.detached) {
-                --i;
+
+        while (true) {
+            if (iBelow >= m_list.count()) {
+                // no items left below
+                break;
+            } else if (m_list[iBelow].detached) {
+                // try the next one
+                ++iAbove;
             } else {
-                auto *previousAppInfo = listItem.appInfo;
-                setHeightRows(previousAppInfo, heightRows(previousAppInfo) + heightRows(appInfoToRemove));
-                neighborExpanded = true;
+                // do it
+                giveRemainingHeight(m_list[iBelow].appInfo);
+                ++iBelow;
+                break;
             }
         }
     }
@@ -286,6 +317,7 @@ void WidgetListModel::remove(int index)
         beginRemoveRows(QModelIndex(), index, index);
         m_list.removeAt(index);
         endRemoveRows();
+        emit countChanged();
     }
 }
 
@@ -317,15 +349,13 @@ void WidgetListModel::updateRowIndexes()
     auto list = filterOutDetachedItems(m_list);
 
     if (list.count() == 1) {
-        // special case
         ListItem *listItem = list[0];
 
-        listItem->rowIndex = 1;
+        // special case. Have it centered
+        listItem->rowIndex = (m_totalNumRows - heightRows(listItem->appInfo)) / 2;
 
         auto modelIndex = index(indexFromAppInfo(listItem->appInfo));
         emit dataChanged(modelIndex, modelIndex, roles);
-
-        setHeightRows(listItem->appInfo, 3);
     } else {
         int accumulatedRows = 0;
         for (int i = 0; i < m_list.count(); ++i) {

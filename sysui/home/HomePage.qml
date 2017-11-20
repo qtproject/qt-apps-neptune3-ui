@@ -70,6 +70,7 @@ Item {
         height: width
         symbol: Style.symbol("ic-addwidget-plus", false /* active */)
         onClicked: popup.open()
+        visible: widgetGrid.widgetCount < widgetGrid.maxWidgetCount
     }
 
     // TODO: Load only when needed

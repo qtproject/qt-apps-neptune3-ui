@@ -155,9 +155,6 @@ void ApplicationInfo::updateWindowState()
             case 3:
                 newState = Widget3Rows;
                 break;
-            case 4:
-                newState = Widget4Rows;
-                break;
             default:
                 qFatal("ApplicationInfo::updateWindowState() - invalid value for heightRows: %d", m_heightRows);
                 break;

@@ -79,7 +79,6 @@ public:
         Widget1Row,
         Widget2Rows,
         Widget3Rows,
-        Widget4Rows,
         Maximized
     };
     Q_ENUM(WindowState);

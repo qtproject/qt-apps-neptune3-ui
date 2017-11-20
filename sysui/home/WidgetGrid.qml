@@ -42,6 +42,10 @@ Item {
     id: root
 
     readonly property int rowHeight: height / widgetsList.numRows
+    readonly property int maxWidgetHeight: rowHeight * widgetsList.maxWidgetHeightRows
+
+    readonly property int widgetCount: widgetsList.count
+    readonly property int maxWidgetCount: widgetsList.numRows
 
     readonly property real resizerHandleHeight: Style.vspan(0.4)
 
@@ -154,9 +158,14 @@ Item {
                 var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
 
                 if (remainingDelta > 0) {
-                    // no upper limit at the moment on widget height (other than grid size)
-                    delegate.heightWhenResizing = targetHeight;
-                    remainingDelta = 0;
+                    if (targetHeight <= root.maxWidgetHeight) {
+                        delegate.heightWhenResizing = targetHeight;
+                        remainingDelta = 0;
+                    } else {
+                        delegate.heightWhenResizing = root.maxWidgetHeight;
+                        remainingDelta -= root.maxWidgetHeight - (appInfo.heightRows * rowHeight);
+                        i--;
+                    }
                 } else {
                     if (targetHeight >= minHeight) {
                         delegate.heightWhenResizing = targetHeight;
@@ -179,9 +188,14 @@ Item {
                 var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
 
                 if (remainingDelta < 0) {
-                    // no upper limit at the moment on widget height (other than grid size)
-                    delegate.heightWhenResizing = targetHeight;
-                    remainingDelta = 0;
+                    if (targetHeight <= root.maxWidgetHeight) {
+                        delegate.heightWhenResizing = targetHeight;
+                        remainingDelta = 0;
+                    } else {
+                        delegate.heightWhenResizing = root.maxWidgetHeight;
+                        remainingDelta -= -(root.maxWidgetHeight - (appInfo.heightRows * rowHeight));
+                        i++;
+                    }
                 } else {
                     if (targetHeight >= minHeight) {
                         delegate.heightWhenResizing = targetHeight;
@@ -223,9 +237,15 @@ Item {
                 var targetHeight = (appInfo.heightRows * rowHeight) + remainingDelta;
 
                 if (remainingDelta > 0) {
-                    // no upper limit at the moment on widget height (other than grid size)
-                    usableDeltaAbove += remainingDelta;
-                    remainingDelta = 0;
+                    if (targetHeight <= root.maxWidgetHeight) {
+                        usableDeltaAbove += remainingDelta;
+                        remainingDelta = 0;
+                    } else {
+                        var thisWidgetDelta = root.maxWidgetHeight - (appInfo.heightRows * rowHeight);
+                        usableDeltaAbove += thisWidgetDelta;
+                        remainingDelta -= thisWidgetDelta;
+                        i--;
+                    }
                 } else {
                     if (targetHeight >= minHeight) {
                         usableDeltaAbove += remainingDelta;
@@ -249,9 +269,15 @@ Item {
                 var targetHeight = (appInfo.heightRows * rowHeight) - remainingDelta;
 
                 if (remainingDelta < 0) {
-                    // no upper limit at the moment on widget height (other than grid size)
-                    usableDelta += remainingDelta;
-                    remainingDelta = 0;
+                    if (targetHeight <= root.maxWidgetHeight) {
+                        usableDelta += remainingDelta;
+                        remainingDelta = 0;
+                    } else {
+                        var thisWidgetDelta = -(root.maxWidgetHeight - (appInfo.heightRows * rowHeight))
+                        remainingDelta += thisWidgetDelta;
+                        usableDelta += thisWidgetDelta;
+                        i++;
+                    }
                 } else {
                     if (targetHeight >= minHeight) {
                         usableDelta += remainingDelta;

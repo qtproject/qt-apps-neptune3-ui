@@ -47,6 +47,7 @@ class WidgetListModel : public QAbstractListModel
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(bool populating READ populating NOTIFY populatingChanged)
     Q_PROPERTY(int numRows READ numRows CONSTANT)
+    Q_PROPERTY(int maxWidgetHeightRows READ maxWidgetHeightRows CONSTANT)
 public:
     enum Roles {
         RoleAppInfo = Qt::UserRole,
@@ -76,6 +77,7 @@ public:
     bool populating() const { return m_populating; }
 
     int numRows() const { return m_totalNumRows; }
+    int maxWidgetHeightRows() const { return m_maxWidgetHeightRows; }
 
 signals:
     void applicationModelChanged();
@@ -92,8 +94,6 @@ private:
     void trackRowsFromApplicationModel(int first, int last);
     void appendApplicationInfo(QObject *appInfo);
 
-    // Keep it in the model but don't consider it as occupying the grid (it won't affect position of
-    // other widgets). Useful for animating the widget removal, before it finally leaves the model
     void detachApplicationInfo(QObject *appInfo);
 
     int indexFromAppInfo(QObject *appInfo);
@@ -107,6 +107,7 @@ private:
     QString id(QObject *appInfo) const;
 
     void setPopulating(bool);
+    void distributeHeightOfDetachedAppInfo(int index);
 
     int m_appInfoRoleIndex{-1};
     QAbstractItemModel *m_applicationModel{nullptr};
@@ -118,6 +119,10 @@ private:
 
         QObject *appInfo;
         int rowIndex;
+
+        // A detached item doesn't occupy any space in the grid. It's not in the grid anymore
+        // but is still in the model.
+        // Useful for animating the widget removal, before it finally leaves the model
         bool detached{false};
     };
     QList<ListItem*> filterOutDetachedItems(QList<ListItem> &list) const;
@@ -128,6 +133,7 @@ private:
     bool m_updatingRowIndexes{false};
 
     int m_totalNumRows{5};
+    int m_maxWidgetHeightRows{3};
 
     bool m_populating{true};
 };

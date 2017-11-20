@@ -263,9 +263,6 @@ void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
         case ApplicationInfo::Widget3Rows:
             windowStateStr = "Widget3Rows";
             break;
-        case ApplicationInfo::Widget4Rows:
-            windowStateStr = "Widget4Rows";
-            break;
         case ApplicationInfo::Maximized:
             windowStateStr = "Maximized";
             break;
