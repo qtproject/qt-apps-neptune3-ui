@@ -5,7 +5,7 @@ QT += qml quick quick-private gui-private core-private
 
 SOURCES = triton-qmlscene.cpp
 
-unix:!macos: {
+unix:!macos:system($$pkgConfigExecutable() --libs x11 xi xcb) {
     CONFIG += link_pkgconfig
     PKGCONFIG += xcb x11 xi
     SOURCES += ../../src/MouseTouchAdaptor.cpp
