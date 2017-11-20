@@ -289,11 +289,8 @@ Item {
                 readonly property real heightNormal: appInfo? appInfo.heightRows * root.rowHeight : 0
                 property real heightWhenResizing
 
-
                 property bool geometryBehaviorsEnabled: false
-                Behavior on x { enabled: geometryBehaviorsEnabled ; DefaultSmoothedAnimation {} }
                 Behavior on y { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
-                Behavior on width { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
                 Behavior on height { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
 
                 property alias appInfo: appWidget.appInfo
@@ -303,10 +300,19 @@ Item {
 
                 readonly property Item widget: appWidget
 
+                property real gridCenteredScale: 1
+                property real gridCenterX
+                property real gridCenterY
+                transform: Scale { origin.x: gridCenterX; origin.y: gridCenterY; xScale: gridCenteredScale; yScale: gridCenteredScale}
+
                 property bool initialized: false
                 state: {
                     if (initialized) {
-                        return column.resizingWidgets ? "resizing" : "normal"
+                        if (root.applicationModel.activeAppInfo && !appInfo.active && !isAtBottom) {
+                            return "hidden";
+                        } else {
+                            return column.resizingWidgets ? "resizing" : "normal"
+                        }
                     } else {
                         return "";
                     }
@@ -316,7 +322,9 @@ Item {
                         name: "normal"
                         PropertyChanges {
                             target: repeaterDelegate; y: yNormal; height: heightNormal
-                            geometryBehaviorsEnabled: true
+                            // Only enable geometry behaviors once WidgetGrid gets its size,
+                            // otherwise widgets will animate from size (0,0) to their final sizes on startup.
+                            geometryBehaviorsEnabled: root.width > 0
                         }
                     },
                     State {
@@ -329,6 +337,13 @@ Item {
                             target: repeaterDelegate
                             y: yNormal; height: heightNormal
                             scale: 0.75; opacity: 0.0
+                        }
+                    },
+                    State {
+                        name: "hidden"
+                        PropertyChanges {
+                            target: repeaterDelegate; y: yNormal; height: heightNormal
+                            gridCenteredScale: 0.9; visible: false; opacity: 0
                         }
                     }
                 ]
@@ -345,6 +360,30 @@ Item {
                         from: ""; to: "normal"
                         PropertyAction { property: "height" }
                         DefaultNumberAnimation { property: "y"; from: column.height }
+                    },
+                    Transition {
+                        to: "hidden"
+                        SequentialAnimation {
+                            PropertyAction { property: "visible"; value: true }
+                            ScriptAction { script: {
+                                var pos = root.mapToItem(repeaterDelegate, root.width / 2, root.height / 2);
+                                repeaterDelegate.gridCenterX = pos.x;
+                                repeaterDelegate.gridCenterY = pos.y;
+                             }}
+                            DefaultNumberAnimation { properties: "gridCenteredScale,opacity" }
+                        }
+                    },
+                    Transition {
+                        from: "hidden"; to: "normal"
+                        SequentialAnimation {
+                            PropertyAction { property: "visible"; value: true }
+                            ScriptAction { script: {
+                                var pos = root.mapToItem(repeaterDelegate, root.width / 2, root.height / 2);
+                                repeaterDelegate.gridCenterX = pos.x;
+                                repeaterDelegate.gridCenterY = pos.y;
+                             }}
+                            DefaultNumberAnimation { properties: "gridCenteredScale,opacity" }
+                        }
                     }
                 ]
 
@@ -402,7 +441,7 @@ Item {
                                 name: "home"
                                 ParentChange {
                                     target: appWidget; parent: appWidgetSlot
-                                    x: 0; y: 0;
+                                    x: 0; y: 0; scale: 1
                                     width: appWidgetSlot.width; height: appWidgetSlot.height
                                 }
                                 PropertyChanges { target: appWidget; dragButtonVisible: repeater.count > 1 }
@@ -411,7 +450,7 @@ Item {
                                 name: "active"
                                 ParentChange {
                                     target: appWidget; parent: root.activeApplicationParent
-                                    x: 0; y: 0;
+                                    x: 0; y: 0; scale: 1
                                     width: root.activeApplicationParent.width; height: root.activeApplicationParent.height
                                 }
                                 PropertyChanges { target: appWidget; dragButtonVisible: false }
@@ -420,7 +459,7 @@ Item {
                                 name: "drawer"
                                 ParentChange {
                                     target: appWidget; parent: root.widgetDrawer
-                                    x: 0; y: 0;
+                                    x: 0; y: 0; scale: 1
                                     width: root.widgetDrawer.width; height: root.widgetDrawer.height
                                 }
                                 PropertyChanges { target: appWidget; dragButtonVisible: false }
@@ -430,6 +469,7 @@ Item {
                                 ParentChange {
                                     target: appWidget; parent: root
                                     x: 0; y: appWidget.dragStartPosY + (appWidget.dragTouchPosY - appWidget.dragStartTouchPosY)
+                                    scale: 1
                                     width: appWidgetSlot.width; height: appWidgetSlot.height
                                 }
                             }

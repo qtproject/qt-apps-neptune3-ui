@@ -98,6 +98,7 @@ Item {
         function application(index) {
             return get(index).appInfo;
         }
+        property var activeAppInfo: null
     }
 
     WidgetGrid {
