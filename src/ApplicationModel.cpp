@@ -82,6 +82,9 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
                 m_appMan->startApplication(appInfo->id());
             }
         });
+        connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
+            updateWindowStateProperty(appInfo);
+        });
         m_appInfoList.append(appInfo);
     }
 
@@ -232,4 +235,38 @@ void ApplicationModel::onWindowPropertyChanged(QQuickItem *window, const QString
         emit m_appMan->application(appId)->activated();
         onApplicationActivated(appId, appId);
     }
+}
+
+void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+
+    QString windowStateStr;
+    switch (appInfo->windowState()) {
+        case ApplicationInfo::Undefined:
+            windowStateStr = "Undefined";
+            break;
+        case ApplicationInfo::Widget1Row:
+            windowStateStr = "Widget1Row";
+            break;
+        case ApplicationInfo::Widget2Rows:
+            windowStateStr = "Widget2Rows";
+            break;
+        case ApplicationInfo::Widget3Rows:
+            windowStateStr = "Widget3Rows";
+            break;
+        case ApplicationInfo::Widget4Rows:
+            windowStateStr = "Widget4Rows";
+            break;
+        case ApplicationInfo::Maximized:
+            windowStateStr = "Maximized";
+            break;
+    }
+
+    windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(windowStateStr));
 }

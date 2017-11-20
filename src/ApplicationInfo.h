@@ -54,6 +54,14 @@ class ApplicationInfo : public QObject {
     //  the main window of this application, if any
     Q_PROPERTY(QQuickItem* window READ window() NOTIFY windowChanged)
 
+    // State of the main window of this application
+    //
+    // Its value is derived from other properties in this class like active,
+    // heightRows, asWidget and window.
+    //
+    // See also: window
+    Q_PROPERTY(WindowState windowState READ windowState NOTIFY windowStateChanged)
+
     // Whether the application window should be shown as a widget
     Q_PROPERTY(bool asWidget READ asWidget WRITE setAsWidget NOTIFY asWidgetChanged)
 
@@ -66,6 +74,17 @@ class ApplicationInfo : public QObject {
     Q_PROPERTY(QString id READ id CONSTANT)
 
 public:
+    enum WindowState {
+        Undefined,
+        Widget1Row,
+        Widget2Rows,
+        Widget3Rows,
+        Widget4Rows,
+        Maximized
+    };
+    Q_ENUM(WindowState);
+
+
     ApplicationInfo(const QObject* application, QObject *parent = nullptr);
 
     // starts the application. Same as ApplicatioManager.startApplication() but in a object oriented fashion
@@ -76,6 +95,8 @@ public:
 
     void setWindow(QQuickItem *);
     QQuickItem *window() const;
+
+    WindowState windowState() const;
 
     const QObject *application() const;
 
@@ -101,10 +122,15 @@ signals:
     void heightRowsChanged();
     void minHeightRowsChanged();
     void startRequested();
+    void windowStateChanged();
+
 private:
+    void updateWindowState();
+
     bool m_active{false};
     bool m_canBeActive{true};
     QQuickItem *m_window{nullptr};
+    WindowState m_windowState{Undefined};
     bool m_asWidget{false};
     int m_heightRows{1};
     int m_minHeightRows{1};

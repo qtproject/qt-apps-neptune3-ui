@@ -38,7 +38,7 @@ AppUIScreen {
 
     applicationIcon: "icon.png"
 
-    property string title: "Triton Calendar"
+    property string title: "Triton Calendar (" + tritonState + ")"
 
     Rectangle {
         color: touchPoint1.pressed ? "blue" : "green"
@@ -59,6 +59,14 @@ AppUIScreen {
         onReleased: {
             count += 1;
             root.setWindowProperty("activationCount", count);
+        }
+    }
+
+    property string tritonState
+
+    onWindowPropertyChanged: {
+        if (name === "tritonState") {
+            tritonState = value;
         }
     }
 }

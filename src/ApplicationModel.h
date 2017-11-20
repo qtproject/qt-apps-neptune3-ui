@@ -111,6 +111,7 @@ private slots:
 
 private:
     void configureApps();
+    void updateWindowStateProperty(ApplicationInfo *appInfo);
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;
