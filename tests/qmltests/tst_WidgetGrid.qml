@@ -35,9 +35,16 @@ import QtTest 1.1
 // sysui, for getting WidgetGrid
 import home 1.0
 
+import utils 1.0
+
 Item {
+    id: root
     width: 600
     height: 600
+
+    // TODO: move this to a common base component
+    Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
+    Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
 
     QtObject {
         id: redApp

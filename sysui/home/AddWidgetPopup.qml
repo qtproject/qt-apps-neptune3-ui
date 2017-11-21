@@ -37,73 +37,94 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 
-Popup {
+// NB: We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene
+Rectangle {
     id: root
 
     property alias model: listView.model
-
-    // item from where the popup appears
     property Item originItem
 
-    // have it centered
-    x: (parent.width - width) / 2
-    y: d.targetY
+    anchors.horizontalCenter: parent.horizontalCenter
 
     width: Style.hspan(16)
     height: Style.vspan(14)
 
-    modal: true
-    parent: ApplicationWindow.overlay
+    radius: Style.hspan(0.7)
 
-    enter: Transition {
-        SequentialAnimation {
-        PropertyAction { property: "transformOrigin"; value: Popup.Bottom }
-        ParallelAnimation {
-        DefaultNumberAnimation { property: "opacity"; from: 0.25; to: 1.0}
-        DefaultNumberAnimation { property: "scale"; from: 0.25; to: 1}
-        DefaultNumberAnimation { property: "y"; from: d.originPos.y - root.height; to: d.targetY }
-        }
-        PropertyAction { property: "transformOrigin"; value: Popup.Center }
-        }
-    }
-    exit: Transition {
-        DefaultNumberAnimation { property: "opacity"; to: 0.25 }
-        DefaultNumberAnimation { property: "scale"; to: 0.75 }
+    function open() {
+        _openFromY = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2).y - root.height;
+        state = "open";
     }
 
-    QtObject {
-        id: d
-        // The poistion of the center of originItem in AddWidgetPopup parent coordinates
-        property var originPos
-
-        function updateOriginPos() {
-            originPos = root.originItem.mapToItem(root.parent, root.originItem.width / 2, root.originItem.height / 2);
-        }
-
-        readonly property real targetY: (parent.height - height) / 2
-    }
-
+    Binding { target: parent ? parent : null; property: "showModalOverlay"; value: root.state === "open" }
     Connections {
-        target: root.originItem ? root.originItem : null // to avoid warnings
-        onXChanged: d.updateOriginPos()
-        onYChanged: d.updateOriginPos()
-        onWidthChanged: d.updateOriginPos()
-        onHeightChanged: d.updateOriginPos()
+        target: parent ? parent : null
+        onOverlayClicked: root.state = "closed"
     }
+
+    state: "closed"
+    states: [
+        State {
+            name: "open"
+            PropertyChanges {
+                target: root
+                visible: true
+                y: (root.parent.height - root.height) / 2
+            }
+        },
+        State {
+            name: "closed"
+            PropertyChanges {
+                target: root
+                visible: false
+                y: (root.parent.height - root.height) / 2
+            }
+        }
+    ]
+
+    property real _openFromY
+    transitions: [
+        Transition {
+            to: "open"
+            SequentialAnimation {
+                PropertyAction { target: root; property: "visible"; value: true }
+                PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }
+                ParallelAnimation {
+                    DefaultNumberAnimation { target: root; property: "opacity"; from: 0.25; to: 1.0}
+                    DefaultNumberAnimation { target: root; property: "scale"; from: 0.25; to: 1}
+                    DefaultNumberAnimation { target: root; property: "y"; from: root._openFromY }
+                }
+                PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
+            }
+        },
+        Transition {
+            from: "open"; to: "closed"
+            SequentialAnimation {
+                PropertyAction { target: root; property: "visible"; value: true }
+                ParallelAnimation {
+                    DefaultNumberAnimation { target: root; property: "opacity"; to: 0.25 }
+                    DefaultNumberAnimation { target: root; property: "scale"; to: 0.75 }
+                }
+            }
+        }
+    ]
 
     MouseArea {
+        anchors.top: parent.top
         anchors.right: parent.right
+        anchors.margins: Style.hspan(1)
         width: Style.hspan(1)
         height: width
         Label {
             anchors.centerIn: parent
             text: "❌"
         }
-        onClicked: root.close()
+        onClicked: root.state = "closed"
     }
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.margins: Style.hspan(1)
         Label {
             id: header
             text: "Add widget"
@@ -128,7 +149,7 @@ Popup {
                 }
                 onClicked: {
                     model.appInfo.asWidget = true
-                    root.close()
+                    root.state = "closed"
                 }
             }
         }

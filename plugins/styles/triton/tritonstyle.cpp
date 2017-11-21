@@ -112,8 +112,6 @@ public:
     }
 
     void compute() {
-        cell.setWidth(windowSize.width()/24);
-        cell.setHeight(windowSize.height()/24);
         fontSizeXXS = font.pixelSize() * 0.4 * fontFactor;
         fontSizeXS = font.pixelSize() * 0.6 * fontFactor;
         fontSizeS = font.pixelSize() * 0.8 * fontFactor;
@@ -128,7 +126,6 @@ public:
     TritonStyle::Theme theme;
     QSize windowSize;
     QString backgroundImage;
-    QSize cell;
     int fontSizeXXS;
     int fontSizeXS;
     int fontSizeS;
@@ -274,17 +271,6 @@ QColor TritonStyle::darker75(const QColor& color)
 {
     return color.darker(400);
 }
-
-qreal TritonStyle::cellWidth() const
-{
-    return m_data->cell.width();
-}
-
-qreal TritonStyle::cellHeight() const
-{
-    return m_data->cell.height();
-}
-
 
 int TritonStyle::fontSizeXXS() const
 {

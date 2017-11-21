@@ -72,9 +72,6 @@ class TritonStyle : public QQuickStyleAttached
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontFactor READ fontFactor NOTIFY tritonStyleChanged FINAL)
 
-    Q_PROPERTY(qreal cellWidth READ cellWidth NOTIFY tritonStyleChanged FINAL)
-    Q_PROPERTY(qreal cellHeight READ cellHeight NOTIFY tritonStyleChanged FINAL)
-
     Q_PROPERTY(qreal windowWidth READ windowWidth NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(qreal windowHeight READ windowHeight NOTIFY tritonStyleChanged FINAL)
 
@@ -123,9 +120,6 @@ public:
     Q_INVOKABLE QColor darker25(const QColor& color);
     Q_INVOKABLE QColor darker50(const QColor& color);
     Q_INVOKABLE QColor darker75(const QColor& color);
-
-    qreal cellWidth() const;
-    qreal cellHeight() const;
 
     QString backgroundImage() const;
 

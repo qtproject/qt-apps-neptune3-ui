@@ -52,8 +52,8 @@ QtObject {
     property int clusterHeight: 720
     property int displayHMargin: 11
     property int displayVMargin: 0
-    property int cellWidth: TritonStyle.cellWidth //1280/24
-    property int cellHeight: TritonStyle.cellHeight // 800/24
+    property int cellWidth
+    property int cellHeight
     property string fontFamily: TritonStyle.fontFamily
     property real fontWeight: Font.Light
     property real fontFactor: TritonStyle.fontFactor

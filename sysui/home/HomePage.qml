@@ -40,6 +40,7 @@ Item {
     id: root
 
     property var applicationModel
+    property Item popupParent
 
     property alias activeApplicationParent: widgetGrid.activeApplicationParent
     property alias moveBottomWidgetToDrawer: widgetGrid.moveBottomWidgetToDrawer
@@ -71,9 +72,11 @@ Item {
         onClicked: popup.open()
     }
 
+    // TODO: Load only when needed
     AddWidgetPopup {
         id: popup
         model: root.applicationModel
+        parent: root.popupParent
         originItem: addWidgetButton
     }
 }

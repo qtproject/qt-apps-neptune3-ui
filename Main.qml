@@ -32,223 +32,117 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
-import QtApplicationManager 1.0
 
-import controls 1.0
+import animations 1.0
 import display 1.0
 import utils 1.0
-import animations 1.0
 
-import models.application 1.0
-import models.system 1.0
-import models.startup 1.0
+import QtQuick.Window 2.2
 
-import QtGraphicalEffects 1.0
+import QtApplicationManager 1.0
 
-ApplicationWindow {
+Window {
     id: root
 
     width: Style.screenWidth
     height: Style.screenHeight
 
-    overlay.modal: Component {
-        Image {
-            source: Style.gfx2(Style.displayBackground)
-            Behavior on opacity { DefaultNumberAnimation {} }
-            FastBlur {
-                anchors.fill: parent
-                radius: Style.hspan(3)
-                source: root.contentItem
+    readonly property bool isLandscape: width > height
+    readonly property real smallerDimension: isLandscape ? height : width
+    readonly property real largerDimension: isLandscape ? width : height
+
+    Display {
+        id: display
+        width: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
+        height: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
+
+        readonly property bool orientationIsSomePortrait: orientation == Qt.PortraitOrientation
+                                                       || orientation == Qt.InvertedPortraitOrientation
+
+        property int orientation: root.orientationFromString(ApplicationManager.systemProperties.orientation)
+
+        // have the center of Display and root match
+        x: (root.width - width) / 2
+        y: (root.height - height) / 2
+
+        rotation: {
+            if (root.isLandscape) {
+                switch (orientation) {
+                    case Qt.PortraitOrientation:
+                        return 90;
+                    case Qt.LandscapeOrientation:
+                        return 0;
+                    case Qt.InvertedPortraitOrientation:
+                        return -90;
+                    case Qt.InvertedLandscapeOrientation:
+                        return 180;
+                    default:
+                        return 0;
+                }
+            } else {
+                switch (orientation) {
+                    case Qt.PortraitOrientation:
+                        return 0;
+                    case Qt.LandscapeOrientation:
+                        return -90;
+                    case Qt.InvertedPortraitOrientation:
+                        return 180;
+                    case Qt.InvertedLandscapeOrientation:
+                        return 90;
+                    default:
+                        return 0;
+                }
             }
         }
     }
 
-    background: Image {
-        source: Style.gfx2(Style.displayBackground)
-    }
-
-    ApplicationModel {
-        id: applicationModel
-        applicationManager: ApplicationManager
-        windowManager: WindowManager
-    }
-
-    // Content Elements
-
-    StageLoader {
-        id: statusBarLoader
-        height: Style.statusBarHeight
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        active: StagedStartupModel.loadDisplay
-        source: "sysui/statusbar/StatusBar.qml"
-    }
-
-    StageLoader {
-        id: launcherLoader
-        width: Style.launcherWidth
-        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
-        Behavior on height { DefaultSmoothedAnimation {} }
-
-        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
-        anchors.top: statusBarLoader.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        active: StagedStartupModel.loadDisplay
-        source: "sysui/launcher/Launcher.qml"
-        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
-    }
-
+    // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
+    // hence the implementation of our own modal overlay scheme
     Item {
-        id: mainContentArea
-        y: launcherLoader.y + Style.launcherHeight
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: root.height - Style.statusBarHeight - Style.launcherHeight - climateLoader.height
-        opacity: launcherLoader.launcherOpen ? 0 : 1
-        Behavior on opacity { DefaultNumberAnimation {} }
-        enabled: !launcherLoader.launcherOpen
+        id: popupParent
+        anchors.fill: display
+        rotation: display.rotation
 
-        Item {
-            y: launcherLoader.height - Style.launcherHeight
-            width: parent.width
-            height: parent.height
+        property bool showModalOverlay
+        signal overlayClicked()
 
-            StageLoader {
-                id: homePageLoader
-
+        // TODO: Load only when needed
+        MouseArea {
+            anchors.fill: parent
+            visible: opacity > 0
+            opacity: popupParent.showModalOverlay ? 1 : 0
+            Behavior on opacity { DefaultNumberAnimation {}  }
+            Image {
                 anchors.fill: parent
-                active: true //StagedStartupModel.loadRest
-                source: "sysui/home/HomePage.qml"
-                Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel }
-
-                // widgets will reparent themselves to the active application slot when active
-                Binding { target: homePageLoader.item; property: "activeApplicationParent"; value: activeApplicationSlot }
-                Binding { target: homePageLoader.item; property: "moveBottomWidgetToDrawer"; value: !widgetDrawer.showingHomePage }
-                Binding { target: homePageLoader.item; property: "widgetDrawer"; value: widgetDrawerSlot }
-            }
-
-            // slot for the maximized, active, application
-            Item {
-                id: activeApplicationSlot
-                anchors.fill: parent
-
-                ApplicationFrame {
-                    id: activeAppFrame
+                source: Style.gfx2(Style.displayBackground)
+                FastBlur {
                     anchors.fill: parent
-                    appInfo: applicationModel.activeAppInfo && !applicationModel.activeAppInfo.asWidget ? applicationModel.activeAppInfo : null
+                    radius: Style.hspan(1)
+                    source: display
                 }
             }
-
-            WidgetDrawer {
-                id: widgetDrawer
-                width: parent.width
-                height: homePageRowHeight
-                anchors.bottom: parent.bottom
-
-                dragEnabled: !showingHomePage
-                visible: !showingHomePage
-
-                Item {
-                    id: widgetDrawerSlot
-                    width: widgetDrawer.homePageWidgetWidth
-                    height: widgetDrawer.homePageRowHeight
-                    anchors.horizontalCenter: widgetDrawer.horizontalCenter
-                }
-
-                property bool showingHomePage: applicationModel.activeAppInfo === null
-                onShowingHomePageChanged: {
-                    if (showingHomePage) {
-                        widgetDrawer.open = true;
-                    }
-                }
-
-                property real homePageWidgetWidth: homePageLoader.item ? homePageLoader.item.widgetWidth : 0
-                property real homePageRowHeight: homePageLoader.item ? homePageLoader.item.rowHeight : 0
-            }
+            z: -1
+            onClicked: popupParent.overlayClicked()
         }
     }
 
-    Rectangle {
-        id: mainContentMask
-        anchors.fill: mainContentArea
-        gradient: Gradient {
-            GradientStop { position: 0.8; color: "#ffffffff" }
-            GradientStop { position: 0.95; color: "#00ffffff" }
+    Binding { target: Style; property: "cellWidth"; value: display.width / 24 }
+    Binding { target: Style; property: "cellHeight"; value: display.height / 24 }
+
+    function orientationFromString(str) {
+        str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
+
+        if (str === "portrait") {
+            return Qt.PortraitOrientation;
+        } else if (str === "invertedportrait") {
+            return Qt.InvertedPortraitOrientation;
+        } else if (str === "landscape") {
+            return Qt.LandscapeOrientation;
+        } else if (str === "invertedlandscape") {
+            return Qt.InvertedLandscapeOrientation;
+        } else {
+            // default to portrait
+            return Qt.PortraitOrientation;
         }
-        visible: false
-    }
-
-    OpacityMask {
-        anchors.fill: mainContentArea
-        source: mainContentArea
-        maskSource: mainContentMask
-        opacity: launcherLoader.launcherOpen ? 0.1 : 1
-        Behavior on opacity { DefaultSmoothedAnimation {} }
-    }
-
-    StageLoader {
-        id: climateLoader
-        width: Style.screenWidth
-        height: Style.vspan(1.4)
-        anchors.bottom: parent.bottom
-        active: StagedStartupModel.loadDisplay
-        source: "sysui/climate/ClimateBar.qml"
-    }
-
-// TODO: Update below components according to the newest spec of Triton-UI when available
-//    StageLoader {
-//        id: toolBarMonitorLoader
-//        width: parent.width
-//        height: 200
-//        anchors.bottom: parent.bottom
-//        active: SystemModel.toolBarMonitorVisible
-//        source: "../dev/ProcessMonitor/ToolBarMonitor.qml"
-//    }
-
-//    StageLoader {
-//        id: windowOverviewLoader
-//        anchors.fill: parent
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../windowoverview/WindowOverview.qml"
-//    }
-
-//    StageLoader {
-//        id: popupContainerLoader
-//        width: Style.popupWidth
-//        height: Style.popupHeight
-//        anchors.centerIn: parent
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../popup/PopupContainer.qml"
-//    }
-
-//    StageLoader {
-//        id: notificationContainerLoader
-//        width: Style.screenWidth
-//        height: Style.vspan(2)
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../notification/NotificationContainer.qml"
-//    }
-
-//    StageLoader {
-//        id: notificationCenterLoader
-//        width: Style.isPotrait ? Style.hspan(Style.notificationCenterSpan + 5) : Style.hspan(12)
-//        height: Style.screenHeight - Style.statusBarHeight
-//        anchors.top: statusBar.bottom
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../notification/NotificationCenter.qml"
-//    }
-
-//    StageLoader {
-//        id: keyboardLoader
-//        anchors.left: parent.left
-//        anchors.right: parent.right
-//        anchors.bottom: parent.bottom
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../keyboard/Keyboard.qml"
-//    }
-
-    Component.onCompleted: {
-        StagedStartupModel.enterMenuState()
     }
 }
