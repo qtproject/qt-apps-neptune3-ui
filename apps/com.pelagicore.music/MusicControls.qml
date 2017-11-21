@@ -39,6 +39,7 @@ RowLayout {
     id: root
     spacing: 15
 
+    property bool play: false
     signal previousClicked()
     signal playClicked()
     signal nextClicked()
@@ -54,7 +55,7 @@ RowLayout {
         background:  Image {
             source: Style.symbol("ic_button-bg")
         }
-        symbol: Style.symbol("ic_play")
+        symbol: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
         onClicked: root.playClicked()
     }
 

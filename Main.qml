@@ -56,8 +56,8 @@ Window {
         width: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
         height: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
 
-        readonly property bool orientationIsSomePortrait: orientation == Qt.PortraitOrientation
-                                                       || orientation == Qt.InvertedPortraitOrientation
+        readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
+                                                       || orientation === Qt.InvertedPortraitOrientation
 
         property int orientation: root.orientationFromString(ApplicationManager.systemProperties.orientation)
 

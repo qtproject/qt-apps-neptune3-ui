@@ -40,49 +40,67 @@ Control {
     id: root
 
     property bool labelOnTop: true
+    property string progressText: "0:0 / 0:0"
+    property real value // 0 <= value <=1
+    property int progressBarLabelLeftMargin: Style.hspan(0.6)
+    property int progressBarWidth: {
+        if (root.labelOnTop) {
+            return root.width - Style.hspan(1);
+        } else {
+            return root.width - Style.hspan(5);
+        }
+    }
+
+    signal updatePosition(var value)
 
     contentItem: Item {
         anchors.fill: root
-        // TODO: USE REAL PROGRESS DATA
         Label {
             id: progressLabel
             anchors.top: parent.top
             anchors.topMargin: root.labelOnTop ? Style.vspan(0.5) : 0
             anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(0.6)
+            anchors.leftMargin: root.progressBarLabelLeftMargin
             color: Style.colorBlack
             font.pixelSize: Style.fontSizeS
-
-            text: "0:13 / 3:15"
+            text: root.progressText
         }
 
-        // TODO: USE QTQUICKCONTROLS2 STYLING
-        ProgressBar {
+        Slider {
             id: trackProgressBar
 
-            implicitWidth: root.labelOnTop ? parent.width - Style.hspan(1) : parent.width - Style.hspan(5)
-            anchors.top: root.labelOnTop ? progressLabel.bottom : undefined
-            anchors.topMargin: root.labelOnTop ? Style.vspan(0.15) : 0
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Style.hspan(1.5)
-            anchors.verticalCenter: root.labelOnTop ? undefined : parent.verticalCenter
-            value: 0.5
+            implicitWidth: root.progressBarWidth
+            implicitHeight: Style.vspan(0.5)
+            anchors.centerIn: parent
+            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Style.hspan(2)
+            anchors.verticalCenterOffset: root.labelOnTop ? Style.vspan(1) : 0
+            value: root.value
+
             padding: 2
 
-            background: Item {
+            onValueChanged: {
+                if (trackProgressBar.pressed) {
+                    root.updatePosition(value)
+                }
             }
 
-            contentItem: Rectangle {
-                implicitWidth: 250
-                implicitHeight: 2
+            handle: null
+
+            background: Rectangle {
+                x: trackProgressBar.leftPadding
+                y: trackProgressBar.topPadding + trackProgressBar.availableHeight / 2 - height / 2
+                implicitWidth: root.progressBarWidth
+                implicitHeight: Style.hspan(0.02)
+                width: trackProgressBar.availableWidth
+                height: implicitHeight
                 color: "#828282"
                 radius: 1
 
                 Rectangle {
                     width: trackProgressBar.visualPosition * parent.width
-                    height: 7
+                    height: Style.hspan(0.15)
                     anchors.verticalCenter: parent.verticalCenter
-                    radius: 7
+                    radius: height
                     color: "#FA9E54"
                 }
             }

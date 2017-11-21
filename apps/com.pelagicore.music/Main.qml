@@ -39,9 +39,35 @@ import "stores"
 AppUIScreen {
     id: root
 
+    property int applicationWindowHeight: 279
+    property string tritonState
+    onWindowPropertyChanged: {
+
+        // FIXME: Not a final solution! need to be updated once system UI already provide
+        //        the required information to the client side.
+
+        if (name === "tritonState") {
+            tritonState = value;
+            if (root.tritonState === "Widget1Row") {
+                applicationWindowHeight = 279;
+            } else if (root.tritonState === "Widget2Rows") {
+                applicationWindowHeight = 590;
+            } else if (root.tritonState === "Widget3Rows") {
+                applicationWindowHeight = 901;
+            } else if (root.tritonState === "Maximized") {
+                applicationWindowHeight = 1600;
+            }
+        }
+    }
+
+    // TODO: REMOVE THIS WHEN ITS FINAL. Temporary to show Johan how it looks since he is working with single process.
+    clip: true
+
     applicationIcon: "icon.png"
+    stripeSource: musicAppContent.state === "Maximized" ? "" : Style.gfx2("widget-stripe")
 
     MultiPointTouchArea {
+        id: multiPoint
         anchors.fill: parent
         anchors.margins: 30
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
@@ -55,7 +81,17 @@ AppUIScreen {
 
     Music {
         id: musicAppContent
-        anchors.fill: parent
+        width: root.width
+        height: root.applicationWindowHeight
+        anchors.centerIn: parent
+
+        state: root.tritonState
         store: MusicStore { }
+
+        onDragAreaClicked: {
+            multiPoint.count += 1;
+            root.setWindowProperty("activationCount", multiPoint.count);
+
+        }
     }
 }

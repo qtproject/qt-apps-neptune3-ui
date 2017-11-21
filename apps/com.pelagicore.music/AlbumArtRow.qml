@@ -30,40 +30,95 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtGraphicalEffects 1.0
 import utils 1.0
 import animations 1.0
 
 Item {
     id: root
 
+    property bool musicPlaying: false
+    property real musicPosition: 0.0
     property bool showPrevNextAlbum: false
+    property bool showShadow: false
+    property bool mediaReady: false
     property alias coverSlide: coverslide
-    property alias songModel: coverslide.model
+    property var songModel: coverslide.model
     property alias currentIndex: coverslide.currentIndex
     property alias currentSongTitle: titleColumn.currentSongTitle
     property alias currentArtisName: titleColumn.currentArtisName
+    property alias currentProgressLabel: musicProgress.progressText
 
     signal previousClicked()
     signal nextClicked()
     signal playClicked()
 
+    signal favoriteClicked()
+    signal shuffleClicked()
+    signal repeatClicked()
+
+    signal updatePosition(var value)
+
     Component {
         id: albumArtDelegate
 
-        Image {
+        Item {
             id: itemDelegated
-            height: 270
-            Behavior on height {
-                DefaultNumberAnimation { }
-            }
+            height: Style.vspan(3.5)
+            Behavior on height { DefaultNumberAnimation { } }
 
             width: height
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
-            source: model.albumArt
-            fillMode: Image.Pad
 
-            property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
-            property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
+            Image {
+                id: placeholder
+                anchors.fill: parent
+                visible: mediaReady && model.item.coverArtUrl
+                opacity: visible ? 1.0 : 0.0
+                Behavior on opacity { DefaultNumberAnimation { } }
+
+                source: Style.gfx2("album-art-placeholder")
+                fillMode: Image.PreserveAspectFit
+
+                property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
+                property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
+            }
+
+            Image {
+
+                anchors.fill: parent
+                source: mediaReady && model.item.coverArtUrl ? model.item.coverArtUrl : Style.gfx2("album-art-placeholder")
+                fillMode: Image.PreserveAspectFit
+
+                property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
+                property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
+            }
+        }
+
+
+    }
+
+    // TODO: Ask Johan to provide the shadow.
+    Rectangle {
+        id: albumArtShadow
+
+        width: root.width - Style.hspan(0.9)
+        height: Style.vspan(0.05)
+        anchors.bottom: root.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        opacity: 0.7
+        color: "grey"
+        visible: root.showShadow && coverSlide.currentItem.x === -0.5
+        layer.enabled: true
+        layer.effect: DropShadow {
+            anchors.fill: albumArtShadow
+            source: albumArtShadow
+            horizontalOffset: 0
+            verticalOffset: Style.vspan(0.7)
+            radius: 30
+            samples: 50
+            spread: 0.0
+            color: "#aa000000"
         }
     }
 
@@ -71,7 +126,7 @@ Item {
         id: pathView
 
         width: root.width
-        height: 270
+        height: Style.vspan(3.5)
         anchors.top: parent.top
 
         PathView {
@@ -85,6 +140,7 @@ Item {
             highlightRangeMode: PathView.StrictlyEnforceRange
             highlightMoveDuration: 400
             clip: true
+            model: root.mediaReady ? root.songModel : 3
             delegate: albumArtDelegate
             pathItemCount: root.showPrevNextAlbum ? 3 : 1
             interactive: false
@@ -115,6 +171,7 @@ Item {
             anchors.centerIn: parent
             spacing: 150
             visible: root.showPrevNextAlbum
+            play: root.musicPlaying
             opacity: root.showPrevNextAlbum ? 1.0 : 0.0
             Behavior on opacity {
                 SequentialAnimation {
@@ -141,9 +198,10 @@ Item {
 
     MusicProgress {
         id: musicProgress
-        width: 840
-        height: 80
+        width: root.width
+        height: Style.vspan(1)
         anchors.top: pathView.bottom
+        value: root.musicPosition
         visible: root.showPrevNextAlbum
         opacity: root.showPrevNextAlbum ? 1.0 : 0.0
         Behavior on opacity {
@@ -154,14 +212,18 @@ Item {
                 DefaultNumberAnimation { duration: 100 }
             }
         }
+
+        onUpdatePosition: root.updatePosition(value)
     }
 
     TitleColumn {
         id: titleColumn
+
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: musicProgress.bottom
-        anchors.topMargin: Style.vspan(0.2)
+        anchors.topMargin: Style.vspan(0.8)
+        preferredWidth: Style.vspan(6)
 
         // the animation will only applied when it goes from invisible to visible.
         visible: root.showPrevNextAlbum
@@ -177,15 +239,15 @@ Item {
     }
 
     MusicTools {
-        id: musicTools
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Style.vspan(0.2)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
+        anchors.rightMargin: Style.hspan(0.3)
         visible: root.showPrevNextAlbum
         opacity: visible ? 1.0 : 0.0
-        Behavior on opacity {
-            DefaultNumberAnimation { }
-        }
+        Behavior on opacity { DefaultNumberAnimation { } }
+
+        onShuffleClicked: root.shuffleClicked()
+        onRepeatClicked: root.repeatClicked()
     }
 }

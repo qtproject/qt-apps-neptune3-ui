@@ -30,62 +30,59 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import utils 1.0
+import controls 1.0
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-//TODO: USE QTIVI
-ListModel {
+ColumnLayout {
     id: root
-    ListElement {
-        title: "Song 1"
-        artist: "Artist 1"
-        albumArt: "assets/albums/cover_1.png"
+    spacing: 100
+
+    signal toolClicked(var contentType)
+
+    property ListModel model: ListModel {
+        ListElement {
+            icon: "ic-favorites"
+            label: "favorites"
+        }
+
+        ListElement {
+            icon: "ic-artists"
+            label: "artists"
+        }
+
+        ListElement {
+            icon: "ic-playlists"
+            label: "playlists"
+        }
+
+        ListElement {
+            icon: "ic-albums"
+            label: "albums"
+        }
+
+        ListElement {
+            icon: "ic-folder-browse"
+            label: "folders"
+        }
+
+        ListElement {
+            icon: "ic-sources-bt"
+            label: "sources"
+        }
     }
 
-    ListElement {
-        title: "Song 2"
-        artist: "Artist 2"
-        albumArt: "assets/albums/cover_2.png"
-    }
-
-    ListElement {
-        title: "Song 3"
-        artist: "Artist 2"
-        albumArt: "assets/albums/cover_3.png"
-    }
-
-    ListElement {
-        title: "Song 4"
-        artist: "Artist 1"
-        albumArt: "assets/albums/cover_4.png"
-    }
-
-    ListElement {
-        title: "Song 5"
-        artist: "Artist 3"
-        albumArt: "assets/albums/cover_5.png"
-    }
-
-    ListElement {
-        title: "Song 6"
-        artist: "Artist 3"
-        albumArt: "assets/albums/cover_6.png"
-    }
-
-    ListElement {
-        title: "Song 7"
-        artist: "Artist 2"
-        albumArt: "assets/albums/cover_7.png"
-    }
-
-    ListElement {
-        title: "Song 8"
-        artist: "Artist 2"
-        albumArt: "assets/albums/cover_8.png"
-    }
-
-    ListElement {
-        title: "Song 9"
-        artist: "Artist 2"
-        albumArt: "assets/albums/cover_9.png"
+    Repeater {
+        model: root.model
+        Tool {
+            anchors.horizontalCenter: parent.horizontalCenter
+            symbol: Style.symbol(icon)
+            text: label
+            font.pixelSize: Style.fontSizeXS
+            symbolOnTop: true
+            onClicked: root.toolClicked(label);
+        }
     }
 }
 

@@ -55,7 +55,7 @@ Item {
         border { left: 60; right: 60; top: 60; bottom: 60 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx2("widget-bg")
+        source: !root.active ? Style.gfx2("widget-bg") : Style.gfx2("bg-home")
     }
 
     Connections {

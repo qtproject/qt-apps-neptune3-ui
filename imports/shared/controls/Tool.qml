@@ -33,19 +33,49 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import utils 1.0
 
-
 ToolButton {
     id: root
     width: Style.hspan(4)
     height: Style.vspan(2)
     property string symbol
+    property bool symbolOnTop: false
+
+    contentItem: Label {
+        text: root.text
+        font: root.font
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: root.symbolOnTop ? Style.vspan(0.2) : 0
+    }
 
     indicator: Image {
         width: Style.hspan(1.3)
         height: Style.vspan(0.8)
-        anchors.centerIn: root.text !== "" ? undefined : parent
-        anchors.right: root.text !== "" ? parent.right : undefined
-        anchors.verticalCenter: root.text !== "" ? parent.verticalCenter : undefined
+        anchors.horizontalCenter: {
+            if (!root.symbolOnTop) {
+                if (root.text !== "") {
+                    return undefined
+                } else {
+                    return parent.horizontalCenter
+                }
+            } else {
+                return parent.horizontalCenter
+            }
+        }
+        anchors.right: {
+            if (!root.symbolOnTop) {
+                if (root.text !== "") {
+                    return parent.right
+                } else {
+                    return undefined
+                }
+            } else {
+                return undefined
+            }
+        }
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: root.symbolOnTop ? - Style.vspan(0.2) : 0
+
         fillMode: Image.Pad
         source: root.symbol ? root.symbol : ""
     }

@@ -38,16 +38,15 @@ import QtQuick.Layouts 1.2
 ItemDelegate {
     id: root
 
-    property alias songTitle: title.text
-    property alias artistName: artistName.text
+    property alias titleLabel: title.text
+    property alias subtitleLabel: subtitle.text
 
     background: null
 
     contentItem: Item {
         anchors.fill: root
         ColumnLayout {
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(0.1)
+            anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: Style.hspan(1)
             width: parent.width
@@ -60,7 +59,8 @@ ItemDelegate {
             }
 
             Label {
-                id: artistName
+                id: subtitle
+                visible: text !== ""
                 color: "#999999"
                 font.pixelSize: Style.fontSizeXS
             }

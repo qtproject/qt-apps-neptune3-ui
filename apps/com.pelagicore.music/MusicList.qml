@@ -32,32 +32,193 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
+import animations 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-ListView {
+Control {
     id: root
 
-    signal itemClicked(var index)
+    property bool showPath: true
+    property bool showBg: false
+    property bool showList: false
+    property string contentType: "track"
+    property string albumPath: ""
+    property string artistPath: ""
+    property alias listView: listView
 
     clip: true
-    boundsBehavior : Flickable.StopAtBounds
 
-    header: Tool {
-        width: Style.hspan(2.5)
-        height: Style.vspan(0.8)
-        anchors.horizontalCenter: parent.horizontalCenter
-        text: "Next"
-        font.pixelSize: Style.fontSizeS
-        symbol: Style.symbol("ic-expand")
+    signal itemClicked(var index, var item, var title)
+    signal libraryGoBack(var goToArtist)
+    signal headerClicked()
+
+    background: Image {
+        id: bgDummy
+        anchors.fill: parent
+        source: Style.gfx2("bg-home")
+        visible: root.showBg
     }
 
-    delegate: SongListItem {
-        id: delegatedSong
-        width: root.width
-        height: Style.vspan(1)
-        highlighted: false
-        songTitle: title
-        artistName: artist
-        onClicked: root.itemClicked(index)
+    contentItem: ListView {
+        id: listView
+
+        width: root.showBg ? Style.hspan(15) : root.width
+        height: root.height
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: root.showBg ? Style.hspan(6) : 0
+        clip: true
+        boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+
+        Component {
+            id: nextHeader
+            Tool {
+                width: Style.hspan(2.5)
+                height: Style.vspan(0.8)
+                anchors.left: parent !== null ? parent.left : undefined
+                anchors.leftMargin: Style.hspan(8)
+                text: "Next"
+                font.pixelSize: Style.fontSizeS
+                symbol: Style.symbol("ic-expand")
+                onClicked: root.headerClicked()
+            }
+        }
+
+        Component {
+            id: browseHeader
+            Tool {
+                width: Style.hspan(3)
+                height: Style.vspan(0.8)
+                anchors.left: parent !== null ? parent.left : undefined
+                anchors.leftMargin: Style.hspan(4.5)
+                text: "Browse"
+                font.pixelSize: Style.fontSizeS
+                symbol: Style.symbol("ic-expand")
+                onClicked: root.headerClicked()
+            }
+        }
+
+        Component {
+            id: mediaPath
+            Item {
+                width: listView.width
+                implicitHeight: Style.vspan(1.5)
+                anchors.left: parent !== null ? parent.left : undefined
+                anchors.leftMargin: Style.hspan(1)
+
+                RowLayout {
+                    anchors.verticalCenter: parent.verticalCenter
+                    Tool {
+                        id: category
+                        implicitHeight: Style.vspan(1.5)
+                        anchors.top: parent.top
+                        text: {
+                            if (root.contentType.substring(0, 5) === "album") {
+                                return "Album";
+                            } else if (root.contentType.substring(0, 6) === "artist") {
+                                return "Artist";
+                            } else {
+                                return ""
+                            }
+                        }
+                        contentItem: Label {
+                            text: category.text
+                            font.underline: true
+                            font.pixelSize: Style.fontSizeS
+                            horizontalAlignment: Text.AlignLeft
+                        }
+                        visible: text !== ""
+                        onClicked: {
+                            if (category.text === "Artist") {
+                                root.libraryGoBack(true)
+                            } else {
+                                root.libraryGoBack(false)
+                            }
+                        }
+                    }
+
+                    Label {
+                        text: category.text !== "" ? "/" : ""
+                        font.pixelSize: Style.fontSizeS
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
+                        visible: text !== ""
+                    }
+
+                    Tool {
+                        id: artistPathLabel
+                        implicitHeight: Style.vspan(1.5)
+                        anchors.top: parent.top
+                        text: root.artistPath
+                        contentItem: Label {
+                            text: artistPathLabel.text
+                            font.underline: true
+                            font.pixelSize: Style.fontSizeS
+                            horizontalAlignment: Text.AlignLeft
+                        }
+                        visible: text !== ""
+                        onClicked: root.libraryGoBack(false)
+                    }
+
+                    Label {
+                        text: artistPathLabel.text !== "" ? "/ " : ""
+                        font.pixelSize: Style.fontSizeS
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
+                        visible: text !== ""
+                    }
+
+                    Label {
+                        text: root.albumPath
+                        font.pixelSize: Style.fontSizeS
+                        anchors.verticalCenter: parent.verticalCenter
+                        horizontalAlignment: Text.AlignLeft
+                        visible: text !== ""
+                    }
+                }
+
+                Image {
+                    width: Style.hspan(17)
+                    height: 5
+                    anchors.bottom: parent.bottom
+                    source: Style.gfx2("divider")
+                }
+            }
+        }
+
+        Component {
+            id: delegatedItem
+            SongListItem {
+                id: delegatedSong
+                width: Style.hspan(17)
+                height: Style.vspan(1)
+                visible: root.showList
+                opacity: visible ? 1.0 : 0.0
+                Behavior on opacity { DefaultNumberAnimation { } }
+
+                highlighted: false
+                titleLabel: root.contentType.slice(-5) === "track" || root.showPath ? model.item.title : model.name
+                subtitleLabel: root.contentType.slice(-5) === "track" || root.showPath ? model.item.artist :
+                                                                                         (root.contentType.slice(-5) === "album" ? model.item.data.artist : "")
+                onClicked: {
+                    root.itemClicked(model.index, model.item, delegatedSong.titleLabel)
+                }
+            }
+        }
+
+        header: {
+            if (root.showBg && root.showList) {
+                return mediaPath;
+            } else if (root.showBg && !root.showList) {
+                return browseHeader;
+            } else {
+                return nextHeader;
+            }
+        }
+
+        delegate: delegatedItem
     }
 }
+
+

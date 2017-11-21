@@ -39,17 +39,24 @@ ColumnLayout {
     id: root
     spacing: 15
 
+    property int preferredWidth: Style.vspan(3)
     property alias currentSongTitle: songTitle.text
     property alias currentArtisName: artistName.text
 
     Label {
         id: songTitle
+        Layout.preferredWidth: root.preferredWidth
+        wrapMode: Text.WrapAnywhere
+        verticalAlignment: Text.AlignLeft
         color: Style.colorBlack
         font.pixelSize: Style.fontSizeM
     }
 
     Label {
         id: artistName
+        Layout.preferredWidth: root.preferredWidth
+        wrapMode: Text.WrapAnywhere
+        verticalAlignment: Text.AlignLeft
         color: "#999999"
         font.pixelSize: Style.fontSizeS
     }

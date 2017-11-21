@@ -35,6 +35,7 @@ import controls 1.0
 import animations 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
+import QtGraphicalEffects 1.0
 import "stores"
 
 Item {
@@ -45,193 +46,370 @@ Item {
     property alias albumArtRow: albumArtRow
     property alias controlsRow: controlsRow
     property bool showList: false
-    readonly property int widgetMaxHeight: 874
 
-    // TODO: REMOVE THIS WHEN ITS FINAL. Temporary to show Johan how it looks since he is working with single process.
-    clip: true
-    state: "minimized"
+    signal dragAreaClicked()
 
-    // Probably need to be changed. Get widget state instead of taking its updated height if needed.
-    onHeightChanged: {
-        if (root.height < 550) {
-            root.state = "minimized";
-        } else if (root.height > 550 && root.height <= 580) {
-            root.state = "opened";
-        } else if (root.height > 580 && !showList) {
-            root.state = "maximized";
-        }
-    }
+    state: "Widget1Row"
 
     // States and transitions are still WIP. it still need to wait for the feedback from designer and later be updated according to the final spec.
     states: [
         State {
-            name: "minimized"
-            PropertyChanges { target: albumArtRow; width: 270; height: 270; anchors.verticalCenterOffset: 0; anchors.horizontalCenterOffset: - Style.hspan(7.1) }
-            PropertyChanges { target: controlsRow; anchors.topMargin: Style.vspan(0.55); anchors.rightMargin: Style.hspan(2.5); spacing: 15 }
+            name: "Widget1Row"
+            PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
+                              anchors.verticalCenterOffset: 0; anchors.leftMargin: Style.hspan(0.9) }
         },
         State {
-            name: "opened"
-            PropertyChanges { target: albumArtRow; width: root.width - 150; height: 450; anchors.verticalCenterOffset: - Style.vspan(0.5);
-                              anchors.horizontalCenterOffset: 0 }
-            PropertyChanges { target: controlsRow; opacity: 0.0 }
+            name: "Widget2Rows"
+            PropertyChanges { target: albumArtRow; width: Style.hspan(19); height: Style.vspan(6); scale: 1.0;
+                              anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
         },
         State {
-            name: "maximized"
-            PropertyChanges { target: albumArtRow; width: root.width - 150; height: 450; anchors.verticalCenterOffset: - Style.vspan(0.5);
-                              anchors.horizontalCenterOffset: 0 }
-            PropertyChanges { target: controlsRow; opacity: 0.0 }
+            name: "Widget3Rows"
+            PropertyChanges { target: albumArtRow; width: Style.hspan(19); height: Style.vspan(6); scale: 1.0;
+                              anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
+            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
+                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0 }
         },
         State {
-            name: "lists"
-            PropertyChanges { target: albumArtRow; scale: 0.7; width: 270; height: 270; anchors.verticalCenterOffset: - Style.vspan(3.5);
-                              anchors.horizontalCenterOffset: - Style.hspan(6.5) }
-            PropertyChanges { target: controlsRow; anchors.topMargin: Style.vspan(0.55); anchors.rightMargin: Style.hspan(2.5); spacing: 15 }
+            name: "Maximized"
+            PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
+                              anchors.verticalCenterOffset: - Style.vspan(8); anchors.leftMargin: Style.hspan(1.8) }
+            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(5.5); listView.contentY: - Style.vspan(0.8) }
         }
     ]
 
     transitions: [
         Transition {
-            from: "opened"; to: "minimized"
-            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.horizontalCenterOffset, anchors.verticalCenterOffset";
+            from: "Widget2Rows"; to: "Widget1Row"
+            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
                                      duration: 50 }
-            DefaultNumberAnimation { target: controlsRow; properties: "anchors.topMargin, anchors.rightMargin, spacing, opacity"; }
         },
         Transition {
-            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.horizontalCenterOffset, anchors.verticalCenterOffset"; }
-            DefaultNumberAnimation { target: controlsRow; properties: "anchors.topMargin, anchors.rightMargin, spacing, opacity"; }
+            from: "Maximized";
+            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
+                                     duration: 50 }
+        },
+        Transition {
+            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset"; }
+            DefaultNumberAnimation { target: nowPlayingList; properties: "width, y, contentY, anchors.horizontalCenterOffset"; }
         }
     ]
+
+    MouseArea {
+        id: nowPlayingDragArea
+        width: root.width
+        height: enabled ? Style.vspan(5.5) : 0
+        anchors.horizontalCenter: nowPlayingList.horizontalCenter
+        anchors.bottom: nowPlayingList.top
+        anchors.bottomMargin: - nowPlayingList.listView.headerItem.height
+        drag.target: nowPlayingList
+        drag.axis: Drag.YAxis
+        drag.minimumY: Style.vspan(4.2)
+        drag.maximumY: nowPlayingList.initialY
+        enabled: root.state === "Widget3Rows"
+
+        onClicked: root.dragAreaClicked()
+        onReleased: {
+            if (nowPlayingList.y < Style.vspan(7.8) && nowPlayingList.y > Style.vspan(4.2)) {
+                nowPlayingList.y = Style.vspan(4.2);
+            } else if (nowPlayingList.y > Style.vspan(7.8)) {
+                nowPlayingList.y = nowPlayingList.initialY;
+            }
+        }
+    }
+
+    MusicList {
+        id: nowPlayingList
+
+        width: parent.width - Style.hspan(4)
+        height: root.state === "Maximized" ? Style.vspan(9.5) : Style.vspan(6.8)
+        Behavior on height { DefaultNumberAnimation { } }
+
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(2.6)
+
+        property int initialY: Style.vspan(10.4)
+        y: nowPlayingList.initialY
+        onYChanged: {
+            if (root.state === "Widget3Rows") {
+                if (y < Style.vspan(7.8) && nowPlayingList.state === "WidgetHideList") {
+                    nowPlayingList.state = "WidgetShowList";
+                } else if (y > Style.vspan(7.8) && nowPlayingList.state === "WidgetShowList") {
+                    nowPlayingList.state = "WidgetHideList";
+                }
+            } else {
+                nowPlayingList.state = "WidgetHideList";
+            }
+        }
+        Behavior on y { DefaultNumberAnimation { } }
+
+        showList: !musicLibrary.showList
+        listView.interactive: showList && (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
+        state: "WidgetHideList"
+        states: [
+            State {
+                name: "WidgetHideList"
+                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(19); height: Style.vspan(6);
+                                  anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
+                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4);
+                                  y: nowPlayingList.initialY; listView.contentY: - Style.vspan(0.8) }
+            },
+            State {
+                name: "WidgetShowList"
+                PropertyChanges { target: albumArtRow; scale: 0.7; width: Style.hspan(6.2); height: Style.vspan(3.5);
+                                  anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(1.5) }
+                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); listView.contentY: - Style.vspan(0.8);
+                                  y: Style.vspan(4.2); anchors.horizontalCenterOffset: 0 }
+            }
+
+        ]
+
+        transitions: [
+            Transition {
+                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.horizontalCenterOffset, anchors.verticalCenterOffset"; }
+                DefaultNumberAnimation { target: nowPlayingList; properties: "width, contentY"; }
+            }
+        ]
+
+        contentType: root.store.searchAndBrowseModel.contentType
+        visible: (root.state === "Widget3Rows" || nowPlayingList.state === "WidgetShowList" || root.state === "Maximized") && root.height > 850
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
+        listView.model: root.store.musicPlaylist
+
+        onItemClicked: {
+            root.store.currentIndex = index;
+            root.store.player.play();
+        }
+
+        onHeaderClicked: {
+            if (root.state === "Maximized") {
+                musicLibrary.showList = false;
+                musicLibrary.listView.contentY = - Style.vspan(0.8);
+            } else if (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList") {
+                nowPlayingList.y = Style.vspan(4.2);
+            } else if (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") {
+                nowPlayingList.y = nowPlayingList.initialY;
+            }
+        }
+    }
+
+    MusicList {
+        id: musicLibrary
+
+        width: parent.width
+        height: Style.vspan(15)
+        anchors.horizontalCenter: parent.horizontalCenter
+        showList: false
+
+        y: musicLibrary.showList ? Style.vspan(5.4) : Style.vspan(15)
+        Behavior on y { DefaultNumberAnimation { } }
+
+        showBg: true
+        listView.interactive: showList
+        listView.model: root.store.searchAndBrowseModel
+        contentType: root.store.searchAndBrowseModel.contentType
+        visible: root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
+        onVisibleChanged: musicLibrary.showList = false
+
+        onShowListChanged: {
+            if (musicLibrary.showList) {
+                nowPlayingList.y = Style.vspan(4.5);
+            } else {
+                nowPlayingList.y = Style.vspan(5.5);
+            }
+        }
+
+        onHeaderClicked: {
+            musicLibrary.showList = !musicLibrary.showList;
+        }
+
+        onLibraryGoBack: {
+            musicLibrary.albumPath = "";
+            if (musicLibrary.contentType.slice(-5) === "album") {
+                musicLibrary.artistPath = "";
+            }
+
+            // if root content "artist" is specified, then go to the root, otherwise it will go one step back.
+            if (goToArtist) {
+                root.store.searchAndBrowseModel.contentType = "artist";
+                musicLibrary.artistPath = "";
+                musicLibrary.albumPath = "";
+            } else {
+                root.store.searchAndBrowseModel.goBack();
+            }
+        }
+
+        onItemClicked: {
+
+            if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
+                musicLibrary.artistPath = title;
+                root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+            } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
+                musicLibrary.albumPath = title;
+                root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+            } else {
+                root.store.musicPlaylist.insert(root.musicCount, root.store.searchAndBrowseModel.get(index));
+                root.store.player.play();
+            }
+
+            if (root.state !== "Maximized") {
+                root.store.currentIndex = index;
+                root.store.player.play();
+            }
+        }
+    }
+
+    LibraryToolsColumn {
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(2)
+        anchors.top: musicLibrary.top
+        anchors.topMargin: Style.vspan(1)
+        visible: root.state === "Maximized" && musicLibrary.showList
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
+        onToolClicked: {
+            if (contentType === "artists") {
+                root.store.changeContentType("artist");
+                musicLibrary.showPath = false;
+            } else if (contentType === "albums") {
+                root.store.changeContentType("album");
+                musicLibrary.showPath = false;
+            } else if (contentType === "favorites") {
+                // TODO: check if IVI already support favorites list.
+                root.store.changeContentType("track");
+                musicLibrary.showPath = true;
+            } else {
+                // TODO: specify all possible content type. currently use "track" as default
+                root.store.changeContentType("track");
+                musicLibrary.showPath = true;
+            }
+
+            // Reset media library path
+            musicLibrary.artistPath = "";
+            musicLibrary.albumPath = "";
+        }
+    }
 
     AlbumArtRow {
         id: albumArtRow
 
-        width: 270
-        height: 270
-        anchors.centerIn: parent
-        anchors.horizontalCenterOffset: - Style.hspan(7.1)
+        width: Style.hspan(6.2)
+        height: Style.vspan(3.5)
 
-        showPrevNextAlbum: root.state === "opened" || root.state === "maximized"
-        songModel: root.store.musicModel
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(0.9)
+
+        showPrevNextAlbum: root.state === "Widget2Rows" || (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
+        musicPlaying: root.store.playing
+        musicPosition: root.store.currentTrackPosition
+        showShadow: root.store.musicCount > 0 && root.state === "Maximized"
+        mediaReady: root.store.searchAndBrowseModel.count > 0
+        songModel: root.store.musicPlaylist
         currentIndex: root.store.currentIndex
-        currentSongTitle: root.store.getCurrentTitle(albumArtRow.coverSlide.currentIndex)
-        currentArtisName: root.store.getCurrentArtist(albumArtRow.coverSlide.currentIndex)
+        currentSongTitle: root.store.currentEntry.title
+        currentArtisName: root.store.currentEntry.artist
+        currentProgressLabel: root.store.currentTime + " / " + root.store.durationTime
 
-        onShowPrevNextAlbumChanged:{
-
-            //HACK!! TODO: FIND A BETTER WAY TO RESET LIST DEFAULT POSITION
-            if (root.state === "maximized" && showPrevNextAlbum && songList.headerItem) {
-                songList.y = root.widgetMaxHeight - songList.headerItem.height
-                songList.contentY = - songList.headerItem.height
-            }
-        }
-
-        onPreviousClicked: {
-            root.store.previousSong();
-        }
-
-        onNextClicked: {
-            root.store.nextSong();
-        }
+        onPlayClicked: root.store.playSong()
+        onPreviousClicked: root.store.previousSong()
+        onNextClicked: root.store.nextSong()
+        onShuffleClicked: root.store.shuffleSong()
+        onRepeatClicked: root.store.repeatSong()
+        onUpdatePosition: root.store.updatePosition(value)
     }
 
     MusicProgress {
         id: musicProgress
-        width: 840
-        height: 25
-        anchors.top: albumArtRow.bottom
-        anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2.2)
-        labelOnTop: false
-        visible: root.state === "lists"
-        opacity: visible && songList.contentY < 0 ? 1.0 : 0.0
-        Behavior on opacity {
-            DefaultNumberAnimation { duration: 100 }
+        width: labelOnTop ? Style.hspan(14.5) : Style.hspan(18.5)
+        height: Style.hspan(0.6)
+
+        // Show progress label on top when maximized state.
+        labelOnTop: root.state === "Maximized"
+
+        anchors.top: labelOnTop ? controlsRow.bottom : albumArtRow.bottom
+        anchors.topMargin: - Style.hspan(0.6)
+        anchors.left: labelOnTop ? titleColumn.left : parent.left
+        anchors.leftMargin: labelOnTop ? - Style.hspan(1) : Style.hspan(2.2)
+        Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
+        progressBarLabelLeftMargin: labelOnTop ? Style.hspan(1) : Style.hspan(0.6)
+        progressText: root.store.currentTime + " / " + root.store.durationTime
+
+        progressBarWidth: {
+            if (musicProgress.labelOnTop) {
+                return musicProgress.width - Style.hspan(2);
+            } else {
+                return musicProgress.width - Style.hspan(5);
+            }
         }
+        Behavior on progressBarWidth { DefaultNumberAnimation { } }
+
+        value: root.store.currentTrackPosition
+        visible: nowPlayingList.state === "WidgetShowList" || root.state === "Maximized"
+        opacity: visible && nowPlayingList.listView.contentY < 0 ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
+
+        onUpdatePosition: root.store.updatePosition(value)
     }
 
     TitleColumn {
         id: titleColumn
+        Layout.preferredWidth: Style.vspan(3)
         anchors.verticalCenter: albumArtRow.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: - Style.hspan(1)
+        anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
+        anchors.right: controlsRow.left
+        anchors.leftMargin: Style.hspan(0.8)
         opacity: controlsRow.opacity
-        currentSongTitle: root.store.getCurrentTitle(albumArtRow.coverSlide.currentIndex)
-        currentArtisName: root.store.getCurrentArtist(albumArtRow.coverSlide.currentIndex)
+        currentSongTitle: root.store.currentEntry.title
+        currentArtisName: root.store.currentEntry.artist
     }
 
     MusicControls {
         id: controlsRow
         anchors.verticalCenter: albumArtRow.verticalCenter
+        anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(2.5)
+        anchors.rightMargin: root.state === "Maximized" ? Style.hspan(2.6) : Style.hspan(2)
+        visible: root.state === "Widget1Row" ||
+                 (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") ||
+                 root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
 
-        onPreviousClicked: {
-            root.store.previousSong();
-        }
+        play: root.store.playing
 
-        onNextClicked: {
-            root.store.nextSong();
-        }
+        onPlayClicked: root.store.playSong()
+        onPreviousClicked: root.store.previousSong()
+        onNextClicked: root.store.nextSong()
+    }
+
+    MusicTools {
+        anchors.top: musicProgress.bottom
+        anchors.topMargin: Style.vspan(2)
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(2)
+        visible: root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
+        onShuffleClicked: root.store.shuffleSong()
+        onRepeatClicked: root.store.repeatSong()
     }
 
     Image {
-        id: divider
-        width: songList.width
+        width: nowPlayingList.width
         height: Style.vspan(0.2)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: albumArtRow.bottom
         anchors.topMargin: Style.vspan(0.2)
         source: Style.gfx2("divider")
-        opacity: root.state === "lists" && songList.contentY > 0 ? 1.0 : 0.0
-        Behavior on opacity {
-            DefaultNumberAnimation { }
-        }
-    }
-
-    MusicList {
-        id: songList
-
-        width: parent.width - Style.hspan(4)
-        height: Style.vspan(6.8)
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        y: root.widgetMaxHeight - headerItem.height
-        onYChanged: {
-            if (y < 620 && y > 320 && root.state === "maximized") {
-                root.state = "lists";
-            } else if (y > 620 && root.state === "lists") {
-                root.state = "maximized";
-            }
-        }
-
-        visible: (root.state === "maximized" || root.state === "lists") && root.height > 850
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity {
-            DefaultNumberAnimation { }
-        }
-
-        model: store.musicModel
-        currentIndex: root.state === "lists" ? root.store.currentIndex : 0
-
-        onItemClicked: root.store.currentIndex = index
-
-        MouseArea {
-            id: dragArea
-            width: root.width
-            height: Style.vspan(0.8)
-            anchors.horizontalCenter: parent.horizontalCenter
-            drag.target: songList
-            drag.axis: Drag.YAxis
-            drag.minimumY: 320
-            drag.maximumY: root.height - Style.vspan(0.8)
-
-            onReleased: {
-                if (songList.y < 620 && songList.y > 320) {
-                    songList.y = 320;
-                } else if (songList.y > 620) {
-                    songList.y = root.height - songList.headerItem.height;
-                }
-            }
-        }
+        opacity: nowPlayingList.state === "WidgetShowList" && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 }
