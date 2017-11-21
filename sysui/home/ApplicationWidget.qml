@@ -46,15 +46,6 @@ Item {
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
 
-    // TODO: Restart if crashed
-    Timer {
-        interval: 1000; running: root.appInfo !== undefined; repeat: false
-        onTriggered: {
-            root.appInfo.canBeActive = false
-            root.appInfo.start()
-        }
-    }
-
     BorderImage {
         id: bgImage
         anchors.fill: parent
@@ -87,7 +78,6 @@ Item {
             window.height = Qt.binding(function() { return root.height; });
             window.z = 2
             loadingStateGroup.state = "live"
-            root.appInfo.canBeActive = true;
         } else {
             loadingStateGroup.state = "loading"
         }

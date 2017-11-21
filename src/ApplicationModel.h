@@ -34,8 +34,9 @@
 #include <QList>
 #include <QLoggingCategory>
 
+#include <applicationmanager.h>
+
 namespace QtAM {
-    class ApplicationManager;
     class WindowManager;
 }
 
@@ -58,6 +59,7 @@ class ApplicationModel : public QAbstractListModel
     Q_PROPERTY(QtAM::WindowManager* windowManager READ windowManager WRITE setWindowManager NOTIFY windowManagerChanged)
     Q_PROPERTY(qreal cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
     Q_PROPERTY(qreal cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
+    Q_PROPERTY(bool readyToStartApps READ readyToStartApps WRITE setReadyToStartApps NOTIFY readyToStartAppsChanged)
 public:
     ApplicationModel(QObject *parent = nullptr);
     virtual ~ApplicationModel();
@@ -104,8 +106,10 @@ public:
     qreal cellHeight() const;
     void setCellHeight(qreal);
 
+    bool readyToStartApps() const;
+    void setReadyToStartApps(bool);
+
 signals:
-    void applicationSurfaceReady(ApplicationInfo *appInfo, QQuickItem *item);
     void activeAppIdChanged();
     void activeAppInfoChanged();
     void applicationManagerChanged();
@@ -113,15 +117,19 @@ signals:
     void countChanged();
     void cellWidthChanged();
     void cellHeightChanged();
+    void readyToStartAppsChanged();
 
 private slots:
     void onWindowReady(int index, QQuickItem *window);
+    void onWindowLost(int index, QQuickItem *window);
     void onApplicationActivated(const QString &appId, const QString &aliasId);
     void onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant &value);
+    void onAsWidgetChanged(ApplicationInfo *appInfo);
 
 private:
     void configureApps();
     void updateWindowStateProperty(ApplicationInfo *appInfo);
+    void startApplication(const QString &appId);
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;
@@ -131,5 +139,8 @@ private:
 
     qreal m_cellWidth{0};
     qreal m_cellHeight{0};
+
+    bool m_readyToStartApps{false};
+    QStringList m_appStartQueue;
 };
 

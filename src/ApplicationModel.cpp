@@ -33,7 +33,6 @@
 
 // QtAM
 #include <application.h>
-#include <applicationmanager.h>
 #include <QtAppManWindow>
 
 #include <QStringList>
@@ -85,6 +84,9 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
         connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
             updateWindowStateProperty(appInfo);
         });
+        connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
+            onAsWidgetChanged(appInfo);
+        });
         m_appInfoList.append(appInfo);
     }
 
@@ -108,13 +110,7 @@ void ApplicationModel::setWindowManager(QtAM::WindowManager *windowManager)
     }
 
     connect(windowManager, &WindowManager::windowReady, this, &ApplicationModel::onWindowReady);
-
-    connect(windowManager, &WindowManager::windowLost, this, [windowManager](int index, QQuickItem *window) {
-        Q_UNUSED(index)
-        // TODO care about animating before releasing
-        windowManager->releaseWindow(window);
-    });
-
+    connect(windowManager, &WindowManager::windowLost, this, &ApplicationModel::onWindowLost);
     connect(windowManager, &WindowManager::windowPropertyChanged, this, &ApplicationModel::onWindowPropertyChanged);
 }
 
@@ -167,8 +163,22 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
 
     ApplicationInfo *appInfo = application(appID);
     appInfo->setWindow(window);
+    appInfo->setCanBeActive(true);
+}
 
-    emit applicationSurfaceReady(appInfo, window);
+void ApplicationModel::onWindowLost(int index, QQuickItem *window)
+{
+    auto windowManager = WindowManager::instance();
+    QString appID = windowManager->get(index)["applicationId"].toString();
+
+    ApplicationInfo *appInfo = application(appID);
+
+    if (appInfo->window() == window) {
+        appInfo->setWindow(nullptr);
+    }
+
+    // TODO care about animating before releasing
+    windowManager->releaseWindow(window);
 }
 
 ApplicationInfo *ApplicationModel::application(const QString &appId)
@@ -219,16 +229,6 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
     qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
     m_activeAppInfo = appInfo;
     emit activeAppInfoChanged();
-
-    auto windowManager = WindowManager::instance();
-    for (int i = 0; i < windowManager->count(); ++i) {
-        auto wmItem = windowManager->get(i);
-        if (!wmItem["isClosing"].toBool() && wmItem["applicationId"].toString() == appId) {
-            auto *item = wmItem["windowItem"].value<QQuickItem*>();
-            emit applicationSurfaceReady(appInfo, item);
-            break;
-        }
-    }
 }
 
 void ApplicationModel::onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant & /*value*/) {
@@ -314,4 +314,46 @@ void ApplicationModel::setCellHeight(qreal value)
     }
 
     emit cellHeightChanged();
+}
+
+void ApplicationModel::onAsWidgetChanged(ApplicationInfo *appInfo)
+{
+    if (appInfo->asWidget() && m_appMan->applicationRunState(appInfo->id()) == ApplicationManager::NotRunning) {
+        // Starting an app causes it to emit activated() but we don't want it to go active (as being
+        // active makes it maximized/fullscreen). We want it to stay as a widget.
+        appInfo->setCanBeActive(false);
+        startApplication(appInfo->id());
+    }
+}
+
+void ApplicationModel::startApplication(const QString &appId)
+{
+    if (m_readyToStartApps) {
+        m_appMan->startApplication(appId);
+    } else {
+        m_appStartQueue.append(appId);
+    }
+}
+
+bool ApplicationModel::readyToStartApps() const
+{
+    return m_readyToStartApps;
+}
+
+void ApplicationModel::setReadyToStartApps(bool value)
+{
+    if (m_readyToStartApps == value) {
+        return;
+    }
+
+    m_readyToStartApps = value;
+
+    if (m_readyToStartApps) {
+        for (QString appId : m_appStartQueue) {
+            m_appMan->startApplication(appId);
+        }
+        m_appStartQueue.clear();
+    }
+
+    emit readyToStartAppsChanged();
 }

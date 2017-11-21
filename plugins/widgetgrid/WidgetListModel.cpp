@@ -107,7 +107,9 @@ void WidgetListModel::setApplicationModel(QAbstractItemModel *appModel)
     connect(appModel, &QAbstractItemModel::modelReset, this,
             [this]()
             {
+                setPopulating(true);
                 trackRowsFromApplicationModel(0, m_applicationModel->rowCount() - 1);
+                setPopulating(false);
                 m_resetting = false;
                 endResetModel();
             });

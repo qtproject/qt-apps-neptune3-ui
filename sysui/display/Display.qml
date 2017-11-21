@@ -58,6 +58,15 @@ Image {
         cellHeight: Style.cellHeight
     }
 
+    // Give some time for sysui to load itself before launching apps. Besides, starting the apps
+    // that are shown as widgets immediately on ApplicationModel creation fails anyway.
+    Timer {
+        interval: 500
+        running: true
+        repeat: false
+        onTriggered: applicationModel.readyToStartApps = true
+    }
+
     // Content Elements
 
     StageLoader {
