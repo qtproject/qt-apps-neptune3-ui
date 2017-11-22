@@ -56,6 +56,8 @@ class ApplicationModel : public QAbstractListModel
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QtAM::ApplicationManager* applicationManager READ applicationManager WRITE setApplicationManager NOTIFY applicationManagerChanged)
     Q_PROPERTY(QtAM::WindowManager* windowManager READ windowManager WRITE setWindowManager NOTIFY windowManagerChanged)
+    Q_PROPERTY(qreal cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
+    Q_PROPERTY(qreal cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
 public:
     ApplicationModel(QObject *parent = nullptr);
     virtual ~ApplicationModel();
@@ -96,6 +98,12 @@ public:
 
     ApplicationInfo* activeAppInfo() { return m_activeAppInfo; }
 
+    qreal cellWidth() const;
+    void setCellWidth(qreal);
+
+    qreal cellHeight() const;
+    void setCellHeight(qreal);
+
 signals:
     void applicationSurfaceReady(ApplicationInfo *appInfo, QQuickItem *item);
     void activeAppIdChanged();
@@ -103,6 +111,8 @@ signals:
     void applicationManagerChanged();
     void windowManagerChanged();
     void countChanged();
+    void cellWidthChanged();
+    void cellHeightChanged();
 
 private slots:
     void onWindowReady(int index, QQuickItem *window);
@@ -118,5 +128,8 @@ private:
     QtAM::ApplicationManager *m_appMan{nullptr};
     QtAM::WindowManager *m_windowManager{nullptr};
     ApplicationInfo *m_activeAppInfo{nullptr};
+
+    qreal m_cellWidth{0};
+    qreal m_cellHeight{0};
 };
 

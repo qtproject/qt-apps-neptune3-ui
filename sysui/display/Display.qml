@@ -54,6 +54,8 @@ Image {
         id: applicationModel
         applicationManager: ApplicationManager
         windowManager: WindowManager
+        cellWidth: Style.cellWidth
+        cellHeight: Style.cellHeight
     }
 
     // Content Elements

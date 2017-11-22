@@ -160,6 +160,9 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
 {
     auto windowManager = WindowManager::instance();
 
+    windowManager->setWindowProperty(window, QStringLiteral("cellWidth"), QVariant(m_cellWidth));
+    windowManager->setWindowProperty(window, QStringLiteral("cellHeight"), QVariant(m_cellHeight));
+
     QString appID = windowManager->get(index)["applicationId"].toString();
 
     ApplicationInfo *appInfo = application(appID);
@@ -269,4 +272,46 @@ void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
     }
 
     windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(windowStateStr));
+}
+
+qreal ApplicationModel::cellWidth() const
+{
+    return m_cellWidth;
+}
+
+void ApplicationModel::setCellWidth(qreal value)
+{
+    if (m_cellWidth == value) {
+        return;
+    }
+
+    m_cellWidth = value;
+
+    auto windowManager = WindowManager::instance();
+    for (ApplicationInfo *appInfo : m_appInfoList) {
+        windowManager->setWindowProperty(appInfo->window(), QStringLiteral("cellWidth"), QVariant(m_cellWidth));
+    }
+
+    emit cellWidthChanged();
+}
+
+qreal ApplicationModel::cellHeight() const
+{
+    return m_cellHeight;
+}
+
+void ApplicationModel::setCellHeight(qreal value)
+{
+    if (m_cellHeight == value) {
+        return;
+    }
+
+    m_cellHeight = value;
+
+    auto windowManager = WindowManager::instance();
+    for (ApplicationInfo *appInfo : m_appInfoList) {
+        windowManager->setWindowProperty(appInfo->window(), QStringLiteral("cellHeight"), QVariant(m_cellHeight));
+    }
+
+    emit cellHeightChanged();
 }

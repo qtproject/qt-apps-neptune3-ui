@@ -124,6 +124,14 @@ ApplicationManagerWindow {
         }
     }
 
+    onWindowPropertyChanged: {
+        if (name === "cellWidth") {
+            Style.cellWidth = value;
+        } else if (name === "cellHeight") {
+            Style.cellHeight = value;
+        }
+    }
+
     Item {
         id: content
         anchors.fill: parent
