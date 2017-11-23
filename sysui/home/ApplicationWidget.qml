@@ -41,8 +41,7 @@ Item {
     signal dragEnded()
     signal closeClicked()
 
-    property alias dragButtonVisible: dragHandle.visible
-    property alias closeButtonVisible: closeButton.visible
+    property bool buttonsVisible: true
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
 
@@ -113,6 +112,7 @@ Item {
         width: Style.hspan(1)
         height: width
         z: 3
+        visible: root.buttonsVisible
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
         onPressed: root.dragStarted(dragHandle.mapToItem(root, mouseX, mouseY))
@@ -135,6 +135,7 @@ Item {
         width: Style.hspan(1)
         height: width
         z: dragHandle.z + 1
+        visible: root.buttonsVisible
 
         onClicked: root.closeClicked()
 

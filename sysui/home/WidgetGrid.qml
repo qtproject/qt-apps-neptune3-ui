@@ -424,8 +424,6 @@ Item {
 
                         appInfo: model.appInfo
 
-                        closeButtonVisible: repeater.count > 1
-
                         property bool beingDragged: false
 
                         // in root coords
@@ -470,7 +468,7 @@ Item {
                                     x: 0; y: 0; scale: 1
                                     width: appWidgetSlot.width; height: appWidgetSlot.height
                                 }
-                                PropertyChanges { target: appWidget; dragButtonVisible: repeater.count > 1 }
+                                PropertyChanges { target: appWidget; buttonsVisible: repeater.count > 1 }
                             },
                             State {
                                 name: "active"
@@ -479,7 +477,7 @@ Item {
                                     x: 0; y: 0; scale: 1
                                     width: root.activeApplicationParent.width; height: root.activeApplicationParent.height
                                 }
-                                PropertyChanges { target: appWidget; dragButtonVisible: false }
+                                PropertyChanges { target: appWidget; buttonsVisible: false }
                             },
                             State {
                                 name: "drawer"
@@ -488,7 +486,7 @@ Item {
                                     x: 0; y: 0; scale: 1
                                     width: root.widgetDrawer.width; height: root.widgetDrawer.height
                                 }
-                                PropertyChanges { target: appWidget; dragButtonVisible: false }
+                                PropertyChanges { target: appWidget; buttonsVisible: false }
                             },
                             State {
                                 name: "dragging"
