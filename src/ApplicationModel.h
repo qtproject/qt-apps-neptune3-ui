@@ -129,6 +129,7 @@ private slots:
 private:
     void configureApps();
     void updateWindowStateProperty(ApplicationInfo *appInfo);
+    void updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo);
     void startApplication(const QString &appId);
 
     QList<ApplicationInfo*> m_appInfoList;

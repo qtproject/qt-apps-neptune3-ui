@@ -67,6 +67,17 @@ Image {
         onTriggered: applicationModel.readyToStartApps = true
     }
 
+    Instantiator {
+        model: applicationModel
+        delegate: QtObject {
+            property var exposedRectBottomMarginBinding: Binding {
+                target: model.appInfo
+                property: "exposedRectBottomMargin"
+                value: model.appInfo.active && widgetDrawer.open ? activeApplicationSlot.height - widgetDrawer.y : 0
+            }
+        }
+    }
+
     // Content Elements
 
     StageLoader {

@@ -167,3 +167,16 @@ void ApplicationInfo::updateWindowState()
         emit windowStateChanged();
     }
 }
+
+qreal ApplicationInfo::exposedRectBottomMargin() const
+{
+    return m_exposedRectBottomMargin;
+}
+
+void ApplicationInfo::setExposedRectBottomMargin(qreal value)
+{
+    if (m_exposedRectBottomMargin != value) {
+        m_exposedRectBottomMargin = value;
+        emit exposedRectBottomMarginChanged();
+    }
+}

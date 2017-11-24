@@ -84,6 +84,9 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
         connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
             updateWindowStateProperty(appInfo);
         });
+        connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
+            updateExposedRectBottomMarginProperty(appInfo);
+        });
         connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
             onAsWidgetChanged(appInfo);
         });
@@ -269,6 +272,17 @@ void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
     }
 
     windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(windowStateStr));
+}
+
+void ApplicationModel::updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+    windowManager->setWindowProperty(window, QStringLiteral("exposedRectBottomMargin"), QVariant(appInfo->exposedRectBottomMargin()));
 }
 
 qreal ApplicationModel::cellWidth() const

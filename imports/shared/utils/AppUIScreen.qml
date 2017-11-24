@@ -104,6 +104,20 @@ ApplicationManagerWindow {
 
     property alias stripeSource: widgetStripe.source
 
+    /*
+        Area of the window that is exposed to the user (ie, not blocked or occluded by other UI elements)
+
+        A window can be occluded by some other UI elements such as floating widgets, virtual keyboards
+        etc. In such cases you will want to relayout to that the important content is contained within
+        exposedRect boundaries.
+     */
+    property rect exposedRect: Qt.rect(0, 0, root.width, root.height - d.exposedRectBottomMargin)
+
+    QtObject {
+        id: d
+        property real exposedRectBottomMargin: 0
+    }
+
     BorderImage {
         id: widgetStripe
         anchors.top: parent.top
@@ -129,6 +143,8 @@ ApplicationManagerWindow {
             Style.cellWidth = value;
         } else if (name === "cellHeight") {
             Style.cellHeight = value;
+        } else if (name === "exposedRectBottomMargin") {
+            d.exposedRectBottomMargin = value;
         }
     }
 
