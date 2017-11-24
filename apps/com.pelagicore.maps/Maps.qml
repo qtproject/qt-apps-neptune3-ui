@@ -30,23 +30,20 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import animations 1.0
 import utils 1.0
 import QtQuick.Controls 2.2
 
 AppUIScreen {
     id: root
 
-    applicationIcon: "icon.png"
-
     property string title: "Triton Maps"
 
     Rectangle {
         color: touchPoint1.pressed ? "red" : "grey"
-        height: parent.height - 80
-        width: parent.width * 0.5
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 80
+        anchors.fill: parent
+        anchors.leftMargin: Style.hspan(4)
+        anchors.rightMargin: Style.hspan(2)
         Label { text: root.title }
     }
 

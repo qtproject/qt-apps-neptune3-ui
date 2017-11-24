@@ -43,6 +43,10 @@ Item {
     id: root
     property var appInfo
 
+    Binding {
+        target: root.appInfo; property: "currentHeight"; value: root.height
+    }
+
     QtObject {
         id: d
         property Item window: root.appInfo ? root.appInfo.window : null
@@ -68,7 +72,6 @@ Item {
                     d.currentWindow.y = 0;
                     d.currentWindow.z = 1;
                     d.currentWindow.width = Qt.binding(function() { return root.width; });
-                    d.currentWindow.height = Qt.binding(function() { return root.height; });
                     d.currentWindow.visible = true;
                 }}
                 DefaultNumberAnimation { target: root; property: "opacity"; from: 0; to: 1 }

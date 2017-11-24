@@ -54,13 +54,19 @@ class ApplicationInfo : public QObject {
     //  the main window of this application, if any
     Q_PROPERTY(QQuickItem* window READ window() NOTIFY windowChanged)
 
-    // State of the main window of this application
+    // State if the main window in the triton system UI
+    // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows" and "Maximized"
+    // See also: window, widgetHeight
+    Q_PROPERTY(QString windowState READ windowState WRITE setWindowState NOTIFY windowStateChanged)
+
+    // When the window is being displayed as a widget, that's the height its UI should have
+    Q_PROPERTY(int widgetHeight READ widgetHeight WRITE setWidgetHeight NOTIFY widgetHeightChanged)
+
+    // Currrent window height
     //
-    // Its value is derived from other properties in this class like active,
-    // heightRows, asWidget and window.
-    //
-    // See also: window
-    Q_PROPERTY(WindowState windowState READ windowState NOTIFY windowStateChanged)
+    // The window is kept maximized and it's clipped to fit currentWindowHeight
+    // Application code relayouts *all* of its contents so that they fit currentWindowheight
+    Q_PROPERTY(int currentHeight READ currentHeight WRITE setCurrentHeight NOTIFY currentHeightChanged)
 
     // Whether the application window should be shown as a widget
     Q_PROPERTY(bool asWidget READ asWidget WRITE setAsWidget NOTIFY asWidgetChanged)
@@ -72,28 +78,21 @@ class ApplicationInfo : public QObject {
     // The QtAM::Application object
     Q_PROPERTY(const QObject* application READ application CONSTANT)
     Q_PROPERTY(QString id READ id CONSTANT)
+    Q_PROPERTY(QUrl icon READ icon CONSTANT)
 
     /*
-        The bottom margin of the exposed rectangular are of the apps main window
+        The bottom margin of the exposed rectangular area of the apps main window
 
         The area of the apps main window that is directly visible to the user (ie, exposed) and not occluded
         obstructed by other items in the system ui is defined by a rectangle anchored ti all window's edges
         Its bottom margin is defined by this property
+
+        The exposed rect is inside the window rect defined by (0, 0, window.width, currentWindowHeight)
      */
     Q_PROPERTY(qreal exposedRectBottomMargin READ exposedRectBottomMargin WRITE setExposedRectBottomMargin
                                              NOTIFY exposedRectBottomMarginChanged)
 
 public:
-    enum WindowState {
-        Undefined,
-        Widget1Row,
-        Widget2Rows,
-        Widget3Rows,
-        Maximized
-    };
-    Q_ENUM(WindowState);
-
-
     ApplicationInfo(const QObject* application, QObject *parent = nullptr);
 
     // starts the application. Same as ApplicatioManager.startApplication() but in a object oriented fashion
@@ -105,7 +104,14 @@ public:
     void setWindow(QQuickItem *);
     QQuickItem *window() const;
 
-    WindowState windowState() const;
+    void setWindowState(const QString &);
+    QString windowState() const;
+
+    void setWidgetHeight(int);
+    int widgetHeight() const;
+
+    void setCurrentHeight(int);
+    int currentHeight() const;
 
     const QObject *application() const;
 
@@ -122,6 +128,7 @@ public:
     void setCanBeActive(bool);
 
     QString id() const;
+    QUrl icon() const;
 
     qreal exposedRectBottomMargin() const;
     void setExposedRectBottomMargin(qreal);
@@ -130,11 +137,13 @@ signals:
     void activeChanged();
     void canBeActiveChanged();
     void windowChanged();
+    void windowStateChanged();
     void asWidgetChanged();
     void heightRowsChanged();
     void minHeightRowsChanged();
     void startRequested();
-    void windowStateChanged();
+    void widgetHeightChanged();
+    void currentHeightChanged();
     void exposedRectBottomMarginChanged();
 
 private:
@@ -143,7 +152,9 @@ private:
     bool m_active{false};
     bool m_canBeActive{true};
     QQuickItem *m_window{nullptr};
-    WindowState m_windowState{Undefined};
+    QString m_windowState;
+    int m_widgetHeight{0};
+    int m_currentHeight{0};
     bool m_asWidget{false};
     int m_heightRows{1};
     int m_minHeightRows{1};
@@ -152,3 +163,4 @@ private:
 };
 
 Q_DECLARE_METATYPE(ApplicationInfo*)
+Q_DECLARE_METATYPE(const QObject*)

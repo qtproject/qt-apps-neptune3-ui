@@ -81,6 +81,12 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
                 m_appMan->startApplication(appInfo->id());
             }
         });
+        connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
+            updateWidgetHeightProperty(appInfo);
+        });
+        connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
+            updateCurrentHeightProperty(appInfo);
+        });
         connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
             updateWindowStateProperty(appInfo);
         });
@@ -159,12 +165,16 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
 {
     auto windowManager = WindowManager::instance();
 
+    QString appID = windowManager->get(index)["applicationId"].toString();
+    ApplicationInfo *appInfo = application(appID);
+
     windowManager->setWindowProperty(window, QStringLiteral("cellWidth"), QVariant(m_cellWidth));
     windowManager->setWindowProperty(window, QStringLiteral("cellHeight"), QVariant(m_cellHeight));
+    windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
+    windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+    windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
+    windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
 
-    QString appID = windowManager->get(index)["applicationId"].toString();
-
-    ApplicationInfo *appInfo = application(appID);
     appInfo->setWindow(window);
     appInfo->setCanBeActive(true);
 }
@@ -243,6 +253,28 @@ void ApplicationModel::onWindowPropertyChanged(QQuickItem *window, const QString
     }
 }
 
+void ApplicationModel::updateWidgetHeightProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+    windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+}
+
+void ApplicationModel::updateCurrentHeightProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+    windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
+}
+
 void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
 {
     QQuickItem *window = appInfo->window();
@@ -251,27 +283,7 @@ void ApplicationModel::updateWindowStateProperty(ApplicationInfo *appInfo)
     }
 
     auto windowManager = WindowManager::instance();
-
-    QString windowStateStr;
-    switch (appInfo->windowState()) {
-        case ApplicationInfo::Undefined:
-            windowStateStr = "Undefined";
-            break;
-        case ApplicationInfo::Widget1Row:
-            windowStateStr = "Widget1Row";
-            break;
-        case ApplicationInfo::Widget2Rows:
-            windowStateStr = "Widget2Rows";
-            break;
-        case ApplicationInfo::Widget3Rows:
-            windowStateStr = "Widget3Rows";
-            break;
-        case ApplicationInfo::Maximized:
-            windowStateStr = "Maximized";
-            break;
-    }
-
-    windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(windowStateStr));
+    windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
 }
 
 void ApplicationModel::updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo)
@@ -325,6 +337,28 @@ void ApplicationModel::setCellHeight(qreal value)
     }
 
     emit cellHeightChanged();
+}
+
+qreal ApplicationModel::homePageRowHeight() const
+{
+    return m_homePageRowHeight;
+}
+
+void ApplicationModel::setHomePageRowHeight(qreal value)
+{
+    if (m_homePageRowHeight == value) {
+        return; // NOOP
+    }
+
+    m_homePageRowHeight = value;
+
+    auto windowManager = WindowManager::instance();
+    for (ApplicationInfo *appInfo : m_appInfoList) {
+        windowManager->setWindowProperty(appInfo->window(), QStringLiteral("homePageRowHeight"),
+                QVariant(m_homePageRowHeight));
+    }
+
+    emit homePageRowHeightChanged();
 }
 
 void ApplicationModel::onAsWidgetChanged(ApplicationInfo *appInfo)

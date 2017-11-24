@@ -139,12 +139,6 @@ Item {
             resizingWidgets = true;
         }
         function onResizeHandleDragged(pos) {
-            // init resize heights
-            for (i = 0; i < repeater.count; i++) {
-                var delegate = repeater.itemAt(i);
-                delegate.heightWhenResizing = delegate.heightNormal;
-            }
-
             var delta = withinBoundsY(pos.y) - startResizeDragY;
             delta = computeUsableDragDelta(delta);
 
@@ -447,6 +441,28 @@ Item {
                         onCloseClicked: {
                             repeaterDelegate.state = "closing"
                             appInfo.asWidget = false;
+                        }
+
+                        widgetState: {
+                            var rowHeight = Math.round(repeaterDelegate.height  / root.rowHeight);
+                            switch (rowHeight) {
+                                case 0:
+                                case 1:
+                                    return "Widget1Row";
+                                case 2:
+                                    return "Widget2Rows";
+                                default:
+                                    return "Widget3Rows";
+                            }
+                        }
+                        widgetHeight: {
+                            if (widgetState === "Widget1Row") {
+                                return root.rowHeight - root.resizerHandleHeight;
+                            } else if (widgetState === "Widget2Rows") {
+                                return (root.rowHeight * 2) - root.resizerHandleHeight;
+                            } else {
+                                return (root.rowHeight * 3) - root.resizerHandleHeight;
+                            }
                         }
 
                         state: {

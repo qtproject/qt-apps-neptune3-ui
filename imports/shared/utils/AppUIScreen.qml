@@ -86,24 +86,6 @@ ApplicationManagerWindow {
 
     default property alias content: content.children
 
-    /*!
-         \qmlproperty AppUIScreen::applicationIcon
-
-         This property specify the application icon and shown in the left widget bar.
-
-    */
-
-    property alias applicationIcon: appIcon.source
-
-    /*!
-         \qmlproperty AppUIScreen::stripeSource
-
-         This property specify the stripe image source of the application.
-
-    */
-
-    property alias stripeSource: widgetStripe.source
-
     /*
         Area of the window that is exposed to the user (ie, not blocked or occluded by other UI elements)
 
@@ -113,29 +95,22 @@ ApplicationManagerWindow {
      */
     property rect exposedRect: Qt.rect(0, 0, root.width, root.height - d.exposedRectBottomMargin)
 
+    property int targetHeight: {
+        if (tritonState === "Maximized") {
+            return root.height;
+        } else {
+            return d.widgetHeight;
+        }
+    }
+
+    property int currentHeight
+
+    property string tritonState
+
     QtObject {
         id: d
         property real exposedRectBottomMargin: 0
-    }
-
-    BorderImage {
-        id: widgetStripe
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        border { top: 30; bottom: 30 }
-        horizontalTileMode: BorderImage.Stretch
-        verticalTileMode: BorderImage.Stretch
-        source: Style.gfx2("widget-stripe")
-
-        Image {
-            id: appIcon
-            width: parent.width * 0.6
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: widgetStripe.border.top * 0.8
-        }
+        property int widgetHeight: 0
     }
 
     onWindowPropertyChanged: {
@@ -145,6 +120,12 @@ ApplicationManagerWindow {
             Style.cellHeight = value;
         } else if (name === "exposedRectBottomMargin") {
             d.exposedRectBottomMargin = value;
+        } else if (name == "tritonWidgetHeight") {
+            d.widgetHeight = value;
+        } else if (name == "tritonCurrentHeight") {
+            root.currentHeight = value;
+        } else if (name == "tritonState") {
+            root.tritonState = value;
         }
     }
 

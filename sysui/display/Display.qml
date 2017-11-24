@@ -56,6 +56,7 @@ Image {
         windowManager: WindowManager
         cellWidth: Style.cellWidth
         cellHeight: Style.cellHeight
+        homePageRowHeight: homePageLoader.homePageRowHeight
     }
 
     // Give some time for sysui to load itself before launching apps. Besides, starting the apps
@@ -74,6 +75,12 @@ Image {
                 target: model.appInfo
                 property: "exposedRectBottomMargin"
                 value: model.appInfo.active && widgetDrawer.open ? activeApplicationSlot.height - widgetDrawer.y : 0
+            }
+
+            property var windowHeightBinding: Binding {
+                target: model.appInfo.window
+                property: "height"
+                value: activeApplicationSlot.height
             }
         }
     }
@@ -132,6 +139,8 @@ Image {
                 Binding { target: homePageLoader.item; property: "moveBottomWidgetToDrawer"; value: !widgetDrawer.showingHomePage }
                 Binding { target: homePageLoader.item; property: "widgetDrawer"; value: widgetDrawerSlot }
                 Binding { target: homePageLoader.item; property: "popupParent"; value: popupParent }
+
+                property real homePageRowHeight: item ? item.rowHeight : 0
             }
 
             // slot for the maximized, active, application
@@ -149,7 +158,7 @@ Image {
             WidgetDrawer {
                 id: widgetDrawer
                 width: parent.width
-                height: homePageRowHeight
+                height: homePageLoader.homePageRowHeight
                 anchors.bottom: parent.bottom
 
                 dragEnabled: !showingHomePage
@@ -158,7 +167,7 @@ Image {
                 Item {
                     id: widgetDrawerSlot
                     width: widgetDrawer.homePageWidgetWidth
-                    height: widgetDrawer.homePageRowHeight
+                    height: homePageLoader.homePageRowHeight
                     anchors.horizontalCenter: widgetDrawer.horizontalCenter
                 }
 
@@ -170,7 +179,6 @@ Image {
                 }
 
                 property real homePageWidgetWidth: homePageLoader.item ? homePageLoader.item.widgetWidth : 0
-                property real homePageRowHeight: homePageLoader.item ? homePageLoader.item.rowHeight : 0
             }
         }
     }

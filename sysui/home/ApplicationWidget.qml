@@ -31,6 +31,7 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.2
+import animations 1.0
 import utils 1.0
 
 Item {
@@ -44,6 +45,8 @@ Item {
     property bool buttonsVisible: true
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
+    property string widgetState
+    property int widgetHeight
 
     BorderImage {
         id: bgImage
@@ -72,13 +75,47 @@ Item {
 
         var window = root.appInfo.window
         if (window) {
-            window.parent = root;
+            window.parent = windowSlot;
             window.width = Qt.binding(function() { return root.width; });
-            window.height = Qt.binding(function() { return root.height; });
-            window.z = 2
             loadingStateGroup.state = "live"
         } else {
             loadingStateGroup.state = "loading"
+        }
+    }
+
+    Binding {
+        target: root.appInfo; property: "widgetHeight"; value: root.widgetHeight
+    }
+
+    Binding {
+        target: root.appInfo; property: "currentHeight"; value: root.height
+    }
+
+    Binding {
+        target: root.appInfo; property: "windowState"; value: root.active ? "Maximized" : root.widgetState
+    }
+
+    BorderImage {
+        id: widgetStripe
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        border { top: 30; bottom: 30 }
+        horizontalTileMode: BorderImage.Stretch
+        verticalTileMode: BorderImage.Stretch
+        source: Style.gfx2("widget-stripe")
+
+        opacity: root.active ? 0 : 1
+        visible: opacity != 0
+        Behavior on opacity { DefaultNumberAnimation{} }
+
+        Image {
+            width: parent.width * 0.6
+            fillMode: Image.PreserveAspectFit
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.topMargin: widgetStripe.border.top * 0.8
+            source: root.appInfo ? root.appInfo.icon : null
         }
     }
 
@@ -86,7 +123,12 @@ Item {
         id: busyIndicator
         running: true
         anchors.fill: parent
-        z: 1
+    }
+
+    Item {
+        id: windowSlot
+        anchors.fill: parent
+        clip: true
     }
 
     StateGroup {
@@ -111,7 +153,6 @@ Item {
         anchors.margins: 10
         width: Style.hspan(1)
         height: width
-        z: 3
         visible: root.buttonsVisible
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
@@ -134,7 +175,6 @@ Item {
         anchors.margins: 10
         width: Style.hspan(1)
         height: width
-        z: dragHandle.z + 1
         visible: root.buttonsVisible
 
         onClicked: root.closeClicked()

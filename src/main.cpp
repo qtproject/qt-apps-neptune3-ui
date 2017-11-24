@@ -100,6 +100,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         qmlRegisterUncreatableType<ApplicationInfo>("models.application", 1, 0, "ApplicationInfo", "You canot create ApplicationInfo instances from QML");
         qRegisterMetaType<ApplicationInfo*>();
+        qRegisterMetaType<const QObject*>();
         // ApplicatinoModel uses QtAppMan headers and QtAplicationManager is distributed as a static library.
         // So loading it from both the binary executable and from a plugin shared lib would cause two AppMan
         // instances to reside in memory.

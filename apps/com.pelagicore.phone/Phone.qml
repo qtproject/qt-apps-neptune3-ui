@@ -38,18 +38,11 @@ AppUIScreen {
 
     property string title: "Triton Phone"
 
-    // Temporary rect until the correct graphic is delivered
     Rectangle {
-        id: bg
-        color: "#F1EFED"
-        radius: 30
+        color: touchPoint1.pressed ? "red" : "blue"
         anchors.fill: parent
-    }
-
-    Rectangle {
-        color: touchPoint1.pressed ? "red" : "green"
-        anchors.fill: parent
-        anchors.margins: 30
+        anchors.leftMargin: Style.hspan(4)
+        anchors.rightMargin: Style.hspan(2)
         Label { text: root.title }
     }
 

@@ -57,8 +57,17 @@ class ApplicationModel : public QAbstractListModel
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QtAM::ApplicationManager* applicationManager READ applicationManager WRITE setApplicationManager NOTIFY applicationManagerChanged)
     Q_PROPERTY(QtAM::WindowManager* windowManager READ windowManager WRITE setWindowManager NOTIFY windowManagerChanged)
+
+    // Used to calculate Style.hspan() and Style.vspan() in client apps
+    // Theses values change at runtime as the system ui gets resized and rotated in the display
     Q_PROPERTY(qreal cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
     Q_PROPERTY(qreal cellHeight READ cellHeight WRITE setCellHeight NOTIFY cellHeightChanged)
+
+    // Used by client apps to calculate their window state (1-row widget, 2-rows widget, etc) given
+    // their requested window height
+    Q_PROPERTY(qreal homePageRowHeight READ homePageRowHeight WRITE setHomePageRowHeight
+                                       NOTIFY homePageRowHeightChanged )
+
     Q_PROPERTY(bool readyToStartApps READ readyToStartApps WRITE setReadyToStartApps NOTIFY readyToStartAppsChanged)
 public:
     ApplicationModel(QObject *parent = nullptr);
@@ -106,6 +115,9 @@ public:
     qreal cellHeight() const;
     void setCellHeight(qreal);
 
+    qreal homePageRowHeight() const;
+    void setHomePageRowHeight(qreal);
+
     bool readyToStartApps() const;
     void setReadyToStartApps(bool);
 
@@ -117,6 +129,7 @@ signals:
     void countChanged();
     void cellWidthChanged();
     void cellHeightChanged();
+    void homePageRowHeightChanged();
     void readyToStartAppsChanged();
 
 private slots:
@@ -128,6 +141,8 @@ private slots:
 
 private:
     void configureApps();
+    void updateWidgetHeightProperty(ApplicationInfo *appInfo);
+    void updateCurrentHeightProperty(ApplicationInfo *appInfo);
     void updateWindowStateProperty(ApplicationInfo *appInfo);
     void updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo);
     void startApplication(const QString &appId);
@@ -138,8 +153,10 @@ private:
     QtAM::WindowManager *m_windowManager{nullptr};
     ApplicationInfo *m_activeAppInfo{nullptr};
 
+    // values forwarded to all client app windows
     qreal m_cellWidth{0};
     qreal m_cellHeight{0};
+    qreal m_homePageRowHeight{0};
 
     bool m_readyToStartApps{false};
     QStringList m_appStartQueue;
