@@ -60,9 +60,6 @@ AppUIScreen {
         }
     }
 
-    // TODO: REMOVE THIS WHEN ITS FINAL. Temporary to show Johan how it looks since he is working with single process.
-    clip: true
-
     applicationIcon: "icon.png"
     stripeSource: musicAppContent.state === "Maximized" ? "" : Style.gfx2("widget-stripe")
 
