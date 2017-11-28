@@ -46,7 +46,7 @@ ColumnLayout {
     Label {
         id: songTitle
         Layout.preferredWidth: root.preferredWidth
-        wrapMode: Text.WrapAnywhere
+        wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignLeft
         color: Style.colorBlack
         font.pixelSize: Style.fontSizeM
@@ -55,10 +55,11 @@ ColumnLayout {
     Label {
         id: artistName
         Layout.preferredWidth: root.preferredWidth
-        wrapMode: Text.WrapAnywhere
+        wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignLeft
         color: "#999999"
         font.pixelSize: Style.fontSizeS
+        visible: text !== ""
     }
 }
 

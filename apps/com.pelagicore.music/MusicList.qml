@@ -47,6 +47,11 @@ Control {
     property string artistPath: ""
     property alias listView: listView
 
+    // Since contentType might have some unique id's when we browse a music by going
+    // from one level to another level, a content type slicing is needed to get the
+    // intended content type. This property helper will return the actual content type.
+    readonly property string actualContentType: root.contentType.slice(-5)
+
     clip: true
 
     signal itemClicked(var index, var item, var title)
@@ -78,9 +83,10 @@ Control {
                 height: Style.vspan(0.8)
                 anchors.left: parent !== null ? parent.left : undefined
                 anchors.leftMargin: Style.hspan(8)
+                baselineOffset: 0
                 text: qsTr("Next")
                 font.pixelSize: Style.fontSizeS
-                symbol: Style.symbol("ic-expand")
+                symbol: root.showList ? "" : Style.symbol("ic-expand")
                 onClicked: root.headerClicked()
             }
         }
@@ -92,6 +98,7 @@ Control {
                 height: Style.vspan(0.8)
                 anchors.left: parent !== null ? parent.left : undefined
                 anchors.leftMargin: Style.hspan(4.5)
+                baselineOffset: 0
                 text: qsTr("Browse")
                 font.pixelSize: Style.fontSizeS
                 symbol: Style.symbol("ic-expand")
@@ -198,12 +205,11 @@ Control {
                 Behavior on opacity { DefaultNumberAnimation { } }
 
                 highlighted: false
-                titleLabel: root.contentType.slice(-5) === "track" || root.showPath ? model.item.title : model.name
-                subtitleLabel: root.contentType.slice(-5) === "track" || root.showPath ? model.item.artist :
-                                                                                         (root.contentType.slice(-5) === "album" ? model.item.data.artist : "")
-                onClicked: {
-                    root.itemClicked(model.index, model.item, delegatedSong.titleLabel)
-                }
+                titleLabel: model.item.title && (root.actualContentType === "track" || root.showPath) ? model.item.title :
+                            (model.name ? model.name : "")
+                subtitleLabel: model.item.artist && (root.actualContentType === "track" || root.showPath) ? model.item.artist :
+                               (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
+                onClicked: root.itemClicked(model.index, model.item, delegatedSong.titleLabel)
             }
         }
 

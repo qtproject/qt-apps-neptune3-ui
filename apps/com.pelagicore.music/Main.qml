@@ -63,11 +63,11 @@ AppUIScreen {
 
             state: root.tritonState
             store: MusicStore { }
+            bottomWidgetHide: root.exposedRect.height === root.targetHeight
 
             onDragAreaClicked: {
                 multiPoint.count += 1;
                 root.setWindowProperty("activationCount", multiPoint.count);
-
             }
         }
     }

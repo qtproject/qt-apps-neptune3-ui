@@ -41,68 +41,37 @@ Store {
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
 
-    property MediaPlayer player: MediaPlayer { id: player }
-
     property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
         contentType: ""
         onContentTypeChanged: console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
         serviceObject: root.player.serviceObject
-
-        onCountChanged: {
-            // Trigger the delay when indexing is done.
-            if (count > 0) {
-                delay.start();
-            }
-        }
-    }
-
-    // HACK:: Without delay, it is too fast to fill the playlist. Further work needs
-    //        to be invested so this delay is not needed anymore.
-    property Timer delay: Timer {
-        property int count: 0
-        interval: 800
-        repeat: true
-        onTriggered: {
-            if (count < 4) {
-                root.musicPlaylist.insert(musicPlaylist.count, searchAndBrowseModel.get(count));
-                player.stop();
-                count += 1;
-            } else {
-                delay.stop();
-            }
-        }
     }
 
     property MediaIndexerControl indexerControl: MediaIndexerControl {
         onProgressChanged: {
-            if (progress > 0.2) {
+            if (progress > 0.2 && musicCount === 0) {
                 root.searchAndBrowseModel.contentType = "track";
+                for (var x = 0; x < 4; ++x) {
+                    player.playQueue.insert(0, searchAndBrowseModel.get(x));
+                }
             }
         }
     }
 
+    property MediaPlayer player: MediaPlayer { id: player }
+    property var currentEntry: player.currentTrack;
     property bool playing: player.playState === MediaPlayer.Playing
     property bool shuffleOn: player.playMode === MediaPlayer.Shuffle
     property bool repeatOn: player.playMode === MediaPlayer.RepeatTrack
-
-    property var currentEntry: player.currentTrack;
-    property int currentIndex: player.playQueue.currentIndex
-    onCurrentIndexChanged: {
-        player.playQueue.currentIndex = currentIndex
-    }
-
-    property string currentTime: Qt.formatTime(new Date(player.position), 'mm:ss')
-    property string durationTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
+    property string elapsedTime: Qt.formatTime(new Date(player.position), 'mm:ss')
+    property string totalTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
     property real currentTrackPosition : player.position / player.duration
 
     property Connections con: Connections {
         target: player.playQueue
-        onCurrentIndexChanged: {
-            player.playQueue.currentIndex = currentIndex
-        }
 
         onRowsInserted: {
-            console.log(Logging.apps, "Music Queue / Playlist Row Inserted: ", first)
+            console.log(Logging.apps, "Music Queue / Playlist Row Inserted: ", first);
             player.playQueue.currentIndex = first;
         }
     }
@@ -114,8 +83,8 @@ Store {
             name: "com.pelagicore.music.control"
         }
 
-        Binding { target: musicRemoteControl.object; property: "currentTime"; value: root.currentTime }
-        Binding { target: musicRemoteControl.object; property: "durationTime"; value: root.durationTime }
+        Binding { target: musicRemoteControl.object; property: "currentTime"; value: root.elapsedTime }
+        Binding { target: musicRemoteControl.object; property: "durationTime"; value: root.totalTime }
         Binding { target: musicRemoteControl.object; property: "playing"; value: root.playing }
 
         Connections {
@@ -130,7 +99,7 @@ Store {
             }
 
             onPrevious: {
-                if (root.currentIndex === 0) {
+                if (player.playQueue.currentIndex === 0) {
                     player.playQueue.currentIndex = root.musicCount - 1;
                 } else {
                     player.previous();
@@ -139,7 +108,7 @@ Store {
             }
 
             onNext: {
-                if (root.currentIndex === root.musicCount - 1) {
+                if (player.playQueue.currentIndex === root.musicCount - 1) {
                     player.playQueue.currentIndex = 0;
                 } else {
                     player.next();
@@ -167,7 +136,6 @@ Store {
         } else {
             player.previous();
         }
-        console.log(root.currentIndex, root.musicCount)
     }
 
     function nextSong() {
@@ -177,7 +145,6 @@ Store {
         } else {
             player.next();
         }
-        console.log(root.currentIndex, root.musicCount)
     }
 
     function updatePosition(value) {

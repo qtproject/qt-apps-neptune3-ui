@@ -46,6 +46,7 @@ Item {
     property alias albumArtRow: albumArtRow
     property alias controlsRow: controlsRow
     property bool showList: false
+    property bool bottomWidgetHide: false
 
     signal dragAreaClicked()
 
@@ -143,8 +144,11 @@ Item {
         }
         Behavior on y { DefaultNumberAnimation { } }
 
+        showPath: false
+        showBg: false
         showList: !musicLibrary.showList
-        listView.interactive: showList && (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
+        listView.interactive: showList && ((root.state === "Widget3Rows" && nowPlayingList.state !== "WidgetHideList")
+                                           || root.state === "Maximized")
         state: "WidgetHideList"
         states: [
             State {
@@ -152,14 +156,14 @@ Item {
                 PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(19); height: Style.vspan(6);
                                   anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
                 PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4);
-                                  y: nowPlayingList.initialY; listView.contentY: - Style.vspan(0.8) }
+                                  listView.contentY: - Style.vspan(0.8) }
             },
             State {
                 name: "WidgetShowList"
                 PropertyChanges { target: albumArtRow; scale: 0.7; width: Style.hspan(6.2); height: Style.vspan(3.5);
                                   anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(1.5) }
                 PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); listView.contentY: - Style.vspan(0.8);
-                                  y: Style.vspan(4.2); anchors.horizontalCenterOffset: 0 }
+                                  anchors.horizontalCenterOffset: 0 }
             }
 
         ]
@@ -179,7 +183,7 @@ Item {
         listView.model: root.store.musicPlaylist
 
         onItemClicked: {
-            root.store.currentIndex = index;
+            root.store.musicPlaylist.currentIndex = index;
             root.store.player.play();
         }
 
@@ -199,22 +203,23 @@ Item {
         id: musicLibrary
 
         width: parent.width
-        height: Style.vspan(15)
+        height: root.bottomWidgetHide ? Style.vspan(15) : Style.vspan(11)
+        Behavior on height { DefaultNumberAnimation { } }
         anchors.horizontalCenter: parent.horizontalCenter
-        showList: false
 
         y: musicLibrary.showList ? Style.vspan(5.4) : Style.vspan(15)
         Behavior on y { DefaultNumberAnimation { } }
 
+        showList: false
         showBg: true
         listView.interactive: showList
         listView.model: root.store.searchAndBrowseModel
         contentType: root.store.searchAndBrowseModel.contentType
         visible: root.state === "Maximized"
+        onVisibleChanged: musicLibrary.showList = false
+
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
-
-        onVisibleChanged: musicLibrary.showList = false
 
         onShowListChanged: {
             if (musicLibrary.showList) {
@@ -253,12 +258,12 @@ Item {
                 musicLibrary.albumPath = title;
                 root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
             } else {
-                root.store.musicPlaylist.insert(root.musicCount, root.store.searchAndBrowseModel.get(index));
+                root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
                 root.store.player.play();
             }
 
             if (root.state !== "Maximized") {
-                root.store.currentIndex = index;
+                root.store.musicPlaylist.currentIndex = index;
                 root.store.player.play();
             }
         }
@@ -312,10 +317,10 @@ Item {
         showShadow: root.store.musicCount > 0 && root.state === "Maximized"
         mediaReady: root.store.searchAndBrowseModel.count > 0
         songModel: root.store.musicPlaylist
-        currentIndex: root.store.currentIndex
-        currentSongTitle: root.store.currentEntry.title
-        currentArtisName: root.store.currentEntry.artist
-        currentProgressLabel: root.store.currentTime + " / " + root.store.durationTime
+        currentIndex: root.store.musicPlaylist.currentIndex
+        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : "Track unavailable"
+        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
+        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
 
         onPlayClicked: root.store.playSong()
         onPreviousClicked: root.store.previousSong()
@@ -339,7 +344,7 @@ Item {
         anchors.leftMargin: labelOnTop ? - Style.hspan(1) : Style.hspan(2.2)
         Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
         progressBarLabelLeftMargin: labelOnTop ? Style.hspan(1) : Style.hspan(0.6)
-        progressText: root.store.currentTime + " / " + root.store.durationTime
+        progressText: root.store.elapsedTime + " / " + root.store.totalTime
 
         progressBarWidth: {
             if (musicProgress.labelOnTop) {
@@ -352,7 +357,7 @@ Item {
 
         value: root.store.currentTrackPosition
         visible: nowPlayingList.state === "WidgetShowList" || root.state === "Maximized"
-        opacity: visible && nowPlayingList.listView.contentY < 0 ? 1.0 : 0.0
+        opacity: (visible && nowPlayingList.listView.contentY < 0) || root.state === "Maximized"? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
 
         onUpdatePosition: root.store.updatePosition(value)
@@ -366,8 +371,8 @@ Item {
         anchors.right: controlsRow.left
         anchors.leftMargin: Style.hspan(0.8)
         opacity: controlsRow.opacity
-        currentSongTitle: root.store.currentEntry.title
-        currentArtisName: root.store.currentEntry.artist
+        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : "Track unavailable"
+        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
     }
 
     MusicControls {
@@ -380,7 +385,7 @@ Item {
                  (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") ||
                  root.state === "Maximized"
         opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
 
         play: root.store.playing
 
@@ -407,9 +412,10 @@ Item {
         height: Style.vspan(0.2)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: albumArtRow.bottom
-        anchors.topMargin: Style.vspan(0.2)
+        anchors.topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(0.2)
         source: Style.gfx2("divider")
-        opacity: nowPlayingList.state === "WidgetShowList" && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
+        opacity: (nowPlayingList.state === "WidgetShowList" || root.state === "Maximized")
+                 && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
     }
 }

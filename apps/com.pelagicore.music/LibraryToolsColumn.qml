@@ -77,6 +77,7 @@ ColumnLayout {
         model: root.model
         Tool {
             anchors.horizontalCenter: parent.horizontalCenter
+            baselineOffset: 0
             symbol: Style.symbol(icon)
             text: qsTr(label)
             font.pixelSize: Style.fontSizeXS
