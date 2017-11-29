@@ -3,7 +3,7 @@ formatType: am-application
 ---
 id:      'com.pelagicore.maps'
 icon:    'icon.png'
-code:    'Maps.qml'
+code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Maps'

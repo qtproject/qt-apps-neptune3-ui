@@ -3,7 +3,7 @@ formatType: am-application
 ---
 id:      'com.pelagicore.phone'
 icon:    'icon.png'
-code:    'Phone.qml'
+code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Phone'

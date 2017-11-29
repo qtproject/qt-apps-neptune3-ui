@@ -31,30 +31,39 @@
 
 import QtQuick 2.8
 import utils 1.0
-import QtQuick.Controls 2.2
+import animations 1.0
 
-AppUIScreen {
+Item {
     id: root
 
-    property string title: "Triton Phone"
-
-    Rectangle {
-        color: touchPoint1.pressed ? "red" : "blue"
-        anchors.fill: parent
-        anchors.leftMargin: Style.hspan(4)
-        anchors.rightMargin: Style.hspan(2)
-        Label { text: root.title }
+    // TODO: These are just placeholders. Specs are not available yet.
+    Image {
+        anchors.centerIn: parent
+        source: "assets/phone-widget.png"
+        visible: root.state !== "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    Image {
+        id: ongoingCall
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(2)
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: "assets/phone-ongoing.png"
+        visible: root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+    }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+    Image {
+        anchors.top: ongoingCall.bottom
+        anchors.topMargin: Style.vspan(1)
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: "assets/phone-content.png"
+        visible: root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 }
 
