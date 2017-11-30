@@ -36,7 +36,6 @@
 #include <QtQuickControls2/private/qquickproxytheme_p.h>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(tritonTheme)
 
 class TritonTheme : public QQuickProxyTheme
 {

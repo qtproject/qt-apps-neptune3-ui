@@ -40,7 +40,6 @@ Q_LOGGING_CATEGORY(tritonTheme, "triton.theme")
 TritonTheme::TritonTheme(QPlatformTheme *theme)
 {
     Q_UNUSED(theme)
-    qCDebug(tritonTheme) << "constructor";
     const QFont font(QLatin1String("Open Sans"));
 
     if (QFontInfo(font).family() == QLatin1String("Open Sans")) {

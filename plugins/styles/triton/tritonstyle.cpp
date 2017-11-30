@@ -181,10 +181,7 @@ QColor toColor(const QByteArray& data, const QColor& defaultValue)
     QString value = QString::fromLocal8Bit(data);
     if (value.isEmpty())
         return defaultValue;
-    QColor color(value);
-    if (!color.isValid())
-        qWarning() << "Invalid color: " << value;
-    return color;
+    return QColor(value);
 }
 
 static QByteArray resolveSetting(const QSharedPointer<QSettings> &settings, const QString &name, const QByteArray &env=QByteArray())
@@ -194,8 +191,6 @@ static QByteArray resolveSetting(const QSharedPointer<QSettings> &settings, cons
         value = qgetenv(env);
     if (value.isNull() && !settings.isNull())
         value = settings->value(name).toByteArray();
-    if (value.isEmpty())
-        qWarning() << "TritonStyle settings value is empty: " << name;
     return value;
 }
 

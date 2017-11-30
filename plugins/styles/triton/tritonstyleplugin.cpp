@@ -40,33 +40,25 @@ Q_LOGGING_CATEGORY(tritonStyle, "triton.style")
 
 TritonStylePlugin::TritonStylePlugin(QObject *parent)
     : QQuickStylePlugin(parent)
-{
-    qCDebug(tritonStyle) << "constructor";
-}
+{ }
 
 void TritonStylePlugin::registerTypes(const char *uri)
 {
-    qCDebug(tritonStyle) << "registerTypes():" << uri;
-    // @uri com.pelagicore.styles.triton
     qmlRegisterUncreatableType<TritonStyle>(uri, 1, 0, "TritonStyle", "TritonStyle is an attached property");
 }
 
 void TritonStylePlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
-    qCDebug(tritonStyle) << "initializeEngine()";
     QQuickStylePlugin::initializeEngine(engine, uri);
 }
 
 QString TritonStylePlugin::name() const
 {
-    qCDebug(tritonStyle) << "name()";
     return QStringLiteral("triton");
 }
 
 QQuickProxyTheme *TritonStylePlugin::createTheme() const
 {
-    qCDebug(tritonStyle) << "createTheme()";
+    qCDebug(tritonStyle) << "Created a TritonTheme instance";
     return new TritonTheme;
 }
-
-
