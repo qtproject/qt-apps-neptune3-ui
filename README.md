@@ -7,13 +7,15 @@ Application Manager
 
 # Clone Repository
 
-The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first.
+The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first. Due to the SSL issues we need to use the HTTPS clone URL. To not enter every time the credentials you can use the git credential cache. The GitLab server uses a self-signed certification, so we need to override the ssl verification.
+
+Here are the commands:
 
     $ git lfs install
     $ GIT_SSL_NO_VERIFY=true git clone https://git-lfs.qt.io/Gerrit/triton-ui.git
     $ cd triton-ui
+    $ git config credential.helper cache
     $ git config http.sslverify false
-
 
 # Build and install triton-ui
 
