@@ -57,9 +57,6 @@
 #include <QtCore/QTranslator>
 #include <QtCore/QLibraryInfo>
 
-#ifdef TRITON_ENABLE_TOUCH_EMULATION
-#  include <MouseTouchAdaptor.h>
-#endif
 
 #ifdef QML_RUNTIME_TESTING
 class RenderStatistics
@@ -627,12 +624,6 @@ int main(int argc, char ** argv)
                     qxView->setContent(options.url, component, contentItem);
                 }
             }
-
-#ifdef TRITON_ENABLE_TOUCH_EMULATION
-            QScopedPointer<MouseTouchAdaptor> mouseTouchAdaptor;
-            if (QTouchDevice::devices().isEmpty())
-                mouseTouchAdaptor.reset(MouseTouchAdaptor::instance());
-#endif
 
             if (window) {
                 setWindowTitle(options.verbose, topLevel, window.data());

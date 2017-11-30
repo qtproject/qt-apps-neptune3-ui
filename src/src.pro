@@ -13,13 +13,6 @@ DEFINES *= TRITON_VERSION=\\\"$$VERSION\\\"
 SOURCES = main.cpp ApplicationInfo.cpp ApplicationModel.cpp
 HEADERS = ApplicationInfo.h ApplicationModel.h
 
-unix:!macos:system($$pkgConfigExecutable() --libs x11 xi xcb) {
-    PKGCONFIG *= xcb x11 xi
-    SOURCES += MouseTouchAdaptor.cpp
-    HEADERS += MouseTouchAdaptor.h
-    DEFINES += TRITON_ENABLE_TOUCH_EMULATION
-}
-
 DESTDIR = $$OUT_PWD/../
 
 DEFINES += "TRITON_ICONS_PATH=$$INSTALL_PREFIX/triton/imports/assets/icons"

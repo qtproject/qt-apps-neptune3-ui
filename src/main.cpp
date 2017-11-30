@@ -40,10 +40,6 @@
 
 #include <QDebug>
 
-#ifdef TRITON_ENABLE_TOUCH_EMULATION
-#  include "MouseTouchAdaptor.h"
-#endif
-
 #include "ApplicationInfo.h"
 #include "ApplicationModel.h"
 
@@ -84,12 +80,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
         Main a(argc, argv);
-
-#ifdef TRITON_ENABLE_TOUCH_EMULATION
-        QScopedPointer<MouseTouchAdaptor> mouseTouchAdaptor;
-        if (QTouchDevice::devices().isEmpty())
-            mouseTouchAdaptor.reset(MouseTouchAdaptor::instance());
-#endif
 
         QIcon::setThemeName("triton");
         {
