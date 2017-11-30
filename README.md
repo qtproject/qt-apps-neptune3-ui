@@ -1,13 +1,26 @@
 # Prerequisite
 
-Qt >= 5.9
+Qt 5.10
 QtIvi
-Unix system
+Unix system (e.g. Ubuntu 16.04)
 Application Manager
+
+# Clone Repository
+
+The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first.
+
+    $ git lfs install
+    $ git config --global http.sslverify false
+    $ git clone https://git-lfs.qt.io/Gerrit/triton-ui.git
+
 
 # Build and install triton-ui
 
-        $ qmake INSTALL_PREFIX=/path/to/install/folder && make && make install
+    $ qmake --version
+
+This should report a Qt 5.10 version
+
+    $ qmake INSTALL_PREFIX=/path/to/install/folder && make && make install
 
 This will install all qml files and plugins into the triton subfolder of '/path/to/install/folder'. If INSTALL_PREFIX is not defined, then this will build all triton-ui plugins and installs the complete triton-ui to /opt/triton folder.
 
@@ -19,17 +32,18 @@ The installation part is optional.
 
 Building Triton will make 'triton-ui' executable which will be then run:
 
-        $ triton-ui -r
+    $ triton-ui -r
 
 To get more detailed log output, run:
-        $ triton-ui -r --verbose
+
+    $ triton-ui -r --verbose
 
 
 # Run the UI without QtIVI
 
 In case QtIVI is not installed, 'dummyimports' folder contains QML dummy implementation of QtIVI:
 
-        $ QML2_IMPORT_PATH=/path/to/dummyimports triton-ui -r
+    $ QML2_IMPORT_PATH=/path/to/dummyimports triton-ui -r
 
 
 # Style Configuration
