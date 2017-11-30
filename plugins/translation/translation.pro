@@ -21,18 +21,23 @@ defineReplace(prependAll) {
 
 assetsPath = $$PWD/../../imports/assets
 qmlSysUiPath = $$PWD/../../sysui
+importsPath = $$PWD/../../imports
+appsPath = $$PWD/../../apps
 # See qml files to scan while running lupdate/lrelease
 lupdate_only {
     SOURCES += $$files($$shell_quote($$shell_path($${qmlSysUiPath}/))*.qml, true)
+    SOURCES += $$files($$shell_quote($$shell_path($${importsPath}/))*.qml, true)
+    SOURCES += $$files($$shell_quote($$shell_path($${appsPath}/))*.qml, true)
 }
 
 target.path = $$installPath
 
 supportedLocales = \
+    cs_CZ \
     de_DE \
     en_GB \
     en_US \
-    in_ID
+    # in_ID
 
 TRANSLATIONS = $$prependAll(supportedLocales, $$assetsPath/translations/, .ts)
 
@@ -45,7 +50,7 @@ QMAKE_EXTRA_TARGETS += ts
 qm.input = TRANSLATIONS
 qm.output = $$shadowed($$assetsPath/translations)/${QMAKE_FILE_BASE}.qm
 qm.variable_out = PRE_TARGETDEPS
-qm.commands = $${LRELEASE} -idbased ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
+qm.commands = $${LRELEASE} ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
 qm.name = LRELEASE ${QMAKE_FILE_IN}
 qm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += qm

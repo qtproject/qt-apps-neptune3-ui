@@ -8,5 +8,6 @@ runtime: 'qml'
 name:
   en: 'Phone'
   de: 'Phone'
+  cs: 'Telefon'
 
 categories: [ 'phone' ]

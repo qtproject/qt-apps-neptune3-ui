@@ -39,37 +39,37 @@ ColumnLayout {
     id: root
     spacing: 100
 
-    signal toolClicked(var contentType)
+    signal toolClicked(string contentType)
 
     property ListModel model: ListModel {
         ListElement {
             icon: "ic-favorites"
-            label: "favorites"
+            label: QT_TR_NOOP("favorites")
         }
 
         ListElement {
             icon: "ic-artists"
-            label: "artists"
+            label: QT_TR_NOOP("artists")
         }
 
         ListElement {
             icon: "ic-playlists"
-            label: "playlists"
+            label: QT_TR_NOOP("playlists")
         }
 
         ListElement {
             icon: "ic-albums"
-            label: "albums"
+            label: QT_TR_NOOP("albums")
         }
 
         ListElement {
             icon: "ic-folder-browse"
-            label: "folders"
+            label: QT_TR_NOOP("folders")
         }
 
         ListElement {
             icon: "ic-sources-bt"
-            label: "sources"
+            label: QT_TR_NOOP("sources")
         }
     }
 
@@ -78,7 +78,7 @@ ColumnLayout {
         Tool {
             anchors.horizontalCenter: parent.horizontalCenter
             symbol: Style.symbol(icon)
-            text: label
+            text: qsTr(label)
             font.pixelSize: Style.fontSizeXS
             symbolOnTop: true
             onClicked: root.toolClicked(label);

@@ -8,5 +8,6 @@ runtime: 'qml'
 name:
   en: 'Music'
   de: 'Musik'
+  cs: 'Hudba'
 
 categories: [ 'media' ]

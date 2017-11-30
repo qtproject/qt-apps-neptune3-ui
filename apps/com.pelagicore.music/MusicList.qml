@@ -78,7 +78,7 @@ Control {
                 height: Style.vspan(0.8)
                 anchors.left: parent !== null ? parent.left : undefined
                 anchors.leftMargin: Style.hspan(8)
-                text: "Next"
+                text: qsTr("Next")
                 font.pixelSize: Style.fontSizeS
                 symbol: Style.symbol("ic-expand")
                 onClicked: root.headerClicked()
@@ -92,7 +92,7 @@ Control {
                 height: Style.vspan(0.8)
                 anchors.left: parent !== null ? parent.left : undefined
                 anchors.leftMargin: Style.hspan(4.5)
-                text: "Browse"
+                text: qsTr("Browse")
                 font.pixelSize: Style.fontSizeS
                 symbol: Style.symbol("ic-expand")
                 onClicked: root.headerClicked()
@@ -115,9 +115,9 @@ Control {
                         anchors.top: parent.top
                         text: {
                             if (root.contentType.substring(0, 5) === "album") {
-                                return "Album";
+                                return qsTr("Album");
                             } else if (root.contentType.substring(0, 6) === "artist") {
-                                return "Artist";
+                                return qsTr("Artist");
                             } else {
                                 return ""
                             }
@@ -130,7 +130,7 @@ Control {
                         }
                         visible: text !== ""
                         onClicked: {
-                            if (category.text === "Artist") {
+                            if (category.text === qsTr("Artist")) {
                                 root.libraryGoBack(true)
                             } else {
                                 root.libraryGoBack(false)

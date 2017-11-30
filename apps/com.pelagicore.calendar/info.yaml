@@ -8,5 +8,6 @@ runtime: 'qml'
 name:
   en: 'Calendar'
   de: 'Kalender'
+  cs: 'Kalendář'
 
 categories: [ 'productivity' ]

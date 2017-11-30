@@ -127,7 +127,7 @@ Rectangle {
         anchors.margins: Style.hspan(1)
         Label {
             id: header
-            text: "Add widget"
+            text: qsTr("Add widget")
             horizontalAlignment: Text.AlignHCenter
             Layout.fillWidth: true
             Layout.preferredHeight: Style.vspan(1)

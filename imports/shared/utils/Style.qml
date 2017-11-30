@@ -33,7 +33,7 @@ pragma Singleton
 import QtQuick 2.6
 
 import com.pelagicore.styles.triton 1.0
-//import com.pelagicore.translation 1.0
+import com.pelagicore.translation 1.0
 
 QtObject {
     id: root
@@ -101,15 +101,14 @@ QtObject {
     property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
     property url fonts: Qt.resolvedUrl(root.assetPath + 'fonts/')
 
-//  Temporarily disabled. Enable this when needed.
-//    property alias languageLocale: translation.languageLocale
-//    property QtObject translation: Translation {
-//        id: translation
-//        Component.onCompleted: {
-//            setPath(root.assetPath + "translations/");
-//            languageLocale = "en_US";
-//        }
-//    }
+    property alias languageLocale: translation.languageLocale
+    property QtObject translation: Translation {
+        id: translation
+        Component.onCompleted: {
+            setPath(root.assetPath + "translations/");
+            languageLocale = Qt.locale().name
+        }
+    }
 
     function symbol(name, active) {
         return symbolUrl + (active ? '/active/' : '/') + name + '.png';

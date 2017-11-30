@@ -215,7 +215,7 @@ Item {
             color: "white"
         }
 
-        text: "Finish Editing"
+        text: qsTr("Finish Editing")
         onClicked: grid.editMode = false
     }
 }

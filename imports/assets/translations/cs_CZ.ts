@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="cs_CZ" sourcelanguage="en_US">
 <context>
     <name>AddWidgetPopup</name>
     <message>
         <location filename="../../../sysui/home/AddWidgetPopup.qml" line="130"/>
         <source>Add widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat widget</translation>
     </message>
 </context>
 <context>
@@ -22,7 +22,7 @@
     <message>
         <location filename="../../../sysui/launcher/EditableGridView.qml" line="218"/>
         <source>Finish Editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončit úpravy</translation>
     </message>
 </context>
 <context>
@@ -48,32 +48,32 @@
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="47"/>
         <source>favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>oblíbené</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="52"/>
         <source>artists</source>
-        <translation type="unfinished"></translation>
+        <translation>umělci</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="57"/>
         <source>playlists</source>
-        <translation type="unfinished"></translation>
+        <translation>seznamy</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="62"/>
         <source>albums</source>
-        <translation type="unfinished"></translation>
+        <translation>alba</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="67"/>
         <source>folders</source>
-        <translation type="unfinished"></translation>
+        <translation>složky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="72"/>
         <source>sources</source>
-        <translation type="unfinished"></translation>
+        <translation>zdroje</translation>
     </message>
 </context>
 <context>
@@ -81,23 +81,23 @@
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="81"/>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Další</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="95"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Procházet</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Album</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="120"/>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="133"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Umělec</translation>
     </message>
 </context>
 <context>
@@ -178,42 +178,42 @@
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="109"/>
         <source>Hill Descent Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="114"/>
         <source>Intelligent Speed Adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Inteligentní přizpůsobení rychlosti</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="119"/>
         <source>Automatic Beam Switching</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatické přepínání světel</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="124"/>
         <source>Collision Avoidance</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhnutí se kolizi</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="129"/>
         <source>Lane Assist</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistent jízdy v pruhu</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="134"/>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished"></translation>
+        <translation>Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="139"/>
         <source>Driver Drowsiness Alert</source>
-        <translation type="unfinished"></translation>
+        <translation>Upozornění na únavu řidiče</translation>
     </message>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="144"/>
         <source>Park Assist</source>
-        <translation type="unfinished"></translation>
+        <translation>Parkovací asistent</translation>
     </message>
 </context>
 <context>
@@ -256,7 +256,7 @@
     <message>
         <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
-        <translation type="unfinished"></translation>
+        <translation>Servis za 300 km</translation>
     </message>
 </context>
 </TS>

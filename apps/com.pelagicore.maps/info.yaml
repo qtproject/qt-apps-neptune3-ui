@@ -8,5 +8,6 @@ runtime: 'qml'
 name:
   en: 'Maps'
   de: 'Karten'
+  cs: 'Mapy'
 
 categories: [ 'navigation' ]

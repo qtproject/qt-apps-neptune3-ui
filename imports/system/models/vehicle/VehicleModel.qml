@@ -72,7 +72,7 @@ QtObject {
         property string dialBorderColor: Style.colorWhite
         property string rightDialIcon: Style.gfx("cluster/my_position")
         property string mainText: "0.6mi"
-        property string subText: "Service in 300km"
+        property string subText: qsTr("Service in 300km")
 
         Component.onCompleted: {
             ApplicationIPCManager.registerInterface(navigationControl, "com.pelagicore.navigation.control", {})
