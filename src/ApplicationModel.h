@@ -160,5 +160,7 @@ private:
 
     bool m_readyToStartApps{false};
     QStringList m_appStartQueue;
+
+    QString m_langCode; // language code for a given locale name, e.g. "cz_CZ" -> "cs"
 };
 

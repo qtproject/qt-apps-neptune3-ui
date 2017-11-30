@@ -48,6 +48,8 @@ using QtAM::Application;
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    const QString locale = QLocale::system().name();
+    m_langCode = locale.left(locale.indexOf(QLatin1Char('_')));
 }
 
 ApplicationModel::~ApplicationModel()
@@ -154,8 +156,11 @@ QVariant ApplicationModel::data(const QModelIndex &index, int role) const
         } else if (role == RoleAppId) {
             return QVariant::fromValue(application->id());
         } else if (role == RoleName) {
-            // FIXME: use locale
-            return QVariant::fromValue(application->name(QStringLiteral("en")));
+            const QString translatedName = application->name(m_langCode);
+            if (!translatedName.isEmpty()) { // the Add widget popup will discard empty entries otherwise
+                return translatedName;
+            }
+            return application->name(QStringLiteral("en"));
         }
     }
     return QVariant();
