@@ -37,6 +37,8 @@
 #include <QtAppManInstaller/sudo.h>
 #include <QGuiApplication>
 #include <QIcon>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #include <QDebug>
 
@@ -80,6 +82,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
         Main a(argc, argv);
+
+        // load the Qt translations
+        QTranslator qtTranslator;
+        if (qtTranslator.load(QLocale(), qSL("qt_"), QString(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+            a.installTranslator(&qtTranslator);
+        }
 
         QIcon::setThemeName("triton");
         {
