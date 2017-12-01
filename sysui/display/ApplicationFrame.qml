@@ -47,6 +47,10 @@ Item {
         target: root.appInfo; property: "currentHeight"; value: root.height
     }
 
+    Binding {
+        target: root.appInfo; property: "windowState"; value: "Maximized"
+    }
+
     QtObject {
         id: d
         property Item window: root.appInfo ? root.appInfo.window : null
