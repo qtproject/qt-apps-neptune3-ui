@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,29 +29,18 @@
 **
 ****************************************************************************/
 
+pragma Singleton
+
 import QtQuick 2.8
-import utils 1.0
 
-AppUIScreen {
-    id: root
-
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
-    }
-
-    Phone {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
-    }
+ListModel {
+//    template
+//    ListElement { peerHandle: ""; type: ""; duration: 0 }
+    ListElement { peerHandle: "aharvester"; type: "missed"; duration: 0 }
+    ListElement { peerHandle: "jsmith"; type: "incoming"; duration: 140 }
+    ListElement { peerHandle: "hcarter"; type: "incoming"; duration: 35 }
+    ListElement { peerHandle: "dalleson"; type: "outgoing"; duration: 345 }
+    ListElement { peerHandle: "cmcgilbert"; type: "incoming"; duration: 20 }
+    ListElement { peerHandle: "jbrown"; type: "missed"; duration: 0 }
+    ListElement { peerHandle: "ejackson"; type: "outgoing"; duration: 605 }
 }

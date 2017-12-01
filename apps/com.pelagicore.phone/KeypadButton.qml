@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -30,28 +30,60 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+
 import utils 1.0
+import animations 1.0
 
-AppUIScreen {
+Rectangle {
     id: root
+    width: Style.hspan(3)
+    height: Style.vspan(1.8)
+    radius: 50
+    color: "#ded9d7" // FIXME not in palette
 
-    MultiPointTouchArea {
-        id: multiPoint
+    property alias primaryText: primaryLabel.text
+    property alias secondaryText: secondaryLabel.text
+    property alias iconSource: img.source
+
+    signal clicked()
+
+    MouseArea {
+        id: mouseArea
+        enabled: root.enabled
         anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+        onReleased: root.clicked()
+    }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    ColumnLayout {
+        id: column
+        anchors.centerIn: parent
+        visible: root.primaryText
+
+        Label {
+            id: primaryLabel
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Style.fontSizeM
+            font.weight: Font.Light
+        }
+
+        Label {
+            id: secondaryLabel
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Style.fontSizeXS
+            visible: text
+            font.weight: Font.Light
         }
     }
 
-    Phone {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
+    Image {
+        id: img
+        anchors.centerIn: parent
+        visible: root.iconSource
     }
+
+    transformOrigin: Item.Top
+    scale: mouseArea.containsPress ? 0.95 : 1.0
+    Behavior on scale { DefaultSmoothedAnimation {} }
 }

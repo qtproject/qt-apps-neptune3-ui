@@ -30,40 +30,164 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+
 import utils 1.0
 import animations 1.0
+import controls 1.0
+
+import "models"
 
 Item {
     id: root
 
-    // TODO: These are just placeholders. Specs are not available yet.
-    Image {
-        anchors.centerIn: parent
-        source: "assets/phone-widget.png"
-        visible: root.state !== "Maximized"
-        opacity: visible ? 1.0 : 0.0
+    property bool ongoingCall
+
+    signal activateApp()
+
+    function startCall(handle) {
+        if (root.ongoingCall) { // end the current one first
+            endCall(callWidget.callerHandle);
+        }
+
+        callWidget.callerHandle = handle;
+        root.ongoingCall = true;
+    }
+
+    function endCall(handle) {
+        // insert an entry into the CallsModel
+        CallsModel.insert(0, {"peerHandle": handle, "type": "outgoing", "duration": callWidget.duration});
+
+        root.ongoingCall = false;
+        callWidget.callerHandle = "";
+    }
+
+    ListModel {
+        id: favoritesModel // faking a "filtered" model ;)
+
+        Component.onCompleted: {
+            for (var i = 0; i < ContactsModel.count; i++) {
+                var person = ContactsModel.get(i);
+                if (person.favorite) {
+                    favoritesModel.append(person);
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        anchors.left: parent.left
+        anchors.top: root.ongoingCall ? callWidget.bottom : favoritesWidget.bottom
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        color: "#ece7e4" // FIXME palette
+        visible: root.state == "Maximized"
+    }
+
+    FavoritesWidget {
+        id: favoritesWidget
+        anchors.fill: root.state !== "Maximized" ? parent : undefined
+        anchors.top: root.state == "Maximized" ? parent.top : undefined
+        anchors.left: root.state == "Maximized" ? parent.left : undefined
+        anchors.right: root.state == "Maximized" ? parent.right : undefined
+        anchors.leftMargin: Style.hspan(1.5)
+        anchors.rightMargin: Style.hspan(.9)
+        anchors.topMargin: root.state !== "Maximized" ? Style.vspan(.5) : 0
+        anchors.bottomMargin: Style.vspan(.5)
+        height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
+        state: root.state
+        ongoingCall: root.ongoingCall
+        model: favoritesModel
+        onCallRequested: startCall(handle)
+
+        opacity: !ongoingCall ? 1.0 : 0.0
+        visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { } }
     }
 
-    Image {
-        id: ongoingCall
-        anchors.top: parent.top
-        anchors.topMargin: Style.vspan(2)
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "assets/phone-ongoing.png"
-        visible: root.state === "Maximized"
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+    CallWidget {
+        id: callWidget
+        anchors.fill: root.state !== "Maximized" ? parent : undefined
+        anchors.top: root.state == "Maximized" ? parent.top : undefined
+        anchors.horizontalCenter: root.state == "Maximized" ? parent.horizontalCenter : undefined
+        anchors.leftMargin: Style.hspan(0.9)
+        anchors.rightMargin: Style.hspan(0.9)
+        height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
+
+        state: root.state
+        ongoingCall: root.ongoingCall
+
+        onCallEndRequested: endCall(handle)
+        onKeypadRequested: {
+            toolsColumn.currentTool = "keypad";
+            root.activateApp();
+        }
+
+        opacity: ongoingCall ? 1.0 : 0.0
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation {} }
     }
 
-    Image {
-        anchors.top: ongoingCall.bottom
+    Item {
+        id: app
+
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(1)
+        anchors.top: root.ongoingCall ? callWidget.bottom : favoritesWidget.bottom
         anchors.topMargin: Style.vspan(1)
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: "assets/phone-content.png"
-        visible: root.state === "Maximized"
-        opacity: visible ? 1.0 : 0.0
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.vspan(1)
+
+        opacity: root.state === "Maximized" ? 1.0 : 0.0
+        visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { } }
+
+        ToolsColumn {
+            id: toolsColumn
+            anchors.left: parent.left
+            anchors.top: parent.top
+        }
+
+        Loader {
+            id: viewLoader
+            anchors.left: toolsColumn.right
+            anchors.leftMargin: Style.hspan(1)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(1)
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+
+            Binding {
+                target: viewLoader.item; property: "model";
+                value: ContactsModel; when: toolsColumn.currentTool == "contacts"
+            }
+
+            Binding {
+                target: viewLoader.item; property: "model";
+                value: favoritesModel; when: toolsColumn.currentTool == "favorites"
+            }
+
+            Connections {
+                target: viewLoader.item
+                onCallRequested: startCall(handle)
+                ignoreUnknownSignals: true
+            }
+
+            source: {
+                switch (toolsColumn.currentTool) {
+                    case "recents":
+                        return "RecentCallsView.qml";
+                    case "favorites":
+                    case "contacts":
+                        return "ContactsView.qml";
+                    case "keypad":
+                        return "KeypadView.qml";
+                    default: return "";
+                }
+            }
+        }
     }
 }
-

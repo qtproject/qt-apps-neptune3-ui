@@ -1,0 +1,153 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 Pelagicore AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Triton IVI UI.
+**
+** $QT_BEGIN_LICENSE:GPL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3 or (at your option) any later version
+** approved by the KDE Free Qt Foundation. The licenses are as published by
+** the Free Software Foundation and appearing in the file LICENSE.GPL3
+** included in the packaging of this file. Please review the following
+** information to ensure the GNU General Public License requirements will
+** be met: https://www.gnu.org/licenses/gpl-3.0.html.
+**
+** $QT_END_LICENSE$
+**
+** SPDX-License-Identifier: GPL-3.0
+**
+****************************************************************************/
+
+import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+
+import utils 1.0
+import animations 1.0
+import controls 1.0
+
+Item {
+    Component.onCompleted: textedit.forceActiveFocus()
+
+    opacity: visible ? 1 : 0
+    Behavior on opacity { DefaultNumberAnimation { } }
+
+    TextEdit {
+        id: textedit
+        anchors.left: gridlayout.left
+        anchors.right: gridlayout.right
+        anchors.top: parent.top
+
+        readOnly: true
+        inputMethodHints: Qt.ImhDialableCharactersOnly
+        font.pixelSize: Style.fontSizeL
+        wrapMode: TextEdit.Wrap
+
+        Keys.onEscapePressed: clear()
+    }
+
+    Tool {
+        anchors.left: textedit.right
+        anchors.leftMargin: Style.hspan(1)
+        anchors.verticalCenter: textedit.verticalCenter
+        symbol: Style.symbol("ic-erase")
+        onClicked: textedit.clear()
+
+        opacity: textedit.text ? 1.0 : 0.0
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+    }
+
+    GridLayout {
+        id: gridlayout
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(2)
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(4)
+        anchors.top: textedit.bottom
+        anchors.topMargin: Style.vspan(.5)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.vspan(.5)
+
+        columns: 3
+        columnSpacing: Style.hspan(.5)
+        rowSpacing: Style.vspan(.5)
+        KeypadButton {
+            primaryText: "1"
+            secondaryText: " " // to keep the "1" above
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "2"
+            secondaryText: "ABC"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "3"
+            secondaryText: "DEF"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "4"
+            secondaryText: "GHI"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "5"
+            secondaryText: "JKL"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "6"
+            secondaryText: "MNO"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "7"
+            secondaryText: "PQRS"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "8"
+            secondaryText: "TUV"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "9"
+            secondaryText: "WXYZ"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "*"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "0"
+            secondaryText: "+"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            primaryText: "#"
+            onClicked: textedit.text += primaryText
+        }
+        KeypadButton {
+            Layout.row: 4
+            Layout.column: 1
+            enabled: textedit.text
+            color: enabled ? "#68C97D" : Qt.darker("#68C97D", 1.2)// app specific color
+            Behavior on color { ColorAnimation {} }
+            iconSource: Style.symbol("ic-call")
+        }
+    }
+}

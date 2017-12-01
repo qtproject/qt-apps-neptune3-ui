@@ -30,28 +30,62 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
+
 import utils 1.0
+import controls 1.0
 
-AppUIScreen {
+ColumnLayout {
     id: root
+    spacing: Style.vspan(1.5)
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    property string currentTool: "recents"
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    property ListModel model: ListModel {
+        ListElement {
+            icon: "ic-recents_"
+            label: QT_TR_NOOP("recents")
+        }
+        ListElement {
+            icon: "ic-favorites_"
+            label: QT_TR_NOOP("favorites")
+        }
+        ListElement {
+            icon: "ic-voicemail_"
+            label: QT_TR_NOOP("voicemail")
+        }
+        ListElement {
+            icon: "ic-keypad_"
+            label: QT_TR_NOOP("keypad")
+        }
+        ListElement {
+            icon: "ic-contacts_"
+            label: QT_TR_NOOP("contacts")
+        }
+        ListElement {
+            icon: "ic-messages_"
+            label: QT_TR_NOOP("messages")
         }
     }
 
-    Phone {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
+    ButtonGroup { id: radioGroup }
+
+    Repeater {
+        model: root.model
+        Tool {
+            anchors.horizontalCenter: parent.horizontalCenter
+            baselineOffset: 0
+            checkable: true
+            checked: currentTool === label
+            symbol: icon ? Style.symbol(radioGroup.checkedButton === this ? icon + "ON" : icon + "OFF") : ""
+            text: qsTr(label)
+            font.pixelSize: Style.fontSizeXS
+            symbolOnTop: true
+            onClicked: {
+                root.currentTool = label;
+            }
+            ButtonGroup.group: radioGroup
+        }
     }
 }

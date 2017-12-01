@@ -1,0 +1,2 @@
+singleton ContactsModel ContactsModel.qml
+singleton CallsModel CallsModel.qml

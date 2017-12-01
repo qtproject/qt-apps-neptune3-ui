@@ -49,6 +49,18 @@
     </message>
 </context>
 <context>
+    <name>FavoritesWidget</name>
+    <message>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FrameBoard</name>
     <message>
         <source>E-mail</source>
@@ -249,6 +261,33 @@
     </message>
     <message>
         <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ToolsColumn</name>
+    <message>
+        <source>recents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>voicemail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keypad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

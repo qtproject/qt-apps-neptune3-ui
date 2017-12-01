@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -30,28 +30,36 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 
-AppUIScreen {
+Item {
     id: root
+    implicitWidth: img.width
+    implicitHeight: img.height
 
-    MultiPointTouchArea {
-        id: multiPoint
+    property alias source: img.source
+
+    signal clicked()
+
+    Rectangle {
+        id: mask
         anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+        radius: width/2
+        visible: false
+    }
+    Image {
+        id: img
+        anchors.fill: mask
+        fillMode: Image.PreserveAspectCrop
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: mask
         }
     }
 
-    Phone {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
+    MouseArea {
+        anchors.fill: parent
+        onClicked: root.clicked()
     }
 }

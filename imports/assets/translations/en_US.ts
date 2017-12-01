@@ -57,6 +57,21 @@
     </message>
 </context>
 <context>
+    <name>FavoritesWidget</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="52"/>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="99"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="166"/>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FrameBoard</name>
     <message>
         <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="48"/>
@@ -302,6 +317,39 @@
     <message>
         <location filename="../../../apps/com.pelagicore.sheets/boards/ToolButtonBoard.qml" line="66"/>
         <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="48"/>
+        <source>recents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="52"/>
+        <source>favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="56"/>
+        <source>voicemail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="60"/>
+        <source>keypad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="64"/>
+        <source>contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="68"/>
+        <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
