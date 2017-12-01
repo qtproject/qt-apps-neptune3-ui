@@ -31,41 +31,77 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.0
+import controls 1.0
 import utils 1.0
-import models.climate 1.0
-import models.startup 1.0
+import triton.controls 1.0
 
-Control {
+import QtQuick.Layouts 1.3
+
+Item {
     id: root
 
-    width: Style.screenWidth
-    height: Style.vspan(2.5)
+    property Item popupParent
+    property var model
 
-    Item {
-        id: climateBarContent
-        height: Style.climateCollapsedVspan
-        width: Style.hspan(15)
-        anchors.centerIn: parent
+    property real lateralMargin: Style.hspan(0.6)
+    property real toolWidth: Style.hspan(2)
 
-        TemperatureLevel {
-            id: tempLevelCenter
-            value: ClimateModel.calculateUnitValue(ClimateModel.leftSeat.value)
-            anchors.centerIn: parent
-        }
-
-// BHS: TODO: Check with the designer about the use-case when we have two / more climate zone
-//        TemperatureLevel {
-//            id: tempLevelRight
-//            horizontalAlignment: Qt.AlignRight
-//            value: ClimateModel.calculateUnitValue(ClimateModel.rightSeat.value)
-//            anchors.right: parent.right
-//            anchors.verticalCenter: parent.verticalCenter
-//            onClicked: SystemModel.climateExpanded = !SystemModel.climateExpanded
-//        }
+    Tool {
+        id: leftIcon
+        width: root.toolWidth
+        height: width
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: root.lateralMargin
+        symbol: Style.symbol("volume-status-3")
     }
 
-    Component.onCompleted: {
-        StartupTimer.checkpoint("Climate bar created!");
-        StartupTimer.createReport();
+    MouseArea {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: leftIcon.right
+        anchors.right: rightIcon.left
+        onClicked: popup.open()
+    }
+
+    RowLayout {
+        id: tempsRow
+        anchors.centerIn: parent
+
+        width: (Style.vspan(2)*2) + spacing
+        height: Style.vspan(1)
+        spacing: Style.vspan(0.2)
+
+        Label {
+            id: leftTempLabel
+            Layout.preferredWidth: Style.vspan(2)
+            Layout.fillHeight: true
+            text: root.model ? root.model.leftSeat.valueString : ""
+            horizontalAlignment: Text.AlignHCenter
+        }
+        Label {
+            id: rightTempLabel
+            Layout.preferredWidth: Style.vspan(2)
+            Layout.fillHeight: true
+            text: root.model ? root.model.rightSeat.valueString : ""
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
+    Tool {
+        id: rightIcon
+        width: root.toolWidth
+        height: width
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: parent.right
+        anchors.rightMargin: root.lateralMargin
+        symbol: Style.symbol("qt-badge")
+    }
+
+    ClimatePopup {
+        id: popup
+        parent: root.popupParent
+        originItem: root
+        model: root.model
     }
 }

@@ -29,15 +29,12 @@
 **
 ****************************************************************************/
 
-pragma Singleton
 import QtQuick 2.0
 import QtIvi.VehicleFunctions 1.0
 import models.settings 1.0
 
 QtObject {
     id: root
-
-    property string weatherIcon: "topbar_icon_rain"
 
     property ClimateControl climateControl: ClimateControl {
         discoveryMode: ClimateControl.AutoDiscovery
@@ -48,6 +45,8 @@ QtObject {
         readonly property real maxValue: 28
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontLeft.targetTemperature
+        readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)
+                    + root.tempSuffix
 
         readonly property bool heat: climateControl.zoneAt.FrontLeft.seatHeater > 0
 
@@ -70,6 +69,8 @@ QtObject {
         readonly property real maxValue: 28
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontRight.targetTemperature
+        readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)
+                    + root.tempSuffix
 
         readonly property bool heat: climateControl.zoneAt.FrontRight.seatHeater > 0
 
@@ -147,7 +148,10 @@ QtObject {
                                                                      : calculateUnitValue(15)
     property string outsideTempText: qsTr("%1" + tempSuffix).arg(outsideTemp)
     property int ventilation: climateControl.fanSpeedLevel
-    readonly property string tempSuffix: SettingsModel.metric ? "°C" : "°F"
+
+    // Not showing the measurement unit is the fashionable thing to do
+    readonly property string tempSuffix: "°" // SettingsModel.measurementSystem === Locale.MetricSystem ? "°C" : "°F"
+
     property int ventilationLevels: 7 // 6 + off (0)
 
     function setVentilation(newVentilation) {
@@ -170,6 +174,6 @@ QtObject {
 
     function calculateUnitValue(value) {
         // Default value is the celsius
-        return SettingsModel.metric ? value : Math.round(value * 1.8 + 32)
+        return SettingsModel.measurementSystem === Locale.MetricSystem ? value : Math.round(value * 1.8 + 32)
     }
 }

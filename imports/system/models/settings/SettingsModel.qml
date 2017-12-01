@@ -35,10 +35,10 @@ import QtQuick 2.6
 QtObject {
     id: root
 
+    property int measurementSystem: Qt.locale().measurementSystem
+
     property bool settingsPageVisible: false
     property bool clusterVisible: true
-    property string unitSystem: "metric"  // "metric" or "imp_us"
-    readonly property bool metric: unitSystem === "metric"
 
     readonly property ListModel profiles: ListModel {
         ListElement { name: QT_TR_NOOP("Driver 1") }

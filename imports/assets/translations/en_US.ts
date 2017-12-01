@@ -4,7 +4,7 @@
 <context>
     <name>AddWidgetPopup</name>
     <message>
-        <location filename="../../../sysui/home/AddWidgetPopup.qml" line="130"/>
+        <location filename="../../../sysui/home/AddWidgetPopup.qml" line="52"/>
         <source>Add widget</source>
         <translation type="unfinished"></translation>
     </message>
@@ -14,6 +14,37 @@
     <message>
         <location filename="../../../apps/com.pelagicore.sheets/boards/ButtonBoard.qml" line="107"/>
         <source>Button</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClimateButtonsGrid</name>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="41"/>
+        <source>Front defrost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="46"/>
+        <source>Rear defrost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="51"/>
+        <source>Driver seat heat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="56"/>
+        <source>Passenger seat heat</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClimatePopup</name>
+    <message>
+        <location filename="../../../sysui/climate/ClimatePopup.qml" line="106"/>
+        <source>AUTO</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -79,23 +110,23 @@
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="95"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="102"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="120"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="133"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="127"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="140"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -226,6 +257,21 @@
     <message>
         <location filename="../../../apps/com.pelagicore.sheets/boards/SwitchBoard.qml" line="57"/>
         <source>Switch 2 - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemperatureSlider</name>
+    <message>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="133"/>
+        <source>MAX</source>
+        <extracomment>Maximum value in a slider control</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="143"/>
+        <source>MIN</source>
+        <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -40,6 +40,7 @@ import utils 1.0
 import animations 1.0
 
 import models.application 1.0
+import models.climate 1.0
 import models.system 1.0
 import models.startup 1.0
 
@@ -59,6 +60,10 @@ Image {
         cellWidth: Style.cellWidth
         cellHeight: Style.cellHeight
         homePageRowHeight: homePageLoader.homePageRowHeight
+    }
+
+    ClimateModel {
+        id: climateModel
     }
 
     // Give some time for sysui to load itself before launching apps. Besides, starting the apps
@@ -205,11 +210,13 @@ Image {
 
     StageLoader {
         id: climateLoader
-        width: Style.screenWidth
-        height: Style.vspan(1.4)
+        width: root.width
+        height: Style.vspan(1.5)
         anchors.bottom: parent.bottom
         active: StagedStartupModel.loadDisplay
         source: "../climate/ClimateBar.qml"
+        Binding { target: climateLoader.item; property: "popupParent"; value: popupParent }
+        Binding { target: climateLoader.item; property: "model"; value: climateModel }
     }
 
 // TODO: Update below components according to the newest spec of Triton-UI when available

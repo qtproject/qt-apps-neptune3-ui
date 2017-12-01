@@ -16,6 +16,32 @@
     </message>
 </context>
 <context>
+    <name>ClimateButtonsGrid</name>
+    <message>
+        <source>Front defrost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rear defrost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Driver seat heat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passenger seat heat</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ClimatePopup</name>
+    <message>
+        <source>AUTO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>
@@ -185,6 +211,19 @@
     </message>
     <message>
         <source>Switch 2 - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemperatureSlider</name>
+    <message>
+        <source>MAX</source>
+        <extracomment>Maximum value in a slider control</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MIN</source>
+        <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
