@@ -132,11 +132,11 @@ QtObject {
     }
 
     function hspan(value) {
-        return cellWidth * value
+        return Math.round(cellWidth * value)
     }
 
     function vspan(value) {
-        return cellHeight * value
+        return Math.round(cellHeight * value)
     }
 
     function asset(name) {
