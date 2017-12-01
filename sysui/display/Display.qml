@@ -48,6 +48,8 @@ import QtGraphicalEffects 1.0
 Image {
     id: root
 
+    property Item popupParent
+
     source: Style.gfx2(Style.displayBackground)
 
     ApplicationModel {

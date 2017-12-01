@@ -94,6 +94,8 @@ Window {
                 }
             }
         }
+
+        popupParent: popupParent
     }
 
     // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
