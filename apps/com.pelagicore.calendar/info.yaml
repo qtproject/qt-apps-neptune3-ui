@@ -3,7 +3,7 @@ formatType: am-application
 ---
 id:      'com.pelagicore.calendar'
 icon:    'icon.png'
-code:    'Calendar.qml'
+code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Calendar'

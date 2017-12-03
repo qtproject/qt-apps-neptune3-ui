@@ -30,20 +30,28 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import animations 1.0
 import utils 1.0
 
-Item {
+AppUIScreen {
     id: root
 
-    // TODO: These are just placeholders. Specs are not available yet.
-    Image {
-        anchors.centerIn: parent
-        anchors.horizontalCenterOffset: - Style.hspan(1)
-        source: "assets/today-widget.png"
-        visible: root.state !== "Maximized"
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+    MultiPointTouchArea {
+        id: multiPoint
+        anchors.fill: parent
+        anchors.margins: 30
+        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+
+        property int count: 0
+        onReleased: {
+            count += 1;
+            root.setWindowProperty("activationCount", count);
+        }
+    }
+
+    Calendar {
+        height: root.currentHeight
+        width: root.width
+        state: root.tritonState
     }
 }
 
