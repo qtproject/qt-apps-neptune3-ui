@@ -444,8 +444,7 @@ Item {
                         }
 
                         widgetState: {
-                            var rowHeight = Math.round(repeaterDelegate.height  / root.rowHeight);
-                            switch (rowHeight) {
+                            switch (Math.round(parent.height / (root.rowHeight - root.resizerHandleHeight))) {
                                 case 0:
                                 case 1:
                                     return "Widget1Row";
