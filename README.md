@@ -10,8 +10,9 @@ Application Manager
 The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first.
 
     $ git lfs install
-    $ git config --global http.sslverify false
-    $ git clone https://git-lfs.qt.io/Gerrit/triton-ui.git
+    $ GIT_SSL_NO_VERIFY=true git clone https://git-lfs.qt.io/Gerrit/triton-ui.git
+    $ cd triton-ui
+    $ git config http.sslverify false
 
 
 # Build and install triton-ui
