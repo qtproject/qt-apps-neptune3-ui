@@ -59,4 +59,4 @@ The following resolutions are available:
 
 To set the UI for wanted (other than default one) resolution, set the 'QT_QUICK_CONTROLS_CONF' to the location of QtQuickControls 2 configuration file. Configuration files are within 'styles' folder (https://doc.qt.io/qt-5/qtquickcontrols2-environment.html).
 
-NOTE: You need to have Source Sans Pro font installed (see assets folder within the modules)
+NOTE: You need to have Open Sans font installed (see assets folder within the modules)
