@@ -48,8 +48,8 @@ QtObject {
 
     property int screenWidth: TritonStyle.windowWidth
     property int screenHeight: TritonStyle.windowHeight
-    property int clusterWidth: 1920
-    property int clusterHeight: 720
+    property int instrumentClusterWidth: 1920
+    property int instrumentClusterHeight: 1080
     property int displayHMargin: 11
     property int displayVMargin: 0
     property int cellWidth

@@ -78,27 +78,33 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
     for (int i = 0; i < appMan->count(); ++i) {
         const QtAM::Application *application = appMan->application(i);
         ApplicationInfo *appInfo = new ApplicationInfo(application);
-        connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
-            if (m_appMan) {
-                m_appMan->startApplication(appInfo->id());
-            }
-        });
-        connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
-            updateWidgetHeightProperty(appInfo);
-        });
-        connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
-            updateCurrentHeightProperty(appInfo);
-        });
-        connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
-            updateWindowStateProperty(appInfo);
-        });
-        connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
-            updateExposedRectBottomMarginProperty(appInfo);
-        });
-        connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
-            onAsWidgetChanged(appInfo);
-        });
-        m_appInfoList.append(appInfo);
+
+        if (isInstrumentClusterApp(application)) {
+            setInstrumentClusterAppInfo(appInfo);
+            startApplication(m_instrumentClusterApp->id());
+        } else {
+            connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
+                if (m_appMan) {
+                    m_appMan->startApplication(appInfo->id());
+                }
+            });
+            connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
+                updateWidgetHeightProperty(appInfo);
+            });
+            connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
+                updateCurrentHeightProperty(appInfo);
+            });
+            connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
+                updateWindowStateProperty(appInfo);
+            });
+            connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
+                updateExposedRectBottomMarginProperty(appInfo);
+            });
+            connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
+                onAsWidgetChanged(appInfo);
+            });
+            m_appInfoList.append(appInfo);
+        }
     }
 
     // TODO: Load the widget configuration from some database or file
@@ -173,15 +179,27 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
     QString appID = windowManager->get(index)["applicationId"].toString();
     ApplicationInfo *appInfo = application(appID);
 
+    bool isRegularApp = appInfo != nullptr;
+
+    if (!appInfo) {
+        // must be the instrument cluster, which is set apart
+        Q_ASSERT(m_instrumentClusterApp && m_instrumentClusterApp->id() == appID);
+        appInfo = m_instrumentClusterApp;
+    }
+
+    if (isRegularApp) {
+        windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
+        windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+        windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
+        windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
+    }
     windowManager->setWindowProperty(window, QStringLiteral("cellWidth"), QVariant(m_cellWidth));
     windowManager->setWindowProperty(window, QStringLiteral("cellHeight"), QVariant(m_cellHeight));
-    windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
-    windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
-    windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
-    windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
 
     appInfo->setWindow(window);
-    appInfo->setCanBeActive(true);
+    if (isRegularApp) {
+        appInfo->setCanBeActive(true);
+    }
 }
 
 void ApplicationModel::onWindowLost(int index, QQuickItem *window)
@@ -190,6 +208,11 @@ void ApplicationModel::onWindowLost(int index, QQuickItem *window)
     QString appID = windowManager->get(index)["applicationId"].toString();
 
     ApplicationInfo *appInfo = application(appID);
+    if (!appInfo) {
+        // must be the instrument cluster, which is set apart
+        Q_ASSERT(m_instrumentClusterApp && m_instrumentClusterApp->id() == appID);
+        appInfo = m_instrumentClusterApp;
+    }
 
     if (appInfo->window() == window) {
         appInfo->setWindow(nullptr);
@@ -231,7 +254,7 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
         return;
 
     auto *appInfo = application(appId);
-    if (!appInfo->canBeActive())
+    if (!appInfo || !appInfo->canBeActive())
         return;
 
     appInfo->setActive(true);
@@ -406,4 +429,17 @@ void ApplicationModel::setReadyToStartApps(bool value)
     }
 
     emit readyToStartAppsChanged();
+}
+
+bool ApplicationModel::isInstrumentClusterApp(const QtAM::Application *app)
+{
+    return app->categories().contains("cluster");
+}
+
+void ApplicationModel::setInstrumentClusterAppInfo(ApplicationInfo *appInfo)
+{
+    if (appInfo != m_instrumentClusterApp) {
+        m_instrumentClusterApp = appInfo;
+        emit instrumentClusterAppInfoChanged();
+    }
 }

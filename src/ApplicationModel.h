@@ -58,6 +58,8 @@ class ApplicationModel : public QAbstractListModel
     Q_PROPERTY(QtAM::ApplicationManager* applicationManager READ applicationManager WRITE setApplicationManager NOTIFY applicationManagerChanged)
     Q_PROPERTY(QtAM::WindowManager* windowManager READ windowManager WRITE setWindowManager NOTIFY windowManagerChanged)
 
+    Q_PROPERTY(ApplicationInfo* instrumentClusterAppInfo READ instrumentClusterAppInfo NOTIFY instrumentClusterAppInfoChanged)
+
     // Used to calculate Style.hspan() and Style.vspan() in client apps
     // Theses values change at runtime as the system ui gets resized and rotated in the display
     Q_PROPERTY(qreal cellWidth READ cellWidth WRITE setCellWidth NOTIFY cellWidthChanged)
@@ -105,6 +107,8 @@ public:
     QtAM::WindowManager *windowManager() const { return m_windowManager; }
     void setWindowManager(QtAM::WindowManager *);
 
+    ApplicationInfo* instrumentClusterAppInfo() const { return m_instrumentClusterApp; }
+
     int count() const { return m_appInfoList.count(); }
 
     ApplicationInfo* activeAppInfo() { return m_activeAppInfo; }
@@ -131,6 +135,7 @@ signals:
     void cellHeightChanged();
     void homePageRowHeightChanged();
     void readyToStartAppsChanged();
+    void instrumentClusterAppInfoChanged();
 
 private slots:
     void onWindowReady(int index, QQuickItem *window);
@@ -146,12 +151,15 @@ private:
     void updateWindowStateProperty(ApplicationInfo *appInfo);
     void updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo);
     void startApplication(const QString &appId);
+    static bool isInstrumentClusterApp(const QtAM::Application *app);
+    void setInstrumentClusterAppInfo(ApplicationInfo*);
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;
     QtAM::ApplicationManager *m_appMan{nullptr};
     QtAM::WindowManager *m_windowManager{nullptr};
     ApplicationInfo *m_activeAppInfo{nullptr};
+    ApplicationInfo *m_instrumentClusterApp{nullptr};
 
     // values forwarded to all client app windows
     qreal m_cellWidth{0};

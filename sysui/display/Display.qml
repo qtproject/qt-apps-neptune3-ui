@@ -53,7 +53,7 @@ Image {
 
     source: Style.gfx2(Style.displayBackground)
 
-    ApplicationModel {
+    property var applicationModel: ApplicationModel {
         id: applicationModel
         applicationManager: ApplicationManager
         windowManager: WindowManager

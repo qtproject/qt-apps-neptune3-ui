@@ -37,7 +37,7 @@ import animations 1.0
 import display 1.0
 import utils 1.0
 
-import QtQuick.Window 2.2
+import QtQuick.Window 2.3
 
 import QtApplicationManager 1.0
 
@@ -46,6 +46,8 @@ Window {
 
     width: Style.screenWidth
     height: Style.screenHeight
+
+    title: "Triton UI - Center Console"
 
     readonly property bool isLandscape: width > height
     readonly property real smallerDimension: isLandscape ? height : width
@@ -146,5 +148,34 @@ Window {
             // default to portrait
             return Qt.PortraitOrientation;
         }
+    }
+
+    Window {
+        id: instrumentClusterWindow
+        width: Style.instrumentClusterWidth
+        height: Style.instrumentClusterHeight
+        title: "Triton UI - Instrument Cluster"
+
+        Component.onCompleted: {
+            WindowManager.registerCompositorView(instrumentClusterWindow)
+        }
+
+        property var window: display.applicationModel.instrumentClusterAppInfo
+                ? display.applicationModel.instrumentClusterAppInfo.window : null
+
+        Binding {
+            target: instrumentClusterWindow.window; property: "width"; value: instrumentClusterWindow.width
+        }
+        Binding {
+            target: instrumentClusterWindow.window; property: "height"; value: instrumentClusterWindow.height
+        }
+        Binding {
+            target: instrumentClusterWindow.window; property: "parent"; value: instrumentClusterWindow.contentItem
+        }
+
+        // lazy way of putting the instrument cluster in a separate screen, if available
+        screen: Qt.application.screens[Qt.application.screens.length - 1]
+
+        visible: window != null
     }
 }
