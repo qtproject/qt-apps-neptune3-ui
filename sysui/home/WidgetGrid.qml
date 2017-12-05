@@ -444,7 +444,7 @@ Item {
                         }
 
                         widgetState: {
-                            switch (Math.round(parent.height / (root.rowHeight - root.resizerHandleHeight))) {
+                            switch (Math.round(height / (root.rowHeight - root.resizerHandleHeight))) {
                                 case 0:
                                 case 1:
                                     return "Widget1Row";
