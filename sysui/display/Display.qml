@@ -81,7 +81,8 @@ Image {
             property var exposedRectBottomMarginBinding: Binding {
                 target: model.appInfo
                 property: "exposedRectBottomMargin"
-                value: model.appInfo.active && widgetDrawer.open ? activeApplicationSlot.height - widgetDrawer.y : 0
+                value: model.appInfo.active && widgetDrawer.open && widgetDrawer.visible
+                        ? activeApplicationSlot.height - widgetDrawer.y : 0
             }
 
             property var windowHeightBinding: Binding {
@@ -169,13 +170,14 @@ Image {
                 anchors.bottom: parent.bottom
 
                 dragEnabled: !showingHomePage
-                visible: !showingHomePage
+                visible: !showingHomePage && !widgetDrawerSlot.empty
 
                 Item {
                     id: widgetDrawerSlot
                     width: widgetDrawer.homePageWidgetWidth
                     height: homePageLoader.homePageRowHeight
                     anchors.horizontalCenter: widgetDrawer.horizontalCenter
+                    readonly property bool empty: children.length == 0
                 }
 
                 property bool showingHomePage: applicationModel.activeAppInfo === null
