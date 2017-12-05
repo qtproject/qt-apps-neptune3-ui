@@ -106,9 +106,11 @@ Item {
         height: Style.vspan(0.05)
         anchors.bottom: root.bottom
         anchors.horizontalCenter: root.horizontalCenter
-        opacity: 0.7
+        visible: root.showShadow && coverSlide.currentItem.opacity === 1.0
+        opacity: visible ? 0.7 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
         color: "grey"
-        visible: root.showShadow && coverSlide.currentItem.x === -0.5
         layer.enabled: true
         layer.effect: DropShadow {
             anchors.fill: albumArtShadow

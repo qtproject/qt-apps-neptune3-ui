@@ -69,13 +69,13 @@ Item {
             PropertyChanges { target: albumArtRow; width: Style.hspan(19); height: Style.vspan(6); scale: 1.0;
                               anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
             PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
-                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0 }
+                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; showList: true }
         },
         State {
             name: "Maximized"
             PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
                               anchors.verticalCenterOffset: - Style.vspan(8); anchors.leftMargin: Style.hspan(1.8) }
-            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(5.5); listView.contentY: - Style.vspan(0.8) }
+            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5); listView.contentY: - Style.vspan(0.8) }
         }
     ]
 
@@ -210,16 +210,21 @@ Item {
         y: musicLibrary.showList ? Style.vspan(5.4) : Style.vspan(15)
         Behavior on y { DefaultNumberAnimation { } }
 
-        showList: false
+        visible: root.state === "Maximized"
+        onVisibleChanged: {
+            if (visible) {
+                musicLibrary.showList = visible;
+                root.store.searchAndBrowseModel.contentType = "track";
+            }
+        }
+
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+
         showBg: true
         listView.interactive: showList
         listView.model: root.store.searchAndBrowseModel
         contentType: root.store.searchAndBrowseModel.contentType
-        visible: root.state === "Maximized"
-        onVisibleChanged: musicLibrary.showList = false
-
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
 
         onShowListChanged: {
             if (musicLibrary.showList) {
@@ -271,9 +276,9 @@ Item {
 
     LibraryToolsColumn {
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2)
+        anchors.leftMargin: Style.hspan(2.5)
         anchors.top: musicLibrary.top
-        anchors.topMargin: Style.vspan(1)
+        anchors.topMargin: Style.vspan(1.1)
         visible: root.state === "Maximized" && musicLibrary.showList
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }

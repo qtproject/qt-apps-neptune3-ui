@@ -65,16 +65,7 @@ Control {
         visible: root.showBg
     }
 
-    contentItem: ListView {
-        id: listView
-
-        width: root.showBg ? Style.hspan(15) : root.width
-        height: root.height
-
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: root.showBg ? Style.hspan(6) : 0
-        clip: true
-        boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+    contentItem: Item {
 
         Component {
             id: nextHeader
@@ -206,24 +197,68 @@ Control {
 
                 highlighted: false
                 titleLabel: model.item.title && (root.actualContentType === "track" || root.showPath) ? model.item.title :
-                            (model.name ? model.name : "")
+                                                                                                        (model.name ? model.name : "")
                 subtitleLabel: model.item.artist && (root.actualContentType === "track" || root.showPath) ? model.item.artist :
-                               (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
+                                                                                                            (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
                 onClicked: root.itemClicked(model.index, model.item, delegatedSong.titleLabel)
             }
         }
 
-        header: {
-            if (root.showBg && root.showList) {
-                return mediaPath;
-            } else if (root.showBg && !root.showList) {
-                return browseHeader;
-            } else {
-                return nextHeader;
+        ListView {
+            id: listView
+
+            implicitWidth: root.showBg ? Style.hspan(15) : root.width
+            implicitHeight: root.height - Style.vspan(1)
+
+            anchors.top: parent.top
+            anchors.topMargin: root.showBg ? Style.vspan(0.5) : 0
+            anchors.right: parent.right
+            anchors.rightMargin: root.showBg ? Style.hspan(3) : 0
+            clip: true
+            boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+
+            header: {
+                if (root.showBg && root.showList) {
+                    return mediaPath;
+                } else if (root.showBg && !root.showList) {
+                    return browseHeader;
+                } else {
+                    return nextHeader;
+                }
+            }
+
+            delegate: delegatedItem
+            ScrollIndicator.vertical: ScrollIndicator {
+                id: scrollIndicator
+                parent: listView.parent
+                anchors.top: listView.top
+                anchors.left: listView.right
+                anchors.leftMargin: root.showBg ? Style.hspan(2) : 0
+                anchors.bottom: listView.bottom
+
+                background: Item {
+                    Rectangle {
+                        implicitWidth: Style.hspan(0.05)
+                        height: parent.height
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        radius: height
+                        opacity: scrollIndicator.active ? 1.0 : 0.0
+                        Behavior on opacity { DefaultNumberAnimation { } }
+
+                        color: "#969494"
+                    }
+                }
+
+                contentItem: Rectangle {
+                    implicitWidth: Style.hspan(0.1)
+                    radius: height
+                    opacity: scrollIndicator.active ? 1.0 : 0.0
+                    Behavior on opacity { DefaultNumberAnimation { } }
+
+                    color: "#FA9E54"
+                }
             }
         }
-
-        delegate: delegatedItem
     }
 }
 
