@@ -34,6 +34,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 import animations 1.0
+import com.pelagicore.styles.triton 1.0
 import display 1.0
 import utils 1.0
 
@@ -98,6 +99,17 @@ Window {
         }
 
         popupParent: popupParent
+
+        focus: true
+        Shortcut {
+            sequence: "t"
+            onActivated: {
+                // TODO: Also change the instrument cluster theme
+                root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
+                        ? TritonStyle.Dark : TritonStyle.Light
+            }
+        }
+
     }
 
     // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,

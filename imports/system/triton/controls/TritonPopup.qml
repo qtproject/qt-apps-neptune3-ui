@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import com.pelagicore.styles.triton 1.0
 import controls 1.0
 import utils 1.0
 import animations 1.0
@@ -43,6 +44,7 @@ Control {
 
     background: Rectangle {
         anchors.fill: root
+        color: root.TritonStyle.backgroundColor
         radius: Style.hspan(0.7)
     }
 

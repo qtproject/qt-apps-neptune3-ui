@@ -51,6 +51,7 @@ class TritonStyle : public QQuickStyleAttached
 #endif
 {
     Q_OBJECT
+    Q_PROPERTY(Theme theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
 
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY tritonStyleChanged FINAL)
@@ -130,16 +131,19 @@ public:
 
     qreal windowHeight() const;
 
+    Theme theme() const;
+    void setTheme(Theme);
+    void inheritTheme(Theme theme);
+    void propagateTheme();
+
 protected:
     void init();
 signals:
     void tritonStyleChanged();
+    void themeChanged();
 
 private:
     QScopedPointer<StyleData> m_data;
-    qreal m_windowWidth;
-
-    qreal m_windowHeight;
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)

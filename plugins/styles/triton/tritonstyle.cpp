@@ -58,7 +58,7 @@ static QHash<TritonStyle::SystemColor, QColor>
 GlobalLightThemeColors {
                       {TritonStyle::PrimaryTextColor, QColor(0xFF000000)},
                       {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
-                      {TritonStyle::BackgroundColor, QColor(0xFFFFFFFF)},
+                      {TritonStyle::BackgroundColor, QColor(0xFFF1EFED)},
                       {TritonStyle::ButtonColor, QColor(0xFF969696)},
 
                       {TritonStyle::AccentColor, QColor(0xFFF6A623)},
@@ -96,7 +96,6 @@ public:
         , theme(TritonStyle::Light)
         , windowSize(1080, 1920)
         , backgroundImage("bg-home")
-        , themeData(GlobalLightThemeData)
     {
         compute();
     }
@@ -106,7 +105,6 @@ public:
         , theme(data.theme)
         , windowSize(data.windowSize)
         , backgroundImage(data.backgroundImage)
-        , themeData(data.themeData)
     {
         compute();
     }
@@ -133,7 +131,6 @@ public:
     int fontSizeL;
     int fontSizeXL;
     int fontSizeXXL;
-    ThemeData themeData;
 };
 
 static StyleData GlobalStyleData;
@@ -217,7 +214,8 @@ TritonStyle *TritonStyle::qmlAttachedProperties(QObject *object)
 
 QColor TritonStyle::systemColor(SystemColor role) const
 {
-    return m_data->themeData.colors[role];
+    auto &themeData = tritonstyle_theme_data(m_data->theme);
+    return themeData.colors[role];
 }
 
 QColor TritonStyle::accentColor() const
@@ -357,7 +355,6 @@ void TritonStyle::init()
         GlobalStyleData.windowSize.setHeight(toInteger(data, GlobalStyleData.windowSize.height()));
 
         resolveGlobalThemeData(settings);
-        GlobalStyleData.themeData = tritonstyle_theme_data(GlobalStyleData.theme);
 
         QGuiApplication::setFont(GlobalStyleData.font);
     }
@@ -369,6 +366,12 @@ void TritonStyle::init()
 #else
     QQuickStyleAttached::init();
 #endif
+}
+
+QColor defaultColor(TritonStyle::SystemColor role, TritonStyle::Theme theme)
+{
+    auto &themeColors = theme == TritonStyle::Light ? GlobalLightThemeColors : GlobalDarkThemeColors;
+    return themeColors[role];
 }
 
 void TritonStyle::resolveGlobalThemeData(const QSharedPointer<QSettings> &settings)
@@ -385,7 +388,7 @@ void TritonStyle::resolveGlobalThemeData(const QSharedPointer<QSettings> &settin
             SystemColor value = static_cast<SystemColor>(enumeration.value(i));
             QByteArray settingsKey = themeKey + '/' + QByteArray(enumeration.key(i));
             QByteArray data = resolveSetting(settings, settingsKey);
-            QColor color = toColor(data, systemColor(value));
+            QColor color = toColor(data, defaultColor(value, themeValue));
             themeData.colors.insert(value, color);
         }
     }
@@ -425,4 +428,38 @@ void TritonStyle::propagateStyle(const StyleData& data)
     }
 }
 
+auto TritonStyle::theme() const -> Theme
+{
+    return m_data->theme;
+}
 
+void TritonStyle::setTheme(Theme value)
+{
+    if (m_data->theme != value) {
+        m_data->theme = value;
+        propagateTheme();
+        emit themeChanged();
+        emit tritonStyleChanged();
+    }
+}
+
+void TritonStyle::propagateTheme()
+{
+    const auto styles = attachedChildren();
+    for (QQuickAttachedObject *child : styles) {
+        auto *tritonStyle = qobject_cast<TritonStyle *>(child);
+        if (tritonStyle)
+            tritonStyle->inheritTheme(m_data->theme);
+    }
+}
+
+void TritonStyle::inheritTheme(Theme theme)
+{
+    if (m_data->theme == theme)
+        return;
+
+    m_data->theme = theme;
+    propagateTheme();
+    emit themeChanged();
+    emit tritonStyleChanged();
+}
