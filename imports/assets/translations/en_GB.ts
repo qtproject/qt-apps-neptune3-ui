@@ -91,6 +91,13 @@
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <source>Instrument Cluster</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
         <source>Next</source>

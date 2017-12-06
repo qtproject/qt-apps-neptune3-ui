@@ -108,25 +108,33 @@
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="41"/>
+        <source>Instrument Cluster</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="78"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="102"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="93"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="116"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="127"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="140"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="131"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>

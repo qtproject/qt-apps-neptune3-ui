@@ -2,6 +2,7 @@ TEMPLATE = lib
 TARGET  = translationplugin
 QT += qml quick
 CONFIG += qt plugin c++11
+PRE_TARGETDEPS += ts
 
 uri = com.pelagicore.translation
 load(qmlplugin)
@@ -49,6 +50,7 @@ QMAKE_EXTRA_TARGETS += ts
 
 qm.input = TRANSLATIONS
 qm.output = $$shadowed($$assetsPath/translations)/${QMAKE_FILE_BASE}.qm
+qm.depends = ts
 qm.variable_out = PRE_TARGETDEPS
 qm.commands = $${LRELEASE} ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
 qm.name = LRELEASE ${QMAKE_FILE_IN}
