@@ -6,9 +6,9 @@ formatType: am-configuration
 
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
-  installedAppsManifestDir: "/tmp/am/manifests"
-  appImageMountDir: "/tmp/am/image-mounts"
-  database: "/tmp/am/apps.db"
+  installedAppsManifestDir: "/tmp/triton-ui/manifests"
+  appImageMountDir: "/tmp/triton-ui/image-mounts"
+  database: "/tmp/triton-ui/apps.db"
 
 # QML apps will be able to import from modules...
 
@@ -23,13 +23,13 @@ ui:
   style: "${CONFIG_PWD}/styles/triton"
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
-  windowIcon: "${CONFIG_PWD}/imports/assets/icons/active/apps@96.png"
+  windowIcon: "${CONFIG_PWD}/imports/assets/icons/ic-menu-home.png"
   # convert mouse events to touch events if possible (currently only supported on X11)
   enableTouchEmulation: yes
 
 systemProperties:
     public:
-      showCluster: no
+      showCluster: yes
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:8080'
       orientation: 'Portrait'
@@ -44,7 +44,7 @@ flags:
 
 installationLocations:
 - id: "internal-0"
-  installationPath: "/tmp/am/apps"
-  documentPath: "/tmp/am/docs"
+  installationPath: "/tmp/triton-ui/apps"
+  documentPath: "/tmp/triton-ui/docs"
   mountPoint: "/tmp"
   isDefault: true
