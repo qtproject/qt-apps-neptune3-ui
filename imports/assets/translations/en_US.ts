@@ -92,32 +92,32 @@
 <context>
     <name>LibraryToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="47"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="48"/>
         <source>favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="53"/>
         <source>artists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="58"/>
         <source>playlists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="62"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="63"/>
         <source>albums</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="68"/>
         <source>folders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="72"/>
+        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="73"/>
         <source>sources</source>
         <translation type="unfinished"></translation>
     </message>

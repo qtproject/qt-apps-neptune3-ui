@@ -39,6 +39,7 @@ ColumnLayout {
     id: root
     spacing: 100
 
+    property string currentTool: "favorites"
     signal toolClicked(string contentType)
 
     property ListModel model: ListModel {
@@ -73,16 +74,24 @@ ColumnLayout {
         }
     }
 
+    ButtonGroup { id: musicButtonGroup }
+
     Repeater {
         model: root.model
         Tool {
             anchors.horizontalCenter: parent.horizontalCenter
             baselineOffset: 0
-            symbol: Style.symbol(icon)
+            checkable: true
+            checked: root.currentTool === label
+            symbol: icon ? Style.symbol(musicButtonGroup.checkedButton === this ? icon + "_ON" : icon + "_OFF") : ""
             text: qsTr(label)
             font.pixelSize: Style.fontSizeXS
             symbolOnTop: true
-            onClicked: root.toolClicked(label);
+            onClicked: {
+                root.toolClicked(label);
+                root.currentTool = label;
+            }
+            ButtonGroup.group: musicButtonGroup
         }
     }
 }
