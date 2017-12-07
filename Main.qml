@@ -37,6 +37,7 @@ import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import display 1.0
 import utils 1.0
+import com.pelagicore.settings 1.0
 
 import QtQuick.Window 2.3
 
@@ -101,12 +102,22 @@ Window {
         popupParent: popupParent
 
         focus: true
+
+        NavigationSettings {
+            id: navigationSettings
+            onNightModeChanged: root.contentItem.TritonStyle.theme = nightMode
+                                ? TritonStyle.Dark : TritonStyle.Light
+        }
+
         Shortcut {
             sequence: "t"
             onActivated: {
                 // TODO: Also change the instrument cluster theme
                 root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
                         ? TritonStyle.Dark : TritonStyle.Light
+                navigationSettings.nightMode =
+                        root.contentItem.TritonStyle.theme == TritonStyle.Light ?
+                            false : true
             }
         }
 

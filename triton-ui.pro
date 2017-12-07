@@ -11,15 +11,12 @@ SUBDIRS += tests
 copydata.file = copydata.pro
 copydata.depends = plugins
 
-# HACK: CI does not have appman in dependency list, which is why
-# we are not building the executable to avoid failing integration tests.
-qtHaveModule(appman_main-private) {
-   message("Module appman_main-private found.")
-   SUBDIRS += src
-   copydata.depends += src
-} else {
-   message("Module appman_main-private not found. Custom executable won't be build.")
+!qtHaveModule(appman_main-private) {
+   error("Module appman_main-private not found.")
 }
+
+SUBDIRS += src
+copydata.depends += src
 
 SUBDIRS += copydata
 
