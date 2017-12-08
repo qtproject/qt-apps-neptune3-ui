@@ -12,9 +12,8 @@
 <context>
     <name>ButtonBoard</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ButtonBoard.qml" line="107"/>
         <source>Button</source>
-        <translation>Tlačítko</translation>
+        <translation type="vanished">Tlačítko</translation>
     </message>
 </context>
 <context>
@@ -74,19 +73,16 @@
 <context>
     <name>FrameBoard</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="48"/>
         <source>E-mail</source>
-        <translation>E-mail</translation>
+        <translation type="vanished">E-mail</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="63"/>
         <source>Calendar</source>
-        <translation>Kalendář</translation>
+        <translation type="vanished">Kalendář</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="78"/>
         <source>Contacts</source>
-        <translation>Kontakty</translation>
+        <translation type="vanished">Kontakty</translation>
     </message>
 </context>
 <context>
@@ -157,19 +153,16 @@
 <context>
     <name>PaneBoard</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="50"/>
         <source>E-mail</source>
-        <translation>E-mail</translation>
+        <translation type="vanished">E-mail</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="65"/>
         <source>Calendar</source>
-        <translation>Kalendář</translation>
+        <translation type="vanished">Kalendář</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="80"/>
         <source>Contacts</source>
-        <translation>Kontakty</translation>
+        <translation type="vanished">Kontakty</translation>
     </message>
 </context>
 <context>
@@ -271,19 +264,6 @@
     </message>
 </context>
 <context>
-    <name>SwitchBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/SwitchBoard.qml" line="47"/>
-        <source>Switch 1 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/SwitchBoard.qml" line="57"/>
-        <source>Switch 2 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TemperatureSlider</name>
     <message>
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="133"/>
@@ -301,23 +281,19 @@
 <context>
     <name>TemperatureSliderBoard</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/TemperatureSliderBoard.qml" line="53"/>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/TemperatureSliderBoard.qml" line="68"/>
         <source>Value: %1</source>
-        <translation>Hodnota: %1</translation>
+        <translation type="vanished">Hodnota: %1</translation>
     </message>
 </context>
 <context>
     <name>ToolButtonBoard</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ToolButtonBoard.qml" line="63"/>
         <source>Undo</source>
-        <translation>Zpět</translation>
+        <translation type="vanished">Zpět</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ToolButtonBoard.qml" line="66"/>
         <source>Redo</source>
-        <translation>Znovu</translation>
+        <translation type="vanished">Znovu</translation>
     </message>
 </context>
 <context>

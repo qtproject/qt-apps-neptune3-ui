@@ -9,13 +9,6 @@
     </message>
 </context>
 <context>
-    <name>ButtonBoard</name>
-    <message>
-        <source>Button</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <source>Front defrost</source>
@@ -57,21 +50,6 @@
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FrameBoard</name>
-    <message>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -125,21 +103,6 @@
     </message>
     <message>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PaneBoard</name>
-    <message>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -223,17 +186,6 @@
     </message>
 </context>
 <context>
-    <name>SwitchBoard</name>
-    <message>
-        <source>Switch 1 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Switch 2 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TemperatureSlider</name>
     <message>
         <source>MAX</source>
@@ -243,24 +195,6 @@
     <message>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TemperatureSliderBoard</name>
-    <message>
-        <source>Value: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ToolButtonBoard</name>
-    <message>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

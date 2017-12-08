@@ -10,14 +10,6 @@
     </message>
 </context>
 <context>
-    <name>ButtonBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ButtonBoard.qml" line="107"/>
-        <source>Button</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="41"/>
@@ -68,24 +60,6 @@
         <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="166"/>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FrameBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="48"/>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="63"/>
-        <source>Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/FrameBoard.qml" line="78"/>
-        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -151,24 +125,6 @@
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="131"/>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PaneBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="50"/>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="65"/>
-        <source>Calendar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/PaneBoard.qml" line="80"/>
-        <source>Contacts</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -271,19 +227,6 @@
     </message>
 </context>
 <context>
-    <name>SwitchBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/SwitchBoard.qml" line="47"/>
-        <source>Switch 1 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/SwitchBoard.qml" line="57"/>
-        <source>Switch 2 - %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>TemperatureSlider</name>
     <message>
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="133"/>
@@ -295,28 +238,6 @@
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="143"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TemperatureSliderBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/TemperatureSliderBoard.qml" line="53"/>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/TemperatureSliderBoard.qml" line="68"/>
-        <source>Value: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ToolButtonBoard</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ToolButtonBoard.qml" line="63"/>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.sheets/boards/ToolButtonBoard.qml" line="66"/>
-        <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
