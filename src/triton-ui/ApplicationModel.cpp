@@ -76,43 +76,38 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
 
     for (int i = 0; i < appMan->count(); ++i) {
         const QtAM::Application *application = appMan->application(i);
-        ApplicationInfo *appInfo = new ApplicationInfo(application);
 
         if (isInstrumentClusterApp(application)) {
+            ApplicationInfo *appInfo = new ApplicationInfo(application);
             setInstrumentClusterAppInfo(appInfo);
             startApplication(m_instrumentClusterApp->id());
         } else {
-            connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
-                if (m_appMan) {
-                    m_appMan->startApplication(appInfo->id());
-                }
-            });
-            connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
-                updateWidgetHeightProperty(appInfo);
-            });
-            connect(appInfo, &ApplicationInfo::currentWidthChanged, this, [this, appInfo]() {
-                updateCurrentWidthProperty(appInfo);
-            });
-            connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
-                updateCurrentHeightProperty(appInfo);
-            });
-            connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
-                updateWindowStateProperty(appInfo);
-            });
-            connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
-                updateExposedRectBottomMarginProperty(appInfo);
-            });
-            connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
-                onAsWidgetChanged(appInfo);
-            });
-            m_appInfoList.append(appInfo);
+            append(application);
         }
     }
 
     // TODO: Load the widget configuration from some database or file
     configureApps();
 
-    // TODO: Monitor appMan for Application additions and removals.
+    connect(appMan, &QAbstractItemModel::rowsInserted, this,
+            [this](const QModelIndex & /*parent*/, int first, int last)
+            {
+                for (int i = first; i <= last; ++i) {
+                    const auto *application = m_appMan->application(i);
+                    this->beginInsertRows(QModelIndex(), rowCount() /*first*/, rowCount() /*last*/);
+                    this->append(application);
+                    this->endInsertRows();
+                }
+            });
+
+    connect(appMan, &QAbstractItemModel::rowsAboutToBeRemoved, this,
+            [this](const QModelIndex & /*parent*/, int first, int last)
+            {
+                for (int i = first; i <= last; ++i) {
+                    const auto *application = m_appMan->application(i);
+                    remove(application);
+                }
+            });
 
     endResetModel();
     emit countChanged();
@@ -478,4 +473,55 @@ void ApplicationModel::setInstrumentClusterAppInfo(ApplicationInfo *appInfo)
         m_instrumentClusterApp = appInfo;
         emit instrumentClusterAppInfoChanged();
     }
+}
+
+void ApplicationModel::append(const QtAM::Application *application)
+{
+    ApplicationInfo *appInfo = new ApplicationInfo(application);
+
+    connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
+        if (m_appMan) {
+            m_appMan->startApplication(appInfo->id());
+        }
+    });
+    connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
+        updateWidgetHeightProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::currentWidthChanged, this, [this, appInfo]() {
+        updateCurrentWidthProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
+        updateCurrentHeightProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::windowStateChanged, this, [this, appInfo]() {
+        updateWindowStateProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
+        updateExposedRectBottomMarginProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
+        onAsWidgetChanged(appInfo);
+    });
+    m_appInfoList.append(appInfo);
+}
+
+void ApplicationModel::remove(const QtAM::Application *application)
+{
+    int index = 0;
+    bool found = false;
+
+    while (index < m_appInfoList.count() && !found) {
+        found = m_appInfoList[index]->id() == application->id();
+        if (!found)
+            ++index;
+    }
+
+    Q_ASSERT(found);
+    if (!found) {
+        return;
+    }
+
+    beginRemoveRows(QModelIndex() /* parent */,  index /* first */, index /* last */);
+    delete m_appInfoList.takeAt(index);
+    endRemoveRows();
 }

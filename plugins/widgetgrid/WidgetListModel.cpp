@@ -89,10 +89,13 @@ void WidgetListModel::setApplicationModel(QAbstractItemModel *appModel)
             [this](const QModelIndex & /*parent*/, int first, int last)
             {
                 for (int i = first; i <= last; ++i) {
-                    auto *appInfo = getApplicationInfoFromModelAt(i);
+                    auto *appInfo = m_appModelIndexToAppInfo[i];
                     detachApplicationInfo(appInfo);
                     remove(indexFromAppInfo(appInfo));
                     disconnect(appInfo, 0, this, 0);
+
+                    m_appInfoToAppModelIndex.remove(appInfo);
+                    m_appModelIndexToAppInfo.remove(i);
                 }
             });
 
@@ -179,12 +182,15 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
 
     for (int i = first; i <= last; ++i) {
         auto *appInfo = getApplicationInfoFromModelAt(i);
-        bool ok;
+
+        m_appInfoToAppModelIndex[appInfo] = i;
+        m_appModelIndexToAppInfo[i] = appInfo;
 
         if (!hasWidgetSupport(appInfo)) {
             continue;
         }
 
+        bool ok;
         ok = connect(appInfo, SIGNAL(asWidgetChanged()), this, SLOT(onAppWidgetStateChanged()));
         if (!ok) qFatal("WidgetListModel: Failed to connect to ApplicationInfo::asWidgetChanged");
 
@@ -246,7 +252,6 @@ void WidgetListModel::appendApplicationInfo(QObject *appInfo)
 void WidgetListModel::detachApplicationInfo(QObject *appInfoToRemove)
 {
     int index = indexFromAppInfo(appInfoToRemove);
-    Q_ASSERT(index != -1);
     if (index == -1) {
         return;
     }

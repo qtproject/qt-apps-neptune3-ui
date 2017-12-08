@@ -159,6 +159,8 @@ private:
     void startApplication(const QString &appId);
     static bool isInstrumentClusterApp(const QtAM::Application *app);
     void setInstrumentClusterAppInfo(ApplicationInfo*);
+    void append(const QtAM::Application *);
+    void remove(const QtAM::Application *);
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;

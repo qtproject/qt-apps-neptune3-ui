@@ -137,4 +137,8 @@ private:
     int m_maxWidgetHeightRows{3};
 
     bool m_populating{true};
+
+    // Mappings between an ApplicatioInfo object and its index in the set ApplicationModel
+    QMap<QObject*, int> m_appInfoToAppModelIndex;
+    QMap<int, QObject*> m_appModelIndexToAppInfo;
 };
