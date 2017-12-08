@@ -61,7 +61,7 @@ TritonPopup {
                     var i;
                     for (i = 0; i < inserted.length; ++i) {
                         var j = 0;
-                        for (j = 0; i < inserted[i].count; ++j) {
+                        for (j = 0; j < inserted[i].count; ++j) {
                             var index = inserted[i].index + j;
                             var entry = get(index);
                             var appInfo = entry.model.appInfo;
