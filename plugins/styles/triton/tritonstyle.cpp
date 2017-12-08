@@ -417,11 +417,10 @@ void TritonStyle::propagateStyle(const StyleData& data)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     const auto styles = attachedChildren();
-    for (QQuickAttachedObject *child: styles) {
 #else
     const auto styles = childStyles();
-    for (QQuickStyleAttached *child: styles) {
 #endif
+    for (auto *child: styles) {
         TritonStyle* triton = qobject_cast<TritonStyle *>(child);
         if (triton)
             triton->inheritStyle(data);
@@ -447,11 +446,10 @@ void TritonStyle::propagateTheme()
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     const auto styles = attachedChildren();
-    for (QQuickAttachedObject *child: styles) {
 #else
     const auto styles = childStyles();
-    for (QQuickStyleAttached *child: styles) {
 #endif
+    for (auto *child: styles) {
         auto *tritonStyle = qobject_cast<TritonStyle *>(child);
         if (tritonStyle)
             tritonStyle->inheritTheme(m_data->theme);
