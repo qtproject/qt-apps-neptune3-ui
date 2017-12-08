@@ -54,6 +54,17 @@
     </message>
 </context>
 <context>
+    <name>InstalledAppList</name>
+    <message>
+        <source>Updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Latest Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LibraryToolsColumn</name>
     <message>
         <source>favorites</source>
@@ -222,6 +233,18 @@
     </message>
     <message>
         <source>messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
