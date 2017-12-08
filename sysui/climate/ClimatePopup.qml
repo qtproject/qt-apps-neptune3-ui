@@ -66,7 +66,7 @@ TritonPopup {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(1)
         height: Style.vspan(15)
-
+        convertFunc: model.calculateUnitValue
 
         property bool sliderChanging: false
         onValueChanged: {
@@ -114,6 +114,7 @@ TritonPopup {
         anchors.rightMargin: Style.hspan(1)
         height: Style.vspan(15)
 
+        convertFunc: model.calculateUnitValue
         rulerSide: rightSide
 
         property bool sliderChanging: false

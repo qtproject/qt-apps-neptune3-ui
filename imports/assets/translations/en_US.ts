@@ -229,13 +229,13 @@
 <context>
     <name>TemperatureSlider</name>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="133"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="134"/>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="143"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="144"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>

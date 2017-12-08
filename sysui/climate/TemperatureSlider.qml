@@ -46,6 +46,7 @@ Slider {
     readonly property int leftSide: 0
     readonly property int rightSide: 1
     property int rulerSide: leftSide
+    property var convertFunc
 
     background: Item {
         id: bgItem
@@ -86,7 +87,7 @@ Slider {
                     y: (handleItem.height / 2) + (model.index * rulerNumbers.stepHeight) - (height / 2)
                     width: parent.width
                     height: Style.vspan(0.5)
-                    text: to - model.index
+                    text: root.convertFunc ? root.convertFunc(to - model.index) : to - model.index
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
