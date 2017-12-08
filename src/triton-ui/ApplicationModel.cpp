@@ -443,6 +443,12 @@ void ApplicationModel::setLangCode(const QString &locale)
         m_langCode = langCode;
         emit dataChanged(index(0), index(count() - 1), {RoleName});
         emit langCodeChanged();
+
+        // broadcast to apps
+        auto windowManager = WindowManager::instance();
+        for (ApplicationInfo *appInfo : m_appInfoList) {
+            windowManager->setWindowProperty(appInfo->window(), QStringLiteral("locale"), locale);
+        }
     }
 }
 

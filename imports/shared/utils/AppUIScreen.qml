@@ -126,6 +126,8 @@ ApplicationManagerWindow {
             root.currentHeight = value;
         } else if (name == "tritonState") {
             root.tritonState = value;
+        } else if (name == "locale") {
+            Style.languageLocale = value;
         }
     }
 
