@@ -73,10 +73,6 @@ Pane {
         anchors.right: parent.right
         anchors.top: parent.top
 
-        Weather {
-            visible: !Style.isPotrait
-        }
-
         DateAndTime {
             Layout.fillHeight: true
             timeFormat: SettingsModel.clockOption.format
