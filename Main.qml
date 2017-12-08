@@ -120,7 +120,16 @@ Window {
                             false : true
             }
         }
-
+        Shortcut {
+            sequence: "l"
+            onActivated: {
+                const locales = Style.translation.availableTranslations;
+                const currentLocale = Style.languageLocale;
+                const currentIndex = locales.indexOf(currentLocale);
+                var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
+                Style.languageLocale = locales[nextIndex];
+            }
+        }
     }
 
     // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,

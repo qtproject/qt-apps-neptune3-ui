@@ -34,6 +34,7 @@
 #include <QtQml>
 #include <QScreen>
 #include <QDebug>
+#include <QDirIterator>
 
 Translation::Translation(QObject *parent)
     : QObject(parent)
@@ -43,6 +44,15 @@ Translation::Translation(QObject *parent)
 void Translation::setPath(const QUrl &languageFilePath)
 {
     m_languageFilePath = languageFilePath.toLocalFile();
+
+    // find the available translations
+    m_availableTranslations.clear();
+    QDirIterator it(m_languageFilePath, {QStringLiteral("*.qm")}, QDir::Files|QDir::Readable);
+    while (it.hasNext()) {
+        it.next();
+        m_availableTranslations.append(it.fileInfo().baseName());
+    }
+    emit availableTranslationsChanged();
 }
 
 void Translation::setLanguageLocale(const QString &languageLocale)
@@ -52,7 +62,6 @@ void Translation::setLanguageLocale(const QString &languageLocale)
             m_languageLocale = languageLocale;
 
             emit languageLocaleChanged();
-            emit languageChanged();
         }
     }
 }
@@ -62,13 +71,21 @@ QString Translation::languageLocale() const
     return m_languageLocale;
 }
 
+QStringList Translation::availableTranslations() const
+{
+    return m_availableTranslations;
+}
+
 bool Translation::loadTranslationFile(const QString &langLocale)
 {
     QString fileToLoad(m_languageFilePath);
     fileToLoad += langLocale + ".qm";
 
-    if ( m_translator.load(fileToLoad) ) {
+    const bool loaded = m_translator.load(fileToLoad);
+    if (loaded || m_translator.isEmpty()) { // en_US is usually empty but we still want to switch to it
         qApp->installTranslator(&m_translator);
+
+        QLocale::setDefault(QLocale(langLocale));
 
         QEvent ev(QEvent::LanguageChange);
         qApp->sendEvent(QQmlEngine::contextForObject(this)->engine(), &ev);
@@ -76,7 +93,7 @@ bool Translation::loadTranslationFile(const QString &langLocale)
         return true;
     }
 
-    qWarning() << "Failed to load translation file";
+    qWarning() << "Failed to load translation file" << langLocale;
 
     return false;
 }

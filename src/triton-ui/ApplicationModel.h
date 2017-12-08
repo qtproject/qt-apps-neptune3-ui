@@ -71,6 +71,7 @@ class ApplicationModel : public QAbstractListModel
                                        NOTIFY homePageRowHeightChanged )
 
     Q_PROPERTY(bool readyToStartApps READ readyToStartApps WRITE setReadyToStartApps NOTIFY readyToStartAppsChanged)
+    Q_PROPERTY(QString langCode READ langCode WRITE setLangCode NOTIFY langCodeChanged)
 public:
     ApplicationModel(QObject *parent = nullptr);
     virtual ~ApplicationModel();
@@ -125,6 +126,9 @@ public:
     bool readyToStartApps() const;
     void setReadyToStartApps(bool);
 
+    QString langCode() const;
+    void setLangCode(const QString &locale);
+
 signals:
     void activeAppIdChanged();
     void activeAppInfoChanged();
@@ -136,6 +140,7 @@ signals:
     void homePageRowHeightChanged();
     void readyToStartAppsChanged();
     void instrumentClusterAppInfoChanged();
+    void langCodeChanged();
 
 private slots:
     void onWindowReady(int index, QQuickItem *window);

@@ -5,7 +5,7 @@
     <name>AddWidgetPopup</name>
     <message>
         <source>Add widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Widget hinzufügen</translation>
     </message>
 </context>
 <context>

@@ -60,6 +60,7 @@ Image {
         cellWidth: Style.cellWidth
         cellHeight: Style.cellHeight
         homePageRowHeight: homePageLoader.homePageRowHeight
+        langCode: Style.languageLocale
     }
 
     ClimateModel {

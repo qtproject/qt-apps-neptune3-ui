@@ -106,7 +106,7 @@ QtObject {
         id: translation
         Component.onCompleted: {
             setPath(root.assetPath + "translations/");
-            languageLocale = Qt.locale().name
+            languageLocale = Qt.locale().name;
         }
     }
 

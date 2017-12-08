@@ -48,8 +48,7 @@ using QtAM::Application;
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    const QString locale = QLocale::system().name();
-    m_langCode = locale.left(locale.indexOf(QLatin1Char('_')));
+    setLangCode(QLocale::system().name());
 }
 
 ApplicationModel::~ApplicationModel()
@@ -429,6 +428,22 @@ void ApplicationModel::setReadyToStartApps(bool value)
     }
 
     emit readyToStartAppsChanged();
+}
+
+QString ApplicationModel::langCode() const
+{
+    return m_langCode;
+}
+
+void ApplicationModel::setLangCode(const QString &locale)
+{
+    const QString langCode = locale.left(locale.indexOf(QLatin1Char('_')));
+
+    if (langCode != m_langCode) {
+        m_langCode = langCode;
+        emit dataChanged(index(0), index(count() - 1), {RoleName});
+        emit langCodeChanged();
+    }
 }
 
 bool ApplicationModel::isInstrumentClusterApp(const QtAM::Application *app)
