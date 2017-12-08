@@ -146,6 +146,11 @@ QUrl ApplicationInfo::icon() const
     return m_application->property("icon").toUrl();
 }
 
+QStringList ApplicationInfo::categories() const
+{
+    return m_application->property("categories").toStringList();
+}
+
 void ApplicationInfo::setWidgetHeight(int value)
 {
     if (value != m_widgetHeight) {

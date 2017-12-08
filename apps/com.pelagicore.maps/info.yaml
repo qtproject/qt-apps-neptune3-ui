@@ -10,4 +10,4 @@ name:
   de: 'Karten'
   cs: 'Mapy'
 
-categories: [ 'navigation' ]
+categories: [ 'navigation', 'widget' ]

@@ -4,7 +4,7 @@
 <context>
     <name>AddWidgetPopup</name>
     <message>
-        <location filename="../../../sysui/home/AddWidgetPopup.qml" line="52"/>
+        <location filename="../../../sysui/home/AddWidgetPopup.qml" line="100"/>
         <source>Add widget</source>
         <translation>Přidat widget</translation>
     </message>

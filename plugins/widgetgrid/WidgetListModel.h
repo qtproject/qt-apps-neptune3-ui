@@ -105,6 +105,7 @@ private:
     void setHeightRows(QObject *appInfo, int value) const;
     bool asWidget(QObject *appInfo) const;
     QString id(QObject *appInfo) const;
+    bool hasWidgetSupport(QObject *appInfo) const;
 
     void setPopulating(bool);
     void distributeHeightOfDetachedAppInfo(int index);

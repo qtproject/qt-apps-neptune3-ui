@@ -79,6 +79,7 @@ class ApplicationInfo : public QObject {
     Q_PROPERTY(const QObject* application READ application CONSTANT)
     Q_PROPERTY(QString id READ id CONSTANT)
     Q_PROPERTY(QUrl icon READ icon CONSTANT)
+    Q_PROPERTY(QStringList categories READ categories CONSTANT)
 
     /*
         The bottom margin of the exposed rectangular area of the apps main window
@@ -129,6 +130,7 @@ public:
 
     QString id() const;
     QUrl icon() const;
+    QStringList categories() const;
 
     qreal exposedRectBottomMargin() const;
     void setExposedRectBottomMargin(qreal);

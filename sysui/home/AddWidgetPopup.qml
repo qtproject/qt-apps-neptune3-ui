@@ -32,6 +32,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQml.Models 2.2
 
 import controls 1.0
 import utils 1.0
@@ -42,7 +43,54 @@ import triton.controls 1.0
 TritonPopup {
     id: root
 
-    property alias model: listView.model
+    property alias model: delegateModel.model
+
+    DelegateModel {
+        id: delegateModel
+
+        groups: [
+            DelegateModelGroup {
+                id: widgetModelGroup
+                name: "supports-widget-state"
+                includeByDefault: false
+            },
+            DelegateModelGroup {
+                name: "all"
+                includeByDefault: true
+                onChanged: {
+                    var i;
+                    for (i = 0; i < inserted.length; ++i) {
+                        var j = 0;
+                        for (j = 0; i < inserted[i].count; ++j) {
+                            var index = inserted[i].index + j;
+                            var entry = get(index);
+                            var appInfo = entry.model.appInfo;
+                            if (appInfo.categories.indexOf("widget") !== -1) {
+                                entry.groups = ["all", "supports-widget-state"];
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+
+        filterOnGroup: "supports-widget-state"
+
+        delegate: MouseArea {
+            width: parent.width
+            height: Style.vspan(1)
+            enabled: !model.appInfo.asWidget
+            Label {
+                anchors.fill: parent
+                text: model.name
+                enabled: parent.enabled // doesn't seem to be propagating, so making it explicit
+            }
+            onClicked: {
+                model.appInfo.asWidget = true
+                root.state = "closed"
+            }
+        }
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -60,20 +108,7 @@ TritonPopup {
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
-            delegate: MouseArea {
-                width: parent.width
-                height: Style.vspan(1)
-                enabled: !model.appInfo.asWidget
-                Label {
-                    anchors.fill: parent
-                    text: model.name
-                    enabled: parent.enabled // doesn't seem to be propagating, so making it explicit
-                }
-                onClicked: {
-                    model.appInfo.asWidget = true
-                    root.state = "closed"
-                }
-            }
+            model: delegateModel
         }
     }
 }

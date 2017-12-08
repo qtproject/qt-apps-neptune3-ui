@@ -10,4 +10,4 @@ name:
   de: 'Musik'
   cs: 'Hudba'
 
-categories: [ 'media' ]
+categories: [ 'media', 'widget' ]

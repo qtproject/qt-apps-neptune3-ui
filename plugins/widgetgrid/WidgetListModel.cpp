@@ -181,6 +181,10 @@ void WidgetListModel::trackRowsFromApplicationModel(int first, int last)
         auto *appInfo = getApplicationInfoFromModelAt(i);
         bool ok;
 
+        if (!hasWidgetSupport(appInfo)) {
+            continue;
+        }
+
         ok = connect(appInfo, SIGNAL(asWidgetChanged()), this, SLOT(onAppWidgetStateChanged()));
         if (!ok) qFatal("WidgetListModel: Failed to connect to ApplicationInfo::asWidgetChanged");
 
@@ -406,6 +410,11 @@ bool WidgetListModel::asWidget(QObject *appInfo) const
 QString WidgetListModel::id(QObject *appInfo) const
 {
     return appInfo->property("id").toString();
+}
+
+bool WidgetListModel::hasWidgetSupport(QObject *appInfo) const
+{
+    return appInfo->property("categories").toStringList().contains(QStringLiteral("widget"));
 }
 
 QList<WidgetListModel::ListItem*> WidgetListModel::filterOutDetachedItems(QList<ListItem> &list) const

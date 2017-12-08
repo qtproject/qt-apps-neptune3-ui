@@ -10,4 +10,4 @@ name:
   de: 'Phone'
   cs: 'Telefon'
 
-categories: [ 'phone' ]
+categories: [ 'phone', 'widget' ]
