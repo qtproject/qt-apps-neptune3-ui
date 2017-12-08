@@ -42,6 +42,7 @@ import animations 1.0
 Control {
     id: root
 
+    // TODO: Add a shadow around the rectangle
     background: Rectangle {
         anchors.fill: root
         color: root.TritonStyle.backgroundColor
@@ -113,16 +114,13 @@ Control {
         }
     ]
 
-    MouseArea {
+    Tool {
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.margins: Style.hspan(1)
         width: Style.hspan(1)
         height: width
-        Label {
-            anchors.centerIn: parent
-            text: "❌"
-        }
         onClicked: root.state = "closed"
+        symbol: Style.symbol("ic-close")
     }
 }

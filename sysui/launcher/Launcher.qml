@@ -125,8 +125,12 @@ Item {
             implicitWidth: Style.hspan(2.3)
             implicitHeight: Style.vspan(0.9)
 
+            readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
+
+            opacity: useCloseIcon ? 0.2 : 1
+
             Layout.alignment: Qt.AlignTop
-            symbol: editableLauncher.gridEditMode || root.open ? Style.symbol("ic-close", false) : Style.symbol("ic-menu-allapps", false)
+            symbol: useCloseIcon ? Style.symbol("ic-close", false) : Style.symbol("ic-menu-allapps", false)
             checkable: true
 
             onCheckedChanged: {
