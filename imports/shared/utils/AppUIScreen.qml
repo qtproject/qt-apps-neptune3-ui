@@ -122,15 +122,15 @@ ApplicationManagerWindow {
             Style.cellHeight = value;
         } else if (name === "exposedRectBottomMargin") {
             d.exposedRectBottomMargin = value;
-        } else if (name == "tritonWidgetHeight") {
+        } else if (name === "tritonWidgetHeight") {
             d.widgetHeight = value;
-        } else if (name == "tritonCurrentWidth") {
+        } else if (name === "tritonCurrentWidth") {
             d.currentWidth = value;
-        } else if (name == "tritonCurrentHeight") {
+        } else if (name === "tritonCurrentHeight") {
             root.currentHeight = value;
-        } else if (name == "tritonState") {
+        } else if (name === "tritonState") {
             root.tritonState = value;
-        } else if (name == "locale") {
+        } else if (name === "locale") {
             Style.languageLocale = value;
         }
     }
