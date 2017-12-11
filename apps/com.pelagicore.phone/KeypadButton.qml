@@ -38,7 +38,7 @@ import animations 1.0
 
 Rectangle {
     id: root
-    width: Style.hspan(3)
+    width: Style.hspan(4)
     height: Style.vspan(1.8)
     radius: 50
     color: "#ded9d7" // FIXME not in palette

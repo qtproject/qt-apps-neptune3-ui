@@ -58,9 +58,10 @@ Item {
     }
 
     Tool {
-        anchors.left: textedit.right
-        anchors.leftMargin: Style.hspan(1)
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(.5)
         anchors.verticalCenter: textedit.verticalCenter
+        width: Style.hspan(2)
         symbol: Style.symbol("ic-erase")
         onClicked: textedit.clear()
 
@@ -71,18 +72,15 @@ Item {
 
     GridLayout {
         id: gridlayout
-        anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2)
-        anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(4)
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textedit.bottom
         anchors.topMargin: Style.vspan(.5)
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Style.vspan(.5)
 
         columns: 3
-        columnSpacing: Style.hspan(.5)
-        rowSpacing: Style.vspan(.5)
+        columnSpacing: Style.hspan(.2)
+        rowSpacing: Style.vspan(.2)
         KeypadButton {
             primaryText: "1"
             secondaryText: " " // to keep the "1" above

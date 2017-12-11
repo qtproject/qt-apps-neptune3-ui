@@ -80,7 +80,7 @@ ColumnLayout {
             checked: currentTool === label
             symbol: icon ? Style.symbol(radioGroup.checkedButton === this ? icon + "ON" : icon + "OFF") : ""
             text: qsTr(label)
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: Style.fontSizeS
             symbolOnTop: true
             onClicked: {
                 root.currentTool = label;

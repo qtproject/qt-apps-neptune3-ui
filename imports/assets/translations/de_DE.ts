@@ -35,6 +35,24 @@
     </message>
 </context>
 <context>
+    <name>DialPower</name>
+    <message>
+        <source>% power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DialSpeed</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>

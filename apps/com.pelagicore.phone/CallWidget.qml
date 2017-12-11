@@ -95,15 +95,17 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             AnchorChanges {
-                target: callEndButton; anchors.left: muteButton.right
-                anchors.verticalCenter: parent.verticalCenter
+                target: callEndButton; anchors.verticalCenter: parent.verticalCenter
             }
             AnchorChanges {
-                target: keypadButton; anchors.left: callEndButton.right
+                target: keypadButton; anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
             }
             PropertyChanges {
                 target: textColumn; anchors.leftMargin: Style.hspan(1)
+            }
+            PropertyChanges {
+                target: callEndButton; x: muteButton.x + ((keypadButton.x - muteButton.x) / 2)
             }
         },
         State {
@@ -132,9 +134,6 @@ Item {
             PropertyChanges {
                 target: textColumn; anchors.leftMargin: 0
             }
-            PropertyChanges {
-                target: callEndButton; scale: 0.8
-            }
         },
         State {
             name: "Widget3Rows"
@@ -159,7 +158,7 @@ Item {
                     duration: 50; easing.type: Easing.InOutQuad }
                 DefaultNumberAnimation { target: contactImage; properties: "x,y,width,height,anchors.topMargin"; duration: 50 }
                 DefaultNumberAnimation { target: textColumn; properties: "anchors.leftMargin"; duration: 50 }
-                DefaultNumberAnimation { target: callEndButton; properties: "scale"; duration: 50 }
+                DefaultNumberAnimation { target: callEndButton; properties: "x"; duration: 50 }
             }
         }
     ]

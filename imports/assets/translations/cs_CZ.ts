@@ -48,6 +48,27 @@
     </message>
 </context>
 <context>
+    <name>DialPower</name>
+    <message>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="258"/>
+        <source>% power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="269"/>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DialSpeed</name>
+    <message>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="237"/>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <location filename="../../../sysui/launcher/EditableGridView.qml" line="218"/>
