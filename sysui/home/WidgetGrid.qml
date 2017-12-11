@@ -492,7 +492,7 @@ Item {
                                     x: 0; y: 0; scale: 1
                                     width: root.activeApplicationParent.width; height: root.activeApplicationParent.height
                                 }
-                                PropertyChanges { target: appWidget; buttonsVisible: false }
+                                PropertyChanges { target: appWidget; buttonsVisible: false; clipWindow: false }
                             },
                             State {
                                 name: "drawer"
@@ -514,19 +514,35 @@ Item {
                             }
                         ]
 
-                        transitions: Transition {
-                            to: "home,active,drawer"
-                            SequentialAnimation {
-                                id: anim
-                                property int oldDelegateZ
-                                PropertyAction { target: anim; property: "oldDelegateZ"; value: repeaterDelegate.z }
-                                PropertyAction { target: repeaterDelegate; property: "z"; value: 100 }
-                                ParentAnimation {
-                                    DefaultNumberAnimation { properties: "x,y,width,height" }
+                        transitions: [
+                            Transition {
+                                to: "home,drawer"
+                                SequentialAnimation {
+                                    id: anim
+                                    property int oldDelegateZ
+                                    PropertyAction { target: anim; property: "oldDelegateZ"; value: repeaterDelegate.z }
+                                    PropertyAction { target: repeaterDelegate; property: "z"; value: 100 }
+                                    ParentAnimation {
+                                        DefaultNumberAnimation { properties: "x,y,width,height" }
+                                    }
+                                    PropertyAction { target: repeaterDelegate; property: "z"; value: anim.oldDelegateZ }
                                 }
-                                PropertyAction { target: repeaterDelegate; property: "z"; value: anim.oldDelegateZ }
+                            },
+                            Transition {
+                                to: "active"
+                                SequentialAnimation {
+                                    id: activeAnim
+                                    property int oldDelegateZ
+                                    PropertyAction { target: appWidget; property: "clipWindow"; value: true }
+                                    PropertyAction { target: activeAnim; property: "oldDelegateZ"; value: repeaterDelegate.z }
+                                    PropertyAction { target: repeaterDelegate; property: "z"; value: 100 }
+                                    ParentAnimation {
+                                        DefaultNumberAnimation { properties: "x,y,width,height" }
+                                    }
+                                    PropertyAction { target: repeaterDelegate; property: "z"; value: activeAnim.oldDelegateZ }
+                                }
                             }
-                        }
+                        ]
                     }
                 }
                 Item {

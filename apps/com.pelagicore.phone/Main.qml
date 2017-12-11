@@ -49,8 +49,8 @@ AppUIScreen {
     }
 
     Phone {
-        height: root.currentHeight
-        width: root.width
+        width: root.exposedRect.width
+        height: root.exposedRect.height
         state: root.tritonState
         onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
     }

@@ -42,9 +42,6 @@ Item {
         anchors.centerIn: parent
         anchors.horizontalCenterOffset: Style.hspan(0.2)
 
-        // TODO: JUST A MOCKUP. Remove this clipping later.
-        clip: true
-
         Image {
             id: widgetMockup
             anchors.centerIn: root.state !== "Maximized" ? parent : undefined

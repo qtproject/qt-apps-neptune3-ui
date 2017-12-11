@@ -51,8 +51,7 @@ AppUIScreen {
     // TODO: Perhaps using loader to switch between this placeholder and the real navigation implementation.
     Maps {
         height: root.currentHeight
-        width: root.width
+        width: root.exposedRect.width
         state: root.tritonState
     }
 }
-

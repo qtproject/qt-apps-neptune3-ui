@@ -64,9 +64,12 @@ class ApplicationInfo : public QObject {
 
     // Currrent window height
     //
-    // The window is kept maximized and it's clipped to fit currentWindowHeight
-    // Application code relayouts *all* of its contents so that they fit currentWindowheight
+    // The window is kept maximized and it's clipped to fit currentHeight
+    // Application code relayouts *all* of its contents so that they fit currentHeight
     Q_PROPERTY(int currentHeight READ currentHeight WRITE setCurrentHeight NOTIFY currentHeightChanged)
+
+    // Currrent window width
+    Q_PROPERTY(int currentWidth READ currentWidth WRITE setCurrentWidth NOTIFY currentWidthChanged)
 
     // Whether the application window should be shown as a widget
     Q_PROPERTY(bool asWidget READ asWidget WRITE setAsWidget NOTIFY asWidgetChanged)
@@ -114,6 +117,9 @@ public:
     void setCurrentHeight(int);
     int currentHeight() const;
 
+    void setCurrentWidth(int);
+    int currentWidth() const;
+
     const QObject *application() const;
 
     int heightRows() const;
@@ -145,6 +151,7 @@ signals:
     void minHeightRowsChanged();
     void startRequested();
     void widgetHeightChanged();
+    void currentWidthChanged();
     void currentHeightChanged();
     void exposedRectBottomMarginChanged();
 
@@ -156,6 +163,7 @@ private:
     QQuickItem *m_window{nullptr};
     QString m_windowState;
     int m_widgetHeight{0};
+    int m_currentWidth{0};
     int m_currentHeight{0};
     bool m_asWidget{false};
     int m_heightRows{1};

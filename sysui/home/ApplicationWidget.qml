@@ -31,6 +31,7 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 import animations 1.0
 import utils 1.0
 
@@ -42,6 +43,7 @@ Item {
     signal dragEnded()
     signal closeClicked()
 
+    property bool clipWindow: true
     property bool buttonsVisible: true
     readonly property bool active: appInfo ? appInfo.active : false
     property var appInfo
@@ -76,7 +78,7 @@ Item {
         var window = root.appInfo.window
         if (window) {
             window.parent = windowSlot;
-            window.width = Qt.binding(function() { return root.width; });
+            window.width = Qt.binding(function() { return Style.hspan(24); });
             loadingStateGroup.state = "live"
         } else {
             loadingStateGroup.state = "loading"
@@ -88,11 +90,36 @@ Item {
     }
 
     Binding {
-        target: root.appInfo; property: "currentHeight"; value: root.height
+        target: root.appInfo; property: "currentWidth"; value: windowSlot.width
+    }
+
+    Binding {
+        target: root.appInfo; property: "currentHeight"; value: windowSlot.height
     }
 
     Binding {
         target: root.appInfo; property: "windowState"; value: root.active ? "Maximized" : root.widgetState
+    }
+
+    BorderImage {
+        id: mask
+        visible: false
+        anchors.fill: parent
+        border { left: 0; right: 17; top: 17; bottom: 17 }
+        horizontalTileMode: BorderImage.Stretch
+        verticalTileMode: BorderImage.Stretch
+        source: Style.gfx2("widget-window-mask")
+    }
+    Item {
+        id: windowSlot
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: root.active ? parent.left : widgetStripe.right
+        anchors.right: parent.right
+        layer.enabled: root.clipWindow
+        layer.effect: OpacityMask {
+            maskSource: mask
+        }
     }
 
     BorderImage {
@@ -123,12 +150,6 @@ Item {
         id: busyIndicator
         running: true
         anchors.fill: parent
-    }
-
-    Item {
-        id: windowSlot
-        anchors.fill: parent
-        clip: true
     }
 
     StateGroup {

@@ -54,7 +54,7 @@ AppUIScreen {
 
     Item {
         height: root.currentHeight
-        width: root.width
+        width: root.exposedRect.width
         Music {
             id: musicAppContent
             width: root.width

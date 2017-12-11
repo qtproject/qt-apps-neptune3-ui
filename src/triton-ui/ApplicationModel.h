@@ -152,6 +152,7 @@ private slots:
 private:
     void configureApps();
     void updateWidgetHeightProperty(ApplicationInfo *appInfo);
+    void updateCurrentWidthProperty(ApplicationInfo *appInfo);
     void updateCurrentHeightProperty(ApplicationInfo *appInfo);
     void updateWindowStateProperty(ApplicationInfo *appInfo);
     void updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo);

@@ -90,6 +90,9 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
             connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {
                 updateWidgetHeightProperty(appInfo);
             });
+            connect(appInfo, &ApplicationInfo::currentWidthChanged, this, [this, appInfo]() {
+                updateCurrentWidthProperty(appInfo);
+            });
             connect(appInfo, &ApplicationInfo::currentHeightChanged, this, [this, appInfo]() {
                 updateCurrentHeightProperty(appInfo);
             });
@@ -189,6 +192,7 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
     if (isRegularApp) {
         windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
         windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+        windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentWidth"), QVariant(appInfo->currentWidth()));
         windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
         windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
     }
@@ -289,6 +293,17 @@ void ApplicationModel::updateWidgetHeightProperty(ApplicationInfo *appInfo)
 
     auto windowManager = WindowManager::instance();
     windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+}
+
+void ApplicationModel::updateCurrentWidthProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+    windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentWidth"), QVariant(appInfo->currentWidth()));
 }
 
 void ApplicationModel::updateCurrentHeightProperty(ApplicationInfo *appInfo)

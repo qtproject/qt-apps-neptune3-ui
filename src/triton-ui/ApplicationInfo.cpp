@@ -176,6 +176,19 @@ int ApplicationInfo::currentHeight() const
     return m_currentHeight;
 }
 
+void ApplicationInfo::setCurrentWidth(int value)
+{
+    if (m_currentWidth != value) {
+        m_currentWidth = value;
+        emit currentWidthChanged();
+    }
+}
+
+int ApplicationInfo::currentWidth() const
+{
+    return m_currentWidth;
+}
+
 qreal ApplicationInfo::exposedRectBottomMargin() const
 {
     return m_exposedRectBottomMargin;
