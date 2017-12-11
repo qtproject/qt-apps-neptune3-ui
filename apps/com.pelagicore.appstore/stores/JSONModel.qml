@@ -30,40 +30,26 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import controls 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
+import "JSONBackend.js" as JSONBackend
 
-ColumnLayout {
-    id: root
+ListModel {
+    id: contenModel
 
-    property alias model: toolsRepeater.model
-    property string currentTool: "installed"
-    signal toolClicked(var storeType, var index)
+    property int itemCount: 10;
+    property string url: ""
+    property variant data
+    property string status: "empty"
 
-    ButtonGroup { id: buttonGroup }
-
-    Repeater {
-        id: toolsRepeater
-
-        Tool {
-            anchors.horizontalCenter: parent.horizontalCenter
-            baselineOffset: 0
-            checkable: true
-            checked: root.currentTool === model.name
-
-            // TODO: ask for the correct asset to designer
-            symbol: Style.symbol(buttonGroup.checkedButton === this ? "ic-favorites_ON" : "ic-favorites_OFF")
-            text: qsTr(model.name)
-            font.pixelSize: Style.fontSizeXS
-            symbolOnTop: true
-            onClicked: {
-                root.toolClicked(model.name, index);
-                root.currentTool = model.name;
+    function refresh() {
+        status = "loading"
+        clear();
+        JSONBackend.abortableServerCall(url, data, function(data) {
+            for (var i = 0; i < data.length; i++) {
+                var entry = data[i];
+                append(entry);
             }
-            ButtonGroup.group: buttonGroup
-        }
+            status = "ready"
+        })
     }
 }
 

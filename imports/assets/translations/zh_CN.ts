@@ -10,6 +10,14 @@
     </message>
 </context>
 <context>
+    <name>ApplicationStoreContent</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
+        <source>No apps found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="41"/>
@@ -369,21 +377,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>messages</source>
         <translation>短信</translation>
     </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="47"/>
-        <source>installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="52"/>
-        <source>download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="57"/>
-        <source>search</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>VehicleModel</name>
@@ -391,6 +384,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
         <translation>300km后保养</translation>
+    </message>
+</context>
+<context>
+    <name>WebBrowser</name>
+    <message>
+        <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
+        <source>Enter an address</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

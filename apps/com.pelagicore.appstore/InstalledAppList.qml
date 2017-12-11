@@ -47,7 +47,7 @@ ColumnLayout {
         Label {
             Layout.preferredHeight: Style.vspan(1)
             text: qsTr("Updates")
-            // TODO: Check with Johan, which color should be used.
+            // TODO: Check with designer, which color should be used.
             color: "grey"
             font.pixelSize: Style.fontSizeM
             horizontalAlignment: Text.AlignLeft
@@ -75,7 +75,7 @@ ColumnLayout {
                         Layout.preferredHeight: Style.vspan(0.5)
                         Layout.preferredWidth: iconSource ? Style.hspan(8) : Style.hspan(9.8)
                         text: appName
-                        // TODO: Check with Johan, which color should be used.
+                        // TODO: Check with designer, which color should be used.
                         color: "grey"
                         font.pixelSize: Style.fontSizeS
                         horizontalAlignment: Text.AlignLeft
@@ -84,7 +84,7 @@ ColumnLayout {
                     Label {
                         Layout.preferredWidth: Style.hspan(2)
                         text: size
-                        // TODO: Check with Johan, which color should be used.
+                        // TODO: Check with designer, which color should be used.
                         color: "grey"
                         font.pixelSize: Style.fontSizeS
                         horizontalAlignment: Text.AlignLeft
@@ -102,7 +102,7 @@ ColumnLayout {
                     width: Style.hspan(15)
                     height: Style.hspan(0.05)
                     anchors.bottom: parent.bottom
-                    // TODO: Check with Johan, which color should be used.
+                    // TODO: Check with designer, which color should be used.
                     color: "#BCBCBC"
                 }
             }
@@ -113,7 +113,7 @@ ColumnLayout {
         Label {
             Layout.preferredHeight: Style.vspan(1.5)
             text: qsTr("Latest Version")
-            // TODO: Check with Johan, which color should be used.
+            // TODO: Check with designer, which color should be used.
             color: "grey"
             font.pixelSize: Style.fontSizeM
             horizontalAlignment: Text.AlignLeft
@@ -140,7 +140,7 @@ ColumnLayout {
                         Layout.preferredHeight: Style.vspan(0.5)
                         Layout.preferredWidth: iconSource ? Style.hspan(10) : Style.hspan(11.8)
                         text: appName
-                        // TODO: Check with Johan, which color should be used.
+                        // TODO: Check with designer, which color should be used.
                         color: "grey"
                         font.pixelSize: Style.fontSizeS
                         horizontalAlignment: Text.AlignLeft
@@ -149,7 +149,7 @@ ColumnLayout {
                     Label {
                         Layout.preferredWidth: Style.hspan(2)
                         text: size
-                        // TODO: Check with Johan, which color should be used.
+                        // TODO: Check with designer, which color should be used.
                         color: "grey"
                         font.pixelSize: Style.fontSizeS
                         horizontalAlignment: Text.AlignLeft
@@ -160,7 +160,7 @@ ColumnLayout {
                     width: Style.hspan(15)
                     height: Style.hspan(0.05)
                     anchors.bottom: parent.bottom
-                    // TODO: Check with Johan, which color should be used.
+                    // TODO: Check with designer, which color should be used.
                     color: "#BCBCBC"
                 }
             }

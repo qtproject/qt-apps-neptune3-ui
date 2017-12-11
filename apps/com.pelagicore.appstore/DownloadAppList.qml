@@ -39,7 +39,12 @@ import utils 1.0
 ListView {
     id: root
 
-    signal downloadClicked(var index)
+    property string appServerUrl
+    property real installationProgress: 1.0
+    property var installedApp: []
+    signal downloadClicked(var appId)
+
+    currentIndex: -1
 
     delegate: ItemDelegate {
         Layout.preferredWidth: Style.hspan(15)
@@ -49,35 +54,77 @@ ListView {
             spacing: Style.hspan(0.8)
 
             Image {
-                Layout.preferredWidth: iconSource ? Style.hspan(1) : 0
-                fillMode: Image.Pad
-                source: iconSource ? Style.symbol(iconSource) : ""
+                id: appIcon
+                Layout.preferredHeight: Style.hspan(1)
+                fillMode: Image.PreserveAspectFit
+                source: root.appServerUrl + "/app/icon?id=" + model.id
             }
 
             Label {
                 Layout.preferredHeight: Style.vspan(0.5)
-                Layout.preferredWidth: iconSource ? Style.hspan(8) : Style.hspan(9.8)
-                text: appName
-                // TODO: Check with Johan, which color should be used.
+                Layout.preferredWidth: appIcon.status === Image.Ready ? Style.hspan(8.8) : Style.hspan(11)
+                text: model.name
+                // TODO: Check with designer, which color should be used.
                 color: "grey"
                 font.pixelSize: Style.fontSizeS
                 horizontalAlignment: Text.AlignLeft
             }
 
-            Label {
-                Layout.preferredWidth: Style.hspan(2)
-                text: size
-                // TODO: Check with Johan, which color should be used.
-                color: "grey"
-                font.pixelSize: Style.fontSizeS
-                horizontalAlignment: Text.AlignLeft
-            }
+// TODO: Check if application size information are available in our server.
+//            Label {
+//                Layout.preferredWidth: Style.hspan(2)
+//                text: size
+//                // TODO: Check with designer, which color should be used.
+//                color: "grey"
+//                font.pixelSize: Style.fontSizeS
+//                horizontalAlignment: Text.AlignLeft
+//            }
 
             Tool {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(0.5)
                 symbol: Style.symbol("ic-download_OFF")
-                onClicked: root.downloadClicked(index)
+                opacity: enabled ? 1.0 : 0.5
+                enabled: root.installedApp.indexOf(model.id) < 0 && root.currentIndex === -1
+                onClicked: {
+                    root.currentIndex = index;
+                    root.downloadClicked(model.id);
+                }
+            }
+        }
+
+        ProgressBar {
+            id: control
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Style.hspan(0.05)
+            value: root.installationProgress
+            onValueChanged: {
+                if (value === 1.0) {
+                    root.currentIndex = -1;
+                }
+            }
+
+            padding: 2
+            visible: root.currentIndex === index && root.installationProgress < 1.0
+
+            background: Rectangle {
+                implicitWidth: Style.hspan(15)
+                implicitHeight: Style.hspan(0.08)
+                color: "#828282"
+                radius: 3
+            }
+
+            contentItem: Item {
+                implicitWidth: Style.hspan(15)
+                implicitHeight: Style.hspan(0.08)
+
+                Rectangle {
+                    width: control.visualPosition * parent.width
+                    height: parent.height
+                    radius: 2
+                    color: "#FA9E54"
+                }
             }
         }
 
@@ -85,7 +132,7 @@ ListView {
             width: Style.hspan(15)
             height: Style.hspan(0.05)
             anchors.bottom: parent.bottom
-            // TODO: Check with Johan, which color should be used.
+            // TODO: Check with designer, which color should be used.
             color: "#BCBCBC"
         }
     }

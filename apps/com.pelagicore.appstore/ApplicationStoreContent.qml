@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import utils 1.0
+import animations 1.0
 import "stores"
 
 Item {
@@ -40,10 +41,34 @@ Item {
 
     property AppStore store
 
+    property int categoryid: 1
+    property string filter: ""
+
     Image {
         id: topImage
         anchors.top: parent.top
         source: Style.gfx2("appstore-placeholder")
+    }
+
+    BusyIndicator {
+        id: busyIndicator
+
+        width: Style.hspan(10)
+        height: Style.vspan(10.5)
+        anchors.centerIn: parent
+        running: true
+        opacity: root.store.categoryModel.count < 1 ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+    }
+
+    // TODO: Check with designer, what suppose to be shown here.
+    Label {
+        anchors.centerIn: parent
+        color: "grey"
+        font.pixelSize: Style.fontSizeM
+        text: qsTr("No apps found!")
+        opacity: 1.0 - busyIndicator.opacity
+        visible: listLoader.item.model.count < 1
     }
 
     RowLayout {
@@ -55,13 +80,8 @@ Item {
         ToolsColumn {
             Layout.preferredHeight: Style.vspan(4)
             anchors.top: parent.top
-            onToolClicked: {
-                if (storeType === "installed") {
-                    listLoader.sourceComponent = installedList;
-                } else {
-                    listLoader.sourceComponent = downloadList;
-                }
-            }
+            model: root.store.categoryModel
+            onToolClicked: root.store.selectCategory(index)
         }
 
         Loader {
@@ -69,7 +89,7 @@ Item {
             anchors.top: parent.top
             Layout.preferredHeight: Style.vspan(10)
             Layout.preferredWidth: Style.hspan(15)
-            sourceComponent: installedList
+            sourceComponent: downloadList
         }
 
         Component {
@@ -77,16 +97,23 @@ Item {
             DownloadAppList {
                 anchors.top: parent ? parent.top : undefined
                 anchors.topMargin: Style.vspan(0.2)
-                model: root.store.availableAppDownloads
+                model: root.store.applicationModel
+                appServerUrl: root.store.appServerUrl
+                installationProgress: root.store.currentInstallationProgress
+                installedApp: root.store.installedOnlineApp
+                onDownloadClicked: root.store.download(appId)
             }
         }
 
-        Component {
-            id: installedList
-            InstalledAppList {
-                updatesListView.model: root.store.availableAppUpdates
-                latestUpdateListView.model: root.store.latestUpdateApps
-            }
-        }
+// NOTE: Possibly be removed completely. Need a clarification from designer if we need such information or not.
+//        Component {
+//            id: installedList
+//            InstalledAppList {
+//                updatesListView.model: root.store.availableAppUpdates
+//                latestUpdateListView.model: root.store.latestUpdateApps
+//            }
+//        }
     }
+
+    Component.onCompleted: root.store.appStoreServer.checkServer();
 }

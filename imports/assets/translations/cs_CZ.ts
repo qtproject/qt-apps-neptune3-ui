@@ -10,6 +10,14 @@
     </message>
 </context>
 <context>
+    <name>ApplicationStoreContent</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
+        <source>No apps found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ButtonBoard</name>
     <message>
         <source>Button</source>
@@ -362,21 +370,6 @@
         <source>messages</source>
         <translation>zprávy</translation>
     </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="47"/>
-        <source>installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="52"/>
-        <source>download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="57"/>
-        <source>search</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>VehicleModel</name>
@@ -384,6 +377,14 @@
         <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
         <translation>Servis za 300 km</translation>
+    </message>
+</context>
+<context>
+    <name>WebBrowser</name>
+    <message>
+        <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
+        <source>Enter an address</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -32,13 +32,56 @@
 import QtQuick 2.8
 import utils 1.0
 
+import "JSONBackend.js" as JSONBackend
+import QtApplicationManager 1.0
+
 Item {
     id: root
 
-    property alias availableAppDownloads: availableDownloadModel
     property alias availableAppUpdates: availableUpdatesModel
     property alias latestUpdateApps: latestUpdateModel
+    property alias applicationModel: appModel
+    property alias categoryModel: catModel
+    property alias appStoreServer: appStoreServer
+    property string appServerUrl: appStoreServer.serverUrl
+    property int categoryid: 0
+    property string filter: ""
+    property real currentInstallationProgress: 0.0
+    property var installedOnlineApp: []
 
+    function download(id) {
+        var url = appStoreServer.serverUrl + "/app/purchase"
+        var data = {"id": id, "device_id" : "00-11-22-33-44-55" }
+
+        JSONBackend.serverCall(url, data, function(data) {
+            if (data !== 0) {
+                if (data.status === "ok") {
+                    console.log(Logging.sysui, "start downloading")
+                    var icon = appStoreServer.serverUrl + "/app/icon?id=" + id
+                    var installID = ApplicationInstaller.startPackageInstallation("internal-0", data.url);
+                    ApplicationInstaller.acknowledgePackageInstallation(installID);
+                    root.installedOnlineApp.push(id);
+                } else if (data.status === "fail" && data.error === "not-logged-in"){
+                    console.log(Logging.sysui, ":::AppStoreServer::: not logged in")
+                } else {
+                    console.log(Logging.sysui, ":::AppStoreServer::: download failed: " + data.error)
+                }
+            }
+        })
+    }
+
+    function selectCategory(index) {
+        var category = categoryModel.get(index);
+        if (category) {
+            root.categoryid = category.id;
+        } else {
+            root.categoryid = 1;
+        }
+        appModel.refresh();
+    }
+
+    // TODO: Need to check with designer if such models are still needed.
+    // Dummy Model
     ListModel {
         id: availableUpdatesModel
 
@@ -55,6 +98,7 @@ Item {
         }
     }
 
+    // Dummy Model
     ListModel {
         id: latestUpdateModel
 
@@ -77,25 +121,26 @@ Item {
         }
     }
 
-    ListModel {
-        id: availableDownloadModel
+    Connections {
+        target: ApplicationInstaller
 
-        ListElement {
-            appName: "Spotify"
-            iconSource: ""
-            size: "35 MB"
-        }
+        onTaskProgressChanged: root.currentInstallationProgress = progress
+    }
 
-        ListElement {
-            appName: "Netflix"
-            iconSource: ""
-            size: "25 MB"
-        }
+    // Application Store Server Configuration
+    AppStoreServer {
+        id: appStoreServer
+        onLoginSuccessful: categoryModel.refresh()
+    }
 
-        ListElement {
-            appName: "Waze"
-            iconSource: ""
-            size: "60 MB"
-        }
+    JSONModel {
+        id: catModel
+        url: appStoreServer.serverUrl + "/category/list"
+    }
+
+    JSONModel {
+        id: appModel
+        url: appStoreServer.serverUrl + "/app/list"
+        data: root.categoryid >= 0 ? ({ "filter" : root.filter , "category_id" : root.categoryid}) : ({ "filter" : root.filter})
     }
 }

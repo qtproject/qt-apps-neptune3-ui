@@ -9,6 +9,13 @@
     </message>
 </context>
 <context>
+    <name>ApplicationStoreContent</name>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <source>Front defrost</source>
@@ -253,24 +260,19 @@
         <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>download</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>search</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>VehicleModel</name>
     <message>
         <source>Service in 300km</source>
         <translation>Service in 300km</translation>
+    </message>
+</context>
+<context>
+    <name>WebBrowser</name>
+    <message>
+        <source>Enter an address</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
