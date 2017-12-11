@@ -29,58 +29,193 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.9
+import QtQuick.Controls 1.4
 
 Item {
     id: root
     width: 560
     height: width
 
+    onEPowerChanged: {
+         dialFrame.highLightAng = d.power2Angle(ePower);
+    }
+
     //public
     property int ePower
-    property string drivetrain
+    property string drivetrain : "PRND"
+
+    //public functions
+    function state2begin() {
+        if (state === "stopped") {
+            dialFrame.state2begin();
+            state = "normal";
+        }
+    }
+    function state2Navigation() {
+        if (state === "normal") {
+            dialFrame.state2Navigation();
+            state = "navi";
+        }
+    }
+    function state2Normal() {
+        if (state === "navi") {
+            dialFrame.state2Normal();
+            state = "normal";
+        }
+    }
+    function state2end() {
+        if (state === "normal" || state === "navi"){
+            dialFrame.state2end();
+            state = "stopped";
+        }
+    }
 
     //private
     Item {
         id: d
         property real scaleRatio: Math.min(parent.width / 560, parent.height / 560 )
-    }
 
-    Component.onCompleted: {
-        scaleCanvas.requestPaint();
-    }
-
-    function power2Angle(power) {
-        if (power < -25) {
-            return -210;
-        } else if (power <= 0) {
-            //-25 to 0 %
-            //map to -210degree to -180degree
-            return ((power + 25) / 25 * 30 - 210);
-        } else if (power <= 100) {
-            //0 to 100 %
-            //map to -180degree to 0degree
-            return ((power) / 100 * 180 - 180);
-        } else {
-            return 0;
+        function power2Angle(power) {
+            if (power < -25) {
+                return -210;
+            } else if (power <= 0) {
+                //-25 to 0 %
+                //map to -210degree to -180degree
+                return ((power + 25) / 25 * 30 - 210);
+            } else if (power <= 100) {
+                //0 to 100 %
+                //map to -180degree to 0degree
+                return ((power) / 100 * 180 - 180);
+            } else {
+                return 0;
+            }
         }
     }
 
-    onEPowerChanged: {
-         dialFrame.highLightAng = power2Angle(ePower);
-    }
+    //states and transitions
+    state: "stopped"
+    states: [
+        State {
+            name: "stopped"
+            PropertyChanges { target: scaleEnergyArea; opacity: 0 }
+            PropertyChanges { target: graduation; opacity: 0; maxDrawValue: -25 }
+            PropertyChanges { target: graduationNumber; opacity: 0 }
+            PropertyChanges { target: indicatorDrivetrain; opacity: 0 }
+            PropertyChanges { target: indicatorEPower; opacity: 0 }
+            PropertyChanges { target: signBattery; opacity: 0 }
+            PropertyChanges { target: signBatteryRemain; opacity: 0 }
+            PropertyChanges { target: signChargeStation; opacity: 0 }
+            PropertyChanges { target: signKM; opacity: 0 }
+            PropertyChanges { target: signKMRemain; opacity: 0 }
+            PropertyChanges { target: signPower; opacity: 0 }
+        },
+        State {
+            name: "normal"
+            PropertyChanges { target: scaleEnergyArea; opacity: 1 }
+            PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 105 }
+            PropertyChanges { target: graduationNumber; opacity:  0.6 }
+            PropertyChanges { target: indicatorDrivetrain; opacity: 0.4 }
+            PropertyChanges { target: indicatorEPower; opacity: 0.94 }
+            PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
+            PropertyChanges { target: signBatteryRemain; opacity: 0.94 }
+            PropertyChanges { target: signChargeStation; opacity: 1 }
+            PropertyChanges { target: signKM; opacity: 0.4 }
+            PropertyChanges { target: signKMRemain; opacity: 0.94 }
+            PropertyChanges { target: signPower; opacity: 0.4 }
+        },
+        State {
+            name: "navi"
+            PropertyChanges { target: scaleEnergyArea; opacity: 0 }
+            PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 105 }
+            PropertyChanges { target: graduationNumber; opacity: 0 }
+            PropertyChanges { target: indicatorDrivetrain; opacity: 0.4 }
+            PropertyChanges { target: indicatorEPower; opacity: 0.94 }
+            PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
+            PropertyChanges { target: signBatteryRemain; opacity: 0 }
+            PropertyChanges { target: signChargeStation; opacity: 0 }
+            PropertyChanges { target: signKM; opacity: 0.4; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: 0.94; x: 260 * d.scaleRatio; y: 365 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: 0.4 }
+        }
+    ]
 
+    transitions: [
+        Transition {
+            from: "stopped"
+            to: "normal"
+            reversible: false
+            SequentialAnimation{
+                //wait DialFrame to start
+                PauseAnimation { duration: 270 }
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 540 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    duration: 200
+                }
+                PropertyAnimation { target: root; property: "ePower"; to: 100; duration: 540 }
+                PropertyAnimation { target: root; property: "ePower"; to: 0; duration: 540 }
+            }
+        },
+        Transition {
+            from: "normal"
+            to: "stopped"
+            reversible: false
+            SequentialAnimation{
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 540 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    duration: 200
+                }
+            }
+        },
+        Transition {
+            from: "normal"
+            to: "navi"
+            reversible: true
+            SequentialAnimation{
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    properties: "opacity, x, y"
+                    duration: 200
+                }
+                //wait DialFrame to expand
+                PauseAnimation { duration: 300 }
+            }
+        },
+        Transition {
+            from: "navi"
+            to: "stopped"
+            reversible: false
+            SequentialAnimation{
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    properties: "opacity, x, y"
+                    duration: 200
+                }
+            }
+        }
+    ]
+
+    //visual components
     DialFrame {
         id: dialFrame
         anchors.centerIn: parent
         width: 560 * d.scaleRatio
-        height: 560 * d.scaleRatio
+        height: width
         minAng: -210
         maxAng: 0
         zeroAng: -180
     }
 
     Image {
+        id: scaleEnergyArea
         x: 31 * d.scaleRatio
         y: 107 * d.scaleRatio
         width: 71 * d.scaleRatio
@@ -89,10 +224,11 @@ Item {
     }
 
     Text {
+        id: indicatorDrivetrain
         x: 260 * d.scaleRatio
         y: 165 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: "PRND"
+        text: drivetrain
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans Light"
@@ -102,10 +238,11 @@ Item {
     }
 
     Text {
+        id: indicatorEPower
         x: 265 * d.scaleRatio
         y: 222 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: ePower
+        text: Math.round(ePower)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans SemiBold"
@@ -115,9 +252,10 @@ Item {
     }
 
     Text {
+        id: signPower
         x: 248 * d.scaleRatio
         y: 324 * d.scaleRatio
-        text: "% power"
+        text: qsTr("% power")
         font.family: "Open Sans Light"
         color: "black"
         opacity: 0.4
@@ -125,9 +263,10 @@ Item {
     }
 
     Text {
+        id: signKM
         x: 272 * d.scaleRatio
         y: 445 * d.scaleRatio
-        text: "km"
+        text: qsTr("km")
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans Light"
@@ -137,6 +276,7 @@ Item {
     }
 
     Image {
+        id: signBattery
         x: 176 * d.scaleRatio
         y: 483 * d.scaleRatio
         width: 23 * d.scaleRatio
@@ -145,6 +285,7 @@ Item {
     }
 
     Text {
+        id: signKMRemain
         x: 207 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "184"
@@ -155,6 +296,7 @@ Item {
     }
 
     Text {
+        id: signBatteryRemain
         x: 303 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "21"
@@ -165,6 +307,7 @@ Item {
     }
 
     Image {
+        id: signChargeStation
         x: 353 * d.scaleRatio
         y: 477 * d.scaleRatio
         width: 24 * d.scaleRatio
@@ -172,38 +315,104 @@ Item {
         source: "./img/ic-chargingstation.png"
     }
 
-    Canvas {
-        id: scaleCanvas
+//    Repeater{
+//        id: graduation
+//        anchors.centerIn: parent
+//        width: 520 * d.scaleRatio
+//        height: width
+
+//        //size and layout
+//        property real radius: (graduation.width / 2) - 16 * d.scaleRatio
+//        property real centerX: graduation.width / 2 * 1.075
+//        property real centerY: graduation.height / 2 * 1.075
+
+//        //for startup animation
+//        property int maxDrawValue: -25
+
+//        model: [-25, 0, 25, 50, 75, 100]
+//        delegate: Rectangle {
+//            property int value: modelData
+//            property int angle: d.power2Angle(value)
+//            property real radin: angle / 180 * Math.PI
+
+//            x: graduation.centerX + Math.cos(radin) * graduation.radius + Math.sin(radin) * height / 2
+//            y: graduation.centerY + Math.sin(radin) * graduation.radius + Math.cos(radin) * height / 2
+//            width: 8 * d.scaleRatio
+//            height: 2 * d.scaleRatio
+//            visible: (value < graduation.maxDrawValue) ? true : false
+
+//            color: "#916E51"
+//            opacity: graduation.opacity
+//            transformOrigin: Item.TopLeft
+//            rotation: angle
+//        }
+//    }
+
+    Repeater{
+        id: graduationNumber
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        height: width
+        opacity: 0.6
+
+        //size and layout
+        property real radius: width / 2 - 50 * d.scaleRatio
+        property real centerX: width / 2
+        property real centerY: height / 2
+
+        model: [0, 25, 50, 75, 100]
+        delegate: Label {
+            property int angle: d.power2Angle(modelData)
+            property real radin: angle / 180 * Math.PI
+
+            text: modelData
+            x: graduationNumber.centerX + Math.cos(radin) * graduationNumber.radius
+            y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
+            visible: (modelData < graduation.maxDrawValue) ? true : false
+
+            color: "black"
+            opacity: graduationNumber.opacity
+            font.family: "Open Sans"
+            font.weight: Font.Light
+            font.pixelSize: 22 * d.scaleRatio
+        }
+    }
+
+    Canvas {
+        id: graduation
+        anchors.centerIn: parent
+        width: 520 * d.scaleRatio
+        height: width
         renderTarget: Canvas.FramebufferObject
 
-        property real radius: scaleCanvas.width / 2
-        property real centerX: scaleCanvas.width / 2
-        property real centerY: scaleCanvas.height / 2
+        property real radius: graduation.width / 2
+        property real centerX: graduation.width / 2
+        property real centerY: graduation.height / 2
         property real scaleLineLength: 8 * d.scaleRatio
         property real scaleLineWidth: 2 * d.scaleRatio
         property real scaleLineBlank: 8 * d.scaleRatio
-        property real scaleWordBlank: 42 * d.scaleRatio
+
+        //for startup animation
+        property int maxDrawValue: 100
+        onMaxDrawValueChanged: {
+            requestPaint();
+        }
+        Component.onCompleted: {
+            requestPaint();
+        }
 
         onPaint: {
             var ctx = getContext("2d");
-            ctx.clearRect(0, 0, scaleCanvas.width, scaleCanvas.height);
+            ctx.clearRect(0, 0, graduation.width, graduation.height);
             ctx.globalCompositeOperation = "source-over";
-            drawScalesLine(ctx);
-            drawScalesWord(ctx);
-        }
 
-        function drawScalesLine(ctx) {
-            ctx.save();
             ctx.beginPath();
             ctx.lineWidth = scaleLineWidth;
             ctx.strokeStyle = "#916E51";
 
             var radin;
-            for (var i = -25; i <= 100; i += 25) {
-                radin = power2Angle(i) / 180 * Math.PI;
+            for (var i = -25; i <= maxDrawValue && i <= 100; i += 25) {
+                radin = d.power2Angle(i) / 180 * Math.PI;
                 ctx.moveTo(
                         centerX + Math.cos(radin) * (radius - scaleLineBlank - scaleLineLength),
                         centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLength));
@@ -212,26 +421,6 @@ Item {
                         centerY + Math.sin(radin) * (radius - scaleLineBlank));
             }
             ctx.stroke();
-            ctx.restore();
-        }
-
-        function drawScalesWord(ctx) {
-            ctx.save();
-            ctx.globalAlpha = 0.6;
-            ctx.font = 22 * d.scaleRatio + "px Open Sans Light";
-            ctx.fillStyle = "black";
-            ctx.textBaseline = "middle";
-            ctx.textAlign = "center";
-
-            var radin;
-            for (var i = 0; i <= 100; i += 25) {
-                radin = power2Angle(i) / 180 * Math.PI;
-                ctx.fillText(
-                        i,
-                        centerX + Math.cos(radin) * (radius - scaleWordBlank),
-                        centerY + Math.sin(radin) * (radius - scaleWordBlank));
-            }
-            ctx.restore();
         }
     }
 }

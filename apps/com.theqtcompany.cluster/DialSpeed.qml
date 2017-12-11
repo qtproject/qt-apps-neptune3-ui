@@ -31,67 +31,198 @@
 
 import QtQuick 2.0
 import QtGraphicalEffects 1.0
+import QtQuick.Controls 1.4
 
 Item {
     id: root
     width: 560
     height: width
 
-    //public
-    property int speed
-    property int speedLimit
-    property int cruiseSpeed
-
-    //private
-    Item {
-        id: d
-        property real scaleRatio: Math.min(parent.width / 560, parent.height/ 560)
-    }
-
-    Component.onCompleted: {
-        scaleCanvas.requestPaint();
-        cruiseMask.requestPaint();
-    }
     onSpeedLimitChanged: {
-        scaleCanvas.requestPaint();
+        graduation.requestPaint();
     }
     onSpeedChanged: {
-        dialFrame.highLightAng = speed2Angle(speed);
+        dialFrame.highLightAng = d.speed2Angle(speed);
     }
     onCruiseSpeedChanged: {
         cruiseMask.requestPaint();
     }
 
-    function speed2Angle(speed) {
-        if (speed < 0) {
-            return -240;
-        } else if (speed < 140) {
-            //0 to 140 kmh
-            //map to -240degree to -30degree
-            return (speed / 140 * 210 - 240);
-        } else if (speed <= 260) {
-            //140 o 260 kmh
-            //map to -30degree to 30degree
-            return ((speed - 140) / 120 * 60 - 30);
-        } else {
-            return 30;
+    //public
+    property real speed
+    property real speedLimit
+    property real cruiseSpeed
+
+    //public functions
+    function state2begin() {
+        if (state === "stopped") {
+            dialFrame.state2begin();
+            state = "normal";
+        }
+    }
+    function state2Navigation() {
+        if (state === "normal") {
+            dialFrame.state2Navigation();
+            state = "navi";
+        }
+    }
+    function state2Normal() {
+        if (state === "navi") {
+            dialFrame.state2Normal();
+            state = "normal";
+        }
+    }
+    function state2end() {
+        if (state === "normal" || state === "navi"){
+            dialFrame.state2end();
+            state = "stopped";
         }
     }
 
+    //private
+    Item {
+        id: d
+        property real scaleRatio: Math.min(parent.width / 560, parent.height/ 560)
+        function speed2Angle(speed) {
+            if (speed < 0) {
+                return -240;
+            } else if (speed < 140) {
+                //0 to 140 kmh
+                //map to -240degree to -30degree
+                return (speed / 140 * 210 - 240);
+            } else if (speed <= 260) {
+                //140 o 260 kmh
+                //map to -30degree to 30degree
+                return ((speed - 140) / 120 * 60 - 30);
+            } else {
+                return 30;
+            }
+        }
+    }
+
+    //states and transitions
+    state: "stopped"
+    states: [
+        State {
+            name: "stopped"
+            PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 0 }
+            PropertyChanges { target: graduationNumber; opacity: 0 }
+            PropertyChanges { target: indicatorSpeed; opacity: 0 }
+            PropertyChanges { target: signKMH; opacity: 0 }
+            PropertyChanges { target: indicatorSpdLimit; opacity: 0 }
+            PropertyChanges { target: indicatorCruiseCircle; opacity: 0 }
+            PropertyChanges { target: indicatorCruiseBg; opacity: 0; x: 237 * d.scaleRatio; y: 472 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; opacity: 0; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+        },
+        State {
+            name: "normal"
+            PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 265 }
+            PropertyChanges { target: graduationNumber; opacity: 0.6 }
+            PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
+            PropertyChanges { target: signKMH; opacity: 0.4 }
+            PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
+            PropertyChanges { target: indicatorCruiseCircle; opacity: 1 }
+            PropertyChanges { target: indicatorCruiseBg; opacity: 1; x: 237 * d.scaleRatio; y: 472 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; opacity: 0.94; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+        },
+        State {
+            name: "navi"
+            PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 265 }
+            PropertyChanges { target: graduationNumber; opacity: 0 }
+            PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
+            PropertyChanges { target: signKMH; opacity: 0.4 }
+            PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
+            PropertyChanges { target: indicatorCruiseCircle; opacity: 0 }
+            PropertyChanges { target: indicatorCruiseBg; opacity: 1; x: 237 * d.scaleRatio; y: 380 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; opacity: 0.94; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: "stopped"
+            to: "normal"
+            reversible: false
+            SequentialAnimation{
+                //wait DialFrame to start
+                PauseAnimation { duration: 270 }
+                PropertyAnimation { target: graduation; properties: "opacity, maxDrawValue"; duration: 100 }
+                ParallelAnimation {
+                    PropertyAnimation {
+                        targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                        properties: "opacity, x, y"
+                        duration: 100
+                    }
+                }
+                PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 0; to: 260; duration: 540 }
+                PauseAnimation { duration: 270 }
+                PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 260; to: 0; duration: 540 }
+            }
+        },
+        Transition {
+            from: "normal"
+            to: "stopped"
+            reversible: false
+            SequentialAnimation{
+                ParallelAnimation {
+                    PropertyAnimation {
+                        targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                        properties: "opacity, x, y"
+                        duration: 100
+                    }
+                }
+                PropertyAnimation { target: graduation; properties: "opacity, maxDrawValue"; duration: 100 }
+            }
+        },
+        Transition {
+            from: "normal"
+            to: "navi"
+            reversible: true
+            SequentialAnimation{
+                PropertyAnimation { target: graduation; properties: "opacity, maxDrawValue"; duration: 100 }
+                ParallelAnimation {
+                    PropertyAnimation {
+                        targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                        properties: "opacity, x, y"
+                        duration: 100
+                    }
+                }
+                //wait DialFrame to expand
+                PauseAnimation { duration: 300 }
+            }
+        },
+        Transition {
+            from: "navi"
+            to: "stopped"
+            SequentialAnimation{
+                PropertyAnimation { target: graduation; properties: "opacity, maxDrawValue"; duration: 100 }
+                ParallelAnimation {
+                    PropertyAnimation {
+                        targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                        properties: "opacity, x, y"
+                        duration: 100
+                    }
+                }
+            }
+        }
+    ]
+
+    //visual components
     DialFrame {
         id: dialFrame
         anchors.centerIn: parent
         width: 560 * d.scaleRatio
-        height: 560 * d.scaleRatio
+        height: width
         minAng: -240
         maxAng: 30
         zeroAng: -240
     }
     Text {
+        id: indicatorSpeed
         x: 257 * d.scaleRatio
         y: 218 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: speed
+        text: Math.round(speed)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans SemiBold"
@@ -100,16 +231,17 @@ Item {
         font.pixelSize: 80 * d.scaleRatio
     }
     Text {
+        id: signKMH
         x: 260 * d.scaleRatio
         y: 325 * d.scaleRatio
-        text: "km/h"
+        text: qsTr("km/h")
         font.family: "Open Sans Light"
         color: "black"
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
     Image {
-        id: spdLimit
+        id: indicatorSpdLimit
         x: 330* d.scaleRatio
         y: 342 * d.scaleRatio
         width: 140 * d.scaleRatio
@@ -118,7 +250,7 @@ Item {
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            text: speedLimit
+            text: Math.round(speedLimit)
             font.family: "open sans"
             color: "black"
             opacity: 0.94
@@ -126,34 +258,34 @@ Item {
         }
     }
 
-
     Rectangle {
         id: cruiseSource
         visible: false
         color: "transparent"
         width: 370 * d.scaleRatio
-        height: 370 * d.scaleRatio
+        height: height
         anchors.centerIn: parent
         Image {
             id: cruiseShadow
             width: 370 * d.scaleRatio
-            height: 370 * d.scaleRatio
+            height: height
             anchors.centerIn: parent
             source: "./img/dial-cruise-circle-shadow.png"
         }
-       Image {
+        Image {
             id: cruiseCircle
             width: 330 * d.scaleRatio
-            height: 330 * d.scaleRatio
+            height: height
             anchors.centerIn: parent
             source: "./img/dial-cruise-circle.png"
         }
     }
+
     Canvas {
         id: cruiseMask
         anchors.centerIn: parent
         width: 370 * d.scaleRatio
-        height: 370 * d.scaleRatio
+        height: width
         renderTarget: Canvas.FramebufferObject
         visible: false
 
@@ -175,7 +307,7 @@ Item {
             ctx.lineWidth = 0;
             ctx.fillStyle = "black";
 
-            var radin = speed2Angle(cruiseSpeed) / 180 * Math.PI
+            var radin = d.speed2Angle(cruiseSpeed) / 180 * Math.PI
             var isPositive = radin >= zeroRadin ? true : false
             var sixOClockRadin = -270 / 180 * Math.PI
 
@@ -188,41 +320,73 @@ Item {
         }
     }
     OpacityMask {
-        id: cruise
+        id: indicatorCruiseCircle
         visible: true
         maskSource: cruiseMask
         source: cruiseSource
         anchors.fill: cruiseMask
     }
     Image {
-        id: cruiseImg
+        id: indicatorCruiseBg
+        visible: true
         x: 237 * d.scaleRatio
         y: 472 * d.scaleRatio
         width: 35 * d.scaleRatio
         height: 31 * d.scaleRatio
         source: "./img/ic-acc.png"
-        visible: true
     }
     Text {
+        id: indicatorCruise
+        visible: true
+        opacity: 0.94
         x: 280 * d.scaleRatio
         y: 466 * d.scaleRatio
-        text: cruiseSpeed
+        text:  Math.round(cruiseSpeed)
         font.family: "open sans"
         color: "black"
-        opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
-        visible: true
     }
-    Canvas {
-        id: scaleCanvas
+
+    Repeater{
+        id: graduationNumber
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        height: width
+        opacity: 0.6
+
+        //size and layout
+        property real radius: width / 2 - 55 * d.scaleRatio
+        property real centerX: width / 2
+        property real centerY: height / 2
+
+        model: [0, 20, 40, 60, 80, 100, 120, 140, 200]
+        delegate: Label {
+            property int angle: d.speed2Angle(modelData)
+            property real radin: angle / 180 * Math.PI
+
+            text: modelData
+            x: graduationNumber.centerX + Math.cos(radin) * graduationNumber.radius
+            y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
+            visible: (modelData < graduation.maxDrawValue) ? true : false
+
+            color: "black"
+            opacity: graduationNumber.opacity
+            font.family: "Open Sans"
+            font.weight: Font.Light
+            font.pixelSize: 22 * d.scaleRatio
+        }
+    }
+
+    Canvas {
+        id: graduation
+        anchors.centerIn: parent
+        width: 520 * d.scaleRatio
+        height: width
         renderTarget: Canvas.FramebufferObject
 
-        property real radius: scaleCanvas.width / 2
-        property real centerX: scaleCanvas.width / 2
-        property real centerY: scaleCanvas.height / 2
+        property real radius: graduation.width / 2
+        property real centerX: graduation.width / 2
+        property real centerY: graduation.height / 2
         property real scaleLineLong: 8 * d.scaleRatio
         property real scaleLineShort: 4 * d.scaleRatio
         property real scaleLineWidth: 2 * d.scaleRatio
@@ -230,94 +394,81 @@ Item {
         property real scaleLineBlank: 8 * d.scaleRatio
         property real scaleWordBlank: 40 * d.scaleRatio
 
+        //for startup animation
+        property int maxDrawValue: 260
+        property int lastDrawValue
+        onMaxDrawValueChanged: {
+            requestPaint();
+        }
+        Component.onCompleted: {
+            requestPaint();
+        }
         onPaint: {
             var ctx = getContext("2d");
-            ctx.clearRect(0,0,scaleCanvas.width,scaleCanvas.height);
+            ctx.clearRect(0,0,graduation.width,graduation.height);
             ctx.globalCompositeOperation = "source-over";
             drawScalesLine(ctx);
             drawSpeedLimit(ctx);
-            drawScalesWord(ctx);
         }
         function drawScalesLine(ctx) {
             ctx.save();
 
+            var radin, i;
+            var majorTicks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 200, 260]
+            var minorTicks = [155, 170, 185, 215, 230, 245]
+
             ctx.beginPath();
             ctx.lineWidth = scaleLineWidth;
             ctx.strokeStyle = "#916E51";
-
-            var radin;
-            for (var i = 0; i<=140; i+=10) {
-                radin = speed2Angle(i) / 180 * Math.PI
-                ctx.moveTo(
-                        centerX + Math.cos(radin) * (radius-scaleLineBlank - scaleLineLong),
-                        centerY + Math.sin(radin) * (radius-scaleLineBlank-scaleLineLong));
-                ctx.lineTo(
-                        centerX + Math.cos(radin)*(radius - scaleLineBlank),
-                        centerY + Math.sin(radin) * (radius-scaleLineBlank));
-                ctx.stroke();
-            }
-            for (i = 155; i <= 260; i += 15) {
-                radin = speed2Angle(i) / 180 * Math.PI
-                if (i == 200 || i == 260) {
-                    ctx.globalAlpha = 1.0;
+            ctx.globalAlpha = 1;
+            for (i in majorTicks) {
+                if (majorTicks[i] <= maxDrawValue) {
+                    radin = d.speed2Angle(majorTicks[i]) / 180 * Math.PI;
                     ctx.moveTo(
-                        centerX + Math.cos(radin) * (radius - scaleLineBlank - scaleLineLong),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLong));
+                            centerX + Math.cos(radin) * (radius - scaleLineBlank - scaleLineLong),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLong));
                     ctx.lineTo(
-                        centerX + Math.cos(radin) * (radius - scaleLineBlank),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank));
-                } else {
-                    ctx.globalAlpha = 0.4;
-                    ctx.moveTo(
-                        centerX + Math.cos(radin) * (radius - scaleLineBlank - scaleLineShort),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineShort));
-                    ctx.lineTo(
-                        centerX + Math.cos(radin) * (radius - scaleLineBlank),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank));
+                            centerX + Math.cos(radin) * (radius - scaleLineBlank),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank));
                 }
-                ctx.stroke();
             }
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.lineWidth = scaleLineWidth;
+            ctx.strokeStyle = "#916E51";
+            ctx.globalAlpha = 0.4;
+            for (i in minorTicks) {
+                if (minorTicks[i] <= maxDrawValue) {
+                    radin = d.speed2Angle(minorTicks[i]) / 180 * Math.PI;
+                    ctx.moveTo(
+                            centerX + Math.cos(radin) * (radius - scaleLineBlank - scaleLineShort),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineShort));
+                    ctx.lineTo(
+                            centerX + Math.cos(radin) * (radius - scaleLineBlank),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank));
+                }
+            }
+            ctx.stroke();
             ctx.restore();
         }
 
         function drawSpeedLimit(ctx) {
             ctx.save();
             ctx.beginPath();
-            ctx.globalAlpha = 1;
             ctx.lineWidth = speedLimitLineWidth;
             ctx.strokeStyle = "white"
 
-            var radin = speed2Angle(speedLimit) / 180 * Math.PI;
-            ctx.moveTo(
-                        centerX + Math.cos(radin) * (radius-scaleLineBlank - scaleLineLong),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLong));
-            ctx.lineTo(
-                        centerX + Math.cos(radin) * (radius - scaleLineBlank),
-                        centerY + Math.sin(radin) * (radius - scaleLineBlank));
-            ctx.stroke();
-            ctx.restore();
-        }
-
-        function drawScalesWord(ctx) {
-            ctx.save();
-            ctx.globalAlpha = 0.6;
-            ctx.font = 22*d.scaleRatio + "px Open Sans Light"
-            ctx.fillStyle = "black";
-            ctx.textBaseline = "middle";
-            ctx.textAlign = "center";
-            var radin;
-            for (var i = 0; i <= 140; i += 20) {
-                radin = speed2Angle(i) / 180 * Math.PI;
-                ctx.fillText(
-                        i,
-                        centerX + Math.cos(radin) * (radius - scaleWordBlank),
-                        centerY + Math.sin(radin) * (radius - scaleWordBlank));
+            if (speedLimit <= maxDrawValue) {
+                var radin = d.speed2Angle(speedLimit) / 180 * Math.PI;
+                ctx.moveTo(
+                            centerX + Math.cos(radin) * (radius-scaleLineBlank - scaleLineLong),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLong));
+                ctx.lineTo(
+                            centerX + Math.cos(radin) * (radius - scaleLineBlank),
+                            centerY + Math.sin(radin) * (radius - scaleLineBlank));
             }
-            radin = speed2Angle(200) / 180 * Math.PI;
-            ctx.fillText(
-                        200,
-                        centerX + Math.cos(radin) * (radius - scaleWordBlank),
-                        centerY + Math.sin(radin) * (radius - scaleWordBlank));
+            ctx.stroke();
             ctx.restore();
         }
     }

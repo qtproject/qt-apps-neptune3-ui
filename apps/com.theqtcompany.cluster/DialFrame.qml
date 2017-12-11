@@ -29,14 +29,20 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.9
 import QtGraphicalEffects 1.0
-import QtQml.StateMachine 1.0
 
 Item {
     id: root
     width: 560
     height: width
+
+    Connections {
+        target: root
+        onHighLightAngChanged: {
+            highLightMask.requestPaint();
+        }
+    }
 
     //public
     property real highLightAng: zeroAng
@@ -44,57 +50,158 @@ Item {
     property real maxAng: 90
     property real minAng: -270
 
+    //public functions
+    function state2begin() {
+        if (state === "stopped")
+            state = "normal"
+    }
+    function state2Navigation() {
+        if (state === "normal")
+            state = "navi"
+    }
+    function state2Normal() {
+        if (state === "navi")
+            state = "normal"
+    }
+    function state2end() {
+        if (state === "normal" || state === "navi"){
+            state = "stopped"
+        }
+    }
+
     //private
     Item {
         id: d
         property real scaleRatio: Math.min ( parent.width / 560, parent.height / 560 )
     }
 
-    Connections {
-        target: dialFrame
-        onHighLightAngChanged: {
-            highLightMask.requestPaint();
+    //states and transitions
+    state: "stopped"
+    states: [
+        State {
+            name: "stopped"
+            PropertyChanges { target: highLightOut; opacity: 0 }
+            PropertyChanges { target: highLightIn; opacity: 0 }
+            PropertyChanges { target: innerCircle; opacity: 0; width: 100 * d.scaleRatio }
+            PropertyChanges { target: innerCircleShadow; opacity: 0; width: 112 * d.scaleRatio }
+            PropertyChanges { target: outBg; opacity: 0; width: 140 * d.scaleRatio }
+            PropertyChanges { target: outEdge; opacity: 0; width: 140 * d.scaleRatio }
+            PropertyChanges { target: outShadow; opacity: 0; width: 150 * d.scaleRatio }
+        },
+        State {
+            name: "normal"
+            PropertyChanges { target: highLightOut; opacity: 1 }
+            PropertyChanges { target: highLightIn; opacity: 1 }
+            PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
+            PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
+            PropertyChanges { target: outBg; opacity: 1; width: 520 * d.scaleRatio }
+            PropertyChanges { target: outEdge; opacity: 1; width: 520 * d.scaleRatio }
+            PropertyChanges { target: outShadow; opacity: 1; width: 560 * d.scaleRatio }
+        },
+        State {
+            name: "navi"
+            PropertyChanges { target: highLightOut; opacity: 1 }
+            PropertyChanges { target: highLightIn; opacity: 1 }
+            PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
+            PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
+            PropertyChanges { target: outBg; opacity: 1; width: 340 * d.scaleRatio }
+            PropertyChanges { target: outEdge; opacity: 1; width: 340 * d.scaleRatio }
+            PropertyChanges { target: outShadow; opacity: 1; width: 366.15 * d.scaleRatio }
         }
-    }
+    ]
 
+    transitions: [
+        Transition {
+            from: "stopped"
+            to: "normal"
+            reversible: true
+            SequentialAnimation{
+                ParallelAnimation {
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 70 }
+                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                    }
+                }
+                PauseAnimation { duration: 270 }
+                PropertyAnimation { target: highLightOut; property: "opacity"; duration: 130 }
+                //wait outside components to hide
+                PauseAnimation { duration: 2000 }
+            }
+        },
+        Transition {
+            from: "normal"
+            to: "navi"
+            reversible: true
+            SequentialAnimation{
+                //wait parent components to shrink
+                PauseAnimation { duration: 500 }
+                ParallelAnimation {
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 70 }
+                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                    }
+                }
+            }
+        },
+        Transition {
+            from: "navi"
+            to: "stopped"
+            reversible: true
+            SequentialAnimation{
+                //wait outside components to hide
+                PauseAnimation { duration: 1000 }
+                ParallelAnimation {
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 70 }
+                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                    }
+                }
+                PauseAnimation { duration: 270 }
+                PropertyAnimation { target: highLightOut; property: "opacity"; duration: 130 }
+            }
+        }
+    ]
+
+    //visual components
     Image {
         id: outBg
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        height: width
         source: "./img/dial-outer-circle-bg.png"
     }
 
     Image {
         id: outEdge
+        z: 1
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        height: width
         source: "./img/dial-outer-circle-edge.png"
     }
 
     Image {
         id: outShadow
+        z: 1
         anchors.centerIn: parent
         width: 560 * d.scaleRatio
-        height: 560 * d.scaleRatio
+        height: width
         source: "./img/dial-outer-circle-shadow.png"
     }
 
     Image {
         id: highLightSource
-        anchors.centerIn: parent
-        width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        anchors.fill: outBg
         source: "./img/dial_highlight.png"
         visible: false
     }
 
     Canvas {
         id: highLightMask
-        anchors.centerIn: parent
-        width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
+        anchors.fill: highLightSource
         renderTarget: Canvas.FramebufferObject
         visible: false
 
@@ -138,63 +245,65 @@ Item {
         visible: false
         maskSource: highLightMask
         source: highLightSource
-        anchors.fill: highLightMask
+        anchors.fill: highLightSource
     }
 
     Image {
-        id: hightLightOutMask
+        id: highLightOutMask
         visible: false
-        width: 520 * d.scaleRatio
-        height: 520 * d.scaleRatio
-        anchors.centerIn: parent
+        anchors.fill: highLightSource
         source: "./img/highlight-mask.png"
     }
 
     OpacityMask {
         id: highLightOut
         visible: true
-        maskSource: hightLightOutMask
+        maskSource: highLightOutMask
         source: highLight
-        anchors.fill: hightLightOutMask
+        anchors.fill: highLightSource
     }
 
     Image {
-        id: hightLightInMask
+        id: highLightInMask
         visible: false
-        width: 310 * d.scaleRatio
-        height: 310 * d.scaleRatio
-        anchors.centerIn: parent
+        width: innerCircle.width// + 2
+        height: width
+        anchors.centerIn: innerCircle
         source: "./img/highlight-mask-inner.png"
+    }
+
+    FastBlur {
+        id: highLightInBlur
+        visible: false
+        source: highLight
+        anchors.fill: highLight
+        radius: 60
+        cached: true
     }
 
     OpacityMask {
         id: highLightIn
-        visible: false
-        maskSource: hightLightInMask
-        source: highLight
-        anchors.fill: hightLightInMask
-    }
-
-    FastBlur {
         visible: true
-        source: highLightIn
-        anchors.fill: highLightIn
-        radius: 60
-    }
-
-    Image {
-        id: innerCircleShadow
-        width: 350 * d.scaleRatio
-        height: 350 * d.scaleRatio
-        anchors.centerIn: parent
-        source: "./img/dial-inner-circle_shadow.png"
+        maskSource: highLightInMask
+        source: highLightInBlur
+        anchors.fill: highLightInMask
     }
 
     Image {
         id: innerCircle
+        visible: true
         width: 310 * d.scaleRatio
-        height: 310 * d.scaleRatio
+        height: width
         anchors.centerIn: parent
         source: "./img/dial-inner-circle.png"
+    }
+
+    Image {
+        id: innerCircleShadow
+        visible: true
+        width: 350 * d.scaleRatio
+        height: width
+        anchors.centerIn: parent
+        source: "./img/dial-inner-circle_shadow.png"
     }
 }

@@ -31,9 +31,9 @@
 
 import QtQuick 2.8
 import QtQuick.Window 2.2
-import QtQml.StateMachine 1.0
 import QtApplicationManager 1.0
 ApplicationManagerWindow {
+
     id: root
     visible: true
     width: 1920
@@ -49,6 +49,7 @@ ApplicationManagerWindow {
     Loader {
         id: mainContent
         anchors.fill: parent
+        source: "Normal.qml"
     }
 
     TelltalesLeft {
@@ -68,39 +69,4 @@ ApplicationManagerWindow {
     }
 
 
-    property var statesPageMap: [
-        "Normal.qml",
-        "Map.qml"
-    ]
-
-    StateMachine {
-        initialState: s1
-        running: true
-
-        State {
-            id: s1
-            SignalTransition {
-                targetState: s2
-                signal: needChange.clicked
-            }
-            onEntered: {
-                mainContent.setSource(statesPageMap[0])
-            }
-        }
-        State {
-            id: s2
-            SignalTransition {
-                targetState: s1
-                signal: needChange.clicked
-            }
-            onEntered: {
-                mainContent.setSource(statesPageMap[1])
-            }
-        }
-    }
-
-    MouseArea {
-        id: needChange
-        anchors.fill: parent
-    }
 }
