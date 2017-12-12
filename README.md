@@ -1,9 +1,9 @@
 # Prerequisite
 
-* Qt 5.10
-* QtIvi (on branch dev)
+* Qt5 (branch 5.10)
+* QtIvi (branch dev)
+* Application Manager (branch 5.9)
 * Unix system (e.g. Ubuntu 16.04)
-* Application Manager
 
 # Clone Repository
 
