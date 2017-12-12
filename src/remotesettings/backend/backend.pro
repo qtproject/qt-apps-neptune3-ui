@@ -1,7 +1,6 @@
 TEMPLATE=lib
 TARGET = $$qtLibraryTarget(RemoteSettings_backend)
 CONFIG += ivigenerator plugin
-macos: CONFIG += debug_and_release build_all
 
 include($$SOURCE_DIR/config.pri)
 
