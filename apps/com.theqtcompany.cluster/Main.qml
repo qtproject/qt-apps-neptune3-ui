@@ -39,6 +39,7 @@ ApplicationManagerWindow {
     width: 1920
     height: 720
     title: qsTr("Instrument Cluster")
+    color: "transparent"
 
     //private
     Item {

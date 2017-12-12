@@ -178,25 +178,28 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
 
     bool isRegularApp = appInfo != nullptr;
 
-    if (!appInfo) {
-        // must be the instrument cluster, which is set apart
-        Q_ASSERT(m_instrumentClusterApp && m_instrumentClusterApp->id() == appID);
-        appInfo = m_instrumentClusterApp;
-    }
-
-    if (isRegularApp) {
-        windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
-        windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
-        windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentWidth"), QVariant(appInfo->currentWidth()));
-        windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
-        windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
-    }
     windowManager->setWindowProperty(window, QStringLiteral("cellWidth"), QVariant(m_cellWidth));
     windowManager->setWindowProperty(window, QStringLiteral("cellHeight"), QVariant(m_cellHeight));
 
-    appInfo->setWindow(window);
     if (isRegularApp) {
-        appInfo->setCanBeActive(true);
+        bool isSecondaryWindow = windowManager->windowProperty(window, QStringLiteral("windowType")).toString()
+            == QStringLiteral("secondary");
+
+        if (isSecondaryWindow) {
+            appInfo->setSecondaryWindow(window);
+        } else {
+            windowManager->setWindowProperty(window, QStringLiteral("homePageRowHeight"), QVariant(m_homePageRowHeight));
+            windowManager->setWindowProperty(window, QStringLiteral("tritonWidgetHeight"), QVariant(appInfo->widgetHeight()));
+            windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentWidth"), QVariant(appInfo->currentWidth()));
+            windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
+            windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
+            appInfo->setWindow(window);
+            appInfo->setCanBeActive(true);
+        }
+    } else {
+        // must be the instrument cluster, which is set apart
+        Q_ASSERT(m_instrumentClusterApp && m_instrumentClusterApp->id() == appID);
+        m_instrumentClusterApp->setWindow(window);
     }
 }
 
@@ -214,6 +217,8 @@ void ApplicationModel::onWindowLost(int index, QQuickItem *window)
 
     if (appInfo->window() == window) {
         appInfo->setWindow(nullptr);
+    } else if (appInfo->secondaryWindow() == window) {
+        appInfo->setSecondaryWindow(nullptr);
     }
 
     // TODO care about animating before releasing

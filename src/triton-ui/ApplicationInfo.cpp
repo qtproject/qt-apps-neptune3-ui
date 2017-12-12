@@ -66,6 +66,19 @@ QQuickItem *ApplicationInfo::window() const
     return m_window;
 }
 
+void ApplicationInfo::setSecondaryWindow(QQuickItem *window)
+{
+    if (window != m_secondaryWindow) {
+        m_secondaryWindow = window;
+        emit secondaryWindowChanged();
+    }
+}
+
+QQuickItem *ApplicationInfo::secondaryWindow() const
+{
+    return m_secondaryWindow;
+}
+
 void ApplicationInfo::setWindowState(const QString &value)
 {
     if (m_windowState != value) {

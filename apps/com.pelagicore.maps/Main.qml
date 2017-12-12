@@ -32,26 +32,45 @@
 import QtQuick 2.8
 import utils 1.0
 
-AppUIScreen {
-    id: root
+import QtApplicationManager 1.0
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+QtObject {
+    property var mainWindow: AppUIScreen {
+        id: mainWindow
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+        MultiPointTouchArea {
+            id: multiPoint
+            anchors.fill: parent
+            anchors.margins: 30
+            touchPoints: [ TouchPoint { id: touchPoint1 } ]
+
+            property int count: 0
+            onReleased: {
+                count += 1;
+                mainWindow.setWindowProperty("activationCount", count);
+            }
+        }
+
+        // TODO: Perhaps using loader to switch between this placeholder and the real navigation implementation.
+        Maps {
+            height: mainWindow.currentHeight
+            width: mainWindow.exposedRect.width
+            state: mainWindow.tritonState
         }
     }
 
-    // TODO: Perhaps using loader to switch between this placeholder and the real navigation implementation.
-    Maps {
-        height: root.currentHeight
-        width: root.exposedRect.width
-        state: root.tritonState
+    property var secondaryWindow: ApplicationManagerWindow {
+        id: secondaryWindow
+
+        Image {
+            anchors.fill: parent
+            source: "assets/navigation-widget-map.png"
+            fillMode: Image.PreserveAspectCrop
+        }
+
+        Component.onCompleted: {
+            secondaryWindow.setWindowProperty("windowType", "secondary")
+            secondaryWindow.visible = true
+        }
     }
 }

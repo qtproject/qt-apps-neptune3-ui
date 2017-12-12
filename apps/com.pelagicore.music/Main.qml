@@ -36,39 +36,70 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import "stores"
 
-AppUIScreen {
-    id: root
+import QtApplicationManager 1.0
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+QtObject {
+    property var mainWindow: AppUIScreen {
+        id: mainWindow
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+        MultiPointTouchArea {
+            id: multiPoint
+            anchors.fill: parent
+            anchors.margins: 30
+            touchPoints: [ TouchPoint { id: touchPoint1 } ]
+
+            property int count: 0
+            onReleased: {
+                count += 1;
+                mainWindow.setWindowProperty("activationCount", count);
+            }
         }
+
+        Item {
+            height: mainWindow.currentHeight
+            width: mainWindow.exposedRect.width
+            Music {
+                id: musicAppContent
+                width: mainWindow.width
+                height: mainWindow.targetHeight
+                anchors.centerIn: parent
+
+                state: mainWindow.tritonState
+                store: MusicStore { }
+                bottomWidgetHide: mainWindow.exposedRect.height === mainWindow.targetHeight
+
+                onDragAreaClicked: {
+                    multiPoint.count += 1;
+                    mainWindow.setWindowProperty("activationCount", multiPoint.count);
+                }
+            }
+        }
+
     }
 
-    Item {
-        height: root.currentHeight
-        width: root.exposedRect.width
-        Music {
-            id: musicAppContent
-            width: root.width
-            height: root.targetHeight
-            anchors.centerIn: parent
+    property var secondaryWindow: ApplicationManagerWindow {
+        id: secondaryWindow
 
-            state: root.tritonState
-            store: MusicStore { }
-            bottomWidgetHide: root.exposedRect.height === root.targetHeight
+        Image {
+            anchors.fill: parent
+            source: "assets/bg.png"
+            fillMode: Image.Stretch
 
-            onDragAreaClicked: {
-                multiPoint.count += 1;
-                root.setWindowProperty("activationCount", multiPoint.count);
+            // TODO: Replace this placeholder image with real content
+            Image {
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: parent.height * 0.1
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: "assets/secondary-window-mock-content.png"
+                width: parent.width * 0.3
+                height: parent.height * 0.6
+                fillMode: Image.PreserveAspectFit
             }
+        }
+
+        Component.onCompleted: {
+            secondaryWindow.setWindowProperty("windowType", "secondary")
+            secondaryWindow.visible = true
         }
     }
 }

@@ -37,6 +37,7 @@ import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import display 1.0
 import utils 1.0
+import instrumentcluster 1.0
 import com.pelagicore.settings 1.0
 
 import QtQuick.Window 2.3
@@ -109,6 +110,7 @@ Window {
 
         Shortcut {
             sequence: "t"
+            context: Qt.ApplicationShortcut
             onActivated: {
                 // TODO: Also change the instrument cluster theme
                 root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
@@ -120,12 +122,20 @@ Window {
         }
         Shortcut {
             sequence: "l"
+            context: Qt.ApplicationShortcut
             onActivated: {
                 const locales = Style.translation.availableTranslations;
                 const currentLocale = Style.languageLocale;
                 const currentIndex = locales.indexOf(currentLocale);
                 var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
                 Style.languageLocale = locales[nextIndex];
+            }
+        }
+        Shortcut {
+            sequence: "c"
+            context: Qt.ApplicationShortcut
+            onActivated: {
+                instrumentClusterWindow.nextSecondaryWindow();
             }
         }
 
@@ -187,35 +197,8 @@ Window {
         }
     }
 
-    Window {
+    InstrumentClusterWindow {
         id: instrumentClusterWindow
-        width: Style.instrumentClusterWidth
-        height: Style.instrumentClusterHeight
-        title: "Triton UI - Instrument Cluster"
-
-        Component.onCompleted: {
-            WindowManager.registerCompositorView(instrumentClusterWindow)
-        }
-
-        property var window: display.applicationModel.instrumentClusterAppInfo
-                ? display.applicationModel.instrumentClusterAppInfo.window : null
-
-        Binding {
-            target: instrumentClusterWindow.window; property: "width"; value: instrumentClusterWindow.width
-        }
-        Binding {
-            target: instrumentClusterWindow.window; property: "height"; value: instrumentClusterWindow.height
-        }
-        Binding {
-            target: instrumentClusterWindow.window; property: "parent"; value: instrumentClusterWindow.contentItem
-        }
-
-        // lazy way of putting the instrument cluster in a separate screen, if available
-        screen: Qt.application.screens[Qt.application.screens.length - 1]
-
-        readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
-                                                           && (Qt.application.screens.length === 1)
-
-        visible: (window != null) && ApplicationManager.systemProperties.showCluster && !runningOnSingleScreenEmbedded
+        applicationModel: display.applicationModel
     }
 }

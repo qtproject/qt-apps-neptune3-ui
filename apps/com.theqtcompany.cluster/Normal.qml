@@ -136,12 +136,6 @@ Item {
     ]
 
     //visual components
-    Image {
-        width: 1920 * d.scaleRatio
-        height: 720 * d.scaleRatio
-        source: "./img/bg.png"
-    }
-
     DialSpeed {
         id: ds
         x: 10 * d.scaleRatio

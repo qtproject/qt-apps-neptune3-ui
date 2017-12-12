@@ -51,8 +51,15 @@ class ApplicationInfo : public QObject {
     // TODO: try to get rid of this (ie, find a better solution)
     Q_PROPERTY(bool canBeActive READ canBeActive WRITE setCanBeActive NOTIFY canBeActiveChanged)
 
-    //  the main window of this application, if any
+    // The main window of this application, if any
+    //
+    // It can be displayed on the center console screen.
     Q_PROPERTY(QQuickItem* window READ window() NOTIFY windowChanged)
+
+    // the secondary window of this application, if any
+    //
+    // It can be displayed on the instrument cluster screen
+    Q_PROPERTY(QQuickItem* secondaryWindow READ secondaryWindow() NOTIFY secondaryWindowChanged)
 
     // State if the main window in the triton system UI
     // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows" and "Maximized"
@@ -108,6 +115,9 @@ public:
     void setWindow(QQuickItem *);
     QQuickItem *window() const;
 
+    void setSecondaryWindow(QQuickItem *);
+    QQuickItem *secondaryWindow() const;
+
     void setWindowState(const QString &);
     QString windowState() const;
 
@@ -145,6 +155,7 @@ signals:
     void activeChanged();
     void canBeActiveChanged();
     void windowChanged();
+    void secondaryWindowChanged();
     void windowStateChanged();
     void asWidgetChanged();
     void heightRowsChanged();
@@ -161,6 +172,7 @@ private:
     bool m_active{false};
     bool m_canBeActive{true};
     QQuickItem *m_window{nullptr};
+    QQuickItem *m_secondaryWindow{nullptr};
     QString m_windowState;
     int m_widgetHeight{0};
     int m_currentWidth{0};

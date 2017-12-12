@@ -50,6 +50,7 @@ QtObject {
     property int screenHeight: TritonStyle.windowHeight
     property int instrumentClusterWidth: 1920
     property int instrumentClusterHeight: 1080
+    property real instrumentClusterUIAspectRatio: 1920 / 720
     property int displayHMargin: 11
     property int displayVMargin: 0
     property int cellWidth
