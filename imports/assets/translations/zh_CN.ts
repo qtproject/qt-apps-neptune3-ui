@@ -100,6 +100,19 @@
     </message>
 </context>
 <context>
+    <name>InstalledAppList</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="49"/>
+        <source>Updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
+        <source>Latest Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LibraryToolsColumn</name>
     <message>
         <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="48"/>
@@ -355,6 +368,21 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="68"/>
         <source>messages</source>
         <translation>短信</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="47"/>
+        <source>installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="52"/>
+        <source>download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.appstore/ToolsColumn.qml" line="57"/>
+        <source>search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
