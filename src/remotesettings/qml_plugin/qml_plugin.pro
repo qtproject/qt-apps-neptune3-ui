@@ -1,6 +1,6 @@
 TEMPLATE = lib
 CONFIG += plugin
-TARGET  = $$qtLibraryTarget(RemoteSettingsPlugin)
+TARGET  = RemoteSettingsPlugin
 QT += qml
 LIBS += -L$$OUT_PWD/../ -l$$qtLibraryTarget(RemoteSettings)
 INCLUDEPATH += $$OUT_PWD/../frontend
