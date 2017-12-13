@@ -79,6 +79,7 @@ Item {
         if (window) {
             window.parent = windowSlot;
             window.width = Qt.binding(function() { return Style.hspan(24); });
+            window.height = Qt.binding(function() { return Style.vspan(24); });
             loadingStateGroup.state = "live"
         } else {
             loadingStateGroup.state = "loading"

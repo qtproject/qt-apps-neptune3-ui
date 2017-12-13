@@ -216,7 +216,7 @@ Image {
         width: root.width
         height: Style.vspan(1.5)
         anchors.bottom: parent.bottom
-        active: StagedStartupModel.loadDisplay
+        active: true // StagedStartupModel.loadDisplay <-- this would break the UI when changing language!
         source: "../climate/ClimateBar.qml"
         Binding { target: climateLoader.item; property: "popupParent"; value: popupParent }
         Binding { target: climateLoader.item; property: "model"; value: climateModel }

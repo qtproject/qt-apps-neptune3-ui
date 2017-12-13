@@ -65,9 +65,7 @@ Window {
 
         property int orientation: root.orientationFromString(ApplicationManager.systemProperties.orientation)
 
-        // have the center of Display and root match
-        x: (root.width - width) / 2
-        y: (root.height - height) / 2
+        anchors.centerIn: parent
 
         rotation: {
             if (root.isLandscape) {
