@@ -42,6 +42,25 @@
     </message>
 </context>
 <context>
+    <name>DateTimePanel</name>
+    <message>
+        <source>Date &amp; Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>24h time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set Automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DialPower</name>
     <message>
         <source>% power</source>
@@ -86,6 +105,13 @@
     </message>
     <message>
         <source>Latest Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LanguagePanel</name>
+    <message>
+        <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -227,6 +253,13 @@
     <message>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThemesPanel</name>
+    <message>
+        <source>Themes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

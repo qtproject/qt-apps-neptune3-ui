@@ -49,6 +49,29 @@
     </message>
 </context>
 <context>
+    <name>DateTimePanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="54"/>
+        <source>Date &amp; Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="59"/>
+        <source>24h time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="63"/>
+        <source>Set Automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="67"/>
+        <source>Time Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DialPower</name>
     <message>
         <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="330"/>
@@ -102,6 +125,14 @@
     <message>
         <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
         <source>Latest Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LanguagePanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="63"/>
+        <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -275,6 +306,14 @@
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="144"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ThemesPanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/ThemesPanel.qml" line="61"/>
+        <source>Themes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

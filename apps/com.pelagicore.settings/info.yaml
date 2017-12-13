@@ -1,0 +1,11 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.settings'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'General Settings'
+
+categories: [ 'app' ]
