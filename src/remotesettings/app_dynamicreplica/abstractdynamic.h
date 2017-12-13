@@ -43,7 +43,7 @@ class AbstractDynamic : public QObject
 public:
     explicit AbstractDynamic(QObject *parent = nullptr);
 
-    void resetReplica(QSharedPointer<QRemoteObjectDynamicReplica> replicaPtr);
+    void resetReplica(QRemoteObjectDynamicReplica *replicaPtr);
     bool connected() const;
 
 signals:

@@ -33,10 +33,60 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 ApplicationWindow {
+    id: root
+
     visible: true
     width: 640
     height: 480
     title: qsTr("Settings app")
+
+    readonly property bool connected: audioSettings.connected ||
+                             cultureSettings.connected ||
+                             model3DSettings.connected ||
+                             navigationSettings.connected
+
+    Component.onCompleted: {
+        connectionDialog.open()
+    }
+
+    ConnectionDialog {
+        id: connectionDialog
+        property string defaultUrl : "tcp://127.0.0.1:9999"
+        url: defaultUrl
+        statusText: client.status
+
+        width: parent.width / 2
+        height: parent.height / 2
+
+        x: (parent.width-width) /2
+        y: (parent.height-height) /2
+
+        onAccepted: {
+            if (accepted)
+                client.connectToServer(url);
+            else
+                connectionDialog.close();
+        }
+
+        Connections {
+            target: client
+            onServerUrlChanged: {
+                if (client.serverUrl.toString().length)
+                    connectionDialog.url = client.serverUrl.toString();
+                else
+                    connectionDialog.url = defaultUrl;
+            }
+        }
+
+        Connections {
+            target: root
+            onConnectedChanged: {
+                if (root.connected)
+                    connectionDialog.close();
+            }
+        }
+
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -44,12 +94,28 @@ ApplicationWindow {
 
         spacing: 10
 
+        RowLayout {
+            Layout.fillWidth: true
+
+            Label {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignLeft
+                text: client.status
+            }
+
+            Button {
+                //anchors.right: parent.right
+                text: qsTr("Connect...")
+                onClicked: connectionDialog.open()
+            }
+        }
+
         GroupBox {
             title: qsTr("Culture settings")
 
             Layout.fillWidth: true
 
-            Row {
+            RowLayout {
 
                 Label {
                     text: qsTr("Language:")
@@ -70,7 +136,7 @@ ApplicationWindow {
 
             Layout.fillWidth: true
 
-            Row {
+            RowLayout {
                 Label {
                     text: qsTr("Volume:")
                 }
@@ -107,7 +173,7 @@ ApplicationWindow {
 
             Layout.fillWidth: true
 
-            Row {
+            RowLayout {
 
                 Label {
                     text: qsTr("Night mode:")
@@ -126,7 +192,7 @@ ApplicationWindow {
 
             Layout.fillWidth: true
 
-            Row {
+            RowLayout {
                 Label {
                     text: qsTr("Door 1 open:")
                 }

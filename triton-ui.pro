@@ -24,6 +24,9 @@ SUBDIRS += copydata
 qml.files = apps imports sysui styles am-config.yaml Main.qml
 qml.path = $$INSTALL_PREFIX/triton
 INSTALLS += qml
+server.files = server.conf
+server.path = $$INSTALL_PREFIX/triton
+INSTALLS += server
 
 OTHER_FILES += $$files($$PWD/*.qml, true)
 OTHER_FILES += $$files($$PWD/*.qmldir, true)

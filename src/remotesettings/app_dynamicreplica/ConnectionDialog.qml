@@ -28,26 +28,61 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QtRemoteObjects>
-#include <QQmlContext>
-#include <QMetaObject>
-#include "client.h"
+import QtQuick 2.7
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+Dialog {
+    id: connectionDialog
+    property string url
+    property string statusText
 
-    Client client;
+    signal accepted(bool accepted)
 
-    QQmlApplicationEngine engine;
-    client.setContextProperties(engine.rootContext());
-    engine.rootContext()->setContextProperty("client", &client);
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    contentItem: Rectangle {
 
-    return app.exec();
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 10
+            spacing: 10
+
+            Label {
+                text: qsTr("Connection settings")
+                Layout.alignment: Qt.AlignCenter
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+
+                Layout.alignment: Qt.AlignCenter
+
+                Label {
+                    text: qsTr("Server URL")
+                }
+
+                TextField {
+                    text: url
+                    onTextChanged: url=text
+                }
+            }
+
+            RowLayout {
+                //Layout.fillWidth: true
+                spacing: 10
+
+                Layout.alignment: Qt.AlignCenter
+
+                Button {
+                    text: qsTr("Connect")
+                    onClicked: connectionDialog.accepted(true)
+                }
+
+                Button {
+                    text: qsTr("Cancel")
+                    onClicked: connectionDialog.accepted(false)
+                }
+            }
+        }
+    }
 }

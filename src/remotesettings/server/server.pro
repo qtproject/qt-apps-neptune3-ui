@@ -2,7 +2,7 @@ QT -= gui
 QT += remoteobjects
 
 CONFIG += c++11 console
-CONFIG -= app_bundle
+macos: CONFIG -= app_bundle
 CONFIG += ivigenerator
 
 include($$SOURCE_DIR/config.pri)
@@ -27,7 +27,7 @@ HEADERS += \
 
 DEPENDPATH += $$OUT_PWD/../server
 
-LIBS += -L$$OUT_PWD/../ -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$OUT_PWD/../../../lib -l$$qtLibraryTarget(RemoteSettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 
@@ -36,7 +36,7 @@ QMAKE_RPATHDIR += $ORIGIN/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL
 DISTFILES +=
 
 TARGET = RemoteSettings_server
-DESTDIR = ..
+DESTDIR = ../../../
 
 target.path = $$INSTALL_PREFIX/triton
 INSTALLS += target

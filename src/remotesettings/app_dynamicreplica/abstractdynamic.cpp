@@ -34,25 +34,32 @@ AbstractDynamic::AbstractDynamic(QObject *parent)
     : QObject(parent)
     , m_connected(false)
 {
-
 }
 
-void AbstractDynamic::resetReplica(QSharedPointer<QRemoteObjectDynamicReplica> replicaPtr)
+void AbstractDynamic::resetReplica(QRemoteObjectDynamicReplica *replicaPtr)
 {
+    if (m_replicaPtr.data()==replicaPtr)
+        return;
+
     setConnected(false);
-    if (m_replicaPtr) {
+    if (m_replicaPtr.data()) {
         disconnect(m_replicaPtr.data(),&QRemoteObjectDynamicReplica::initialized,
                    this, &AbstractDynamic::onInitialized);
         disconnect(m_replicaPtr.data(),&QRemoteObjectDynamicReplica::stateChanged,
                    this, &AbstractDynamic::onStateChanged);
     }
 
-    m_replicaPtr = replicaPtr;
+    m_replicaPtr.reset(replicaPtr);
+    if (m_replicaPtr.isNull())
+        return;
+
     connect(m_replicaPtr.data(),&QRemoteObjectDynamicReplica::initialized,
             this, &AbstractDynamic::onInitialized);
     connect(m_replicaPtr.data(),&QRemoteObjectDynamicReplica::stateChanged,
             this, &AbstractDynamic::onStateChanged);
 
+    if (m_replicaPtr.data()->isInitialized())
+        onInitialized();
 }
 
 bool AbstractDynamic::connected() const

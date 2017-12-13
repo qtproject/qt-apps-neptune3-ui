@@ -47,6 +47,7 @@ To get more detailed log output, run:
 
 This will lookup the settings lib from the `./lib` folder.
 
+To run the settings server, just run the executable RemoteSettings_server
 
 # Run the UI without QtIVI
 

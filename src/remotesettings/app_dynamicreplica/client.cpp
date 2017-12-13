@@ -35,7 +35,8 @@ Q_LOGGING_CATEGORY(remoteSettingsDynamicApp, "remotesettings.dynamicApp")
 
 Client::Client(QObject *parent) : QObject(parent)
 {
-
+    QObject::connect(&m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+    setStatus(tr("Not connected"));
 }
 
 void Client::setContextProperties(QQmlContext *context)
@@ -46,30 +47,58 @@ void Client::setContextProperties(QQmlContext *context)
     context->setContextProperty(QStringLiteral("model3DSettings"), &m_model3DSettings);
 }
 
-void Client::connectToServer(const QString &url)
+QUrl Client::serverUrl() const
 {
-    QSharedPointer<QRemoteObjectDynamicReplica> cultureRep;
-    QSharedPointer<QRemoteObjectDynamicReplica> audioRep;
-    QSharedPointer<QRemoteObjectDynamicReplica> navigationRep;
-    QSharedPointer<QRemoteObjectDynamicReplica> model3DRep;
+    return m_serverUrl;
+}
 
-    m_repNode.connectToNode(QUrl(url));
-    //repNode.connectToNode(QUrl("tcp://10.10.1.76:9999")); // create remote object node
-    //repNode.connectToNode(QUrl("local:settings"));
-    QObject::connect(&m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+QString Client::status() const
+{
+    return m_status;
+}
 
-    audioRep.reset(m_repNode.acquireDynamic("settings.AudioSettings"));
-    cultureRep.reset(m_repNode.acquireDynamic("settings.CultureSettings"));
-    navigationRep.reset(m_repNode.acquireDynamic("settings.NavigationSettings"));
-    model3DRep.reset(m_repNode.acquireDynamic("settings.Model3DSettings"));
+void Client::connectToServer(const QString &serverUrl)
+{
+    QUrl url(serverUrl);
+    if (!url.isValid()) {
+        setStatus(tr("Invalid URL: %1").arg(url.toString()));
+        return;
+    }
 
-    m_cultureSettings.resetReplica(cultureRep);
-    m_audioSettings.resetReplica(audioRep);
-    m_navigationSettings.resetReplica(navigationRep);
-    m_model3DSettings.resetReplica(model3DRep);
+    if (url==m_serverUrl)
+        return;
+
+    if (m_repNode.connectToNode(url)) {
+        m_audioSettings.resetReplica(m_repNode.acquireDynamic("settings.AudioSettings"));
+        m_cultureSettings.resetReplica(m_repNode.acquireDynamic("settings.CultureSettings"));
+        m_navigationSettings.resetReplica(m_repNode.acquireDynamic("settings.NavigationSettings"));
+        m_model3DSettings.resetReplica(m_repNode.acquireDynamic("settings.Model3DSettings"));
+
+        setStatus(tr("Connected to %1").arg(url.toString()));
+    } else {
+        setStatus(tr("Connection to %1 failed").arg(url.toString()));
+        m_cultureSettings.resetReplica(nullptr);
+        m_audioSettings.resetReplica(nullptr);
+        m_navigationSettings.resetReplica(nullptr);
+        m_model3DSettings.resetReplica(nullptr);
+    }
+
+    if (m_serverUrl!=url) {
+        m_serverUrl=url;
+        emit serverUrlChanged(m_serverUrl);
+    }
 }
 
 void Client::onError(QRemoteObjectNode::ErrorCode code)
 {
     qCWarning(remoteSettingsDynamicApp) << "Remote objects error, code:" << code;
+}
+
+void Client::setStatus(const QString &status)
+{
+    if (status==m_status)
+        return;
+    m_status=status;
+    qCWarning(remoteSettingsDynamicApp) << "Client status: " << status;
+    emit statusChanged(m_status);
 }

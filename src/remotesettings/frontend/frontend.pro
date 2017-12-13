@@ -1,7 +1,7 @@
 TARGET = $$qtLibraryTarget(RemoteSettings)
 TEMPLATE = lib
 CONFIG += ivigenerator
-DESTDIR = ..
+DESTDIR = ../../../lib
 
 include($$SOURCE_DIR/config.pri)
 

@@ -44,19 +44,29 @@ Q_DECLARE_LOGGING_CATEGORY(remoteSettingsDynamicApp)
 class Client : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QUrl serverUrl READ serverUrl NOTIFY serverUrlChanged)
+    Q_PROPERTY(QString status READ status NOTIFY statusChanged)
 public:
     explicit Client(QObject *parent = nullptr);
 
     void setContextProperties(QQmlContext *context);
+    QUrl serverUrl() const;
+    QString status() const;
 
 signals:
+    void serverUrlChanged(const QUrl &url);
+    void statusChanged(const QString &status);
 
 public slots:
     void connectToServer(const QString &url);
     void onError(QRemoteObjectNode::ErrorCode code);
 
 private:
+    void setStatus(const QString &status);
+
     QRemoteObjectNode m_repNode;
+    QUrl m_serverUrl;
+    QString m_status;
 
     CultureSettingsDynamic m_cultureSettings;
     AudioSettingsDynamic m_audioSettings;
