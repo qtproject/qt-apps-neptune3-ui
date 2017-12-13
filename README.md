@@ -41,6 +41,12 @@ To get more detailed log output, run:
 
     $ triton-ui --start-session-dbus -r --verbose
 
+*macOS Fix*: The RPATh feature is not currently working and libraries (esp. settings lib) are not found by default. Please use this workaround:
+
+    $ DYLD_LIBRARY_PATH=$PWD/lib ./triton-ui -r
+
+This will lookup the settings lib from the `./lib` folder.
+
 
 # Run the UI without QtIVI
 
