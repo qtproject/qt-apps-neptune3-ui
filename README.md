@@ -35,11 +35,11 @@ The installation part is optional.
 
 Building Triton will make 'triton-ui' executable which will be then run:
 
-    $ triton-ui -r
+    $ triton-ui --start-session-dbus -r
 
 To get more detailed log output, run:
 
-    $ triton-ui -r --verbose
+    $ triton-ui --start-session-dbus -r --verbose
 
 
 # Run the UI without QtIVI
