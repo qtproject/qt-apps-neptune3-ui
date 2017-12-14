@@ -1,0 +1,2 @@
+# We want to track 3d object files and they have the .obj suffix
+!*.obj

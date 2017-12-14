@@ -1,0 +1,12 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.luxoft.vehicle'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Vehicle'
+  ru: 'Auto'
+
+categories: [ 'vehicle' ]

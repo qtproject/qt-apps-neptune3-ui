@@ -262,10 +262,111 @@
     </message>
 </context>
 <context>
+    <name>VehicleControlModel</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">Hill Descent Control</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">Traffic Jam Assist</translation>
+    </message>
+    <message>
+        <source>Intellegent speed adaptation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleControlPanel</name>
+    <message>
+        <source>support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>energy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>doors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>tires</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Present</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Locks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sun roof</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Doors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calibrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>VehicleModel</name>
     <message>
         <source>Service in 300km</source>
         <translation>Service in 300km</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleWidgetModel</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">Hill Descent Control</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">Traffic Jam Assist</translation>
+    </message>
+    <message>
+        <source>Intellegent speed adaptation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

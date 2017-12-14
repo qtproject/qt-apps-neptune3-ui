@@ -379,11 +379,157 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
+    <name>VehicleControlModel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="37"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="53"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="69"/>
+        <source>Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="41"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="57"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="73"/>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">坡度保持</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="45"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="77"/>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">交通拥堵辅助</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="49"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="65"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="81"/>
+        <source>Intellegent speed adaptation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleControlPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="85"/>
+        <source>support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="95"/>
+        <source>energy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="105"/>
+        <source>doors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="115"/>
+        <source>tires</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="186"/>
+        <source>Present</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="192"/>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="198"/>
+        <source>1 week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="205"/>
+        <source>1 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="255"/>
+        <source>Locks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="261"/>
+        <source>Sun roof</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="267"/>
+        <source>Doors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="274"/>
+        <source>Trunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="295"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="322"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="349"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="376"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="303"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="330"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="357"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="384"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="410"/>
+        <source>Calibrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>VehicleModel</name>
     <message>
         <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
         <translation>300km后保养</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleWidgetModel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="37"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="53"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="69"/>
+        <source>Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="41"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="57"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="73"/>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">坡度保持</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="45"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="77"/>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">交通拥堵辅助</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="49"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="65"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="81"/>
+        <source>Intellegent speed adaptation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
