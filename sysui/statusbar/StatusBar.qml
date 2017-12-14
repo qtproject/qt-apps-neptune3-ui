@@ -44,6 +44,8 @@ Pane {
 
     height: Style.statusBarHeight
 
+    property var uiSettings
+
     MouseArea {
         anchors.fill: parent
         onPressAndHold: SystemModel.toolBarMonitorVisible = !SystemModel.toolBarMonitorVisible
@@ -75,8 +77,8 @@ Pane {
 
         DateAndTime {
             Layout.fillHeight: true
-            timeFormat: SettingsModel.clockOption.format
             currentDate: StatusBarModel.currentDate
+            uiSettings: root.uiSettings
         }
     }
 }

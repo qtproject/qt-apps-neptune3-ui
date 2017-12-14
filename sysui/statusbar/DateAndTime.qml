@@ -37,8 +37,8 @@ import utils 1.0
 Control {
     id: root
 
-    property string timeFormat: "hh:mm"
     property var currentDate: new Date()
+    property var uiSettings
 
     width: Style.isPotrait ? Style.hspan(2) : Style.hspan(1.5)
     height: Style.vspan(0.5)
@@ -52,6 +52,6 @@ Control {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Style.fontSizeS
         font.weight: Style.fontWeight
-        text: Qt.formatTime(root.currentDate, root.timeFormat)
+        text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
     }
 }

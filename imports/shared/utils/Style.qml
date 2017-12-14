@@ -34,6 +34,7 @@ import QtQuick 2.6
 
 import com.pelagicore.styles.triton 1.0
 import com.pelagicore.translation 1.0
+import com.pelagicore.settings 1.0
 
 QtObject {
     id: root
@@ -102,13 +103,22 @@ QtObject {
     property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
     property url fonts: Qt.resolvedUrl(root.assetPath + 'fonts/')
 
+    readonly property var uiSettings: UISettings {}
+
     property alias languageLocale: translation.languageLocale
-    property QtObject translation: Translation {
+    readonly property var translation: Translation {
         id: translation
-        Component.onCompleted: {
-            setPath(root.assetPath + "translations/");
-            languageLocale = Qt.locale().name;
-        }
+        Component.onCompleted: translation.setPath(root.assetPath + "translations/");
+    }
+
+    Component.onCompleted: {
+        Qt.callLater(function() {
+            if (uiSettings.language) {
+                languageLocale = uiSettings.language;
+            } else {
+                languageLocale = Qt.locale().name;
+            }
+        });
     }
 
     function symbol(name, active) {

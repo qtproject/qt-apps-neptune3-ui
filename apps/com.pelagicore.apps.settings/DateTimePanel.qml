@@ -29,40 +29,48 @@
 **
 ****************************************************************************/
 
-import QtQml 2.2
+import QtQuick 2.8
+import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.3
 import QtQml.Models 2.3
+
 import utils 1.0
-import com.pelagicore.settings 1.0
 
-import "../helper"
-
-QtObject {
+Control {
     id: root
 
-    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
-    readonly property ListModel languageModel: ListModel {}
+    property bool twentyFourHourTimeFormat
 
-    readonly property var uiSettings: UISettings {}
+    signal twentyFourHourTimeFormatRequested(bool value)
 
-    function populateLanguages() {
-        languageModel.clear()
-        var translations = uiSettings.languages.length !== 0 ? uiSettings.languages : Style.translation.availableTranslations;
-        for (var i=0; i<translations.length; i++) {
-            var locale = Qt.locale(translations[i]);
-            languageModel.append({
-                title: locale.nativeLanguageName,
-                subtitle: locale.nativeCountryName,
-                language: locale.name
-            });
+    contentItem: Item {
+        implicitWidth: Style.hspan(12)
+        implicitHeight: Style.vspan(12)
+        ListView {
+            id: view
+            anchors.fill: parent
+            clip: true
+            header: Label {
+                padding: Style.vspan(0.2)
+                font.pixelSize: Style.fontSizeXL
+                text: qsTr("Date & Time")
+            }
+            model: ObjectModel {
+                SwitchDelegate {
+                    width: view.width
+                    text: qsTr("24h time")
+                    checked: root.twentyFourHourTimeFormat
+                    onClicked: root.twentyFourHourTimeFormatRequested(checked)
+                }
+                SwitchDelegate {
+                    width: view.width
+                    text: qsTr("Set Automatically")
+                }
+                ItemDelegate {
+                    width: view.width
+                    text: qsTr("Time Zone")
+                }
+            }
         }
-    }
-
-    function updateLanguage(language) {
-        console.log(Helper.category, 'updateLanguage: ' + language)
-        uiSettings.setLanguage(language);
-    }
-
-    Component.onCompleted: {
-        populateLanguages();
     }
 }

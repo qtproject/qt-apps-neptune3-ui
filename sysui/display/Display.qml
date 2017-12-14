@@ -52,6 +52,7 @@ Image {
     source: Style.gfx2(Style.displayBackground)
 
     property Item popupParent
+    property var settings
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
@@ -104,6 +105,7 @@ Image {
         anchors.right: parent.right
         active: StagedStartupModel.loadDisplay
         source: "../statusbar/StatusBar.qml"
+        Binding { target: statusBarLoader.item; property: "uiSettings"; value: settings }
     }
 
     StageLoader {

@@ -68,6 +68,8 @@ Window {
 
         anchors.centerIn: parent
 
+        settings: uiSettings
+
         rotation: {
             if (root.isLandscape) {
                 switch (orientation) {
@@ -116,12 +118,13 @@ Window {
         // N.B. need to use a Timer here to "push" the available languages to settings server
         // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
         Timer {
-            interval: 1
-            running: true
-            repeat: false
-            onTriggered: {
-                uiSettings.languages = Style.translation.availableTranslations;
-            }
+            id: timer
+            interval: 100
+            onTriggered: uiSettings.languages = Style.translation.availableTranslations;
+        }
+
+        Component.onCompleted: {
+            timer.start();
         }
 
         Shortcut {

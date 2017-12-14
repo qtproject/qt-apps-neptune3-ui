@@ -49,6 +49,13 @@ QVariantList UISettingsDynamic::languages() const
     return m_replicaPtr.data()->property("languages").toList();
 }
 
+bool UISettingsDynamic::twentyFourHourTimeFormat() const
+{
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("twentyFourHourTimeFormat").toBool();
+}
+
 qreal UISettingsDynamic::volume() const
 {
     if (m_replicaPtr.isNull())
@@ -97,6 +104,8 @@ void UISettingsDynamic::initialize()
             this,SIGNAL(languageChanged(QString)));
     connect(m_replicaPtr.data(),SIGNAL(languagesChanged(QVariantList)),
             this,SIGNAL(languagesChanged(QVariantList)));
+    connect(m_replicaPtr.data(),SIGNAL(twentyFourHourTimeFormatChanged(bool)),
+            this,SIGNAL(twentyFourHourTimeFormatChanged(bool)));
     connect(m_replicaPtr.data(),SIGNAL(volumeChanged(qreal)),
             this,SIGNAL(volumeChanged(qreal)));
     connect(m_replicaPtr.data(),SIGNAL(mutedChanged(bool)),
@@ -112,6 +121,7 @@ void UISettingsDynamic::initialize()
 
     emit languagesChanged(languages());
     emit languageChanged(language());
+    emit twentyFourHourTimeFormatChanged(twentyFourHourTimeFormat());
     emit volumeChanged(volume());
     emit mutedChanged(muted());
     emit balanceChanged(balance());
@@ -134,6 +144,14 @@ void UISettingsDynamic::setLanguages(const QVariantList &langs)
         return;
     QMetaObject::invokeMethod(m_replicaPtr.data(),
                               "pushLanguages",Qt::DirectConnection,Q_ARG(QVariantList,langs));
+}
+
+void UISettingsDynamic::setTwentyFourHourTimeFormat(bool twentyFourHourTimeFormat)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                              "pushTwentyFourHourTimeFormat",Qt::DirectConnection,Q_ARG(bool, twentyFourHourTimeFormat));
 }
 
 void UISettingsDynamic::setVolume(qreal volume)

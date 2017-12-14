@@ -21,6 +21,15 @@ Page {
             onActivated: uiSettings.language = currentText
         }
 
+        // 24h format Field
+        Label {
+            text: qsTr("24h time format:")
+        }
+        CheckBox {
+            checked: uiSettings.twentyFourHourTimeFormat
+            onToggled: uiSettings.twentyFourHourTimeFormat = checked
+        }
+
         // Volume Field
         Label {
             text: qsTr("Volume:")

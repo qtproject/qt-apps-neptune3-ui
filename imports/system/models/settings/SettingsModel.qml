@@ -48,15 +48,6 @@ QtObject {
     }
     property int currentProfileIndex: 0
 
-    readonly property ListModel languages: ListModel { // FIXME list real data
-        ListElement { name: "cs_CZ" }
-        ListElement { name: "de_DE" }
-        ListElement { name: "en_GB" }
-        ListElement { name: "en_US" }
-        ListElement { name: "in_ID" }
-    }
-    property int currentLanguageIndex: 0
-
     property bool appUpdatesEnabled: false
     property bool liveTrafficEnabled: false
     property bool satelliteViewEnabled: false
@@ -74,19 +65,9 @@ QtObject {
     }
 
     property var carSettings: [ // FIXME l10n section ?
-        { section: "Units", option: clockOption },
         { section: "Units", option: speedOption },
         { section: "Communication", option: bluetoothOption }
     ]
-
-    property var clockOption: QtObject {
-        property string format: active === 0 ? "hh:mm" : "h:mm AP"
-        property var options: ['24H', 'AM/PM']
-        property string name: "Time" // FIXME l10n name?
-        property int active: 0
-
-        function setActive(index) { active = index }
-    }
 
     property var speedOption: QtObject {
         property var options: ['KMH', 'MPH']

@@ -72,22 +72,22 @@
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
         <translation>日付と時刻</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="59"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="61"/>
         <source>24h time</source>
         <translation>24時間表示</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="63"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="67"/>
         <source>Set Automatically</source>
         <translation>自動設定</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="71"/>
         <source>Time Zone</source>
         <translation>タイムゾーン</translation>
     </message>
@@ -152,7 +152,7 @@
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="62"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/LanguagePanel.qml" line="62"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
@@ -248,77 +248,77 @@
         <translation>ドライバー４</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="67"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="58"/>
         <source>USER PROFILE</source>
         <translation>ユーザープロファイル</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="68"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="59"/>
         <source>SERVICE &amp; SUPPORT</source>
         <translation>サービス＆サポート</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="69"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="60"/>
         <source>TRAFFIC INFORMATION</source>
         <translation>交通情報</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="70"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="61"/>
         <source>TOLL &amp; CONGESTION FEES</source>
         <translation>通行料＆混雑課金</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="71"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="62"/>
         <source>METRIC SYSTEM</source>
         <translation>メートル法</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="72"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="63"/>
         <source>APP UPDATES</source>
         <translation>アプリアップデート</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="73"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="64"/>
         <source>SYSTEM MONITOR</source>
         <translation>システムモニター</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="109"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="90"/>
         <source>Hill Descent Control</source>
         <translation>ダウンヒルアシストコントロール</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="114"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="95"/>
         <source>Intelligent Speed Adaptation</source>
         <translation>自動速度制限</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="119"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="100"/>
         <source>Automatic Beam Switching</source>
         <translation>自動ビーム切替</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="124"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="105"/>
         <source>Collision Avoidance</source>
         <translation>衝突回避</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="129"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="110"/>
         <source>Lane Assist</source>
         <translation>レーンアシスト</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="134"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="115"/>
         <source>Traffic Jam Assist</source>
         <translation>渋滞アシスト</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="139"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="120"/>
         <source>Driver Drowsiness Alert</source>
         <translation>居眠り検知</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="144"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="125"/>
         <source>Park Assist</source>
         <translation>パーキングアシスト</translation>
     </message>
@@ -326,27 +326,27 @@
 <context>
     <name>SettingsPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="57"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="58"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="82"/>
         <source>languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="83"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="84"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>themes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -369,7 +369,7 @@
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/ThemesPanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
         <translation>テーマ</translation>
     </message>

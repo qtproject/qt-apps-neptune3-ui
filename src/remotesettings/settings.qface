@@ -5,12 +5,14 @@ interface UISettings {
     string language;
     list<string> languages;
 
+    bool twentyFourHourTimeFormat;
+
     /**
      * 0 is muted and 1.0 is max
      */
     real volume;
     bool muted;
-    /* 	
+    /*
      * -1.0 left and +1.0 right and 0 is centered
      */
     real balance;
@@ -23,12 +25,12 @@ interface UISettings {
 
 @config: {id: "InstrumentCluster"}
 interface InstrumentCluster {
-  real speed; 
+  real speed;
   real speedLimit;
   real speedCruise;
   real ePower;
   int driveTrainState;
-  
+
   bool lowBeamHeadlight;
   bool highBeamHeadlight;
   bool fogLight;

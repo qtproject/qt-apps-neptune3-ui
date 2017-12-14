@@ -1,7 +1,7 @@
 formatVersion: 1
 formatType: am-application
 ---
-id:      'com.pelagicore.settings'
+id:      'com.pelagicore.apps.settings'
 icon:    'icon.png'
 code:    'Main.qml'
 runtime: 'qml'

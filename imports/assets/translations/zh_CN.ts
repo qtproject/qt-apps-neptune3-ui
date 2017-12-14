@@ -72,22 +72,22 @@
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="59"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="61"/>
         <source>24h time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="63"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="67"/>
         <source>Set Automatically</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="71"/>
         <source>Time Zone</source>
         <translation type="unfinished"></translation>
     </message>
@@ -167,7 +167,7 @@
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="62"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/LanguagePanel.qml" line="62"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,78 +284,78 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>驾驶员4</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="67"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="58"/>
         <source>USER PROFILE</source>
         <translation>用户信息</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="68"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="59"/>
         <source>SERVICE &amp; SUPPORT</source>
         <translation>服务 &amp; 支持</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="69"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="60"/>
         <source>TRAFFIC INFORMATION</source>
         <translation>交通信息</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="70"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="61"/>
         <source>TOLL &amp; CONGESTION FEES</source>
         <translation>停车 &amp; 拥堵费</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="71"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="62"/>
         <source>METRIC SYSTEM</source>
         <translation>公制</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="72"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="63"/>
         <source>APP UPDATES</source>
         <translatorcomment>In chinerse, &quot;APP&quot; can translate to &quot;程序&quot; . which is old school style.</translatorcomment>
         <translation>APP升级</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="73"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="64"/>
         <source>SYSTEM MONITOR</source>
         <translation>系统监测</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="109"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="90"/>
         <source>Hill Descent Control</source>
         <translation>坡度保持</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="114"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="95"/>
         <source>Intelligent Speed Adaptation</source>
         <translation>自适应巡航</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="119"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="100"/>
         <source>Automatic Beam Switching</source>
         <translation>自动大灯开关</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="124"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="105"/>
         <source>Collision Avoidance</source>
         <translation>智能避碰</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="129"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="110"/>
         <source>Lane Assist</source>
         <translation>窄路辅助</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="134"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="115"/>
         <source>Traffic Jam Assist</source>
         <translation>交通拥堵辅助</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="139"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="120"/>
         <source>Driver Drowsiness Alert</source>
         <translation>疲劳驾驶预警系统</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="144"/>
+        <location filename="../../system/models/settings/SettingsModel.qml" line="125"/>
         <source>Park Assist</source>
         <translation>泊车辅助</translation>
     </message>
@@ -363,27 +363,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="57"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="58"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="82"/>
         <source>languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="83"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="84"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>themes</source>
         <translation type="unfinished"></translation>
     </message>
@@ -424,7 +424,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/ThemesPanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
         <translation type="unfinished"></translation>
     </message>

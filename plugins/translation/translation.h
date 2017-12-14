@@ -53,6 +53,8 @@ public:
 
     QStringList availableTranslations() const;
 
+    Q_INVOKABLE QString formatTime(const QDateTime &dt, bool twentyFourH) const;
+
 signals:
     void languageLocaleChanged();
     void availableTranslationsChanged();

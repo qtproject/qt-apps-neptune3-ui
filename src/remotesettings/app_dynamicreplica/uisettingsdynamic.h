@@ -38,6 +38,8 @@ class UISettingsDynamic : public AbstractDynamic
     Q_OBJECT
     Q_PROPERTY(QString language READ language WRITE setLanguage NOTIFY languageChanged)
     Q_PROPERTY(QVariantList languages READ languages WRITE setLanguages NOTIFY languagesChanged)
+    Q_PROPERTY(bool twentyFourHourTimeFormat READ twentyFourHourTimeFormat WRITE setTwentyFourHourTimeFormat
+               NOTIFY twentyFourHourTimeFormatChanged)
     Q_PROPERTY(qreal volume READ volume WRITE setVolume NOTIFY volumeChanged)
     Q_PROPERTY(bool muted READ muted WRITE setMuted NOTIFY mutedChanged)
     Q_PROPERTY(qreal balance READ balance WRITE setBalance NOTIFY balanceChanged)
@@ -49,6 +51,7 @@ public:
 
     QString language() const;
     QVariantList languages() const;
+    bool twentyFourHourTimeFormat() const;
     qreal volume() const;
     bool muted() const;
     qreal balance() const;
@@ -61,6 +64,7 @@ public:
 public Q_SLOTS:
     void setLanguage(const QString &language);
     void setLanguages(const QVariantList &langs);
+    void setTwentyFourHourTimeFormat(bool twentyFourHourTimeFormat);
     void setVolume(qreal volume);
     void setMuted(bool muted);
     void setBalance(qreal balance);
@@ -71,6 +75,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void languageChanged(const QString &language);
     void languagesChanged(const QVariantList &languages);
+    void twentyFourHourTimeFormatChanged(bool twentyFourHourTimeFormat);
     void volumeChanged(qreal);
     void mutedChanged(bool);
     void balanceChanged(qreal);

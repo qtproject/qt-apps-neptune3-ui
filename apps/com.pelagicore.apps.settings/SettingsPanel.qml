@@ -104,6 +104,8 @@ Item {
             }
 
             DateTimePanel {
+                twentyFourHourTimeFormat: store.twentyFourHourTimeFormat
+                onTwentyFourHourTimeFormatRequested: store.update24HourTimeFormat(value)
             }
 
             ThemesPanel {

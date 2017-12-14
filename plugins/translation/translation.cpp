@@ -76,6 +76,11 @@ QStringList Translation::availableTranslations() const
     return m_availableTranslations;
 }
 
+QString Translation::formatTime(const QDateTime &dt, bool twentyFourH) const
+{
+    return QLocale(m_languageLocale).toString(dt, twentyFourH ? "hh:mm" : "hh:mm a");
+}
+
 bool Translation::loadTranslationFile(const QString &langLocale)
 {
     QString fileToLoad(m_languageFilePath);
