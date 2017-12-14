@@ -42,22 +42,13 @@ Server::Server(QObject *parent) : QObject(parent)
 
 void Server::start()
 {
-    m_cultureSettingsService.reset(new CultureSettingsService(&m_settings));
-    Core::instance()->host()->enableRemoting(m_cultureSettingsService.data(), "settings.CultureSettings");
-    qCDebug(remoteSettingsServer) << "register service at: settings.CultureSettings";
+    m_UISettingsService.reset(new UISettingsSource());
+    Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "settings.UISettings");
+    qCDebug(remoteSettingsServer) << "register service at: settings.UISettings";
 
-    m_audioSettingsService.reset(new AudioSettingsService(&m_settings));
-    Core::instance()->host()->enableRemoting(m_audioSettingsService.data(), "settings.AudioSettings");
-    qCDebug(remoteSettingsServer) << "register service at: settings.AudioSettings";
-
-    m_model3DSettingsService.reset(new Model3DSettingsService(&m_settings));
-    Core::instance()->host()->enableRemoting(m_model3DSettingsService.data(), "settings.Model3DSettings");
-    qCDebug(remoteSettingsServer) << "register service at: settings.Model3DSettings";
-
-    m_navigationSettingsService.reset(new NavigationSettingsService(&m_settings));
-    Core::instance()->host()->enableRemoting(m_navigationSettingsService.data(), "settings.NavigationSettings");
-    qCDebug(remoteSettingsServer) << "register service at: settings.NavigationSettings";
-
+    m_instrumentClusterService.reset(new InstrumentClusterSource());
+    Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "settings.InstrumentCluster");
+    qCDebug(remoteSettingsServer) << "register service at: settings.InstrumentCluster";
 }
 
 void Server::onROError(QRemoteObjectNode::ErrorCode code)
@@ -67,6 +58,4 @@ void Server::onROError(QRemoteObjectNode::ErrorCode code)
 
 void Server::onAboutToQuit()
 {
-    qCDebug(remoteSettingsServer) << Q_FUNC_INFO << ", saving all settings";
-    m_settings.sync();
 }

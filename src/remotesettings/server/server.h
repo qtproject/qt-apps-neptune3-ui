@@ -35,10 +35,8 @@
 #include <QSettings>
 
 #include "core.h"
-#include "culturesettingsservice.h"
-#include "audiosettingsservice.h"
-#include "model3dsettingsservice.h"
-#include "navigationsettingsservice.h"
+#include "uisettingssource.h"
+#include "instrumentclustersource.h"
 
 Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
 
@@ -55,12 +53,8 @@ public slots:
     void onAboutToQuit();
 
 protected:
-    QSettings m_settings;
-
-    QScopedPointer<CultureSettingsService> m_cultureSettingsService;
-    QScopedPointer<AudioSettingsService> m_audioSettingsService;
-    QScopedPointer<Model3DSettingsService> m_model3DSettingsService;
-    QScopedPointer<NavigationSettingsService> m_navigationSettingsService;
+    QScopedPointer<UISettingsSource> m_UISettingsService;
+    QScopedPointer<InstrumentClusterSource> m_instrumentClusterService;
 };
 
 #endif // SERVER_H

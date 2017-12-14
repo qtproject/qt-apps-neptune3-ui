@@ -1,32 +1,46 @@
 module settings 1.0
 
-@config: {id: "CultureSettings"}
-interface CultureSettings {
+@config: {id: "UISettings"}
+interface UISettings {
     string language;
-    readonly list<string> languages;
-}
+    list<string> languages;
 
-@config: {id: "AudioSettings"}
-interface AudioSettings {
     /**
      * 0 is muted and 1.0 is max
      */
     real volume;
-
     bool muted;
-    /* 
+    /* 	
      * -1.0 left and +1.0 right and 0 is centered
      */
     real balance;
-}
 
-@config: {id: "NavigationSettings"}
-interface NavigationSettings {
-    bool nightMode;
-}
+    int theme;
 
-@config: {id: "Model3DSettings"}
-interface Model3DSettings {
     bool door1Open;
-    bool door2Open;   
+    bool door2Open;
 }
+
+@config: {id: "InstrumentCluster"}
+interface InstrumentCluster {
+  real speed; 
+  real speedLimit;
+  real speedCruise;
+  real ePower;
+  int driveTrainState;
+  
+  bool lowBeamHeadlight;
+  bool highBeamHeadlight;
+  bool fogLight;
+  bool stabilityControl;
+  bool seatBeltNotFastened;
+  bool leftTurn;
+  bool rightTurn;
+  bool ABSFailure;
+  bool parkBrake;
+  bool tyrePressureLow;
+  bool brakeFailure;
+  bool airbagFailure;
+}
+
+

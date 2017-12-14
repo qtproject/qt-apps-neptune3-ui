@@ -11,18 +11,10 @@ QFACE_FORMAT = server_qtro
 QFACE_SOURCES = ../settings.qface
 
 SOURCES += \
-        main.cpp\
-    culturesettingsservice.cpp \
-    audiosettingsservice.cpp \
-    model3dsettingsservice.cpp \
-    navigationsettingsservice.cpp \
+    main.cpp\
     server.cpp
 
 HEADERS += \
-    culturesettingsservice.h \
-    audiosettingsservice.h \
-    model3dsettingsservice.h \
-    navigationsettingsservice.h \
     server.h
 
 DEPENDPATH += $$OUT_PWD/../server
@@ -35,8 +27,8 @@ QMAKE_RPATHDIR += $ORIGIN/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL
 
 DISTFILES +=
 
-TARGET = RemoteSettings_server
-DESTDIR = ../../../
+TARGET = RemoteSettingsServer
+DESTDIR = $$BUILD_DIR
 
 target.path = $$INSTALL_PREFIX/triton
 INSTALLS += target

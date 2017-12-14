@@ -41,10 +41,8 @@ Client::Client(QObject *parent) : QObject(parent)
 
 void Client::setContextProperties(QQmlContext *context)
 {
-    context->setContextProperty(QStringLiteral("cultureSettings"), &m_cultureSettings);
-    context->setContextProperty(QStringLiteral("audioSettings"), &m_audioSettings);
-    context->setContextProperty(QStringLiteral("navigationSettings"), &m_navigationSettings);
-    context->setContextProperty(QStringLiteral("model3DSettings"), &m_model3DSettings);
+    context->setContextProperty(QStringLiteral("uiSettings"), &m_UISettings);
+    context->setContextProperty(QStringLiteral("instrumentCluster"), &m_instrumentCluster);
 }
 
 QUrl Client::serverUrl() const
@@ -69,18 +67,13 @@ void Client::connectToServer(const QString &serverUrl)
         return;
 
     if (m_repNode.connectToNode(url)) {
-        m_audioSettings.resetReplica(m_repNode.acquireDynamic("settings.AudioSettings"));
-        m_cultureSettings.resetReplica(m_repNode.acquireDynamic("settings.CultureSettings"));
-        m_navigationSettings.resetReplica(m_repNode.acquireDynamic("settings.NavigationSettings"));
-        m_model3DSettings.resetReplica(m_repNode.acquireDynamic("settings.Model3DSettings"));
-
+        m_UISettings.resetReplica(m_repNode.acquireDynamic("settings.UISettings"));
+        m_instrumentCluster.resetReplica(m_repNode.acquireDynamic("settings.InstrumentCluster"));
         setStatus(tr("Connected to %1").arg(url.toString()));
     } else {
         setStatus(tr("Connection to %1 failed").arg(url.toString()));
-        m_cultureSettings.resetReplica(nullptr);
-        m_audioSettings.resetReplica(nullptr);
-        m_navigationSettings.resetReplica(nullptr);
-        m_model3DSettings.resetReplica(nullptr);
+        m_UISettings.resetReplica(nullptr);
+        m_instrumentCluster.resetReplica(nullptr);
     }
 
     if (m_serverUrl!=url) {

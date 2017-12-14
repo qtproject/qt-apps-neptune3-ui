@@ -32,10 +32,8 @@
 #define CLIENT_H
 
 #include <QObject>
-#include "culturesettingsdynamic.h"
-#include "audiosettingsdynamic.h"
-#include "navigationsettingsdynamic.h"
-#include "model3dsettingsdynamic.h"
+#include "uisettingsdynamic.h"
+#include "instrumentclusterdynamic.h"
 
 class QQmlContext;
 
@@ -68,10 +66,8 @@ private:
     QUrl m_serverUrl;
     QString m_status;
 
-    CultureSettingsDynamic m_cultureSettings;
-    AudioSettingsDynamic m_audioSettings;
-    NavigationSettingsDynamic m_navigationSettings;
-    Model3DSettingsDynamic m_model3DSettings;
+    UISettingsDynamic m_UISettings;
+    InstrumentClusterDynamic m_instrumentCluster;
 };
 
 #endif // CLIENT_H

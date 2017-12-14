@@ -56,6 +56,10 @@ Window {
     readonly property real smallerDimension: isLandscape ? height : width
     readonly property real largerDimension: isLandscape ? width : height
 
+    Component.onCompleted: {
+        uiSettings.languages = Style.translation.availableTranslations;
+    }
+
     Display {
         id: display
         width: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
@@ -102,10 +106,14 @@ Window {
 
         focus: true
 
-        NavigationSettings {
-            id: navigationSettings
-            onNightModeChanged: root.contentItem.TritonStyle.theme = nightMode
-                                ? TritonStyle.Dark : TritonStyle.Light
+        UISettings {
+            id: uiSettings
+            onLanguageChanged: {
+                console.info("!!! SETTINGS, lang changed:", language)
+                Style.languageLocale = language;
+            }
+            onThemeChanged: root.contentItem.TritonStyle.theme = theme == 0
+                                ? TritonStyle.Light : TritonStyle.Dark
         }
 
         Shortcut {
@@ -115,9 +123,9 @@ Window {
                 // TODO: Also change the instrument cluster theme
                 root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
                         ? TritonStyle.Dark : TritonStyle.Light
-                navigationSettings.nightMode =
+                uiSettings.theme =
                         root.contentItem.TritonStyle.theme == TritonStyle.Light ?
-                            false : true
+                            0 : 1
             }
         }
         Shortcut {

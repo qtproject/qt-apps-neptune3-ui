@@ -40,10 +40,8 @@ ApplicationWindow {
     height: 480
     title: qsTr("Settings app")
 
-    readonly property bool connected: audioSettings.connected ||
-                             cultureSettings.connected ||
-                             model3DSettings.connected ||
-                             navigationSettings.connected
+    readonly property bool connected: uiSettings.connected ||
+                             instrumentCluster.connected
 
     Component.onCompleted: {
         connectionDialog.open()
@@ -104,114 +102,99 @@ ApplicationWindow {
             }
 
             Button {
-                //anchors.right: parent.right
                 text: qsTr("Connect...")
                 onClicked: connectionDialog.open()
             }
         }
 
         GroupBox {
-            title: qsTr("Culture settings")
+            title: qsTr("Settings")
 
             Layout.fillWidth: true
 
-            RowLayout {
+            ColumnLayout {
 
-                Label {
-                    text: qsTr("Language:")
+                RowLayout {
+
+                    Label {
+                        text: qsTr("Language:")
+                    }
+
+                    ComboBox {
+                        id: languageComboBox
+                        model: uiSettings.languages
+                        currentIndex: uiSettings.languages.indexOf(uiSettings.language)
+                        onActivated: uiSettings.language = currentText
+                    }
                 }
 
-                ComboBox {
-                    id: languageComboBox
-                    model: cultureSettings.languages
-                    currentIndex: cultureSettings.languages.indexOf(cultureSettings.language)
-                    onActivated: cultureSettings.language = currentText
-                }
-            }
 
-        }
-
-        GroupBox {
-            title: qsTr("Audio settings")
-
-            Layout.fillWidth: true
-
-            RowLayout {
-                Label {
-                    text: qsTr("Volume:")
-                }
-                Slider {
-                    id: volumeSlider
-                    value: audioSettings.volume
-                    from: 1.0
-                    to: 0.0
-                    onValueChanged: if (pressed) { audioSettings.volume = value }
-                }
-                Label {
-                    text: qsTr("Balance:")
-                }
-                Slider {
-                    id: balanceSlider
-                    value: audioSettings.balance
-                    from: 1.0
-                    to: -1.0
-                    onValueChanged: if (pressed) { audioSettings.balance = value }
-                }
-                Label {
-                    text: qsTr("Mute:")
-                }
-                CheckBox {
-                    id: muteCheckbox
-                    checked: audioSettings.muted
-                    onClicked: audioSettings.muted = checked
-                }
-            }
-        }
-
-        GroupBox {
-            title: qsTr("Navigation settings")
-
-            Layout.fillWidth: true
-
-            RowLayout {
-
-                Label {
-                    text: qsTr("Night mode:")
+                RowLayout {
+                    Label {
+                        text: qsTr("Volume:")
+                    }
+                    Slider {
+                        id: volumeSlider
+                        value: uiSettings.volume
+                        from: 1.0
+                        to: 0.0
+                        onValueChanged: if (pressed) { uiSettings.volume = value }
+                    }
+                    Label {
+                        text: qsTr("Balance:")
+                    }
+                    Slider {
+                        id: balanceSlider
+                        value: uiSettings.balance
+                        from: 1.0
+                        to: -1.0
+                        onValueChanged: if (pressed) { uiSettings.balance = value }
+                    }
+                    Label {
+                        text: qsTr("Mute:")
+                    }
+                    CheckBox {
+                        id: muteCheckbox
+                        checked: uiSettings.muted
+                        onClicked: uiSettings.muted = checked
+                    }
                 }
 
-                CheckBox {
-                    id: nightModeCheckbox
-                    checked: navigationSettings.nightMode
-                    onClicked: navigationSettings.nightMode = checked
-                }
-            }
-        }
+                RowLayout {
 
-        GroupBox {
-            title: qsTr("3D-model settings")
+                    Label {
+                        text: qsTr("Theme:")
+                    }
 
-            Layout.fillWidth: true
-
-            RowLayout {
-                Label {
-                    text: qsTr("Door 1 open:")
-                }
-                CheckBox {
-                    id: door1OpenCheckbox
-                    checked: model3DSettings.door1Open
-                    onClicked: model3DSettings.door1Open = checked
+                    ComboBox {
+                        id: themeComboBox
+                        model: [qsTr("Light"), qsTr("Dark")]
+                        currentIndex: uiSettings.theme
+                        onActivated: uiSettings.theme = currentIndex
+                    }
                 }
 
-                Label {
-                    text: qsTr("Door 2 open:")
-                }
-                CheckBox {
-                    id: door2OpenCheckbox
-                    checked: model3DSettings.door2Open
-                    onClicked: model3DSettings.door2Open = checked
+
+                RowLayout {
+                    Label {
+                        text: qsTr("Door 1 open:")
+                    }
+                    CheckBox {
+                        id: door1OpenCheckbox
+                        checked: uiSettings.door1Open
+                        onClicked: uiSettings.door1Open = checked
+                    }
+
+                    Label {
+                        text: qsTr("Door 2 open:")
+                    }
+                    CheckBox {
+                        id: door2OpenCheckbox
+                        checked: uiSettings.door2Open
+                        onClicked: uiSettings.door2Open = checked
+                    }
                 }
             }
-
         }
 
 

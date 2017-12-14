@@ -1,22 +1,26 @@
 QT += quick remoteobjects
 CONFIG += c++11
+macos: CONFIG -= app_bundle
 
 include($$SOURCE_DIR/config.pri)
 
 SOURCES += main.cpp \
-    culturesettingsdynamic.cpp \
-    audiosettingsdynamic.cpp \
-    navigationsettingsdynamic.cpp \
-    model3dsettingsdynamic.cpp \
     abstractdynamic.cpp \
-    client.cpp
+    client.cpp \
+    uisettingsdynamic.cpp \
+    instrumentclusterdynamic.cpp
 
 RESOURCES += qml.qrc
 
 HEADERS += \
-    culturesettingsdynamic.h \
-    audiosettingsdynamic.h \
-    navigationsettingsdynamic.h \
-    model3dsettingsdynamic.h \
     abstractdynamic.h \
-    client.h
+    client.h \
+    uisettingsdynamic.h \
+    instrumentclusterdynamic.h
+
+
+TARGET = TritonControlApp
+DESTDIR = $$BUILD_DIR
+
+target.path = $$INSTALL_PREFIX/triton
+INSTALLS += target
