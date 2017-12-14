@@ -52,9 +52,7 @@ ColumnLayout {
             baselineOffset: 0
             checkable: true
             checked: root.currentTool === model.name
-
-            // TODO: ask for the correct asset to designer
-            symbol: Style.symbol(buttonGroup.checkedButton === this ? "ic-favorites_ON" : "ic-favorites_OFF")
+            symbol: model.name ? Style.symbol(buttonGroup.checkedButton === this ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
             text: qsTr(model.name)
             font.pixelSize: Style.fontSizeXS
             symbolOnTop: true
