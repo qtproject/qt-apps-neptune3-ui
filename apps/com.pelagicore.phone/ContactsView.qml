@@ -63,7 +63,7 @@ ListView {
                 }
                 Label {
                     text: model.firstName + " " + model.surname
-                    font.pixelSize: Style.fontSizeS
+                    font.weight: Font.Light
                 }
                 Item { // spacer
                     Layout.fillWidth: true

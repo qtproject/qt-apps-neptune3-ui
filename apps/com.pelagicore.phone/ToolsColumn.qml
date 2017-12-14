@@ -35,10 +35,11 @@ import QtQuick.Layouts 1.2
 
 import utils 1.0
 import controls 1.0
+import com.pelagicore.styles.triton 1.0
 
 ColumnLayout {
     id: root
-    spacing: Style.vspan(1.5)
+    spacing: Style.vspan(1)
 
     property string currentTool: "recents"
 
@@ -81,6 +82,8 @@ ColumnLayout {
             symbol: icon ? Style.symbol(radioGroup.checkedButton === this ? icon + "ON" : icon + "OFF") : ""
             text: qsTr(label)
             font.pixelSize: Style.fontSizeS
+            labelColor: radioGroup.checkedButton === this ? "#CE8042" : TritonStyle.primaryTextColor
+            labelOpacity: radioGroup.checkedButton === this ? 1.0 : 0.25
             symbolOnTop: true
             onClicked: {
                 root.currentTool = label;

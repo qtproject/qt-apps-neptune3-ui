@@ -47,9 +47,9 @@ ListView {
 
     model: CallsModel
 
-    delegate: ItemDelegate { // FIXME right component?
+    delegate: ItemDelegate {
         id: delegate
-        property var person: ContactsModel.findPerson(model.peerHandle)
+        readonly property var person: ContactsModel.findPerson(model.peerHandle)
         width: ListView.view.width
         contentItem: Column {
             spacing: Style.vspan(.2)
@@ -61,7 +61,7 @@ ListView {
                     symbol: model.type ? Style.symbol("ic-phone-%1".arg(model.type)) : ""
                 }
                 Label {
-                    font.pixelSize: Style.fontSizeS
+                    font.weight: Font.Light
                     text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
                 }
                 Item { // spacer
@@ -70,6 +70,7 @@ ListView {
                 Label {
                     text: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
                     font.pixelSize: Style.fontSizeS
+                    font.weight: Font.Light
                 }
             }
             Rectangle { // separator

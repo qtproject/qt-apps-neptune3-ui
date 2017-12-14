@@ -341,32 +341,32 @@
 <context>
     <name>ToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="48"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="49"/>
         <source>recents</source>
         <translation>nedávné</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="53"/>
         <source>favorites</source>
         <translation>oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="56"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="57"/>
         <source>voicemail</source>
         <translation>hlas. schránka</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="60"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="61"/>
         <source>keypad</source>
         <translation>číselník</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="64"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="65"/>
         <source>contacts</source>
         <translation>kontakty</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="68"/>
+        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="69"/>
         <source>messages</source>
         <translation>zprávy</translation>
     </message>

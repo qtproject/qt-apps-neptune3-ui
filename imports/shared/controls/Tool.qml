@@ -32,17 +32,22 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import utils 1.0
+import com.pelagicore.styles.triton 1.0
 
 ToolButton {
     id: root
     width: Style.hspan(4)
     height: Style.vspan(2)
     property string symbol
+    property color labelColor: TritonStyle.primaryTextColor
+    property real labelOpacity: 1
     property bool symbolOnTop: false
 
     contentItem: Label {
         text: root.text
         font: root.font
+        color: root.labelColor
+        opacity: root.labelOpacity
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: root.symbolOnTop ? Style.vspan(0.2) : 0

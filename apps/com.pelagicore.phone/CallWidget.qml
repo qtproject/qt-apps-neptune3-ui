@@ -102,7 +102,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: Style.hspan(1)
+                target: textColumn; anchors.leftMargin: Style.hspan(0.5)
             }
             PropertyChanges {
                 target: callEndButton; x: muteButton.x + ((keypadButton.x - muteButton.x) / 2)
@@ -189,19 +189,21 @@ Item {
             anchors.left: root.state == "Widget1Row" ? parent.left : undefined
             anchors.horizontalCenter: root.state !== "Widget1Row" ? parent.horizontalCenter : undefined
             text: priv.callerName
-            font.pixelSize: Style.fontSizeS
+            font.weight: Font.Light
         }
         Label {
             anchors.left: parent.left
             anchors.right: parent.right
             horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: Style.fontSizeS
+            font.weight: Font.Light
             text: Qt.formatTime(new Date(callTimer.duration * 1000), "m:ss")
         }
     }
 
     Tool {
         id: muteButton
+        width: Style.hspan(2)
         symbol: Style.symbol("ic-mute-ongoing")
     }
 
@@ -211,13 +213,14 @@ Item {
             fillMode: Image.Pad
             source: Style.symbol("ic_button-bg-red")
         }
-
+        width: Style.hspan(2)
         symbol: Style.symbol("ic-end-call")
         onClicked: root.callEndRequested(root.callerHandle)
     }
 
     Tool {
         id: keypadButton
+        width: Style.hspan(2)
         symbol: Style.symbol("ic-keypad-ongoing")
         onClicked: root.keypadRequested()
     }
