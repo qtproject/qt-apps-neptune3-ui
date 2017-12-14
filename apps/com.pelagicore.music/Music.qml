@@ -56,42 +56,26 @@ Item {
     states: [
         State {
             name: "Widget1Row"
-            PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
-                              anchors.verticalCenterOffset: 0; anchors.leftMargin: Style.hspan(0.9) }
+            PropertyChanges { target: nowPlayingList; state: "WidgetList1Row" }
         },
         State {
             name: "Widget2Rows"
-            PropertyChanges { target: albumArtRow; width: Style.hspan(19); height: Style.vspan(6); scale: 1.0;
-                              anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
+            PropertyChanges { target: nowPlayingList; state: "WidgetHideList" }
         },
         State {
             name: "Widget3Rows"
-            PropertyChanges { target: albumArtRow; width: Style.hspan(19); height: Style.vspan(6); scale: 1.0;
-                              anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
             PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
-                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; showList: true }
+                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; state: "WidgetHideList" }
         },
         State {
             name: "Maximized"
-            PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
-                              anchors.verticalCenterOffset: - Style.vspan(8); anchors.leftMargin: Style.hspan(1.8) }
-            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5); listView.contentY: - Style.vspan(0.8) }
+            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5);
+                              listView.contentY: - Style.vspan(0.8); state: "WidgetListMaximized" }
         }
     ]
 
     transitions: [
         Transition {
-            from: "Widget2Rows"; to: "Widget1Row"
-            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
-                                     duration: 50 }
-        },
-        Transition {
-            from: "Maximized";
-            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
-                                     duration: 50 }
-        },
-        Transition {
-            DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset"; }
             DefaultNumberAnimation { target: nowPlayingList; properties: "width, y, contentY, anchors.horizontalCenterOffset"; }
         }
     ]
@@ -138,8 +122,6 @@ Item {
                 } else if (y > Style.vspan(7.8) && nowPlayingList.state === "WidgetShowList") {
                     nowPlayingList.state = "WidgetHideList";
                 }
-            } else {
-                nowPlayingList.state = "WidgetHideList";
             }
         }
         Behavior on y { DefaultNumberAnimation { } }
@@ -153,24 +135,46 @@ Item {
         states: [
             State {
                 name: "WidgetHideList"
-                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(19); height: Style.vspan(6);
+                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(20); height: Style.vspan(6);
                                   anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
-                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4);
-                                  listView.contentY: - Style.vspan(0.8) }
+                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
+                                  listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; }
             },
             State {
                 name: "WidgetShowList"
                 PropertyChanges { target: albumArtRow; scale: 0.7; width: Style.hspan(6.2); height: Style.vspan(3.5);
                                   anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(1.5) }
-                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); listView.contentY: - Style.vspan(0.8);
-                                  anchors.horizontalCenterOffset: 0 }
+                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.2);
+                                  listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; showList: true }
+            },
+
+            State {
+                name: "WidgetList1Row"
+                PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
+                                  anchors.verticalCenterOffset: 0; anchors.leftMargin: Style.hspan(0.9) }
+            },
+
+            State {
+                name: "WidgetListMaximized"
+                PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
+                                  anchors.verticalCenterOffset: - Style.vspan(8); anchors.leftMargin: Style.hspan(1.8) }
             }
 
         ]
 
         transitions: [
             Transition {
-                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.horizontalCenterOffset, anchors.verticalCenterOffset"; }
+                from: "WidgetHideList"; to: "WidgetList1Row"
+                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
+                                         duration: 50 }
+            },
+            Transition {
+                from: "WidgetListMaximized";
+                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
+                                         duration: 50 }
+            },
+            Transition {
+                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset"; }
                 DefaultNumberAnimation { target: nowPlayingList; properties: "width, contentY"; }
             }
         ]
@@ -236,6 +240,7 @@ Item {
 
         onHeaderClicked: {
             musicLibrary.showList = !musicLibrary.showList;
+            nowPlayingList.listView.contentY = - Style.vspan(0.8);
         }
 
         onLibraryGoBack: {
@@ -288,6 +293,9 @@ Item {
                 root.store.changeContentType("artist");
                 musicLibrary.showPath = false;
             } else if (contentType === "albums") {
+                root.store.changeContentType("album");
+                musicLibrary.showPath = false;
+            } else if (contentType === "folders") {
                 root.store.changeContentType("album");
                 musicLibrary.showPath = false;
             } else if (contentType === "favorites") {
@@ -390,7 +398,7 @@ Item {
                  (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") ||
                  root.state === "Maximized"
         opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
+        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
 
         play: root.store.playing
 
@@ -406,7 +414,7 @@ Item {
         anchors.rightMargin: Style.hspan(2)
         visible: root.state === "Maximized"
         opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
 
         onShuffleClicked: root.store.shuffleSong()
         onRepeatClicked: root.store.repeatSong()
@@ -421,6 +429,6 @@ Item {
         source: Style.gfx2("divider")
         opacity: (nowPlayingList.state === "WidgetShowList" || root.state === "Maximized")
                  && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
     }
 }

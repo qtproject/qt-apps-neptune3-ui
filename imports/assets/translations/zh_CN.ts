@@ -148,11 +148,10 @@
         <translation>文件夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="73"/>
         <source>sources</source>
         <translatorcomment>I don&apos;t really understand what does &quot;source&quot; mean in a music app. My translation is like &quot;the source of music files&quot;
 If it is wrong, you can just delete first two charactor, just ues &quot;源&quot; also Ok</translatorcomment>
-        <translation>播放源</translation>
+        <translation type="vanished">播放源</translation>
     </message>
 </context>
 <context>

@@ -98,7 +98,6 @@ Item {
 
     }
 
-    // TODO: Ask Johan to provide the shadow.
     Rectangle {
         id: albumArtShadow
 

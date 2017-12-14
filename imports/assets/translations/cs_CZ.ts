@@ -155,9 +155,8 @@
         <translation>složky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="73"/>
         <source>sources</source>
-        <translation>zdroje</translation>
+        <translation type="vanished">zdroje</translation>
     </message>
 </context>
 <context>

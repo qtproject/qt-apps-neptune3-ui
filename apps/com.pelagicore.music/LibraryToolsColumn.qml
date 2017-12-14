@@ -67,11 +67,6 @@ ColumnLayout {
             icon: "ic-folder-browse"
             label: QT_TR_NOOP("folders")
         }
-
-        ListElement {
-            icon: "ic-sources-bt"
-            label: QT_TR_NOOP("sources")
-        }
     }
 
     ButtonGroup { id: musicButtonGroup }

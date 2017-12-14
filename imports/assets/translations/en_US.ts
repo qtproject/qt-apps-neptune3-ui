@@ -132,11 +132,6 @@
         <source>folders</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="73"/>
-        <source>sources</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Main</name>
