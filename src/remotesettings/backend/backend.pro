@@ -20,7 +20,7 @@ QFACE_SOURCES = ../settings.qface
 
 DEPENDPATH += $$OUT_PWD/../backend
 
-QMAKE_RPATHDIR += $ORIGIN/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton/qtivi)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton/qtivi)
 
 target.path = $$INSTALL_PREFIX/triton/qtivi
 INSTALLS += target

@@ -3,6 +3,8 @@ TEMPLATE = lib
 CONFIG += ivigenerator
 DESTDIR = ../../../lib
 
+macos: QMAKE_SONAME_PREFIX = @rpath
+
 include($$SOURCE_DIR/config.pri)
 
 QT += ivicore ivicore-private qml quick

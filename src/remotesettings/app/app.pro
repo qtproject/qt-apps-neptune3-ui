@@ -17,4 +17,4 @@ RESOURCES += qml.qrc \
 #target.path = $$INSTALL_PREFIX/triton
 #INSTALLS += target
 
-QMAKE_RPATHDIR += $ORIGIN/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton/)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton/)
