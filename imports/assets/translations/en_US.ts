@@ -51,12 +51,12 @@
 <context>
     <name>DialPower</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="258"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="330"/>
         <source>% power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="269"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="341"/>
         <source>km</source>
         <translation type="unfinished"></translation>
     </message>
@@ -64,7 +64,7 @@
 <context>
     <name>DialSpeed</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="237"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="270"/>
         <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
@@ -136,7 +136,7 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="41"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="40"/>
         <source>Instrument Cluster</source>
         <translation type="unfinished"></translation>
     </message>
