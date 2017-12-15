@@ -33,7 +33,6 @@ import QtQuick 2.8
 import QtQuick.Window 2.2
 import QtApplicationManager 1.0
 ApplicationManagerWindow {
-
     id: root
     visible: true
     width: 1920

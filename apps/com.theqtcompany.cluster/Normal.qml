@@ -36,36 +36,6 @@ Item {
     width: 1920
     height: 720
 
-    //public functions
-    function state2begin() {
-        if (state === "stopped") {
-            ds.state2begin();
-            dp.state2begin();
-            state = "normal"
-        }
-    }
-    function state2Navigation() {
-        if (state === "normal") {
-            ds.state2Navigation();
-            dp.state2Navigation();
-            state = "navi"
-        }
-    }
-    function state2Normal() {
-        if (state === "navi") {
-            ds.state2Normal();
-            dp.state2Normal();
-            state = "normal"
-        }
-    }
-    function state2end() {
-        if (state === "normal" || state === "navi"){
-            ds.state2end();
-            dp.state2end();
-            state = "stopped"
-        }
-    }
-
     //public
     property alias speed: ds.speed
     property alias speedLimit: ds.speedLimit
@@ -84,18 +54,18 @@ Item {
     states: [
         State {
             name: "stopped"
-            PropertyChanges { target: ds; x: 680; y: 120 }
-            PropertyChanges { target: dp; x: 680; y: 120 }
+            PropertyChanges { target: ds; x: 310 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: dp; x: 1050 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "normal"
-            PropertyChanges { target: ds; x: 10; y: 120 }
-            PropertyChanges { target: dp; x: 1350; y: 120 }
+            PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "navi"
-            PropertyChanges { target: ds; x: 10; y: 180 }
-            PropertyChanges { target: dp; x: 1350; y: 180 }
+            PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 180 * d.scaleRatio }
+            PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 180 * d.scaleRatio }
         }
     ]
 
@@ -105,9 +75,9 @@ Item {
             to: "normal"
             reversible: true
             SequentialAnimation {
-                //wait DialFrame to expand
-                PauseAnimation { duration: 470 }
-                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 500 }
+                //wait DialFrame to fade in
+                PauseAnimation { duration: 900 }
+                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 200 }
             }
         },
         Transition {
@@ -115,11 +85,9 @@ Item {
             to: "navi"
             reversible: true
             SequentialAnimation {
-                //wait ds/dp to shrinp
+                //wait ds/dp to shrink
                 PauseAnimation { duration: 1000 }
-                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 500 }
-                //wait ds/dp to shrinp
-                PauseAnimation { duration: 1000 }
+                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 200 }
             }
         },
         Transition {
@@ -128,9 +96,9 @@ Item {
             reversible: false
             SequentialAnimation {
                 //wait ds/dp to finish transition
-                PauseAnimation { duration: 270 }
-                PropertyAnimation { targets: [ds, dp]; properties: "y"; duration: 500 }
-                PropertyAnimation { targets: [ds, dp]; properties: "x"; duration: 500 }
+                PauseAnimation { duration: 70 }
+                PropertyAnimation { targets: [ds, dp]; properties: "y"; duration: 200 }
+                PropertyAnimation { targets: [ds, dp]; properties: "x"; duration: 200 }
             }
         }
     ]
@@ -142,6 +110,7 @@ Item {
         y: 120* d.scaleRatio
         width: 560 * d.scaleRatio
         height: width
+        state: parent.state
     }
 
     DialPower {
@@ -150,21 +119,17 @@ Item {
         y: 120 * d.scaleRatio
         width: 560 * d.scaleRatio
         height: width
+        state: parent.state
     }
-
-//TODOs:talk to Johan to decide whether should use the telltale background pic
-//    Image {
-//        id: bg
-//        width: 1920 * scaleRatio
-//        height: 293 * scaleRatio
-//        source: "./img/telltale-bg.png"
-//    }
-
-
 
 //TEST CODE
 //MouseArea simulate state changing
 //Animation simulate value changing
+    Component.onCompleted: {
+        state = "normal"
+        needChange.beats = 1;
+    }
+
     MouseArea {
         id: needChange
         anchors.fill: parent
@@ -172,25 +137,25 @@ Item {
         onClicked: {
             switch (beats) {
             case 0:
-                state2begin();
+                parent.state = "normal"
                 break;
             case 1:
-                state2end();
+                parent.state = "stopped"
                 break;
             case 2:
-                state2begin();
+                parent.state = "normal"
                 break;
             case 3:
-                state2Navigation();
+                parent.state = "navi"
                 break;
             case 4:
-                state2Normal();
+                parent.state = "normal"
                 break;
             case 5:
-                state2Navigation();
+                parent.state = "navi"
                 break;
             case 6:
-                state2end();
+                parent.state = "stopped"
                 beats = 0;
                 return;
             default:
@@ -200,18 +165,26 @@ Item {
             beats++;
         }
     }
-//    SequentialAnimation {
-//        running: true
-//        loops: Animation.Infinite
-//        ParallelAnimation{
-//            PropertyAnimation {target: ds; properties: "speed, speedLimit, cruiseSpeed"; to: 260; duration: 2000 }
-//            PropertyAnimation {target: dp; property: "ePower"; to: 100; duration: 1000 }
-//        }
-//        PauseAnimation { duration: 1000 }
-//        ParallelAnimation{
-//            PropertyAnimation {target: ds; properties: "speed, speedLimit, cruiseSpeed"; to: 0; duration: 2000 }
-//            PropertyAnimation {target: dp; property: "ePower"; to: -25; duration: 1000 }
-//        }
-//        PauseAnimation { duration: 1000 }
-//    }
+
+    Timer {
+        property bool max: false
+        repeat: true
+        running: true
+        interval: 5000
+        onTriggered: {
+            if (max) {
+                max = false;
+                ds.speed = 260
+                ds.speedLimit = 260
+                ds.cruiseSpeed = 260
+                dp.ePower = 100
+            } else {
+                max = true;
+                ds.speed = 0;
+                ds.speedLimit = 0;
+                ds.cruiseSpeed = 0;
+                dp.ePower = -25;
+            }
+        }
+    }
 }

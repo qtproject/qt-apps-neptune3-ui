@@ -41,6 +41,14 @@ Item {
 
     //public
     property int margin: 25
+
+    property bool controlBitLowBeanHeadLight: true
+    property bool controlBitHighBeanHeadLight: true
+    property bool controlBitFogLight: true
+    property bool controlBitStabilityControl: true
+    property bool controlBitSeatBeltFasten: true
+    property bool controlBitLeftTurn: true
+
     //private
     Item {
         id: d
@@ -53,6 +61,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitLowBeanHeadLight
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_0083.dat"
     }
@@ -63,6 +72,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitHighBeanHeadLight
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_0082.dat"
     }
@@ -73,6 +83,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitFogLight
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_0634.dat"
     }
@@ -83,6 +94,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitStabilityControl
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_2630.dat"
     }
@@ -93,6 +105,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitSeatBeltFasten
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_1702.dat"
     }
@@ -103,6 +116,7 @@ Item {
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
         width: parent.height
+        visible: controlBitLeftTurn
         fillMode: Image.PreserveAspectFit
         source: "./img/icon_turnsignal_on.png"
     }

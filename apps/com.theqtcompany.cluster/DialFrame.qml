@@ -37,42 +37,28 @@ Item {
     width: 560
     height: width
 
-    Connections {
-        target: root
-        onHighLightAngChanged: {
-            highLightMask.requestPaint();
-        }
-    }
-
     //public
     property real highLightAng: zeroAng
     property real zeroAng: minAng
     property real maxAng: 90
     property real minAng: -270
-
-    //public functions
-    function state2begin() {
-        if (state === "stopped")
-            state = "normal"
-    }
-    function state2Navigation() {
-        if (state === "normal")
-            state = "navi"
-    }
-    function state2Normal() {
-        if (state === "navi")
-            state = "normal"
-    }
-    function state2end() {
-        if (state === "normal" || state === "navi"){
-            state = "stopped"
-        }
-    }
+    property color positiveColor: "#fba054"
+    property color negativeColor: "#fba054"
 
     //private
     Item {
         id: d
-        property real scaleRatio: Math.min ( parent.width / 560, parent.height / 560 )
+        readonly property real scaleRatio: Math.min ( parent.width / 560, parent.height / 560 )
+
+        readonly property real maxRadin: (parent.maxAng > 90) ? (Math.PI / 2) : (parent.maxAng / 180 * Math.PI)
+        readonly property real minRadin: (parent.minAng < -270) ? (-Math.PI * 3 / 2) : (parent.minAng / 180 * Math.PI)
+        readonly property real zeroRadin: (parent.zeroAng > parent.maxAng || parent.zeroAng < parent.minAng) ?
+                                parent.minRadin : (parent.zeroAng / 180 * Math.PI)
+        readonly property real highLightRadin: (parent.highLightAng < parent.minAng) ?
+                                parent.minRadin : (parent.highLightAng > parent.maxAng) ?
+                                              parent.maxRadin : (parent.highLightAng / 180 * Math.PI)
+        readonly property bool isPositive: (parent.highLightAng >= parent.zeroAng) ? true : false
+        readonly property color fillColor: isPositive ? parent.positiveColor : parent.negativeColor
     }
 
     //states and transitions
@@ -85,6 +71,7 @@ Item {
             PropertyChanges { target: innerCircle; opacity: 0; width: 100 * d.scaleRatio }
             PropertyChanges { target: innerCircleShadow; opacity: 0; width: 112 * d.scaleRatio }
             PropertyChanges { target: outBg; opacity: 0; width: 140 * d.scaleRatio }
+            PropertyChanges { target: outSmallBg; opacity: 0; width: 150 * d.scaleRatio }
             PropertyChanges { target: outEdge; opacity: 0; width: 140 * d.scaleRatio }
             PropertyChanges { target: outShadow; opacity: 0; width: 150 * d.scaleRatio }
         },
@@ -95,6 +82,7 @@ Item {
             PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
             PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
             PropertyChanges { target: outBg; opacity: 1; width: 520 * d.scaleRatio }
+            PropertyChanges { target: outSmallBg; opacity: 0; width: 560 * d.scaleRatio }
             PropertyChanges { target: outEdge; opacity: 1; width: 520 * d.scaleRatio }
             PropertyChanges { target: outShadow; opacity: 1; width: 560 * d.scaleRatio }
         },
@@ -105,6 +93,7 @@ Item {
             PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
             PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
             PropertyChanges { target: outBg; opacity: 1; width: 340 * d.scaleRatio }
+            PropertyChanges { target: outSmallBg; opacity: 1; width: 366.15 * d.scaleRatio }
             PropertyChanges { target: outEdge; opacity: 1; width: 340 * d.scaleRatio }
             PropertyChanges { target: outShadow; opacity: 1; width: 366.15 * d.scaleRatio }
         }
@@ -116,33 +105,67 @@ Item {
             to: "normal"
             reversible: true
             SequentialAnimation{
+                //fade in circles(1280ms)
                 ParallelAnimation {
-                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity"; duration: 1080 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 70 }
-                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                        PauseAnimation { duration: 200 }
+                        PropertyAnimation { targets: [outBg, outSmallBg, outEdge, outShadow]; properties: "opacity"; duration: 1080 }
                     }
                 }
-                PauseAnimation { duration: 270 }
-                PropertyAnimation { target: highLightOut; property: "opacity"; duration: 130 }
-                //wait outside components to hide
-                PauseAnimation { duration: 2000 }
+                //expand circles(320ms)
+                ParallelAnimation {
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "width"; duration: 270 }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 50 }
+                        PropertyAnimation { targets: [outBg, outSmallBg, outEdge, outShadow]; properties: "width"; duration: 270 }
+                    }
+                }
+                //wait outside components to fade in & fade in the highlights(640ms)
+                PauseAnimation { duration: 510 }
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; duration: 130 }
             }
         },
         Transition {
             from: "normal"
             to: "navi"
-            reversible: true
+            reversible: false
             SequentialAnimation{
-                //wait parent components to shrink
-                PauseAnimation { duration: 500 }
+                //fade out the highlights & wait outside components to fade out(320ms)
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 0; duration: 130 }
+                PauseAnimation { duration: 190 }
+                //shrink the dialframe (320ms)
                 ParallelAnimation {
                     PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 70 }
-                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                        PauseAnimation { duration: 50 }
+                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 270 }
                     }
                 }
+                //wait outside components to fade in & fade in the highlights(320ms)
+                PauseAnimation { duration: 190 }
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 1; duration: 130 }
+            }
+        },
+        Transition {
+            from: "navi"
+            to: "normal"
+            reversible: false
+            SequentialAnimation{
+                //fade out the highlights & wait outside components to fade out(320ms)
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 0; duration: 130 }
+                PauseAnimation { duration: 190 }
+                //expand the dialframe (320ms)
+                ParallelAnimation {
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 50 }
+                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 270 }
+                    }
+                }
+                //wait outside components to fade in & fade in the highlights(320ms)
+                PauseAnimation { duration: 190 }
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 1; duration: 130 }
             }
         },
         Transition {
@@ -150,74 +173,181 @@ Item {
             to: "stopped"
             reversible: true
             SequentialAnimation{
-                //wait outside components to hide
-                PauseAnimation { duration: 1000 }
+                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; duration: 130 }
+                //wait outside components to fade out
+                PauseAnimation { duration: 500 }
                 ParallelAnimation {
                     PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 70 }
-                        PropertyAnimation { targets: [outBg, outEdge, outShadow]; properties: "opacity, width"; duration: 270 }
+                        PauseAnimation { duration: 50 }
+                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 270 }
                     }
                 }
-                PauseAnimation { duration: 270 }
-                PropertyAnimation { target: highLightOut; property: "opacity"; duration: 130 }
             }
         }
     ]
 
+    Connections {
+        target: root
+        onHighLightAngChanged: {
+            highLightOutMask.requestPaint();
+            highLightInMask.requestPaint();
+        }
+        onStateChanged: {
+            highLightOutMask.requestPaint();
+            highLightInMask.requestPaint();
+        }
+    }
+
+    Connections {
+        target: highLightIn
+        onOpacityChanged: {
+            if (opacity === 1) {
+                highLightInMask.requestPaint();
+            }
+        }
+    }
+
+    Connections {
+        target: highLightOut
+        onOpacityChanged: {
+            if (opacity === 1) {
+                highLightOutMask.requestPaint();
+            }
+        }
+    }
+
     //visual components
     Image {
-        id: outBg
+        id: outSmallBg
+        width: 560 * d.scaleRatio
+        height: width
         anchors.centerIn: parent
+        visible: true
+        source: "./img/dial-small-bg.png"
+    }
+
+    Image {
+        id: outBg
         width: 520 * d.scaleRatio
         height: width
+        anchors.centerIn: parent
+        visible: true
         source: "./img/dial-outer-circle-bg.png"
     }
 
     Image {
         id: outEdge
-        z: 1
-        anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
+        anchors.centerIn: parent
+        z: 1
+        visible: true
         source: "./img/dial-outer-circle-edge.png"
     }
 
     Image {
         id: outShadow
-        z: 1
-        anchors.centerIn: parent
         width: 560 * d.scaleRatio
         height: width
+        anchors.centerIn: parent
+        z: 1
+        visible: true
         source: "./img/dial-outer-circle-shadow.png"
     }
 
-    Image {
-        id: highLightSource
+    Rectangle {
+        id: highLightOutSource
         anchors.fill: outBg
-        source: "./img/dial_highlight.png"
+        anchors.centerIn: parent
         visible: false
+        color: d.fillColor
     }
 
     Canvas {
-        id: highLightMask
-        anchors.fill: highLightSource
-        renderTarget: Canvas.FramebufferObject
+        id: highLightOutMask
+        anchors.fill: highLightOutSource
+        renderTarget: Canvas.Image
         visible: false
 
-        property real radius: highLightMask.width / 2
-        property real centerX: highLightMask.width / 2
-        property real centerY: highLightMask.height / 2
-        property real maxRadin: (maxAng > 90) ? (Math.PI / 2) : (maxAng / 180 * Math.PI)
-        property real minRadin: (minAng < -270) ? (-Math.PI * 3 / 2) : (minAng / 180 * Math.PI)
-        property real zeroRadin: (zeroAng > maxAng || zeroAng < minAng) ? minRadin : (zeroAng / 180 * Math.PI)
-        property real highLightRadin: (highLightAng < minAng) ?
-                        minRadin : (highLightAng > maxAng) ? maxRadin : (highLightAng / 180 * Math.PI)
-        property bool isPositive: (highLightRadin >= zeroRadin) ? true : false
+        readonly property real radiusIn: innerCircle.width / 2
+        readonly property real radiusOut: highLightOutMask.width / 2
+        readonly property real centerX: highLightOutMask.width / 2
+        readonly property real centerY: highLightOutMask.height / 2
 
         onPaint: {
             var ctx = getContext("2d");
-            ctx.clearRect(0, 0, highLightMask.width, highLightMask.height);
+            ctx.clearRect(0, 0, highLightOutMask.width, highLightOutMask.height);
+            ctx.globalCompositeOperation = "source-over";
+            ctx.lineWidth = 0;
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            //start point
+            ctx.moveTo(
+                        centerX + Math.cos(d.zeroRadin) * radiusIn,
+                        centerY + Math.sin(d.zeroRadin) * radiusIn);
+            //start line
+            ctx.lineTo(
+                        centerX + Math.cos(d.zeroRadin) * radiusOut,
+                        centerY + Math.sin(d.zeroRadin) * radiusOut);
+            //arc to end line
+            ctx.arc(
+                        centerX,
+                        centerY,
+                        radiusOut,
+                        d.zeroRadin,
+                        d.highLightRadin,
+                        !d.isPositive);
+            //end line
+            ctx.lineTo(
+                        centerX + Math.cos(d.highLightRadin) * radiusIn,
+                        centerY + Math.sin(d.highLightRadin) * radiusIn);
+            //arc to start line
+            ctx.arc(
+                        centerX,
+                        centerY,
+                        radiusIn,
+                        d.highLightRadin,
+                        d.zeroRadin,
+                        d.isPositive);
+            ctx.fill();
+        }
+    }
+
+    OpacityMask {
+        id: highLightOut
+        anchors.fill: highLightOutSource
+        visible: true
+        maskSource: highLightOutMask
+        source: highLightOutSource
+    }
+
+    RadialGradient {
+        id: highLightInSource
+        anchors.fill: innerCircle
+        visible: false
+
+        gradient: Gradient {
+            GradientStop { position: 0;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 0) }
+            GradientStop { position: 0.5; color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 0.4) }
+            GradientStop { position: 1;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 1) }
+        }
+    }
+
+    Canvas {
+        id: highLightInMask
+        anchors.fill: parent
+        visible: false
+
+        renderTarget: Canvas.Image
+
+        readonly property real radius: highLightInMask.width / 2
+        readonly property real centerX: highLightInMask.width / 2
+        readonly property real centerY: highLightInMask.height / 2
+
+        onPaint: {
+            var ctx = getContext("2d");
+            ctx.clearRect(0, 0, highLightInMask.width, highLightInMask.height);
             ctx.globalCompositeOperation = "source-over";
             ctx.lineWidth = 0;
             ctx.fillStyle = "black";
@@ -225,85 +355,53 @@ Item {
             ctx.moveTo(centerX, centerY); //center of the circule
             //start line
             ctx.lineTo(
-                        centerX + Math.cos(zeroRadin) * radius,
-                        centerY + Math.sin(zeroRadin) * radius); 
-            //arc line
+                        centerX + Math.cos(d.zeroRadin) * radius,
+                        centerY + Math.sin(d.zeroRadin) * radius);
+            //arc
             ctx.arc(
                         centerX,
                         centerY,
                         radius,
-                        zeroRadin,
-                        highLightRadin,
-                        !isPositive);
+                        d.zeroRadin,
+                        d.highLightRadin,
+                        !d.isPositive);
             ctx.closePath();
             ctx.fill();
         }
     }
 
-    OpacityMask {
-        id: highLight
-        visible: false
-        maskSource: highLightMask
-        source: highLightSource
-        anchors.fill: highLightSource
-    }
-
-    Image {
-        id: highLightOutMask
-        visible: false
-        anchors.fill: highLightSource
-        source: "./img/highlight-mask.png"
-    }
-
-    OpacityMask {
-        id: highLightOut
-        visible: true
-        maskSource: highLightOutMask
-        source: highLight
-        anchors.fill: highLightSource
-    }
-
-    Image {
-        id: highLightInMask
-        visible: false
-        width: innerCircle.width// + 2
-        height: width
-        anchors.centerIn: innerCircle
-        source: "./img/highlight-mask-inner.png"
-    }
-
     FastBlur {
-        id: highLightInBlur
+        id: highLightInMaskBlur
+        anchors.fill: highLightInMask
         visible: false
-        source: highLight
-        anchors.fill: highLight
+        source: highLightInMask
         radius: 60
         cached: true
     }
 
     OpacityMask {
         id: highLightIn
+        anchors.fill: highLightInSource
         visible: true
-        maskSource: highLightInMask
-        source: highLightInBlur
-        anchors.fill: highLightInMask
+        maskSource: highLightInMaskBlur
+        source: highLightInSource
     }
 
     Image {
         id: innerCircle
-        visible: true
         width: 310 * d.scaleRatio
         height: width
         anchors.centerIn: parent
+        visible: true
         source: "./img/dial-inner-circle.png"
     }
 
     Image {
         id: innerCircleShadow
-        visible: true
         width: 350 * d.scaleRatio
         height: width
         anchors.centerIn: parent
+        visible: true
         source: "./img/dial-inner-circle_shadow.png"
     }
 }

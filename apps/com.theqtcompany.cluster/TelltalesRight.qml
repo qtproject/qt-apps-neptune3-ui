@@ -32,6 +32,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Extras 1.4
+//import Qt.SafeRenderer 1.0
 
 Item {
     width: 460
@@ -40,6 +41,14 @@ Item {
 
     //public
     property int margin: 25
+
+    property bool controlBitRightTurn: true
+    property bool controlBitAbsFailure: true
+    property bool controlBitParkBrake: true
+    property bool controlBitTyrePressLow: true
+    property bool controlBitBrakeFailure: true
+    property bool controlBitAirbagFailure: true
+
     //private
     Item {
         id: d
@@ -51,7 +60,8 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitRightTurn
         rotation: 180
         fillMode: Image.PreserveAspectFit
         source: "./img/icon_turnsignal_on.png"
@@ -62,7 +72,8 @@ Item {
         anchors.left: rightTurn.right
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitAbsFailure
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_1407.dat"
     }
@@ -72,7 +83,8 @@ Item {
         anchors.left: absFailure.right
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitParkBrake
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_0238.dat"
     }
@@ -82,7 +94,8 @@ Item {
         anchors.left: parkBrake.right
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitTyrePressLow
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_1435.dat"
     }
@@ -92,7 +105,8 @@ Item {
         anchors.left: tyrePressLow.right
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitBrakeFailure
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_0239.dat"
     }
@@ -102,7 +116,8 @@ Item {
         anchors.left: brakeFailure.right
         anchors.leftMargin: margin * d.scaleRatio
         height: parent.height
-        width: height
+        width: parent.height
+        visible: controlBitAirbagFailure
         color: "#447191"
         source: "./iso-icons/iso_grs_7000_4_2108.dat"
     }

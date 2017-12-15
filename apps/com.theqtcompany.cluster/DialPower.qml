@@ -37,44 +37,14 @@ Item {
     width: 560
     height: width
 
-    onEPowerChanged: {
-         dialFrame.highLightAng = d.power2Angle(ePower);
-    }
-
     //public
     property int ePower
-    property string drivetrain : "PRND"
-
-    //public functions
-    function state2begin() {
-        if (state === "stopped") {
-            dialFrame.state2begin();
-            state = "normal";
-        }
-    }
-    function state2Navigation() {
-        if (state === "normal") {
-            dialFrame.state2Navigation();
-            state = "navi";
-        }
-    }
-    function state2Normal() {
-        if (state === "navi") {
-            dialFrame.state2Normal();
-            state = "normal";
-        }
-    }
-    function state2end() {
-        if (state === "normal" || state === "navi"){
-            dialFrame.state2end();
-            state = "stopped";
-        }
-    }
+    property int drivetrain : 0
 
     //private
     Item {
         id: d
-        property real scaleRatio: Math.min(parent.width / 560, parent.height / 560 )
+        readonly property real scaleRatio: Math.min(parent.width / 560, parent.height / 560 )
 
         function power2Angle(power) {
             if (power < -25) {
@@ -103,11 +73,11 @@ Item {
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 0 }
             PropertyChanges { target: indicatorEPower; opacity: 0 }
-            PropertyChanges { target: signBattery; opacity: 0 }
+            PropertyChanges { target: signBattery; opacity: 0; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: 0 }
-            PropertyChanges { target: signKMRemain; opacity: 0 }
+            PropertyChanges { target: signKM; opacity: 0; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: 0; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: 0 }
         },
         State {
@@ -115,13 +85,13 @@ Item {
             PropertyChanges { target: scaleEnergyArea; opacity: 1 }
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 105 }
             PropertyChanges { target: graduationNumber; opacity:  0.6 }
-            PropertyChanges { target: indicatorDrivetrain; opacity: 0.4 }
+            PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
             PropertyChanges { target: indicatorEPower; opacity: 0.94 }
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0.94 }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: 0.4 }
-            PropertyChanges { target: signKMRemain; opacity: 0.94 }
+            PropertyChanges { target: signKM; opacity: 0.4; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: 0.94; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: 0.4 }
         },
         State {
@@ -129,7 +99,7 @@ Item {
             PropertyChanges { target: scaleEnergyArea; opacity: 0 }
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 105 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
-            PropertyChanges { target: indicatorDrivetrain; opacity: 0.4 }
+            PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
             PropertyChanges { target: indicatorEPower; opacity: 0.94 }
             PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
@@ -146,15 +116,17 @@ Item {
             to: "normal"
             reversible: false
             SequentialAnimation{
-                //wait DialFrame to start
-                PauseAnimation { duration: 270 }
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
-                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 540 }
+                //wait DialFrame to start (1600ms)
+                PauseAnimation { duration: 1600 }
+                //fade in (640ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
-                    duration: 200
+                    duration: 140
                 }
+                //test the highLight (1080ms)
                 PropertyAnimation { target: root; property: "ePower"; to: 100; duration: 540 }
                 PropertyAnimation { target: root; property: "ePower"; to: 0; duration: 540 }
             }
@@ -164,28 +136,70 @@ Item {
             to: "stopped"
             reversible: false
             SequentialAnimation{
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
-                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 540 }
+                //fade out (390ms)
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
-                    duration: 200
+                    duration: 130
                 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 130 }
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
             }
         },
         Transition {
             from: "normal"
             to: "navi"
-            reversible: true
+            reversible: false
             SequentialAnimation{
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
+                //fade out (320ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
-                    properties: "opacity, x, y"
-                    duration: 200
+                    property: "opacity"
+                    to: 0
+                    duration: 130
                 }
-                //wait DialFrame to expand
-                PauseAnimation { duration: 300 }
+                PauseAnimation { duration: 60 }
+                //wait DialFrame to shrink(320ms)
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    properties: "x,y"
+                    duration: 320
+                }
+                //fade in (130ms)
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    duration: 130
+                }
+            }
+        },
+        Transition {
+            from: "navi"
+            to: "normal"
+            reversible: false
+            SequentialAnimation{
+                //fade out (320ms)
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    to: 0
+                    duration: 130
+                }
+                PauseAnimation { duration: 190 }
+                //wait DialFrame to expand(320ms)
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    properties: "x,y"
+                    duration: 320
+                }
+                //fade in (260ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    duration: 130
+                }
             }
         },
         Transition {
@@ -193,25 +207,42 @@ Item {
             to: "stopped"
             reversible: false
             SequentialAnimation{
+                //fade out (640ms)
                 PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 100 }
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
-                    properties: "opacity, x, y"
+                    properties: "opacity"
+                    duration: 200
+                }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    properties: "x, y"
                     duration: 200
                 }
             }
         }
     ]
 
+    Behavior on ePower {
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 2000 }
+    }
+
+    onEPowerChanged: {
+         dialFrame.highLightAng = d.power2Angle(ePower);
+    }
+
     //visual components
     DialFrame {
         id: dialFrame
-        anchors.centerIn: parent
         width: 560 * d.scaleRatio
         height: width
+        anchors.centerIn: parent
+        state: parent.state
         minAng: -210
         maxAng: 0
         zeroAng: -180
+        positiveColor: "#fba054"
+        negativeColor: "#80447191"
     }
 
     Image {
@@ -223,18 +254,59 @@ Item {
         source: "./img/dial-energy-areas.png"
     }
 
-    Text {
+    Item {//PRND
         id: indicatorDrivetrain
-        x: 260 * d.scaleRatio
+        x: 240 * d.scaleRatio
         y: 165 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: drivetrain
-        verticalAlignment: Text.AlignTop
-        horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans Light"
-        color: "black"
-        opacity: 0.4
-        font.pixelSize: 34 * d.scaleRatio
+        opacity: 1
+        Text {
+            id: indicatorDrivetrainP
+            anchors.left: parent.left
+            text: "P"
+            verticalAlignment: Text.AlignTop
+            horizontalAlignment: Text.AlignHCenter
+            font.family: "Open Sans Light"
+            color: "black"
+            opacity: (root.drivetrain === 0) ? 0.94 : 0.4
+            font.bold: (root.drivetrain === 0) ? true : false
+            font.pixelSize: 34 * d.scaleRatio
+        }
+        Text {
+            id: indicatorDrivetrainR
+            anchors.left: indicatorDrivetrainP.right
+            text: "R"
+            verticalAlignment: Text.AlignTop
+            horizontalAlignment: Text.AlignHCenter
+            font.family: "Open Sans Light"
+            color: "black"
+            opacity: (root.drivetrain === 1) ? 0.94 : 0.4
+            font.bold: (root.drivetrain === 1) ? true : false
+            font.pixelSize: 34 * d.scaleRatio
+        }
+        Text {
+            id: indicatorDrivetrainN
+            anchors.left: indicatorDrivetrainR.right
+            text: "N"
+            verticalAlignment: Text.AlignTop
+            horizontalAlignment: Text.AlignHCenter
+            font.family: "Open Sans Light"
+            color: "black"
+            opacity: (root.drivetrain === 2) ? 0.94 : 0.4
+            font.bold: (root.drivetrain === 2) ? true : false
+            font.pixelSize: 34 * d.scaleRatio
+        }
+        Text {
+            anchors.left: indicatorDrivetrainN.right
+            text: "D"
+            verticalAlignment: Text.AlignTop
+            horizontalAlignment: Text.AlignHCenter
+            font.family: "Open Sans Light"
+            color: "black"
+            opacity: (root.drivetrain === 3) ? 0.94 : 0.4
+            font.bold: (root.drivetrain === 3) ? true : false
+            font.pixelSize: 34 * d.scaleRatio
+        }
     }
 
     Text {
@@ -315,39 +387,6 @@ Item {
         source: "./img/ic-chargingstation.png"
     }
 
-//    Repeater{
-//        id: graduation
-//        anchors.centerIn: parent
-//        width: 520 * d.scaleRatio
-//        height: width
-
-//        //size and layout
-//        property real radius: (graduation.width / 2) - 16 * d.scaleRatio
-//        property real centerX: graduation.width / 2 * 1.075
-//        property real centerY: graduation.height / 2 * 1.075
-
-//        //for startup animation
-//        property int maxDrawValue: -25
-
-//        model: [-25, 0, 25, 50, 75, 100]
-//        delegate: Rectangle {
-//            property int value: modelData
-//            property int angle: d.power2Angle(value)
-//            property real radin: angle / 180 * Math.PI
-
-//            x: graduation.centerX + Math.cos(radin) * graduation.radius + Math.sin(radin) * height / 2
-//            y: graduation.centerY + Math.sin(radin) * graduation.radius + Math.cos(radin) * height / 2
-//            width: 8 * d.scaleRatio
-//            height: 2 * d.scaleRatio
-//            visible: (value < graduation.maxDrawValue) ? true : false
-
-//            color: "#916E51"
-//            opacity: graduation.opacity
-//            transformOrigin: Item.TopLeft
-//            rotation: angle
-//        }
-//    }
-
     Repeater{
         id: graduationNumber
         anchors.centerIn: parent
@@ -356,9 +395,9 @@ Item {
         opacity: 0.6
 
         //size and layout
-        property real radius: width / 2 - 50 * d.scaleRatio
-        property real centerX: width / 2
-        property real centerY: height / 2
+        readonly property real radius: width / 2 - 50 * d.scaleRatio
+        readonly property real centerX: width / 2
+        readonly property real centerY: height / 2
 
         model: [0, 25, 50, 75, 100]
         delegate: Label {
@@ -383,14 +422,14 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        renderTarget: Canvas.FramebufferObject
+        renderTarget: Canvas.Image
 
-        property real radius: graduation.width / 2
-        property real centerX: graduation.width / 2
-        property real centerY: graduation.height / 2
-        property real scaleLineLength: 8 * d.scaleRatio
-        property real scaleLineWidth: 2 * d.scaleRatio
-        property real scaleLineBlank: 8 * d.scaleRatio
+        readonly property real radius: graduation.width / 2
+        readonly property real centerX: graduation.width / 2
+        readonly property real centerY: graduation.height / 2
+        readonly property real scaleLineLength: 8 * d.scaleRatio
+        readonly property real scaleLineWidth: 2 * d.scaleRatio
+        readonly property real scaleLineBlank: 8 * d.scaleRatio
 
         //for startup animation
         property int maxDrawValue: 100
