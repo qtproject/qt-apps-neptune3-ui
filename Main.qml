@@ -138,13 +138,6 @@ Window {
                 instrumentClusterWindow.nextSecondaryWindow();
             }
         }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "black"
-            opacity: popupParent.showModalOverlay ? 0.3 : 0
-            Behavior on opacity { DefaultNumberAnimation {}  }
-        }
     }
 
     // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
@@ -172,8 +165,16 @@ Window {
                     source: display
                 }
             }
-            z: -1
+            z: -2
             onClicked: popupParent.overlayClicked()
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+            opacity: popupParent.showModalOverlay ? 0.3 : 0
+            Behavior on opacity { DefaultNumberAnimation {}  }
+            z: -1
         }
     }
 
