@@ -55,6 +55,13 @@ Window {
 
     readonly property var window: applicationModel && applicationModel.instrumentClusterAppInfo
             ? applicationModel.instrumentClusterAppInfo.window : null
+    onWindowChanged: updateNavigatingWindowProperty()
+
+    function updateNavigatingWindowProperty() {
+        if (window) {
+            WindowManager.setWindowProperty(window, "navigating", secondaryAppWindows.selectedNavigation);
+        }
+    }
 
     Binding { target: root.window; property: "width"; value: uiSlot.width }
     Binding { target: root.window; property: "height"; value: uiSlot.height }
@@ -72,6 +79,17 @@ Window {
             anchors.fill: parent
             z: 1
             applicationModel: root.applicationModel
+
+            readonly property bool selectedNavigation: {
+                if (root.applicationModel) {
+                    var app = root.applicationModel.application(secondaryAppWindows.selectedApplicationId)
+                    if (app) {
+                        return app.categories.indexOf("navigation") !== -1;
+                    }
+                }
+                return false;
+            }
+            onSelectedNavigationChanged: updateNavigatingWindowProperty()
         }
     }
 

@@ -37,6 +37,7 @@ Item {
     height: 720
 
     //public
+    property bool navigating
     property alias speed: ds.speed
     property alias speedLimit: ds.speedLimit
     property alias cruiseSpeed: ds.cruiseSpeed
@@ -47,23 +48,29 @@ Item {
     Item {
         id: d
         property real scaleRatio: Math.min(parent.width / 1920, parent.height / 720)
+        property bool running: false
+        function start() { running = true; }
     }
+    Component.onCompleted: Qt.callLater(d.start)
 
     //states and transitions
-    state: "stopped"
+
     states: [
         State {
             name: "stopped"
+            when: !d.running
             PropertyChanges { target: ds; x: 310 * d.scaleRatio; y: 120 * d.scaleRatio }
             PropertyChanges { target: dp; x: 1050 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "normal"
+            when: d.running && !root.navigating
             PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 120 * d.scaleRatio }
             PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "navi"
+            when: d.running && root.navigating
             PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 180 * d.scaleRatio }
             PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 180 * d.scaleRatio }
         }
@@ -122,49 +129,8 @@ Item {
         state: parent.state
     }
 
-//TEST CODE
-//MouseArea simulate state changing
-//Animation simulate value changing
-    Component.onCompleted: {
-        state = "normal"
-        needChange.beats = 1;
-    }
-
-    MouseArea {
-        id: needChange
-        anchors.fill: parent
-        property int beats: 0
-        onClicked: {
-            switch (beats) {
-            case 0:
-                parent.state = "normal"
-                break;
-            case 1:
-                parent.state = "stopped"
-                break;
-            case 2:
-                parent.state = "normal"
-                break;
-            case 3:
-                parent.state = "navi"
-                break;
-            case 4:
-                parent.state = "normal"
-                break;
-            case 5:
-                parent.state = "navi"
-                break;
-            case 6:
-                parent.state = "stopped"
-                beats = 0;
-                return;
-            default:
-                beats = 0;
-                return;
-            }
-            beats++;
-        }
-    }
+    //TEST CODE
+    //Animation simulate value changing
 
     Timer {
         property bool max: false

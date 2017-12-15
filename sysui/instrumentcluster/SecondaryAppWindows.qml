@@ -48,6 +48,9 @@ Item {
     }
 
     property int selectedIndex: 0
+    readonly property string selectedApplicationId: selectedIndex < secondaryWindowList.count
+                                                        ? secondaryWindowList.get(selectedIndex).applicationId
+                                                        : ""
 
     Instantiator {
         model: root.applicationModel

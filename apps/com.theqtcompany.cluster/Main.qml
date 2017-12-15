@@ -40,16 +40,23 @@ ApplicationManagerWindow {
     title: qsTr("Instrument Cluster")
     color: "transparent"
 
+    onWindowPropertyChanged: {
+        switch (name) {
+            case "navigating":
+                mainContent.navigating = value;
+                break;
+        }
+    }
+
     //private
     Item {
         id: d
         property real scaleRatio: Math.min(parent.width / 1920, parent.height / 720)
     }
 
-    Loader {
+    Normal {
         id: mainContent
         anchors.fill: parent
-        source: "Normal.qml"
     }
 
     TelltalesLeft {
