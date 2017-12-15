@@ -158,7 +158,6 @@ Image {
                 anchors.fill: parent
 
                 ApplicationFrame {
-                    id: activeAppFrame
                     anchors.fill: parent
                     appInfo: applicationModel.activeAppInfo && !applicationModel.activeAppInfo.asWidget ? applicationModel.activeAppInfo : null
                 }

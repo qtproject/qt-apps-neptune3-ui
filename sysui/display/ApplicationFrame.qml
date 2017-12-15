@@ -51,50 +51,64 @@ Item {
         target: root.appInfo; property: "windowState"; value: "Maximized"
     }
 
+    visible: children.length > 0
+
     QtObject {
         id: d
+
         property Item window: root.appInfo ? root.appInfo.window : null
-        property Item currentWindow
+        onWindowChanged: {
+            if (currentMaxWindow) {
+                currentMaxWindow.removeAnimation.start();
+                currentMaxWindow = null;
+            }
+
+            if (window) {
+                currentMaxWindow = maximizedWindowComponent.createObject(d, {"window":window});
+                window.parent = root;
+                currentMaxWindow.addAnimation.start();
+            }
+        }
+
+        property var currentMaxWindow: null
     }
 
-    states: [
-        State {
-            name: "showingWindow"
-            when: d.window !== null
-        }
-    ]
-
     // TODO: Implement better in and out animations. The current ones are just placeholders
-    transitions: [
-        Transition {
-            from: ""; to: "showingWindow"
-            SequentialAnimation {
+
+    Component {
+        id: maximizedWindowComponent
+        QtObject {
+            id: maxWindowObj
+            property var window;
+            property var addAnimation: SequentialAnimation {
+                id: addWindowAnimation
                 ScriptAction { script: {
-                    d.currentWindow = d.window;
-                    d.currentWindow.parent = root;
-                    d.currentWindow.x = 0;
-                    d.currentWindow.y = 0;
-                    d.currentWindow.z = 1;
-                    d.currentWindow.width = Qt.binding(function() { return root.width; });
-                    d.currentWindow.visible = true;
+                    window.x = 0;
+                    window.y = 0;
+                    window.z = 1;
+                    window.width = Qt.binding(function() { return root.width; });
+                    window.visible = true;
                 }}
-                DefaultNumberAnimation { target: root; property: "opacity"; from: 0; to: 1 }
+                DefaultNumberAnimation { target: window; property: "opacity"; from: 0; to: 1 }
             }
-        },
-        Transition {
-            from: "showingWindow"; to: ""
-            SequentialAnimation {
-                DefaultNumberAnimation { target: root; property: "opacity"; from: 1; to: 0 }
+
+            property var removeAnimation: SequentialAnimation {
+                id: removeWindowAnimation
+                DefaultNumberAnimation { target: window; property: "opacity"; from: 1; to: 0 }
                 ScriptAction { script: {
-                    d.currentWindow.parent = null;
+                    window.parent = null;
 
                     // break bindings
-                    d.currentWindow.width = d.currentWindow.width;
-                    d.currentWindow.height = d.currentWindow.height;
+                    window.width = window.width;
+                    window.height = window.height;
 
-                    d.currentWindow = null;
+                    window = null;
+
+                    // self destruct
+                    maxWindowObj.destroy();
                 }}
             }
         }
-    ]
+    }
+
 }
