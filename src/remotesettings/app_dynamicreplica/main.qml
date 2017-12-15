@@ -36,12 +36,12 @@ ApplicationWindow {
     id: root
 
     visible: true
-    width: 640
-    height: 480
+    width: 1280
+    height: 800
     title: qsTr("Settings app")
 
     readonly property bool connected: uiSettings.connected ||
-                             instrumentCluster.connected
+                                      instrumentCluster.connected
 
     Component.onCompleted: {
         connectionDialog.open()
@@ -60,10 +60,10 @@ ApplicationWindow {
         y: (parent.height-height) /2
 
         onAccepted: {
-            if (accepted)
+            if (accepted) {
                 client.connectToServer(url);
-            else
-                connectionDialog.close();
+            }
+            connectionDialog.close();
         }
 
         Connections {
@@ -86,118 +86,41 @@ ApplicationWindow {
 
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 10
-
-        spacing: 10
-
+    header: ToolBar {
+        leftPadding: 8
+        rightPadding: 8
         RowLayout {
-            Layout.fillWidth: true
-
+            anchors.fill: parent
             Label {
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft
                 text: client.status
             }
+            Item {
+                Layout.fillWidth: true
+            }
 
-            Button {
+            ToolButton {
                 text: qsTr("Connect...")
                 onClicked: connectionDialog.open()
             }
         }
-
-        GroupBox {
-            title: qsTr("Settings")
-
-            Layout.fillWidth: true
-
-            ColumnLayout {
-
-                RowLayout {
-
-                    Label {
-                        text: qsTr("Language:")
-                    }
-
-                    ComboBox {
-                        id: languageComboBox
-                        model: uiSettings.languages
-                        currentIndex: uiSettings.languages.indexOf(uiSettings.language)
-                        onActivated: uiSettings.language = currentText
-                    }
-                }
-
-
-                RowLayout {
-                    Label {
-                        text: qsTr("Volume:")
-                    }
-                    Slider {
-                        id: volumeSlider
-                        value: uiSettings.volume
-                        from: 1.0
-                        to: 0.0
-                        onValueChanged: if (pressed) { uiSettings.volume = value }
-                    }
-                    Label {
-                        text: qsTr("Balance:")
-                    }
-                    Slider {
-                        id: balanceSlider
-                        value: uiSettings.balance
-                        from: 1.0
-                        to: -1.0
-                        onValueChanged: if (pressed) { uiSettings.balance = value }
-                    }
-                    Label {
-                        text: qsTr("Mute:")
-                    }
-                    CheckBox {
-                        id: muteCheckbox
-                        checked: uiSettings.muted
-                        onClicked: uiSettings.muted = checked
-                    }
-                }
-
-                RowLayout {
-
-                    Label {
-                        text: qsTr("Theme:")
-                    }
-
-                    ComboBox {
-                        id: themeComboBox
-                        model: [qsTr("Light"), qsTr("Dark")]
-                        currentIndex: uiSettings.theme
-                        onActivated: uiSettings.theme = currentIndex
-                    }
-                }
-
-
-                RowLayout {
-                    Label {
-                        text: qsTr("Door 1 open:")
-                    }
-                    CheckBox {
-                        id: door1OpenCheckbox
-                        checked: uiSettings.door1Open
-                        onClicked: uiSettings.door1Open = checked
-                    }
-
-                    Label {
-                        text: qsTr("Door 2 open:")
-                    }
-                    CheckBox {
-                        id: door2OpenCheckbox
-                        checked: uiSettings.door2Open
-                        onClicked: uiSettings.door2Open = checked
-                    }
-                }
-            }
-        }
-
-
     }
 
+   StackLayout {
+       id: stack
+       anchors.fill: parent
+       anchors.margins: 16
+       SettingsPage {}
+       ClusterPage {}
+   }
+
+   footer: TabBar {
+       TabButton {
+           text: qsTr("Settings")
+           onClicked: stack.currentIndex = 0
+       }
+       TabButton {
+           text: qsTr("Cluster")
+           onClicked: stack.currentIndex = 1
+       }
+   }
 }

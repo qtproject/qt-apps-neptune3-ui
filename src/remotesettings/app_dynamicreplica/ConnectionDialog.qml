@@ -36,15 +36,15 @@ Dialog {
     id: connectionDialog
     property string url
     property string statusText
+    modal: true
 
     signal accepted(bool accepted)
 
-    contentItem: Rectangle {
-
+    contentItem: Frame {
+        implicitWidth: 680
+        implicitHeight: 480
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 10
-            spacing: 10
 
             Label {
                 text: qsTr("Connection settings")
@@ -53,8 +53,6 @@ Dialog {
 
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 10
-
                 Layout.alignment: Qt.AlignCenter
 
                 Label {
@@ -62,16 +60,17 @@ Dialog {
                 }
 
                 TextField {
+                    Layout.fillWidth: true
                     text: url
                     onTextChanged: url=text
                 }
             }
 
-            RowLayout {
-                //Layout.fillWidth: true
-                spacing: 10
 
-                Layout.alignment: Qt.AlignCenter
+            RowLayout {
+                spacing: 10
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
 
                 Button {
                     text: qsTr("Connect")
