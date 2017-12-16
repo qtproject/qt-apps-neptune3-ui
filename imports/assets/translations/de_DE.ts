@@ -2,6 +2,24 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>About</name>
+    <message>
+        <source>Marketing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutMarketing</name>
+    <message>
+        <source>We put Stunning User Experience on the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddWidgetPopup</name>
     <message>
         <source>Add widget</source>
@@ -161,6 +179,13 @@
     </message>
     <message>
         <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitor</name>
+    <message>
+        <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

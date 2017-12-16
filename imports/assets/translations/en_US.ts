@@ -2,6 +2,27 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>About</name>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="73"/>
+        <source>Marketing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="77"/>
+        <source>Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutMarketing</name>
+    <message>
+        <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
+        <source>We put Stunning User Experience on the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddWidgetPopup</name>
     <message>
         <location filename="../../../sysui/home/AddWidgetPopup.qml" line="100"/>
@@ -193,6 +214,14 @@
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="131"/>
         <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkMonitor</name>
+    <message>
+        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="59"/>
+        <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
