@@ -39,5 +39,6 @@ AppUIScreen {
     SettingsPanel {
         anchors.fill: parent
         store: Store {}
+        onLanguageRequested: root.setWindowProperty("requestedLanguage", language);
     }
 }

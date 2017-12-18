@@ -41,8 +41,6 @@ public:
     virtual void registerTypes(const char *uri) override
     {
         Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.translation"));
-        Q_UNUSED(uri);
-
         qmlRegisterType<Translation>(uri, 1, 0, "Translation");
     }
 };

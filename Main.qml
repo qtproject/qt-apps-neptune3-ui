@@ -139,6 +139,16 @@ Window {
                 Style.languageLocale = locales[nextIndex];
             }
         }
+
+        Connections {
+            target: WindowManager
+            onWindowPropertyChanged: {
+                if (name === "requestedLanguage") {
+                    Style.languageLocale = value;
+                }
+            }
+        }
+
         Shortcut {
             sequence: "c"
             context: Qt.ApplicationShortcut

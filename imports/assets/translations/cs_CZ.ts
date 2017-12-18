@@ -367,27 +367,27 @@
 <context>
     <name>SettingsPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="55"/>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="57"/>
         <source>Light</source>
         <translation>Světlý</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="56"/>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="58"/>
         <source>Dark</source>
         <translation>Tmavý</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
         <source>languages</source>
         <translation>jazyky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="83"/>
         <source>date</source>
         <translation>datum</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="84"/>
         <source>themes</source>
         <translation>motivy</translation>
     </message>

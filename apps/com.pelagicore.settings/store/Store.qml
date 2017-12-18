@@ -39,7 +39,7 @@ QtObject {
     id: root
 
     // TODO: hook this up with remote settings server request
-    readonly property string currentLanguage: Style.translation.languageLocale
+    readonly property string currentLanguage: Style.languageLocale
     readonly property ListModel languageModel: ListModel {}
 
     function populateLanguages() {
@@ -58,7 +58,6 @@ QtObject {
     function updateLanguage(language) {
         console.log(Helper.category, 'updateLanguage: ' + language)
         // TODO: hook this up with remote settings server request
-        Style.translation.languageLocale = language;
     }
 
     Component.onCompleted: {

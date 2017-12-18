@@ -45,6 +45,8 @@ Item {
 
     property Store store
 
+    signal languageRequested(string language)
+
     ButtonGroup {
         id: toolGroup
     }
@@ -96,7 +98,8 @@ Item {
                 model: store.languageModel
                 currentLanguage: store.currentLanguage
                 onLanguageRequested: {
-                    store.updateLanguage(language)
+                    // store.updateLanguage(language) // TODO hook this up with settings server
+                    root.languageRequested(language)
                 }
             }
 
