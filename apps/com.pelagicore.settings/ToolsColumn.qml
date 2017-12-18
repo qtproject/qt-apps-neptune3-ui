@@ -59,7 +59,7 @@ ColumnLayout {
             // TODO: ask for the correct asset to designer
             property bool selected: buttonGroup.checkedButton === this
             symbol: Assets.icon(model.symbol + (selected ? '_ON' : '_OFF'))
-            text: qsTr(model.name)
+            text: qsTranslate("SettingsPanel", model.name)
             font.pixelSize: Style.fontSizeXS
             symbolOnTop: true
             onClicked: {

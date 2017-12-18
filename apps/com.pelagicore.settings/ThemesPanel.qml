@@ -80,7 +80,7 @@ Control {
                         Layout.fillWidth: true
                         Layout.column: 1
                         Layout.row: 0
-                        text: qsTr(model.title)
+                        text: qsTranslate("SettingsPanel", model.title)
                     }
                     Item {
                         Layout.column: 0

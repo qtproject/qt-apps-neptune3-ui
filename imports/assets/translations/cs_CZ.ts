@@ -6,12 +6,12 @@
     <message>
         <location filename="../../../sysui/about/About.qml" line="73"/>
         <source>Marketing</source>
-        <translation type="unfinished"></translation>
+        <translation>Marketing</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="77"/>
         <source>Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Monitor</translation>
     </message>
 </context>
 <context>
@@ -248,7 +248,7 @@
     <message>
         <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="59"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Síť</translation>
     </message>
 </context>
 <context>
