@@ -49,9 +49,9 @@ import QtGraphicalEffects 1.0
 Image {
     id: root
 
-    property Item popupParent
-
     source: Style.gfx2(Style.displayBackground)
+
+    property Item popupParent
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
@@ -220,58 +220,6 @@ Image {
         Binding { target: climateLoader.item; property: "popupParent"; value: popupParent }
         Binding { target: climateLoader.item; property: "model"; value: climateModel }
     }
-
-// TODO: Update below components according to the newest spec of Triton-UI when available
-//    StageLoader {
-//        id: toolBarMonitorLoader
-//        width: parent.width
-//        height: 200
-//        anchors.bottom: parent.bottom
-//        active: SystemModel.toolBarMonitorVisible
-//        source: "../dev/ProcessMonitor/ToolBarMonitor.qml"
-//    }
-
-//    StageLoader {
-//        id: windowOverviewLoader
-//        anchors.fill: parent
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../windowoverview/WindowOverview.qml"
-//    }
-
-//    StageLoader {
-//        id: popupContainerLoader
-//        width: Style.popupWidth
-//        height: Style.popupHeight
-//        anchors.centerIn: parent
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../popup/PopupContainer.qml"
-//    }
-
-//    StageLoader {
-//        id: notificationContainerLoader
-//        width: Style.screenWidth
-//        height: Style.vspan(2)
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../notification/NotificationContainer.qml"
-//    }
-
-//    StageLoader {
-//        id: notificationCenterLoader
-//        width: Style.isPotrait ? Style.hspan(Style.notificationCenterSpan + 5) : Style.hspan(12)
-//        height: Style.screenHeight - Style.statusBarHeight
-//        anchors.top: statusBar.bottom
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../notification/NotificationCenter.qml"
-//    }
-
-//    StageLoader {
-//        id: keyboardLoader
-//        anchors.left: parent.left
-//        anchors.right: parent.right
-//        anchors.bottom: parent.bottom
-//        active: StagedStartupModel.loadBackgroundElements
-//        source: "../keyboard/Keyboard.qml"
-//    }
 
     Component.onCompleted: {
         StagedStartupModel.enterMenuState()
