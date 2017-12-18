@@ -52,8 +52,8 @@ Item {
     ListModel {
         id: themeModel
         // TODO: This data will be populated from settings server later
-        ListElement { title: 'Light'; theme: 'light' }
-        ListElement { title: 'Dark'; theme: 'dark' }
+        ListElement { title: QT_TR_NOOP('Light'); theme: 'light' }
+        ListElement { title: QT_TR_NOOP('Dark'); theme: 'dark' }
     }
 
     Image {
@@ -77,9 +77,9 @@ Item {
             Layout.preferredHeight: Style.vspan(4)
             anchors.top: parent.top
             model: ListModel {
-                ListElement { name: "languages"; symbol:  'ic-languages'}
-                ListElement { name: "date"; symbol:  'ic-time' }
-                ListElement { name: "themes"; symbol:  'ic-themes' }
+                ListElement { name: QT_TR_NOOP("languages"); symbol:  'ic-languages'}
+                ListElement { name: QT_TR_NOOP("date"); symbol:  'ic-time' }
+                ListElement { name: QT_TR_NOOP("themes"); symbol:  'ic-themes' }
             }
             currentTool: model.get(0).name
 

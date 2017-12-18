@@ -324,6 +324,34 @@
     </message>
 </context>
 <context>
+    <name>SettingsPanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="55"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="56"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="80"/>
+        <source>languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="81"/>
+        <source>date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <source>themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemperatureSlider</name>
     <message>
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="134"/>

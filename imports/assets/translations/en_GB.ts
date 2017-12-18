@@ -269,6 +269,29 @@
     </message>
 </context>
 <context>
+    <name>SettingsPanel</name>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemperatureSlider</name>
     <message>
         <source>MAX</source>

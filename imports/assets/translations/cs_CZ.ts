@@ -81,22 +81,22 @@
     <message>
         <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="54"/>
         <source>Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum &amp; čas</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="59"/>
         <source>24h time</source>
-        <translation type="unfinished"></translation>
+        <translation>24 hodinový</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="63"/>
         <source>Set Automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit automaticky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.settings/DateTimePanel.qml" line="67"/>
         <source>Time Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>Časové pásmo</translation>
     </message>
 </context>
 <context>
@@ -104,12 +104,12 @@
     <message>
         <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="330"/>
         <source>% power</source>
-        <translation type="unfinished"></translation>
+        <translation>% nabití</translation>
     </message>
     <message>
         <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="341"/>
         <source>km</source>
-        <translation type="unfinished"></translation>
+        <translation>km</translation>
     </message>
 </context>
 <context>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="270"/>
         <source>km/h</source>
-        <translation type="unfinished"></translation>
+        <translation>km/h</translation>
     </message>
 </context>
 <context>
@@ -163,12 +163,12 @@
     <message>
         <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="49"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
         <source>Latest Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslední verze</translation>
     </message>
 </context>
 <context>
@@ -176,7 +176,7 @@
     <message>
         <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="63"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
 </context>
 <context>
@@ -365,6 +365,34 @@
     </message>
 </context>
 <context>
+    <name>SettingsPanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="55"/>
+        <source>Light</source>
+        <translation>Světlý</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="56"/>
+        <source>Dark</source>
+        <translation>Tmavý</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="80"/>
+        <source>languages</source>
+        <translation>jazyky</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="81"/>
+        <source>date</source>
+        <translation>datum</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <source>themes</source>
+        <translation>motivy</translation>
+    </message>
+</context>
+<context>
     <name>TemperatureSlider</name>
     <message>
         <location filename="../../../sysui/climate/TemperatureSlider.qml" line="134"/>
@@ -391,7 +419,7 @@
     <message>
         <location filename="../../../apps/com.pelagicore.settings/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Motivy</translation>
     </message>
 </context>
 <context>

@@ -80,7 +80,7 @@ Control {
                         Layout.fillWidth: true
                         Layout.column: 1
                         Layout.row: 0
-                        text: model.title
+                        text: qsTr(model.title)
                     }
                     Item {
                         Layout.column: 0

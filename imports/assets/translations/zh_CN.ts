@@ -361,6 +361,34 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
+    <name>SettingsPanel</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="55"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="56"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="80"/>
+        <source>languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="81"/>
+        <source>date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.settings/SettingsPanel.qml" line="82"/>
+        <source>themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SwitchBoard</name>
     <message>
         <source>Switch 1 - %1</source>
