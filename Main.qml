@@ -56,10 +56,6 @@ Window {
     readonly property real smallerDimension: isLandscape ? height : width
     readonly property real largerDimension: isLandscape ? width : height
 
-    Component.onCompleted: {
-        uiSettings.languages = Style.translation.availableTranslations;
-    }
-
     Display {
         id: display
         width: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
@@ -109,11 +105,23 @@ Window {
         UISettings {
             id: uiSettings
             onLanguageChanged: {
-                console.info("!!! SETTINGS, lang changed:", language)
-                Style.languageLocale = language;
+                if (language !== Style.languageLocale) {
+                    Style.languageLocale = language;
+                }
             }
             onThemeChanged: root.contentItem.TritonStyle.theme = theme == 0
-                                ? TritonStyle.Light : TritonStyle.Dark
+                            ? TritonStyle.Light : TritonStyle.Dark
+        }
+
+        // N.B. need to use a Timer here to "push" the available languages to settings server
+        // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
+        Timer {
+            interval: 1
+            running: true
+            repeat: false
+            onTriggered: {
+                uiSettings.languages = Style.translation.availableTranslations;
+            }
         }
 
         Shortcut {

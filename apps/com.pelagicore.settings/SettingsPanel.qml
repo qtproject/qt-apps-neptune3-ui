@@ -98,8 +98,8 @@ Item {
                 model: store.languageModel
                 currentLanguage: store.currentLanguage
                 onLanguageRequested: {
-                    // store.updateLanguage(language) // TODO hook this up with settings server
-                    root.languageRequested(language)
+                    store.updateLanguage(language);
+                    root.languageRequested(language);
                 }
             }
 

@@ -37,7 +37,6 @@ import utils 1.0
 Control {
     id: root
 
-
     property ListModel model
 
     property string currentLanguage

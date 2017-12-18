@@ -32,19 +32,21 @@
 import QtQml 2.2
 import QtQml.Models 2.3
 import utils 1.0
+import com.pelagicore.settings 1.0
 
 import "../helper"
 
 QtObject {
     id: root
 
-    // TODO: hook this up with remote settings server request
-    readonly property string currentLanguage: Style.languageLocale
+    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
     readonly property ListModel languageModel: ListModel {}
+
+    readonly property var uiSettings: UISettings {}
 
     function populateLanguages() {
         languageModel.clear()
-        var translations = Style.translation.availableTranslations;
+        var translations = uiSettings.languages.length !== 0 ? uiSettings.languages : Style.translation.availableTranslations;
         for (var i=0; i<translations.length; i++) {
             var locale = Qt.locale(translations[i]);
             languageModel.append({
@@ -57,7 +59,7 @@ QtObject {
 
     function updateLanguage(language) {
         console.log(Helper.category, 'updateLanguage: ' + language)
-        // TODO: hook this up with remote settings server request
+        uiSettings.setLanguage(language);
     }
 
     Component.onCompleted: {

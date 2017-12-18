@@ -38,7 +38,7 @@ UISettingsDynamic::UISettingsDynamic()
 QString UISettingsDynamic::language() const
 {
     if (m_replicaPtr.isNull())
-        return "";
+        return QString();
     return m_replicaPtr.data()->property("language").toString();
 }
 
@@ -125,7 +125,15 @@ void UISettingsDynamic::setLanguage(const QString &language)
     if (m_replicaPtr.isNull())
         return;
     QMetaObject::invokeMethod(m_replicaPtr.data(),
-                    "pushLanguage",Qt::DirectConnection,Q_ARG(QString,language));
+                              "pushLanguage",Qt::DirectConnection,Q_ARG(QString,language));
+}
+
+void UISettingsDynamic::setLanguages(const QVariantList &langs)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                              "pushLanguages",Qt::DirectConnection,Q_ARG(QVariantList,langs));
 }
 
 void UISettingsDynamic::setVolume(qreal volume)

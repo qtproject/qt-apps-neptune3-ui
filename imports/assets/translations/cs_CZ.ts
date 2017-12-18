@@ -174,7 +174,7 @@
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="63"/>
+        <location filename="../../../apps/com.pelagicore.settings/LanguagePanel.qml" line="62"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
