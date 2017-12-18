@@ -51,13 +51,13 @@ Control {
 
     property Item originItem
 
-    anchors.horizontalCenter: parent.horizontalCenter
-
     width: Style.hspan(16)
     height: Style.vspan(14)
 
     function open() {
-        _openFromY = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2).y - root.height;
+        var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
+        _openFromX = originPos.x - (root.width / 2);
+        _openFromY = originPos.y - root.height;
         state = "open";
     }
 
@@ -74,6 +74,7 @@ Control {
             PropertyChanges {
                 target: root
                 visible: true
+                x: (root.parent.width - root.width) / 2
                 y: (root.parent.height - root.height) / 2
             }
         },
@@ -82,11 +83,13 @@ Control {
             PropertyChanges {
                 target: root
                 visible: false
+                x: (root.parent.width - root.width) / 2
                 y: (root.parent.height - root.height) / 2
             }
         }
     ]
 
+    property real _openFromX
     property real _openFromY
     transitions: [
         Transition {
@@ -97,6 +100,7 @@ Control {
                 ParallelAnimation {
                     DefaultNumberAnimation { target: root; property: "opacity"; from: 0.25; to: 1.0}
                     DefaultNumberAnimation { target: root; property: "scale"; from: 0.25; to: 1}
+                    DefaultNumberAnimation { target: root; property: "x"; from: root._openFromX }
                     DefaultNumberAnimation { target: root; property: "y"; from: root._openFromY }
                 }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
