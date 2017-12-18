@@ -36,23 +36,23 @@
 class InstrumentClusterDynamic : public AbstractDynamic
 {
     Q_OBJECT
-    Q_PROPERTY(qreal speed READ speed NOTIFY speedChanged)
-    Q_PROPERTY(qreal speedLimit READ speedLimit NOTIFY speedLimitChanged)
-    Q_PROPERTY(qreal speedCruise READ speedCruise NOTIFY speedCruiseChanged)
-    Q_PROPERTY(qreal ePower READ ePower NOTIFY ePowerChanged)
-    Q_PROPERTY(int driveTrainState READ driveTrainState NOTIFY driveTrainStateChanged)
-    Q_PROPERTY(bool lowBeamHeadlight READ lowBeamHeadlight NOTIFY lowBeamHeadlightChanged)
-    Q_PROPERTY(bool highBeamHeadlight READ highBeamHeadlight NOTIFY highBeamHeadlightChanged)
-    Q_PROPERTY(bool fogLight READ fogLight NOTIFY fogLightChanged)
-    Q_PROPERTY(bool stabilityControl READ stabilityControl NOTIFY stabilityControlChanged)
-    Q_PROPERTY(bool seatBeltNotFastened READ seatBeltNotFastened NOTIFY seatBeltNotFastenedChanged)
-    Q_PROPERTY(bool leftTurn READ leftTurn NOTIFY leftTurnChanged)
-    Q_PROPERTY(bool rightTurn READ rightTurn NOTIFY rightTurnChanged)
-    Q_PROPERTY(bool ABSFailure READ ABSFailure NOTIFY ABSFailureChanged)
-    Q_PROPERTY(bool parkBrake READ parkBrake NOTIFY parkBrakeChanged)
-    Q_PROPERTY(bool tyrePressureLow READ tyrePressureLow NOTIFY tyrePressureLowChanged)
-    Q_PROPERTY(bool brakeFailure READ brakeFailure NOTIFY brakeFailureChanged)
-    Q_PROPERTY(bool airbagFailure READ airbagFailure NOTIFY airbagFailureChanged)
+    Q_PROPERTY(qreal speed READ speed WRITE setSpeed NOTIFY speedChanged)
+    Q_PROPERTY(qreal speedLimit READ speedLimit WRITE setSpeedLimit NOTIFY speedLimitChanged)
+    Q_PROPERTY(qreal speedCruise READ speedCruise WRITE setSpeedCruise NOTIFY speedCruiseChanged)
+    Q_PROPERTY(qreal ePower READ ePower WRITE setEPower NOTIFY ePowerChanged)
+    Q_PROPERTY(int driveTrainState READ driveTrainState WRITE setDriveTrainState NOTIFY driveTrainStateChanged)
+    Q_PROPERTY(bool lowBeamHeadlight READ lowBeamHeadlight WRITE setLowBeamHeadlight NOTIFY lowBeamHeadlightChanged)
+    Q_PROPERTY(bool highBeamHeadlight READ highBeamHeadlight WRITE setHighBeamHeadlight NOTIFY highBeamHeadlightChanged)
+    Q_PROPERTY(bool fogLight READ fogLight WRITE setFogLight NOTIFY fogLightChanged)
+    Q_PROPERTY(bool stabilityControl READ stabilityControl WRITE setStabilityControl NOTIFY stabilityControlChanged)
+    Q_PROPERTY(bool seatBeltNotFastened READ seatBeltNotFastened WRITE setSeatBeltNotFastened NOTIFY seatBeltNotFastenedChanged)
+    Q_PROPERTY(bool leftTurn READ leftTurn WRITE setLeftTurn NOTIFY leftTurnChanged)
+    Q_PROPERTY(bool rightTurn READ rightTurn WRITE setRightTurn NOTIFY rightTurnChanged)
+    Q_PROPERTY(bool ABSFailure READ ABSFailure WRITE setABSFailure NOTIFY ABSFailureChanged)
+    Q_PROPERTY(bool parkBrake READ parkBrake WRITE setParkBrake NOTIFY parkBrakeChanged)
+    Q_PROPERTY(bool tyrePressureLow READ tyrePressureLow WRITE setTyrePressureLow NOTIFY tyrePressureLowChanged)
+    Q_PROPERTY(bool brakeFailure READ brakeFailure WRITE setBrakeFailure NOTIFY brakeFailureChanged)
+    Q_PROPERTY(bool airbagFailure READ airbagFailure WRITE setAirbagFailure NOTIFY airbagFailureChanged)
 
 public:
     InstrumentClusterDynamic();
@@ -77,7 +77,23 @@ public:
     bool brakeFailure() const;
     bool airbagFailure() const;
 
-public Q_SLOTS:
+    void setSpeed(qreal speed);
+    void setSpeedLimit(qreal speedLimit);
+    void setSpeedCruise(qreal speedCruise);
+    void setEPower(qreal ePower);
+    void setDriveTrainState(int driveTrainState);
+    void setLowBeamHeadlight(bool lowBeamHeadlight);
+    void setHighBeamHeadlight(bool highBeamHeadlight);
+    void setFogLight(bool fogLight);
+    void setStabilityControl(bool stabilityControl);
+    void setSeatBeltNotFastened(bool seatBeltNotFastened);
+    void setLeftTurn(bool leftTurn);
+    void setRightTurn(bool rightTurn);
+    void setABSFailure(bool ABSFailure);
+    void setParkBrake(bool parkBrake);
+    void setTyrePressureLow(bool tyrePressureLow);
+    void setBrakeFailure(bool brakeFailure);
+    void setAirbagFailure(bool airbagFailure);
 
 Q_SIGNALS:
     void speedChanged(qreal speed);

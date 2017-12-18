@@ -61,7 +61,6 @@ public:
 
     void initialize() override;
 
-public Q_SLOTS:
     void setLanguage(const QString &language);
     void setLanguages(const QVariantList &langs);
     void setTwentyFourHourTimeFormat(bool twentyFourHourTimeFormat);

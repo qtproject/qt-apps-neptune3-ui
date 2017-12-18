@@ -39,32 +39,93 @@ InstrumentClusterDynamic::InstrumentClusterDynamic()
 
 void InstrumentClusterDynamic::initialize()
 {
+    connect(m_replicaPtr.data(),SIGNAL(speedChanged(qreal)),
+            this,SIGNAL(speedChanged(qreal)));
+    connect(m_replicaPtr.data(),SIGNAL(speedLimitChanged(qreal)),
+            this,SIGNAL(speedLimitChanged(qreal)));
+    connect(m_replicaPtr.data(),SIGNAL(speedCruiseChanged(qreal)),
+            this,SIGNAL(speedCruiseChanged(qreal)));
+    connect(m_replicaPtr.data(),SIGNAL(ePowerChanged(qreal)),
+            this,SIGNAL(ePowerChanged(qreal)));
+    connect(m_replicaPtr.data(),SIGNAL(driveTrainStateChanged(int)),
+            this,SIGNAL(driveTrainStateChanged(int)));
+    connect(m_replicaPtr.data(),SIGNAL(lowBeamHeadlightChanged(bool)),
+            this,SIGNAL(lowBeamHeadlightChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(highBeamHeadlightChanged(bool)),
+            this,SIGNAL(highBeamHeadlightChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(fogLightChanged(bool)),
+            this,SIGNAL(fogLightChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(stabilityControlChanged(bool)),
+            this,SIGNAL(stabilityControlChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(seatBeltNotFastenedChanged(bool)),
+            this,SIGNAL(seatBeltNotFastenedChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(leftTurnChanged(bool)),
+            this,SIGNAL(leftTurnChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(rightTurnChanged(bool)),
+            this,SIGNAL(rightTurnChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(ABSFailureChanged(bool)),
+            this,SIGNAL(ABSFailureChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(parkBrakeChanged(bool)),
+            this,SIGNAL(parkBrakeChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(tyrePressureLowChanged(bool)),
+            this,SIGNAL(tyrePressureLowChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(brakeFailureChanged(bool)),
+            this,SIGNAL(brakeFailureChanged(bool)));
+    connect(m_replicaPtr.data(),SIGNAL(airbagFailureChanged(bool)),
+            this,SIGNAL(airbagFailureChanged(bool)));
 
+    emit speedChanged(speed());
+    emit speedLimitChanged(speedLimit());
+    emit speedCruiseChanged(speedCruise());
+    emit ePowerChanged(ePower());
+    emit driveTrainStateChanged(driveTrainState());
+    emit lowBeamHeadlightChanged(lowBeamHeadlight());
+    emit highBeamHeadlightChanged(highBeamHeadlight());
+    emit fogLightChanged(fogLight());
+    emit stabilityControlChanged(stabilityControl());
+    emit seatBeltNotFastenedChanged(seatBeltNotFastened());
+    emit leftTurnChanged(leftTurn());
+    emit rightTurnChanged(rightTurn());
+    emit ABSFailureChanged(ABSFailure());
+    emit parkBrakeChanged(parkBrake());
+    emit tyrePressureLowChanged(tyrePressureLow());
+    emit brakeFailureChanged(brakeFailure());
+    emit airbagFailureChanged(airbagFailure());
 }
 
 qreal InstrumentClusterDynamic::speed() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("speed").toReal();
 }
 
 qreal InstrumentClusterDynamic::speedLimit() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("speedLimit").toReal();
 }
 
 qreal InstrumentClusterDynamic::speedCruise() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("speedCruise").toReal();
 }
 
 qreal InstrumentClusterDynamic::ePower() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("ePower").toReal();
 }
 
 int InstrumentClusterDynamic::driveTrainState() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("driveTrainState").toInt();
 }
 
 bool InstrumentClusterDynamic::lowBeamHeadlight() const
@@ -83,50 +144,206 @@ bool InstrumentClusterDynamic::highBeamHeadlight() const
 
 bool InstrumentClusterDynamic::fogLight() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("fogLight").toBool();
 }
 
 bool InstrumentClusterDynamic::stabilityControl() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("stabilityControl").toBool();
 }
 
 bool InstrumentClusterDynamic::seatBeltNotFastened() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("seatBeltNotFastened").toBool();
 }
 
 bool InstrumentClusterDynamic::leftTurn() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("leftTurn").toBool();
 }
 
 bool InstrumentClusterDynamic::rightTurn() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("rightTurn").toBool();
 }
 
 bool InstrumentClusterDynamic::ABSFailure() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("ABSFailure").toBool();
 }
 
 bool InstrumentClusterDynamic::parkBrake() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("parkBrake").toBool();
 }
 
 bool InstrumentClusterDynamic::tyrePressureLow() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("tyrePressureLow").toBool();
 }
 
 bool InstrumentClusterDynamic::brakeFailure() const
 {
-
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("brakeFailure").toBool();
 }
 
 bool InstrumentClusterDynamic::airbagFailure() const
 {
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("airbagFailure").toBool();
+}
 
+void InstrumentClusterDynamic::setSpeed(qreal speed)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushSpeed",Qt::DirectConnection,Q_ARG(qreal,speed));
+}
+
+void InstrumentClusterDynamic::setSpeedLimit(qreal speedLimit)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushSpeedLimit",Qt::DirectConnection,Q_ARG(qreal,speedLimit));
+}
+
+void InstrumentClusterDynamic::setSpeedCruise(qreal speedCruise)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushSpeedCruise",Qt::DirectConnection,Q_ARG(qreal,speedCruise));
+}
+
+void InstrumentClusterDynamic::setEPower(qreal ePower)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushEPower",Qt::DirectConnection,Q_ARG(qreal,ePower));
+}
+
+void InstrumentClusterDynamic::setDriveTrainState(int driveTrainState)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushDriveTrainState",Qt::DirectConnection,Q_ARG(int,driveTrainState));
+}
+
+void InstrumentClusterDynamic::setLowBeamHeadlight(bool lowBeamHeadlight)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushLowBeamHeadlight",Qt::DirectConnection,Q_ARG(bool,lowBeamHeadlight));
+}
+
+void InstrumentClusterDynamic::setHighBeamHeadlight(bool highBeamHeadlight)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushHighBeamHeadlight",Qt::DirectConnection,Q_ARG(bool,highBeamHeadlight));
+}
+
+void InstrumentClusterDynamic::setFogLight(bool fogLight)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushFogLight",Qt::DirectConnection,Q_ARG(bool,fogLight));
+}
+
+void InstrumentClusterDynamic::setStabilityControl(bool stabilityControl)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushStabilityControl",Qt::DirectConnection,Q_ARG(bool,stabilityControl));
+}
+
+void InstrumentClusterDynamic::setSeatBeltNotFastened(bool seatBeltNotFastened)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushSeatBeltNotFastened",Qt::DirectConnection,Q_ARG(bool,seatBeltNotFastened));
+}
+
+void InstrumentClusterDynamic::setLeftTurn(bool leftTurn)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushLeftTurn",Qt::DirectConnection,Q_ARG(bool,leftTurn));
+}
+
+void InstrumentClusterDynamic::setRightTurn(bool rightTurn)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushRightTurn",Qt::DirectConnection,Q_ARG(bool,rightTurn));
+}
+
+void InstrumentClusterDynamic::setABSFailure(bool ABSFailure)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushABSFailure",Qt::DirectConnection,Q_ARG(bool,ABSFailure));
+}
+
+void InstrumentClusterDynamic::setParkBrake(bool parkBrake)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushParkBrake",Qt::DirectConnection,Q_ARG(bool,parkBrake));
+}
+
+void InstrumentClusterDynamic::setTyrePressureLow(bool tyrePressureLow)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushTyrePressureLow",Qt::DirectConnection,Q_ARG(bool,tyrePressureLow));
+}
+
+void InstrumentClusterDynamic::setBrakeFailure(bool brakeFailure)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushBrakeFailure",Qt::DirectConnection,Q_ARG(bool,brakeFailure));
+}
+
+void InstrumentClusterDynamic::setAirbagFailure(bool airbagFailure)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushAirbagFailure",Qt::DirectConnection,Q_ARG(bool,airbagFailure));
 }

@@ -33,10 +33,15 @@
 
 Q_LOGGING_CATEGORY(remoteSettingsDynamicApp, "remotesettings.dynamicApp")
 
-Client::Client(QObject *parent) : QObject(parent)
+Client::Client(QObject *parent) : QObject(parent),
+    m_repNode(nullptr)
 {
-    QObject::connect(&m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
     setStatus(tr("Not connected"));
+}
+
+Client::~Client()
+{
+    delete m_repNode;
 }
 
 void Client::setContextProperties(QQmlContext *context)
@@ -66,9 +71,17 @@ void Client::connectToServer(const QString &serverUrl)
     if (url==m_serverUrl)
         return;
 
-    if (m_repNode.connectToNode(url)) {
-        m_UISettings.resetReplica(m_repNode.acquireDynamic("settings.UISettings"));
-        m_instrumentCluster.resetReplica(m_repNode.acquireDynamic("settings.InstrumentCluster"));
+    if (m_repNode)
+        QObject::disconnect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+
+    delete m_repNode;
+
+    m_repNode = new QRemoteObjectNode();
+    QObject::connect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+
+    if (m_repNode->connectToNode(url)) {
+        m_UISettings.resetReplica(m_repNode->acquireDynamic("settings.UISettings"));
+        m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("settings.InstrumentCluster"));
         setStatus(tr("Connected to %1").arg(url.toString()));
     } else {
         setStatus(tr("Connection to %1 failed").arg(url.toString()));

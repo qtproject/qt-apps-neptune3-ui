@@ -46,6 +46,7 @@ class Client : public QObject
     Q_PROPERTY(QString status READ status NOTIFY statusChanged)
 public:
     explicit Client(QObject *parent = nullptr);
+    ~Client();
 
     void setContextProperties(QQmlContext *context);
     QUrl serverUrl() const;
@@ -62,7 +63,7 @@ public slots:
 private:
     void setStatus(const QString &status);
 
-    QRemoteObjectNode m_repNode;
+    QRemoteObjectNode *m_repNode;
     QUrl m_serverUrl;
     QString m_status;
 
