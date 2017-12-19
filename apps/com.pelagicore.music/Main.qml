@@ -80,21 +80,9 @@ QtObject {
     property var secondaryWindow: ApplicationManagerWindow {
         id: secondaryWindow
 
-        Image {
+        ClusterMusic {
             anchors.fill: parent
-            source: "assets/bg.png"
-            fillMode: Image.Stretch
-
-            // TODO: Replace this placeholder image with real content
-            Image {
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: parent.height * 0.1
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: "assets/secondary-window-mock-content.png"
-                width: parent.width * 0.3
-                height: parent.height * 0.6
-                fillMode: Image.PreserveAspectFit
-            }
+            store: musicAppContent.store
         }
 
         Component.onCompleted: {

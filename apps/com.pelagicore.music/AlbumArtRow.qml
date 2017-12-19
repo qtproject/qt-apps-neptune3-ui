@@ -41,6 +41,8 @@ Item {
     property real musicPosition: 0.0
     property bool showPrevNextAlbum: false
     property bool showShadow: false
+    property bool showMusicTools: false
+    property bool showInCluster: false
     property bool mediaReady: false
     property alias coverSlide: coverslide
     property var songModel: coverslide.model
@@ -64,7 +66,7 @@ Item {
 
         Item {
             id: itemDelegated
-            height: Style.vspan(3.5)
+            height: root.showInCluster ? Style.vspan(2.5) : Style.vspan(3.5)
             Behavior on height { DefaultNumberAnimation { } }
 
             width: height
@@ -127,7 +129,7 @@ Item {
         id: pathView
 
         width: root.width
-        height: Style.vspan(3.5)
+        height: root.showInCluster ? Style.vspan(2.5) : Style.vspan(3.5)
         anchors.top: parent.top
 
         PathView {
@@ -170,7 +172,7 @@ Item {
         MusicControls {
             id: controlsRow
             anchors.centerIn: parent
-            spacing: 150
+            spacing: root.showInCluster ? Style.hspan(1.3) : Style.hspan(3.2)
             visible: root.showPrevNextAlbum
             play: root.musicPlaying
             opacity: root.showPrevNextAlbum ? 1.0 : 0.0
@@ -200,7 +202,7 @@ Item {
     MusicProgress {
         id: musicProgress
         width: root.width
-        height: Style.vspan(1)
+        height: root.showInCluster ? Style.vspan(0.2) : Style.vspan(1)
         anchors.top: pathView.bottom
         value: root.musicPosition
         visible: root.showPrevNextAlbum
@@ -223,7 +225,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: musicProgress.bottom
-        anchors.topMargin: Style.vspan(0.8)
+        anchors.topMargin: root.showInCluster ? Style.vspan(1.6) : Style.vspan(0.8)
         preferredWidth: Style.vspan(6)
 
         // the animation will only applied when it goes from invisible to visible.
@@ -244,7 +246,7 @@ Item {
         anchors.bottomMargin: Style.vspan(0.2)
         anchors.right: parent.right
         anchors.rightMargin: Style.hspan(0.3)
-        visible: root.showPrevNextAlbum
+        visible: root.showMusicTools
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
 

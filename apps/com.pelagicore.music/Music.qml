@@ -325,6 +325,7 @@ Item {
         anchors.leftMargin: Style.hspan(0.9)
 
         showPrevNextAlbum: root.state === "Widget2Rows" || (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
+        showMusicTools: albumArtRow.showPrevNextAlbum
         musicPlaying: root.store.playing
         musicPosition: root.store.currentTrackPosition
         showShadow: root.store.musicCount > 0 && root.state === "Maximized"
