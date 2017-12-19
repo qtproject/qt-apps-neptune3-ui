@@ -134,7 +134,7 @@ void ApplicationModel::configureApps()
     appInfo->setAsWidget(true);
     appInfo->setHeightRows(2);
 
-    appInfo = application("com.pelagicore.maps");
+    appInfo = application("com.pelagicore.phone");
     appInfo->setAsWidget(true);
     appInfo->setHeightRows(2);
 
