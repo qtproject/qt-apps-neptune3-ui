@@ -164,7 +164,8 @@ Window {
             sequence: "c"
             context: Qt.ApplicationShortcut
             onActivated: {
-                instrumentClusterWindow.nextSecondaryWindow();
+                if (instrumentClusterWindowLoader.item)
+                    instrumentClusterWindowLoader.item.nextSecondaryWindow();
             }
         }
     }
@@ -227,8 +228,17 @@ Window {
         }
     }
 
-    InstrumentClusterWindow {
-        id: instrumentClusterWindow
-        applicationModel: display.applicationModel
+    Loader {
+        id: instrumentClusterWindowLoader
+        sourceComponent: Component {
+            InstrumentClusterWindow {
+                applicationModel: display.applicationModel
+            }
+        }
+
+        readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
+                                                       && (Qt.application.screens.length === 1)
+
+        active: !runningOnSingleScreenEmbedded
     }
 }

@@ -97,8 +97,5 @@ Window {
     // lazy way of putting the instrument cluster in a separate screen, if available
     screen: Qt.application.screens[Qt.application.screens.length - 1]
 
-    readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
-                                                       && (Qt.application.screens.length === 1)
-
-    visible: (window != null) && ApplicationManager.systemProperties.showCluster && !runningOnSingleScreenEmbedded
+    visible: (window != null) && ApplicationManager.systemProperties.showCluster
 }
