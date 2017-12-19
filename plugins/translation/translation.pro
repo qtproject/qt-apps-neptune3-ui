@@ -39,6 +39,8 @@ supportedLocales = \
     en_GB \
     en_US \
     zh_CN \
+    ja_JP \
+    ko_KR \
     # in_ID
 
 TRANSLATIONS = $$prependAll(supportedLocales, $$assetsPath/translations/, .ts)
