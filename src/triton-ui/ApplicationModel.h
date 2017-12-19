@@ -148,6 +148,7 @@ private slots:
     void onApplicationActivated(const QString &appId, const QString &aliasId);
     void onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant &value);
     void onAsWidgetChanged(ApplicationInfo *appInfo);
+    void onApplicationChanged(const QtAM::Application *application);
 
 private:
     void configureApps();
@@ -161,6 +162,7 @@ private:
     void setInstrumentClusterAppInfo(ApplicationInfo*);
     void append(const QtAM::Application *);
     void remove(const QtAM::Application *);
+    int indexFromApplication(const QtAM::Application *);
 
     QList<ApplicationInfo*> m_appInfoList;
     QString m_activeAppId;

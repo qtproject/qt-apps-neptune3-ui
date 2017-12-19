@@ -482,6 +482,10 @@ void ApplicationModel::setInstrumentClusterAppInfo(ApplicationInfo *appInfo)
 
 void ApplicationModel::append(const QtAM::Application *application)
 {
+    connect(application, &QtAM::Application::bulkChange, this, [this, application](){
+        onApplicationChanged(application);
+    });
+
     ApplicationInfo *appInfo = new ApplicationInfo(application);
 
     connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
@@ -512,6 +516,29 @@ void ApplicationModel::append(const QtAM::Application *application)
 
 void ApplicationModel::remove(const QtAM::Application *application)
 {
+    disconnect(application, 0, this, 0);
+
+    int index = indexFromApplication(application);
+    Q_ASSERT(index != -1);
+
+    beginRemoveRows(QModelIndex() /* parent */,  index /* first */, index /* last */);
+    delete m_appInfoList.takeAt(index);
+    endRemoveRows();
+}
+
+void ApplicationModel::onApplicationChanged(const QtAM::Application *application)
+{
+    int i = indexFromApplication(application);
+    if (i == -1) {
+        return;
+    }
+
+    // it's a bulk change
+    dataChanged(index(i), index(i), {RoleIcon, RoleName});
+}
+
+int ApplicationModel::indexFromApplication(const QtAM::Application *application)
+{
     int index = 0;
     bool found = false;
 
@@ -521,12 +548,5 @@ void ApplicationModel::remove(const QtAM::Application *application)
             ++index;
     }
 
-    Q_ASSERT(found);
-    if (!found) {
-        return;
-    }
-
-    beginRemoveRows(QModelIndex() /* parent */,  index /* first */, index /* last */);
-    delete m_appInfoList.takeAt(index);
-    endRemoveRows();
+    return found ? index : -1;
 }
