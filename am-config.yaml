@@ -15,6 +15,9 @@ applications:
 runtimes:
   qml:
     importPaths: [ "${CONFIG_PWD}/imports/shared" ]
+    environmentVariables:
+       QT_PLUGIN_PATH: ${CONFIG_PWD}
+       SERVER_CONF_PATH: ${CONFIG_PWD}/server.conf
 
 # ... as well as the SystemUI
 
