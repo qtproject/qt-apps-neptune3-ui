@@ -36,29 +36,12 @@ import animations 1.0
 Item {
     id: root
 
-    Item {
-        width: root.width * 0.94
-        height: root.height
-        anchors.centerIn: parent
-        anchors.horizontalCenterOffset: Style.hspan(0.2)
+    anchors.centerIn: parent
+    anchors.horizontalCenterOffset: Style.hspan(0.2)
 
-        Image {
-            id: widgetMockup
-            anchors.centerIn: root.state !== "Maximized" ? parent : undefined
-            anchors.top: root.state === "Maximized" ? parent.top : undefined
-            source: "assets/navigation-widget-map.png"
-            scale: root.state !== "Maximized" ? 0.7 : 1.0
-            opacity: visible ? 1.0 : 0.0
-            Behavior on opacity { DefaultNumberAnimation { } }
-        }
-
-        Image {
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: "assets/navigation-widget-search.png"
-            opacity: widgetMockup.opacity ? 1.0 : 0.0
-            Behavior on opacity { DefaultNumberAnimation { } }
-        }
+    Image {
+        id: widgetMockup
+        source: "assets/navigation-widget-map.png"
     }
-}
 
+}
