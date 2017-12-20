@@ -78,14 +78,13 @@ Item {
             root.applicationModel.goHome();
         }
 
-//        // TODO: Replace this with the correct visualization
-        Rectangle {
-            id: homeDummyChecked
-
-            anchors.fill: parent
-            color: "transparent"
-            border.color: homeButton.checked ? "red" : "transparent"
-            border.width: 2
+        Image {
+            width: parent.width
+            height: Style.vspan(1)
+            anchors.centerIn: parent
+            fillMode: Image.Pad
+            visible: homeButton.checked
+            source: Style.symbol("ic-app-active-bg")
         }
     }
 
@@ -132,12 +131,6 @@ Item {
             Layout.alignment: Qt.AlignTop
             symbol: useCloseIcon ? Style.symbol("ic-close", false) : Style.symbol("ic-menu-allapps", false)
             checkable: true
-
-            onCheckedChanged: {
-                if (checked) {
-                    homeButton.checked = false
-                }
-            }
         }
     }
 }

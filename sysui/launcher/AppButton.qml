@@ -54,6 +54,15 @@ Item {
     }
 
     Image {
+        width: parent.width
+        height: Style.vspan(1)
+        anchors.centerIn: icon
+        fillMode: Image.Pad
+        visible: root.checked && !root.gridOpen
+        source: Style.symbol("ic-app-active-bg")
+    }
+
+    Image {
         id: icon
         width: parent.width
         height: Style.vspan(1)
@@ -80,17 +89,5 @@ Item {
             }
         }
         color: "white"
-    }
-
-    // TODO: Replace this with the correct visualization
-    Rectangle {
-        id: dummyChecked
-        width: parent.width
-        height: width * 1.3
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        color: "transparent"
-        border.color: root.checked && !root.gridOpen ? "red" : "transparent"
-        border.width: 2
     }
 }
