@@ -75,11 +75,13 @@ Item {
         if (!root.appInfo)
             return;
 
+
         var window = root.appInfo.window
         if (window) {
             window.parent = windowSlot;
             window.width = Qt.binding(function() { return Style.hspan(24); });
             window.height = Qt.binding(function() { return Style.vspan(24); });
+            window.visible = true;
             loadingStateGroup.state = "live"
         } else {
             loadingStateGroup.state = "loading"

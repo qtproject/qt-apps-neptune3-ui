@@ -106,6 +106,11 @@ Item {
                     window.width = window.width;
                     window.height = window.height;
 
+                    window.visible = false;
+
+                    // leave it the way you found it
+                    window.opacity = 1;
+
                     window = null;
 
                     // self destruct
