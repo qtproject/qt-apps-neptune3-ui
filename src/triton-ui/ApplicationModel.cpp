@@ -73,6 +73,7 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
     }
 
     connect(appMan, &ApplicationManager::applicationWasActivated, this, &ApplicationModel::onApplicationActivated);
+    connect(appMan, &ApplicationManager::applicationRunStateChanged, this, &ApplicationModel::onApplicationRunStateChanged);
 
     for (int i = 0; i < appMan->count(); ++i) {
         const QtAM::Application *application = appMan->application(i);
@@ -273,6 +274,14 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
     qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
     m_activeAppInfo = appInfo;
     emit activeAppInfoChanged();
+}
+
+void ApplicationModel::onApplicationRunStateChanged(const QString &id, QtAM::ApplicationManager::RunState runState)
+{
+    ApplicationInfo *appInfo = application(id);
+    if (appInfo) {
+        appInfo->setRunning(runState == ApplicationManager::Running);
+    }
 }
 
 void ApplicationModel::onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant & /*value*/) {
@@ -491,6 +500,11 @@ void ApplicationModel::append(const QtAM::Application *application)
     connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
         if (m_appMan) {
             m_appMan->startApplication(appInfo->id());
+        }
+    });
+    connect(appInfo, &ApplicationInfo::stopRequested, this, [this, appInfo]() {
+        if (m_appMan) {
+            m_appMan->stopApplication(appInfo->id());
         }
     });
     connect(appInfo, &ApplicationInfo::widgetHeightChanged, this, [this, appInfo]() {

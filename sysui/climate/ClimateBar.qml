@@ -37,8 +37,6 @@ import triton.controls 1.0
 
 import QtQuick.Layouts 1.3
 
-import "../about"
-
 Item {
     id: root
 
@@ -62,7 +60,8 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: leftIcon.right
-        anchors.right: rightIcon.left
+        anchors.right: parent.right
+        anchors.rightMargin: root.toolWidth + root.lateralMargin
         onClicked: popup.open()
     }
 
@@ -90,29 +89,11 @@ Item {
         }
     }
 
-    Tool {
-        id: rightIcon
-        width: root.toolWidth
-        height: width
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: root.lateralMargin
-        symbol: Style.symbol("qt-badge")
-        onClicked: {
-            about.open()
-        }
-    }
 
     ClimatePopup {
         id: popup
         parent: root.popupParent
         originItem: root
         model: root.model
-    }
-
-    About {
-        id: about
-        parent: root.popupParent
-        originItem: rightIcon
     }
 }

@@ -41,9 +41,9 @@ TritonPopup {
     width: Style.hspan(22)
     height: Style.vspan(19)
 
+    property var applicationModel
 
     bottomPadding: Style.hspan(0.35)
-
 
     contentItem: ColumnLayout {
         visible: opacity > 0
@@ -60,6 +60,9 @@ TritonPopup {
             currentIndex: tabBar.currentIndex
             AboutMarketing {}
             AboutProcess {}
+            AboutRunningApps {
+                applicationModel: root.applicationModel
+            }
         }
 
         // TODO: fix appearance of tab bar style
@@ -75,6 +78,10 @@ TritonPopup {
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Monitor")
+            }
+            TabButton {
+                Layout.preferredWidth: Style.hspan(4)
+                text: qsTr("Running Apps")
             }
         }
     }

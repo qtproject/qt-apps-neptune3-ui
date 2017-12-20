@@ -85,6 +85,9 @@ class ApplicationInfo : public QObject {
     Q_PROPERTY(int heightRows READ heightRows WRITE setHeightRows NOTIFY heightRowsChanged)
     Q_PROPERTY(int minHeightRows READ minHeightRows WRITE setMinHeightRows NOTIFY minHeightRowsChanged)
 
+    // Whether the application process is running
+    Q_PROPERTY(bool running READ running NOTIFY runningChanged)
+
     // The QtAM::Application object
     Q_PROPERTY(const QObject* application READ application CONSTANT)
     Q_PROPERTY(QString id READ id CONSTANT)
@@ -108,6 +111,9 @@ public:
 
     // starts the application. Same as ApplicatioManager.startApplication() but in a object oriented fashion
     Q_INVOKABLE void start();
+
+    // stops the application. Same as ApplicatioManager.stopApplication() but in a object oriented fashion
+    Q_INVOKABLE void stop();
 
     void setAsWidget(bool);
     bool asWidget() const;
@@ -138,6 +144,9 @@ public:
     int minHeightRows() const;
     void setMinHeightRows(int);
 
+    bool running() const;
+    void setRunning(bool);
+
     bool active() const;
     void setActive(bool);
 
@@ -161,10 +170,12 @@ signals:
     void heightRowsChanged();
     void minHeightRowsChanged();
     void startRequested();
+    void stopRequested();
     void widgetHeightChanged();
     void currentWidthChanged();
     void currentHeightChanged();
     void exposedRectBottomMarginChanged();
+    void runningChanged();
 
 private:
     void updateWindowState();
@@ -180,6 +191,7 @@ private:
     bool m_asWidget{false};
     int m_heightRows{1};
     int m_minHeightRows{1};
+    bool m_running{false};
     const QObject *m_application{nullptr};
     qreal m_exposedRectBottomMargin{0};
 };

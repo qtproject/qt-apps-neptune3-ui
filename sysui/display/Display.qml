@@ -34,6 +34,8 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtApplicationManager 1.0
 
+import about 1.0
+import climate 1.0
 import controls 1.0
 import display 1.0
 import utils 1.0
@@ -127,7 +129,7 @@ Image {
         y: launcherLoader.y + Style.launcherHeight
         anchors.left: parent.left
         anchors.right: parent.right
-        height: root.height - Style.statusBarHeight - Style.launcherHeight - climateLoader.height
+        height: root.height - Style.statusBarHeight - Style.launcherHeight - climateBar.height
         opacity: launcherLoader.launcherOpen ? 0 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
         enabled: !launcherLoader.launcherOpen
@@ -212,15 +214,32 @@ Image {
         Behavior on opacity { DefaultSmoothedAnimation {} }
     }
 
-    StageLoader {
-        id: climateLoader
+    ClimateBar {
+        id: climateBar
         width: root.width
         height: Style.vspan(1.5)
         anchors.bottom: parent.bottom
-        active: true // StagedStartupModel.loadDisplay <-- this would break the UI when changing language!
-        source: "../climate/ClimateBar.qml"
-        Binding { target: climateLoader.item; property: "popupParent"; value: popupParent }
-        Binding { target: climateLoader.item; property: "model"; value: climateModel }
+        popupParent: root.popupParent
+        model: climateModel
+
+        Tool {
+            id: rightIcon
+            width: climateBar.toolWidth
+            height: width
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: climateBar.lateralMargin
+            symbol: Style.symbol("qt-badge")
+            onClicked: about.open()
+        }
+    }
+
+    // TODO load popup only before opening it and unload after closed
+    About {
+        id: about
+        parent: root.popupParent
+        originItem: rightIcon
+        applicationModel: root.applicationModel
     }
 
     Component.onCompleted: {

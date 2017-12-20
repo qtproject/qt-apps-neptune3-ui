@@ -4,14 +4,19 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="73"/>
+        <location filename="../../../sysui/about/About.qml" line="76"/>
         <source>Marketing</source>
         <translation>마케팅</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="77"/>
+        <location filename="../../../sysui/about/About.qml" line="80"/>
         <source>Monitor</source>
         <translation>모니터</translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="84"/>
+        <source>Running Apps</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -20,6 +25,14 @@
         <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
         <source>We put Stunning User Experience on the road</source>
         <translation>도로 위에서의 놀라운 사용자 경험을 느껴보세요</translation>
+    </message>
+</context>
+<context>
+    <name>AboutRunningApps</name>
+    <message>
+        <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
+        <source>Running applications:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

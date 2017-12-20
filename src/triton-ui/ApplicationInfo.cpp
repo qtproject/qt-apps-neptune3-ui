@@ -40,6 +40,11 @@ void ApplicationInfo::start()
     emit startRequested();
 }
 
+void ApplicationInfo::stop()
+{
+    emit stopRequested();
+}
+
 void ApplicationInfo::setAsWidget(bool value)
 {
     if (value != m_asWidget) {
@@ -120,6 +125,19 @@ void ApplicationInfo::setMinHeightRows(int value)
     if (value != m_minHeightRows) {
         m_minHeightRows = value;
         emit minHeightRowsChanged();
+    }
+}
+
+bool ApplicationInfo::running() const
+{
+    return m_running;
+}
+
+void ApplicationInfo::setRunning(bool value)
+{
+    if (m_running != value) {
+        m_running = value;
+        emit runningChanged();
     }
 }
 
