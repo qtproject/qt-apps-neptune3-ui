@@ -35,7 +35,7 @@
     <message>
         <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
         <source>No apps found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádné aplikace nenalezeny!</translation>
     </message>
 </context>
 <context>
@@ -50,22 +50,22 @@
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="41"/>
         <source>Front defrost</source>
-        <translation type="unfinished"></translation>
+        <translation>Odmražování vpředu</translation>
     </message>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="46"/>
         <source>Rear defrost</source>
-        <translation type="unfinished"></translation>
+        <translation>Odmražování vzadu</translation>
     </message>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="51"/>
         <source>Driver seat heat</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhřívání sedadla řidiče</translation>
     </message>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="56"/>
         <source>Passenger seat heat</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyhřívání sedadla spolujezdce</translation>
     </message>
 </context>
 <context>
@@ -216,7 +216,7 @@
     <message>
         <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="40"/>
         <source>Instrument Cluster</source>
-        <translation type="unfinished"></translation>
+        <translation>Přístrojová deska</translation>
     </message>
 </context>
 <context>
@@ -502,62 +502,62 @@
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="85"/>
         <source>support</source>
-        <translation type="unfinished"></translation>
+        <translation>podpora</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="95"/>
         <source>energy</source>
-        <translation type="unfinished"></translation>
+        <translation>energie</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="105"/>
         <source>doors</source>
-        <translation type="unfinished"></translation>
+        <translation>dveře</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="115"/>
         <source>tires</source>
-        <translation type="unfinished"></translation>
+        <translation>pneu</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="186"/>
         <source>Present</source>
-        <translation type="unfinished"></translation>
+        <translation>Přítomna</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="192"/>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 den</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="198"/>
         <source>1 week</source>
-        <translation type="unfinished"></translation>
+        <translation>1 týden</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="205"/>
         <source>1 month</source>
-        <translation type="unfinished"></translation>
+        <translation>1 měsíc</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="255"/>
         <source>Locks</source>
-        <translation type="unfinished"></translation>
+        <translation>Zámky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="261"/>
         <source>Sun roof</source>
-        <translation type="unfinished"></translation>
+        <translation>Střecha</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="267"/>
         <source>Doors</source>
-        <translation type="unfinished"></translation>
+        <translation>Dveře</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="274"/>
         <source>Trunk</source>
-        <translation type="unfinished"></translation>
+        <translation>Kufr</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="295"/>
@@ -565,7 +565,7 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="349"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="376"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="303"/>
@@ -573,12 +573,12 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="357"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="384"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="410"/>
         <source>Calibrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalibrovat</translation>
     </message>
 </context>
 <context>
@@ -625,7 +625,7 @@
     <message>
         <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
         <source>Enter an address</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadejte adresu</translation>
     </message>
 </context>
 </TS>

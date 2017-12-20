@@ -6,12 +6,12 @@
     <message>
         <location filename="../../../sysui/about/About.qml" line="73"/>
         <source>Marketing</source>
-        <translation type="unfinished"></translation>
+        <translation>마케팅</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="77"/>
         <source>Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>모니터</translation>
     </message>
 </context>
 <context>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
         <source>We put Stunning User Experience on the road</source>
-        <translation type="unfinished"></translation>
+        <translation>도로 위에서의 놀라운 사용자 경험을 느껴보세요</translation>
     </message>
 </context>
 <context>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="59"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>네트워크</translation>
     </message>
 </context>
 <context>
@@ -328,27 +328,27 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="57"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>밝게</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>어둡게</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="82"/>
         <source>languages</source>
-        <translation type="unfinished"></translation>
+        <translation>언어</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>date</source>
-        <translation type="unfinished"></translation>
+        <translation>날짜</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>themes</source>
-        <translation type="unfinished"></translation>
+        <translation>테마</translation>
     </message>
 </context>
 <context>

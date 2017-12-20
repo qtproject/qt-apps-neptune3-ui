@@ -43,12 +43,12 @@
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="41"/>
         <source>Front defrost</source>
-        <translation>フロントデフロスター</translation>
+        <translation>フロント デフロスター</translation>
     </message>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="46"/>
         <source>Rear defrost</source>
-        <translation>リアデフロスター</translation>
+        <translation>リア デフロスター</translation>
     </message>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="51"/>
