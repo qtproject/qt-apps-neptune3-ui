@@ -68,7 +68,7 @@ TritonPopup {
             position: TabBar.Footer
             Layout.preferredWidth: Style.hspan(8)
             Layout.alignment: Qt.AlignHCenter
-            TabButton {                
+            TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Marketing")
             }
