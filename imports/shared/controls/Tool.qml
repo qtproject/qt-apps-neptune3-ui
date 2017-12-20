@@ -36,8 +36,6 @@ import com.pelagicore.styles.triton 1.0
 
 ToolButton {
     id: root
-    width: Style.hspan(4)
-    height: Style.vspan(2)
     property string symbol
     property color labelColor: TritonStyle.primaryTextColor
     property real labelOpacity: 1
