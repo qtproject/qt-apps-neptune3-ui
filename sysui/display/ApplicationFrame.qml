@@ -48,6 +48,10 @@ Item {
     }
 
     Binding {
+        target: root.appInfo; property: "currentWidth"; value: root.width
+    }
+
+    Binding {
         target: root.appInfo; property: "windowState"; value: "Maximized"
     }
 
