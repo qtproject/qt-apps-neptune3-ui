@@ -38,7 +38,6 @@ import QtApplicationManager 1.0
 Item {
     id: root
 
-    property alias availableAppUpdates: availableUpdatesModel
     property alias latestUpdateApps: latestUpdateModel
     property alias applicationModel: appModel
     property alias categoryModel: catModel
@@ -78,24 +77,6 @@ Item {
             root.categoryid = 1;
         }
         appModel.refresh();
-    }
-
-    // TODO: Need to check with designer if such models are still needed.
-    // Dummy Model
-    ListModel {
-        id: availableUpdatesModel
-
-        ListElement {
-            appName: "Music"
-            iconSource: "ic-music-dark"
-            size: "55 MB"
-        }
-
-        ListElement {
-            appName: "Vehicle"
-            iconSource: "ic-car-dark"
-            size: "45 MB"
-        }
     }
 
     // Dummy Model

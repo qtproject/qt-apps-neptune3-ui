@@ -41,10 +41,11 @@ Control {
     property string name
     property bool active
     property alias rotate: image.rotation
-    Image {
+    contentItem: Image {
         id: image
         anchors.centerIn: parent
-        source: root.name ? Style.symbol(root.name, root.active) : ""
+        source: root.name ? root.name : ""
         asynchronous: true
+        fillMode: Image.PreserveAspectFit
     }
 }

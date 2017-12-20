@@ -35,7 +35,7 @@ import utils 1.0
 
 Slider {
     id: root
-    implicitWidth: Style.hspan(16)
+    implicitWidth: Style.hspan(8.5)
     implicitHeight: Style.vspan(2)
 
     background: Item {

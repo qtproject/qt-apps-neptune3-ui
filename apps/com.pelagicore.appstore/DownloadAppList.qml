@@ -44,6 +44,12 @@ ListView {
     property var installedApp: []
     signal downloadClicked(var appId)
 
+    onInstallationProgressChanged: {
+        if (installationProgress === 1.0) {
+            root.currentIndex = -1;
+        }
+    }
+
     currentIndex: -1
 
     delegate: ItemDelegate {
@@ -70,16 +76,6 @@ ListView {
                 horizontalAlignment: Text.AlignLeft
             }
 
-// TODO: Check if application size information are available in our server.
-//            Label {
-//                Layout.preferredWidth: Style.hspan(2)
-//                text: size
-//                // TODO: Check with designer, which color should be used.
-//                color: "grey"
-//                font.pixelSize: Style.fontSizeS
-//                horizontalAlignment: Text.AlignLeft
-//            }
-
             Tool {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(0.5)
@@ -99,12 +95,6 @@ ListView {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Style.hspan(0.05)
             value: root.installationProgress
-            onValueChanged: {
-                if (value === 1.0) {
-                    root.currentIndex = -1;
-                }
-            }
-
             padding: 2
             visible: root.currentIndex === index && root.installationProgress < 1.0
 

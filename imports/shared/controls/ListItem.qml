@@ -52,7 +52,8 @@ ItemDelegate {
 
             Symbol {
                 id: icon
-                Layout.preferredWidth: Style.hspan(1)
+                Layout.preferredWidth: Style.hspan(2)
+                Layout.preferredHeight: Style.vspan(0.8)
                 Layout.fillHeight: true
                 opacity: 0.4
                 visible: name !== ""

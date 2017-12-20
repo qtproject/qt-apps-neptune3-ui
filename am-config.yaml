@@ -34,7 +34,7 @@ systemProperties:
     public:
       showCluster: yes
     private:
-      appStoreServerUrl: 'http://chaos.pelagicore.net:8080'
+      appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
       orientation: 'Portrait'
 
 # development setup: no security

@@ -47,7 +47,7 @@ Item {
     function checkServer() {
         console.log(Logging.sysui, "Triton-UI::Application Store - Check Server");
         var url = serverUrl + "/hello";
-        var data = {"platform" : "AM", "version" : "1"};
+        var data = {"platform" : "TRITON", "version" : "1"};
         JSONBackend.setErrorFunction(function () {
             serverOnline = false;
             serverReason = "unknown";

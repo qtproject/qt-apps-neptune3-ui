@@ -68,7 +68,7 @@ Item {
         font.pixelSize: Style.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
-        visible: listLoader.item.model.count < 1
+        visible: appList.model.count < 1
     }
 
     RowLayout {
@@ -84,35 +84,18 @@ Item {
             onToolClicked: root.store.selectCategory(index)
         }
 
-        Loader {
-            id: listLoader
-            anchors.top: parent.top
+        DownloadAppList {
+            id: appList
             Layout.preferredHeight: Style.vspan(10)
             Layout.preferredWidth: Style.hspan(15)
-            sourceComponent: downloadList
+            anchors.top: parent ? parent.top : undefined
+            anchors.topMargin: Style.vspan(0.2)
+            model: root.store.applicationModel
+            appServerUrl: root.store.appServerUrl
+            installationProgress: root.store.currentInstallationProgress
+            installedApp: root.store.installedOnlineApp
+            onDownloadClicked: root.store.download(appId)
         }
-
-        Component {
-            id: downloadList
-            DownloadAppList {
-                anchors.top: parent ? parent.top : undefined
-                anchors.topMargin: Style.vspan(0.2)
-                model: root.store.applicationModel
-                appServerUrl: root.store.appServerUrl
-                installationProgress: root.store.currentInstallationProgress
-                installedApp: root.store.installedOnlineApp
-                onDownloadClicked: root.store.download(appId)
-            }
-        }
-
-// NOTE: Possibly be removed completely. Need a clarification from designer if we need such information or not.
-//        Component {
-//            id: installedList
-//            InstalledAppList {
-//                updatesListView.model: root.store.availableAppUpdates
-//                latestUpdateListView.model: root.store.latestUpdateApps
-//            }
-//        }
     }
 
     Component.onCompleted: root.store.appStoreServer.checkServer();
