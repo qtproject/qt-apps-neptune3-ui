@@ -31,6 +31,7 @@
 
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
+import QtQuick.Shapes 1.0
 
 Item {
     id: root
@@ -73,9 +74,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: 0 }
             PropertyChanges { target: signKMH; opacity: 0 }
             PropertyChanges { target: indicatorSpdLimit; opacity: 0 }
-            PropertyChanges { target: indicatorCruiseCircle; opacity: 0 }
-            PropertyChanges { target: indicatorCruiseBg; opacity: 0; x: 237 * d.scaleRatio; y: 472 * d.scaleRatio }
-            PropertyChanges { target: indicatorCruise; opacity: 0; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: false; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
         },
         State {
             name: "normal"
@@ -84,9 +83,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
             PropertyChanges { target: signKMH; opacity: 0.4 }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
-            PropertyChanges { target: indicatorCruiseCircle; opacity: 1 }
-            PropertyChanges { target: indicatorCruiseBg; opacity: 1; x: 237 * d.scaleRatio; y: 472 * d.scaleRatio }
-            PropertyChanges { target: indicatorCruise; opacity: 0.94; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
         },
         State {
             name: "navi"
@@ -95,9 +92,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
             PropertyChanges { target: signKMH; opacity: 0.4 }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
-            PropertyChanges { target: indicatorCruiseCircle; opacity: 0 }
-            PropertyChanges { target: indicatorCruiseBg; opacity: 1; x: 237 * d.scaleRatio; y: 380 * d.scaleRatio }
-            PropertyChanges { target: indicatorCruise; opacity: 0.94; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
         }
     ]
 
@@ -112,9 +107,13 @@ Item {
                 //fade in (640ms)
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
+                PropertyAction {
+                    target: indicatorCruise
+                    property: "visible, x, y"
+                }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
-                    properties: "opacity, x, y"
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit]
+                    property: "opacity"
                     duration: 140
                 }
                 //test the highLight (1080ms)
@@ -129,7 +128,7 @@ Item {
             SequentialAnimation{
                 //fade out (390ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity, x, y"
                     duration: 130
                 }
@@ -142,26 +141,25 @@ Item {
             to: "navi"
             reversible: false
             SequentialAnimation{
-                //fade out (320ms)
-                PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                //fade out (160ms)
+                PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity"
                     to: 0
-                    duration: 130
+                    duration: 80
                 }
-                PauseAnimation { duration: 60 }
-                //wait DialFrame to shrink(320ms)
+                //wait DialFrame to shrink(160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "x, y"
-                    duration: 320
+                    duration: 160
                 }
-                //fade in (130ms)
+                //fade in (160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity"
-                    duration: 130
+                    duration: 160
                 }
             }
         },
@@ -170,27 +168,46 @@ Item {
             to: "normal"
             reversible: false
             SequentialAnimation{
-                //fade out (320ms)
+                //fade out (160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity"
                     to: 0
-                    duration: 130
+                    duration: 160
                 }
-                PauseAnimation { duration: 190 }
-                //wait DialFrame to expand(320ms)
+                //wait DialFrame to expand(160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "x, y"
-                    duration: 320
+                    duration: 160
                 }
-                //fade in (260ms)
-                PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                //fade in (160ms)
+                PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity"
-                    duration: 130
+                    duration: 80
                 }
+            }
+        },
+        Transition {
+            from: "stopped"
+            to: "navi"
+            reversible: false
+            SequentialAnimation{
+                //wait DialFrame to start (1600ms)
+                PauseAnimation { duration: 1600 }
+                //fade in (640ms)
+                PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
+                PropertyAnimation {
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    properties: "opacity, x, y"
+                    duration: 140
+                }
+                //test the highLight (1080ms)
+                PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 0; to: 260; duration: 540 }
+                PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 260; to: 0; duration: 540 }
             }
         },
         Transition {
@@ -200,12 +217,12 @@ Item {
                 //fade out (640ms)
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "opacity"
                     duration: 100
                 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruiseCircle, indicatorCruiseBg, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
                     properties: "x, y"
                     duration: 100
                 }
@@ -214,15 +231,15 @@ Item {
     ]
 
     Behavior on speed {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 2000 }
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
 
     Behavior on speedLimit {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 2000 }
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
 
     Behavior on cruiseSpeed {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 2000 }
+        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
 
     onSpeedLimitChanged: {
@@ -231,10 +248,6 @@ Item {
 
     onSpeedChanged: {
         dialFrame.highLightAng = d.speed2Angle(speed);
-    }
-
-    onCruiseSpeedChanged: {
-        cruiseMask.requestPaint();
     }
 
     //visual components
@@ -257,7 +270,8 @@ Item {
         text: Math.round(speed)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans SemiBold"
+        font.family: "Open Sans"
+        font.weight: Font.DemiBold
         color: "black"
         opacity: 0.94
         font.pixelSize: 80 * d.scaleRatio
@@ -265,10 +279,11 @@ Item {
 
     Text {
         id: signKMH
-        x: 260 * d.scaleRatio
+        anchors.horizontalCenter: parent.horizontalCenter
         y: 325 * d.scaleRatio
         text: qsTr("km/h")
-        font.family: "Open Sans Light"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
@@ -285,7 +300,8 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             text: Math.round(speedLimit)
-            font.family: "open sans"
+            font.family: "Open Sans"
+            font.weight: Font.Light
             color: "black"
             opacity: 0.94
             font.pixelSize: 34 * d.scaleRatio
@@ -315,73 +331,92 @@ Item {
         }
     }
 
-    Canvas {
+    Shape {
         id: cruiseMask
-        anchors.centerIn: parent
+        x: -1000
+        y: -1000
         width: 370 * d.scaleRatio
         height: width
-        renderTarget: Canvas.Image
-        visible: false
+        visible: true
 
-        readonly property real radius: cruiseMask.width / 2
-        readonly property real centerX: cruiseMask.width / 2
-        readonly property real centerY: cruiseMask.height / 2
+        ShapePath {
+            id: cruiseMaskPath
+            readonly property real radius: cruiseMask.width / 2
+            readonly property real centerX: cruiseMask.width / 2
+            readonly property real centerY: cruiseMask.height / 2
 
-        readonly property real maxRadin: (dialFrame.maxAng > 90) ?
-                        (Math.PI / 2) : (dialFrame.maxAng / 180 * Math.PI)
-        readonly property real minRadin: (dialFrame.minAng < -270) ?
-                        (-Math.PI * 3 / 2) : (dialFrame.minAng / 180 * Math.PI)
-        readonly property real zeroRadin: (dialFrame.zeroAng > dialFrame.maxAng || dialFrame.zeroAng < dialFrame.minAng) ?
-                        minRadin : (dialFrame.zeroAng / 180 * Math.PI)
+            readonly property real maxRadin: dialFrame.maxAng / 180 * Math.PI
+            readonly property real minRadin: dialFrame.minAng / 180 * Math.PI
+            readonly property real zeroRadin: dialFrame.zeroAng / 180 * Math.PI
+            readonly property real cruiseRadin: d.speed2Angle(cruiseSpeed) / 180 * Math.PI
+            readonly property bool isPositive: cruiseRadin >= zeroRadin ? true : false
 
-        onPaint: {
-            var ctx = getContext("2d");
-            ctx.clearRect(0, 0, cruiseMask.width, cruiseMask.height);
-            ctx.globalCompositeOperation = "source-over";
-            ctx.lineWidth = 0;
-            ctx.fillStyle = "black";
-
-            var radin = d.speed2Angle(cruiseSpeed) / 180 * Math.PI
-            var isPositive = radin >= zeroRadin ? true : false
-            var sixOClockRadin = -270 / 180 * Math.PI
-
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY); //center of the circule
-            ctx.lineTo(centerX, centerY + radius); //start line
-            ctx.arc(centerX, centerY, radius, sixOClockRadin, radin, !isPositive);//arc line
-            ctx.closePath();
-            ctx.fill();
+            fillColor: "black"
+            strokeColor: "transparent"
+            strokeWidth: 0
+            startX: cruiseMaskPath.centerX
+            startY: cruiseMaskPath.centerY
+            PathLine {
+                x: cruiseMaskPath.centerX
+                y: cruiseMaskPath.centerY + cruiseMaskPath.radius
+            }
+            PathArc {
+                x: cruiseMaskPath.centerX + Math.cos(cruiseMaskPath.cruiseRadin) * cruiseMaskPath.radius
+                y: cruiseMaskPath.centerY + Math.sin(cruiseMaskPath.cruiseRadin) * cruiseMaskPath.radius
+                radiusX: cruiseMaskPath.centerX
+                radiusY: cruiseMaskPath.centerY
+                direction: cruiseMaskPath.isPositive? PathArc.Clockwise : PathArc.Counterclockwise
+                useLargeArc: cruiseMaskPath.cruiseRadin >= -Math.PI / 2 ? true : false
+            }
+            PathLine {
+                x: cruiseMaskPath.centerX
+                y: cruiseMaskPath.centerY
+            }
         }
     }
 
     OpacityMask {
         id: indicatorCruiseCircle
-        visible: true
+        opacity: (root.cruiseSpeed >= 30) ? 1 : 0.0
+        visible: indicatorCruise.visible
         maskSource: cruiseMask
         source: cruiseSource
-        anchors.fill: cruiseMask
+        anchors.fill: cruiseSource
+        Behavior on opacity {
+            NumberAnimation { easing.type: Easing.OutCubic; duration: 500 }
+        }
     }
 
     Image {
         id: indicatorCruiseBg
-        visible: true
-        x: 237 * d.scaleRatio
-        y: 472 * d.scaleRatio
+        opacity: (root.cruiseSpeed >= 30) ? 1 : 0.0
+        visible: indicatorCruise.visible
+        x: 237 * d.scaleRatio - indicatorCruise.contentWidth / 2
+        y: indicatorCruise.y + 4 * d.scaleRatio
         width: 35 * d.scaleRatio
         height: 31 * d.scaleRatio
         source: "./img/ic-acc.png"
+        Behavior on opacity {
+            NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
+        }
+        Behavior on x {
+            NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
+        }
     }
 
     Text {
         id: indicatorCruise
-        visible: true
-        opacity: 0.94
-        x: 280 * d.scaleRatio
+        opacity: (root.cruiseSpeed >= 30) ? 0.94 : 0.0
+        anchors.horizontalCenter: parent.horizontalCenter
         y: 466 * d.scaleRatio
         text:  Math.round(cruiseSpeed)
-        font.family: "open sans"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         font.pixelSize: 34 * d.scaleRatio
+        Behavior on opacity {
+            NumberAnimation { easing.type: Easing.OutCubic; duration: 500 }
+        }
     }
 
     Repeater{

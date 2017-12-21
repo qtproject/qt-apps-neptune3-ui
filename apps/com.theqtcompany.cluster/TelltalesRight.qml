@@ -35,8 +35,8 @@ import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
 
 Item {
-    width: 460
-    height: 35
+    width: 444
+    height: 58
     clip: true
 
     //public
@@ -52,73 +52,79 @@ Item {
     //private
     Item {
         id: d
-        property real scaleRatio: parent.height / 35
+        property real scaleRatio: parent.height / 58
+    }
+
+    Image {
+        id: bg
+        anchors.fill: parent
+        source: "./img/telltales/telltale-bg-right.png"
     }
 
     Image {
         id: rightTurn
         anchors.left: parent.left
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 53 * d.scaleRatio
+        height: 48 * d.scaleRatio
         visible: controlBitRightTurn
-        rotation: 180
         fillMode: Image.PreserveAspectFit
-        source: "./img/icon_turnsignal_on.png"
+        source: "./img/telltales/ic-right-turn.png"
     }
 
-    Picture {
+    Image {
         id: absFailure
         anchors.left: rightTurn.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 40 * d.scaleRatio
+        height: 30 * d.scaleRatio
         visible: controlBitAbsFailure
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_1407.dat"
+        source: "./img/telltales/ic-abs-fault.png"
     }
 
-    Picture {
+    Image {
         id: parkBrake
         anchors.left: absFailure.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 40 * d.scaleRatio
+        height: 30 * d.scaleRatio
         visible: controlBitParkBrake
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_0238.dat"
+        source: "./img/telltales/ic-parking-brake.png"
     }
 
-    Picture {
+    Image {
         id: tyrePressLow
         anchors.left: parkBrake.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 34 * d.scaleRatio
+        height: 30 * d.scaleRatio
         visible: controlBitTyrePressLow
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_1435.dat"
+        source: "./img/telltales/ic-tire-pressure.png"
     }
 
-    Picture {
+    Image {
         id: brakeFailure
         anchors.left: tyrePressLow.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 40 * d.scaleRatio
+        height: 30 * d.scaleRatio
         visible: controlBitBrakeFailure
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_0239.dat"
+        source: "./img/telltales/ic-brake-fault.png"
     }
 
-    Picture {
+    Image {
         id: airbagFailure
         anchors.left: brakeFailure.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 35 * d.scaleRatio
+        height: 34 * d.scaleRatio
         visible: controlBitAirbagFailure
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_2108.dat"
+        source: "./img/telltales/ic-airbag.png"
     }
 }

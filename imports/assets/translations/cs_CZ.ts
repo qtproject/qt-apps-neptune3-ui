@@ -115,12 +115,12 @@
 <context>
     <name>DialPower</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="330"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="349"/>
         <source>% power</source>
         <translation>% nabití</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="341"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="361"/>
         <source>km</source>
         <translation>km</translation>
     </message>
@@ -128,7 +128,7 @@
 <context>
     <name>DialSpeed</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="270"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="284"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>

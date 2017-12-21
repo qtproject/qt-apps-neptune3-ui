@@ -90,7 +90,7 @@ Item {
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0.94 }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: 0.4; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: 0.4; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
             PropertyChanges { target: signKMRemain; opacity: 0.94; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: 0.4 }
         },
@@ -105,7 +105,7 @@ Item {
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
             PropertyChanges { target: signKM; opacity: 0.4; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: 0.94; x: 260 * d.scaleRatio; y: 365 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: 0.94; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: 0.4 }
         }
     ]
@@ -151,22 +151,21 @@ Item {
             to: "navi"
             reversible: false
             SequentialAnimation{
-                //fade out (320ms)
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                //fade out (160ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
                     to: 0
-                    duration: 130
+                    duration: 80
                 }
-                PauseAnimation { duration: 60 }
-                //wait DialFrame to shrink(320ms)
+                //wait DialFrame to shrink(160ms)
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     properties: "x,y"
-                    duration: 320
+                    duration: 160
                 }
-                //fade in (130ms)
+                //fade in (160ms)
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
@@ -179,27 +178,46 @@ Item {
             to: "normal"
             reversible: false
             SequentialAnimation{
-                //fade out (320ms)
+                //fade out (160ms)
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
                     to: 0
-                    duration: 130
+                    duration: 160
                 }
-                PauseAnimation { duration: 190 }
-                //wait DialFrame to expand(320ms)
+                //wait DialFrame to expand(160ms)
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     properties: "x,y"
-                    duration: 320
+                    duration: 160
                 }
-                //fade in (260ms)
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                //fade in (160ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
                     targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
                     property: "opacity"
-                    duration: 130
+                    duration: 80
                 }
+            }
+        },
+        Transition {
+            from: "stopped"
+            to: "navi"
+            reversible: false
+            SequentialAnimation{
+                //wait DialFrame to start (1600ms)
+                PauseAnimation { duration: 1600 }
+                //fade in (640ms)
+                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
+                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
+                PropertyAnimation {
+                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
+                    property: "opacity"
+                    duration: 140
+                }
+                //test the highLight (1080ms)
+                PropertyAnimation { target: root; property: "ePower"; to: 100; duration: 540 }
+                PropertyAnimation { target: root; property: "ePower"; to: 0; duration: 540 }
             }
         },
         Transition {
@@ -266,10 +284,10 @@ Item {
             text: "P"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans Light"
+            font.family: "Open Sans"
+            font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
             color: "black"
             opacity: (root.drivetrain === 0) ? 0.94 : 0.4
-            font.bold: (root.drivetrain === 0) ? true : false
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -278,10 +296,10 @@ Item {
             text: "R"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans Light"
+            font.family: "Open Sans"
+            font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
             color: "black"
             opacity: (root.drivetrain === 1) ? 0.94 : 0.4
-            font.bold: (root.drivetrain === 1) ? true : false
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -290,10 +308,10 @@ Item {
             text: "N"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans Light"
+            font.family: "Open Sans"
+            font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
             color: "black"
             opacity: (root.drivetrain === 2) ? 0.94 : 0.4
-            font.bold: (root.drivetrain === 2) ? true : false
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -301,10 +319,10 @@ Item {
             text: "D"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans Light"
+            font.family: "Open Sans"
+            font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
             color: "black"
             opacity: (root.drivetrain === 3) ? 0.94 : 0.4
-            font.bold: (root.drivetrain === 3) ? true : false
             font.pixelSize: 34 * d.scaleRatio
         }
     }
@@ -314,10 +332,11 @@ Item {
         x: 265 * d.scaleRatio
         y: 222 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: Math.round(ePower)
+        text: Math.abs( Math.round(ePower) )
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans SemiBold"
+        font.family: "Open Sans"
+        font.weight: Font.DemiBold
         color: "black"
         opacity: 0.94
         font.pixelSize: 80 * d.scaleRatio
@@ -328,7 +347,8 @@ Item {
         x: 248 * d.scaleRatio
         y: 324 * d.scaleRatio
         text: qsTr("% power")
-        font.family: "Open Sans Light"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
@@ -341,7 +361,8 @@ Item {
         text: qsTr("km")
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans Light"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
@@ -361,7 +382,8 @@ Item {
         x: 207 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "184"
-        font.family: "open sans"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
@@ -372,7 +394,8 @@ Item {
         x: 303 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "21"
-        font.family: "open sans"
+        font.family: "Open Sans"
+        font.weight: Font.Light
         color: "black"
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio

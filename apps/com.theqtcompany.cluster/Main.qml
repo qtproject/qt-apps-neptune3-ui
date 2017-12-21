@@ -60,18 +60,20 @@ ApplicationManagerWindow {
     }
 
     TelltalesLeft {
-        x: 112 * d.scaleRatio
-        y: 30 * d.scaleRatio
-        width: 600 * d.scaleRatio
-        height: 45 * d.scaleRatio
+        anchors.left: mainContent.left
+        anchors.leftMargin: 111 * d.scaleRatio
+        y: 23 * d.scaleRatio
+        width: 444 * d.scaleRatio
+        height: 58 * d.scaleRatio
         margin: 30 * d.scaleRatio
     }
 
     TelltalesRight {
-        x: 1280 * d.scaleRatio
-        y: 30 * d.scaleRatio
-        width: 600 * d.scaleRatio
-        height: 45 * d.scaleRatio
+        anchors.right: mainContent.right
+        anchors.rightMargin: 111 * d.scaleRatio
+        y: 23 * d.scaleRatio
+        width: 444 * d.scaleRatio
+        height: 58 * d.scaleRatio
         margin: 30 * d.scaleRatio
     }
 

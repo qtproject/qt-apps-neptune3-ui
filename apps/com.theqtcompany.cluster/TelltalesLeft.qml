@@ -35,15 +35,15 @@ import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
 
 Item {
-    width: 460
-    height: 35
+    width: 444
+    height: 58
     clip: true
 
     //public
     property int margin: 25
 
-    property bool controlBitLowBeanHeadLight: true
-    property bool controlBitHighBeanHeadLight: true
+    property bool controlBitLowBeamHeadLight: true
+    property bool controlBitHighBeamHeadLight: true
     property bool controlBitFogLight: true
     property bool controlBitStabilityControl: true
     property bool controlBitSeatBeltFasten: true
@@ -52,72 +52,79 @@ Item {
     //private
     Item {
         id: d
-        property real scaleRatio: parent.height / 35
+        property real scaleRatio: parent.height / 58
     }
 
-    Picture {
-        id: lowBeanHeadLight
+    Image {
+        id: bg
+        anchors.fill: parent
+        source: "./img/telltales/telltale-bg-left.png"
+    }
+
+    Image {
+        id: lowBeamHeadLight
         anchors.left: parent.left
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
-        visible: controlBitLowBeanHeadLight
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_0083.dat"
+        anchors.verticalCenter: parent.verticalCenter
+        width: 42 * d.scaleRatio
+        height: 32 * d.scaleRatio
+        visible: controlBitLowBeamHeadLight
+        source: "./img/telltales/ic-low-beam.png"
     }
 
-    Picture {
-        id: highBeanHeadLight
-        anchors.left: lowBeanHeadLight.right
+    Image {
+        id: highBeamHeadLight
+        anchors.left: lowBeamHeadLight.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
-        visible: controlBitHighBeanHeadLight
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_0082.dat"
+        anchors.verticalCenter: parent.verticalCenter
+        width: 42 * d.scaleRatio
+        height: 27 * d.scaleRatio
+        visible: controlBitHighBeamHeadLight
+        source: "./img/telltales/ic-high-beam.png"
     }
 
-    Picture {
+    Image {
         id: fogLight
-        anchors.left: highBeanHeadLight.right
+        anchors.left: highBeamHeadLight.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 34 * d.scaleRatio
+        height: 34 * d.scaleRatio
         visible: controlBitFogLight
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_0634.dat"
+        source: "./img/telltales/ic-fog-lights.png"
     }
 
-    Picture {
+    Image {
         id: stabilityControl
         anchors.left: fogLight.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 30 * d.scaleRatio
+        height: 33 * d.scaleRatio
         visible: controlBitStabilityControl
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_2630.dat"
+        source: "./img/telltales/ic-stability-control.png"
     }
 
-    Picture {
+    Image {
         id: seatBeltFasten
         anchors.left: stabilityControl.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 25 * d.scaleRatio
+        height: 35 * d.scaleRatio
         visible: controlBitSeatBeltFasten
-        color: "#447191"
-        source: "./iso-icons/iso_grs_7000_4_1702.dat"
+        source: "./img/telltales/ic-seat-belt.png"
     }
 
     Image {
         id: leftTurn
         anchors.left: seatBeltFasten.right
         anchors.leftMargin: margin * d.scaleRatio
-        height: parent.height
-        width: parent.height
+        anchors.verticalCenter: parent.verticalCenter
+        width: 53 * d.scaleRatio
+        height: 48 * d.scaleRatio
         visible: controlBitLeftTurn
         fillMode: Image.PreserveAspectFit
-        source: "./img/icon_turnsignal_on.png"
+        source: "./img/telltales/ic-left-turn.png"
     }
 }

@@ -51,10 +51,17 @@ Item {
         property bool running: false
         function start() { running = true; }
     }
-    Component.onCompleted: Qt.callLater(d.start)
+
+    Component.onCompleted: startDelay.start();
+    Timer {
+        id: startDelay
+        interval: 100
+        repeat: false
+        onTriggered: d.start()
+    }
 
     //states and transitions
-
+    state: "stopped"
     states: [
         State {
             name: "stopped"
@@ -93,8 +100,8 @@ Item {
             reversible: true
             SequentialAnimation {
                 //wait ds/dp to shrink
-                PauseAnimation { duration: 1000 }
-                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 200 }
+                PauseAnimation { duration: 500 }
+                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 100 }
             }
         },
         Transition {
@@ -111,6 +118,7 @@ Item {
     ]
 
     //visual components
+
     DialSpeed {
         id: ds
         x: 10 * d.scaleRatio

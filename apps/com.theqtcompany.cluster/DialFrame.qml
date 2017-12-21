@@ -31,6 +31,7 @@
 
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
+import QtQuick.Shapes 1.0
 
 Item {
     id: root
@@ -131,20 +132,18 @@ Item {
             to: "navi"
             reversible: false
             SequentialAnimation{
-                //fade out the highlights & wait outside components to fade out(320ms)
-                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 0; duration: 130 }
-                PauseAnimation { duration: 190 }
-                //shrink the dialframe (320ms)
+                //wait outside components to fade out(160ms)
+                PauseAnimation { duration: 160 }
+                //shrink the dialframe (160ms)
                 ParallelAnimation {
-                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 130 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 50 }
-                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 270 }
+                        PauseAnimation { duration: 30 }
+                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 130 }
                     }
                 }
-                //wait outside components to fade in & fade in the highlights(320ms)
-                PauseAnimation { duration: 190 }
-                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 1; duration: 130 }
+                //wait outside components to fade in(160ms)
+                PauseAnimation { duration: 160 }
             }
         },
         Transition {
@@ -152,20 +151,18 @@ Item {
             to: "normal"
             reversible: false
             SequentialAnimation{
-                //fade out the highlights & wait outside components to fade out(320ms)
-                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 0; duration: 130 }
-                PauseAnimation { duration: 190 }
-                //expand the dialframe (320ms)
+                //wait outside components to fade out(160ms)
+                PauseAnimation { duration: 160 }
+                //expand the dialframe (160ms)
                 ParallelAnimation {
-                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 270 }
+                    PropertyAnimation { targets: [innerCircle, innerCircleShadow]; properties: "opacity, width"; duration: 130 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 50 }
-                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 270 }
+                        PauseAnimation { duration: 30 }
+                        PropertyAnimation { targets: [outBg, outEdge, outSmallBg, outShadow]; properties: "opacity, width"; duration: 130 }
                     }
                 }
-                //wait outside components to fade in & fade in the highlights(320ms)
-                PauseAnimation { duration: 190 }
-                PropertyAnimation { targets: [highLightOut, highLightIn]; property: "opacity"; to: 1; duration: 130 }
+                //wait outside components to fade(160ms)
+                PauseAnimation { duration: 160 }
             }
         },
         Transition {
@@ -186,36 +183,6 @@ Item {
             }
         }
     ]
-
-    Connections {
-        target: root
-        onHighLightAngChanged: {
-            highLightOutMask.requestPaint();
-            highLightInMask.requestPaint();
-        }
-        onStateChanged: {
-            highLightOutMask.requestPaint();
-            highLightInMask.requestPaint();
-        }
-    }
-
-    Connections {
-        target: highLightIn
-        onOpacityChanged: {
-            if (opacity === 1) {
-                highLightInMask.requestPaint();
-            }
-        }
-    }
-
-    Connections {
-        target: highLightOut
-        onOpacityChanged: {
-            if (opacity === 1) {
-                highLightOutMask.requestPaint();
-            }
-        }
-    }
 
     //visual components
     Image {
@@ -256,135 +223,106 @@ Item {
         source: "./img/dial-outer-circle-shadow.png"
     }
 
-    Rectangle {
-        id: highLightOutSource
-        anchors.fill: outBg
-        anchors.centerIn: parent
-        visible: false
-        color: d.fillColor
-    }
-
-    Canvas {
-        id: highLightOutMask
-        anchors.fill: highLightOutSource
-        renderTarget: Canvas.Image
-        visible: false
-
-        readonly property real radiusIn: innerCircle.width / 2
-        readonly property real radiusOut: highLightOutMask.width / 2
-        readonly property real centerX: highLightOutMask.width / 2
-        readonly property real centerY: highLightOutMask.height / 2
-
-        onPaint: {
-            var ctx = getContext("2d");
-            ctx.clearRect(0, 0, highLightOutMask.width, highLightOutMask.height);
-            ctx.globalCompositeOperation = "source-over";
-            ctx.lineWidth = 0;
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            //start point
-            ctx.moveTo(
-                        centerX + Math.cos(d.zeroRadin) * radiusIn,
-                        centerY + Math.sin(d.zeroRadin) * radiusIn);
-            //start line
-            ctx.lineTo(
-                        centerX + Math.cos(d.zeroRadin) * radiusOut,
-                        centerY + Math.sin(d.zeroRadin) * radiusOut);
-            //arc to end line
-            ctx.arc(
-                        centerX,
-                        centerY,
-                        radiusOut,
-                        d.zeroRadin,
-                        d.highLightRadin,
-                        !d.isPositive);
-            //end line
-            ctx.lineTo(
-                        centerX + Math.cos(d.highLightRadin) * radiusIn,
-                        centerY + Math.sin(d.highLightRadin) * radiusIn);
-            //arc to start line
-            ctx.arc(
-                        centerX,
-                        centerY,
-                        radiusIn,
-                        d.highLightRadin,
-                        d.zeroRadin,
-                        d.isPositive);
-            ctx.fill();
-        }
-    }
-
-    OpacityMask {
+    Shape {
         id: highLightOut
-        anchors.fill: highLightOutSource
         visible: true
-        maskSource: highLightOutMask
-        source: highLightOutSource
-    }
+        anchors.fill: outBg
 
-    RadialGradient {
-        id: highLightInSource
-        anchors.fill: innerCircle
-        visible: false
+        ShapePath {
+            id: highLightOutPath
+            readonly property real centerX: highLightOut.width / 2
+            readonly property real centerY: highLightOut.height / 2
+            readonly property real radiusIn: innerCircle.width / 2
+            readonly property real radiusOut: highLightOut.width / 2
 
-        gradient: Gradient {
-            GradientStop { position: 0;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 0) }
-            GradientStop { position: 0.5; color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 0.4) }
-            GradientStop { position: 1;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 1) }
+            fillColor: d.fillColor
+            strokeColor: "transparent"
+            strokeWidth: 0
+            startX: highLightOutPath.centerX + Math.cos(d.zeroRadin) * highLightOutPath.radiusIn
+            startY: highLightOutPath.centerY + Math.sin(d.zeroRadin) * highLightOutPath.radiusIn
+            PathLine {
+                x: highLightOutPath.centerX + Math.cos(d.zeroRadin) * highLightOutPath.radiusOut
+                y: highLightOutPath.centerY + Math.sin(d.zeroRadin) * highLightOutPath.radiusOut
+            }
+            PathArc {
+                x: highLightOutPath.centerX + Math.cos(d.highLightRadin) * highLightOutPath.radiusOut
+                y: highLightOutPath.centerY + Math.sin(d.highLightRadin) * highLightOutPath.radiusOut
+                radiusX: highLightOutPath.radiusOut
+                radiusY: highLightOutPath.radiusOut
+                direction: d.isPositive? PathArc.Clockwise : PathArc.Counterclockwise
+                useLargeArc: (root.highLightAng - root.zeroAng) >= 180 ? true : false
+            }
+            PathLine {
+                x: highLightOutPath.centerX + Math.cos(d.highLightRadin) * highLightOutPath.radiusIn
+                y: highLightOutPath.centerY + Math.sin(d.highLightRadin) * highLightOutPath.radiusIn
+            }
+            PathArc {
+                x: highLightOutPath.centerX + Math.cos(d.zeroRadin) * highLightOutPath.radiusIn
+                y: highLightOutPath.centerY + Math.sin(d.zeroRadin) * highLightOutPath.radiusIn
+                radiusX: highLightOutPath.radiusIn
+                radiusY: highLightOutPath.radiusIn
+                direction: d.isPositive? PathArc.Counterclockwise : PathArc.Clockwise
+                useLargeArc: (root.highLightAng - root.zeroAng) >= 180 ? true : false
+            }
         }
     }
 
-    Canvas {
-        id: highLightInMask
-        anchors.fill: parent
-        visible: false
 
-        renderTarget: Canvas.Image
+    Shape {
+        id: highLightInSource
+        visible: true
+        width: outBg.width
+        height: outBg.height
+        x: -1000
+        y: -1000
 
-        readonly property real radius: highLightInMask.width / 2
-        readonly property real centerX: highLightInMask.width / 2
-        readonly property real centerY: highLightInMask.height / 2
+        ShapePath {
+            id: highLightInPath
+            readonly property real centerX: highLightInSource.width / 2
+            readonly property real centerY: highLightInSource.height / 2
+            readonly property real radius: highLightInSource.width / 2
 
-        onPaint: {
-            var ctx = getContext("2d");
-            ctx.clearRect(0, 0, highLightInMask.width, highLightInMask.height);
-            ctx.globalCompositeOperation = "source-over";
-            ctx.lineWidth = 0;
-            ctx.fillStyle = "black";
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY); //center of the circule
-            //start line
-            ctx.lineTo(
-                        centerX + Math.cos(d.zeroRadin) * radius,
-                        centerY + Math.sin(d.zeroRadin) * radius);
-            //arc
-            ctx.arc(
-                        centerX,
-                        centerY,
-                        radius,
-                        d.zeroRadin,
-                        d.highLightRadin,
-                        !d.isPositive);
-            ctx.closePath();
-            ctx.fill();
+            fillGradient: RadialGradient {
+                centerX: highLightInPath.centerX
+                centerY: highLightInPath.centerY
+                focalX: centerX
+                focalY: centerY
+                centerRadius: highLightInPath.radius
+                GradientStop { position: 0;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, 0) }
+                GradientStop { position: 0.4; color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, d.fillColor.a * 0.2) }
+                GradientStop { position: 0.8; color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, d.fillColor.a * 0.3) }
+                GradientStop { position: 1;   color: Qt.rgba( d.fillColor.r, d.fillColor.g, d.fillColor.b, d.fillColor.a * 0.4) }
+            }
+            strokeColor: "transparent"
+            strokeWidth: 0
+            startX: highLightInPath.centerX
+            startY: highLightInPath.centerY
+            PathLine {
+                x: highLightInPath.centerX + Math.cos(d.zeroRadin) * highLightInPath.radius
+                y: highLightInPath.centerY + Math.sin(d.zeroRadin) * highLightInPath.radius
+            }
+            PathArc {
+                x: highLightInPath.centerX + Math.cos(d.highLightRadin) * highLightInPath.radius
+                y: highLightInPath.centerY + Math.sin(d.highLightRadin) * highLightInPath.radius
+                radiusX: highLightInPath.centerX
+                radiusY: highLightInPath.centerY
+                direction: d.isPositive? PathArc.Clockwise : PathArc.Counterclockwise
+                useLargeArc: (root.highLightAng - root.zeroAng) >= 180 ? true : false
+            }
+            PathLine {
+                x: highLightInPath.centerX
+                y: highLightInPath.centerY
+            }
         }
     }
 
     FastBlur {
-        id: highLightInMaskBlur
-        anchors.fill: highLightInMask
-        visible: false
-        source: highLightInMask
-        radius: 60
-        cached: true
-    }
-
-    OpacityMask {
         id: highLightIn
-        anchors.fill: highLightInSource
-        visible: true
-        maskSource: highLightInMaskBlur
+        anchors.fill: innerCircle
         source: highLightInSource
+        radius: 48
+        cached: true
+        visible: true
     }
 
     Image {
