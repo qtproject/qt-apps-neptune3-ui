@@ -242,10 +242,6 @@ Item {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
 
-    onSpeedLimitChanged: {
-        graduation.requestPaint();
-    }
-
     onSpeedChanged: {
         dialFrame.highLightAng = d.speed2Angle(speed);
     }
@@ -345,8 +341,6 @@ Item {
             readonly property real centerX: cruiseMask.width / 2
             readonly property real centerY: cruiseMask.height / 2
 
-            readonly property real maxRadin: dialFrame.maxAng / 180 * Math.PI
-            readonly property real minRadin: dialFrame.minAng / 180 * Math.PI
             readonly property real zeroRadin: dialFrame.zeroAng / 180 * Math.PI
             readonly property real cruiseRadin: d.speed2Angle(cruiseSpeed) / 180 * Math.PI
             readonly property bool isPositive: cruiseRadin >= zeroRadin ? true : false
@@ -479,7 +473,6 @@ Item {
             ctx.clearRect(0,0,graduation.width,graduation.height);
             ctx.globalCompositeOperation = "source-over";
             drawScalesLine(ctx);
-            drawSpeedLimit(ctx);
         }
         function drawScalesLine(ctx) {
             ctx.save();
@@ -523,24 +516,29 @@ Item {
             ctx.stroke();
             ctx.restore();
         }
+    }
 
-        function drawSpeedLimit(ctx) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.lineWidth = speedLimitLineWidth;
-            ctx.strokeStyle = "white"
+    Shape {
+        id: graduationSpdLimit
+        anchors.fill: graduation
+        visible: speedLimit >= 30 ? true : false
+        opacity: graduation.opacity
 
-            if (speedLimit <= maxDrawValue) {
-                var radin = d.speed2Angle(speedLimit) / 180 * Math.PI;
-                ctx.moveTo(
-                            centerX + Math.cos(radin) * (radius-scaleLineBlank - scaleLineLong),
-                            centerY + Math.sin(radin) * (radius - scaleLineBlank - scaleLineLong));
-                ctx.lineTo(
-                            centerX + Math.cos(radin) * (radius - scaleLineBlank),
-                            centerY + Math.sin(radin) * (radius - scaleLineBlank));
+        ShapePath {
+            id: spdLimitPath
+            readonly property real spdLimitRadin: d.speed2Angle(speedLimit) / 180 * Math.PI
+
+            strokeColor: "white"
+            strokeWidth: graduation.speedLimitLineWidth
+            startX: graduation.centerX + Math.cos(spdLimitPath.spdLimitRadin) * (graduation.radius - graduation.scaleLineBlank - graduation.scaleLineLong)
+            startY: graduation.centerY + Math.sin(spdLimitPath.spdLimitRadin) * (graduation.radius - graduation.scaleLineBlank - graduation.scaleLineLong)
+
+            PathLine {
+                x: graduation.centerX + Math.cos(spdLimitPath.spdLimitRadin) * (graduation.radius - graduation.scaleLineBlank)
+                y: graduation.centerY + Math.sin(spdLimitPath.spdLimitRadin) * (graduation.radius - graduation.scaleLineBlank)
+
             }
-            ctx.stroke();
-            ctx.restore();
         }
+
     }
 }
