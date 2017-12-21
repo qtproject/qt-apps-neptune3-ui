@@ -22,9 +22,8 @@
 <context>
     <name>AboutMarketing</name>
     <message>
-        <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
         <source>We put Stunning User Experience on the road</source>
-        <translation>我们为您带来旅程中令人惊艳的交互体验</translation>
+        <translation type="vanished">我们为您带来旅程中令人惊艳的交互体验</translation>
     </message>
 </context>
 <context>
