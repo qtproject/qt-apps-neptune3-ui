@@ -36,7 +36,6 @@ import QtQuick.Layouts 1.0
 import utils 1.0
 import controls 1.0
 import models.statusbar 1.0
-import models.settings 1.0
 import models.system 1.0
 
 Pane {
@@ -45,11 +44,6 @@ Pane {
     height: Style.statusBarHeight
 
     property var uiSettings
-
-    MouseArea {
-        anchors.fill: parent
-        onPressAndHold: SystemModel.toolBarMonitorVisible = !SystemModel.toolBarMonitorVisible
-    }
 
     IndicatorTray {
         Layout.fillHeight: true
@@ -67,6 +61,28 @@ Pane {
         height: Style.vspan(0.04)
         color: "#3a3a3a"
     }
+
+    ColumnLayout {
+        visible: SystemModel.showProcessMonitor
+        anchors.left: notificationCenterHandlePlaceHolder.right
+        anchors.leftMargin: Style.hspan(4)
+        Label {
+            text: qsTr("FPS: %1").arg(SystemModel.frameRate)
+            font.pixelSize: Style.fontSizeXS
+            font.weight: Style.fontWeight
+        }
+        Label {
+            text: qsTr("CPU: %1 %").arg(SystemModel.cpuUsage)
+            font.pixelSize: Style.fontSizeXS
+            font.weight: Style.fontWeight
+        }
+        Label {
+            text: qsTr("RAM: %1 MB (%2 %)").arg(SystemModel.ramUsage).arg(SystemModel.ramPercentage)
+            font.pixelSize: Style.fontSizeXS
+            font.weight: Style.fontWeight
+        }
+    }
+
 
     RowLayout {
         spacing: Style.paddingXL * 2

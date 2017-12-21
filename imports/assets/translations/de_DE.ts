@@ -168,6 +168,13 @@
     </message>
 </context>
 <context>
+    <name>MonitorView</name>
+    <message>
+        <source>Process Monitor on Status Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
         <source>Next</source>
@@ -292,6 +299,21 @@
     </message>
     <message>
         <source>themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>FPS: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -59,7 +59,9 @@ TritonPopup {
             Layout.fillHeight: true
             currentIndex: tabBar.currentIndex
             AboutMarketing {}
-            AboutProcess {}
+            AboutProcess {
+                applicationModel: root.applicationModel
+            }
             AboutRunningApps {
                 applicationModel: root.applicationModel
             }

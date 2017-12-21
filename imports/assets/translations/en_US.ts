@@ -4,17 +4,17 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="76"/>
+        <location filename="../../../sysui/about/About.qml" line="78"/>
         <source>Marketing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="80"/>
+        <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="84"/>
+        <location filename="../../../sysui/about/About.qml" line="86"/>
         <source>Running Apps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -199,6 +199,14 @@
     </message>
 </context>
 <context>
+    <name>MonitorView</name>
+    <message>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
+        <source>Process Monitor on Status Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="78"/>
@@ -225,7 +233,7 @@
 <context>
     <name>NetworkMonitor</name>
     <message>
-        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="59"/>
+        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="58"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
@@ -353,6 +361,24 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="86"/>
         <source>themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
+        <source>FPS: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
+        <source>CPU: %1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
+        <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -35,13 +35,13 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import utils 1.0
+import models.system 1.0
 import QtApplicationManager 1.0
 
 Item {
     id: root
     clip: true
 
-    property int currentFps: 0
     property int ram: 0
     property real ramUsed: 0
     property int cpu: 0
@@ -49,27 +49,30 @@ Item {
     property var applicationWindows: []
     property int reportingInterval: 1000
     property int modelCount: 12
+    property var applicationModel
 
-    Binding {
-       target: SystemMonitor; property: "reportingInterval"; value:  root.reportingInterval
+    onCpuChanged: SystemModel.cpuUsage = root.cpu
+    onRamUsedChanged: {
+        SystemModel.ramPercentage = root.ram
+        SystemModel.ramUsage = root.ramUsed
     }
-    Binding {
-        target: SystemMonitor; property: "count"; value:  root.modelCount
-    }
-    Binding {
-        target: SystemMonitor; property: "cpuLoadReportingEnabled"; value: root.visible
-    }
-    Binding {
-        target: root; property: "rootWindow"; value: Window.window
+    Component.onCompleted: initialize()
+
+    function initialize() {
+        SystemMonitor.reportingInterval = root.reportingInterval
+        SystemMonitor.count = root.modelCount
+        SystemMonitor.cpuLoadReportingEnabled = true
+        root.rootWindow = Window.window
     }
 
     function getApplicationWindows() {
-        root.applicationWindows = []
-        if (ApplicationManagerModel.activeAppId === "")
+        root.applicationWindows = [];
+        if (root.applicationModel.activeAppId === "")
             return
-        for (var i = 0; i < WindowManager.count; i++) {
-            if (WindowManager.get(i).applicationId === ApplicationManagerModel.activeAppId)
-                root.applicationWindows.push(WindowManager.get(i).windowItem)
+        for (var i = 0; i < WindowManager.count; ++i) {
+            if (WindowManager.get(i).applicationId === root.applicationModel.activeAppId) {
+                root.applicationWindows.push(WindowManager.get(i).windowItem);
+            }
         }
     }
 
@@ -80,25 +83,28 @@ Item {
 
     ProcessMonitor {
         id: processMon
-        applicationId: ApplicationManagerModel.activeAppId
+        applicationId: root.applicationModel.activeAppId
         reportingInterval: root.reportingInterval
         count: root.modelCount
 
-        memoryReportingEnabled: root.visible
-        frameRateReportingEnabled: root.visible
+        memoryReportingEnabled: true
+        frameRateReportingEnabled: true
         monitoredWindows: (applicationId === "" || ApplicationManager.singleProcess) ? [root.rootWindow] : root.applicationWindows
         onMemoryReportingChanged: {
             root.ram = (memoryPss.total/SystemMonitor.totalMemory * 100).toFixed(0)
             root.ramUsed = (memoryPss.total / 1e6).toFixed(0);
         }
+
         onFrameRateReportingChanged: {
             fpsMonitor.valueText = ""
             for (var i in frameRate) {
                 fpsMonitor.valueText += "|"
                 fpsMonitor.valueText += frameRate[i].average.toFixed(0)
                 fpsMonitor.valueText += "|"
+                SystemModel.frameRate = frameRate[i].average.toFixed(0)
             }
         }
+
         onApplicationIdChanged: getApplicationWindows()
     }
 
@@ -130,5 +136,41 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
+    }
+
+    Label {
+        id: switchLabel
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(0.2)
+        anchors.right: switchControl.left
+        text: qsTr("Process Monitor on Status Bar")
+        font.pixelSize: Style.fontSizeXS
+    }
+
+    Switch {
+        id: switchControl
+
+        anchors.right: parent.right
+        anchors.verticalCenter: switchLabel.verticalCenter
+        indicator: Rectangle {
+            implicitWidth: Style.hspan(0.7)
+            implicitHeight: Style.vspan(0.2)
+            x: switchControl.leftPadding
+            y: parent.height / 2 - height / 2
+            radius: 13
+            color: switchControl.checked ? Style.colorOrange : "#ffffff"
+            border.color: switchControl.checked ? Style.colorOrange : "#cccccc"
+
+            Rectangle {
+                x: switchControl.checked ? parent.width - width : 0
+                width: Style.vspan(0.2)
+                height: width
+                radius: 13
+                color: switchControl.down ? "#cccccc" : "#ffffff"
+                border.color: switchControl.checked ? Style.colorOrange : "#999999"
+            }
+        }
+
+        onCheckedChanged: SystemModel.showProcessMonitor = checked
     }
 }

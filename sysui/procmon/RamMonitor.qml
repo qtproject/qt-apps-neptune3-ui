@@ -31,7 +31,7 @@
 
 import QtQuick 2.6
 import QtApplicationManager 1.0
-import com.pelagicore.styles.triton 1.0
+import utils 1.0
 
 MonitorPanel {
     id: root
@@ -46,9 +46,13 @@ MonitorPanel {
 
         Rectangle {
             width: parent.width
-            height: 3
-            color: root.TritonStyle.accentColor
-            y: parent.height - height - (model.memoryPss.total/SystemMonitor.totalMemory)*parent.height
+            height: parent.height
+            color: Style.colorOrange
+            Rectangle {
+                width: parent.width
+                height: parent.height - ((model.memoryPss.total/SystemMonitor.totalMemory) * parent.height)
+                color: "#efefef"
+            }
         }
     }
 }

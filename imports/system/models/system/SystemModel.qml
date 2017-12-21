@@ -35,9 +35,10 @@ import QtQuick 2.0
 QtObject {
     id: root
 
-    property bool climateExpanded: false
-    property bool windowOverviewVisible: false
-    property bool toolBarMonitorVisible: false
-    property bool notificationCenterVisible: false
+    property bool showProcessMonitor: false
+    property int frameRate: -1
+    property int cpuUsage: -1
+    property int ramPercentage: -1
+    property int ramUsage: -1
 }
 

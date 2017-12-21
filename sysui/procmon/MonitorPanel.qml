@@ -49,6 +49,7 @@ Item {
     default property alias content: graphContent.children
     property alias model: graph.model
     property alias delegate: graph.delegate
+    readonly property int margin: 15
 
     RowLayout {
         anchors.top: parent.top
@@ -60,13 +61,13 @@ Item {
         Label {
             id: descriptionText
             Layout.fillWidth: true
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: Style.fontSizeM
         }
 
         Label {
             id: valueText
             Layout.preferredWidth: Style.hspan(2)
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: Style.fontSizeM
         }
     }
 
@@ -79,9 +80,24 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: root.leftMargin
 
+        Item {
+            id: graphContent
+            anchors.fill: parent
+            clip: true
+
+            ListView {
+                id: graph
+                width: parent.width
+                height: parent.height - root.margin
+                anchors.bottom: parent.bottom
+                orientation: ListView.Horizontal
+                interactive: false
+            }
+        }
+
         Row {
             id: dottedLine
-            y: root.graphHeight - (root.middleLine * root.graphHeight)
+            y: root.graphHeight - (root.middleLine * root.graphHeight) + 5
             spacing: 4
 
             Repeater {
@@ -100,8 +116,9 @@ Item {
             id: middleLineText
             width: Style.hspan(1)
             anchors.left: dottedLine.right
+            anchors.leftMargin: root.margin
             anchors.verticalCenter: dottedLine.verticalCenter
-            font.pixelSize: Style.fontSizeM
+            font.pixelSize: Style.fontSizeS
         }
 
         Rectangle {
@@ -109,19 +126,6 @@ Item {
             height: 2
             anchors.bottom: parent.bottom
             color: "#4d4d4d"
-        }
-
-        Item {
-            id: graphContent
-            anchors.fill: parent
-            clip: true
-
-            ListView {
-                id: graph
-                anchors.fill: parent
-                orientation: ListView.Horizontal
-                interactive: false
-            }
         }
     }
 }

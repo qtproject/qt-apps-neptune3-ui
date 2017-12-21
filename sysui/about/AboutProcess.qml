@@ -38,8 +38,11 @@ import utils 1.0
 import "../procmon"
 
 Item {
+    id: root
     implicitWidth: Style.hspan(18)
     implicitHeight: Style.vspan(16)
+
+    property var applicationModel
 
     Image {
         id: logo
@@ -56,5 +59,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+
+        applicationModel: root.applicationModel
     }
 }

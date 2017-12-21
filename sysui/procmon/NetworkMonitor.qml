@@ -35,7 +35,6 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 import com.pelagicore.systeminfo 1.0
-import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -55,7 +54,7 @@ Item {
         Label {
             id: descriptionText
             Layout.fillWidth: true
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: Style.fontSizeM
             text: qsTr("Network")
         }
         ListView {
@@ -67,7 +66,7 @@ Item {
             delegate: ItemDelegate {
                 width: ListView.view.width
                 text: modelData
-                font.pixelSize: Style.fontSizeM
+                font.pixelSize: Style.fontSizeS
             }
             ScrollBar.vertical: ScrollBar { }
         }

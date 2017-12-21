@@ -31,7 +31,7 @@
 
 import QtQuick 2.6
 import QtApplicationManager 1.0
-import com.pelagicore.styles.triton 1.0
+import utils 1.0
 
 MonitorPanel {
     id: root
@@ -50,11 +50,16 @@ MonitorPanel {
 
             delegate: Rectangle {
                 width: rectContainer.width
-                height: 3
-                color: Qt.darker(root.TritonStyle.accentColor, (1 + index/10))
-                y: frameRate[index]
-                     ? rectContainer.height - height - (frameRate[index].average/100)*rectContainer.height
-                     : rectContainer.height
+                height: rectContainer.height
+                color: Qt.darker(Style.colorOrange, (1 + index/10))
+
+                Rectangle {
+                    width: parent.width
+                    height: frameRate[index]
+                            ? parent.height - (frameRate[index].average/100) * parent.height
+                            : 0
+                    color: "#efefef"
+                }
             }
         }
     }
