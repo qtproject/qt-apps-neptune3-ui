@@ -73,8 +73,6 @@ import utils 1.0
 
 ApplicationManagerWindow {
     id: root
-    width: Style.hspan(24)
-    height: Style.vspan(24)
 
     color: "transparent"
 
