@@ -43,8 +43,7 @@ Button {
     property string icon
 
     background: Rectangle {
-        // TODO check the colors with designer
-        color: checked ? Qt.darker("#F1EFED", 1.2) : "transparent"
+        color: "transparent"
     }
 
     contentItem: Item {
@@ -72,6 +71,8 @@ Button {
                 horizontalAlignment: Text.AlignHCenter
                 text: root.text
                 font.pixelSize: Style.fontSizeS
+                opacity: root.checked ? 1.0 : 0.25
+                Behavior on opacity { OpacityAnimator {} }
             }
         }
     }

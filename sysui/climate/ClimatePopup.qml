@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 import animations 1.0
-
+import com.pelagicore.styles.triton 1.0
 import triton.controls 1.0
 
 TritonPopup {
@@ -157,24 +157,25 @@ TritonPopup {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             text: model ? model.leftSeat.valueString : ""
+            font.pixelSize: Style.fontSizeL
+            opacity: 0.6
         }
-
 
         Rectangle {
             anchors.right: tempLink.left
             anchors.rightMargin: Style.hspan(0.5)
             anchors.verticalCenter: parent.verticalCenter
-            // FIXME: Take color from style
-            color: "black"
+            color: TritonStyle.primaryTextColor
             height: Style.vspan(0.03)
             width: Style.hspan(6)
+            opacity: 0.25
         }
         Image {
             id: tempLink
             width: Style.hspan(1)
             height: width
             anchors.centerIn: parent
-            source: Style.symbol("ic-link", false /* active */)
+            source: Style.symbol("ic-link-status", false /* active */)
             fillMode: Image.Pad
             MouseArea {
                 anchors.fill: parent
@@ -185,16 +186,18 @@ TritonPopup {
             anchors.left: tempLink.right
             anchors.leftMargin: Style.hspan(0.5)
             anchors.verticalCenter: parent.verticalCenter
-            // FIXME: Take color from style
-            color: "black"
+            color: TritonStyle.primaryTextColor
             height: Style.vspan(0.03)
             width: Style.hspan(6)
+            opacity: 0.25
         }
 
         Label {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             text: model ? model.rightSeat.valueString : ""
+            font.pixelSize: Style.fontSizeL
+            opacity: 0.6
         }
     }
 }

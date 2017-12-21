@@ -81,6 +81,7 @@ Item {
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.leftSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
+            opacity: 0.6
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
@@ -100,6 +101,7 @@ Item {
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.rightSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
+            opacity: 0.6
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter

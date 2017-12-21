@@ -61,22 +61,22 @@
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="46"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="47"/>
         <source>Front defrost</source>
         <translation>Odmražování vpředu</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="51"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="53"/>
         <source>Rear defrost</source>
         <translation>Odmražování vzadu</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="56"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="59"/>
         <source>Driver seat heat</source>
         <translation>Vyhřívání sedadla řidiče</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="61"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="65"/>
         <source>Passenger seat heat</source>
         <translation>Vyhřívání sedadla spolujezdce</translation>
     </message>
