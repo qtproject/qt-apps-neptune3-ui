@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune IVI UI.
+** This file is part of the Triton IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -104,6 +104,7 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
+
         FpsMonitor {
             id: fpsMonitor
             Layout.fillWidth: true
@@ -120,9 +121,11 @@ Item {
             model: processMon
             valueText: root.ram + "% " + root.ramUsed + "MB"
         }
+
         NetworkMonitor {
             Layout.fillWidth: true
         }
+
         Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
