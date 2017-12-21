@@ -36,7 +36,6 @@ import QtQml 2.2
 
 Entity {
     id: root
-
     property Camera camera
     property real lookSpeed: 180.0
 

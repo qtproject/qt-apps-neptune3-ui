@@ -28,36 +28,38 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+import QtQuick 2.0
 import Qt3D.Core 2.0
-import Qt3D.Render 2.0
+import Qt3D.Render 2.9
+import Qt3D.Extras 2.9
+import Qt3D.Input 2.0
+import QtQuick.Scene3D 2.0
 
-RenderSurfaceSelector {
-    property alias camera: cameraSelector.camera
-    property alias clearColor: clearBuffer.clearColor
+Entity {
+    id: root
 
-    id: surfaceSelector
-    RenderStateSet {
+    Mesh {
+        id: seats
+        source: "file:assets/models/seats.obj"
+    }
 
-        DepthTest {
-            id: depth
-            depthFunction: DepthTest.Less
-        }
-
-        renderStates: [depth]
-
-        Viewport {
-            id: viewport
-            normalizedRect: Qt.rect(0.0, 0.0, 1.0, 1.0)
-
-            // Use the specified camera
-            CameraSelector {
-                id: cameraSelector
-                ClearBuffers {
-                    id: clearBuffer
-                    clearColor: "white"
-                    buffers: ClearBuffers.ColorDepthBuffer
-                }
-            }
+    Texture2D {
+        id: seatsTexture
+        format: Texture.SRGB8_Alpha8
+        TextureImage {
+            source: "file:assets/textures/seats.png"
         }
     }
+
+    DiffuseMapMaterial {
+        id: seatsMaterial
+        diffuse: seatsTexture
+    }
+
+    Transform {
+        id: transform
+        scale: vehicle3DView.scaleFactor
+    }
+
+    components: [transform, seats, seatsMaterial]
 }

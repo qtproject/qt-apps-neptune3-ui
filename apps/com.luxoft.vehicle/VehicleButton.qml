@@ -34,21 +34,75 @@ import QtQuick.Controls 2.2
 ToolButton {
     id: root
 
-    font.pixelSize: 18
+    state: "FAT"
+    property string iconSource: ""
+
+    states: [
+        State {
+            name: "FAT"
+            PropertyChanges {
+                target: backgroundItem
+                minWidth: 220
+                implicitHeight: 100
+                sideMargins: 58
+            }
+            PropertyChanges {
+                target: contentText
+                font.pixelSize: 26
+            }
+        },
+        State {
+            name: "SMALL"
+            PropertyChanges {
+                target: backgroundItem
+                minWidth: 0
+                implicitHeight: 52
+                sideMargins: 22
+            }
+            PropertyChanges {
+                target: contentText
+                font.pixelSize: 22
+            }
+        }
+    ]
 
     contentItem: Text {
-        text: root.text
-        font: root.font
-        color: root.down ? "#41403f" : "#595756"
-        horizontalAlignment: Text.AlignHCenter
+        id: contentText
+
         verticalAlignment: Text.AlignVCenter
+        anchors.left: parent.left
+        anchors.leftMargin: backgroundItem.contentMargin
+
+        text: root.text
+        font.family: "Open Sans"
+        font.weight: Font.Light
+        color: root.down ? "#41403f" : "#595756"
+        opacity: 0.94
     }
     background: Rectangle {
-        implicitWidth: 200
-        implicitHeight: 75
-        radius: height / 2
-        color:root.down ? "#c7c1bf" : "transparent"
+        id: backgroundItem
+
+        implicitWidth: defaultWidth < minWidth ? minWidth : defaultWidth
+        implicitHeight: 100
         border.color: "#c7c1bf"
         border.width: 1
+
+        radius: height / 2
+        color: root.down ? "#c7c1bf" : "transparent"
+
+        readonly property int defaultWidth: sideMargins + contentMargin + contentText.contentWidth
+        property int minWidth: 220
+        property int sideMargins: 58
+        property int iconMargin: 10
+        property int contentMargin: sideMargins + iconImage.width + iconMargin
+
+        Image {
+            id: iconImage
+
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: backgroundItem.sideMargins
+            source: root.iconSource
+        }
     }
 }

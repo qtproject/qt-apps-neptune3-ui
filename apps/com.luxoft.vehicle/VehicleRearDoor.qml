@@ -35,7 +35,7 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-VehiclePart {
+Entity {
     id: root
 
     Transform {
@@ -50,7 +50,7 @@ VehiclePart {
         }
     }
 
-    components: [transform, myMesh, material]
+    //components: [transform, myMesh, material]
 
     function openDoor() {
         if(doorOpenAnimation.running)

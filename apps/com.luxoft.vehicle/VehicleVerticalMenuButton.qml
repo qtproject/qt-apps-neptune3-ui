@@ -36,21 +36,26 @@ ToolButton {
 
     width: 100
     height: 100
-    font.pixelSize: 18
+
     property string sourceUp: ""
     property string sourceDown: ""
 
     contentItem: Text {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 30
-        text: root.text
-        font: root.font
-        color: root.down ? "#cb7733" : "#a19d9b"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignBottom
+
+        text: root.text
+        font {
+            pixelSize: 22
+            family: "Open Sans"
+        }
+        opacity: 0.6
+        color: root.down ? "#cb7733" : "contrast"
     }
 
-    background: Rectangle {        
+    background: Rectangle {
         implicitWidth: root.width
         implicitHeight: root.height
         color: "transparent"

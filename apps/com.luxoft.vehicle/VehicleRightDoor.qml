@@ -35,22 +35,85 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-VehiclePart {
-    id: root
-
+Entity {
     Transform {
         id: transform
         property real userAngle: 0.0
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate( Qt.vector3d(1.37, 1, 1.2))
-            m.rotate(userAngle, Qt.vector3d(0, 1, 0))
-            m.translate( Qt.vector3d(-1.37, -1, -1.2))
+            var xOffset = 14.8;
+            var yOffset = 11.38;
+            var zOffset = 12.20;
+            m.scale(vehicle3DView.scaleFactor);
+            m.translate( Qt.vector3d(-xOffset, yOffset, zOffset))
+            m.rotate(userAngle, Qt.vector3d(0, -1, 0))
+            m.translate( Qt.vector3d(xOffset, -yOffset, -zOffset))
             return m;
         }
     }
 
-    components: [transform, myMesh, material]
+    Entity {
+        Mesh {
+            id: mesh
+            meshName: "^silver_paint_2$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, mesh, grayMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: mesh2
+            meshName: "^silver_paint_3$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [mesh2, grayMaterial, transform]
+    }
+
+    Entity {
+        Mesh {
+            id: glass
+            meshName: "^glass_2$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [glass, glassMaterial, transform]
+    }
+
+    Entity {
+        Mesh {
+            id: chrome
+            meshName: "^chrome_2$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [chrome, chromeMaterial, transform]
+    }
+
+    Entity {
+        Mesh {
+            id: chrome1
+            meshName: "^chrome_3$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [chrome1, chromeMaterial, transform]
+    }
+
+    Entity {
+        Mesh {
+            id: black
+            meshName: "^black_2$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [black, blackMaterial, transform]
+    }
+
+    Entity {
+        Mesh {
+            id: black1
+            meshName: "^black_3$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [black1, blackMaterial, transform]
+    }
 
     function openDoor() {
         if(doorOpenAnimation.running)
@@ -72,7 +135,7 @@ VehiclePart {
         property: "userAngle"
         duration: 1000
         from: transform.userAngle
-        to: -75
+        to: -55
     }
 
     NumberAnimation {

@@ -35,45 +35,78 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-VehiclePart {
+Entity {
     id: root
+
+    property real roofSliderValue: 0.0
+
+    property real roofClosedPosition: -1.15
+    property real roofOpenedPosition: 0.0
 
     Transform {
         id: transform
-        property real scale: 1.0
-        property real translationZ: 0.0
+        property real translationZ: roofClosedPosition
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0.0, 0.0, translationZ))
-            m.scale(Qt.vector3d(1.0, 1.0, scale))
+            m.scale(Qt.vector3d(vehicle3DView.scaleFactor,
+                                vehicle3DView.scaleFactor,
+                                vehicle3DView.scaleFactor * (1 - roofSliderValue)));
+            m.translate(Qt.vector3d(0.0, 0.0, translationZ * roofSliderValue));
             return m;
         }
     }
 
-    function openRoof() {
-        roofAnimation.restart()
-        roofAnimationT.restart()
+    Mesh {
+        id: mesh
+        meshName: "sun_roof"
+        source: vehicle3DView.carObjFilePath
+    }
+
+    function openRoof() {        
+        roofTranslateAnimation.restart()
+        roofScaleAnimation.restart()
     }
 
     function closeRoof() {
+        roofTranslateAnimationClose.restart()
+        roofScaleAnimationClose.restart()
     }
 
     NumberAnimation {
-        id: roofAnimation
-        target: transform
-        property: "scale"
+        id: roofScaleAnimation
+        target: root
+        property: "roofSliderValue"
         duration: 1000
-        from: 1.0
-        to: 0.0
+        from: roofSliderValue
+        to: 1.0
     }
+
     NumberAnimation {
-        id: roofAnimationT
+        id: roofTranslateAnimation
         target: transform
         property: "translationZ"
         duration: 1000
-        from: 0.0
-        to: -1.15
+        from: transform.translationZ
+        to: roofOpenedPosition
     }
 
-    components: [transform, myMesh, material]
+    NumberAnimation {
+        id: roofScaleAnimationClose
+        target: root
+        property: "roofSliderValue"
+        duration: 1000
+        from: root.roofSliderValue
+        to: 0.0
+    }
+
+    NumberAnimation {
+        id: roofTranslateAnimationClose
+        target: transform
+        property: "translationZ"
+        duration: 1000
+        from: transform.translationZ
+        to: roofClosedPosition
+    }
+
+    components: [transform, mesh, grayMaterial]
 }

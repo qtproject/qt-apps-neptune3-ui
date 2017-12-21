@@ -36,22 +36,43 @@ Item {
     Vehicle3DView {
         id: car3DView
 
-        width: parent.width
-        height: parent.height * 0.35
+        anchors.top: root.top
+        anchors.left: root.left
+        width: root.width
+        height: 410
     }
 
     VehicleControlPanel {
         id: controlPanel
 
-        width: parent.width
-        height: parent.height * 0.65
         anchors.top: car3DView.bottom
+        anchors.left: root.left
+        width: root.width
+        height: 890
 
-        onDoorsOpen: car3DView.openDoors()
-        onDoorsClose: car3DView.closeDoors()
-        onTrunkOpen: car3DView.openRearDoor()
-        onTrunkClose: car3DView.closeRearDoor()
-        onRoofOpen: car3DView.openRoof()
-        onRoofClose: car3DView.closeRoof()
+        onRoofOpenedChanged: {
+            if(roofOpened)
+                car3DView.openRoof()
+            else
+                car3DView.closeRoof()
+        }
+
+        onRoofSliderValueChanged: {
+            car3DView.roofSliderValue = roofSliderValue
+        }
+
+        onLeftDoorOpenedChanged: {
+            if (leftDoorOpened)
+                car3DView.openLeftDoor()
+            else
+                car3DView.closeLeftDoor()
+        }
+
+        onRightDoorOpenedChanged: {
+            if (rightDoorOpened)
+                car3DView.openRightDoor()
+            else
+                car3DView.closeRightDoor()
+        }
     }
 }

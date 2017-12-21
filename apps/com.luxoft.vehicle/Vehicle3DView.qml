@@ -36,19 +36,12 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 Item {
-    id: root
+    id: vehicle3DView
 
+    //ToDo: This "file:" thing is a hack to make Qt3D load by relative address
     readonly property string carObjFilePath: "file:assets/models/car.obj"
-
-    function openDoors() {
-        openLeftDoor()
-        openRightDoor()
-    }
-
-    function closeDoors() {
-        closeLeftDoor()
-        closeRightDoor()
-    }
+    property alias roofSliderValue: sunRoof.roofSliderValue
+    readonly property real scaleFactor: 0.1
 
     function openLeftDoor() {
         leftDoor.openDoor()
@@ -66,17 +59,17 @@ Item {
         rightDoor.closeDoor()
     }
 
-    function animateWheels(speed) {
-        axisFront.speed(speed)
-        axisRear.speed(speed)
+    function animateWheels() {
+        axisFront.animate()
+        axisRear.animate()
     }
 
     function openRoof() {
-        roof.openRoof()
+        sunRoof.openRoof()
     }
 
     function closeRoof() {
-        roof.closeRoof()
+        sunRoof.closeRoof()
     }
 
     function openRearDoor() {
@@ -85,11 +78,6 @@ Item {
 
     function closeRearDoor() {
         roof.openRoof()
-    }
-
-    Image {
-        anchors.fill: parent
-        source: "assets/images/back.png"
     }
 
     Scene3D {
@@ -106,8 +94,29 @@ Item {
                 }
             }
 
+            SkyboxEntity {
+                baseName: "file:assets/cubemap/triton-car-3D-environment"
+                extension: ".png"
+                gammaCorrect: true
+            }
+
             InputSettings {
                 id: inputSettings
+            }
+
+            Entity {
+                components: [
+                    DirectionalLight {
+                        worldDirection: Qt.vector3d(1, -1, -1).normalized()
+                        color: "white"
+                        intensity: 0.3
+                    },
+                    DirectionalLight {
+                        worldDirection: Qt.vector3d(-1, -1, 1).normalized()
+                        color: "white"
+                        intensity: 0.3
+                    }
+                ]
             }
 
             components: [inputSettings, renderSettings]
@@ -118,82 +127,96 @@ Item {
                 fieldOfView: 45
                 nearPlane: 0.1
                 farPlane: 1000.0
-                position: Qt.vector3d(0, 4, 8.0)
-                viewCenter: Qt.vector3d(0, 1, 0)
+                position: Qt.vector3d(0, 3.2, 8.0)
+                viewCenter: Qt.vector3d(0, 0, 0)
                 upVector: Qt.vector3d(0.0, 1.0, 0.0)
+            }
+
+            PhongMaterial {
+                id: blackMaterial
+                diffuse: "#000000"
+                specular: "#121212"
+                shininess: 10
+            }
+
+            PhongMaterial {
+                id: grayMaterial
+                diffuse: "#d9d9d9"
+                specular: "#121212"
+                shininess: 64
+            }
+
+            PhongMaterial {
+                id: chromeMaterial
+                ambient: "#404040"
+                diffuse: "#666666"
+                specular: "#C6C6C6"
+                shininess: 76.8
+            }
+
+            PhongAlphaMaterial {
+                id: taillightsMaterial
+                diffuse: "red"
+                specular: "#d14545"
+                alpha: 0.85
+                shininess: 512
+            }
+
+            PhongMaterial {
+                id: interiorMaterial
+                diffuse: "#927B51"
+            }
+
+            PhongMaterial {
+                id: whiteMaterial
+                ambient: "#606060"
+                diffuse: "white"
+                specular: "white"
+                shininess: 128
+            }
+
+            PhongAlphaMaterial {
+                id: glassMaterial
+                ambient: "black"
+                diffuse: "black"
+                specular: "black"
+                alpha: 0.9
             }
 
             VehicleCameraController {
                 camera: camera
             }
 
-            PlaneMesh {
-                id: floor
-                width: 250
-                height: 250
-            }
-
-            PhongMaterial {
-                id: material
-                ambient: "gray"
-                specular: "white"
-            }
-
-            Transform {
-                id: floorScale
-                translation: Qt.vector3d(0, -2, 0)
-            }
-
-            Entity {
-                components: [floor, material, floorScale]
-            }
-
-            VehicleBody {
-                material: material
-                meshTitle: "body"
-                meshSource: carObjFilePath
-            }
-
-            VehicleLeftDoor {
-                id: leftDoor
-                material: material
-                meshTitle: "door_left"
-                meshSource: carObjFilePath
-            }
-
-            VehicleRightDoor {
-                id: rightDoor
-                material: material
-                meshTitle: "door_right"
-                meshSource: carObjFilePath
-            }
-
-            VehicleRearDoor {
-                id: rearDoor
-                material: material
-                meshTitle: "door_rear"
-                meshSource: carObjFilePath
+            VehicleShadow {
             }
 
             VehicleAxisFront {
                 id: axisFront
-                material: material
-                meshTitle: "axis_fron"
-                meshSource: carObjFilePath
             }
 
             VehicleAxisRear {
                 id: axisRear
-                material: material
-                meshTitle: "axis_rear"
-                meshSource: carObjFilePath
+            }
+
+            VehicleSeats {
+            }
+
+//            VehicleRearDoor { //TODO: NO REAR DOOR
+
+//            }
+            VehicleLeftDoor {
+                id: leftDoor
+            }
+
+            VehicleRightDoor {
+                id: rightDoor
             }
 
             VehicleRoof {
-                id: roof
-                material: material
-                meshTitle: "roof"
-                meshSource: carObjFilePath
+                id: sunRoof
+            }
+
+            VehicleBody {
             }
         }
     }

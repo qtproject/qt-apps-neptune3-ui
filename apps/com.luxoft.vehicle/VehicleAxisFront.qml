@@ -35,11 +35,29 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-VehiclePart {
+Entity {
     id: root
 
-    function speed(speed) {
-        doorOpenAnimation.start()
+    function animate() {
+        rotationAnimation.start()
+    }
+
+    Mesh {
+        id: front_tires
+        source: "file:assets/models/front_tires.obj"
+    }
+
+    Texture2D {
+        id: front_tires_texture
+        format: Texture.SRGB8_Alpha8
+        TextureImage {
+            source: "file:assets/textures/front_tires.png"
+        }
+    }
+
+    NormalDiffuseMapAlphaMaterial {
+        id: frontTiresMaterial
+        diffuse: front_tires_texture
     }
 
     Transform {
@@ -47,17 +65,21 @@ VehiclePart {
         property real userAngle: 0.0
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0, 0.7, 2.1))
+            var yOffset = 6;
+            var zOffset = 23.64;
+            m.scale(vehicle3DView.scaleFactor);
+            m.translate(Qt.vector3d(0, yOffset, zOffset))
             m.rotate(userAngle, Qt.vector3d(1, 0, 0))
-            m.translate(Qt.vector3d(0, -0.7, -2.1))
+            m.translate(Qt.vector3d(0, -yOffset, -zOffset))
             return m;
         }
+        scale: vehicle3DView.scaleFactor
     }
 
-    components: [transform, myMesh, material]
+    components: [transform, front_tires, frontTiresMaterial]
 
     NumberAnimation {
-        id: doorOpenAnimation
+        id: rotationAnimation
         target: transform
         property: "userAngle"
         duration: 1000

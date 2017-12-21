@@ -33,52 +33,16 @@ pragma Singleton
 import QtQuick 2.8
 
 ListModel {
-    ListElement {
-        name: QT_TR_NOOP("Fees");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Hill Descent Control");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Traffic Jam Assist");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Intellegent speed adaptation");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Fees");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Hill Descent Control");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Traffic Jam Assist");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Intellegent speed adaptation");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Fees");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Hill Descent Control");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Traffic Jam Assist");
-        active: false
-    }
-    ListElement {
-        name: QT_TR_NOOP("Intellegent speed adaptation");
-        active: false
-    }
+    ListElement { name: QT_TR_NOOP("Fees"); active: false }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false }
+    ListElement { name: QT_TR_NOOP("Fees"); active: false }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false }
+    ListElement { name: QT_TR_NOOP("Fees"); active: false }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false }
 }

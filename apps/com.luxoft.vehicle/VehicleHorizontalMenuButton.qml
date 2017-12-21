@@ -34,6 +34,8 @@ import QtQuick.Controls 2.2
 ToolButton {
     id: root
 
+    width: 740 / 4
+
     states: [
         State {
             name: "LEFT"
@@ -62,20 +64,24 @@ ToolButton {
     ]
     state: "MIDDLE"
 
-    font.pixelSize: 18
     contentItem: Text {
-        text: root.text
-        font: root.font
-        color: "#faf9f9"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+
+        text: root.text
+        font {
+            pixelSize: 22
+            family: "Open Sans"
+        }
+        opacity: 0.6
+        color: "#faf9f9"
     }
 
     background: Item{
         id: buttonBackgroundItem
 
-        implicitHeight: 50
-        implicitWidth: 740 / 4
+        implicitHeight: 44
+        implicitWidth: root.width
 
         Rectangle {
             height: parent.height

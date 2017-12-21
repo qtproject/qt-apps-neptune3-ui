@@ -36,21 +36,27 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 Entity {
-    id: root
-    property PhongMaterial material
-    property string meshTitle: ""
-    property string meshSource: ""
-    readonly property Mesh myMesh: mesh
+    PlaneMesh {
+        id: floor
+        width: 250
+        height: 250
+    }
+
+    NormalDiffuseMapAlphaMaterial {
+        id: shadowMaterial
+        diffuse: Texture2D {
+            format: Texture.SRGB8_Alpha8
+            TextureImage {
+                source: "file:assets/textures/shadow.png"
+            }
+        }
+    }
 
     Transform {
-        id: transform
+        id: floorScale
+        translation: Qt.vector3d(0, 0, 0)
+        scale: 0.04
     }
 
-    Mesh {
-        id: mesh
-        meshName: meshTitle
-        source: meshSource
-    }
-
-    components: [mesh, material, transform]
+    components: [floor, shadowMaterial, floorScale]
 }

@@ -39,14 +39,13 @@ Item {
     width: 1080
     height: 1920 * 0.60
 
-    signal locksOpen
-    signal locksClose
-    signal doorsOpen
-    signal doorsClose
-    signal roofOpen
-    signal roofClose
-    signal trunkOpen
-    signal trunkClose
+    property bool locksOpened: false
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property bool roofOpened: false
+    property bool trunkOpened: false
+
+    property alias roofSliderValue: roofSlider.value
 
     LinearGradient {
         id: controlPanelBackground
@@ -71,13 +70,13 @@ Item {
 
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: 80
-        anchors.topMargin: 80
+        anchors.leftMargin: 70
+        anchors.topMargin: 74
         width: 100
         height: 460
 
         ColumnLayout {
-            spacing: 10
+            spacing: 20
 
             VehicleVerticalMenuButton {
                 id: supportButton
@@ -121,14 +120,15 @@ Item {
         }
     }
 
+    //ToDo: Better to put it in a separate component later
     Item {
         id: controlPages
 
         anchors.fill: parent
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: 280
-        anchors.topMargin: 80
+        anchors.leftMargin: 262
+        anchors.topMargin: 74
         property Item currentItem: doorsItem
 
         Item {
@@ -138,31 +138,65 @@ Item {
             anchors.fill: parent
 
             ListView {
-                anchors.fill: parent
+                width: 820
+                height: (spacing + 50) * 7
 
-                spacing: 2
+                spacing: 44
                 orientation: Qt.Vertical
                 model: VehicleControlModel
+                delegate: Item {
+                    width: parent.width * 0.9
+                    height: 50
 
-                delegate: Rectangle {
-                    width: controlPages.width * 0.9
-                    height: 80
-                    color: "transparent"
-                    border.width: 1
-                    border.color: "black"
+                    Image {
+                        id: supportDelegateIconImage
+                        anchors.left: parent.left
+                        anchors.leftMargin: 30
+                        source: "assets/images/" + icon
+                    }
+
+                    ColorOverlay {
+                        anchors.fill: supportDelegateIconImage
+                        source: supportDelegateIconImage
+                        color: "#171717"
+                    }
 
                     Text {
-                        text: name
+                        text: qsTr(name)
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
+                        anchors.left: supportDelegateIconImage.right
+                        anchors.leftMargin: 28
+
+                        font {
+                            pixelSize: 26
+                            family: "Open Sans"
+                            weight: Font.Light
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+                    }
+
+                    Image {
+                        anchors.top: parent.top
+                        anchors.topMargin: 2
+                        anchors.right: parent.right
+                        anchors.rightMargin: 2
+                        source: "assets/images/list-switch-" + ( active ? "on.png" : "off.png" )
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: active = !active
+                        }
                     }
 
                     Rectangle {
-                        color: active ? "red" : "green"
-                        width: 10
-                        height: 10
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
+                        height: 1
+                        width: parent.width
+                        color: "#bfbbb9"
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: -18
+                        anchors.left: parent.left
+                        anchors.leftMargin: 20
                     }
                 }
             }
@@ -174,6 +208,7 @@ Item {
             visible: controlPages.currentItem == energyItem
             anchors.fill: parent
 
+            //ToDo: this button row deserves it's own component
             RowLayout {
                 id: energyControls
 
@@ -184,18 +219,21 @@ Item {
 
                     state: "LEFT"
                     text: qsTr("Present")
+                    onPressedChanged: (z = pressed ? 100 : 0)
                 }
 
                 VehicleHorizontalMenuButton {
                     id: dayTopConfig
 
                     text: qsTr("1 day")
+                    onPressedChanged: (z = pressed ? 100 : 0)
                 }
 
                 VehicleHorizontalMenuButton {
                     id: weekTopConfig
 
                     text: qsTr("1 week")
+                    onPressedChanged: (z = pressed ? 100 : 0)
                 }
 
                 VehicleHorizontalMenuButton {
@@ -203,16 +241,235 @@ Item {
 
                     state: "RIGHT"
                     text: qsTr("1 month")
+                    onPressedChanged: (z = pressed ? 100 : 0)
                 }
             }
 
             Image {
-                id: energyImage
+                id: energyGraph
 
-                source: "assets/images/energy.png"
                 anchors.top: energyControls.bottom
                 anchors.left: energyControls.left
-                anchors.topMargin: 20
+                anchors.topMargin: 40
+                anchors.leftMargin: 10
+                source: "assets/images/energy-graph.png"
+            }
+
+            Text {
+                id: energyGraphTitle
+
+                anchors.top: energyGraph.bottom
+                anchors.topMargin: 46
+                anchors.left: energyGraph.left
+                anchors.leftMargin: 34
+
+                text: qsTr("Projected distance to empty")
+                font {
+                    pixelSize: 26
+                    family: "Open Sans"
+                }
+                opacity: 0.94
+                color: "#171717"
+            }
+
+            Item {
+                id: chargingInfoItem
+
+                anchors.top: energyGraphTitle.bottom
+                anchors.topMargin: 24
+                width: parent.width
+                height: 340
+
+                Rectangle {
+                    height: 1
+                    width: 750
+                    color: "#bfbbb9"
+                }
+
+                Text {
+                    anchors.top: parent.top
+                    anchors.topMargin: 16
+                    anchors.left: parent.left
+                    anchors.leftMargin: 40
+                    text: qsTr("184")
+                    font {
+                        pixelSize: 32
+                        family: "Open Sans"
+                    }
+                    opacity: 0.94
+                    color: "#171717"
+
+                    Text {
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 2
+                        anchors.left: parent.right
+                        anchors.leftMargin: 12
+
+                        text: qsTr("km")
+                        font {
+                            pixelSize: 18
+                            family: "Open Sans"
+                            weight: Font.Light
+                        }
+                        opacity: 0.4
+                        color: "#171717"
+                    }
+                }
+
+                Text {
+                    anchors.top: parent.top
+                    anchors.topMargin: 114
+                    anchors.left: parent.left
+                    anchors.leftMargin: 42
+
+                    text: qsTr("Charging stations")
+                    font {
+                        pixelSize: 26
+                        family: "Open Sans"
+                    }
+                    opacity: 0.94
+                    color: "#171717"
+                }
+
+                VehicleButton {
+                    anchors.top: parent.top
+                    anchors.topMargin: 102
+                    anchors.right: parent.right
+                    anchors.rightMargin: 80
+                    state: "SMALL"
+                    text: qsTr("Show on map")
+                }
+
+                Rectangle {
+                    height: 1
+                    width: 750
+                    color: "#bfbbb9"
+                    anchors.top: parent.top
+                    anchors.topMargin: 168
+                }
+
+                //ToDo: this probably should be in a model later
+                Item {
+                    id: chargingStatioRouteOne
+
+                    anchors.top: parent.top
+                    anchors.topMargin: 180
+                    anchors.left: parent.left
+                    anchors.leftMargin: 40
+                    width: parent.width
+                    height: 60
+
+                    Text {
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: qsTr("21")
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: 2
+                            anchors.left: parent.right
+                            anchors.leftMargin: 10
+
+                            text: qsTr("km")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+
+                    Text {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 100
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Donald Weese Ct, Las Vegas")
+                        font {
+                            pixelSize: 26
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+                    }
+
+                    VehicleButton {
+                        anchors.right: parent.right
+                        anchors.rightMargin: 120
+                        state: "SMALL"
+                        text: qsTr("Route")
+                    }
+                }
+
+                //ToDo: this probably should be in a model later
+                Item {
+                    id: chargingStatioRouteTwo
+
+                    anchors.top: parent.top
+                    anchors.topMargin: 245
+                    anchors.left: parent.left
+                    anchors.leftMargin: 40
+                    width: parent.width
+                    height: 60
+
+                    Text {
+                        text: qsTr("27")
+
+                        anchors.left: parent.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: 2
+                            anchors.left: parent.right
+                            anchors.leftMargin: 10
+
+                            text: qsTr("km")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+
+                    Text {
+                        anchors.left: parent.left
+                        anchors.leftMargin: 100
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        text: qsTr("Faiss Dr, Las Vegas")
+                        font {
+                            pixelSize: 26
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+                    }
+
+                    VehicleButton {
+                        anchors.right: parent.right
+                        anchors.rightMargin: 120
+                        state: "SMALL"
+                        text: qsTr("Route")
+                    }
+                }
             }
         }
 
@@ -222,16 +479,6 @@ Item {
             visible: controlPages.currentItem == doorsItem
             anchors.fill: parent
             property Item currentItem: doorsConfig
-
-            Image {
-                id: roofImage
-
-                source: "assets/images/roof.png"
-                anchors.top: vehicleOpenableConfig.bottom
-                anchors.left: vehicleOpenableConfig.left
-                width: 470
-                height: 670
-            }
 
             RectangularGlow {
                 anchors.fill: vehicleOpenableConfig
@@ -251,57 +498,30 @@ Item {
                     spacing: 0
 
                     VehicleHorizontalMenuButton {
+                        width: vehicleOpenableConfig.width / 3
                         state: "LEFT"
-                        text: qsTr("Locks")
-                        onClicked: doorsItem.currentItem = locksConfig
-                        down: doorsItem.currentItem == locksConfig
-                    }
-
-                    VehicleHorizontalMenuButton {
                         text: qsTr("Sun roof")
-                        onClicked: doorsItem.currentItem = roofConfig
                         down: doorsItem.currentItem == roofConfig
+                        onClicked: doorsItem.currentItem = roofConfig
+                        onPressedChanged: (z = pressed ? 100 : 0)
                     }
 
                     VehicleHorizontalMenuButton {
+                        width: vehicleOpenableConfig.width / 3
                         text: qsTr("Doors")
-                        onClicked: doorsItem.currentItem = doorsConfig
                         down: doorsItem.currentItem == doorsConfig
+                        onClicked: doorsItem.currentItem = doorsConfig
+                        onPressedChanged: (z = pressed ? 100 : 0)
                     }
 
                     VehicleHorizontalMenuButton {
+                        width: vehicleOpenableConfig.width / 3
                         state: "RIGHT"
                         text: qsTr("Trunk")
-                        onClicked: doorsItem.currentItem = trunkConfig
                         down: doorsItem.currentItem == trunkConfig
+                        onClicked: doorsItem.currentItem = trunkConfig
+                        onPressedChanged: (z = pressed ? 100 : 0)
                     }
-                }
-            }
-
-            Item {
-                id: locksConfig
-
-                visible: doorsItem.currentItem == locksConfig
-                anchors.top: vehicleOpenableConfig.bottom
-                anchors.right: vehicleOpenableConfig.right
-                anchors.topMargin: 100
-                width: 200
-                height: 500
-
-                VehicleButton {
-                    id: locksCloseButton
-
-                    anchors.top: parent.top
-                    text: qsTr("Close")
-                    onClicked: root.roofClose()
-                }
-
-                VehicleButton {
-                    id: locksOpenButton
-
-                    anchors.bottom: parent.bottom
-                    text: qsTr("Open")
-                    onClicked: root.roofOpen()
                 }
             }
 
@@ -311,24 +531,49 @@ Item {
                 visible: doorsItem.currentItem == roofConfig
                 anchors.top: vehicleOpenableConfig.bottom
                 anchors.right: vehicleOpenableConfig.right
-                anchors.topMargin: 100
-                width: 200
-                height: 500
+                anchors.fill: parent
+
+                Image {
+                    id: roofImage
+
+                    source: "assets/images/roof.png"
+                    anchors.top: parent.top
+                    anchors.topMargin: 42
+                    width: 470
+                    height: 670
+                }
 
                 VehicleButton {
                     id: roofCloseButton
 
                     anchors.top: parent.top
+                    anchors.topMargin: 100
+                    anchors.left: parent.left
+                    anchors.leftMargin: 520
                     text: qsTr("Close")
-                    onClicked: root.roofClose()
+                    onClicked: root.roofOpened = false
+                }
+
+                //ToDo: Ugly slider untill we have proper assets for that
+                Slider {
+                    id: roofSlider
+
+                    anchors.top: parent.top
+                    anchors.topMargin: 350
+                    anchors.left: parent.left
+                    anchors.leftMargin: 520
+                    value: 0.0
                 }
 
                 VehicleButton {
                     id: roofOpenButton
 
-                    anchors.bottom: parent.bottom
+                    anchors.top: parent.top
+                    anchors.topMargin: 500
+                    anchors.left: parent.left
+                    anchors.leftMargin: 520
                     text: qsTr("Open")
-                    onClicked: root.roofOpen()
+                    onClicked: root.roofOpened = true
                 }
             }
 
@@ -338,24 +583,110 @@ Item {
                 visible: doorsItem.currentItem == doorsConfig
                 anchors.top: vehicleOpenableConfig.bottom
                 anchors.right: vehicleOpenableConfig.right
-                anchors.topMargin: 100
-                width: 200
-                height: 500
+                anchors.fill: parent
 
-                VehicleButton {
-                    id: closeButton
+                readonly property string openDoorSource: "assets/images/ic-door-open.png"
+                readonly property string closeDoorSource: "assets/images/ic-door-closed.png"
 
+                Image {
+                    id: doorsImage
+
+                    source: "assets/images/roof.png"
                     anchors.top: parent.top
-                    text: qsTr("Close")
-                    onClicked: root.doorsClose()
-                }
+                    anchors.topMargin: 42
+                    anchors.left: parent.left
+                    anchors.leftMargin: 140
+                    width: 470
+                    height: 670
 
-                VehicleButton {
-                    id: openButton
+                    //ToDo: It should be a separate button item later
+                    Image {
+                        anchors.top: parent.top
+                        anchors.topMargin: 100
+                        anchors.left: parent.left
+                        source: "assets/images/round-button.png"
 
-                    anchors.bottom: parent.bottom
-                    text: qsTr("Open")
-                    onClicked: root.doorsOpen()
+                        Image {
+                            anchors.centerIn: parent
+                            source: root.leftDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                        }
+
+                        MouseArea {
+                            width: 100
+                            height: 100
+                            anchors.centerIn: parent
+
+                            onClicked: (root.leftDoorOpened = !root.leftDoorOpened)
+                            onPressed: (parent.scale = 1.1)
+                            onReleased: (parent.scale = 1.0)
+                        }
+                    }
+
+                    Image {
+                        anchors.top: parent.top
+                        anchors.topMargin: 300
+                        anchors.left: parent.left
+                        source: "assets/images/round-button.png"
+
+                        Image {
+                            anchors.centerIn: parent
+                            source: root.leftDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                        }
+
+                        MouseArea {
+                            width: 100
+                            height: 100
+                            anchors.centerIn: parent
+
+                            onClicked: (root.leftDoorOpened = !root.leftDoorOpened)
+                            onPressed: (parent.scale = 1.1)
+                            onReleased: (parent.scale = 1.0)
+                        }
+                    }
+
+                    Image {
+                        anchors.top: parent.top
+                        anchors.topMargin: 100
+                        anchors.right: parent.right
+                        source: "assets/images/round-button.png"
+
+                        Image {
+                            anchors.centerIn: parent
+                            source: root.rightDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                        }
+
+                        MouseArea {
+                            width: 100
+                            height: 100
+                            anchors.centerIn: parent
+
+                            onClicked: (root.rightDoorOpened = !root.rightDoorOpened)
+                            onPressed: (parent.scale = 1.1)
+                            onReleased: (parent.scale = 1.0)
+                        }
+                    }
+
+                    Image {
+                        anchors.top: parent.top
+                        anchors.topMargin: 300
+                        anchors.right: parent.right
+                        source: "assets/images/round-button.png"
+
+                        Image {
+                            anchors.centerIn: parent
+                            source: root.rightDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                        }
+
+                        MouseArea {
+                            width: 100
+                            height: 100
+                            anchors.centerIn: parent
+
+                            onClicked: (root.rightDoorOpened = !root.rightDoorOpened)
+                            onPressed: (parent.scale = 1.1)
+                            onReleased: (parent.scale = 1.0)
+                        }
+                    }
                 }
             }
 
@@ -365,24 +696,27 @@ Item {
                 visible: doorsItem.currentItem == trunkConfig
                 anchors.top: vehicleOpenableConfig.bottom
                 anchors.right: vehicleOpenableConfig.right
-                anchors.topMargin: 100
-                width: 200
-                height: 500
+                anchors.fill: parent
 
-                VehicleButton {
-                    id: trunkCloseButton
+                Image {
+                    id: trunkImage
 
+                    source: "assets/images/trunk.png"
                     anchors.top: parent.top
-                    text: qsTr("Close")
-                    onClicked: root.trunkClose()
-                }
+                    anchors.topMargin: 44
+                    anchors.left: parent.left
+                    anchors.leftMargin: 140
 
-                VehicleButton {
-                    id: trunkOpenButton
+                    VehicleButton {
+                        id: trunkCloseButton
 
-                    anchors.bottom: parent.bottom
-                    text: qsTr("Open")
-                    onClicked: root.trunkOpen()
+                        anchors.top: parent.bottom
+                        anchors.topMargin: 30
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        text: root.trunkOpened ? qsTr("Close") : qsTr("Open")
+
+                        onClicked: root.trunkOpened = !root.trunkOpened
+                    }
                 }
             }
         }
@@ -394,20 +728,226 @@ Item {
             anchors.fill: parent
 
             Image {
-                id: tiresImage
-
-                source: "assets/images/tires.png"
                 anchors.top: parent.top
+                anchors.topMargin: 44
                 anchors.left: parent.left
-                anchors.topMargin: 50
+                anchors.leftMargin: 100
+
+                source: "assets/images/car-tires.png"
+
+                Image {
+                    anchors.top: parent.top
+                    anchors.topMargin: 80
+                    anchors.left: parent.left
+                    anchors.leftMargin: 26
+                    source: "assets/images/tire.png"
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 26
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: qsTr("240")
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.top: parent.bottom
+                            anchors.topMargin: -6
+                            anchors.right: parent.right
+
+                            text: qsTr("kPa")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+                }
+
+                Image {
+                    anchors.top: parent.top
+                    anchors.topMargin: 80
+                    anchors.right: parent.right
+                    anchors.rightMargin: 26
+                    source: "assets/images/tire.png"
+
+                    Text {
+                        anchors.left: parent.right
+                        anchors.leftMargin: 26
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: qsTr("240")
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.top: parent.bottom
+                            anchors.topMargin: -6
+                            anchors.right: parent.right
+                            text: qsTr("kPa")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+                }
+
+                Image {
+                    anchors.top: parent.top
+                    anchors.topMargin: 350
+                    anchors.left: parent.left
+                    anchors.leftMargin: 26
+                    source: "assets/images/tire.png"
+
+                    Text {
+                        anchors.right: parent.left
+                        anchors.rightMargin: 26
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: qsTr("240")
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.top: parent.bottom
+                            anchors.topMargin: -6
+                            anchors.right: parent.right
+
+                            text: qsTr("kPa")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+                }
+
+                Image {
+                    anchors.top: parent.top
+                    anchors.topMargin: 350
+                    anchors.right: parent.right
+                    anchors.rightMargin: 26
+                    source: "assets/images/tire.png"
+
+                    Text {
+                        anchors.left: parent.right
+                        anchors.leftMargin: 26
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: qsTr("240")
+                        font {
+                            pixelSize: 32
+                            family: "Open Sans"
+                        }
+                        opacity: 0.94
+                        color: "#171717"
+
+                        Text {
+                            anchors.top: parent.bottom
+                            anchors.topMargin: -6
+                            anchors.right: parent.right
+                            text: qsTr("kPa")
+                            font {
+                                pixelSize: 18
+                                family: "Open Sans"
+                                weight: Font.Light
+                            }
+                            opacity: 0.4
+                            color: "#171717"
+                        }
+                    }
+                }
+            }
+
+            Text {
+                anchors.right: parent.right
+                anchors.rightMargin: 92
+                anchors.top: parent.top
+                anchors.topMargin: 132
+
+                text: qsTr("Normal load")
+                font {
+                    pixelSize: 26
+                    family: "Open Sans"
+                }
+                opacity: 0.94
+                color: "#171717"
+
+                Text {
+                    anchors.top: parent.bottom
+                    anchors.topMargin: 10
+                    anchors.right: parent.right
+
+                    text: qsTr("Target: 240 kPa")
+                    font {
+                        pixelSize: 22
+                        family: "Open Sans"
+                        weight: Font.Light
+                    }
+                    opacity: 0.94
+                    color: "#171717"
+                }
+            }
+
+
+            Text {
+                anchors.right: parent.right
+                anchors.rightMargin: 92
+                anchors.top: parent.top
+                anchors.topMargin: 270
+
+                text: qsTr("Max load")
+                font {
+                    pixelSize: 26
+                    family: "Open Sans"
+                }
+                opacity: 0.94
+                color: "#171717"
+
+                Text {
+                    anchors.top: parent.bottom
+                    anchors.topMargin: 10
+                    anchors.right: parent.right
+
+                    text: qsTr("Target: 270 kPa")
+                    font {
+                        pixelSize: 22
+                        family: "Open Sans"
+                        weight: Font.Light
+                    }
+                    opacity: 0.94
+                    color: "#171717"
+                }
             }
 
             VehicleButton {
                 id: calibrateButton
 
-                anchors.top: tiresImage.bottom
-                anchors.right: tiresImage.right
+                anchors.top: parent.top
+                anchors.topMargin: 570
+                anchors.right: parent.right
+                anchors.rightMargin: 92
                 text: qsTr("Calibrate")
+                iconSource: "assets/images/calibrate.png"
             }
         }
     }

@@ -29,7 +29,84 @@
 **
 ****************************************************************************/
 import QtQuick 2.0
+import Qt3D.Core 2.0
+import Qt3D.Render 2.9
+import Qt3D.Extras 2.9
+import Qt3D.Input 2.0
+import QtQuick.Scene3D 2.0
 
-VehiclePart {
+Entity {
+    Transform {
+        id: transform
+        property real userAngle: 0.0
+        matrix: {
+            var m = Qt.matrix4x4();
+            m.scale(vehicle3DView.scaleFactor);
+            return m;
+        }
+    }
+
+    Entity {
+        Mesh {
+            id: mesh
+            meshName: "^chrome_4$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, mesh, chromeMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: shell
+            meshName: "shell"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, shell, grayMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: matt_black
+            meshName: "matt_black"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, matt_black, blackMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: glass
+            meshName: "^glass_4$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, glass, glassMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: license_plates
+            meshName: "^licence_plates$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, license_plates, whiteMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: taillights
+            meshName: "^taillights$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, taillights, taillightsMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: interior
+            meshName: "^interior$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, interior, interiorMaterial]
+    }
 
 }
