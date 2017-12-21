@@ -77,6 +77,7 @@ Item {
 
         ToolsColumn {
             Layout.preferredHeight: Style.vspan(4)
+            Layout.preferredWidth: Style.hspan(4)
             anchors.top: parent.top
             model: ListModel {
                 ListElement { name: QT_TR_NOOP("languages"); symbol:  'ic-languages'}

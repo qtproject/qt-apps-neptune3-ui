@@ -349,17 +349,17 @@
         <translation>어둡게</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>languages</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>date</source>
         <translation>날짜</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
         <source>themes</source>
         <translation>테마</translation>
     </message>

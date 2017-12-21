@@ -47,9 +47,6 @@ import QtApplicationManager 1.0
 Window {
     id: root
 
-    width: Style.screenWidth
-    height: Style.screenHeight
-
     title: "Triton UI - Center Console"
 
     readonly property bool isLandscape: width > height
@@ -240,5 +237,13 @@ Window {
                                                        && (Qt.application.screens.length === 1)
 
         active: !runningOnSingleScreenEmbedded
+    }
+
+    Component.onCompleted: {
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        width = Style.screenWidth
+        height = Style.screenHeight
     }
 }

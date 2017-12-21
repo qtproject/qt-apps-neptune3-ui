@@ -349,17 +349,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
         <source>themes</source>
         <translation type="unfinished"></translation>
     </message>
