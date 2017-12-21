@@ -129,6 +129,7 @@ Slider {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
+                opacity: 0.6
 
                 //: Maximum value in a slider control
                 text: qsTr("MAX")
@@ -139,6 +140,7 @@ Slider {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
+                opacity: 0.6
 
                 //: Minimum value in a slider control
                 text: qsTr("MIN")

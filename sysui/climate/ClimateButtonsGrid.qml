@@ -31,28 +31,35 @@
 
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
+import utils 1.0
 
-Item {
+Grid {
     id: root
+    columns: 2
+    rows: 2
+    columnSpacing: Style.hspan(.5)
+    rowSpacing: Style.vspan(.5)
+
+    property var model
 
     ClimateButton {
-        anchors.top: root.top
-        anchors.left: root.left
         icon: "ic-front-defrost"; text: qsTr("Front defrost")
+        checked: model.frontHeat.enabled
+        onToggled: model.frontHeat.setEnabled(checked)
     }
     ClimateButton {
-        anchors.top: root.top
-        anchors.right: root.right
         icon: "ic-rear-defrost"; text: qsTr("Rear defrost")
+        checked: model.rearHeat.enabled
+        onToggled: model.rearHeat.setEnabled(checked)
     }
     ClimateButton {
-        anchors.bottom: root.bottom
-        anchors.left: root.left
         icon: "ic-seat-heat"; text: qsTr("Driver seat heat")
+        checked: model.leftSeat.heat
+        onToggled: model.leftSeat.setHeat(checked)
     }
     ClimateButton {
-        anchors.bottom: root.bottom
-        anchors.right: root.right
         icon: "ic-seat-heat"; text: qsTr("Passenger seat heat")
+        checked: model.rightSeat.heat
+        onToggled: model.rightSeat.setHeat(checked)
     }
 }

@@ -364,7 +364,7 @@
         <translation type="unfinished">Stau-Assistent</translation>
     </message>
     <message>
-        <source>Intellegent speed adaptation</source>
+        <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -403,10 +403,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Locks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Sun roof</source>
         <translation type="unfinished"></translation>
     </message>
@@ -428,6 +424,70 @@
     </message>
     <message>
         <source>Calibrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Projected distance to empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>184</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Charging stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show on map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donald Weese Ct, Las Vegas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Route</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>27</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Faiss Dr, Las Vegas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>240</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>kPa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target: 240 kPa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Max load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Target: 270 kPa</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -453,7 +513,7 @@
         <translation type="unfinished">Stau-Assistent</translation>
     </message>
     <message>
-        <source>Intellegent speed adaptation</source>
+        <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

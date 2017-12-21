@@ -33,29 +33,46 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import utils 1.0
 
-Item {
+Button {
     id: root
+    checkable: true
 
     width: Style.hspan(5)
-    height: Style.vspan(2)
+    height: Style.vspan(2.5)
 
-    property alias text: label.text
     property string icon
 
-    Image {
-        id: image
-        anchors.horizontalCenter: parent.horizontalCenter
-        source: Style.symbol(root.icon, false /* active */)
-        fillMode: Image.Pad
+    background: Rectangle {
+        // TODO check the colors with designer
+        color: checked ? Qt.darker("#F1EFED", 1.2) : "transparent"
     }
 
-    Label {
-        id: label
-        anchors.top: image.bottom
-        anchors.topMargin: Style.vspan(0.4)
-        anchors.left: parent.left
-        anchors.right: parent.right
-        wrapMode: Text.WordWrap
-        horizontalAlignment: Text.AlignHCenter
+    contentItem: Item {
+        Column {
+            spacing: Style.vspan(.5)
+            anchors {
+                left: parent.left
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
+
+            Image {
+                id: image
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: Style.symbol(root.icon, false /* active */)
+                fillMode: Image.Pad
+            }
+
+            Label {
+                id: label
+                anchors.topMargin: Style.vspan(0.5)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                text: root.text
+                font.pixelSize: Style.fontSizeS
+            }
+        }
     }
 }

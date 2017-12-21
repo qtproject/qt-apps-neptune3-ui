@@ -65,29 +65,49 @@ Item {
     }
 
     RowLayout {
-        id: tempsRow
         anchors.centerIn: parent
 
-        width: (Style.vspan(2)*2) + spacing
         height: Style.vspan(1)
-        spacing: Style.vspan(0.2)
+        spacing: Style.hspan(0.2)
 
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: Style.symbol("ic-seat-heat-status", false /* active */)
+            fillMode: Image.Pad
+            visible: model.leftSeat.heat
+        }
         Label {
-            id: leftTempLabel
-            Layout.preferredWidth: Style.vspan(2)
-            Layout.fillHeight: true
+            Layout.leftMargin: Style.hspan(.8)
+            Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.leftSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
         }
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: Style.symbol("ic-rear-defrost-status", false /* active */)
+            fillMode: Image.Pad
+            visible: model.rearHeat.enabled
+        }
+
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: Style.symbol("ic-front-defrost-status", false /* active */)
+            fillMode: Image.Pad
+            visible: model.frontHeat.enabled
+        }
         Label {
-            id: rightTempLabel
-            Layout.preferredWidth: Style.vspan(2)
-            Layout.fillHeight: true
+            Layout.leftMargin: Style.hspan(.8)
+            Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.rightSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
         }
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            source: Style.symbol("ic-seat-heat-status", false /* active */)
+            fillMode: Image.Pad
+            visible: model.rightSeat.heat
+        }
     }
-
 
     ClimatePopup {
         id: popup

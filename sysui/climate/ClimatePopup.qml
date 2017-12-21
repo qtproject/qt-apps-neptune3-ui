@@ -88,6 +88,7 @@ TritonPopup {
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(10)
         height: Style.vspan(4)
+        model: root.model
     }
 
     Image {
@@ -96,13 +97,26 @@ TritonPopup {
         anchors.bottomMargin: Style.vspan(0.5)
         source: Style.gfx2("mannequin")
     }
-    Button {
+
+    RoundButton {
         id: bigFatButton
         width: Style.hspan(7)
         height: Style.vspan(1)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Style.vspan(5)
+        contentItem: Label {
+            text: bigFatButton.text
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+        background: Rectangle {
+            radius: bigFatButton.radius
+            color: bigFatButton.down ? "#CE8042" : Style.colorOrange
+            Behavior on color { ColorAnimation {} }
+        }
+
         text: qsTr("AUTO")
     }
 
@@ -162,6 +176,10 @@ TritonPopup {
             anchors.centerIn: parent
             source: Style.symbol("ic-link", false /* active */)
             fillMode: Image.Pad
+            MouseArea {
+                anchors.fill: parent
+                onClicked: model.rightSeat.setValue(model.leftSeat.value)
+            }
         }
         Rectangle {
             anchors.left: tempLink.right
