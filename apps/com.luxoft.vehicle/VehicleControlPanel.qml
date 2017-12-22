@@ -32,6 +32,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
+import com.pelagicore.settings 1.0
 
 Item {
     id: root
@@ -46,6 +47,7 @@ Item {
     property bool trunkOpened: false
 
     property real roofSliderValue: 0.0
+    readonly property var uiSettings: UISettings {}
 
     Behavior on roofSliderValue {
        NumberAnimation { duration: 1000 }
@@ -661,9 +663,19 @@ Item {
                             height: 100
                             anchors.centerIn: parent
 
-                            onClicked: (root.leftDoorOpened = !root.leftDoorOpened)
+                            onClicked: {
+                                root.leftDoorOpened = !root.leftDoorOpened
+                                root.uiSettings.door1Open = root.leftDoorOpened
+                            }
                             onPressed: (parent.scale = 1.1)
                             onReleased: (parent.scale = 1.0)
+
+                            Connections {
+                                target: root.uiSettings
+                                onDoor1OpenChanged: {
+                                    root.leftDoorOpened = root.uiSettings.door1Open
+                                }
+                            }
                         }
                     }
 
@@ -684,9 +696,19 @@ Item {
                             height: 100
                             anchors.centerIn: parent
 
-                            onClicked: (root.rightDoorOpened = !root.rightDoorOpened)
+                            onClicked: {
+                                root.rightDoorOpened = !root.rightDoorOpened
+                                root.uiSettings.door2Open = root.rightDoorOpened
+                            }
                             onPressed: (parent.scale = 1.1)
                             onReleased: (parent.scale = 1.0)
+
+                            Connections {
+                                target: root.uiSettings
+                                onDoor2OpenChanged: {
+                                    root.rightDoorOpened = root.uiSettings.door2Open
+                                }
+                            }
                         }
                     }
                 }
