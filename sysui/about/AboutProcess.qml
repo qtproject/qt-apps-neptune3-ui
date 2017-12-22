@@ -54,7 +54,6 @@ Item {
     }
 
     MonitorView {
-        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: logo.bottom
         anchors.left: parent.left
         anchors.right: parent.right
