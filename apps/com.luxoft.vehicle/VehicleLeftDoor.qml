@@ -81,15 +81,6 @@ Entity {
 
     Entity {
         Mesh {
-            id: chrome
-            meshName: "^chrome$"
-            source: vehicle3DView.carObjFilePath
-        }
-        components: [chrome, chromeMaterial, transform]
-    }
-
-    Entity {
-        Mesh {
             id: chrome1
             meshName: "^chrome_1$"
             source: vehicle3DView.carObjFilePath

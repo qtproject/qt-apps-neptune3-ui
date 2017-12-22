@@ -76,7 +76,20 @@ Entity {
         scale: vehicle3DView.scaleFactor
     }
 
-    components: [transform, front_tires, frontTiresMaterial]
+    Entity {
+        id: chromeWheel
+        Mesh {
+            id: wheelMesh
+            meshName: "^front_wheel_chrome_1$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, wheelMesh, chromeMaterial]
+    }
+
+    Entity {
+        components: [transform, front_tires, frontTiresMaterial]
+    }
+
 
     NumberAnimation {
         id: rotationAnimation

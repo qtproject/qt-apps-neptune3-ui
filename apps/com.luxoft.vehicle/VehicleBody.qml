@@ -39,17 +39,13 @@ Entity {
     Transform {
         id: transform
         property real userAngle: 0.0
-        matrix: {
-            var m = Qt.matrix4x4();
-            m.scale(vehicle3DView.scaleFactor);
-            return m;
-        }
+        scale: vehicle3DView.scaleFactor
     }
 
     Entity {
         Mesh {
             id: mesh
-            meshName: "^chrome_4$"
+            meshName: "^chrome$"
             source: vehicle3DView.carObjFilePath
         }
         components: [transform, mesh, chromeMaterial]
@@ -89,6 +85,22 @@ Entity {
             source: vehicle3DView.carObjFilePath
         }
         components: [transform, license_plates, whiteMaterial]
+    }
+
+    Entity {
+        Mesh {
+            id: frontLights
+            meshName: "front_ights"
+            source: vehicle3DView.carObjFilePath
+        }
+        PhongAlphaMaterial {
+            id: frontLightsMaterial
+            diffuse: "gray"
+            specular: "gray"
+            shininess: 512
+            alpha: 0.7
+        }
+        components: [transform, frontLights, frontLightsMaterial]
     }
 
     Entity {

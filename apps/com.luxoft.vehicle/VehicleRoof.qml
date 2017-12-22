@@ -48,10 +48,10 @@ Entity {
         property real translationZ: roofClosedPosition
         matrix: {
             var m = Qt.matrix4x4();
+            m.translate(Qt.vector3d(0.0, 0.0, translationZ * roofSliderValue));
             m.scale(Qt.vector3d(vehicle3DView.scaleFactor,
                                 vehicle3DView.scaleFactor,
                                 vehicle3DView.scaleFactor * (1 - roofSliderValue)));
-            m.translate(Qt.vector3d(0.0, 0.0, translationZ * roofSliderValue));
             return m;
         }
     }
@@ -62,13 +62,11 @@ Entity {
         source: vehicle3DView.carObjFilePath
     }
 
-    function openRoof() {        
-        roofTranslateAnimation.restart()
+    function openRoof() {
         roofScaleAnimation.restart()
     }
 
     function closeRoof() {
-        roofTranslateAnimationClose.restart()
         roofScaleAnimationClose.restart()
     }
 

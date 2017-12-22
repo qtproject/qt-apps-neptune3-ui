@@ -82,7 +82,7 @@ Entity {
     Entity {
         Mesh {
             id: chrome
-            meshName: "^chrome_2$"
+            meshName: "^chrome_3$"
             source: vehicle3DView.carObjFilePath
         }
         components: [chrome, chromeMaterial, transform]
@@ -91,7 +91,7 @@ Entity {
     Entity {
         Mesh {
             id: chrome1
-            meshName: "^chrome_3$"
+            meshName: "^chrome_4$"
             source: vehicle3DView.carObjFilePath
         }
         components: [chrome1, chromeMaterial, transform]

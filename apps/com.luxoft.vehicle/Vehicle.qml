@@ -50,6 +50,13 @@ Item {
         width: root.width
         height: 890
 
+        onTrunkOpenedChanged: {
+            if(trunkOpened)
+                car3DView.openTrunk()
+            else
+                car3DView.closeTrunk()
+        }
+
         onRoofOpenedChanged: {
             if(roofOpened)
                 car3DView.openRoof()

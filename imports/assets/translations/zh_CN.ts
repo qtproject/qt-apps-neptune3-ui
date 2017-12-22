@@ -524,22 +524,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>VehicleControlPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="84"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
         <source>support</source>
         <translation>支持</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="94"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="98"/>
         <source>energy</source>
         <translation>能源</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="104"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="108"/>
         <source>doors</source>
         <translation>车门</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="114"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="118"/>
         <source>tires</source>
         <translation>轮胎</translation>
     </message>
@@ -636,55 +636,55 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>后备箱</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="553"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="716"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="589"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="726"/>
         <source>Close</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="575"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="716"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="603"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="726"/>
         <source>Open</source>
         <translation>开</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="749"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="785"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="820"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="856"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="759"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="795"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="830"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="866"/>
         <source>240</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="762"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="797"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="833"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="868"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="772"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="807"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="843"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="878"/>
         <source>kPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="887"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="897"/>
         <source>Normal load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="900"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="910"/>
         <source>Target: 240 kPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="918"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="928"/>
         <source>Max load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="931"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="941"/>
         <source>Target: 270 kPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="949"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="959"/>
         <source>Calibrate</source>
         <translation>校准</translation>
     </message>

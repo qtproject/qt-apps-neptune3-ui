@@ -45,7 +45,11 @@ Item {
     property bool roofOpened: false
     property bool trunkOpened: false
 
-    property alias roofSliderValue: roofSlider.value
+    property real roofSliderValue: 0.0
+
+    Behavior on roofSliderValue {
+       NumberAnimation { duration: 1000 }
+   }
 
     LinearGradient {
         id: controlPanelBackground
@@ -143,6 +147,7 @@ Item {
 
                 spacing: 44
                 orientation: Qt.Vertical
+                interactive: false
                 model: VehicleControlModel
                 delegate: Item {
                     width: parent.width * 0.9
@@ -176,17 +181,12 @@ Item {
                         color: "#171717"
                     }
 
-                    Image {
+                    Switch {
                         anchors.top: parent.top
                         anchors.topMargin: 2
                         anchors.right: parent.right
                         anchors.rightMargin: 2
-                        source: "assets/images/list-switch-" + ( active ? "on.png" : "off.png" )
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: active = !active
-                        }
+                        checked: active
                     }
 
                     Rectangle {
@@ -534,13 +534,49 @@ Item {
                 anchors.fill: parent
 
                 Image {
-                    id: roofImage
+                    id: roofImageClosed
 
-                    source: "assets/images/roof.png"
+                    source: "assets/images/car-top.png"
                     anchors.top: parent.top
-                    anchors.topMargin: 42
+                    anchors.topMargin: 32
                     width: 470
                     height: 670
+
+                    Item {
+                        id: roofImageOpened
+
+                        anchors.bottom: parent.bottom
+                        width: 470
+                        height: 450 - 120 * roofSliderValue
+                        clip: true
+
+                        Image {
+                            anchors.bottom: parent.bottom
+                            width: 470
+                            height: 670
+                            source: "assets/images/car-top-close-roof.png"
+                        }
+                    }
+
+                    MouseArea {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: roofImageClosed.top
+                        anchors.topMargin: 160
+                        width: 300
+                        height: 200
+
+                        onMouseXChanged: {
+                            if (pressed && containsMouse)
+                                root.roofSliderValue = mouse.y / height
+                        }
+                    }
+
+                    Image {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: roofImageOpened.top
+                        anchors.bottomMargin: -30
+                        source: "assets/images/ic-roof-slider.png"
+                    }
                 }
 
                 VehicleButton {
@@ -551,18 +587,10 @@ Item {
                     anchors.left: parent.left
                     anchors.leftMargin: 520
                     text: qsTr("Close")
-                    onClicked: root.roofOpened = false
-                }
-
-                //ToDo: Ugly slider untill we have proper assets for that
-                Slider {
-                    id: roofSlider
-
-                    anchors.top: parent.top
-                    anchors.topMargin: 350
-                    anchors.left: parent.left
-                    anchors.leftMargin: 520
-                    value: 0.0
+                    onClicked: {
+                        root.roofSliderValue = 0.0
+                        root.roofOpened = false
+                    }
                 }
 
                 VehicleButton {
@@ -573,7 +601,10 @@ Item {
                     anchors.left: parent.left
                     anchors.leftMargin: 520
                     text: qsTr("Open")
-                    onClicked: root.roofOpened = true
+                    onClicked: {
+                        root.roofSliderValue = 1.0
+                        root.roofOpened = true
+                    }
                 }
             }
 
@@ -585,30 +616,44 @@ Item {
                 anchors.right: vehicleOpenableConfig.right
                 anchors.fill: parent
 
-                readonly property string openDoorSource: "assets/images/ic-door-open.png"
-                readonly property string closeDoorSource: "assets/images/ic-door-closed.png"
+                readonly property string openRightDoorSource: "assets/images/ic-door-open.png"
+                readonly property string closeRightDoorSource: "assets/images/ic-door-closed.png"
+                readonly property string openLeftDoorSource: "assets/images/ic-door-open-flip.png"
+                readonly property string closeLeftDoorSource: "assets/images/ic-door-closed-flip.png"
 
                 Image {
                     id: doorsImage
 
-                    source: "assets/images/roof.png"
+                    source: "assets/images/car-top.png"
                     anchors.top: parent.top
-                    anchors.topMargin: 42
+                    anchors.topMargin: 32
                     anchors.left: parent.left
                     anchors.leftMargin: 140
                     width: 470
                     height: 670
 
+                    Image {
+                        anchors.fill: parent
+                        visible: root.leftDoorOpened
+                        source: "assets/images/car-top-left-door.png"
+                    }
+                    Image {
+                        anchors.fill: parent
+                        visible: root.rightDoorOpened
+                        source: "assets/images/car-top-right-door.png"
+                    }
+
                     //ToDo: It should be a separate button item later
                     Image {
                         anchors.top: parent.top
-                        anchors.topMargin: 100
+                        anchors.topMargin: 200
                         anchors.left: parent.left
+                        anchors.leftMargin: 40
                         source: "assets/images/round-button.png"
 
                         Image {
                             anchors.centerIn: parent
-                            source: root.leftDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                            source: root.leftDoorOpened ? doorsConfig.openLeftDoorSource : doorsConfig.closeLeftDoorSource
                         }
 
                         MouseArea {
@@ -624,57 +669,14 @@ Item {
 
                     Image {
                         anchors.top: parent.top
-                        anchors.topMargin: 300
-                        anchors.left: parent.left
-                        source: "assets/images/round-button.png"
-
-                        Image {
-                            anchors.centerIn: parent
-                            source: root.leftDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
-                        }
-
-                        MouseArea {
-                            width: 100
-                            height: 100
-                            anchors.centerIn: parent
-
-                            onClicked: (root.leftDoorOpened = !root.leftDoorOpened)
-                            onPressed: (parent.scale = 1.1)
-                            onReleased: (parent.scale = 1.0)
-                        }
-                    }
-
-                    Image {
-                        anchors.top: parent.top
-                        anchors.topMargin: 100
+                        anchors.topMargin: 200
                         anchors.right: parent.right
+                        anchors.rightMargin: 40
                         source: "assets/images/round-button.png"
 
                         Image {
                             anchors.centerIn: parent
-                            source: root.rightDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
-                        }
-
-                        MouseArea {
-                            width: 100
-                            height: 100
-                            anchors.centerIn: parent
-
-                            onClicked: (root.rightDoorOpened = !root.rightDoorOpened)
-                            onPressed: (parent.scale = 1.1)
-                            onReleased: (parent.scale = 1.0)
-                        }
-                    }
-
-                    Image {
-                        anchors.top: parent.top
-                        anchors.topMargin: 300
-                        anchors.right: parent.right
-                        source: "assets/images/round-button.png"
-
-                        Image {
-                            anchors.centerIn: parent
-                            source: root.rightDoorOpened ? doorsConfig.openDoorSource : doorsConfig.closeDoorSource
+                            source: root.rightDoorOpened ? doorsConfig.openRightDoorSource : doorsConfig.closeRightDoorSource
                         }
 
                         MouseArea {
@@ -701,11 +703,19 @@ Item {
                 Image {
                     id: trunkImage
 
-                    source: "assets/images/trunk.png"
+                    source: "assets/images/car-top-back.png"
                     anchors.top: parent.top
-                    anchors.topMargin: 44
+                    anchors.topMargin: -232
                     anchors.left: parent.left
                     anchors.leftMargin: 140
+                    width: 470
+                    height: 670
+
+                    Image {
+                        anchors.fill: parent
+                        visible: root.trunkOpened
+                        source: "assets/images/car-top-trunk.png"
+                    }
 
                     VehicleButton {
                         id: trunkCloseButton

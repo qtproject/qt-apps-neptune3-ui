@@ -72,12 +72,17 @@ Item {
         sunRoof.closeRoof()
     }
 
-    function openRearDoor() {
-        rearDoor.openDoor()
+    function openTrunk() {
+        trunk.open()
     }
 
-    function closeRearDoor() {
-        roof.openRoof()
+    function closeTrunk() {
+        trunk.close()
+    }
+
+    Image {
+        anchors.fill: parent
+        source: "file:assets/images/back.png"
     }
 
     Scene3D {
@@ -92,12 +97,6 @@ Item {
                     clearColor: "transparent"
                     camera: camera
                 }
-            }
-
-            SkyboxEntity {
-                baseName: "file:assets/cubemap/triton-car-3D-environment"
-                extension: ".png"
-                gammaCorrect: true
             }
 
             InputSettings {
@@ -201,9 +200,10 @@ Item {
             VehicleSeats {
             }
 
-//            VehicleRearDoor { //TODO: NO REAR DOOR
+            VehicleRearDoor {
+                id: trunk
+            }
 
-//            }
             VehicleLeftDoor {
                 id: leftDoor
             }

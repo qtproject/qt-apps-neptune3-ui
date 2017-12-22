@@ -43,23 +43,32 @@ Entity {
         property real userAngle: 0.0
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate( Qt.vector3d(0, 2, -2.1))
-            m.rotate(userAngle, Qt.vector3d(1, 0, 0))
-            m.translate( Qt.vector3d(0, -2, 2.1))
+            var yOffset = 21;
+            var zOffset = 18;
+            m.scale(vehicle3DView.scaleFactor);
+            m.translate( Qt.vector3d(0, yOffset, -zOffset));
+            m.rotate(userAngle, Qt.vector3d(1, 0, 0));
+            m.translate( Qt.vector3d(0, -yOffset, zOffset));
             return m;
         }
     }
 
-    //components: [transform, myMesh, material]
+    Mesh {
+        id: rearDoorMesh
+        meshName: "back_window"
+        source: vehicle3DView.carObjFilePath
+    }
 
-    function openDoor() {
+    components: [transform, rearDoorMesh, glassMaterial]
+
+    function open() {
         if(doorOpenAnimation.running)
             return
         doorClosingAnimation.stop()
         doorOpenAnimation.restart()
     }
 
-    function closeDoor() {
+    function close() {
         if(doorClosingAnimation.running)
             return
         doorOpenAnimation.stop()

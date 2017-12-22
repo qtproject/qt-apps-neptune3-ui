@@ -46,14 +46,14 @@ Entity {
         id: transform
         property real userAngle: 0.0
         matrix: {
-            var m = Qt.matrix4x4();
-            var yOffset = 6;
-            var zOffset = -30;
-            m.scale(vehicle3DView.scaleFactor);
+            var m = Qt.matrix4x4()
+            var yOffset = 6
+            var zOffset = -30
+            m.scale(vehicle3DView.scaleFactor)
             m.translate(Qt.vector3d(0, yOffset, zOffset))
             m.rotate(userAngle, Qt.vector3d(1, 0, 0))
             m.translate(Qt.vector3d(0, -yOffset, -zOffset))
-            return m;
+            return m
         }
         scale: vehicle3DView.scaleFactor
     }
@@ -76,7 +76,19 @@ Entity {
         }
     }
 
-    components: [transform, rear_tires, rearTiresMaterial]
+    Entity {
+        id: chromeWheel
+        Mesh {
+            id: wheelMesh
+            meshName: "^rear_wheel_chrome_1$"
+            source: vehicle3DView.carObjFilePath
+        }
+        components: [transform, wheelMesh, chromeMaterial]
+    }
+
+    Entity {
+        components: [transform, rear_tires, rearTiresMaterial]
+    }
 
     NumberAnimation {
         id: rotationAnimation

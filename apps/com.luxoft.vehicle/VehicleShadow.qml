@@ -36,10 +36,10 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 Entity {
-    PlaneMesh {
-        id: floor
-        width: 250
-        height: 250
+    Mesh {
+        id: shadowMesh
+        meshName: "shadow"
+        source: vehicle3DView.carObjFilePath
     }
 
     NormalDiffuseMapAlphaMaterial {
@@ -53,10 +53,11 @@ Entity {
     }
 
     Transform {
-        id: floorScale
-        translation: Qt.vector3d(0, 0, 0)
-        scale: 0.04
+        id: transform
+        scale: vehicle3DView.scaleFactor - 0.01
     }
 
-    components: [floor, shadowMaterial, floorScale]
+    Entity {
+        components: [shadowMesh, shadowMaterial, transform]
+    }
 }
