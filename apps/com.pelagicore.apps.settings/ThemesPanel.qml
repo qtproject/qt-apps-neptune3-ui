@@ -39,9 +39,9 @@ Control {
 
     property ListModel model
 
-    property string currentTheme
+    property int currentTheme
 
-    signal themeRequested(string theme)
+    signal themeRequested(int theme)
 
     ButtonGroup {
         id: themeGroup
@@ -62,9 +62,10 @@ Control {
             }
             model: root.model
             delegate: AbstractButton {
+                id: themeDelegate
                 width: ListView.view.width
                 height: Style.hspan(3)
-                onClicked: root.themeRequested(model.theme)
+                onClicked: root.themeRequested(index)
                 contentItem: GridLayout {
                     columns: 2
                     rows: 3
@@ -73,8 +74,8 @@ Control {
                         Layout.row: 0
                         ButtonGroup.group: themeGroup
                         Layout.maximumWidth: Layout.preferredWidth
-                        checked: model.theme === root.currentTheme
-                        enabled: false
+                        checked: index === root.currentTheme
+                        onToggled: themeDelegate.clicked()
                     }
                     Label {
                         Layout.fillWidth: true

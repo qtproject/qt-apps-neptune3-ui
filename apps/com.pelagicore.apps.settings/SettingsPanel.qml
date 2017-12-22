@@ -54,6 +54,7 @@ Item {
     ListModel {
         id: themeModel
         // TODO: This data will be populated from settings server later
+        // the server stores the "theme" as an integer
         ListElement { title: QT_TR_NOOP('Light'); theme: 'light' }
         ListElement { title: QT_TR_NOOP('Dark'); theme: 'dark' }
     }
@@ -111,11 +112,9 @@ Item {
 
             ThemesPanel {
                 model: themeModel
-                // TODO: hook this up with remote settings server request
-                currentTheme: 'light'
+                currentTheme: store.currentTheme
                 onThemeRequested: {
-                    // TODO: hook this up with remote settings server request
-                    currentTheme = theme;
+                    store.updateTheme(theme);
                 }
             }
         }

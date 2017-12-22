@@ -42,6 +42,8 @@ QtObject {
     readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
     readonly property ListModel languageModel: ListModel {}
 
+    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 0 // light
+
     readonly property var uiSettings: UISettings {}
 
     readonly property bool twentyFourHourTimeFormat: uiSettings.twentyFourHourTimeFormat !== undefined ?
@@ -70,6 +72,11 @@ QtObject {
     function update24HourTimeFormat(value) {
         console.log(Helper.category, 'update24HourTimeFormat: ', value)
         uiSettings.setTwentyFourHourTimeFormat(value);
+    }
+
+    function updateTheme(value) {
+        console.log(Helper.category, 'updateTheme: ', value)
+        uiSettings.setTheme(value);
     }
 
     Component.onCompleted: {

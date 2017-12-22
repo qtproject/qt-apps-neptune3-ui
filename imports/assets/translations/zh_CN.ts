@@ -376,27 +376,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Light</source>
         <translation>浅色</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="59"/>
         <source>Dark</source>
         <translation>深色</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>languages</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
         <source>date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="86"/>
         <source>themes</source>
         <translation>主题</translation>
     </message>
