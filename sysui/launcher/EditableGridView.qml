@@ -35,6 +35,7 @@ import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
 import controls 1.0
 import utils 1.0
+import animations 1.0
 
 Item {
     id: root
@@ -69,14 +70,10 @@ Item {
 
             AppButton {
                 id: appButton
-                width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.5)
-                height: root.gridOpen ? width : Style.vspan(1.4)
+                width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.8)
+                height: root.gridOpen ? width : Style.vspan(1.5)
 
-                Behavior on height {
-                    NumberAnimation {
-                        duration: 200
-                    }
-                }
+                Behavior on height { DefaultNumberAnimation { } }
 
                 anchors.horizontalCenter: parent.horizontalCenter;
                 anchors.verticalCenter: parent.verticalCenter;
@@ -102,11 +99,7 @@ Item {
                     }
                     return 1.0
                 }
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 200
-                    }
-                }
+                Behavior on opacity { DefaultNumberAnimation { } }
 
                 editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
                 editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
@@ -194,11 +187,7 @@ Item {
         height: Style.vspan(1)
         opacity: grid.editMode ? 1.0 : 0.0
         visible: opacity > 0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on opacity { DefaultNumberAnimation { } }
         anchors.top: grid.bottom
         anchors.topMargin: 30
 

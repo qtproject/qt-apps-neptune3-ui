@@ -32,6 +32,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
 import utils 1.0
+import animations 1.0
 
 Item {
     id: root
@@ -46,18 +47,14 @@ Item {
     Rectangle {
         id: editModeBg
         anchors.fill: parent
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 
     Image {
         width: parent.width
-        height: Style.vspan(1)
+        height: width
         anchors.centerIn: icon
-        fillMode: Image.Pad
+        fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
         source: Style.symbol("ic-app-active-bg")
     }
@@ -68,11 +65,7 @@ Item {
         height: Style.vspan(1)
         anchors.top: parent.top
         anchors.topMargin: root.gridOpen ? Style.vspan(0.6) : 0
-        Behavior on anchors.topMargin {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on anchors.topMargin { DefaultNumberAnimation { } }
 
         fillMode: Image.Pad
     }
@@ -83,11 +76,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         font.pixelSize: Style.fontSizeXS
         opacity: root.gridOpen ? 1.0 : 0.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on opacity { DefaultNumberAnimation { } }
         color: "white"
     }
 }

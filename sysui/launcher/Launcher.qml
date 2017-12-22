@@ -58,17 +58,13 @@ Item {
     Tool {
         id: homeButton
 
-        width: Style.hspan(1.5)
-        height: Style.vspan(0.9)
+        width: Style.hspan(1.8)
+        height: width
         Layout.alignment: Qt.AlignTop
         anchors.left: parent.left
 
         opacity: root.open ? 0.0 : 1.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on opacity { DefaultNumberAnimation { } }
 
         symbol: Style.symbol("ic-menu-home", false)
 
@@ -80,10 +76,10 @@ Item {
 
         Image {
             width: parent.width
-            height: Style.vspan(1)
+            height: width
             anchors.centerIn: parent
-            fillMode: Image.Pad
-            visible: homeButton.checked
+            fillMode: Image.PreserveAspectFit
+            visible: homeButton.checked && !root.applicationModel.activeAppInfo.active
             source: Style.symbol("ic-app-active-bg")
         }
     }
@@ -92,11 +88,7 @@ Item {
         id: applicationLauncher
 
         width: root.open ? Style.launcherWidth : Style.hspan(12)
-        Behavior on width {
-            NumberAnimation {
-                duration: 200
-            }
-        }
+        Behavior on width { DefaultNumberAnimation { } }
 
         anchors.right: parent.right
 
