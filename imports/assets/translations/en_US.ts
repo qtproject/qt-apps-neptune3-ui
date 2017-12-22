@@ -121,7 +121,7 @@
 <context>
     <name>EditableGridView</name>
     <message>
-        <location filename="../../../sysui/launcher/EditableGridView.qml" line="218"/>
+        <location filename="../../../sysui/launcher/EditableGridView.qml" line="207"/>
         <source>Finish Editing</source>
         <translation type="unfinished"></translation>
     </message>

@@ -30,57 +30,21 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import animations 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
-import "stores"
-
 import QtApplicationManager 1.0
 
-QtObject {
-    property var mainWindow: AppUIScreen {
-        id: mainWindow
+import com.pelagicore.settings 1.0
+import com.pelagicore.styles.triton 1.0
 
-        MultiPointTouchArea {
-            id: multiPoint
-            anchors.fill: parent
-            anchors.margins: 30
-            touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-            property int count: 0
-            onReleased: {
-                count += 1;
-                mainWindow.setWindowProperty("activationCount", count);
-            }
-        }
-
-        Item {
-            height: mainWindow.currentHeight
-            width: mainWindow.exposedRect.width
-            Music {
-                id: musicAppContent
-                width: mainWindow.width
-                height: mainWindow.targetHeight
-                anchors.centerIn: parent
-
-                state: mainWindow.tritonState
-                store: MusicStore { }
-                bottomWidgetHide: mainWindow.exposedRect.height === mainWindow.targetHeight
-
-                onDragAreaClicked: {
-                    multiPoint.count += 1;
-                    mainWindow.setWindowProperty("activationCount", multiPoint.count);
-                }
-            }
-        }
-
+ApplicationManagerWindow {
+    Component.onCompleted: {
+        setWindowProperty("windowType", "secondary")
+        visible = true
     }
-
-    property var secondaryWindow: SecondaryWindow {
-        ClusterMusic {
-            anchors.fill: parent
-            store: musicAppContent.store
+    UISettings {
+        onThemeChanged: updateTheme()
+        Component.onCompleted: updateTheme()
+        function updateTheme() {
+            contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
         }
     }
 }

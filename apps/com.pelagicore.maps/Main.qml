@@ -282,16 +282,11 @@ QtObject {
         }
     }
 
-    property var secondaryWindow: ApplicationManagerWindow {
-        id: secondaryWindow
+    property var secondaryWindow: SecondaryWindow {
         Image {
             anchors.fill: parent
             source: "assets/navigation-widget-map.png"
             fillMode: Image.PreserveAspectCrop
-        }
-        Component.onCompleted: {
-            secondaryWindow.setWindowProperty("windowType", "secondary")
-            secondaryWindow.visible = true
         }
     }
 }

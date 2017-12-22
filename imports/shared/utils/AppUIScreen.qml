@@ -34,6 +34,8 @@ import QtQuick 2.6
 import QtApplicationManager 1.0
 import controls 1.0
 import utils 1.0
+import com.pelagicore.settings 1.0
+import com.pelagicore.styles.triton 1.0
 
 /*!
     \qmltype AppUIScreen
@@ -75,14 +77,6 @@ ApplicationManagerWindow {
     id: root
 
     color: "transparent"
-
-    /*!
-         \qmlproperty Item AppUIScreen::content
-
-         A default property that specifies a content area for the application's visual content.
-    */
-
-    default property alias content: content.children
 
     /*
         Area of the window that is exposed to the user (ie, not blocked or occluded by other UI elements)
@@ -133,8 +127,11 @@ ApplicationManagerWindow {
         }
     }
 
-    Item {
-        id: content
-        anchors.fill: parent
+    UISettings {
+        onThemeChanged: updateTheme()
+        Component.onCompleted: updateTheme()
+        function updateTheme() {
+            contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+        }
     }
 }
