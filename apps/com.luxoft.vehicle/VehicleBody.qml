@@ -36,6 +36,10 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 Entity {
+    id: root
+
+    property bool loaded: false
+
     Transform {
         id: transform
         property real userAngle: 0.0
@@ -47,6 +51,8 @@ Entity {
             id: mesh
             meshName: "^chrome$"
             source: vehicle3DView.carObjFilePath
+            //ToDo: this has to be replaced with an actual loading signal or something more clear
+            onGeometryChanged: root.loaded = true
         }
         components: [transform, mesh, chromeMaterial]
     }

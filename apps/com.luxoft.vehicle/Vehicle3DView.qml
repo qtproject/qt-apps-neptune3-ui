@@ -34,6 +34,7 @@ import Qt3D.Render 2.9
 import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
+import QtQuick.Controls 2.3
 
 Item {
     id: vehicle3DView
@@ -82,7 +83,14 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "file:assets/images/back.png"
+        source: "assets/images/back.png"
+
+        //ToDo: Replace later with an actual splash screen
+        BusyIndicator {
+            anchors.centerIn: parent
+            anchors.verticalCenterOffset: -20
+            running: !body.loaded
+        }
     }
 
     Scene3D {
@@ -217,6 +225,7 @@ Item {
             }
 
             VehicleBody {
+                id: body
             }
         }
     }
