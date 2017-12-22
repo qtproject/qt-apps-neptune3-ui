@@ -6,17 +6,17 @@
     <message>
         <location filename="../../../sysui/about/About.qml" line="76"/>
         <source>Marketing</source>
-        <translation type="unfinished"></translation>
+        <translation>营销</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="80"/>
         <source>Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>监控</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="84"/>
         <source>Running Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>运行中的App</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
         <source>We put Stunning User Experience on the road</source>
-        <translation type="unfinished"></translation>
+        <translation>我们为您带来旅程中令人惊艳的交互体验</translation>
     </message>
 </context>
 <context>
@@ -32,7 +32,7 @@
     <message>
         <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
         <source>Running applications:</source>
-        <translation type="unfinished"></translation>
+        <translation>运行中的App:</translation>
     </message>
 </context>
 <context>
@@ -87,22 +87,22 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>日期 &amp; 时间</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="61"/>
         <source>24h time</source>
-        <translation type="unfinished"></translation>
+        <translation>24小时</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="67"/>
         <source>Set Automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>自动设置</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="71"/>
         <source>Time Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>时区</translation>
     </message>
 </context>
 <context>
@@ -182,7 +182,7 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/LanguagePanel.qml" line="62"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
@@ -256,7 +256,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="59"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>网络</translation>
     </message>
 </context>
 <context>
@@ -378,27 +378,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="57"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>浅色</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>深色</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="83"/>
         <source>languages</source>
-        <translation type="unfinished"></translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>date</source>
-        <translation type="unfinished"></translation>
+        <translation>日期</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
         <source>themes</source>
-        <translation type="unfinished"></translation>
+        <translation>主题</translation>
     </message>
 </context>
 <context>
@@ -439,7 +439,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>主题</translation>
     </message>
 </context>
 <context>
@@ -514,7 +514,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>自适应巡航</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
@@ -566,55 +566,55 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="266"/>
         <source>Projected distance to empty</source>
-        <translation type="unfinished"></translation>
+        <translation>续航里程</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="294"/>
         <source>184</source>
-        <translation type="unfinished"></translation>
+        <translation>184</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="308"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="379"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="441"/>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="325"/>
         <source>Charging stations</source>
-        <translation type="unfinished"></translation>
+        <translation>充电站</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="340"/>
         <source>Show on map</source>
-        <translation type="unfinished"></translation>
+        <translation>在地图上显示</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="365"/>
         <source>21</source>
-        <translation type="unfinished"></translation>
+        <translation>21</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="395"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Donald Weese Ct, 拉斯维加斯</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="408"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="470"/>
         <source>Route</source>
-        <translation type="unfinished"></translation>
+        <translation>路线</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="424"/>
         <source>27</source>
-        <translation type="unfinished"></translation>
+        <translation>27</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="457"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Faiss Dr, 拉斯维加斯</translation>
     </message>
     <message>
         <source>Locks</source>
@@ -653,7 +653,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="830"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="866"/>
         <source>240</source>
-        <translation type="unfinished"></translation>
+        <translation>240</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="772"/>
@@ -661,27 +661,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="843"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="878"/>
         <source>kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="897"/>
         <source>Normal load</source>
-        <translation type="unfinished"></translation>
+        <translation>正常负载</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="910"/>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>目标值:240kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="928"/>
         <source>Max load</source>
-        <translation type="unfinished"></translation>
+        <translation>最大负载</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="941"/>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>目标值:270kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="959"/>
@@ -725,7 +725,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>自适应巡航</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
