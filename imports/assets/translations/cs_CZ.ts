@@ -16,7 +16,7 @@
     <message>
         <location filename="../../../sysui/about/About.qml" line="84"/>
         <source>Running Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuštěné aplikace</translation>
     </message>
 </context>
 <context>
@@ -32,7 +32,7 @@
     <message>
         <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
         <source>Running applications:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spuštěné aplikace:</translation>
     </message>
 </context>
 <context>
@@ -486,28 +486,28 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="40"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="44"/>
         <source>Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Poplatky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="37"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="41"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="45"/>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Asistent sjezdu z kopce</translation>
+        <translation>Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="38"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="42"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="46"/>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Asistent v dopravní zácpě</translation>
+        <translation>Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="39"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>
@@ -555,55 +555,55 @@
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="266"/>
         <source>Projected distance to empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Projektovaná vzdálenost</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="294"/>
         <source>184</source>
-        <translation type="unfinished"></translation>
+        <translation>184</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="308"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="379"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="441"/>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="325"/>
         <source>Charging stations</source>
-        <translation type="unfinished"></translation>
+        <translation>Nabíjecí stanice</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="340"/>
         <source>Show on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit na mapě</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="365"/>
         <source>21</source>
-        <translation type="unfinished"></translation>
+        <translation>21</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="395"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="408"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="470"/>
         <source>Route</source>
-        <translation type="unfinished"></translation>
+        <translation>Trasa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="424"/>
         <source>27</source>
-        <translation type="unfinished"></translation>
+        <translation>27</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="457"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Faiss Dr, Las Vegas</translation>
     </message>
     <message>
         <source>Locks</source>
@@ -642,7 +642,7 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="830"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="866"/>
         <source>240</source>
-        <translation type="unfinished"></translation>
+        <translation>240</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="772"/>
@@ -650,27 +650,27 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="843"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="878"/>
         <source>kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="897"/>
         <source>Normal load</source>
-        <translation type="unfinished"></translation>
+        <translation>Normální zatížení</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="910"/>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="928"/>
         <source>Max load</source>
-        <translation type="unfinished"></translation>
+        <translation>Max zatížení</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="941"/>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="959"/>
@@ -693,28 +693,28 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="40"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="44"/>
         <source>Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Poplatky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="37"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="41"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="45"/>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Asistent sjezdu z kopce</translation>
+        <translation>Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="38"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="42"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="46"/>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Asistent v dopravní zácpě</translation>
+        <translation>Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="39"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>

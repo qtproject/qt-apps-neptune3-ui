@@ -167,7 +167,7 @@ Item {
                     }
 
                     Text {
-                        text: qsTr(name)
+                        text: qsTranslate("VehicleControlModel", name)
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: supportDelegateIconImage.right
                         anchors.leftMargin: 28

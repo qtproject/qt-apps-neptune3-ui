@@ -78,7 +78,7 @@ Item {
             border.color: "grey"
 
             Text {
-                text: qsTr(name)
+                text: qsTranslate("VehicleWidgetModel", name)
                 anchors.verticalCenter: parent.verticalCenter
             }
 
