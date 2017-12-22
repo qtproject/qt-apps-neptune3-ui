@@ -132,7 +132,7 @@ Item {
                 target: contactImage; anchors.topMargin: Style.vspan(.3)
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: 0
+                target: textColumn; anchors.leftMargin: 0; anchors.topMargin: Style.vspan(.5)
             }
         },
         State {
@@ -157,7 +157,7 @@ Item {
                 AnchorAnimation { targets: [contactImage, textColumn, muteButton, callEndButton, keypadButton];
                     duration: 50; easing.type: Easing.InOutQuad }
                 DefaultNumberAnimation { target: contactImage; properties: "x,y,width,height,anchors.topMargin"; duration: 50 }
-                DefaultNumberAnimation { target: textColumn; properties: "anchors.leftMargin"; duration: 50 }
+                DefaultNumberAnimation { target: textColumn; properties: "anchors.leftMargin,anchors.topMargin"; duration: 50 }
                 DefaultNumberAnimation { target: callEndButton; properties: "x"; duration: 50 }
             }
         }

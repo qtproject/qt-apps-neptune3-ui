@@ -92,8 +92,8 @@ Item {
         anchors.top: root.state == "Maximized" ? parent.top : undefined
         anchors.left: root.state == "Maximized" ? parent.left : undefined
         anchors.right: root.state == "Maximized" ? parent.right : undefined
-        anchors.leftMargin: Style.hspan(1.5)
-        anchors.rightMargin: Style.hspan(.9)
+        anchors.leftMargin: Style.hspan(1)
+        anchors.rightMargin: Style.hspan(1)
         anchors.topMargin: root.state !== "Maximized" ? Style.vspan(.5) : 0
         anchors.bottomMargin: Style.vspan(.5)
         height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
@@ -112,7 +112,6 @@ Item {
         anchors.fill: root.state !== "Maximized" ? parent : undefined
         anchors.top: root.state == "Maximized" ? parent.top : undefined
         anchors.horizontalCenter: root.state == "Maximized" ? parent.horizontalCenter : undefined
-        anchors.leftMargin: Style.hspan(0.9)
         anchors.rightMargin: Style.hspan(0.9)
         height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
 
