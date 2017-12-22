@@ -80,6 +80,8 @@ ToolButton {
         anchors.verticalCenterOffset: root.symbolOnTop ? - Style.vspan(0.2) : 0
 
         fillMode: Image.Pad
-        source: root.symbol ? root.symbol : ""
+        source: root.symbol ? (TritonStyle.theme === TritonStyle.Dark ? root.symbol.replace("\.png","-dark\.png")
+                                                                      : root.symbol)
+                            : ""
     }
 }

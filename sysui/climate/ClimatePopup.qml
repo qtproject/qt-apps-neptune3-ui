@@ -37,6 +37,7 @@ import utils 1.0
 import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import triton.controls 1.0
+import com.pelagicore.styles.triton 1.0
 
 TritonPopup {
     id: root
@@ -95,7 +96,7 @@ TritonPopup {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: bigFatButton.top
         anchors.bottomMargin: Style.vspan(0.5)
-        source: Style.gfx2("mannequin")
+        source: Style.gfx2("mannequin", TritonStyle.theme)
     }
 
     RoundButton {
@@ -175,7 +176,7 @@ TritonPopup {
             width: Style.hspan(1)
             height: width
             anchors.centerIn: parent
-            source: Style.symbol("ic-link-status", false /* active */)
+            source: Style.symbol("ic-link-status", false /* active */, TritonStyle.theme)
             fillMode: Image.Pad
             MouseArea {
                 anchors.fill: parent

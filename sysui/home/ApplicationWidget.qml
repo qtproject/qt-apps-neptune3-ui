@@ -35,6 +35,8 @@ import QtGraphicalEffects 1.0
 import animations 1.0
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
 
@@ -60,7 +62,7 @@ Item {
         border { left: 60; right: 60; top: 60; bottom: 60 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: !root.active ? Style.gfx2("widget-bg") : Style.gfx2("bg-home")
+        source: !root.active ? Style.gfx2("widget-bg", TritonStyle.theme) : Style.gfx2("bg-home", TritonStyle.theme)
     }
 
     Connections {

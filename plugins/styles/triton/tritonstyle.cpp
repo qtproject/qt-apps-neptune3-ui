@@ -44,11 +44,13 @@ class ThemeData
 {
 public:
     ThemeData() {}
-    ThemeData(const QHash<TritonStyle::SystemColor, QColor>& newColors)
+    ThemeData(const QHash<TritonStyle::SystemColor, QColor>& newColors, const QString &backgroundImage)
         : colors(newColors)
+        , backgroundImage(backgroundImage)
     {}
 
     QHash<TritonStyle::SystemColor, QColor> colors;
+    QString backgroundImage;
 };
 
 
@@ -60,6 +62,7 @@ GlobalLightThemeColors {
                       {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
                       {TritonStyle::BackgroundColor, QColor(0xFFF1EFED)},
                       {TritonStyle::ButtonColor, QColor(0xFF969696)},
+                      {TritonStyle::HighlightedButtonColor, QColor(0XFFCBCAC8)},
 
                       {TritonStyle::AccentColor, QColor(0xFFF6A623)},
                       {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
@@ -70,8 +73,9 @@ static QHash<TritonStyle::SystemColor, QColor>
 GlobalDarkThemeColors {
                      {TritonStyle::PrimaryTextColor, QColor(0xFFFFFFFF)},
                      {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
-                     {TritonStyle::BackgroundColor, QColor(0xFF000000)},
+                     {TritonStyle::BackgroundColor, QColor(0xFF3C3B37)},
                      {TritonStyle::ButtonColor, QColor(0xFF969696)},
+                     {TritonStyle::HighlightedButtonColor, QColor(0xFF6D6B64)},
 
                      {TritonStyle::AccentColor, QColor(0xFFF6A623)},
                      {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
@@ -79,8 +83,8 @@ GlobalDarkThemeColors {
                  };
 
 //TODO: replace with typedef
-static ThemeData GlobalDarkThemeData(GlobalDarkThemeColors);
-static ThemeData GlobalLightThemeData(GlobalLightThemeColors);
+static ThemeData GlobalDarkThemeData(GlobalDarkThemeColors, QStringLiteral("bg-home-dark"));
+static ThemeData GlobalLightThemeData(GlobalLightThemeColors, QStringLiteral("bg-home"));
 
 static ThemeData& tritonstyle_theme_data(TritonStyle::Theme theme)
 {
@@ -95,7 +99,6 @@ public:
         , fontFactor(1.0)
         , theme(TritonStyle::Light)
         , windowSize(1080, 1920)
-        , backgroundImage("bg-home")
     {
         compute();
     }
@@ -104,7 +107,6 @@ public:
         , fontFactor(data.fontFactor)
         , theme(data.theme)
         , windowSize(data.windowSize)
-        , backgroundImage(data.backgroundImage)
     {
         compute();
     }
@@ -123,7 +125,6 @@ public:
     qreal fontFactor;
     TritonStyle::Theme theme;
     QSize windowSize;
-    QString backgroundImage;
     int fontSizeXXS;
     int fontSizeXS;
     int fontSizeS;
@@ -302,7 +303,8 @@ int TritonStyle::fontSizeXXL() const
 
 QString TritonStyle::backgroundImage() const
 {
-    return m_data->backgroundImage;
+    auto &themeData = tritonstyle_theme_data(m_data->theme);
+    return themeData.backgroundImage;
 }
 
 QString TritonStyle::fontFamily() const

@@ -33,6 +33,8 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Button {
     id: root
     checkable: true
@@ -58,7 +60,7 @@ Button {
             Image {
                 id: image
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: Style.symbol(root.icon, false /* active */)
+                source: Style.symbol(root.icon, false /* active */, TritonStyle.theme)
                 fillMode: Image.Pad
             }
 

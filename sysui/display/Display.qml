@@ -48,10 +48,12 @@ import models.startup 1.0
 
 import QtGraphicalEffects 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Image {
     id: root
 
-    source: Style.gfx2(Style.displayBackground)
+    source: Style.gfx2(TritonStyle.backgroundImage)
 
     property Item popupParent
     property var settings

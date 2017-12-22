@@ -57,6 +57,7 @@ class TritonStyle : public QQuickStyleAttached
     Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor highlightedButtonColor READ highlightedButtonColor NOTIFY tritonStyleChanged FINAL)
 
     Q_PROPERTY(QColor accentColor READ accentColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor positiveColor READ positiveColor NOTIFY tritonStyleChanged FINAL)
@@ -92,6 +93,7 @@ public:
         DisabledTextColor,
         BackgroundColor,
         ButtonColor,
+        HighlightedButtonColor,
         AccentColor,
         PositiveColor,
         NegativeColor
@@ -103,6 +105,7 @@ public:
     QColor disabledTextColor() const { return systemColor(DisabledTextColor); }
     QColor backgroundColor() const { return systemColor(BackgroundColor); }
     QColor buttonColor() const { return systemColor(ButtonColor); }
+    QColor highlightedButtonColor() const { return systemColor(HighlightedButtonColor); }
     QColor accentColor() const;
     QColor positiveColor() const;
     QColor negativeColor() const;

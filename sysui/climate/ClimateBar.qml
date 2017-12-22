@@ -36,6 +36,8 @@ import utils 1.0
 
 import QtQuick.Layouts 1.3
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
 
@@ -72,7 +74,7 @@ Item {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", false /* active */)
+            source: Style.symbol("ic-seat-heat-status", false /* active */, TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.leftSeat.heat
         }
@@ -85,14 +87,14 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-rear-defrost-status", false /* active */)
+            source: Style.symbol("ic-rear-defrost-status", false /* active */, TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.rearHeat.enabled
         }
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-front-defrost-status", false /* active */)
+            source: Style.symbol("ic-front-defrost-status", false /* active */, TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.frontHeat.enabled
         }
@@ -105,7 +107,7 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", false /* active */)
+            source: Style.symbol("ic-seat-heat-status", false /* active */, TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.rightSeat.heat
         }

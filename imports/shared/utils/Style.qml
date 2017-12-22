@@ -72,7 +72,6 @@ QtObject {
     property bool debugMode: false
     property bool gridMode: false
     property bool fakeBackground: false
-    property string displayBackground: TritonStyle.backgroundImage
     property real disabledIconOpacity: 0.6
 
     property bool isPotrait: screenWidth < screenHeight
@@ -121,12 +120,14 @@ QtObject {
         });
     }
 
-    function symbol(name, active) {
-        return symbolUrl + (active ? '/active/' : '/') + name + '.png';
+    function symbol(name, active, theme) {
+        var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
+        return symbolUrl + (active ? '/active/' : '/') + name + themeStr + '.png';
     }
 
-    function gfx2(name) {
-        return gfxUrl + name + '.png'
+    function gfx2(name, theme) {
+        var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
+        return gfxUrl + name + themeStr + '.png'
     }
 
     function gfx2Dynamic(name, size) {

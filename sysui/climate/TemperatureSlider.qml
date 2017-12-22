@@ -35,6 +35,8 @@ import QtQuick.Controls 2.2
 
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Slider {
     id: root
     width: Style.hspan(4)
@@ -107,8 +109,7 @@ Slider {
                     y: (handleItem.height / 2) + (model.index * rulerMarks.stepHeight) - (height / 2)
                     width: parent.width
                     height: Style.vspan(0.03)
-                    // FIXME: Take color from style
-                    color: "black"
+                    color: TritonStyle.primaryTextColor
                 }
             }
         }

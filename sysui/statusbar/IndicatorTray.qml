@@ -34,6 +34,8 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Control {
     id: root
 
@@ -53,7 +55,7 @@ Control {
              // TODO: Replace this with real implementation. this is currently just a placeholder.
              delegate: Image {
                  height: root.height
-                 source: Style.symbol(modelData.icon, false)
+                 source: Style.symbol(modelData.icon, false, TritonStyle.theme)
                  fillMode: Image.Pad
                  opacity: modelData.active ? 1 : 0.4
              }
