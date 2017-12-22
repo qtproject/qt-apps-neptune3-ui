@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Window 2.2
+import com.pelagicore.settings 1.0
 import QtApplicationManager 1.0
 ApplicationManagerWindow {
     id: root
@@ -39,6 +40,10 @@ ApplicationManagerWindow {
     height: 720
     title: qsTr("Instrument Cluster")
     color: "transparent"
+
+    InstrumentCluster {
+        id: dataSource
+    }
 
     onWindowPropertyChanged: {
         switch (name) {
@@ -57,6 +62,12 @@ ApplicationManagerWindow {
     Normal {
         id: mainContent
         anchors.fill: parent
+
+        speed: dataSource.speed
+        speedLimit: dataSource.speedLimit
+        cruiseSpeed: dataSource.speedCruise
+        ePower: dataSource.ePower
+        drivetrain: dataSource.driveTrainState
     }
 
     TelltalesLeft {
@@ -66,6 +77,13 @@ ApplicationManagerWindow {
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
         margin: 30 * d.scaleRatio
+
+        controlBitLowBeamHeadLight: dataSource.lowBeamHeadlight
+        controlBitHighBeamHeadLight: dataSource.highBeamHeadlight
+        controlBitFogLight: dataSource.fogLight
+        controlBitStabilityControl: dataSource.stabilityControl
+        controlBitSeatBeltFasten: dataSource.seatBeltNotFastened
+        controlBitLeftTurn: dataSource.leftTurn
     }
 
     TelltalesRight {
@@ -75,7 +93,12 @@ ApplicationManagerWindow {
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
         margin: 30 * d.scaleRatio
+
+        controlBitRightTurn: dataSource.rightTurn
+        controlBitAbsFailure: dataSource.ABSFailure;
+        controlBitParkBrake: dataSource.parkBrake;
+        controlBitTyrePressLow: dataSource.tyrePressureLow;
+        controlBitBrakeFailure: dataSource.brakeFailure;
+        controlBitAirbagFailure: dataSource.airbagFailure;
     }
-
-
 }

@@ -297,9 +297,9 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
-            font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
+            font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
             color: "black"
-            opacity: (root.drivetrain === 1) ? 0.94 : 0.4
+            opacity: (root.drivetrain === 3) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -309,9 +309,9 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
-            font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
+            font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
             color: "black"
-            opacity: (root.drivetrain === 2) ? 0.94 : 0.4
+            opacity: (root.drivetrain === 1) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -320,9 +320,9 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
-            font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
+            font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
             color: "black"
-            opacity: (root.drivetrain === 3) ? 0.94 : 0.4
+            opacity: (root.drivetrain === 2) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
     }

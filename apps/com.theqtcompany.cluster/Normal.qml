@@ -136,29 +136,4 @@ Item {
         height: width
         state: parent.state
     }
-
-    //TEST CODE
-    //Animation simulate value changing
-
-    Timer {
-        property bool max: false
-        repeat: true
-        running: true
-        interval: 5000
-        onTriggered: {
-            if (max) {
-                max = false;
-                ds.speed = 260
-                ds.speedLimit = 260
-                ds.cruiseSpeed = 260
-                dp.ePower = 100
-            } else {
-                max = true;
-                ds.speed = 0;
-                ds.speedLimit = 0;
-                ds.cruiseSpeed = 0;
-                dp.ePower = -25;
-            }
-        }
-    }
 }
