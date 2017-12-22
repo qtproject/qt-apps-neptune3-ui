@@ -121,7 +121,7 @@
 <context>
     <name>DialSpeed</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="284"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="280"/>
         <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
