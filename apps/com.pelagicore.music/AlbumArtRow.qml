@@ -173,7 +173,7 @@ Item {
             id: controlsRow
             anchors.centerIn: parent
             spacing: root.showInCluster ? Style.hspan(1.3) : Style.hspan(3.2)
-            visible: root.showPrevNextAlbum
+            visible: !root.showInCluster && root.showPrevNextAlbum
             play: root.musicPlaying
             opacity: root.showPrevNextAlbum ? 1.0 : 0.0
             Behavior on opacity {
