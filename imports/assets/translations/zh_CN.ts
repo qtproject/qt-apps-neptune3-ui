@@ -30,7 +30,7 @@
 <context>
     <name>AboutRunningApps</name>
     <message>
-        <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
+        <location filename="../../../sysui/about/AboutRunningApps.qml" line="61"/>
         <source>Running applications:</source>
         <translation>运行中的App:</translation>
     </message>

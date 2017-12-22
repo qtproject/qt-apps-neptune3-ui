@@ -47,7 +47,7 @@ Item {
     Image {
         id: topImage
         anchors.top: parent.top
-        source: Style.gfx2("appstore-placeholder")
+        source: Style.gfx2("hero-appstore")
     }
 
     BusyIndicator {

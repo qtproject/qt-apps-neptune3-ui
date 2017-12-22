@@ -62,7 +62,7 @@ Item {
     Image {
         id: placeholder
         anchors.top: parent.top
-        source: Assets.gfx("settings-placeholder")
+        source: Assets.gfx("hero-settings")
         asynchronous: true
     }
 

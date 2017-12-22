@@ -17,13 +17,6 @@
     </message>
 </context>
 <context>
-    <name>AboutMarketing</name>
-    <message>
-        <source>We put Stunning User Experience on the road</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>

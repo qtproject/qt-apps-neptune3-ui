@@ -22,15 +22,14 @@
 <context>
     <name>AboutMarketing</name>
     <message>
-        <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
         <source>We put Stunning User Experience on the road</source>
-        <translation>도로 위에서의 놀라운 사용자 경험을 느껴보세요</translation>
+        <translation type="vanished">도로 위에서의 놀라운 사용자 경험을 느껴보세요</translation>
     </message>
 </context>
 <context>
     <name>AboutRunningApps</name>
     <message>
-        <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
+        <location filename="../../../sysui/about/AboutRunningApps.qml" line="61"/>
         <source>Running applications:</source>
         <translation type="unfinished"></translation>
     </message>

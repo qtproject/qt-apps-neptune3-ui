@@ -46,7 +46,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        source: Style.gfx2("appstore-placeholder")
+        source: Style.gfx2("hero-about")
+        asynchronous: true
     }
 
     Label {

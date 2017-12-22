@@ -46,8 +46,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        // TODO: replace with correct gfx
-        source: Style.gfx2("appstore-placeholder")
+        source: Style.gfx2("hero-about")
+        asynchronous: true
     }
 
     MonitorView {

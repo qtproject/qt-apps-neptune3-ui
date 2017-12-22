@@ -20,17 +20,9 @@
     </message>
 </context>
 <context>
-    <name>AboutMarketing</name>
-    <message>
-        <location filename="../../../sysui/about/AboutMarketing.qml" line="58"/>
-        <source>We put Stunning User Experience on the road</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AboutRunningApps</name>
     <message>
-        <location filename="../../../sysui/about/AboutRunningApps.qml" line="60"/>
+        <location filename="../../../sysui/about/AboutRunningApps.qml" line="61"/>
         <source>Running applications:</source>
         <translation>Spuštěné aplikace:</translation>
     </message>

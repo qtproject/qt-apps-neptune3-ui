@@ -44,21 +44,20 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        source: Style.gfx2("appstore-placeholder")
+        source: Style.gfx2("hero-about")
+        asynchronous: true
     }
 
-    Label {
-        id: description
-        anchors.horizontalCenter: parent.horizontalCenter
+    Image {
+        id: marketing
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.top: logo.bottom
-        width: Style.hspan(16)
-        height: Style.vspan(4)
-        horizontalAlignment: Text.AlignHCenter
-
-        text: qsTr("We put Stunning User Experience on the road")
-        wrapMode: Text.Wrap
-        font.pixelSize: Style.fontSizeXL
-        font.bold: true
+        anchors.bottom: parent.bottom
+        anchors.margins: Style.vspan(0.2)
+        source: Style.gfx2("about-marketing")
+        asynchronous: true
+        clip: true
+        fillMode: Image.PreserveAspectFit
     }
-
 }
