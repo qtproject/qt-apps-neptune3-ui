@@ -91,6 +91,7 @@ Item {
                     window.y = 0;
                     window.z = 1;
                     window.width = Qt.binding(function() { return root.width; });
+                    window.height = Qt.binding(function() { return root.height; });
                     window.visible = true;
                 }}
                 DefaultNumberAnimation { target: window; property: "opacity"; from: 0; to: 1 }
