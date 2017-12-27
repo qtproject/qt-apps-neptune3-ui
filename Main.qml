@@ -125,7 +125,7 @@ Window {
         }
 
         Shortcut {
-            sequence: "t"
+            sequence: "Ctrl+t"
             context: Qt.ApplicationShortcut
             onActivated: {
                 // TODO: Also change the instrument cluster theme
@@ -137,7 +137,7 @@ Window {
             }
         }
         Shortcut {
-            sequence: "l"
+            sequence: "Ctrl+l"
             context: Qt.ApplicationShortcut
             onActivated: {
                 const locales = Style.translation.availableTranslations;
@@ -158,7 +158,7 @@ Window {
         }
 
         Shortcut {
-            sequence: "c"
+            sequence: "Ctrl+c"
             context: Qt.ApplicationShortcut
             onActivated: {
                 if (instrumentClusterWindowLoader.item)
