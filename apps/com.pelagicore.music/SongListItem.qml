@@ -35,6 +35,8 @@ import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
+import com.pelagicore.styles.triton 1.0
+
 ItemDelegate {
     id: root
 
@@ -54,14 +56,12 @@ ItemDelegate {
 
             Label {
                 id: title
-                color: Style.colorBlack
                 font.pixelSize: Style.fontSizeS
             }
 
             Label {
                 id: subtitle
                 visible: text !== ""
-                color: "#999999"
                 font.pixelSize: Style.fontSizeXS
             }
         }
@@ -70,7 +70,7 @@ ItemDelegate {
             width: parent.width
             height: 5
             anchors.bottom: parent.bottom
-            source: Style.gfx2("divider")
+            source: Style.gfx2("divider", TritonStyle.theme)
         }
     }
 }

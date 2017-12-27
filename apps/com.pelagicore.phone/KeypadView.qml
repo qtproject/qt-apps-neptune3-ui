@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import com.pelagicore.styles.triton 1.0
 import utils 1.0
 import animations 1.0
 import controls 1.0
@@ -43,6 +44,7 @@ Item {
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
 
+    // TODO: Use a TextField instead so that it follows TritonStyle automatically
     TextEdit {
         id: textedit
         anchors.left: gridlayout.left
@@ -50,6 +52,7 @@ Item {
         anchors.top: parent.top
 
         readOnly: true
+        color: TritonStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
         font.pixelSize: Style.fontSizeL
         wrapMode: TextEdit.Wrap

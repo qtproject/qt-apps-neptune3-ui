@@ -73,7 +73,7 @@ static QHash<TritonStyle::SystemColor, QColor>
 GlobalDarkThemeColors {
                      {TritonStyle::PrimaryTextColor, QColor(0xFFFFFFFF)},
                      {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
-                     {TritonStyle::BackgroundColor, QColor(0xFF3C3B37)},
+                     {TritonStyle::BackgroundColor, QColor(0xFF5E5954)},
                      {TritonStyle::ButtonColor, QColor(0xFF969696)},
                      {TritonStyle::HighlightedButtonColor, QColor(0xFF6D6B64)},
 

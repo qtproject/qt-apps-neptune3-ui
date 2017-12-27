@@ -48,7 +48,6 @@ ColumnLayout {
         Layout.preferredWidth: root.preferredWidth
         wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignLeft
-        color: Style.colorBlack
         font.pixelSize: Style.fontSizeM
     }
 
@@ -57,7 +56,6 @@ ColumnLayout {
         Layout.preferredWidth: root.preferredWidth
         wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignLeft
-        color: "#999999"
         font.pixelSize: Style.fontSizeS
         visible: text !== ""
     }

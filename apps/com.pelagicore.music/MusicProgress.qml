@@ -61,7 +61,6 @@ Control {
             anchors.topMargin: root.labelOnTop ? Style.vspan(0.5) : 0
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
-            color: Style.colorBlack
             font.pixelSize: Style.fontSizeS
             text: root.progressText
         }

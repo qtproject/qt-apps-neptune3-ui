@@ -216,23 +216,23 @@
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="78"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="80"/>
         <source>Next</source>
         <translation>다음 곡</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="93"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="95"/>
         <source>Browse</source>
         <translation>파일 탐색</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="116"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
         <source>Album</source>
         <translation>앨범</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="131"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="120"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="133"/>
         <source>Artist</source>
         <translation>아티스트</translation>
     </message>

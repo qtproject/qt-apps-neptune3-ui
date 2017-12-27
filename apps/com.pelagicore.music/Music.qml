@@ -38,6 +38,8 @@ import QtQuick.Layouts 1.2
 import QtGraphicalEffects 1.0
 import "stores"
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
 
@@ -427,7 +429,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: albumArtRow.bottom
         anchors.topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(0.2)
-        source: Style.gfx2("divider")
+        source: Style.gfx2("divider", TritonStyle.theme)
         opacity: (nowPlayingList.state === "WidgetShowList" || root.state === "Maximized")
                  && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { duration: 100 } }

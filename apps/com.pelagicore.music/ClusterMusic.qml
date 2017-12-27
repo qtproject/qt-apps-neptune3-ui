@@ -33,6 +33,7 @@ import QtQuick 2.8
 import utils 1.0
 import controls 1.0
 import "stores"
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -41,7 +42,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "assets/bg.png"
+        source: Style.gfx2("instrument-cluster-bg", TritonStyle.theme)
         fillMode: Image.Stretch
     }
 

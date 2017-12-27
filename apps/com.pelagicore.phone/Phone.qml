@@ -38,6 +38,7 @@ import animations 1.0
 import controls 1.0
 
 import "models"
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -82,7 +83,8 @@ Item {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        color: "#ece7e4" // FIXME palette
+        // FIXME Use named colors from TritonStyle
+        color: TritonStyle.theme === TritonStyle.Light ? "#ece7e4" : TritonStyle.backgroundColor
         visible: root.state == "Maximized"
     }
 

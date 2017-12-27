@@ -36,6 +36,8 @@ import animations 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
+import com.pelagicore.styles.triton 1.0
+
 Control {
     id: root
 
@@ -61,7 +63,7 @@ Control {
     background: Image {
         id: bgDummy
         anchors.fill: parent
-        source: Style.gfx2("bg-home")
+        source: Style.gfx2("bg-home", TritonStyle.theme)
         visible: root.showBg
     }
 
@@ -180,7 +182,7 @@ Control {
                     width: Style.hspan(17)
                     height: 5
                     anchors.bottom: parent.bottom
-                    source: Style.gfx2("divider")
+                    source: Style.gfx2("divider", TritonStyle.theme)
                 }
             }
         }

@@ -36,12 +36,16 @@ import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Rectangle {
     id: root
     width: Style.hspan(4)
     height: Style.vspan(1.8)
     radius: 50
-    color: "#ded9d7" // FIXME not in palette
+
+    // FIXME Use named colors from TritonStyle
+    color: TritonStyle.theme === TritonStyle.Light ? "#ded9d7" : "#545a5f"
 
     property alias primaryText: primaryLabel.text
     property alias secondaryText: secondaryLabel.text
