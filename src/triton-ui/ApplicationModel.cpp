@@ -195,6 +195,7 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
             windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
             windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
             windowManager->setWindowProperty(window, QStringLiteral("exposedRectBottomMargin"), QVariant(appInfo->exposedRectBottomMargin()));
+            windowManager->setWindowProperty(window, QStringLiteral("exposedRectTopMargin"), QVariant(appInfo->exposedRectTopMargin()));
             appInfo->setWindow(window);
             appInfo->setCanBeActive(true);
         }
@@ -347,6 +348,17 @@ void ApplicationModel::updateExposedRectBottomMarginProperty(ApplicationInfo *ap
 
     auto windowManager = WindowManager::instance();
     windowManager->setWindowProperty(window, QStringLiteral("exposedRectBottomMargin"), QVariant(appInfo->exposedRectBottomMargin()));
+}
+
+void ApplicationModel::updateExposedRectTopMarginProperty(ApplicationInfo *appInfo)
+{
+    QQuickItem *window = appInfo->window();
+    if (!window) {
+        return;
+    }
+
+    auto windowManager = WindowManager::instance();
+    windowManager->setWindowProperty(window, QStringLiteral("exposedRectTopMargin"), QVariant(appInfo->exposedRectTopMargin()));
 }
 
 qreal ApplicationModel::cellWidth() const
@@ -522,6 +534,9 @@ void ApplicationModel::append(const QtAM::Application *application)
     });
     connect(appInfo, &ApplicationInfo::exposedRectBottomMarginChanged, this, [this, appInfo]() {
         updateExposedRectBottomMarginProperty(appInfo);
+    });
+    connect(appInfo, &ApplicationInfo::exposedRectTopMarginChanged, this, [this, appInfo]() {
+        updateExposedRectTopMarginProperty(appInfo);
     });
     connect(appInfo, &ApplicationInfo::asWidgetChanged, this, [this, appInfo]() {
         onAsWidgetChanged(appInfo);

@@ -232,3 +232,16 @@ void ApplicationInfo::setExposedRectBottomMargin(qreal value)
         emit exposedRectBottomMarginChanged();
     }
 }
+
+qreal ApplicationInfo::exposedRectTopMargin() const
+{
+    return m_exposedRectTopMargin;
+}
+
+void ApplicationInfo::setExposedRectTopMargin(qreal value)
+{
+    if (m_exposedRectTopMargin != value) {
+        m_exposedRectTopMargin = value;
+        emit exposedRectTopMarginChanged();
+    }
+}

@@ -158,6 +158,7 @@ private:
     void updateCurrentHeightProperty(ApplicationInfo *appInfo);
     void updateWindowStateProperty(ApplicationInfo *appInfo);
     void updateExposedRectBottomMarginProperty(ApplicationInfo *appInfo);
+    void updateExposedRectTopMarginProperty(ApplicationInfo *appInfo);
     void startApplication(const QString &appId);
     static bool isInstrumentClusterApp(const QtAM::Application *app);
     void setInstrumentClusterAppInfo(ApplicationInfo*);

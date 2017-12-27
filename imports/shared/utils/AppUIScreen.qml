@@ -85,7 +85,7 @@ ApplicationManagerWindow {
         etc. In such cases you will want to relayout to that the important content is contained within
         exposedRect boundaries.
      */
-    property rect exposedRect: Qt.rect(0, 0, d.currentWidth, d.exposedRectHeight)
+    property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
 
     property int targetHeight: {
         if (tritonState === "Maximized") {
@@ -101,10 +101,11 @@ ApplicationManagerWindow {
 
     QtObject {
         id: d
+        property real exposedRectTopMargin: 0
         property real exposedRectBottomMargin: 0
         property int widgetHeight: 0
         property int currentWidth: 0
-        property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin);
+        property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin - exposedRectTopMargin);
     }
 
     onWindowPropertyChanged: {
@@ -114,6 +115,8 @@ ApplicationManagerWindow {
             Style.cellHeight = value;
         } else if (name === "exposedRectBottomMargin") {
             d.exposedRectBottomMargin = value;
+        } else if (name === "exposedRectTopMargin") {
+            d.exposedRectTopMargin = value;
         } else if (name === "tritonWidgetHeight") {
             d.widgetHeight = value;
         } else if (name === "tritonCurrentWidth") {

@@ -53,7 +53,6 @@ Item {
     property int widgetHeight
 
     BorderImage {
-        id: bgImage
         anchors.fill: parent
         anchors.leftMargin: -30
         anchors.rightMargin: -30
@@ -62,7 +61,10 @@ Item {
         border { left: 60; right: 60; top: 60; bottom: 60 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: !root.active ? Style.gfx2("widget-bg", TritonStyle.theme) : Style.gfx2("bg-home", TritonStyle.theme)
+        source: Style.gfx2("widget-bg", TritonStyle.theme)
+        opacity: root.active ? 0 : 1
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation{} }
     }
 
     Connections {

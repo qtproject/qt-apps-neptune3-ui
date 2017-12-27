@@ -70,7 +70,9 @@ Item {
         height: width
         symbol: Style.symbol("ic-addwidget-plus", false /* active */)
         onClicked: popup.open()
-        visible: widgetGrid.widgetCount < widgetGrid.maxWidgetCount
+        visible: widgetGrid.widgetCount < widgetGrid.maxWidgetCount && opacity > 0
+        opacity: root.applicationModel.activeAppInfo ? 0 : 1
+        Behavior on opacity { DefaultNumberAnimation{} }
     }
 
     // TODO: Load only when needed

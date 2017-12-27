@@ -549,7 +549,9 @@ Item {
                     id: resizeHandle
                     objectName: "resizeHandle" + model.index
 
-                    visible: repeaterDelegate.isAtBottom ? false : true
+                    visible: repeaterDelegate.isAtBottom || opacity === 0 ? false : true
+                    opacity: root.applicationModel.activeAppInfo ? 0 : 1
+                    Behavior on opacity { DefaultNumberAnimation{} }
 
                     width: parent.width
                     height: root.resizerHandleHeight

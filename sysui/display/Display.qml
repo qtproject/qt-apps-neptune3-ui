@@ -88,7 +88,13 @@ Image {
                 target: model.appInfo
                 property: "exposedRectBottomMargin"
                 value: model.appInfo.active && widgetDrawer.open && widgetDrawer.visible
-                        ? activeApplicationSlot.height - widgetDrawer.y : 0
+                        ? activeApplicationSlot.height - widgetDrawer.y : climateBar.height
+            }
+
+            property var exposedRectTopMarginBinding: Binding {
+                target: model.appInfo
+                property: "exposedRectTopMargin"
+                value: model.appInfo.active ? launcherLoader.y + Style.launcherHeight : 0
             }
 
             property var windowHeightBinding: Binding {
@@ -101,40 +107,15 @@ Image {
 
     // Content Elements
 
-    StageLoader {
-        id: statusBarLoader
-        height: Style.statusBarHeight
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        active: StagedStartupModel.loadDisplay
-        source: "../statusbar/StatusBar.qml"
-        Binding { target: statusBarLoader.item; property: "uiSettings"; value: settings }
-    }
-
-    StageLoader {
-        id: launcherLoader
-        width: Style.launcherWidth
-        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
-        Behavior on height { DefaultSmoothedAnimation {} }
-
-        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
-        anchors.top: statusBarLoader.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        active: StagedStartupModel.loadDisplay
-        source: "../launcher/Launcher.qml"
-        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
-    }
-
     Item {
         id: mainContentArea
-        y: launcherLoader.y + Style.launcherHeight
         anchors.left: parent.left
         anchors.right: parent.right
-        height: root.height - Style.statusBarHeight - Style.launcherHeight - climateBar.height
+        height: root.height
         opacity: launcherLoader.launcherOpen ? 0 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
         enabled: !launcherLoader.launcherOpen
+        z: 0
 
         Item {
             y: launcherLoader.height - Style.launcherHeight
@@ -144,7 +125,12 @@ Image {
             StageLoader {
                 id: homePageLoader
 
-                anchors.fill: parent
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                y: launcherLoader.y + Style.launcherHeight
+                height: parent.height - y - climateBar.height
+
                 active: true //StagedStartupModel.loadRest
                 source: "../home/HomePage.qml"
                 Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel }
@@ -173,7 +159,7 @@ Image {
                 id: widgetDrawer
                 width: parent.width
                 height: homePageLoader.homePageRowHeight
-                anchors.bottom: parent.bottom
+                anchors.bottom: homePageLoader.bottom
 
                 dragEnabled: !showingHomePage
                 visible: !showingHomePage && !widgetDrawerSlot.empty
@@ -202,8 +188,9 @@ Image {
         id: mainContentMask
         anchors.fill: mainContentArea
         gradient: Gradient {
-            GradientStop { position: 0.8; color: "#ffffffff" }
-            GradientStop { position: 0.95; color: "#00ffffff" }
+            GradientStop { position: 0; color: Qt.rgba(1, 1, 1, 0.3) }
+            GradientStop { position: 0.8; color: Qt.rgba(1, 1, 1, 0.3) }
+            GradientStop { position: 0.95; color: Qt.rgba(1, 1, 1, 0) }
         }
         visible: false
     }
@@ -212,8 +199,34 @@ Image {
         anchors.fill: mainContentArea
         source: mainContentArea
         maskSource: mainContentMask
-        opacity: launcherLoader.launcherOpen ? 0.1 : 1
-        Behavior on opacity { DefaultSmoothedAnimation {} }
+    }
+
+    StageLoader {
+        id: statusBarLoader
+        height: Style.statusBarHeight
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        active: StagedStartupModel.loadDisplay
+        source: "../statusbar/StatusBar.qml"
+        Binding { target: statusBarLoader.item; property: "uiSettings"; value: settings }
+        z: 1
+    }
+
+    StageLoader {
+        id: launcherLoader
+        width: Style.launcherWidth
+        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
+        Behavior on height { DefaultSmoothedAnimation {} }
+
+        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
+        anchors.top: statusBarLoader.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        active: StagedStartupModel.loadDisplay
+        source: "../launcher/Launcher.qml"
+        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
+
+        z: 1
     }
 
     ClimateBar {

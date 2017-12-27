@@ -95,16 +95,15 @@ class ApplicationInfo : public QObject {
     Q_PROPERTY(QStringList categories READ categories CONSTANT)
 
     /*
-        The bottom margin of the exposed rectangular area of the apps main window
+        Margins of the exposed rectangular area of the apps main window
 
         The area of the apps main window that is directly visible to the user (ie, exposed) and not occluded
-        obstructed by other items in the system ui is defined by a rectangle anchored ti all window's edges
-        Its bottom margin is defined by this property
-
-        The exposed rect is inside the window rect defined by (0, 0, window.width, currentWindowHeight)
+        by other items in the system ui is defined by a rectangle anchored to all screen edges.
      */
     Q_PROPERTY(qreal exposedRectBottomMargin READ exposedRectBottomMargin WRITE setExposedRectBottomMargin
                                              NOTIFY exposedRectBottomMarginChanged)
+    Q_PROPERTY(qreal exposedRectTopMargin READ exposedRectTopMargin WRITE setExposedRectTopMargin
+                                             NOTIFY exposedRectTopMarginChanged)
 
 public:
     ApplicationInfo(const QObject* application, QObject *parent = nullptr);
@@ -160,6 +159,9 @@ public:
     qreal exposedRectBottomMargin() const;
     void setExposedRectBottomMargin(qreal);
 
+    qreal exposedRectTopMargin() const;
+    void setExposedRectTopMargin(qreal);
+
 signals:
     void activeChanged();
     void canBeActiveChanged();
@@ -175,6 +177,7 @@ signals:
     void currentWidthChanged();
     void currentHeightChanged();
     void exposedRectBottomMarginChanged();
+    void exposedRectTopMarginChanged();
     void runningChanged();
 
 private:
@@ -194,6 +197,7 @@ private:
     bool m_running{false};
     const QObject *m_application{nullptr};
     qreal m_exposedRectBottomMargin{0};
+    qreal m_exposedRectTopMargin{0};
 };
 
 Q_DECLARE_METATYPE(ApplicationInfo*)

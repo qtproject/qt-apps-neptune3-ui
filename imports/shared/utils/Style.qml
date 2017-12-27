@@ -93,7 +93,7 @@ QtObject {
     property real popupHeight: isPotrait ? vspan(5) : vspan(6)
 
     property real launcherWidth: hspan(20)
-    property real launcherHeight: vspan(1.6)
+    property real launcherHeight: vspan(1.3)
     property int launcherSpan: 1
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
