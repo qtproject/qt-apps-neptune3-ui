@@ -127,11 +127,6 @@ Window {
         Shortcut {
             sequence: "t"
             context: Qt.ApplicationShortcut
-
-            // It was reported that you could trigger shortcuts from the virtual keyboard.
-            // I couldn't reproduce it but let's stay on the safe side and disable them nonetheless.
-            enabled: !display.virtualKeyboardActive
-
             onActivated: {
                 // TODO: Also change the instrument cluster theme
                 root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
@@ -144,7 +139,6 @@ Window {
         Shortcut {
             sequence: "l"
             context: Qt.ApplicationShortcut
-            enabled: !display.virtualKeyboardActive
             onActivated: {
                 const locales = Style.translation.availableTranslations;
                 const currentLocale = Style.languageLocale;
@@ -166,7 +160,6 @@ Window {
         Shortcut {
             sequence: "c"
             context: Qt.ApplicationShortcut
-            enabled: !display.virtualKeyboardActive
             onActivated: {
                 if (instrumentClusterWindowLoader.item)
                     instrumentClusterWindowLoader.item.nextSecondaryWindow();

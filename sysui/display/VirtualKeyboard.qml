@@ -39,8 +39,6 @@ Item {
     id: root
     height: inputPanel.height
 
-    readonly property bool active: inputPanel.active
-
     InputPanel {
         id: inputPanel
         anchors.left: parent.left

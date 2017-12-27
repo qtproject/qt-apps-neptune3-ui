@@ -57,7 +57,6 @@ Image {
 
     property Item popupParent
     property var settings
-    property alias virtualKeyboardActive: virtualKeyboard.active
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
@@ -238,7 +237,6 @@ Image {
     }
 
     VirtualKeyboard {
-        id: virtualKeyboard
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
