@@ -30,31 +30,56 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 import utils 1.0
-import "stores"
 
-AppUIScreen {
+import com.pelagicore.styles.triton 1.0
+
+ItemDelegate {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    property string eventTimeStart
+    property string eventTimeEnd
+    property alias eventLabel: event.text
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    highlighted: false
+    background: null
+
+    contentItem: Item {
+        anchors.fill: root
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            spacing: Style.hspan(1)
+
+            ColumnLayout {
+                Layout.preferredWidth: Style.hspan(1)
+                Label {
+                    text: root.eventTimeStart
+                    font.pixelSize: Style.fontSizeXS
+                }
+                Label {
+                    visible: root.eventTimeStart !== root.eventTimeEnd
+                    text: root.eventTimeEnd
+                    font.pixelSize: Style.fontSizeXS
+                    opacity: 0.6
+                }
+            }
+
+            Label {
+                id: event
+                visible: text !== ""
+                font.pixelSize: Style.fontSizeS
+            }
+        }
+
+        Image {
+            width: parent.width
+            height: 5
+            anchors.bottom: parent.bottom
+            source: Style.gfx2("divider", TritonStyle.theme)
         }
     }
-
-    Calendar {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
-    }
 }
-

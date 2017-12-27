@@ -363,6 +363,18 @@
         <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>events</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VehicleControlModel</name>

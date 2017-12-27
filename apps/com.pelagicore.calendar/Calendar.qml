@@ -30,11 +30,27 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import Qt.labs.calendar 1.0
 import animations 1.0
+import controls 1.0
 import utils 1.0
+import "stores"
+
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
+
+    property CalendarStore store
+    property bool bottomWidgetHide: false
+
+    Component.onCompleted: {
+        var d = new Date();
+        grid.month = d.getMonth();
+        grid.year = d.getFullYear();
+    }
 
     // TODO: These are just placeholders. Specs are not available yet.
     Image {
@@ -45,5 +61,144 @@ Item {
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
     }
-}
 
+    RowLayout {
+        id: calendarOnTop
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(1)
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(3)
+        visible: root.state === "Maximized"
+        spacing: Style.hspan(3)
+        ColumnLayout {
+            DayOfWeekRow {
+                locale: grid.locale
+                Layout.fillWidth: true
+                delegate: Text {
+                    text: model.shortName
+                    font.pixelSize: TritonStyle.fontSizeXS
+                    font.family: TritonStyle.fontFamily
+                    color: TritonStyle.primaryTextColor
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+            }
+            MonthGrid {
+                id: grid
+
+                property color labelColor: TritonStyle.primaryTextColor
+
+                locale: Qt.locale(Style.languageLocale)
+                Layout.fillWidth: true
+                delegate: Label {
+                    text: model.day
+                    color: grid.labelColor
+                    font.pixelSize: TritonStyle.fontSizeXS
+                    font.family: TritonStyle.fontFamily
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    opacity: model.month === grid.month ? 1 : 0
+                }
+            }
+            Image {
+                source: Style.gfx2("album-art-shadow-widget")
+            }
+        }
+
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: - Style.vspan(0.5)
+            Tool {
+                anchors.verticalCenter: parent.verticalCenter
+                symbol: Style.symbol("ic_skipprevious")
+                onClicked: {
+                    if (grid.month === 0) {
+                        grid.month = 11;
+                        grid.year -= 1;
+                    } else {
+                        grid.month -= 1
+                    }
+                }
+            }
+            Label {
+                Layout.preferredWidth: Style.hspan(6)
+                text: Qt.locale().monthName(grid.month) + " " + grid.year
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: Style.fontSizeM
+            }
+            Tool {
+                anchors.verticalCenter: parent.verticalCenter
+                symbol: Style.symbol("ic_skipnext")
+                onClicked: {
+                    if (grid.month === 11) {
+                        grid.month = 0;
+                        grid.year += 1;
+                    } else {
+                        grid.month += 1
+                    }
+                }
+            }
+        }
+    }
+
+    Control {
+        width: root.width
+        height: root.height - calendarOnTop.height - Style.vspan(0.8)
+        anchors.top: calendarOnTop.bottom
+        anchors.topMargin: Style.vspan(0.8)
+        visible: root.state === "Maximized"
+        background: Image {
+            anchors.fill: parent
+            source: Style.gfx2("bg-home", TritonStyle.theme)
+        }
+
+        contentItem: RowLayout {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.margins: Style.hspan(2)
+            spacing: Style.hspan(1.5)
+            ToolsColumn {
+                Layout.preferredHeight: Style.vspan(4)
+                anchors.top: parent.top
+                onToolClicked: {
+                    if (contentType === "year") {
+                        contentLoader.sourceComponent = year;
+                    } else if (contentType === "next") {
+                        contentLoader.sourceComponent = next;
+                    } else {
+                        contentLoader.sourceComponent = events;
+                    }
+                }
+            }
+
+            Loader {
+                id: contentLoader
+                anchors.top: parent.top
+                Layout.preferredWidth: Style.hspan(15)
+                Layout.preferredHeight: root.bottomWidgetHide ? Style.vspan(13) : Style.vspan(10.2)
+                Behavior on Layout.preferredHeight { DefaultNumberAnimation { } }
+                sourceComponent: year
+            }
+        }
+    }
+
+    Component {
+        id: year
+        CalendarGrid { }
+    }
+
+    Component {
+        id: next
+        NextCalendar {
+            eventModel: root.store.eventModel
+        }
+    }
+
+    Component {
+        id: events
+        EventListView {
+            model: root.store.eventModel
+        }
+    }
+}

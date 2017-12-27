@@ -31,30 +31,71 @@
 
 import QtQuick 2.8
 import utils 1.0
-import "stores"
 
-AppUIScreen {
+Store {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    property ListModel eventModel: ListModel {
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+        ListElement {
+            timeStart: "all-day"
+            timeEnd: "all-day"
+            event: "Happy Thanksgiving!"
+        }
+
+        ListElement {
+            timeStart: "07:00"
+            timeEnd: "08:00"
+            event: "Breakfast with family"
+        }
+
+        ListElement {
+            timeStart: "08:00"
+            timeEnd: "09:00"
+            event: "Drive to office"
+        }
+
+        ListElement {
+            timeStart: "09:00"
+            timeEnd: "10:00"
+            event: "Meeting with Partner"
+        }
+
+        ListElement {
+            timeStart: "10:30"
+            timeEnd: "11:00"
+            event: "Team Meeting"
+        }
+
+        ListElement {
+            timeStart: "12:00"
+            timeEnd: "13:00"
+            event: "Lunch with Partner"
+        }
+
+        ListElement {
+            timeStart: "12:00"
+            timeEnd: "13:00"
+            event: "Annual Project Meeting"
+        }
+
+        ListElement {
+            timeStart: "17:00"
+            timeEnd: "18:00"
+            event: "Pick-up Daughter from school"
+        }
+
+        ListElement {
+            timeStart: "19:00"
+            timeEnd: "22:00"
+            event: "Dinner with Friends"
+        }
+
+        ListElement {
+            timeStart: "Tomorrow"
+            timeEnd: "all-day"
+            event: "Best Friend Wedding"
         }
     }
 
-    Calendar {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
-    }
 }
-

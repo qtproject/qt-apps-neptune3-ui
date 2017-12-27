@@ -30,31 +30,35 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import animations 1.0
 import utils 1.0
-import "stores"
 
-AppUIScreen {
+import com.pelagicore.styles.triton 1.0
+
+ScrollIndicator {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    background: Item {
+        Rectangle {
+            implicitWidth: Style.hspan(0.05)
+            height: parent.height
+            anchors.horizontalCenter: parent.horizontalCenter
+            radius: height
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+            // TODO: Use a named color from TritonStyle when available.
+            color: "#969494"
+            opacity: root.active ? 1.0 : 0.0
+            Behavior on opacity { DefaultNumberAnimation { } }
         }
     }
 
-    Calendar {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
+    contentItem: Rectangle {
+        implicitWidth: Style.hspan(0.1)
+        radius: height
+        color: TritonStyle.accentColor
+        opacity: root.active ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 }
 

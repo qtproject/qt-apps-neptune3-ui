@@ -31,30 +31,53 @@
 
 import QtQuick 2.8
 import utils 1.0
-import "stores"
+import controls 1.0
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
-AppUIScreen {
+ColumnLayout {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    property int currentTool: 0
+    signal toolClicked(var contentType)
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    property ListModel model: ListModel {
+        ListElement {
+            icon: "ic-calendar"
+            label: QT_TR_NOOP("year")
+        }
+
+        ListElement {
+            icon: "ic-calendar"
+            label: QT_TR_NOOP("next")
+        }
+
+        ListElement {
+            icon: "ic-calendar"
+            label: QT_TR_NOOP("events")
         }
     }
 
-    Calendar {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
+    ButtonGroup { id: buttonGroup }
+
+    Repeater {
+        model: root.model
+
+        Tool {
+            anchors.horizontalCenter: parent.horizontalCenter
+            baselineOffset: 0
+            checkable: true
+            checked: root.currentTool === index
+            symbol: icon ? Style.symbol(buttonGroup.checkedButton === this ? icon + "_ON" : icon + "_OFF") : ""
+            text: qsTr(label)
+            font.pixelSize: Style.fontSizeXS
+            symbolOnTop: true
+            onClicked: {
+                root.toolClicked(label);
+                root.currentTool = index;
+            }
+            ButtonGroup.group: buttonGroup
+        }
     }
 }
 

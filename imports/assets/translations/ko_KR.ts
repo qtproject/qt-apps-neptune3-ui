@@ -444,6 +444,21 @@
         <source>messages</source>
         <translation>메시지</translation>
     </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="47"/>
+        <source>year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="52"/>
+        <source>next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="57"/>
+        <source>events</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VehicleControlModel</name>

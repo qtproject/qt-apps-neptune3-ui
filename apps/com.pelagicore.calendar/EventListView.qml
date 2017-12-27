@@ -30,31 +30,25 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
 import utils 1.0
-import "stores"
+import controls 1.0
 
-AppUIScreen {
+ListView {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+    delegate: EventListItem {
+        width: Style.hspan(15)
+        height: Style.vspan(1)
+        eventTimeStart: timeStart
+        eventTimeEnd: timeEnd
+        eventLabel: event
     }
-
-    Calendar {
-        height: root.currentHeight
-        width: root.width
-        state: root.tritonState
-        bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
+    ScrollIndicator.vertical: CalendarScrollIndicator {
+        parent: root.parent
+        anchors.top: root.top
+        anchors.left: root.right
+        anchors.leftMargin: Style.hspan(0.5)
+        anchors.bottom: root.bottom
     }
 }
-
