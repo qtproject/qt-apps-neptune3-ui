@@ -108,8 +108,15 @@ Window {
                     Style.languageLocale = language;
                 }
             }
-            onThemeChanged: root.contentItem.TritonStyle.theme = theme == 0
-                            ? TritonStyle.Light : TritonStyle.Dark
+            onThemeChanged: updateTheme()
+            Component.onCompleted: updateTheme()
+            function updateTheme() {
+                var chosenTheme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+                root.contentItem.TritonStyle.theme = chosenTheme;
+                if (instrumentClusterWindowLoader.item) {
+                    instrumentClusterWindowLoader.item.contentItem.TritonStyle.theme = chosenTheme;
+                }
+            }
         }
 
         // N.B. need to use a Timer here to "push" the available languages to settings server
@@ -128,12 +135,7 @@ Window {
             sequence: "Ctrl+t"
             context: Qt.ApplicationShortcut
             onActivated: {
-                // TODO: Also change the instrument cluster theme
-                root.contentItem.TritonStyle.theme = root.contentItem.TritonStyle.theme == TritonStyle.Light
-                        ? TritonStyle.Dark : TritonStyle.Light
-                uiSettings.theme =
-                        root.contentItem.TritonStyle.theme == TritonStyle.Light ?
-                            0 : 1
+                uiSettings.theme = uiSettings.theme === 0 ? 1 : 0
             }
         }
         Shortcut {
@@ -185,7 +187,7 @@ Window {
             Behavior on opacity { DefaultNumberAnimation {}  }
             Image {
                 anchors.fill: parent
-                source: Style.gfx2(Style.displayBackground)
+                source: Style.gfx2(TritonStyle.backgroundImage)
                 FastBlur {
                     anchors.fill: parent
                     radius: Style.hspan(1)
@@ -230,6 +232,7 @@ Window {
         sourceComponent: Component {
             InstrumentClusterWindow {
                 applicationModel: display.applicationModel
+                Component.onCompleted: uiSettings.updateTheme()
             }
         }
 
