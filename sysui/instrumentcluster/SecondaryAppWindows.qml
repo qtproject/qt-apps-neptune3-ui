@@ -51,6 +51,7 @@ Item {
     readonly property string selectedApplicationId: selectedIndex < secondaryWindowList.count
                                                         ? secondaryWindowList.get(selectedIndex).applicationId
                                                         : ""
+    readonly property bool empty: secondaryWindowList.count === 0
 
     Instantiator {
         model: root.applicationModel

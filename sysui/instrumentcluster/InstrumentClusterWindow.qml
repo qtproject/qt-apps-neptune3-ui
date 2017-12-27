@@ -35,6 +35,8 @@ import QtQuick.Window 2.3
 
 import QtApplicationManager 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Window {
     id: root
     width: Style.instrumentClusterWidth
@@ -74,11 +76,20 @@ Window {
         width: parent.width
         height: width / Style.instrumentClusterUIAspectRatio
 
+        Image {
+            anchors.fill: parent
+            source: Style.gfx2("instrument-cluster-bg", TritonStyle.theme)
+            fillMode: Image.Stretch
+            visible: !secondaryAppWindows.visible
+        }
+
         SecondaryAppWindows {
             id: secondaryAppWindows
             anchors.fill: parent
             z: 1
             applicationModel: root.applicationModel
+
+            visible: !empty
 
             readonly property bool selectedNavigation: {
                 if (root.applicationModel) {
