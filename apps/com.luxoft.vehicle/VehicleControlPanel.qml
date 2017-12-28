@@ -34,6 +34,8 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import com.pelagicore.settings 1.0
 
+import controls 1.0
+
 Item {
     id: root
 
@@ -71,9 +73,8 @@ Item {
         }
     }
 
-    Item {
-        id: controlButtons
-
+    ToolsColumn {
+        id: toolsColumn
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: 70
@@ -81,48 +82,12 @@ Item {
         width: 100
         height: 460
 
-        ColumnLayout {
-            spacing: 20
-
-            VehicleVerticalMenuButton {
-                id: supportButton
-
-                text: qsTr("support")
-                sourceUp: "assets/images/ic-driving-support-off.png"
-                sourceDown: "assets/images/ic-driving-support-on.png"
-                onClicked: controlPages.currentItem = supportItem
-                down: controlPages.currentItem == supportItem
-            }
-
-            VehicleVerticalMenuButton {
-                id: energyButton
-
-                text: qsTr("energy")
-                sourceUp: "assets/images/ic-energy-off.png"
-                sourceDown: "assets/images/ic-energy-on.png"
-                onClicked: controlPages.currentItem = energyItem
-                down: controlPages.currentItem == energyItem
-            }
-
-            VehicleVerticalMenuButton {
-                id: doorsButton
-
-                text: qsTr("doors")
-                sourceUp: "assets/images/ic-doors-off.png"
-                sourceDown: "assets/images/ic-doors-on.png"
-                onClicked: controlPages.currentItem = doorsItem
-                down: controlPages.currentItem == doorsItem
-            }
-
-            VehicleVerticalMenuButton {
-                id: tiresButton
-
-                text: qsTr("tires")
-                sourceUp: "assets/images/ic-tires-off.png"
-                sourceDown: "assets/images/ic-tires-on.png"
-                onClicked: controlPages.currentItem = tiresItem
-                down: controlPages.currentItem == tiresItem
-            }
+        translationContext: "VehicleToolsColumn"
+        model: ListModel {
+            ListElement { icon: "ic-driving-support"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "support") }
+            ListElement { icon: "ic-energy"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "energy") }
+            ListElement { icon: "ic-doors"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "doors") }
+            ListElement { icon: "ic-tires"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "tires") }
         }
     }
 
@@ -135,7 +100,18 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: 262
         anchors.topMargin: 74
-        property Item currentItem: doorsItem
+        property Item currentItem: {
+            switch (toolsColumn.currentText) {
+                case "support":
+                    return supportItem;
+                case "energy":
+                    return energyItem;
+                case "doors":
+                    return doorsItem;
+                case "tires":
+                    return tiresItem;
+            }
+        }
 
         Item {
             id: supportItem

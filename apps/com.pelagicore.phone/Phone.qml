@@ -121,7 +121,7 @@ Item {
 
         onCallEndRequested: endCall(handle)
         onKeypadRequested: {
-            toolsColumn.currentTool = "keypad";
+            toolsColumn.currentIndex = 3; // keypad
             root.activateApp();
         }
 
@@ -147,6 +147,15 @@ Item {
             id: toolsColumn
             anchors.left: parent.left
             anchors.top: parent.top
+            translationContext: "PhoneToolsColumn"
+            model: ListModel {
+                ListElement { icon: "ic-recents"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "recents") }
+                ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "favorites") }
+                ListElement { icon: "ic-voicemail"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "voicemail") }
+                ListElement { icon: "ic-keypad"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "keypad") }
+                ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts") }
+                ListElement { icon: "ic-messages"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "messages") }
+            }
         }
 
         Loader {
@@ -159,12 +168,12 @@ Item {
 
             Binding {
                 target: viewLoader.item; property: "model";
-                value: ContactsModel; when: toolsColumn.currentTool == "contacts"
+                value: ContactsModel; when: toolsColumn.currentText === "contacts"
             }
 
             Binding {
                 target: viewLoader.item; property: "model";
-                value: favoritesModel; when: toolsColumn.currentTool == "favorites"
+                value: favoritesModel; when: toolsColumn.currentText === "favorites"
             }
 
             Connections {
@@ -174,7 +183,7 @@ Item {
             }
 
             source: {
-                switch (toolsColumn.currentTool) {
+                switch (toolsColumn.currentText) {
                     case "recents":
                         return "RecentCallsView.qml";
                     case "favorites":

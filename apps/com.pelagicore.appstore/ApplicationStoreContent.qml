@@ -77,6 +77,7 @@ Item {
         anchors.margins: Style.hspan(2)
         spacing: 80
 
+        // FIXME: Use ToolsColumn from controls module instead
         ToolsColumn {
             Layout.preferredHeight: Style.vspan(4)
             anchors.top: parent.top

@@ -49,6 +49,7 @@ ToolButton {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: root.symbolOnTop ? Style.vspan(0.2) : 0
+        horizontalAlignment: Text.AlignHCenter
     }
 
     indicator: Image {

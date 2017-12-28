@@ -35,6 +35,7 @@ import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
+// FIXME: Delete this in favor of ToolsColumn from controls module
 ColumnLayout {
     id: root
 

@@ -30,42 +30,59 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
-import "assets"
 
+import com.pelagicore.styles.triton 1.0
+import utils 1.0
+
+/*
+    A column of tool buttons where only one of them can be selected at any given time.
+
+    Usage example:
+
+    ToolsColumn {
+        translationContext: "MyToolsColumn"
+        model: ListModel {
+            ListElement { icon: "ic-foo"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "foo") }
+            ListElement { icon: "ic-bar"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "bar") }
+        }
+    }
+
+*/
 ColumnLayout {
     id: root
-    implicitWidth: Style.hspan(4)
-    implicitHeight: Style.vspan(6)
 
-    property alias model: toolsRepeater.model
-    property string currentTool: ""
-    signal toolClicked(string name, int index)
+    width: Style.hspan(3)
+
+    property int currentIndex: 0
+    readonly property string currentText: model ? model.get(currentIndex).text : ""
+
+    property alias model: repeater.model
 
     ButtonGroup { id: buttonGroup }
 
+    spacing: Style.vspan(0.3)
+
+    property string translationContext
+
     Repeater {
-        id: toolsRepeater
+        id: repeater
 
         Tool {
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.preferredWidth: Style.hspan(3)
+            Layout.preferredHeight: Style.vspan(1.2)
+            Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
-            checked: root.currentTool === model.name
-
-            // TODO: ask for the correct asset to designer
-            property bool selected: buttonGroup.checkedButton === this
-            symbol: Assets.icon(model.symbol + (selected ? '_ON' : '_OFF'))
-            text: qsTranslate("SettingsPanel", model.name)
+            checked: root.currentIndex === index
+            symbol: icon ? Style.symbol(checked ? icon + "_ON" : icon + "_OFF") : ""
+            text: qsTranslate(root.translationContext, model.text)
+            labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
+            labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
             font.pixelSize: Style.fontSizeXS
             symbolOnTop: true
-            onClicked: {
-                root.toolClicked(model.name, index);
-                root.currentTool = model.name;
-            }
+            onClicked: root.currentIndex = index;
             ButtonGroup.group: buttonGroup
         }
     }

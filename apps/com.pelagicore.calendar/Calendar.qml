@@ -169,19 +169,18 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.topMargin: Style.hspan(2)
-            anchors.leftMargin: Style.hspan(2)
+            anchors.leftMargin: Style.hspan(1)
             anchors.rightMargin: Style.hspan(2)
             spacing: Style.hspan(1.5)
             ToolsColumn {
+                id: toolsColumn
                 height: Style.vspan(4)
-                onToolClicked: {
-                    if (contentType === "year") {
-                        contentLoader.sourceComponent = year;
-                    } else if (contentType === "next") {
-                        contentLoader.sourceComponent = next;
-                    } else {
-                        contentLoader.sourceComponent = events;
-                    }
+                translationContext: "CalendarToolsColumn"
+                model: ListModel {
+                    id: toolsColumnModel
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "year") }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "next") }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "events") }
                 }
             }
 
@@ -190,7 +189,13 @@ Item {
                 width: Style.hspan(15)
                 height: parent.height
                 Behavior on height { DefaultNumberAnimation { } }
-                sourceComponent: year
+                sourceComponent: {
+                    switch (toolsColumn.currentText) {
+                        case "year": return year;
+                        case "next": return next;
+                        case "events": return events;
+                    }
+                }
             }
         }
     }

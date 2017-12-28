@@ -40,8 +40,10 @@ Store {
 
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
+    property alias contentType: searchBrowseModel.contentType
 
     property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
+        id: searchBrowseModel
         contentType: ""
         onContentTypeChanged: console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
         serviceObject: root.player.serviceObject
@@ -115,10 +117,6 @@ Store {
                 }
             }
         }
-    }
-
-    function changeContentType(type) {
-        searchAndBrowseModel.contentType = type;
     }
 
     function playSong() {

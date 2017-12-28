@@ -51,6 +51,39 @@
     </message>
 </context>
 <context>
+    <name>Calendar</name>
+    <message>
+        <source>year</source>
+        <translation type="obsolete">rok</translation>
+    </message>
+    <message>
+        <source>next</source>
+        <translation type="obsolete">další</translation>
+    </message>
+    <message>
+        <source>events</source>
+        <translation type="obsolete">události</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
+        <source>year</source>
+        <translation type="unfinished">rok</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
+        <source>next</source>
+        <translation type="unfinished">další</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
+        <source>events</source>
+        <translation type="unfinished">události</translation>
+    </message>
+</context>
+<context>
     <name>CalendarWidgetContent</name>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
@@ -210,29 +243,24 @@
 <context>
     <name>LibraryToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="48"/>
         <source>favorites</source>
-        <translation>oblíbené</translation>
+        <translation type="vanished">oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="53"/>
         <source>artists</source>
-        <translation>umělci</translation>
+        <translation type="vanished">umělci</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="58"/>
         <source>playlists</source>
-        <translation>seznamy</translation>
+        <translation type="vanished">seznamy</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="63"/>
         <source>albums</source>
-        <translation>alba</translation>
+        <translation type="vanished">alba</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/LibraryToolsColumn.qml" line="68"/>
         <source>folders</source>
-        <translation>složky</translation>
+        <translation type="vanished">složky</translation>
     </message>
     <message>
         <source>sources</source>
@@ -253,6 +281,29 @@
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
         <source>Process Monitor on Status Bar</source>
         <translation>Monitor procesů ve stavové liště</translation>
+    </message>
+</context>
+<context>
+    <name>Music</name>
+    <message>
+        <source>favorites</source>
+        <translation type="obsolete">oblíbené</translation>
+    </message>
+    <message>
+        <source>artists</source>
+        <translation type="obsolete">umělci</translation>
+    </message>
+    <message>
+        <source>playlists</source>
+        <translation type="obsolete">seznamy</translation>
+    </message>
+    <message>
+        <source>albums</source>
+        <translation type="obsolete">alba</translation>
+    </message>
+    <message>
+        <source>folders</source>
+        <translation type="obsolete">složky</translation>
     </message>
 </context>
 <context>
@@ -280,6 +331,34 @@
     </message>
 </context>
 <context>
+    <name>MusicToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
+        <source>favorites</source>
+        <translation type="unfinished">oblíbené</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
+        <source>artists</source>
+        <translation type="unfinished">umělci</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
+        <source>playlists</source>
+        <translation type="unfinished">seznamy</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
+        <source>albums</source>
+        <translation type="unfinished">alba</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
+        <source>folders</source>
+        <translation type="unfinished">složky</translation>
+    </message>
+</context>
+<context>
     <name>NetworkMonitor</name>
     <message>
         <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="58"/>
@@ -300,6 +379,66 @@
     <message>
         <source>Contacts</source>
         <translation type="vanished">Kontakty</translation>
+    </message>
+</context>
+<context>
+    <name>Phone</name>
+    <message>
+        <source>recents</source>
+        <translation type="obsolete">nedávné</translation>
+    </message>
+    <message>
+        <source>favorites</source>
+        <translation type="obsolete">oblíbené</translation>
+    </message>
+    <message>
+        <source>voicemail</source>
+        <translation type="obsolete">hlas. schránka</translation>
+    </message>
+    <message>
+        <source>keypad</source>
+        <translation type="obsolete">číselník</translation>
+    </message>
+    <message>
+        <source>contacts</source>
+        <translation type="obsolete">kontakty</translation>
+    </message>
+    <message>
+        <source>messages</source>
+        <translation type="obsolete">zprávy</translation>
+    </message>
+</context>
+<context>
+    <name>PhoneToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
+        <source>recents</source>
+        <translation type="unfinished">nedávné</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
+        <source>favorites</source>
+        <translation type="unfinished">oblíbené</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
+        <source>voicemail</source>
+        <translation type="unfinished">hlas. schránka</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
+        <source>keypad</source>
+        <translation type="unfinished">číselník</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
+        <source>contacts</source>
+        <translation type="unfinished">kontakty</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
+        <source>messages</source>
+        <translation type="unfinished">zprávy</translation>
     </message>
 </context>
 <context>
@@ -413,19 +552,34 @@
         <translation>Tmavý</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="84"/>
         <source>languages</source>
-        <translation>jazyky</translation>
+        <translation type="vanished">jazyky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="85"/>
         <source>date</source>
-        <translation>datum</translation>
+        <translation type="vanished">datum</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="86"/>
         <source>themes</source>
-        <translation>motivy</translation>
+        <translation type="vanished">motivy</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
+        <source>languages</source>
+        <translation type="unfinished">jazyky</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
+        <source>date</source>
+        <translation type="unfinished">datum</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
+        <source>themes</source>
+        <translation type="unfinished">motivy</translation>
     </message>
 </context>
 <context>
@@ -490,49 +644,40 @@
 <context>
     <name>ToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="49"/>
         <source>recents</source>
-        <translation>nedávné</translation>
+        <translation type="vanished">nedávné</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="53"/>
         <source>favorites</source>
-        <translation>oblíbené</translation>
+        <translation type="vanished">oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="57"/>
         <source>voicemail</source>
-        <translation>hlas. schránka</translation>
+        <translation type="vanished">hlas. schránka</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="61"/>
         <source>keypad</source>
-        <translation>číselník</translation>
+        <translation type="vanished">číselník</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="65"/>
         <source>contacts</source>
-        <translation>kontakty</translation>
+        <translation type="vanished">kontakty</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/ToolsColumn.qml" line="69"/>
         <source>messages</source>
-        <translation>zprávy</translation>
+        <translation type="vanished">zprávy</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="47"/>
         <source>year</source>
-        <translation>rok</translation>
+        <translation type="vanished">rok</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="52"/>
         <source>next</source>
-        <translation>další</translation>
+        <translation type="vanished">další</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="57"/>
         <source>events</source>
-        <translation>události</translation>
+        <translation type="vanished">události</translation>
     </message>
 </context>
 <context>
@@ -569,95 +714,91 @@
 <context>
     <name>VehicleControlPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
         <source>support</source>
-        <translation>podpora</translation>
+        <translation type="vanished">podpora</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="100"/>
         <source>energy</source>
-        <translation>energie</translation>
+        <translation type="vanished">energie</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="110"/>
         <source>doors</source>
-        <translation>dveře</translation>
+        <translation type="vanished">dveře</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="120"/>
         <source>tires</source>
-        <translation>pneu</translation>
+        <translation type="vanished">pneu</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="223"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="199"/>
         <source>Present</source>
         <translation>Přítomna</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="230"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="206"/>
         <source>1 day</source>
         <translation>1 den</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="237"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="213"/>
         <source>1 week</source>
         <translation>1 týden</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="245"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="221"/>
         <source>1 month</source>
         <translation>1 měsíc</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="268"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="244"/>
         <source>Projected distance to empty</source>
         <translation>Projektovaná vzdálenost</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="296"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="272"/>
         <source>184</source>
         <translation>184</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="310"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="381"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="443"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="286"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="357"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="419"/>
         <source>km</source>
         <translation>km</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="327"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="303"/>
         <source>Charging stations</source>
         <translation>Nabíjecí stanice</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="342"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="318"/>
         <source>Show on map</source>
         <translation>Zobrazit na mapě</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="367"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="343"/>
         <source>21</source>
         <translation>21</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="397"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="373"/>
         <source>Donald Weese Ct, Las Vegas</source>
         <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="410"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="472"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="386"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="448"/>
         <source>Route</source>
         <translation>Trasa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="426"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="402"/>
         <source>27</source>
         <translation>27</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="459"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="435"/>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
     </message>
@@ -666,70 +807,70 @@
         <translation type="vanished">Zámky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="505"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="481"/>
         <source>Sun roof</source>
         <translation>Střecha</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="513"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="489"/>
         <source>Doors</source>
         <translation>Dveře</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="522"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="498"/>
         <source>Trunk</source>
         <translation>Kufr</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="591"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="748"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="567"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="724"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="605"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="748"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="581"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="724"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="781"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="817"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="852"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="888"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="757"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="793"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="828"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="864"/>
         <source>240</source>
         <translation>240</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="794"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="829"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="865"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="900"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="770"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="805"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="841"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="876"/>
         <source>kPa</source>
         <translation>kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="919"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="895"/>
         <source>Normal load</source>
         <translation>Normální zatížení</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="932"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="908"/>
         <source>Target: 240 kPa</source>
         <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="950"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="926"/>
         <source>Max load</source>
         <translation>Max zatížení</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="963"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="939"/>
         <source>Target: 270 kPa</source>
         <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="981"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="957"/>
         <source>Calibrate</source>
         <translation>Kalibrovat</translation>
     </message>
@@ -740,6 +881,29 @@
         <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
         <translation>Servis za 300 km</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleToolsColumn</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="87"/>
+        <source>support</source>
+        <translation type="unfinished">podpora</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
+        <source>energy</source>
+        <translation type="unfinished">energie</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="89"/>
+        <source>doors</source>
+        <translation type="unfinished">dveře</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
+        <source>tires</source>
+        <translation type="unfinished">pneu</translation>
     </message>
 </context>
 <context>

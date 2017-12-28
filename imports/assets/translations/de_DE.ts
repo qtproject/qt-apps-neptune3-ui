@@ -38,6 +38,21 @@
     </message>
 </context>
 <context>
+    <name>CalendarToolsColumn</name>
+    <message>
+        <source>year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>events</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarWidgetContent</name>
     <message>
         <source>Partly rain</source>
@@ -158,29 +173,6 @@
     </message>
 </context>
 <context>
-    <name>LibraryToolsColumn</name>
-    <message>
-        <source>favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>artists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>playlists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>albums</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>folders</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>Main</name>
     <message>
         <source>Instrument Cluster</source>
@@ -214,9 +206,59 @@
     </message>
 </context>
 <context>
+    <name>MusicToolsColumn</name>
+    <message>
+        <source>favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>artists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>playlists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>albums</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkMonitor</name>
     <message>
         <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PhoneToolsColumn</name>
+    <message>
+        <source>recents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>voicemail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>keypad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -309,6 +351,9 @@
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>SettingsToolsColumn</name>
     <message>
         <source>languages</source>
         <translation type="unfinished"></translation>
@@ -358,45 +403,6 @@
     </message>
 </context>
 <context>
-    <name>ToolsColumn</name>
-    <message>
-        <source>recents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>voicemail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>keypad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>contacts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>year</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>events</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
@@ -417,22 +423,6 @@
 </context>
 <context>
     <name>VehicleControlPanel</name>
-    <message>
-        <source>support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>energy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>doors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tires</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Present</source>
         <translation type="unfinished"></translation>
@@ -543,6 +533,25 @@
     <message>
         <source>Service in 300km</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleToolsColumn</name>
+    <message>
+        <source>doors</source>
+        <translation>Türen</translation>
+    </message>
+    <message>
+        <source>tires</source>
+        <translation>Riefen</translation>
+    </message>
+    <message>
+        <source>support</source>
+        <translation>Fahrassistenz</translation>
+    </message>
+    <message>
+        <source>energy</source>
+        <translation>Energie</translation>
     </message>
 </context>
 <context>

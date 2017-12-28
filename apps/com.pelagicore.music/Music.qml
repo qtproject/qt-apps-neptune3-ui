@@ -53,6 +53,24 @@ Item {
 
     state: "Widget1Row"
 
+    Binding {
+        target: root.store; property: "contentType";
+        value: {
+            switch (toolsColumn.currentText) {
+                case "artists":
+                    return "artist";
+                case "albums":
+                case "folders":
+                    return "album";
+                case "favorites":
+                    // TODO: check if IVI already support favorites list.
+                default:
+                    // TODO: specify all possible content type. currently use "track" as default
+                    return "track";
+            }
+        }
+    }
+
     // States and transitions are still WIP. it still need to wait for the feedback from designer and later be updated according to the final spec.
     states: [
         State {
@@ -253,6 +271,18 @@ Item {
 
         anchors.bottom: parent.bottom
 
+        showPath: {
+            switch (toolsColumn.currentText) {
+                case "artists":
+                case "albums":
+                case "folders":
+                    return false;
+                case "favorites":
+                default:
+                    return true;
+            }
+        }
+
         states: [
             State {
                 name: "expanded"
@@ -348,35 +378,26 @@ Item {
         }
     }
 
-    LibraryToolsColumn {
+    ToolsColumn {
+        id: toolsColumn
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2.5)
+        anchors.leftMargin: Style.hspan(1.0)
         anchors.top: musicLibrary.top
         anchors.topMargin: Style.vspan(1.1)
         visible: root.state === "Maximized" && musicLibrary.showList
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
 
-        onToolClicked: {
-            if (contentType === "artists") {
-                root.store.changeContentType("artist");
-                musicLibrary.showPath = false;
-            } else if (contentType === "albums") {
-                root.store.changeContentType("album");
-                musicLibrary.showPath = false;
-            } else if (contentType === "folders") {
-                root.store.changeContentType("album");
-                musicLibrary.showPath = false;
-            } else if (contentType === "favorites") {
-                // TODO: check if IVI already support favorites list.
-                root.store.changeContentType("track");
-                musicLibrary.showPath = true;
-            } else {
-                // TODO: specify all possible content type. currently use "track" as default
-                root.store.changeContentType("track");
-                musicLibrary.showPath = true;
-            }
+        translationContext: "MusicToolsColumn"
+        model: ListModel {
+            ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites") }
+            ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists") }
+            ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists") }
+            ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums") }
+            ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders") }
+        }
 
+        onCurrentIndexChanged: {
             // Reset media library path
             musicLibrary.artistPath = "";
             musicLibrary.albumPath = "";

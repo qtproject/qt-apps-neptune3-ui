@@ -72,29 +72,32 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: Style.hspan(2)
+        anchors.topMargin: Style.hspan(2)
+        anchors.bottomMargin: Style.hspan(2)
+        anchors.leftMargin: Style.hspan(1)
+        anchors.rightMargin: Style.hspan(2)
         spacing: Style.hspan(1)
 
 
         ToolsColumn {
+            id: toolsColumn
             Layout.preferredHeight: Style.vspan(4)
             Layout.preferredWidth: Style.hspan(4)
             anchors.top: parent.top
+            translationContext: "SettingsToolsColumn"
             model: ListModel {
-                ListElement { name: QT_TR_NOOP("languages"); symbol:  'ic-languages'}
-                ListElement { name: QT_TR_NOOP("date"); symbol:  'ic-time' }
-                ListElement { name: QT_TR_NOOP("themes"); symbol:  'ic-themes' }
+                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
+                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
+                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes' }
             }
-            currentTool: model.get(0).name
-
-            onToolClicked: stack.currentIndex = index
         }
 
         StackLayout {
-            id: stack
             anchors.top: parent.top
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            currentIndex: toolsColumn.currentIndex
 
             LanguagePanel {
                 model: store.languageModel

@@ -14,4 +14,5 @@ AppStackView 1.0 AppStackView.qml
 LetterPicker 1.0 LetterPicker.qml
 BackgroundPane 1.0 BackgroundPane.qml
 TemperatureSlider 1.0 TemperatureSlider.qml
+ToolsColumn 1.0 ToolsColumn.qml
 WebBrowser 1.0 WebBrowser.qml
