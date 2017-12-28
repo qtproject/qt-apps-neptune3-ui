@@ -37,7 +37,6 @@ import utils 1.0
 import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import triton.controls 1.0
-import com.pelagicore.styles.triton 1.0
 
 TritonPopup {
     id: root
