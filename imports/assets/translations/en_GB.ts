@@ -38,6 +38,25 @@
     </message>
 </context>
 <context>
+    <name>CalendarWidgetContent</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <source>Front defrost</source>

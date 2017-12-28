@@ -52,14 +52,17 @@ Item {
         grid.year = d.getFullYear();
     }
 
-    // TODO: These are just placeholders. Specs are not available yet.
-    Image {
-        anchors.centerIn: parent
-        anchors.horizontalCenterOffset: - Style.hspan(1)
-        source: "assets/today-widget.png"
+    CalendarWidgetContent {
+        anchors.fill: parent
         visible: root.state !== "Maximized"
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
+
+        // Generate random number to get contents from calendar model.
+        property int randomIndex: Math.floor((Math.random() * root.store.eventModel.count) + 0)
+
+        eventTimeStart: root.store.eventModel.get(randomIndex).timeStart
+        eventName: root.store.eventModel.get(randomIndex).event
     }
 
     RowLayout {
@@ -159,7 +162,9 @@ Item {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.margins: Style.hspan(2)
+            anchors.topMargin: Style.hspan(2)
+            anchors.leftMargin: Style.hspan(2)
+            anchors.rightMargin: Style.hspan(2)
             spacing: Style.hspan(1.5)
             ToolsColumn {
                 height: Style.vspan(4)

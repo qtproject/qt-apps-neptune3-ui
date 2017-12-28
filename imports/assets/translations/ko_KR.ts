@@ -51,6 +51,29 @@
     </message>
 </context>
 <context>
+    <name>CalendarWidgetContent</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
+        <source>Partly rain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="62"/>
+        <source>Rain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
+        <source>Light Snow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="72"/>
+        <source>Sunny</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ClimateButtonsGrid</name>
     <message>
         <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="49"/>
