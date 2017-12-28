@@ -45,6 +45,7 @@ Item {
     property bool showInCluster: false
     property bool mediaReady: false
     property alias coverSlide: coverslide
+    property string currentAlbumArt
     property var songModel: coverslide.model
     property alias currentIndex: coverslide.currentIndex
     property alias currentSongTitle: titleColumn.currentSongTitle
@@ -72,10 +73,13 @@ Item {
             width: height
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
 
+            property alias albumArtSource: albumArt.source
+
             Image {
                 id: placeholder
                 anchors.fill: parent
                 visible: mediaReady && model.item.coverArtUrl
+
                 opacity: visible ? 1.0 : 0.0
                 Behavior on opacity { DefaultNumberAnimation { } }
 
@@ -87,7 +91,7 @@ Item {
             }
 
             Image {
-
+                id: albumArt
                 anchors.fill: parent
                 source: mediaReady && model.item.coverArtUrl ? model.item.coverArtUrl : Style.gfx2("album-art-placeholder")
                 fillMode: Image.PreserveAspectFit
@@ -96,8 +100,6 @@ Item {
                 property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
             }
         }
-
-
     }
 
     Rectangle {
@@ -147,6 +149,14 @@ Item {
             delegate: albumArtDelegate
             pathItemCount: root.showPrevNextAlbum ? 3 : 1
             interactive: false
+
+            onCurrentIndexChanged: {
+                if (currentItem) {
+                    root.currentAlbumArt = currentItem.albumArtSource
+                } else {
+                    root.currentAlbumArt = ""
+                }
+            }
 
             path: Path {
                 startX: 0; startY: coverslide.height/2

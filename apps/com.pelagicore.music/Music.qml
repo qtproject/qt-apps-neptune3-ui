@@ -141,21 +141,31 @@ Item {
                     anchors.left: undefined
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
-                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(20); height: Style.vspan(6);
+                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(19); height: Style.vspan(6);
                                   anchors.verticalCenterOffset: - Style.vspan(0.5) }
                 PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
                                   listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; }
             },
             State {
                 name: "WidgetShowList"
+                AnchorChanges {
+                    target: albumArtRow
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                }
                 PropertyChanges { target: albumArtRow; scale: 0.7; width: Style.hspan(6.2); height: Style.vspan(3.5);
-                                  anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(1.5) }
+                                  anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(0.8) }
                 PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.2);
                                   listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; showList: true }
             },
 
             State {
                 name: "WidgetList1Row"
+                AnchorChanges {
+                    target: albumArtRow
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                }
                 PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
                                   anchors.verticalCenterOffset: 0; anchors.leftMargin: 0 }
             },
@@ -169,6 +179,8 @@ Item {
                 }
                 PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
                                   anchors.leftMargin: Style.hspan(1.8) }
+                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5);
+                                  listView.contentY: - Style.vspan(0.8); }
             }
 
         ]
@@ -177,16 +189,35 @@ Item {
             Transition {
                 from: "WidgetHideList"; to: "WidgetList1Row"
                 DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
-                                         duration: 50 }
+                    duration: 50 }
+            },
+            Transition {
+                from: "WidgetList1Row"; to: "WidgetHideList"
+                ParallelAnimation {
+                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
+                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset"; }
+                }
+            },
+            Transition {
+                from: "WidgetShowList"; to: "WidgetHideList"
+                ParallelAnimation {
+                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
+                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset" }
+                }
             },
             Transition {
                 from: "WidgetListMaximized";
-                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
-                                         duration: 50 }
+                ParallelAnimation {
+                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
+                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset" }
+                }
             },
             Transition {
-                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset"; }
-                DefaultNumberAnimation { target: nowPlayingList; properties: "width, contentY"; }
+                ParallelAnimation {
+                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 270 }
+                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset"; }
+                    DefaultNumberAnimation { target: nowPlayingList; properties: "width, listView.contentY"; }
+                }
             }
         ]
 
