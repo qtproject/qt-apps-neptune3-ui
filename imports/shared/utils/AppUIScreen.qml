@@ -109,24 +109,34 @@ ApplicationManagerWindow {
     }
 
     onWindowPropertyChanged: {
-        if (name === "cellWidth") {
+        switch (name) {
+        case "cellWidth":
             Style.cellWidth = value;
-        } else if (name === "cellHeight") {
+            break;
+        case "cellHeight":
             Style.cellHeight = value;
-        } else if (name === "exposedRectBottomMargin") {
+            break;
+        case "exposedRectBottomMargin":
             d.exposedRectBottomMargin = value;
-        } else if (name === "exposedRectTopMargin") {
+            break;
+        case "exposedRectTopMargin":
             d.exposedRectTopMargin = value;
-        } else if (name === "tritonWidgetHeight") {
+            break;
+        case "tritonWidgetHeight":
             d.widgetHeight = value;
-        } else if (name === "tritonCurrentWidth") {
+            break;
+        case "tritonCurrentWidth":
             d.currentWidth = value;
-        } else if (name === "tritonCurrentHeight") {
+            break;
+        case "tritonCurrentHeight":
             root.currentHeight = value;
-        } else if (name === "tritonState") {
+            break;
+        case "tritonState":
             root.tritonState = value;
-        } else if (name === "locale") {
+            break;
+        case "locale":
             Style.languageLocale = value;
+            break;
         }
     }
 
