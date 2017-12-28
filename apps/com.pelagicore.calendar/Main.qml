@@ -37,7 +37,6 @@ AppUIScreen {
     id: root
 
     MultiPointTouchArea {
-        id: multiPoint
         anchors.fill: parent
         anchors.margins: 30
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
@@ -50,8 +49,11 @@ AppUIScreen {
     }
 
     Calendar {
-        height: root.currentHeight
-        width: root.width
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width
+        height: root.exposedRect.height
+
         state: root.tritonState
         bottomWidgetHide: root.exposedRect.height === root.targetHeight
         store: CalendarStore { }

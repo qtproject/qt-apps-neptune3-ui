@@ -143,24 +143,26 @@ Item {
     }
 
     Control {
-        width: root.width
-        height: root.height - calendarOnTop.height - Style.vspan(0.8)
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.top: calendarOnTop.bottom
         anchors.topMargin: Style.vspan(0.8)
+        anchors.bottom: root.bottom
         visible: root.state === "Maximized"
         background: Image {
             anchors.fill: parent
             source: Style.gfx2("bg-home", TritonStyle.theme)
         }
 
-        contentItem: RowLayout {
+        contentItem: Row {
             anchors.top: parent.top
+            anchors.bottom: parent.bottom
             anchors.left: parent.left
+            anchors.right: parent.right
             anchors.margins: Style.hspan(2)
             spacing: Style.hspan(1.5)
             ToolsColumn {
-                Layout.preferredHeight: Style.vspan(4)
-                anchors.top: parent.top
+                height: Style.vspan(4)
                 onToolClicked: {
                     if (contentType === "year") {
                         contentLoader.sourceComponent = year;
@@ -174,10 +176,9 @@ Item {
 
             Loader {
                 id: contentLoader
-                anchors.top: parent.top
-                Layout.preferredWidth: Style.hspan(15)
-                Layout.preferredHeight: root.bottomWidgetHide ? Style.vspan(13) : Style.vspan(10.2)
-                Behavior on Layout.preferredHeight { DefaultNumberAnimation { } }
+                width: Style.hspan(15)
+                height: parent.height
+                Behavior on height { DefaultNumberAnimation { } }
                 sourceComponent: year
             }
         }

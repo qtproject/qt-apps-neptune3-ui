@@ -34,21 +34,10 @@ import utils 1.0
 AppUIScreen {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
-
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
-    }
-
     Vehicle {
-        id: vehicle
-        anchors.fill: parent
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width
+        height: root.exposedRect.height
     }
 }

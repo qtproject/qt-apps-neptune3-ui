@@ -32,6 +32,8 @@
 import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 1.4
+
+import animations 1.0
 import utils 1.0
 
 import QtApplicationManager 1.0
@@ -41,7 +43,14 @@ QtObject {
         id: root
 
         SplitView {
-            anchors.fill: parent
+            x: root.exposedRect.x
+            y: root.exposedRect.y
+            width: root.exposedRect.width
+            height: root.exposedRect.height
+
+            Behavior on y { DefaultSmoothedAnimation {} }
+            Behavior on height { DefaultSmoothedAnimation {} }
+
             orientation: Qt.Vertical
             //Rectangle
             Item

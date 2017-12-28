@@ -55,26 +55,21 @@ QtObject {
             }
         }
 
-        Item {
-            height: mainWindow.currentHeight
+        Music {
+            id: musicAppContent
+            x: mainWindow.exposedRect.x
+            y: mainWindow.exposedRect.y
             width: mainWindow.exposedRect.width
-            Music {
-                id: musicAppContent
-                width: mainWindow.width
-                height: mainWindow.targetHeight
-                anchors.centerIn: parent
+            height: mainWindow.exposedRect.height
 
-                state: mainWindow.tritonState
-                store: MusicStore { }
-                bottomWidgetHide: mainWindow.exposedRect.height === mainWindow.targetHeight
+            state: mainWindow.tritonState
+            store: MusicStore { }
 
-                onDragAreaClicked: {
-                    multiPoint.count += 1;
-                    mainWindow.setWindowProperty("activationCount", multiPoint.count);
-                }
+            onDragAreaClicked: {
+                multiPoint.count += 1;
+                mainWindow.setWindowProperty("activationCount", multiPoint.count);
             }
         }
-
     }
 
     property var secondaryWindow: SecondaryWindow {

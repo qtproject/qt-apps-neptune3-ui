@@ -48,7 +48,6 @@ Item {
     property alias albumArtRow: albumArtRow
     property alias controlsRow: controlsRow
     property bool showList: false
-    property bool bottomWidgetHide: false
 
     signal dragAreaClicked()
 
@@ -137,8 +136,13 @@ Item {
         states: [
             State {
                 name: "WidgetHideList"
+                AnchorChanges {
+                    target: albumArtRow
+                    anchors.left: undefined
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
                 PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(20); height: Style.vspan(6);
-                                  anchors.verticalCenterOffset: - Style.vspan(0.5); anchors.leftMargin: Style.hspan(1.5) }
+                                  anchors.verticalCenterOffset: - Style.vspan(0.5) }
                 PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
                                   listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; }
             },
@@ -153,13 +157,18 @@ Item {
             State {
                 name: "WidgetList1Row"
                 PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
-                                  anchors.verticalCenterOffset: 0; anchors.leftMargin: Style.hspan(0.9) }
+                                  anchors.verticalCenterOffset: 0; anchors.leftMargin: 0 }
             },
 
             State {
                 name: "WidgetListMaximized"
+                AnchorChanges {
+                    target: albumArtRow
+                    anchors.verticalCenter: undefined
+                    anchors.top: parent.top
+                }
                 PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
-                                  anchors.verticalCenterOffset: - Style.vspan(8); anchors.leftMargin: Style.hspan(1.8) }
+                                  anchors.leftMargin: Style.hspan(1.8) }
             }
 
         ]
@@ -208,13 +217,40 @@ Item {
     MusicList {
         id: musicLibrary
 
-        width: parent.width
-        height: root.bottomWidgetHide ? Style.vspan(15) : Style.vspan(11)
-        Behavior on height { DefaultNumberAnimation { } }
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
 
-        y: musicLibrary.showList ? Style.vspan(5.4) : Style.vspan(15)
-        Behavior on y { DefaultNumberAnimation { } }
+        anchors.bottom: parent.bottom
+
+        states: [
+            State {
+                name: "expanded"
+                when: musicLibrary.showList
+                AnchorChanges {
+                    target: musicLibrary
+                    anchors.top: nowPlayingList.top
+                }
+                PropertyChanges {
+                    target: musicLibrary
+                    anchors.topMargin: nowPlayingList.listView.headerItem.height
+                }
+            },
+            State {
+                name: "colapsed"
+                when: !musicLibrary.showList
+                AnchorChanges {
+                    target: musicLibrary
+                    anchors.top: nowPlayingList.bottom
+                }
+                PropertyChanges {
+                    target: musicLibrary
+                    anchors.topMargin: 0
+                }
+            }
+        ]
+        transitions: Transition {
+            AnchorAnimation { easing.type: Easing.InOutQuad; duration: 270 }
+        }
 
         visible: root.state === "Maximized"
         onVisibleChanged: {
@@ -324,7 +360,6 @@ Item {
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.9)
 
         showPrevNextAlbum: root.state === "Widget2Rows" || (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
         showMusicTools: albumArtRow.showPrevNextAlbum
