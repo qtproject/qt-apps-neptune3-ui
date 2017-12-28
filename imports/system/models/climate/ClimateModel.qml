@@ -41,8 +41,8 @@ QtObject {
     }
 
     property QtObject leftSeat: QtObject {
-        readonly property real minValue: 16
-        readonly property real maxValue: 28
+        readonly property real minValue: 17
+        readonly property real maxValue: 25
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontLeft.targetTemperature
         readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)
@@ -65,8 +65,8 @@ QtObject {
     }
 
     property QtObject rightSeat: QtObject {
-        readonly property real minValue: 16
-        readonly property real maxValue: 28
+        readonly property real minValue: 17
+        readonly property real maxValue: 25
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontRight.targetTemperature
         readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)

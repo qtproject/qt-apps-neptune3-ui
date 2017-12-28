@@ -37,30 +37,38 @@ Grid {
     id: root
     columns: 2
     rows: 2
-    columnSpacing: Style.hspan(.5)
-    rowSpacing: Style.vspan(.5)
+    columnSpacing: 0
+    rowSpacing: 0
 
     property var model
 
     ClimateButton {
+        width: root.width / 2
+        height: root.height / 2
         icon: checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
         text: qsTr("Front defrost")
         checked: model.frontHeat.enabled
         onToggled: model.frontHeat.setEnabled(checked)
     }
     ClimateButton {
+        width: root.width / 2
+        height: root.height / 2
         icon: checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
         text: qsTr("Rear defrost")
         checked: model.rearHeat.enabled
         onToggled: model.rearHeat.setEnabled(checked)
     }
     ClimateButton {
+        width: root.width / 2
+        height: root.height / 2
         icon: checked ? "ic-seat-heat_ON" : "ic-seat-heat_OFF"
         text: qsTr("Driver seat heat")
         checked: model.leftSeat.heat
         onToggled: model.leftSeat.setHeat(checked)
     }
     ClimateButton {
+        width: root.width / 2
+        height: root.height / 2
         icon: checked ? "ic-seat-heat_ON" : "ic-seat-heat_OFF"
         text: qsTr("Passenger seat heat")
         checked: model.rightSeat.heat

@@ -46,22 +46,22 @@
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="47"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="49"/>
         <source>Front defrost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="53"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="57"/>
         <source>Rear defrost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="59"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="65"/>
         <source>Driver seat heat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="65"/>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="73"/>
         <source>Passenger seat heat</source>
         <translation type="unfinished"></translation>
     </message>
@@ -69,8 +69,9 @@
 <context>
     <name>ClimatePopup</name>
     <message>
-        <location filename="../../../sysui/climate/ClimatePopup.qml" line="121"/>
+        <location filename="../../../sysui/climate/ClimatePopup.qml" line="136"/>
         <source>AUTO</source>
+        <extracomment>As in &quot;automatic&quot;</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -385,13 +386,13 @@
 <context>
     <name>TemperatureSlider</name>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="136"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="137"/>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="147"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="150"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>

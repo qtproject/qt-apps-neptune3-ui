@@ -60,6 +60,7 @@
     <name>ClimatePopup</name>
     <message>
         <source>AUTO</source>
+        <extracomment>As in &quot;automatic&quot;</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -90,6 +90,7 @@ Slider {
                     width: parent.width
                     height: Style.vspan(0.5)
                     text: root.convertFunc ? root.convertFunc(to - model.index) : to - model.index
+                    font.pixelSize: TritonStyle.fontSizeM
                     horizontalAlignment: Text.AlignHCenter
                 }
             }
@@ -135,7 +136,9 @@ Slider {
                 //: Maximum value in a slider control
                 text: qsTr("MAX")
 
+                font.pixelSize: TritonStyle.fontSizeS
                 horizontalAlignment: Text.AlignHCenter
+                enabled: false
             }
             Label {
                 anchors.bottom: parent.bottom
@@ -146,7 +149,9 @@ Slider {
                 //: Minimum value in a slider control
                 text: qsTr("MIN")
 
+                font.pixelSize: TritonStyle.fontSizeS
                 horizontalAlignment: Text.AlignHCenter
+                enabled: false
             }
         }
     }

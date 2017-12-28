@@ -64,7 +64,7 @@ GlobalLightThemeColors {
                       {TritonStyle::ButtonColor, QColor(0xFF969696)},
                       {TritonStyle::HighlightedButtonColor, QColor(0XFFCBCAC8)},
 
-                      {TritonStyle::AccentColor, QColor(0xFFF6A623)},
+                      {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                       {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
                       {TritonStyle::NegativeColor, QColor(0xFF303030)}
                   };
@@ -77,7 +77,7 @@ GlobalDarkThemeColors {
                      {TritonStyle::ButtonColor, QColor(0xFF969696)},
                      {TritonStyle::HighlightedButtonColor, QColor(0xFF6D6B64)},
 
-                     {TritonStyle::AccentColor, QColor(0xFFF6A623)},
+                     {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                      {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
                      {TritonStyle::NegativeColor, QColor(0xFF303030)}
                  };

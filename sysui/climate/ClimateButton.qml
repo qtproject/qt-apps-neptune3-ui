@@ -31,6 +31,7 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import utils 1.0
 
 import com.pelagicore.styles.triton 1.0
@@ -44,35 +45,31 @@ Button {
 
     property string icon
 
-    background: Rectangle {
-        color: "transparent"
-    }
+    background: null
 
     contentItem: Item {
-        Column {
-            spacing: Style.vspan(.5)
-            anchors {
-                left: parent.left
-                right: parent.right
-                verticalCenter: parent.verticalCenter
-            }
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: Style.vspan(0.1)
 
             Image {
                 id: image
+                Layout.preferredWidth: parent.width
+                Layout.preferredHeight: parent.height * 0.4
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: Style.symbol(root.icon, false /* active */, TritonStyle.theme)
                 fillMode: Image.Pad
             }
 
             Label {
-                id: label
-                anchors.topMargin: Style.vspan(0.5)
-                anchors.left: parent.left
-                anchors.right: parent.right
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                Layout.preferredWidth: parent.width * 0.8
+                Layout.preferredHeight: parent.height * 0.4
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignTop
                 text: root.text
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: TritonStyle.fontSizeS
                 opacity: root.checked ? 1.0 : 0.25
                 Behavior on opacity { OpacityAnimator {} }
             }

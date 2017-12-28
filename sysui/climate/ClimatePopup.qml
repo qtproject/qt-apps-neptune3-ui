@@ -84,12 +84,27 @@ TritonPopup {
     }
 
     ClimateButtonsGrid {
+        id: buttonsGrid
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(3)
         anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(10)
-        height: Style.vspan(4)
+        width: Style.hspan(8)
+        height: width
         model: root.model
+    }
+    Rectangle {
+        color: TritonStyle.disabledTextColor
+        height: Style.vspan(0.03)
+        anchors.left: buttonsGrid.left
+        anchors.right: buttonsGrid.right
+        anchors.verticalCenter: buttonsGrid.verticalCenter
+    }
+    Rectangle {
+        color: TritonStyle.disabledTextColor
+        width: Style.vspan(0.03)
+        anchors.top: buttonsGrid.top
+        anchors.bottom: buttonsGrid.bottom
+        anchors.horizontalCenter: buttonsGrid.horizontalCenter
     }
 
     Image {
@@ -114,10 +129,11 @@ TritonPopup {
         }
         background: Rectangle {
             radius: bigFatButton.radius
-            color: bigFatButton.down ? "#CE8042" : Style.colorOrange
+            color: bigFatButton.down ? Qt.lighter(TritonStyle.accentColor, 1.3) : TritonStyle.accentColor
             Behavior on color { ColorAnimation {} }
         }
 
+        //: As in "automatic"
         text: qsTr("AUTO")
     }
 
@@ -158,7 +174,7 @@ TritonPopup {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             text: model ? model.leftSeat.valueString : ""
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: TritonStyle.fontSizeXL
             opacity: 0.6
         }
 
@@ -197,7 +213,7 @@ TritonPopup {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             text: model ? model.rightSeat.valueString : ""
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: TritonStyle.fontSizeXL
             opacity: 0.6
         }
     }
