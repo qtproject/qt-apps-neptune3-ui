@@ -194,6 +194,7 @@ void ApplicationModel::onWindowReady(int index, QQuickItem *window)
             windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentWidth"), QVariant(appInfo->currentWidth()));
             windowManager->setWindowProperty(window, QStringLiteral("tritonCurrentHeight"), QVariant(appInfo->currentHeight()));
             windowManager->setWindowProperty(window, QStringLiteral("tritonState"), QVariant(appInfo->windowState()));
+            windowManager->setWindowProperty(window, QStringLiteral("exposedRectBottomMargin"), QVariant(appInfo->exposedRectBottomMargin()));
             appInfo->setWindow(window);
             appInfo->setCanBeActive(true);
         }
