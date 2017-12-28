@@ -29,8 +29,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.10
+import QtQuick.Templates 2.3 as T
+import QtQuick.Controls 2.3
+import QtQuick.Controls.impl 2.3
 import com.pelagicore.styles.triton 1.0
 
 T.ItemDelegate {
@@ -44,14 +46,18 @@ T.ItemDelegate {
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     spacing: 12
-
     padding: 12
+
     topPadding: padding - 1
     bottomPadding: padding + 1
 
-    contentItem: Text {
-        leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
-        rightPadding: control.mirrored ? (control.indicator ? control.indicator.width : 0) + control.spacing : 0
+    font.pixelSize: TritonStyle.fontSizeM
+    font.family: TritonStyle.fontFamily
+
+
+    contentItem: Label {
+        leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
+        rightPadding: control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
 
         text: control.text
         font: control.font
@@ -61,7 +67,7 @@ T.ItemDelegate {
         verticalAlignment: Text.AlignVCenter
 
         opacity: enabled ? 1.0 : 0.2
-        color: control.TritonStyle.primaryTextColor
+        color: enabled ? control.TritonStyle.primaryTextColor : control.TritonStyle.disabledTextColor
     }
 
     background: Rectangle {

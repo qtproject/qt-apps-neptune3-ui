@@ -29,13 +29,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
+import QtQuick 2.10
+import QtQuick.Templates 2.3 as T
+import QtQuick.Controls 2.3
+import QtQuick.Controls.impl 2.3
 import com.pelagicore.styles.triton 1.0
+
+// TODO: Fix the height and width more according to UI spec and based on external variables
+// TODO: Provide a better way to develop these UI controls in a more controlable fashion
 
 T.SwitchDelegate {
     id: control
-
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
@@ -44,34 +48,67 @@ T.SwitchDelegate {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: 16
-    topPadding: 8
-    bottomPadding: 8
-    spacing: 16
+    padding: 12
+    spacing: 12
 
-    indicator: SwitchIndicator {
+    font.pixelSize: TritonStyle.fontSizeM
+    font.family: TritonStyle.fontFamily
+
+
+    icon.width: 24
+    icon.height: 24
+    icon.color: control.palette.text
+
+    indicator: PaddedRectangle {
+        implicitWidth: 56
+        implicitHeight: 32
+
         x: text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
-        control: control
+
+        radius: 16
+        leftPadding: 0
+        rightPadding: 0
+        padding: (height - 32) / 2
+        color: 'transparent'
+        border.width: control.visualFocus ? 2 : 1.4
+        border.color: control.checked ? control.TritonStyle.accentColor : control.TritonStyle.primaryTextColor
+
+        Rectangle {
+            x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
+            y: (parent.height - height) / 2
+            width: 28
+            height: 28
+            radius: 16
+            color: control.checked ? control.TritonStyle.accentColor : control.TritonStyle.primaryTextColor
+            border.width: control.visualFocus ? 2 : 1
+            border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
+
+            Behavior on x {
+                enabled: !control.down
+                SmoothedAnimation { velocity: 200 }
+            }
+        }
     }
 
-    contentItem: Text {
-        leftPadding: !control.mirrored ? 0 : control.indicator.width + control.spacing
-        rightPadding: control.mirrored ? 0 : control.indicator.width + control.spacing
+    contentItem: IconLabel {
+        leftPadding: control.mirrored ? control.indicator.width + control.spacing : 0
+        rightPadding: !control.mirrored ? control.indicator.width + control.spacing : 0
 
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+        alignment: control.display === IconLabel.IconOnly || control.display === IconLabel.TextUnderIcon ? Qt.AlignCenter : Qt.AlignLeft
+
+        icon: control.icon
         text: control.text
         font: control.font
-        color: control.TritonStyle.primaryTextColor
-        elide: Text.ElideRight
-        visible: control.text
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
+        color: enabled ? control.TritonStyle.primaryTextColor : control.TritonStyle.disabledTextColor
     }
 
-    background: Rectangle {
+    background: Item {
+        implicitWidth: 100
         implicitHeight: 48
-
-        // TODO: use named colors from TritonStyle
-        color: control.highlighted ? "grey" : "transparent"
+        visible: control.down || control.highlighted
     }
 }
