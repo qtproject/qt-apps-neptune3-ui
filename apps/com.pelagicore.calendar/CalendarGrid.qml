@@ -50,7 +50,7 @@ Item {
 
                 Label {
                     Layout.preferredWidth: Style.hspan(6)
-                    text: Qt.locale().monthName(index) + " " + grid.year
+                    text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: Style.fontSizeS
                 }

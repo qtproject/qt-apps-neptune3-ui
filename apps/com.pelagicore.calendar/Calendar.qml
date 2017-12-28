@@ -123,7 +123,7 @@ Item {
             }
             Label {
                 Layout.preferredWidth: Style.hspan(6)
-                text: Qt.locale().monthName(grid.month) + " " + grid.year
+                text: Qt.locale().standaloneMonthName(grid.month) + " " + grid.year
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Style.fontSizeM
             }
