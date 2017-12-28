@@ -61,7 +61,11 @@ Window {
         readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
                                                        || orientation === Qt.InvertedPortraitOrientation
 
-        property int orientation: root.orientationFromString(ApplicationManager.systemProperties.orientation)
+        property int orientation: {
+            var value = root.orientationFromString(ApplicationManager.systemProperties.orientation);
+            return invertedOrientation ? root.invertOrientation(value) : value;
+        }
+        property bool invertedOrientation: false
 
         anchors.centerIn: parent
 
@@ -131,6 +135,13 @@ Window {
             timer.start();
         }
 
+        Shortcut {
+            sequence: "Ctrl+r"
+            context: Qt.ApplicationShortcut
+            onActivated: {
+                display.invertedOrientation = !display.invertedOrientation
+            }
+        }
         Shortcut {
             sequence: "Ctrl+t"
             context: Qt.ApplicationShortcut
@@ -224,6 +235,21 @@ Window {
         } else {
             // default to portrait
             return Qt.PortraitOrientation;
+        }
+    }
+
+    function invertOrientation(orientation) {
+        switch (orientation) {
+            case Qt.PortraitOrientation:
+                return Qt.InvertedPortraitOrientation;
+            case Qt.InvertedPortraitOrientation:
+                return Qt.PortraitOrientation;
+            case Qt.LandscapeOrientation:
+                return Qt.InvertedLandscapeOrientation;
+            case Qt.InvertedLandscapeOrientation:
+                return Qt.LandscapeOrientation;
+            default:
+                return orientation;
         }
     }
 
