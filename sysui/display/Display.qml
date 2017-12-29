@@ -249,18 +249,18 @@ Image {
         }
     }
 
-    VirtualKeyboard {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-    }
-
     // TODO load popup only before opening it and unload after closed
     About {
         id: about
         parent: root.popupParent
         originItem: rightIcon
         applicationModel: root.applicationModel
+    }
+
+    VirtualKeyboard {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
     }
 
     Component.onCompleted: {
