@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import animations 1.0
 import controls 1.0
+import com.pelagicore.styles.triton 1.0
+
 import "models"
 
 Item {
@@ -51,7 +53,7 @@ Item {
         anchors.top: parent.top
         text: qsTr("Favorites")
         color: "#999999" // FIXME color?
-        font.pixelSize: Style.fontSizeXXS
+        font.pixelSize: Style.fontSizeXS
     }
 
     // 1 ROW
@@ -86,18 +88,12 @@ Item {
                 source: "assets/profile_photos/%1.jpg".arg(model.handle)
                 onClicked: root.callRequested(model.handle)
             }
-        }
-        Rectangle { // FIXME bug! it's correctly sized and placed only if you go maximized and back
-            id: moreBtn
-            Layout.fillHeight: true
-            width: height
-            radius: height/2
-            visible: listview1Row.visibleArea.widthRatio < 1.0
-            color: "gray" // FIXME not in TritonStyle
-            Label {
-                anchors.centerIn: parent
-                text: qsTr("more", "more contacts")
-                font.pixelSize: Style.fontSizeXS
+            ScrollIndicator.horizontal: ScrollIndicator {
+                parent: favorites1Row
+                anchors.top: listview1Row.bottom
+                anchors.topMargin: Style.vspan(.3)
+                anchors.left: listview1Row.left
+                anchors.right: listview1Row.right
             }
         }
     }
@@ -126,6 +122,7 @@ Item {
             model: root.model
             delegate: ItemDelegate { // FIXME right component?
                 width: ListView.view.width
+                bottomPadding: 0
                 contentItem: Column {
                     spacing: Style.vspan(.2)
                     RowLayout {
@@ -152,10 +149,10 @@ Item {
                             onClicked: root.callRequested(model.handle)
                         }
                     }
-                    Rectangle { // separator
+                    Image {
                         width: parent.width
-                        height: 1
-                        color: "lightgray" // FIXME correct color
+                        height: 2
+                        source: Style.gfx2("list-divider", TritonStyle.theme)
                     }
                 }
             }

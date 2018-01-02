@@ -160,13 +160,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
         <source>Favorites</source>
         <translation>즐겨찾기</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="99"/>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="166"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>더 보기</translation>

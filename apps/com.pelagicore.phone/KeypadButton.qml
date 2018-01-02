@@ -47,6 +47,9 @@ Rectangle {
     // FIXME Use named colors from TritonStyle
     color: TritonStyle.theme === TritonStyle.Light ? "#ded9d7" : "#545a5f"
 
+    opacity: enabled ? 1 : .4
+    Behavior on opacity { DefaultNumberAnimation { } }
+
     property alias primaryText: primaryLabel.text
     property alias secondaryText: secondaryLabel.text
     property alias iconSource: img.source
@@ -68,16 +71,15 @@ Rectangle {
         Label {
             id: primaryLabel
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Style.fontSizeM
+            font.pixelSize: Style.fontSizeL
             font.weight: Font.Light
         }
 
         Label {
             id: secondaryLabel
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: Style.fontSizeS
             visible: text
-            font.weight: Font.Light
         }
     }
 

@@ -55,22 +55,22 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
         <source>Partly rain</source>
-        <translation type="unfinished"></translation>
+        <translation>Částečný déšť</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="62"/>
         <source>Rain</source>
-        <translation type="unfinished"></translation>
+        <translation>Déšť</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
         <source>Light Snow</source>
-        <translation type="unfinished"></translation>
+        <translation>Lehké sněžení</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="72"/>
         <source>Sunny</source>
-        <translation type="unfinished"></translation>
+        <translation>Slunečno</translation>
     </message>
 </context>
 <context>
@@ -160,13 +160,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
         <source>Favorites</source>
         <translation>Oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="99"/>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="166"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>více</translation>
@@ -253,7 +252,7 @@
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
         <source>Process Monitor on Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Monitor procesů ve stavové liště</translation>
     </message>
 </context>
 <context>
@@ -434,17 +433,17 @@
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
         <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS: %1</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
         <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %1%</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM: %1 MB (%2%)</translation>
     </message>
 </context>
 <context>
@@ -523,17 +522,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="47"/>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>rok</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="52"/>
         <source>next</source>
-        <translation type="unfinished"></translation>
+        <translation>další</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/ToolsColumn.qml" line="57"/>
         <source>events</source>
-        <translation type="unfinished"></translation>
+        <translation>události</translation>
     </message>
 </context>
 <context>

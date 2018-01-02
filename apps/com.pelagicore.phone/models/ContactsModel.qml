@@ -62,7 +62,7 @@ ListModel {
             ListElement { name: "home"; number: "(833) 568-4381" }
         ]
     }
-    ListElement { handle: "dalleson"; firstName: "David"; surname: "Alleson"; favorite: false; phoneNumbers: [
+    ListElement { handle: "dalleson"; firstName: "David"; surname: "Alleson"; favorite: true; phoneNumbers: [
             ListElement { name: "company"; number: "(438) 648-9964" }
         ]
     }

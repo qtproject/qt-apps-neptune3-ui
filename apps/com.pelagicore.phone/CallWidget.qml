@@ -189,14 +189,14 @@ Item {
             anchors.left: root.state == "Widget1Row" ? parent.left : undefined
             anchors.horizontalCenter: root.state !== "Widget1Row" ? parent.horizontalCenter : undefined
             text: priv.callerName
-            font.weight: Font.Light
+            opacity: .94
         }
         Label {
             anchors.left: parent.left
             anchors.right: parent.right
             horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
             font.pixelSize: Style.fontSizeS
-            font.weight: Font.Light
+            opacity: .6
             text: Qt.formatTime(new Date(callTimer.duration * 1000), "m:ss")
         }
     }
@@ -222,6 +222,6 @@ Item {
         id: keypadButton
         width: Style.hspan(2)
         symbol: Style.symbol("ic-keypad-ongoing")
-        onClicked: root.keypadRequested()
+        //onClicked: root.keypadRequested() // TODO, disabled for now
     }
 }

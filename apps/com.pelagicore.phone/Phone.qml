@@ -77,14 +77,12 @@ Item {
         }
     }
 
-    Rectangle {
+    Image {
         anchors.left: parent.left
-        anchors.top: root.ongoingCall ? callWidget.bottom : favoritesWidget.bottom
         anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        // FIXME Use named colors from TritonStyle
-        color: TritonStyle.theme === TritonStyle.Light ? "#ece7e4" : TritonStyle.backgroundColor
+        anchors.top: parent.top
+        height: Style.vspan(7)
+        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
         visible: root.state == "Maximized"
     }
 
@@ -113,9 +111,10 @@ Item {
         id: callWidget
         anchors.fill: root.state !== "Maximized" ? parent : undefined
         anchors.top: root.state == "Maximized" ? parent.top : undefined
+        anchors.topMargin: root.state == "Maximized" ? Style.vspan(2) : 0
         anchors.horizontalCenter: root.state == "Maximized" ? parent.horizontalCenter : undefined
         anchors.rightMargin: Style.hspan(0.9)
-        height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
+        height: root.state == "Maximized" ? Style.vspan(5) : implicitHeight
 
         state: root.state
         ongoingCall: root.ongoingCall
@@ -135,12 +134,10 @@ Item {
         id: app
 
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
         anchors.top: root.ongoingCall ? callWidget.bottom : favoritesWidget.bottom
-        anchors.topMargin: Style.vspan(1)
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(1)
+        anchors.margins: Style.hspan(1)
 
         opacity: root.state === "Maximized" ? 1.0 : 0.0
         visible: opacity > 0
@@ -155,11 +152,10 @@ Item {
         Loader {
             id: viewLoader
             anchors.left: toolsColumn.right
-            anchors.leftMargin: Style.hspan(1)
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(1)
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            anchors.leftMargin: Style.hspan(1)
 
             Binding {
                 target: viewLoader.item; property: "model";

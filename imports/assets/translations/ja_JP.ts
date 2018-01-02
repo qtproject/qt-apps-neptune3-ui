@@ -153,13 +153,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
         <source>Favorites</source>
         <translation>おきにいり</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="99"/>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="166"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>さらに表示</translation>

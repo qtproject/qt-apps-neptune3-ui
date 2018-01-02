@@ -36,6 +36,7 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import animations 1.0
 import controls 1.0
+import com.pelagicore.styles.triton 1.0
 
 import "models"
 
@@ -50,6 +51,7 @@ ListView {
 
     delegate: ItemDelegate { // FIXME right component?
         width: ListView.view.width
+        bottomPadding: 0
         contentItem: Column {
             spacing: Style.vspan(.2)
             RowLayout {
@@ -76,10 +78,10 @@ ListView {
                     onClicked: root.callRequested(model.handle)
                 }
             }
-            Rectangle { // separator
+            Image {
                 width: parent.width
-                height: 1
-                color: "lightgray" // FIXME correct color
+                height: 2
+                source: Style.gfx2("list-divider", TritonStyle.theme)
             }
         }
     }

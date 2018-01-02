@@ -54,8 +54,10 @@ Item {
         readOnly: true
         color: TritonStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
-        font.pixelSize: Style.fontSizeL
+        font.pixelSize: Style.fontSizeXL
+        font.weight: Font.Light
         wrapMode: TextEdit.Wrap
+        horizontalAlignment: TextEdit.AlignRight
 
         Keys.onEscapePressed: clear()
     }
@@ -66,11 +68,10 @@ Item {
         anchors.verticalCenter: textedit.verticalCenter
         width: Style.hspan(2)
         symbol: Style.symbol("ic-erase")
-        onClicked: textedit.clear()
-
         opacity: textedit.text ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
+        onClicked: textedit.remove(textedit.length - 1, textedit.length);
     }
 
     GridLayout {
@@ -146,8 +147,7 @@ Item {
             Layout.row: 4
             Layout.column: 1
             enabled: textedit.text
-            color: enabled ? "#68C97D" : Qt.darker("#68C97D", 1.2)// app specific color
-            Behavior on color { ColorAnimation {} }
+            color: "#68C97D" // app specific color
             iconSource: Style.symbol("ic-call")
         }
     }
