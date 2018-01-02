@@ -104,7 +104,7 @@ Item {
             spacing: Style.vspan(0.5)
 
             Image {
-                source: Style.symbol(root.weatherIcon, TritonStyle.theme)
+                source: Style.symbol(root.weatherIcon, false, TritonStyle.theme)
             }
 
             Column {
