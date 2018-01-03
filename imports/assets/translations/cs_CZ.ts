@@ -567,17 +567,17 @@
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>languages</source>
         <translation type="unfinished">jazyky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>date</source>
         <translation type="unfinished">datum</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="92"/>
         <source>themes</source>
         <translation type="unfinished">motivy</translation>
     </message>
