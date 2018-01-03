@@ -79,10 +79,13 @@ Item {
             visible: model.leftSeat.heat
         }
         Label {
+            anchors.verticalCenter: parent.verticalCenter
             Layout.leftMargin: Style.hspan(.8)
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.leftSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: TritonStyle.fontSizeXL
+            font.weight: Font.DemiBold
             opacity: 0.6
         }
         Image {
@@ -99,10 +102,13 @@ Item {
             visible: model.frontHeat.enabled
         }
         Label {
+            anchors.verticalCenter: parent.verticalCenter
             Layout.leftMargin: Style.hspan(.8)
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.rightSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: TritonStyle.fontSizeXL
+            font.weight: Font.DemiBold
             opacity: 0.6
         }
         Image {
