@@ -55,6 +55,7 @@ class TritonStyle : public QQuickStyleAttached
 
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor highlightedTextColor READ highlightedTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor highlightedButtonColor READ highlightedButtonColor NOTIFY tritonStyleChanged FINAL)
@@ -70,6 +71,10 @@ class TritonStyle : public QQuickStyleAttached
     Q_PROPERTY(int fontSizeL READ fontSizeL NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY tritonStyleChanged FINAL)
+
+    Q_PROPERTY(qreal fontOpacityHigh READ fontOpacityHigh NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(qreal fontOpacityMedium READ fontOpacityMedium NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(qreal fontOpacityLow READ fontOpacityLow NOTIFY tritonStyleChanged FINAL)
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontFactor READ fontFactor NOTIFY tritonStyleChanged FINAL)
@@ -90,6 +95,7 @@ public:
 
     enum SystemColor {
         PrimaryTextColor,
+        HighlightedTextColor,
         DisabledTextColor,
         BackgroundColor,
         ButtonColor,
@@ -102,6 +108,7 @@ public:
 
     QColor systemColor(SystemColor role) const;
     QColor primaryTextColor() const { return systemColor(PrimaryTextColor); }
+    QColor highlightedTextColor() const { return systemColor(HighlightedTextColor); }
     QColor disabledTextColor() const { return systemColor(DisabledTextColor); }
     QColor backgroundColor() const { return systemColor(BackgroundColor); }
     QColor buttonColor() const { return systemColor(ButtonColor); }
@@ -117,6 +124,10 @@ public:
     int fontSizeL() const;
     int fontSizeXL() const;
     int fontSizeXXL() const;
+
+    qreal fontOpacityHigh() const;
+    qreal fontOpacityMedium() const;
+    qreal fontOpacityLow() const;
 
     Q_INVOKABLE QColor lighter25(const QColor& color);
     Q_INVOKABLE QColor lighter50(const QColor& color);

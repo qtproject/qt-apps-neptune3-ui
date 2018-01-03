@@ -59,6 +59,7 @@ public:
 static QHash<TritonStyle::SystemColor, QColor>
 GlobalLightThemeColors {
                       {TritonStyle::PrimaryTextColor, QColor(0xFF000000)},
+                      {TritonStyle::HighlightedTextColor, QColor(0xFFCE8042)},
                       {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
                       {TritonStyle::BackgroundColor, QColor(0xFFF1EFED)},
                       {TritonStyle::ButtonColor, QColor(0xFF969696)},
@@ -72,6 +73,7 @@ GlobalLightThemeColors {
 static QHash<TritonStyle::SystemColor, QColor>
 GlobalDarkThemeColors {
                      {TritonStyle::PrimaryTextColor, QColor(0xFFFFFFFF)},
+                     {TritonStyle::HighlightedTextColor, QColor(0xFFCE8042)},
                      {TritonStyle::DisabledTextColor, QColor(0xFF989898)},
                      {TritonStyle::BackgroundColor, QColor(0xFF5E5954)},
                      {TritonStyle::ButtonColor, QColor(0xFF969696)},
@@ -467,4 +469,19 @@ void TritonStyle::inheritTheme(Theme theme)
     propagateTheme();
     emit themeChanged();
     emit tritonStyleChanged();
+}
+
+qreal TritonStyle::fontOpacityLow() const
+{
+    return 0.4;
+}
+
+qreal TritonStyle::fontOpacityMedium() const
+{
+    return 0.6;
+}
+
+qreal TritonStyle::fontOpacityHigh() const
+{
+    return 0.94;
 }
