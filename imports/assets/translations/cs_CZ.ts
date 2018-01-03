@@ -258,23 +258,23 @@
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="79"/>
         <source>Next</source>
         <translation>Další</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="95"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="94"/>
         <source>Browse</source>
         <translation>Procházet</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="118"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="117"/>
         <source>Album</source>
         <translation>Album</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="120"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="133"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="119"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="132"/>
         <source>Artist</source>
         <translation>Umělec</translation>
     </message>

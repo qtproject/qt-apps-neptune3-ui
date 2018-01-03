@@ -72,10 +72,9 @@ Control {
         Component {
             id: nextHeader
             Tool {
-                width: Style.hspan(2.5)
+                width: Style.hspan(3)
                 height: Style.vspan(0.8)
-                anchors.left: parent !== null ? parent.left : undefined
-                anchors.leftMargin: Style.hspan(8)
+                anchors.horizontalCenter: parent !== null ? parent.horizontalCenter : undefined
                 baselineOffset: 0
                 text: qsTr("Next")
                 font.pixelSize: Style.fontSizeS
