@@ -144,7 +144,7 @@ ApplicationManagerWindow {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+            root.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
         }
     }
 }
