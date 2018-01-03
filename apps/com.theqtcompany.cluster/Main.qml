@@ -59,6 +59,14 @@ ApplicationManagerWindow {
         property real scaleRatio: Math.min(parent.width / 1920, parent.height / 720)
     }
 
+    Image {
+        // Overlay between the ivi content and tellatales, cluster content
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        source: "img/cluster-fullscreen-overlay.png"
+    }
+
     Normal {
         id: mainContent
         anchors.fill: parent

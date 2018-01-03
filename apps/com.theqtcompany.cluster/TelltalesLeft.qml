@@ -55,11 +55,12 @@ Item {
         property real scaleRatio: parent.height / 58
     }
 
-    Image {
-        id: bg
-        anchors.fill: parent
-        source: "./img/telltales/telltale-bg-left.png"
-    }
+    // Uncomment below to render BG when safe renderer is in use
+//    Image {
+//        id: bg
+//        anchors.fill: parent
+//        source: "./img/telltales/telltale-bg-left.png"
+//    }
 
     Image {
         id: lowBeamHeadLight
