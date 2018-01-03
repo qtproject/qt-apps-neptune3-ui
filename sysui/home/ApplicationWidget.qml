@@ -127,6 +127,9 @@ Item {
         layer.effect: OpacityMask {
             maskSource: mask
         }
+
+        // don't let the window get input events outside the slot area
+        clip: true
     }
 
     BorderImage {
