@@ -65,6 +65,15 @@ Item {
         eventName: root.store.eventModel.get(randomIndex).event
     }
 
+    Image {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height: calendarOnTop.height + calendarOnTop.anchors.topMargin + mainControl.anchors.topMargin
+        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+        visible: root.state == "Maximized"
+    }
+
     RowLayout {
         id: calendarOnTop
         anchors.top: parent.top
@@ -146,16 +155,13 @@ Item {
     }
 
     Control {
+        id: mainControl
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: calendarOnTop.bottom
         anchors.topMargin: Style.vspan(0.8)
         anchors.bottom: root.bottom
         visible: root.state === "Maximized"
-        background: Image {
-            anchors.fill: parent
-            source: Style.gfx2("bg-home", TritonStyle.theme)
-        }
 
         contentItem: Row {
             anchors.top: parent.top
