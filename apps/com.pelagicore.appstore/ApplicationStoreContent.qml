@@ -56,9 +56,17 @@ Item {
         width: Style.hspan(10)
         height: Style.vspan(10.5)
         anchors.centerIn: parent
-        running: true
+        running: visible
         opacity: root.store.categoryModel.count < 1 ? 1.0 : 0.0
+        visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { } }
+
+        onRunningChanged: {
+            if (!running) { // preselect non-empty category
+                toolsColumn.currentTool = "Entertainment";
+                toolsColumn.toolClicked("Entertainment", 2);
+            }
+        }
     }
 
     // TODO: Check with designer, what suppose to be shown here.
@@ -79,6 +87,7 @@ Item {
 
         // FIXME: Use ToolsColumn from controls module instead
         ToolsColumn {
+            id: toolsColumn
             Layout.preferredHeight: Style.vspan(4)
             anchors.top: parent.top
             model: root.store.categoryModel

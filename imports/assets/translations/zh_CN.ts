@@ -45,7 +45,7 @@
 <context>
     <name>ApplicationStoreContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
+        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="77"/>
         <source>No apps found!</source>
         <translation>未找到app!</translation>
     </message>
