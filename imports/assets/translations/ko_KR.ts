@@ -178,12 +178,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="70"/>
         <source>Favorites</source>
         <translation>즐겨찾기</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="181"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>더 보기</translation>

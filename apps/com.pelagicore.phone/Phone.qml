@@ -93,7 +93,7 @@ Item {
         anchors.left: root.state == "Maximized" ? parent.left : undefined
         anchors.right: root.state == "Maximized" ? parent.right : undefined
         anchors.leftMargin: Style.hspan(1)
-        anchors.rightMargin: Style.hspan(1)
+        anchors.rightMargin: root.state !== "Maximized" ? Style.hspan(1) : 0
         anchors.topMargin: root.state !== "Maximized" ? Style.vspan(.5) : 0
         anchors.bottomMargin: Style.vspan(.5)
         height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight

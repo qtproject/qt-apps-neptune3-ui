@@ -193,12 +193,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="70"/>
         <source>Favorites</source>
         <translation>Oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="181"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>více</translation>

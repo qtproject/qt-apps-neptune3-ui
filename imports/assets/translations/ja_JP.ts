@@ -171,12 +171,12 @@
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="70"/>
         <source>Favorites</source>
         <translation>おきにいり</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="163"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="181"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>さらに表示</translation>

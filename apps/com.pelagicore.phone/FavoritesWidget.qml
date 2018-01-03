@@ -47,13 +47,30 @@ Item {
 
     signal callRequested(string handle)
 
+    onStateChanged: {
+        // display 4 contacts when in Widget1Row, 5 otherwise
+        if (state === "Widget1Row" && model.count > 4) {
+            model.remove(model.count - 1);
+        } else if (model.count <= 4) {
+            var person = {
+                handle: "ejackson",
+                firstName: "Edward",
+                surname: "Jackson",
+                favorite: true
+            };
+            model.append(person);
+        }
+    }
+
     Label {
         id: favoritesLabel
         anchors.left: parent.left
         anchors.top: parent.top
+        anchors.topMargin: root.state === "Maximized" ? Style.vspan(2.5) : 0
         text: qsTr("Favorites")
-        color: "#999999" // FIXME color?
+        color: TritonStyle.primaryTextColor
         font.pixelSize: Style.fontSizeXS
+        opacity: .4
     }
 
     // 1 ROW
@@ -66,7 +83,8 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            top: favoritesLabel.bottom
+            top: parent.top
+            topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(.3)
             bottom: parent.bottom
             leftMargin: Style.hspan(.5)
         }
