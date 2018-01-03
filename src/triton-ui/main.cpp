@@ -39,6 +39,7 @@
 #include <QIcon>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QFileInfo>
 
 #include <QDebug>
 
@@ -50,6 +51,20 @@ QT_USE_NAMESPACE_AM
 // code to transform a macro into a string literal
 #define QUOTE(name) #name
 #define STR(macro) QUOTE(macro)
+
+void startRemoteSettingsServer(const QString &argv) {
+    QFileInfo fi(argv);
+    QProcess *serverProcess = new QProcess(qApp);
+    QObject::connect(serverProcess, &QProcess::stateChanged, [serverProcess] (QProcess::ProcessState state) {
+        if (state == QProcess::Running) {
+            qCInfo(LogSystem) << "Attempted automatic start of RemoteSettingsServer, pid:" << serverProcess->processId();
+        }
+    });
+    QObject::connect(qApp, &QCoreApplication::aboutToQuit, [serverProcess] () {
+        serverProcess->terminate();
+    });
+    serverProcess->start(QStringLiteral("%1/RemoteSettingsServer").arg(fi.canonicalPath()), QProcess::ReadOnly);
+}
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
@@ -82,6 +97,9 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
         Main a(argc, argv);
+
+        // start the server; the server itself will ensure one instance only
+        startRemoteSettingsServer(QFile::decodeName(argv[0]));
 
         // load the Qt translations
         QTranslator qtTranslator;

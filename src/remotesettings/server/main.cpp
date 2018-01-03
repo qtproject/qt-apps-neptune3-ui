@@ -29,11 +29,21 @@
 **
 ****************************************************************************/
 #include <QCoreApplication>
+#include <QDir>
+#include <QLockFile>
+
 #include "server.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    // single instance guard
+    QLockFile lockFile(QStringLiteral("%1/TritonRemoteSettingsServer.lock").arg(QDir::tempPath()));
+    if (!lockFile.tryLock(100)) {
+        qCritical("Triton RemoteSettingsServer already running, aborting...");
+        return EXIT_FAILURE;
+    }
 
     Server s;
     s.start();
