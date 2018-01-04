@@ -5,89 +5,89 @@
     <name>About</name>
     <message>
         <source>Marketing</source>
-        <translation type="unfinished"></translation>
+        <translation>Marketing</translation>
     </message>
     <message>
         <source>Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Monitor</translation>
     </message>
     <message>
         <source>Running Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Laufende Programme</translation>
     </message>
 </context>
 <context>
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>
-        <translation type="unfinished"></translation>
+        <translation>Laufende Programme:</translation>
     </message>
 </context>
 <context>
     <name>AddWidgetPopup</name>
     <message>
         <source>Add widget</source>
-        <translation>Widget hinzufügen</translation>
+        <translation>Ansicht hinzufügen</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Programme gefunden!</translation>
     </message>
 </context>
 <context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>Jahr</translation>
     </message>
     <message>
         <source>next</source>
-        <translation type="unfinished"></translation>
+        <translation>nächste</translation>
     </message>
     <message>
         <source>events</source>
-        <translation type="unfinished"></translation>
+        <translation>Ereignisse</translation>
     </message>
 </context>
 <context>
     <name>CalendarWidgetContent</name>
     <message>
         <source>Partly rain</source>
-        <translation type="unfinished"></translation>
+        <translation>teilweise Regen</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation type="unfinished"></translation>
+        <translation>Regen</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation type="unfinished"></translation>
+        <translation>leichter Schnee</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation type="unfinished"></translation>
+        <translation>sonnig</translation>
     </message>
 </context>
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
         <source>Front defrost</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorne abtauen</translation>
     </message>
     <message>
         <source>Rear defrost</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinten abtauen</translation>
     </message>
     <message>
         <source>Driver seat heat</source>
-        <translation type="unfinished"></translation>
+        <translation>Fahrer Sitzheizung</translation>
     </message>
     <message>
         <source>Passenger seat heat</source>
-        <translation type="unfinished"></translation>
+        <translation>Beifahrer Sitzheizung</translation>
     </message>
 </context>
 <context>
@@ -95,171 +95,171 @@
     <message>
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>AUTO</translation>
     </message>
 </context>
 <context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit</translation>
     </message>
     <message>
         <source>24h time</source>
-        <translation type="unfinished"></translation>
+        <translation>24h Format</translation>
     </message>
     <message>
         <source>Set Automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Time Zone</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeitzone</translation>
     </message>
 </context>
 <context>
     <name>DialPower</name>
     <message>
         <source>% power</source>
-        <translation type="unfinished"></translation>
+        <translation>% energy</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished"></translation>
+        <translation>Km</translation>
     </message>
 </context>
 <context>
     <name>DialSpeed</name>
     <message>
         <source>km/h</source>
-        <translation type="unfinished"></translation>
+        <translation>Km/h</translation>
     </message>
 </context>
 <context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Editieren beenden</translation>
     </message>
 </context>
 <context>
     <name>FavoritesWidget</name>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoriten</translation>
     </message>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation type="unfinished"></translation>
+        <translation>mehr</translation>
     </message>
 </context>
 <context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisierung</translation>
     </message>
     <message>
         <source>Latest Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Version</translation>
     </message>
 </context>
 <context>
     <name>LanguagePanel</name>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
 </context>
 <context>
     <name>Main</name>
     <message>
         <source>Instrument Cluster</source>
-        <translation type="unfinished"></translation>
+        <translation>Kombi-Instrumente</translation>
     </message>
 </context>
 <context>
     <name>MonitorView</name>
     <message>
         <source>Process Monitor on Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Prozessüberwachung in der Statusleiste</translation>
     </message>
 </context>
 <context>
     <name>MusicList</name>
     <message>
         <source>Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste</translation>
     </message>
     <message>
         <source>Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Album</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Artist</translation>
     </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
     <message>
         <source>favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favouriten</translation>
     </message>
     <message>
         <source>artists</source>
-        <translation type="unfinished"></translation>
+        <translation>Artisten</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiedergabeliste</translation>
     </message>
     <message>
         <source>albums</source>
-        <translation type="unfinished"></translation>
+        <translation>Albums</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordner</translation>
     </message>
 </context>
 <context>
     <name>NetworkMonitor</name>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Netzwerk</translation>
     </message>
 </context>
 <context>
     <name>PhoneToolsColumn</name>
     <message>
         <source>recents</source>
-        <translation type="unfinished"></translation>
+        <translation>Verlauf</translation>
     </message>
     <message>
         <source>favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favouriten</translation>
     </message>
     <message>
         <source>voicemail</source>
-        <translation type="unfinished"></translation>
+        <translation>Voicemail</translation>
     </message>
     <message>
         <source>keypad</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatur</translation>
     </message>
     <message>
         <source>contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontakte</translation>
     </message>
     <message>
         <source>messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachrichten</translation>
     </message>
 </context>
 <context>
@@ -298,88 +298,88 @@
     </message>
     <message>
         <source>Driver 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fahrer-1</translation>
     </message>
     <message>
         <source>Driver 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fahrer-2</translation>
     </message>
     <message>
         <source>Driver 3</source>
-        <translation type="unfinished"></translation>
+        <translation>Fahrer-3</translation>
     </message>
     <message>
         <source>Driver 4</source>
-        <translation type="unfinished"></translation>
+        <translation>Fahrer-4</translation>
     </message>
     <message>
         <source>USER PROFILE</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzer Profil</translation>
     </message>
     <message>
         <source>SERVICE &amp; SUPPORT</source>
-        <translation type="unfinished"></translation>
+        <translation>Service</translation>
     </message>
     <message>
         <source>TRAFFIC INFORMATION</source>
-        <translation type="unfinished"></translation>
+        <translation>Verkehrsinformationen</translation>
     </message>
     <message>
         <source>TOLL &amp; CONGESTION FEES</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebühren</translation>
     </message>
     <message>
         <source>METRIC SYSTEM</source>
-        <translation type="unfinished"></translation>
+        <translation>Metrisches System</translation>
     </message>
     <message>
         <source>APP UPDATES</source>
-        <translation type="unfinished"></translation>
+        <translation>Programm Neuerungen</translation>
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation type="unfinished"></translation>
+        <translation>System Monitor</translation>
     </message>
 </context>
 <context>
     <name>SettingsPanel</name>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Hell</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dunkel</translation>
     </message>
 </context>
 <context>
     <name>SettingsToolsColumn</name>
     <message>
         <source>languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprachen</translation>
     </message>
     <message>
         <source>date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Themes</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS: %1</translation>
     </message>
     <message>
         <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %1 %</translation>
     </message>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>
@@ -387,152 +387,152 @@
     <message>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>MAX</translation>
     </message>
     <message>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>MIN</translation>
     </message>
 </context>
 <context>
     <name>ThemesPanel</name>
     <message>
         <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Themen</translation>
     </message>
 </context>
 <context>
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebühren</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Bergabfahrhilfe</translation>
+        <translation>Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Stau-Assistent</translation>
+        <translation>Stau-Assistent</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Autom. Geschw. Anpassung</translation>
     </message>
 </context>
 <context>
     <name>VehicleControlPanel</name>
     <message>
         <source>Present</source>
-        <translation type="unfinished"></translation>
+        <translation>Jetzt</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 Tag</translation>
     </message>
     <message>
         <source>1 week</source>
-        <translation type="unfinished"></translation>
+        <translation>1 Woche</translation>
     </message>
     <message>
         <source>1 month</source>
-        <translation type="unfinished"></translation>
+        <translation>1 Monat</translation>
     </message>
     <message>
         <source>Sun roof</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonnendach</translation>
     </message>
     <message>
         <source>Doors</source>
-        <translation type="unfinished"></translation>
+        <translation>Türen</translation>
     </message>
     <message>
         <source>Trunk</source>
-        <translation type="unfinished"></translation>
+        <translation>Gepäckraum</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnen</translation>
     </message>
     <message>
         <source>Calibrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellen</translation>
     </message>
     <message>
         <source>Projected distance to empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Kalkulierte Distanz bis leer</translation>
     </message>
     <message>
         <source>184</source>
-        <translation type="unfinished"></translation>
+        <translation>184</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished"></translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>Charging stations</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladestationen</translation>
     </message>
     <message>
         <source>Show on map</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige auf Karte</translation>
     </message>
     <message>
         <source>21</source>
-        <translation type="unfinished"></translation>
+        <translation>21</translation>
     </message>
     <message>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <source>Route</source>
-        <translation type="unfinished"></translation>
+        <translation>Route</translation>
     </message>
     <message>
         <source>27</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>240</source>
-        <translation type="unfinished"></translation>
+        <translation>240</translation>
     </message>
     <message>
         <source>kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <source>Normal load</source>
-        <translation type="unfinished"></translation>
+        <translation>Normale Ladung</translation>
     </message>
     <message>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziel: 240 kPa</translation>
     </message>
     <message>
         <source>Max load</source>
-        <translation type="unfinished"></translation>
+        <translation>Max. Ladung</translation>
     </message>
     <message>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziel: 270 kPa</translation>
     </message>
 </context>
 <context>
     <name>VehicleModel</name>
     <message>
         <source>Service in 300km</source>
-        <translation type="unfinished"></translation>
+        <translation>Service in 300 Km</translation>
     </message>
 </context>
 <context>
@@ -558,26 +558,26 @@
     <name>VehicleWidgetModel</name>
     <message>
         <source>Fees</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebühren</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Bergabfahrhilfe</translation>
+        <translation>Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Stau-Assistent</translation>
+        <translation>Stau-Assistent</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Intelligente Geschwindigkeitsanpassung</translation>
     </message>
 </context>
 <context>
     <name>WebBrowser</name>
     <message>
         <source>Enter an address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresseingabe</translation>
     </message>
 </context>
 </TS>
