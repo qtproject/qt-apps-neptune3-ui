@@ -45,7 +45,7 @@
 <context>
     <name>ApplicationStoreContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="77"/>
+        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
         <source>No apps found!</source>
         <translation>未找到app!</translation>
     </message>
@@ -55,17 +55,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>年</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>next</source>
-        <translation type="unfinished"></translation>
+        <translation>下一个</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>events</source>
-        <translation type="unfinished"></translation>
+        <translation>事项</translation>
     </message>
 </context>
 <context>
@@ -73,22 +73,22 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
         <source>Partly rain</source>
-        <translation type="unfinished"></translation>
+        <translation>局部有雨</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="62"/>
         <source>Rain</source>
-        <translation type="unfinished"></translation>
+        <translation>有雨</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
         <source>Light Snow</source>
-        <translation type="unfinished"></translation>
+        <translation>小雪</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="72"/>
         <source>Sunny</source>
-        <translation type="unfinished"></translation>
+        <translation>晴</translation>
     </message>
 </context>
 <context>
@@ -267,7 +267,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
         <source>Process Monitor on Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>状态栏进程监控</translation>
     </message>
 </context>
 <context>
@@ -322,27 +322,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
         <source>favorites</source>
-        <translation type="unfinished">收藏夹</translation>
+        <translation>收藏夹</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
         <source>artists</source>
-        <translation type="unfinished">歌手</translation>
+        <translation>歌手</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
         <source>playlists</source>
-        <translation type="unfinished">播放列表</translation>
+        <translation>播放列表</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
         <source>albums</source>
-        <translation type="unfinished">专辑</translation>
+        <translation>专辑</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
         <source>folders</source>
-        <translation type="unfinished">文件夹</translation>
+        <translation>文件夹</translation>
     </message>
 </context>
 <context>
@@ -400,32 +400,32 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
         <source>recents</source>
-        <translation type="unfinished">历史</translation>
+        <translation>历史</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
         <source>favorites</source>
-        <translation type="unfinished">收藏夹</translation>
+        <translation>收藏夹</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
         <source>voicemail</source>
-        <translation type="unfinished">语音邮件</translation>
+        <translation>语音邮件</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
         <source>keypad</source>
-        <translation type="unfinished">键盘</translation>
+        <translation>键盘</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
         <source>contacts</source>
-        <translation type="unfinished">联系人</translation>
+        <translation>联系人</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
         <source>messages</source>
-        <translation type="unfinished">短信</translation>
+        <translation>短信</translation>
     </message>
 </context>
 <context>
@@ -557,17 +557,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
         <source>languages</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>date</source>
-        <translation type="unfinished">日期</translation>
+        <translation>日期</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
-        <translation type="unfinished">主题</translation>
+        <translation>主题</translation>
     </message>
 </context>
 <context>
@@ -575,17 +575,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
         <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS: %1</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
         <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %1 %</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished"></translation>
+        <translation>内存: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>
@@ -879,22 +879,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="87"/>
         <source>support</source>
-        <translation type="unfinished">支持</translation>
+        <translation>支持</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
         <source>energy</source>
-        <translation type="unfinished">能源</translation>
+        <translation>能源</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="89"/>
         <source>doors</source>
-        <translation type="unfinished">车门</translation>
+        <translation>车门</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
         <source>tires</source>
-        <translation type="unfinished">轮胎</translation>
+        <translation>轮胎</translation>
     </message>
 </context>
 <context>
