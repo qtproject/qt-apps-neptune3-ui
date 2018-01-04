@@ -45,7 +45,7 @@
 <context>
     <name>ApplicationStoreContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="69"/>
+        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="77"/>
         <source>No apps found!</source>
         <translation>未找到app!</translation>
     </message>
@@ -555,17 +555,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
         <source>languages</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="92"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
         <translation>主题</translation>
     </message>

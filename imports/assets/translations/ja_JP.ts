@@ -499,17 +499,17 @@
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
         <source>languages</source>
         <translation>言語</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>date</source>
         <translation>年代</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="92"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
         <translation>画題</translation>
     </message>
