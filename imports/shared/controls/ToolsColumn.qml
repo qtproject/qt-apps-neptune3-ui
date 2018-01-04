@@ -76,7 +76,7 @@ ColumnLayout {
             baselineOffset: 0
             checkable: true
             checked: root.currentIndex === index
-            symbol: icon ? Style.symbol(checked ? icon + "_ON" : icon + "_OFF") : ""
+            symbol: model.icon ? Style.symbol(checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
             text: qsTranslate(root.translationContext, model.text)
             labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
             labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow

@@ -35,23 +35,23 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
+import animations 1.0
+
 Entity {
     id: root
 
-    property real roofSliderValue: 0.0
-
-    property real roofClosedPosition: -1.15
-    property real roofOpenedPosition: 0.0
+    // 0.0 fully closed, 1.0 fully open
+    property real openProgress: 0.0
 
     Transform {
         id: transform
-        property real translationZ: roofClosedPosition
+        property real translationZ: -1.15
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0.0, 0.0, translationZ * roofSliderValue));
+            m.translate(Qt.vector3d(0.0, 0.0, translationZ * openProgress));
             m.scale(Qt.vector3d(vehicle3DView.scaleFactor,
                                 vehicle3DView.scaleFactor,
-                                vehicle3DView.scaleFactor * (1 - roofSliderValue)));
+                                vehicle3DView.scaleFactor * (1 - openProgress)));
             return m;
         }
     }
@@ -60,50 +60,6 @@ Entity {
         id: mesh
         meshName: "sun_roof"
         source: vehicle3DView.carObjFilePath
-    }
-
-    function openRoof() {
-        roofScaleAnimation.restart()
-    }
-
-    function closeRoof() {
-        roofScaleAnimationClose.restart()
-    }
-
-    NumberAnimation {
-        id: roofScaleAnimation
-        target: root
-        property: "roofSliderValue"
-        duration: 1000
-        from: roofSliderValue
-        to: 1.0
-    }
-
-    NumberAnimation {
-        id: roofTranslateAnimation
-        target: transform
-        property: "translationZ"
-        duration: 1000
-        from: transform.translationZ
-        to: roofOpenedPosition
-    }
-
-    NumberAnimation {
-        id: roofScaleAnimationClose
-        target: root
-        property: "roofSliderValue"
-        duration: 1000
-        from: root.roofSliderValue
-        to: 0.0
-    }
-
-    NumberAnimation {
-        id: roofTranslateAnimationClose
-        target: transform
-        property: "translationZ"
-        duration: 1000
-        from: transform.translationZ
-        to: roofClosedPosition
     }
 
     components: [transform, mesh, grayMaterial]

@@ -143,10 +143,92 @@
     </message>
 </context>
 <context>
+    <name>DoorsPanel</name>
+    <message>
+        <source>Sun roof</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Doors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>
         <translation>Finish Editing</translation>
+    </message>
+</context>
+<context>
+    <name>EnergyPanel</name>
+    <message>
+        <source>Present</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 week</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Projected distance to empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>184</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Charging stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show on map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donald Weese Ct, Las Vegas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Route</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>27</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Faiss Dr, Las Vegas</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -424,106 +506,7 @@
     </message>
 </context>
 <context>
-    <name>VehicleControlModel</name>
-    <message>
-        <source>Fees</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hill Descent Control</source>
-        <translation type="unfinished">Hill Descent Control</translation>
-    </message>
-    <message>
-        <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Traffic Jam Assist</translation>
-    </message>
-    <message>
-        <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VehicleControlPanel</name>
-    <message>
-        <source>Present</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1 day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1 week</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1 month</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sun roof</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Doors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Trunk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Calibrate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Projected distance to empty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>184</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Charging stations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show on map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>21</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Route</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>27</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>TiresPanel</name>
     <message>
         <source>240</source>
         <translation type="unfinished"></translation>
@@ -546,6 +529,29 @@
     </message>
     <message>
         <source>Target: 270 kPa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Calibrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleControlModel</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">Hill Descent Control</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">Traffic Jam Assist</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

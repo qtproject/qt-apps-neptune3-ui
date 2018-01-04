@@ -30,6 +30,8 @@
 ****************************************************************************/
 import QtQuick 2.2
 
+import utils 1.0
+
 Item {
     id: root
 
@@ -38,48 +40,22 @@ Item {
 
         anchors.top: root.top
         anchors.left: root.left
-        width: root.width
-        height: 410
+        anchors.right: root.right
+        height: Style.vspan(5.125)
+
+        leftDoorOpen: controlPanel.leftDoorOpen
+        rightDoorOpen: controlPanel.rightDoorOpen
+        trunkOpen: controlPanel.trunkOpen
+        roofOpenProgress: controlPanel.roofOpenProgress
     }
 
     VehicleControlPanel {
         id: controlPanel
 
         anchors.top: car3DView.bottom
+        anchors.topMargin: Style.vspan(0.875)
         anchors.left: root.left
-        width: root.width
-        height: 890
-
-        onTrunkOpenedChanged: {
-            if(trunkOpened)
-                car3DView.openTrunk()
-            else
-                car3DView.closeTrunk()
-        }
-
-        onRoofOpenedChanged: {
-            if(roofOpened)
-                car3DView.openRoof()
-            else
-                car3DView.closeRoof()
-        }
-
-        onRoofSliderValueChanged: {
-            car3DView.roofSliderValue = roofSliderValue
-        }
-
-        onLeftDoorOpenedChanged: {
-            if (leftDoorOpened)
-                car3DView.openLeftDoor()
-            else
-                car3DView.closeLeftDoor()
-        }
-
-        onRightDoorOpenedChanged: {
-            if (rightDoorOpened)
-                car3DView.openRightDoor()
-            else
-                car3DView.closeRightDoor()
-        }
+        anchors.right: root.right
+        anchors.bottom: parent.bottom
     }
 }

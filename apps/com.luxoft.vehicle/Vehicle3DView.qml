@@ -41,45 +41,12 @@ Item {
 
     //ToDo: This "file:" thing is a hack to make Qt3D load by relative address
     readonly property string carObjFilePath: "file:assets/models/car.obj"
-    property alias roofSliderValue: sunRoof.roofSliderValue
+    property alias roofOpenProgress: roof.openProgress
     readonly property real scaleFactor: 0.1
 
-    function openLeftDoor() {
-        leftDoor.openDoor()
-    }
-
-    function openRightDoor() {
-        rightDoor.openDoor()
-    }
-
-    function closeLeftDoor() {
-        leftDoor.closeDoor()
-    }
-
-    function closeRightDoor() {
-        rightDoor.closeDoor()
-    }
-
-    function animateWheels() {
-        axisFront.animate()
-        axisRear.animate()
-    }
-
-    function openRoof() {
-        sunRoof.openRoof()
-    }
-
-    function closeRoof() {
-        sunRoof.closeRoof()
-    }
-
-    function openTrunk() {
-        trunk.open()
-    }
-
-    function closeTrunk() {
-        trunk.close()
-    }
+    property alias leftDoorOpen: leftDoor.open
+    property alias rightDoorOpen: rightDoor.open
+    property alias trunkOpen: trunk.open
 
     Image {
         anchors.fill: parent
@@ -194,39 +161,15 @@ Item {
                 camera: camera
             }
 
-            VehicleShadow {
-            }
-
-            VehicleAxisFront {
-                id: axisFront
-            }
-
-            VehicleAxisRear {
-                id: axisRear
-            }
-
-            VehicleSeats {
-            }
-
-            VehicleRearDoor {
-                id: trunk
-            }
-
-            VehicleLeftDoor {
-                id: leftDoor
-            }
-
-            VehicleRightDoor {
-                id: rightDoor
-            }
-
-            VehicleRoof {
-                id: sunRoof
-            }
-
-            VehicleBody {
-                id: body
-            }
+            VehicleShadow {}
+            VehicleAxisFront {}
+            VehicleAxisRear {}
+            VehicleSeats {}
+            VehicleRearDoor { id: trunk }
+            VehicleLeftDoor { id: leftDoor }
+            VehicleRightDoor { id: rightDoor }
+            VehicleRoof { id: roof }
+            VehicleBody { id: body }
         }
     }
 }

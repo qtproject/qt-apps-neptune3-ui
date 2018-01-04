@@ -176,11 +176,117 @@
     </message>
 </context>
 <context>
+    <name>DoorsPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="72"/>
+        <source>Sun roof</source>
+        <translation type="unfinished">선루프</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="80"/>
+        <source>Doors</source>
+        <translation type="unfinished">도어</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="89"/>
+        <source>Trunk</source>
+        <translation type="unfinished">트렁크</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="158"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="313"/>
+        <source>Close</source>
+        <translation type="unfinished">닫힘</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="171"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="313"/>
+        <source>Open</source>
+        <translation type="unfinished">열림</translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <location filename="../../../sysui/launcher/EditableGridView.qml" line="209"/>
         <source>Finish Editing</source>
         <translation>편집 완료</translation>
+    </message>
+</context>
+<context>
+    <name>EnergyPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="46"/>
+        <source>Present</source>
+        <translation type="unfinished">현재</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="53"/>
+        <source>1 day</source>
+        <translation type="unfinished">1 일</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="60"/>
+        <source>1 week</source>
+        <translation type="unfinished">1 주</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="68"/>
+        <source>1 month</source>
+        <translation type="unfinished">1 달</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="91"/>
+        <source>Projected distance to empty</source>
+        <translation type="unfinished">비어있는 예상 거리</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="119"/>
+        <source>184</source>
+        <translation type="unfinished">184</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="133"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="204"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="266"/>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="150"/>
+        <source>Charging stations</source>
+        <translation type="unfinished">충전 스테이션</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="165"/>
+        <source>Show on map</source>
+        <translation type="unfinished">지도에 표시</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="190"/>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="220"/>
+        <source>Donald Weese Ct, Las Vegas</source>
+        <translation type="unfinished">Donald Weese Ct, Las Vegas</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="233"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="295"/>
+        <source>Route</source>
+        <translation type="unfinished">노선</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="249"/>
+        <source>27</source>
+        <translation type="unfinished">27</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="282"/>
+        <source>Faiss Dr, Las Vegas</source>
+        <translation type="unfinished">Faiss Dr, Las Vegas</translation>
     </message>
 </context>
 <context>
@@ -597,6 +703,50 @@
     </message>
 </context>
 <context>
+    <name>TiresPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="56"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="92"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="127"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="163"/>
+        <source>240</source>
+        <translation type="unfinished">240</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="69"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="104"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="140"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="175"/>
+        <source>kPa</source>
+        <translation type="unfinished">kPa</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="194"/>
+        <source>Normal load</source>
+        <translation type="unfinished">보통 하중</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="207"/>
+        <source>Target: 240 kPa</source>
+        <translation type="unfinished">목표 : 240 kPa</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="225"/>
+        <source>Max load</source>
+        <translation type="unfinished">최대 하중</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="238"/>
+        <source>Target: 270 kPa</source>
+        <translation type="unfinished">목표 : 270 kPa</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="256"/>
+        <source>Calibrate</source>
+        <translation type="unfinished">보정</translation>
+    </message>
+</context>
+<context>
     <name>ToolsColumn</name>
     <message>
         <source>recents</source>
@@ -677,149 +827,112 @@
         <translation type="vanished">타이어</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="199"/>
         <source>Present</source>
-        <translation>현재</translation>
+        <translation type="vanished">현재</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="206"/>
         <source>1 day</source>
-        <translation>1 일</translation>
+        <translation type="vanished">1 일</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="213"/>
         <source>1 week</source>
-        <translation>1 주</translation>
+        <translation type="vanished">1 주</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="221"/>
         <source>1 month</source>
-        <translation>1 달</translation>
+        <translation type="vanished">1 달</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="244"/>
         <source>Projected distance to empty</source>
-        <translation>비어있는 예상 거리</translation>
+        <translation type="vanished">비어있는 예상 거리</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="272"/>
         <source>184</source>
-        <translation>184</translation>
+        <translation type="vanished">184</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="286"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="357"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="419"/>
         <source>km</source>
-        <translation>km</translation>
+        <translation type="vanished">km</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="303"/>
         <source>Charging stations</source>
-        <translation>충전 스테이션</translation>
+        <translation type="vanished">충전 스테이션</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="318"/>
         <source>Show on map</source>
-        <translation>지도에 표시</translation>
+        <translation type="vanished">지도에 표시</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="343"/>
         <source>21</source>
-        <translation>21</translation>
+        <translation type="vanished">21</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="373"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation>Donald Weese Ct, Las Vegas</translation>
+        <translation type="vanished">Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="386"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="448"/>
         <source>Route</source>
-        <translation>노선</translation>
+        <translation type="vanished">노선</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="402"/>
         <source>27</source>
-        <translation>27</translation>
+        <translation type="vanished">27</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="435"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation>Faiss Dr, Las Vegas</translation>
+        <translation type="vanished">Faiss Dr, Las Vegas</translation>
     </message>
     <message>
         <source>Locks</source>
         <translation type="vanished">잠금</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="481"/>
         <source>Sun roof</source>
-        <translation>선루프</translation>
+        <translation type="vanished">선루프</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="489"/>
         <source>Doors</source>
-        <translation>도어</translation>
+        <translation type="vanished">도어</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="498"/>
         <source>Trunk</source>
-        <translation>트렁크</translation>
+        <translation type="vanished">트렁크</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="567"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="724"/>
         <source>Close</source>
-        <translation>닫힘</translation>
+        <translation type="vanished">닫힘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="581"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="724"/>
         <source>Open</source>
-        <translation>열림</translation>
+        <translation type="vanished">열림</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="757"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="793"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="828"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="864"/>
         <source>240</source>
-        <translation>240</translation>
+        <translation type="vanished">240</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="770"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="805"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="841"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="876"/>
         <source>kPa</source>
-        <translation>kPa</translation>
+        <translation type="vanished">kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="895"/>
         <source>Normal load</source>
-        <translation>보통 하중</translation>
+        <translation type="vanished">보통 하중</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="908"/>
         <source>Target: 240 kPa</source>
-        <translation>목표 : 240 kPa</translation>
+        <translation type="vanished">목표 : 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="926"/>
         <source>Max load</source>
-        <translation>최대 하중</translation>
+        <translation type="vanished">최대 하중</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="939"/>
         <source>Target: 270 kPa</source>
-        <translation>목표 : 270 kPa</translation>
+        <translation type="vanished">목표 : 270 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="957"/>
         <source>Calibrate</source>
-        <translation>보정</translation>
+        <translation type="vanished">보정</translation>
     </message>
 </context>
 <context>
@@ -833,22 +946,22 @@
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="87"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
         <source>support</source>
         <translation>지원</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
         <source>energy</source>
         <translation>에너지</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="89"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
         <source>doors</source>
         <translation>도어</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="61"/>
         <source>tires</source>
         <translation>타이어</translation>
     </message>

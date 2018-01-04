@@ -35,10 +35,14 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
+import animations 1.0
+
 Entity {
+    id: root
     Transform {
         id: transform
-        property real userAngle: 0.0
+        property real userAngle: root.open ? -55 : 0
+        Behavior on userAngle { DefaultNumberAnimation { duration: 1000 } }
         matrix: {
             var m = Qt.matrix4x4();
             var xOffset = 14.9;
@@ -51,6 +55,8 @@ Entity {
             return m;
         }
     }
+
+    property bool open: false
 
     Entity {
         Mesh {
@@ -104,37 +110,5 @@ Entity {
             source: vehicle3DView.carObjFilePath
         }
         components: [black1, blackMaterial, transform]
-    }
-
-    function openDoor() {
-        if(doorOpenAnimation.running)
-            return
-        doorClosingAnimation.stop()
-        doorOpenAnimation.restart()
-    }
-
-    function closeDoor() {
-        if(doorClosingAnimation.running)
-            return
-        doorOpenAnimation.stop()
-        doorClosingAnimation.restart()
-    }
-
-    NumberAnimation {
-        id: doorOpenAnimation
-        target: transform
-        property: "userAngle"
-        duration: 1000
-        from: transform.userAngle
-        to: -55
-    }
-
-    NumberAnimation {
-        id: doorClosingAnimation
-        target: transform
-        property: "userAngle"
-        duration: 1000
-        from: transform.userAngle
-        to: 0
     }
 }

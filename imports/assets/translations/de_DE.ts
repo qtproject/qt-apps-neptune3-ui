@@ -143,10 +143,92 @@
     </message>
 </context>
 <context>
+    <name>DoorsPanel</name>
+    <message>
+        <source>Sun roof</source>
+        <translation type="unfinished">Sonnendach</translation>
+    </message>
+    <message>
+        <source>Doors</source>
+        <translation type="unfinished">Türen</translation>
+    </message>
+    <message>
+        <source>Trunk</source>
+        <translation type="unfinished">Gepäckraum</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Schliessen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Öffnen</translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>
         <translation>Editieren beenden</translation>
+    </message>
+</context>
+<context>
+    <name>EnergyPanel</name>
+    <message>
+        <source>Present</source>
+        <translation type="unfinished">Jetzt</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished">1 Tag</translation>
+    </message>
+    <message>
+        <source>1 week</source>
+        <translation type="unfinished">1 Woche</translation>
+    </message>
+    <message>
+        <source>1 month</source>
+        <translation type="unfinished">1 Monat</translation>
+    </message>
+    <message>
+        <source>Projected distance to empty</source>
+        <translation type="unfinished">Kalkulierte Distanz bis leer</translation>
+    </message>
+    <message>
+        <source>184</source>
+        <translation type="unfinished">184</translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">Km</translation>
+    </message>
+    <message>
+        <source>Charging stations</source>
+        <translation type="unfinished">Ladestationen</translation>
+    </message>
+    <message>
+        <source>Show on map</source>
+        <translation type="unfinished">Zeige auf Karte</translation>
+    </message>
+    <message>
+        <source>21</source>
+        <translation type="unfinished">21</translation>
+    </message>
+    <message>
+        <source>Donald Weese Ct, Las Vegas</source>
+        <translation type="unfinished">Donald Weese Ct, Las Vegas</translation>
+    </message>
+    <message>
+        <source>Route</source>
+        <translation type="unfinished">Route</translation>
+    </message>
+    <message>
+        <source>27</source>
+        <translation type="unfinished">27</translation>
+    </message>
+    <message>
+        <source>Faiss Dr, Las Vegas</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -424,6 +506,37 @@
     </message>
 </context>
 <context>
+    <name>TiresPanel</name>
+    <message>
+        <source>240</source>
+        <translation type="unfinished">240</translation>
+    </message>
+    <message>
+        <source>kPa</source>
+        <translation type="unfinished">kPa</translation>
+    </message>
+    <message>
+        <source>Normal load</source>
+        <translation type="unfinished">Normale Ladung</translation>
+    </message>
+    <message>
+        <source>Target: 240 kPa</source>
+        <translation type="unfinished">Ziel: 240 kPa</translation>
+    </message>
+    <message>
+        <source>Max load</source>
+        <translation type="unfinished">Max. Ladung</translation>
+    </message>
+    <message>
+        <source>Target: 270 kPa</source>
+        <translation type="unfinished">Ziel: 270 kPa</translation>
+    </message>
+    <message>
+        <source>Calibrate</source>
+        <translation type="unfinished">Einstellen</translation>
+    </message>
+</context>
+<context>
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
@@ -446,107 +559,99 @@
     <name>VehicleControlPanel</name>
     <message>
         <source>Present</source>
-        <translation>Jetzt</translation>
+        <translation type="vanished">Jetzt</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation>1 Tag</translation>
+        <translation type="vanished">1 Tag</translation>
     </message>
     <message>
         <source>1 week</source>
-        <translation>1 Woche</translation>
+        <translation type="vanished">1 Woche</translation>
     </message>
     <message>
         <source>1 month</source>
-        <translation>1 Monat</translation>
+        <translation type="vanished">1 Monat</translation>
     </message>
     <message>
         <source>Sun roof</source>
-        <translation>Sonnendach</translation>
+        <translation type="vanished">Sonnendach</translation>
     </message>
     <message>
         <source>Doors</source>
-        <translation>Türen</translation>
+        <translation type="vanished">Türen</translation>
     </message>
     <message>
         <source>Trunk</source>
-        <translation>Gepäckraum</translation>
+        <translation type="vanished">Gepäckraum</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation>Schliessen</translation>
+        <translation type="vanished">Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation>Öffnen</translation>
+        <translation type="vanished">Öffnen</translation>
     </message>
     <message>
         <source>Calibrate</source>
-        <translation>Einstellen</translation>
+        <translation type="vanished">Einstellen</translation>
     </message>
     <message>
         <source>Projected distance to empty</source>
-        <translation>Kalkulierte Distanz bis leer</translation>
+        <translation type="vanished">Kalkulierte Distanz bis leer</translation>
     </message>
     <message>
         <source>184</source>
-        <translation>184</translation>
+        <translation type="vanished">184</translation>
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation type="vanished">Km</translation>
     </message>
     <message>
         <source>Charging stations</source>
-        <translation>Ladestationen</translation>
+        <translation type="vanished">Ladestationen</translation>
     </message>
     <message>
         <source>Show on map</source>
-        <translation>Zeige auf Karte</translation>
+        <translation type="vanished">Zeige auf Karte</translation>
     </message>
     <message>
         <source>21</source>
-        <translation>21</translation>
+        <translation type="vanished">21</translation>
     </message>
     <message>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation>Donald Weese Ct, Las Vegas</translation>
+        <translation type="vanished">Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <source>Route</source>
-        <translation>Route</translation>
-    </message>
-    <message>
-        <source>27</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Faiss Dr, Las Vegas</source>
-        <translation></translation>
+        <translation type="vanished">Route</translation>
     </message>
     <message>
         <source>240</source>
-        <translation>240</translation>
+        <translation type="vanished">240</translation>
     </message>
     <message>
         <source>kPa</source>
-        <translation>kPa</translation>
+        <translation type="vanished">kPa</translation>
     </message>
     <message>
         <source>Normal load</source>
-        <translation>Normale Ladung</translation>
+        <translation type="vanished">Normale Ladung</translation>
     </message>
     <message>
         <source>Target: 240 kPa</source>
-        <translation>Ziel: 240 kPa</translation>
+        <translation type="vanished">Ziel: 240 kPa</translation>
     </message>
     <message>
         <source>Max load</source>
-        <translation>Max. Ladung</translation>
+        <translation type="vanished">Max. Ladung</translation>
     </message>
     <message>
         <source>Target: 270 kPa</source>
-        <translation>Ziel: 270 kPa</translation>
+        <translation type="vanished">Ziel: 270 kPa</translation>
     </message>
 </context>
 <context>
