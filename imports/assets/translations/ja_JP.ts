@@ -6,17 +6,17 @@
     <message>
         <location filename="../../../sysui/about/About.qml" line="78"/>
         <source>Marketing</source>
-        <translation type="unfinished"></translation>
+        <translation>マーケティング</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>Monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>モニター</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="86"/>
         <source>Running Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションの実行</translation>
     </message>
 </context>
 <context>
@@ -24,7 +24,7 @@
     <message>
         <location filename="../../../sysui/about/AboutRunningApps.qml" line="61"/>
         <source>Running applications:</source>
-        <translation type="unfinished"></translation>
+        <translation>アプリケーションの実行：</translation>
     </message>
 </context>
 <context>
@@ -48,17 +48,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>年</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>next</source>
-        <translation type="unfinished"></translation>
+        <translation>次</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>events</source>
-        <translation type="unfinished"></translation>
+        <translation>イベント</translation>
     </message>
 </context>
 <context>
@@ -66,22 +66,22 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
         <source>Partly rain</source>
-        <translation type="unfinished"></translation>
+        <translation>一部雨</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="62"/>
         <source>Rain</source>
-        <translation type="unfinished"></translation>
+        <translation>雨</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
         <source>Light Snow</source>
-        <translation type="unfinished"></translation>
+        <translation>小雪</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="72"/>
         <source>Sunny</source>
-        <translation type="unfinished"></translation>
+        <translation>太陽</translation>
     </message>
 </context>
 <context>
@@ -239,7 +239,7 @@
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
         <source>Process Monitor on Status Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>ステータスバーのプロセスモニタ</translation>
     </message>
 </context>
 <context>
@@ -294,27 +294,27 @@
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
         <source>favorites</source>
-        <translation type="unfinished">おきにいり</translation>
+        <translation>おきにいり</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
         <source>artists</source>
-        <translation type="unfinished">アーティスト</translation>
+        <translation>アーティスト</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
         <source>playlists</source>
-        <translation type="unfinished">プレイリスト</translation>
+        <translation>プレイリスト</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
         <source>albums</source>
-        <translation type="unfinished">アルバム</translation>
+        <translation>アルバム</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
         <source>folders</source>
-        <translation type="unfinished">フォルダー</translation>
+        <translation>フォルダー</translation>
     </message>
 </context>
 <context>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="58"/>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>ネットワーク</translation>
     </message>
 </context>
 <context>
@@ -357,32 +357,32 @@
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
         <source>recents</source>
-        <translation type="unfinished">最近使ったもの</translation>
+        <translation>最近使ったもの</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
         <source>favorites</source>
-        <translation type="unfinished">おきにいり</translation>
+        <translation>おきにいり</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
         <source>voicemail</source>
-        <translation type="unfinished">ボイスメール</translation>
+        <translation>ボイスメール</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
         <source>keypad</source>
-        <translation type="unfinished">キーパッド</translation>
+        <translation>キーパッド</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
         <source>contacts</source>
-        <translation type="unfinished">コンタクト</translation>
+        <translation>コンタクト</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
         <source>messages</source>
-        <translation type="unfinished">メッセージ</translation>
+        <translation>メッセージ</translation>
     </message>
 </context>
 <context>
@@ -488,12 +488,12 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>光</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="59"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>ダーク</translation>
     </message>
 </context>
 <context>
@@ -501,17 +501,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
         <source>languages</source>
-        <translation type="unfinished"></translation>
+        <translation>言語</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>date</source>
-        <translation type="unfinished"></translation>
+        <translation>年代</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
-        <translation type="unfinished"></translation>
+        <translation>画題</translation>
     </message>
 </context>
 <context>
@@ -519,17 +519,17 @@
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
         <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS: %1</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
         <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %1 %</translation>
     </message>
     <message>
         <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>
@@ -610,7 +610,7 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>インテリジェントな速度適応</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
@@ -658,55 +658,55 @@
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="244"/>
         <source>Projected distance to empty</source>
-        <translation type="unfinished"></translation>
+        <translation>投影された空の距離</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="272"/>
         <source>184</source>
-        <translation type="unfinished"></translation>
+        <translation>184</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="286"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="357"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="419"/>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="303"/>
         <source>Charging stations</source>
-        <translation type="unfinished"></translation>
+        <translation>充電ステーション</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="318"/>
         <source>Show on map</source>
-        <translation type="unfinished"></translation>
+        <translation>地図上に表示する</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="343"/>
         <source>21</source>
-        <translation type="unfinished"></translation>
+        <translation>21</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="373"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="386"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="448"/>
         <source>Route</source>
-        <translation type="unfinished"></translation>
+        <translation>道筋</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="402"/>
         <source>27</source>
-        <translation type="unfinished"></translation>
+        <translation>27</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="435"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation>Faiss Dr, Las Vegas</translation>
     </message>
     <message>
         <source>Locks</source>
@@ -745,7 +745,7 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="828"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="864"/>
         <source>240</source>
-        <translation type="unfinished"></translation>
+        <translation>240</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="770"/>
@@ -753,27 +753,27 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="841"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="876"/>
         <source>kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="895"/>
         <source>Normal load</source>
-        <translation type="unfinished"></translation>
+        <translation>通常の負荷</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="908"/>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>ターゲット：240 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="926"/>
         <source>Max load</source>
-        <translation type="unfinished"></translation>
+        <translation>最大荷重</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="939"/>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished"></translation>
+        <translation>ターゲット：270 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="957"/>
@@ -794,22 +794,22 @@
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="87"/>
         <source>support</source>
-        <translation type="unfinished">サポート</translation>
+        <translation>サポート</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
         <source>energy</source>
-        <translation type="unfinished">燃料</translation>
+        <translation>燃料</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="89"/>
         <source>doors</source>
-        <translation type="unfinished">ドア</translation>
+        <translation>ドア</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
         <source>tires</source>
-        <translation type="unfinished">タイヤ</translation>
+        <translation>タイヤ</translation>
     </message>
 </context>
 <context>
@@ -840,7 +840,7 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>自動速度制限</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
