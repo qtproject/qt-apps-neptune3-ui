@@ -296,23 +296,23 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="79"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="72"/>
         <source>Next</source>
         <translation>下一首</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="94"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="117"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="110"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="119"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="132"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="112"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
         <source>Artist</source>
         <translation>歌手</translation>
     </message>

@@ -60,13 +60,6 @@ Control {
     signal libraryGoBack(var goToArtist)
     signal headerClicked()
 
-    background: Image {
-        id: bgDummy
-        anchors.fill: parent
-        source: Style.gfx2("bg-home", TritonStyle.theme)
-        visible: root.showBg
-    }
-
     contentItem: Item {
 
         Component {

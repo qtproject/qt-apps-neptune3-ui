@@ -222,23 +222,23 @@
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="79"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="72"/>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="94"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="117"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="110"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="119"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="132"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="112"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
