@@ -35,14 +35,15 @@ import QtQuick.Layouts 1.0
 
 import controls 1.0
 import utils 1.0
+import com.pelagicore.styles.triton 1.0
 
 ListView {
     id: root
 
     property string appServerUrl
     property real installationProgress: 1.0
-    property var installedApp: []
-    signal downloadClicked(var appId)
+    property var installedApps: []
+    signal toolClicked(var appId)
 
     onInstallationProgressChanged: {
         if (installationProgress === 1.0) {
@@ -53,8 +54,11 @@ ListView {
     currentIndex: -1
 
     delegate: ItemDelegate {
+        id: delegatedItem
         Layout.preferredWidth: Style.hspan(15)
         Layout.preferredHeight: Style.vspan(1)
+        property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
+
         background: null
         contentItem: RowLayout {
             spacing: Style.hspan(0.8)
@@ -68,7 +72,7 @@ ListView {
 
             Label {
                 Layout.preferredHeight: Style.vspan(0.5)
-                Layout.preferredWidth: appIcon.status === Image.Ready ? Style.hspan(8.8) : Style.hspan(11)
+                Layout.preferredWidth: appIcon.status === Image.Ready ? Style.hspan(10) : Style.hspan(11)
                 text: model.name
                 // TODO: Check with designer, which color should be used.
                 color: "grey"
@@ -79,12 +83,14 @@ ListView {
             Tool {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(0.5)
-                symbol: Style.symbol("ic-download_OFF")
-                opacity: enabled ? 1.0 : 0.5
-                enabled: root.installedApp.indexOf(model.id) < 0 && root.currentIndex === -1
+                symbol: delegatedItem.isInstalled ? Style.symbol("ic-close", false, TritonStyle.theme) :
+                                                                   Style.symbol("ic-download_OFF")
+                opacity: delegatedItem.isInstalled ? 0.2 : 1.0
                 onClicked: {
-                    root.currentIndex = index;
-                    root.downloadClicked(model.id);
+                    if (!delegatedItem.isInstalled) {
+                        root.currentIndex = index;
+                    }
+                    root.toolClicked(model.id);
                 }
             }
         }

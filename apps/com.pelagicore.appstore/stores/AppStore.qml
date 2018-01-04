@@ -38,7 +38,6 @@ import QtApplicationManager 1.0
 Item {
     id: root
 
-    property alias latestUpdateApps: latestUpdateModel
     property alias applicationModel: appModel
     property alias categoryModel: catModel
     property alias appStoreServer: appStoreServer
@@ -46,7 +45,7 @@ Item {
     property int categoryid: 0
     property string filter: ""
     property real currentInstallationProgress: 0.0
-    property var installedOnlineApp: []
+    property var installedApps: []
 
     function download(id) {
         var url = appStoreServer.serverUrl + "/app/purchase"
@@ -59,7 +58,8 @@ Item {
                     var icon = appStoreServer.serverUrl + "/app/icon?id=" + id
                     var installID = ApplicationInstaller.startPackageInstallation("internal-0", data.url);
                     ApplicationInstaller.acknowledgePackageInstallation(installID);
-                    root.installedOnlineApp.push(id);
+                    root.installedApps.push(id);
+                    root.installedAppsChanged(root.installedApps);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
                     console.log(Logging.sysui, ":::AppStoreServer::: not logged in")
                 } else {
@@ -67,6 +67,16 @@ Item {
                 }
             }
         })
+    }
+
+    function isInstalled(appId) {
+        return root.installedApps.indexOf(appId) !== -1;
+    }
+
+    function uninstallApplication(id) {
+        ApplicationInstaller.removePackage(id, false /*keepDocuments*/, true /*force*/);
+        root.installedApps.splice(root.installedApps.indexOf(id), 1);
+        root.installedAppsChanged(root.installedApps);
     }
 
     function selectCategory(index) {
@@ -79,27 +89,8 @@ Item {
         appModel.refresh();
     }
 
-    // Dummy Model
-    ListModel {
-        id: latestUpdateModel
-
-        ListElement {
-            appName: "Calculator"
-            iconSource: "ic-calculator-dark"
-            size: "10 MB"
-        }
-
-        ListElement {
-            appName: "Phone"
-            iconSource: "ic-phone-dark"
-            size: "15 MB"
-        }
-
-        ListElement {
-            appName: "Navigation"
-            iconSource: "ic-navigation-dark"
-            size: "80 MB"
-        }
+    Component.onCompleted: {
+        root.installedApps = ApplicationManager.applicationIds()
     }
 
     Connections {

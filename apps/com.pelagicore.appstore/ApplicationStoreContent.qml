@@ -96,6 +96,7 @@ Item {
 
         DownloadAppList {
             id: appList
+            installedApps: root.store.installedApps
             Layout.preferredHeight: Style.vspan(10)
             Layout.preferredWidth: Style.hspan(15)
             anchors.top: parent ? parent.top : undefined
@@ -103,8 +104,13 @@ Item {
             model: root.store.applicationModel
             appServerUrl: root.store.appServerUrl
             installationProgress: root.store.currentInstallationProgress
-            installedApp: root.store.installedOnlineApp
-            onDownloadClicked: root.store.download(appId)
+            onToolClicked: {
+                if (root.store.isInstalled(appId)) {
+                    root.store.uninstallApplication(appId)
+                } else {
+                    root.store.download(appId)
+                }
+            }
         }
     }
 
