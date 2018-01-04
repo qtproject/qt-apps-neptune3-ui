@@ -68,6 +68,20 @@ Item {
             width: grid.cellWidth
             height: width
 
+            opacity: {
+                if (delegateRoot.visualIndex > (root.numIconsPerRow - 1)) {
+                    if (root.gridOpen) {
+                        return 1.0
+                    } else {
+                        return 0.0
+                    }
+                }
+                return 1.0
+            }
+            Behavior on opacity { DefaultNumberAnimation { } }
+
+            visible: opacity > 0.0
+
             AppButton {
                 id: appButton
                 width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.8)
@@ -88,18 +102,6 @@ Item {
                         }
                     }
                 }
-
-                opacity: {
-                    if (delegateRoot.visualIndex > (root.numIconsPerRow - 1)) {
-                        if (root.gridOpen) {
-                            return 1.0
-                        } else {
-                            return 0.0
-                        }
-                    }
-                    return 1.0
-                }
-                Behavior on opacity { DefaultNumberAnimation { } }
 
                 editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
                 editModeBgColor: Drag.active ? "#404142" : "#F1EFED"

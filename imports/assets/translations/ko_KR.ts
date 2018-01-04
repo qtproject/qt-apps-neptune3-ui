@@ -170,7 +170,7 @@
 <context>
     <name>EditableGridView</name>
     <message>
-        <location filename="../../../sysui/launcher/EditableGridView.qml" line="207"/>
+        <location filename="../../../sysui/launcher/EditableGridView.qml" line="209"/>
         <source>Finish Editing</source>
         <translation>편집 완료</translation>
     </message>
