@@ -48,6 +48,7 @@ Window {
     id: root
 
     title: "Triton UI - Center Console"
+    color: Style.colorBlack
 
     readonly property bool isLandscape: width > height
     readonly property real smallerDimension: isLandscape ? height : width

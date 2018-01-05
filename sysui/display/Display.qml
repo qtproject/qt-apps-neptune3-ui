@@ -50,10 +50,8 @@ import QtGraphicalEffects 1.0
 
 import com.pelagicore.styles.triton 1.0
 
-Image {
+Item {
     id: root
-
-    source: Style.gfx2(TritonStyle.backgroundImage)
 
     property Item popupParent
     property var settings
@@ -66,6 +64,13 @@ Image {
         cellHeight: Style.cellHeight
         homePageRowHeight: homePageLoader.homePageRowHeight
         langCode: Style.languageLocale
+    }
+
+    Image {
+        anchors.fill: parent
+        source: Style.gfx2(TritonStyle.backgroundImage)
+        opacity: launcherLoader.launcherOpen && TritonStyle.theme === TritonStyle.Light ? 0.7 : 1
+        Behavior on opacity { DefaultNumberAnimation {} }
     }
 
     ClimateModel {

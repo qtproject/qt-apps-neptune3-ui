@@ -191,7 +191,7 @@ Item {
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { } }
         anchors.top: grid.bottom
-        anchors.topMargin: 30
+        anchors.topMargin: Style.vspan(0.2)
 
         background: Rectangle {
             width: root.width
