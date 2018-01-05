@@ -82,6 +82,13 @@ Item {
                 }
             }
         }
+        onCountChanged: {
+            // reset selectedIndex if it's invalid, likely because a secondary
+            // window vanished
+            if (root.selectedIndex >= count) {
+                root.selectedIndex = 0;
+            }
+        }
     }
 
     Repeater {
