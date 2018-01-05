@@ -250,6 +250,14 @@
     </message>
 </context>
 <context>
+    <name>Maps</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="72"/>
+        <source>Where do you wanna go today?</source>
+        <translation>힌트 힌지를 해결 하시겠습니까?</translation>
+    </message>
+</context>
+<context>
     <name>MonitorView</name>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>

@@ -32,6 +32,9 @@
 import QtQuick 2.8
 import utils 1.0
 import animations 1.0
+import QtQuick.Controls 2.2
+
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -55,9 +58,21 @@ Item {
         Image {
             anchors.top: parent.top
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "assets/navigation-widget-search.png"
+            readonly property string sourcePrefix: "assets/navigation-widget-search"
+            source: TritonStyle.theme === TritonStyle.Dark ? sourcePrefix + "-dark.png" : sourcePrefix + ".png"
             opacity: widgetMockup.opacity ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation { } }
+
+            Label {
+                // In pixels as it has to land at a specifc spot in the image
+                x: 160
+                y: 40
+                width: 220
+                height: 100
+                text: qsTr("Where do you wanna go today?")
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
     }
 }

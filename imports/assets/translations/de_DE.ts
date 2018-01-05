@@ -187,6 +187,13 @@
     </message>
 </context>
 <context>
+    <name>Maps</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation>Wo soll es heute hingehen?</translation>
+    </message>
+</context>
+<context>
     <name>MonitorView</name>
     <message>
         <source>Process Monitor on Status Bar</source>
