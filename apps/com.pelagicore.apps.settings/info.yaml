@@ -7,5 +7,11 @@ code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'General Settings'
+  cs: 'Obecná nastavení'
+  de: 'Allgemeine Einstellungen'
+  ru: 'Общие настройки'
+  zh: '常规设置'
+  ja: '一般設定'
+  ko: '일반 설정'
 
 categories: [ 'app' ]

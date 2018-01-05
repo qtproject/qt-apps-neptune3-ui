@@ -9,5 +9,9 @@ name:
   en: 'Music'
   de: 'Musik'
   cs: 'Hudba'
+  ru: 'Музыка'
+  zh: '音乐'
+  ja: '音楽'
+  ko: '음악'
 
 categories: [ 'media', 'widget' ]

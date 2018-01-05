@@ -9,5 +9,9 @@ name:
   en: 'Maps'
   de: 'Karten'
   cs: 'Mapy'
+  ru: 'Карты'
+  zh: '地图'
+  ja: '地図'
+  ko: '지도'
 
 categories: [ 'navigation', 'widget' ]

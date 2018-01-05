@@ -8,5 +8,10 @@ runtime: 'qml'
 name:
   en: 'Vehicle'
   ru: 'Auto'
+  cs: 'Auto'
+  de: 'Fahrzeug'
+  zh: '车辆'
+  ja: '車両'
+  ko: '차량'
 
 categories: [ 'vehicle' ]

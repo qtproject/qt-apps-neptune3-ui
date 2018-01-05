@@ -7,7 +7,11 @@ code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Phone'
-  de: 'Phone'
+  de: 'Telefon'
   cs: 'Telefon'
+  ru: 'Телефон'
+  zh: '电话'
+  ja: '電話'
+  ko: '전화'
 
 categories: [ 'phone', 'widget' ]

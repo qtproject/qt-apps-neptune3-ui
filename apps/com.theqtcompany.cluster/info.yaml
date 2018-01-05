@@ -7,7 +7,11 @@ code:    'Main.qml'
 runtime: 'qml'
 name:
   en: 'Instrument Cluster'
-  de: ''
-  cs: ''
+  de: 'Instrumentengruppe'
+  cs: 'Přístrojová deska'
+  ru: 'Приборный щиток'
+  zh: '仪表组'
+  ja: '計器クラスタ'
+  ko: '계기판'
 
 categories: [ 'cluster' ]

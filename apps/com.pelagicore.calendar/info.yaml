@@ -9,5 +9,9 @@ name:
   en: 'Calendar'
   de: 'Kalender'
   cs: 'Kalendář'
+  ru: 'Календарь'
+  zh: '日历'
+  ja: 'カレンダー'
+  ko: '달력'
 
 categories: [ 'productivity', 'widget' ]
