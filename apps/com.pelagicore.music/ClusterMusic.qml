@@ -61,7 +61,7 @@ Item {
         mediaReady: root.store.searchAndBrowseModel.count > 0
         songModel: root.store.musicPlaylist
         currentIndex: root.store.musicPlaylist.currentIndex
-        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : "Track unavailable"
+        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
         currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
         currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
 
