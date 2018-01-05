@@ -275,7 +275,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="72"/>
         <source>Where do you wanna go today?</source>
-        <translation>你今天想要做什么？</translation>
+        <translation>今天你想要去哪儿？</translation>
     </message>
 </context>
 <context>
