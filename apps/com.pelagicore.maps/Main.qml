@@ -29,269 +29,40 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtGraphicalEffects 1.0
-import QtQuick.Controls 1.4
-
-import animations 1.0
+import QtQuick 2.8
 import utils 1.0
 
 import QtApplicationManager 1.0
 
 QtObject {
-    property var primaryWindow: AppUIScreen {
-        id: root
-
-        SplitView {
-            x: root.exposedRect.x
-            y: root.exposedRect.y
-            width: root.exposedRect.width
-            height: root.exposedRect.height
-
-            Behavior on y { DefaultSmoothedAnimation {} }
-            Behavior on height { DefaultSmoothedAnimation {} }
-
-            orientation: Qt.Vertical
-            //Rectangle
-            Item
-            {
-                width: parent.width
-                height: splitBtn.splitMaps? parent.height / 2: parent.height
-
-                Maps {
-                    anchors.fill: parent
-                }
-            }
-            //Rectangle
-            Item
-            {
-                width: parent.width
-                height: splitBtn.splitMaps? parent.height / 2: parent.height
-
-                Maps {
-                    anchors.fill: parent
-                }
-            }
-        }
+    property var mainWindow: AppUIScreen {
+        id: mainWindow
 
         MultiPointTouchArea {
             id: multiPoint
-            anchors {
-                fill: parent
-                margins: 30
-            }
+            anchors.fill: parent
+            anchors.margins: 30
             touchPoints: [ TouchPoint { id: touchPoint1 } ]
+
             property int count: 0
             onReleased: {
                 count += 1;
-                root.setWindowProperty("activationCount", count);
-            }
-
-        }
-
-        Rectangle {
-            id: searchBtn
-            width: 100; height: width; radius: width / 2
-            anchors {
-                top: parent.top
-                left: parent.left
-                margins: 25
-            }
-            color: "white"
-            visible: "Widget1Row" === root.tritonState
-            RectangularGlow {
-                id: effect
-                anchors.fill: searchBtn
-                glowRadius: 100
-                spread: 0
-                color: "#ffffff"
-                cornerRadius: searchBtn.radius
-            }
-            Text {
-                anchors.centerIn: parent
-                text: "Search"
-            }
-            property bool showGuidance: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: searchBtn.showGuidance = true
+                mainWindow.setWindowProperty("activationCount", count);
             }
         }
 
-        Rectangle {
-            id: carsBtn
-            anchors { top: searchPanel.bottom; left: parent.left; margins: 25 }
-            width: 100; height: width; radius: width / 2
-            color: "white"
-            visible: root.tritonState === "Maximized"
-            RectangularGlow {
-                anchors.fill: carsBtn
-                glowRadius: 100
-                spread: 0
-                color: "#ffffff"
-                cornerRadius: carsBtn.radius
-            }
-            Text {
-                anchors.centerIn: parent
-                text: "Show Cars"
-            }
-            property bool showCars: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: carsBtn.showCars = !carsBtn.showCars
-            }
-        }
-
-        Rectangle {
-            id: treeDBtn
-            anchors { top: carsBtn.bottom; left: parent.left; margins: 25 }
-            width: 100; height: width; radius: width / 2
-            color: "white"
-            visible: root.tritonState === "Maximized"
-            RectangularGlow {
-                anchors.fill: treeDBtn
-                glowRadius: 100
-                spread: 0
-                color: "#ffffff"
-                cornerRadius: treeDBtn.radius
-            }
-            Text {
-                anchors.centerIn: parent
-                text: "3D"
-            }
-            property bool show3D: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: treeDBtn.show3D = !treeDBtn.show3D
-            }
-        }
-
-        Rectangle {
-            id: splitBtn
-            anchors { top: treeDBtn.bottom; left: parent.left; margins: 25 }
-            width: 100; height: width; radius: width / 2
-            color: "white"
-            visible: root.tritonState === "Maximized"
-            RectangularGlow {
-                anchors.fill: splitBtn
-                glowRadius: 100
-                spread: 0
-                color: "#ffffff"
-                cornerRadius: splitBtn.radius
-            }
-            Text {
-                anchors.centerIn: parent
-                text: splitBtn.splitMaps ? "Unsplit" : "Split"
-            }
-            property bool splitMaps: false
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    splitBtn.splitMaps = !splitBtn.splitMaps
-                }
-            }
-        }
-
-        Item {
-            id: guidanceInfo
-            width: root.exposedRect.width / 3
-            height: root.exposedRect.height
-            LinearGradient {
-                anchors.fill: parent
-                start: Qt.point(0, 0)
-                end: Qt.point(parent.width, 0)
-                gradient: Gradient {
-                    GradientStop { position: 0.9; color: "white" }
-                    GradientStop { position: 1.0; color: "transparent" }
-                }
-            }
-            visible: searchBtn.showGuidance
-            Image {
-                id: largePic
-                anchors { top: parent.top; left: parent.left; margins: 100 }
-                source: "assets/turn-right-big.png"
-                Text {
-                    anchors {
-                        top: parent.bottom
-                        topMargin: 25
-                        horizontalCenter: parent.center
-                    }
-                    text: "Right 1000 m"
-                }
-            }
-            Image {
-                id: smallPics
-                anchors { top: largePic.bottom; left: parent.left; margins: 100 }
-                source: "assets/turn-left.png"
-                Text {
-                    anchors {
-                        top: parent.bottom
-                        topMargin: 25
-                        horizontalCenter: parent.center
-                    }
-                    text: "Left 100 m"
-                }
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: searchBtn.showGuidance = false
-            }
-        }
-
-        Item {
-            id: searchPanel
-            width: root.exposedRect.width; height: root.exposedRect.height / 3
-            LinearGradient {
-                anchors.fill: parent
-                start: Qt.point(0, 0)
-                end: Qt.point(0, parent.height)
-                gradient: Gradient {
-                    GradientStop { position: 0.9; color: "white" }
-                    GradientStop { position: 1.0; color: "transparent" }
-                }
-            }
-            Item {
-                width: parent.width / 2; height: parent.height / 2
-                anchors { top: parent.top; left: parent.left; margins: 10 }
-                Text {
-                    anchors.centerIn: parent
-                    text: "Where do you go today"
-                }
-            }
-            Rectangle {
-                width: parent.width / 2; height: parent.height / 2
-                radius: width /2
-                color: "lightgray"
-                anchors { top: parent.top; right: parent.right; margins: 10 }
-                Text {
-                    anchors.centerIn: parent
-                    text: "Search"
-                }
-            }
-            visible: "Widget2Rows" === root.tritonState || "Widget3Rows" === root.tritonState
-            Item {
-                width: parent.width / 2; height: parent.height / 2
-                anchors { bottom: parent.bottom; left: parent.left; margins: 5 }
-                visible: "Widget3Rows" === root.tritonState
-                Text {
-                    anchors.centerIn: parent
-                    text: "Home"
-                }
-            }
-            Item {
-                width: parent.width / 2; height: parent.height / 2
-                anchors {
-                    bottom: parent.bottom; right: parent.right; margins: 5 }
-                visible: "Widget3Rows" === root.tritonState
-                Text {
-                    anchors.centerIn: parent
-                    text: "Work"
-                }
-            }
+        Maps {
+            x: mainWindow.exposedRect.x
+            y: mainWindow.exposedRect.y
+            width: mainWindow.exposedRect.width
+            height: mainWindow.exposedRect.height
+            state: mainWindow.tritonState
         }
     }
 
     property var secondaryWindow: SecondaryWindow {
+        id: secondaryWindow
+
         Image {
             anchors.fill: parent
             source: "assets/navigation-widget-map.png"
