@@ -117,6 +117,14 @@
     </message>
 </context>
 <context>
+    <name>ClusterMusic</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="64"/>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DateTimePanel</name>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
@@ -216,6 +224,15 @@
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
         <source>Process Monitor on Status Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Music</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="477"/>
+        <source>Track unavailable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

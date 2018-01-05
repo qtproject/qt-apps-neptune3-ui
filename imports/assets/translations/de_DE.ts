@@ -99,6 +99,13 @@
     </message>
 </context>
 <context>
+    <name>ClusterMusic</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation>Track nicht verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -184,6 +191,13 @@
     <message>
         <source>Process Monitor on Status Bar</source>
         <translation>Prozessüberwachung in der Statusleiste</translation>
+    </message>
+</context>
+<context>
+    <name>Music</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation>Track nicht verfügbar</translation>
     </message>
 </context>
 <context>

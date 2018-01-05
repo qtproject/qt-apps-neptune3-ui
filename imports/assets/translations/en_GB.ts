@@ -99,6 +99,13 @@
     </message>
 </context>
 <context>
+    <name>ClusterMusic</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -183,6 +190,13 @@
     <name>MonitorView</name>
     <message>
         <source>Process Monitor on Status Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Music</name>
+    <message>
+        <source>Track unavailable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -70,17 +70,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
         <source>year</source>
-        <translation type="unfinished">rok</translation>
+        <translation>rok</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>next</source>
-        <translation type="unfinished">další</translation>
+        <translation>další</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>events</source>
-        <translation type="unfinished">události</translation>
+        <translation>události</translation>
     </message>
 </context>
 <context>
@@ -136,6 +136,14 @@
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
         <translation>AUTO</translation>
+    </message>
+</context>
+<context>
+    <name>ClusterMusic</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="64"/>
+        <source>Track unavailable</source>
+        <translation>Skladba nedostupná</translation>
     </message>
 </context>
 <context>
@@ -305,6 +313,12 @@
         <source>folders</source>
         <translation type="obsolete">složky</translation>
     </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="477"/>
+        <source>Track unavailable</source>
+        <translation>Skladba nedostupná</translation>
+    </message>
 </context>
 <context>
     <name>MusicList</name>
@@ -335,27 +349,27 @@
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
         <source>favorites</source>
-        <translation type="unfinished">oblíbené</translation>
+        <translation>oblíbené</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
         <source>artists</source>
-        <translation type="unfinished">umělci</translation>
+        <translation>umělci</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
         <source>playlists</source>
-        <translation type="unfinished">seznamy</translation>
+        <translation>seznamy</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
         <source>albums</source>
-        <translation type="unfinished">alba</translation>
+        <translation>alba</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
         <source>folders</source>
-        <translation type="unfinished">složky</translation>
+        <translation>složky</translation>
     </message>
 </context>
 <context>
@@ -413,32 +427,32 @@
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
         <source>recents</source>
-        <translation type="unfinished">nedávné</translation>
+        <translation>nedávné</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
         <source>favorites</source>
-        <translation type="unfinished">oblíbené</translation>
+        <translation>oblíbené</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
         <source>voicemail</source>
-        <translation type="unfinished">hlas. schránka</translation>
+        <translation>hlas. schránka</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
         <source>keypad</source>
-        <translation type="unfinished">číselník</translation>
+        <translation>číselník</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
         <source>contacts</source>
-        <translation type="unfinished">kontakty</translation>
+        <translation>kontakty</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
         <source>messages</source>
-        <translation type="unfinished">zprávy</translation>
+        <translation>zprávy</translation>
     </message>
 </context>
 <context>
@@ -569,17 +583,17 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
         <source>languages</source>
-        <translation type="unfinished">jazyky</translation>
+        <translation>jazyky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
         <source>date</source>
-        <translation type="unfinished">datum</translation>
+        <translation>datum</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
-        <translation type="unfinished">motivy</translation>
+        <translation>motivy</translation>
     </message>
 </context>
 <context>
@@ -888,22 +902,22 @@
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="87"/>
         <source>support</source>
-        <translation type="unfinished">podpora</translation>
+        <translation>podpora</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="88"/>
         <source>energy</source>
-        <translation type="unfinished">energie</translation>
+        <translation>energie</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="89"/>
         <source>doors</source>
-        <translation type="unfinished">dveře</translation>
+        <translation>dveře</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="90"/>
         <source>tires</source>
-        <translation type="unfinished">pneu</translation>
+        <translation>pneu</translation>
     </message>
 </context>
 <context>

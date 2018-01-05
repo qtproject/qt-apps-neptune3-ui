@@ -124,6 +124,14 @@
     </message>
 </context>
 <context>
+    <name>ClusterMusic</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="64"/>
+        <source>Track unavailable</source>
+        <translation>트랙을 사용할 수 없음</translation>
+    </message>
+</context>
+<context>
     <name>DateTimePanel</name>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
@@ -270,6 +278,12 @@
     <message>
         <source>folders</source>
         <translation type="obsolete">폴더</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="477"/>
+        <source>Track unavailable</source>
+        <translation>트랙을 사용할 수 없음</translation>
     </message>
 </context>
 <context>
