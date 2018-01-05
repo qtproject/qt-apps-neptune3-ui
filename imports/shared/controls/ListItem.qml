@@ -31,10 +31,12 @@
 
 import QtQuick 2.6
 import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.2
 
 import controls 1.0
 import utils 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 ItemDelegate {
     id: root
@@ -42,20 +44,18 @@ ItemDelegate {
     anchors.left: parent.left
     anchors.leftMargin: Style.hspan(2)
 
-    property alias icon: icon.name
-    property alias hasChildren: childIndicator.visible
-
     contentItem: Item {
         anchors.fill: root
         RowLayout {
             height: parent.height
 
             Symbol {
-                id: icon
+                id: symbol
                 Layout.preferredWidth: Style.hspan(2)
                 Layout.preferredHeight: Style.vspan(0.8)
                 Layout.fillHeight: true
                 opacity: 0.4
+                name: root.icon.source
                 visible: name !== ""
             }
 
@@ -63,7 +63,7 @@ ItemDelegate {
                 id: placeHolder
                 width: Style.hspan(0.2)
                 height: parent.height
-                visible: !icon.visible
+                visible: !symbol.visible
             }
 
             Label {
@@ -75,14 +75,6 @@ ItemDelegate {
             }
         }
 
-        Icon {
-            id: childIndicator
-            anchors.right: parent.right
-            width: Style.hspan(1)
-            Layout.fillHeight: true
-            source: Style.icon("cloud_arrow")
-        }
-
         Item {
             width: root.width
             anchors.verticalCenter: parent.bottom
@@ -92,7 +84,7 @@ ItemDelegate {
                 width: parent.width
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: 16
-                source: Style.gfx('widgets_hdiv')
+                source: Style.gfx2("divider", TritonStyle.theme)
                 asynchronous: true
             }
         }

@@ -38,13 +38,12 @@ Control {
 
     width: Style.hspan(1)
     height: Style.vspan(2)
-    property string name
+    property alias name: image.source
     property bool active
     property alias rotate: image.rotation
     contentItem: Image {
         id: image
         anchors.centerIn: parent
-        source: root.name ? root.name : ""
         asynchronous: true
         fillMode: Image.PreserveAspectFit
     }
