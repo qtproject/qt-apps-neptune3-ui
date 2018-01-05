@@ -54,22 +54,22 @@ Item {
         var randNum = Math.floor((Math.random() * 3 + 0));
         switch (randNum) {
         case 0:
-            root.weatherName = qsTr("Partly rain");
+            root.weatherName = QT_TR_NOOP("Partly rain");
             root.weatherIcon = "ic-weather-partly-rain";
             root.temp = 20;
             break;
         case 1:
-            root.weatherName = qsTr("Rain");
+            root.weatherName = QT_TR_NOOP("Rain");
             root.weatherIcon = "ic-weather-rain";
             root.temp = 18;
             break;
         case 2:
-            root.weatherName = qsTr("Light Snow");
+            root.weatherName = QT_TR_NOOP("Light Snow");
             root.weatherIcon = "ic-weather-snow";
             root.temp = -3;
             break;
         case 3:
-            root.weatherName = qsTr("Sunny");
+            root.weatherName = QT_TR_NOOP("Sunny");
             root.weatherIcon = "ic-weather-sun";
             root.temp = 30;
             break;
@@ -111,7 +111,7 @@ Item {
                 spacing: Style.vspan(0.1)
 
                 Label {
-                    text: "24° " + root.weatherName + ","
+                    text: "24° " + qsTr(root.weatherName) + ","
                     opacity: 0.8
                     font.pixelSize: TritonStyle.fontSizeS
                 }
