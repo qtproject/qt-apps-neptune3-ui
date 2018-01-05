@@ -128,7 +128,7 @@
     <message>
         <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="64"/>
         <source>Track unavailable</source>
-        <translation>跟踪不可用</translation>
+        <translation> 音乐不可用</translation>
     </message>
 </context>
 <context>
@@ -312,7 +312,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="477"/>
         <source>Track unavailable</source>
-        <translation>跟踪不可用</translation>
+        <translation>音乐不可用</translation>
     </message>
 </context>
 <context>
