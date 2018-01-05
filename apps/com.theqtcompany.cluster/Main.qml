@@ -45,14 +45,6 @@ ApplicationManagerWindow {
         id: dataSource
     }
 
-    onWindowPropertyChanged: {
-        switch (name) {
-            case "navigating":
-                mainContent.navigating = value;
-                break;
-        }
-    }
-
     //private
     Item {
         id: d
@@ -70,7 +62,7 @@ ApplicationManagerWindow {
     Normal {
         id: mainContent
         anchors.fill: parent
-
+        navigating: dataSource.navigationMode
         speed: dataSource.speed
         speedLimit: dataSource.speedLimit
         cruiseSpeed: dataSource.speedCruise

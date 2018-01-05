@@ -53,6 +53,7 @@ class InstrumentClusterDynamic : public AbstractDynamic
     Q_PROPERTY(bool tyrePressureLow READ tyrePressureLow WRITE setTyrePressureLow NOTIFY tyrePressureLowChanged)
     Q_PROPERTY(bool brakeFailure READ brakeFailure WRITE setBrakeFailure NOTIFY brakeFailureChanged)
     Q_PROPERTY(bool airbagFailure READ airbagFailure WRITE setAirbagFailure NOTIFY airbagFailureChanged)
+    Q_PROPERTY(bool navigationMode READ navigationMode WRITE setNavigationMode NOTIFY navigationModeChanged)
 
 public:
     InstrumentClusterDynamic();
@@ -95,6 +96,11 @@ public:
     void setBrakeFailure(bool brakeFailure);
     void setAirbagFailure(bool airbagFailure);
 
+    bool navigationMode() const;
+
+public slots:
+    void setNavigationMode(bool navigationMode);
+
 Q_SIGNALS:
     void speedChanged(qreal speed);
     void speedLimitChanged(qreal speedLimit);
@@ -115,6 +121,7 @@ Q_SIGNALS:
     void airbagFailureChanged(bool airbagFailure);
 
 
+    void navigationModeChanged(bool navigationMode);
 };
 
 #endif // INSTRUMENTCLUSTERDYNAMIC_H

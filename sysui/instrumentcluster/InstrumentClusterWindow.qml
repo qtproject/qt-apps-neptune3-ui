@@ -36,6 +36,7 @@ import QtQuick.Window 2.3
 import QtApplicationManager 1.0
 
 import com.pelagicore.styles.triton 1.0
+import com.pelagicore.settings 1.0
 
 Window {
     id: root
@@ -44,6 +45,7 @@ Window {
     title: "Triton UI - Instrument Cluster"
 
     color: "black"
+
 
     property var applicationModel
 
@@ -57,18 +59,20 @@ Window {
 
     readonly property var window: applicationModel && applicationModel.instrumentClusterAppInfo
             ? applicationModel.instrumentClusterAppInfo.window : null
-    onWindowChanged: updateNavigatingWindowProperty()
-
-    function updateNavigatingWindowProperty() {
-        if (window) {
-            WindowManager.setWindowProperty(window, "navigating", secondaryAppWindows.selectedNavigation);
-        }
-    }
 
     Binding { target: root.window; property: "width"; value: uiSlot.width }
     Binding { target: root.window; property: "height"; value: uiSlot.height }
     Binding { target: root.window; property: "parent"; value: uiSlot }
     Binding { target: root.window; property: "z"; value: 2 }
+
+
+    InstrumentCluster {
+        // cluster remote settings
+        id: instrumentCluster
+        onNavigationModeChanged: {
+            root.nextSecondaryWindow();
+        }
+    }
 
     Item {
         id: uiSlot
@@ -100,7 +104,6 @@ Window {
                 }
                 return false;
             }
-            onSelectedNavigationChanged: updateNavigatingWindowProperty()
         }
     }
 

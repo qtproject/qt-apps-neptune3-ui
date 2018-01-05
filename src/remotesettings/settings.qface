@@ -43,6 +43,7 @@ interface InstrumentCluster {
   bool tyrePressureLow;
   bool brakeFailure;
   bool airbagFailure;
+  bool navigationMode;
 }
 
 

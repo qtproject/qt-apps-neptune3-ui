@@ -128,6 +128,14 @@ Page {
                 currentIndex: instrumentCluster.driveTrainState
                 onActivated: instrumentCluster.driveTrainState = currentIndex
             }
+            Label {
+                text: qsTr("Next IVI Mode:")
+            }
+            CheckBox {
+                checked: instrumentCluster.navigationMode
+                onClicked: instrumentCluster.navigationMode = checked
+            }
+
         }
 
         GridLayout {

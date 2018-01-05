@@ -347,3 +347,18 @@ void InstrumentClusterDynamic::setAirbagFailure(bool airbagFailure)
     QMetaObject::invokeMethod(m_replicaPtr.data(),
                     "pushAirbagFailure",Qt::DirectConnection,Q_ARG(bool,airbagFailure));
 }
+
+bool InstrumentClusterDynamic::navigationMode() const
+{
+    if (m_replicaPtr.isNull())
+        return false;
+    return m_replicaPtr.data()->property("navigationMode").toBool();
+}
+
+void InstrumentClusterDynamic::setNavigationMode(bool navigationMode)
+{
+    if (m_replicaPtr.isNull())
+        return;
+    QMetaObject::invokeMethod(m_replicaPtr.data(),
+                    "pushNavigationMode",Qt::DirectConnection,Q_ARG(bool,navigationMode));
+}
