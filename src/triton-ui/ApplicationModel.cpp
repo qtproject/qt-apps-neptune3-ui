@@ -80,6 +80,7 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
 
         if (isInstrumentClusterApp(application)) {
             ApplicationInfo *appInfo = new ApplicationInfo(application);
+            QQmlEngine::setObjectOwnership(appInfo, QQmlEngine::CppOwnership);
             setInstrumentClusterAppInfo(appInfo);
             startApplication(m_instrumentClusterApp->id());
         } else {
@@ -525,6 +526,7 @@ void ApplicationModel::append(const QtAM::Application *application)
     });
 
     ApplicationInfo *appInfo = new ApplicationInfo(application);
+    QQmlEngine::setObjectOwnership(appInfo, QQmlEngine::CppOwnership);
 
     connect(appInfo, &ApplicationInfo::startRequested, this, [this, appInfo]() {
         if (m_appMan) {
