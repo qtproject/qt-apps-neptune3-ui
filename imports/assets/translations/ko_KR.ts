@@ -4,17 +4,17 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="78"/>
+        <location filename="../../../sysui/about/About.qml" line="77"/>
         <source>Marketing</source>
         <translation>마케팅</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="82"/>
+        <location filename="../../../sysui/about/About.qml" line="81"/>
         <source>Monitor</source>
         <translation>모니터</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="86"/>
+        <location filename="../../../sysui/about/About.qml" line="85"/>
         <source>Running Apps</source>
         <translation>앱 실행</translation>
     </message>
@@ -29,7 +29,7 @@
 <context>
     <name>AboutRunningApps</name>
     <message>
-        <location filename="../../../sysui/about/AboutRunningApps.qml" line="61"/>
+        <location filename="../../../sysui/about/AboutRunningApps.qml" line="53"/>
         <source>Running applications:</source>
         <translation>실행중인 응용 프로그램 :</translation>
     </message>

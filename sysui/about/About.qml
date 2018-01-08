@@ -46,13 +46,12 @@ TritonPopup {
     bottomPadding: Style.hspan(0.35)
 
     contentItem: ColumnLayout {
-        visible: opacity > 0
-        Behavior on opacity {
-            NumberAnimation { duration: 250; easing.type: Easing.OutCubic }
+        Image {
+            Layout.fillWidth: true
+            source: Style.gfx2("hero-about")
+            asynchronous: true
         }
 
-        // TODO: To save memory we could place the steady image here
-        // instead into each page
         StackLayout {
             id: stack
             Layout.fillWidth: true

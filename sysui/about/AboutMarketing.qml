@@ -40,20 +40,8 @@ Item {
     implicitHeight: Style.vspan(16)
 
     Image {
-        id: logo
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        source: Style.gfx2("hero-about")
-        asynchronous: true
-    }
-
-    Image {
         id: marketing
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: logo.bottom
-        anchors.bottom: parent.bottom
+        anchors.fill: parent
         anchors.margins: Style.vspan(0.2)
         source: Style.gfx2("about-marketing")
         asynchronous: true

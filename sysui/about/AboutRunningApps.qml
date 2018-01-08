@@ -36,24 +36,16 @@ import com.pelagicore.styles.triton 1.0
 import utils 1.0
 
 Item {
+    id: root
     implicitWidth: Style.hspan(18)
     implicitHeight: Style.vspan(16)
 
     property var applicationModel
 
-    Image {
-        id: logo
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        source: Style.gfx2("hero-about")
-        asynchronous: true
-    }
-
     Label {
         id: description
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: logo.bottom
+        anchors.top: parent.top
         width: Style.hspan(16)
         height: Style.vspan(2)
         horizontalAlignment: Text.AlignHCenter

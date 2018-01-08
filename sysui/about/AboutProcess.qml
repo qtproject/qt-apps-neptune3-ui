@@ -44,21 +44,8 @@ Item {
 
     property var applicationModel
 
-    Image {
-        id: logo
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        source: Style.gfx2("hero-about")
-        asynchronous: true
-    }
-
     MonitorView {
-        anchors.top: logo.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
+        anchors.fill: parent
         applicationModel: root.applicationModel
     }
 }
