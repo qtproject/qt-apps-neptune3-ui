@@ -178,29 +178,29 @@
 <context>
     <name>DoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="72"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="78"/>
         <source>Sun roof</source>
         <translation type="unfinished">天窗</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="80"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="86"/>
         <source>Doors</source>
         <translation type="unfinished">车门</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="89"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="95"/>
         <source>Trunk</source>
         <translation type="unfinished">后备箱</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="158"/>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="313"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="165"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="320"/>
         <source>Close</source>
         <translation type="unfinished">关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="171"/>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="313"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="178"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="320"/>
         <source>Open</source>
         <translation type="unfinished">开</translation>
     </message>
