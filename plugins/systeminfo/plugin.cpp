@@ -36,12 +36,11 @@
 class SystemInfoPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface/1.0")
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 public:
-    virtual void registerTypes(const char *uri)
+    void registerTypes(const char *uri) override
     {
         Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.systeminfo"));
-        Q_UNUSED(uri);
 
         qmlRegisterType<SystemInfo>(uri, 1, 0, "SystemInfo");
     }

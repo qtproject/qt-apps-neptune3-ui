@@ -42,7 +42,7 @@ class TritonTheme : public QQuickProxyTheme
 public:
     TritonTheme(QPlatformTheme *theme = nullptr);
 
-    const QFont *font(QPlatformTheme::Font type = SystemFont) const;
+    const QFont *font(QPlatformTheme::Font type = SystemFont) const override;
 private:
     QFont m_systemFont;
 };

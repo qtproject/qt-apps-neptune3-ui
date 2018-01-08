@@ -129,8 +129,8 @@ void WidgetListModel::fetchAppInfoRoleIndex()
     QHash<int, QByteArray> hash = m_applicationModel->roleNames();
 
     m_appInfoRoleIndex = -1;
-    for (auto i = hash.begin(); i != hash.end() && m_appInfoRoleIndex == -1; ++i) {
-        if (i.value() == QByteArray("appInfo"))
+    for (auto i = hash.constBegin(); i != hash.constEnd() && m_appInfoRoleIndex == -1; ++i) {
+        if (i.value() == QByteArrayLiteral("appInfo"))
             m_appInfoRoleIndex = i.key();
     }
 

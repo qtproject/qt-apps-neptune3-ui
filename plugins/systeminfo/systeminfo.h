@@ -45,7 +45,6 @@ class SystemInfo : public QObject, public QQmlParserStatus
 
 public:
     explicit SystemInfo(QObject *parent = nullptr);
-    void getAddress();
     QStringList addressList() const;
 
 public slots:
@@ -55,12 +54,12 @@ signals:
     void addressListChanged();
 
 protected:
-    QStringList m_addressList;
+    void classBegin() override;
+    void componentComplete() override;
 
-    // QQmlParserStatus interface
-public:
-    virtual void classBegin() override;
-    virtual void componentComplete() override;
+private:
+    void getAddress();
+    QStringList m_addressList;
 };
 
 #endif // SYSTEMINFO_H

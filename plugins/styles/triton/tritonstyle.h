@@ -161,7 +161,7 @@ private:
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    void attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent);
+    void attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent) override;
 #else
     void parentStyleChange(QQuickStyleAttached *newParent, QQuickStyleAttached *oldParent);
 #endif

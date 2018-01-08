@@ -95,12 +95,12 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
     connect(appMan, &QAbstractItemModel::rowsInserted, this,
             [this](const QModelIndex & /*parent*/, int first, int last)
             {
+                this->beginInsertRows(QModelIndex(), first, last);
                 for (int i = first; i <= last; ++i) {
                     const auto *application = m_appMan->application(i);
-                    this->beginInsertRows(QModelIndex(), rowCount() /*first*/, rowCount() /*last*/);
                     this->append(application);
-                    this->endInsertRows();
                 }
+                this->endInsertRows();
             });
 
     connect(appMan, &QAbstractItemModel::rowsAboutToBeRemoved, this,
@@ -236,7 +236,7 @@ void ApplicationModel::onWindowLost(int index, QQuickItem *window)
 
 ApplicationInfo *ApplicationModel::application(const QString &appId)
 {
-    for (auto *appInfo : m_appInfoList) {
+    for (auto *appInfo : qAsConst(m_appInfoList)) {
         if (appInfo->id() == appId) {
             return appInfo;
         }
@@ -397,7 +397,7 @@ void ApplicationModel::setCellWidth(qreal value)
     m_cellWidth = value;
 
     auto windowManager = WindowManager::instance();
-    for (ApplicationInfo *appInfo : m_appInfoList) {
+    for (ApplicationInfo *appInfo : qAsConst(m_appInfoList)) {
         windowManager->setWindowProperty(appInfo->window(), QStringLiteral("cellWidth"), QVariant(m_cellWidth));
     }
 
@@ -418,7 +418,7 @@ void ApplicationModel::setCellHeight(qreal value)
     m_cellHeight = value;
 
     auto windowManager = WindowManager::instance();
-    for (ApplicationInfo *appInfo : m_appInfoList) {
+    for (ApplicationInfo *appInfo : qAsConst(m_appInfoList)) {
         windowManager->setWindowProperty(appInfo->window(), QStringLiteral("cellHeight"), QVariant(m_cellHeight));
     }
 
@@ -439,7 +439,7 @@ void ApplicationModel::setHomePageRowHeight(qreal value)
     m_homePageRowHeight = value;
 
     auto windowManager = WindowManager::instance();
-    for (ApplicationInfo *appInfo : m_appInfoList) {
+    for (ApplicationInfo *appInfo : qAsConst(m_appInfoList)) {
         windowManager->setWindowProperty(appInfo->window(), QStringLiteral("homePageRowHeight"),
                 QVariant(m_homePageRowHeight));
     }
@@ -480,7 +480,7 @@ void ApplicationModel::setReadyToStartApps(bool value)
     m_readyToStartApps = value;
 
     if (m_readyToStartApps) {
-        for (QString appId : m_appStartQueue) {
+        for (const QString &appId : qAsConst(m_appStartQueue)) {
             m_appMan->startApplication(appId);
         }
         m_appStartQueue.clear();
@@ -505,7 +505,7 @@ void ApplicationModel::setLangCode(const QString &locale)
 
         // broadcast to apps
         auto windowManager = WindowManager::instance();
-        for (ApplicationInfo *appInfo : m_appInfoList) {
+        for (ApplicationInfo *appInfo : qAsConst(m_appInfoList)) {
             windowManager->setWindowProperty(appInfo->window(), QStringLiteral("locale"), locale);
         }
     }
