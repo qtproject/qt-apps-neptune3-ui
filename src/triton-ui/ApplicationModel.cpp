@@ -54,6 +54,7 @@ ApplicationModel::ApplicationModel(QObject *parent)
 ApplicationModel::~ApplicationModel()
 {
     qDeleteAll(m_appInfoList);
+    delete m_instrumentClusterApp;
 }
 
 void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
@@ -117,6 +118,10 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
 
 void ApplicationModel::setWindowManager(QtAM::WindowManager *windowManager)
 {
+    if (m_windowManager == windowManager) {
+        return;
+    }
+
     if (m_windowManager) {
         disconnect(m_windowManager, 0, this, 0);
     }
