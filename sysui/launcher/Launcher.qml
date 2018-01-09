@@ -79,7 +79,7 @@ Item {
             height: width
             anchors.centerIn: parent
             fillMode: Image.PreserveAspectFit
-            visible: homeButton.checked && !root.applicationModel.activeAppInfo.active
+            visible: homeButton.checked && root.applicationModel.activeAppInfo && !root.applicationModel.activeAppInfo.active
             source: Style.symbol("ic-app-active-bg")
         }
     }
