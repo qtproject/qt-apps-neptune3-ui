@@ -71,7 +71,7 @@ Control {
                 baselineOffset: 0
                 text: qsTr("Next")
                 font.pixelSize: Style.fontSizeS
-                symbol: root.showList ? "" : Style.symbol("ic-expand")
+                symbol: root.showList ? "" : Style.symbol("ic-expand", TritonStyle.theme)
                 onClicked: root.headerClicked()
             }
         }
@@ -79,14 +79,14 @@ Control {
         Component {
             id: browseHeader
             Tool {
-                width: Style.hspan(3)
+                width: Style.hspan(3.7)
                 height: Style.vspan(0.8)
                 anchors.left: parent !== null ? parent.left : undefined
                 anchors.leftMargin: Style.hspan(4.5)
                 baselineOffset: 0
                 text: qsTr("Browse")
                 font.pixelSize: Style.fontSizeS
-                symbol: Style.symbol("ic-expand")
+                symbol: Style.symbol("ic-expand-up", TritonStyle.theme)
                 onClicked: root.headerClicked()
             }
         }

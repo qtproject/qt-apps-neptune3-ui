@@ -35,20 +35,18 @@ import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
-RowLayout {
+
+Item {
     id: root
-    spacing: 15
+
+    width: Style.hspan(5)
+    height: Style.vspan(3)
 
     property bool play: false
+    property int spacing: Style.hspan(3)
     signal previousClicked()
     signal playClicked()
     signal nextClicked()
-
-    Tool {
-        anchors.verticalCenter: parent.verticalCenter
-        symbol: Style.symbol("ic_skipprevious")
-        onClicked: root.previousClicked()
-    }
 
     Tool {
         anchors.centerIn: parent
@@ -59,10 +57,22 @@ RowLayout {
         onClicked: root.playClicked()
     }
 
-    Tool {
-        anchors.verticalCenter: parent.verticalCenter
-        symbol: Style.symbol("ic_skipnext")
-        onClicked: root.nextClicked()
+    RowLayout {
+        anchors.centerIn: parent
+        spacing: root.spacing
+        Tool {
+            anchors.verticalCenter: parent.verticalCenter
+            symbol: Style.symbol("ic_skipprevious")
+            onClicked: root.previousClicked()
+        }
+
+        Tool {
+            anchors.verticalCenter: parent.verticalCenter
+            symbol: Style.symbol("ic_skipnext")
+            onClicked: root.nextClicked()
+        }
     }
 }
+
+
 

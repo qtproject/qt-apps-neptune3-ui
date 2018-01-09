@@ -162,7 +162,7 @@ Item {
                 startX: 0; startY: coverslide.height/2
 
                 PathAttribute { name: "iconx"; value: 0 }
-                PathAttribute { name: "iconOpacity"; value: 0.3 }
+                PathAttribute { name: "iconOpacity"; value: 0.02 }
                 PathAttribute { name: "icony"; value: 1 }
 
                 PathLine { x: coverslide.width/2; y: coverslide.height/2 }
@@ -174,7 +174,7 @@ Item {
                 PathLine { x: coverslide.width; y: coverslide.height/2 }
                 PathAttribute { name: "iconx"; value: 0 }
                 PathAttribute { name: "icony"; value: 1 }
-                PathAttribute { name: "iconOpacity"; value: 0.3 }
+                PathAttribute { name: "iconOpacity"; value: 0.02 }
 
             }
         }
@@ -182,7 +182,7 @@ Item {
         MusicControls {
             id: controlsRow
             anchors.centerIn: parent
-            spacing: root.showInCluster ? Style.hspan(1.3) : Style.hspan(3.2)
+            spacing: Style.hspan(9)
             visible: !root.showInCluster && root.showPrevNextAlbum
             play: root.musicPlaying
             opacity: root.showPrevNextAlbum ? 1.0 : 0.0

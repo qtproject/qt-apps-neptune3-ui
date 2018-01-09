@@ -471,8 +471,8 @@ Item {
         Layout.preferredWidth: Style.vspan(3)
         anchors.verticalCenter: albumArtRow.verticalCenter
         anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
-        anchors.right: controlsRow.left
-        anchors.leftMargin: Style.hspan(0.8)
+        anchors.left: albumArtRow.right
+        anchors.leftMargin: Style.hspan(1.2)
         opacity: controlsRow.opacity
         currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
         currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
@@ -483,7 +483,7 @@ Item {
         anchors.verticalCenter: albumArtRow.verticalCenter
         anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
         anchors.right: parent.right
-        anchors.rightMargin: root.state === "Maximized" ? Style.hspan(2.6) : Style.hspan(2)
+        anchors.rightMargin: root.state === "Maximized" ? Style.hspan(2.2) : Style.hspan(2)
         visible: root.state === "Widget1Row" ||
                  (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") ||
                  root.state === "Maximized"
