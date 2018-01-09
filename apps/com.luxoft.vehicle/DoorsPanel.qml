@@ -30,11 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.3
 
 import animations 1.0
 import com.pelagicore.settings 1.0
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -53,14 +53,6 @@ Item {
 
     UISettings {
         id: uiSettings
-    }
-
-    RectangularGlow {
-        anchors.fill: vehicleOpenableConfig
-        glowRadius: 35
-        spread: 0.2
-        color: "#eee9e6"
-        cornerRadius: 30
     }
 
     Item {
@@ -190,10 +182,11 @@ Item {
         anchors.right: vehicleOpenableConfig.right
         anchors.fill: parent
 
-        readonly property string openRightDoorSource: "assets/images/ic-door-open.png"
-        readonly property string closeRightDoorSource: "assets/images/ic-door-closed.png"
-        readonly property string openLeftDoorSource: "assets/images/ic-door-open-flip.png"
-        readonly property string closeLeftDoorSource: "assets/images/ic-door-closed-flip.png"
+        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string openRightDoorSource: "assets/images/ic-door-open" + sourceSuffix
+        readonly property string closeRightDoorSource: "assets/images/ic-door-closed" + sourceSuffix
+        readonly property string openLeftDoorSource: "assets/images/ic-door-open-flip" + sourceSuffix
+        readonly property string closeLeftDoorSource: "assets/images/ic-door-closed-flip" + sourceSuffix
 
         Image {
             id: doorsImage
@@ -223,7 +216,7 @@ Item {
                 anchors.topMargin: 200
                 anchors.left: parent.left
                 anchors.leftMargin: 40
-                source: "assets/images/round-button.png"
+                source: "assets/images/round-button" + doorsConfig.sourceSuffix
 
                 Image {
                     anchors.centerIn: parent
@@ -256,7 +249,7 @@ Item {
                 anchors.topMargin: 200
                 anchors.right: parent.right
                 anchors.rightMargin: 40
-                source: "assets/images/round-button.png"
+                source: "assets/images/round-button" + doorsConfig.sourceSuffix
 
                 Image {
                     anchors.centerIn: parent

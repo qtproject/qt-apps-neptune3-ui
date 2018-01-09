@@ -1,2 +1,1 @@
-singleton VehicleControlModel VehicleControlModel.qml
 singleton VehicleWidgetModel VehicleWidgetModel.qml

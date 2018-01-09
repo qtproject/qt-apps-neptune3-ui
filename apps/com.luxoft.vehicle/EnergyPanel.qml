@@ -30,7 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+
+import com.pelagicore.styles.triton 1.0
+import utils 1.0
 
 Item {
     //ToDo: this button row deserves it's own component
@@ -77,10 +81,11 @@ Item {
         anchors.left: energyControls.left
         anchors.topMargin: 40
         anchors.leftMargin: 10
-        source: "assets/images/energy-graph.png"
+        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        source: "assets/images/energy-graph" + sourceSuffix
     }
 
-    Text {
+    Label {
         id: energyGraphTitle
 
         anchors.top: energyGraph.bottom
@@ -89,12 +94,6 @@ Item {
         anchors.leftMargin: 34
 
         text: qsTr("Projected distance to empty")
-        font {
-            pixelSize: 26
-            family: "Open Sans"
-        }
-        opacity: 0.94
-        color: "#171717"
     }
 
     Item {
@@ -105,26 +104,23 @@ Item {
         width: parent.width
         height: 340
 
-        Rectangle {
-            height: 1
+        Image {
+            height: 2
             width: 750
-            color: "#bfbbb9"
+            source: Style.gfx2("list-divider", TritonStyle.theme)
         }
 
-        Text {
+        Label {
             anchors.top: parent.top
             anchors.topMargin: 16
             anchors.left: parent.left
             anchors.leftMargin: 40
             text: qsTr("184")
             font {
-                pixelSize: 32
-                family: "Open Sans"
+                pixelSize: TritonStyle.fontSizeL
             }
-            opacity: 0.94
-            color: "#171717"
 
-            Text {
+            Label {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 2
                 anchors.left: parent.right
@@ -132,28 +128,20 @@ Item {
 
                 text: qsTr("km")
                 font {
-                    pixelSize: 18
-                    family: "Open Sans"
+                    pixelSize: TritonStyle.fontSizeXS
                     weight: Font.Light
                 }
-                opacity: 0.4
-                color: "#171717"
+                opacity: TritonStyle.fontOpacityLow
             }
         }
 
-        Text {
+        Label {
             anchors.top: parent.top
             anchors.topMargin: 114
             anchors.left: parent.left
             anchors.leftMargin: 42
 
             text: qsTr("Charging stations")
-            font {
-                pixelSize: 26
-                family: "Open Sans"
-            }
-            opacity: 0.94
-            color: "#171717"
         }
 
         VehicleButton {
@@ -165,18 +153,16 @@ Item {
             text: qsTr("Show on map")
         }
 
-        Rectangle {
-            height: 1
+        Image {
+            height: 2
             width: 750
-            color: "#bfbbb9"
             anchors.top: parent.top
             anchors.topMargin: 168
+            source: Style.gfx2("list-divider", TritonStyle.theme)
         }
 
         //ToDo: this probably should be in a model later
         Item {
-            id: chargingStatioRouteOne
-
             anchors.top: parent.top
             anchors.topMargin: 180
             anchors.left: parent.left
@@ -184,18 +170,15 @@ Item {
             width: parent.width
             height: 60
 
-            Text {
+            Label {
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("21")
                 font {
-                    pixelSize: 32
-                    family: "Open Sans"
+                    pixelSize: TritonStyle.fontSizeL
                 }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 2
                     anchors.left: parent.right
@@ -203,27 +186,19 @@ Item {
 
                     text: qsTr("km")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
+                        pixelSize: TritonStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
 
-            Text {
+            Label {
                 anchors.left: parent.left
                 anchors.leftMargin: 100
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("Donald Weese Ct, Las Vegas")
-                font {
-                    pixelSize: 26
-                    family: "Open Sans"
-                }
-                opacity: 0.94
-                color: "#171717"
             }
 
             VehicleButton {
@@ -236,8 +211,6 @@ Item {
 
         //ToDo: this probably should be in a model later
         Item {
-            id: chargingStatioRouteTwo
-
             anchors.top: parent.top
             anchors.topMargin: 245
             anchors.left: parent.left
@@ -245,19 +218,16 @@ Item {
             width: parent.width
             height: 60
 
-            Text {
+            Label {
                 text: qsTr("27")
 
                 anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 font {
-                    pixelSize: 32
-                    family: "Open Sans"
+                    pixelSize: TritonStyle.fontSizeL
                 }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 2
                     anchors.left: parent.right
@@ -265,27 +235,19 @@ Item {
 
                     text: qsTr("km")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
+                        pixelSize: TritonStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
 
-            Text {
+            Label {
                 anchors.left: parent.left
                 anchors.leftMargin: 100
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("Faiss Dr, Las Vegas")
-                font {
-                    pixelSize: 26
-                    family: "Open Sans"
-                }
-                opacity: 0.94
-                color: "#171717"
             }
 
             VehicleButton {

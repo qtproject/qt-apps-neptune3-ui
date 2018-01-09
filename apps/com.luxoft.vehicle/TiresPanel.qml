@@ -30,6 +30,9 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import QtQuick.Controls 2.2
+
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -49,31 +52,23 @@ Item {
             anchors.leftMargin: 26
             source: "assets/images/tire.png"
 
-            Text {
+            Label {
                 anchors.right: parent.left
                 anchors.rightMargin: 26
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("240")
-                font {
-                    pixelSize: 32
-                    family: "Open Sans"
-                }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
                         weight: Font.Light
+                        pixelSize: TritonStyle.fontSizeXS
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
         }
@@ -85,30 +80,22 @@ Item {
             anchors.rightMargin: 26
             source: "assets/images/tire.png"
 
-            Text {
+            Label {
                 anchors.left: parent.right
                 anchors.leftMargin: 26
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("240")
-                font {
-                    pixelSize: 32
-                    family: "Open Sans"
-                }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
                     anchors.right: parent.right
                     text: qsTr("kPa")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
+                        pixelSize: TritonStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
         }
@@ -120,31 +107,23 @@ Item {
             anchors.leftMargin: 26
             source: "assets/images/tire.png"
 
-            Text {
+            Label {
                 anchors.right: parent.left
                 anchors.rightMargin: 26
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("240")
-                font {
-                    pixelSize: 32
-                    family: "Open Sans"
-                }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
+                        pixelSize: TritonStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
         }
@@ -156,7 +135,7 @@ Item {
             anchors.rightMargin: 26
             source: "assets/images/tire.png"
 
-            Text {
+            Label {
                 anchors.left: parent.right
                 anchors.leftMargin: 26
                 anchors.verticalCenter: parent.verticalCenter
@@ -165,84 +144,63 @@ Item {
                     pixelSize: 32
                     family: "Open Sans"
                 }
-                opacity: 0.94
-                color: "#171717"
 
-                Text {
+                Label {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
                     anchors.right: parent.right
                     text: qsTr("kPa")
                     font {
-                        pixelSize: 18
-                        family: "Open Sans"
+                        pixelSize: TritonStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: 0.4
-                    color: "#171717"
+                    opacity: TritonStyle.fontOpacityLow
                 }
             }
         }
     }
 
-    Text {
+    Label {
         anchors.right: parent.right
         anchors.rightMargin: 92
         anchors.top: parent.top
         anchors.topMargin: 132
 
         text: qsTr("Normal load")
-        font {
-            pixelSize: 26
-            family: "Open Sans"
-        }
-        opacity: 0.94
-        color: "#171717"
 
-        Text {
+        Label {
             anchors.top: parent.bottom
             anchors.topMargin: 10
             anchors.right: parent.right
 
             text: qsTr("Target: 240 kPa")
             font {
-                pixelSize: 22
-                family: "Open Sans"
+                pixelSize: TritonStyle.fontSizeS
                 weight: Font.Light
             }
-            opacity: 0.94
-            color: "#171717"
         }
     }
 
 
-    Text {
+    Label {
         anchors.right: parent.right
         anchors.rightMargin: 92
         anchors.top: parent.top
         anchors.topMargin: 270
 
         text: qsTr("Max load")
-        font {
-            pixelSize: 26
-            family: "Open Sans"
-        }
-        opacity: 0.94
-        color: "#171717"
+        enabled: false
 
-        Text {
+        Label {
             anchors.top: parent.bottom
             anchors.topMargin: 10
             anchors.right: parent.right
 
             text: qsTr("Target: 270 kPa")
             font {
-                pixelSize: 22
-                family: "Open Sans"
+                pixelSize: TritonStyle.fontSizeS
                 weight: Font.Light
             }
-            opacity: 0.94
-            color: "#171717"
         }
     }
 
@@ -254,6 +212,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 92
         text: qsTr("Calibrate")
-        iconSource: "assets/images/calibrate.png"
+        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        iconSource: "assets/images/ic-calibrate" + sourceSuffix
     }
 }

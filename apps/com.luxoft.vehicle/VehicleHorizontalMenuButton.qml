@@ -40,15 +40,15 @@ ToolButton {
         State {
             name: "LEFT"
             PropertyChanges {
-                target: buttonSideRectangel
-                width: buttonBackgroundItem.width - buttonSideRectangel.height / 2
-                x: buttonSideRectangel.height / 2
+                target: buttonSideRectangle
+                width: buttonBackgroundItem.width - buttonSideRectangle.height / 2
+                x: buttonSideRectangle.height / 2
             }
         },
         State {
             name: "MIDDLE"
             PropertyChanges {
-                target: buttonSideRectangel
+                target: buttonSideRectangle
                 width: buttonBackgroundItem.width
                 x: 0
             }
@@ -56,8 +56,8 @@ ToolButton {
         State {
             name: "RIGHT"
             PropertyChanges {
-                target: buttonSideRectangel
-                width: buttonBackgroundItem.width - buttonSideRectangel.height / 2
+                target: buttonSideRectangle
+                width: buttonBackgroundItem.width - buttonSideRectangle.height / 2
                 x: 0
             }
         }
@@ -77,7 +77,7 @@ ToolButton {
         color: "#faf9f9"
     }
 
-    background: Item{
+    background: Item {
         id: buttonBackgroundItem
 
         implicitHeight: 44
@@ -92,7 +92,7 @@ ToolButton {
         }
 
         Rectangle {
-            id: buttonSideRectangel
+            id: buttonSideRectangle
 
             height: parent.height
             color: root.down ? "#41403f" : "#a4a09e"

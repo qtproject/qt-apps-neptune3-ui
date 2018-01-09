@@ -28,21 +28,20 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-pragma Singleton
 
 import QtQuick 2.8
 
 ListModel {
-    ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees@48.png" }
-    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: true; icon: "hill_descent_control@48.png" }
-    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic_jam_assist@48.png" }
-    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false; icon: "intelligent_speed_adaptation@48.png" }
-    ListElement { name: QT_TR_NOOP("Fees"); active: true; icon: "fees@48.png" }
-    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false; icon: "hill_descent_control@48.png" }
-    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic_jam_assist@48.png" }
-    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: true; icon: "intelligent_speed_adaptation@48.png" }
-    ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees@48.png" }
-    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false; icon: "hill_descent_control@48.png" }
-    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic_jam_assist@48.png" }
-    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false; icon: "intelligent_speed_adaptation@48.png" }
+    ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: true; icon: "hill-descent-control" }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic-jam-assist" }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false; icon: "intelligent-speed-adaptation" }
+    ListElement { name: QT_TR_NOOP("Fees"); active: true; icon: "fees" }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false; icon: "hill-descent-control" }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic-jam-assist" }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: true; icon: "intelligent-speed-adaptation" }
+    ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }
+    ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false; icon: "hill-descent-control" }
+    ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic-jam-assist" }
+    ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false; icon: "intelligent-speed-adaptation" }
 }

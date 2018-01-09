@@ -32,66 +32,51 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.3
 
-Item {
+import com.pelagicore.styles.triton 1.0
+import utils 1.0
+
+ListView {
     id: root
 
-    ListView {
-        width: 820
-        height: (spacing + 50) * 7
+    spacing: Style.vspan(0.25)
+    orientation: Qt.Vertical
+    model: VehicleControlModel {}
+    delegate: Item {
+        width: parent.width * 0.9
+        height: Style.vspan(0.9)
 
-        spacing: 44
-        orientation: Qt.Vertical
-        interactive: false
-        model: VehicleControlModel
-        delegate: Item {
-            width: parent.width * 0.9
-            height: 50
+        Image {
+            id: supportDelegateIconImage
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(0.67)
+            source: "assets/images/" + icon + (TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png")
+        }
 
-            Image {
-                id: supportDelegateIconImage
-                anchors.left: parent.left
-                anchors.leftMargin: 30
-                source: "assets/images/" + icon
-            }
+        Label {
+            text: qsTranslate("VehicleControlModel", name)
+            anchors.top: parent.top
+            anchors.left: supportDelegateIconImage.right
+            anchors.leftMargin: Style.hspan(0.622)
+        }
 
-            ColorOverlay {
-                anchors.fill: supportDelegateIconImage
-                source: supportDelegateIconImage
-                color: "#171717"
-            }
+        Switch {
+            anchors.top: parent.top
+            anchors.topMargin: 2
+            anchors.right: parent.right
+            anchors.rightMargin: 2
+            checked: active
+        }
 
-            Text {
-                text: qsTranslate("VehicleControlModel", name)
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: supportDelegateIconImage.right
-                anchors.leftMargin: 28
+        Image {
+            height: 2
 
-                font {
-                    pixelSize: 26
-                    family: "Open Sans"
-                    weight: Font.Light
-                }
-                opacity: 0.94
-                color: "#171717"
-            }
+            // don't show the separator after the last element
+            visible: model.index < root.model.count - 1
 
-            Switch {
-                anchors.top: parent.top
-                anchors.topMargin: 2
-                anchors.right: parent.right
-                anchors.rightMargin: 2
-                checked: active
-            }
-
-            Rectangle {
-                height: 1
-                width: parent.width
-                color: "#bfbbb9"
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: -18
-                anchors.left: parent.left
-                anchors.leftMargin: 20
-            }
+            source: Style.gfx2("list-divider", TritonStyle.theme)
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
         }
     }
 }

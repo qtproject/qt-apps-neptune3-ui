@@ -31,6 +31,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 
+import com.pelagicore.styles.triton 1.0
+
 ToolButton {
     id: root
 
@@ -48,7 +50,7 @@ ToolButton {
             }
             PropertyChanges {
                 target: contentText
-                font.pixelSize: 26
+                font.pixelSize: root.TritonStyle.fontSizeM
             }
         },
         State {
@@ -61,12 +63,12 @@ ToolButton {
             }
             PropertyChanges {
                 target: contentText
-                font.pixelSize: 22
+                font.pixelSize: root.TritonStyle.fontSizeS
             }
         }
     ]
 
-    contentItem: Text {
+    contentItem: Label {
         id: contentText
 
         verticalAlignment: Text.AlignVCenter
@@ -74,9 +76,8 @@ ToolButton {
         anchors.leftMargin: backgroundItem.contentMargin
 
         text: root.text
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: root.down ? "#41403f" : "#595756"
+        color: root.down ? "#41403f" : TritonStyle.primaryTextColor
         opacity: 0.94
     }
     background: Rectangle {
