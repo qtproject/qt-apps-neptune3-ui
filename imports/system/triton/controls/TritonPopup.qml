@@ -61,7 +61,6 @@ Control {
         state = "open";
     }
 
-    Binding { target: parent ? parent : null; property: "showModalOverlay"; value: root.state === "open" }
     Connections {
         target: parent ? parent : null
         onOverlayClicked: root.state = "closed"
@@ -77,6 +76,10 @@ Control {
                 x: (root.parent.width - root.width) / 2
                 y: (root.parent.height - root.height) / 2
             }
+            PropertyChanges {
+                target: root.parent
+                showModalOverlay: true
+            }
         },
         State {
             name: "closed"
@@ -85,6 +88,10 @@ Control {
                 visible: false
                 x: (root.parent.width - root.width) / 2
                 y: (root.parent.height - root.height) / 2
+            }
+            PropertyChanges {
+                target: root.parent
+                showModalOverlay: false
             }
         }
     ]
