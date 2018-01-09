@@ -52,24 +52,9 @@ TritonPopup {
             asynchronous: true
         }
 
-        StackLayout {
-            id: stack
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            currentIndex: tabBar.currentIndex
-            AboutMarketing {}
-            AboutProcess {
-                applicationModel: root.applicationModel
-            }
-            AboutRunningApps {
-                applicationModel: root.applicationModel
-            }
-        }
-
         // TODO: fix appearance of tab bar style
         TabBar {
             id: tabBar
-            position: TabBar.Footer
             Layout.preferredWidth: Style.hspan(8)
             Layout.alignment: Qt.AlignHCenter
             TabButton {
@@ -83,6 +68,20 @@ TritonPopup {
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Running Apps")
+            }
+        }
+
+        StackLayout {
+            id: stack
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            currentIndex: tabBar.currentIndex
+            AboutMarketing {}
+            AboutProcess {
+                applicationModel: root.applicationModel
+            }
+            AboutRunningApps {
+                applicationModel: root.applicationModel
             }
         }
     }

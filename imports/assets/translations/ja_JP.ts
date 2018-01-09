@@ -4,17 +4,17 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="77"/>
+        <location filename="../../../sysui/about/About.qml" line="62"/>
         <source>Marketing</source>
         <translation>マーケティング</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="81"/>
+        <location filename="../../../sysui/about/About.qml" line="66"/>
         <source>Monitor</source>
         <translation>モニター</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="85"/>
+        <location filename="../../../sysui/about/About.qml" line="70"/>
         <source>Running Apps</source>
         <translation>アプリケーションの実行</translation>
     </message>
