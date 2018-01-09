@@ -41,4 +41,5 @@ T.Label {
 
     font.pixelSize: TritonStyle.fontSizeM
     font.family: TritonStyle.fontFamily
+    opacity: TritonStyle.fontOpacityHigh
 }
