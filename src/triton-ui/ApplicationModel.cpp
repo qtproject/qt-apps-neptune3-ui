@@ -95,12 +95,12 @@ void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
     connect(appMan, &QAbstractItemModel::rowsInserted, this,
             [this](const QModelIndex & /*parent*/, int first, int last)
             {
-                this->beginInsertRows(QModelIndex(), first, last);
                 for (int i = first; i <= last; ++i) {
+                    this->beginInsertRows(QModelIndex(), rowCount() /*first*/, rowCount() /*last*/);
                     const auto *application = m_appMan->application(i);
                     this->append(application);
+                    this->endInsertRows();
                 }
-                this->endInsertRows();
             });
 
     connect(appMan, &QAbstractItemModel::rowsAboutToBeRemoved, this,
