@@ -48,6 +48,8 @@ Control {
         color: root.TritonStyle.backgroundColor
         radius: Style.hspan(0.7)
     }
+    focus: visible
+    Keys.onEscapePressed: close()
 
     property Item originItem
 
@@ -61,9 +63,13 @@ Control {
         state = "open";
     }
 
+    function close() {
+        state = "closed";
+    }
+
     Connections {
         target: parent ? parent : null
-        onOverlayClicked: root.state = "closed"
+        onOverlayClicked: close()
     }
 
     state: "closed"
@@ -131,7 +137,7 @@ Control {
         anchors.margins: Style.hspan(1)
         width: Style.hspan(1)
         height: width
-        onClicked: root.state = "closed"
+        onClicked: close()
         symbol: Style.symbol("ic-close")
     }
 }
