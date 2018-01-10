@@ -431,6 +431,11 @@ Item {
         onShuffleClicked: root.store.shuffleSong()
         onRepeatClicked: root.store.repeatSong()
         onUpdatePosition: root.store.updatePosition(value)
+
+        Connections {
+            target: root.store
+            onSongModelPopulated: albumArtRow.populateModel()
+        }
     }
 
     MusicProgress {

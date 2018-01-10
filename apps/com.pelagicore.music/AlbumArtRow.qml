@@ -62,6 +62,10 @@ Item {
 
     signal updatePosition(var value)
 
+    function populateModel() {
+        coverSlide.model = root.songModel;
+    }
+
     Component {
         id: albumArtDelegate
 
@@ -145,7 +149,7 @@ Item {
             highlightRangeMode: PathView.StrictlyEnforceRange
             highlightMoveDuration: 400
             clip: true
-            model: root.mediaReady ? root.songModel : 3
+            model: 3
             delegate: albumArtDelegate
             pathItemCount: root.showPrevNextAlbum ? 3 : 1
             interactive: false

@@ -126,7 +126,7 @@
 <context>
     <name>ClusterMusic</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="64"/>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="65"/>
         <source>Track unavailable</source>
         <translation>트랙을 사용할 수 없음</translation>
     </message>
@@ -395,7 +395,7 @@
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="477"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="482"/>
         <source>Track unavailable</source>
         <translation>트랙을 사용할 수 없음</translation>
     </message>

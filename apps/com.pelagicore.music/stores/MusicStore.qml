@@ -56,6 +56,7 @@ Store {
                 // when music application is started.
                 root.searchAndBrowseModel.contentType = "album";
                 player.playQueue.insert(0, searchAndBrowseModel.get(0));
+                root.songModelPopulated()
             }
         }
     }
@@ -118,6 +119,8 @@ Store {
             }
         }
     }
+
+    signal songModelPopulated()
 
     function playSong() {
         if (root.playing) {

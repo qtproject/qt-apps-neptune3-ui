@@ -47,6 +47,7 @@ Item {
     }
 
     AlbumArtRow {
+        id: albumArt
         width: Style.hspan(14)
         height: Style.vspan(5.8)
 
@@ -71,6 +72,11 @@ Item {
         onShuffleClicked: root.store.shuffleSong()
         onRepeatClicked: root.store.repeatSong()
         onUpdatePosition: root.store.updatePosition(value)
+
+        Connections {
+            target: root.store
+            onSongModelPopulated: albumArt.populateModel()
+        }
     }
 }
 
