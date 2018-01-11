@@ -366,6 +366,36 @@
     </message>
 </context>
 <context>
+    <name>RadioContent</name>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>RadioStore</name>
+    <message>
+        <source>KHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <source>Hill Descent Control</source>

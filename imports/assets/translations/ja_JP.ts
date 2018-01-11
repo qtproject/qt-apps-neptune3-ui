@@ -514,6 +514,42 @@
     </message>
 </context>
 <context>
+    <name>RadioContent</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/RadioContent.qml" line="86"/>
+        <source></source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>RadioStore</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="50"/>
+        <source>FM1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="52"/>
+        <source>FM2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="54"/>
+        <source>AM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="70"/>
+        <source>KHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="70"/>
+        <source>MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="44"/>
