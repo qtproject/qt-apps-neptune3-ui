@@ -46,58 +46,21 @@ Item {
     Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
     Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
 
-    QtObject {
+    FakeAppInfo {
         id: redApp
-        property Item window
-        property Item loadedWindow: Rectangle { color: "red" }
-
-        property bool active: false
-        property bool canBeActive: true
-
-        property int heightRows: 1
-        property int minHeightRows: 1
-
-        property bool asWidget: true
-
-        function start() {
-            window = loadedWindow;
-        }
+        property Item window: Rectangle { color: "red" }
     }
 
-    QtObject {
+    FakeAppInfo {
         id: greenApp
-        property Item window
-        property Item loadedWindow: Rectangle { color: "green" }
-
-        property bool active: false
-        property bool canBeActive: true
-
+        property Item window: Rectangle { color: "green" }
         property int heightRows: 2
-        property int minHeightRows: 1
-
-        property bool asWidget: true
-
-        function start() {
-            window = loadedWindow;
-        }
     }
 
-    QtObject {
+    FakeAppInfo {
         id: blueApp
-        property Item window
-        property Item loadedWindow: Rectangle { color: "blue" }
-
-        property bool active: false
-        property bool canBeActive: true
-
+        property Item window: Rectangle { color: "blue" }
         property int heightRows: 2
-        property int minHeightRows: 1
-
-        property bool asWidget: true
-
-        function start() {
-            window = loadedWindow;
-        }
     }
 
     ListModel {
