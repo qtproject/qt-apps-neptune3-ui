@@ -42,6 +42,9 @@ import com.pelagicore.styles.triton 1.0
 Item {
     id: root
 
+    readonly property var plugins: ["mapboxgl", "osm"]
+    property int currentPlugin: 0 // 0: mapboxgl; 1: osm
+
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;
         req.open("GET", "https://location.services.mozilla.com/v1/geolocate?key=geoclue");
@@ -74,16 +77,35 @@ Item {
     }
 
     Plugin {
-        id: osmPlugin
+        id: mapPlugin
+        locales: Style.languageLocale
+        preferred: root.plugins
+
+        // Mapbox Plugin Parameters
+        PluginParameter {
+            name: "mapboxgl.access_token"
+            value: "pk.eyJ1IjoiYmhhcmltdWt0aXNhbnRvc28iLCJhIjoiY2pjYWJlbjYzMDlkbzJxbGM2cmNoa2tpYSJ9.dvhwgCSDt33h5YQYCTaVMw"
+        }
+
+        // OSM Plugin Parameters
+        PluginParameter { name: "osm.useragent"; value: "Triton UI" }
+        PluginParameter { name: "osm.mapping.highdpi_tiles"; value: true }
+    }
+
+    // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
+    Plugin {
+        id: geocodePlugin
         name: "osm"
         locales: Style.languageLocale
+
+        // OSM Plugin Parameters
         PluginParameter { name: "osm.useragent"; value: "Triton UI" }
         PluginParameter { name: "osm.mapping.highdpi_tiles"; value: true }
     }
 
     GeocodeModel {
         id: geocodeModel
-        plugin: osmPlugin
+        plugin: geocodePlugin
         onLocationsChanged: {
             if (count > 0) {
                 var location = get(0); // TODO implement presenting the other results? this just takes the first one
@@ -98,16 +120,16 @@ Item {
     Map {
         id: mainMap
         anchors.fill: parent
-        plugin: osmPlugin
+        plugin: mapPlugin
         center: priv.positionCoordinate
-        zoomLevel: 13
+        zoomLevel: 10
+        copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
+
         gesture {
             enabled: true
             // effectively disable the rotation gesture
             acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture
         }
-
-        copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
 
         onErrorChanged: {
             console.warn("Map error:", error, errorString)
@@ -120,11 +142,47 @@ Item {
                     var map = supportedMapTypes[i];
                     console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
                 }
-
-                // TODO choose a suitable night map when the theme changes to Dark
-
                 fetchCurrentLocation();
             }
+        }
+
+        MapParameter {
+            type: "source"
+
+            property var name: "routeSource"
+            property var sourceType: "geojson"
+            property var data: '{ "type": "FeatureCollection", "features": \
+                    [{ "type": "Feature", "properties": {}, "geometry": { \
+                    "type": "LineString", "coordinates": [[ 24.934938848018646, \
+                    60.16830257086771 ], [ 24.943315386772156, 60.16227776476442 ]]}}]}'
+        }
+
+        MapParameter {
+            type: "layer"
+
+            property var name: "route"
+            property var layerType: "line"
+            property var source: "routeSource"
+
+            // Draw under the first road label layer
+            // of the mapbox-streets style.
+            property var before: "road-label-small"
+        }
+
+        MapParameter {
+            type: "paint"
+
+            property var layer: "route"
+            property var lineColor: "blue"
+            property var lineWidth: 8.0
+        }
+
+        MapParameter {
+            type: "layout"
+
+            property var layer: "route"
+            property var lineJoin: "round"
+            property var lineCap: "round"
         }
     }
 
@@ -192,6 +250,6 @@ Item {
         anchors.leftMargin: Style.hspan(.5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(TritonStyle.primaryTextColor).arg(TritonStyle.fontFamily).arg(TritonStyle.fontSizeXS)
+        .arg(TritonStyle.primaryTextColor).arg(TritonStyle.fontFamily).arg(TritonStyle.fontSizeXXS)
     }
 }

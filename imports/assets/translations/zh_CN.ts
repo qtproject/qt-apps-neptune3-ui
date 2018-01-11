@@ -379,7 +379,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="144"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="202"/>
         <source>Where do you wanna go today?</source>
         <translation>今天你想要去哪儿？</translation>
     </message>

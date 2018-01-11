@@ -63,10 +63,8 @@ QtObject {
     property var secondaryWindow: SecondaryWindow {
         id: secondaryWindow
 
-        Image {
+        Maps {
             anchors.fill: parent
-            source: "assets/navigation-widget-map.png"
-            fillMode: Image.PreserveAspectCrop
         }
     }
 }
