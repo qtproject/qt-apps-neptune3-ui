@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager 1.0 as AM
+import intents 1.0
 
 /*
   A list of ApplicationInfo objects.
@@ -71,6 +72,16 @@ ListModel {
         return null;
     }
 
+    function goBack() {
+        //if an intent is requested
+        if (d.intentsInterface.history.length > 1) {
+            d.intentsInterface.goBack();
+        } else {
+            //else return to home
+            goHome();
+        }
+    }
+
     // Go back to the home screen.
     //
     // It deactivates the currently active application, if any.
@@ -89,7 +100,10 @@ ListModel {
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
         property var populating: true
-
+        property IntentsInterface intentsInterface: IntentsInterface {
+            id: intentsInterface
+            activeAppId: activeAppInfo ? activeAppInfo.id : ""
+        }
         readonly property var logCat: LoggingCategory {
             name: "applicationmodel"
         }

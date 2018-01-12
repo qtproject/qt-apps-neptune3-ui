@@ -216,6 +216,14 @@ Window {
                     instrumentClusterWindowLoader.item.nextSecondaryWindow();
             }
         }
+        Shortcut {
+        //simulates hard key back press
+            sequence: "Ctrl+b"
+            context: Qt.ApplicationShortcut
+            onActivated: {
+                display.applicationModel.goBack();
+            }
+        }
     }
 
     ModalOverlay {
