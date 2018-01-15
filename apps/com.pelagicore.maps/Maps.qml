@@ -222,6 +222,7 @@ Item {
             MapSearchTextField {
                 id: searchField
                 Layout.preferredWidth: firstRow.width/2
+                selectByMouse: true
                 Layout.fillWidth: true
                 anchors.verticalCenter: parent.verticalCenter
                 onAccepted: {
