@@ -658,7 +658,7 @@
     <name>VehicleModel</name>
     <message>
         <source>Service in 300km</source>
-        <translation>Service in 300 Km</translation>
+        <translation type="vanished">Service in 300 Km</translation>
     </message>
 </context>
 <context>
@@ -703,7 +703,7 @@
     <name>WebBrowser</name>
     <message>
         <source>Enter an address</source>
-        <translation>Adresseingabe</translation>
+        <translation type="vanished">Adresseingabe</translation>
     </message>
 </context>
 </TS>

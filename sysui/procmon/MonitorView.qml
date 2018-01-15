@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -37,6 +37,8 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import models.system 1.0
 import QtApplicationManager 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -144,7 +146,7 @@ Item {
         anchors.topMargin: Style.vspan(0.2)
         anchors.right: switchControl.left
         text: qsTr("Process Monitor on Status Bar")
-        font.pixelSize: Style.fontSizeXS
+        font.pixelSize: TritonStyle.fontSizeXS
     }
 
     Switch {
@@ -158,8 +160,8 @@ Item {
             x: switchControl.leftPadding
             y: parent.height / 2 - height / 2
             radius: 13
-            color: switchControl.checked ? Style.colorOrange : "#ffffff"
-            border.color: switchControl.checked ? Style.colorOrange : "#cccccc"
+            color: switchControl.checked ? TritonStyle.accentColor : "#ffffff"
+            border.color: switchControl.checked ? TritonStyle.accentColor : "#cccccc"
 
             Rectangle {
                 x: switchControl.checked ? parent.width - width : 0
@@ -167,7 +169,7 @@ Item {
                 height: width
                 radius: 13
                 color: switchControl.down ? "#cccccc" : "#ffffff"
-                border.color: switchControl.checked ? Style.colorOrange : "#999999"
+                border.color: switchControl.checked ? TritonStyle.accentColor : "#999999"
             }
         }
 

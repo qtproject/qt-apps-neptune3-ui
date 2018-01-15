@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -38,6 +38,8 @@ import controls 1.0
 import models.statusbar 1.0
 import models.system 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Pane {
     id: root
 
@@ -68,17 +70,17 @@ Pane {
         anchors.leftMargin: Style.hspan(4)
         Label {
             text: qsTr("FPS: %1").arg(SystemModel.frameRate)
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
             font.weight: Style.fontWeight
         }
         Label {
             text: qsTr("CPU: %1 %").arg(SystemModel.cpuUsage)
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
             font.weight: Style.fontWeight
         }
         Label {
             text: qsTr("RAM: %1 MB (%2 %)").arg(SystemModel.ramUsage).arg(SystemModel.ramPercentage)
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
             font.weight: Style.fontWeight
         }
     }

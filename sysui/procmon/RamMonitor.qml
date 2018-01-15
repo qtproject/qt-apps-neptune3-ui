@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,6 +32,7 @@
 import QtQuick 2.6
 import QtApplicationManager 1.0
 import utils 1.0
+import com.pelagicore.styles.triton 1.0
 
 MonitorPanel {
     id: root
@@ -47,7 +48,7 @@ MonitorPanel {
         Rectangle {
             width: parent.width
             height: parent.height
-            color: Style.colorOrange
+            color: TritonStyle.accentColor
             Rectangle {
                 width: parent.width
                 height: parent.height - ((model.memoryPss.total/SystemMonitor.totalMemory) * parent.height)

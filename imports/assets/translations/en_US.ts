@@ -336,7 +336,7 @@
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="148"/>
         <source>Process Monitor on Status Bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -575,17 +575,17 @@
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="72"/>
         <source>FPS: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="77"/>
         <source>CPU: %1 %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="82"/>
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -689,14 +689,6 @@
     </message>
 </context>
 <context>
-    <name>VehicleModel</name>
-    <message>
-        <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
-        <source>Service in 300km</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>VehicleToolsColumn</name>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
@@ -747,14 +739,6 @@
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WebBrowser</name>
-    <message>
-        <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
-        <source>Enter an address</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

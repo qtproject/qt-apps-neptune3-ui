@@ -559,7 +559,7 @@
     <name>VehicleModel</name>
     <message>
         <source>Service in 300km</source>
-        <translation>Service in 300km</translation>
+        <translation type="vanished">Service in 300km</translation>
     </message>
 </context>
 <context>
@@ -597,13 +597,6 @@
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WebBrowser</name>
-    <message>
-        <source>Enter an address</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

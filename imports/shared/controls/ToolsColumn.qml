@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -80,7 +80,7 @@ ColumnLayout {
             text: qsTranslate(root.translationContext, model.text)
             labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
             labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
             symbolOnTop: true
             onClicked: root.currentIndex = index;
             ButtonGroup.group: buttonGroup

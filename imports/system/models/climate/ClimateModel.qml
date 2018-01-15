@@ -167,11 +167,6 @@ QtObject {
         onDirectionsChanged: climateControl.airflowDirections = directions
     }
 
-    property QtObject stateMachine: ClimateStateMachine {
-        climateControl: root.climateControl
-        doorsOpen: eco.enabled // TODO use QtIVI doors/window state for this eventually
-    }
-
     function calculateUnitValue(value) {
         // Default value is the celsius
         return SettingsModel.measurementSystem === Locale.MetricSystem ? value : Math.round(value * 1.8 + 32)

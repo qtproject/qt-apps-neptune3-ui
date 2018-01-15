@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
+import com.pelagicore.styles.triton 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
@@ -55,7 +56,7 @@ ColumnLayout {
             checked: root.currentTool === model.name
             symbol: model.name ? Style.symbol(buttonGroup.checkedButton === this ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
             text: qsTr(model.name)
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
             symbolOnTop: true
             onClicked: {
                 root.toolClicked(model.name, index);

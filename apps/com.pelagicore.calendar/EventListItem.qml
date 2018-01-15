@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -58,12 +58,12 @@ ItemDelegate {
                 Layout.preferredWidth: Style.hspan(1)
                 Label {
                     text: root.eventTimeStart
-                    font.pixelSize: Style.fontSizeXS
+                    font.pixelSize: TritonStyle.fontSizeXS
                 }
                 Label {
                     visible: root.eventTimeStart !== root.eventTimeEnd
                     text: root.eventTimeEnd
-                    font.pixelSize: Style.fontSizeXS
+                    font.pixelSize: TritonStyle.fontSizeXS
                     opacity: 0.6
                 }
             }
@@ -71,7 +71,7 @@ ItemDelegate {
             Label {
                 id: event
                 visible: text !== ""
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: TritonStyle.fontSizeS
             }
         }
 

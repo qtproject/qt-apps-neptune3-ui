@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -54,20 +54,11 @@ import com.pelagicore.styles.triton 1.0
     The following example uses \l{AppUIScreen} as a root element:
 
     \qml
-
     AppUIScreen {
-        id: root
-        title: "Triton Template"
-
-        UIScreen {
-            Content {
-                anchors.centerIn: parent
-                width: Style.hspan(13)
-                height: Style.vspan(24)
-            }
-
-            onBackScreen: root.back()
+        Content {
+            anchors.fill: parent
         }
+
     }
     \endqml
 

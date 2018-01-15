@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017,2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,6 +32,7 @@
 import QtQuick 2.6
 import QtApplicationManager 1.0
 import utils 1.0
+import com.pelagicore.styles.triton 1.0
 
 MonitorPanel {
     id: root
@@ -51,7 +52,7 @@ MonitorPanel {
             delegate: Rectangle {
                 width: rectContainer.width
                 height: rectContainer.height
-                color: Qt.darker(Style.colorOrange, (1 + index/10))
+                color: Qt.darker(TritonStyle.accentColor, (1 + index/10))
 
                 Rectangle {
                     width: parent.width

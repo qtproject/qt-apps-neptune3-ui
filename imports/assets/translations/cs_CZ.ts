@@ -400,7 +400,7 @@
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="148"/>
         <source>Process Monitor on Status Bar</source>
         <translation>Monitor procesů ve stavové liště</translation>
     </message>
@@ -713,17 +713,17 @@
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="72"/>
         <source>FPS: %1</source>
         <translation>FPS: %1</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="77"/>
         <source>CPU: %1 %</source>
         <translation>CPU: %1%</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="82"/>
         <source>RAM: %1 MB (%2 %)</source>
         <translation>RAM: %1 MB (%2%)</translation>
     </message>
@@ -1013,9 +1013,8 @@
 <context>
     <name>VehicleModel</name>
     <message>
-        <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
-        <translation>Servis za 300 km</translation>
+        <translation type="vanished">Servis za 300 km</translation>
     </message>
 </context>
 <context>
@@ -1075,9 +1074,8 @@
 <context>
     <name>WebBrowser</name>
     <message>
-        <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
         <source>Enter an address</source>
-        <translation>Zadejte adresu</translation>
+        <translation type="vanished">Zadejte adresu</translation>
     </message>
 </context>
 </TS>

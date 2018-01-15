@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -39,68 +39,30 @@ import com.pelagicore.settings 1.0
 QtObject {
     id: root
 
-    property bool withCluster: true
-
-    property int paddingXS: 2
-    property int paddingS: 4
-    property int padding: 8
-    property int paddingL: 12
     property int paddingXL: 16
 
-    property int screenWidth: TritonStyle.windowWidth
-    property int screenHeight: TritonStyle.windowHeight
     property int instrumentClusterWidth: 1920
     property int instrumentClusterHeight: 1080
     property real instrumentClusterUIAspectRatio: 1920 / 720
-    property int displayHMargin: 11
-    property int displayVMargin: 0
     property int cellWidth
     property int cellHeight
-    property string fontFamily: TritonStyle.fontFamily
     property real fontWeight: Font.Light
-    property real fontFactor: TritonStyle.fontFactor
-    property int fontSizeXXS: TritonStyle.fontSizeXXS
-    property int fontSizeXS: TritonStyle.fontSizeXS
     property int fontSizeS: TritonStyle.fontSizeS
     property int fontSizeM: TritonStyle.fontSizeM
     property int fontSizeL: TritonStyle.fontSizeL
     property int fontSizeXL: TritonStyle.fontSizeXL
     property int fontSizeXXL: TritonStyle.fontSizeXXL
-    property color colorWhite: "white" //TODO: delete me
-    property color colorOrange: TritonStyle.accentColor
-    property color colorBlack: "black" //TODO: delete me
-    property bool debugMode: false
-    property bool gridMode: false
-    property bool fakeBackground: false
-    property real disabledIconOpacity: 0.6
-
-    property bool isPotrait: screenWidth < screenHeight
-
-    property int defaultGfxSize: 1
-
-    property int notificationCenterSpan: 8
-
-    // Cimate config
-    property real climateCollapsedSpan: 1.4
-    property real climateCollapsedVspan: vspan(climateCollapsedSpan)
 
     //StatusBar config
-    property real statusBarSpan: 0.5
     property real statusBarHeight: vspan(1)
-
-    //Popup config
-    property real popupWidth: isPotrait ? hspan(12) : hspan(8)
-    property real popupHeight: isPotrait ? vspan(5) : vspan(6)
 
     property real launcherWidth: hspan(20)
     property real launcherHeight: vspan(1.3)
-    property int launcherSpan: 1
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
     property url drawableUrl: Qt.resolvedUrl(root.assetPath + 'drawable-ldpi')
     property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
     property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
-    property url fonts: Qt.resolvedUrl(root.assetPath + 'fonts/')
 
     readonly property var uiSettings: UISettings {}
 
@@ -152,9 +114,5 @@ QtObject {
 
     function asset(name) {
         return Qt.resolvedUrl(root.assetPath +  + name)
-    }
-
-    function font(name) {
-        return Qt.resolvedUrl(root.assetPath + '/fonts/' + name + '.ttf')
     }
 }

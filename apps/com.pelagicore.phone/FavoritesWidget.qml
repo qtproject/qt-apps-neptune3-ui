@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017, 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -69,7 +69,7 @@ Item {
         anchors.topMargin: root.state === "Maximized" ? Style.vspan(2.5) : 0
         text: qsTr("Favorites")
         color: TritonStyle.primaryTextColor
-        font.pixelSize: Style.fontSizeXS
+        font.pixelSize: TritonStyle.fontSizeXS
         opacity: .4
     }
 
@@ -179,7 +179,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             visible: listviewMoreRows.visibleArea.heightRatio < 1.0
             text: qsTr("more", "more contacts")
-            font.pixelSize: Style.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeXS
         }
     }
 }

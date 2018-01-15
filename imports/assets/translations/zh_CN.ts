@@ -387,7 +387,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="146"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="148"/>
         <source>Process Monitor on Status Bar</source>
         <translation>状态栏进程监控</translation>
     </message>
@@ -701,17 +701,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="70"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="72"/>
         <source>FPS: %1</source>
         <translation>FPS: %1</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="75"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="77"/>
         <source>CPU: %1 %</source>
         <translation>CPU: %1 %</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="80"/>
+        <location filename="../../../sysui/statusbar/StatusBar.qml" line="82"/>
         <source>RAM: %1 MB (%2 %)</source>
         <translation>内存: %1 MB (%2 %)</translation>
     </message>
@@ -1004,9 +1004,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>VehicleModel</name>
     <message>
-        <location filename="../../system/models/vehicle/VehicleModel.qml" line="75"/>
         <source>Service in 300km</source>
-        <translation>300km后保养</translation>
+        <translation type="vanished">300km后保养</translation>
     </message>
 </context>
 <context>
@@ -1070,9 +1069,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>WebBrowser</name>
     <message>
-        <location filename="../../shared/controls/WebBrowser.qml" line="88"/>
         <source>Enter an address</source>
-        <translation>输入地址</translation>
+        <translation type="vanished">输入地址</translation>
     </message>
 </context>
 </TS>

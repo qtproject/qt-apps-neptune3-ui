@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -40,7 +40,7 @@ Control {
     property var currentDate: new Date()
     property var uiSettings
 
-    width: Style.isPotrait ? Style.hspan(2) : Style.hspan(1.5)
+    width: Style.hspan(1.5)
     height: Style.vspan(0.5)
 
     Label {

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -48,7 +48,7 @@ Window {
     id: root
 
     title: "Triton UI - Center Console"
-    color: Style.colorBlack
+    color: "black"
 
     readonly property bool isLandscape: width > height
     readonly property real smallerDimension: isLandscape ? height : width
@@ -273,7 +273,7 @@ Window {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        width = Style.screenWidth
-        height = Style.screenHeight
+        width = TritonStyle.windowWidth
+        height = TritonStyle.windowHeight
     }
 }

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017,2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -74,7 +75,7 @@ Item {
         id: appLabel
         anchors.top: icon.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: Style.fontSizeXS
+        font.pixelSize: TritonStyle.fontSizeXS
         opacity: root.gridOpen ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: "white"
