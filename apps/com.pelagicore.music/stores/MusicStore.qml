@@ -47,6 +47,15 @@ Store {
         contentType: ""
         onContentTypeChanged: console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
         serviceObject: root.player.serviceObject
+
+        property bool modelPopulated: false
+
+        onCountChanged: {
+            if (count > 0 && !modelPopulated) {
+                root.songModelPopulated();
+                modelPopulated = true;
+            }
+        }
     }
 
     property MediaIndexerControl indexerControl: MediaIndexerControl {
@@ -56,7 +65,6 @@ Store {
                 // when music application is started.
                 root.searchAndBrowseModel.contentType = "album";
                 player.playQueue.insert(0, searchAndBrowseModel.get(0));
-                root.songModelPopulated()
             }
         }
     }

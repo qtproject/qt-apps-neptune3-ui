@@ -46,7 +46,7 @@ Item {
     property bool mediaReady: false
     property alias coverSlide: coverslide
     property string currentAlbumArt
-    property var songModel: coverslide.model
+    property var songModel
     property alias currentIndex: coverslide.currentIndex
     property alias currentSongTitle: titleColumn.currentSongTitle
     property alias currentArtisName: titleColumn.currentArtisName
@@ -80,7 +80,6 @@ Item {
             property alias albumArtSource: albumArt.source
 
             Image {
-                id: placeholder
                 anchors.fill: parent
                 visible: mediaReady && model.item.coverArtUrl
 
