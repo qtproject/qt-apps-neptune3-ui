@@ -27,8 +27,6 @@ ui:
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
   windowIcon: "${CONFIG_PWD}/imports/assets/icons/ic-menu-home.png"
-  # convert mouse events to touch events if possible (currently only supported on X11)
-  enableTouchEmulation: yes
 
 systemProperties:
     public:

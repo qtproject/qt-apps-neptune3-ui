@@ -35,6 +35,7 @@
 #include <QtAppManMain/defaultconfiguration.h>
 #include <QtAppManPackage/package.h>
 #include <QtAppManInstaller/sudo.h>
+#include <QtAppManWindow/touchemulation.h>
 #include <QGuiApplication>
 #include <QIcon>
 #include <QTranslator>
@@ -127,6 +128,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
         cfg.parse();
         a.setup(&cfg);
+
+        // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
+        if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty()) {
+            TouchEmulation::createInstance();
+        }
+
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
 
