@@ -36,6 +36,7 @@ import QtPositioning 5.8
 import QtLocation 5.9
 
 import utils 1.0
+import controls 1.0 as TritonControls
 
 import com.pelagicore.styles.triton 1.0
 
@@ -186,24 +187,43 @@ Item {
         }
     }
 
-    Item {
+    Image {
         id: header
+        visible: root.state !== "Widget1Row"
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
         anchors.right: parent.right
-        anchors.rightMargin: root.state !== "Maximized" ? Style.hspan(1.5) : 0
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(.3)
+        anchors.topMargin: root.state === "Widget2Rows" ? -header.sourceSize.height/2 : 0
+
+        fillMode: Image.TileHorizontally
+        source: "assets/navigation-widget-overlay-top.png"
 
         RowLayout {
-            anchors.fill: parent
-            spacing: Style.hspan(1)
-            Label {
-                text: qsTr("Where do you wanna go today?")
-            }
-            TextField {
-                id: searchField
+            id: firstRow
+            anchors.top: parent.top
+            anchors.topMargin: root.state === "Widget2Rows" ? header.sourceSize.height/2 + Style.vspan(.3) : Style.vspan(.3)
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(1.5)
+            Item {
+                Layout.preferredWidth: firstRow.width/2
                 Layout.fillWidth: true
+                anchors.verticalCenter: parent.verticalCenter
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    width: parent.width/2
+                    wrapMode: Text.WordWrap
+                    font.pixelSize: Style.fontSizeS
+                    text: qsTr("Where do you wanna go today?")
+                }
+            }
+            MapSearchTextField {
+                id: searchField
+                Layout.preferredWidth: firstRow.width/2
+                Layout.fillWidth: true
+                anchors.verticalCenter: parent.verticalCenter
                 onAccepted: {
                     geocodeModel.query = searchField.text;
                     geocodeModel.update();
@@ -215,6 +235,34 @@ Item {
                     running: geocodeModel.status == GeocodeModel.Loading
                     visible: running
                 }
+            }
+        }
+        RowLayout {
+            id: secondRow
+            anchors.top: firstRow.bottom
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(1.5)
+            visible: (root.state == "Widget3Rows") || (root.state == "Maximized")
+            height: parent.height/2
+            MapToolButton {
+                Layout.preferredWidth: secondRow.width/2
+                Layout.fillWidth: true
+                anchors.verticalCenter: parent.verticalCenter
+                iconSource: Qt.resolvedUrl("assets/ic-home.png")
+                text: qsTr("Home")
+                extendedText: "17 min"
+                secondaryText: "Welandergatan 29"
+            }
+            MapToolButton {
+                Layout.preferredWidth: secondRow.width/2
+                Layout.fillWidth: true
+                anchors.verticalCenter: parent.verticalCenter
+                iconSource: Qt.resolvedUrl("assets/ic-work.png")
+                text: qsTr("Work")
+                extendedText: "23 min"
+                secondaryText: "Östra Hamngatan 20"
             }
         }
     }
