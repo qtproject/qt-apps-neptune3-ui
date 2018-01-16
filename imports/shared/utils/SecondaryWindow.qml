@@ -36,6 +36,7 @@ import com.pelagicore.settings 1.0
 import com.pelagicore.styles.triton 1.0
 
 ApplicationManagerWindow {
+    id: root
     Component.onCompleted: {
         setWindowProperty("windowType", "secondary")
         visible = true
@@ -44,7 +45,7 @@ ApplicationManagerWindow {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+            root.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
         }
     }
 }
