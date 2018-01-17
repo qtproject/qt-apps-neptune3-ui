@@ -71,26 +71,49 @@ Item {
         mainMap.zoomLevel -= 1.0;
     }
 
+    function getMapType(name) {
+        if (!mainMap.mapReady || !mapTypeModel.count) {
+            return
+        }
+        for (var i = 0; i < mapTypeModel.count; i++) {
+            var map = mapTypeModel.get(i);
+            if (map && map.name === name) {
+                return map.data;
+            }
+        }
+    }
+
     QtObject {
         id: priv
         property var positionCoordinate: QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc ;)
         Behavior on positionCoordinate { CoordinateAnimation {} }
+        readonly property string defaultLightThemeId: "mapbox://styles/caybro/cjcg9k4pn66or2rpxxemwy2ub"
+        readonly property string defaultDarkThemeId: "mapbox://styles/caybro/cjcgd636468xo2rqqn1mius8h"
+    }
+
+    ListModel {
+        // lists the various map styles (including the custom ones); filled in Map.onMapReadyChanged
+        id: mapTypeModel
     }
 
     Plugin {
         id: mapPlugin
         locales: Style.languageLocale
-        preferred: root.plugins
+        name: plugins[currentPlugin]
 
         // Mapbox Plugin Parameters
         PluginParameter {
             name: "mapboxgl.access_token"
-            value: "pk.eyJ1IjoiYmhhcmltdWt0aXNhbnRvc28iLCJhIjoiY2pjYWJlbjYzMDlkbzJxbGM2cmNoa2tpYSJ9.dvhwgCSDt33h5YQYCTaVMw"
+            // TODO replace this personal token with a collective/company one
+            value: "pk.eyJ1IjoiY2F5YnJvIiwiYSI6ImNpczUxZDZnazAwMTMyeXAwZHZ2d2lxZ3kifQ.Pw2IOSDXeujXnbQA5GSDNg"
+        }
+        PluginParameter {
+            name: "mapboxgl.mapping.additional_style_urls"
+            value: [priv.defaultLightThemeId, priv.defaultDarkThemeId].join(",")
         }
 
         // OSM Plugin Parameters
         PluginParameter { name: "osm.useragent"; value: "Triton UI" }
-        PluginParameter { name: "osm.mapping.highdpi_tiles"; value: true }
     }
 
     // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
@@ -101,7 +124,6 @@ Item {
 
         // OSM Plugin Parameters
         PluginParameter { name: "osm.useragent"; value: "Triton UI" }
-        PluginParameter { name: "osm.mapping.highdpi_tiles"; value: true }
     }
 
     GeocodeModel {
@@ -141,10 +163,18 @@ Item {
                 console.info("Supported map types:");
                 for (var i = 0; i < supportedMapTypes.length; i++) {
                     var map = supportedMapTypes[i];
+                    mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
                     console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
                 }
                 fetchCurrentLocation();
             }
+        }
+
+        activeMapType: {
+            if (!mapReady) {
+                return supportedMapTypes[0];
+            }
+            return TritonStyle.theme == TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
 
         MapParameter {
