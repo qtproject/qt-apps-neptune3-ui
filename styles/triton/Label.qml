@@ -37,7 +37,8 @@ T.Label {
     id: control
     verticalAlignment: Text.AlignVCenter
 
-    color: enabled ? TritonStyle.primaryTextColor : TritonStyle.disabledTextColor
+    color: control.enabled ? (control.visualFocus ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor)
+                           : TritonStyle.disabledTextColor
 
     font.pixelSize: TritonStyle.fontSizeM
     font.family: TritonStyle.fontFamily

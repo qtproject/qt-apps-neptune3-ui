@@ -72,7 +72,5 @@ T.ToolButton {
 
     contentItem: Label {
         text: control.text
-        font: control.font
-        color: control.enabled ? (control.visualFocus ? Default.focusColor : Default.textDarkColor) : Default.textDisabledLightColor
     }
 }
