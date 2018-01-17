@@ -8,6 +8,9 @@ SUBDIRS += plugins
 
 SUBDIRS += tests
 
+# mainly a hint for Qt Creator
+QML_IMPORT_PATH += imports/shared imports/system sysui
+
 copydata.file = copydata.pro
 copydata.depends = plugins
 
