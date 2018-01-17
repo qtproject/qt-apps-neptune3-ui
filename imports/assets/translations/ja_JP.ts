@@ -349,11 +349,29 @@
     </message>
 </context>
 <context>
+    <name>MapSearchTextField</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="60"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="232"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="249"/>
         <source>Where do you wanna go today?</source>
         <translation>あなたはヒンジを握っていますか？</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="285"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="294"/>
+        <source>Work</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
