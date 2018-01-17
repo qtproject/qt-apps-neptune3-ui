@@ -37,6 +37,7 @@ import QtLocation 5.9
 
 import utils 1.0
 import controls 1.0 as TritonControls
+import animations 1.0
 
 import com.pelagicore.styles.triton 1.0
 
@@ -45,6 +46,8 @@ Item {
 
     readonly property var plugins: ["mapboxgl", "osm"]
     property int currentPlugin: 0 // 0: mapboxgl; 1: osm
+
+    signal maximizeMap()
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;
@@ -215,6 +218,30 @@ Item {
             property var lineJoin: "round"
             property var lineCap: "round"
         }
+    }
+
+    DefaultNumberAnimation {
+        id: animationMovement
+    }
+
+    TritonControls.Tool {
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(0.6)
+        anchors.top: parent.top
+        anchors.topMargin: Style.hspan(0.6)
+        opacity: root.state === "Widget1Row" ? 1 : 0
+        visible: opacity > 0
+        background: Image {
+            fillMode: Image.Pad
+            source: Qt.resolvedUrl("assets/floating-button-bg.png")
+        }
+        contentItem: Image {
+            fillMode: Image.Pad
+            // todo[mh]: check icon with designer
+            source: Qt.resolvedUrl("assets/ic-search.png")
+        }
+        onClicked: root.maximizeMap()
+        Behavior on opacity { animation: animationMovement }
     }
 
     Image {

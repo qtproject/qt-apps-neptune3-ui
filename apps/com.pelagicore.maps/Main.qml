@@ -57,6 +57,11 @@ QtObject {
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height
             state: mainWindow.tritonState
+
+            onMaximizeMap: {
+                multiPoint.count += 1
+                mainWindow.setWindowProperty("activationCount", multiPoint.count)
+            }
         }
     }
 
