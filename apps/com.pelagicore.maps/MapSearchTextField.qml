@@ -41,10 +41,14 @@ TextField {
     font.family: Style.fontFamily
     font.pixelSize: Style.fontSizeM
 
+    leftPadding: Style.hspan(0.4)
+    rightPadding: Style.hspan(0.4)
+    horizontalAlignment: TextInput.AlignHCenter
+
     background: Rectangle {
         radius: height/2
         Row {
-            visible: (!root.focus) && (root.text == "")
+            visible: (!root.activeFocus) && (root.text == "")
             anchors.centerIn: parent
             spacing: Style.hspan(0.4)
             Image {

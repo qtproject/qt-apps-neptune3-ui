@@ -328,7 +328,7 @@
 <context>
     <name>MapSearchTextField</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="60"/>
+        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="64"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -336,17 +336,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="276"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="293"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="312"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="339"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="321"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="349"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
@@ -459,14 +459,6 @@
         <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
         <source>messages</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RadioContent</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.radio/RadioContent.qml" line="86"/>
-        <source></source>
-        <translation></translation>
     </message>
 </context>
 <context>

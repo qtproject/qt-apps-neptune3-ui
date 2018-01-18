@@ -146,6 +146,8 @@ Item {
     Map {
         id: mainMap
         anchors.fill: parent
+        anchors.topMargin: (root.state === "Widget3Rows") || (root.state === "Maximized") ? header.height/2 : 0
+        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         plugin: mapPlugin
         center: priv.positionCoordinate
         zoomLevel: 10
@@ -220,16 +222,13 @@ Item {
         }
     }
 
-    DefaultNumberAnimation {
-        id: animationMovement
-    }
-
     TritonControls.Tool {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: parent.top
         anchors.topMargin: Style.hspan(0.6)
         opacity: root.state === "Widget1Row" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         background: Image {
             fillMode: Image.Pad
@@ -241,28 +240,46 @@ Item {
             source: Qt.resolvedUrl("assets/ic-search.png")
         }
         onClicked: root.maximizeMap()
-        Behavior on opacity { animation: animationMovement }
     }
 
-    Image {
+    Item {
         id: header
-        visible: root.state !== "Widget1Row"
+
+        height: backgroundImage.sourceSize.height
+
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: root.state === "Widget2Rows" ? -header.sourceSize.height/2 : 0
 
-        fillMode: Image.TileHorizontally
-        source: "assets/navigation-widget-overlay-top.png"
+        opacity: root.state !== "Widget1Row" ? 1 : 0
+        visible: opacity > 0
+        Behavior on opacity {
+            SequentialAnimation {
+                PauseAnimation { duration: 180 }
+                DefaultNumberAnimation {}
+            }
+        }
+
+        Image {
+            id: backgroundImage
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.topMargin: root.state === "Widget1Row" ? -header.height : (root.state === "Widget2Rows" ? -header.height/2 : 0 )
+            Behavior on anchors.topMargin { DefaultNumberAnimation {} }
+            fillMode: Image.TileHorizontally
+            source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
+        }
 
         RowLayout {
             id: firstRow
             anchors.top: parent.top
-            anchors.topMargin: root.state === "Widget2Rows" ? header.sourceSize.height/2 + Style.vspan(.3) : Style.vspan(.3)
+            anchors.topMargin: Style.vspan(.3)
             anchors.left: parent.left
             anchors.leftMargin: Style.hspan(1)
             anchors.right: parent.right
             anchors.rightMargin: Style.hspan(1.5)
+
             Item {
                 Layout.preferredWidth: firstRow.width/2
                 Layout.fillWidth: true
@@ -295,6 +312,7 @@ Item {
                 }
             }
         }
+
         RowLayout {
             id: secondRow
             anchors.top: firstRow.bottom
@@ -302,18 +320,28 @@ Item {
             anchors.leftMargin: Style.hspan(1)
             anchors.right: parent.right
             anchors.rightMargin: Style.hspan(1.5)
-            visible: (root.state == "Widget3Rows") || (root.state == "Maximized")
+            opacity: (root.state == "Widget3Rows") || (root.state == "Maximized") ? 1 : 0
+            Behavior on opacity {
+                SequentialAnimation {
+                    PauseAnimation { duration: 180 }
+                    DefaultNumberAnimation {}
+                }
+            }
+            visible: opacity > 0
             height: parent.height/2
             MapToolButton {
+                id: buttonGoHome
                 Layout.preferredWidth: secondRow.width/2
                 Layout.fillWidth: true
                 anchors.verticalCenter: parent.verticalCenter
                 iconSource: Qt.resolvedUrl("assets/ic-home.png")
+
                 text: qsTr("Home")
                 extendedText: "17 min"
                 secondaryText: "Welandergatan 29"
             }
             MapToolButton {
+                id: buttonGoWork
                 Layout.preferredWidth: secondRow.width/2
                 Layout.fillWidth: true
                 anchors.verticalCenter: parent.verticalCenter
@@ -325,24 +353,27 @@ Item {
         }
     }
 
-    ToolButton {
+    MapToolButton {
         id: zoomInBtn
         anchors {
             right: mainMap.right
             top: header.bottom
-            topMargin: Style.vspan(.5)
+            topMargin: root.state === "Widget2Rows" ? -header.height/2 : 0
         }
+        visible: root.state !== "Widget1Row"
         text: "＋"
         font.pixelSize: TritonStyle.fontSizeL
         enabled: mainMap.zoomLevel + 1 <= mainMap.maximumZoomLevel
         onClicked: zoomIn()
+        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
     }
 
-    ToolButton {
+    MapToolButton {
         id: zoomOutBtn
         anchors {
             right: mainMap.right
             top: zoomInBtn.bottom
+            topMargin: Style.vspan(.5)
         }
         text: "－"
         font.pixelSize: TritonStyle.fontSizeL
