@@ -40,6 +40,7 @@ import com.pelagicore.styles.triton 1.0
 Button {
     id: root
 
+    checkable: true
     background: Rectangle {
         opacity: 0.2
         color: "black"
@@ -48,7 +49,7 @@ Button {
         radius: 4
         // TODO: Later check with designer, which color / asset should be used.
         gradient: Gradient {
-            GradientStop { position: 0 ; color: root.pressed ? "#ccc" : "#eee" }
+            GradientStop { position: 0 ; color: root.pressed ? "#ccc" : root.checked ? "#fcd699" : "#eee" }
             GradientStop { position: 1 ; color: root.pressed ? "#aaa" : "#ccc" }
         }
     }

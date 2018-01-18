@@ -549,27 +549,27 @@
 <context>
     <name>RadioStore</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="50"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
         <source>FM1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="52"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="57"/>
         <source>FM2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="54"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="59"/>
         <source>AM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="70"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="77"/>
         <source>KHz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="70"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="77"/>
         <source>MHz</source>
         <translation type="unfinished"></translation>
     </message>

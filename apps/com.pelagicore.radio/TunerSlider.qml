@@ -48,6 +48,7 @@ Control {
     property int animationDuration: 250
     property bool useAnimation: false
     property alias dragging: area.pressed
+    property int numberOfDecimals: 1
 
     property real activeValue
 
@@ -86,11 +87,9 @@ Control {
                     width: contentWidth
                     anchors.horizontalCenter: parent.left
                     anchors.bottom: parent.bottom
-                    text: minimum.toLocaleString(Qt.locale(), 'f', 1)
+                    text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                     horizontalAlignment: Text.AlignHCenter
-                    font.family: Style.fontFamily
-                    font.pixelSize: Style.fontSizeS
-                    font.weight: Style.fontWeight
+                    font.pixelSize: TritonStyle.fontSizeS
                 }
 
                 Label {
@@ -98,22 +97,18 @@ Control {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: Style.paddingXS
-                    text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', 1)
+                    text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                     horizontalAlignment: Text.AlignHCenter
-                    font.family: Style.fontFamily
-                    font.pixelSize: Style.fontSizeM
-                    font.weight: Style.fontWeight
+                    font.pixelSize: TritonStyle.fontSizeM
                 }
 
                 Label {
                     width: contentWidth
                     anchors.horizontalCenter: parent.right
                     anchors.bottom: parent.bottom
-                    text: maximum.toLocaleString(Qt.locale(), 'f', 1)
+                    text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                     horizontalAlignment: Text.AlignHCenter
-                    font.family: Style.fontFamily
-                    font.pixelSize: Style.fontSizeS
-                    font.weight: Style.fontWeight
+                    font.pixelSize: TritonStyle.fontSizeS
                 }
         }
 

@@ -37,6 +37,8 @@ import QtGraphicalEffects 1.0
 import utils 1.0
 import controls 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Control {
     id: root
     width: Style.hspan(6.5)
@@ -46,6 +48,7 @@ Control {
     property alias title: title.text
     property alias radioText: radioText.text
     property real frequency
+    property int numberOfDecimals: 1
     signal clicked()
 
     ColumnLayout {
@@ -60,7 +63,7 @@ Control {
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
 
-            text: root.frequency.toLocaleString(Qt.locale(), 'f', 1)
+            text: root.frequency.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
             font.pixelSize: Style.fontSizeXXL
         }
 
@@ -85,13 +88,9 @@ Control {
                 id: radioText
 
                 width: parent.width
-
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-
-                font.family: Style.fontFamily
-                font.pixelSize: Style.fontSizeS
-                font.weight: Style.fontWeight
+                font.pixelSize: TritonStyle.fontSizeS
 
                 onTextChanged: {
                     if (text != "" && radioTextContainer.scrollingText ) {

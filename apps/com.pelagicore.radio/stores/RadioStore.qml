@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import QtIvi 1.0
 import QtIvi.Media 1.0
+import QtMultimedia 5.9
 import utils 1.0
 
 Store {
@@ -41,6 +42,10 @@ Store {
         discoveryMode: AmFmTuner.AutoDiscovery
         band: freqPresets === 2 ? AmFmTuner.AMBand : AmFmTuner.FMBand
         onStationChanged: root.currentStation = station
+    }
+
+    readonly property MediaPlayer player: MediaPlayer {
+        source: root.currentStationUrl
     }
 
     property int freqPresets: 0 // 0: FM1; 1: FM2; 2: AM;
@@ -57,6 +62,9 @@ Store {
         }
     }
     property int currentStationIndex
+    property var currentStation: null
+    readonly property string currentStationName: root.getStationName()
+    property string currentStationUrl
 
     readonly property int tunerBand: tunerControl.band
     readonly property real minimumFrequency: tunerBand === AmFmTuner.AMBand ? convertHzToKHz(tunerControl.minimumFrequency) :
@@ -65,7 +73,6 @@ Store {
                                                                     convertHzToMHz(tunerControl.maximumFrequency)
     readonly property real currentFrequency: tunerBand === AmFmTuner.AMBand ? convertHzToKHz(tunerControl.frequency) :
                                                                     convertHzToMHz(tunerControl.frequency)
-    property var currentStation
 
     readonly property string freqUnit: root.tunerBand === AmFmTuner.AMBand ? qsTr("KHz") : qsTr("MHz")
 
@@ -84,47 +91,54 @@ Store {
         }
     }
 
-    // TODO: Simulation models. Should be using the one from QtIVI.
+    // TODO: Simulation models. QtIVI models are not updated yet and only have two available stations.
     readonly property ListModel fm1Stations: ListModel {
-
         ListElement {
             freq: 87.5
-            stationName: "Radio Qt"
+            stationName: "Jazzophile"
+            url: "http://streaming.radionomy.com/Jazzophile?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
-            freq: 90.0
-            stationName: "Radio 2"
-        }
-
-        ListElement {
-            freq: 93.5
-            stationName: "Radio 3"
-        }
-
-        ListElement {
-            freq: 96.8
-            stationName: "Radio 4"
-        }
-
-        ListElement {
-            freq: 98.7
-            stationName: "Radio 5"
+            freq: 99.4
+            stationName: "Sunshine FM"
+            url: "http://stream.composeit.hu:8100/;.m3u"
         }
 
         ListElement {
             freq: 101.0
-            stationName: "Radio 6"
+            stationName: "Smooth Jazz"
+            url: "http://streaming.radionomy.com/101SMOOTHJAZZ?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
-            freq: 102.5
-            stationName: "Radio Qt Rocks non-stop"
+            freq: 101.7
+            stationName: "Alpha FM"
+            url: "http://streaming.shoutcast.com/AlphaFM101-7?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+        }
+
+        ListElement {
+            freq: 98.7
+            stationName: "Lex and Terry"
+            url: "http://streaming.shoutcast.com/lexandterry?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+        }
+
+        ListElement {
+            freq: 91.5
+            stationName: "Rok Radio"
+            url: "http://s1.viastreaming.net:9155/;.m3u"
+        }
+
+        ListElement {
+            freq: 93.5
+            stationName: "Hotmix Radio"
+            url: "http://streaming.hotmixradio.fr/hotmixradio-80-128.mp3?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 103.8
-            stationName: "Radio 8"
+            stationName: "Beatles Radio"
+            url: "http://www.beatlesradio.com:8000/stream/1/;.m3u"
         }
     }
 
@@ -132,42 +146,50 @@ Store {
 
         ListElement {
             freq: 89.5
-            stationName: "Radio 1"
+            stationName: "Calm Radio"
+            url: "http://184.173.142.117:30228/stream"
         }
 
         ListElement {
             freq: 95.0
-            stationName: "Radio 2"
+            stationName: "ABC Lounge"
+            url: "http://streaming.radionomy.com/ABC-Lounge?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 98.5
-            stationName: "Radio 3"
+            stationName: "Radio Mozart"
+            url: "http://streaming.radionomy.com/Radio-Mozart?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 99.9
-            stationName: "Radio 4"
+            stationName: "Absolute Chillout"
+            url: "http://streaming.radionomy.com/ABSOLUTECHILLOUT?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 103.0
-            stationName: "Radio 5"
+            stationName: "FD LOUNGE RADIO"
+            url: "http://streaming.radionomy.com/FD-LOUNGE-RADIO?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 100.7
-            stationName: "Radio 6"
+            stationName: "Radio RTM"
+            url: "http://streaming.radionomy.com/RadioRTM?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
         }
 
         ListElement {
             freq: 103.8
-            stationName: "Radio 7"
+            stationName: "One Radio"
+            url: "http://107.161.180.90:9984/stream/;.m3u"
         }
 
         ListElement {
             freq: 104.2
-            stationName: "Radio 8"
+            stationName: "Discofox FM"
+            url: "http://87.118.78.71:12000/;.m3u"
         }
     }
 
@@ -176,41 +198,69 @@ Store {
         ListElement {
             freq: 540
             stationName: "Radio 1"
+            url: ""
         }
 
         ListElement {
             freq: 690
             stationName: "Radio 2"
+            url: ""
         }
 
         ListElement {
             freq: 900
             stationName: "Radio 3"
+            url: ""
         }
 
         ListElement {
             freq: 1001
             stationName: "Radio 4"
+            url: ""
         }
 
         ListElement {
             freq: 1010
             stationName: "Radio 5"
+            url: ""
         }
 
         ListElement {
             freq: 1200
             stationName: "Radio 6"
+            url: ""
         }
 
         ListElement {
             freq: 1550
             stationName: "Radio 7"
+            url: ""
         }
 
         ListElement {
             freq: 1690
             stationName: "Radio 8"
+            url: ""
+        }
+    }
+
+    readonly property ListModel currentPresetModel: {
+        if (root.freqPresets === 0) {
+            return root.fm1Stations;
+        } else if (root.freqPresets === 1) {
+            return root.fm2Stations;
+        } else {
+            return root.amStations;
+        }
+    }
+
+    function getStationName() {
+        if (freqPresets === 0) {
+            return root.fm1Stations.get(root.currentStationIndex).stationName
+        } else if (freqPresets === 1) {
+            return root.fm2Stations.get(root.currentStationIndex).stationName
+        } else if (freqPresets === 2) {
+            return root.amStations.get(root.currentStationIndex).stationName
         }
     }
 
@@ -223,57 +273,89 @@ Store {
     }
 
     function scanBack() {
-        if (freqPresets === 0) {
-            if (root.currentStationIndex - 1 >= 0) {
-                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex - 1;
+        var randNumber = Math.floor((Math.random() * 50))
+        var parameter = 0.1
+        if (root.tunerBand === AmFmTuner.AMBand) {
+            parameter = 10
+        }
+
+        for (var x = 0; x < randNumber; ++x) {
+            if (root.currentFrequency - parameter > root.minimumFrequency) {
+                root.setFrequency(root.currentFrequency - parameter)
             } else {
-                setFrequency(root.fm1Stations.get(7).freq);
-                root.currentStationIndex = 7;
-            }
-        } else if (freqPresets === 1) {
-            if (root.currentStationIndex - 1 >= 0) {
-                setFrequency(root.fm2Stations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex - 1;
-            } else {
-                setFrequency(root.fm2Stations.get(7).freq);
-                root.currentStationIndex = 7;
-            }
-        } else if (freqPresets === 2) {
-            if (root.currentStationIndex - 1 >= 0) {
-                setFrequency(root.amStations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex - 1;
-            } else {
-                setFrequency(root.amStations.get(7).freq);
-                root.currentStationIndex = 7;
+                root.setFrequency(root.maximumFrequency)
             }
         }
     }
 
     function scanForward() {
-        if (freqPresets === 0) {
-            if (root.currentStationIndex + 1 < 8) {
-                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex + 1;
+        var randNumber = Math.floor((Math.random() * 50))
+        var parameter = 0.1
+        if (root.tunerBand === AmFmTuner.AMBand) {
+            parameter = 10
+        }
+
+        for (var x = 0; x < randNumber; ++x) {
+            if (root.currentFrequency + parameter < root.maximumFrequency) {
+                root.setFrequency(root.currentFrequency + parameter)
             } else {
-                setFrequency(root.fm1Stations.get(0).freq);
-                root.currentStationIndex = 0;
+                root.setFrequency(root.minimumFrequency)
+            }
+        }
+    }
+
+    function prevStation() {
+        if (freqPresets === 0) {
+            if (root.currentStationIndex - 1 >= 0) {
+                root.currentStationIndex = root.currentStationIndex - 1;
+                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
+            } else {
+                root.currentStationIndex = root.fm1Stations.count - 1;
+                setFrequency(root.fm1Stations.get(root.fm1Stations.count - 1).freq);
             }
         } else if (freqPresets === 1) {
-            if (root.currentStationIndex + 1 < 8) {
+            if (root.currentStationIndex - 1 >= 0) {
+                root.currentStationIndex = root.currentStationIndex - 1;
                 setFrequency(root.fm2Stations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex + 1;
             } else {
-                setFrequency(root.fm2Stations.get(0).freq);
-                root.currentStationIndex = 0;
+                root.currentStationIndex = root.fm2Stations.count - 1;
+                setFrequency(root.fm2Stations.get(root.fm2Stations.count - 1).freq);
             }
         } else if (freqPresets === 2) {
-            if (root.currentStationIndex + 1 < 8) {
+            if (root.currentStationIndex - 1 >= 0) {
+                root.currentStationIndex = root.currentStationIndex - 1;
                 setFrequency(root.amStations.get(root.currentStationIndex + 1).freq);
-                root.currentStationIndex = root.currentStationIndex + 1;
             } else {
-                setFrequency(root.amStations.get(0).freq);
+                root.currentStationIndex = root.amStations.count - 1;
+                setFrequency(root.amStations.get(root.amStations.count - 1).freq);
+            }
+        }
+    }
+
+    function nextStation() {
+        if (freqPresets === 0) {
+            if (root.currentStationIndex + 1 < root.fm1Stations.count) {
+                root.currentStationIndex = root.currentStationIndex + 1;
+                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
+            } else {
                 root.currentStationIndex = 0;
+                setFrequency(root.fm1Stations.get(0).freq);
+            }
+        } else if (freqPresets === 1) {
+            if (root.currentStationIndex + 1 < root.fm2Stations.count) {
+                root.currentStationIndex = root.currentStationIndex + 1;
+                setFrequency(root.fm2Stations.get(root.currentStationIndex + 1).freq);
+            } else {
+                root.currentStationIndex = 0;
+                setFrequency(root.fm2Stations.get(0).freq);
+            }
+        } else if (freqPresets === 2) {
+            if (root.currentStationIndex + 1 < root.amStations.count) {
+                root.currentStationIndex = root.currentStationIndex + 1;
+                setFrequency(root.amStations.get(root.currentStationIndex + 1).freq);
+            } else {
+                root.currentStationIndex = 0;
+                setFrequency(root.amStations.get(0).freq);
             }
         }
     }
@@ -285,6 +367,20 @@ Store {
         } else {
             var newFrequencyAM = Math.round(frequency * 10) * 100 // Round to get a nice number in the KHz interval
             tunerControl.setFrequency(newFrequencyAM);
+        }
+
+        if (root.freqPresets === 0 && root.fm1Stations.get(root.currentStationIndex).url !== "") {
+            root.currentStationUrl = root.fm1Stations.get(root.currentStationIndex).url;
+            root.player.play();
+        } else if (root.freqPresets === 1 && root.fm2Stations.get(root.currentStationIndex).url !== "") {
+            root.currentStationUrl = root.fm2Stations.get(root.currentStationIndex).url;
+            root.player.play();
+        } else if (root.freqPresets === 2 && root.amStations.get(root.currentStationIndex).url !== "") {
+            root.currentStationUrl = root.amStations.get(root.currentStationIndex).url;
+            root.player.play();
+        } else {
+            root.currentStationUrl = ""
+            root.player.stop();
         }
     }
 

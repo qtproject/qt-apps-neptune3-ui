@@ -50,7 +50,6 @@ Item {
         onCurrentFrequencyChanged: {
             if (!slider.dragging) {
                 stationInfo.tuningMode = false
-                slider.value = root.store.currentFrequency
             }
         }
     }
@@ -69,7 +68,8 @@ Item {
                 Layout.preferredHeight: Style.vspan(1)
                 symbol: Style.symbol("ic_skipprevious")
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: root.store.scanBack()
+                onClicked: root.store.prevStation()
+                onPressAndHold: root.store.scanBack()
             }
 
             Label {
@@ -83,8 +83,9 @@ Item {
                 id: stationInfo
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: Style.vspan(0.25)
-                title: root.store.currentStation.stationName
+                title: root.store.currentStationName
                 radioText: root.store.currentStation.radioText
+                numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
                 frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
             }
 
@@ -100,7 +101,8 @@ Item {
                 Layout.preferredHeight: Style.vspan(1)
                 symbol: Style.symbol("ic_skipnext")
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: root.store.scanForward()
+                onClicked: root.store.nextStation()
+                onPressAndHold: root.store.scanForward()
             }
         }
 
@@ -118,6 +120,7 @@ Item {
             minimum: minFrequency
             maximum: maxFrequency
             useAnimation: true
+            numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
 
             onActiveValueChanged: value = activeValue
 
@@ -143,16 +146,22 @@ Item {
 
         model: root.store.freqPresetsModel
         cellWidth: Style.hspan(4.8); cellHeight: Style.hspan(2.2)
+        currentIndex: 0
 
         delegate: DelegatedGrid {
             width: Style.hspan(4.65)
             height: Style.hspan(2)
             text: name
-            onClicked: root.store.freqPresets = index
+            checked: index === freqPresetsGrid.currentIndex
+            onClicked: {
+                freqPresetsGrid.currentIndex = index;
+                root.store.freqPresets = index;
+            }
         }
     }
 
     GridView {
+        id: stationsGrid
         width: root.width * 0.8
         height: Style.vspan(5)
         anchors.top: freqPresetsGrid.bottom
@@ -160,24 +169,24 @@ Item {
 
         cellWidth: Style.hspan(4.8); cellHeight: cellWidth
         interactive: false
-
-        model: {
-            if (root.store.freqPresets === 0) {
-                return root.store.fm1Stations;
-            } else if (root.store.freqPresets === 1) {
-                return root.store.fm2Stations;
-            } else {
-                return root.store.amStations;
-            }
+        highlightFollowsCurrentItem: false
+        currentIndex: 0
+        onCurrentIndexChanged: {
+            root.store.currentStationIndex = stationsGrid.currentIndex;
+            root.store.setFrequency(stationsGrid.currentItem.frequency);
         }
+
+        model: root.store.currentPresetModel
 
         delegate: DelegatedGrid {
             width: Style.hspan(4.65)
             height: Style.hspan(4)
-            text: freq.toLocaleString(Qt.locale(), 'f', 1)
+            readonly property real frequency: freq
+            readonly property int numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
+            text: frequency.toLocaleString(Qt.locale(), 'f', numberOfDecimals)
+            checked: index === stationsGrid.currentIndex
             onClicked: {
-                root.store.setFrequency(freq);
-                root.store.currentStationIndex = index;
+                stationsGrid.currentIndex = index;
             }
         }
     }
