@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -172,7 +172,7 @@ TritonPopup {
         Label {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            text: model ? model.leftSeat.valueString : ""
+            text: leftTempSlider.valueAt(leftTempSlider.position).toLocaleString(Qt.locale(), 'f', 1) + model.tempSuffix
             font.pixelSize: TritonStyle.fontSizeXL
             opacity: 0.6
         }
@@ -211,7 +211,7 @@ TritonPopup {
         Label {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            text: model ? model.rightSeat.valueString : ""
+            text: rightTempSlider.valueAt(rightTempSlider.position).toLocaleString(Qt.locale(), 'f', 1) + model.tempSuffix
             font.pixelSize: TritonStyle.fontSizeXL
             opacity: 0.6
         }

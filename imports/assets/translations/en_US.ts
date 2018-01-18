@@ -336,17 +336,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="249"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="276"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="285"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="312"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="294"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="321"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
@@ -647,13 +647,13 @@
 <context>
     <name>TemperatureSlider</name>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="137"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="138"/>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="150"/>
+        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="151"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>

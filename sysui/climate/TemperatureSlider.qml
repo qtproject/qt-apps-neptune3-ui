@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -44,6 +44,7 @@ Slider {
     orientation: Qt.Vertical
     stepSize: 0.5
     snapMode: Slider.SnapOnRelease
+    live: false
 
     readonly property int leftSide: 0
     readonly property int rightSide: 1
