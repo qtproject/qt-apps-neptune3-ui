@@ -297,6 +297,10 @@ Item {
             delegate: Column {
                 id: repeaterDelegate
 
+                // So that the touch area of the resize handle in this item covers the widget
+                // in the next delegate
+                z: repeater.model.count - model.index
+
                 Component.onCompleted: {
                     initialized = true;
                 }
@@ -567,9 +571,30 @@ Item {
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: column.onResizeHandlePressed(mapToItem(root, mouseX, mouseY))
-                        onReleased: column.onResizeHandleReleased(mapToItem(root, mouseX, mouseY))
-                        onPositionChanged: column.onResizeHandleDragged(mapToItem(root, mouseX, mouseY))
+
+                        // don't let it cover the area near widget corners as they can have buttons
+                        // like widget-drag and widget-close
+                        anchors.leftMargin: Style.hspan(2)
+                        anchors.rightMargin: Style.hspan(2)
+
+                        // touch area spills out beyond resizeHandle's geometry so that it's easier to hit
+                        anchors.topMargin: -parent.height
+                        anchors.bottomMargin: -parent.height
+
+                        // distance between the center of the mouse area and the point that was pressed
+                        property real pressedYDelta
+
+                        // Always tell column that the vertical center of the handle got pressed as it
+                        // sits neatly between the widget above and the widget below whereas its touch
+                        // area can spill over both neighboring widgets. Makes it possible for column
+                        // to figure out which handle is being dragged without having to know about the
+                        // size of their touch areas.
+                        onPressed: {
+                            pressedYDelta = mouseY - (height / 2);
+                            column.onResizeHandlePressed(mapToItem(root, mouseX, height / 2))
+                        }
+                        onReleased: column.onResizeHandleReleased(mapToItem(root, mouseX, mouseY - pressedYDelta))
+                        onPositionChanged: column.onResizeHandleDragged(mapToItem(root, mouseX, mouseY - pressedYDelta))
                     }
                 }
             }
