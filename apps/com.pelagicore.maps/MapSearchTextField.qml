@@ -39,8 +39,7 @@ TextField {
 
     property color searchTextColor: TritonStyle.primaryTextColor
 
-    font.family: Style.fontFamily
-    font.pixelSize: Style.fontSizeM
+    font.pixelSize: TritonStyle.fontSizeM
 
     leftPadding: Style.hspan(0.4)
     rightPadding: Style.hspan(0.4)
