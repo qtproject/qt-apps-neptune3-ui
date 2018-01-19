@@ -81,7 +81,7 @@ Control {
                         Layout.fillWidth: true
                         Layout.column: 1
                         Layout.row: 0
-                        text: qsTranslate("SettingsPanel", model.title)
+                        text: qsTranslate("RootStore", model.title)
                     }
                     Item {
                         Layout.column: 0

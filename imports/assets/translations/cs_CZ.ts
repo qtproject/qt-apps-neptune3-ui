@@ -149,22 +149,22 @@
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="56"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
         <translation>Datum &amp; čas</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="61"/>
         <source>24h time</source>
         <translation>24 hodinový</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="67"/>
         <source>Set Automatically</source>
         <translation>Nastavit automaticky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/DateTimePanel.qml" line="71"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="71"/>
         <source>Time Zone</source>
         <translation>Časové pásmo</translation>
     </message>
@@ -349,7 +349,7 @@
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/LanguagePanel.qml" line="62"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/LanguagePanel.qml" line="62"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
@@ -632,6 +632,19 @@
     </message>
 </context>
 <context>
+    <name>RootStore</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="86"/>
+        <source>Light</source>
+        <translation type="unfinished">Světlý</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="87"/>
+        <source>Dark</source>
+        <translation type="unfinished">Tmavý</translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <location filename="../../system/models/settings/SettingsModel.qml" line="44"/>
@@ -732,14 +745,12 @@
 <context>
     <name>SettingsPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="58"/>
         <source>Light</source>
-        <translation>Světlý</translation>
+        <translation type="vanished">Světlý</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="59"/>
         <source>Dark</source>
-        <translation>Tmavý</translation>
+        <translation type="vanished">Tmavý</translation>
     </message>
     <message>
         <source>languages</source>
@@ -757,17 +768,17 @@
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="89"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="80"/>
         <source>languages</source>
         <translation>jazyky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="90"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="81"/>
         <source>date</source>
         <translation>datum</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="82"/>
         <source>themes</source>
         <translation>motivy</translation>
     </message>
@@ -812,7 +823,7 @@
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/ThemesPanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
         <translation>Motivy</translation>
     </message>

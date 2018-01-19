@@ -31,14 +31,19 @@
 
 import QtQuick 2.8
 import utils 1.0
+
+import "views"
 import "store"
 
 AppUIScreen {
     id: root
 
-    SettingsPanel {
+    SettingsView {
         anchors.fill: parent
-        store: Store {}
-        onLanguageRequested: root.setWindowProperty("requestedLanguage", language);
+        store: RootStore {
+            onCurrentLanguageChanged: {
+                root.setWindowProperty("requestedLanguage", currentLanguage);
+            }
+        }
     }
 }

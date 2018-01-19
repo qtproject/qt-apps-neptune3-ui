@@ -419,6 +419,17 @@
     </message>
 </context>
 <context>
+    <name>RootStore</name>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">Hell</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">Dunkel</translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <source>Hill Descent Control</source>
@@ -501,11 +512,11 @@
     <name>SettingsPanel</name>
     <message>
         <source>Light</source>
-        <translation>Hell</translation>
+        <translation type="vanished">Hell</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation>Dunkel</translation>
+        <translation type="vanished">Dunkel</translation>
     </message>
 </context>
 <context>

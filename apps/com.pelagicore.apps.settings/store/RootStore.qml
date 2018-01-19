@@ -39,18 +39,21 @@ import "../helper"
 QtObject {
     id: root
 
-    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
-    readonly property ListModel languageModel: ListModel {}
 
-    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 0 // light
+    readonly property UISettings uiSettings: UISettings {}
 
-    readonly property var uiSettings: UISettings {}
-
+    // Time And Date Segment
     readonly property bool twentyFourHourTimeFormat: uiSettings.twentyFourHourTimeFormat !== undefined ?
                                                          uiSettings.twentyFourHourTimeFormat
                                                          // "ap" here indicates the presence of AM/PM suffix;
                                                          // Locale has no other way of telling whether it uses 12 or 24h time format
                                                        : Qt.locale().timeFormat(Locale.ShortFormat).indexOf("ap") === -1
+
+
+    // Language Segment
+    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
+    readonly property ListModel languageModel: ListModel {}
+
     function populateLanguages() {
         languageModel.clear()
         var translations = uiSettings.languages.length !== 0 ? uiSettings.languages : Style.translation.availableTranslations;
@@ -74,11 +77,22 @@ QtObject {
         uiSettings.setTwentyFourHourTimeFormat(value);
     }
 
+    // Theme Segment
+    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 0 // light
+
+    readonly property ListModel themeModel: ListModel {
+        // TODO: This data will be populated from settings server later
+        // the server stores the "theme" as an integer
+        ListElement { title: QT_TR_NOOP('Light'); theme: 'light' }
+        ListElement { title: QT_TR_NOOP('Dark'); theme: 'dark' }
+    }
+
     function updateTheme(value) {
         console.log(Helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
     }
 
+    // Initialization
     Component.onCompleted: {
         populateLanguages();
     }

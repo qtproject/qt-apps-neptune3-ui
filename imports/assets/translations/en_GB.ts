@@ -408,6 +408,17 @@
     </message>
 </context>
 <context>
+    <name>RootStore</name>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <source>Hill Descent Control</source>
@@ -483,17 +494,6 @@
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SettingsPanel</name>
-    <message>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

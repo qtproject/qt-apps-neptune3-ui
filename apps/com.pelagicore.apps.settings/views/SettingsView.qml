@@ -34,29 +34,20 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import utils 1.0
 import controls 1.0
-import "assets"
-import "store"
 
+import "../assets"
+import "../store"
+import "../panels"
 
-Item {
+Control {
     id: root
     implicitWidth: Style.hspan(12)
     implicitHeight: Style.vspan(12)
 
-    property Store store
-
-    signal languageRequested(string language)
+    property RootStore store
 
     ButtonGroup {
         id: toolGroup
-    }
-
-    ListModel {
-        id: themeModel
-        // TODO: This data will be populated from settings server later
-        // the server stores the "theme" as an integer
-        ListElement { title: QT_TR_NOOP('Light'); theme: 'light' }
-        ListElement { title: QT_TR_NOOP('Dark'); theme: 'dark' }
     }
 
     Image {
@@ -102,10 +93,7 @@ Item {
             LanguagePanel {
                 model: store.languageModel
                 currentLanguage: store.currentLanguage
-                onLanguageRequested: {
-                    store.updateLanguage(language);
-                    root.languageRequested(language);
-                }
+                onLanguageRequested: store.updateLanguage(language);
             }
 
             DateTimePanel {
@@ -114,11 +102,9 @@ Item {
             }
 
             ThemesPanel {
-                model: themeModel
+                model: store.themeModel
                 currentTheme: store.currentTheme
-                onThemeRequested: {
-                    store.updateTheme(theme);
-                }
+                onThemeRequested: store.updateTheme(theme);
             }
         }
     }
