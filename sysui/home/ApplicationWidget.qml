@@ -200,7 +200,6 @@ Item {
 
     // Close button
     MouseArea {
-        id: closeButton
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         anchors.margins: -Style.hspan(0.2)
