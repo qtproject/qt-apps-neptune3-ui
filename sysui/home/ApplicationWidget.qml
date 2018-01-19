@@ -181,8 +181,8 @@ Item {
         id: dragHandle
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.margins: 10
-        width: Style.hspan(1)
+        anchors.margins: -Style.hspan(0.2)
+        width: Style.hspan(1.6)
         height: width
         visible: root.buttonsVisible
 
@@ -203,8 +203,8 @@ Item {
         id: closeButton
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        anchors.margins: 10
-        width: Style.hspan(1)
+        anchors.margins: -Style.hspan(0.2)
+        width: Style.hspan(1.6)
         height: width
         visible: root.buttonsVisible
 
