@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtApplicationManager 1.0
 import utils 1.0
 import com.pelagicore.styles.triton 1.0
+import models.system 1.0
 
 MonitorPanel {
     id: root
@@ -40,6 +41,10 @@ MonitorPanel {
     descriptionText: "RAM: "
     middleText: "50%"
     middleLine: 0.5
+
+    model: SystemMonitor
+
+    valueText: SystemModel.ramPercentage + "% " + SystemModel.ramBytes + "MB"
 
     delegate: Item {
         width: parent.width / root.model.count
@@ -51,7 +56,7 @@ MonitorPanel {
             color: TritonStyle.accentColor
             Rectangle {
                 width: parent.width
-                height: parent.height - ((model.memoryPss.total/SystemMonitor.totalMemory) * parent.height)
+                height: parent.height - ((model.memoryUsed/SystemMonitor.totalMemory) * parent.height)
                 color: "#efefef"
             }
         }

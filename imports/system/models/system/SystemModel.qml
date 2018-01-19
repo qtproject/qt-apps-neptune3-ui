@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -35,10 +35,9 @@ import QtQuick 2.0
 QtObject {
     id: root
 
-    property bool showProcessMonitor: false
-    property int frameRate: -1
-    property int cpuUsage: -1
-    property int ramPercentage: -1
-    property int ramUsage: -1
+    property bool showMonitorOverlay: false
+    property int cpuPercentage: -1
+    readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
+    property int ramBytes: -1
+    property int ramTotalBytes: -1
 }
-

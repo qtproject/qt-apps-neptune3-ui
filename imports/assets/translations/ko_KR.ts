@@ -4,17 +4,17 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="62"/>
+        <location filename="../../../sysui/about/About.qml" line="66"/>
         <source>Marketing</source>
         <translation>마케팅</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="66"/>
+        <location filename="../../../sysui/about/About.qml" line="71"/>
         <source>Monitor</source>
         <translation>모니터</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="70"/>
+        <location filename="../../../sysui/about/About.qml" line="76"/>
         <source>Running Apps</source>
         <translation>앱 실행</translation>
     </message>
@@ -384,9 +384,9 @@
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="148"/>
-        <source>Process Monitor on Status Bar</source>
-        <translation>상태 표시 줄의 프로세스 모니터</translation>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
+        <source>System Monitor Overlay</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -718,19 +718,16 @@
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="72"/>
         <source>FPS: %1</source>
-        <translation>FPS: %1</translation>
+        <translation type="vanished">FPS: %1</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="77"/>
         <source>CPU: %1 %</source>
-        <translation>CPU: %1 %</translation>
+        <translation type="vanished">CPU: %1 %</translation>
     </message>
     <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="82"/>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation>RAM: %1 MB (%2 %)</translation>
+        <translation type="vanished">RAM: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>

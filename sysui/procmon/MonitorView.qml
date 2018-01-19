@@ -36,143 +36,58 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 import models.system 1.0
-import QtApplicationManager 1.0
 
 import com.pelagicore.styles.triton 1.0
 
-Item {
+ColumnLayout {
     id: root
     clip: true
 
-    property int ram: 0
-    property real ramUsed: 0
-    property int cpu: 0
-    property var rootWindow
-    property var applicationWindows: []
-    property int reportingInterval: 1000
-    property int modelCount: 12
-    property var applicationModel
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: switchLabel.height
 
-    onCpuChanged: SystemModel.cpuUsage = root.cpu
-    onRamUsedChanged: {
-        SystemModel.ramPercentage = root.ram
-        SystemModel.ramUsage = root.ramUsed
-    }
-    Component.onCompleted: initialize()
+        Label {
+            id: switchLabel
+            anchors.top: parent.top
+            anchors.topMargin: Style.vspan(0.2)
+            anchors.right: switchControl.left
+            text: qsTr("System Monitor Overlay")
+            font.pixelSize: TritonStyle.fontSizeS
+        }
 
-    function initialize() {
-        SystemMonitor.reportingInterval = root.reportingInterval
-        SystemMonitor.count = root.modelCount
-        SystemMonitor.cpuLoadReportingEnabled = true
-        root.rootWindow = Window.window
-    }
-
-    function getApplicationWindows() {
-        root.applicationWindows = [];
-        if (root.applicationModel.activeAppId === "")
-            return
-        for (var i = 0; i < WindowManager.count; ++i) {
-            if (WindowManager.get(i).applicationId === root.applicationModel.activeAppId) {
-                root.applicationWindows.push(WindowManager.get(i).windowItem);
+        Switch {
+            id: switchControl
+            anchors.right: parent.right
+            anchors.verticalCenter: switchLabel.verticalCenter
+            property bool propagateValue: false;
+            onCheckedChanged: {
+                if (propagateValue) {
+                    SystemModel.showMonitorOverlay = checked;
+                }
+            }
+            Component.onCompleted: {
+                checked = SystemModel.showMonitorOverlay;
+                propagateValue = true;
             }
         }
     }
 
-    Connections {
-        target: SystemMonitor
-        onCpuLoadReportingChanged: root.cpu = (load * 100).toFixed(0)
+    CpuMonitor {
+        Layout.fillWidth: true
     }
 
-    ProcessMonitor {
-        id: processMon
-        applicationId: root.applicationModel.activeAppId
-        reportingInterval: root.reportingInterval
-        count: root.modelCount
-
-        memoryReportingEnabled: true
-        frameRateReportingEnabled: true
-        monitoredWindows: (applicationId === "" || ApplicationManager.singleProcess) ? [root.rootWindow] : root.applicationWindows
-        onMemoryReportingChanged: {
-            root.ram = (memoryPss.total/SystemMonitor.totalMemory * 100).toFixed(0)
-            root.ramUsed = (memoryPss.total / 1e6).toFixed(0);
-        }
-
-        onFrameRateReportingChanged: {
-            fpsMonitor.valueText = ""
-            for (var i in frameRate) {
-                fpsMonitor.valueText += "|"
-                fpsMonitor.valueText += frameRate[i].average.toFixed(0)
-                fpsMonitor.valueText += "|"
-                SystemModel.frameRate = frameRate[i].average.toFixed(0)
-            }
-        }
-
-        onApplicationIdChanged: getApplicationWindows()
+    RamMonitor {
+        Layout.fillWidth: true
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-
-        FpsMonitor {
-            id: fpsMonitor
-            Layout.fillWidth: true
-            model: processMon
-        }
-
-        CpuMonitor {
-            Layout.fillWidth: true
-            valueText: root.cpu + "%"
-        }
-
-        RamMonitor {
-            Layout.fillWidth: true
-            model: processMon
-            valueText: root.ram + "% " + root.ramUsed + "MB"
-        }
-
-        NetworkMonitor {
-            Layout.fillWidth: true
-        }
-
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
+    NetworkMonitor {
+        Layout.fillWidth: true
     }
 
-    Label {
-        id: switchLabel
-        anchors.top: parent.top
-        anchors.topMargin: Style.vspan(0.2)
-        anchors.right: switchControl.left
-        text: qsTr("Process Monitor on Status Bar")
-        font.pixelSize: TritonStyle.fontSizeXS
+    Item {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
     }
 
-    Switch {
-        id: switchControl
-
-        anchors.right: parent.right
-        anchors.verticalCenter: switchLabel.verticalCenter
-        indicator: Rectangle {
-            implicitWidth: Style.hspan(0.7)
-            implicitHeight: Style.vspan(0.2)
-            x: switchControl.leftPadding
-            y: parent.height / 2 - height / 2
-            radius: 13
-            color: switchControl.checked ? TritonStyle.accentColor : "#ffffff"
-            border.color: switchControl.checked ? TritonStyle.accentColor : "#cccccc"
-
-            Rectangle {
-                x: switchControl.checked ? parent.width - width : 0
-                width: Style.vspan(0.2)
-                height: width
-                radius: 13
-                color: switchControl.down ? "#cccccc" : "#ffffff"
-                border.color: switchControl.checked ? TritonStyle.accentColor : "#999999"
-            }
-        }
-
-        onCheckedChanged: SystemModel.showProcessMonitor = checked
-    }
 }

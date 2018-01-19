@@ -254,6 +254,26 @@ Item {
         }
     }
 
+
+    readonly property bool systemMonitorEnabled: SystemModel.showMonitorOverlay
+                                              || (about.state === "open" && about.currentTabName === "monitor")
+
+    Binding { target: SystemMonitor; property: "memoryReportingEnabled"; value: root.systemMonitorEnabled }
+    Binding { target: SystemMonitor; property: "cpuLoadReportingEnabled"; value: root.systemMonitorEnabled }
+    Binding { target: SystemMonitor; property: "reportingInterval"; value: 1000 }
+    Binding { target: SystemModel; property: "ramTotalBytes"; value: (SystemMonitor.totalMemory / 1e6).toFixed(0) }
+
+    // Fix in AppMan: SystemMonitor should have those as properties already instead of just a signals informing changes on them.
+    Connections {
+        target: SystemMonitor
+        onMemoryReportingChanged: {
+            SystemModel.ramBytes = (used / 1e6).toFixed(0);
+        }
+        onCpuLoadReportingChanged: {
+            SystemModel.cpuPercentage = (load * 100).toFixed(0);
+        }
+    }
+
     // TODO load popup only before opening it and unload after closed
     About {
         id: about

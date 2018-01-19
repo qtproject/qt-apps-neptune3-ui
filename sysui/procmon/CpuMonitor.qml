@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtApplicationManager 1.0
 import utils 1.0
 import com.pelagicore.styles.triton 1.0
+import models.system 1.0
 
 MonitorPanel {
     id: root
@@ -40,6 +41,7 @@ MonitorPanel {
     descriptionText: "CPU: "
     middleText: "50%"
     middleLine: 0.5
+    valueText: SystemModel.cpuPercentage + "%"
 
     model: SystemMonitor
 

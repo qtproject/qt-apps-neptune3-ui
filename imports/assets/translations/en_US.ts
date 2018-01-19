@@ -4,17 +4,17 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="62"/>
+        <location filename="../../../sysui/about/About.qml" line="66"/>
         <source>Marketing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="66"/>
+        <location filename="../../../sysui/about/About.qml" line="71"/>
         <source>Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="70"/>
+        <location filename="../../../sysui/about/About.qml" line="76"/>
         <source>Running Apps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -354,8 +354,8 @@
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="148"/>
-        <source>Process Monitor on Status Bar</source>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
+        <source>System Monitor Overlay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -623,24 +623,6 @@
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>StatusBar</name>
-    <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="72"/>
-        <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="77"/>
-        <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../sysui/statusbar/StatusBar.qml" line="82"/>
-        <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

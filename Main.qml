@@ -36,6 +36,7 @@ import QtQuick.Controls 2.2
 import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import display 1.0
+import models.system 1.0
 import utils 1.0
 import instrumentcluster 1.0
 import com.pelagicore.settings 1.0
@@ -216,6 +217,27 @@ Window {
             opacity: popupParent.showModalOverlay ? 0.3 : 0
             Behavior on opacity { DefaultNumberAnimation {}  }
             z: -1
+        }
+    }
+
+    // System Monitor Overlay
+    Item {
+        anchors.fill: display
+        rotation: display.rotation
+        visible: SystemModel.showMonitorOverlay
+        Column {
+            anchors.top: parent.top
+            anchors.topMargin: Style.vspan(0.5)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(1)
+            Label {
+                text: qsTr("CPU: %1 %").arg(SystemModel.cpuPercentage)
+                font.pixelSize: TritonStyle.fontSizeXS
+            }
+            Label {
+                text: qsTr("RAM: %1 MB (%2 %)").arg(SystemModel.ramBytes).arg(SystemModel.ramPercentage)
+                font.pixelSize: TritonStyle.fontSizeXS
+            }
         }
     }
 

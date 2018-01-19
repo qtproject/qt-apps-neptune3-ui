@@ -293,7 +293,7 @@
 <context>
     <name>MonitorView</name>
     <message>
-        <source>Process Monitor on Status Bar</source>
+        <source>System Monitor Overlay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -512,21 +512,6 @@
     </message>
     <message>
         <source>themes</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>StatusBar</name>
-    <message>
-        <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CPU: %1 %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

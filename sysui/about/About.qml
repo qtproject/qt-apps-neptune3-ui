@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import triton.controls 1.0
 
+import "../procmon"
+
 TritonPopup {
     id: root
     width: Style.hspan(22)
@@ -44,6 +46,8 @@ TritonPopup {
     property var applicationModel
 
     bottomPadding: Style.hspan(0.35)
+
+    property string currentTabName: tabBar.currentItem.name
 
     contentItem: ColumnLayout {
         Image {
@@ -60,14 +64,17 @@ TritonPopup {
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Marketing")
+                property string name: "marketing"
             }
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Monitor")
+                property string name: "monitor"
             }
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Running Apps")
+                property string name: "apps"
             }
         }
 
@@ -77,8 +84,9 @@ TritonPopup {
             Layout.fillHeight: true
             currentIndex: tabBar.currentIndex
             AboutMarketing {}
-            AboutProcess {
-                applicationModel: root.applicationModel
+            MonitorView {
+                implicitWidth: Style.hspan(18)
+                implicitHeight: Style.vspan(16)
             }
             AboutRunningApps {
                 applicationModel: root.applicationModel
