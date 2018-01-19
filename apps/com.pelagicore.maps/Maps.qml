@@ -90,8 +90,8 @@ Item {
         id: priv
         property var positionCoordinate: QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc ;)
         Behavior on positionCoordinate { CoordinateAnimation {} }
-        readonly property string defaultLightThemeId: "mapbox://styles/caybro/cjcg9k4pn66or2rpxxemwy2ub"
-        readonly property string defaultDarkThemeId: "mapbox://styles/caybro/cjcgd636468xo2rqqn1mius8h"
+        readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
+        readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
     }
 
     ListModel {
@@ -108,7 +108,7 @@ Item {
         PluginParameter {
             name: "mapboxgl.access_token"
             // TODO replace this personal token with a collective/company one
-            value: "pk.eyJ1IjoiY2F5YnJvIiwiYSI6ImNpczUxZDZnazAwMTMyeXAwZHZ2d2lxZ3kifQ.Pw2IOSDXeujXnbQA5GSDNg"
+            value: "pk.eyJ1IjoicXRhdXRvIiwiYSI6ImNqY20wbDZidzBvcTQyd3J3NDlkZ21jdjUifQ.4KYDlP7UmQEVPYffr6VuVQ"
         }
         PluginParameter {
             name: "mapboxgl.mapping.additional_style_urls"

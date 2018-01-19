@@ -328,7 +328,7 @@
 <context>
     <name>MapSearchTextField</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="65"/>
+        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="64"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
