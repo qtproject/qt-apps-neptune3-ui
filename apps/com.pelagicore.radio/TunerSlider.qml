@@ -37,11 +37,9 @@ import utils 1.0
 import controls 1.0
 import com.pelagicore.styles.triton 1.0
 
-Control {
-    id: root;
-    width: Style.hspan(8)
-    height: Style.vspan(2)
-    property real value // value is read/write.
+Item {
+    id: root
+    property real value
     property real minimum: 0
     property real maximum: 1
     property int length: width - handle.width
@@ -62,8 +60,6 @@ Control {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: handle.width * 0.5
-        anchors.rightMargin: handle.width * 0.5
         height: 4
         radius: 4
         border.color: Qt.lighter(color, 1.1)
@@ -73,60 +69,61 @@ Control {
 
     ColumnLayout {
         anchors.bottom: background.top
-        anchors.left: background.left
-        anchors.right: background.right
+        anchors.left: parent.left
+        anchors.right: parent.right
         anchors.bottomMargin: markers.markerWidth
-
         spacing: 0
 
         Item {
-            Layout.fillWidth: true
-            height: Style.vspan(1)
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: Style.vspan(0.7)
 
-                Label {
-                    width: contentWidth
-                    anchors.horizontalCenter: parent.left
-                    anchors.bottom: parent.bottom
-                    text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: TritonStyle.fontSizeS
-                }
+            Label {
+                width: contentWidth
+                anchors.horizontalCenter: parent.left
+                anchors.bottom: parent.bottom
+                text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: TritonStyle.fontSizeS
+            }
 
-                Label {
-                    width: contentWidth
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: Style.paddingXS
-                    text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: TritonStyle.fontSizeM
-                }
+            Label {
+                width: contentWidth
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: Style.paddingXS
+                text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: TritonStyle.fontSizeM
+            }
 
-                Label {
-                    width: contentWidth
-                    anchors.horizontalCenter: parent.right
-                    anchors.bottom: parent.bottom
-                    text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: TritonStyle.fontSizeS
-                }
+            Label {
+                width: contentWidth
+                anchors.horizontalCenter: parent.right
+                anchors.bottom: parent.bottom
+                text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: TritonStyle.fontSizeS
+            }
         }
 
         Item {
             id: markers
             height: Style.vspan(0.5)
-            Layout.fillWidth: true
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
 
-            property int markerWidth: 2
-            property int markerCount: 41
+            readonly property int markerWidth: 2
+            readonly property int markerCount: 41
 
-            RowLayout {
+            Row {
                 anchors.fill: parent
                 spacing: (parent.width - (markers.markerCount * markers.markerWidth)) / (markers.markerCount - 1)
                 Repeater {
                     model: markers.markerCount
                     delegate: Rectangle {
-                        id: marker
                         Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
                         transformOrigin: Item.Bottom
                         height: Style.vspan(0.5)
