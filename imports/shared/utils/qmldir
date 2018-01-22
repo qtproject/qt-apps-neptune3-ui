@@ -4,3 +4,4 @@ StageLoader 1.0 StageLoader.qml
 Store 1.0 Store.qml
 singleton Logging 1.0 Logging.qml
 SecondaryWindow 1.0 SecondaryWindow.qml
+Tracer 1.0 Tracer.qml
