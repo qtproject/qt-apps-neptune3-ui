@@ -366,17 +366,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="293"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="292"/>
         <source>Where do you wanna go today?</source>
         <translation>힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="339"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="338"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="349"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="348"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

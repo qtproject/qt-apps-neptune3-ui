@@ -387,17 +387,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="293"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="292"/>
         <source>Where do you wanna go today?</source>
         <translation>今天你想要去哪儿？</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="339"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="338"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="349"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="348"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

@@ -220,13 +220,15 @@ Item {
             property var lineJoin: "round"
             property var lineCap: "round"
         }
+
+        Behavior on tilt { DefaultSmoothedAnimation {} }
     }
 
     TritonControls.Tool {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: parent.top
-        anchors.topMargin: Style.hspan(0.6)
+        anchors.topMargin: Style.vspan(0.6)
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
@@ -234,11 +236,7 @@ Item {
             fillMode: Image.Pad
             source: Qt.resolvedUrl("assets/floating-button-bg.png")
         }
-        contentItem: Image {
-            fillMode: Image.Pad
-            // todo[mh]: check icon with designer
-            source: Qt.resolvedUrl("assets/ic-search.png")
-        }
+        symbol: Qt.resolvedUrl("assets/ic-search.png")
         onClicked: root.maximizeMap()
     }
 
@@ -251,7 +249,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
 
-        opacity: root.state !== "Widget1Row" ? 1 : 0
+        opacity: root.state && root.state !== "Widget1Row" ? 1 : 0
         visible: opacity > 0
         Behavior on opacity {
             SequentialAnimation {
@@ -351,6 +349,23 @@ Item {
                 secondaryText: "Östra Hamngatan 20"
             }
         }
+    }
+
+    TritonControls.Tool {
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(0.6)
+        anchors.top: header.bottom
+        anchors.topMargin: -Style.vspan(1.6)
+        checkable: true
+        opacity: root.state === "Maximized" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+        visible: opacity > 0
+        background: Image {
+            fillMode: Image.Pad
+            source: Qt.resolvedUrl("assets/floating-button-bg.png")
+        }
+        symbol: checked  ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
+        onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
     MapToolButton {
