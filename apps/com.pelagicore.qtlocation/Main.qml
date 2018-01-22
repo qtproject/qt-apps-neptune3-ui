@@ -62,6 +62,11 @@ QtObject {
                 multiPoint.count += 1
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
+
+            onMapCenterChanged: secondaryMap.mapCenter = mapCenter
+            onMapZoomLevelChanged: secondaryMap.mapZoomLevel = mapZoomLevel
+            onMapTiltChanged: secondaryMap.mapTilt = mapTilt
+            onMapBearingChanged: secondaryMap.mapBearing = mapBearing
         }
     }
 
@@ -69,7 +74,9 @@ QtObject {
         id: secondaryWindow
 
         Maps {
+            id: secondaryMap
             anchors.fill: parent
+            mapInteractive: false
         }
     }
 }

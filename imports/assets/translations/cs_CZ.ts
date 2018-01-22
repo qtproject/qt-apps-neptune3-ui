@@ -400,17 +400,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="291"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="298"/>
         <source>Where do you wanna go today?</source>
         <translation>Kam se chcete vydat dnes?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="337"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="344"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="347"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="354"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

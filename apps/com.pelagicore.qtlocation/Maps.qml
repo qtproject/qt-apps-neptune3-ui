@@ -47,6 +47,13 @@ Item {
     readonly property var plugins: ["mapboxgl", "osm"]
     property int currentPlugin: 0 // 0: mapboxgl; 1: osm
 
+    // props for secondary window
+    property bool mapInteractive: true
+    property alias mapCenter: mainMap.center
+    property alias mapZoomLevel: mainMap.zoomLevel
+    property alias mapTilt: mainMap.tilt
+    property alias mapBearing: mainMap.bearing
+
     signal maximizeMap()
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
@@ -89,7 +96,6 @@ Item {
     QtObject {
         id: priv
         property var positionCoordinate: QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc ;)
-        Behavior on positionCoordinate { CoordinateAnimation {} }
         readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
         readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
     }
@@ -150,11 +156,12 @@ Item {
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         plugin: mapPlugin
         center: priv.positionCoordinate
+        Behavior on center { enabled: root.mapInteractive; CoordinateAnimation { easing.type: Easing.InOutCirc; duration: 540 } }
         zoomLevel: 10
         copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
 
         gesture {
-            enabled: true
+            enabled: root.mapInteractive
             // effectively disable the rotation gesture
             acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture
         }
