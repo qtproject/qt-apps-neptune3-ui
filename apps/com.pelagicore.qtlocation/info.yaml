@@ -1,7 +1,7 @@
 formatVersion: 1
 formatType: am-application
 ---
-id:      'com.pelagicore.maps'
+id:      'com.pelagicore.qtlocation'
 icon:    'icon.png'
 code:    'Main.qml'
 runtime: 'qml'

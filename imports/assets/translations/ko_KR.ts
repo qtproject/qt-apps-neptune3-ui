@@ -358,7 +358,7 @@
 <context>
     <name>MapSearchTextField</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/MapSearchTextField.qml" line="64"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapSearchTextField.qml" line="64"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -366,17 +366,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="291"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="291"/>
         <source>Where do you wanna go today?</source>
         <translation>힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="337"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="337"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="347"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="347"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
