@@ -585,27 +585,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RadioStore</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="51"/>
         <source>FM1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="53"/>
         <source>FM2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="59"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
         <source>AM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="77"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>KHz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="77"/>
+        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>MHz</source>
         <translation type="unfinished"></translation>
     </message>

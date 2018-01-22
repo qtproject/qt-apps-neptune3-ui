@@ -47,6 +47,10 @@ Item {
     Connections {
         target: root.store
 
+        onCurrentStationIndexChanged: {
+            stationsGrid.currentIndex = root.store.currentStationIndex;
+        }
+
         onCurrentFrequencyChanged: {
             if (!slider.dragging) {
                 stationInfo.tuningMode = false
@@ -84,7 +88,6 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: Style.vspan(0.25)
                 title: root.store.currentStationName
-                radioText: root.store.currentStation.radioText
                 numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
                 frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
             }
@@ -172,7 +175,6 @@ Item {
         highlightFollowsCurrentItem: false
         currentIndex: 0
         onCurrentIndexChanged: {
-            root.store.currentStationIndex = stationsGrid.currentIndex;
             root.store.setFrequency(stationsGrid.currentItem.frequency);
         }
 
@@ -187,6 +189,7 @@ Item {
             checked: index === stationsGrid.currentIndex
             onClicked: {
                 stationsGrid.currentIndex = index;
+                root.store.currentStationIndex = index;
             }
         }
     }

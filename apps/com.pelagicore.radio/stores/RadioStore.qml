@@ -30,8 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtIvi 1.0
-import QtIvi.Media 1.0
 import QtMultimedia 5.9
 import utils 1.0
 
@@ -39,9 +37,7 @@ Store {
     id: root
 
     property AmFmTuner tunerControl: AmFmTuner {
-        discoveryMode: AmFmTuner.AutoDiscovery
-        band: freqPresets === 2 ? AmFmTuner.AMBand : AmFmTuner.FMBand
-        onStationChanged: root.currentStation = station
+        currentBand: freqPresets === 2 ? tunerControl.band.AMBand : tunerControl.band.FMBand
     }
 
     readonly property MediaPlayer player: MediaPlayer {
@@ -62,19 +58,18 @@ Store {
         }
     }
     property int currentStationIndex
-    property var currentStation: null
     readonly property string currentStationName: root.getStationName()
     property string currentStationUrl
 
-    readonly property int tunerBand: tunerControl.band
-    readonly property real minimumFrequency: tunerBand === AmFmTuner.AMBand ? convertHzToKHz(tunerControl.minimumFrequency) :
-                                                                    convertHzToMHz(tunerControl.minimumFrequency)
-    readonly property real maximumFrequency: tunerBand === AmFmTuner.AMBand ? convertHzToKHz(tunerControl.maximumFrequency) :
-                                                                    convertHzToMHz(tunerControl.maximumFrequency)
-    readonly property real currentFrequency: tunerBand === AmFmTuner.AMBand ? convertHzToKHz(tunerControl.frequency) :
-                                                                    convertHzToMHz(tunerControl.frequency)
+    readonly property int tunerBand: tunerControl.currentBand
+    readonly property real minimumFrequency: tunerBand === tunerControl.band.AMBand ? convertHzToKHz(tunerControl.amMinimumFrequency) :
+                                                                    convertHzToMHz(tunerControl.fmMinimumFrequency)
+    readonly property real maximumFrequency: tunerBand === tunerControl.band.AMBand ? convertHzToKHz(tunerControl.amMaximumFrequency) :
+                                                                    convertHzToMHz(tunerControl.fmMaximumFrequency)
+    readonly property real currentFrequency: tunerBand === tunerControl.band.AMBand ? convertHzToKHz(tunerControl.currentFrequency) :
+                                                                    convertHzToMHz(tunerControl.currentFrequency)
 
-    readonly property string freqUnit: root.tunerBand === AmFmTuner.AMBand ? qsTr("KHz") : qsTr("MHz")
+    readonly property string freqUnit: root.tunerBand === tunerControl.band.AMBand ? qsTr("KHz") : qsTr("MHz")
 
     property ListModel freqPresetsModel: ListModel {
 
@@ -264,8 +259,18 @@ Store {
         }
     }
 
-    function stepBack() {
-        tunerControl.stepDown()
+    function getStationText() {
+        if (freqPresets === 0) {
+            return root.fm1Stations.get(root.currentStationIndex).stationText
+        } else if (freqPresets === 1) {
+            return root.fm2Stations.get(root.currentStationIndex).stationText
+        } else if (freqPresets === 2) {
+            return root.amStations.get(root.currentStationIndex).stationText
+        }
+    }
+
+    function stepBackward() {
+        tunerControl.stepBackward()
     }
 
     function stepForward() {
@@ -275,7 +280,7 @@ Store {
     function scanBack() {
         var randNumber = Math.floor((Math.random() * 50))
         var parameter = 0.1
-        if (root.tunerBand === AmFmTuner.AMBand) {
+        if (root.tunerBand === tunerControl.band.AMBand) {
             parameter = 10
         }
 
@@ -291,7 +296,7 @@ Store {
     function scanForward() {
         var randNumber = Math.floor((Math.random() * 50))
         var parameter = 0.1
-        if (root.tunerBand === AmFmTuner.AMBand) {
+        if (root.tunerBand === tunerControl.band.AMBand) {
             parameter = 10
         }
 
@@ -308,7 +313,7 @@ Store {
         if (freqPresets === 0) {
             if (root.currentStationIndex - 1 >= 0) {
                 root.currentStationIndex = root.currentStationIndex - 1;
-                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.fm1Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = root.fm1Stations.count - 1;
                 setFrequency(root.fm1Stations.get(root.fm1Stations.count - 1).freq);
@@ -316,7 +321,7 @@ Store {
         } else if (freqPresets === 1) {
             if (root.currentStationIndex - 1 >= 0) {
                 root.currentStationIndex = root.currentStationIndex - 1;
-                setFrequency(root.fm2Stations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.fm2Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = root.fm2Stations.count - 1;
                 setFrequency(root.fm2Stations.get(root.fm2Stations.count - 1).freq);
@@ -324,7 +329,7 @@ Store {
         } else if (freqPresets === 2) {
             if (root.currentStationIndex - 1 >= 0) {
                 root.currentStationIndex = root.currentStationIndex - 1;
-                setFrequency(root.amStations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.amStations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = root.amStations.count - 1;
                 setFrequency(root.amStations.get(root.amStations.count - 1).freq);
@@ -336,7 +341,7 @@ Store {
         if (freqPresets === 0) {
             if (root.currentStationIndex + 1 < root.fm1Stations.count) {
                 root.currentStationIndex = root.currentStationIndex + 1;
-                setFrequency(root.fm1Stations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.fm1Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = 0;
                 setFrequency(root.fm1Stations.get(0).freq);
@@ -344,7 +349,7 @@ Store {
         } else if (freqPresets === 1) {
             if (root.currentStationIndex + 1 < root.fm2Stations.count) {
                 root.currentStationIndex = root.currentStationIndex + 1;
-                setFrequency(root.fm2Stations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.fm2Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = 0;
                 setFrequency(root.fm2Stations.get(0).freq);
@@ -352,7 +357,7 @@ Store {
         } else if (freqPresets === 2) {
             if (root.currentStationIndex + 1 < root.amStations.count) {
                 root.currentStationIndex = root.currentStationIndex + 1;
-                setFrequency(root.amStations.get(root.currentStationIndex + 1).freq);
+                setFrequency(root.amStations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = 0;
                 setFrequency(root.amStations.get(0).freq);
@@ -361,7 +366,7 @@ Store {
     }
 
     function setFrequency(frequency) {
-        if (root.tunerBand === AmFmTuner.FMBand) {
+        if (root.tunerBand === tunerControl.band.FMBand) {
             var newFrequency = Math.round(frequency * 10) * 100000 // Round to get a nice number in the MHz interval
             tunerControl.setFrequency(newFrequency);
         } else {
