@@ -359,17 +359,17 @@
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="292"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="291"/>
         <source>Where do you wanna go today?</source>
         <translation>あなたはヒンジを握っていますか？</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="338"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="337"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="348"/>
+        <location filename="../../../apps/com.pelagicore.maps/Maps.qml" line="347"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

@@ -368,34 +368,6 @@ Item {
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
-    MapToolButton {
-        id: zoomInBtn
-        anchors {
-            right: mainMap.right
-            top: header.bottom
-            topMargin: root.state === "Widget2Rows" ? -header.height/2 : 0
-        }
-        visible: root.state !== "Widget1Row"
-        text: "＋"
-        font.pixelSize: TritonStyle.fontSizeL
-        enabled: mainMap.zoomLevel + 1 <= mainMap.maximumZoomLevel
-        onClicked: zoomIn()
-        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
-    }
-
-    MapToolButton {
-        id: zoomOutBtn
-        anchors {
-            right: mainMap.right
-            top: zoomInBtn.bottom
-            topMargin: Style.vspan(.5)
-        }
-        text: "－"
-        font.pixelSize: TritonStyle.fontSizeL
-        enabled: mainMap.zoomLevel - 1 >= mainMap.minimumZoomLevel
-        onClicked: zoomOut()
-    }
-
     MapCopyrightNotice {
         anchors.left: mainMap.left
         anchors.bottom: mainMap.bottom
