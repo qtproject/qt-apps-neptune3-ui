@@ -86,7 +86,7 @@ Control {
                 baselineOffset: 0
                 text: qsTr("Browse")
                 font.pixelSize: Style.fontSizeS
-                symbol: Style.symbol("ic-expand-up", TritonStyle.theme)
+                symbol: Style.symbol("ic-expand-up")
                 onClicked: root.headerClicked()
             }
         }
