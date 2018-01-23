@@ -273,7 +273,7 @@ Window {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        width = TritonStyle.windowWidth
-        height = TritonStyle.windowHeight
+        width = root.contentItem.TritonStyle.windowWidth
+        height = root.contentItem.TritonStyle.windowHeight
     }
 }
