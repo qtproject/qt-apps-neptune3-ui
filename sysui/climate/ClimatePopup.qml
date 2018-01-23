@@ -191,7 +191,7 @@ TritonPopup {
             width: Style.hspan(1)
             height: width
             anchors.centerIn: parent
-            source: Style.symbol("ic-link-status", false /* active */, TritonStyle.theme)
+            source: Style.symbol("ic-link-status", TritonStyle.theme)
             fillMode: Image.Pad
             MouseArea {
                 anchors.fill: parent

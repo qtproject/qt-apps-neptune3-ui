@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -55,7 +55,7 @@ Control {
              // TODO: Replace this with real implementation. this is currently just a placeholder.
              delegate: Image {
                  height: root.height
-                 source: Style.symbol(modelData.icon, false, TritonStyle.theme)
+                 source: Style.symbol(modelData.icon, TritonStyle.theme)
                  fillMode: Image.Pad
                  opacity: modelData.active ? 1 : 0.4
              }

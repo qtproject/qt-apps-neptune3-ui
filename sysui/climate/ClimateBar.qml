@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -74,7 +74,7 @@ Item {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", false /* active */, TritonStyle.theme)
+            source: Style.symbol("ic-seat-heat-status", TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.leftSeat.heat
         }
@@ -90,14 +90,14 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-rear-defrost-status", false /* active */, TritonStyle.theme)
+            source: Style.symbol("ic-rear-defrost-status", TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.rearHeat.enabled
         }
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-front-defrost-status", false /* active */, TritonStyle.theme)
+            source: Style.symbol("ic-front-defrost-status", TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.frontHeat.enabled
         }
@@ -113,7 +113,7 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", false /* active */, TritonStyle.theme)
+            source: Style.symbol("ic-seat-heat-status", TritonStyle.theme)
             fillMode: Image.Pad
             visible: model.rightSeat.heat
         }

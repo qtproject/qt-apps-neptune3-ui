@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -57,7 +57,7 @@ Button {
                 Layout.preferredWidth: parent.width
                 Layout.preferredHeight: parent.height * 0.4
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: Style.symbol(root.icon, false /* active */, TritonStyle.theme)
+                source: Style.symbol(root.icon, TritonStyle.theme)
                 fillMode: Image.Pad
             }
 

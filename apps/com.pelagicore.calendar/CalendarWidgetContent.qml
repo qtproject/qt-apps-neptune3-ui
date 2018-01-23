@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -104,7 +104,7 @@ Item {
             spacing: Style.vspan(0.5)
 
             Image {
-                source: Style.symbol(root.weatherIcon, false, TritonStyle.theme)
+                source: Style.symbol(root.weatherIcon, TritonStyle.theme)
             }
 
             Column {

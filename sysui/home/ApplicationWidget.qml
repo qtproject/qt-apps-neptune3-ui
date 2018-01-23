@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -193,7 +193,7 @@ Item {
         Image {
             anchors.fill: parent
             anchors.centerIn: parent
-            source: Style.symbol("ic-widget-draghandle", false /* active */)
+            source: Style.symbol("ic-widget-draghandle")
             fillMode: Image.Pad
         }
     }
@@ -212,7 +212,7 @@ Item {
         Image {
             anchors.fill: parent
             anchors.centerIn: parent
-            source: Style.symbol("ic-widget-close", false /* active */)
+            source: Style.symbol("ic-widget-close")
             fillMode: Image.Pad
         }
     }

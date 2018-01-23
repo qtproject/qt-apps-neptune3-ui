@@ -82,9 +82,9 @@ QtObject {
         });
     }
 
-    function symbol(name, active, theme) {
+    function symbol(name, theme) {
         var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
-        return symbolUrl + (active ? '/active/' : '/') + name + themeStr + '.png';
+        return symbolUrl + '/' + name + themeStr + '.png';
     }
 
     function gfx2(name, theme) {

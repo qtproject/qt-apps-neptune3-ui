@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -83,8 +83,8 @@ ListView {
             Tool {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(0.5)
-                symbol: delegatedItem.isInstalled ? Style.symbol("ic-close", false, TritonStyle.theme) :
-                                                                   Style.symbol("ic-download_OFF")
+                symbol: delegatedItem.isInstalled ? Style.symbol("ic-close", TritonStyle.theme) :
+                                                    Style.symbol("ic-download_OFF")
                 opacity: delegatedItem.isInstalled ? 0.2 : 1.0
                 onClicked: {
                     if (!delegatedItem.isInstalled) {

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -68,7 +68,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(1)
         height: width
-        symbol: Style.symbol("ic-addwidget-plus", false /* active */)
+        symbol: Style.symbol("ic-addwidget-plus")
         onClicked: popup.open()
         visible: widgetGrid.widgetCount < widgetGrid.maxWidgetCount && opacity > 0
         opacity: root.applicationModel.activeAppInfo ? 0 : 1

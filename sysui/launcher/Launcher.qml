@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -66,7 +66,7 @@ Item {
         opacity: root.open ? 0.0 : 1.0
         Behavior on opacity { DefaultNumberAnimation { } }
 
-        symbol: Style.symbol("ic-menu-home", false)
+        symbol: Style.symbol("ic-menu-home")
 
         checked: true
         onClicked: {
@@ -121,7 +121,7 @@ Item {
             opacity: useCloseIcon ? 0.2 : 1
 
             Layout.alignment: Qt.AlignTop
-            symbol: useCloseIcon ? Style.symbol("ic-close", false) : Style.symbol("ic-menu-allapps", false)
+            symbol: useCloseIcon ? Style.symbol("ic-close") : Style.symbol("ic-menu-allapps")
             checkable: true
         }
     }
