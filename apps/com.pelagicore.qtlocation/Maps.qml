@@ -189,45 +189,6 @@ Item {
             return TritonStyle.theme == TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
 
-        MapParameter {
-            type: "source"
-
-            property var name: "routeSource"
-            property var sourceType: "geojson"
-            property var data: '{ "type": "FeatureCollection", "features": \
-                    [{ "type": "Feature", "properties": {}, "geometry": { \
-                    "type": "LineString", "coordinates": [[ 24.934938848018646, \
-                    60.16830257086771 ], [ 24.943315386772156, 60.16227776476442 ]]}}]}'
-        }
-
-        MapParameter {
-            type: "layer"
-
-            property var name: "route"
-            property var layerType: "line"
-            property var source: "routeSource"
-
-            // Draw under the first road label layer
-            // of the mapbox-streets style.
-            property var before: "road-label-small"
-        }
-
-        MapParameter {
-            type: "paint"
-
-            property var layer: "route"
-            property var lineColor: "blue"
-            property var lineWidth: 8.0
-        }
-
-        MapParameter {
-            type: "layout"
-
-            property var layer: "route"
-            property var lineJoin: "round"
-            property var lineCap: "round"
-        }
-
         Behavior on tilt { DefaultSmoothedAnimation {} }
     }
 
