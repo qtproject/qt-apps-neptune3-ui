@@ -235,6 +235,7 @@ Item {
             Behavior on anchors.topMargin { DefaultNumberAnimation {} }
             fillMode: Image.TileHorizontally
             source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
+            visible: TritonStyle.theme == TritonStyle.Light
         }
 
         RowLayout {
