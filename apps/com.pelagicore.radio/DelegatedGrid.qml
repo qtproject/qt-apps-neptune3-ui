@@ -55,7 +55,6 @@ Button {
     }
 
     contentItem: Label {
-        width: Style.hspan(3.5)
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: TritonStyle.fontSizeS
