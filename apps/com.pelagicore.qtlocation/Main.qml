@@ -98,6 +98,8 @@ QtObject {
         }
 
         Timer {
+            // this timer is needed to make sure both InstrumentCluster and the GLMap is initialized
+            // MapboxGL contains an ugly timer hack in case of multi-threaded rendering
             id: timer
             interval: 1500
             onTriggered: {

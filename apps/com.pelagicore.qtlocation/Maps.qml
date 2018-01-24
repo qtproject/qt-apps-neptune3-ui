@@ -187,7 +187,7 @@ Item {
             if (!mapReady) {
                 return supportedMapTypes[0];
             }
-            return TritonStyle.theme == TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
+            return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
 
         Behavior on tilt { DefaultSmoothedAnimation {} }
