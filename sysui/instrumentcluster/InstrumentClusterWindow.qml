@@ -104,6 +104,7 @@ Window {
                 }
                 return false;
             }
+            onSelectedNavigationChanged: if (!selectedNavigation) instrumentCluster.navigationMode = false;
         }
     }
 
