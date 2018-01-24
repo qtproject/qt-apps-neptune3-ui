@@ -356,33 +356,41 @@
     </message>
 </context>
 <context>
-    <name>MapSearchTextField</name>
+    <name>MapView</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapSearchTextField.qml" line="64"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="134"/>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">힌트 힌지를 해결 하시겠습니까?</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="161"/>
         <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="192"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="202"/>
+        <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="261"/>
         <source>Where do you wanna go today?</source>
-        <translation>힌트 힌지를 해결 하시겠습니까?</translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="307"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="317"/>
-        <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
 </context>
 <context>
     <name>MonitorView</name>
+    <message>
+        <source>Process Monitor on Status Bar</source>
+        <translation type="vanished">상태 표시 줄의 프로세스 모니터</translation>
+    </message>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
         <source>System Monitor Overlay</source>

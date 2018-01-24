@@ -40,28 +40,23 @@ TextField {
     property color searchTextColor: TritonStyle.primaryTextColor
 
     font.pixelSize: TritonStyle.fontSizeM
-
     leftPadding: Style.hspan(0.4)
     rightPadding: Style.hspan(0.4)
-    horizontalAlignment: TextInput.AlignHCenter
+    horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
+        border.color: TritonStyle.buttonColor
+        border.width: 1
+        color: "transparent"
         radius: height/2
-        Row {
-            visible: (!root.activeFocus) && (root.text == "")
-            anchors.centerIn: parent
-            spacing: Style.hspan(0.4)
+        Item {
+            anchors.fill: parent
             Image {
                 id: iconSearch
+                anchors.right: parent.right
+                anchors.rightMargin: Style.hspan(0.4)
                 anchors.verticalCenter: parent.verticalCenter
                 source: Qt.resolvedUrl("assets/ic-search.png")
-            }
-            Label {
-                id: textPlaceholder
-                anchors.verticalCenter: parent.verticalCenter
-                color: root.searchTextColor
-                font.pixelSize: Style.fontSizeS
-                text: qsTr("Search")
             }
         }
     }

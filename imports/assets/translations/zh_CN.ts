@@ -377,33 +377,41 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
-    <name>MapSearchTextField</name>
+    <name>MapView</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapSearchTextField.qml" line="64"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="134"/>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">今天你想要去哪儿？</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="161"/>
         <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="192"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="202"/>
+        <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Maps</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="261"/>
         <source>Where do you wanna go today?</source>
-        <translation>今天你想要去哪儿？</translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="307"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="317"/>
-        <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">今天你想要去哪儿？</translation>
     </message>
 </context>
 <context>
     <name>MonitorView</name>
+    <message>
+        <source>Process Monitor on Status Bar</source>
+        <translation type="vanished">状态栏进程监控</translation>
+    </message>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
         <source>System Monitor Overlay</source>
@@ -750,6 +758,21 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.pelagicore.apps.settings/SettingsPanel.qml" line="91"/>
         <source>themes</source>
         <translation>主题</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>FPS: %1</source>
+        <translation type="vanished">FPS: %1</translation>
+    </message>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="vanished">CPU: %1 %</translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
+        <translation type="vanished">内存: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>

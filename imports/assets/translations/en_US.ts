@@ -326,27 +326,24 @@
     </message>
 </context>
 <context>
-    <name>MapSearchTextField</name>
+    <name>MapView</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapSearchTextField.qml" line="64"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Maps</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="261"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="134"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="307"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="161"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="192"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/Maps.qml" line="317"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="202"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

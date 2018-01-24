@@ -269,17 +269,14 @@
     </message>
 </context>
 <context>
-    <name>MapSearchTextField</name>
+    <name>MapView</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">Wo soll es heute hingehen?</translation>
+    </message>
     <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Maps</name>
-    <message>
-        <source>Where do you wanna go today?</source>
-        <translation>Wo soll es heute hingehen?</translation>
     </message>
     <message>
         <source>Home</source>
@@ -291,7 +288,18 @@
     </message>
 </context>
 <context>
+    <name>Maps</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="vanished">Wo soll es heute hingehen?</translation>
+    </message>
+</context>
+<context>
     <name>MonitorView</name>
+    <message>
+        <source>Process Monitor on Status Bar</source>
+        <translation type="vanished">Prozessüberwachung in der Statusleiste</translation>
+    </message>
     <message>
         <source>System Monitor Overlay</source>
         <translation type="unfinished"></translation>
@@ -513,6 +521,21 @@
     <message>
         <source>themes</source>
         <translation>Themes</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>FPS: %1</source>
+        <translation type="vanished">FPS: %1</translation>
+    </message>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="vanished">CPU: %1 %</translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
+        <translation type="vanished">RAM: %1 MB (%2 %)</translation>
     </message>
 </context>
 <context>

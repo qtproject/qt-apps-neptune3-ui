@@ -32,8 +32,9 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import QtPositioning 5.8
+import QtPositioning 5.9
 import QtLocation 5.9
+import QtGraphicalEffects 1.0
 
 import utils 1.0
 import controls 1.0 as TritonControls
@@ -48,12 +49,14 @@ Item {
     property int currentPlugin: 0 // 0: mapboxgl; 1: osm
 
     // props for secondary window
-    property bool mapInteractive: true
+    property alias mapInteractive: mainMap.mapInteractive
     property alias mapCenter: mainMap.center
     property alias mapZoomLevel: mainMap.zoomLevel
     property alias mapTilt: mainMap.tilt
     property alias mapBearing: mainMap.bearing
     readonly property alias mapReady: mainMap.mapReady
+
+    property bool searchViewEnabled: false
 
     signal maximizeMap()
 
@@ -74,13 +77,6 @@ Item {
         req.send();
     }
 
-    function zoomIn() {
-        mainMap.zoomLevel += 1.0;
-    }
-
-    function zoomOut() {
-        mainMap.zoomLevel -= 1.0;
-    }
 
     function getMapType(name) {
         if (!mainMap.mapReady || !mapTypeModel.count) {
@@ -141,7 +137,7 @@ Item {
         plugin: geocodePlugin
         onLocationsChanged: {
             if (count > 0) {
-                var location = get(0); // TODO implement presenting the other results? this just takes the first one
+                var location = get(0);
                 priv.positionCoordinate = location.coordinate;
                 if (location.boundingBox.isValid) {
                     mainMap.visibleRegion = location.boundingBox;
@@ -150,27 +146,23 @@ Item {
         }
     }
 
-    Map {
+    MapView {
         id: mainMap
         anchors.fill: parent
-        anchors.topMargin: (root.state === "Widget3Rows") || (root.state === "Maximized") ? header.height/2 : 0
-        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         plugin: mapPlugin
         center: priv.positionCoordinate
-        Behavior on center { enabled: root.mapInteractive; CoordinateAnimation { easing.type: Easing.InOutCirc; duration: 540 } }
-        zoomLevel: 10
-        copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
-
-        gesture {
-            enabled: root.mapInteractive
-            // effectively disable the rotation gesture
-            acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture
+        state: root.state
+        activeMapType: {
+            if (!mapReady) {
+                return supportedMapTypes[0];
+            }
+            return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
-
-        onErrorChanged: {
-            console.warn("Map error:", error, errorString)
+        onOpenSearchTextInput: {
+            //TODO: Show textsearch
+            root.maximizeMap()
+            searchViewEnabled = true
         }
-
         onMapReadyChanged: {
             if (mapReady) {
                 console.info("Supported map types:");
@@ -182,15 +174,6 @@ Item {
                 fetchCurrentLocation();
             }
         }
-
-        activeMapType: {
-            if (!mapReady) {
-                return supportedMapTypes[0];
-            }
-            return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
-        }
-
-        Behavior on tilt { DefaultSmoothedAnimation {} }
     }
 
     TritonControls.Tool {
@@ -201,149 +184,58 @@ Item {
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
+        symbol: Qt.resolvedUrl("assets/ic-search.png")
         background: Image {
             fillMode: Image.Pad
             source: Qt.resolvedUrl("assets/floating-button-bg.png")
         }
-        symbol: Qt.resolvedUrl("assets/ic-search.png")
         onClicked: root.maximizeMap()
+        Behavior on opacity { DefaultNumberAnimation {}}
+    }
+
+    Image {
+        id: overlay
+        anchors.fill: mainMap
+        source: Style.gfx2("input-overlay")
+        visible: searchViewEnabled
+    }
+
+    FastBlur {
+        anchors.fill: mainMap
+        source: mainMap
+        radius: 50
+        visible: searchViewEnabled
     }
 
     Item {
-        id: header
-
-        height: backgroundImage.sourceSize.height
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-
-        opacity: root.state && root.state !== "Widget1Row" ? 1 : 0
-        visible: opacity > 0
-        Behavior on opacity {
-            SequentialAnimation {
-                PauseAnimation { duration: 180 }
-                DefaultNumberAnimation {}
-            }
-        }
-
-        Image {
-            id: backgroundImage
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: root.state === "Widget1Row" ? -header.height : (root.state === "Widget2Rows" ? -header.height/2 : 0 )
-            Behavior on anchors.topMargin { DefaultNumberAnimation {} }
-            fillMode: Image.TileHorizontally
-            source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
-            visible: TritonStyle.theme == TritonStyle.Light
-        }
-
-        RowLayout {
-            id: firstRow
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(.3)
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(1.5)
-
-            Item {
-                Layout.preferredWidth: firstRow.width/2
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    width: parent.width/2
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: Style.fontSizeS
-                    text: qsTr("Where do you wanna go today?")
-                }
-            }
-            MapSearchTextField {
-                id: searchField
-                Layout.preferredWidth: firstRow.width/2
-                selectByMouse: true
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                onAccepted: {
-                    geocodeModel.query = searchField.text;
-                    geocodeModel.update();
-                }
-                BusyIndicator {
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    running: geocodeModel.status == GeocodeModel.Loading
-                    visible: running
-                }
-            }
-        }
-
-        RowLayout {
-            id: secondRow
-            anchors.top: firstRow.bottom
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(1.5)
-            opacity: (root.state == "Widget3Rows") || (root.state == "Maximized") ? 1 : 0
-            Behavior on opacity {
-                SequentialAnimation {
-                    PauseAnimation { duration: 180 }
-                    DefaultNumberAnimation {}
-                }
-            }
-            visible: opacity > 0
-            height: parent.height/2
-            MapToolButton {
-                id: buttonGoHome
-                Layout.preferredWidth: secondRow.width/2
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                iconSource: Qt.resolvedUrl("assets/ic-home.png")
-
-                text: qsTr("Home")
-                extendedText: "17 min"
-                secondaryText: "Welandergatan 29"
-            }
-            MapToolButton {
-                id: buttonGoWork
-                Layout.preferredWidth: secondRow.width/2
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                iconSource: Qt.resolvedUrl("assets/ic-work.png")
-                text: qsTr("Work")
-                extendedText: "23 min"
-                secondaryText: "Östra Hamngatan 20"
-            }
-        }
-    }
-
-    TritonControls.Tool {
-        anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.6)
-        anchors.top: header.bottom
-        anchors.topMargin: -Style.vspan(1.6)
-        checkable: true
-        opacity: root.state === "Maximized" ? 1 : 0
-        Behavior on opacity { DefaultNumberAnimation {} }
-        visible: opacity > 0
-        background: Image {
-            fillMode: Image.Pad
-            source: Qt.resolvedUrl("assets/floating-button-bg.png")
-        }
-        symbol: checked  ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
-        onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
-    }
-
-    MapCopyrightNotice {
+        id: mapSearchField
+        anchors.top: mainMap.top
+        anchors.topMargin: Style.vspan(0.5)
         anchors.left: mainMap.left
-        anchors.bottom: mainMap.bottom
-        anchors.leftMargin: Style.hspan(.5)
-        mapSource: mainMap
-        styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(TritonStyle.primaryTextColor).arg(TritonStyle.fontFamily).arg(TritonStyle.fontSizeXXS)
+        anchors.leftMargin: Style.hspan(1)
+        anchors.right: mainMap.right
+        anchors.rightMargin: Style.hspan(1)
+        width: mainMap.width
+        height: Style.hspan(1.2)
+        visible: searchViewEnabled
+        MapSearchTextField {
+            id: searchField
+            anchors.fill: parent
+            selectByMouse: true
+            focus: searchViewEnabled
+            onAccepted: {
+                geocodeModel.query = searchField.text;
+                geocodeModel.update();
+                searchViewEnabled = false;
+            }
+            BusyIndicator {
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                running: geocodeModel.status == GeocodeModel.Loading
+                visible: running
+            }
+            Keys.onEscapePressed: searchViewEnabled = false
+        }
     }
 }

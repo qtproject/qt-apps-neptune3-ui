@@ -269,16 +269,13 @@
     </message>
 </context>
 <context>
-    <name>MapSearchTextField</name>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Maps</name>
+    <name>MapView</name>
     <message>
         <source>Where do you wanna go today?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
