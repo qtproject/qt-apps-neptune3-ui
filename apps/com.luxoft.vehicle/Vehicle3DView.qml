@@ -72,6 +72,8 @@ Item {
                     clearColor: "transparent"
                     camera: camera
                 }
+                // NB: this should work once https://codereview.qt-project.org/#/c/208218/ is merged
+                renderPolicy: RenderSettings.OnDemand
             }
 
             InputSettings {
