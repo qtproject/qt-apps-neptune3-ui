@@ -45,6 +45,7 @@ Item {
 
     readonly property real expandedHeight: Style.vspan(10)
     readonly property bool open: gridButton.checked
+    property bool showDevApps: false
 
     property var applicationModel
 
@@ -101,6 +102,7 @@ Item {
             anchors.top: parent.top
             gridOpen: root.open
             model: root.applicationModel
+            showDevApps: root.showDevApps
 
             onButtonCreated: buttonGroup.addButton(button)
             onButtonRemoved: buttonGroup.removeButton(button)

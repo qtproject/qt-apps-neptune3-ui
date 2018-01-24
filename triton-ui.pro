@@ -24,7 +24,7 @@ copydata.depends += src
 SUBDIRS += copydata
 
 # Install all required files
-qml.files = apps imports sysui styles am-config.yaml Main.qml
+qml.files = apps dev/apps imports sysui styles am-config.yaml Main.qml
 qml.path = $$INSTALL_PREFIX/triton
 INSTALLS += qml
 server.files = server.conf

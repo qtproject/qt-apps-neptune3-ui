@@ -31,6 +31,7 @@ ui:
 systemProperties:
     public:
       showCluster: yes
+      devMode: yes
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
       orientation: 'Portrait'

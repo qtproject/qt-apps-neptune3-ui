@@ -47,6 +47,7 @@ Item {
     property alias gridCellWidth: grid.cellWidth
     readonly property int numIconsPerRow: 4
 
+    property bool showDevApps: false
     property bool gridOpen: false
     onGridOpenChanged: {
         if (!root.gridOpen) {
@@ -64,6 +65,7 @@ Item {
             id: delegateRoot
 
             property int visualIndex: DelegateModel.itemsIndex
+            readonly property bool devApp: model.appInfo.categories.indexOf("dev") !== -1
 
             width: grid.cellWidth
             height: width
@@ -80,7 +82,7 @@ Item {
             }
             Behavior on opacity { DefaultNumberAnimation { } }
 
-            visible: opacity > 0.0
+            visible: root.showDevApps ? (opacity > 0.0) : (opacity > 0.0 && !devApp)
 
             AppButton {
                 id: appButton

@@ -232,7 +232,7 @@ Item {
         active: StagedStartupModel.loadDisplay
         source: "../launcher/Launcher.qml"
         Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
-
+        Binding { target: launcherLoader.item; property: "showDevApps"; value: ApplicationManager.systemProperties.devMode }
         z: 1
     }
 
