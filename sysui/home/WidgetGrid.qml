@@ -445,6 +445,7 @@ Item {
                         onCloseClicked: {
                             repeaterDelegate.state = "closing"
                             appInfo.asWidget = false;
+                            appInfo.windowState = "";
                         }
 
                         widgetState: {
