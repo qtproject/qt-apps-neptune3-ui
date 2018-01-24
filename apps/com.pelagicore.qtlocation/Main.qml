@@ -29,14 +29,32 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.9
 import utils 1.0
+
+import com.pelagicore.settings 1.0
 
 import QtApplicationManager 1.0
 
 QtObject {
+    id: root
+
     property var mainWindow: AppUIScreen {
         id: mainWindow
+
+        property var secondaryWindowObject
+
+        onTritonStateChanged: {
+            if (mainWindow.secondaryWindowObject && !instrumentCluster.navigationMode) { // just switching mode
+                instrumentCluster.navigationMode = true;
+            } else if (mainWindow.secondaryWindowObject && !tritonState) { // widget got closed
+                mainWindow.secondaryWindowObject.destroy();
+                mainWindow.secondaryWindowObject = null;
+                instrumentCluster.navigationMode = false;
+            } else if (!mainWindow.secondaryWindowObject) { // app got killed, recreate
+                timer.start();
+            }
+        }
 
         MultiPointTouchArea {
             id: multiPoint
@@ -52,31 +70,57 @@ QtObject {
         }
 
         Maps {
+            id: mainMap
             x: mainWindow.exposedRect.x
             y: mainWindow.exposedRect.y
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height
             state: mainWindow.tritonState
 
+            onMapReadyChanged: {
+                if (mapReady) {
+                    if (mainWindow.secondaryWindowObject)
+                        instrumentCluster.navigationMode = true;
+                    else
+                        timer.start();
+                }
+            }
+
             onMaximizeMap: {
                 multiPoint.count += 1
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
+        }
 
-            onMapCenterChanged: secondaryMap.mapCenter = mapCenter
-            onMapZoomLevelChanged: secondaryMap.mapZoomLevel = mapZoomLevel
-            onMapTiltChanged: secondaryMap.mapTilt = mapTilt
-            onMapBearingChanged: secondaryMap.mapBearing = mapBearing
+        InstrumentCluster {
+            // cluster remote settings
+            id: instrumentCluster
+        }
+
+        Timer {
+            id: timer
+            interval: 1500
+            onTriggered: {
+                // create the secondary window and set the navigation mode
+                if (!mainWindow.secondaryWindowObject) {
+                    mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
+                }
+                instrumentCluster.navigationMode = true;
+            }
         }
     }
 
-    property var secondaryWindow: SecondaryWindow {
-        id: secondaryWindow
-
-        Maps {
-            id: secondaryMap
-            anchors.fill: parent
-            mapInteractive: false
+    property Component secondaryWindowComponent: Component {
+        id: secondaryWindowComponent
+        SecondaryWindow {
+            Maps {
+                anchors.fill: parent
+                mapInteractive: false
+                mapCenter: mainMap.mapCenter
+                mapZoomLevel: mainMap.mapZoomLevel
+                mapTilt: mainMap.mapTilt
+                mapBearing: mainMap.mapBearing
+            }
         }
     }
 }
