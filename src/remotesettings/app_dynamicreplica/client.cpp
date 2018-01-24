@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -33,10 +33,21 @@
 
 Q_LOGGING_CATEGORY(remoteSettingsDynamicApp, "remotesettings.dynamicApp")
 
+const QString Client::settingsLastUrlsPrefix = "lastUrls";
+const QString Client::settingsLastUrlsItem = "url";
+const int Client::numOfUrlsStored = 5;
+const QString Client::defaultUrl = "tcp://127.0.0.1:9999";
+
 Client::Client(QObject *parent) : QObject(parent),
-    m_repNode(nullptr)
+    m_repNode(nullptr),
+    m_settings("Pelagicore", "TritonControlApp")
 {
     setStatus(tr("Not connected"));
+    connect(&m_UISettings, &UISettingsDynamic::connectedChanged,
+            this, &Client::onReplicaConnectionChanged);
+    connect(&m_instrumentCluster, &UISettingsDynamic::connectedChanged,
+            this, &Client::onReplicaConnectionChanged);
+    readSettings();
 }
 
 Client::~Client()
@@ -60,6 +71,13 @@ QString Client::status() const
     return m_status;
 }
 
+QStringList Client::lastUrls() const
+{
+    if (m_lastUrls.isEmpty())
+        return {defaultUrl};
+    return m_lastUrls;
+}
+
 void Client::connectToServer(const QString &serverUrl)
 {
     QUrl url(serverUrl);
@@ -77,12 +95,13 @@ void Client::connectToServer(const QString &serverUrl)
     delete m_repNode;
 
     m_repNode = new QRemoteObjectNode();
-    QObject::connect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+    connect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
 
     if (m_repNode->connectToNode(url)) {
         m_UISettings.resetReplica(m_repNode->acquireDynamic("settings.UISettings"));
         m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("settings.InstrumentCluster"));
-        setStatus(tr("Connected to %1").arg(url.toString()));
+        setStatus(tr("Connecting to %1...").arg(url.toString()));
+        updateLastUrls(url.toString());
     } else {
         setStatus(tr("Connection to %1 failed").arg(url.toString()));
         m_UISettings.resetReplica(nullptr);
@@ -100,6 +119,15 @@ void Client::onError(QRemoteObjectNode::ErrorCode code)
     qCWarning(remoteSettingsDynamicApp) << "Remote objects error, code:" << code;
 }
 
+void Client::onReplicaConnectionChanged(bool connected)
+{
+    Q_UNUSED(connected)
+    if (m_UISettings.connected() || m_instrumentCluster.connected())
+        setStatus(tr("Connected to %1").arg(serverUrl().toString()));
+    else
+        setStatus(tr("Disconnected"));
+}
+
 void Client::setStatus(const QString &status)
 {
     if (status==m_status)
@@ -107,4 +135,35 @@ void Client::setStatus(const QString &status)
     m_status=status;
     qCWarning(remoteSettingsDynamicApp) << "Client status: " << status;
     emit statusChanged(m_status);
+}
+
+void Client::readSettings()
+{
+    int size=m_settings.beginReadArray("lastUrls");
+    for (int i=0; i<size;i++) {
+        m_settings.setArrayIndex(i);
+        m_lastUrls.append(m_settings.value("url").toString());
+    }
+    m_settings.endArray();
+    emit lastUrlsChanged(m_lastUrls);
+}
+
+void Client::writeSettings()
+{
+    m_settings.beginWriteArray("lastUrls");
+    for (int i=0; i<m_lastUrls.size();i++) {
+        m_settings.setArrayIndex(i);
+        m_settings.setValue("url",m_lastUrls.at(i));
+    }
+    m_settings.endArray();
+}
+
+void Client::updateLastUrls(const QString &url)
+{
+    m_lastUrls.removeOne(url);
+    m_lastUrls.push_front(url);
+    while (m_lastUrls.size()>numOfUrlsStored)
+        m_lastUrls.pop_back();
+    writeSettings();
+    emit lastUrlsChanged(m_lastUrls);
 }

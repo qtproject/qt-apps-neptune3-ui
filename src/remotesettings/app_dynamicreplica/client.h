@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,6 +32,7 @@
 #define CLIENT_H
 
 #include <QObject>
+#include <QSettings>
 #include "uisettingsdynamic.h"
 #include "instrumentclusterdynamic.h"
 
@@ -44,28 +45,44 @@ class Client : public QObject
     Q_OBJECT
     Q_PROPERTY(QUrl serverUrl READ serverUrl NOTIFY serverUrlChanged)
     Q_PROPERTY(QString status READ status NOTIFY statusChanged)
+    Q_PROPERTY(QStringList lastUrls READ lastUrls NOTIFY lastUrlsChanged)
+
+    static const QString settingsLastUrlsPrefix;
+    static const QString settingsLastUrlsItem;
+    static const int numOfUrlsStored;
+
 public:
+    static const QString defaultUrl;
+
     explicit Client(QObject *parent = nullptr);
     ~Client();
 
     void setContextProperties(QQmlContext *context);
     QUrl serverUrl() const;
     QString status() const;
+    QStringList lastUrls() const;
 
 signals:
     void serverUrlChanged(const QUrl &url);
     void statusChanged(const QString &status);
+    void lastUrlsChanged(const QStringList &lastUrls);
 
 public slots:
     void connectToServer(const QString &url);
     void onError(QRemoteObjectNode::ErrorCode code);
+    void onReplicaConnectionChanged(bool connected);
 
 private:
     void setStatus(const QString &status);
+    void readSettings();
+    void writeSettings();
+    void updateLastUrls(const QString &url);
 
     QRemoteObjectNode *m_repNode;
     QUrl m_serverUrl;
+    QStringList m_lastUrls;
     QString m_status;
+    QSettings m_settings;
 
     UISettingsDynamic m_UISettings;
     InstrumentClusterDynamic m_instrumentCluster;

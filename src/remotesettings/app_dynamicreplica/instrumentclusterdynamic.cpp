@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -29,8 +29,6 @@
 **
 ****************************************************************************/
 #include "instrumentclusterdynamic.h"
-
-//TODO: everything
 
 InstrumentClusterDynamic::InstrumentClusterDynamic()
 {

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -36,6 +36,7 @@ Dialog {
     id: connectionDialog
     property string url
     property string statusText
+    property var lastUrls
     modal: true
 
     signal accepted(bool accepted)
@@ -59,10 +60,13 @@ Dialog {
                     text: qsTr("Server URL")
                 }
 
-                TextField {
+                ComboBox {
+                    id: urlCombo
                     Layout.fillWidth: true
-                    text: url
-                    onTextChanged: url=text
+                    editable: true
+                    editText: url
+                    model: lastUrls
+                    onEditTextChanged: url=editText
                 }
             }
 

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -49,9 +49,8 @@ ApplicationWindow {
 
     ConnectionDialog {
         id: connectionDialog
-        property string defaultUrl : "tcp://127.0.0.1:9999"
-        url: defaultUrl
         statusText: client.status
+        lastUrls: client.lastUrls
 
         width: parent.width / 2
         height: parent.height / 2
@@ -115,11 +114,13 @@ ApplicationWindow {
 
    footer: TabBar {
        TabButton {
-           text: qsTr("Settings")
+           text: uiSettings.connected ? qsTr("Settings") :
+                                        qsTr("Settings (Offline)")
            onClicked: stack.currentIndex = 0
        }
        TabButton {
-           text: qsTr("Cluster")
+           text: instrumentCluster.connected ? qsTr("Cluster") :
+                                               qsTr("Cluster (Offline)")
            onClicked: stack.currentIndex = 1
        }
    }
