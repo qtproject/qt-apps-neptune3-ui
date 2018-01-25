@@ -68,6 +68,7 @@ Pane {
         Layout.maximumWidth: Style.hspan(12)
         Layout.maximumHeight: Style.statusBarHeight
         anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(0.5)
         anchors.top: parent.top
 
         DateAndTime {
