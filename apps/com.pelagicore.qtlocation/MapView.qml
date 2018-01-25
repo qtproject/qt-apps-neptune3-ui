@@ -47,9 +47,9 @@ Item {
     property alias plugin: mainMap.plugin
     property alias center: mainMap.center
     property alias visibleRegion: mainMap.visibleRegion
-    property alias mapReady: mainMap.mapReady
+    readonly property alias mapReady: mainMap.mapReady
     property alias activeMapType: mainMap.activeMapType
-    property alias supportedMapTypes: mainMap.supportedMapTypes
+    readonly property alias supportedMapTypes: mainMap.supportedMapTypes
     property alias tilt: mainMap.tilt
     property alias bearing: mainMap.bearing
     property alias zoomLevel: mainMap.zoomLevel
@@ -63,7 +63,6 @@ Item {
     function zoomOut() {
         mainMap.zoomLevel -= 1.0;
     }
-
 
     Map {
         id: mainMap
@@ -204,6 +203,23 @@ Item {
                 secondaryText: "Östra Hamngatan 20"
             }
         }
+    }
+
+    TritonControls.Tool {
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(0.6)
+        anchors.top: header.bottom
+        anchors.topMargin: -Style.vspan(1.6)
+        checkable: true
+        opacity: root.state === "Maximized" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+        visible: opacity > 0
+        background: Image {
+            fillMode: Image.Pad
+            source: Qt.resolvedUrl("assets/floating-button-bg.png")
+        }
+        symbol: checked ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
+        onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
     MapCopyrightNotice {
