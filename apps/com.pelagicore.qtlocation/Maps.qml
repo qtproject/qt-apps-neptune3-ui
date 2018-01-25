@@ -45,9 +45,6 @@ import com.pelagicore.styles.triton 1.0
 Item {
     id: root
 
-    readonly property var plugins: ["mapboxgl", "osm"]
-    property int currentPlugin: 0 // 0: mapboxgl; 1: osm
-
     // props for secondary window
     property alias mapInteractive: mainMap.mapInteractive
     property alias mapCenter: mainMap.center
@@ -92,6 +89,7 @@ Item {
 
     QtObject {
         id: priv
+        readonly property var plugins: ["mapboxgl", "osm"]
         property var positionCoordinate: QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc ;)
         readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
         readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
@@ -105,7 +103,7 @@ Item {
     Plugin {
         id: mapPlugin
         locales: Style.languageLocale
-        name: plugins[currentPlugin]
+        preferred: priv.plugins
 
         // Mapbox Plugin Parameters
         PluginParameter {
@@ -153,7 +151,7 @@ Item {
         center: priv.positionCoordinate
         state: root.state
         activeMapType: {
-            if (!mapReady) {
+            if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
             }
             return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
