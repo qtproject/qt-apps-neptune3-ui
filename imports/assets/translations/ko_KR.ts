@@ -358,22 +358,22 @@
 <context>
     <name>MapView</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="134"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="133"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished">힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="161"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="160"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="192"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="191"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="202"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="201"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
