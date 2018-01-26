@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton Cluster UI.
@@ -61,6 +62,10 @@ Item {
                 return 0;
             }
         }
+
+        property int ePowerOverride
+        property bool overrideEPower: false
+        readonly property int ePower: overrideEPower ? ePowerOverride : root.ePower
     }
 
     //states and transitions
@@ -113,7 +118,7 @@ Item {
     transitions: [
         Transition {
             from: "stopped"
-            to: "normal"
+            to: "*"
             reversible: false
             SequentialAnimation{
                 //wait DialFrame to start (1600ms)
@@ -126,9 +131,18 @@ Item {
                     property: "opacity"
                     duration: 140
                 }
-                //test the highLight (1080ms)
-                PropertyAnimation { target: root; property: "ePower"; to: 100; duration: 540 }
-                PropertyAnimation { target: root; property: "ePower"; to: 0; duration: 540 }
+
+                //test the highLight
+                ScriptAction { script: {
+                    d.ePowerOverride = 0;
+                    d.overrideEPower = true;
+                }}
+                PropertyAnimation { target: d; property: "ePowerOverride"; to: 100; duration: 540 }
+                PropertyAnimation { target: d; property: "ePowerOverride"; to: 0; duration: 540 }
+                PropertyAnimation { target: d; property: "ePowerOverride"; to: root.ePower; duration: 540 }
+                ScriptAction { script: {
+                    d.overrideEPower = false;
+                }}
             }
         },
         Transition {
@@ -201,26 +215,6 @@ Item {
             }
         },
         Transition {
-            from: "stopped"
-            to: "navi"
-            reversible: false
-            SequentialAnimation{
-                //wait DialFrame to start (1600ms)
-                PauseAnimation { duration: 1600 }
-                //fade in (640ms)
-                PropertyAnimation { targets: [scaleEnergyArea, graduation, graduationNumber]; property: "opacity"; duration: 130 }
-                PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
-                PropertyAnimation {
-                    targets: [indicatorDrivetrain, indicatorEPower, signBattery, signBatteryRemain, signChargeStation, signKM, signKMRemain, signPower]
-                    property: "opacity"
-                    duration: 140
-                }
-                //test the highLight (1080ms)
-                PropertyAnimation { target: root; property: "ePower"; to: 100; duration: 540 }
-                PropertyAnimation { target: root; property: "ePower"; to: 0; duration: 540 }
-            }
-        },
-        Transition {
             from: "navi"
             to: "stopped"
             reversible: false
@@ -241,14 +235,6 @@ Item {
         }
     ]
 
-    Behavior on ePower {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 2000 }
-    }
-
-    onEPowerChanged: {
-         dialFrame.highLightAng = d.power2Angle(ePower);
-    }
-
     //visual components
     DialFrame {
         id: dialFrame
@@ -261,6 +247,7 @@ Item {
         zeroAng: -180
         positiveColor: "#fba054"
         negativeColor: "#80447191"
+        highLightAng: d.power2Angle(d.ePower)
     }
 
     Image {
@@ -332,7 +319,7 @@ Item {
         x: 265 * d.scaleRatio
         y: 222 * d.scaleRatio
         width: 40 * d.scaleRatio
-        text: Math.abs( Math.round(ePower) )
+        text: Math.abs( Math.round(d.ePower) )
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
