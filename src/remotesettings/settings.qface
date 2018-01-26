@@ -25,10 +25,32 @@ interface UISettings {
 
 @config: {id: "InstrumentCluster"}
 interface InstrumentCluster {
+  /*
+   * In Km/H
+   */
   real speed;
+
+  /*
+   * In Km/H
+   */
   real speedLimit;
+
+  /*
+   * In Km/H
+   */
   real speedCruise;
+
+  /*
+   * Between 0 (inclusive) and 100 (inclusive)
+   */
   real ePower;
+
+  /*
+   * 0 -> Park
+   * 1 -> Neutral
+   * 2 -> Drive
+   * 3 -> Reverse
+   */
   int driveTrainState;
 
   bool lowBeamHeadlight;
