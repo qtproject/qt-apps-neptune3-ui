@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton Cluster UI.
@@ -124,8 +125,13 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         width: 53 * d.scaleRatio
         height: 48 * d.scaleRatio
-        visible: controlBitLeftTurn
+        visible: blinker.lit
         fillMode: Image.PreserveAspectFit
         source: "./img/telltales/ic-left-turn.png"
+    }
+
+    Blinker {
+        id: blinker
+        running: controlBitLeftTurn
     }
 }

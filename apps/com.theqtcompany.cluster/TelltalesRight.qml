@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton Cluster UI.
@@ -62,6 +63,11 @@ Item {
 //        source: "./img/telltales/telltale-bg-right.png"
 //    }
 
+    Blinker {
+        id: blinker
+        running: controlBitRightTurn
+    }
+
     Image {
         id: rightTurn
         anchors.left: parent.left
@@ -69,7 +75,7 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         width: 53 * d.scaleRatio
         height: 48 * d.scaleRatio
-        visible: controlBitRightTurn
+        visible: blinker.lit
         fillMode: Image.PreserveAspectFit
         source: "./img/telltales/ic-right-turn.png"
     }
