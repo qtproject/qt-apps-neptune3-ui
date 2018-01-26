@@ -133,15 +133,7 @@ Item {
     GeocodeModel {
         id: geocodeModel
         plugin: geocodePlugin
-        onLocationsChanged: {
-            if (count > 0) {
-                var location = get(0);
-                priv.positionCoordinate = location.coordinate;
-                if (location.boundingBox.isValid) {
-                    mainMap.visibleRegion = location.boundingBox;
-                }
-            }
-        }
+        limit: 20
     }
 
     MapView {
@@ -191,20 +183,23 @@ Item {
         Behavior on opacity { DefaultNumberAnimation {}}
     }
 
-    Image {
-        id: overlay
-        anchors.fill: mainMap
-        source: Style.gfx2("input-overlay")
-        visible: searchViewEnabled
-    }
-
     FastBlur {
         anchors.fill: mainMap
         source: mainMap
-        radius: 50
+        radius: 64
         visible: searchViewEnabled
     }
 
+    BorderImage {
+        id: overlay
+        anchors.fill: root
+        border.top: 322
+        border.bottom: 323
+        border.left: 0
+        border.right: 0
+        source: Style.gfx2("input-overlay")
+        visible: searchViewEnabled
+    }
     Item {
         id: mapSearchField
         anchors.top: mainMap.top
@@ -233,7 +228,86 @@ Item {
                 running: geocodeModel.status == GeocodeModel.Loading
                 visible: running
             }
+            onTextChanged: {
+                if (text.length > 1) {
+                    searchTimer.restart();
+                } else {
+                    searchTimer.stop();
+                    geocodeModel.reset();
+                }
+            }
             Keys.onEscapePressed: searchViewEnabled = false
+        }
+    }
+
+    Timer {
+        id: searchTimer
+        interval: 500
+        onTriggered: {
+            geocodeModel.query = searchField.text;
+            geocodeModel.update();
+        }
+    }
+
+    ListView {
+        id: searchResultsList
+        height: root.height - mapSearchField.height - anchors.topMargin
+        anchors.top: mapSearchField.bottom
+        anchors.topMargin: Style.vspan(0.6)
+        anchors.left: mapSearchField.left
+        anchors.right: mapSearchField.right
+        clip: true
+        model: geocodeModel
+        visible: searchViewEnabled
+        state: root.state
+        delegate: ItemDelegate {
+            id: itemDelegate
+            readonly property string addressText: locationData.address.text
+            readonly property string city: locationData.address.city
+            readonly property string country: locationData.address.country
+            width: parent.width
+            height: Style.vspan(1.5)
+            contentItem: Item {
+                Label {
+                    id: firstRow
+                    width: parent.width
+                    height: Style.vspan(0.8)
+                    anchors.top: parent.top
+                    font.pixelSize: TritonStyle.fontSizeS
+                    text: itemDelegate.addressText
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
+                }
+                Label {
+                    id: secondRow
+                    width: parent.width
+                    height: Style.vspan(0.3)
+                    anchors.top: firstRow.bottom
+                    font.pixelSize: TritonStyle.fontSizeXS
+                    text: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
+                }
+            }
+            Rectangle {
+                id: divider
+                width: parent.width
+                height: 1
+                anchors.bottom: parent.bottom
+                color: TritonStyle.highlightedButtonColor
+            }
+            onClicked: {
+                searchViewEnabled = false;
+                priv.positionCoordinate = locationData.coordinate;
+                if (locationData.boundingBox.isValid) {
+                    mainMap.visibleRegion = locationData.boundingBox;
+                }
+            }
+        }
+        onStateChanged: {
+            if (state !== "Maximized") {
+                searchViewEnabled = false;
+            }
         }
     }
 }

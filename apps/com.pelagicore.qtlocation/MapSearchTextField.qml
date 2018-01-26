@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -41,7 +41,7 @@ TextField {
 
     font.pixelSize: TritonStyle.fontSizeM
     leftPadding: Style.hspan(0.4)
-    rightPadding: Style.hspan(0.4)
+    rightPadding: Style.hspan(1.4)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
