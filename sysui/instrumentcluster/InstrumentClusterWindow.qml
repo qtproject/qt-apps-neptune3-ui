@@ -48,6 +48,7 @@ Window {
 
 
     property var applicationModel
+    property bool invertedOrientation: false
 
     function nextSecondaryWindow() {
         secondaryAppWindows.next();
@@ -79,6 +80,7 @@ Window {
         anchors.centerIn: parent
         width: parent.width
         height: width / Style.instrumentClusterUIAspectRatio
+        rotation: root.invertedOrientation ? 180 : 0
 
         Image {
             anchors.fill: parent

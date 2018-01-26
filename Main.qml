@@ -145,6 +145,13 @@ Window {
             }
         }
         Shortcut {
+            sequence: "Ctrl+Shift+r"
+            context: Qt.ApplicationShortcut
+            onActivated: {
+                instrumentClusterWindowLoader.invertedOrientation = !instrumentClusterWindowLoader.invertedOrientation
+            }
+        }
+        Shortcut {
             sequence: "Ctrl+t"
             context: Qt.ApplicationShortcut
             onActivated: {
@@ -281,6 +288,7 @@ Window {
         sourceComponent: Component {
             InstrumentClusterWindow {
                 applicationModel: display.applicationModel
+                invertedOrientation: instrumentClusterWindowLoader.invertedOrientation
                 Component.onCompleted: uiSettings.updateTheme()
             }
         }
@@ -289,6 +297,8 @@ Window {
                                                        && (Qt.application.screens.length === 1)
 
         active: !runningOnSingleScreenEmbedded
+
+        property bool invertedOrientation: false
     }
 
     Component.onCompleted: {
