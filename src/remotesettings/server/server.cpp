@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -49,6 +49,8 @@ void Server::start()
     m_instrumentClusterService.reset(new InstrumentClusterSource());
     Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "settings.InstrumentCluster");
     qCDebug(remoteSettingsServer) << "register service at: settings.InstrumentCluster";
+
+    setInstrumentClusterDefaultValues();
 }
 
 void Server::onROError(QRemoteObjectNode::ErrorCode code)
@@ -58,4 +60,17 @@ void Server::onROError(QRemoteObjectNode::ErrorCode code)
 
 void Server::onAboutToQuit()
 {
+}
+
+void Server::setInstrumentClusterDefaultValues()
+{
+    // Make it look like the car is cruising along a highway instead of
+    // having everything zeroed or turned off.
+
+    m_instrumentClusterService->setSpeed(102);
+    m_instrumentClusterService->setSpeedLimit(120);
+    m_instrumentClusterService->setSpeedCruise(100);
+    m_instrumentClusterService->setEPower(41);
+    m_instrumentClusterService->setDriveTrainState(2); // 2 == D (drive)
+    m_instrumentClusterService->setLowBeamHeadlight(true);
 }
