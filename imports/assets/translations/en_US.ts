@@ -150,12 +150,12 @@
 <context>
     <name>DialPower</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="349"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="336"/>
         <source>% power</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="361"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="348"/>
         <source>km</source>
         <translation type="unfinished"></translation>
     </message>
