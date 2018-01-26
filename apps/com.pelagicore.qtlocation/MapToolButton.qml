@@ -47,39 +47,41 @@ ToolButton {
     property color secondaryTextColor: TritonStyle.primaryTextColor
     property int secondaryTextFontSize: TritonStyle.fontSizeS
 
-    contentItem: Row {
-        spacing: Style.hspan(0.5)
-        anchors.centerIn: parent
-        Image {
-            id: bottonImage
-            anchors.verticalCenter: parent.verticalCenter
-            source: root.iconSource
-        }
-        Column {
-            spacing: Style.hspan(0.1)
-            anchors.verticalCenter: parent.verticalCenter
-            Row {
-                spacing: Style.hspan(0.3)
-                Label {
-                    id: primaryButtonText
-                    anchors.verticalCenter: parent.verticalCenter
-                    font: root.font
-                    color: root.labelColor
-                    text: root.text
-                }
-                Label {
-                    id: extendedButtonText
-                    anchors.verticalCenter: parent.verticalCenter                    
-                    color: root.extendedTextColor
-                    font.pixelSize: root.extendedTextFontSize
-                    text: root.extendedText
-                }
+    contentItem: Item {
+        Row {
+            spacing: Style.hspan(0.5)
+            anchors.centerIn: parent
+            Image {
+                id: bottonImage
+                anchors.verticalCenter: parent.verticalCenter
+                source: root.iconSource
             }
-            Label {
-                id: secondaryButtonText
-                color: root.secondaryTextColor
-                font.pixelSize: root.secondaryTextFontSize
-                text: root.secondaryText
+            Column {
+                spacing: Style.hspan(0.1)
+                anchors.verticalCenter: parent.verticalCenter
+                Row {
+                    spacing: Style.hspan(0.3)
+                    Label {
+                        id: primaryButtonText
+                        anchors.verticalCenter: parent.verticalCenter
+                        font: root.font
+                        color: root.labelColor
+                        text: root.text
+                    }
+                    Label {
+                        id: extendedButtonText
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: root.extendedTextColor
+                        font.pixelSize: root.extendedTextFontSize
+                        text: root.extendedText
+                    }
+                }
+                Label {
+                    id: secondaryButtonText
+                    color: root.secondaryTextColor
+                    font.pixelSize: root.secondaryTextFontSize
+                    text: root.secondaryText
+                }
             }
         }
     }

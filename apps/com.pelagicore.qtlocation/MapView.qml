@@ -186,11 +186,17 @@ Item {
                 Layout.preferredWidth: secondRow.width/2
                 Layout.fillWidth: true
                 anchors.verticalCenter: parent.verticalCenter
-                iconSource: Qt.resolvedUrl("assets/ic-search.png")
+                iconSource: Qt.resolvedUrl("assets/ic-home.png")
 
                 text: qsTr("Home")
                 extendedText: "17 min"
                 secondaryText: "Welandergatan 29"
+            }
+            Rectangle {
+                width: 1
+                height: 150
+                opacity: 0.2
+                color: TritonStyle.primaryTextColor
             }
             MapToolButton {
                 id: buttonGoWork
