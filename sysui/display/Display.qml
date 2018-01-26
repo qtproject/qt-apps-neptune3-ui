@@ -133,8 +133,9 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                y: launcherLoader.y + Style.launcherHeight
-                height: parent.height - y - climateBar.height
+                property int topMargin: Style.vspan(0.5)
+                y: launcherLoader.y + Style.launcherHeight + topMargin
+                height: parent.height - y - climateBar.height - topMargin
 
                 active: true //StagedStartupModel.loadRest
                 source: "../home/HomePage.qml"
@@ -226,6 +227,7 @@ Item {
 
         property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
         anchors.top: statusBarLoader.bottom
+        anchors.topMargin: Style.vspan(0.5)
         anchors.horizontalCenter: parent.horizontalCenter
         active: StagedStartupModel.loadDisplay
         source: "../launcher/Launcher.qml"
