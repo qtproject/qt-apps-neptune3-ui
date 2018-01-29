@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -35,17 +35,22 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 
-Item {
-    implicitWidth: Style.hspan(18)
-    implicitHeight: Style.vspan(16)
-
+ColumnLayout {
     Image {
-        id: marketing
-        anchors.fill: parent
-        anchors.margins: Style.vspan(0.2)
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.leftMargin: Style.hspan(0.5)
+        Layout.rightMargin: Style.hspan(0.5)
         source: Style.gfx2("about-marketing")
         asynchronous: true
-        clip: true
         fillMode: Image.PreserveAspectFit
+    }
+
+    Label {
+        text: qsTr("Version: %1").arg(Qt.application.version)
+        Layout.fillWidth: true
+        Layout.leftMargin: Style.hspan(0.5)
+        Layout.rightMargin: Style.hspan(0.5)
+        Layout.bottomMargin: Style.vspan(1)
     }
 }
