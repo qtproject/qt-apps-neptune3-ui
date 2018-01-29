@@ -343,7 +343,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="201"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="207"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>

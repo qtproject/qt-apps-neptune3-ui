@@ -407,7 +407,7 @@
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="201"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="207"/>
         <source>Work</source>
         <translation>Práce</translation>
     </message>
