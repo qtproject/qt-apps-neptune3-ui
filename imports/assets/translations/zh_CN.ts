@@ -25,6 +25,11 @@
         <source>We put Stunning User Experience on the road</source>
         <translation type="vanished">我们为您带来旅程中令人惊艳的交互体验</translation>
     </message>
+    <message>
+        <location filename="../../../sysui/about/AboutMarketing.qml" line="50"/>
+        <source>Version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutRunningApps</name>

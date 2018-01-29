@@ -17,6 +17,13 @@
     </message>
 </context>
 <context>
+    <name>AboutMarketing</name>
+    <message>
+        <source>Version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>

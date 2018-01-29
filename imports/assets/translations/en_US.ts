@@ -20,6 +20,14 @@
     </message>
 </context>
 <context>
+    <name>AboutMarketing</name>
+    <message>
+        <location filename="../../../sysui/about/AboutMarketing.qml" line="50"/>
+        <source>Version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutRunningApps</name>
     <message>
         <location filename="../../../sysui/about/AboutRunningApps.qml" line="53"/>
