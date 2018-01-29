@@ -97,14 +97,26 @@ Item {
 
             components: [inputSettings, renderSettings]
 
+            // Uncomment this camera and use it for from up to down renderer to take a screenshot
+            // Camera {
+            //     id: updownRendererCamera
+            //     projectionType: CameraLens.PerspectiveProjection
+            //     fieldOfView: 25
+            //     nearPlane: 0.1
+            //     farPlane: 100.0
+            //     position: Qt.vector3d(0, 24, 1)
+            //     viewCenter: Qt.vector3d(0, 0, 1)
+            //     upVector: Qt.vector3d(0.0, 0.0, 1.0)
+            // }
+
             Camera {
                 id: camera
                 projectionType: CameraLens.PerspectiveProjection
-                fieldOfView: 45
+                fieldOfView: 25
                 nearPlane: 0.1
-                farPlane: 1000.0
-                position: Qt.vector3d(0, 3.2, 8.0)
-                viewCenter: Qt.vector3d(0, 0, 0)
+                farPlane: 100.0
+                position: Qt.vector3d(0, 2, 15)
+                viewCenter: Qt.vector3d(0, 1.6, 0)
                 upVector: Qt.vector3d(0.0, 1.0, 0.0)
             }
 
@@ -116,18 +128,18 @@ Item {
             }
 
             PhongMaterial {
-                id: grayMaterial
-                diffuse: "#d9d9d9"
-                specular: "#121212"
-                shininess: 64
+                id: whiteHood
+                diffuse: "#FFFFFF"
+                specular: "#FFFFFF"
+                shininess: 1
             }
 
             PhongMaterial {
                 id: chromeMaterial
-                ambient: "#404040"
-                diffuse: "#666666"
-                specular: "#C6C6C6"
-                shininess: 76.8
+                ambient: "#000000"
+                diffuse: "#858687"
+                specular: "#858687"
+                shininess: 8
             }
 
             PhongAlphaMaterial {

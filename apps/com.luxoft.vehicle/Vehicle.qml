@@ -41,7 +41,7 @@ Item {
         anchors.top: root.top
         anchors.left: root.left
         anchors.right: root.right
-        height: Style.vspan(5.125)
+        height: Style.vspan(8.125)
 
         leftDoorOpen: controlPanel.leftDoorOpen
         rightDoorOpen: controlPanel.rightDoorOpen
@@ -53,7 +53,7 @@ Item {
         id: controlPanel
 
         anchors.top: car3DView.bottom
-        anchors.topMargin: Style.vspan(0.875)
+        anchors.topMargin: Style.vspan(1.875)
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottom: parent.bottom

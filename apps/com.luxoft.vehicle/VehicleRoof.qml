@@ -62,5 +62,5 @@ Entity {
         source: vehicle3DView.carObjFilePath
     }
 
-    components: [transform, mesh, grayMaterial]
+    components: [transform, mesh, whiteHood]
 }

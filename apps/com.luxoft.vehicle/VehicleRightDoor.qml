@@ -64,7 +64,7 @@ Entity {
             meshName: "^silver_paint_2$"
             source: vehicle3DView.carObjFilePath
         }
-        components: [transform, mesh, grayMaterial]
+        components: [transform, mesh, whiteHood]
     }
 
     Entity {
@@ -73,7 +73,7 @@ Entity {
             meshName: "^silver_paint_3$"
             source: vehicle3DView.carObjFilePath
         }
-        components: [mesh2, grayMaterial, transform]
+        components: [mesh2, whiteHood, transform]
     }
 
     Entity {

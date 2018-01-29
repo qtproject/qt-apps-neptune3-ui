@@ -63,7 +63,7 @@ Entity {
             meshName: "shell"
             source: vehicle3DView.carObjFilePath
         }
-        components: [transform, shell, grayMaterial]
+        components: [transform, shell, whiteHood]
     }
 
     Entity {

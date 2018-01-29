@@ -58,3 +58,5 @@ core
 
 # compressed javascript?
 *.jsc
+
+.build/

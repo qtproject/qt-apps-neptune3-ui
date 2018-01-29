@@ -35,9 +35,6 @@ AppUIScreen {
     id: root
 
     Vehicle {
-        x: root.exposedRect.x
-        y: root.exposedRect.y
-        width: root.exposedRect.width
-        height: root.exposedRect.height
+        anchors.fill: parent
     }
 }
