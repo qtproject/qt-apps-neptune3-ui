@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en_US" sourcelanguage="en_US">
 <context>
     <name>About</name>
     <message>
@@ -379,26 +379,66 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>MapView</name>
+    <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="151"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="91"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="178"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="126"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="209"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="160"/>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="206"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="225"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="224"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapRouting</name>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
+        <source>%n kilometer(s)</source>
+        <translation>
+            <numerusform>%n kilometer</numerusform>
+            <numerusform>%n kilometers</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
+        <source>%n day(s)</source>
+        <translation>
+            <numerusform>%n day</numerusform>
+            <numerusform>%n days</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
+        <source>%n hour(s)</source>
+        <translation>
+            <numerusform>%n hour</numerusform>
+            <numerusform>%n hours</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform>%n minute</numerusform>
+            <numerusform>%n minutes</numerusform>
+        </translation>
     </message>
 </context>
 <context>

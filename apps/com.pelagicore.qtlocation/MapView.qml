@@ -54,6 +54,14 @@ Item {
     property alias bearing: mainMap.bearing
     property alias zoomLevel: mainMap.zoomLevel
 
+    property bool navigationMode
+    property bool guidanceMode
+    property alias routingPlugin: mapRouting.routingPlugin
+    property alias startCoord: mapRouting.startCoord
+    property alias destCoord: mapRouting.destCoord
+    property alias destination: mapRouting.destination
+    property var currentLocation
+
     signal openSearchTextInput()
 
     function zoomIn() {
@@ -63,16 +71,6 @@ Item {
     function zoomOut() {
         mainMap.zoomLevel -= 1.0;
     }
-
-    function showMarker(coordinate) {
-        searchResultItem.coordinate = coordinate
-        searchResultItem.visible = true
-    }
-
-    function hideMarker() {
-        searchResultItem.visible = false
-    }
-
 
     Map {
         id: mainMap
@@ -92,140 +90,92 @@ Item {
         onErrorChanged: {
             console.warn("Map error:", error, errorString)
         }
-        MapQuickItem {
-            id: searchResultItem
-            visible: false
-            anchorPoint: Qt.point(70,122)
-            sourceItem: Image {
-                source: Qt.resolvedUrl("./assets/pin-destination.png")
+
+        MapRouting {
+            id: mapRouting
+            currentLocationCoord: root.currentLocation
+            homeCoord: header.homeCoord
+            workCoord: header.workCoord
+        }
+
+        MapItemView {
+            autoFitViewport: true
+            model: root.guidanceMode ? mapRouting.model : null
+            delegate: MapRoute {
+                route: routeData
+                line.color: "#798bd9"
+                line.width: 3
+                smooth: true
+                opacity: 0.9
             }
+        }
+
+        MapQuickItem {
+            id: destMarker
+            anchorPoint: Qt.point(markerImage.width * 0.5, markerImage.height * 0.8)
+            coordinate: mapRouting.destCoord ? mapRouting.destCoord : QtPositioning.coordinate()
+            visible: root.navigationMode && mapRouting.destCoord.isValid
+
+            sourceItem: Image {
+                id: markerImage
+                source: Qt.resolvedUrl("assets/pin-destination.png")
+                width: 139/2
+                height: 161/2
+            }
+        }
+
+        MapQuickItem {
+            id: posMarker
+            anchorPoint: Qt.point(posImage.width * 0.5, posImage.height * 0.5)
+            coordinate: mapRouting.routeSegments && mapRouting.routeSegments[0] ? mapRouting.routeSegments[0].path[0]
+                                                                                : QtPositioning.coordinate()
+            visible: root.guidanceMode
+
+            sourceItem: Image {
+                id: posImage
+                source: Qt.resolvedUrl("assets/pin-your-position.png")
+                width: 116/2
+                height: 135/2
+            }
+            rotation: mapRouting.routeSegments ? mapRouting.routeSegments[0].path[0].azimuthTo(mapRouting.routeSegments[0].path[1])
+                                               : 0
         }
     }
 
-    Item {
+    MapHeader {
         id: header
-        height: backgroundImage.sourceSize.height
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
         opacity: root.state && root.state !== "Widget1Row" ? 1 : 0
-        visible: opacity > 0
         Behavior on opacity {
             SequentialAnimation {
                 PauseAnimation { duration: 180 }
                 DefaultNumberAnimation {}
             }
         }
+        visible: opacity > 0
+        state: root.state
 
-        Image {
-            id: backgroundImage
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.topMargin: root.state === "Widget1Row" ? -header.height : (root.state === "Widget2Rows" ? -header.height/2 : 0 )
-            Behavior on anchors.topMargin { DefaultNumberAnimation {} }
-            fillMode: Image.TileHorizontally
-            source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
+        navigationMode: root.navigationMode
+        guidanceMode: root.guidanceMode
+        currentLocation: root.currentLocation
+        routingBackend: mapRouting
+
+        onOpenSearchTextInput: root.openSearchTextInput()
+        onStartNavigation: {
+            root.guidanceMode = true;
         }
-
-        Row {
-            id: firstRow
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(.4)
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: header.width - Style.hspan(2)
-
-            Item {
-                id: label
-                width: firstRow.width / 2
-                height: invitationText.paintedHeight
-                anchors.verticalCenter: parent.verticalCenter
-                opacity: visible ? 1.0 : 0.0
-                Label {
-                    id: invitationText
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    width: parent.width/2
-                    wrapMode: Text.WordWrap
-                    font.pixelSize: Style.fontSizeS
-                    text: qsTr("Where do you wanna go today?")
-                }
-                Behavior on opacity { DefaultNumberAnimation { } }
-            }
-
-            Button {
-                id: searchButton
-                width: parent.width / 2
-                height: parent.height
-                scale: pressed ? 1.1 : 1.0
-                Behavior on scale { NumberAnimation { duration: 50 } }
-
-                background: Rectangle {
-                    color: "lightgray"
-                    radius: height / 2
-                }
-                contentItem: Item {
-                    Row {
-                        anchors.centerIn: parent
-                        spacing: Style.hspan(0.3)
-                        Image {
-                            anchors.verticalCenter: parent.verticalCenter
-                            fillMode: Image.Pad
-                            source: Qt.resolvedUrl("assets/ic-search.png")
-                        }
-                        Label {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: qsTr("Search")
-                            font.pixelSize: Style.fontSizeS
-                        }
-                    }
-                }
-                onClicked: openSearchTextInput()
-            }
+        onStopNavigation: {
+            root.navigationMode = false;
+            root.guidanceMode = false;
         }
-        RowLayout {
-            id: secondRow
-            anchors.top: firstRow.bottom
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(1.5)
-            opacity: (root.state == "Widget3Rows") || (root.state == "Maximized") ? 1 : 0
-            Behavior on opacity {
-                SequentialAnimation {
-                    PauseAnimation { duration: 180 }
-                    DefaultNumberAnimation {}
-                }
-            }
-            visible: opacity > 0
-            height: parent.height/2
-            MapToolButton {
-                id: buttonGoHome
-                Layout.preferredWidth: secondRow.width/2
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                iconSource: Qt.resolvedUrl("assets/ic-home.png")
-
-                text: qsTr("Home")
-                extendedText: "17 min"
-                secondaryText: "Welandergatan 29"
-            }
-            Rectangle {
-                width: 1
-                height: 150
-                opacity: 0.2
-                color: TritonStyle.primaryTextColor
-            }
-            MapToolButton {
-                id: buttonGoWork
-                Layout.preferredWidth: secondRow.width/2
-                Layout.fillWidth: true
-                anchors.verticalCenter: parent.verticalCenter
-                iconSource: Qt.resolvedUrl("assets/ic-work.png")
-                text: qsTr("Work")
-                extendedText: "23 min"
-                secondaryText: "Östra Hamngatan 20"
-            }
+        onShowRoute: {
+            root.center = destCoord;
+            root.startCoord = root.currentLocation;
+            root.destCoord = destCoord;
+            root.destination = description;
+            root.navigationMode = true;
         }
     }
 
@@ -233,7 +183,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: header.bottom
-        anchors.topMargin: -Style.vspan(1.6)
+        anchors.topMargin: -Style.vspan(1)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }

@@ -326,7 +326,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>MapView</name>
+    <name>MapHeader</name>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished">Wo soll es heute hingehen?</translation>
@@ -336,12 +336,54 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Work</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapRouting</name>
+    <message numerus="yes">
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapView</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="obsolete">Wo soll es heute hingehen?</translation>
     </message>
 </context>
 <context>

@@ -37,7 +37,7 @@ import com.pelagicore.styles.triton 1.0
 TextField {
     id: root
 
-    property color searchTextColor: TritonStyle.primaryTextColor
+    property alias busy: searchBusyIndicator.running
 
     font.pixelSize: TritonStyle.fontSizeM
     leftPadding: Style.hspan(0.4)
@@ -57,6 +57,14 @@ TextField {
                 anchors.rightMargin: Style.hspan(0.4)
                 anchors.verticalCenter: parent.verticalCenter
                 source: Qt.resolvedUrl("assets/ic-search.png")
+                visible: !searchBusyIndicator.visible
+            }
+            BusyIndicator {
+                id: searchBusyIndicator
+                anchors.right: parent.right
+                anchors.rightMargin: Style.hspan(0.4)
+                anchors.verticalCenter: parent.verticalCenter
+                visible: running
             }
         }
     }

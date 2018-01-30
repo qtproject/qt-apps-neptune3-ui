@@ -58,5 +58,6 @@ Window {
 
     Maps {
         anchors.fill: parent
+        state: "Maximized"
     }
 }

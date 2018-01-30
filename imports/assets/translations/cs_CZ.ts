@@ -98,62 +98,62 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>January</source>
-        <translation type="unfinished"></translation>
+        <translation>leden</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>February</source>
-        <translation type="unfinished"></translation>
+        <translation>únor</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>March</source>
-        <translation type="unfinished"></translation>
+        <translation>březen</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>April</source>
-        <translation type="unfinished"></translation>
+        <translation>duben</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>May</source>
-        <translation type="unfinished"></translation>
+        <translation>květen</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>June</source>
-        <translation type="unfinished"></translation>
+        <translation>červen</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>July</source>
-        <translation type="unfinished"></translation>
+        <translation>červenec</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>August</source>
-        <translation type="unfinished"></translation>
+        <translation>srpen</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>September</source>
-        <translation type="unfinished"></translation>
+        <translation>září</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>October</source>
-        <translation type="unfinished"></translation>
+        <translation>říjen</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>November</source>
-        <translation type="unfinished"></translation>
+        <translation>listopad</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>December</source>
-        <translation type="unfinished"></translation>
+        <translation>prosinec</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="66"/>
@@ -458,26 +458,93 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>MapView</name>
+    <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="151"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="91"/>
         <source>Where do you wanna go today?</source>
         <translation>Kam se chcete vydat dnes?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="178"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="126"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="209"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="160"/>
+        <source>Start Navigation</source>
+        <translation>Spustit navigaci</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="206"/>
         <source>Home</source>
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="225"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="224"/>
         <source>Work</source>
         <translation>Práce</translation>
+    </message>
+</context>
+<context>
+    <name>MapRouting</name>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
+        <source>%n kilometer(s)</source>
+        <translation>
+            <numerusform>%n kilometr</numerusform>
+            <numerusform>%n kilometry</numerusform>
+            <numerusform>%n kilometrů</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
+        <source>%n day(s)</source>
+        <translation>
+            <numerusform>%n den</numerusform>
+            <numerusform>%n dny</numerusform>
+            <numerusform>%n dnů</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
+        <source>%n hour(s)</source>
+        <translation>
+            <numerusform>%n hodina</numerusform>
+            <numerusform>%n hodiny</numerusform>
+            <numerusform>%n hodin</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform>%n minuta</numerusform>
+            <numerusform>%n minuty</numerusform>
+            <numerusform>%n minut</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapView</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="vanished">Kam se chcete vydat dnes?</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="vanished">Hledat</translation>
+    </message>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="vanished">Spustit navigaci</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation type="vanished">Domů</translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="vanished">Práce</translation>
     </message>
 </context>
 <context>
@@ -501,7 +568,7 @@ UX to the road</source>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verze</translation>
     </message>
 </context>
 <context>
@@ -709,12 +776,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="86"/>
         <source>Light</source>
-        <translation type="unfinished">Světlý</translation>
+        <translation>Světlý</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="87"/>
         <source>Dark</source>
-        <translation type="unfinished">Tmavý</translation>
+        <translation>Tmavý</translation>
     </message>
 </context>
 <context>

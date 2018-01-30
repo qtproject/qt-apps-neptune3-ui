@@ -36,25 +36,26 @@ import com.pelagicore.styles.triton 1.0
 
 ToolButton {
     id: root
-    property string iconSource
+    property alias iconSource: buttonImage.source
     property color labelColor: TritonStyle.primaryTextColor
 
+    property string primaryText
+
     property string extendedText: ""
-    property color extendedTextColor: "red"
+    property color extendedTextColor: TritonStyle.highlightedTextColor
     property int extendedTextFontSize: TritonStyle.fontSizeS
 
     property string secondaryText: ""
     property color secondaryTextColor: TritonStyle.primaryTextColor
     property int secondaryTextFontSize: TritonStyle.fontSizeS
 
-    contentItem: Item {
+    background: Item {
         Row {
             spacing: Style.hspan(0.5)
             anchors.centerIn: parent
             Image {
-                id: bottonImage
+                id: buttonImage
                 anchors.verticalCenter: parent.verticalCenter
-                source: root.iconSource
             }
             Column {
                 spacing: Style.hspan(0.1)
@@ -64,9 +65,8 @@ ToolButton {
                     Label {
                         id: primaryButtonText
                         anchors.verticalCenter: parent.verticalCenter
-                        font: root.font
                         color: root.labelColor
-                        text: root.text
+                        text: root.primaryText
                     }
                     Label {
                         id: extendedButtonText
@@ -80,6 +80,7 @@ ToolButton {
                     id: secondaryButtonText
                     color: root.secondaryTextColor
                     font.pixelSize: root.secondaryTextFontSize
+                    font.weight: Font.Light
                     text: root.secondaryText
                 }
             }

@@ -417,26 +417,69 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>MapView</name>
+    <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="151"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="91"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished">あなたはヒンジを握っていますか？</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="178"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="126"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="209"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="160"/>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="206"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapView.qml" line="225"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="224"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapRouting</name>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapView</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="obsolete">あなたはヒンジを握っていますか？</translation>
     </message>
 </context>
 <context>

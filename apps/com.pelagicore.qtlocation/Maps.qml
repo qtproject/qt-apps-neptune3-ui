@@ -108,7 +108,6 @@ Item {
         // Mapbox Plugin Parameters
         PluginParameter {
             name: "mapboxgl.access_token"
-            // TODO replace this personal token with a collective/company one
             value: "pk.eyJ1IjoicXRhdXRvIiwiYSI6ImNqY20wbDZidzBvcTQyd3J3NDlkZ21jdjUifQ.4KYDlP7UmQEVPYffr6VuVQ"
         }
         PluginParameter {
@@ -140,8 +139,10 @@ Item {
         id: mainMap
         anchors.fill: parent
         plugin: mapPlugin
+        routingPlugin: geocodePlugin
         center: priv.positionCoordinate
         state: root.state
+        currentLocation: priv.positionCoordinate
         activeMapType: {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
@@ -149,7 +150,6 @@ Item {
             return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
         onOpenSearchTextInput: {
-            //TODO: Show textsearch
             root.maximizeMap()
             searchViewEnabled = true
         }
@@ -180,7 +180,6 @@ Item {
             source: Qt.resolvedUrl("assets/floating-button-bg.png")
         }
         onClicked: root.maximizeMap()
-        Behavior on opacity { DefaultNumberAnimation {}}
     }
 
     FastBlur {
@@ -216,17 +215,11 @@ Item {
             anchors.fill: parent
             selectByMouse: true
             focus: searchViewEnabled
+            busy: geocodeModel.status == GeocodeModel.Loading
             onAccepted: {
                 geocodeModel.query = searchField.text;
                 geocodeModel.update();
                 searchViewEnabled = false;
-            }
-            BusyIndicator {
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                running: geocodeModel.status == GeocodeModel.Loading
-                visible: running
             }
             onTextChanged: {
                 if (text.length > 1) {
@@ -260,49 +253,24 @@ Item {
         model: geocodeModel
         visible: searchViewEnabled
         state: root.state
-        delegate: ItemDelegate {
+        delegate: TritonControls.ListItem {
             id: itemDelegate
+            width: parent.width
             readonly property string addressText: locationData.address.text
             readonly property string city: locationData.address.city
             readonly property string country: locationData.address.country
-            width: parent.width
-            height: Style.vspan(1.5)
-            contentItem: Item {
-                Label {
-                    id: firstRow
-                    width: parent.width
-                    height: Style.vspan(0.8)
-                    anchors.top: parent.top
-                    font.pixelSize: TritonStyle.fontSizeS
-                    text: itemDelegate.addressText
-                    maximumLineCount: 1
-                    elide: Text.ElideRight
-                }
-                Label {
-                    id: secondRow
-                    width: parent.width
-                    height: Style.vspan(0.3)
-                    anchors.top: firstRow.bottom
-                    font.pixelSize: TritonStyle.fontSizeXS
-                    text: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
-                    maximumLineCount: 1
-                    elide: Text.ElideRight
-                }
-            }
-            Rectangle {
-                id: divider
-                width: parent.width
-                height: 1
-                anchors.bottom: parent.bottom
-                color: TritonStyle.highlightedButtonColor
-            }
+            text: locationData.address.text
+            subText: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
             onClicked: {
                 searchViewEnabled = false;
-                priv.positionCoordinate = locationData.coordinate;
-                mainMap.showMarker(locationData.coordinate);
+                mainMap.center = locationData.coordinate;
+                mainMap.startCoord = priv.positionCoordinate;
+                mainMap.destCoord = locationData.coordinate;
+                mainMap.destination = itemDelegate.addressText;
                 if (locationData.boundingBox.isValid) {
                     mainMap.visibleRegion = locationData.boundingBox;
                 }
+                mainMap.navigationMode = true;
             }
         }
         onStateChanged: {

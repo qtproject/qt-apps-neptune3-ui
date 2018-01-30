@@ -47,6 +47,7 @@ QtObject {
     property int cellWidth
     property int cellHeight
     property real fontWeight: Font.Light
+    property int fontSizeXS: TritonStyle.fontSizeXS
     property int fontSizeS: TritonStyle.fontSizeS
     property int fontSizeM: TritonStyle.fontSizeM
     property int fontSizeL: TritonStyle.fontSizeL
