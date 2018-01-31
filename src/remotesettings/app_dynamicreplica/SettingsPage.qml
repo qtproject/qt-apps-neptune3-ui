@@ -33,14 +33,18 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 
-Page {
+Flickable {
     id: root
-    padding: 16
-    GridLayout {
-        anchors.centerIn: parent
-        columns: 2
+    flickableDirection: Flickable.VerticalFlick
+    contentHeight: baseLayout.height
 
+    ScrollIndicator.vertical: ScrollIndicator { }
+
+    GridLayout {
+        id: baseLayout
+        columns: 2
         enabled: uiSettings.connected
+        anchors.centerIn: parent
 
         // Language Field
         Label {

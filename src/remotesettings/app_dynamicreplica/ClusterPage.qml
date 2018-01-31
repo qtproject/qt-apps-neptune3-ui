@@ -33,26 +33,24 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 
-Page {
+Flickable {
     id: root
-    padding: 16
+    flickableDirection: Flickable.VerticalFlick
+    contentHeight: baseLayout.height
+
+    ScrollIndicator.vertical: ScrollIndicator { }
 
     ColumnLayout {
-        anchors.centerIn: parent
-        Layout.alignment: Qt.AlignHCenter
+        id: baseLayout
         enabled: instrumentCluster.connected
-
         spacing: 20
+        anchors.centerIn: parent
 
         RowLayout {
-            spacing: 20
-            Layout.fillWidth: true
+            spacing: sc(10)
             Layout.alignment: Qt.AlignHCenter
 
             // speed Field
-            Label {
-                text: qsTr("Speed:")
-            }
             Dial {
                 id: speedDial
                 from: 0
@@ -61,16 +59,21 @@ Page {
                 value: instrumentCluster.speed
                 onMoved: instrumentCluster.speed = value
 
-                Text {
+                Label {
+                    text: qsTr("Speed:")
+                    anchors.bottom: speedDial.verticalCenter
+                    anchors.horizontalCenter: speedDial.horizontalCenter
+                }
+
+                Label {
+                    id: speedLabel
                     text: Math.round(speedDial.value)
-                    anchors.centerIn: parent
+                    anchors.top: speedDial.verticalCenter
+                    anchors.horizontalCenter: speedDial.horizontalCenter
                 }
             }
 
             // ePower Field
-            Label {
-                text: qsTr("ePower:")
-            }
             Dial {
                 id: ePowerDial
                 from: -25
@@ -79,18 +82,24 @@ Page {
                 value: instrumentCluster.ePower
                 onMoved: instrumentCluster.ePower = value
 
-                Text {
+                Label {
+                    text: qsTr("ePower:")
+                    anchors.bottom: ePowerDial.verticalCenter
+                    anchors.horizontalCenter: ePowerDial.horizontalCenter
+                }
+
+                Label {
+                    id: ePowerLabel
                     text: Math.round(ePowerDial.value)
-                    anchors.centerIn: parent
+                    anchors.top: ePowerDial.verticalCenter
+                    anchors.horizontalCenter: ePowerDial.horizontalCenter
                 }
             }
         }
 
         GridLayout {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
-            columns: 4
+            columns: root.width < sc(100) ? 2 : 4
 
             // speedLimit Field
             Label {
@@ -120,7 +129,7 @@ Page {
 
             // driveTrainState field
             Label {
-                text: qsTr("Drive train state:")
+                text: qsTr("Gear:")
             }
 
             ComboBox {
@@ -130,7 +139,7 @@ Page {
                 onActivated: instrumentCluster.driveTrainState = currentIndex
             }
             Label {
-                text: qsTr("Next IVI Mode:")
+                text: qsTr("Next IVI-Mode:")
             }
             CheckBox {
                 checked: instrumentCluster.navigationMode
@@ -140,10 +149,8 @@ Page {
         }
 
         GridLayout {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
-            columns: 4
+            columns: root.width < sc(100) ? 2 : 4
 
             // lowBeamHeadlight Field
             Label {

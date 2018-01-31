@@ -42,8 +42,8 @@ Dialog {
     signal accepted(bool accepted)
 
     contentItem: Frame {
-        implicitWidth: 680
-        implicitHeight: 480
+        implicitWidth: 340
+        implicitHeight: 240
         ColumnLayout {
             anchors.fill: parent
 
@@ -52,9 +52,9 @@ Dialog {
                 Layout.alignment: Qt.AlignCenter
             }
 
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignCenter
+                Layout.alignment: Qt.AlignLeft
 
                 Label {
                     text: qsTr("Server URL")
@@ -72,7 +72,7 @@ Dialog {
 
 
             RowLayout {
-                spacing: 10
+                spacing: sc(10)
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 

@@ -31,6 +31,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.3
 
 ApplicationWindow {
     id: root
@@ -43,6 +44,10 @@ ApplicationWindow {
     readonly property bool connected: uiSettings.connected ||
                                       instrumentCluster.connected
 
+    function sc(value) {
+        return value * Screen.pixelDensity;
+    }
+
     Component.onCompleted: {
         connectionDialog.open()
     }
@@ -51,9 +56,6 @@ ApplicationWindow {
         id: connectionDialog
         statusText: client.status
         lastUrls: client.lastUrls
-
-        width: parent.width / 2
-        height: parent.height / 2
 
         x: (parent.width-width) /2
         y: (parent.height-height) /2
@@ -108,8 +110,8 @@ ApplicationWindow {
        id: stack
        anchors.fill: parent
        anchors.margins: 16
-       SettingsPage {}
-       ClusterPage {}
+       SettingsPage { anchors.fill: parent }
+       ClusterPage { anchors.fill: parent }
    }
 
    footer: TabBar {
