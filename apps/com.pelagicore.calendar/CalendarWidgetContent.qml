@@ -33,18 +33,27 @@ import QtQuick 2.8
 import QtQml 2.2
 import QtQuick.Controls 2.2
 import utils 1.0
+import animations 1.0
 
 import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
 
-    property alias eventTimeStart: eventTimeStart.text
-    property alias eventName: eventName.text
+    property string precipitationIcon: Style.symbol("ic-rain-amount")
+    property string precipitationText: "0 - 2 mm"
     property string weatherName
     property string weatherIcon
     property int temp
+
     property date currentTime: new Date()
+    readonly property var monthNames: [
+        qsTr("January"), qsTr("February"), qsTr("March"),
+        qsTr("April"), qsTr("May"), qsTr("June"),
+        qsTr("July"), qsTr("August"), qsTr("September"),
+        qsTr("October"), qsTr("November"), qsTr("December")
+    ]
+    property ListModel eventModel
 
     Component.onCompleted: {
         root.generateWeather();
@@ -57,97 +66,180 @@ Item {
             root.weatherName = QT_TR_NOOP("Partly rain");
             root.weatherIcon = "ic-weather-partly-rain";
             root.temp = 20;
+            root.precipitationText = "0 - 2 mm"
+            root.precipitationIcon = Style.symbol("ic-rain-amount")
             break;
         case 1:
             root.weatherName = QT_TR_NOOP("Rain");
             root.weatherIcon = "ic-weather-rain";
             root.temp = 18;
+            root.precipitationText = "4.5 - 6 mm"
+            root.precipitationIcon = Style.symbol("ic-rain-amount")
             break;
         case 2:
             root.weatherName = QT_TR_NOOP("Light Snow");
             root.weatherIcon = "ic-weather-snow";
             root.temp = -3;
+            root.precipitationText = "1 - 3 mm"
+            root.precipitationIcon = Style.symbol("ic-rain-amount")
             break;
         case 3:
             root.weatherName = QT_TR_NOOP("Sunny");
             root.weatherIcon = "ic-weather-sun";
+            root.precipitationText = ""
+            root.precipitationIcon = ""
             root.temp = 30;
             break;
         }
     }
 
-    Row {
+    Timer {
+        running: true
+        interval: 60000
+        repeat: true
+        onTriggered: currentTime = new Date()
+    }
+
+    Image {
+        id: leftColoredArea
         anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        spacing: Style.hspan(1.5)
-
-        Image {
-            width: Style.hspan(6.2)
-            height: width
-            source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
-            fillMode: Image.Stretch
-
-            Label {
-                id: currentDate
-                width: Style.hspan(4.5)
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: Style.vspan(1)
-                text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale))
-                wrapMode: Text.WordWrap
-            }
-        }
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
+        fillMode: Image.TileVertically
 
         Column {
+            id: currentDate
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(0.7)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(0.3)
             anchors.top: parent.top
             anchors.topMargin: Style.vspan(1)
-            spacing: Style.vspan(0.5)
-
-            Image {
-                source: Style.symbol(root.weatherIcon, TritonStyle.theme)
+            Label {
+                width: parent.width
+                elide: Text.ElideRight
+                text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale), "dddd")
+            }
+            Label {
+                width: parent.width
+                elide: Text.ElideRight
+                text: monthNames[root.currentTime.getMonth()] + ", " + root.currentTime.getDate()
             }
 
-            Column {
-                spacing: Style.vspan(0.1)
+            Item {
+                width: parent.width
+                height: Style.vspan(1.2)
+                opacity: calendarEvents.isMultiLineWidget ? 1 : 0
+                Behavior on opacity { DefaultNumberAnimation { } }
+                visible: opacity > 0
+            }
 
-                Label {
-                    text: "24° " + qsTr(root.weatherName) + ","
-                    opacity: 0.8
-                    font.pixelSize: TritonStyle.fontSizeS
-                }
+            WeatherWidget {
+                opacity: calendarEvents.isMultiLineWidget ? 1 : 0
+                Behavior on opacity { DefaultNumberAnimation { } }
+                visible: opacity > 0
 
-                Row {
-                    spacing: Style.hspan(0.5)
+                weatherIcon: Style.symbol(root.weatherIcon, TritonStyle.theme)
+                weatherText: qsTr(root.weatherName)
 
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: Style.symbol("ic-rain-amount")
-                    }
+                temperatureValue: root.temp
+                temperatureVisible: true
 
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "0 - 2 mm"
-                        opacity: 0.8
-                        font.pixelSize: TritonStyle.fontSizeS
-                    }
-                }
+                precipitationIcon: root.precipitationIcon
+                precipitationText: root.precipitationText
+                precipitationVisible: precipitationText !== ""
             }
         }
+    }
 
-        Row {
-            anchors.verticalCenter: parent.verticalCenter
+    WeatherWidget {
+        id: weatherColumn
+        anchors.left: leftColoredArea.right
+        anchors.leftMargin: Style.vspan(0.5)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.hspan(0.6)
+        opacity: !calendarEvents.isMultiLineWidget
+        Behavior on opacity { DefaultNumberAnimation { } }
+        visible: opacity > 0
+
+        weatherIcon: Style.symbol(root.weatherIcon, TritonStyle.theme)
+        weatherText: qsTr(root.weatherName)
+
+        temperatureValue: root.temp
+        temperatureVisible: false
+
+        precipitationIcon: root.precipitationIcon
+        precipitationText: root.precipitationText
+        precipitationVisible: precipitationText !== ""
+    }
+
+    Item {
+        id: calendarEvents
+        readonly property bool isMultiLineWidget: root.height > Style.hspan(6)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.hspan(0.3)
+        anchors.left: leftColoredArea.right
+        anchors.leftMargin: calendarEvents.isMultiLineWidget ? Style.hspan(1) : weatherColumn.width + Style.hspan(1.5)
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(1)
+        height: calendarEvents.isMultiLineWidget ? Style.hspan(4.5) : Style.hspan(1.5)
+
+        Behavior on anchors.bottomMargin { DefaultNumberAnimation {} }
+        Behavior on anchors.leftMargin { DefaultNumberAnimation {} }
+        Behavior on height { DefaultNumberAnimation {} }
+
+        Column {
+            width: parent.width
             spacing: Style.hspan(0.3)
+            Repeater {
+                model: {
+                    if ( (!calendarEvents.isMultiLineWidget)&&(eventModel.count > 0)) {
+                        return 1
+                    } else if (eventModel.count > 0) {
+                        var numOfItems = Math.floor(calendarEvents.height/(Style.hspan(0.8)))
+                        return eventModel.count >= numOfItems ? numOfItems : eventModel.count
+                    } else {
+                        return 0
+                    }
+                }
 
-            Label {
-                id: eventTimeStart
-                opacity: 0.5
-                font.pixelSize: TritonStyle.fontSizeS
-            }
-
-            Label {
-                id: eventName
-                font.pixelSize: TritonStyle.fontSizeS
+                delegate: Row {
+                    id: rowEvent
+                    width: parent.width
+                    height: Style.hspan(0.5)
+                    spacing: Style.hspan(0.3)
+                    Label {
+                        id: eventTimeStart
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: Style.hspan(2)
+                        opacity: 0.5
+                        font.pixelSize: TritonStyle.fontSizeS
+                        text: eventModel.get(index).timeStart
+                    }
+                    Label {
+                        id: eventName
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: calendarEvents.width - eventTimeStart.width - rowEvent.spacing
+                        font.pixelSize: TritonStyle.fontSizeS
+                        elide: Text.ElideRight
+                        text: eventModel.get(index).event
+                    }
+                }
             }
         }
+    }
+
+    Image {
+        id: weatherGraphPlaceholder
+        readonly property bool graphActive: (root.height > (sourceSize.height + calendarEvents.height + Style.hspan(1))) && (root.state === "Widget3Rows")
+        anchors.top: parent.top
+        anchors.topMargin: graphActive ? 0 : -Style.vspan(0.5)
+        anchors.left: leftColoredArea.right
+        opacity: graphActive ? 1 : 0
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation { duration: 600 } }
+        Behavior on anchors.topMargin { DefaultNumberAnimation { duration: 600 } }
+        source: Qt.resolvedUrl("./assets/weather-graph.png")
     }
 }

@@ -76,22 +76,82 @@
 <context>
     <name>CalendarWidgetContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="57"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
+        <source>January</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
+        <source>February</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
+        <source>March</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
+        <source>April</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
+        <source>May</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
+        <source>June</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
+        <source>July</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
+        <source>August</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
+        <source>September</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
+        <source>October</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
+        <source>November</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
+        <source>December</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="66"/>
         <source>Partly rain</source>
         <translation>局部有雨</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="62"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="73"/>
         <source>Rain</source>
         <translation>有雨</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="80"/>
         <source>Light Snow</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="72"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="87"/>
         <source>Sunny</source>
         <translation>晴</translation>
     </message>

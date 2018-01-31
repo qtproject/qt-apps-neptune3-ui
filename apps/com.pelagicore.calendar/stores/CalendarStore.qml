@@ -38,12 +38,6 @@ Store {
     property ListModel eventModel: ListModel {
 
         ListElement {
-            timeStart: "all-day"
-            timeEnd: "all-day"
-            event: "Happy Thanksgiving!"
-        }
-
-        ListElement {
             timeStart: "07:00"
             timeEnd: "08:00"
             event: "Breakfast with family"

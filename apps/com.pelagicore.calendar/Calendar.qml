@@ -54,6 +54,7 @@ Item {
 
     CalendarWidgetContent {
         anchors.fill: parent
+        state: root.state
         visible: root.state !== "Maximized"
         opacity: visible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
@@ -61,8 +62,7 @@ Item {
         // Generate random number to get contents from calendar model.
         property int randomIndex: Math.floor((Math.random() * root.store.eventModel.count) + 0)
 
-        eventTimeStart: root.store.eventModel.get(randomIndex).timeStart
-        eventName: root.store.eventModel.get(randomIndex).event
+        eventModel: root.store.eventModel
     }
 
     Image {
