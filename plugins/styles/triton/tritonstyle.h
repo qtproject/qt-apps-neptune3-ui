@@ -53,6 +53,8 @@ class TritonStyle : public QQuickStyleAttached
     Q_OBJECT
     Q_PROPERTY(Theme theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
 
+    // naming scheme use by other qt control styles
+    // TODO: update controls to use colors from the design spec group or update the specs if needed
     Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor highlightedTextColor READ highlightedTextColor NOTIFY tritonStyleChanged FINAL)
@@ -60,9 +62,9 @@ class TritonStyle : public QQuickStyleAttached
     Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor highlightedButtonColor READ highlightedButtonColor NOTIFY tritonStyleChanged FINAL)
 
+    // naming scheme used in the design specs
     Q_PROPERTY(QColor accentColor READ accentColor NOTIFY tritonStyleChanged FINAL)
-    Q_PROPERTY(QColor positiveColor READ positiveColor NOTIFY tritonStyleChanged FINAL)
-    Q_PROPERTY(QColor negativeColor READ negativeColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor mainColor READ mainColor NOTIFY tritonStyleChanged FINAL)
 
     Q_PROPERTY(int fontSizeXXS READ fontSizeXXS NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontSizeXS READ fontSizeXS NOTIFY tritonStyleChanged FINAL)
@@ -101,8 +103,7 @@ public:
         ButtonColor,
         HighlightedButtonColor,
         AccentColor,
-        PositiveColor,
-        NegativeColor
+        MainColor,
     };
     Q_ENUM(SystemColor)
 
@@ -114,8 +115,7 @@ public:
     QColor buttonColor() const { return systemColor(ButtonColor); }
     QColor highlightedButtonColor() const { return systemColor(HighlightedButtonColor); }
     QColor accentColor() const;
-    QColor positiveColor() const;
-    QColor negativeColor() const;
+    QColor mainColor() const;
 
     int fontSizeXXS() const;
     int fontSizeXS() const;

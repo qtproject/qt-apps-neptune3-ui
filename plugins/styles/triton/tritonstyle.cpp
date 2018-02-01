@@ -66,8 +66,7 @@ GlobalLightThemeColors {
                       {TritonStyle::HighlightedButtonColor, QColor(0XFFCBCAC8)},
 
                       {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
-                      {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
-                      {TritonStyle::NegativeColor, QColor(0xFF303030)}
+                      {TritonStyle::MainColor, QColor(0xFFFFFFFF)},
                   };
 
 static QHash<TritonStyle::SystemColor, QColor>
@@ -80,8 +79,7 @@ GlobalDarkThemeColors {
                      {TritonStyle::HighlightedButtonColor, QColor(0xFF6D6B64)},
 
                      {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
-                     {TritonStyle::PositiveColor, QColor(0xFF50E3C2)},
-                     {TritonStyle::NegativeColor, QColor(0xFF303030)}
+                     {TritonStyle::MainColor, QColor(0xFF000000)},
                  };
 
 //TODO: replace with typedef
@@ -226,16 +224,10 @@ QColor TritonStyle::accentColor() const
     return systemColor(AccentColor);
 }
 
-QColor TritonStyle::positiveColor() const
+QColor TritonStyle::mainColor() const
 {
-    return systemColor(PositiveColor);
+    return systemColor(MainColor);
 }
-
-QColor TritonStyle::negativeColor() const
-{
-    return systemColor(NegativeColor);
-}
-
 
 QColor TritonStyle::lighter25(const QColor& color)
 {
