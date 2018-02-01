@@ -64,6 +64,16 @@ Item {
         mainMap.zoomLevel -= 1.0;
     }
 
+    function showMarker(coordinate) {
+        searchResultItem.coordinate = coordinate
+        searchResultItem.visible = true
+    }
+
+    function hideMarker() {
+        searchResultItem.visible = false
+    }
+
+
     Map {
         id: mainMap
         anchors.fill: parent
@@ -81,6 +91,14 @@ Item {
 
         onErrorChanged: {
             console.warn("Map error:", error, errorString)
+        }
+        MapQuickItem {
+            id: searchResultItem
+            visible: false
+            anchorPoint: Qt.point(70,122)
+            sourceItem: Image {
+                source: Qt.resolvedUrl("./assets/pin-destination.png")
+            }
         }
     }
 

@@ -299,6 +299,7 @@ Item {
             onClicked: {
                 searchViewEnabled = false;
                 priv.positionCoordinate = locationData.coordinate;
+                mainMap.showMarker(locationData.coordinate);
                 if (locationData.boundingBox.isValid) {
                     mainMap.visibleRegion = locationData.boundingBox;
                 }
