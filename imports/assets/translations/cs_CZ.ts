@@ -406,14 +406,12 @@ UX to the road</source>
 <context>
     <name>InstalledAppList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="49"/>
         <source>Updates</source>
-        <translation>Aktualizace</translation>
+        <translation type="vanished">Aktualizace</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
         <source>Latest Version</source>
-        <translation>Poslední verze</translation>
+        <translation type="vanished">Poslední verze</translation>
     </message>
 </context>
 <context>

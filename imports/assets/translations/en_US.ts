@@ -363,19 +363,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>InstalledAppList</name>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="49"/>
-        <source>Updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
-        <source>Latest Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LanguagePanel</name>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/panels/LanguagePanel.qml" line="62"/>

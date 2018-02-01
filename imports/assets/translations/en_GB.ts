@@ -297,17 +297,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>InstalledAppList</name>
-    <message>
-        <source>Updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Latest Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LanguagePanel</name>
     <message>
         <source>Language</source>

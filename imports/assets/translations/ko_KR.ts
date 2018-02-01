@@ -376,14 +376,12 @@ UX to the road</source>
 <context>
     <name>InstalledAppList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="49"/>
         <source>Updates</source>
-        <translation>업데이트</translation>
+        <translation type="vanished">업데이트</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/InstalledAppList.qml" line="115"/>
         <source>Latest Version</source>
-        <translation>최신 버전</translation>
+        <translation type="vanished">최신 버전</translation>
     </message>
 </context>
 <context>

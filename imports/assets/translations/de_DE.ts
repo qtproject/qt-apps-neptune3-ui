@@ -304,11 +304,11 @@ UX to the road</source>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
-        <translation>Aktualisierung</translation>
+        <translation type="vanished">Aktualisierung</translation>
     </message>
     <message>
         <source>Latest Version</source>
-        <translation>Letzte Version</translation>
+        <translation type="vanished">Letzte Version</translation>
     </message>
 </context>
 <context>
