@@ -4,10 +4,6 @@
 <context>
     <name>About</name>
     <message>
-        <source>Marketing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Monitor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -15,11 +11,13 @@
         <source>Running Apps</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>AboutMarketing</name>
     <message>
-        <source>Version: %1</source>
+        <source>Bringing stunning
+UX to the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QtAuto - Agile UX Development</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -346,6 +344,10 @@
     <name>MonitorView</name>
     <message>
         <source>System Monitor Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

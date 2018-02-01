@@ -5,7 +5,7 @@
     <name>About</name>
     <message>
         <source>Marketing</source>
-        <translation>Marketing</translation>
+        <translation type="vanished">Marketing</translation>
     </message>
     <message>
         <source>Monitor</source>
@@ -15,11 +15,13 @@
         <source>Running Apps</source>
         <translation>Laufende Programme</translation>
     </message>
-</context>
-<context>
-    <name>AboutMarketing</name>
     <message>
-        <source>Version: %1</source>
+        <source>Bringing stunning
+UX to the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QtAuto - Agile UX Development</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -357,6 +359,10 @@
     </message>
     <message>
         <source>System Monitor Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

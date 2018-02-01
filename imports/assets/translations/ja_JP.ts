@@ -4,27 +4,29 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="66"/>
         <source>Marketing</source>
-        <translation>マーケティング</translation>
+        <translation type="vanished">マーケティング</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="71"/>
+        <location filename="../../../sysui/about/About.qml" line="72"/>
+        <source>Bringing stunning
+UX to the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="82"/>
+        <source>QtAuto - Agile UX Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="97"/>
         <source>Monitor</source>
         <translation>モニター</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="76"/>
+        <location filename="../../../sysui/about/About.qml" line="102"/>
         <source>Running Apps</source>
         <translation>アプリケーションの実行</translation>
-    </message>
-</context>
-<context>
-    <name>AboutMarketing</name>
-    <message>
-        <location filename="../../../sysui/about/AboutMarketing.qml" line="50"/>
-        <source>Version: %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -453,8 +455,13 @@
         <translation type="vanished">ステータスバーのプロセスモニタ</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="54"/>
         <source>System Monitor Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -542,7 +549,7 @@
 <context>
     <name>NetworkMonitor</name>
     <message>
-        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="58"/>
+        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="44"/>
         <source>Network</source>
         <translation>ネットワーク</translation>
     </message>

@@ -4,17 +4,27 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="66"/>
         <source>Marketing</source>
-        <translation>营销</translation>
+        <translation type="vanished">营销</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="71"/>
+        <location filename="../../../sysui/about/About.qml" line="72"/>
+        <source>Bringing stunning
+UX to the road</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="82"/>
+        <source>QtAuto - Agile UX Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/about/About.qml" line="97"/>
         <source>Monitor</source>
         <translation>监控</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="76"/>
+        <location filename="../../../sysui/about/About.qml" line="102"/>
         <source>Running Apps</source>
         <translation>运行中的App</translation>
     </message>
@@ -24,11 +34,6 @@
     <message>
         <source>We put Stunning User Experience on the road</source>
         <translation type="vanished">我们为您带来旅程中令人惊艳的交互体验</translation>
-    </message>
-    <message>
-        <location filename="../../../sysui/about/AboutMarketing.qml" line="50"/>
-        <source>Version: %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -478,8 +483,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="vanished">状态栏进程监控</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="55"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="54"/>
         <source>System Monitor Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
+        <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -567,7 +577,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>NetworkMonitor</name>
     <message>
-        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="58"/>
+        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="44"/>
         <source>Network</source>
         <translation>网络</translation>
     </message>
