@@ -171,30 +171,30 @@ Control {
                 }
 
                 Image {
-                    width: Style.hspan(17)
-                    height: 5
+                    Layout.fillWidth: true
                     anchors.bottom: parent.bottom
-                    source: Style.gfx2("divider", TritonStyle.theme)
+                    source: Style.gfx2("list-divider", TritonStyle.theme)
                 }
             }
         }
 
         Component {
             id: delegatedItem
-            SongListItem {
+
+            ListItem {
                 id: delegatedSong
                 width: Style.hspan(17)
-                height: Style.vspan(1)
+                height: Style.vspan(1.3)
                 visible: root.showList
                 opacity: visible ? 1.0 : 0.0
                 Behavior on opacity { DefaultNumberAnimation { } }
 
                 highlighted: false
-                titleLabel: model.item.title && (root.actualContentType === "track" || root.showPath) ? model.item.title :
+                text: model.item.title && (root.actualContentType === "track" || root.showPath) ? model.item.title :
                                                                                                         (model.name ? model.name : "")
-                subtitleLabel: model.item.artist && (root.actualContentType === "track" || root.showPath) ? model.item.artist :
+                subText: model.item.artist && (root.actualContentType === "track" || root.showPath) ? model.item.artist :
                                                                                                             (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
-                onClicked: root.itemClicked(model.index, model.item, delegatedSong.titleLabel)
+                onClicked: root.itemClicked(model.index, model.item, delegatedSong.text)
             }
         }
 
