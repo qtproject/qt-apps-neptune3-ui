@@ -61,7 +61,7 @@ Entity {
     Mesh {
         id: rearDoorMesh
         meshName: "back_window"
-        source: vehicle3DView.carObjFilePath
+        source: "file:assets/models/back_window.stl"
     }
 
     components: [transform, rearDoorMesh, glassMaterial]

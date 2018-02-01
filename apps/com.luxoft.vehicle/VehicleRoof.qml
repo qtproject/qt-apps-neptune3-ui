@@ -59,7 +59,7 @@ Entity {
     Mesh {
         id: mesh
         meshName: "sun_roof"
-        source: vehicle3DView.carObjFilePath
+        source: "file:assets/models/sun_roof.stl"
     }
 
     components: [transform, mesh, whiteHood]

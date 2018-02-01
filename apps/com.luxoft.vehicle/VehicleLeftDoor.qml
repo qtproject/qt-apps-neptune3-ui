@@ -62,7 +62,7 @@ Entity {
         Mesh {
             id: mesh
             meshName: "^silver_paint$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/silver_paint.stl"
         }
         components: [transform, mesh, whiteHood]
     }
@@ -71,7 +71,7 @@ Entity {
         Mesh {
             id: mesh2
             meshName: "^silver_paint_1$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/silver_paint_1.stl"
         }
         components: [mesh2, whiteHood, transform]
     }
@@ -80,7 +80,7 @@ Entity {
         Mesh {
             id: glass
             meshName: "^glass$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/glass.stl"
         }
         components: [glass, glassMaterial, transform]
     }
@@ -89,7 +89,7 @@ Entity {
         Mesh {
             id: chrome1
             meshName: "^chrome_1$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/chrome_1.stl"
         }
         components: [chrome1, chromeMaterial, transform]
     }
@@ -98,7 +98,7 @@ Entity {
         Mesh {
             id: black
             meshName: "^black$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/black.stl"
         }
         components: [black, blackMaterial, transform]
     }
@@ -107,7 +107,7 @@ Entity {
         Mesh {
             id: black1
             meshName: "^black_1$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/black_1.stl"
         }
         components: [black1, blackMaterial, transform]
     }

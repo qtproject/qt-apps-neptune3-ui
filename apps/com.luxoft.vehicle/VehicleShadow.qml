@@ -39,7 +39,7 @@ Entity {
     Mesh {
         id: shadowMesh
         meshName: "shadow"
-        source: vehicle3DView.carObjFilePath
+        source: "file:assets/models/shadow.stl"
     }
 
     NormalDiffuseMapAlphaMaterial {

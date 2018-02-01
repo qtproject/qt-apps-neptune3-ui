@@ -39,8 +39,6 @@ import QtQuick.Controls 2.3
 Item {
     id: vehicle3DView
 
-    //ToDo: This "file:" thing is a hack to make Qt3D load by relative address
-    readonly property string carObjFilePath: "file:assets/models/car.obj"
     property alias roofOpenProgress: roof.openProgress
     readonly property real scaleFactor: 0.1
 

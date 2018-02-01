@@ -50,7 +50,7 @@ Entity {
         Mesh {
             id: mesh
             meshName: "^chrome$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/chrome.stl"
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
@@ -61,7 +61,7 @@ Entity {
         Mesh {
             id: shell
             meshName: "shell"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/shell.stl"
         }
         components: [transform, shell, whiteHood]
     }
@@ -70,7 +70,7 @@ Entity {
         Mesh {
             id: matt_black
             meshName: "matt_black"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/matt_black.stl"
         }
         components: [transform, matt_black, blackMaterial]
     }
@@ -79,7 +79,7 @@ Entity {
         Mesh {
             id: glass
             meshName: "^glass_4$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/glass_4.stl"
         }
         components: [transform, glass, glassMaterial]
     }
@@ -88,7 +88,7 @@ Entity {
         Mesh {
             id: license_plates
             meshName: "^licence_plates$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/licence_plates.stl"
         }
         components: [transform, license_plates, whiteMaterial]
     }
@@ -97,7 +97,7 @@ Entity {
         Mesh {
             id: frontLights
             meshName: "front_ights"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/front_ights.stl"
         }
         PhongAlphaMaterial {
             id: frontLightsMaterial
@@ -113,7 +113,7 @@ Entity {
         Mesh {
             id: taillights
             meshName: "^taillights$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/taillights.stl"
         }
         components: [transform, taillights, taillightsMaterial]
     }
@@ -122,7 +122,7 @@ Entity {
         Mesh {
             id: interior
             meshName: "^interior$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/interior.stl"
         }
         components: [transform, interior, interiorMaterial]
     }

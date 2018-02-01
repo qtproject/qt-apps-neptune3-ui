@@ -60,7 +60,7 @@ Entity {
 
     Mesh {
         id: rear_tires
-        source: "file:assets/models/rear_tires.obj"
+        source: "file:assets/models/rear_tires.stl"
     }
 
     NormalDiffuseMapAlphaMaterial {
@@ -81,7 +81,7 @@ Entity {
         Mesh {
             id: wheelMesh
             meshName: "^rear_wheel_chrome_1$"
-            source: vehicle3DView.carObjFilePath
+            source: "file:assets/models/rear_wheel_chrome_1.stl"
         }
         components: [transform, wheelMesh, chromeMaterial]
     }

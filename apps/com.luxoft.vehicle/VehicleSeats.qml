@@ -40,7 +40,7 @@ Entity {
 
     Mesh {
         id: seats
-        source: "file:assets/models/seats.obj"
+        source: "file:assets/models/seats.stl"
     }
 
     Texture2D {
