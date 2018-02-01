@@ -37,41 +37,15 @@ import com.pelagicore.styles.triton 1.0
 import utils 1.0
 
 Item {
-    //ToDo: this button row deserves it's own component
-    RowLayout {
+    TabBar {
         id: energyControls
-
-        spacing: 0
-
-        VehicleHorizontalMenuButton {
-            id: presetnTopConfig
-
-            state: "LEFT"
-            text: qsTr("Present")
-            onPressedChanged: (z = pressed ? 100 : 0)
-        }
-
-        VehicleHorizontalMenuButton {
-            id: dayTopConfig
-
-            text: qsTr("1 day")
-            onPressedChanged: (z = pressed ? 100 : 0)
-        }
-
-        VehicleHorizontalMenuButton {
-            id: weekTopConfig
-
-            text: qsTr("1 week")
-            onPressedChanged: (z = pressed ? 100 : 0)
-        }
-
-        VehicleHorizontalMenuButton {
-            id: monthTopConfig
-
-            state: "RIGHT"
-            text: qsTr("1 month")
-            onPressedChanged: (z = pressed ? 100 : 0)
-        }
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        TabButton { text: qsTr("Present") }
+        TabButton { text: qsTr("1 day") }
+        TabButton { text: qsTr("1 week") }
+        TabButton { text: qsTr("1 month") }
     }
 
     Image {

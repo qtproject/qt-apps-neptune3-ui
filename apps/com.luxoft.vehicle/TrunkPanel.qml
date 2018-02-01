@@ -30,54 +30,38 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-
-import animations 1.0
-import utils 1.0
-import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
 
-    property alias leftDoorOpen: doorsConfig.leftDoorOpen
-    property alias rightDoorOpen: doorsConfig.rightDoorOpen
-    property alias trunkOpen: trunkConfig.trunkOpen
-    property alias roofOpenProgress: roofConfig.roofOpenProgress
+    property bool trunkOpen: false
 
-    TabBar {
-        id: tabBar
+    Image {
+        id: trunkImage
+
+        source: "assets/images/car-top-back.png"
         anchors.top: parent.top
+        anchors.topMargin: -232
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1.0)
-        anchors.right: parent.right
+        anchors.leftMargin: 140
+        width: 470
+        height: 670
 
-        TabButton {
-            text: qsTr("Sun roof")
+        Image {
+            anchors.fill: parent
+            visible: root.trunkOpen
+            source: "assets/images/car-top-trunk.png"
         }
-        TabButton {
-            text: qsTr("Doors")
-        }
-        TabButton {
-            text: qsTr("Trunk")
-        }
-    }
 
-    StackLayout {
-        anchors.top: tabBar.bottom
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        currentIndex: tabBar.currentIndex
-        RoofPanel {
-            id: roofConfig
-        }
-        FrontDoorsPanel {
-            id: doorsConfig
-        }
-        TrunkPanel {
-            id: trunkConfig
+        VehicleButton {
+            id: trunkCloseButton
+
+            anchors.top: parent.bottom
+            anchors.topMargin: 30
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: root.trunkOpen ? qsTr("Close") : qsTr("Open")
+
+            onClicked: root.trunkOpen = !root.trunkOpen
         }
     }
 }
-

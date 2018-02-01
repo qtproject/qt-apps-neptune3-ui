@@ -66,6 +66,7 @@ Item {
         anchors.left: toolsColumn.right
         anchors.leftMargin: Style.hspan(1.2)
         anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(1.4)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
 
