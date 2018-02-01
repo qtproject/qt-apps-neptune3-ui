@@ -53,7 +53,7 @@ T.ItemDelegate {
 
     font.pixelSize: TritonStyle.fontSizeM
     font.family: TritonStyle.fontFamily
-
+    font.weight: Font.Light
 
     contentItem: Label {
         leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
@@ -62,26 +62,24 @@ T.ItemDelegate {
         text: control.text
         font: control.font
         elide: Text.ElideRight
-        visible: control.text
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
-        opacity: enabled ? 1.0 : 0.2
-        color: enabled ? control.TritonStyle.primaryTextColor : control.TritonStyle.disabledTextColor
+        visible: control.text
+        opacity: enabled ? 0.94 : 0.2
+        color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
     }
 
     background: Rectangle {
         visible: control.down || control.highlighted || control.visualFocus || control.hovered
-
         color: TritonStyle.backgroundColor
 
         Rectangle {
             width: parent.width
             height: parent.height
             visible: control.visualFocus || control.highlighted
-            color: control.TritonStyle.accentColor
-            opacity: control.TritonStyle.theme === TritonStyle.Light ? 0.4 : 0.6
+            color: TritonStyle.accentColor
+            opacity: TritonStyle.theme === TritonStyle.Light ? 0.4 : 0.6
         }
-
     }
 }
