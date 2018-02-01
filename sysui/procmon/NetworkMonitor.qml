@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -36,39 +36,23 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import com.pelagicore.systeminfo 1.0
 
-Item {
+ColumnLayout {
     id: root
-    width: 640
-    height: 400
-
-    SystemInfo {
-        id: info
+    SystemInfo { id: info }
+    Label {
+        Layout.fillWidth: true
+        text: qsTr("Network")
     }
-
-    property var model: info.addressList
-
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 16
-        spacing: 16
-        Label {
-            id: descriptionText
-            Layout.fillWidth: true
-            font.pixelSize: Style.fontSizeM
-            text: qsTr("Network")
+    ListView {
+        clip: true
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        model: info.addressList
+        delegate: ItemDelegate {
+            width: ListView.view.width
+            text: modelData
+            font.pixelSize: Style.fontSizeS
         }
-        ListView {
-            id: view
-            clip: true
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            model: root.model
-            delegate: ItemDelegate {
-                width: ListView.view.width
-                text: modelData
-                font.pixelSize: Style.fontSizeS
-            }
-            ScrollBar.vertical: ScrollBar { }
-        }
+        ScrollBar.vertical: ScrollBar { }
     }
 }

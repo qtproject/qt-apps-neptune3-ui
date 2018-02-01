@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -33,52 +33,37 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
+import com.pelagicore.styles.triton 1.0
 import utils 1.0
 
 Item {
     id: root
-    width: 640
-    height: 200
 
-    property int leftMargin: 0.03 * width
-    property alias descriptionText: descriptionText.text
-    property alias valueText: valueText.text
-    property real middleLine: 0.5
-    property int graphHeight: 0.65 * root.height
+    property string descriptionText
+    property string valueText
     property alias middleText: middleLineText.text
     default property alias content: graphContent.children
     property alias model: graph.model
     property alias delegate: graph.delegate
     readonly property int margin: 15
 
-    RowLayout {
+    Label {
+        id: titleLine
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: parent.left
-        anchors.leftMargin: root.leftMargin
-        spacing: 5
+        anchors.right: parent.right
+        height: TritonStyle.fontSizeM * 1.1
 
-        Label {
-            id: descriptionText
-            Layout.fillWidth: true
-            font.pixelSize: Style.fontSizeM
-        }
-
-        Label {
-            id: valueText
-            Layout.preferredWidth: Style.hspan(2)
-            font.pixelSize: Style.fontSizeM
-        }
+        text: root.descriptionText + root.valueText
     }
 
     Item {
         id: graphContainer
-        width: 0.86 * root.width
-        height: root.graphHeight
+        anchors.top: titleLine.bottom
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: root.leftMargin
         anchors.left: parent.left
-        anchors.leftMargin: root.leftMargin
+        anchors.right: middleLineText.left
 
         Item {
             id: graphContent
@@ -97,8 +82,11 @@ Item {
 
         Row {
             id: dottedLine
-            y: root.graphHeight - (root.middleLine * root.graphHeight) + 5
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
             spacing: 4
+            height: 4
 
             Repeater {
                 model: graphContainer.width/8
@@ -111,21 +99,13 @@ Item {
                 }
             }
         }
+    }
 
-        Label {
-            id: middleLineText
-            width: Style.hspan(1)
-            anchors.left: dottedLine.right
-            anchors.leftMargin: root.margin
-            anchors.verticalCenter: dottedLine.verticalCenter
-            font.pixelSize: Style.fontSizeS
-        }
-
-        Rectangle {
-            width: parent.width
-            height: 2
-            anchors.bottom: parent.bottom
-            color: "#4d4d4d"
-        }
+    Label {
+        id: middleLineText
+        width: Style.hspan(1)
+        anchors.right: parent.right
+        anchors.verticalCenter: graphContainer.verticalCenter
+        font.pixelSize: TritonStyle.fontSizeS
     }
 }

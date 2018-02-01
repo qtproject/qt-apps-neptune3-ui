@@ -40,7 +40,6 @@ MonitorPanel {
 
     descriptionText: "RAM: "
     middleText: "50%"
-    middleLine: 0.5
 
     model: SystemMonitor
 

@@ -41,7 +41,6 @@ import com.pelagicore.styles.triton 1.0
 
 ColumnLayout {
     id: root
-    clip: true
 
     Item {
         Layout.fillWidth: true
@@ -75,19 +74,32 @@ ColumnLayout {
 
     CpuMonitor {
         Layout.fillWidth: true
+        Layout.preferredHeight: Style.vspan(2.5)
+        Layout.topMargin: Style.vspan(0.25)
     }
 
     RamMonitor {
         Layout.fillWidth: true
+        Layout.preferredHeight: Style.vspan(2.5)
+        Layout.topMargin: Style.vspan(0.25)
     }
 
     NetworkMonitor {
         Layout.fillWidth: true
-    }
-
-    Item {
         Layout.fillHeight: true
-        Layout.fillWidth: true
+        Layout.topMargin: Style.vspan(0.25)
     }
 
+    Label {
+        text: qsTr("Version")
+        Layout.fillWidth: true
+        Layout.preferredHeight: font.pixelSize * 1.1
+        Layout.topMargin: Style.vspan(0.25)
+    }
+    Label {
+        text: Qt.application.version
+        font.pixelSize: Style.fontSizeS
+        Layout.fillWidth: true
+        Layout.preferredHeight: font.pixelSize * 1.1
+    }
 }

@@ -40,7 +40,6 @@ MonitorPanel {
 
     descriptionText: "CPU: "
     middleText: "50%"
-    middleLine: 0.5
     valueText: SystemModel.cpuPercentage + "%"
 
     model: SystemMonitor
