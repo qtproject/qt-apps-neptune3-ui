@@ -53,62 +53,32 @@ ListView {
 
     currentIndex: -1
 
-    delegate: ItemDelegate {
+    delegate: ListItem {
         id: delegatedItem
-        Layout.preferredWidth: Style.hspan(15)
-        Layout.preferredHeight: Style.vspan(1)
+        width: Style.hspan(15)
+        height: Style.vspan(1)
         property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
 
-        background: null
-        contentItem: RowLayout {
-            spacing: Style.hspan(0.8)
-
-            Image {
-                id: appIcon
-                Layout.preferredHeight: Style.hspan(1)
-                fillMode: Image.PreserveAspectFit
-                source: root.appServerUrl + "/app/icon?id=" + model.id
+        symbol: root.appServerUrl + "/app/icon?id=" + model.id
+        text: model.name
+        rightToolSymbol: delegatedItem.isInstalled ? Style.symbol("ic-close") : Style.symbol("ic-download_OFF")
+        onRightToolClicked: {
+            if (!delegatedItem.isInstalled) {
+                root.currentIndex = index;
             }
-
-            Label {
-                Layout.preferredHeight: Style.vspan(0.5)
-                Layout.preferredWidth: appIcon.status === Image.Ready ? Style.hspan(10) : Style.hspan(11)
-                text: model.name
-                // TODO: Check with designer, which color should be used.
-                color: "grey"
-                font.pixelSize: Style.fontSizeS
-                horizontalAlignment: Text.AlignLeft
-            }
-
-            Tool {
-                Layout.preferredWidth: Style.hspan(1)
-                Layout.preferredHeight: Style.vspan(0.5)
-                symbol: delegatedItem.isInstalled ? Style.symbol("ic-close") : Style.symbol("ic-download_OFF")
-                opacity: delegatedItem.isInstalled ? 0.2 : 1.0
-                onClicked: {
-                    if (!delegatedItem.isInstalled) {
-                        root.currentIndex = index;
-                    }
-                    root.toolClicked(model.id);
-                }
-            }
+            root.toolClicked(model.id);
         }
 
         ProgressBar {
             id: control
 
+            height: Style.vspan(0.1)
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: Style.hspan(0.05)
             value: root.installationProgress
             padding: 2
             visible: root.currentIndex === index && root.installationProgress < 1.0
 
-            background: Rectangle {
-                implicitWidth: Style.hspan(15)
-                implicitHeight: Style.hspan(0.08)
-                color: "#828282"
-                radius: 3
-            }
+            background: null
 
             contentItem: Item {
                 implicitWidth: Style.hspan(15)
@@ -117,18 +87,9 @@ ListView {
                 Rectangle {
                     width: control.visualPosition * parent.width
                     height: parent.height
-                    radius: 2
-                    color: "#FA9E54"
+                    color: TritonStyle.accentColor
                 }
             }
-        }
-
-        Rectangle {
-            width: Style.hspan(15)
-            height: Style.hspan(0.05)
-            anchors.bottom: parent.bottom
-            // TODO: Check with designer, which color should be used.
-            color: "#BCBCBC"
         }
     }
 }
