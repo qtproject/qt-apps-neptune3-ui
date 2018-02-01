@@ -67,6 +67,10 @@ GlobalLightThemeColors {
 
                       {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                       {TritonStyle::MainColor, QColor(0xFFFFFFFF)},
+                      {TritonStyle::OffMainColor, QColor(0xFFF1EFED)},
+                      {TritonStyle::AccentDetailColor, QColor(0xFFCE8042)},
+                      {TritonStyle::ContrastColor, QColor(0xFF000000)},
+                      {TritonStyle::ClusterMarksColor, QColor(0xFF916E51)}
                   };
 
 static QHash<TritonStyle::SystemColor, QColor>
@@ -80,6 +84,10 @@ GlobalDarkThemeColors {
 
                      {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                      {TritonStyle::MainColor, QColor(0xFF000000)},
+                     {TritonStyle::OffMainColor, QColor(0xFFF1EFED)},
+                     {TritonStyle::AccentDetailColor, QColor(0xFFCE8042)},
+                     {TritonStyle::ContrastColor, QColor(0xFFFFFFFF)},
+                     {TritonStyle::ClusterMarksColor, QColor(0xFF916E51)}
                  };
 
 //TODO: replace with typedef
@@ -227,6 +235,26 @@ QColor TritonStyle::accentColor() const
 QColor TritonStyle::mainColor() const
 {
     return systemColor(MainColor);
+}
+
+QColor TritonStyle::offMainColor() const
+{
+    return systemColor(OffMainColor);
+}
+
+QColor TritonStyle::accentDetailColor() const
+{
+    return systemColor(AccentDetailColor);
+}
+
+QColor TritonStyle::contrastColor() const
+{
+    return systemColor(ContrastColor);
+}
+
+QColor TritonStyle::clusterMarksColor() const
+{
+    return systemColor(ClusterMarksColor);
 }
 
 QColor TritonStyle::lighter25(const QColor& color)

@@ -65,6 +65,10 @@ class TritonStyle : public QQuickStyleAttached
     // naming scheme used in the design specs
     Q_PROPERTY(QColor accentColor READ accentColor NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(QColor mainColor READ mainColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor offMainColor READ offMainColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor accentDetailColor READ accentDetailColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor contrastColor READ contrastColor NOTIFY tritonStyleChanged FINAL)
+    Q_PROPERTY(QColor clusterMarksColor READ clusterMarksColor NOTIFY tritonStyleChanged FINAL)
 
     Q_PROPERTY(int fontSizeXXS READ fontSizeXXS NOTIFY tritonStyleChanged FINAL)
     Q_PROPERTY(int fontSizeXS READ fontSizeXS NOTIFY tritonStyleChanged FINAL)
@@ -104,6 +108,10 @@ public:
         HighlightedButtonColor,
         AccentColor,
         MainColor,
+        OffMainColor,
+        AccentDetailColor,
+        ContrastColor,
+        ClusterMarksColor
     };
     Q_ENUM(SystemColor)
 
@@ -116,6 +124,10 @@ public:
     QColor highlightedButtonColor() const { return systemColor(HighlightedButtonColor); }
     QColor accentColor() const;
     QColor mainColor() const;
+    QColor offMainColor() const;
+    QColor accentDetailColor() const;
+    QColor contrastColor() const;
+    QColor clusterMarksColor() const;
 
     int fontSizeXXS() const;
     int fontSizeXS() const;
