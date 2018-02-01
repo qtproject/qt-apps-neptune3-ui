@@ -31,6 +31,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 
+
+// TODO: Delete this file and use TabBar with TabButtons instead in this app
 ToolButton {
     id: root
 
