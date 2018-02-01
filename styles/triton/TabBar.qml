@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -29,12 +29,32 @@
 **
 ****************************************************************************/
 
+import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
-import com.pelagicore.styles.triton 1.0
 
-T.Control {
-    font.family: TritonStyle.fontFamily
-    font.pixelSize: TritonStyle.fontSizeM
-    palette.windowText: TritonStyle.primaryTextColor
-    palette.brightText: TritonStyle.mainColor
+T.TabBar {
+    id: control
+
+    implicitWidth: Math.max(background ? background.implicitWidth : 0,
+                            contentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(background ? background.implicitHeight : 0,
+                             contentHeight + topPadding + bottomPadding)
+
+    spacing: 0
+
+    contentItem: ListView {
+        model: control.contentModel
+        currentIndex: control.currentIndex
+
+        spacing: control.spacing
+        orientation: ListView.Horizontal
+        boundsBehavior: Flickable.StopAtBounds
+        flickableDirection: Flickable.AutoFlickIfNeeded
+        snapMode: ListView.SnapToItem
+
+        highlightMoveDuration: 0
+        highlightRangeMode: ListView.ApplyRange
+        preferredHighlightBegin: 40
+        preferredHighlightEnd: width - 40
+    }
 }
