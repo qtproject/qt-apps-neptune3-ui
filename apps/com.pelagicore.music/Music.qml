@@ -44,12 +44,8 @@ Item {
     id: root
 
     property MusicStore store
-    readonly property int topMaximizedMargin: Style.vspan(1)
-    property alias albumArtRow: albumArtRow
-    property alias controlsRow: controlsRow
-    property bool showList: false
-
-    signal dragAreaClicked()
+    property bool topExpanded: false //expanded => playing queue visible
+    signal flickableAreaClicked()
 
     state: "Widget1Row"
 
@@ -57,473 +53,334 @@ Item {
         target: root.store; property: "contentType";
         value: {
             switch (toolsColumn.currentText) {
-                case "artists":
-                    return "artist";
-                case "albums":
-                case "folders":
-                    return "album";
-                case "favorites":
-                    // TODO: check if IVI already support favorites list.
-                default:
-                    // TODO: specify all possible content type. currently use "track" as default
-                    return "track";
+            case "artists":
+                return "artist";
+            case "albums":
+            case "folders":
+                return "album";
+            case "favorites":
+                // TODO: check if IVI already support favorites list.
+            default:
+                // TODO: specify all possible content type. currently use "track" as default
+                return "track";
             }
         }
     }
 
-    // States and transitions are still WIP. it still need to wait for the feedback from designer and later be updated according to the final spec.
-    states: [
-        State {
-            name: "Widget1Row"
-            PropertyChanges { target: nowPlayingList; state: "WidgetList1Row" }
-        },
-        State {
-            name: "Widget2Rows"
-            PropertyChanges { target: nowPlayingList; state: "WidgetHideList" }
-        },
-        State {
-            name: "Widget3Rows"
-            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
-                              listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; state: "WidgetHideList" }
-        },
-        State {
-            name: "Maximized"
-            PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5);
-                              listView.contentY: - Style.vspan(0.8); state: "WidgetListMaximized" }
-        }
-    ]
-
-    transitions: [
-        Transition {
-            DefaultNumberAnimation { target: nowPlayingList; properties: "width, y, contentY, anchors.horizontalCenterOffset"; }
-        }
-    ]
-
-    MouseArea {
-        id: nowPlayingDragArea
-        width: root.width
-        height: enabled ? Style.vspan(5.5) : 0
-        anchors.horizontalCenter: nowPlayingList.horizontalCenter
-        anchors.bottom: nowPlayingList.top
-        anchors.bottomMargin: - nowPlayingList.listView.headerItem.height
-        drag.target: nowPlayingList
-        drag.axis: Drag.YAxis
-        drag.minimumY: Style.vspan(4.2)
-        drag.maximumY: nowPlayingList.initialY
-        enabled: root.state === "Widget3Rows"
-
-        onClicked: root.dragAreaClicked()
-        onReleased: {
-            if (nowPlayingList.y < Style.vspan(7.8) && nowPlayingList.y > Style.vspan(4.2)) {
-                nowPlayingList.y = Style.vspan(4.2);
-            } else if (nowPlayingList.y > Style.vspan(7.8)) {
-                nowPlayingList.y = nowPlayingList.initialY;
-            }
-        }
-    }
-
-    MusicList {
-        id: nowPlayingList
-
-        width: parent.width - Style.hspan(4)
-        height: root.state === "Maximized" ? Style.vspan(9.5) : Style.vspan(6.8)
-        Behavior on height { DefaultNumberAnimation { } }
+    Item {
+        id: fullscreenTop   //but not items shared with widget
 
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2.6)
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height: root.topExpanded ? (root.height - 100) : (660 - 224)
+        Behavior on height { DefaultNumberAnimation { duration: 270 } }
 
-        property int initialY: Style.vspan(10.4)
-        y: nowPlayingList.initialY
-        onYChanged: {
-            if (root.state === "Widget3Rows") {
-                if (y < Style.vspan(7.8) && nowPlayingList.state === "WidgetHideList") {
-                    nowPlayingList.state = "WidgetShowList";
-                } else if (y > Style.vspan(7.8) && nowPlayingList.state === "WidgetShowList") {
-                    nowPlayingList.state = "WidgetHideList";
+        opacity: root.state === "Maximized" ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation {} }
+        visible: opacity > 0
+
+        Image {
+            id: fullscreenTopPartBackground //todo: add the blurred album art as well
+            anchors.fill: parent
+            source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+        }
+
+        Tool {
+            id: showPlayingQueueButton
+
+            anchors.verticalCenter: parent.top
+            anchors.verticalCenterOffset: Style.vspan(360/80)
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: Style.hspan(10)
+            height: Style.vspan(1.4)
+            text: qsTr("Next")
+            font.pixelSize: 22 //todo: change to Style.fontSizeS when the value is corrected in style plugin
+            symbol: root.topExpanded ? "" : Style.symbol("ic-expand", TritonStyle.theme)
+            onClicked: {
+                root.topExpanded = true;
+            }
+        }
+
+        MusicList {
+            id: playingQueueList    //playing queue
+            anchors.top: parent.top
+            anchors.topMargin: 660 - 224
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.leftMargin: 100
+            anchors.right: parent.right
+            anchors.rightMargin: 100
+            clip: true
+            listView.model: root.store.searchAndBrowseModel
+        }
+
+        Tool {
+            id: showNormalBrowseViewButton
+
+            anchors.verticalCenter: parent.bottom
+            anchors.verticalCenterOffset: Style.vspan(80/80)
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: Style.hspan(10)
+            height: Style.vspan(1.4)
+
+            opacity: root.topExpanded ? 1.0 : 0.0
+            Behavior on opacity {
+                SequentialAnimation {
+                    PauseAnimation { duration: root.topExpanded ? 0 : 100 }
+                    DefaultNumberAnimation {}
+                }
+            }
+            visible: opacity > 0
+            text: qsTr("Browse")
+            font.pixelSize: 22 //todo: change to Style.fontSizeS when the value is corrected in style plugin
+            symbol: Style.symbol("ic-expand-up", TritonStyle.theme)
+            onClicked: {
+                root.topExpanded = false;
+            }
+        }
+    }
+
+    Item {
+        id: fullscreenBottom
+
+        width: Style.hspan(1080/45)
+        anchors.left: parent.left
+        // ############### Johan's comment:
+        // I think it looks better if it does not move horizontally. That's why I added -80 and the Behavior on...
+        // It keeps the width of lists etc.
+        // Would prefer to get this value passed down to every app, like we did it with exposedRect.
+        // ###############
+        anchors.leftMargin: root.state === "Maximized" ? 0 : -80
+        Behavior on anchors.leftMargin { DefaultNumberAnimation {} }
+        anchors.top: fullscreenTop.bottom
+        anchors.bottom: parent.bottom
+
+        opacity: root.state === "Maximized" && !root.topExpanded ? 1.0 : 0.0
+        Behavior on opacity {
+            SequentialAnimation {
+                //delay fadeIn when playing queue is closing
+                PauseAnimation { duration: root.state === "Maximized" && !root.topExpanded ? 0 : 100 }
+                DefaultNumberAnimation {}
+            }
+        }
+        visible: opacity > 0
+        clip: true
+
+        // ############### Johan's comment:
+        // In the future I would like to see the toolBar code in AppUIScreen.qml
+        // and just assigning a model to each app
+        // ###############
+        AppToolBar {
+            id: toolsColumn
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            translationContext: "MusicToolsColumn"
+            model: ListModel {
+                ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites") }
+                ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists") }
+                ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists") }
+                ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums") }
+                ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders") }
+            }
+        }
+
+        // ############### Johan's comment:
+        // In the future I would like the "main content of bottom part of fullscreen app"
+        // to be loaded by a loader in AppUIScreen.qml.
+        // ###############
+        MusicBrowseList {
+            id: musicLibrary
+            anchors.left: toolsColumn.right
+            anchors.right: parent.right
+            anchors.top: parent.top
+            height: parent.height
+            listView.model: root.store.searchAndBrowseModel
+            contentType: root.store.searchAndBrowseModel.contentType
+
+            onLibraryGoBack: {
+                musicLibrary.albumPath = "";
+                if (musicLibrary.contentType.slice(-5) === "album") {
+                    musicLibrary.artistName = "";
+                }
+
+                // if root content "artist" is specified, then go to the root, otherwise it will go one step back.
+                if (goToArtist) {
+                    root.store.searchAndBrowseModel.contentType = "artist";
+                    musicLibrary.artistName = "";
+                    musicLibrary.albumName = "";
+                } else {
+                    root.store.searchAndBrowseModel.goBack();
+                }
+            }
+
+            onItemClicked: {
+
+                if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
+                    musicLibrary.artistName = title;
+                    root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
+                    musicLibrary.albumName = title;
+                    root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                } else {
+                    root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
+                    root.store.player.play();
+                }
+
+                if (root.state !== "Maximized") {
+                    root.store.musicPlaylist.currentIndex = index;
+                    root.store.player.play();
                 }
             }
         }
-        Behavior on y { DefaultNumberAnimation { } }
+    }
 
-        showPath: false
-        showBg: false
-        showList: !musicLibrary.showList
-        listView.interactive: showList && ((root.state === "Widget3Rows" && nowPlayingList.state !== "WidgetHideList")
-                                           || root.state === "Maximized")
-        state: "WidgetHideList"
+    Item {
+        id: widgetAndFullscreen //widget content (and items shared with fullscreen)
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height: 260
+        state: root.state
+        property alias widget3QueueContentY: nextListFlickable.contentY
+
+        Item {
+            id: nextListFlickableItemWrapper
+            width: parent.width
+            height: (parent.height - Style.vspan(2))
+            anchors.top: artAndTitlesBlock.bottom
+            anchors.topMargin: Style.vspan(0.3)
+            opacity: 0
+            Behavior on opacity { DefaultNumberAnimation { duration: 300 } }
+            visible: opacity > 0
+            clip: true
+            Flickable {
+                id: nextListFlickable
+                anchors.fill: parent
+                contentWidth: parent.width
+                contentHeight: Math.max((nextList.height + nextList.anchors.topMargin + Style.vspan(1.3)), height)
+
+                MouseArea {
+                    //when clicking anywhere else, go to Maximized state
+                    anchors.fill: parent
+                    onClicked: {
+                        root.flickableAreaClicked();
+                    }
+                }
+                MusicList {
+                    id: nextList
+                    width: parent.width
+                    height: (listView.count * Style.vspan(1.3))
+                    anchors.top: parent.top
+                    anchors.topMargin: ((progressBarBlock.height / 2) + musicTools.height)
+                    listView.model: root.store.searchAndBrowseModel
+                    listView.interactive: false
+                    contentType: root.store.searchAndBrowseModel.contentType
+                    onItemClicked: {
+                        if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
+                            musicLibrary.artistName = title;
+                            root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                        } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
+                            musicLibrary.albumName = title;
+                            root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                        } else {
+                            root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
+                            root.store.player.play();
+                        }
+                        if (root.store.contentType === "track") {
+                            root.store.musicPlaylist.currentIndex = index;
+                            root.store.player.play();
+                        }
+                    }
+                }
+            }
+        }
+        AlbumArtRow {
+            id: artAndTitlesBlock
+            height: 180
+            width: parent.width
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 0
+            songModel: root.store.musicPlaylist
+            currentIndex: root.store.musicPlaylist.currentIndex
+            currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
+            currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
+            parentStateMaximized: root.state === "Maximized"
+            mediaReady: root.store.searchAndBrowseModel.count > 0
+            musicPlaying: root.store.playing
+            onPlayClicked: root.store.playSong()
+            onPreviousClicked: root.store.previousSong()
+            onNextClicked: root.store.nextSong()
+            Connections {
+                target: root.store
+                onSongModelPopulated: { artAndTitlesBlock.populateModel(); }
+            }
+        }
+
+        MusicProgress {
+            id: progressBarBlock
+            width: parent.width
+            height: 220
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 200
+            opacity: 0
+            visible: opacity > 0
+            Behavior on opacity { DefaultNumberAnimation { } }
+            value: root.store.currentTrackPosition
+            progressText: root.store.elapsedTime + " / " + root.store.totalTime
+            onUpdatePosition: root.store.updatePosition(value)
+        }
+
+        MusicTools {
+            id: musicTools
+            anchors.top: progressBarBlock.bottom
+            anchors.topMargin: -progressBarBlock.height/2
+            anchors.right: progressBarBlock.right
+            anchors.rightMargin: Style.hspan(0.3)
+            onShuffleClicked: root.store.shuffleSong()
+            onRepeatClicked: root.store.repeatSong()
+        }
+
         states: [
             State {
-                name: "WidgetHideList"
-                AnchorChanges {
-                    target: albumArtRow
-                    anchors.left: undefined
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-                PropertyChanges { target: albumArtRow; scale: 1.0; width: Style.hspan(19); height: Style.vspan(6);
-                                  anchors.verticalCenterOffset: - Style.vspan(0.5) }
-                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: nowPlayingList.initialY;
-                                  listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; }
+                name: "Widget1Row"
+                PropertyChanges { target: nextListFlickable; contentY: 0 }
             },
             State {
-                name: "WidgetShowList"
-                AnchorChanges {
-                    target: albumArtRow
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                PropertyChanges { target: albumArtRow; scale: 0.7; width: Style.hspan(6.2); height: Style.vspan(3.5);
-                                  anchors.verticalCenterOffset: - Style.vspan(3.5); anchors.leftMargin: Style.hspan(0.8) }
-                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.2);
-                                  listView.contentY: - Style.vspan(0.8); anchors.horizontalCenterOffset: 0; showList: true }
+                name: "Widget2Rows"
+                PropertyChanges { target: widgetAndFullscreen; height: 550 }
+                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 62 }
+                PropertyChanges { target: nextListFlickable; contentY: 0 }
+                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: 138 }
+                PropertyChanges { target: progressBarBlock; opacity: 1 }
+                PropertyChanges { target: musicTools; opacity: 1 }
             },
-
             State {
-                name: "WidgetList1Row"
-                AnchorChanges {
-                    target: albumArtRow
-                    anchors.left: parent.left
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                PropertyChanges { target: albumArtRow; width: Style.hspan(6.2); height: Style.vspan(3.5); scale: 1.0;
-                                  anchors.verticalCenterOffset: 0; anchors.leftMargin: 0 }
+                name: "Widget3Rows"
+                PropertyChanges { target: widgetAndFullscreen; height: 840 }
+                PropertyChanges { target: nextListFlickable; contentY: 0 }
+                PropertyChanges { target: nextListFlickableItemWrapper; opacity: 1 }
+                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 271 - Math.min(20, widgetAndFullscreen.widget3QueueContentY/6) }
+                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: -71 - Math.min(60, widgetAndFullscreen.widget3QueueContentY/2) }
+                PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140)) }
+                PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140))}
             },
-
             State {
-                name: "WidgetListMaximized"
-                AnchorChanges {
-                    target: albumArtRow
-                    anchors.verticalCenter: undefined
-                    anchors.top: parent.top
-                }
-                PropertyChanges { target: albumArtRow; scale: 1; width: Style.hspan(6.2); height: Style.vspan(3.5);
-                                  anchors.leftMargin: Style.hspan(1.8) }
-                PropertyChanges { target: nowPlayingList; width: parent.width - Style.hspan(4); y: Style.vspan(4.5);
-                                  listView.contentY: - Style.vspan(0.8); }
+                name: "Maximized"
+                PropertyChanges { target: widgetAndFullscreen; height: 660 - 224 }
+                PropertyChanges { target: nextListFlickable; contentY: 0 }
+                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: -110 }
+                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: 90 }
+                PropertyChanges { target: progressBarBlock; opacity: 1 }
+                PropertyChanges { target: musicTools; opacity: 1 }
             }
-
         ]
 
         transitions: [
             Transition {
-                from: "WidgetHideList"; to: "WidgetList1Row"
-                DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset";
-                    duration: 50 }
-            },
-            Transition {
-                from: "WidgetList1Row"; to: "WidgetHideList"
-                ParallelAnimation {
-                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
-                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset"; }
-                }
-            },
-            Transition {
-                from: "WidgetShowList"; to: "WidgetHideList"
-                ParallelAnimation {
-                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
-                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset" }
-                }
-            },
-            Transition {
-                from: "WidgetListMaximized";
-                ParallelAnimation {
-                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 100 }
-                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.leftMargin, anchors.verticalCenterOffset" }
-                }
-            },
-            Transition {
-                ParallelAnimation {
-                    AnchorAnimation { easing.type: Easing.InOutQuad; duration: 270 }
-                    DefaultNumberAnimation { target: albumArtRow; properties: "width, height, scale, anchors.verticalCenterOffset"; }
-                    DefaultNumberAnimation { target: nowPlayingList; properties: "width, listView.contentY"; }
-                }
+                DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, artAndTitlesBlock, widgetAndFullscreen]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
             }
         ]
-
-        contentType: root.store.searchAndBrowseModel.contentType
-        visible: (root.state === "Widget3Rows" || nowPlayingList.state === "WidgetShowList" || root.state === "Maximized") && root.height > 850
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
-
-        listView.model: root.store.musicPlaylist
-
-        onItemClicked: {
-            root.store.musicPlaylist.currentIndex = index;
-            root.store.player.play();
-        }
-
-        onHeaderClicked: {
-            if (root.state === "Maximized") {
-                musicLibrary.showList = false;
-                musicLibrary.listView.contentY = - Style.vspan(0.8);
-            } else if (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList") {
-                nowPlayingList.y = Style.vspan(4.2);
-            } else if (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") {
-                nowPlayingList.y = nowPlayingList.initialY;
-            }
-        }
-    }
-
-    MusicList {
-        id: musicLibrary
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        anchors.bottom: parent.bottom
-
-        showPath: {
-            switch (toolsColumn.currentText) {
-                case "artists":
-                case "albums":
-                case "folders":
-                    return false;
-                case "favorites":
-                default:
-                    return true;
-            }
-        }
-
-        states: [
-            State {
-                name: "expanded"
-                when: musicLibrary.showList
-                AnchorChanges {
-                    target: musicLibrary
-                    anchors.top: nowPlayingList.top
-                }
-                PropertyChanges {
-                    target: musicLibrary
-                    anchors.topMargin: nowPlayingList.listView.headerItem.height
-                }
-            },
-            State {
-                name: "colapsed"
-                when: !musicLibrary.showList
-                AnchorChanges {
-                    target: musicLibrary
-                    anchors.top: nowPlayingList.bottom
-                }
-                PropertyChanges {
-                    target: musicLibrary
-                    anchors.topMargin: 0
-                }
-            }
-        ]
-        transitions: Transition {
-            AnchorAnimation { easing.type: Easing.InOutQuad; duration: 270 }
-        }
-
-        visible: root.state === "Maximized"
-        onVisibleChanged: {
-            if (visible) {
-                musicLibrary.showList = visible;
-                root.store.searchAndBrowseModel.contentType = "track";
-            }
-        }
-
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
-
-        showBg: true
-        listView.interactive: showList
-        listView.model: root.store.searchAndBrowseModel
-        contentType: root.store.searchAndBrowseModel.contentType
-
-        onShowListChanged: {
-            if (musicLibrary.showList) {
-                nowPlayingList.y = Style.vspan(4.5);
-            } else {
-                nowPlayingList.y = Style.vspan(5.5);
-            }
-        }
-
-        onHeaderClicked: {
-            musicLibrary.showList = !musicLibrary.showList;
-            nowPlayingList.listView.contentY = - Style.vspan(0.8);
-        }
-
-        onLibraryGoBack: {
-            musicLibrary.albumPath = "";
-            if (musicLibrary.contentType.slice(-5) === "album") {
-                musicLibrary.artistPath = "";
-            }
-
-            // if root content "artist" is specified, then go to the root, otherwise it will go one step back.
-            if (goToArtist) {
-                root.store.searchAndBrowseModel.contentType = "artist";
-                musicLibrary.artistPath = "";
-                musicLibrary.albumPath = "";
-            } else {
-                root.store.searchAndBrowseModel.goBack();
-            }
-        }
-
-        onItemClicked: {
-
-            if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
-                musicLibrary.artistPath = title;
-                root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
-            } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
-                musicLibrary.albumPath = title;
-                root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
-            } else {
-                root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
-                root.store.player.play();
-            }
-
-            if (root.state !== "Maximized") {
-                root.store.musicPlaylist.currentIndex = index;
-                root.store.player.play();
-            }
-        }
-    }
-
-    ToolsColumn {
-        id: toolsColumn
-        anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1.0)
-        anchors.top: musicLibrary.top
-        anchors.topMargin: Style.vspan(1.1)
-        visible: root.state === "Maximized" && musicLibrary.showList
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
-
-        translationContext: "MusicToolsColumn"
-        model: ListModel {
-            ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites") }
-            ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists") }
-            ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists") }
-            ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums") }
-            ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders") }
-        }
-
-        onCurrentIndexChanged: {
-            // Reset media library path
-            musicLibrary.artistPath = "";
-            musicLibrary.albumPath = "";
-        }
-    }
-
-    AlbumArtRow {
-        id: albumArtRow
-
-        width: Style.hspan(6.2)
-        height: Style.vspan(3.5)
-
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-
-        showPrevNextAlbum: root.state === "Widget2Rows" || (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetHideList")
-        showMusicTools: albumArtRow.showPrevNextAlbum
-        musicPlaying: root.store.playing
-        musicPosition: root.store.currentTrackPosition
-        showShadow: root.store.musicCount > 0 && root.state === "Maximized"
-        mediaReady: root.store.searchAndBrowseModel.count > 0
-        songModel: root.store.musicPlaylist
-        currentIndex: root.store.musicPlaylist.currentIndex
-        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
-        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
-        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
-
-        onPlayClicked: root.store.playSong()
-        onPreviousClicked: root.store.previousSong()
-        onNextClicked: root.store.nextSong()
-        onShuffleClicked: root.store.shuffleSong()
-        onRepeatClicked: root.store.repeatSong()
-        onUpdatePosition: root.store.updatePosition(value)
-
-        Connections {
-            target: root.store
-            onSongModelPopulated: albumArtRow.populateModel()
-        }
-    }
-
-    MusicProgress {
-        id: musicProgress
-        width: labelOnTop ? Style.hspan(14.5) : Style.hspan(18.5)
-        height: Style.hspan(0.6)
-
-        // Show progress label on top when maximized state.
-        labelOnTop: root.state === "Maximized"
-
-        anchors.top: labelOnTop ? controlsRow.bottom : albumArtRow.bottom
-        anchors.topMargin: - Style.hspan(0.6)
-        anchors.left: labelOnTop ? titleColumn.left : parent.left
-        anchors.leftMargin: labelOnTop ? - Style.hspan(1) : Style.hspan(2.2)
-        Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
-        progressBarLabelLeftMargin: labelOnTop ? Style.hspan(1) : Style.hspan(0.6)
-        progressText: root.store.elapsedTime + " / " + root.store.totalTime
-
-        progressBarWidth: {
-            if (musicProgress.labelOnTop) {
-                return musicProgress.width - Style.hspan(2);
-            } else {
-                return musicProgress.width - Style.hspan(5);
-            }
-        }
-        Behavior on progressBarWidth { DefaultNumberAnimation { } }
-
-        value: root.store.currentTrackPosition
-        visible: nowPlayingList.state === "WidgetShowList" || root.state === "Maximized"
-        opacity: (visible && nowPlayingList.listView.contentY < 0) || root.state === "Maximized"? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
-
-        onUpdatePosition: root.store.updatePosition(value)
-    }
-
-    TitleColumn {
-        id: titleColumn
-        Layout.preferredWidth: Style.vspan(3)
-        anchors.verticalCenter: albumArtRow.verticalCenter
-        anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
-        anchors.left: albumArtRow.right
-        anchors.leftMargin: Style.hspan(1.2)
-        opacity: controlsRow.opacity
-        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
-        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
-    }
-
-    MusicControls {
-        id: controlsRow
-        anchors.verticalCenter: albumArtRow.verticalCenter
-        anchors.verticalCenterOffset: root.state === "Maximized" ? - Style.vspan(0.5) : 0
-        anchors.right: parent.right
-        anchors.rightMargin: root.state === "Maximized" ? Style.hspan(2.2) : Style.hspan(2)
-        visible: root.state === "Widget1Row" ||
-                 (root.state === "Widget3Rows" && nowPlayingList.state === "WidgetShowList") ||
-                 root.state === "Maximized"
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
-
-        play: root.store.playing
-
-        onPlayClicked: root.store.playSong()
-        onPreviousClicked: root.store.previousSong()
-        onNextClicked: root.store.nextSong()
-    }
-
-    MusicTools {
-        anchors.top: musicProgress.bottom
-        anchors.topMargin: Style.vspan(2)
-        anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(2)
-        visible: root.state === "Maximized"
-        opacity: visible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
-
-        onShuffleClicked: root.store.shuffleSong()
-        onRepeatClicked: root.store.repeatSong()
-    }
-
-    Image {
-        width: nowPlayingList.width
-        height: Style.vspan(0.2)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: albumArtRow.bottom
-        anchors.topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(0.2)
-        source: Style.gfx2("divider", TritonStyle.theme)
-        opacity: (nowPlayingList.state === "WidgetShowList" || root.state === "Maximized")
-                 && nowPlayingList.listView.contentY > 0 ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { duration: 100 } }
     }
 }

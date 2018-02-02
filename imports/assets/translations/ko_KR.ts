@@ -136,7 +136,7 @@ UX to the road</source>
 <context>
     <name>ClusterMusic</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="65"/>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="59"/>
         <source>Track unavailable</source>
         <translation>트랙을 사용할 수 없음</translation>
     </message>
@@ -463,60 +463,77 @@ UX to the road</source>
         <translation type="obsolete">폴더</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="482"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
+        <source>Next</source>
+        <translation type="unfinished">다음 곡</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="307"/>
         <source>Track unavailable</source>
         <translation>트랙을 사용할 수 없음</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="135"/>
+        <source>Browse</source>
+        <translation type="unfinished">파일 탐색</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseList</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="98"/>
+        <source>Songs of %1(%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="112"/>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="72"/>
         <source>Next</source>
-        <translation>다음 곡</translation>
+        <translation type="vanished">다음 곡</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
         <source>Browse</source>
-        <translation>파일 탐색</translation>
+        <translation type="vanished">파일 탐색</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="110"/>
         <source>Album</source>
-        <translation>앨범</translation>
+        <translation type="vanished">앨범</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="112"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
         <source>Artist</source>
-        <translation>아티스트</translation>
+        <translation type="vanished">아티스트</translation>
     </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="181"/>
         <source>favorites</source>
         <translation>즐겨찾기</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="182"/>
         <source>artists</source>
         <translation>아티스트</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="183"/>
         <source>playlists</source>
         <translation>재생 목록</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="184"/>
         <source>albums</source>
         <translation>앨범</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="185"/>
         <source>folders</source>
         <translation>폴더</translation>
     </message>

@@ -306,13 +306,6 @@ UX to the road</source>
 <context>
     <name>Music</name>
     <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MusicList</name>
-    <message>
         <source>Next</source>
         <translation type="unfinished"></translation>
     </message>
@@ -321,11 +314,18 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Album</source>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseList</name>
+    <message>
+        <source>Play All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Artist</source>
+        <source>Songs of %1(%2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

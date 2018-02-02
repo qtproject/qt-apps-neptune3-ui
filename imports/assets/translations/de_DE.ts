@@ -361,24 +361,43 @@ UX to the road</source>
         <source>Track unavailable</source>
         <translation>Track nicht verfügbar</translation>
     </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">Liste</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">Nächster</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseList</name>
+    <message>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Songs of %1(%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicList</name>
     <message>
         <source>Next</source>
-        <translation>Nächster</translation>
+        <translation type="vanished">Nächster</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>Liste</translation>
+        <translation type="vanished">Liste</translation>
     </message>
     <message>
         <source>Album</source>
-        <translation>Album</translation>
+        <translation type="vanished">Album</translation>
     </message>
     <message>
         <source>Artist</source>
-        <translation>Artist</translation>
+        <translation type="vanished">Artist</translation>
     </message>
 </context>
 <context>

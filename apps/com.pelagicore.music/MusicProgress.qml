@@ -67,12 +67,10 @@ Control {
 
         Slider {
             id: trackProgressBar
-
             implicitWidth: root.progressBarWidth
             implicitHeight: Style.vspan(0.5)
             anchors.centerIn: parent
             anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Style.hspan(2)
-            anchors.verticalCenterOffset: root.labelOnTop ? Style.vspan(1) : 0
             value: root.value
 
             padding: 2

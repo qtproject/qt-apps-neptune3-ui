@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,37 +32,20 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
-import "stores"
-import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
+    width: Style.hspan(264/45)
 
-    property MusicStore store
+    property alias currentText: toolsColumnComponent.currentText
+    property alias model: toolsColumnComponent.model
+    property alias translationContext: toolsColumnComponent.translationContext
 
-    Image {
-        anchors.fill: parent
-        source: Style.gfx2("instrument-cluster-bg", TritonStyle.theme)
-        fillMode: Image.Stretch
-    }
-
-    ICAlbumArtRow {
-        id: albumArt
-        width: Style.hspan(14)
-        height: Style.vspan(5.8)
-        anchors.centerIn: parent
-        musicPlaying: root.store.playing
-        musicPosition: root.store.currentTrackPosition
-        mediaReady: root.store.searchAndBrowseModel.count > 0
-        songModel: root.store.musicPlaylist
-        currentIndex: root.store.musicPlaylist.currentIndex
-        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
-        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
-        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
-
-        Connections {
-            target: root.store
-            onSongModelPopulated: albumArt.populateModel()
-        }
+    ToolsColumn {
+        id: toolsColumnComponent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(53/80)
     }
 }
+

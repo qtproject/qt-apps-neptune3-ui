@@ -199,7 +199,7 @@ UX to the road</source>
 <context>
     <name>ClusterMusic</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="65"/>
+        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="59"/>
         <source>Track unavailable</source>
         <translation>Skladba nedostupná</translation>
     </message>
@@ -585,62 +585,83 @@ UX to the road</source>
         <translation type="obsolete">složky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="424"/>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="482"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
+        <source>Next</source>
+        <translation type="unfinished">Další</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="307"/>
         <source>Track unavailable</source>
         <translation>Skladba nedostupná</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="135"/>
+        <source>Browse</source>
+        <translation type="unfinished">Procházet</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseList</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="98"/>
+        <source>Songs of %1(%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="112"/>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MusicList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="72"/>
         <source>Next</source>
-        <translation>Další</translation>
+        <translation type="vanished">Další</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="87"/>
         <source>Browse</source>
-        <translation>Procházet</translation>
+        <translation type="vanished">Procházet</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="110"/>
         <source>Album</source>
-        <translation>Album</translation>
+        <translation type="vanished">Album</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="112"/>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="125"/>
         <source>Artist</source>
-        <translation>Umělec</translation>
+        <translation type="vanished">Umělec</translation>
     </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="393"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="181"/>
         <source>favorites</source>
         <translation>oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="394"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="182"/>
         <source>artists</source>
         <translation>umělci</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="395"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="183"/>
         <source>playlists</source>
         <translation>seznamy</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="396"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="184"/>
         <source>albums</source>
         <translation>alba</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="185"/>
         <source>folders</source>
         <translation>složky</translation>
+    </message>
+    <message>
+        <source>sources</source>
+        <translation type="obsolete">zdroje</translation>
     </message>
 </context>
 <context>

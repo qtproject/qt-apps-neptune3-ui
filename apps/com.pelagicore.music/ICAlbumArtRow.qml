@@ -46,7 +46,7 @@ Item {
     property alias currentIndex: coverslide.currentIndex
     property alias currentSongTitle: titleColumn.currentSongTitle
     property alias currentArtisName: titleColumn.currentArtisName
-    property bool parentStateMaximized: false
+    property alias currentProgressLabel: musicProgress.progressText
 
     signal previousClicked()
     signal nextClicked()
@@ -65,7 +65,7 @@ Item {
 
         Item {
             id: itemDelegated
-            height: Style.vspan(2.6)
+            height: 180
             width: height
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
 
@@ -84,32 +84,33 @@ Item {
     }
 
     Item {
-        id: coverArtTitleAndControlsWrapperItem
-        anchors.fill: parent
+        id: pathView
+
+        width: root.width
+        height: 180
+        anchors.top: parent.top
 
         PathView {
             id: coverslide
-            width: parent.height
-            height: width
-            anchors.left: parent.left
-            anchors.leftMargin: parentStateMaximized ? 100 : 40
-            Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
+
+            anchors.fill: parent
+            anchors.centerIn: parent
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
             snapMode: PathView.SnapOneItem
             highlightRangeMode: PathView.StrictlyEnforceRange
             highlightMoveDuration: 400
             clip: true
-            model: 0
+            model: 3
             delegate: albumArtDelegate
-            pathItemCount: 1
+            pathItemCount: 3
             interactive: false
 
             onCurrentIndexChanged: {
                 if (currentItem) {
-                    root.currentAlbumArt = currentItem.albumArtSource;
+                    root.currentAlbumArt = currentItem.albumArtSource
                 } else {
-                    root.currentAlbumArt = "";
+                    root.currentAlbumArt = ""
                 }
             }
 
@@ -133,33 +134,23 @@ Item {
 
             }
         }
+    }
 
-        TitleColumn {
-            id: titleColumn
-            anchors.left: coverslide.right
-            anchors.leftMargin: 60
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: -30
-            preferredWidth: Style.vspan(6)
-        }
+    MusicProgress {
+        id: musicProgress
+        width: root.width
+        height: Style.vspan(3)
+        anchors.top: pathView.bottom
+        value: root.musicPosition
+        onUpdatePosition: root.updatePosition(value)
+    }
 
-        MusicControls {
-            id: controlsRow
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: 40
-            spacing: Style.hspan(3)
-            play: root.musicPlaying
-            onPreviousClicked: {
-                root.previousClicked();
-            }
-            onNextClicked: {
-                root.nextClicked();
-            }
-
-            onPlayClicked: {
-                root.playClicked();
-            }
-        }
+    TitleColumn {
+        id: titleColumn
+        anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(0.6)
+        anchors.top: musicProgress.bottom
+        anchors.topMargin: -Style.vspan(0.5)
+        preferredWidth: Style.vspan(6)
     }
 }

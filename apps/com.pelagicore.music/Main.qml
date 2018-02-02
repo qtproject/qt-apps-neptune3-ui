@@ -55,15 +55,6 @@ QtObject {
             }
         }
 
-        // Current AlbumArt showing on top of the application when in Maximized state
-        Image {
-            width: parent.width
-            height: Style.vspan(7.6)
-            opacity: 0.05
-            visible: mainWindow.tritonState === "Maximized"
-            source: musicAppContent.albumArtRow.currentAlbumArt
-        }
-
         Music {
             id: musicAppContent
             x: mainWindow.exposedRect.x
@@ -73,8 +64,7 @@ QtObject {
 
             state: mainWindow.tritonState
             store: MusicStore { }
-
-            onDragAreaClicked: {
+            onFlickableAreaClicked: {
                 multiPoint.count += 1;
                 mainWindow.setWindowProperty("activationCount", multiPoint.count);
             }

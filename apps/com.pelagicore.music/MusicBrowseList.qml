@@ -57,6 +57,7 @@ Control {
     signal libraryGoBack(var goToArtist)
     signal nextClicked()
     signal backClicked()
+    signal playAllClicked()
 
     contentItem: Item {
 
@@ -64,9 +65,8 @@ Control {
             id: delegatedItem
             ListItem {
                 id: delegatedSong
-                width: Style.hspan(17)
+                width: listView.width
                 height: Style.vspan(1.3)
-                highlighted: false
                 text: model.item.title && (root.actualContentType === "track") ? model.item.title :
                                                                                  (model.name ? model.name : "")
                 subText: model.item.artist && (root.actualContentType === "track") ? model.item.artist :
@@ -75,14 +75,63 @@ Control {
             }
         }
 
+        Item {
+            id: listHeader
+
+            anchors.top:parent.top
+            anchors.topMargin: Style.vspan(53/80)
+            anchors.left: parent.left
+            width: Style.hspan(720/45)
+            height: Style.vspan(94/80)
+
+            Tool {
+                id: backButton
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                symbol: Style.symbol("ic_back")
+                onClicked: root.backClicked()
+            }
+            Label {
+                //TODO update text based on spec
+                property string albumTitle: store.currentEntry ? store.currentEntry.album : "Unknown Album"
+                property string albumArtist: store.currentEntry ? store.currentEntry.artist : "Unknown Artist"
+                text: qsTr("Songs of %1(%2)").arg(albumTitle).arg(albumArtist)
+                font.pixelSize: Style.fontSizeS
+                anchors.centerIn: parent
+                horizontalAlignment: Text.AlignHCenter
+            }
+            Tool {
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+
+                background: Rectangle {
+                    radius: height/2
+                    color: TritonStyle.contrastColor
+                    opacity: 0.06
+                }
+                text: qsTr("Play All")
+                font.pixelSize: Style.fontSizeS
+                onClicked: { root.playAllClicked(); }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: 1
+                anchors.bottom: parent.bottom
+                color: "grey"   //todo: change to #contrast 60%
+            }
+        }
+
         ListView {
             id: listView
-            implicitWidth: Style.hspan(17)
-            implicitHeight: root.height
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
+            anchors.top:parent.top
+            anchors.topMargin: Style.vspan(53/80) + listHeader.height
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            width: Style.hspan(720/45)
+            interactive: contentHeight > height
             delegate: delegatedItem
+            clip: true
         }
 
         MusicScrollBar {
