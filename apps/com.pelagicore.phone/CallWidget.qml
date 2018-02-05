@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import animations 1.0
 import controls 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 import "models"
 
@@ -153,27 +155,28 @@ Item {
 
     transitions: [
         Transition {
-            ParallelAnimation {
-                AnchorAnimation { targets: [contactImage, textColumn, muteButton, callEndButton, keypadButton];
-                    duration: 50; easing.type: Easing.InOutQuad }
-                DefaultNumberAnimation { target: contactImage; properties: "x,y,width,height,anchors.topMargin"; duration: 50 }
-                DefaultNumberAnimation { target: textColumn; properties: "anchors.leftMargin,anchors.topMargin"; duration: 50 }
-                DefaultNumberAnimation { target: callEndButton; properties: "x"; duration: 50 }
+            SequentialAnimation {
+                PropertyAction { targets: [textColumn, muteButton, callEndButton, keypadButton]; property: "visible"; value: false }
+                ParallelAnimation {
+                    AnchorAnimation { targets: contactImage; duration: 50; easing.type: Easing.InOutQuad }
+                    DefaultNumberAnimation { target: contactImage; properties: "width,height,anchors.topMargin"; duration: 50 }
+                }
+                PropertyAction { targets: [textColumn, muteButton, callEndButton, keypadButton]; property: "visible"; value: true }
             }
         }
     ]
 
-    Rectangle {
+    Image {
         id: imgBackground
         anchors.left: parent.left
         anchors.top: parent.top
-        height: parent.height
-        width: height
-        color: "#ece8e6" // FIXME not in TritonStyle
+        anchors.bottom: parent.bottom
+        source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
+        fillMode: Image.TileVertically
 
         opacity: root.state == "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation {} }
+        Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
     }
 
     RoundImage {
@@ -189,14 +192,13 @@ Item {
             anchors.left: root.state == "Widget1Row" ? parent.left : undefined
             anchors.horizontalCenter: root.state !== "Widget1Row" ? parent.horizontalCenter : undefined
             text: priv.callerName
-            opacity: .94
         }
         Label {
             anchors.left: parent.left
             anchors.right: parent.right
             horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
             font.pixelSize: Style.fontSizeS
-            opacity: .6
+            opacity: TritonStyle.fontOpacityMedium
             text: Qt.formatTime(new Date(callTimer.duration * 1000), "m:ss")
         }
     }
@@ -210,6 +212,7 @@ Item {
     Tool {
         id: callEndButton
         background: Image {
+            anchors.centerIn: parent
             fillMode: Image.Pad
             source: Style.symbol("ic_button-bg-red")
         }
