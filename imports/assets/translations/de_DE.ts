@@ -292,7 +292,7 @@ UX to the road</source>
     <name>FavoritesWidget</name>
     <message>
         <source>Favorites</source>
-        <translation>Favoriten</translation>
+        <translation type="vanished">Favoriten</translation>
     </message>
     <message>
         <source>more</source>

@@ -351,12 +351,7 @@ UX to the road</source>
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="70"/>
-        <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="181"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="157"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation type="unfinished"></translation>
@@ -526,32 +521,32 @@ UX to the road</source>
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="151"/>
         <source>recents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
         <source>favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
         <source>voicemail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
         <source>keypad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
         <source>contacts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="157"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
         <source>messages</source>
         <translation type="unfinished"></translation>
     </message>

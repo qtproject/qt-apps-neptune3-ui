@@ -39,6 +39,8 @@ import animations 1.0
 import controls 1.0
 
 Item {
+    property var model // dummy to silence warnings
+
     Component.onCompleted: textedit.forceActiveFocus()
 
     opacity: visible ? 1 : 0

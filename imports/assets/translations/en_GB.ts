@@ -287,10 +287,6 @@ UX to the road</source>
 <context>
     <name>FavoritesWidget</name>
     <message>
-        <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>more</source>
         <comment>more contacts</comment>
         <translation type="unfinished"></translation>

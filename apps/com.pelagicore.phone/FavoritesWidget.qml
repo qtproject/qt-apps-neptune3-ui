@@ -62,17 +62,6 @@ Item {
         }
     }
 
-    Label {
-        id: favoritesLabel
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.topMargin: root.state === "Maximized" ? Style.vspan(2.5) : 0
-        text: qsTr("Favorites")
-        color: TritonStyle.primaryTextColor
-        font.pixelSize: TritonStyle.fontSizeXS
-        opacity: .4
-    }
-
     // 1 ROW
     RowLayout {
         id: favorites1Row
@@ -81,37 +70,28 @@ Item {
         Behavior on opacity { DefaultNumberAnimation { } }
 
         anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
+            fill: parent
             topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(.3)
-            bottom: parent.bottom
-            leftMargin: Style.hspan(.5)
+            leftMargin: Style.hspan(50/45)
         }
 
-        spacing: Style.hspan(1)
+        spacing: Style.hspan(50/45)
         ListView {
             id: listview1Row
             orientation: ListView.Horizontal
             snapMode: ListView.SnapToItem
+            interactive: false
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.maximumHeight: 150 // FIXME check the specs when available
+            Layout.maximumHeight: 150
             clip: true
-            spacing: Style.hspan(1)
+            spacing: Style.hspan(50/45)
             model: root.model
             delegate: RoundImage {
                 height: ListView.view.height
                 width: height
                 source: "assets/profile_photos/%1.jpg".arg(model.handle)
                 onClicked: root.callRequested(model.handle)
-            }
-            ScrollIndicator.horizontal: ScrollIndicator {
-                parent: favorites1Row
-                anchors.top: listview1Row.bottom
-                anchors.topMargin: Style.vspan(.3)
-                anchors.left: listview1Row.left
-                anchors.right: listview1Row.right
             }
         }
     }
@@ -124,12 +104,9 @@ Item {
         Behavior on opacity { DefaultNumberAnimation { } }
 
         anchors {
-            left: parent.left
-            right: parent.right
-            top: favoritesLabel.bottom
-            bottom: parent.bottom
-            topMargin: Style.vspan(.5)
-            leftMargin: Style.hspan(.5)
+            fill: parent
+            leftMargin: Style.hspan(58/80)
+            rightMargin: Style.hspan(58/80)
         }
 
         ListView {
@@ -138,7 +115,7 @@ Item {
             Layout.fillHeight: true
             clip: true
             model: root.model
-            delegate: ItemDelegate { // FIXME right component?
+            delegate: ItemDelegate { // FIXME replace with ListItem when it supports components (for RoundImage and 2 tools on the right)
                 width: ListView.view.width
                 bottomPadding: 0
                 contentItem: Column {
@@ -154,7 +131,7 @@ Item {
                         }
                         Label {
                             text: model.firstName + " " + model.surname
-                            font.pixelSize: Style.fontSizeS
+                            color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
                         }
                         Item { // spacer
                             Layout.fillWidth: true
@@ -169,7 +146,6 @@ Item {
                     }
                     Image {
                         width: parent.width
-                        height: 2
                         source: Style.gfx2("list-divider", TritonStyle.theme)
                     }
                 }
@@ -179,7 +155,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             visible: listviewMoreRows.visibleArea.heightRatio < 1.0
             text: qsTr("more", "more contacts")
-            font.pixelSize: TritonStyle.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeS
         }
     }
 }
