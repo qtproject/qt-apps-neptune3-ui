@@ -84,12 +84,6 @@ Store {
             timeEnd: "22:00"
             event: "Dinner with Friends"
         }
-
-        ListElement {
-            timeStart: "Tomorrow"
-            timeEnd: "all-day"
-            event: "Best Friend Wedding"
-        }
     }
 
 }

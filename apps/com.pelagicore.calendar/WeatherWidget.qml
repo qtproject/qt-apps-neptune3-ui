@@ -36,52 +36,76 @@ import animations 1.0
 
 import com.pelagicore.styles.triton 1.0
 
-Column {
+Item {
     id: root
-    spacing: Style.vspan(0.5)
 
     property alias weatherIcon: imgWeather.source
     property string weatherText: ""
 
     property int temperatureValue: 0
-    property bool temperatureVisible: true
+    property bool temperatureVisible: true  //temperature on own row or not
 
     property alias precipitationVisible: precipitationRow.visible
     property alias precipitationIcon: precipitationIcon.source
     property alias precipitationText: precipitationText.text
 
+    height: childrenRect.height
+
     Image {
         id: imgWeather
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: Style.vspan(66/80)//Style.vspan(66/80)
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: Style.hspan(-61/45)
+        fillMode: Image.Pad
     }
+
     Column {
-        anchors.horizontalCenter: parent.horizontalCenter
-        spacing: Style.vspan(0.1)
+        id: textColumn
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(120/80)//Style.vspan(140/80)
+
         Label {
             id: temperatureLabel
+            height: Style.vspan(33/80)
+            anchors.left: parent.left
+            anchors.right: parent.right
             font.pixelSize: TritonStyle.fontSizeS
-            opacity: 0.8
+            opacity: 0.8    //Todo: this should be connected to Styles or a triton Label control in some way
             visible: root.temperatureVisible
             text: root.temperatureValue + "°"
         }
         Label {
             id: weatherLabel
-            font.pixelSize: TritonStyle.fontSizeS
-            opacity: 0.8
+            height: Style.vspan(33/80)
+            anchors.left: parent.left
+            anchors.right: parent.right
+            font.pixelSize: TritonStyle.fontSizeS //Todo: font size in the plugin is not correct.
+            opacity: 0.8 //Todo: this should be connected to Styles or a triton Label control in some way
             text: (temperatureVisible ? root.weatherText : root.temperatureValue + "° " + root.weatherText) + (precipitationVisible ? "," : "")
         }
-        Row {
+        Item {
             id: precipitationRow
-            spacing: Style.hspan(0.3)
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: precipitationText.height
+
             Image {
                 id: precipitationIcon
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
             }
+
             Label {
                 id: precipitationText
-                anchors.verticalCenter: parent.verticalCenter
+                height: Style.vspan(33/80)
+                anchors.left: precipitationIcon.right
+                anchors.leftMargin: Style.hspan(13/45)
+                anchors.right: parent.right
                 font.pixelSize: TritonStyle.fontSizeS
-                opacity: 0.8
+                opacity: 0.8 //Todo
             }
         }
     }

@@ -47,12 +47,6 @@ Item {
     property int temp
 
     property date currentTime: new Date()
-    readonly property var monthNames: [
-        qsTr("January"), qsTr("February"), qsTr("March"),
-        qsTr("April"), qsTr("May"), qsTr("June"),
-        qsTr("July"), qsTr("August"), qsTr("September"),
-        qsTr("October"), qsTr("November"), qsTr("December")
-    ]
     property ListModel eventModel
 
     Component.onCompleted: {
@@ -108,34 +102,42 @@ Item {
         source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
         fillMode: Image.TileVertically
 
-        Column {
-            id: currentDate
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(0.7)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(0.3)
+        Item {
+            id: leftContentBox
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(1)
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(30/45)
+
             Label {
-                width: parent.width
+                id: firstRowOfText
+                anchors.baseline: parent.top
+                anchors.baselineOffset: Style.vspan(87/80)
+                anchors.left: parent.left
+                anchors.right: parent.right
                 elide: Text.ElideRight
-                text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale), "dddd")
-            }
-            Label {
-                width: parent.width
-                elide: Text.ElideRight
-                text: monthNames[root.currentTime.getMonth()] + ", " + root.currentTime.getDate()
+                text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale), "dddd") + ","
             }
 
-            Item {
-                width: parent.width
-                height: Style.vspan(1.2)
-                opacity: calendarEvents.isMultiLineWidget ? 1 : 0
-                Behavior on opacity { DefaultNumberAnimation { } }
-                visible: opacity > 0
+            Label {
+                anchors.baseline: parent.top
+                anchors.baselineOffset: Style.vspan(120/80)
+                anchors.left: parent.left
+                anchors.right: parent.right
+                elide: Text.ElideRight
+                text: Qt.locale(Style.languageLocale).standaloneMonthName(root.currentTime.getMonth(), Locale.LongFormat)
+                                                                          + " " + root.currentTime.getDate()
             }
 
             WeatherWidget {
+                // weather info when in left area (size 2 & 3)
+                anchors.top: parent.top
+                anchors.topMargin: Style.vspan(252/80)
+                anchors.left: parent.left
+                width: Style.hspan(175/45)
+
                 opacity: calendarEvents.isMultiLineWidget ? 1 : 0
                 Behavior on opacity { DefaultNumberAnimation { } }
                 visible: opacity > 0
@@ -154,11 +156,13 @@ Item {
     }
 
     WeatherWidget {
+        //weather info when in right area (size 1)
         id: weatherColumn
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: Style.vspan(0.5)
+        anchors.leftMargin: Style.hspan(59/45)
+        width: Style.hspan(175/45)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.hspan(0.6)
+        anchors.bottomMargin: Style.vspan(1)
         opacity: !calendarEvents.isMultiLineWidget
         Behavior on opacity { DefaultNumberAnimation { } }
         visible: opacity > 0
@@ -176,55 +180,62 @@ Item {
 
     Item {
         id: calendarEvents
+
         readonly property bool isMultiLineWidget: root.height > Style.hspan(6)
+        readonly property real rowHeight: Style.vspan(48/80)
+
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.hspan(0.3)
+        anchors.bottomMargin: isMultiLineWidget ? Style.vspan(77/80) : Style.vspan(75/80)
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: calendarEvents.isMultiLineWidget ? Style.hspan(1) : weatherColumn.width + Style.hspan(1.5)
+        anchors.leftMargin: isMultiLineWidget ? Style.hspan(45/45) : Style.hspan(340/45)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
-        height: calendarEvents.isMultiLineWidget ? Style.hspan(4.5) : Style.hspan(1.5)
+        anchors.rightMargin: Style.hspan(45/45)
+
+        readonly property real _height: root.height < Style.vspan(300/80) ? rowHeight : root.height < Style.vspan(680/80) ? parent.height - Style.vspan(2) : parent.height - weatherGraphPlaceholder.height - Style.vspan(1.6)
+        height: Math.min(eventList.count * rowHeight, _height - (_height % rowHeight))
 
         Behavior on anchors.bottomMargin { DefaultNumberAnimation {} }
         Behavior on anchors.leftMargin { DefaultNumberAnimation {} }
-        Behavior on height { DefaultNumberAnimation {} }
 
-        Column {
-            width: parent.width
-            spacing: Style.hspan(0.3)
-            Repeater {
-                model: {
-                    if ( (!calendarEvents.isMultiLineWidget)&&(eventModel.count > 0)) {
-                        return 1
-                    } else if (eventModel.count > 0) {
-                        var numOfItems = Math.floor(calendarEvents.height/(Style.hspan(0.8)))
-                        return eventModel.count >= numOfItems ? numOfItems : eventModel.count
-                    } else {
-                        return 0
-                    }
+        ListView {
+            id: eventList
+            anchors.fill: parent
+            clip: true
+
+            model: {
+                if (eventModel.count === 0) {
+                    return 0
+                } else if (root.height < Style.vspan(300/80)) {
+                    return 1
+                } else {
+                    return eventModel.count
                 }
+            }
 
-                delegate: Row {
-                    id: rowEvent
-                    width: parent.width
-                    height: Style.hspan(0.5)
-                    spacing: Style.hspan(0.3)
-                    Label {
-                        id: eventTimeStart
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: Style.hspan(2)
-                        opacity: 0.5
-                        font.pixelSize: TritonStyle.fontSizeS
-                        text: eventModel.get(index).timeStart
-                    }
-                    Label {
-                        id: eventName
-                        anchors.verticalCenter: parent.verticalCenter
-                        width: calendarEvents.width - eventTimeStart.width - rowEvent.spacing
-                        font.pixelSize: TritonStyle.fontSizeS
-                        elide: Text.ElideRight
-                        text: eventModel.get(index).event
-                    }
+            delegate: Item {
+                width: parent.width
+                height: calendarEvents.rowHeight
+
+                Label {
+                    id: eventTimeStart
+                    anchors.left: parent.left
+                    anchors.bottom: parent.bottom
+                    width: Style.hspan(68/45)
+                    height: Style.vspan(33/80)
+                    horizontalAlignment: Text.AlignRight
+                    opacity: 0.5    //todo: connect to style or similar
+                    font.pixelSize: TritonStyle.fontSizeS
+                    text: eventModel.get(index).timeStart
+                }
+                Label {
+                    id: eventName
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    width: calendarEvents.width - eventTimeStart.width - Style.hspan(26/45)
+                    height: Style.vspan(33/80)
+                    font.pixelSize: TritonStyle.fontSizeS
+                    elide: Text.ElideRight
+                    text: eventModel.get(index).event
                 }
             }
         }
