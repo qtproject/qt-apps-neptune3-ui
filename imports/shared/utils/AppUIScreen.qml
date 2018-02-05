@@ -34,6 +34,7 @@ import QtQuick 2.6
 import QtApplicationManager 1.0
 import controls 1.0
 import utils 1.0
+import animations 1.0
 import com.pelagicore.settings 1.0
 import com.pelagicore.styles.triton 1.0
 
@@ -93,7 +94,9 @@ ApplicationManagerWindow {
     QtObject {
         id: d
         property real exposedRectTopMargin: 0
+        Behavior on exposedRectTopMargin {DefaultNumberAnimation{}}
         property real exposedRectBottomMargin: 0
+        Behavior on exposedRectBottomMargin {DefaultNumberAnimation{}}
         property int widgetHeight: 0
         property int currentWidth: 0
         property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin - exposedRectTopMargin);

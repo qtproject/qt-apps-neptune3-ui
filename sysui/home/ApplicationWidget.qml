@@ -121,7 +121,9 @@ Item {
         id: windowSlot
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.left: root.active ? parent.left : widgetStripe.right
+        anchors.left: parent.left
+        anchors.leftMargin: root.active ? 0 : widgetStripe.width
+        Behavior on anchors.leftMargin { DefaultSmoothedAnimation { } }
         anchors.right: parent.right
         layer.enabled: root.clipWindow
         layer.effect: OpacityMask {

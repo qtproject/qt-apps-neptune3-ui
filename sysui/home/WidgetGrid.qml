@@ -55,6 +55,9 @@ Item {
 
     property var applicationModel
 
+    property string widgetStateWhenMaximized: ""
+    property int clickedIndexWhenMaximized: -1
+
     WidgetListModel {
         id: widgetsList
         applicationModel: root.applicationModel
@@ -448,17 +451,33 @@ Item {
                             appInfo.windowState = "";
                         }
 
-                        widgetState: {
-                            switch (Math.round(height / (root.rowHeight - root.resizerHandleHeight))) {
-                                case 0:
-                                case 1:
-                                    return "Widget1Row";
-                                case 2:
-                                    return "Widget2Rows";
-                                default:
-                                    return "Widget3Rows";
+                        onActiveChanged: {
+                            if (active) {
+                                //keep widget state of item on index when maximized
+                                widgetStateWhenMaximized = widgetState;
+                                clickedIndexWhenMaximized = index;
                             }
                         }
+
+                        onHeightChanged: {
+                            if ((widgetStateWhenMaximized !== "") && (clickedIndexWhenMaximized > -1) && (clickedIndexWhenMaximized === index)) {
+                                widgetState =  widgetStateWhenMaximized;
+                            } else {
+                                switch (Math.round(height / (root.rowHeight - root.resizerHandleHeight))) {
+                                case 0:
+                                case 1:
+                                    widgetState =  "Widget1Row";
+                                    break;
+                                case 2:
+                                    widgetState = "Widget2Rows";
+                                    break;
+                                default:
+                                    widgetState = "Widget3Rows";
+                                    break;
+                                }
+                            }
+                        }
+
                         widgetHeight: {
                             if (widgetState === "Widget1Row") {
                                 return root.rowHeight - root.resizerHandleHeight;
@@ -591,6 +610,8 @@ Item {
                         // to figure out which handle is being dragged without having to know about the
                         // size of their touch areas.
                         onPressed: {
+                            widgetStateWhenMaximized = "";
+                            clickedIndexWhenMaximized = -1;
                             pressedYDelta = mouseY - (height / 2);
                             column.onResizeHandlePressed(mapToItem(root, mouseX, height / 2))
                         }
