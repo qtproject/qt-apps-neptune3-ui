@@ -57,6 +57,12 @@ RenderSurfaceSelector {
                     clearColor: "white"
                     buffers: ClearBuffers.ColorDepthBuffer
                 }
+                SortPolicy {
+                    sortTypes: [
+                        SortPolicy.StateChangeCost,
+                        SortPolicy.Material
+                    ]
+                }
             }
         }
     }
