@@ -62,7 +62,7 @@ Entity {
         Mesh {
             id: mesh
             meshName: "^silver_paint$"
-            source: "file:assets/models/silver_paint.stl"
+            source: "file:assets/models/silver_paint.obj"
         }
         components: [transform, mesh, whiteHood]
     }
@@ -71,7 +71,7 @@ Entity {
         Mesh {
             id: mesh2
             meshName: "^silver_paint_1$"
-            source: "file:assets/models/silver_paint_1.stl"
+            source: "file:assets/models/silver_paint_1.obj"
         }
         components: [mesh2, whiteHood, transform]
     }

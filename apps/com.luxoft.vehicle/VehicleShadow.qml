@@ -39,7 +39,7 @@ Entity {
     Mesh {
         id: shadowMesh
         meshName: "shadow"
-        source: "file:assets/models/shadow.stl"
+        source: "file:assets/models/shadow.obj"
     }
 
     NormalDiffuseMapAlphaMaterial {
