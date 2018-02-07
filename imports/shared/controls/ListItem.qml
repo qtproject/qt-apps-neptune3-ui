@@ -81,8 +81,8 @@ ItemDelegate {
 
     contentItem: ColumnLayout {
         Label {
+            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : Style.hspan(15)
             leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
-            rightPadding: root.indicator ? root.indicator.width + root.spacing : 0
             text: root.text
             font: root.font
             elide: Text.ElideRight
@@ -96,6 +96,7 @@ ItemDelegate {
 
         Label {
             id: subtitle
+            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : Style.hspan(15)
             leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
             rightPadding: root.indicator ? root.indicator.width + root.spacing : 0
             elide: Text.ElideRight
@@ -107,13 +108,12 @@ ItemDelegate {
         }
     }
 
-
-
     RowLayout {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         Label {
             id: secondaryText
+            Layout.preferredWidth: Style.hspan(3.5)
             font.pixelSize: TritonStyle.fontSizeS
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignRight
@@ -134,6 +134,7 @@ ItemDelegate {
             id: rightTool
             implicitWidth: rightTool.symbol ? Style.hspan(2) : 0
             implicitHeight: rightTool.symbol ? root.height : 0
+            baselineOffset: 0
             onClicked: root.rightToolClicked()
         }
     }
