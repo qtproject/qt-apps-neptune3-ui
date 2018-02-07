@@ -81,7 +81,7 @@ ItemDelegate {
 
     contentItem: ColumnLayout {
         Label {
-            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : Style.hspan(15)
+            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : root.width - rightTool.width
             leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
             text: root.text
             font: root.font
@@ -96,7 +96,7 @@ ItemDelegate {
 
         Label {
             id: subtitle
-            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : Style.hspan(15)
+            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : root.width - rightTool.width
             leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
             rightPadding: root.indicator ? root.indicator.width + root.spacing : 0
             elide: Text.ElideRight
