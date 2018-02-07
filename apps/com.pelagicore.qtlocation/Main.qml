@@ -33,6 +33,7 @@ import QtQuick 2.9
 import utils 1.0
 
 import com.pelagicore.settings 1.0
+import com.pelagicore.systeminfo 1.0
 
 import QtApplicationManager 1.0
 
@@ -76,6 +77,7 @@ QtObject {
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height
             state: mainWindow.tritonState
+            offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
 
             onMapReadyChanged: {
                 if (mapReady) {
@@ -90,6 +92,8 @@ QtObject {
                 multiPoint.count += 1
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
+
+            SystemInfo { id: sysinfo }
         }
 
         InstrumentCluster {
@@ -122,6 +126,7 @@ QtObject {
                 mapZoomLevel: mainMap.mapZoomLevel
                 mapTilt: mainMap.mapTilt
                 mapBearing: mainMap.mapBearing
+                offlineMapsEnabled: mainMap.offlineMapsEnabled
             }
         }
     }

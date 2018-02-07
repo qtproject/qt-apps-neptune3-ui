@@ -31,6 +31,13 @@ server.files = server.conf
 server.path = $$INSTALL_PREFIX/triton
 INSTALLS += server
 
+# Install the mapboxgl DB
+linux {
+    mapboxgl.path = /tmp
+    mapboxgl.commands = install -m 666 -p -o root -g root $$PWD/apps/com.pelagicore.qtlocation/maps/mapboxgl.db /tmp
+    INSTALLS += mapboxgl
+}
+
 OTHER_FILES += $$files($$PWD/*.qml, true)
 OTHER_FILES += $$files($$PWD/*.qmldir, true)
 OTHER_FILES += $$PWD/plugins.yaml.in

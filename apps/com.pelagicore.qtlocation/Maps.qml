@@ -36,6 +36,8 @@ import QtPositioning 5.9
 import QtLocation 5.9
 import QtGraphicalEffects 1.0
 
+import Qt.labs.platform 1.0
+
 import utils 1.0
 import controls 1.0 as TritonControls
 import animations 1.0
@@ -44,6 +46,9 @@ import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
+
+    property bool offlineMapsEnabled
+    onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()
 
     // props for secondary window
     property alias mapInteractive: mainMap.mapInteractive
@@ -59,21 +64,35 @@ Item {
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;
-        req.open("GET", "https://location.services.mozilla.com/v1/geolocate?key=geoclue");
         req.onreadystatechange = function() {
             if (req.readyState === XMLHttpRequest.DONE) {
                 var objectArray = JSON.parse(req.responseText);
                 if (objectArray.errors !== undefined) {
-                    console.info("Error fetching location:", objectArray.errors[0].message);
+                    console.warn("Error fetching location:", objectArray.errors[0].message);
                 } else {
                     priv.positionCoordinate = QtPositioning.coordinate(objectArray.location.lat, objectArray.location.lng);
                     console.info("Current location:", priv.positionCoordinate);
                 }
             }
         }
+        req.open("GET", "https://location.services.mozilla.com/v1/geolocate?key=geoclue");
         req.send();
     }
 
+    function getAvailableMapsAndLocation() {
+        if (mainMap.mapReady) {
+            mapTypeModel.clear();
+            console.info("Supported map types:");
+            for (var i = 0; i < mainMap.supportedMapTypes.length; i++) {
+                var map = mainMap.supportedMapTypes[i];
+                mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
+                console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
+            }
+            if (!root.offlineMapsEnabled) {
+                fetchCurrentLocation();
+            }
+        }
+    }
 
     function getMapType(name) {
         if (!mainMap.mapReady || !mapTypeModel.count) {
@@ -90,7 +109,8 @@ Item {
     QtObject {
         id: priv
         readonly property var plugins: ["mapboxgl", "osm"]
-        property var positionCoordinate: QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc ;)
+        property var positionCoordinate: offlineMapsEnabled ? QtPositioning.coordinate(57.709912, 11.966632) // Gothenburg
+                                                            : QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc
         readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
         readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
     }
@@ -117,6 +137,10 @@ Item {
 
         // OSM Plugin Parameters
         PluginParameter { name: "osm.useragent"; value: "Triton UI" }
+
+        // Offline maps support (mapboxgl specific)
+        PluginParameter { name: "mapboxgl.mapping.cache.directory";
+            value: Qt.platform.os === "linux" ? "/tmp" : StandardPaths.standardLocations(StandardPaths.CacheLocation)[0] }
     }
 
     // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
@@ -143,6 +167,7 @@ Item {
         center: priv.positionCoordinate
         state: root.state
         currentLocation: priv.positionCoordinate
+        offlineMapsEnabled: root.offlineMapsEnabled
         activeMapType: {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
@@ -150,20 +175,10 @@ Item {
             return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
         onOpenSearchTextInput: {
-            root.maximizeMap()
-            searchViewEnabled = true
+            root.maximizeMap();
+            searchViewEnabled = true;
         }
-        onMapReadyChanged: {
-            if (mapReady) {
-                console.info("Supported map types:");
-                for (var i = 0; i < supportedMapTypes.length; i++) {
-                    var map = supportedMapTypes[i];
-                    mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
-                    console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
-                }
-                fetchCurrentLocation();
-            }
-        }
+        onMapReadyChanged: getAvailableMapsAndLocation();
     }
 
     TritonControls.Tool {

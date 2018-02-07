@@ -42,8 +42,9 @@ import animations 1.0
 Item {
     id: root
 
-    height: backgroundImage.height
+    height: offlineMapsEnabled ? 0 : backgroundImage.height
 
+    property bool offlineMapsEnabled
     property bool navigationMode
     property bool guidanceMode
     property var currentLocation

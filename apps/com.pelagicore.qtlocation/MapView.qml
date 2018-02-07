@@ -54,6 +54,7 @@ Item {
     property alias bearing: mainMap.bearing
     property alias zoomLevel: mainMap.zoomLevel
 
+    property bool offlineMapsEnabled
     property bool navigationMode
     property bool guidanceMode
     property alias routingPlugin: mapRouting.routingPlugin
@@ -147,7 +148,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        opacity: root.state && root.state !== "Widget1Row" ? 1 : 0
+        opacity: root.state && root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
         Behavior on opacity {
             SequentialAnimation {
                 PauseAnimation { duration: 180 }
@@ -157,6 +158,7 @@ Item {
         visible: opacity > 0
         state: root.state
 
+        offlineMapsEnabled: root.offlineMapsEnabled
         navigationMode: root.navigationMode
         guidanceMode: root.guidanceMode
         currentLocation: root.currentLocation
@@ -182,8 +184,8 @@ Item {
     TritonControls.Tool {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
-        anchors.top: header.bottom
-        anchors.topMargin: -Style.vspan(1)
+        anchors.top: offlineMapsEnabled ? parent.top : header.bottom
+        anchors.topMargin: offlineMapsEnabled ? Style.vspan(1) : -Style.vspan(1)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }

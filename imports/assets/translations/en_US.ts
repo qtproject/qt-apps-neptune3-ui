@@ -376,27 +376,27 @@ UX to the road</source>
 <context>
     <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="91"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="92"/>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="126"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="127"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="160"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="161"/>
         <source>Start Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="206"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="207"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="224"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="225"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
