@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune IVI UI.
@@ -30,7 +30,15 @@
 ****************************************************************************/
 
 #include <QNetworkInterface>
+
+#include <QDBusConnection>
+#include <QDBusPendingReply>
+
 #include "systeminfo.h"
+
+#define NM_SERVICE QStringLiteral("org.freedesktop.NetworkManager")
+#define NM_PATH QStringLiteral("/org/freedesktop/NetworkManager")
+#define NM_IFACE QStringLiteral("org.freedesktop.NetworkManager")
 
 SystemInfo::SystemInfo(QObject *parent)
     : QObject(parent)
@@ -61,13 +69,44 @@ void SystemInfo::getAddress()
     }
 }
 
+void SystemInfo::updateOnlineStatus(quint32 state)
+{
+    const bool online = state == 70; // NM_STATE_CONNECTED_GLOBAL
+    if (online != m_online) {
+        m_online = online;
+        emit onlineChanged();
+    }
+}
+
 QStringList SystemInfo::addressList() const
 {
     return m_addressList;
 }
 
+bool SystemInfo::online() const
+{
+    return m_online;
+}
+
 void SystemInfo::classBegin()
 {
+    auto conn = QDBusConnection::systemBus();
+    conn.connect(NM_SERVICE, NM_PATH, NM_IFACE, QStringLiteral("StateChanged"),
+                 this, SLOT(updateOnlineStatus(quint32)));
+
+
+    QDBusMessage msg = QDBusMessage::createMethodCall(NM_SERVICE, NM_PATH, NM_IFACE, QStringLiteral("state"));
+    QDBusPendingCall pCall = conn.asyncCall(msg);
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pCall, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, [this](QDBusPendingCallWatcher *self) {
+        QDBusPendingReply<quint32> reply = *self;
+        self->deleteLater();
+        if (reply.isValid()) {
+            updateOnlineStatus(reply.value());
+        } else {
+            qWarning() << "Error getting online status" << reply.error().name() << reply.error().message();
+        }
+    });
 }
 
 void SystemInfo::componentComplete()

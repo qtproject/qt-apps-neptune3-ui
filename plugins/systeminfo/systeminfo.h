@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune IVI UI.
@@ -42,24 +42,31 @@ class SystemInfo : public QObject, public QQmlParserStatus
     Q_INTERFACES(QQmlParserStatus)
 
     Q_PROPERTY(QStringList addressList READ addressList NOTIFY addressListChanged)
+    Q_PROPERTY(bool online READ online NOTIFY onlineChanged)
 
 public:
     explicit SystemInfo(QObject *parent = nullptr);
     QStringList addressList() const;
+    bool online() const;
 
 public slots:
     void init();
 
 signals:
     void addressListChanged();
+    void onlineChanged();
 
 protected:
     void classBegin() override;
     void componentComplete() override;
 
+private slots:
+    void updateOnlineStatus(quint32 state);
+
 private:
     void getAddress();
     QStringList m_addressList;
+    bool m_online{false};
 };
 
 #endif // SYSTEMINFO_H
