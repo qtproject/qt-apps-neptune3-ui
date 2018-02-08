@@ -356,6 +356,19 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
+        <source>Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FavoritesWidget</name>
     <message>
         <source>Favorites</source>
@@ -421,29 +434,8 @@ UX to the road</source>
 <context>
     <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="92"/>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">힌트 힌지를 해결 하시겠습니까?</translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="127"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="161"/>
-        <source>Start Navigation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="207"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="225"/>
-        <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -587,6 +579,27 @@ UX to the road</source>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
         <source>folders</source>
         <translation>폴더</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirm</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearch</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">힌트 힌지를 해결 하시겠습니까?</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

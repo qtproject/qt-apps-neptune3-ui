@@ -277,6 +277,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FavoritesWidget</name>
     <message>
         <source>more</source>
@@ -295,29 +306,6 @@ UX to the road</source>
     <name>Main</name>
     <message>
         <source>Instrument Cluster</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MapHeader</name>
-    <message>
-        <source>Where do you wanna go today?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start Navigation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -409,6 +397,24 @@ UX to the road</source>
     </message>
     <message>
         <source>folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirm</name>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearch</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

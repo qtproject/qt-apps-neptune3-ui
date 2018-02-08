@@ -182,6 +182,7 @@ Item {
             searchViewEnabled = true;
         }
         onMapReadyChanged: getAvailableMapsAndLocation();
+        onMaximizeMap: root.maximizeMap()
     }
 
     TritonControls.Tool {
@@ -220,7 +221,7 @@ Item {
     Item {
         id: mapSearchField
         anchors.top: mainMap.top
-        anchors.topMargin: Style.vspan(0.5)
+        anchors.topMargin: Style.vspan(3.8)
         anchors.left: mainMap.left
         anchors.leftMargin: Style.hspan(1)
         anchors.right: mainMap.right

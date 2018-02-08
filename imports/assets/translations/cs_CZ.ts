@@ -371,6 +371,19 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
+        <source>Home</source>
+        <translation type="unfinished">Domů</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
+        <source>Work</source>
+        <translation type="unfinished">Práce</translation>
+    </message>
+</context>
+<context>
     <name>FavoritesWidget</name>
     <message>
         <source>Favorites</source>
@@ -455,29 +468,24 @@ UX to the road</source>
 <context>
     <name>MapHeader</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="92"/>
         <source>Where do you wanna go today?</source>
-        <translation>Kam se chcete vydat dnes?</translation>
+        <translation type="vanished">Kam se chcete vydat dnes?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="127"/>
         <source>Search</source>
-        <translation>Hledat</translation>
+        <translation type="vanished">Hledat</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="161"/>
         <source>Start Navigation</source>
-        <translation>Spustit navigaci</translation>
+        <translation type="vanished">Spustit navigaci</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="207"/>
         <source>Home</source>
-        <translation>Domů</translation>
+        <translation type="vanished">Domů</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapHeader.qml" line="225"/>
         <source>Work</source>
-        <translation>Práce</translation>
+        <translation type="vanished">Práce</translation>
     </message>
 </context>
 <context>
@@ -645,6 +653,27 @@ UX to the road</source>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="397"/>
         <source>folders</source>
         <translation>složky</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirm</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
+        <source>Start Navigation</source>
+        <translation type="unfinished">Spustit navigaci</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearch</name>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">Kam se chcete vydat dnes?</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
     </message>
 </context>
 <context>

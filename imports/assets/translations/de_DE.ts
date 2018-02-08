@@ -289,6 +289,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FavoritesWidget</name>
     <message>
         <source>Favorites</source>
@@ -329,23 +340,7 @@ UX to the road</source>
     <name>MapHeader</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">Wo soll es heute hingehen?</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start Navigation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Wo soll es heute hingehen?</translation>
     </message>
 </context>
 <context>
@@ -455,6 +450,24 @@ UX to the road</source>
     <message>
         <source>folders</source>
         <translation>Ordner</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirm</name>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearch</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">Wo soll es heute hingehen?</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

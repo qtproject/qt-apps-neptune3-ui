@@ -72,10 +72,10 @@ QtObject {
 
         Maps {
             id: mainMap
-            x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y
-            width: mainWindow.exposedRect.width
-            height: mainWindow.exposedRect.height
+            x: state === "Maximized" ? mainWindow.x : mainWindow.exposedRect.x
+            y: state === "Maximized" ? mainWindow.y : mainWindow.exposedRect.y
+            width: state === "Maximized" ? mainWindow.width : mainWindow.exposedRect.width
+            height: state === "Maximized" ? mainWindow.height : mainWindow.exposedRect.height
             state: mainWindow.tritonState
             offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
 

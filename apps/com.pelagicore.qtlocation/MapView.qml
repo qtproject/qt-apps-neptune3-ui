@@ -64,6 +64,7 @@ Item {
     property var currentLocation
 
     signal openSearchTextInput()
+    signal maximizeMap()
 
     function zoomIn() {
         mainMap.zoomLevel += 1.0;
@@ -76,7 +77,7 @@ Item {
     Map {
         id: mainMap
         anchors.fill: parent
-        anchors.topMargin: (root.state === "Widget3Rows") || (root.state === "Maximized") ? header.height/2 : 0
+        anchors.topMargin: (root.state === "Widget3Rows") ? header.height/2 : 0
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on center { enabled: root.mapInteractive; CoordinateAnimation { easing.type: Easing.InOutCirc; duration: 540 } }
         Behavior on tilt { DefaultSmoothedAnimation {} }
@@ -95,8 +96,8 @@ Item {
         MapRouting {
             id: mapRouting
             currentLocationCoord: root.currentLocation
-            homeCoord: header.homeCoord
-            workCoord: header.workCoord
+            homeCoord: header.homeAddressData
+            workCoord: header.workAddressData
         }
 
         MapItemView {
@@ -143,17 +144,32 @@ Item {
         }
     }
 
+    Image {
+        id: mask
+        anchors.fill: mainMap
+        source: Qt.resolvedUrl("assets/bg-home-navigation-overlay.png")
+        visible: root.state === "Maximized"
+        scale: root.state === "Maximized" ? 1 : 1.6
+        Behavior on scale {
+            DefaultNumberAnimation { }
+        }
+    }
+
     MapHeader {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
+        anchors.rightMargin: guidanceMode ? Style.hspan(18) : 0
         anchors.top: parent.top
-        opacity: root.state && root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
+        opacity: root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
         Behavior on opacity {
             SequentialAnimation {
                 PauseAnimation { duration: 180 }
                 DefaultNumberAnimation {}
             }
+        }
+        Behavior on anchors.rightMargin {
+            DefaultNumberAnimation { }
         }
         visible: opacity > 0
         state: root.state
@@ -162,10 +178,15 @@ Item {
         navigationMode: root.navigationMode
         guidanceMode: root.guidanceMode
         currentLocation: root.currentLocation
-        routingBackend: mapRouting
+        destination: mapRouting.destination
+        routeDistance: mapRouting.routeDistance
+        routeTime: mapRouting.routeTime
+        homeRouteTime: mapRouting.homeRouteTime
+        workRouteTime: mapRouting.workRouteTime
 
         onOpenSearchTextInput: root.openSearchTextInput()
         onStartNavigation: {
+            root.maximizeMap();
             root.guidanceMode = true;
         }
         onStopNavigation: {
@@ -178,6 +199,7 @@ Item {
             root.destCoord = destCoord;
             root.destination = description;
             root.navigationMode = true;
+            root.maximizeMap();
         }
     }
 
@@ -185,7 +207,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
-        anchors.topMargin: offlineMapsEnabled ? Style.vspan(1) : -Style.vspan(1)
+        anchors.topMargin: offlineMapsEnabled ? Style.vspan(1) : Style.vspan(3)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }

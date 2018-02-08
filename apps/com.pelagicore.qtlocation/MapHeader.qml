@@ -42,192 +42,132 @@ import animations 1.0
 Item {
     id: root
 
-    height: offlineMapsEnabled ? 0 : backgroundImage.height
+    height: offlineMapsEnabled ? 0 : headerBackgroundFullscreen.height
 
     property bool offlineMapsEnabled
     property bool navigationMode
     property bool guidanceMode
     property var currentLocation
-    property var routingBackend
 
-    readonly property alias homeCoord: buttonGoHome.addressData
-    readonly property alias workCoord: buttonGoWork.addressData
+    property string destination: ""
+    property string routeDistance: ""
+    property string routeTime: ""
+    property string homeRouteTime: ""
+    property string workRouteTime: ""
+
+    // TODO make the locations configurable and dynamic
+    readonly property var homeAddressData: QtPositioning.coordinate(57.706436, 12.018661)
+    readonly property var workAddressData: QtPositioning.coordinate(57.709545, 11.967005)
+
+    readonly property int destinationButtonrowHeight: 150
 
     signal showRoute(var destCoord, string description)
     signal startNavigation()
     signal stopNavigation()
     signal openSearchTextInput()
 
-    Image {
-        id: backgroundImage
-        height: secondRow.visible ? sourceSize.height : sourceSize.height/2
+    Loader {
+        id: headerBackgroundFullscreen
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: root.state === "Widget1Row" ? -root.height : (root.state === "Widget2Rows" ? -root.height/2 : 0 )
-        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
-        fillMode: Image.TileHorizontally
-        source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
-    }
-
-    Row {
-        id: firstRow
-        anchors.top: parent.top
-        anchors.topMargin: Style.vspan(.4)
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: root.width - Style.hspan(2)
-        spacing: Style.hspan(.5)
-
-        Column {
-            width: parent.width / 2
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.margins: Style.hspan(1)
-
-            Label {
-                width: root.navigationMode ? parent.width : parent.width/2
-                wrapMode: Text.WordWrap
-                maximumLineCount: 2
-                elide: Label.ElideRight
-                font.pixelSize: Style.fontSizeS
-                text: root.navigationMode ? routingBackend.destination : qsTr("Where do you wanna go today?")
-            }
-            Label {
-                width: parent.width
-                maximumLineCount: 2
-                elide: Label.ElideRight
-                font.pixelSize: Style.fontSizeXS
-                text: "%1 · %2".arg(routingBackend.routeDistance).arg(routingBackend.routeTime)
-                visible: root.navigationMode
-            }
-        }
-
-        Button {
-            id: searchButton
-            width: parent.width / 2
-            height: parent.height
-            scale: pressed ? 1.1 : 1.0
-            Behavior on scale { NumberAnimation { duration: 50 } }
-            visible: !root.navigationMode
-
-            background: Rectangle {
-                color: "lightgray"
-                radius: height / 2
-            }
-            contentItem: Item {
-                Row {
-                    anchors.centerIn: parent
-                    spacing: Style.hspan(0.3)
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        fillMode: Image.Pad
-                        source: Qt.resolvedUrl("assets/ic-search.png")
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: qsTr("Search")
-                        font.pixelSize: Style.fontSizeS
-                    }
-                }
-            }
-            onClicked: root.openSearchTextInput()
-        }
-
-        Button {
-            id: startNavigationButton
-            width: parent.width / 2 - cancelNavButton.width - firstRow.spacing
-            height: parent.height
-            scale: pressed ? 1.1 : 1.0
-            Behavior on scale { NumberAnimation { duration: 50 } }
-            visible: root.navigationMode
-            enabled: !root.guidanceMode
-
-            background: Rectangle {
-                color: "lightgray"
-                radius: height / 2
-            }
-
-            contentItem: Item {
-                Row {
-                    anchors.centerIn: parent
-                    spacing: Style.hspan(0.3)
-                    Image {
-                        anchors.verticalCenter: parent.verticalCenter
-                        fillMode: Image.Pad
-                        source: Qt.resolvedUrl("assets/ic-start-navigation.png")
-                        opacity: startNavigationButton.enabled ? 1.0 : 0.3
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: qsTr("Start Navigation")
-                        font.pixelSize: Style.fontSizeS
-                    }
-                }
-            }
-            onClicked: root.startNavigation()
-        }
-
-        TritonControls.Tool {
-            id: cancelNavButton
-
-            width: height
-            height: parent.height
-            visible: root.navigationMode
-
-            background: Rectangle {
-                color: "lightgray"
-                radius: height / 2
-            }
-
-            symbol: Qt.resolvedUrl("assets/ic-end-route.png")
-            onClicked: root.stopNavigation()
+        anchors.topMargin: Style.vspan(210/80)
+        active: root.state === "Maximized"
+        sourceComponent: HeaderBackgroundMaximized {
+            navigationMode: root.navigationMode
+            guidanceMode: root.guidanceMode
+            destinationButtonrowHeight: root.destinationButtonrowHeight
         }
     }
 
-    RowLayout {
-        id: secondRow
-        anchors.top: firstRow.bottom
+    Loader {
+        id: headerBackgroundWidget
         anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        active: root.state === "Widget2Rows" || root.state === "Widget3Rows"
+        sourceComponent: HeaderBackgroundWidget {
+            state: root.state
+        }
+    }
+
+    Loader {
+        id: navigationSearchButtonsFullscreen
+        width: headerBackgroundFullscreen.width - Style.hspan(2)
+        height: headerBackgroundFullscreen.height
+        active: headerBackgroundFullscreen.active && !root.navigationMode
+        anchors.top: headerBackgroundFullscreen.top
+        anchors.topMargin: Style.vspan(1.4)
+        anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
+        sourceComponent: NavigationSearch {
+            onOpenSearchTextInput: root.openSearchTextInput()
+        }
+    }
+
+    Loader {
+        id: navigationSearchButtonsWidget
+        width: headerBackgroundWidget.width - Style.hspan(2)
+        height: headerBackgroundWidget.height
+        active: headerBackgroundWidget.active
+        anchors.top: headerBackgroundWidget.top
+        anchors.topMargin: Style.vspan(.6)
+        anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
+        sourceComponent: NavigationSearch {
+            onOpenSearchTextInput: root.openSearchTextInput()
+        }
+    }
+
+    Loader {
+        id: navigationConfirmButtons
+        anchors.fill: headerBackgroundFullscreen
+        anchors.rightMargin: Style.hspan(.5)
+        active: headerBackgroundFullscreen.active && root.navigationMode
+        sourceComponent: NavigationConfirm {
+            guidanceMode: root.guidanceMode
+            destination: root.destination
+            routeDistance: root.routeDistance
+            routeTime: root.routeTime
+            onStartNavigation: root.startNavigation()
+            onStopNavigation: root.stopNavigation()
+        }
+
+    }
+
+    Loader {
+        id: favoriteDestinationButtonsFullscreen
+        anchors.top: headerBackgroundFullscreen.top
+        anchors.topMargin: headerBackgroundFullscreen.height - height
+        anchors.left: headerBackgroundFullscreen.left
         anchors.leftMargin: Style.hspan(1)
-        anchors.right: parent.right
+        anchors.right: headerBackgroundFullscreen.right
         anchors.rightMargin: Style.hspan(1.5)
-        opacity: root.state === "Widget3Rows" || root.state === "Maximized" ? 1 : 0
-        Behavior on opacity {
-            SequentialAnimation {
-                PauseAnimation { duration: 180 }
-                DefaultNumberAnimation {}
-            }
+        height: root.destinationButtonrowHeight
+        active: headerBackgroundFullscreen.active && !root.navigationMode
+        sourceComponent: FavoriteDestinationButtons {
+            homeAddressData: root.homeAddressData
+            workAddressData: root.workAddressData
+            homeRouteTime: root.homeRouteTime
+            workRouteTime: root.workRouteTime
+            onShowRoute: root.showRoute(destCoord, description);
         }
-        visible: opacity > 0 && !root.navigationMode
-        height: parent.height/2
-        MapToolButton {
-            id: buttonGoHome
-            Layout.preferredWidth: secondRow.width/2
-            anchors.verticalCenter: parent.verticalCenter
-            iconSource: Qt.resolvedUrl("assets/ic-home.png")
-            primaryText: qsTr("Home")
-            extendedText: routingBackend.homeRouteTime
-            secondaryText: "Welandergatan 29"
-            // TODO make the home location configurable and dynamic
-            readonly property var addressData: QtPositioning.coordinate(57.706436, 12.018661)
-            onClicked: root.showRoute(addressData, secondaryText)
-        }
-        Rectangle {
-            width: 1
-            height: 150
-            opacity: 0.2
-            color: TritonStyle.primaryTextColor
-        }
-        MapToolButton {
-            id: buttonGoWork
-            Layout.preferredWidth: secondRow.width/2
-            anchors.verticalCenter: parent.verticalCenter
-            iconSource: Qt.resolvedUrl("assets/ic-work.png")
-            primaryText: qsTr("Work")
-            extendedText: routingBackend.workRouteTime
-            secondaryText: "Östra Hamngatan 16"
-            // TODO make the work location configurable and dynamic
-            readonly property var addressData: QtPositioning.coordinate(57.709545, 11.967005)
-            onClicked: root.showRoute(addressData, secondaryText)
+    }
+
+    Loader {
+        id: favoriteDestinationButtonsWidget
+        anchors.top: headerBackgroundWidget.top
+        anchors.topMargin: Style.vspan(2)
+        anchors.left: headerBackgroundWidget.left
+        anchors.leftMargin: Style.hspan(1)
+        anchors.right: headerBackgroundWidget.right
+        anchors.rightMargin: Style.hspan(1.5)
+        height: root.destinationButtonrowHeight
+        active: headerBackgroundWidget.active && root.state === "Widget3Rows"
+        sourceComponent: FavoriteDestinationButtons {
+            homeAddressData: root.homeAddressData
+            workAddressData: root.workAddressData
+            homeRouteTime: root.homeRouteTime
+            workRouteTime: root.workRouteTime
+            onShowRoute: root.showRoute(destCoord, description);
         }
     }
 }
