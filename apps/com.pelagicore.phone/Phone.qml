@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -77,44 +77,50 @@ Item {
         }
     }
 
-    Image {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: Style.vspan(7)
-        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
-        visible: root.state == "Maximized"
-    }
+    states: [
+        State {
+            name: "Widget1Row"
+            AnchorChanges { target: callWidget; anchors.top: undefined; anchors.verticalCenter: parent.verticalCenter}
+            PropertyChanges { target: callWidget; height: parent.height }
+        },
+        State {
+            name: "Widget2Rows"
+            extend: "Widget1Row"
+        },
+        State {
+            name: "Widget3Rows"
+            extend: "Widget1Row"
+        },
+        State {
+            name: "Maximized"
+            extend: "Widget3Rows"
+            AnchorChanges { target: callWidget; anchors.top: parent.top }
+        }
+    ]
+
 
     FavoritesWidget {
         id: favoritesWidget
-        anchors.fill: root.state !== "Maximized" ? parent : undefined
-        anchors.top: root.state == "Maximized" ? parent.top : undefined
-        anchors.left: root.state == "Maximized" ? parent.left : undefined
-        anchors.right: root.state == "Maximized" ? parent.right : undefined
-        anchors.rightMargin: root.state !== "Maximized" ? Style.hspan(1) : 0
-        anchors.topMargin: root.state !== "Maximized" ? Style.vspan(.5) : 0
-        anchors.bottomMargin: Style.vspan(.5)
-        height: root.state == "Maximized" ? Style.vspan(7) : implicitHeight
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: Style.hspan(960/45)
+        anchors.top: parent.top
         state: root.state
+
+        exposedRectHeight: root.height
         ongoingCall: root.ongoingCall
         model: favoritesModel
         onCallRequested: startCall(handle)
 
         opacity: !ongoingCall ? 1.0 : 0.0
         visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        Behavior on opacity { DefaultNumberAnimation {} }
     }
 
     CallWidget {
         id: callWidget
-        anchors.fill: root.state !== "Maximized" ? parent : undefined
-        anchors.top: root.state == "Maximized" ? parent.top : undefined
-        anchors.topMargin: root.state == "Maximized" ? Style.vspan(2) : 0
-        anchors.horizontalCenter: root.state == "Maximized" ? parent.horizontalCenter : undefined
+        anchors.fill: root.state === "Widget1Row" ? parent : undefined
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.rightMargin: Style.hspan(0.9)
-        height: root.state == "Maximized" ? Style.vspan(5) : implicitHeight
-
         state: root.state
         ongoingCall: root.ongoingCall
 
@@ -130,40 +136,69 @@ Item {
     }
 
     Item {
-        id: app
+        id: fullscreenBottom
 
+        width: Style.hspan(1080/45)
         anchors.left: parent.left
-        anchors.top: root.ongoingCall ? callWidget.bottom : favoritesWidget.bottom
-        anchors.right: parent.right
+        // ############### Johan's comment:
+        // I think it looks better if it does not move horizontally. That's why I added -80 and the Behaviour on...
+        // It keeps the width of lists etc.
+        // Would prefer to get this value passed down to every app, like we did it with exposedRect.
+        // ###############
+        anchors.leftMargin: root.state === "Maximized" ? 0 : -80
+        Behavior on anchors.leftMargin { DefaultSmoothedAnimation {} }
+        anchors.top: parent.top
+        anchors.topMargin: 660 - 224
         anchors.bottom: parent.bottom
-        anchors.margins: Style.hspan(1)
+
 
         opacity: root.state === "Maximized" ? 1.0 : 0.0
         visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        Behavior on opacity { DefaultNumberAnimation {} }
 
-        ToolsColumn {
+        // ############### Johan's comment:
+        // In the future I would like to see the toolBar code in AppUIScreen.qml
+        // and just assigning a model to each app
+        // ###############
+        Item {
             id: toolsColumn
+            property alias currentText: toolsColumnComponent.currentText
             anchors.left: parent.left
             anchors.top: parent.top
-            translationContext: "PhoneToolsColumn"
-            model: ListModel {
-                ListElement { icon: "ic-recents"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "recents") }
-                ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "favorites") }
-                ListElement { icon: "ic-voicemail"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "voicemail") }
-                ListElement { icon: "ic-keypad"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "keypad") }
-                ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts") }
-                ListElement { icon: "ic-messages"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "messages") }
+            anchors.bottom: parent.bottom
+            width: Style.hspan(264/45)
+
+            ToolsColumn {
+                id: toolsColumnComponent
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: Style.vspan(53/80)
+
+                translationContext: "PhoneToolsColumn"
+                model: ListModel {
+                    ListElement { icon: "ic-recents"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "recents") }
+                    ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "favorites") }
+                    ListElement { icon: "ic-voicemail"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "voicemail") }
+                    ListElement { icon: "ic-keypad"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "keypad") }
+                    ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts") }
+                    ListElement { icon: "ic-messages"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "messages") }
+                }
             }
         }
 
+        // ############### Johan's comment:
+        // In the future I would like the "main content of bottom part of fullscreen app"
+        // to be loaded by a loader in AppUIScreen.qml.
+        // ###############
         Loader {
             id: viewLoader
             anchors.left: toolsColumn.right
             anchors.right: parent.right
             anchors.top: parent.top
+            anchors.topMargin: Style.vspan(53/80)
             anchors.bottom: parent.bottom
-            anchors.leftMargin: Style.hspan(1)
+
+            width: Style.hspan(720/45)
 
             Binding {
                 target: viewLoader.item; property: "model";

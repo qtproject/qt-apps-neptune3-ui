@@ -44,118 +44,168 @@ Item {
     id: root
     property bool ongoingCall
     property var model
+    property real exposedRectHeight: 0
 
     signal callRequested(string handle)
 
-    onStateChanged: {
-        // display 4 contacts when in Widget1Row, 5 otherwise
-        if (state === "Widget1Row" && model.count > 4) {
-            model.remove(model.count - 1);
-        } else if (model.count <= 4) {
-            var person = {
-                handle: "ejackson",
-                firstName: "Edward",
-                surname: "Jackson",
-                favorite: true
-            };
-            model.append(person);
+    states: [
+        State {
+            name: "Widget1Row"
+            PropertyChanges { target: root; height: 260 }
+        },
+        State {
+            name: "Widget2Rows"
+            PropertyChanges { target: root; height: 550 }
+            PropertyChanges { target: favorites1Row; opacity: 0 }
+            PropertyChanges { target: favoritesMoreRows; opacity: 1 }
+        },
+        State {
+            name: "Widget3Rows"
+            extend: "Widget2Rows"
+            PropertyChanges { target: root; height: 840 }
+        },
+        State {
+            name: "Maximized"
+            PropertyChanges { target: root; height: 436 }
         }
-    }
+
+    ]
+
+    transitions: [
+        Transition {
+            from: "Widget1Row, Maximized"
+            to: "Widget2Rows, Widget3Rows"
+            DefaultNumberAnimation { target: root; property: "height" }
+            DefaultNumberAnimation { target: favorites1Row; property: "opacity" }
+            SequentialAnimation {
+                PauseAnimation { duration: 200 }
+                DefaultNumberAnimation { target: favoritesMoreRows; property: "opacity" }
+            }
+        },
+        Transition {
+            from: "Widget2Rows, Widget3Rows"
+            to: "Widget1Row, Maximized"
+            DefaultNumberAnimation { target: root; property: "height" }
+            DefaultNumberAnimation { target: favoritesMoreRows; property: "opacity" }
+            SequentialAnimation {
+                PauseAnimation { duration: 200 }
+                DefaultNumberAnimation { target: favorites1Row; property: "opacity" }
+            }
+        },
+        Transition {
+            DefaultNumberAnimation { target: root; property: "height" }
+            DefaultNumberAnimation { target: favorites1Row; property: "opacity" }
+            DefaultNumberAnimation { target: favoritesMoreRows; property: "opacity" }
+        }
+    ]
 
     // 1 ROW
-    RowLayout {
+    ListView {
         id: favorites1Row
-        opacity: root.state === "Widget1Row" || root.state === "Maximized" ? 1.0 : 0.0
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
-
         anchors {
-            fill: parent
-            topMargin: root.state === "Maximized" ? Style.vspan(1.5) : Style.vspan(.3)
+            top: parent.top
+            left: parent.left
+            right: parent.right
             leftMargin: Style.hspan(50/45)
+            rightMargin: Style.hspan(50/45)
         }
 
+        height: Math.min(436, root.exposedRectHeight)
+
+        opacity: 1.0
+        visible: opacity > 0
+
+        orientation: ListView.Horizontal
+        interactive: false
+        clip: true
         spacing: Style.hspan(50/45)
-        ListView {
-            id: listview1Row
-            orientation: ListView.Horizontal
-            snapMode: ListView.SnapToItem
-            interactive: false
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.maximumHeight: 150
-            clip: true
-            spacing: Style.hspan(50/45)
-            model: root.model
-            delegate: RoundImage {
-                height: ListView.view.height
-                width: height
-                source: "assets/profile_photos/%1.jpg".arg(model.handle)
-                onClicked: root.callRequested(model.handle)
-            }
+        model: root.model
+        delegate: RoundImage {
+            height: Style.hspan(130/45)
+            width: height
+            anchors.verticalCenter: parent.verticalCenter
+            source: "assets/profile_photos/%1.jpg".arg(model.handle)
+            onClicked: root.callRequested(model.handle)
         }
     }
 
     // MORE ROWS
-    ColumnLayout {
+    Column {
         id: favoritesMoreRows
-        opacity: root.state === "Widget2Rows" || root.state === "Widget3Rows" ? 1.0 : 0.0
+        opacity: 0.0
         visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
 
         anchors {
-            fill: parent
-            leftMargin: Style.hspan(58/80)
-            rightMargin: Style.hspan(58/80)
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            leftMargin: Style.hspan(58/45)
+            rightMargin: Style.hspan(58/45)
+            topMargin: Style.vspan(45/80)
         }
+
+        height: root.exposedRectHeight - anchors.topMargin - Style.vspan(25/80)
 
         ListView {
             id: listviewMoreRows
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+
+            readonly property real delegateHeight: currentItem ? currentItem.height : 0
+            readonly property bool allItemsFit: contentHeight <= favoritesMoreRows.height
+
+            interactive: false
+            height: allItemsFit ? favoritesMoreRows.height : Math.floor(favoritesMoreRows.height / delegateHeight)*delegateHeight - delegateHeight
+            width: parent.width
             clip: true
             model: root.model
+
             delegate: ItemDelegate { // FIXME replace with ListItem when it supports components (for RoundImage and 2 tools on the right)
                 width: ListView.view.width
-                bottomPadding: 0
-                contentItem: Column {
-                    spacing: Style.vspan(.2)
-                    RowLayout {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        spacing: Style.hspan(.5)
-                        RoundImage {
-                            height: parent.height
-                            width: height
-                            source: "assets/profile_photos/%1.jpg".arg(model.handle)
-                        }
-                        Label {
-                            text: model.firstName + " " + model.surname
-                            color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
-                        }
-                        Item { // spacer
-                            Layout.fillWidth: true
-                        }
-                        Tool {
-                            symbol: Style.symbol("ic-message-contrast")
-                        }
-                        Tool {
-                            symbol: Style.symbol("ic-call-contrast")
-                            onClicked: root.callRequested(model.handle)
-                        }
+                contentItem: RowLayout {
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: parent.width
+                    spacing: 0
+
+                    RoundImage {
+                        height: parent.height
+                        width: height
+                        source: "assets/profile_photos/%1.jpg".arg(model.handle)
                     }
-                    Image {
-                        width: parent.width
-                        source: Style.gfx2("list-divider", TritonStyle.theme)
+                    Label {
+                        Layout.leftMargin: Style.hspan(22/45)
+                        Layout.fillWidth: true
+                        text: model.firstName + " " + model.surname
+                        color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
                     }
+                    Tool {
+                        Layout.preferredWidth: Style.hspan(100/45)
+                        height: parent.height
+                        symbol: Style.symbol("ic-message-contrast")
+                    }
+                    Tool {
+                        Layout.preferredWidth: Style.hspan(100/45)
+                        height: parent.height
+                        symbol: Style.symbol("ic-call-contrast")
+                        onClicked: root.callRequested(model.handle)
+                    }
+                }
+
+                Image {
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    source: Style.gfx2("list-divider", TritonStyle.theme)
+                    visible: index !== listviewMoreRows.count - 1
                 }
             }
         }
+
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            visible: listviewMoreRows.visibleArea.heightRatio < 1.0
+            opacity: listviewMoreRows.allItemsFit ? 0.0 : 1.0
+            Behavior on opacity { DefaultNumberAnimation {} }
+            visible: opacity > 0
             text: qsTr("more", "more contacts")
-            font.pixelSize: TritonStyle.fontSizeS
+            font.pixelSize: 22//TritonStyle.fontSizeS   //TODO change to TritonStyle when that one has a correct value
+            //TODO make it a button that takes the user to fullscreen with the favorites page.
         }
     }
 }

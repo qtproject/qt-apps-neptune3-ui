@@ -315,7 +315,7 @@ UX to the road</source>
         <translation type="vanished">收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="157"/>
+        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="206"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>更多</translation>
@@ -616,32 +616,32 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="151"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="179"/>
         <source>recents</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="152"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="180"/>
         <source>favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="153"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="181"/>
         <source>voicemail</source>
         <translation>语音邮件</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="154"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="182"/>
         <source>keypad</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="155"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="183"/>
         <source>contacts</source>
         <translation>联系人</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="156"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="184"/>
         <source>messages</source>
         <translation>短信</translation>
     </message>

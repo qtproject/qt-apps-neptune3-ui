@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -31,6 +31,9 @@
 
 import QtQuick 2.8
 import utils 1.0
+import animations 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 AppUIScreen {
     id: root
@@ -48,7 +51,22 @@ AppUIScreen {
         }
     }
 
+    Image {
+        id: fullscreenTopPartBackground
+        x: root.exposedRect.x
+        y: 0
+        width: root.exposedRect.width
+        height: 660 - 224 + exposedRect.y
+        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+
+        opacity: root.tritonState === "Maximized" ? 1.0 : 0.0
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+    }
+
     Phone {
+        x: root.exposedRect.x
+        y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
         state: root.tritonState

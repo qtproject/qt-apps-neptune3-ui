@@ -93,21 +93,13 @@ Item {
                 target: textColumn; anchors.left: imgBackground.right; anchors.verticalCenter: parent.verticalCenter
             }
             AnchorChanges {
-                target: muteButton; anchors.left: textColumn.right;
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            AnchorChanges {
-                target: callEndButton; anchors.verticalCenter: parent.verticalCenter
-            }
-            AnchorChanges {
-                target: keypadButton; anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
+                target: buttonRow; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: Style.hspan(0.5)
+                target: contactImage; width: Style.hspan(200/45); height: width
             }
             PropertyChanges {
-                target: callEndButton; x: muteButton.x + ((keypadButton.x - muteButton.x) / 2)
+                target: textColumn; anchors.leftMargin: Style.hspan(.7)
             }
         },
         State {
@@ -116,39 +108,34 @@ Item {
                 target: contactImage; anchors.top: parent.top; anchors.horizontalCenter: parent.horizontalCenter
             }
             AnchorChanges {
-                target: textColumn; anchors.horizontalCenter: parent.horizontalCenter; anchors.top: muteButton.bottom;
+                target: textColumn; anchors.horizontalCenter: parent.horizontalCenter; anchors.top: buttonRow.bottom;
             }
             AnchorChanges {
-                target: muteButton; anchors.right: contactImage.left;
-                anchors.verticalCenter: contactImage.bottom
-            }
-            AnchorChanges {
-                target: callEndButton; anchors.horizontalCenter: contactImage.horizontalCenter;
-                anchors.verticalCenter: contactImage.bottom
-            }
-            AnchorChanges {
-                target: keypadButton; anchors.left: contactImage.right;
+                target: buttonRow; anchors.horizontalCenter: contactImage.horizontalCenter;
                 anchors.verticalCenter: contactImage.bottom
             }
             PropertyChanges {
-                target: contactImage; anchors.topMargin: Style.vspan(.3)
+                target: contactImage; width: 258; height: width; anchors.topMargin: Style.vspan(1)
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: 0; anchors.topMargin: Style.vspan(.5)
+                target: textColumn; anchors.leftMargin: 0
             }
         },
         State {
             name: "Widget3Rows"
             extend: "Widget2Rows"
             PropertyChanges {
-                target: contactImage; anchors.topMargin: Style.vspan(1)
+                target: contactImage; width: 413; height: width; anchors.topMargin: Style.vspan(1.6)
             }
         },
         State {
             name: "Maximized"
             extend: "Widget2Rows"
             PropertyChanges {
-                target: contactImage; anchors.topMargin: 0
+                target: buttonRow; scale: .8
+            }
+            PropertyChanges {
+                target: contactImage; width: Style.hspan(200/45); height: width; anchors.topMargin: Style.vspan(0.3)
             }
         }
     ]
@@ -156,12 +143,12 @@ Item {
     transitions: [
         Transition {
             SequentialAnimation {
-                PropertyAction { targets: [textColumn, muteButton, callEndButton, keypadButton]; property: "visible"; value: false }
+                PropertyAction { targets: [textColumn, buttonRow]; property: "visible"; value: false }
                 ParallelAnimation {
-                    AnchorAnimation { targets: contactImage; duration: 50; easing.type: Easing.InOutQuad }
-                    DefaultNumberAnimation { target: contactImage; properties: "width,height,anchors.topMargin"; duration: 50 }
+                    AnchorAnimation { targets: contactImage; duration: 270; easing.type: Easing.InOutQuad }
+                    DefaultNumberAnimation { target: contactImage; properties: "width,height,anchors.topMargin" }
                 }
-                PropertyAction { targets: [textColumn, muteButton, callEndButton, keypadButton]; property: "visible"; value: true }
+                PropertyAction { targets: [textColumn, buttonRow]; property: "visible"; value: true }
             }
         }
     ]
@@ -172,7 +159,6 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
-        fillMode: Image.TileVertically
 
         opacity: root.state == "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0
@@ -181,8 +167,6 @@ Item {
 
     RoundImage {
         id: contactImage
-        height: root.height*.6
-        width: height
         source: root.callerHandle ? "assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
     }
 
@@ -203,28 +187,28 @@ Item {
         }
     }
 
-    Tool {
-        id: muteButton
-        width: Style.hspan(2)
-        symbol: Style.symbol("ic-mute-ongoing")
-    }
+    RowLayout {
+        id: buttonRow
 
-    Tool {
-        id: callEndButton
-        background: Image {
-            anchors.centerIn: parent
-            fillMode: Image.Pad
-            source: Style.symbol("ic_button-bg-red")
+        Tool {
+            Layout.rightMargin: root.state !== "Widget1Row" ? Style.hspan(2) : 0
+            symbol: Style.symbol("ic-mute-ongoing")
         }
-        width: Style.hspan(2)
-        symbol: Style.symbol("ic-end-call")
-        onClicked: root.callEndRequested(root.callerHandle)
-    }
 
-    Tool {
-        id: keypadButton
-        width: Style.hspan(2)
-        symbol: Style.symbol("ic-keypad-ongoing")
-        //onClicked: root.keypadRequested() // TODO, disabled for now
+        Tool {
+            background: Image {
+                anchors.centerIn: parent
+                fillMode: Image.Pad
+                source: Style.symbol("ic_button-bg-red")
+            }
+            symbol: Style.symbol("ic-end-call")
+            onClicked: root.callEndRequested(root.callerHandle)
+        }
+
+        Tool {
+            Layout.leftMargin: root.state !== "Widget1Row" ? Style.hspan(2) : 0
+            symbol: Style.symbol("ic-keypad-ongoing")
+            //onClicked: root.keypadRequested() // TODO, disabled for now
+        }
     }
 }
