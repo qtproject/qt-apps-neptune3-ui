@@ -1,4 +1,4 @@
-module settings 1.0
+module Settings 1.0
 
 @config: {id: "UISettings"}
 interface UISettings {

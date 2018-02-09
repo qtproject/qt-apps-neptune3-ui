@@ -44,7 +44,7 @@ public:
     {
         Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.settings"));
 
-        settingsModule::registerQmlTypes(uri, 1, 0);
+        SettingsModule::registerQmlTypes(uri, 1, 0);
     }
 };
 

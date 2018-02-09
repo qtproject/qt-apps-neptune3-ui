@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
-    settingsModule::registerTypes();
-    settingsModule::registerQmlTypes(QLatin1String("Settings"), 1, 0);
+    SettingsModule::registerTypes();
+    SettingsModule::registerQmlTypes(QLatin1String("Settings"), 1, 0);
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
