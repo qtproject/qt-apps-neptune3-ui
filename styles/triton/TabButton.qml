@@ -99,6 +99,16 @@ T.TabButton {
                     border.top: 22
                     border.bottom: 48 - 25
                 }
+            },
+            State {
+                name: "middle"
+                PropertyChanges {
+                    target: borderImage
+                    border.left: 0
+                    border.right: 0
+                    border.top: 0
+                    border.bottom: 0
+                }
             }
         ]
         horizontalTileMode: BorderImage.Stretch
