@@ -215,11 +215,11 @@ UX to the road</source>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation type="obsolete">Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Öffnen</translation>
+        <translation type="obsolete">Öffnen</translation>
     </message>
 </context>
 <context>
@@ -522,6 +522,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>RoofPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Schliessen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Öffnen</translation>
+    </message>
+</context>
+<context>
     <name>RootStore</name>
     <message>
         <source>Light</source>
@@ -701,6 +712,17 @@ UX to the road</source>
     <message>
         <source>Calibrate</source>
         <translation type="unfinished">Einstellen</translation>
+    </message>
+</context>
+<context>
+    <name>TrunkPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Schliessen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Öffnen</translation>
     </message>
 </context>
 <context>

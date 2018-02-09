@@ -209,14 +209,6 @@ UX to the road</source>
         <source>Trunk</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>EditableGridView</name>
@@ -485,6 +477,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>RoofPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RootStore</name>
     <message>
         <source>Light</source>
@@ -637,6 +640,17 @@ UX to the road</source>
     </message>
     <message>
         <source>Calibrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TrunkPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
