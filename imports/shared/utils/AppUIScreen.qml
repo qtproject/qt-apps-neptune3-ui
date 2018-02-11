@@ -77,15 +77,9 @@ ApplicationManagerWindow {
         etc. In such cases you will want to relayout to that the important content is contained within
         exposedRect boundaries.
      */
-    property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
+    readonly property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
 
-    property int targetHeight: {
-        if (tritonState === "Maximized") {
-            return root.height;
-        } else {
-            return d.widgetHeight;
-        }
-    }
+    readonly property int targetHeight: tritonState === "Maximized" ? root.height : d.widgetHeight;
 
     property int currentHeight
 
