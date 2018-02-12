@@ -125,6 +125,8 @@ Item {
         locales: Style.languageLocale
         preferred: priv.plugins
 
+        readonly property string cacheDirUrl: StandardPaths.writableLocation(StandardPaths.CacheLocation);
+
         // Mapbox Plugin Parameters
         PluginParameter {
             name: "mapboxgl.access_token"
@@ -138,9 +140,10 @@ Item {
         // OSM Plugin Parameters
         PluginParameter { name: "osm.useragent"; value: "Triton UI" }
 
-        // Offline maps support (mapboxgl specific)
+        // Offline maps support
         PluginParameter { name: "mapboxgl.mapping.cache.directory";
-            value: Qt.platform.os === "linux" ? "/tmp" : StandardPaths.standardLocations(StandardPaths.CacheLocation)[0] }
+            // needs to be an absolute filepath so strip the file:/// protocol; several leading slashes don't matter
+            value: mapPlugin.cacheDirUrl.toString().substring(mapPlugin.cacheDirUrl.indexOf(':')+1) }
     }
 
     // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
