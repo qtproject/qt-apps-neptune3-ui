@@ -43,12 +43,12 @@ Server::Server(QObject *parent) : QObject(parent)
 void Server::start()
 {
     m_UISettingsService.reset(new UISettingsSource());
-    Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "settings.UISettings");
-    qCDebug(remoteSettingsServer) << "register service at: settings.UISettings";
+    Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "Settings.UISettings");
+    qCDebug(remoteSettingsServer) << "register service at: Settings.UISettings";
 
     m_instrumentClusterService.reset(new InstrumentClusterSource());
-    Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "settings.InstrumentCluster");
-    qCDebug(remoteSettingsServer) << "register service at: settings.InstrumentCluster";
+    Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "Settings.InstrumentCluster");
+    qCDebug(remoteSettingsServer) << "register service at: Settings.InstrumentCluster";
 
     setInstrumentClusterDefaultValues();
 }

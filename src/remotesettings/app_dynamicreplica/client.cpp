@@ -98,8 +98,8 @@ void Client::connectToServer(const QString &serverUrl)
     connect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
 
     if (m_repNode->connectToNode(url)) {
-        m_UISettings.resetReplica(m_repNode->acquireDynamic("settings.UISettings"));
-        m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("settings.InstrumentCluster"));
+        m_UISettings.resetReplica(m_repNode->acquireDynamic("Settings.UISettings"));
+        m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("Settings.InstrumentCluster"));
         setStatus(tr("Connecting to %1...").arg(url.toString()));
         updateLastUrls(url.toString());
     } else {
