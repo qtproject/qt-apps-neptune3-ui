@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -50,9 +50,6 @@ class ApplicationModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    // TODO remove this. activeAppInfo replaces it
-    Q_PROPERTY(QString activeAppId READ activeAppId NOTIFY activeAppIdChanged)
-
     Q_PROPERTY(ApplicationInfo* activeAppInfo READ activeAppInfo NOTIFY activeAppInfoChanged)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
     Q_PROPERTY(QtAM::ApplicationManager* applicationManager READ applicationManager WRITE setApplicationManager NOTIFY applicationManagerChanged)
@@ -100,8 +97,6 @@ public:
 
     Q_INVOKABLE void goHome();
 
-    QString activeAppId() const { return m_activeAppId; }
-
     QtAM::ApplicationManager *applicationManager() const { return m_appMan; }
     void setApplicationManager(QtAM::ApplicationManager *);
 
@@ -130,7 +125,6 @@ public:
     void setLangCode(const QString &locale);
 
 signals:
-    void activeAppIdChanged();
     void activeAppInfoChanged();
     void applicationManagerChanged();
     void windowManagerChanged();
@@ -167,7 +161,6 @@ private:
     int indexFromApplication(const QtAM::Application *);
 
     QList<ApplicationInfo*> m_appInfoList;
-    QString m_activeAppId;
     QtAM::ApplicationManager *m_appMan{nullptr};
     QtAM::WindowManager *m_windowManager{nullptr};
     ApplicationInfo *m_activeAppInfo{nullptr};

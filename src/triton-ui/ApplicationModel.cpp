@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -246,23 +246,17 @@ ApplicationInfo *ApplicationModel::application(const QString &appId)
 
 void ApplicationModel::goHome()
 {
-    if (!m_activeAppId.isEmpty()) {
-        auto *appInfo = application(m_activeAppId);
-        Q_ASSERT(appInfo);
-
-        appInfo->setActive(false);
-
-        m_activeAppId.clear();
-        emit activeAppIdChanged();
-        qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
+    if (m_activeAppInfo) {
+        m_activeAppInfo->setActive(false);
         m_activeAppInfo = nullptr;
+        qCDebug(appModel).nospace() << "activeAppId=<empty>";
         emit activeAppInfoChanged();
     }
 }
 
 void ApplicationModel::onApplicationActivated(const QString &appId, const QString &/*aliasId*/)
 {
-    if (appId == m_activeAppId)
+    if (m_activeAppInfo && appId == m_activeAppInfo->id())
         return;
 
     auto *appInfo = application(appId);
@@ -271,16 +265,12 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
 
     appInfo->setActive(true);
 
-    {
-        auto *oldAppInfo = application(m_activeAppId);
-        if (oldAppInfo)
-            oldAppInfo->setActive(false);
+    if (m_activeAppInfo) {
+        m_activeAppInfo->setActive(false);
     }
 
-    m_activeAppId = appId;
-    emit activeAppIdChanged();
-    qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppId;
     m_activeAppInfo = appInfo;
+    qCDebug(appModel).nospace() << "activeAppId=" << m_activeAppInfo->id();
     emit activeAppInfoChanged();
 }
 
