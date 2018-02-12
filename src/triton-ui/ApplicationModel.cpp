@@ -293,18 +293,23 @@ void ApplicationModel::onApplicationRunStateChanged(const QString &id, QtAM::App
 
     appInfo->setRunning(runState == ApplicationManager::Running);
 
-    if (runState == ApplicationManager::NotRunning && appInfo->asWidget()) {
-        // otherwise the widget would get maximized once restarted.
-        appInfo->setCanBeActive(false);
+    if (runState == ApplicationManager::NotRunning) {
+        if (appInfo == m_activeAppInfo) {
+            goHome();
+        }
+        if (appInfo->asWidget()) {
+            // otherwise the widget would get maximized once restarted.
+            appInfo->setCanBeActive(false);
 
-        // Application was killed or crashed while being displayed as a widget.
-        // Restart it after a short respite.
-        QTimer::singleShot(1000, this, [this, id](){
-            m_appMan->startApplication(id);
-        });
+            // Application was killed or crashed while being displayed as a widget.
+            // Restart it after a short respite.
+            QTimer::singleShot(1000, this, [this, id](){
+                m_appMan->startApplication(id);
+            });
 
-        // TODO: Give up if the application is crashing during start up (or shortly after) to avoid an endless
-        //       crash-restart-crash-restart[...] cycle
+            // TODO: Give up if the application is crashing during start up (or shortly after) to avoid an endless
+            //       crash-restart-crash-restart[...] cycle
+        }
     }
 }
 

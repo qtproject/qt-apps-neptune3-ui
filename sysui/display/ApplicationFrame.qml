@@ -101,18 +101,21 @@ Item {
                 id: removeWindowAnimation
                 DefaultNumberAnimation { target: window; property: "opacity"; from: 1; to: 0 }
                 ScriptAction { script: {
-                    window.parent = null;
+                    // if the application got killed or crashed, there will be no window by now anymore
+                    if (window) {
+                        window.parent = null;
 
-                    // break bindings
-                    window.width = window.width;
-                    window.height = window.height;
+                        // break bindings
+                        window.width = window.width;
+                        window.height = window.height;
 
-                    window.visible = false;
+                        window.visible = false;
 
-                    // leave it the way you found it
-                    window.opacity = 1;
+                        // leave it the way you found it
+                        window.opacity = 1;
 
-                    window = null;
+                        window = null;
+                    }
 
                     // self destruct
                     maxWindowObj.destroy();
