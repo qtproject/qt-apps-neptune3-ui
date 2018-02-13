@@ -96,82 +96,70 @@ UX to the road</source>
 <context>
     <name>CalendarWidgetContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>January</source>
-        <translation>leden</translation>
+        <translation type="vanished">leden</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>February</source>
-        <translation>únor</translation>
+        <translation type="vanished">únor</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="51"/>
         <source>March</source>
-        <translation>březen</translation>
+        <translation type="vanished">březen</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>April</source>
-        <translation>duben</translation>
+        <translation type="vanished">duben</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>May</source>
-        <translation>květen</translation>
+        <translation type="vanished">květen</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="52"/>
         <source>June</source>
-        <translation>červen</translation>
+        <translation type="vanished">červen</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>July</source>
-        <translation>červenec</translation>
+        <translation type="vanished">červenec</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>August</source>
-        <translation>srpen</translation>
+        <translation type="vanished">srpen</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="53"/>
         <source>September</source>
-        <translation>září</translation>
+        <translation type="vanished">září</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>October</source>
-        <translation>říjen</translation>
+        <translation type="vanished">říjen</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>November</source>
-        <translation>listopad</translation>
+        <translation type="vanished">listopad</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="54"/>
         <source>December</source>
-        <translation>prosinec</translation>
+        <translation type="vanished">prosinec</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="66"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="60"/>
         <source>Partly rain</source>
         <translation>Částečný déšť</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="73"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
         <source>Rain</source>
         <translation>Déšť</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="74"/>
         <source>Light Snow</source>
         <translation>Lehké sněžení</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="87"/>
+        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="81"/>
         <source>Sunny</source>
         <translation>Slunečno</translation>
     </message>
