@@ -42,10 +42,9 @@ Entity {
         source: "assets/models/shadow.obj"
     }
 
-    NormalDiffuseMapAlphaMaterial {
+    DiffuseMapMaterial {
         id: shadowMaterial
         diffuse: Texture2D {
-            format: Texture.SRGB8_Alpha8
             TextureImage {
                 source: "assets/textures/shadow.png"
             }
