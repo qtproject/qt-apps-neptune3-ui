@@ -46,57 +46,53 @@ Entity {
         scale: vehicle3DView.scaleFactor
     }
 
+    components: [transform]
+
     Entity {
         Mesh {
             id: mesh
-            meshName: "^chrome$"
             source: "assets/models/chrome.stl"
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
-        components: [transform, mesh, chromeMaterial]
+        components: [mesh, chromeMaterial]
     }
 
     Entity {
         Mesh {
             id: shell
-            meshName: "shell"
             source: "assets/models/shell.stl"
         }
-        components: [transform, shell, whiteHood]
+        components: [shell, whiteHood]
     }
 
     Entity {
         Mesh {
             id: matt_black
-            meshName: "matt_black"
             source: "assets/models/matt_black.stl"
         }
-        components: [transform, matt_black, blackMaterial]
+        components: [matt_black, blackMaterial]
     }
 
     Entity {
         Mesh {
             id: glass
-            meshName: "^glass_4$"
             source: "assets/models/glass_4.stl"
         }
-        components: [transform, glass, glassMaterial]
+        components: [glass, glassMaterial]
     }
 
     Entity {
         Mesh {
             id: license_plates
-            meshName: "^licence_plates$"
             source: "assets/models/licence_plates.stl"
         }
-        components: [transform, license_plates, whiteMaterial]
+        components: [license_plates, whiteMaterial]
     }
 
     Entity {
         Mesh {
             id: frontLights
-            meshName: "front_ights"
             source: "assets/models/front_ights.stl"
         }
         PhongAlphaMaterial {
@@ -106,25 +102,23 @@ Entity {
             shininess: 512
             alpha: 0.7
         }
-        components: [transform, frontLights, frontLightsMaterial]
+        components: [frontLights, frontLightsMaterial]
     }
 
     Entity {
         Mesh {
             id: taillights
-            meshName: "^taillights$"
             source: "assets/models/taillights.stl"
         }
-        components: [transform, taillights, taillightsMaterial]
+        components: [taillights, taillightsMaterial]
     }
 
     Entity {
         Mesh {
             id: interior
-            meshName: "^interior$"
             source: "assets/models/interior.stl"
         }
-        components: [transform, interior, interiorMaterial]
+        components: [interior, interiorMaterial]
     }
 
 }

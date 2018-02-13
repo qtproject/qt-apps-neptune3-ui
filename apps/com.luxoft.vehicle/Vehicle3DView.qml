@@ -60,7 +60,7 @@ Item {
 
     Scene3D {
         anchors.fill: parent
-        aspects: ["input", "logic"]
+        aspects: ["input", "logic"] // TODO: This generates warning. Need investigate why.
         focus: true
 
         Entity {

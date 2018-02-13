@@ -42,24 +42,6 @@ Entity {
         rotationAnimation.start()
     }
 
-    Mesh {
-        id: front_tires
-        source: "assets/models/front_tires.stl"
-    }
-
-    Texture2D {
-        id: front_tires_texture
-        format: Texture.SRGB8_Alpha8
-        TextureImage {
-            source: "assets/textures/front_tires.png"
-        }
-    }
-
-    NormalDiffuseMapAlphaMaterial {
-        id: frontTiresMaterial
-        diffuse: front_tires_texture
-    }
-
     Transform {
         id: transform
         property real userAngle: 0.0
@@ -76,20 +58,32 @@ Entity {
         scale: vehicle3DView.scaleFactor
     }
 
+    components: [transform]
+
     Entity {
         id: chromeWheel
         Mesh {
             id: wheelMesh
-            meshName: "^front_wheel_chrome_1$"
             source: "assets/models/front_wheel_chrome_1.stl"
         }
-        components: [transform, wheelMesh, chromeMaterial]
+        components: [wheelMesh, chromeMaterial]
     }
 
     Entity {
-        components: [transform, front_tires, frontTiresMaterial]
+        components: [
+            Mesh {
+                source: "assets/models/front_tires.stl"
+            },
+            DiffuseMapMaterial {
+                id: frontTiresMaterial
+                diffuse: Texture2D {
+                    TextureImage {
+                        source: "assets/textures/front_tires.png"
+                    }
+                }
+            }
+        ]
     }
-
 
     NumberAnimation {
         id: rotationAnimation

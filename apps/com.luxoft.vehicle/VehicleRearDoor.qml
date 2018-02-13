@@ -60,7 +60,6 @@ Entity {
 
     Mesh {
         id: rearDoorMesh
-        meshName: "back_window"
         source: "assets/models/back_window.stl"
     }
 

@@ -58,66 +58,61 @@ Entity {
 
     property bool open: false
 
+    components: [transform]
+
     Entity {
         Mesh {
             id: mesh
-            meshName: "^silver_paint_2$"
             source: "assets/models/silver_paint_2.obj"
         }
-        components: [transform, mesh, whiteHood]
+        components: [mesh, whiteHood]
     }
 
     Entity {
         Mesh {
             id: mesh2
-            meshName: "^silver_paint_3$"
             source: "assets/models/silver_paint_3.obj"
         }
-        components: [mesh2, whiteHood, transform]
+        components: [mesh2, whiteHood]
     }
 
     Entity {
         Mesh {
             id: glass
-            meshName: "^glass_2$"
             source: "assets/models/glass_2.stl"
         }
-        components: [glass, glassMaterial, transform]
+        components: [glass, glassMaterial]
     }
 
     Entity {
         Mesh {
             id: chrome
-            meshName: "^chrome_3$"
             source: "assets/models/chrome_3.stl"
         }
-        components: [chrome, chromeMaterial, transform]
+        components: [chrome, chromeMaterial]
     }
 
     Entity {
         Mesh {
             id: chrome1
-            meshName: "^chrome_4$"
             source: "assets/models/chrome_4.stl"
         }
-        components: [chrome1, chromeMaterial, transform]
+        components: [chrome1, chromeMaterial]
     }
 
     Entity {
         Mesh {
             id: black
-            meshName: "^black_2$"
             source: "assets/models/black_2.stl"
         }
-        components: [black, blackMaterial, transform]
+        components: [black, blackMaterial]
     }
 
     Entity {
         Mesh {
             id: black1
-            meshName: "^black_3$"
             source: "assets/models/black_3.stl"
         }
-        components: [black1, blackMaterial, transform]
+        components: [black1, blackMaterial]
     }
 }

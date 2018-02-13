@@ -58,7 +58,6 @@ Entity {
 
     Mesh {
         id: mesh
-        meshName: "sun_roof"
         source: "assets/models/sun_roof.stl"
     }
 

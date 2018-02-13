@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.0
 import Qt3D.Core 2.0
 import Qt3D.Render 2.9
@@ -58,36 +59,30 @@ Entity {
         scale: vehicle3DView.scaleFactor
     }
 
-    Mesh {
-        id: rear_tires
-        source: "assets/models/rear_tires.stl"
-    }
-
-    NormalDiffuseMapAlphaMaterial {
-        id: rearTiresMaterial
-        diffuse: rear_tires_texture
-    }
-
-    Texture2D {
-        id: rear_tires_texture
-        format: Texture.SRGB8_Alpha8
-        TextureImage {
-            source: "assets/textures/rear_tires.png"
-        }
-    }
+    components: [transform]
 
     Entity {
-        id: chromeWheel
         Mesh {
             id: wheelMesh
-            meshName: "^rear_wheel_chrome_1$"
             source: "assets/models/rear_wheel_chrome_1.stl"
         }
-        components: [transform, wheelMesh, chromeMaterial]
+        components: [wheelMesh, chromeMaterial]
     }
 
     Entity {
-        components: [transform, rear_tires, rearTiresMaterial]
+        components: [
+            Mesh {
+                id: rear_tires
+                source: "assets/models/rear_tires.stl"
+            },
+            DiffuseMapMaterial {
+                diffuse: Texture2D {
+                            TextureImage {
+                                source: "assets/textures/rear_tires.png"
+                            }
+                        }
+            }
+       ]
     }
 
     NumberAnimation {

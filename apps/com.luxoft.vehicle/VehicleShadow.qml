@@ -56,7 +56,5 @@ Entity {
         scale: vehicle3DView.scaleFactor - 0.01
     }
 
-    Entity {
-        components: [shadowMesh, shadowMaterial, transform]
-    }
+    components: [shadowMesh, shadowMaterial, transform]
 }
