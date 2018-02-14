@@ -43,9 +43,9 @@ Item {
     property int drivetrain : 0
 
     //private
-    Item {
+    QtObject {
         id: d
-        readonly property real scaleRatio: Math.min(parent.width / 560, parent.height / 560 )
+        readonly property real scaleRatio: Math.min(root.width / 560, root.height / 560 )
 
         function power2Angle(power) {
             if (power < -25) {

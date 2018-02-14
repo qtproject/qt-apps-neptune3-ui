@@ -46,9 +46,9 @@ ApplicationManagerWindow {
     }
 
     //private
-    Item {
+    QtObject {
         id: d
-        property real scaleRatio: Math.min(parent.width / 1920, parent.height / 720)
+        readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 720)
     }
 
     Image {

@@ -36,6 +36,7 @@ import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
 
 Item {
+    id: root
     width: 444
     height: 58
     clip: true
@@ -51,9 +52,9 @@ Item {
     property bool controlBitAirbagFailure: true
 
     //private
-    Item {
+    QtObject {
         id: d
-        property real scaleRatio: parent.height / 58
+        property real scaleRatio: root.height / 58
     }
 
     // Uncomment below to render BG when safe renderer is in use

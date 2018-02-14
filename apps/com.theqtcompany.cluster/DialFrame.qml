@@ -47,19 +47,19 @@ Item {
     property color negativeColor: "#fba054"
 
     //private
-    Item {
+    QtObject {
         id: d
-        readonly property real scaleRatio: Math.min ( parent.width / 560, parent.height / 560 )
+        readonly property real scaleRatio: Math.min ( root.width / 560, root.height / 560 )
 
-        readonly property real maxRadin: (parent.maxAng > 90) ? (Math.PI / 2) : (parent.maxAng / 180 * Math.PI)
-        readonly property real minRadin: (parent.minAng < -270) ? (-Math.PI * 3 / 2) : (parent.minAng / 180 * Math.PI)
-        readonly property real zeroRadin: (parent.zeroAng > parent.maxAng || parent.zeroAng < parent.minAng) ?
-                                parent.minRadin : (parent.zeroAng / 180 * Math.PI)
-        readonly property real highLightRadin: (parent.highLightAng < parent.minAng) ?
-                                parent.minRadin : (parent.highLightAng > parent.maxAng) ?
-                                              parent.maxRadin : (parent.highLightAng / 180 * Math.PI)
-        readonly property bool isPositive: (parent.highLightAng >= parent.zeroAng) ? true : false
-        readonly property color fillColor: isPositive ? parent.positiveColor : parent.negativeColor
+        readonly property real maxRadin: (root.maxAng > 90) ? (Math.PI / 2) : (root.maxAng / 180 * Math.PI)
+        readonly property real minRadin: (root.minAng < -270) ? (-Math.PI * 3 / 2) : (root.minAng / 180 * Math.PI)
+        readonly property real zeroRadin: (root.zeroAng > root.maxAng || root.zeroAng < root.minAng) ?
+                                root.minRadin : (root.zeroAng / 180 * Math.PI)
+        readonly property real highLightRadin: (root.highLightAng < root.minAng) ?
+                                root.minRadin : (root.highLightAng > root.maxAng) ?
+                                              root.maxRadin : (root.highLightAng / 180 * Math.PI)
+        readonly property bool isPositive: (root.highLightAng >= root.zeroAng) ? true : false
+        readonly property color fillColor: isPositive ? root.positiveColor : root.negativeColor
     }
 
     //states and transitions

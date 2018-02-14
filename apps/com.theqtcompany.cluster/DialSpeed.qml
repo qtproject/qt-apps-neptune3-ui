@@ -44,9 +44,9 @@ Item {
     property real cruiseSpeed
 
     //private
-    Item {
+    QtObject {
         id: d
-        readonly property real scaleRatio: Math.min(parent.width / 560, parent.height/ 560)
+        readonly property real scaleRatio: Math.min(root.width / 560, root.height/ 560)
         function speed2Angle(speed) {
             if (speed < 0) {
                 return -240;
