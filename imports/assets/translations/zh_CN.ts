@@ -745,12 +745,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="101"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="61"/>
         <source>Close</source>
         <translation type="unfinished">关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="114"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="74"/>
         <source>Open</source>
         <translation type="unfinished">开</translation>
     </message>

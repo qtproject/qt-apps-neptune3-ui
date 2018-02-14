@@ -705,12 +705,12 @@ UX to the road</source>
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="101"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="61"/>
         <source>Close</source>
         <translation type="unfinished">닫힘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="114"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="74"/>
         <source>Open</source>
         <translation type="unfinished">열림</translation>
     </message>

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Pelagicore AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -29,52 +29,63 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Layouts 1.3
+import QtQuick 2.6
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 
-import animations 1.0
-import utils 1.0
-
-Item {
+Slider {
     id: root
 
-    property real roofOpenProgress: 0.0
+    background: Item {
+        implicitWidth: root.width
+        implicitHeight: 110
 
-    RoofSlider {
-        id: roofSlider
+        Rectangle {
+            anchors.verticalCenter: parent.verticalCenter
+            implicitWidth: root.width * root.visualPosition
+            implicitHeight: 11
 
-        anchors.top: parent.top
-        anchors.topMargin: Style.vspan(2.5)
-        anchors.left: parent.left
-        anchors.leftMargin: 60
-        width: parent.width - anchors.leftMargin
-        value: roofOpenProgress
-    }
+            color: "#555352"
+            border.width: 1
+            border.color: "#6d6b69"
 
-    VehicleButton {
-        id: roofCloseButton
+            Rectangle {
+                anchors.left: parent.right
+                implicitWidth: root.width * (1 - root.visualPosition)
+                implicitHeight: 11
 
-        anchors.top: parent.top
-        anchors.topMargin: 500
-        anchors.left: parent.left
-        anchors.leftMargin: 520
-        text: qsTr("Close")
-        onClicked: {
-            root.roofOpenProgress = 0.0;
+                color: "#d5d0ce"
+                border.width: 1
+                border.color: "#e0dbd8"
+            }
         }
     }
 
-    VehicleButton {
-        id: roofOpenButton
+    handle: Item {
+        width: 52
+        height: 110
+        x: root.leftPadding + root.visualPosition * (root.availableWidth - width)
+        y: root.topPadding + root.availableHeight / 2 - height / 2
 
-        anchors.top: parent.top
-        anchors.topMargin: 500
-        anchors.left: parent.left
-        anchors.leftMargin: 60
-        text: qsTr("Open")
-        onClicked: {
-            root.roofOpenProgress = 1.0;
+        RectangularGlow {
+            id: glow
+
+            anchors.fill: rect
+            glowRadius: 2
+            spread: 0.1
+            color: "gray"
+            cornerRadius: rect.radius
+        }
+
+        Rectangle {
+            id: rect
+
+            anchors.centerIn: parent
+            implicitWidth: 52
+            implicitHeight: 110
+
+            color: "#f1efed"
+            radius: implicitWidth / 2
         }
     }
 }
-
