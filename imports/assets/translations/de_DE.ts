@@ -264,6 +264,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FrontDoorsPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Schliessen</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished">Öffnen</translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>

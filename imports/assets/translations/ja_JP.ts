@@ -315,6 +315,21 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FrontDoorsPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <source>Close</source>
+        <translation type="unfinished">閉める</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <source>Open</source>
+        <translation type="unfinished">開ける</translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>

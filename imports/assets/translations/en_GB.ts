@@ -248,6 +248,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FrontDoorsPanel</name>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguagePanel</name>
     <message>
         <source>Language</source>

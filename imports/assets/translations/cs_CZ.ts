@@ -363,12 +363,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
         <source>Home</source>
-        <translation type="unfinished">Domů</translation>
+        <translation>Domů</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
         <source>Work</source>
-        <translation type="unfinished">Práce</translation>
+        <translation>Práce</translation>
     </message>
 </context>
 <context>
@@ -397,6 +397,21 @@ UX to the road</source>
     <message>
         <source>Contacts</source>
         <translation type="vanished">Kontakty</translation>
+    </message>
+</context>
+<context>
+    <name>FrontDoorsPanel</name>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <source>Close</source>
+        <translation>Zavřít</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <source>Open</source>
+        <translation>Otevřít</translation>
     </message>
 </context>
 <context>
@@ -587,7 +602,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
         <source>Next</source>
-        <translation type="unfinished">Další</translation>
+        <translation>Další</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="307"/>
@@ -597,7 +612,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="135"/>
         <source>Browse</source>
-        <translation type="unfinished">Procházet</translation>
+        <translation>Procházet</translation>
     </message>
 </context>
 <context>
@@ -610,7 +625,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="112"/>
         <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <translation>Přehrát vše</translation>
     </message>
 </context>
 <context>
@@ -669,7 +684,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
         <source>Start Navigation</source>
-        <translation type="unfinished">Spustit navigaci</translation>
+        <translation>Spustit navigaci</translation>
     </message>
 </context>
 <context>
@@ -677,12 +692,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">Kam se chcete vydat dnes?</translation>
+        <translation>Kam se chcete vydat dnes?</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
         <source>Search</source>
-        <translation type="unfinished">Hledat</translation>
+        <translation>Hledat</translation>
     </message>
 </context>
 <context>
@@ -809,12 +824,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="101"/>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="114"/>
         <source>Open</source>
-        <translation type="unfinished">Otevřít</translation>
+        <translation>Otevřít</translation>
     </message>
 </context>
 <context>
@@ -1113,12 +1128,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Open</source>
-        <translation type="unfinished">Otevřít</translation>
+        <translation>Otevřít</translation>
     </message>
 </context>
 <context>
