@@ -60,7 +60,7 @@ ApplicationManagerWindow {
         source: "img/cluster-fullscreen-overlay.png"
     }
 
-    Normal {
+    Gauges {
         id: mainContent
         anchors.fill: parent
         navigating: dataSource.navigationMode
