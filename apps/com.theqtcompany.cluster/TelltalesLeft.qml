@@ -39,17 +39,14 @@ Item {
     id: root
     width: 444
     height: 58
-    clip: true
 
     //public
-    property int margin: 25
-
-    property bool controlBitLowBeamHeadLight: true
-    property bool controlBitHighBeamHeadLight: true
-    property bool controlBitFogLight: true
-    property bool controlBitStabilityControl: true
-    property bool controlBitSeatBeltFasten: true
-    property bool controlBitLeftTurn: true
+    property bool lowBeamHeadLightOn: true
+    property bool highBeamHeadLightOn: true
+    property bool fogLightOn: true
+    property bool stabilityControlOn: true
+    property bool seatBeltFastenOn: true
+    property bool leftTurnOn: true
 
     //private
     QtObject {
@@ -64,75 +61,61 @@ Item {
 //        source: "./img/telltales/telltale-bg-left.png"
 //    }
 
-    Image {
-        id: lowBeamHeadLight
-        anchors.left: parent.left
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 42 * d.scaleRatio
-        height: 32 * d.scaleRatio
-        visible: controlBitLowBeamHeadLight
-        source: "./img/telltales/ic-low-beam.png"
-    }
+    RowLayout {
+        anchors.fill: parent
+        spacing: root.width * 0.07
 
-    Image {
-        id: highBeamHeadLight
-        anchors.left: lowBeamHeadLight.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 42 * d.scaleRatio
-        height: 27 * d.scaleRatio
-        visible: controlBitHighBeamHeadLight
-        source: "./img/telltales/ic-high-beam.png"
-    }
+        Image {
+            Layout.preferredWidth: 42 * d.scaleRatio
+            Layout.preferredHeight: 32 * d.scaleRatio
+            opacity: root.lowBeamHeadLightOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-low-beam.png"
+        }
 
-    Image {
-        id: fogLight
-        anchors.left: highBeamHeadLight.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 34 * d.scaleRatio
-        height: 34 * d.scaleRatio
-        visible: controlBitFogLight
-        source: "./img/telltales/ic-fog-lights.png"
-    }
+        Image {
+            Layout.preferredWidth: 42 * d.scaleRatio
+            Layout.preferredHeight: 27 * d.scaleRatio
+            opacity: root.highBeamHeadLightOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-high-beam.png"
+        }
 
-    Image {
-        id: stabilityControl
-        anchors.left: fogLight.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 30 * d.scaleRatio
-        height: 33 * d.scaleRatio
-        visible: controlBitStabilityControl
-        source: "./img/telltales/ic-stability-control.png"
-    }
+        Image {
+            Layout.preferredWidth: 34 * d.scaleRatio
+            Layout.preferredHeight: 34 * d.scaleRatio
+            opacity: root.fogLightOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-fog-lights.png"
+        }
 
-    Image {
-        id: seatBeltFasten
-        anchors.left: stabilityControl.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 25 * d.scaleRatio
-        height: 35 * d.scaleRatio
-        visible: controlBitSeatBeltFasten
-        source: "./img/telltales/ic-seat-belt.png"
-    }
+        Image {
+            Layout.preferredWidth: 30 * d.scaleRatio
+            Layout.preferredHeight: 33 * d.scaleRatio
+            opacity: root.stabilityControlOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-stability-control.png"
+        }
 
-    Image {
-        id: leftTurn
-        anchors.left: seatBeltFasten.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 53 * d.scaleRatio
-        height: 48 * d.scaleRatio
-        visible: blinker.lit
-        fillMode: Image.PreserveAspectFit
-        source: "./img/telltales/ic-left-turn.png"
+        Image {
+            Layout.preferredWidth: 25 * d.scaleRatio
+            Layout.preferredHeight: 35 * d.scaleRatio
+            opacity: root.seatBeltFastenOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-seat-belt.png"
+        }
+
+        Image {
+            Layout.preferredWidth: 53 * d.scaleRatio
+            Layout.preferredHeight: 48 * d.scaleRatio
+            opacity: blinker.lit ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-left-turn.png"
+        }
     }
 
     Blinker {
         id: blinker
-        running: controlBitLeftTurn
+        running: root.leftTurnOn
     }
 }

@@ -32,24 +32,20 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
 
 Item {
     id: root
     width: 444
     height: 58
-    clip: true
 
     //public
-    property int margin: 25
-
-    property bool controlBitRightTurn: true
-    property bool controlBitAbsFailure: true
-    property bool controlBitParkBrake: true
-    property bool controlBitTyrePressLow: true
-    property bool controlBitBrakeFailure: true
-    property bool controlBitAirbagFailure: true
+    property bool rightTurnOn: true
+    property bool absFailureOn: true
+    property bool parkingBrakeOn: true
+    property bool lowTyrePressureOn: true
+    property bool brakeFailureOn: true
+    property bool airbagFailureOn: true
 
     //private
     QtObject {
@@ -66,73 +62,59 @@ Item {
 
     Blinker {
         id: blinker
-        running: controlBitRightTurn
+        running: root.rightTurnOn
     }
 
-    Image {
-        id: rightTurn
-        anchors.left: parent.left
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 53 * d.scaleRatio
-        height: 48 * d.scaleRatio
-        visible: blinker.lit
-        fillMode: Image.PreserveAspectFit
-        source: "./img/telltales/ic-right-turn.png"
-    }
+    RowLayout {
+        anchors.fill: parent
+        spacing: root.width * 0.07
 
-    Image {
-        id: absFailure
-        anchors.left: rightTurn.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 40 * d.scaleRatio
-        height: 30 * d.scaleRatio
-        visible: controlBitAbsFailure
-        source: "./img/telltales/ic-abs-fault.png"
-    }
+        Image {
+            opacity: blinker.lit ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-right-turn.png"
+            Layout.preferredWidth: 53 * d.scaleRatio
+            Layout.preferredHeight: 48 * d.scaleRatio
+        }
 
-    Image {
-        id: parkBrake
-        anchors.left: absFailure.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 40 * d.scaleRatio
-        height: 30 * d.scaleRatio
-        visible: controlBitParkBrake
-        source: "./img/telltales/ic-parking-brake.png"
-    }
+        Image {
+            opacity: root.absFailureOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-abs-fault.png"
+            Layout.preferredWidth: 40 * d.scaleRatio
+            Layout.preferredHeight: 30 * d.scaleRatio
+        }
 
-    Image {
-        id: tyrePressLow
-        anchors.left: parkBrake.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 34 * d.scaleRatio
-        height: 30 * d.scaleRatio
-        visible: controlBitTyrePressLow
-        source: "./img/telltales/ic-tire-pressure.png"
-    }
+        Image {
+            opacity: root.parkingBrakeOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-parking-brake.png"
+            Layout.preferredWidth: 40 * d.scaleRatio
+            Layout.preferredHeight: 30 * d.scaleRatio
+        }
 
-    Image {
-        id: brakeFailure
-        anchors.left: tyrePressLow.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 40 * d.scaleRatio
-        height: 30 * d.scaleRatio
-        visible: controlBitBrakeFailure
-        source: "./img/telltales/ic-brake-fault.png"
-    }
+        Image {
+            opacity: root.lowTyrePressureOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-tire-pressure.png"
+            Layout.preferredWidth: 34 * d.scaleRatio
+            Layout.preferredHeight: 30 * d.scaleRatio
+        }
 
-    Image {
-        id: airbagFailure
-        anchors.left: brakeFailure.right
-        anchors.leftMargin: margin * d.scaleRatio
-        anchors.verticalCenter: parent.verticalCenter
-        width: 35 * d.scaleRatio
-        height: 34 * d.scaleRatio
-        visible: controlBitAirbagFailure
-        source: "./img/telltales/ic-airbag.png"
+        Image {
+            opacity: root.brakeFailureOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-brake-fault.png"
+            Layout.preferredWidth: 40 * d.scaleRatio
+            Layout.preferredHeight: 30 * d.scaleRatio
+        }
+
+        Image {
+            opacity: root.airbagFailureOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: "./img/telltales/ic-airbag.png"
+            Layout.preferredWidth: 35 * d.scaleRatio
+            Layout.preferredHeight: 34 * d.scaleRatio
+        }
     }
 }

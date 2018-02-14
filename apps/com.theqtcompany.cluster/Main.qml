@@ -77,14 +77,13 @@ ApplicationManagerWindow {
         y: 23 * d.scaleRatio
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
-        margin: 30 * d.scaleRatio
 
-        controlBitLowBeamHeadLight: dataSource.lowBeamHeadlight
-        controlBitHighBeamHeadLight: dataSource.highBeamHeadlight
-        controlBitFogLight: dataSource.fogLight
-        controlBitStabilityControl: dataSource.stabilityControl
-        controlBitSeatBeltFasten: dataSource.seatBeltNotFastened
-        controlBitLeftTurn: dataSource.leftTurn
+        lowBeamHeadLightOn: dataSource.lowBeamHeadlight
+        highBeamHeadLightOn: dataSource.highBeamHeadlight
+        fogLightOn: dataSource.fogLight
+        stabilityControlOn: dataSource.stabilityControl
+        seatBeltFastenOn: dataSource.seatBeltNotFastened
+        leftTurnOn: dataSource.leftTurn
     }
 
     TelltalesRight {
@@ -93,13 +92,12 @@ ApplicationManagerWindow {
         y: 23 * d.scaleRatio
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
-        margin: 30 * d.scaleRatio
 
-        controlBitRightTurn: dataSource.rightTurn
-        controlBitAbsFailure: dataSource.ABSFailure;
-        controlBitParkBrake: dataSource.parkBrake;
-        controlBitTyrePressLow: dataSource.tyrePressureLow;
-        controlBitBrakeFailure: dataSource.brakeFailure;
-        controlBitAirbagFailure: dataSource.airbagFailure;
+        rightTurnOn: dataSource.rightTurn
+        absFailureOn: dataSource.ABSFailure;
+        parkingBrakeOn: dataSource.parkBrake;
+        lowTyrePressureOn: dataSource.tyrePressureLow;
+        brakeFailureOn: dataSource.brakeFailure;
+        airbagFailureOn: dataSource.airbagFailure;
     }
 }
