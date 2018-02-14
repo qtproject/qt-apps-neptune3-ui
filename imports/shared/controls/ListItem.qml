@@ -64,6 +64,7 @@ ItemDelegate {
 
     // TODO: use icon.source / icon.name
     property string symbol: ""
+    property string imageSource: ""
     property alias subText: subtitle.text
     property alias secondaryText: secondaryText.text
     property alias rightToolSymbol: rightTool.symbol
@@ -71,11 +72,15 @@ ItemDelegate {
     signal rightToolClicked()
 
     indicator: Item  {
-        implicitWidth: root.symbol ? Style.hspan(2) : 0
-        implicitHeight: root.symbol ? root.height : 0
+        implicitWidth: root.symbol || root.imageSource ? Style.hspan(2) : 0
+        implicitHeight: root.symbol || root.imageSource ? root.height : 0
         Image {
             anchors.centerIn: parent
             source: root.symbol
+        }
+        Image {
+            anchors.fill: parent
+            source: root.imageSource
         }
     }
 
