@@ -81,10 +81,13 @@ ColumnLayout {
             labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
             labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
             font.pixelSize: TritonStyle.fontSizeXS
+            opacity: model.greyedOut ? 0.5 : 1.0
+            enabled: !model.greyedOut
             symbolOnTop: true
             onClicked: {
-                root.currentIndex = index;
-
+                if (enabled) {
+                    root.currentIndex = index;
+                }
             }
             ButtonGroup.group: buttonGroup
         }
