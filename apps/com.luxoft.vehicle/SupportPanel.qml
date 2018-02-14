@@ -60,6 +60,8 @@ ListView {
         }
 
         Switch {
+            id: vehicleControlSwitch
+
             anchors.top: parent.top
             anchors.topMargin: 2
             anchors.right: parent.right
@@ -77,6 +79,11 @@ ListView {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: vehicleControlSwitch.checked = !vehicleControlSwitch.checked
         }
     }
 }
