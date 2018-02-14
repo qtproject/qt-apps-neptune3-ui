@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Window 2.2
 import com.pelagicore.settings 1.0
 import QtApplicationManager 1.0
+
 ApplicationManagerWindow {
     id: root
     visible: true
