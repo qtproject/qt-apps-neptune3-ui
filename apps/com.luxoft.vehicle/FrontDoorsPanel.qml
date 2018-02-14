@@ -35,6 +35,8 @@ import QtQuick.Layouts 1.3
 import com.pelagicore.settings 1.0
 import com.pelagicore.styles.triton 1.0
 
+import utils 1.0
+
 Item {
     id: root
 
@@ -54,6 +56,33 @@ Item {
         }
         onDoor2OpenChanged: {
             root.rightDoorOpen = uiSettings.door2Open
+        }
+    }
+
+    VehicleButton {
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(2.5)
+        anchors.left: parent.left
+        anchors.leftMargin: 60
+        state: "SMALL"
+        text: leftDoorOpen ? qsTr("Close") : qsTr("Open")
+
+        onClicked: {
+            root.leftDoorOpen = !root.leftDoorOpen
+            uiSettings.door1Open = root.leftDoorOpen
+        }
+    }
+
+    VehicleButton {
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(2.5)
+        anchors.right: parent.right
+        state: "SMALL"
+        text: rightDoorOpen ? qsTr("Close") : qsTr("Open")
+
+        onClicked: {
+            root.rightDoorOpen = !root.rightDoorOpen
+            uiSettings.door2Open = root.rightDoorOpen
         }
     }
 
@@ -77,59 +106,6 @@ Item {
             anchors.fill: parent
             visible: root.rightDoorOpen
             source: "assets/images/car-top-right-door.png"
-        }
-
-        //ToDo: It should be a separate button item later
-        Image {
-            anchors.top: parent.top
-            anchors.topMargin: 200
-            anchors.left: parent.left
-            anchors.leftMargin: 40
-            source: "assets/images/round-button" + root.sourceSuffix
-
-            Image {
-                anchors.centerIn: parent
-                source: root.leftDoorOpen ? root.openLeftDoorSource : root.closeLeftDoorSource
-            }
-
-            MouseArea {
-                width: 100
-                height: 100
-                anchors.centerIn: parent
-
-                onClicked: {
-                    root.leftDoorOpen = !root.leftDoorOpen
-                    uiSettings.door1Open = root.leftDoorOpen
-                }
-                onPressed: (parent.scale = 1.1)
-                onReleased: (parent.scale = 1.0)
-            }
-        }
-
-        Image {
-            anchors.top: parent.top
-            anchors.topMargin: 200
-            anchors.right: parent.right
-            anchors.rightMargin: 40
-            source: "assets/images/round-button" + root.sourceSuffix
-
-            Image {
-                anchors.centerIn: parent
-                source: root.rightDoorOpen ? root.openRightDoorSource : root.closeRightDoorSource
-            }
-
-            MouseArea {
-                width: 100
-                height: 100
-                anchors.centerIn: parent
-
-                onClicked: {
-                    root.rightDoorOpen = !root.rightDoorOpen
-                    uiSettings.door2Open = root.rightDoorOpen
-                }
-                onPressed: (parent.scale = 1.1)
-                onReleased: (parent.scale = 1.0)
-            }
         }
     }
 }
