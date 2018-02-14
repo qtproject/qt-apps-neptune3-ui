@@ -374,7 +374,7 @@ UX to the road</source>
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="41"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="42"/>
         <source>Instrument Cluster</source>
         <translation>インストルメント・クラスター</translation>
     </message>
