@@ -33,6 +33,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
     width: 560
@@ -66,6 +68,8 @@ Item {
         property int ePowerOverride
         property bool overrideEPower: false
         readonly property int ePower: overrideEPower ? ePowerOverride : root.ePower
+
+        readonly property string sourceSuffix: root.TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
     }
 
     //states and transitions
@@ -256,7 +260,7 @@ Item {
         y: 107 * d.scaleRatio
         width: 71 * d.scaleRatio
         height: 294 * d.scaleRatio
-        source: "./img/dial-energy-areas.png"
+        source: "./img/dial-energy-areas" + d.sourceSuffix
     }
 
     Item {//PRND
@@ -273,7 +277,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: (root.drivetrain === 0) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -285,7 +289,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: (root.drivetrain === 3) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -297,7 +301,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: (root.drivetrain === 1) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -308,7 +312,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: (root.drivetrain === 2) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -324,7 +328,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 80 * d.scaleRatio
     }
@@ -336,7 +340,7 @@ Item {
         text: qsTr("% power")
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -350,7 +354,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -361,7 +365,7 @@ Item {
         y: 483 * d.scaleRatio
         width: 23 * d.scaleRatio
         height: 14 * d.scaleRatio
-        source: "./img/ic-battery.png"
+        source: "./img/ic-battery" + d.sourceSuffix
     }
 
     Text {
@@ -371,7 +375,7 @@ Item {
         text: "184"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -383,7 +387,7 @@ Item {
         text: "21"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -394,7 +398,7 @@ Item {
         y: 477 * d.scaleRatio
         width: 24 * d.scaleRatio
         height: 21 * d.scaleRatio
-        source: "./img/ic-chargingstation.png"
+        source: "./img/ic-chargingstation"  + d.sourceSuffix
     }
 
     Repeater{
@@ -419,7 +423,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: graduationNumber.opacity
             font.family: "Open Sans"
             font.weight: Font.Light

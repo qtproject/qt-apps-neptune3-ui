@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton Cluster UI.
@@ -34,6 +35,8 @@ import QtQuick.Window 2.2
 import com.pelagicore.settings 1.0
 import QtApplicationManager 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 ApplicationManagerWindow {
     id: root
     visible: true
@@ -44,6 +47,14 @@ ApplicationManagerWindow {
 
     InstrumentCluster {
         id: dataSource
+    }
+
+    UISettings {
+        onThemeChanged: updateTheme()
+        Component.onCompleted: updateTheme()
+        function updateTheme() {
+            root.contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+        }
     }
 
     //private
@@ -57,7 +68,9 @@ ApplicationManagerWindow {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        source: "img/cluster-fullscreen-overlay.png"
+        height: 390 * d.scaleRatio
+        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        source: "img/cluster-fullscreen-overlay" + sourceSuffix
     }
 
     Gauges {

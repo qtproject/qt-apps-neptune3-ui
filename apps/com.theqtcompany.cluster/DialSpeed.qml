@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 The Qt Company Ltd.
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton Cluster UI.
@@ -33,6 +34,8 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
     width: 560
@@ -62,6 +65,8 @@ Item {
                 return 30;
             }
         }
+
+        readonly property string sourceSuffix: root.TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
     }
 
     //states and transitions
@@ -268,7 +273,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 80 * d.scaleRatio
     }
@@ -280,7 +285,7 @@ Item {
         text: qsTr("km/h")
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -389,7 +394,7 @@ Item {
         y: indicatorCruise.y + 4 * d.scaleRatio
         width: 35 * d.scaleRatio
         height: 31 * d.scaleRatio
-        source: "./img/ic-acc.png"
+        source: "./img/ic-acc" + d.sourceSuffix
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
         }
@@ -406,7 +411,7 @@ Item {
         text:  Math.round(cruiseSpeed)
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: "black"
+        color: TritonStyle.primaryTextColor
         font.pixelSize: 34 * d.scaleRatio
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 500 }
@@ -435,7 +440,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: "black"
+            color: TritonStyle.primaryTextColor
             opacity: graduationNumber.opacity
             font.family: "Open Sans"
             font.weight: Font.Light
