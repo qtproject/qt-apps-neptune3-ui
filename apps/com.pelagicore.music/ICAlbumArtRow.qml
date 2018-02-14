@@ -77,8 +77,8 @@ Item {
                 source: (mediaReady && model.item.coverArtUrl) ? model.item.coverArtUrl : Style.gfx2("album-art-placeholder")
                 fillMode: Image.PreserveAspectFit
 
-                property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
-                property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
+                readonly property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
+                readonly property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
             }
         }
     }

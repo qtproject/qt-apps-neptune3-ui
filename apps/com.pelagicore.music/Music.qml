@@ -112,7 +112,11 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: 100
             clip: true
-            listView.model: root.store.searchAndBrowseModel
+            listView.model: root.store.musicPlaylist
+            onItemClicked: {
+                root.store.musicPlaylist.currentIndex = index;
+                root.store.player.play();
+            }
         }
 
         Tool {
@@ -178,11 +182,14 @@ Item {
             anchors.bottom: parent.bottom
             translationContext: "MusicToolsColumn"
             model: ListModel {
-                ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites") }
-                ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists") }
-                ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists") }
-                ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums") }
-                ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders") }
+                ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites"); greyedOut: false}
+                ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists"); greyedOut: false }
+                ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists"); greyedOut: true }
+                ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); greyedOut: false }
+                ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
+            }
+            onCurrentTextChanged: {
+                musicLibrary.showHeader = false;
             }
         }
 
@@ -199,36 +206,26 @@ Item {
             listView.model: root.store.searchAndBrowseModel
             contentType: root.store.searchAndBrowseModel.contentType
 
-            onLibraryGoBack: {
-                musicLibrary.albumPath = "";
-                if (musicLibrary.contentType.slice(-5) === "album") {
-                    musicLibrary.artistName = "";
-                }
-
-                // if root content "artist" is specified, then go to the root, otherwise it will go one step back.
-                if (goToArtist) {
-                    root.store.searchAndBrowseModel.contentType = "artist";
-                    musicLibrary.artistName = "";
-                    musicLibrary.albumName = "";
-                } else {
-                    root.store.searchAndBrowseModel.goBack();
+            onBackClicked: {
+                root.store.searchAndBrowseModel.goBack();
+                headerText = "";
+                if (toolsColumn.currentText.indexOf(contentType) !== -1) {
+                    showHeader = false;
                 }
             }
 
             onItemClicked: {
-
                 if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
-                    musicLibrary.artistName = title;
                     root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                    headerText = "";
+                    showHeader = true;
                 } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
-                    musicLibrary.albumName = title;
                     root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                    var albumArtist = artist !== "" ? artist : qsTr("Unknown Artist");
+                    headerText = qsTr("Songs of %1 (%2)").arg(title).arg(albumArtist);
+                    showHeader = true;
                 } else {
                     root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
-                    root.store.player.play();
-                }
-
-                if (root.state !== "Maximized") {
                     root.store.musicPlaylist.currentIndex = index;
                     root.store.player.play();
                 }
@@ -268,30 +265,17 @@ Item {
                         root.flickableAreaClicked();
                     }
                 }
-                MusicList {
+                MusicList { //playing queue
                     id: nextList
                     width: parent.width
                     height: (listView.count * Style.vspan(1.3))
                     anchors.top: parent.top
                     anchors.topMargin: ((progressBarBlock.height / 2) + musicTools.height)
-                    listView.model: root.store.searchAndBrowseModel
+                    listView.model: root.store.musicPlaylist
                     listView.interactive: false
-                    contentType: root.store.searchAndBrowseModel.contentType
                     onItemClicked: {
-                        if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
-                            musicLibrary.artistName = title;
-                            root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
-                        } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
-                            musicLibrary.albumName = title;
-                            root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
-                        } else {
-                            root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
-                            root.store.player.play();
-                        }
-                        if (root.store.contentType === "track") {
-                            root.store.musicPlaylist.currentIndex = index;
-                            root.store.player.play();
-                        }
+                        root.store.musicPlaylist.currentIndex = index;
+                        root.store.player.play();
                     }
                 }
             }
@@ -304,7 +288,7 @@ Item {
             anchors.verticalCenterOffset: 0
             songModel: root.store.musicPlaylist
             currentIndex: root.store.musicPlaylist.currentIndex
-            currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
+            currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Unknown Track")
             currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
             parentStateMaximized: root.state === "Maximized"
             mediaReady: root.store.searchAndBrowseModel.count > 0

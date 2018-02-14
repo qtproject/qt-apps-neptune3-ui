@@ -605,12 +605,26 @@ UX to the road</source>
         <translation>Další</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="307"/>
-        <source>Track unavailable</source>
-        <translation>Skladba nedostupná</translation>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="224"/>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="135"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="225"/>
+        <source>Songs of %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="291"/>
+        <source>Unknown Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="vanished">Skladba nedostupná</translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="139"/>
         <source>Browse</source>
         <translation>Procházet</translation>
     </message>
@@ -618,12 +632,17 @@ UX to the road</source>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="98"/>
-        <source>Songs of %1(%2)</source>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="78"/>
+        <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="112"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="89"/>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="128"/>
         <source>Play All</source>
         <translation>Přehrát vše</translation>
     </message>
@@ -646,31 +665,36 @@ UX to the road</source>
         <source>Artist</source>
         <translation type="vanished">Umělec</translation>
     </message>
+    <message>
+        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="76"/>
+        <source>Unknown Track</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="181"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="185"/>
         <source>favorites</source>
         <translation>oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="182"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="186"/>
         <source>artists</source>
         <translation>umělci</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="183"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="187"/>
         <source>playlists</source>
         <translation>seznamy</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="184"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="188"/>
         <source>albums</source>
         <translation>alba</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="185"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="189"/>
         <source>folders</source>
         <translation>složky</translation>
     </message>

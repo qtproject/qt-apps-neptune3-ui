@@ -82,7 +82,10 @@ ColumnLayout {
             labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
             font.pixelSize: TritonStyle.fontSizeXS
             symbolOnTop: true
-            onClicked: root.currentIndex = index;
+            onClicked: {
+                root.currentIndex = index;
+
+            }
             ButtonGroup.group: buttonGroup
         }
     }

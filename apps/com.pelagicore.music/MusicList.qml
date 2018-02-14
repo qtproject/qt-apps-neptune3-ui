@@ -67,10 +67,22 @@ Control {
                 width: Style.hspan(17)
                 height: Style.vspan(1.3)
                 highlighted: false
-                text: model.item.title && (root.actualContentType === "track") ? model.item.title :
-                                                                                 (model.name ? model.name : "")
-                subText: model.item.artist && (root.actualContentType === "track") ? model.item.artist :
-                                                                                     (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
+                text: {
+                    if (model.item.title && (root.actualContentType === "track")) {
+                        return model.item.title;
+                    } else if (model.name) {
+                        return model.name;
+                    } else {
+                        return qsTr("Unknown Track");
+                    }
+                }
+                subText: {
+                    if (model.item.artist && (root.actualContentType === "track")) {
+                        return model.item.artist;
+                    } else if (model.item.data.artist && root.actualContentType === "album") {
+                        return model.item.data.artist;
+                    }
+                }
                 onClicked: root.itemClicked(model.index, model.item, delegatedSong.text)
             }
         }
@@ -90,5 +102,3 @@ Control {
         }
     }
 }
-
-

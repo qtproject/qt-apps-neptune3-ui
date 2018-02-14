@@ -325,7 +325,15 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Track unavailable</source>
+        <source>Unknown Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Songs of %1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -336,7 +344,18 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Songs of %1(%2)</source>
+        <source>Unknown Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source></source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>MusicList</name>
+    <message>
+        <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

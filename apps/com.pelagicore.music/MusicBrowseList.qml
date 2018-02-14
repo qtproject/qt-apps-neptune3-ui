@@ -42,10 +42,9 @@ Control {
     id: root
 
     property string contentType: "track"
-    property string albumName: ""
-    property string artistName: ""
     property alias listView: listView
-
+    property alias headerText: headerLabel.text
+    property alias showHeader: listHeader.visible
     // Since contentType might have some unique id's when we browse a music by going
     // from one level to another level, a content type slicing is needed to get the
     // intended content type. This property helper will return the actual content type.
@@ -53,7 +52,7 @@ Control {
 
     clip: true
 
-    signal itemClicked(var index, var item, var title)
+    signal itemClicked(var index, var item, var title, var artist)
     signal libraryGoBack(var goToArtist)
     signal nextClicked()
     signal backClicked()
@@ -67,11 +66,28 @@ Control {
                 id: delegatedSong
                 width: listView.width
                 height: Style.vspan(1.3)
-                text: model.item.title && (root.actualContentType === "track") ? model.item.title :
-                                                                                 (model.name ? model.name : "")
-                subText: model.item.artist && (root.actualContentType === "track") ? model.item.artist :
-                                                                                     (model.item.data.artist && root.actualContentType === "album" ? model.item.data.artist : "")
-                onClicked: root.itemClicked(model.index, model.item, delegatedSong.text)
+                imageSource: ((toolsColumn.currentText !== "favorites") && (toolsColumn.currentText.indexOf(contentType) === -1) && model.item) ?
+                              model.item.data.coverArtUrl !==  "" ? model.item.data.coverArtUrl
+                              : Style.gfx2("album-art-placeholder") : ""
+                text: {
+                    if (model.item.title && (root.actualContentType === "track")) {
+                        return model.item.title;
+                    } else if (model.name) {
+                        return model.name;
+                    } else {
+                        return qsTr("Unknown Track");
+                    }
+                }
+                subText: {
+                    if (model.item.artist && (root.actualContentType === "track")) {
+                        return model.item.artist;
+                    } else if (model.item.data.artist && root.actualContentType === "album") {
+                        return model.item.data.artist;
+                    } else {
+                        return "";
+                    }
+                }
+                onClicked: { root.itemClicked(model.index, model.item, delegatedSong.text, delegatedSong.subText); }
             }
         }
 
@@ -81,8 +97,11 @@ Control {
             anchors.top:parent.top
             anchors.topMargin: Style.vspan(53/80)
             anchors.left: parent.left
-            width: Style.hspan(720/45)
-            height: Style.vspan(94/80)
+            opacity: visible ? 1.0 : 0.0
+            width: visible ? Style.hspan(720/45) : 0
+            height: visible ? Style.vspan(94/80) : 0
+            //TODO check with Johan for animation here
+            Behavior on height { DefaultNumberAnimation {}}
 
             Tool {
                 id: backButton
@@ -92,10 +111,7 @@ Control {
                 onClicked: root.backClicked()
             }
             Label {
-                //TODO update text based on spec
-                property string albumTitle: store.currentEntry ? store.currentEntry.album : "Unknown Album"
-                property string albumArtist: store.currentEntry ? store.currentEntry.artist : "Unknown Artist"
-                text: qsTr("Songs of %1(%2)").arg(albumTitle).arg(albumArtist)
+                id: headerLabel
                 font.pixelSize: Style.fontSizeS
                 anchors.centerIn: parent
                 horizontalAlignment: Text.AlignHCenter
