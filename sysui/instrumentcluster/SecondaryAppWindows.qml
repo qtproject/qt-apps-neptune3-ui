@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -97,7 +97,12 @@ Item {
             id: secondaryWindowSlot
             anchors.fill: root
             opacity: model.index === root.selectedIndex ? 1 : 0
-            visible: opacity > 0
+
+            // Don't make it invisible as it will also block the redraw (on buffer swap?) of the
+            // primary window of that application
+            // TODO: Investigate
+            //visible: opacity > 0
+
             Behavior on opacity { DefaultNumberAnimation {}  }
             Binding { target: model.secondaryWindow; property: "width"; value: secondaryWindowSlot.width }
             Binding { target: model.secondaryWindow; property: "height"; value: secondaryWindowSlot.height }
