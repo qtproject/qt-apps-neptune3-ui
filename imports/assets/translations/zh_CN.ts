@@ -167,12 +167,12 @@ UX to the road</source>
 <context>
     <name>DialPower</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="336"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="340"/>
         <source>% power</source>
         <translation>% 功率</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="348"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="352"/>
         <source>km</source>
         <translation>km</translation>
     </message>
@@ -180,7 +180,7 @@ UX to the road</source>
 <context>
     <name>DialSpeed</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="280"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="285"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
@@ -402,7 +402,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="42"/>
+        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="45"/>
         <source>Instrument Cluster</source>
         <translation>仪表盘</translation>
     </message>
