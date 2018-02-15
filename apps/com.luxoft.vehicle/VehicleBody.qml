@@ -50,7 +50,7 @@ Entity {
         Mesh {
             id: mesh
             meshName: "^chrome$"
-            source: "file:assets/models/chrome.stl"
+            source: "assets/models/chrome.stl"
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
@@ -61,7 +61,7 @@ Entity {
         Mesh {
             id: shell
             meshName: "shell"
-            source: "file:assets/models/shell.stl"
+            source: "assets/models/shell.stl"
         }
         components: [transform, shell, whiteHood]
     }
@@ -70,7 +70,7 @@ Entity {
         Mesh {
             id: matt_black
             meshName: "matt_black"
-            source: "file:assets/models/matt_black.stl"
+            source: "assets/models/matt_black.stl"
         }
         components: [transform, matt_black, blackMaterial]
     }
@@ -79,7 +79,7 @@ Entity {
         Mesh {
             id: glass
             meshName: "^glass_4$"
-            source: "file:assets/models/glass_4.stl"
+            source: "assets/models/glass_4.stl"
         }
         components: [transform, glass, glassMaterial]
     }
@@ -88,7 +88,7 @@ Entity {
         Mesh {
             id: license_plates
             meshName: "^licence_plates$"
-            source: "file:assets/models/licence_plates.stl"
+            source: "assets/models/licence_plates.stl"
         }
         components: [transform, license_plates, whiteMaterial]
     }
@@ -97,7 +97,7 @@ Entity {
         Mesh {
             id: frontLights
             meshName: "front_ights"
-            source: "file:assets/models/front_ights.stl"
+            source: "assets/models/front_ights.stl"
         }
         PhongAlphaMaterial {
             id: frontLightsMaterial
@@ -113,7 +113,7 @@ Entity {
         Mesh {
             id: taillights
             meshName: "^taillights$"
-            source: "file:assets/models/taillights.stl"
+            source: "assets/models/taillights.stl"
         }
         components: [transform, taillights, taillightsMaterial]
     }
@@ -122,7 +122,7 @@ Entity {
         Mesh {
             id: interior
             meshName: "^interior$"
-            source: "file:assets/models/interior.stl"
+            source: "assets/models/interior.stl"
         }
         components: [transform, interior, interiorMaterial]
     }

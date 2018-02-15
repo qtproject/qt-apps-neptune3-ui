@@ -60,7 +60,7 @@ Entity {
 
     Mesh {
         id: rear_tires
-        source: "file:assets/models/rear_tires.stl"
+        source: "assets/models/rear_tires.stl"
     }
 
     NormalDiffuseMapAlphaMaterial {
@@ -72,7 +72,7 @@ Entity {
         id: rear_tires_texture
         format: Texture.SRGB8_Alpha8
         TextureImage {
-            source: "file:assets/textures/rear_tires.png"
+            source: "assets/textures/rear_tires.png"
         }
     }
 
@@ -81,7 +81,7 @@ Entity {
         Mesh {
             id: wheelMesh
             meshName: "^rear_wheel_chrome_1$"
-            source: "file:assets/models/rear_wheel_chrome_1.stl"
+            source: "assets/models/rear_wheel_chrome_1.stl"
         }
         components: [transform, wheelMesh, chromeMaterial]
     }

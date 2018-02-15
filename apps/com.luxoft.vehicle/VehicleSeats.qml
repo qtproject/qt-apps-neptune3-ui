@@ -40,14 +40,14 @@ Entity {
 
     Mesh {
         id: seats
-        source: "file:assets/models/seats.stl"
+        source: "assets/models/seats.stl"
     }
 
     Texture2D {
         id: seatsTexture
         format: Texture.SRGB8_Alpha8
         TextureImage {
-            source: "file:assets/textures/seats.png"
+            source: "assets/textures/seats.png"
         }
     }
 

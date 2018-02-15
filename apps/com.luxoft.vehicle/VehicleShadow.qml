@@ -39,7 +39,7 @@ Entity {
     Mesh {
         id: shadowMesh
         meshName: "shadow"
-        source: "file:assets/models/shadow.obj"
+        source: "assets/models/shadow.obj"
     }
 
     NormalDiffuseMapAlphaMaterial {
@@ -47,7 +47,7 @@ Entity {
         diffuse: Texture2D {
             format: Texture.SRGB8_Alpha8
             TextureImage {
-                source: "file:assets/textures/shadow.png"
+                source: "assets/textures/shadow.png"
             }
         }
     }

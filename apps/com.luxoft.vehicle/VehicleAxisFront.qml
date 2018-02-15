@@ -44,14 +44,14 @@ Entity {
 
     Mesh {
         id: front_tires
-        source: "file:assets/models/front_tires.stl"
+        source: "assets/models/front_tires.stl"
     }
 
     Texture2D {
         id: front_tires_texture
         format: Texture.SRGB8_Alpha8
         TextureImage {
-            source: "file:assets/textures/front_tires.png"
+            source: "assets/textures/front_tires.png"
         }
     }
 
@@ -81,7 +81,7 @@ Entity {
         Mesh {
             id: wheelMesh
             meshName: "^front_wheel_chrome_1$"
-            source: "file:assets/models/front_wheel_chrome_1.stl"
+            source: "assets/models/front_wheel_chrome_1.stl"
         }
         components: [transform, wheelMesh, chromeMaterial]
     }

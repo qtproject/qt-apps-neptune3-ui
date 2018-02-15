@@ -62,7 +62,7 @@ Entity {
         Mesh {
             id: mesh
             meshName: "^silver_paint_2$"
-            source: "file:assets/models/silver_paint_2.obj"
+            source: "assets/models/silver_paint_2.obj"
         }
         components: [transform, mesh, whiteHood]
     }
@@ -71,7 +71,7 @@ Entity {
         Mesh {
             id: mesh2
             meshName: "^silver_paint_3$"
-            source: "file:assets/models/silver_paint_3.obj"
+            source: "assets/models/silver_paint_3.obj"
         }
         components: [mesh2, whiteHood, transform]
     }
@@ -80,7 +80,7 @@ Entity {
         Mesh {
             id: glass
             meshName: "^glass_2$"
-            source: "file:assets/models/glass_2.stl"
+            source: "assets/models/glass_2.stl"
         }
         components: [glass, glassMaterial, transform]
     }
@@ -89,7 +89,7 @@ Entity {
         Mesh {
             id: chrome
             meshName: "^chrome_3$"
-            source: "file:assets/models/chrome_3.stl"
+            source: "assets/models/chrome_3.stl"
         }
         components: [chrome, chromeMaterial, transform]
     }
@@ -98,7 +98,7 @@ Entity {
         Mesh {
             id: chrome1
             meshName: "^chrome_4$"
-            source: "file:assets/models/chrome_4.stl"
+            source: "assets/models/chrome_4.stl"
         }
         components: [chrome1, chromeMaterial, transform]
     }
@@ -107,7 +107,7 @@ Entity {
         Mesh {
             id: black
             meshName: "^black_2$"
-            source: "file:assets/models/black_2.stl"
+            source: "assets/models/black_2.stl"
         }
         components: [black, blackMaterial, transform]
     }
@@ -116,7 +116,7 @@ Entity {
         Mesh {
             id: black1
             meshName: "^black_3$"
-            source: "file:assets/models/black_3.stl"
+            source: "assets/models/black_3.stl"
         }
         components: [black1, blackMaterial, transform]
     }

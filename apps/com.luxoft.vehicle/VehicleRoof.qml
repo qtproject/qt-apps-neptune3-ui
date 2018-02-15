@@ -59,7 +59,7 @@ Entity {
     Mesh {
         id: mesh
         meshName: "sun_roof"
-        source: "file:assets/models/sun_roof.stl"
+        source: "assets/models/sun_roof.stl"
     }
 
     components: [transform, mesh, whiteHood]
