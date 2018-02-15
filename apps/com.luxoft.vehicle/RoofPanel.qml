@@ -46,7 +46,6 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(2.5)
         anchors.left: parent.left
-        anchors.leftMargin: 60
         width: parent.width - anchors.leftMargin
         value: roofOpenProgress
     }
@@ -56,8 +55,8 @@ Item {
 
         anchors.top: parent.top
         anchors.topMargin: 500
-        anchors.left: parent.left
-        anchors.leftMargin: 520
+        anchors.right: parent.right
+        state: "REGULAR"
         text: qsTr("Close")
         onClicked: {
             root.roofOpenProgress = 0.0;
@@ -70,7 +69,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 500
         anchors.left: parent.left
-        anchors.leftMargin: 60
+        state: "REGULAR"
         text: qsTr("Open")
         onClicked: {
             root.roofOpenProgress = 1.0;

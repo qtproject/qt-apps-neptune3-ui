@@ -49,8 +49,7 @@ Item {
         id: toolsColumn
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: 70
-        width: 100
+        width: 264
         height: 460
 
         translationContext: "VehicleToolsColumn"
@@ -64,11 +63,10 @@ Item {
 
     StackLayout {
         anchors.left: toolsColumn.right
-        anchors.leftMargin: Style.hspan(1.2)
-        anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1.4)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 500
+        width: 740
 
         currentIndex: toolsColumn.currentIndex
 

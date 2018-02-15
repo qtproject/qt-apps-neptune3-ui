@@ -33,6 +33,8 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Slider {
     id: root
 
@@ -73,7 +75,8 @@ Slider {
             anchors.fill: rect
             glowRadius: 2
             spread: 0.1
-            color: "gray"
+            color: TritonStyle.contrastColor
+            opacity: 0.5
             cornerRadius: rect.radius
         }
 
@@ -84,7 +87,7 @@ Slider {
             implicitWidth: 52
             implicitHeight: 110
 
-            color: "#f1efed"
+            color: TritonStyle.offMainColor
             radius: implicitWidth / 2
         }
     }

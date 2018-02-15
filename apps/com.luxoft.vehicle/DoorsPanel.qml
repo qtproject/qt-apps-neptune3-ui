@@ -49,7 +49,6 @@ Item {
         id: tabBar
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1.0)
         anchors.right: parent.right
 
         TabButton {
