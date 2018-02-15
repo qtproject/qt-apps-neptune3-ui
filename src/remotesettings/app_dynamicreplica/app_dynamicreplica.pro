@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     abstractdynamic.cpp \
     client.cpp \
     uisettingsdynamic.cpp \
-    instrumentclusterdynamic.cpp
+    instrumentclusterdynamic.cpp \
+    systemuidynamic.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,7 +17,8 @@ HEADERS += \
     abstractdynamic.h \
     client.h \
     uisettingsdynamic.h \
-    instrumentclusterdynamic.h
+    instrumentclusterdynamic.h \
+    systemuidynamic.h
 
 
 TARGET = TritonControlApp

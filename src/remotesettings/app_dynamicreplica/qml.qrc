@@ -5,5 +5,6 @@
         <file>ConnectionDialog.qml</file>
         <file>SettingsPage.qml</file>
         <file>ClusterPage.qml</file>
+        <file>SystemUIPage.qml</file>
     </qresource>
 </RCC>

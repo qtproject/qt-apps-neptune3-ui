@@ -35,6 +35,7 @@
 #include <QSettings>
 #include "uisettingsdynamic.h"
 #include "instrumentclusterdynamic.h"
+#include "systemuidynamic.h"
 
 class QQmlContext;
 
@@ -86,6 +87,7 @@ private:
 
     UISettingsDynamic m_UISettings;
     InstrumentClusterDynamic m_instrumentCluster;
+    SystemUIDynamic m_systemUI;
 };
 
 #endif // CLIENT_H

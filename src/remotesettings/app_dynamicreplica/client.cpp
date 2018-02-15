@@ -47,6 +47,8 @@ Client::Client(QObject *parent) : QObject(parent),
             this, &Client::onReplicaConnectionChanged);
     connect(&m_instrumentCluster, &UISettingsDynamic::connectedChanged,
             this, &Client::onReplicaConnectionChanged);
+    connect(&m_systemUI, &AbstractDynamic::connectedChanged,
+            this, &Client::onReplicaConnectionChanged);
     readSettings();
 }
 
@@ -59,6 +61,7 @@ void Client::setContextProperties(QQmlContext *context)
 {
     context->setContextProperty(QStringLiteral("uiSettings"), &m_UISettings);
     context->setContextProperty(QStringLiteral("instrumentCluster"), &m_instrumentCluster);
+    context->setContextProperty(QStringLiteral("systemUI"), &m_systemUI);
 }
 
 QUrl Client::serverUrl() const
@@ -100,12 +103,14 @@ void Client::connectToServer(const QString &serverUrl)
     if (m_repNode->connectToNode(url)) {
         m_UISettings.resetReplica(m_repNode->acquireDynamic("Settings.UISettings"));
         m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("Settings.InstrumentCluster"));
+        m_systemUI.resetReplica(m_repNode->acquireDynamic("Settings.SystemUI"));
         setStatus(tr("Connecting to %1...").arg(url.toString()));
         updateLastUrls(url.toString());
     } else {
         setStatus(tr("Connection to %1 failed").arg(url.toString()));
         m_UISettings.resetReplica(nullptr);
         m_instrumentCluster.resetReplica(nullptr);
+        m_systemUI.resetReplica(nullptr);
     }
 
     if (m_serverUrl!=url) {
@@ -122,7 +127,7 @@ void Client::onError(QRemoteObjectNode::ErrorCode code)
 void Client::onReplicaConnectionChanged(bool connected)
 {
     Q_UNUSED(connected)
-    if (m_UISettings.connected() || m_instrumentCluster.connected())
+    if (m_UISettings.connected() || m_instrumentCluster.connected() || m_systemUI.connected())
         setStatus(tr("Connected to %1").arg(serverUrl().toString()));
     else
         setStatus(tr("Disconnected"));

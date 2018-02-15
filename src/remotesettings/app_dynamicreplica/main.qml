@@ -112,6 +112,7 @@ ApplicationWindow {
        anchors.margins: 16
        SettingsPage { anchors.fill: parent }
        ClusterPage { anchors.fill: parent }
+       SystemUIPage {}
    }
 
    footer: TabBar {
@@ -124,6 +125,10 @@ ApplicationWindow {
            text: instrumentCluster.connected ? qsTr("Cluster") :
                                                qsTr("Cluster (Offline)")
            onClicked: stack.currentIndex = 1
+       }
+       TabButton {
+           text: systemUI.connected ? qsTr("System UI") : qsTr("System UI (Offline)")
+           onClicked: stack.currentIndex = 2
        }
    }
 }
