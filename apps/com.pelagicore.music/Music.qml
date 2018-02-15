@@ -190,6 +190,7 @@ Item {
             }
             onCurrentTextChanged: {
                 musicLibrary.showHeader = false;
+                //TODO sort albums list alphabetically
             }
         }
 
@@ -205,11 +206,23 @@ Item {
             height: parent.height
             listView.model: root.store.searchAndBrowseModel
             contentType: root.store.searchAndBrowseModel.contentType
+            //helper property for the header text
+            property string artistName: ""
+            onPlayAllClicked: {
+                //instert to play queue all tracks of current album
+                for (var i = (store.searchAndBrowseModel.count-1); i >= 0; i--) {
+                    root.store.musicPlaylist.insert(root.store.musicCount, store.searchAndBrowseModel.get(i));
+                    root.store.player.play();
+                }
+            }
 
             onBackClicked: {
                 root.store.searchAndBrowseModel.goBack();
-                headerText = "";
-                if (toolsColumn.currentText.indexOf(contentType) !== -1) {
+                if ((toolsColumn.currentText === "artists") && (actualContentType === "album")) {
+                    headerText = artistName;
+                } else if (toolsColumn.currentText.indexOf(contentType) !== -1) {
+                    headerText = "";
+                    artistName = "";
                     showHeader = false;
                 }
             }
@@ -217,12 +230,14 @@ Item {
             onItemClicked: {
                 if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
                     root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
-                    headerText = "";
+                    //set header text props
+                    artistName = title;
+                    headerText = title;
                     showHeader = true;
                 } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
                     root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
                     var albumArtist = artist !== "" ? artist : qsTr("Unknown Artist");
-                    headerText = qsTr("Songs of %1 (%2)").arg(title).arg(albumArtist);
+                    headerText = qsTr("%1 (%2)").arg(title).arg(albumArtist);
                     showHeader = true;
                 } else {
                     root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));

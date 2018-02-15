@@ -476,17 +476,17 @@ UX to the road</source>
         <translation type="unfinished">次</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="224"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="225"/>
-        <source>Songs of %1 (%2)</source>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
+        <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="291"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
@@ -503,7 +503,7 @@ UX to the road</source>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="78"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
@@ -513,7 +513,7 @@ UX to the road</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="128"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="139"/>
         <source>Play All</source>
         <translation type="unfinished"></translation>
     </message>

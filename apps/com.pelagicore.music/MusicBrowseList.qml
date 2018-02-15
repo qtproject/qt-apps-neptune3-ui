@@ -40,7 +40,6 @@ import com.pelagicore.styles.triton 1.0
 
 Control {
     id: root
-
     property string contentType: "track"
     property alias listView: listView
     property alias headerText: headerLabel.text
@@ -66,9 +65,17 @@ Control {
                 id: delegatedSong
                 width: listView.width
                 height: Style.vspan(1.3)
-                imageSource: ((toolsColumn.currentText !== "favorites") && (toolsColumn.currentText.indexOf(contentType) === -1) && model.item) ?
-                              model.item.data.coverArtUrl !==  "" ? model.item.data.coverArtUrl
-                              : Style.gfx2("album-art-placeholder") : ""
+                imageSource: {
+                    if ((actualContentType === "album") && (toolsColumn.currentText === "artists") && model.item) {
+                        if (model.item.data.coverArtUrl !==  undefined) {
+                            return model.item.data.coverArtUrl;
+                        } else {
+                            return Style.gfx2("album-art-placeholder");
+                        }
+                    } else {
+                        return "";
+                    }
+                }
                 text: {
                     if (model.item.title && (root.actualContentType === "track")) {
                         return model.item.title;
@@ -119,7 +126,11 @@ Control {
             Tool {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-
+                // Check if contentType has unique id (so is > 5) when in albums view.
+                // This means that the albums of a specific artist are displayed
+                // and the play all button should be visible as per specification
+                visible: (actualContentType === "track" ||
+                         (contentType.length > 5 && actualContentType === "album"))
                 background: Rectangle {
                     radius: height/2
                     color: TritonStyle.contrastColor

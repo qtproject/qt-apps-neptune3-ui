@@ -504,17 +504,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished">下一首</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="224"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="225"/>
-        <source>Songs of %1 (%2)</source>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
+        <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="291"/>
+        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
@@ -531,7 +531,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="78"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
@@ -541,7 +541,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="128"/>
+        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="139"/>
         <source>Play All</source>
         <translation type="unfinished"></translation>
     </message>

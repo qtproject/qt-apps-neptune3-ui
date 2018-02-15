@@ -72,9 +72,24 @@ Item {
             property alias albumArtSource: albumArt.source
 
             Image {
+                id: albumArtUndefined
+                anchors.fill: parent
+                visible: opacity > 0
+                opacity: !(mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
+                Behavior on opacity {DefaultNumberAnimation {}}
+                source: Style.gfx2("album-art-placeholder")
+                fillMode: Image.PreserveAspectFit
+
+                readonly property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
+                readonly property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
+            }
+            Image {
                 id: albumArt
                 anchors.fill: parent
-                source: (mediaReady && model.item.coverArtUrl) ? model.item.coverArtUrl : Style.gfx2("album-art-placeholder")
+                visible: opacity > 0
+                opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
+                Behavior on opacity {DefaultNumberAnimation {}}
+                source: model.item.coverArtUrl
                 fillMode: Image.PreserveAspectFit
 
                 readonly property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
