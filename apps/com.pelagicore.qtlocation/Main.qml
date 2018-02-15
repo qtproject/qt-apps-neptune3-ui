@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,7 +32,6 @@
 import QtQuick 2.9
 import utils 1.0
 
-import com.pelagicore.settings 1.0
 import com.pelagicore.systeminfo 1.0
 
 import QtApplicationManager 1.0
@@ -46,14 +45,11 @@ QtObject {
         property var secondaryWindowObject
 
         onTritonStateChanged: {
-            if (mainWindow.secondaryWindowObject && !instrumentCluster.navigationMode) { // just switching mode
-                instrumentCluster.navigationMode = true;
-            } else if (mainWindow.secondaryWindowObject && !tritonState) { // widget got closed
+            if (mainWindow.secondaryWindowObject && !tritonState) { // widget got closed
                 mainWindow.secondaryWindowObject.destroy();
                 mainWindow.secondaryWindowObject = null;
-                instrumentCluster.navigationMode = false;
             } else if (!mainWindow.secondaryWindowObject) { // app got killed, recreate
-                timer.start();
+                mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
             }
         }
 
@@ -80,11 +76,8 @@ QtObject {
             offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
 
             onMapReadyChanged: {
-                if (mapReady) {
-                    if (mainWindow.secondaryWindowObject)
-                        instrumentCluster.navigationMode = true;
-                    else
-                        timer.start();
+                if (mapReady && !mainWindow.secondaryWindowObject) {
+                    mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
                 }
             }
 
@@ -94,25 +87,6 @@ QtObject {
             }
 
             SystemInfo { id: sysinfo }
-        }
-
-        InstrumentCluster {
-            // cluster remote settings
-            id: instrumentCluster
-        }
-
-        Timer {
-            // this timer is needed to make sure both InstrumentCluster and the GLMap is initialized
-            // MapboxGL contains an ugly timer hack in case of multi-threaded rendering
-            id: timer
-            interval: 1500
-            onTriggered: {
-                // create the secondary window and set the navigation mode
-                if (!mainWindow.secondaryWindowObject) {
-                    mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
-                }
-                instrumentCluster.navigationMode = true;
-            }
         }
     }
 
