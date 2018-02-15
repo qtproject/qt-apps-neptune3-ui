@@ -65,7 +65,25 @@ interface InstrumentCluster {
   bool tyrePressureLow;
   bool brakeFailure;
   bool airbagFailure;
+
+  /*
+   * Whether the instrument cluster should be in navigation mode
+   * in this mode its gauges etc will be reshaped to give more room
+   * for the maps navigation content being displayed behind it
+   */
   bool navigationMode;
+
 }
 
-
+@config: {id: "SystemUI"}
+interface SystemUI {
+  /*
+   * Incrementing this value will make sysui switch to display the next
+   * available secondary window.
+   *
+   * This is a hack. What we really need here is just a plain signal that
+   * could be emitted on demand. So that's not really storing a setting
+   * but serving as plain RPC.
+   */
+  int secondaryWindowSwitchCount
+}

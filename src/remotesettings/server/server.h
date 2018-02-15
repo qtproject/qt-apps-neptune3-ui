@@ -37,6 +37,7 @@
 #include "core.h"
 #include "uisettingssource.h"
 #include "instrumentclustersource.h"
+#include "systemuisource.h"
 
 Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
 
@@ -55,6 +56,7 @@ public slots:
 protected:
     QScopedPointer<UISettingsSource> m_UISettingsService;
     QScopedPointer<InstrumentClusterSource> m_instrumentClusterService;
+    QScopedPointer<SystemUISource> m_systemUIService;
 
     void setInstrumentClusterDefaultValues();
 };

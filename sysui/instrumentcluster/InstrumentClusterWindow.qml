@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -36,7 +36,7 @@ import QtQuick.Window 2.3
 import QtApplicationManager 1.0
 
 import com.pelagicore.styles.triton 1.0
-import com.pelagicore.settings 1.0
+import com.pelagicore.settings 1.0 as Settings
 
 Window {
     id: root
@@ -67,12 +67,13 @@ Window {
     Binding { target: root.window; property: "z"; value: 2 }
 
 
-    InstrumentCluster {
-        // cluster remote settings
-        id: instrumentCluster
-        onNavigationModeChanged: {
-            root.nextSecondaryWindow();
-        }
+    Settings.InstrumentCluster {
+        id: instrumentClusterSettings
+    }
+
+    Settings.SystemUI {
+        id: sysuiSettings
+        onSecondaryWindowSwitchCountChanged: secondaryAppWindows.next();
     }
 
     Item {
@@ -106,7 +107,7 @@ Window {
                 }
                 return false;
             }
-            onSelectedNavigationChanged: if (!selectedNavigation) instrumentCluster.navigationMode = false;
+            Binding { target: instrumentClusterSettings; property: "navigationMode"; value: secondaryAppWindows.selectedNavigation }
         }
     }
 

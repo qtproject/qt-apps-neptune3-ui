@@ -50,6 +50,10 @@ void Server::start()
     Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "Settings.InstrumentCluster");
     qCDebug(remoteSettingsServer) << "register service at: Settings.InstrumentCluster";
 
+    m_systemUIService.reset(new SystemUISource());
+    Core::instance()->host()->enableRemoting(m_systemUIService.data(), "Settings.SystemUI");
+    qCDebug(remoteSettingsServer) << "register service at: Settings.SystemUI";
+
     setInstrumentClusterDefaultValues();
 }
 
