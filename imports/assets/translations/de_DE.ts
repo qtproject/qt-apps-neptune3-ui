@@ -888,19 +888,19 @@ UX to the road</source>
     <name>VehicleWidgetModel</name>
     <message>
         <source>Fees</source>
-        <translation>Gebühren</translation>
+        <translation type="vanished">Gebühren</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>Bergabfahrhilfe</translation>
+        <translation type="vanished">Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Stau-Assistent</translation>
+        <translation type="vanished">Stau-Assistent</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>Intelligente Geschwindigkeitsanpassung</translation>
+        <translation type="vanished">Intelligente Geschwindigkeitsanpassung</translation>
     </message>
 </context>
 <context>

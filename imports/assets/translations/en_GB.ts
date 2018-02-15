@@ -690,20 +690,12 @@ UX to the road</source>
 <context>
     <name>VehicleWidgetModel</name>
     <message>
-        <source>Fees</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Hill Descent Control</translation>
+        <translation type="obsolete">Hill Descent Control</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Traffic Jam Assist</translation>
-    </message>
-    <message>
-        <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Traffic Jam Assist</translation>
     </message>
 </context>
 </TS>

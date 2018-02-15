@@ -177,17 +177,17 @@ UX to the road</source>
 <context>
     <name>DoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="56"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="55"/>
         <source>Sun roof</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="59"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="58"/>
         <source>Doors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="62"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="61"/>
         <source>Trunk</source>
         <translation type="unfinished"></translation>
     </message>
@@ -301,14 +301,14 @@ UX to the road</source>
 <context>
     <name>FrontDoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -560,12 +560,12 @@ UX to the road</source>
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="60"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="74"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="73"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -784,28 +784,23 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="35"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="39"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="43"/>
         <source>Fees</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="36"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="40"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="44"/>
         <source>Hill Descent Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="37"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="41"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="45"/>
         <source>Traffic Jam Assist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="38"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="42"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="46"/>
         <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -813,54 +808,23 @@ UX to the road</source>
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="57"/>
         <source>support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
         <source>energy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
         <source>doors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
         <source>tires</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VehicleWidgetModel</name>
-    <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="36"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="40"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="44"/>
-        <source>Fees</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="37"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="41"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="45"/>
-        <source>Hill Descent Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="38"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="42"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="46"/>
-        <source>Traffic Jam Assist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="39"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
-        <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

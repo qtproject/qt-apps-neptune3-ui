@@ -251,17 +251,17 @@ UX to the road</source>
 <context>
     <name>DoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="56"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="55"/>
         <source>Sun roof</source>
         <translation>Střecha</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="59"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="58"/>
         <source>Doors</source>
         <translation>Dveře</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="62"/>
+        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="61"/>
         <source>Trunk</source>
         <translation>Kufr</translation>
     </message>
@@ -402,14 +402,14 @@ UX to the road</source>
 <context>
     <name>FrontDoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="68"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="81"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
@@ -846,12 +846,12 @@ UX to the road</source>
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="60"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="74"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="73"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>
@@ -1165,28 +1165,23 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="35"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="39"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="43"/>
         <source>Fees</source>
         <translation>Poplatky</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="36"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="40"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="44"/>
         <source>Hill Descent Control</source>
         <translation>Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="37"/>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="41"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="45"/>
         <source>Traffic Jam Assist</source>
         <translation>Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="38"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="42"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="46"/>
         <source>Intelligent speed adaptation</source>
         <translation>Inteligentní přizpůsobení rychlosti</translation>
     </message>
@@ -1328,22 +1323,22 @@ UX to the road</source>
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="57"/>
         <source>support</source>
         <translation>podpora</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
         <source>energy</source>
         <translation>energie</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
         <source>doors</source>
         <translation>dveře</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="61"/>
+        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
         <source>tires</source>
         <translation>pneu</translation>
     </message>
@@ -1351,32 +1346,20 @@ UX to the road</source>
 <context>
     <name>VehicleWidgetModel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="36"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="40"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="44"/>
         <source>Fees</source>
-        <translation>Poplatky</translation>
+        <translation type="vanished">Poplatky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="37"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="41"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="45"/>
         <source>Hill Descent Control</source>
-        <translation>Asistent sjezdu z kopce</translation>
+        <translation type="vanished">Asistent sjezdu z kopce</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="38"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="42"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="46"/>
         <source>Traffic Jam Assist</source>
-        <translation>Asistent v dopravní zácpě</translation>
+        <translation type="vanished">Asistent v dopravní zácpě</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="39"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="43"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleWidgetModel.qml" line="47"/>
         <source>Intelligent speed adaptation</source>
-        <translation>Inteligentní přizpůsobení rychlosti</translation>
+        <translation type="vanished">Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>
