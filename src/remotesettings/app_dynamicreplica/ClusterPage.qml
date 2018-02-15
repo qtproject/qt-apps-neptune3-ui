@@ -139,7 +139,7 @@ Flickable {
                 onActivated: instrumentCluster.driveTrainState = currentIndex
             }
             Label {
-                text: qsTr("Next IVI-Mode:")
+                text: qsTr("Navigation Mode:")
             }
             CheckBox {
                 checked: instrumentCluster.navigationMode
