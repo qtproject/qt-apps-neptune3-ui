@@ -428,46 +428,30 @@ UX to the road</source>
     </message>
     <message>
         <source>Next</source>
-        <translation>다음 곡</translation>
+        <translation type="unfinished">다음 곡</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">파일 탐색</translation>
     </message>
     <message>
         <source>Unknown Artist</source>
-        <translation>무명 화가</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Songs of %1 (%2)</source>
-        <translation type="vanished">%1의 노래 (%2)</translation>
-    </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation>알 수없는 노래</translation>
-    </message>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="vanished">트랙을 사용할 수 없음</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>파일 탐색</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
         <source>Unknown Track</source>
-        <translation>알 수없는 노래</translation>
-    </message>
-    <message>
-        <source></source>
-        <translation></translation>
+        <translation type="unfinished">알 수없는 노래</translation>
     </message>
     <message>
         <source>Play All</source>
-        <translation>모두 재생</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -497,23 +481,23 @@ UX to the road</source>
     <name>MusicToolsColumn</name>
     <message>
         <source>favorites</source>
-        <translation>즐겨찾기</translation>
+        <translation type="unfinished">즐겨찾기</translation>
     </message>
     <message>
         <source>artists</source>
-        <translation>아티스트</translation>
+        <translation type="unfinished">아티스트</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation>재생 목록</translation>
+        <translation type="unfinished">재생 목록</translation>
     </message>
     <message>
         <source>albums</source>
-        <translation>앨범</translation>
+        <translation type="unfinished">앨범</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation>폴더</translation>
+        <translation type="unfinished">폴더</translation>
     </message>
 </context>
 <context>

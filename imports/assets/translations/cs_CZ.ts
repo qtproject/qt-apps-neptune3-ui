@@ -550,47 +550,35 @@ UX na cestu</translation>
         <translation type="obsolete">složky</translation>
     </message>
     <message>
-        <source>Next</source>
-        <translation>Další</translation>
-    </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation>Neznámý umělec</translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Songs of %1 (%2)</source>
-        <translation type="vanished">Skladby z %1 (%2)</translation>
-    </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation>Neznámá skladba</translation>
-    </message>
-    <message>
         <source>Track unavailable</source>
         <translation type="vanished">Skladba nedostupná</translation>
     </message>
     <message>
+        <source>Next</source>
+        <translation type="unfinished">Další</translation>
+    </message>
+    <message>
         <source>Browse</source>
-        <translation>Procházet</translation>
+        <translation type="unfinished">Procházet</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
         <source>Unknown Track</source>
-        <translation>Neznámá skladba</translation>
-    </message>
-    <message>
-        <source></source>
-        <translation></translation>
+        <translation type="unfinished">Neznámá skladba</translation>
     </message>
     <message>
         <source>Play All</source>
-        <translation>Přehrát vše</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -619,28 +607,28 @@ UX na cestu</translation>
 <context>
     <name>MusicToolsColumn</name>
     <message>
+        <source>sources</source>
+        <translation type="obsolete">zdroje</translation>
+    </message>
+    <message>
         <source>favorites</source>
-        <translation>oblíbené</translation>
+        <translation type="unfinished">oblíbené</translation>
     </message>
     <message>
         <source>artists</source>
-        <translation>umělci</translation>
+        <translation type="unfinished">umělci</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation>seznamy</translation>
+        <translation type="unfinished">seznamy</translation>
     </message>
     <message>
         <source>albums</source>
-        <translation>alba</translation>
+        <translation type="unfinished">alba</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation>složky</translation>
-    </message>
-    <message>
-        <source>sources</source>
-        <translation type="obsolete">zdroje</translation>
+        <translation type="unfinished">složky</translation>
     </message>
 </context>
 <context>

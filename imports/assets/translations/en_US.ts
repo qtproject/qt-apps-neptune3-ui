@@ -312,20 +312,12 @@ UX to the road</source>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source></source>
-        <translation></translation>
     </message>
     <message>
         <source>Play All</source>

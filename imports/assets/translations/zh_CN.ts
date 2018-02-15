@@ -449,31 +449,19 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Next</source>
-        <translation>下一首</translation>
+        <translation type="unfinished">下一首</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">浏览</translation>
     </message>
     <message>
         <source>Unknown Artist</source>
-        <translation>未知艺术家</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Songs of %1 (%2)</source>
-        <translation type="vanished">%1的歌曲 (%2)</translation>
-    </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation>未知的歌曲</translation>
-    </message>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="vanished">音乐不可用</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>浏览</translation>
     </message>
 </context>
 <context>
@@ -483,12 +471,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>未知的歌曲</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Play All</source>
-        <translation>全部播放</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -517,28 +501,28 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicToolsColumn</name>
     <message>
+        <source>sources</source>
+        <translation type="obsolete">播放源</translation>
+    </message>
+    <message>
         <source>favorites</source>
-        <translation>收藏夹</translation>
+        <translation type="unfinished">收藏夹</translation>
     </message>
     <message>
         <source>artists</source>
-        <translation>歌手</translation>
+        <translation type="unfinished">歌手</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation>播放列表</translation>
+        <translation type="unfinished">播放列表</translation>
     </message>
     <message>
         <source>albums</source>
-        <translation>专辑</translation>
+        <translation type="unfinished">专辑</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation>文件夹</translation>
-    </message>
-    <message>
-        <source>sources</source>
-        <translation type="obsolete">播放源</translation>
+        <translation type="unfinished">文件夹</translation>
     </message>
 </context>
 <context>

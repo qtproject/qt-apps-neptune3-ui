@@ -100,7 +100,6 @@ Control {
 
         Item {
             id: listHeader
-
             anchors.top:parent.top
             anchors.topMargin: Style.vspan(53/80)
             anchors.left: parent.left

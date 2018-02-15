@@ -421,31 +421,19 @@ UX to the road</source>
     </message>
     <message>
         <source>Next</source>
-        <translation>次</translation>
+        <translation type="unfinished">次</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">ブラウズ</translation>
     </message>
     <message>
         <source>Unknown Artist</source>
-        <translation>無名の画家</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Songs of %1 (%2)</source>
-        <translation type="vanished">%1の歌 (%2)</translation>
-    </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation>未知の歌</translation>
-    </message>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="vanished">トラックが利用できない</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>ブラウズ</translation>
     </message>
 </context>
 <context>
@@ -455,12 +443,8 @@ UX to the road</source>
         <translation>未知の歌</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Play All</source>
-        <translation>全部やる</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -490,23 +474,23 @@ UX to the road</source>
     <name>MusicToolsColumn</name>
     <message>
         <source>favorites</source>
-        <translation>おきにいり</translation>
+        <translation type="unfinished">おきにいり</translation>
     </message>
     <message>
         <source>artists</source>
-        <translation>アーティスト</translation>
+        <translation type="unfinished">アーティスト</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation>プレイリスト</translation>
+        <translation type="unfinished">プレイリスト</translation>
     </message>
     <message>
         <source>albums</source>
-        <translation>アルバム</translation>
+        <translation type="unfinished">アルバム</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation>フォルダー</translation>
+        <translation type="unfinished">フォルダー</translation>
     </message>
 </context>
 <context>
