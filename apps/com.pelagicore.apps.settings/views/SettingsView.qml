@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -50,43 +50,44 @@ Control {
         id: toolGroup
     }
 
-    Image {
-        id: placeholder
-        anchors.top: parent.top
-        source: Assets.gfx("hero-settings")
-        asynchronous: true
-    }
-
-
-    RowLayout {
-        anchors.top: placeholder.bottom
+    Item {
+        width: Style.hspan(1080/45)
         anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(436/80)
         anchors.bottom: parent.bottom
-        anchors.topMargin: Style.hspan(2)
-        anchors.bottomMargin: Style.hspan(2)
-        anchors.leftMargin: Style.hspan(1)
-        anchors.rightMargin: Style.hspan(2)
-        spacing: Style.hspan(1)
+        anchors.bottomMargin: Style.vspan(20/80)
 
+        clip: true
 
-        ToolsColumn {
-            id: toolsColumn
-            Layout.preferredHeight: Style.vspan(4)
-            Layout.preferredWidth: Style.hspan(4)
+        Item {
+            anchors.left: parent.left
+            width: Style.hspan(264/45)
             anchors.top: parent.top
-            translationContext: "SettingsToolsColumn"
-            model: ListModel {
-                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
-                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
-                ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes' }
+            anchors.bottom: parent.bottom
+
+            ToolsColumn {
+                id: toolsColumn
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: Style.vspan(53/80)
+
+                translationContext: "SettingsToolsColumn"
+                model: ListModel {
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes' }
+                }
             }
         }
 
         StackLayout {
             anchors.top: parent.top
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+            anchors.topMargin: Style.vspan(53/80)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(96/45)
+            anchors.bottom: parent.bottom
+            width: Style.hspan(16)
 
             currentIndex: toolsColumn.currentIndex
 

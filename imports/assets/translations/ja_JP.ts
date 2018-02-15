@@ -137,22 +137,21 @@ UX to the road</source>
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
-        <translation>日付と時刻</translation>
+        <translation type="vanished">日付と時刻</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="55"/>
         <source>24h time</source>
         <translation>24時間表示</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="70"/>
         <source>Set Automatically</source>
         <translation>自動設定</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="71"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="84"/>
         <source>Time Zone</source>
         <translation>タイムゾーン</translation>
     </message>
@@ -343,9 +342,8 @@ UX to the road</source>
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/LanguagePanel.qml" line="62"/>
         <source>Language</source>
-        <translation>言語</translation>
+        <translation type="vanished">言語</translation>
     </message>
 </context>
 <context>
@@ -837,17 +835,17 @@ UX to the road</source>
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="77"/>
         <source>languages</source>
         <translation>言語</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="78"/>
         <source>date</source>
         <translation>年代</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="79"/>
         <source>themes</source>
         <translation>画題</translation>
     </message>
@@ -885,9 +883,8 @@ UX to the road</source>
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
-        <translation>テーマ</translation>
+        <translation type="vanished">テーマ</translation>
     </message>
 </context>
 <context>

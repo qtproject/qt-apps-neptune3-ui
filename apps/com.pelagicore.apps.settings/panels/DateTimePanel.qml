@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -35,6 +35,10 @@ import QtQuick.Layouts 1.3
 import QtQml.Models 2.3
 
 import utils 1.0
+import controls 1.0
+import animations 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 Control {
     id: root
@@ -43,33 +47,50 @@ Control {
 
     signal twentyFourHourTimeFormatRequested(bool value)
 
-    contentItem: Item {
-        implicitWidth: Style.hspan(12)
-        implicitHeight: Style.vspan(12)
-        ListView {
-            id: view
-            anchors.fill: parent
-            clip: true
-            header: Label {
-                padding: Style.vspan(0.2)
-                font.pixelSize: Style.fontSizeXL
-                text: qsTr("Date & Time")
+    contentItem: Column {
+        SwitchDelegate {
+            id: twentyFourHourTime
+            height: Style.vspan(95/80)
+            width: parent.width
+            text: qsTr("24h time")
+            onToggled: root.twentyFourHourTimeFormatRequested(checked)
+
+            // TODO make the divider part of ItemDelegate's styled background
+            Image {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                source: Style.gfx2("list-divider", TritonStyle.theme)
             }
-            model: ObjectModel {
-                SwitchDelegate {
-                    width: view.width
-                    text: qsTr("24h time")
-                    checked: root.twentyFourHourTimeFormat
-                    onClicked: root.twentyFourHourTimeFormatRequested(checked)
-                }
-                SwitchDelegate {
-                    width: view.width
-                    text: qsTr("Set Automatically")
-                }
-                ItemDelegate {
-                    width: view.width
-                    text: qsTr("Time Zone")
-                }
+        }
+
+        SwitchDelegate {
+            height: Style.vspan(95/80)
+            width: parent.width
+            enabled: false // TODO
+            text: qsTr("Set Automatically")
+
+            // TODO make the divider part of ItemDelegate's styled background
+            Image {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                source: Style.gfx2("list-divider", TritonStyle.theme)
+            }
+        }
+
+        ItemDelegate {
+            height: Style.vspan(95/80)
+            width: parent.width
+            enabled: false // TODO
+            text: qsTr("Time Zone")
+
+            Image {
+                opacity: 0.3    //disabled
+                anchors.right: parent.right
+                anchors.rightMargin: Style.hspan(22/45)
+                height: parent.height
+                fillMode: Image.Pad
+                Layout.alignment: Qt.AlignVCenter
+                source: Style.symbol("ic-next-level", TritonStyle.theme)
             }
         }
     }

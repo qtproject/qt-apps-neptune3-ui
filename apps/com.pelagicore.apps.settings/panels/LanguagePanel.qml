@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -34,6 +34,8 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Control {
     id: root
 
@@ -43,61 +45,53 @@ Control {
 
     signal languageRequested(string language)
 
-    ButtonGroup {
-        id: languageGroup
-        exclusive: true
-    }
+    contentItem: ListView {
+        id: view
+        clip: true
+        interactive: contentHeight > height
 
-    contentItem: Item {
-        implicitWidth: Style.hspan(12)
-        implicitHeight: Style.vspan(12)
-        ListView {
-            id: view
-            anchors.fill: parent
-            clip: true
-            spacing: Style.vspan(0.2)
-            header: Label {
-                padding: Style.vspan(0.2)
-                font.pixelSize: Style.fontSizeXL
-                text: qsTr("Language")
-            }
-            model: root.model
-            delegate: AbstractButton {
-                width: ListView.view.width
-                height: Style.hspan(2)
-                onClicked: root.languageRequested(model.language)
-                contentItem: GridLayout {
-                    columns: 2
-                    rows: 3
-                    RadioButton {
-                        Layout.column: 0
-                        Layout.row: 0
-                        ButtonGroup.group: languageGroup
-                        Layout.maximumWidth: Layout.preferredWidth
-                        checked: model.language === root.currentLanguage
-                        enabled: false
-                    }
+        model: root.model
+
+        delegate: AbstractButton {
+            id: languageDelegate
+
+            width: ListView.view.width
+            height: Style.vspan(110/80)
+            onClicked: root.languageRequested(model.language)
+
+            contentItem: Item {
+                RadioButton {
+                    id: radio
+                    checked: model.language === root.currentLanguage
+                    width: Style.hspan(100/45)
+                    height: parent.height
+
+                    onToggled: languageDelegate.clicked()
+                }
+
+                Item {
+                    anchors.left: radio.right
+                    height: parent.height
+
                     Label {
-                        Layout.fillWidth: true
-                        Layout.column: 1
-                        Layout.row: 0
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenterOffset: -20
                         text: model.title
+                        font.weight: Style.fontWeight
                     }
                     Label {
-                        Layout.column: 1
-                        Layout.row: 1
-                        Layout.fillWidth: true
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.verticalCenterOffset: 20
                         text: model.subtitle
                         font.pixelSize: Style.fontSizeS
                         font.weight: Style.fontWeight
                     }
-                    Item {
-                        Layout.column: 0
-                        Layout.row: 2
-                        Layout.columnSpan: 2
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                    }
+                }
+                Image {
+                    anchors.bottom: parent.bottom
+                    width: parent.width
+                    source: Style.gfx2("list-divider", TritonStyle.theme)
+                    visible: index !== view.count - 1
                 }
             }
         }

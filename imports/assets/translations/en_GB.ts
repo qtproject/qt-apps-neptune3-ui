@@ -113,10 +113,6 @@ UX to the road</source>
 <context>
     <name>DateTimePanel</name>
     <message>
-        <source>Date &amp; Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>24h time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -255,13 +251,6 @@ UX to the road</source>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LanguagePanel</name>
-    <message>
-        <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -590,13 +579,6 @@ UX to the road</source>
     <message>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ThemesPanel</name>
-    <message>
-        <source>Themes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

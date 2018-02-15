@@ -208,22 +208,21 @@ UX na cestu</translation>
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
-        <translation>Datum &amp; čas</translation>
+        <translation type="vanished">Datum &amp; čas</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="55"/>
         <source>24h time</source>
         <translation>24 hodinový</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="70"/>
         <source>Set Automatically</source>
         <translation>Nastavit automaticky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="71"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="84"/>
         <source>Time Zone</source>
         <translation>Časové pásmo</translation>
     </message>
@@ -429,9 +428,8 @@ UX na cestu</translation>
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/LanguagePanel.qml" line="62"/>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="vanished">Jazyk</translation>
     </message>
 </context>
 <context>
@@ -998,17 +996,17 @@ UX na cestu</translation>
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="77"/>
         <source>languages</source>
         <translation>jazyky</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="78"/>
         <source>date</source>
         <translation>datum</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="79"/>
         <source>themes</source>
         <translation>motivy</translation>
     </message>
@@ -1053,9 +1051,8 @@ UX na cestu</translation>
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
-        <translation>Motivy</translation>
+        <translation type="vanished">Motivy</translation>
     </message>
 </context>
 <context>

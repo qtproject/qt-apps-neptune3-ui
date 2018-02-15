@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -34,12 +34,29 @@ import utils 1.0
 
 import "views"
 import "store"
+import "assets"
 
 AppUIScreen {
     id: root
 
+    Image {
+        id: topImage
+
+        x: root.exposedRect.x
+        y: 0
+        width: root.exposedRect.width
+        height: 660 - 224 + exposedRect.y
+        fillMode: Image.Pad
+
+        source: Assets.gfx("hero-settings")
+        asynchronous: true
+    }
+
     SettingsView {
-        anchors.fill: parent
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width
+        height: root.exposedRect.height
         store: RootStore {
             onCurrentLanguageChanged: {
                 root.setWindowProperty("requestedLanguage", currentLanguage);

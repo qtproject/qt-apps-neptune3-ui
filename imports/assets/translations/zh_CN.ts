@@ -144,22 +144,21 @@ UX to the road</source>
 <context>
     <name>DateTimePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="56"/>
         <source>Date &amp; Time</source>
-        <translation>日期 &amp; 时间</translation>
+        <translation type="vanished">日期 &amp; 时间</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="61"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="55"/>
         <source>24h time</source>
         <translation>24小时</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="67"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="70"/>
         <source>Set Automatically</source>
         <translation>自动设置</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="71"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="84"/>
         <source>Time Zone</source>
         <translation>时区</translation>
     </message>
@@ -365,9 +364,8 @@ UX to the road</source>
 <context>
     <name>LanguagePanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/LanguagePanel.qml" line="62"/>
         <source>Language</source>
-        <translation>语言</translation>
+        <translation type="vanished">语言</translation>
     </message>
 </context>
 <context>
@@ -897,17 +895,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="80"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="77"/>
         <source>languages</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="78"/>
         <source>date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="82"/>
+        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="79"/>
         <source>themes</source>
         <translation>主题</translation>
     </message>
@@ -963,9 +961,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>ThemesPanel</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/ThemesPanel.qml" line="61"/>
         <source>Themes</source>
-        <translation>主题</translation>
+        <translation type="vanished">主题</translation>
     </message>
 </context>
 <context>

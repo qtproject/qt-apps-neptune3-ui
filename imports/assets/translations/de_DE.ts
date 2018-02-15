@@ -118,7 +118,7 @@ UX to the road</source>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
-        <translation>Zeit</translation>
+        <translation type="vanished">Zeit</translation>
     </message>
     <message>
         <source>24h time</source>
@@ -289,7 +289,7 @@ UX to the road</source>
     <name>LanguagePanel</name>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="vanished">Sprache</translation>
     </message>
 </context>
 <context>
@@ -695,7 +695,7 @@ UX to the road</source>
     <name>ThemesPanel</name>
     <message>
         <source>Themes</source>
-        <translation>Themen</translation>
+        <translation type="vanished">Themen</translation>
     </message>
 </context>
 <context>

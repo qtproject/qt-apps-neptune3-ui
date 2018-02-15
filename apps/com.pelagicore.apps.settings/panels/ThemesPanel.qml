@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -34,6 +34,10 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import utils 1.0
 
+import com.pelagicore.styles.triton 1.0
+
+import "../assets"
+
 Control {
     id: root
 
@@ -43,53 +47,33 @@ Control {
 
     signal themeRequested(int theme)
 
-    ButtonGroup {
-        id: themeGroup
-        exclusive: true
-    }
+    contentItem: ListView {
+        id: view
+        clip: true
+        interactive: contentHeight > height
 
-    contentItem: Item {
-        implicitWidth: Style.hspan(12)
-        implicitHeight: Style.vspan(12)
-        ListView {
-            id: view
-            anchors.fill: parent
-            clip: true
-            header: Label {
-                padding: Style.vspan(0.2)
-                font.pixelSize: Style.fontSizeXL
-                text: qsTr("Themes")
-            }
-            model: root.model
-            delegate: AbstractButton {
-                id: themeDelegate
-                width: ListView.view.width
-                height: Style.hspan(3)
-                onClicked: root.themeRequested(index)
-                contentItem: GridLayout {
-                    columns: 2
-                    rows: 3
+        model: root.model
+
+        delegate: ItemDelegate {
+            id: delegate
+            onClicked: root.themeRequested(index)
+            contentItem: ColumnLayout {
+                RowLayout {
                     RadioButton {
-                        Layout.column: 0
-                        Layout.row: 0
-                        ButtonGroup.group: themeGroup
-                        Layout.maximumWidth: Layout.preferredWidth
                         checked: index === root.currentTheme
-                        onToggled: themeDelegate.clicked()
+                        onToggled: delegate.clicked()
                     }
                     Label {
-                        Layout.fillWidth: true
-                        Layout.column: 1
-                        Layout.row: 0
                         text: qsTranslate("RootStore", model.title)
                     }
-                    Item {
-                        Layout.column: 0
-                        Layout.row: 2
-                        Layout.columnSpan: 2
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                    }
+                }
+                Image {
+                    source: Assets.gfx("theme_" + model.theme)
+                }
+                Image {
+                    Layout.fillWidth: true
+                    source: Style.gfx2("list-divider", TritonStyle.theme)
+                    visible: index !== view.count - 1
                 }
             }
         }
