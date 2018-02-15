@@ -63,8 +63,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(2.5)
         anchors.left: parent.left
-        anchors.leftMargin: 60
-        state: "SMALL"
+        state: "REGULAR"
         text: leftDoorOpen ? qsTr("Close") : qsTr("Open")
 
         onClicked: {
@@ -77,7 +76,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(2.5)
         anchors.right: parent.right
-        state: "SMALL"
+        state: "REGULAR"
         text: rightDoorOpen ? qsTr("Close") : qsTr("Open")
 
         onClicked: {

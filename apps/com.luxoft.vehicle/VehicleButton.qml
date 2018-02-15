@@ -54,6 +54,19 @@ ToolButton {
             }
         },
         State {
+            name: "REGULAR"
+            PropertyChanges {
+                target: backgroundItem
+                minWidth: 0
+                implicitHeight: 100
+                sideMargins: 42
+            }
+            PropertyChanges {
+                target: contentText
+                font.pixelSize: root.TritonStyle.fontSizeS
+            }
+        },
+        State {
             name: "SMALL"
             PropertyChanges {
                 target: backgroundItem
@@ -85,11 +98,9 @@ ToolButton {
 
         implicitWidth: defaultWidth < minWidth ? minWidth : defaultWidth
         implicitHeight: 100
-        border.color: "#c7c1bf"
-        border.width: 1
 
         radius: height / 2
-        color: root.down ? "#c7c1bf" : "transparent"
+        color: "#d0cbc8" //ToDo: Replace with an actual button color
 
         readonly property int defaultWidth: sideMargins + contentMargin + contentText.contentWidth
         property int minWidth: 220
