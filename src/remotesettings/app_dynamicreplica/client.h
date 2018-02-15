@@ -33,9 +33,11 @@
 
 #include <QObject>
 #include <QSettings>
+#include <QTimer>
 #include "uisettingsdynamic.h"
 #include "instrumentclusterdynamic.h"
 #include "systemuidynamic.h"
+#include "connectionmonitoringdynamic.h"
 
 class QQmlContext;
 
@@ -47,10 +49,12 @@ class Client : public QObject
     Q_PROPERTY(QUrl serverUrl READ serverUrl NOTIFY serverUrlChanged)
     Q_PROPERTY(QString status READ status NOTIFY statusChanged)
     Q_PROPERTY(QStringList lastUrls READ lastUrls NOTIFY lastUrlsChanged)
+    Q_PROPERTY(bool connected READ connected NOTIFY connectedChanged)
 
     static const QString settingsLastUrlsPrefix;
     static const QString settingsLastUrlsItem;
     static const int numOfUrlsStored;
+    static const int timeoutToleranceMS;
 
 public:
     static const QString defaultUrl;
@@ -62,16 +66,22 @@ public:
     QUrl serverUrl() const;
     QString status() const;
     QStringList lastUrls() const;
+    bool connected() const;
 
 signals:
     void serverUrlChanged(const QUrl &url);
     void statusChanged(const QString &status);
     void lastUrlsChanged(const QStringList &lastUrls);
+    void connectedChanged(bool connected);
 
 public slots:
     void connectToServer(const QString &url);
+
+protected slots:
     void onError(QRemoteObjectNode::ErrorCode code);
-    void onReplicaConnectionChanged(bool connected);
+    void updateConnectionStatus();
+    void onCMCounterChanged();
+    void onCMTimeout();
 
 private:
     void setStatus(const QString &status);
@@ -82,12 +92,17 @@ private:
     QRemoteObjectNode *m_repNode;
     QUrl m_serverUrl;
     QStringList m_lastUrls;
+    bool m_connected;
+    bool m_timedOut;
     QString m_status;
     QSettings m_settings;
 
     UISettingsDynamic m_UISettings;
     InstrumentClusterDynamic m_instrumentCluster;
     SystemUIDynamic m_systemUI;
+    ConnectionMonitoringDynamic m_connectionMonitoring;
+
+    QTimer m_connectionMonitoringTimer;
 };
 
 #endif // CLIENT_H

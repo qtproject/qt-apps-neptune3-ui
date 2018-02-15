@@ -87,3 +87,9 @@ interface SystemUI {
    */
   int secondaryWindowSwitchCount
 }
+
+@config: {id: "ConnectionMonitoring"}
+interface ConnectionMonitoring {
+    int intervalMS;
+    int counter;
+}

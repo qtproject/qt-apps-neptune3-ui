@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -28,47 +28,34 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#ifndef SERVER_H
-#define SERVER_H
+#include "connectionmonitoringdynamic.h"
 
-#include <QObject>
-#include <QSettings>
-#include <QTimer>
-
-#include "core.h"
-#include "uisettingssource.h"
-#include "instrumentclustersource.h"
-#include "systemuisource.h"
-#include "connectionmonitoringsource.h"
-
-Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
-
-class Server : public QObject
+ConnectionMonitoringDynamic::ConnectionMonitoringDynamic()
 {
-    Q_OBJECT
-public:
-    explicit Server(QObject *parent = nullptr);
 
-    void start();
+}
 
-public slots:
-    void onROError(QRemoteObjectNode::ErrorCode code);
-    void onAboutToQuit();
+int ConnectionMonitoringDynamic::intervalMS() const
+{
+    if (m_replicaPtr.isNull())
+        return -1;
+    return m_replicaPtr.data()->property("intervalMS").toInt();
+}
 
-protected slots:
-    void onTimeout();
+int ConnectionMonitoringDynamic::counter() const
+{
+    if (m_replicaPtr.isNull())
+        return -1;
+    return m_replicaPtr.data()->property("counter").toInt();
+}
 
-protected:
-    QScopedPointer<UISettingsSource> m_UISettingsService;
-    QScopedPointer<InstrumentClusterSource> m_instrumentClusterService;
-    QScopedPointer<SystemUISource> m_systemUIService;
-    QScopedPointer<ConnectionMonitoringSource> m_connectionMonitoringService;
+void ConnectionMonitoringDynamic::initialize()
+{
+    connect(m_replicaPtr.data(), SIGNAL(intervalMSChanged(int)),
+            this, SIGNAL(intervalMSChanged(int)));
+    connect(m_replicaPtr.data(), SIGNAL(counterChanged(int)),
+            this, SIGNAL(counterChanged(int)));
 
-    void setInstrumentClusterDefaultValues();
-    void initConnectionMonitoring();
-
-private:
-    QTimer m_heartBeatTimer;
-};
-
-#endif // SERVER_H
+    emit intervalMSChanged(intervalMS());
+    emit counterChanged(counter());
+}

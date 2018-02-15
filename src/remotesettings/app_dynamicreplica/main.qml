@@ -41,9 +41,6 @@ ApplicationWindow {
     height: 800
     title: qsTr("Settings app")
 
-    readonly property bool connected: uiSettings.connected ||
-                                      instrumentCluster.connected
-
     function sc(value) {
         return value * Screen.pixelDensity;
     }
@@ -78,9 +75,9 @@ ApplicationWindow {
         }
 
         Connections {
-            target: root
+            target: client
             onConnectedChanged: {
-                if (root.connected)
+                if (client.connected)
                     connectionDialog.close();
             }
         }
@@ -117,17 +114,18 @@ ApplicationWindow {
 
    footer: TabBar {
        TabButton {
-           text: uiSettings.connected ? qsTr("Settings") :
-                                        qsTr("Settings (Offline)")
+           text: uiSettings.connected && client.connected ?
+                     qsTr("Settings") : qsTr("Settings (Offline)")
            onClicked: stack.currentIndex = 0
        }
        TabButton {
-           text: instrumentCluster.connected ? qsTr("Cluster") :
-                                               qsTr("Cluster (Offline)")
+           text: instrumentCluster.connected && client.connected ?
+                     qsTr("Cluster") : qsTr("Cluster (Offline)")
            onClicked: stack.currentIndex = 1
        }
        TabButton {
-           text: systemUI.connected ? qsTr("System UI") : qsTr("System UI (Offline)")
+           text: systemUI.connected && client.connected ?
+                     qsTr("System UI") : qsTr("System UI (Offline)")
            onClicked: stack.currentIndex = 2
        }
    }

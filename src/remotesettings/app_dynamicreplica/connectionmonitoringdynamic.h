@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -28,47 +28,28 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#ifndef SERVER_H
-#define SERVER_H
+#ifndef CONNECTIONMONITORINGDYNAMIC_H
+#define CONNECTIONMONITORINGDYNAMIC_H
 
-#include <QObject>
-#include <QSettings>
-#include <QTimer>
+#include "abstractdynamic.h"
 
-#include "core.h"
-#include "uisettingssource.h"
-#include "instrumentclustersource.h"
-#include "systemuisource.h"
-#include "connectionmonitoringsource.h"
-
-Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
-
-class Server : public QObject
+class ConnectionMonitoringDynamic : public AbstractDynamic
 {
     Q_OBJECT
+    Q_PROPERTY(int intervalMS READ intervalMS NOTIFY intervalMSChanged)
+    Q_PROPERTY(int counter READ counter NOTIFY counterChanged)
+
 public:
-    explicit Server(QObject *parent = nullptr);
+    ConnectionMonitoringDynamic();
 
-    void start();
+    int intervalMS() const;
+    int counter() const;
 
-public slots:
-    void onROError(QRemoteObjectNode::ErrorCode code);
-    void onAboutToQuit();
+    void initialize() override;
 
-protected slots:
-    void onTimeout();
-
-protected:
-    QScopedPointer<UISettingsSource> m_UISettingsService;
-    QScopedPointer<InstrumentClusterSource> m_instrumentClusterService;
-    QScopedPointer<SystemUISource> m_systemUIService;
-    QScopedPointer<ConnectionMonitoringSource> m_connectionMonitoringService;
-
-    void setInstrumentClusterDefaultValues();
-    void initConnectionMonitoring();
-
-private:
-    QTimer m_heartBeatTimer;
+Q_SIGNALS:
+    void intervalMSChanged(int);
+    void counterChanged(int);
 };
 
-#endif // SERVER_H
+#endif // CONNECTIONMONITORINGDYNAMIC_H

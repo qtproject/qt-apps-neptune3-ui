@@ -41,7 +41,7 @@ Flickable {
 
     ColumnLayout {
         id: baseLayout
-        enabled: systemUI.connected
+        enabled: systemUI.connected && client.connected
         anchors.centerIn: parent
 
         Button {

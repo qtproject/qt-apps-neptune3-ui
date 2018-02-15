@@ -36,20 +36,29 @@ Q_LOGGING_CATEGORY(remoteSettingsDynamicApp, "remotesettings.dynamicApp")
 const QString Client::settingsLastUrlsPrefix = "lastUrls";
 const QString Client::settingsLastUrlsItem = "url";
 const int Client::numOfUrlsStored = 5;
+const int Client::timeoutToleranceMS = 1000;
 const QString Client::defaultUrl = "tcp://127.0.0.1:9999";
 
 Client::Client(QObject *parent) : QObject(parent),
     m_repNode(nullptr),
+    m_connected(false),
+    m_timedOut(false),
     m_settings("Pelagicore", "TritonControlApp")
 {
     setStatus(tr("Not connected"));
     connect(&m_UISettings, &AbstractDynamic::connectedChanged,
-            this, &Client::onReplicaConnectionChanged);
+            this, &Client::updateConnectionStatus);
     connect(&m_instrumentCluster, &AbstractDynamic::connectedChanged,
-            this, &Client::onReplicaConnectionChanged);
+            this, &Client::updateConnectionStatus);
     connect(&m_systemUI, &AbstractDynamic::connectedChanged,
-            this, &Client::onReplicaConnectionChanged);
+            this, &Client::updateConnectionStatus);
+    connect(&m_connectionMonitoring, &AbstractDynamic::connectedChanged,
+            this, &Client::updateConnectionStatus);
+    connect(&m_connectionMonitoringTimer,&QTimer::timeout, this, &Client::onCMTimeout);
+    connect(&m_connectionMonitoring, &ConnectionMonitoringDynamic::counterChanged,
+            this, &Client::onCMCounterChanged);
     readSettings();
+    m_connectionMonitoringTimer.setSingleShot(true);
 }
 
 Client::~Client()
@@ -81,6 +90,11 @@ QStringList Client::lastUrls() const
     return m_lastUrls;
 }
 
+bool Client::connected() const
+{
+    return m_connected;
+}
+
 void Client::connectToServer(const QString &serverUrl)
 {
     QUrl url(serverUrl);
@@ -89,7 +103,7 @@ void Client::connectToServer(const QString &serverUrl)
         return;
     }
 
-    if (url==m_serverUrl)
+    if (url==m_serverUrl && connected())
         return;
 
     if (m_repNode)
@@ -104,6 +118,7 @@ void Client::connectToServer(const QString &serverUrl)
         m_UISettings.resetReplica(m_repNode->acquireDynamic("Settings.UISettings"));
         m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("Settings.InstrumentCluster"));
         m_systemUI.resetReplica(m_repNode->acquireDynamic("Settings.SystemUI"));
+        m_connectionMonitoring.resetReplica(m_repNode->acquireDynamic("Settings.ConnectionMonitoring"));
         setStatus(tr("Connecting to %1...").arg(url.toString()));
         updateLastUrls(url.toString());
     } else {
@@ -111,6 +126,7 @@ void Client::connectToServer(const QString &serverUrl)
         m_UISettings.resetReplica(nullptr);
         m_instrumentCluster.resetReplica(nullptr);
         m_systemUI.resetReplica(nullptr);
+        m_connectionMonitoring.resetReplica(nullptr);
     }
 
     if (m_serverUrl!=url) {
@@ -124,13 +140,34 @@ void Client::onError(QRemoteObjectNode::ErrorCode code)
     qCWarning(remoteSettingsDynamicApp) << "Remote objects error, code:" << code;
 }
 
-void Client::onReplicaConnectionChanged(bool connected)
+void Client::updateConnectionStatus()
 {
-    Q_UNUSED(connected)
-    if (m_UISettings.connected() || m_instrumentCluster.connected() || m_systemUI.connected())
+    bool c = (m_UISettings.connected() || m_instrumentCluster.connected() || m_systemUI.connected()) && !m_timedOut;
+    if (c == m_connected)
+        return;
+    m_connected = c;
+    emit connectedChanged(m_connected);
+    if (m_connected)
         setStatus(tr("Connected to %1").arg(serverUrl().toString()));
     else
         setStatus(tr("Disconnected"));
+}
+
+void Client::onCMCounterChanged()
+{
+    m_connectionMonitoringTimer.start(m_connectionMonitoring.intervalMS()+
+                                      timeoutToleranceMS);
+    if (m_timedOut) {
+        m_timedOut = false;
+        updateConnectionStatus();
+    }
+}
+
+void Client::onCMTimeout()
+{
+    qCWarning(remoteSettingsDynamicApp) << "Server heartbeat timed out.";
+    m_timedOut = true;
+    updateConnectionStatus();
 }
 
 void Client::setStatus(const QString &status)

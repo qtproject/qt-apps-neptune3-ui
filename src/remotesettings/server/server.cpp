@@ -54,7 +54,12 @@ void Server::start()
     Core::instance()->host()->enableRemoting(m_systemUIService.data(), "Settings.SystemUI");
     qCDebug(remoteSettingsServer) << "register service at: Settings.SystemUI";
 
+    m_connectionMonitoringService.reset(new ConnectionMonitoringSource());
+    Core::instance()->host()->enableRemoting(m_connectionMonitoringService.data(), "Settings.ConnectionMonitoring");
+    qCDebug(remoteSettingsServer) << "register service at: Settings.ConnectionMonitoring";
+
     setInstrumentClusterDefaultValues();
+    initConnectionMonitoring();
 }
 
 void Server::onROError(QRemoteObjectNode::ErrorCode code)
@@ -64,6 +69,12 @@ void Server::onROError(QRemoteObjectNode::ErrorCode code)
 
 void Server::onAboutToQuit()
 {
+}
+
+void Server::onTimeout()
+{
+    m_connectionMonitoringService->setCounter(
+                            m_connectionMonitoringService->counter() + 1);
 }
 
 void Server::setInstrumentClusterDefaultValues()
@@ -77,4 +88,12 @@ void Server::setInstrumentClusterDefaultValues()
     m_instrumentClusterService->setEPower(41);
     m_instrumentClusterService->setDriveTrainState(2); // 2 == D (drive)
     m_instrumentClusterService->setLowBeamHeadlight(true);
+}
+
+void Server::initConnectionMonitoring()
+{
+    m_connectionMonitoringService->setIntervalMS(2000);
+    connect(&m_heartBeatTimer, &QTimer::timeout, this, &Server::onTimeout);
+    m_heartBeatTimer.setSingleShot(false);
+    m_heartBeatTimer.start(m_connectionMonitoringService->intervalMS());
 }

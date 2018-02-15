@@ -43,7 +43,7 @@ Flickable {
     GridLayout {
         id: baseLayout
         columns: 2
-        enabled: uiSettings.connected
+        enabled: uiSettings.connected && client.connected
         anchors.centerIn: parent
 
         // Language Field
