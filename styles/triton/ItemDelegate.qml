@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -55,31 +55,19 @@ T.ItemDelegate {
     font.family: TritonStyle.fontFamily
     font.weight: Font.Light
 
-    contentItem: Label {
+    contentItem: IconLabel {
         leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
         rightPadding: control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
 
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+        alignment: control.display === IconLabel.IconOnly || control.display === IconLabel.TextUnderIcon ? Qt.AlignCenter : Qt.AlignLeft
+
+        icon: control.icon
         text: control.text
         font: control.font
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignVCenter
-
-        visible: control.text
-        opacity: enabled ? 0.94 : 0.2
+        opacity: enabled ? TritonStyle.fontOpacityHigh : 0.2 // FIXME add 0.2 to TritonStyle
         color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
-    }
-
-    background: Rectangle {
-        visible: control.down || control.highlighted || control.visualFocus || control.hovered
-        color: TritonStyle.backgroundColor
-
-        Rectangle {
-            width: parent.width
-            height: parent.height
-            visible: control.visualFocus || control.highlighted
-            color: TritonStyle.accentColor
-            opacity: TritonStyle.theme === TritonStyle.Light ? 0.4 : 0.6
-        }
     }
 }
