@@ -63,6 +63,7 @@ T.Button {
     background: Rectangle {
         border.width: !control.enabled && !control.checked ? 2 : 0
         border.color: TritonStyle.contrastColor
+        visible: !control.flat
 
         color: {
             if (control.checked) {
