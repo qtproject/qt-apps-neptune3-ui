@@ -33,13 +33,11 @@ pragma Singleton
 import QtQuick 2.8
 
 QtObject {
-    property bool foo: true
-
-    property var sysui: LoggingCategory {
+    readonly property var sysui: LoggingCategory {
         name: "triton.sysui"
     }
 
-    property var apps: LoggingCategory {
+    readonly property var apps: LoggingCategory {
         name: "triton.apps"
     }
 }
