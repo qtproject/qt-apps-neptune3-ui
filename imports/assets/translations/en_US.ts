@@ -367,12 +367,12 @@ UX to the road</source>
 <context>
     <name>MonitorView</name>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="54"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>

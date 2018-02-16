@@ -567,12 +567,12 @@ UX to the road</source>
         <translation type="vanished">Monitor procesů ve stavové liště</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="54"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
         <translation>Vrstva monitoru systému</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
         <translation>Verze</translation>
     </message>

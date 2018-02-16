@@ -445,12 +445,12 @@ UX to the road</source>
         <translation type="vanished">상태 표시 줄의 프로세스 모니터</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="54"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="94"/>
+        <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>

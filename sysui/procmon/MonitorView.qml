@@ -42,33 +42,14 @@ import com.pelagicore.styles.triton 1.0
 ColumnLayout {
     id: root
 
-    Item {
-        Layout.fillWidth: true
-        Layout.preferredHeight: switchLabel.height
-
-        Label {
-            id: switchLabel
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(0.2)
-            anchors.right: switchControl.left
-            text: qsTr("System Monitor Overlay")
-            font.pixelSize: TritonStyle.fontSizeS
-        }
-
-        Switch {
-            id: switchControl
-            anchors.right: parent.right
-            anchors.verticalCenter: switchLabel.verticalCenter
-            property bool propagateValue: false;
-            onCheckedChanged: {
-                if (propagateValue) {
-                    SystemModel.showMonitorOverlay = checked;
-                }
-            }
-            Component.onCompleted: {
-                checked = SystemModel.showMonitorOverlay;
-                propagateValue = true;
-            }
+    Switch {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        text: qsTr("System Monitor Overlay")
+        font.pixelSize: TritonStyle.fontSizeS
+        checked: SystemModel.showMonitorOverlay
+        onToggled: {
+            SystemModel.showMonitorOverlay = checked;
         }
     }
 
