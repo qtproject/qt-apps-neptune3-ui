@@ -47,6 +47,13 @@ Control {
         anchors.fill: root
         color: root.TritonStyle.backgroundColor
         radius: Style.hspan(0.7)
+
+        // click eater
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.AllButtons
+            onWheel: wheel.accepted = true;
+        }
     }
     focus: visible
     Keys.onEscapePressed: close()
