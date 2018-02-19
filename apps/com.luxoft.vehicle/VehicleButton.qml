@@ -59,6 +59,7 @@ ToolButton {
                 target: backgroundItem
                 minWidth: 0
                 implicitHeight: 100
+                iconMargin: 0
                 sideMargins: 42
             }
             PropertyChanges {
