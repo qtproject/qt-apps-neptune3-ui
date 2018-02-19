@@ -11,12 +11,12 @@
         <location filename="../../../sysui/about/About.qml" line="72"/>
         <source>Bringing stunning
 UX to the road</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>QtAuto - Agile UX Development</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="97"/>
@@ -183,17 +183,17 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="55"/>
         <source>Sun roof</source>
-        <translation type="unfinished">サンルーフ</translation>
+        <translation>サンルーフ</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="58"/>
         <source>Doors</source>
-        <translation type="unfinished">ドア</translation>
+        <translation>ドア</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="61"/>
         <source>Trunk</source>
-        <translation type="unfinished">トランク</translation>
+        <translation>トランク</translation>
     </message>
     <message>
         <source>Close</source>
@@ -217,75 +217,75 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="45"/>
         <source>Present</source>
-        <translation type="unfinished">現在</translation>
+        <translation>現在</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="46"/>
         <source>1 day</source>
-        <translation type="unfinished">１日</translation>
+        <translation>１日</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="47"/>
         <source>1 week</source>
-        <translation type="unfinished">１週</translation>
+        <translation>１週</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="48"/>
         <source>1 month</source>
-        <translation type="unfinished">１月</translation>
+        <translation>１月</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="70"/>
         <source>Projected distance to empty</source>
-        <translation type="unfinished">投影された空の距離</translation>
+        <translation>投影された空の距離</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="92"/>
         <source>184</source>
-        <translation type="unfinished">184</translation>
+        <translation>184</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="103"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="161"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="210"/>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="118"/>
         <source>Charging stations</source>
-        <translation type="unfinished">充電ステーション</translation>
+        <translation>充電ステーション</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="127"/>
         <source>Show on map</source>
-        <translation type="unfinished">地図上に表示する</translation>
+        <translation>地図上に表示する</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="150"/>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation>21</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="175"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished">Donald Weese Ct, Las Vegas</translation>
+        <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="182"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="231"/>
         <source>Route</source>
-        <translation type="unfinished">道筋</translation>
+        <translation>道筋</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="196"/>
         <source>27</source>
-        <translation type="unfinished">27</translation>
+        <translation>27</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="224"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished">Faiss Dr, Las Vegas</translation>
+        <translation>Faiss Dr, Las Vegas</translation>
     </message>
 </context>
 <context>
@@ -293,12 +293,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>ホーム</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>作業</translation>
     </message>
 </context>
 <context>
@@ -320,13 +320,13 @@ UX to the road</source>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Close</source>
-        <translation type="unfinished">閉める</translation>
+        <translation>閉める</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Open</source>
-        <translation type="unfinished">開ける</translation>
+        <translation>開ける</translation>
     </message>
 </context>
 <context>
@@ -391,29 +391,29 @@ UX to the road</source>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
         <source>%n kilometer(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%nキロメートル</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n日</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
         <source>%n hour(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n時間</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
         <source>%n minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n分</numerusform>
         </translation>
     </message>
 </context>
@@ -440,12 +440,12 @@ UX to the road</source>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>システムモニタオーバーレイ</translation>
     </message>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>バージョン</translation>
     </message>
 </context>
 <context>
@@ -473,12 +473,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
         <source>Next</source>
-        <translation type="unfinished">次</translation>
+        <translation>次</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>無名の画家</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
@@ -486,9 +486,13 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Songs of %1 (%2)</source>
+        <translation type="vanished">%1の歌 (%2)</translation>
+    </message>
+    <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知の歌</translation>
     </message>
     <message>
         <source>Track unavailable</source>
@@ -497,7 +501,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="139"/>
         <source>Browse</source>
-        <translation type="unfinished">ブラウズ</translation>
+        <translation>ブラウズ</translation>
     </message>
 </context>
 <context>
@@ -505,7 +509,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知の歌</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="89"/>
@@ -515,7 +519,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="139"/>
         <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部やる</translation>
     </message>
 </context>
 <context>
@@ -539,7 +543,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="76"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知の歌</translation>
     </message>
 </context>
 <context>
@@ -575,7 +579,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
         <source>Start Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>ナビゲーションを開始する</translation>
     </message>
 </context>
 <context>
@@ -583,12 +587,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">あなたはヒンジを握っていますか？</translation>
+        <translation>あなたはヒンジを握っていますか？</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>探す</translation>
     </message>
 </context>
 <context>
@@ -672,27 +676,27 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="51"/>
         <source>FM1</source>
-        <translation type="unfinished"></translation>
+        <translation>FM1</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="53"/>
         <source>FM2</source>
-        <translation type="unfinished"></translation>
+        <translation>FM2</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
         <source>AM</source>
-        <translation type="unfinished"></translation>
+        <translation>AM</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>KHz</source>
-        <translation type="unfinished"></translation>
+        <translation>KHz</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>MHz</source>
-        <translation type="unfinished"></translation>
+        <translation>MHz</translation>
     </message>
 </context>
 <context>
@@ -700,12 +704,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="60"/>
         <source>Close</source>
-        <translation type="unfinished">閉める</translation>
+        <translation>閉める</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="73"/>
         <source>Open</source>
-        <translation type="unfinished">開ける</translation>
+        <translation>開ける</translation>
     </message>
 </context>
 <context>
@@ -713,12 +717,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="86"/>
         <source>Light</source>
-        <translation type="unfinished">光</translation>
+        <translation>光</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="87"/>
         <source>Dark</source>
-        <translation type="unfinished">ダーク</translation>
+        <translation>ダーク</translation>
     </message>
 </context>
 <context>
@@ -894,7 +898,7 @@ UX to the road</source>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="114"/>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="142"/>
         <source>240</source>
-        <translation type="unfinished">240</translation>
+        <translation>240</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="66"/>
@@ -902,32 +906,32 @@ UX to the road</source>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="121"/>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="152"/>
         <source>kPa</source>
-        <translation type="unfinished">kPa</translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="169"/>
         <source>Normal load</source>
-        <translation type="unfinished">通常の負荷</translation>
+        <translation>通常の負荷</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="176"/>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished">ターゲット：240 kPa</translation>
+        <translation>ターゲット：240 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="191"/>
         <source>Max load</source>
-        <translation type="unfinished">最大荷重</translation>
+        <translation>最大荷重</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="199"/>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished">ターゲット：270 kPa</translation>
+        <translation>ターゲット：270 kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="214"/>
         <source>Calibrate</source>
-        <translation type="unfinished">測定</translation>
+        <translation>測定</translation>
     </message>
 </context>
 <context>
@@ -962,12 +966,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Close</source>
-        <translation type="unfinished">閉める</translation>
+        <translation>閉める</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Open</source>
-        <translation type="unfinished">開ける</translation>
+        <translation>開ける</translation>
     </message>
 </context>
 <context>

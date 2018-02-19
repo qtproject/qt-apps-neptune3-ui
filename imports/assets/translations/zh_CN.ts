@@ -11,12 +11,12 @@
         <location filename="../../../sysui/about/About.qml" line="72"/>
         <source>Bringing stunning
 UX to the road</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>QtAuto - Agile UX Development</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="97"/>
@@ -190,17 +190,17 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="55"/>
         <source>Sun roof</source>
-        <translation type="unfinished">天窗</translation>
+        <translation>天窗</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="58"/>
         <source>Doors</source>
-        <translation type="unfinished">车门</translation>
+        <translation>车门</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="61"/>
         <source>Trunk</source>
-        <translation type="unfinished">后备箱</translation>
+        <translation>后备箱</translation>
     </message>
     <message>
         <source>Close</source>
@@ -224,75 +224,75 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="45"/>
         <source>Present</source>
-        <translation type="unfinished">现在</translation>
+        <translation>现在</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="46"/>
         <source>1 day</source>
-        <translation type="unfinished">1天</translation>
+        <translation>1天</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="47"/>
         <source>1 week</source>
-        <translation type="unfinished">1周</translation>
+        <translation>1周</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="48"/>
         <source>1 month</source>
-        <translation type="unfinished">1月</translation>
+        <translation>1月</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="70"/>
         <source>Projected distance to empty</source>
-        <translation type="unfinished">续航里程</translation>
+        <translation>续航里程</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="92"/>
         <source>184</source>
-        <translation type="unfinished">184</translation>
+        <translation>184</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="103"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="161"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="210"/>
         <source>km</source>
-        <translation type="unfinished">km</translation>
+        <translation>km</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="118"/>
         <source>Charging stations</source>
-        <translation type="unfinished">充电站</translation>
+        <translation>充电站</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="127"/>
         <source>Show on map</source>
-        <translation type="unfinished">在地图上显示</translation>
+        <translation>在地图上显示</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="150"/>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation>21</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="175"/>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished">Donald Weese Ct, 拉斯维加斯</translation>
+        <translation>Donald Weese Ct, 拉斯维加斯</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="182"/>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="231"/>
         <source>Route</source>
-        <translation type="unfinished">路线</translation>
+        <translation>路线</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="196"/>
         <source>27</source>
-        <translation type="unfinished">27</translation>
+        <translation>27</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="224"/>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished">Faiss Dr, 拉斯维加斯</translation>
+        <translation>Faiss Dr, 拉斯维加斯</translation>
     </message>
 </context>
 <context>
@@ -300,12 +300,12 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>家</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>工作</translation>
     </message>
 </context>
 <context>
@@ -342,13 +342,13 @@ UX to the road</source>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Close</source>
-        <translation type="unfinished">关</translation>
+        <translation>关</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
         <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
         <source>Open</source>
-        <translation type="unfinished">开</translation>
+        <translation>开</translation>
     </message>
 </context>
 <context>
@@ -419,29 +419,29 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
         <source>%n kilometer(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n公里</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n天</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
         <source>%n hour(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n小时</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
         <source>%n minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n分钟</numerusform>
         </translation>
     </message>
 </context>
@@ -468,12 +468,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>系统监视器覆盖</translation>
     </message>
     <message>
         <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版</translation>
     </message>
 </context>
 <context>
@@ -501,12 +501,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
         <source>Next</source>
-        <translation type="unfinished">下一首</translation>
+        <translation>下一首</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>未知艺术家</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
@@ -514,9 +514,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Songs of %1 (%2)</source>
+        <translation type="vanished">%1的歌曲 (%2)</translation>
+    </message>
+    <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知的歌曲</translation>
     </message>
     <message>
         <source>Track unavailable</source>
@@ -525,7 +529,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="139"/>
         <source>Browse</source>
-        <translation type="unfinished">浏览</translation>
+        <translation>浏览</translation>
     </message>
 </context>
 <context>
@@ -533,7 +537,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知的歌曲</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="89"/>
@@ -543,7 +547,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="139"/>
         <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部播放</translation>
     </message>
 </context>
 <context>
@@ -567,7 +571,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="76"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>未知的歌曲</translation>
     </message>
 </context>
 <context>
@@ -607,7 +611,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
         <source>Start Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>开始导航</translation>
     </message>
 </context>
 <context>
@@ -615,12 +619,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">今天你想要去哪儿？</translation>
+        <translation>今天你想要去哪儿？</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索</translation>
     </message>
 </context>
 <context>
@@ -719,27 +723,27 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="51"/>
         <source>FM1</source>
-        <translation type="unfinished"></translation>
+        <translation>FM1</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="53"/>
         <source>FM2</source>
-        <translation type="unfinished"></translation>
+        <translation>FM2</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
         <source>AM</source>
-        <translation type="unfinished"></translation>
+        <translation>AM</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>KHz</source>
-        <translation type="unfinished"></translation>
+        <translation>KHz</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>MHz</source>
-        <translation type="unfinished"></translation>
+        <translation>MHz</translation>
     </message>
 </context>
 <context>
@@ -747,12 +751,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="60"/>
         <source>Close</source>
-        <translation type="unfinished">关</translation>
+        <translation>关</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="73"/>
         <source>Open</source>
-        <translation type="unfinished">开</translation>
+        <translation>开</translation>
     </message>
 </context>
 <context>
@@ -760,12 +764,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="86"/>
         <source>Light</source>
-        <translation type="unfinished">浅色</translation>
+        <translation>浅色</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="87"/>
         <source>Dark</source>
-        <translation type="unfinished">深色</translation>
+        <translation>深色</translation>
     </message>
 </context>
 <context>
@@ -972,7 +976,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="114"/>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="142"/>
         <source>240</source>
-        <translation type="unfinished">240</translation>
+        <translation>240</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="66"/>
@@ -980,32 +984,32 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="121"/>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="152"/>
         <source>kPa</source>
-        <translation type="unfinished">kPa</translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="169"/>
         <source>Normal load</source>
-        <translation type="unfinished">正常负载</translation>
+        <translation>正常负载</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="176"/>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished">目标值:240kPa</translation>
+        <translation>目标值:240kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="191"/>
         <source>Max load</source>
-        <translation type="unfinished">最大负载</translation>
+        <translation>最大负载</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="199"/>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished">目标值:270kPa</translation>
+        <translation>目标值:270kPa</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="214"/>
         <source>Calibrate</source>
-        <translation type="unfinished">校准</translation>
+        <translation>校准</translation>
     </message>
 </context>
 <context>
@@ -1051,12 +1055,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Close</source>
-        <translation type="unfinished">关</translation>
+        <translation>关</translation>
     </message>
     <message>
         <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
         <source>Open</source>
-        <translation type="unfinished">开</translation>
+        <translation>开</translation>
     </message>
 </context>
 <context>

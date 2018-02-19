@@ -11,12 +11,13 @@
         <location filename="../../../sysui/about/About.qml" line="72"/>
         <source>Bringing stunning
 UX to the road</source>
-        <translation type="unfinished"></translation>
+        <translation>Přinášíme ohromující
+UX na cestu</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>QtAuto - Agile UX Development</source>
-        <translation type="unfinished"></translation>
+        <translation>QtAuto - Agilní UX vývoj</translation>
     </message>
     <message>
         <location filename="../../../sysui/about/About.qml" line="97"/>
@@ -607,7 +608,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý umělec</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
@@ -615,9 +616,13 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Songs of %1 (%2)</source>
+        <translation type="vanished">Skladby z %1 (%2)</translation>
+    </message>
+    <message>
         <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá skladba</translation>
     </message>
     <message>
         <source>Track unavailable</source>
@@ -634,7 +639,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá skladba</translation>
     </message>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="89"/>
@@ -668,7 +673,7 @@ UX to the road</source>
     <message>
         <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="76"/>
         <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámá skladba</translation>
     </message>
 </context>
 <context>
