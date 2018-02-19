@@ -34,6 +34,7 @@ import QtQuick.Controls 2.3
 
 import com.pelagicore.styles.triton 1.0
 import utils 1.0
+import controls 1.0
 
 ListView {
     id: root
@@ -41,20 +42,22 @@ ListView {
     spacing: Style.vspan(0.25)
     orientation: Qt.Vertical
     model: VehicleControlModel {}
-    delegate: Item {
-        width: parent.width * 0.9
+    interactive: false
+    delegate: ListItem {
+        width: parent.width
         height: Style.vspan(0.9)
 
         Image {
             id: supportDelegateIconImage
             anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(0.67)
-            source: "assets/images/" + icon + (TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png")
+            anchors.leftMargin: Style.hspan(50/45)
+            source: "assets/images/" + model.icon + (TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png")
         }
 
         Label {
-            text: qsTranslate("VehicleControlModel", name)
+            text: qsTranslate("VehicleControlModel", model.name)
             anchors.top: parent.top
+            anchors.topMargin: Style.vspan(0.15)
             anchors.left: supportDelegateIconImage.right
             anchors.leftMargin: Style.hspan(0.622)
         }
@@ -65,8 +68,8 @@ ListView {
             anchors.top: parent.top
             anchors.topMargin: 2
             anchors.right: parent.right
-            anchors.rightMargin: 2
-            checked: active
+            anchors.rightMargin: 22
+            checked: model.active
         }
 
         Image {
