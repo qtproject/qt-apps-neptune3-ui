@@ -306,55 +306,55 @@ UX na cestu</translation>
         <translation>1 měsíc</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="70"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="71"/>
         <source>Projected distance to empty</source>
         <translation>Projektovaná vzdálenost</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="92"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="93"/>
         <source>184</source>
         <translation>184</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="103"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="161"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="210"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="104"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="163"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="213"/>
         <source>km</source>
         <translation>km</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="118"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="120"/>
         <source>Charging stations</source>
         <translation>Nabíjecí stanice</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="127"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="129"/>
         <source>Show on map</source>
         <translation>Zobrazit na mapě</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="150"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="152"/>
         <source>21</source>
         <translation>21</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="175"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="178"/>
         <source>Donald Weese Ct, Las Vegas</source>
         <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="182"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="231"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="185"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="235"/>
         <source>Route</source>
         <translation>Trasa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="196"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="198"/>
         <source>27</source>
         <translation>27</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="224"/>
+        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="228"/>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
     </message>

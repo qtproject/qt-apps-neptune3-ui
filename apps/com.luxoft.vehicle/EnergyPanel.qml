@@ -54,8 +54,8 @@ Item {
         anchors.top: energyControls.bottom
         anchors.left: energyControls.left
         anchors.topMargin: 40
-        anchors.leftMargin: 10
         readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        width: parent.width
         source: "assets/images/energy-graph" + sourceSuffix
     }
 
@@ -65,8 +65,9 @@ Item {
         anchors.top: energyGraph.bottom
         anchors.topMargin: 46
         anchors.left: energyGraph.left
-        anchors.leftMargin: 34
+        anchors.leftMargin: 22
 
+        font.weight: Font.Light
         text: qsTr("Projected distance to empty")
     }
 
@@ -80,7 +81,7 @@ Item {
 
         Image {
             height: 2
-            width: 750
+            width: parent.width
             source: Style.gfx2("list-divider", TritonStyle.theme)
         }
 
@@ -96,7 +97,7 @@ Item {
 
             Label {
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 2
+                anchors.bottomMargin: 4
                 anchors.left: parent.right
                 anchors.leftMargin: 12
 
@@ -113,8 +114,9 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 114
             anchors.left: parent.left
-            anchors.leftMargin: 42
+            anchors.leftMargin: 22
 
+            font.weight: Font.Light
             text: qsTr("Charging stations")
         }
 
@@ -122,7 +124,7 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 102
             anchors.right: parent.right
-            anchors.rightMargin: 80
+            anchors.rightMargin: 22
             state: "SMALL"
             text: qsTr("Show on map")
         }
@@ -140,12 +142,12 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 180
             anchors.left: parent.left
-            anchors.leftMargin: 40
             width: parent.width
             height: 60
 
             Label {
                 anchors.left: parent.left
+                anchors.leftMargin: 40
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("21")
                 font {
@@ -154,7 +156,7 @@ Item {
 
                 Label {
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 2
+                    anchors.bottomMargin: 4
                     anchors.left: parent.right
                     anchors.leftMargin: 10
 
@@ -169,15 +171,16 @@ Item {
 
             Label {
                 anchors.left: parent.left
-                anchors.leftMargin: 100
+                anchors.leftMargin: 140
                 anchors.verticalCenter: parent.verticalCenter
 
+                font.weight: Font.Light
                 text: qsTr("Donald Weese Ct, Las Vegas")
             }
 
             VehicleButton {
                 anchors.right: parent.right
-                anchors.rightMargin: 120
+                anchors.rightMargin: 22
                 state: "SMALL"
                 text: qsTr("Route")
             }
@@ -188,7 +191,6 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 245
             anchors.left: parent.left
-            anchors.leftMargin: 40
             width: parent.width
             height: 60
 
@@ -196,6 +198,7 @@ Item {
                 text: qsTr("27")
 
                 anchors.left: parent.left
+                anchors.leftMargin: 40
                 anchors.verticalCenter: parent.verticalCenter
                 font {
                     pixelSize: TritonStyle.fontSizeL
@@ -203,7 +206,7 @@ Item {
 
                 Label {
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 2
+                    anchors.bottomMargin: 4
                     anchors.left: parent.right
                     anchors.leftMargin: 10
 
@@ -218,15 +221,16 @@ Item {
 
             Label {
                 anchors.left: parent.left
-                anchors.leftMargin: 100
+                anchors.leftMargin: 140
                 anchors.verticalCenter: parent.verticalCenter
 
+                font.weight: Font.Light
                 text: qsTr("Faiss Dr, Las Vegas")
             }
 
             VehicleButton {
                 anchors.right: parent.right
-                anchors.rightMargin: 120
+                anchors.rightMargin: 22
                 state: "SMALL"
                 text: qsTr("Route")
             }
