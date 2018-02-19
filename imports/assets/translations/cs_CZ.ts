@@ -1077,27 +1077,27 @@ UX na cestu</translation>
         <translation>kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="169"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="170"/>
         <source>Normal load</source>
         <translation>Normální zatížení</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="176"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="177"/>
         <source>Target: 240 kPa</source>
         <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="191"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="193"/>
         <source>Max load</source>
         <translation>Max zatížení</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="199"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="201"/>
         <source>Target: 270 kPa</source>
         <translation>Cíl: 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="214"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="216"/>
         <source>Calibrate</source>
         <translation>Kalibrovat</translation>
     </message>

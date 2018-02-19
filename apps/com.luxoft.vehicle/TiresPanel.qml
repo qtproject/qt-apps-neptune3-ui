@@ -162,10 +162,11 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: 92
+        anchors.rightMargin: 22
         anchors.top: parent.top
         anchors.topMargin: 132
 
+        font.weight: Font.Light
         text: qsTr("Normal load")
 
         Label {
@@ -184,10 +185,11 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: 92
+        anchors.rightMargin: 22
         anchors.top: parent.top
         anchors.topMargin: 270
 
+        font.weight: Font.Light
         text: qsTr("Max load")
         enabled: false
 
@@ -208,9 +210,9 @@ Item {
         id: calibrateButton
 
         anchors.top: parent.top
-        anchors.topMargin: 570
+        anchors.topMargin: 470
         anchors.right: parent.right
-        anchors.rightMargin: 92
+        anchors.rightMargin: 22
         text: qsTr("Calibrate")
         readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
         iconSource: "assets/images/ic-calibrate" + sourceSuffix
