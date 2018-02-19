@@ -851,12 +851,12 @@ UX na cestu</translation>
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="62"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="75"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="75"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="62"/>
         <source>Open</source>
         <translation>Otevřít</translation>
     </message>

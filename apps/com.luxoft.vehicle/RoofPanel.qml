@@ -53,28 +53,28 @@ Item {
     }
 
     VehicleButton {
-        id: roofCloseButton
-
-        anchors.top: parent.top
-        anchors.topMargin: 500
-        anchors.right: parent.right
-        state: "REGULAR"
-        text: qsTr("Close")
-        onClicked: {
-            roofSlider.value = 0.0
-        }
-    }
-
-    VehicleButton {
         id: roofOpenButton
 
         anchors.top: parent.top
-        anchors.topMargin: 500
-        anchors.left: parent.left
+        anchors.topMargin: 400
+        anchors.right: parent.right
         state: "REGULAR"
         text: qsTr("Open")
         onClicked: {
             roofSlider.value = 1.0
+        }
+    }
+
+    VehicleButton {
+        id: roofCloseButton
+
+        anchors.top: parent.top
+        anchors.topMargin: 400
+        anchors.left: parent.left
+        state: "REGULAR"
+        text: qsTr("Close")
+        onClicked: {
+            roofSlider.value = 0.0
         }
     }
 }
