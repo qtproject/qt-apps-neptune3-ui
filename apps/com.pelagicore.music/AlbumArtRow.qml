@@ -79,9 +79,6 @@ Item {
                 Behavior on opacity {DefaultNumberAnimation {}}
                 source: Style.gfx2("album-art-placeholder")
                 fillMode: Image.PreserveAspectFit
-
-                readonly property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
-                readonly property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
             }
             Image {
                 id: albumArt
@@ -91,9 +88,6 @@ Item {
                 Behavior on opacity {DefaultNumberAnimation {}}
                 source: model.item.coverArtUrl
                 fillMode: Image.PreserveAspectFit
-
-                readonly property double iconx: PathView.iconx !== undefined ? PathView.iconx : 0.0
-                readonly property double icony: PathView.icony !== undefined ? PathView.icony : 0.0
             }
         }
     }
@@ -131,19 +125,12 @@ Item {
             path: Path {
                 startX: 0; startY: coverslide.height/2
 
-                PathAttribute { name: "iconx"; value: 0 }
                 PathAttribute { name: "iconOpacity"; value: 0.02 }
-                PathAttribute { name: "icony"; value: 1 }
 
                 PathLine { x: coverslide.width/2; y: coverslide.height/2 }
-
-                PathAttribute { name: "icony"; value: 0.5 }
-                PathAttribute { name: "iconx"; value: 0.5 }
                 PathAttribute { name: "iconOpacity"; value: 1 }
 
                 PathLine { x: coverslide.width; y: coverslide.height/2 }
-                PathAttribute { name: "iconx"; value: 0 }
-                PathAttribute { name: "icony"; value: 1 }
                 PathAttribute { name: "iconOpacity"; value: 0.02 }
 
             }
