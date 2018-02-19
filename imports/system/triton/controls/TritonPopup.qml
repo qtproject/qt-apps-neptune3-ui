@@ -130,10 +130,14 @@ Control {
             from: "open"; to: "closed"
             SequentialAnimation {
                 PropertyAction { target: root; property: "visible"; value: true }
+                PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }
                 ParallelAnimation {
                     DefaultNumberAnimation { target: root; property: "opacity"; to: 0.25 }
-                    DefaultNumberAnimation { target: root; property: "scale"; to: 0.75 }
+                    DefaultNumberAnimation { target: root; property: "scale"; to: 0.25 }
+                    DefaultNumberAnimation { target: root; property: "x"; to: root._openFromX }
+                    DefaultNumberAnimation { target: root; property: "y"; to: root._openFromY }
                 }
+                PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
             }
         }
     ]
