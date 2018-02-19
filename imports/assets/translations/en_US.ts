@@ -560,12 +560,12 @@ UX to the road</source>
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="60"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="62"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="73"/>
+        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="75"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>

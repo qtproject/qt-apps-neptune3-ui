@@ -47,7 +47,9 @@ Item {
         anchors.topMargin: Style.vspan(2.5)
         anchors.left: parent.left
         width: parent.width - anchors.leftMargin
-        value: roofOpenProgress
+        onValueChanged: {
+            root.roofOpenProgress = value
+        }
     }
 
     VehicleButton {
@@ -59,7 +61,7 @@ Item {
         state: "REGULAR"
         text: qsTr("Close")
         onClicked: {
-            root.roofOpenProgress = 0.0;
+            roofSlider.value = 0.0
         }
     }
 
@@ -72,7 +74,7 @@ Item {
         state: "REGULAR"
         text: qsTr("Open")
         onClicked: {
-            root.roofOpenProgress = 1.0;
+            roofSlider.value = 1.0
         }
     }
 }
