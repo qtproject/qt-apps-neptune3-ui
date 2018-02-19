@@ -48,9 +48,10 @@ Item {
 
     ICAlbumArtRow {
         id: albumArt
-        width: Style.hspan(14)
-        height: Style.vspan(5.8)
+        width: 540
+        height: 464
         anchors.centerIn: parent
+        anchors.verticalCenterOffset: 50
         musicPlaying: root.store.playing
         musicPosition: root.store.currentTrackPosition
         mediaReady: root.store.searchAndBrowseModel.count > 0

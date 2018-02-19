@@ -130,7 +130,7 @@ UX to the road</source>
     <name>ClusterMusic</name>
     <message>
         <source>Track unavailable</source>
-        <translation> 音乐不可用</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

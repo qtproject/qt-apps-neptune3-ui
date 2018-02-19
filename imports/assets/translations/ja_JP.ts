@@ -123,7 +123,7 @@ UX to the road</source>
     <name>ClusterMusic</name>
     <message>
         <source>Track unavailable</source>
-        <translation>トラックが利用できない</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -42,10 +42,10 @@ Control {
     property bool labelOnTop: true
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
-    property int progressBarLabelLeftMargin: Style.hspan(0.6)
+    property int progressBarLabelLeftMargin: Style.hspan(10/45)
     property int progressBarWidth: {
         if (root.labelOnTop) {
-            return root.width - Style.hspan(1);
+            return root.width - Style.hspan(6/45);
         } else {
             return root.width - Style.hspan(5);
         }
@@ -58,11 +58,13 @@ Control {
         Label {
             id: progressLabel
             anchors.top: parent.top
-            anchors.topMargin: root.labelOnTop ? Style.vspan(0.5) : 0
+            anchors.topMargin: root.labelOnTop ? Style.vspan(0.6) : 0
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
-            font.pixelSize: Style.fontSizeS
+            font.pixelSize: 22 //Todo: Change to Style.fontSizeS when that value is corrected
+            font.weight: Font.Light
             text: root.progressText
+            opacity: 0.6
         }
 
         Slider {
@@ -70,6 +72,7 @@ Control {
             implicitWidth: root.progressBarWidth
             implicitHeight: Style.vspan(0.5)
             anchors.centerIn: parent
+            anchors.verticalCenterOffset: Style.vspan(-24/80)
             anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Style.hspan(2)
             value: root.value
 

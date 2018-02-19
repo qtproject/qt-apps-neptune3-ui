@@ -107,11 +107,12 @@ Control {
             width: visible ? Style.hspan(720/45) : 0
             height: visible ? Style.vspan(94/80) : 0
             //TODO check with Johan for animation here
-            Behavior on height { DefaultNumberAnimation {}}
+            //Behavior on height { DefaultNumberAnimation {}}
 
             Tool {
                 id: backButton
                 anchors.left: parent.left
+                anchors.leftMargin: Style.hspan(0.3)
                 anchors.verticalCenter: parent.verticalCenter
                 symbol: Style.symbol("ic_back")
                 onClicked: root.backClicked()
@@ -123,7 +124,10 @@ Control {
                 horizontalAlignment: Text.AlignHCenter
             }
             Tool {
+                width: Style.hspan(2.7)
+                height: Style.vspan(0.6)
                 anchors.right: parent.right
+                anchors.rightMargin: Style.hspan(0.3)
                 anchors.verticalCenter: parent.verticalCenter
                 // Check if contentType has unique id (so is > 5) when in albums view.
                 // This means that the albums of a specific artist are displayed

@@ -38,6 +38,8 @@ import "stores"
 
 import QtApplicationManager 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 QtObject {
     property var mainWindow: AppUIScreen {
         id: mainWindow
@@ -54,6 +56,27 @@ QtObject {
                 mainWindow.setWindowProperty("activationCount", count);
             }
         }
+
+        BorderImage {
+            id: topImage
+
+            x: mainWindow.exposedRect.x
+            y: mainWindow.exposedRect.y - 224
+            width: mainWindow.exposedRect.width
+            height: Math.max(sourceSize.height, musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y )
+
+            border.bottom: 0
+            border.top: sourceSize.height - 1
+            border.left: 0
+            border.right: 0
+
+            opacity: (mainWindow.tritonState === "Maximized") ? 1.0 : 0.0
+            Behavior on opacity { DefaultNumberAnimation {} }
+            visible: opacity > 0
+
+            source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+        }
+
 
         Music {
             id: musicAppContent

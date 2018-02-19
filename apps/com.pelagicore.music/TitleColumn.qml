@@ -45,19 +45,24 @@ ColumnLayout {
 
     Label {
         id: songTitle
-        Layout.preferredWidth: root.preferredWidth
+        Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
-        verticalAlignment: Text.AlignLeft
         font.pixelSize: Style.fontSizeM
+        font.weight: Font.Light
+        maximumLineCount: 2
+        elide: Text.ElideRight
     }
 
     Label {
         id: artistName
-        Layout.preferredWidth: root.preferredWidth
+        Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
-        verticalAlignment: Text.AlignLeft
         font.pixelSize: Style.fontSizeS
+        font.weight: Font.Light
         visible: text !== ""
+        opacity: 0.6
+        maximumLineCount: 1
+        elide: Text.ElideRight
     }
 }
 

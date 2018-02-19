@@ -36,43 +36,53 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
 
-Item {
+Row {
     id: root
 
-    width: Style.hspan(5)
+    width: 3 * buttonWidth
     height: Style.vspan(3)
 
     property bool play: false
-    property int spacing: Style.hspan(3)
+    property real spacing: 0    //not used
+    property real buttonWidth: Style.hspan(100/45)
     signal previousClicked()
     signal playClicked()
     signal nextClicked()
 
     Tool {
-        anchors.centerIn: parent
-        background:  Image {
-            source: Style.symbol("ic_button-bg")
-        }
-        symbol: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
-        onClicked: root.playClicked()
+        width: root.buttonWidth
+        height: parent.height
+        symbol: Style.symbol("ic_skipprevious")
+        onClicked: root.previousClicked()
     }
 
-    RowLayout {
-        anchors.centerIn: parent
-        spacing: root.spacing
-        Tool {
-            anchors.verticalCenter: parent.verticalCenter
-            symbol: Style.symbol("ic_skipprevious")
-            onClicked: root.previousClicked()
-        }
+    AbstractButton {
+        width: root.buttonWidth
+        height: parent.height
 
-        Tool {
-            anchors.verticalCenter: parent.verticalCenter
-            symbol: Style.symbol("ic_skipnext")
-            onClicked: root.nextClicked()
+        onClicked: root.playClicked()
+
+        contentItem: Item {
+            anchors.fill: parent
+
+            Image {
+                anchors.centerIn: parent
+                source: Style.symbol("ic_button-bg")
+                fillMode: Image.Pad
+            }
+
+            Image {
+                anchors.centerIn: parent
+                source: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
+                fillMode: Image.Pad
+            }
         }
+    }
+
+    Tool {
+        width: root.buttonWidth
+        height: parent.height
+        symbol: Style.symbol("ic_skipnext")
+        onClicked: root.nextClicked()
     }
 }
-
-
-

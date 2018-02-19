@@ -35,27 +35,27 @@ import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
-RowLayout {
+Row {
     id: root
-    spacing: 50
 
-    signal favoriteClicked()
+    width: 2 * buttonWidth
+    height: Style.vspan(0.9)
+
+    property real buttonWidth: Style.hspan(100/45)
     signal shuffleClicked()
     signal repeatClicked()
 
     Tool {
-        symbol: Style.symbol("ic-favorite")
-        onClicked: root.favoriteClicked()
-    }
-
-    Tool {
+        width: root.buttonWidth
+        height: parent.height
         symbol: Style.symbol("ic-shuffle")
         onClicked: root.shuffleClicked()
     }
 
     Tool {
+        width: root.buttonWidth
+        height: parent.height
         symbol: Style.symbol("ic-repeat")
         onClicked: root.repeatClicked()
     }
 }
-

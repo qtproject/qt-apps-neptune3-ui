@@ -64,7 +64,7 @@ Control {
             id: delegatedItem
             ListItem {
                 id: delegatedSong
-                width: Style.hspan(17)
+                width: listView.width
                 height: Style.vspan(1.3)
                 highlighted: false
                 text: {
@@ -92,7 +92,10 @@ Control {
             implicitWidth: Style.hspan(17)
             implicitHeight: root.height
             anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: Style.hspan(40/45)
+            anchors.rightMargin: Style.hspan(40/45)
             boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
             delegate: delegatedItem
         }

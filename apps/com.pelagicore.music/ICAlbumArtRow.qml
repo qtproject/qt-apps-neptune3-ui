@@ -65,32 +65,40 @@ Item {
 
         Item {
             id: itemDelegated
-            height: 180
+            height: 320
             width: height
+            layer.enabled: true
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
 
             property alias albumArtSource: albumArt.source
 
             Image {
-                id: albumArtUndefined
-                anchors.fill: parent
-                visible: opacity > 0
-                opacity: !(mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
-                Behavior on opacity {DefaultNumberAnimation {}}
-                source: Style.gfx2("album-art-placeholder")
-                fillMode: Image.PreserveAspectFit
+                id: albumArtShadow
+                anchors.centerIn: parent
+                source: Style.gfx2("album-art-shadow")
+                fillMode: Image.Pad
             }
+
+            Image {
+                id: albumArtUndefined
+                anchors.centerIn: parent
+                width: Style.hspan(180/45)
+                height: width
+                source: Style.gfx2("album-art-placeholder")
+                fillMode: Image.PreserveAspectCrop
+            }
+
             Image {
                 id: albumArt
-                anchors.fill: parent
-                visible: opacity > 0
-                opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
-                Behavior on opacity {DefaultNumberAnimation {}}
+                anchors.centerIn: parent
+                width: 180
+                height: width
                 source: model.item.coverArtUrl
-                fillMode: Image.PreserveAspectFit
+                fillMode: Image.PreserveAspectCrop
             }
         }
     }
+
 
     Item {
         id: pathView
@@ -102,18 +110,19 @@ Item {
         PathView {
             id: coverslide
 
-            anchors.fill: parent
             anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
             snapMode: PathView.SnapOneItem
             highlightRangeMode: PathView.StrictlyEnforceRange
-            highlightMoveDuration: 400
-            clip: true
+            highlightMoveDuration: 200
             model: 3
             delegate: albumArtDelegate
             pathItemCount: 3
             interactive: false
+            cacheItemCount: 10
 
             onCurrentIndexChanged: {
                 if (currentItem) {
@@ -127,13 +136,10 @@ Item {
                 startX: 0; startY: coverslide.height/2
 
                 PathAttribute { name: "iconOpacity"; value: 0.02 }
-
                 PathLine { x: coverslide.width/2; y: coverslide.height/2 }
                 PathAttribute { name: "iconOpacity"; value: 1 }
-
                 PathLine { x: coverslide.width; y: coverslide.height/2 }
                 PathAttribute { name: "iconOpacity"; value: 0.02 }
-
             }
         }
     }
@@ -141,18 +147,22 @@ Item {
     MusicProgress {
         id: musicProgress
         width: root.width
-        height: Style.vspan(3)
+        height: 220
         anchors.top: pathView.bottom
+        anchors.leftMargin: 40
+        anchors.rightMargin: 40
         value: root.musicPosition
         onUpdatePosition: root.updatePosition(value)
+        progressBarLabelLeftMargin: 3
     }
 
     TitleColumn {
         id: titleColumn
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.6)
+        anchors.leftMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 0
         anchors.top: musicProgress.bottom
-        anchors.topMargin: -Style.vspan(0.5)
-        preferredWidth: Style.vspan(6)
+        anchors.topMargin: -80
     }
 }

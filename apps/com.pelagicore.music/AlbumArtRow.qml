@@ -30,9 +30,12 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import utils 1.0
 import animations 1.0
+
+import com.pelagicore.styles.triton 1.0
 
 Item {
     id: root
@@ -65,29 +68,44 @@ Item {
 
         Item {
             id: itemDelegated
-            height: Style.vspan(2.6)
+            height: Style.vspan(4)
             width: height
+
+            layer.enabled: true
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
 
             property alias albumArtSource: albumArt.source
 
             Image {
-                id: albumArtUndefined
-                anchors.fill: parent
-                visible: opacity > 0
-                opacity: !(mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
-                Behavior on opacity {DefaultNumberAnimation {}}
-                source: Style.gfx2("album-art-placeholder")
-                fillMode: Image.PreserveAspectFit
+                id: albumArtShadow
+                anchors.centerIn: parent
+                source: Style.gfx2("album-art-shadow")
+                fillMode: Image.Pad
             }
+
             Image {
-                id: albumArt
-                anchors.fill: parent
+                id: albumArtUndefined
                 visible: opacity > 0
                 opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
                 Behavior on opacity {DefaultNumberAnimation {}}
+                anchors.centerIn: parent
+                width: Style.hspan(180/45)
+                height: width
+                source: Style.gfx2("album-art-placeholder")
+
+                fillMode: Image.PreserveAspectCrop
+            }
+            Image {
+                id: albumArt
+                visible: opacity > 0
+                opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
+                Behavior on opacity {DefaultNumberAnimation {}}
+                anchors.centerIn: parent
+                width: Style.hspan(180/45)
+                height: width
                 source: model.item.coverArtUrl
-                fillMode: Image.PreserveAspectFit
+
+                fillMode: Image.PreserveAspectCrop
             }
         }
     }
@@ -98,8 +116,8 @@ Item {
 
         PathView {
             id: coverslide
-            width: parent.height
-            height: width
+            width: height
+            height: parent.height
             anchors.left: parent.left
             anchors.leftMargin: parentStateMaximized ? 100 : 40
             Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
@@ -107,11 +125,12 @@ Item {
             preferredHighlightEnd: 0.5
             snapMode: PathView.SnapOneItem
             highlightRangeMode: PathView.StrictlyEnforceRange
-            highlightMoveDuration: 400
-            clip: true
+            highlightMoveDuration: 200
             model: 0
             delegate: albumArtDelegate
-            pathItemCount: 1
+            pathItemCount: 3
+            cacheItemCount:10
+
             interactive: false
 
             onCurrentIndexChanged: {
@@ -123,25 +142,42 @@ Item {
             }
 
             path: Path {
-                startX: 0; startY: coverslide.height/2
+                startX: -coverSlide.width-8; startY: coverslide.height/2
+                PathAttribute { name: "iconOpacity"; value: 0.0 }
+                PathLine { x: -coverSlide.width/4-4; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 0.0 }
+                PathLine { x: coverSlide.width/2; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 1.0 }
+                PathLine { x: coverslide.width*5/4+4; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 0.0 }
+                PathLine { x: coverslide.width*2+8; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 0.0 }
 
-                PathAttribute { name: "iconOpacity"; value: 0.02 }
+            }
+        }
 
-                PathLine { x: coverslide.width/2; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 1 }
+        Item {
+            id: searchingMedia
+            opacity: coverslide.model.count > 0 ? 0.0 : 1.0
+            Behavior on opacity { DefaultNumberAnimation {} }
+            visible: opacity > 0
+            anchors.centerIn: coverslide
 
-                PathLine { x: coverslide.width; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 0.02 }
-
+            BusyIndicator {
+                anchors.centerIn: parent
+                width: 60
+                height: 60
             }
         }
 
         TitleColumn {
             id: titleColumn
             anchors.left: coverslide.right
-            anchors.leftMargin: 60
+            anchors.leftMargin: Style.hspan(100/45)
+            anchors.right: controlsRow.left
+            anchors.rightMargin: Style.hspan(20/45)
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: -30
+            anchors.verticalCenterOffset: Style.vspan(-4/80)
             preferredWidth: Style.vspan(6)
         }
 
@@ -149,8 +185,9 @@ Item {
             id: controlsRow
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: 40
-            spacing: Style.hspan(3)
+            anchors.rightMargin: parentStateMaximized ? Style.hspan(100/45) : Style.hspan(28/45)
+            Behavior on anchors.rightMargin { DefaultNumberAnimation { } }
+            //spacing: Style.hspan(3)
             play: root.musicPlaying
             onPreviousClicked: {
                 root.previousClicked();

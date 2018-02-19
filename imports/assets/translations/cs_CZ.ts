@@ -194,7 +194,7 @@ UX na cestu</translation>
     <name>ClusterMusic</name>
     <message>
         <source>Track unavailable</source>
-        <translation>Skladba nedostupná</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -548,10 +548,6 @@ UX na cestu</translation>
     <message>
         <source>folders</source>
         <translation type="obsolete">složky</translation>
-    </message>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="vanished">Skladba nedostupná</translation>
     </message>
     <message>
         <source>Next</source>
