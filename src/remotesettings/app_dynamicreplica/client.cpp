@@ -43,9 +43,9 @@ Client::Client(QObject *parent) : QObject(parent),
     m_settings("Pelagicore", "TritonControlApp")
 {
     setStatus(tr("Not connected"));
-    connect(&m_UISettings, &UISettingsDynamic::connectedChanged,
+    connect(&m_UISettings, &AbstractDynamic::connectedChanged,
             this, &Client::onReplicaConnectionChanged);
-    connect(&m_instrumentCluster, &UISettingsDynamic::connectedChanged,
+    connect(&m_instrumentCluster, &AbstractDynamic::connectedChanged,
             this, &Client::onReplicaConnectionChanged);
     connect(&m_systemUI, &AbstractDynamic::connectedChanged,
             this, &Client::onReplicaConnectionChanged);
