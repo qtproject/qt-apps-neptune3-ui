@@ -46,6 +46,7 @@ Item {
     property alias model: visualModel.model
     property alias gridCellWidth: grid.cellWidth
     readonly property int numIconsPerRow: 4
+    property var exclusiveButtonGroup
 
     property bool showDevApps: false
     property bool gridOpen: false
@@ -55,8 +56,6 @@ Item {
         }
     }
 
-    signal buttonCreated(var button)
-    signal buttonRemoved(var button)
     signal appButtonClicked(var applicationId)
 
     DelegateModel {
@@ -88,6 +87,8 @@ Item {
                 id: appButton
                 width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.8)
                 height: root.gridOpen ? width : Style.vspan(1.5)
+
+                ButtonGroup.group: root.exclusiveButtonGroup
 
                 Behavior on height { DefaultNumberAnimation { } }
 
@@ -132,9 +133,6 @@ Item {
                         }
                     }
                 ]
-
-                Component.onCompleted: root.buttonCreated(appButton)
-                Component.onDestruction: root.buttonRemoved(appButton)
             }
 
             DropArea {

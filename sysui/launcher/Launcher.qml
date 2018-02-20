@@ -53,7 +53,11 @@ Item {
 
     ButtonGroup {
         id: buttonGroup
-        buttons: [homeButton]
+    }
+
+    Connections {
+        target: root.applicationModel
+        onActiveAppInfoChanged: homeButton.checked = !root.applicationModel.activeAppInfo.active
     }
 
     Tool {
@@ -69,18 +73,16 @@ Item {
 
         symbol: Style.symbol("ic-menu-home")
 
+        ButtonGroup.group: buttonGroup
+        checkable: true
         checked: true
-        onClicked: {
-            gridButton.checked = false;
-            root.applicationModel.goHome();
-        }
+        onClicked: root.applicationModel.goHome();
 
-        Image {
-            width: parent.width
+        background: Image {
+            width: homeButton.width
             height: width
-            anchors.centerIn: parent
             fillMode: Image.PreserveAspectFit
-            visible: homeButton.checked && root.applicationModel.activeAppInfo && !root.applicationModel.activeAppInfo.active
+            visible: homeButton.checked
             source: Style.symbol("ic-app-active-bg")
         }
     }
@@ -103,13 +105,8 @@ Item {
             gridOpen: root.open
             model: root.applicationModel
             showDevApps: root.showDevApps
-
-            onButtonCreated: buttonGroup.addButton(button)
-            onButtonRemoved: buttonGroup.removeButton(button)
-            onAppButtonClicked: {
-                homeButton.checked = false;
-                gridButton.checked = false;
-            }
+            exclusiveButtonGroup: buttonGroup
+            onAppButtonClicked: gridButton.checked = false
         }
 
         Tool {
