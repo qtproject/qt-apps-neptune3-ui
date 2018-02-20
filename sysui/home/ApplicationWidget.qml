@@ -178,7 +178,7 @@ Item {
     BusyIndicator {
         id: busyIndicator
         running: true
-        anchors.fill: parent
+        anchors.centerIn: parent
     }
 
     StateGroup {
