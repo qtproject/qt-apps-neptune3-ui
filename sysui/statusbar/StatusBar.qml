@@ -53,16 +53,6 @@ Pane {
         anchors.top: parent.top
     }
 
-    // TODO: Update with the real Notification implementation when spec is available.
-    Rectangle {
-        id: notificationCenterHandlePlaceHolder
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(5)
-        height: Style.vspan(0.04)
-        color: "#3a3a3a"
-    }
-
     RowLayout {
         spacing: Style.paddingXL * 2
         Layout.maximumWidth: Style.hspan(12)
