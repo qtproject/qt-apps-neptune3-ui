@@ -44,7 +44,6 @@ Item {
     id: root
 
     property bool ongoingCall
-
     signal activateApp()
 
     function startCall(handle) {
@@ -140,11 +139,6 @@ Item {
 
         width: Style.hspan(1080/45)
         anchors.left: parent.left
-        // ############### Johan's comment:
-        // I think it looks better if it does not move horizontally. That's why I added -80 and the Behaviour on...
-        // It keeps the width of lists etc.
-        // Would prefer to get this value passed down to every app, like we did it with exposedRect.
-        // ###############
         anchors.leftMargin: root.state === "Maximized" ? 0 : -80
         Behavior on anchors.leftMargin { DefaultSmoothedAnimation {} }
         anchors.top: parent.top
@@ -156,10 +150,6 @@ Item {
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
 
-        // ############### Johan's comment:
-        // In the future I would like to see the toolBar code in AppUIScreen.qml
-        // and just assigning a model to each app
-        // ###############
         Item {
             id: toolsColumn
             property alias currentText: toolsColumnComponent.currentText
@@ -186,18 +176,12 @@ Item {
             }
         }
 
-        // ############### Johan's comment:
-        // In the future I would like the "main content of bottom part of fullscreen app"
-        // to be loaded by a loader in AppUIScreen.qml.
-        // ###############
         Loader {
             id: viewLoader
             anchors.left: toolsColumn.right
-            anchors.right: parent.right
             anchors.top: parent.top
             anchors.topMargin: Style.vspan(53/80)
             anchors.bottom: parent.bottom
-
             width: Style.hspan(720/45)
 
             Binding {

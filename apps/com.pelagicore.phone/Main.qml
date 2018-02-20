@@ -51,17 +51,24 @@ AppUIScreen {
         }
     }
 
-    Image {
+    BorderImage {
         id: fullscreenTopPartBackground
-        x: root.exposedRect.x
-        y: 0
-        width: root.exposedRect.width
-        height: 660 - 224 + exposedRect.y
-        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
 
-        opacity: root.tritonState === "Maximized" ? 1.0 : 0.0
-        visible: opacity > 0
+        x: root.exposedRect.x
+        y: root.exposedRect.y - 224
+        width: root.exposedRect.width
+        height: Math.max(sourceSize.height, ((660 - 224) + root.exposedRect.y))
+
+        border.bottom: 0
+        border.top: sourceSize.height - 1
+        border.left: 0
+        border.right: 0
+
+        opacity: (root.tritonState === "Maximized") ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
+        visible: opacity > 0
+
+        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
     }
 
     Phone {

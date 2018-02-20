@@ -678,32 +678,32 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="179"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="169"/>
         <source>recents</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="180"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
         <source>favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="181"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
         <source>voicemail</source>
         <translation>语音邮件</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="182"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
         <source>keypad</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="183"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
         <source>contacts</source>
         <translation>联系人</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="184"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
         <source>messages</source>
         <translation>短信</translation>
     </message>

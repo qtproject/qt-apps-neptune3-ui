@@ -38,23 +38,26 @@ import animations 1.0
 
 import com.pelagicore.styles.triton 1.0
 
-Rectangle {
+Item {
     id: root
-    width: Style.hspan(4)
-    height: Style.vspan(1.8)
-    radius: 50
-
-    // FIXME Use named colors from TritonStyle
-    color: TritonStyle.theme === TritonStyle.Light ? "#ded9d7" : "#545a5f"
-
-    opacity: enabled ? 1 : .4
-    Behavior on opacity { DefaultNumberAnimation { } }
+    width: 160
+    height: Style.vspan(100/80)
 
     property alias primaryText: primaryLabel.text
     property alias secondaryText: secondaryLabel.text
     property alias iconSource: img.source
+    property alias backgroundColor: background.color
+    property alias backgroundOpacity: background.opacity
 
     signal clicked()
+
+    Rectangle {
+        id: background
+        anchors.fill: parent
+        radius: height/2
+        color: TritonStyle.contrastColor
+        opacity: 0.06
+    }
 
     MouseArea {
         id: mouseArea

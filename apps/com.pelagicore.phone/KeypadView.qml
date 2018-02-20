@@ -46,13 +46,33 @@ Item {
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
 
+    Rectangle {
+        id: cursor
+        visible: textedit.text !== ""
+        anchors.right: textedit.right
+        anchors.rightMargin: Style.hspan(0.4)
+        anchors.verticalCenter: textedit.verticalCenter
+        width: 2
+        height: 60
+        color: TritonStyle.contrastColor
+        opacity: 0
+        SequentialAnimation {
+            running: true
+            loops: Animation.Infinite
+            NumberAnimation { target: cursor; property: "opacity"; to: 0.2; duration: 500 }
+            NumberAnimation { target: cursor; property: "opacity"; to: 0; duration: 500 }
+        }
+    }
+
     // TODO: Use a TextField instead so that it follows TritonStyle automatically
     TextEdit {
         id: textedit
         anchors.left: gridlayout.left
         anchors.right: gridlayout.right
         anchors.top: parent.top
-
+        anchors.topMargin: Style.vspan(0.5)
+        leftPadding: Style.hspan(0.5)
+        rightPadding: Style.hspan(0.5)
         readOnly: true
         color: TritonStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
@@ -60,13 +80,11 @@ Item {
         font.weight: Font.Light
         wrapMode: TextEdit.Wrap
         horizontalAlignment: TextEdit.AlignRight
-
         Keys.onEscapePressed: clear()
     }
 
     Tool {
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(.5)
         anchors.verticalCenter: textedit.verticalCenter
         width: Style.hspan(2)
         symbol: Style.symbol("ic-erase")
@@ -78,15 +96,15 @@ Item {
 
     GridLayout {
         id: gridlayout
+
+        width: 500
+        height: 540
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textedit.bottom
-        anchors.topMargin: Style.vspan(.5)
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(.5)
-
+        anchors.topMargin: Style.vspan(1)
         columns: 3
-        columnSpacing: Style.hspan(.2)
-        rowSpacing: Style.vspan(.2)
+        columnSpacing: 10
+        rowSpacing: 10
         KeypadButton {
             primaryText: "1"
             secondaryText: " " // to keep the "1" above
@@ -149,7 +167,8 @@ Item {
             Layout.row: 4
             Layout.column: 1
             enabled: textedit.text
-            color: "#68C97D" // app specific color
+            backgroundColor: "#68C97D" // app specific color
+            backgroundOpacity: 1.0
             iconSource: Style.symbol("ic-call")
         }
     }
