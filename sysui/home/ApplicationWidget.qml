@@ -198,11 +198,8 @@ Item {
     // Drag handle
     MouseArea {
         id: dragHandle
-        anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.fill: widgetStripe
         anchors.margins: -Style.hspan(0.2)
-        width: Style.hspan(1.6)
-        height: width
         visible: root.buttonsVisible
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
@@ -210,26 +207,24 @@ Item {
         onReleased: root.dragEnded()
 
         Image {
-            anchors.fill: parent
             anchors.centerIn: parent
-            source: Style.symbol("ic-widget-draghandle")
+            source: Style.symbol("ic-widget-move")
             fillMode: Image.Pad
         }
     }
 
     // Close button
     MouseArea {
+        anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.margins: -Style.hspan(0.2)
-        width: Style.hspan(1.6)
+
+        width: widgetStripe.width + Style.hspan(.4)
         height: width
         visible: root.buttonsVisible
 
         onClicked: root.closeClicked()
 
         Image {
-            anchors.fill: parent
             anchors.centerIn: parent
             source: Style.symbol("ic-widget-close")
             fillMode: Image.Pad
