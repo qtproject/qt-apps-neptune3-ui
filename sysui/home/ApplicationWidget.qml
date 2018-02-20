@@ -45,6 +45,7 @@ Item {
     signal dragEnded()
     signal closeClicked()
 
+    property bool beingDragged: false
     property bool clipWindow: true
     property bool buttonsVisible: true
     readonly property bool active: appInfo ? appInfo.active : false
@@ -53,15 +54,31 @@ Item {
     property int widgetHeight
 
     BorderImage {
+        // extra shadow when being dragged
         anchors.fill: parent
-        anchors.leftMargin: -30
-        anchors.rightMargin: -30
-        anchors.topMargin: -30
-        anchors.bottomMargin: -30
-        border { left: 60; right: 60; top: 60; bottom: 60 }
+        anchors.leftMargin: -59
+        anchors.rightMargin: -59
+        anchors.topMargin: -59
+        anchors.bottomMargin: -59
+        border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx2("widget-bg", TritonStyle.theme)
+        source: Style.gfx2("widget-bg-2-dark")
+        opacity: root.active ? 0 : root.beingDragged ? 0.3 : 0
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation{} }
+    }
+
+    BorderImage {
+        anchors.fill: parent
+        anchors.leftMargin: -59
+        anchors.rightMargin: -59
+        anchors.topMargin: -59
+        anchors.bottomMargin: -59
+        border { left: 160; right: 160; top: 160; bottom: 160 }
+        horizontalTileMode: BorderImage.Stretch
+        verticalTileMode: BorderImage.Stretch
+        source: Style.gfx2("widget-bg-2", TritonStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }

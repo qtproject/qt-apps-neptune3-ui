@@ -425,8 +425,6 @@ Item {
 
                         appInfo: model.appInfo
 
-                        property bool beingDragged: false
-
                         // in root coords
                         property real dragStartPosY
                         property real dragStartTouchPosY
