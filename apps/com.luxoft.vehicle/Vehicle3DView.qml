@@ -53,7 +53,7 @@ Item {
         //ToDo: Replace later with an actual splash screen
         BusyIndicator {
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -20
+            anchors.verticalCenterOffset: 80
             running: !body.loaded
         }
     }
