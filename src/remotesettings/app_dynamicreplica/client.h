@@ -55,6 +55,7 @@ class Client : public QObject
     static const QString settingsLastUrlsItem;
     static const int numOfUrlsStored;
     static const int timeoutToleranceMS;
+    static const int reconnectionIntervalMS;
 
 public:
     static const QString defaultUrl;
@@ -82,6 +83,7 @@ protected slots:
     void updateConnectionStatus();
     void onCMCounterChanged();
     void onCMTimeout();
+    void onReconnectionTimeout();
 
 private:
     void setStatus(const QString &status);
@@ -103,6 +105,7 @@ private:
     ConnectionMonitoringDynamic m_connectionMonitoring;
 
     QTimer m_connectionMonitoringTimer;
+    QTimer m_reconnectionTimer;
 };
 
 #endif // CLIENT_H

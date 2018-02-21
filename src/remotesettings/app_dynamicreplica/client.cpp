@@ -37,6 +37,7 @@ const QString Client::settingsLastUrlsPrefix = "lastUrls";
 const QString Client::settingsLastUrlsItem = "url";
 const int Client::numOfUrlsStored = 5;
 const int Client::timeoutToleranceMS = 1000;
+const int Client::reconnectionIntervalMS = 3000;
 const QString Client::defaultUrl = "tcp://127.0.0.1:9999";
 
 Client::Client(QObject *parent) : QObject(parent),
@@ -57,8 +58,10 @@ Client::Client(QObject *parent) : QObject(parent),
     connect(&m_connectionMonitoringTimer,&QTimer::timeout, this, &Client::onCMTimeout);
     connect(&m_connectionMonitoring, &ConnectionMonitoringDynamic::counterChanged,
             this, &Client::onCMCounterChanged);
+    connect(&m_reconnectionTimer, &QTimer::timeout, this, &Client::onReconnectionTimeout);
     readSettings();
     m_connectionMonitoringTimer.setSingleShot(true);
+    m_reconnectionTimer.setSingleShot(false);
 }
 
 Client::~Client()
@@ -132,6 +135,7 @@ void Client::connectToServer(const QString &serverUrl)
     if (m_serverUrl!=url) {
         m_serverUrl=url;
         emit serverUrlChanged(m_serverUrl);
+        m_reconnectionTimer.stop();
     }
 }
 
@@ -147,10 +151,16 @@ void Client::updateConnectionStatus()
         return;
     m_connected = c;
     emit connectedChanged(m_connected);
-    if (m_connected)
+    if (m_connected) {
         setStatus(tr("Connected to %1").arg(serverUrl().toString()));
-    else
+        m_reconnectionTimer.stop();
+    } else {
         setStatus(tr("Disconnected"));
+        if (m_timedOut) {
+            qCWarning(remoteSettingsDynamicApp) << "Server heartbeat timed out.";
+            m_reconnectionTimer.start(reconnectionIntervalMS);
+        }
+    }
 }
 
 void Client::onCMCounterChanged()
@@ -165,9 +175,13 @@ void Client::onCMCounterChanged()
 
 void Client::onCMTimeout()
 {
-    qCWarning(remoteSettingsDynamicApp) << "Server heartbeat timed out.";
     m_timedOut = true;
     updateConnectionStatus();
+}
+
+void Client::onReconnectionTimeout()
+{
+    connectToServer(serverUrl().toString());
 }
 
 void Client::setStatus(const QString &status)
