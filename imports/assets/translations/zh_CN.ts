@@ -452,16 +452,16 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished">下一首</translation>
     </message>
     <message>
-        <source>Browse</source>
-        <translation type="unfinished">浏览</translation>
-    </message>
-    <message>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">浏览</translation>
     </message>
 </context>
 <context>

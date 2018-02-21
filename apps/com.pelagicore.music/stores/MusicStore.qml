@@ -41,6 +41,7 @@ Store {
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
     property alias contentType: searchBrowseModel.contentType
+    property real indexerProgress: 0.0
 
     property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
         id: searchBrowseModel
@@ -66,6 +67,7 @@ Store {
                 root.searchAndBrowseModel.contentType = "album";
                 player.playQueue.insert(0, searchAndBrowseModel.get(0));
             }
+            root.indexerProgress = progress;
         }
     }
 

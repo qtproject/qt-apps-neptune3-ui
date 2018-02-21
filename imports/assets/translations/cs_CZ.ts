@@ -554,16 +554,16 @@ UX na cestu</translation>
         <translation type="unfinished">Další</translation>
     </message>
     <message>
-        <source>Browse</source>
-        <translation type="unfinished">Procházet</translation>
-    </message>
-    <message>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">Procházet</translation>
     </message>
 </context>
 <context>

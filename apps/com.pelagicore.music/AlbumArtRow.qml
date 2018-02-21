@@ -50,6 +50,7 @@ Item {
     property alias currentSongTitle: titleColumn.currentSongTitle
     property alias currentArtisName: titleColumn.currentArtisName
     property bool parentStateMaximized: false
+    property real mediaIndexerProgress: 0.0
 
     signal previousClicked()
     signal nextClicked()
@@ -95,6 +96,8 @@ Item {
 
                 fillMode: Image.PreserveAspectCrop
             }
+
+
             Image {
                 id: albumArt
                 visible: opacity > 0
@@ -103,7 +106,7 @@ Item {
                 anchors.centerIn: parent
                 width: Style.hspan(180/45)
                 height: width
-                source: model.item.coverArtUrl
+                source: model.item.coverArtUrl !== undefined ? model.item.coverArtUrl : ""
 
                 fillMode: Image.PreserveAspectCrop
             }
@@ -128,7 +131,7 @@ Item {
             highlightMoveDuration: 200
             model: 0
             delegate: albumArtDelegate
-            pathItemCount: 3
+            pathItemCount: 1
             cacheItemCount:10
 
             interactive: false
@@ -158,7 +161,9 @@ Item {
 
         Item {
             id: searchingMedia
-            opacity: coverslide.model.count > 0 ? 0.0 : 1.0
+            width: Style.hspan(180/45)
+            height: width
+            opacity: root.mediaIndexerProgress < 0.2 ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
             anchors.centerIn: coverslide
@@ -187,7 +192,6 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: parentStateMaximized ? Style.hspan(100/45) : Style.hspan(28/45)
             Behavior on anchors.rightMargin { DefaultNumberAnimation { } }
-            //spacing: Style.hspan(3)
             play: root.musicPlaying
             onPreviousClicked: {
                 root.previousClicked();
