@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import animations 1.0
 import utils 1.0
+import controls 1.0
 
 import com.pelagicore.styles.triton 1.0
 
@@ -228,6 +229,25 @@ Item {
             anchors.centerIn: parent
             source: Style.symbol("ic-widget-close")
             fillMode: Image.Pad
+        }
+    }
+
+    // Maximize button
+    Image {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        source: Style.gfx2("widget-corner", TritonStyle.theme)
+        opacity: root.active ? 0 : 1
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+
+        Tool {
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(.2)
+            anchors.top: parent.top
+            anchors.topMargin: Style.vspan(.1)
+            symbol: Style.symbol("ic-expand-to-fullscreen")
+            onClicked: root.appInfo.start()
         }
     }
 }
