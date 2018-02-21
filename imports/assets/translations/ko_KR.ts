@@ -323,14 +323,14 @@ UX to the road</source>
 <context>
     <name>FrontDoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="64"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="78"/>
         <source>Close</source>
         <translation>닫힘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="67"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="80"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="64"/>
+        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="78"/>
         <source>Open</source>
         <translation>열림</translation>
     </message>
@@ -909,43 +909,43 @@ UX to the road</source>
 <context>
     <name>TiresPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="59"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="87"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="58"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="86"/>
         <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="114"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="142"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="141"/>
         <source>240</source>
         <translation>240</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="66"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="93"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="121"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="152"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="64"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="92"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="120"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="148"/>
         <source>kPa</source>
         <translation>kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="170"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="166"/>
         <source>Normal load</source>
         <translation>보통 하중</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="177"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="173"/>
         <source>Target: 240 kPa</source>
         <translation>목표 : 240 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="193"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="189"/>
         <source>Max load</source>
         <translation>최대 하중</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="201"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="197"/>
         <source>Target: 270 kPa</source>
         <translation>목표 : 270 kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="216"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="212"/>
         <source>Calibrate</source>
         <translation>보정</translation>
     </message>
@@ -980,12 +980,12 @@ UX to the road</source>
 <context>
     <name>TrunkPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="77"/>
         <source>Close</source>
         <translation>닫힘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="62"/>
+        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="77"/>
         <source>Open</source>
         <translation>열림</translation>
     </message>

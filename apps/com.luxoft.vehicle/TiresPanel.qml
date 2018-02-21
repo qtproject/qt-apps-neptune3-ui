@@ -39,25 +39,23 @@ Item {
 
     Image {
         anchors.top: parent.top
-        anchors.topMargin: 44
         anchors.left: parent.left
-        anchors.leftMargin: 100
 
         source: "assets/images/car-tires.png"
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 80
+            anchors.topMargin: 120
             anchors.left: parent.left
-            anchors.leftMargin: 26
+            anchors.leftMargin: 110
             source: "assets/images/tire.png"
 
             Label {
                 anchors.right: parent.left
                 anchors.rightMargin: 26
                 anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("240")
 
+                text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
@@ -75,9 +73,65 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 80
+            anchors.topMargin: 120
             anchors.right: parent.right
-            anchors.rightMargin: 26
+            anchors.rightMargin: 146
+            source: "assets/images/tire.png"
+
+            Label {
+                anchors.left: parent.right
+                anchors.leftMargin: 26
+                anchors.verticalCenter: parent.verticalCenter
+
+                text: qsTr("240")
+                Label {
+                    anchors.top: parent.bottom
+                    anchors.topMargin: -6
+                    anchors.right: parent.right
+
+                    text: qsTr("kPa")
+                    font {
+                        pixelSize: TritonStyle.fontSizeXS
+                        weight: Font.Light
+                    }
+                    opacity: TritonStyle.fontOpacityLow
+                }
+            }
+        }
+
+        Image {
+            anchors.top: parent.top
+            anchors.topMargin: 480
+            anchors.left: parent.left
+            anchors.leftMargin: 110
+            source: "assets/images/tire.png"
+
+            Label {
+                anchors.right: parent.left
+                anchors.rightMargin: 26
+                anchors.verticalCenter: parent.verticalCenter
+
+                text: qsTr("240")
+                Label {
+                    anchors.top: parent.bottom
+                    anchors.topMargin: -6
+                    anchors.right: parent.right
+
+                    text: qsTr("kPa")
+                    font {
+                        pixelSize: TritonStyle.fontSizeXS
+                        weight: Font.Light
+                    }
+                    opacity: TritonStyle.fontOpacityLow
+                }
+            }
+        }
+
+        Image {
+            anchors.top: parent.top
+            anchors.topMargin: 480
+            anchors.right: parent.right
+            anchors.rightMargin: 146
             source: "assets/images/tire.png"
 
             Label {
@@ -90,65 +144,7 @@ Item {
                     anchors.top: parent.bottom
                     anchors.topMargin: -6
                     anchors.right: parent.right
-                    text: qsTr("kPa")
-                    font {
-                        pixelSize: TritonStyle.fontSizeXS
-                        weight: Font.Light
-                    }
-                    opacity: TritonStyle.fontOpacityLow
-                }
-            }
-        }
 
-        Image {
-            anchors.top: parent.top
-            anchors.topMargin: 350
-            anchors.left: parent.left
-            anchors.leftMargin: 26
-            source: "assets/images/tire.png"
-
-            Label {
-                anchors.right: parent.left
-                anchors.rightMargin: 26
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("240")
-
-                Label {
-                    anchors.top: parent.bottom
-                    anchors.topMargin: -6
-                    anchors.right: parent.right
-
-                    text: qsTr("kPa")
-                    font {
-                        pixelSize: TritonStyle.fontSizeXS
-                        weight: Font.Light
-                    }
-                    opacity: TritonStyle.fontOpacityLow
-                }
-            }
-        }
-
-        Image {
-            anchors.top: parent.top
-            anchors.topMargin: 350
-            anchors.right: parent.right
-            anchors.rightMargin: 26
-            source: "assets/images/tire.png"
-
-            Label {
-                anchors.left: parent.right
-                anchors.leftMargin: 26
-                anchors.verticalCenter: parent.verticalCenter
-                text: qsTr("240")
-                font {
-                    pixelSize: 32
-                    family: "Open Sans"
-                }
-
-                Label {
-                    anchors.top: parent.bottom
-                    anchors.topMargin: -6
-                    anchors.right: parent.right
                     text: qsTr("kPa")
                     font {
                         pixelSize: TritonStyle.fontSizeXS

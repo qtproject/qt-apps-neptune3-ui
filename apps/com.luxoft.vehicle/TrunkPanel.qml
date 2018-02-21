@@ -30,38 +30,52 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import QtGraphicalEffects 1.0
+
+import animations 1.0
 
 Item {
     id: root
 
-    property bool trunkOpen: false
+    property alias trunkOpen: vehicleTopView.trunkOpen
+    property alias leftDoorOpen: vehicleTopView.leftDoorOpen
+    property alias rightDoorOpen: vehicleTopView.rightDoorOpen
 
-    Image {
-        id: trunkImage
+    Rectangle {
+        id: carImageMask
 
-        source: "assets/images/car-top-back.png"
+        anchors.fill: vehicleTopView
+        gradient: Gradient {
+            GradientStop { position: 0.22; color: "#00000000" }
+            GradientStop { position: 0.44; color: "#ff000000" }
+            GradientStop { position: 1.0; color: "#ff000000" }
+        }
+        visible: false
+    }
+
+    OpacityMask {
+        anchors.fill: vehicleTopView
+        maskSource: carImageMask
+        source: vehicleTopView
+    }
+
+    VehicleTopView {
+        id: vehicleTopView
+
         anchors.top: parent.top
-        anchors.topMargin: -232
-        anchors.left: parent.left
-        anchors.leftMargin: 140
-        width: 470
-        height: 670
+        anchors.topMargin: -160
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
+    }
 
-        Image {
-            anchors.fill: parent
-            visible: root.trunkOpen
-            source: "assets/images/car-top-trunk.png"
-        }
+    VehicleButton {
+        id: trunkCloseButton
 
-        VehicleButton {
-            id: trunkCloseButton
+        anchors.top: parent.top
+        anchors.topMargin: 540
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: root.trunkOpen ? qsTr("Close") : qsTr("Open")
 
-            anchors.top: parent.bottom
-            anchors.topMargin: 30
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: root.trunkOpen ? qsTr("Close") : qsTr("Open")
-
-            onClicked: root.trunkOpen = !root.trunkOpen
-        }
+        onClicked: root.trunkOpen = !root.trunkOpen
     }
 }

@@ -31,6 +31,7 @@
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import com.pelagicore.settings 1.0
 import com.pelagicore.styles.triton 1.0
@@ -40,14 +41,9 @@ import utils 1.0
 Item {
     id: root
 
-    property bool leftDoorOpen: false
-    property bool rightDoorOpen: false
-
-    readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
-    readonly property string openRightDoorSource: "assets/images/ic-door-open" + sourceSuffix
-    readonly property string closeRightDoorSource: "assets/images/ic-door-closed" + sourceSuffix
-    readonly property string openLeftDoorSource: "assets/images/ic-door-open-flip" + sourceSuffix
-    readonly property string closeLeftDoorSource: "assets/images/ic-door-closed-flip" + sourceSuffix
+    property alias trunkOpen: vehicleTopView.trunkOpen
+    property alias leftDoorOpen: vehicleTopView.leftDoorOpen
+    property alias rightDoorOpen: vehicleTopView.rightDoorOpen
 
     UISettings {
         id: uiSettings
@@ -61,8 +57,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(2.5)
+        anchors.topMargin: Style.vspan(4)
         anchors.left: parent.left
+        anchors.leftMargin: Style.hspan(1)
         state: "REGULAR"
         text: leftDoorOpen ? qsTr("Close") : qsTr("Open")
 
@@ -74,8 +71,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(2.5)
+        anchors.topMargin: Style.vspan(4)
         anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(1)
         state: "REGULAR"
         text: rightDoorOpen ? qsTr("Close") : qsTr("Open")
 
@@ -85,26 +83,28 @@ Item {
         }
     }
 
-    Image {
-        id: doorsImage
+    Rectangle {
+        id: vehicleTopViewMask
 
-        source: "assets/images/car-top.png"
-        anchors.top: parent.top
-        anchors.topMargin: 32
-        anchors.left: parent.left
-        anchors.leftMargin: 140
-        width: 470
-        height: 670
+        anchors.fill: vehicleTopView
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00000000" }
+            GradientStop { position: 0.28; color: "#ff000000" }
+            GradientStop { position: 1.0; color: "#ff000000" }
+        }
+        visible: false
+    }
 
-        Image {
-            anchors.fill: parent
-            visible: root.leftDoorOpen
-            source: "assets/images/car-top-left-door.png"
-        }
-        Image {
-            anchors.fill: parent
-            visible: root.rightDoorOpen
-            source: "assets/images/car-top-right-door.png"
-        }
+    OpacityMask {
+        anchors.fill: vehicleTopView
+        maskSource: vehicleTopViewMask
+        source: vehicleTopView
+    }
+
+    VehicleTopView {
+        id: vehicleTopView
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
     }
 }
