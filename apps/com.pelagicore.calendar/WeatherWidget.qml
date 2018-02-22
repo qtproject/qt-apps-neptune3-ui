@@ -73,6 +73,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             font.pixelSize: TritonStyle.fontSizeS
+            font.weight: Font.Light
             opacity: 0.8    //Todo: this should be connected to Styles or a triton Label control in some way
             visible: root.temperatureVisible
             text: root.temperatureValue + "°"
@@ -83,6 +84,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             font.pixelSize: TritonStyle.fontSizeS //Todo: font size in the plugin is not correct.
+            font.weight: Font.Light
             opacity: 0.8 //Todo: this should be connected to Styles or a triton Label control in some way
             text: (temperatureVisible ? root.weatherText : root.temperatureValue + "° " + root.weatherText) + (precipitationVisible ? "," : "")
         }
@@ -105,6 +107,7 @@ Item {
                 anchors.leftMargin: Style.hspan(13/45)
                 anchors.right: parent.right
                 font.pixelSize: TritonStyle.fontSizeS
+                font.weight: Font.Light
                 opacity: 0.8 //Todo
             }
         }

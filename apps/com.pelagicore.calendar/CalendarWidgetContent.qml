@@ -118,6 +118,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 elide: Text.ElideRight
+                font.weight: Font.Light
                 text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale), "dddd") + ","
             }
 
@@ -127,6 +128,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 elide: Text.ElideRight
+                font.weight: Font.Light
                 text: Qt.locale(Style.languageLocale).standaloneMonthName(root.currentTime.getMonth(), Locale.LongFormat)
                                                                           + " " + root.currentTime.getDate()
             }
@@ -182,7 +184,7 @@ Item {
         id: calendarEvents
 
         readonly property bool isMultiLineWidget: root.height > Style.hspan(6)
-        readonly property real rowHeight: Style.vspan(48/80)
+        readonly property real rowHeight: Style.vspan(38/80)
 
         anchors.bottom: parent.bottom
         anchors.bottomMargin: isMultiLineWidget ? Style.vspan(77/80) : Style.vspan(75/80)
@@ -225,6 +227,7 @@ Item {
                     horizontalAlignment: Text.AlignRight
                     opacity: 0.5    //todo: connect to style or similar
                     font.pixelSize: TritonStyle.fontSizeS
+                    font.weight: Font.Light
                     text: eventModel.get(index).timeStart
                 }
                 Label {
@@ -234,6 +237,7 @@ Item {
                     width: calendarEvents.width - eventTimeStart.width - Style.hspan(26/45)
                     height: Style.vspan(33/80)
                     font.pixelSize: TritonStyle.fontSizeS
+                    font.weight: Font.Light
                     elide: Text.ElideRight
                     text: eventModel.get(index).event
                 }

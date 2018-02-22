@@ -79,17 +79,17 @@ UX na cestu</translation>
 <context>
     <name>CalendarToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>year</source>
         <translation>rok</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>next</source>
         <translation>další</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="184"/>
         <source>events</source>
         <translation>události</translation>
     </message>

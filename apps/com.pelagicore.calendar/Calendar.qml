@@ -138,6 +138,7 @@ Item {
                 text: Qt.locale().standaloneMonthName(grid.month) + " " + grid.year
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: Style.fontSizeM
+                font.weight: Font.Light
             }
             Tool {
                 anchors.verticalCenter: parent.verticalCenter

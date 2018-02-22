@@ -56,17 +56,17 @@ UX to the road</source>
 <context>
     <name>CalendarToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="181"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>year</source>
         <translation>年</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>next</source>
         <translation>次</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
+        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="184"/>
         <source>events</source>
         <translation>イベント</translation>
     </message>
