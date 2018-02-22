@@ -80,7 +80,7 @@ ColumnLayout {
             text: qsTranslate(root.translationContext, model.text)
             labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
             labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
-            font.pixelSize: TritonStyle.fontSizeXS
+            font.pixelSize: TritonStyle.fontSizeS
             opacity: model.greyedOut ? 0.5 : 1.0
             enabled: !model.greyedOut
             symbolOnTop: true
