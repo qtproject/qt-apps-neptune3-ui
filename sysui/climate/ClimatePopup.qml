@@ -37,13 +37,22 @@ import utils 1.0
 import animations 1.0
 import com.pelagicore.styles.triton 1.0
 import triton.controls 1.0
+import controls 1.0
 
 TritonPopup {
     id: root
-    width: Style.hspan(22)
-    height: Style.vspan(19)
+    width: Style.hspan(910/45)
+    height: Style.vspan(1426/80)
 
     property var model
+    property bool seatTemperaturesLinked: false
+
+    onSeatTemperaturesLinkedChanged: {
+        if (seatTemperaturesLinked) {
+            model.rightSeat.setValue(model.leftSeat.value);
+        }
+    }
+
     onModelChanged: {
         if (model) {
             // need to set "to" and "from" before "value", as modifying them also causes
@@ -59,12 +68,85 @@ TritonPopup {
         }
     }
 
+    ClimateHeader {
+        id: header
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: Style.hspan(278/45)
+        temperatureDriverSeat: model.leftSeat.valueString
+        temperaturePassengerSeat: model.rightSeat.valueString
+        onDriverSeatTemperatureIncreased: {
+            if (model.leftSeat.value < model.leftSeat.maxValue) {
+                model.leftSeat.setValue(model.leftSeat.value + leftTempSlider.stepSize)
+            }
+        }
+        onDriverSeatTemperatureDecreased: {
+            if (model.leftSeat.value > model.leftSeat.minValue) {
+                model.leftSeat.setValue(model.leftSeat.value - leftTempSlider.stepSize)
+            }
+        }
+        onPassengerSeatTemperatureIncreased: {
+            if (model.rightSeat.value < model.rightSeat.maxValue) {
+                model.rightSeat.setValue(model.rightSeat.value + rightTempSlider.stepSize)
+            }
+        }
+        onPassengerSeatTemperatureDecreased: {
+            if (model.rightSeat.value > model.rightSeat.minValue) {
+                model.rightSeat.setValue(model.rightSeat.value - rightTempSlider.stepSize)
+            }
+        }
+        onLinkToggled: root.seatTemperaturesLinked = !root.seatTemperaturesLinked
+    }
+
+    ClimateButtonsGrid {
+        id: buttonsGrid
+        anchors.top: header.bottom
+        anchors.topMargin: Style.vspan(36/45)
+        anchors.horizontalCenter: parent.horizontalCenter
+        model: root.model
+    }
+
+    ClimateAirFlow {
+        id: airFlow
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: buttonsGrid.bottom
+        anchors.topMargin: Style.vspan(36/45)
+        model: root.model
+    }
+
+    RoundButton {
+        id: bigFatButton
+        width: Style.hspan(460/45)
+        height: Style.vspan(1)
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.vspan(118/80)
+        checkable: true
+        contentItem: Label {
+            text: bigFatButton.text
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+        background: Rectangle {
+            radius: bigFatButton.radius
+            opacity: bigFatButton.checked ? 1.0 : 0.1
+            color: bigFatButton.checked ? TritonStyle.accentColor : TritonStyle.contrastColor
+        }
+        text: qsTr("Auto")
+        onCheckedChanged: {
+            airFlow.autoMode = checked
+            //TODO: connect to the backend
+        }
+    }
+
     TemperatureSlider {
         id: leftTempSlider
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(1.3)
+        anchors.topMargin: Style.vspan(130/80) - leftTempSlider.handleHeight/2
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
+        anchors.leftMargin: -leftTempSlider.width/2 + Style.hspan(30/45)/2
         height: Style.vspan(15)
         convertFunc: model.calculateUnitValue
 
@@ -79,73 +161,25 @@ TritonPopup {
     }
     Connections {
         target: model ? model.leftSeat : null
-        onValueChanged: if (!leftTempSlider.sliderChanging) leftTempSlider.value = target.value
-    }
-
-    ClimateButtonsGrid {
-        id: buttonsGrid
-        anchors.top: parent.top
-        anchors.topMargin: Style.vspan(3)
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(8)
-        height: width
-        model: root.model
-    }
-    Rectangle {
-        color: TritonStyle.disabledTextColor
-        height: Style.vspan(0.03)
-        anchors.left: buttonsGrid.left
-        anchors.right: buttonsGrid.right
-        anchors.verticalCenter: buttonsGrid.verticalCenter
-    }
-    Rectangle {
-        color: TritonStyle.disabledTextColor
-        width: Style.vspan(0.03)
-        anchors.top: buttonsGrid.top
-        anchors.bottom: buttonsGrid.bottom
-        anchors.horizontalCenter: buttonsGrid.horizontalCenter
-    }
-
-    Image {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: bigFatButton.top
-        anchors.bottomMargin: Style.vspan(0.5)
-        source: Style.gfx2("mannequin", TritonStyle.theme)
-    }
-
-    RoundButton {
-        id: bigFatButton
-        width: Style.hspan(7)
-        height: Style.vspan(1)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(5)
-        contentItem: Label {
-            text: bigFatButton.text
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
+        onValueChanged: {
+            if (!leftTempSlider.sliderChanging) {
+                leftTempSlider.value = target.value
+            }
+            if (seatTemperaturesLinked) {
+                model.rightSeat.setValue(model.leftSeat.value);
+            }
         }
-        background: Rectangle {
-            radius: bigFatButton.radius
-            color: bigFatButton.down ? Qt.lighter(TritonStyle.accentColor, 1.3) : TritonStyle.accentColor
-            Behavior on color { ColorAnimation {} }
-        }
-
-        //: As in "automatic"
-        text: qsTr("AUTO")
     }
+
 
     TemperatureSlider {
         id: rightTempSlider
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(1.3)
+        anchors.topMargin: Style.vspan(130/80) - rightTempSlider.handleHeight/2
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
+        anchors.rightMargin: -rightTempSlider.width/2 + Style.hspan(30/45)/2
         height: Style.vspan(15)
-
         convertFunc: model.calculateUnitValue
-        rulerSide: rightSide
 
         property bool sliderChanging: false
         onValueChanged: {
@@ -158,62 +192,13 @@ TritonPopup {
     }
     Connections {
         target: model ? model.rightSeat : null
-        onValueChanged: if (!rightTempSlider.sliderChanging) rightTempSlider.value = target.value
-    }
-
-
-    Item {
-        anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
-        anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(1.3)
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            text: leftTempSlider.valueAt(leftTempSlider.position).toLocaleString(Qt.locale(), 'f', 1) + model.tempSuffix
-            font.pixelSize: TritonStyle.fontSizeXL
-            opacity: 0.6
-        }
-
-        Rectangle {
-            anchors.right: tempLink.left
-            anchors.rightMargin: Style.hspan(0.5)
-            anchors.verticalCenter: parent.verticalCenter
-            color: TritonStyle.primaryTextColor
-            height: Style.vspan(0.03)
-            width: Style.hspan(6)
-            opacity: 0.25
-        }
-        Image {
-            id: tempLink
-            width: Style.hspan(1)
-            height: width
-            anchors.centerIn: parent
-            source: Style.symbol("ic-link-status", TritonStyle.theme)
-            fillMode: Image.Pad
-            MouseArea {
-                anchors.fill: parent
-                onClicked: model.rightSeat.setValue(model.leftSeat.value)
+        onValueChanged: {
+            if (!rightTempSlider.sliderChanging) {
+                rightTempSlider.value = target.value
             }
-        }
-        Rectangle {
-            anchors.left: tempLink.right
-            anchors.leftMargin: Style.hspan(0.5)
-            anchors.verticalCenter: parent.verticalCenter
-            color: TritonStyle.primaryTextColor
-            height: Style.vspan(0.03)
-            width: Style.hspan(6)
-            opacity: 0.25
-        }
-
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            text: rightTempSlider.valueAt(rightTempSlider.position).toLocaleString(Qt.locale(), 'f', 1) + model.tempSuffix
-            font.pixelSize: TritonStyle.fontSizeXL
-            opacity: 0.6
+            if (seatTemperaturesLinked) {
+                model.leftSeat.setValue(model.rightSeat.value);
+            }
         }
     }
 }

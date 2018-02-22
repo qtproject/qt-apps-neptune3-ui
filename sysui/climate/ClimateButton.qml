@@ -40,37 +40,30 @@ Button {
     id: root
     checkable: true
 
-    width: Style.hspan(5)
-    height: Style.vspan(2.5)
+    width: Style.hspan(156/45)
+    height: Style.vspan(146/80)
 
     property string icon
+    property int textFontSize: TritonStyle.fontSizeXS
 
     background: null
 
     contentItem: Item {
-        ColumnLayout {
-            anchors.fill: parent
+        Column {
+            anchors.centerIn: parent
             spacing: Style.vspan(0.1)
-
             Image {
                 id: image
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: parent.height * 0.4
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: Style.symbol(root.icon, TritonStyle.theme)
                 fillMode: Image.Pad
             }
-
             Label {
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                Layout.preferredWidth: parent.width * 0.8
-                Layout.preferredHeight: parent.height * 0.4
+                anchors.horizontalCenter: parent.horizontalCenter
                 wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignTop
                 text: root.text
-                font.pixelSize: TritonStyle.fontSizeS
-                opacity: root.checked ? 1.0 : 0.25
+                font.pixelSize: root.textFontSize
+                opacity: root.checked ? 1.0 : 0.3
                 Behavior on opacity { OpacityAnimator {} }
             }
         }

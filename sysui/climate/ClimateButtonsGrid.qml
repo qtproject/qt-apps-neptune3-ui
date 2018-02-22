@@ -31,47 +31,65 @@
 
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
+
 import utils 1.0
 
-Grid {
+GridLayout {
     id: root
-    columns: 2
-    rows: 2
-    columnSpacing: 0
-    rowSpacing: 0
 
     property var model
 
+    width: Style.hspan(448/45)
+    height: Style.vspan(312/80)
+    columns: 3
     ClimateButton {
-        width: root.width / 2
-        height: root.height / 2
-        icon: checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
-        text: qsTr("Front defrost")
-        checked: model.frontHeat.enabled
-        onToggled: model.frontHeat.setEnabled(checked)
-    }
-    ClimateButton {
-        width: root.width / 2
-        height: root.height / 2
-        icon: checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
-        text: qsTr("Rear defrost")
+        id: rear_defrost
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: rear_defrost.checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
         checked: model.rearHeat.enabled
-        onToggled: model.rearHeat.setEnabled(checked)
+        onToggled: model.rearHeat.setEnabled(!model.rearHeat.enabled)
     }
     ClimateButton {
-        width: root.width / 2
-        height: root.height / 2
-        icon: checked ? "ic-seat-heat_ON" : "ic-seat-heat_OFF"
-        text: qsTr("Driver seat heat")
+        id: front_defrost
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: front_defrost.checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
+        checked: model.frontHeat.enabled
+        onToggled: model.frontHeat.setEnabled(!model.frontHeat.enabled)
+    }
+    ClimateButton {
+        id: recirculation
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: recirculation.checked ? "ic-recirculation_ON" : "ic-recirculation_OFF"
+        checked: model.airQuality.enabled
+        onToggled: model.airQuality.setEnabled(!model.airQuality.enabled)
+    }
+    ClimateButton {
+        id: seat_heater_driver
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: seat_heater_driver.checked ? "ic-seat-heat-driver_ON" : "ic-seat-heat-driver_OFF"
+        text: qsTr("DRIVER")
         checked: model.leftSeat.heat
-        onToggled: model.leftSeat.setHeat(checked)
+        onToggled: model.leftSeat.setHeat(!model.leftSeat.heat)
     }
     ClimateButton {
-        width: root.width / 2
-        height: root.height / 2
-        icon: checked ? "ic-seat-heat_ON" : "ic-seat-heat_OFF"
-        text: qsTr("Passenger seat heat")
+        id: steering_wheel_heat
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: steering_wheel_heat.checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
+        checked: model.steeringWheelHeat.enabled
+        onToggled: model.steeringWheelHeat.setEnabled(!model.steeringWheelHeat.enabled)
+    }
+    ClimateButton {
+        id: seat_heater_passenger
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        icon: seat_heater_passenger.checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
+        text: qsTr("PASSENGER")
         checked: model.rightSeat.heat
-        onToggled: model.rightSeat.setHeat(checked)
+        onToggled: model.rightSeat.setHeat(!model.rightSeat.heat)
     }
 }

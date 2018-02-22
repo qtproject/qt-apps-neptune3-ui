@@ -160,6 +160,9 @@ QtObject {
 
     property QtObject airflowDirections: QtObject {
         property int directions: climateControl.airflowDirections
+        readonly property int afWindshield: ClimateControl.Windshield
+        readonly property int afDashboard: ClimateControl.Dashboard
+        readonly property int afFloor: ClimateControl.Floor
         // FIXME this is stupid, how to get the available list programatically?
         // TODO ClimateControl.Windshield missing; when added, this will get fun ;)
         readonly property var availableDirections: [ClimateControl.Dashboard, ClimateControl.Floor,
