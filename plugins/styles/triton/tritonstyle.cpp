@@ -67,7 +67,7 @@ GlobalLightThemeColors {
 
                       {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                       {TritonStyle::MainColor, QColor(0xFFFFFFFF)},
-                      {TritonStyle::OffMainColor, QColor(0xFFF1EFED)},
+                      {TritonStyle::OffMainColor, QColor(0xFFF7F4F2)},
                       {TritonStyle::AccentDetailColor, QColor(0xFFCE8042)},
                       {TritonStyle::ContrastColor, QColor(0xFF000000)},
                       {TritonStyle::ClusterMarksColor, QColor(0xFF916E51)}
@@ -84,7 +84,7 @@ GlobalDarkThemeColors {
 
                      {TritonStyle::AccentColor, QColor(0xFFFA9E54)},
                      {TritonStyle::MainColor, QColor(0xFF000000)},
-                     {TritonStyle::OffMainColor, QColor(0xFFF1EFED)},
+                     {TritonStyle::OffMainColor, QColor(0xFF575757)},
                      {TritonStyle::AccentDetailColor, QColor(0xFFCE8042)},
                      {TritonStyle::ContrastColor, QColor(0xFFFFFFFF)},
                      {TritonStyle::ClusterMarksColor, QColor(0xFF916E51)}
