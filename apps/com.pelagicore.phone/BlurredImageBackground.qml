@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -30,63 +30,47 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import animations 1.0
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.triton 1.0
+import animations 1.0
 
-AppUIScreen {
+Item {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
+    property string callerHandle: ""
+
+    Image {
+        id: contactImage
         anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+        source: (root.callerHandle !== "") ? "assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
+        fillMode: Image.PreserveAspectCrop
+        visible: false
+    }
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+    FastBlur {
+        id: albumArtBlur
+        anchors.fill: contactImage
+        source: contactImage
+        radius: 64
+        visible: false
+    }
+
+    Rectangle {
+        id: albumArtMask
+        anchors.fill: contactImage
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00ffffff" }  //0% opacity
+            GradientStop { position: 1.0; color: "#32ffffff" }  //20% opacity
         }
+        visible: false
     }
 
-    BorderImage {
-        id: fullscreenTopPartBackground
-
-        x: root.exposedRect.x
-        y: root.exposedRect.y - 224
-        width: root.exposedRect.width
-        height: Math.max(sourceSize.height, ((660 - 224) + root.exposedRect.y))
-
-        border.bottom: 0
-        border.top: sourceSize.height - 1
-        border.left: 0
-        border.right: 0
-
-        opacity: (root.tritonState === "Maximized") ? 1.0 : 0.0
+    OpacityMask {
+        anchors.fill: contactImage
+        maskSource: albumArtMask
+        source: albumArtBlur
+        opacity: (mainWindow.tritonState === "Maximized") ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-
-        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
-    }
-
-    BlurredImageBackground {
-        opacity: (root.tritonState === "Maximized" && phone.callerHandle !== "") ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation {} }
-        visible: opacity > 0
-        anchors.fill: fullscreenTopPartBackground
-        callerHandle: phone.callerHandle
-    }
-
-    Phone {
-        id: phone
-        x: root.exposedRect.x
-        y: root.exposedRect.y
-        width: root.exposedRect.width
-        height: root.exposedRect.height
-        state: root.tritonState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
     }
 }

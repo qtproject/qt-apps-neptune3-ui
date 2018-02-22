@@ -631,32 +631,32 @@ UX to the road</source>
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="169"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
         <source>recents</source>
         <translation>最近使ったもの</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
         <source>favorites</source>
         <translation>おきにいり</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
         <source>voicemail</source>
         <translation>ボイスメール</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
         <source>keypad</source>
         <translation>キーパッド</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
         <source>contacts</source>
         <translation>コンタクト</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="175"/>
         <source>messages</source>
         <translation>メッセージ</translation>
     </message>

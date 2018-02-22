@@ -638,32 +638,32 @@ UX to the road</source>
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="169"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
         <source>recents</source>
         <translation>최근 통화</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
         <source>favorites</source>
         <translation>즐겨찾기</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
         <source>voicemail</source>
         <translation>음성 메시지</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
         <source>keypad</source>
         <translation>키패드</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
         <source>contacts</source>
         <translation>연락처</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="175"/>
         <source>messages</source>
         <translation>메시지</translation>
     </message>

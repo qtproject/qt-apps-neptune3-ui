@@ -45,6 +45,7 @@ Item {
 
     property bool ongoingCall
     signal activateApp()
+    property alias callerHandle: callWidget.callerHandle
 
     function startCall(handle) {
         if (root.ongoingCall) { // end the current one first

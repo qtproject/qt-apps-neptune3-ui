@@ -780,32 +780,32 @@ UX na cestu</translation>
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="169"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
         <source>recents</source>
         <translation>nedávné</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
         <source>favorites</source>
         <translation>oblíbené</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
         <source>voicemail</source>
         <translation>hlas. schránka</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
         <source>keypad</source>
         <translation>číselník</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
         <source>contacts</source>
         <translation>kontakty</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
+        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="175"/>
         <source>messages</source>
         <translation>zprávy</translation>
     </message>
