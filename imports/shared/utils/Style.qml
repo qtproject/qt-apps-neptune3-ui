@@ -114,6 +114,6 @@ QtObject {
     }
 
     function asset(name) {
-        return Qt.resolvedUrl(root.assetPath +  + name)
+        return Qt.resolvedUrl(root.assetPath + name)
     }
 }
