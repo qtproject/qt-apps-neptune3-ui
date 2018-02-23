@@ -91,13 +91,12 @@ Item {
             id: airFlowTop
             anchors.left: parent.left
             anchors.top: parent.top
-            source: (root.model.airflowDirections.directions & root.model.airflowDirections.afWindshield) ? Style.gfx2("air-flow-top-active",TritonStyle.theme) : Style.gfx2("air-flow-top",TritonStyle.theme)
+            source: root.model.airflow.windshield ? Style.gfx2("air-flow-top-active", TritonStyle.theme)
+                                                  : Style.gfx2("air-flow-top", TritonStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: {
-                    root.model.airflowDirections.directions = root.model.airflowDirections.directions^root.model.airflowDirections.afWindshield
-                }
+                onClicked: root.model.airflow.windshield = !root.model.airflow.windshield;
             }
         }
         Image {
@@ -105,13 +104,12 @@ Item {
             anchors.left: parent.left
             anchors.top: airFlowTop.bottom
             anchors.topMargin: -40
-            source: (root.model.airflowDirections.directions & root.model.airflowDirections.afDashboard) ? Style.gfx2("air-flow-middle-active",TritonStyle.theme) : Style.gfx2("air-flow-middle",TritonStyle.theme)
+            source: root.model.airflow.dashboard ? Style.gfx2("air-flow-middle-active", TritonStyle.theme)
+                                                 : Style.gfx2("air-flow-middle", TritonStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: {
-                    root.model.airflowDirections.directions = root.model.airflowDirections.directions^root.model.airflowDirections.afDashboard
-                }
+                onClicked: root.model.airflow.dashboard = !root.model.airflow.dashboard
             }
         }
         Image {
@@ -119,13 +117,12 @@ Item {
             anchors.left: parent.left
             anchors.top: airFlowMiddle.bottom
             anchors.topMargin: 20
-            source: (root.model.airflowDirections.directions & root.model.airflowDirections.afFloor) ? Style.gfx2("air-flow-bottom-active",TritonStyle.theme) : Style.gfx2("air-flow-bottom",TritonStyle.theme)
+            source: root.model.airflow.floor ? Style.gfx2("air-flow-bottom-active", TritonStyle.theme)
+                                             : Style.gfx2("air-flow-bottom", TritonStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: {
-                    root.model.airflowDirections.directions = root.model.airflowDirections.directions^root.model.airflowDirections.afFloor
-                }
+                onClicked: root.model.airflow.floor = !root.model.airflow.floor
             }
         }
         MouseArea {
@@ -134,9 +131,7 @@ Item {
             width: 120
             height: 40
             enabled: !autoMode
-            onClicked: {
-                root.model.airflowDirections.directions = root.model.airflowDirections.directions^root.model.airflowDirections.afWindshield
-            }
+            onClicked: root.model.airflow.windshield = !root.model.airflow.windshield;
         }
     }
 }

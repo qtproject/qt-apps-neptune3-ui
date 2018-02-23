@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -158,16 +158,45 @@ QtObject {
         climateControl.fanSpeedLevel = newVentilation;
     }
 
-    property QtObject airflowDirections: QtObject {
-        property int directions: climateControl.airflowDirections
-        readonly property int afWindshield: ClimateControl.Windshield
-        readonly property int afDashboard: ClimateControl.Dashboard
-        readonly property int afFloor: ClimateControl.Floor
-        // FIXME this is stupid, how to get the available list programatically?
-        // TODO ClimateControl.Windshield missing; when added, this will get fun ;)
-        readonly property var availableDirections: [ClimateControl.Dashboard, ClimateControl.Floor,
-            ClimateControl.Dashboard | ClimateControl.Floor]
-        onDirectionsChanged: climateControl.airflowDirections = directions
+
+    // ClimateControl.airfloDirections is a bitfield. Manipulating bitfields is a PITA.
+    // Convert it into a nice set of booleans instead.
+    // TODO: Change the QtIVI interface from bitfield to booleans so that this wrapping is no longer needed
+    property QtObject airflow: QtObject {
+        id: airflow
+        property bool _lock: false
+        property bool dashboard: false
+        property bool floor: false
+        property bool windshield: false
+
+
+        onDashboardChanged: flipBit(dashboard, ClimateControl.Dashboard)
+        onFloorChanged: flipBit(floor, ClimateControl.Floor)
+        onWindshieldChanged: flipBit(windshield, ClimateControl.Windshield)
+        function flipBit(enabled, value) {
+            if (!_lock) {
+                _lock = true;
+                climateControl.airflowDirections ^= value;
+                _lock = false;
+            }
+        }
+
+        property var conns: Connections {
+            target: climateControl
+            onAirflowDirectionsChanged: airflow.updateProperties()
+        }
+
+        function updateProperties() {
+            if (!_lock) {
+                _lock = true;
+                dashboard = (climateControl.airflowDirections & ClimateControl.Dashboard) === ClimateControl.Dashboard
+                floor = (climateControl.airflowDirections & ClimateControl.Floor) === ClimateControl.Floor
+                windshield = (climateControl.airflowDirections & ClimateControl.Windshield) === ClimateControl.Windshield
+                _lock = false;
+            }
+        }
+
+        Component.onCompleted: updateProperties()
     }
 
     function calculateUnitValue(value) {
