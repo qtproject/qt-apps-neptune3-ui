@@ -84,19 +84,27 @@ UX to the road</source>
     <name>ClimateButtonsGrid</name>
     <message>
         <source>Front defrost</source>
-        <translation>Vorne abtauen</translation>
+        <translation type="vanished">Vorne abtauen</translation>
     </message>
     <message>
         <source>Rear defrost</source>
-        <translation>Hinten abtauen</translation>
+        <translation type="vanished">Hinten abtauen</translation>
     </message>
     <message>
         <source>Driver seat heat</source>
-        <translation>Fahrer Sitzheizung</translation>
+        <translation type="vanished">Fahrer Sitzheizung</translation>
     </message>
     <message>
         <source>Passenger seat heat</source>
-        <translation>Beifahrer Sitzheizung</translation>
+        <translation type="vanished">Beifahrer Sitzheizung</translation>
+    </message>
+    <message>
+        <source>DRIVER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PASSENGER</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -104,7 +112,11 @@ UX to the road</source>
     <message>
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
-        <translation>AUTO</translation>
+        <translation type="vanished">AUTO</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -683,12 +695,12 @@ UX to the road</source>
     <message>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
-        <translation>MAX</translation>
+        <translation type="vanished">MAX</translation>
     </message>
     <message>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation>MIN</translation>
+        <translation type="vanished">MIN</translation>
     </message>
 </context>
 <context>

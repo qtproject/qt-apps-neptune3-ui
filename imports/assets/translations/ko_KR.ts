@@ -104,33 +104,43 @@ UX to the road</source>
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="49"/>
         <source>Front defrost</source>
-        <translation>앞유리 서리제거</translation>
+        <translation type="vanished">앞유리 서리제거</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="57"/>
         <source>Rear defrost</source>
-        <translation>뒷유리 서리제거</translation>
+        <translation type="vanished">뒷유리 서리제거</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="65"/>
         <source>Driver seat heat</source>
-        <translation>운전석 히터</translation>
+        <translation type="vanished">운전석 히터</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="73"/>
         <source>Passenger seat heat</source>
-        <translation>동승석 히터</translation>
+        <translation type="vanished">동승석 히터</translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="74"/>
+        <source>DRIVER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="91"/>
+        <source>PASSENGER</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ClimatePopup</name>
     <message>
-        <location filename="../../../sysui/climate/ClimatePopup.qml" line="136"/>
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
-        <translation>AUTO</translation>
+        <translation type="vanished">AUTO</translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimatePopup.qml" line="137"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -887,16 +897,14 @@ UX to the road</source>
 <context>
     <name>TemperatureSlider</name>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="138"/>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
-        <translation>최대</translation>
+        <translation type="vanished">최대</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="151"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation>최소</translation>
+        <translation type="vanished">최소</translation>
     </message>
 </context>
 <context>

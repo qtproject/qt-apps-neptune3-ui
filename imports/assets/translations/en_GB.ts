@@ -79,27 +79,18 @@ UX to the road</source>
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
-        <source>Front defrost</source>
+        <source>DRIVER</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rear defrost</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver seat heat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Passenger seat heat</source>
+        <source>PASSENGER</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ClimatePopup</name>
     <message>
-        <source>AUTO</source>
-        <extracomment>As in &quot;automatic&quot;</extracomment>
+        <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -566,19 +557,6 @@ UX to the road</source>
     </message>
     <message>
         <source>themes</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TemperatureSlider</name>
-    <message>
-        <source>MAX</source>
-        <extracomment>Maximum value in a slider control</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MIN</source>
-        <extracomment>Minimum value in a slider control</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -104,33 +104,43 @@ UX to the road</source>
 <context>
     <name>ClimateButtonsGrid</name>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="49"/>
         <source>Front defrost</source>
-        <translation>前除霜</translation>
+        <translation type="vanished">前除霜</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="57"/>
         <source>Rear defrost</source>
-        <translation>后除霜</translation>
+        <translation type="vanished">后除霜</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="65"/>
         <source>Driver seat heat</source>
-        <translation>驾驶座位加热</translation>
+        <translation type="vanished">驾驶座位加热</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="73"/>
         <source>Passenger seat heat</source>
-        <translation>乘客座位加热</translation>
+        <translation type="vanished">乘客座位加热</translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="74"/>
+        <source>DRIVER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="91"/>
+        <source>PASSENGER</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ClimatePopup</name>
     <message>
-        <location filename="../../../sysui/climate/ClimatePopup.qml" line="136"/>
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
-        <translation>自动</translation>
+        <translation type="vanished">自动</translation>
+    </message>
+    <message>
+        <location filename="../../../sysui/climate/ClimatePopup.qml" line="137"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,16 +949,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>TemperatureSlider</name>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="138"/>
         <source>MAX</source>
         <extracomment>Maximum value in a slider control</extracomment>
-        <translation>最大</translation>
+        <translation type="vanished">最大</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/TemperatureSlider.qml" line="151"/>
         <source>MIN</source>
         <extracomment>Minimum value in a slider control</extracomment>
-        <translation>最小</translation>
+        <translation type="vanished">最小</translation>
     </message>
 </context>
 <context>
