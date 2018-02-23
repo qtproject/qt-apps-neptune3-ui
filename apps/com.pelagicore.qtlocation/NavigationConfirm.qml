@@ -78,7 +78,7 @@ Row {
         }
     }
 
-    AbstractButton {
+    Button {
         id: startNavigationButton
         width: parent.width / 3
         height: Style.vspan(1)
@@ -88,11 +88,6 @@ Row {
         visible: !root.guidanceMode
         Behavior on scale { NumberAnimation { duration: 50 } }
 
-        background: Rectangle {
-            color: "lightgray"
-            radius: height / 2
-        }
-
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
@@ -100,7 +95,8 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: Qt.resolvedUrl("assets/ic-start-navigation.png")
+                    source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-start-navigation.png")
+                                                                    : Qt.resolvedUrl("assets/ic-start-navigation-dark.png")
                     opacity: startNavigationButton.enabled ? 1.0 : 0.3
                 }
                 Label {

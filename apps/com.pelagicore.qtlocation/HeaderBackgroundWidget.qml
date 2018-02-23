@@ -34,6 +34,8 @@ import QtQuick 2.8
 import utils 1.0
 import animations 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
 
@@ -47,7 +49,8 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: root.state === "Widget2Rows" ? -root.height/2 : 0
         fillMode: Image.TileHorizontally
-        source: Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
+        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
+                                                        : Qt.resolvedUrl("assets/navigation-widget-overlay-top-dark.png")
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on height { DefaultNumberAnimation {} }
     }

@@ -39,7 +39,10 @@ TextField {
 
     property alias busy: searchBusyIndicator.running
 
+    font.family: TritonStyle.fontFamily
     font.pixelSize: TritonStyle.fontSizeM
+    color: TritonStyle.primaryTextColor
+    selectedTextColor: TritonStyle.highlightedTextColor
     leftPadding: Style.hspan(0.4)
     rightPadding: Style.hspan(1.4)
     horizontalAlignment: TextInput.AlignLeft
@@ -56,7 +59,8 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Style.hspan(0.4)
                 anchors.verticalCenter: parent.verticalCenter
-                source: Qt.resolvedUrl("assets/ic-search.png")
+                source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-search.png")
+                                                                : Qt.resolvedUrl("assets/ic-search-dark.png")
                 visible: !searchBusyIndicator.visible
             }
             BusyIndicator {

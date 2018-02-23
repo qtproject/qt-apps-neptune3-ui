@@ -56,17 +56,13 @@ Row {
         }
     }
 
-    AbstractButton {
+    Button {
         id: searchButton
         width: parent.width / 2
         height: Style.vspan(.9)
         scale: pressed ? 1.1 : 1.0
         Behavior on scale { NumberAnimation { duration: 50 } }
 
-        background: Rectangle {
-            color: "lightgray"
-            radius: height / 2
-        }
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
@@ -74,7 +70,8 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: Qt.resolvedUrl("assets/ic-search.png")
+                    source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-search.png")
+                                                                    : Qt.resolvedUrl("assets/ic-search-dark.png")
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

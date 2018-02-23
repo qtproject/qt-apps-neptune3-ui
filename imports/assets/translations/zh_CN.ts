@@ -297,12 +297,12 @@ UX to the road</source>
 <context>
     <name>FavoriteDestinationButtons</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="59"/>
         <source>Home</source>
         <translation>家</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="77"/>
         <source>Work</source>
         <translation>工作</translation>
     </message>
@@ -607,7 +607,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>NavigationConfirm</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="104"/>
         <source>Start Navigation</source>
         <translation>开始导航</translation>
     </message>
@@ -620,7 +620,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>今天你想要去哪儿？</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="78"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>

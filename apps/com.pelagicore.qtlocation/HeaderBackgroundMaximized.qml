@@ -34,6 +34,8 @@ import QtQuick 2.8
 import utils 1.0
 import animations 1.0
 
+import com.pelagicore.styles.triton 1.0
+
 Item {
     id: root
 
@@ -50,7 +52,8 @@ Item {
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Style.vspan(.5)
         height: root.navigationMode && !root.guidanceMode ? sourceSize.height - root.destinationButtonrowHeight : sourceSize.height
-        source: Qt.resolvedUrl("assets/panel-shadow.png")
+        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-shadow.png")
+                                                        : Qt.resolvedUrl("assets/panel-shadow-dark.png")
         border {
             left: 0
             top: 101
@@ -65,7 +68,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
-        source: Qt.resolvedUrl("assets/panel-more-contrast-background.png")
+        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-more-contrast-background.png")
+                                                        : Qt.resolvedUrl("assets/panel-more-contrast-background-dark.png")
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -81,7 +85,7 @@ Item {
         anchors.right: searchPanel.right
         anchors.left: searchPanel.left
         width: searchPanel.width
-        source: Style.gfx2("panel-inner-shadow")
+        source: Style.gfx2("panel-inner-shadow", TritonStyle.theme)
     }
 
     BorderImage {
@@ -91,7 +95,8 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
         height: root.guidanceMode ? sourceSize.height : destinationButtonsPanel.sourceSize.height - root.destinationButtonrowHeight
-        source: Qt.resolvedUrl("assets/panel-background.png")
+        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-background.png")
+                                                        : Qt.resolvedUrl("assets/panel-background-dark.png")
         border {
             left: 0
             top: 20

@@ -196,7 +196,8 @@ Item {
         symbol: Qt.resolvedUrl("assets/ic-search.png")
         background: Image {
             fillMode: Image.Pad
-            source: Qt.resolvedUrl("assets/floating-button-bg.png")
+            source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/floating-button-bg.png")
+                                                            : Qt.resolvedUrl("assets/floating-button-bg-dark.png")
         }
         onClicked: root.maximizeMap()
     }

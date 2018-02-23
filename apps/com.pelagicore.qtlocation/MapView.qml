@@ -147,7 +147,8 @@ Item {
     Image {
         id: mask
         anchors.fill: mainMap
-        source: Qt.resolvedUrl("assets/bg-home-navigation-overlay.png")
+        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/bg-home-navigation-overlay.png")
+                                                        : Qt.resolvedUrl("assets/bg-home-navigation-overlay-dark.png")
         visible: root.state === "Maximized"
         scale: root.state === "Maximized" ? 1 : 1.6
         Behavior on scale {
@@ -214,7 +215,8 @@ Item {
         visible: opacity > 0
         background: Image {
             fillMode: Image.Pad
-            source: Qt.resolvedUrl("assets/floating-button-bg.png")
+            source:  TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/floating-button-bg.png")
+                                                             : Qt.resolvedUrl("assets/floating-button-bg-dark.png")
         }
         symbol: checked ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;

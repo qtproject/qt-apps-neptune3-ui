@@ -361,12 +361,12 @@ UX na cestu</translation>
 <context>
     <name>FavoriteDestinationButtons</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="59"/>
         <source>Home</source>
         <translation>Domů</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="77"/>
         <source>Work</source>
         <translation>Práce</translation>
     </message>
@@ -709,7 +709,7 @@ UX na cestu</translation>
 <context>
     <name>NavigationConfirm</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="108"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="104"/>
         <source>Start Navigation</source>
         <translation>Spustit navigaci</translation>
     </message>
@@ -722,7 +722,7 @@ UX na cestu</translation>
         <translation>Kam se chcete vydat dnes?</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="81"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="78"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
