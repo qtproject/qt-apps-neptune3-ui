@@ -49,8 +49,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: root.state === "Widget2Rows" ? -root.height/2 : 0
         fillMode: Image.TileHorizontally
-        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/navigation-widget-overlay-top.png")
-                                                        : Qt.resolvedUrl("assets/navigation-widget-overlay-top-dark.png")
+        source: Style.localAsset("navigation-widget-overlay-top", TritonStyle.theme)
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on height { DefaultNumberAnimation {} }
     }

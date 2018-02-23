@@ -52,8 +52,7 @@ Item {
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Style.vspan(.5)
         height: root.navigationMode && !root.guidanceMode ? sourceSize.height - root.destinationButtonrowHeight : sourceSize.height
-        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-shadow.png")
-                                                        : Qt.resolvedUrl("assets/panel-shadow-dark.png")
+        source: Style.localAsset("panel-shadow", TritonStyle.theme)
         border {
             left: 0
             top: 101
@@ -68,8 +67,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
-        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-more-contrast-background.png")
-                                                        : Qt.resolvedUrl("assets/panel-more-contrast-background-dark.png")
+        source: Style.localAsset("panel-more-contrast-background", TritonStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -95,8 +93,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
         height: root.guidanceMode ? sourceSize.height : destinationButtonsPanel.sourceSize.height - root.destinationButtonrowHeight
-        source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/panel-background.png")
-                                                        : Qt.resolvedUrl("assets/panel-background-dark.png")
+        source: Style.localAsset("panel-background", TritonStyle.theme)
         border {
             left: 0
             top: 20

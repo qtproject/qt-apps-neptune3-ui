@@ -59,8 +59,7 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Style.hspan(0.4)
                 anchors.verticalCenter: parent.verticalCenter
-                source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-search.png")
-                                                                : Qt.resolvedUrl("assets/ic-search-dark.png")
+                source: Style.localAsset("ic-search", TritonStyle.theme)
                 visible: !searchBusyIndicator.visible
             }
             BusyIndicator {

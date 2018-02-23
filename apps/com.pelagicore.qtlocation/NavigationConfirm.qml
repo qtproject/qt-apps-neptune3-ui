@@ -95,8 +95,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-start-navigation.png")
-                                                                    : Qt.resolvedUrl("assets/ic-start-navigation-dark.png")
+                    source: Style.localAsset("ic-start-navigation", TritonStyle.theme)
                     opacity: startNavigationButton.enabled ? 1.0 : 0.3
                 }
                 Label {

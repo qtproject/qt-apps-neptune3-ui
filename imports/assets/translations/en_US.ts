@@ -263,12 +263,12 @@ UX to the road</source>
 <context>
     <name>FavoriteDestinationButtons</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="59"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
         <source>Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="77"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
         <source>Work</source>
         <translation type="unfinished"></translation>
     </message>
@@ -438,7 +438,7 @@ UX to the road</source>
 <context>
     <name>NavigationConfirm</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="104"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="103"/>
         <source>Start Navigation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -451,7 +451,7 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="78"/>
+        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="77"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>

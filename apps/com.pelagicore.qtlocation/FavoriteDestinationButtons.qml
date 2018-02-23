@@ -54,8 +54,7 @@ Item {
             id: buttonGoHome
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-home.png")
-                                                                : Qt.resolvedUrl("assets/ic-home-dark.png")
+            iconSource: Style.localAsset("ic-home", TritonStyle.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -72,8 +71,7 @@ Item {
             id: buttonGoWork
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-work.png")
-                                                                : Qt.resolvedUrl("assets/ic-work-dark.png")
+            iconSource: Style.localAsset("ic-work", TritonStyle.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

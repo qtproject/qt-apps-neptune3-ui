@@ -70,8 +70,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: TritonStyle.theme === TritonStyle.Light ? Qt.resolvedUrl("assets/ic-search.png")
-                                                                    : Qt.resolvedUrl("assets/ic-search-dark.png")
+                    source: Style.localAsset("ic-search", TritonStyle.theme)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
