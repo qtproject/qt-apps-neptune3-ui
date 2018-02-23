@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Triton IVI UI.
@@ -32,8 +32,6 @@
 import QtQuick 2.8
 import QtGraphicalEffects 1.0
 
-import animations 1.0
-
 Item {
     id: root
 
@@ -48,7 +46,7 @@ Item {
     }
 
     FastBlur {
-        id: albumArtBlur
+        id: contactImageBlur
         anchors.fill: contactImage
         source: contactImage
         radius: 64
@@ -56,7 +54,7 @@ Item {
     }
 
     Rectangle {
-        id: albumArtMask
+        id: contactImageMask
         anchors.fill: contactImage
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#00ffffff" }  //0% opacity
@@ -67,10 +65,7 @@ Item {
 
     OpacityMask {
         anchors.fill: contactImage
-        maskSource: albumArtMask
-        source: albumArtBlur
-        opacity: (mainWindow.tritonState === "Maximized") ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation {} }
-        visible: opacity > 0
+        maskSource: contactImageMask
+        source: contactImageBlur
     }
 }
