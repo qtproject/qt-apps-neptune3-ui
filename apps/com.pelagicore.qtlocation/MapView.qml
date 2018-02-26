@@ -207,7 +207,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
-        anchors.topMargin: offlineMapsEnabled ? Style.vspan(1) : Style.vspan(3)
+        anchors.topMargin: Style.vspan(3)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
