@@ -143,12 +143,19 @@ Control {
     ]
 
     Tool {
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.margins: Style.hspan(1)
-        width: Style.hspan(1)
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 10
+        anchors.horizontalCenter: parent.right
+        anchors.horizontalCenterOffset: -10
+        width: bg.sourceSize.width
         height: width
         onClicked: close()
         symbol: Style.symbol("ic-close")
+        background: Image {
+            id: bg
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 6
+            source: Style.gfx2("popup-close-button-bg", TritonStyle.theme)
+        }
     }
 }
