@@ -68,6 +68,7 @@ ItemDelegate {
     property alias subText: subtitle.text
     property alias secondaryText: secondaryText.text
     property alias rightToolSymbol: rightTool.symbol
+    property bool dividerVisible: true
 
     signal rightToolClicked()
 
@@ -148,5 +149,6 @@ ItemDelegate {
         width: root.width
         anchors.bottom: root.bottom
         source: Style.gfx2("list-divider")
+        visible: root.dividerVisible
     }
 }
