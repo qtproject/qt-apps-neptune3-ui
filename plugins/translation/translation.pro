@@ -48,7 +48,7 @@ TRANSLATIONS = $$prependAll(supportedLocales, $$assetsPath/translations/, .ts)
 qtPrepareTool(LUPDATE, lupdate)
 qtPrepareTool(LRELEASE, lrelease)
 
-ts.commands = $$LUPDATE $$shell_quote($$_PRO_FILE_)
+ts.commands = $$LUPDATE -locations none $$shell_quote($$_PRO_FILE_)
 QMAKE_EXTRA_TARGETS += ts
 
 qm.input = TRANSLATIONS

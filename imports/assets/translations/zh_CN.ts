@@ -8,23 +8,19 @@
         <translation type="vanished">营销</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="72"/>
         <source>Bringing stunning
 UX to the road</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="82"/>
         <source>QtAuto - Agile UX Development</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="97"/>
         <source>Monitor</source>
         <translation>监控</translation>
     </message>
     <message>
-        <location filename="../../../sysui/about/About.qml" line="102"/>
         <source>Running Apps</source>
         <translation>运行中的App</translation>
     </message>
@@ -39,7 +35,6 @@ UX to the road</source>
 <context>
     <name>AboutRunningApps</name>
     <message>
-        <location filename="../../../sysui/about/AboutRunningApps.qml" line="53"/>
         <source>Running applications:</source>
         <translation>运行中的App:</translation>
     </message>
@@ -47,7 +42,6 @@ UX to the road</source>
 <context>
     <name>AddWidgetPopup</name>
     <message>
-        <location filename="../../../sysui/home/AddWidgetPopup.qml" line="100"/>
         <source>Add widget</source>
         <translation>添加窗口</translation>
     </message>
@@ -55,7 +49,6 @@ UX to the road</source>
 <context>
     <name>ApplicationStoreContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.appstore/ApplicationStoreContent.qml" line="77"/>
         <source>No apps found!</source>
         <translation>未找到app!</translation>
     </message>
@@ -63,17 +56,14 @@ UX to the road</source>
 <context>
     <name>CalendarToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="182"/>
         <source>year</source>
         <translation>年</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="183"/>
         <source>next</source>
         <translation>下一个</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/Calendar.qml" line="184"/>
         <source>events</source>
         <translation>事项</translation>
     </message>
@@ -81,22 +71,18 @@ UX to the road</source>
 <context>
     <name>CalendarWidgetContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="60"/>
         <source>Partly rain</source>
         <translation>局部有雨</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="67"/>
         <source>Rain</source>
         <translation>有雨</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="74"/>
         <source>Light Snow</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.calendar/CalendarWidgetContent.qml" line="81"/>
         <source>Sunny</source>
         <translation>晴</translation>
     </message>
@@ -120,12 +106,10 @@ UX to the road</source>
         <translation type="vanished">乘客座位加热</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="74"/>
         <source>DRIVER</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimateButtonsGrid.qml" line="91"/>
         <source>PASSENGER</source>
         <translation type="unfinished"></translation>
     </message>
@@ -138,7 +122,6 @@ UX to the road</source>
         <translation type="vanished">自动</translation>
     </message>
     <message>
-        <location filename="../../../sysui/climate/ClimatePopup.qml" line="137"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,7 +129,6 @@ UX to the road</source>
 <context>
     <name>ClusterMusic</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/ClusterMusic.qml" line="59"/>
         <source>Track unavailable</source>
         <translation> 音乐不可用</translation>
     </message>
@@ -158,17 +140,14 @@ UX to the road</source>
         <translation type="vanished">日期 &amp; 时间</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="55"/>
         <source>24h time</source>
         <translation>24小时</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="70"/>
         <source>Set Automatically</source>
         <translation>自动设置</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/panels/DateTimePanel.qml" line="84"/>
         <source>Time Zone</source>
         <translation>时区</translation>
     </message>
@@ -176,12 +155,10 @@ UX to the road</source>
 <context>
     <name>DialPower</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="340"/>
         <source>% power</source>
         <translation>% 功率</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialPower.qml" line="352"/>
         <source>km</source>
         <translation>km</translation>
     </message>
@@ -189,7 +166,6 @@ UX to the road</source>
 <context>
     <name>DialSpeed</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/DialSpeed.qml" line="285"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
@@ -197,17 +173,14 @@ UX to the road</source>
 <context>
     <name>DoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="55"/>
         <source>Sun roof</source>
         <translation>天窗</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="58"/>
         <source>Doors</source>
         <translation>车门</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/DoorsPanel.qml" line="61"/>
         <source>Trunk</source>
         <translation>后备箱</translation>
     </message>
@@ -223,7 +196,6 @@ UX to the road</source>
 <context>
     <name>EditableGridView</name>
     <message>
-        <location filename="../../../sysui/launcher/EditableGridView.qml" line="209"/>
         <source>Finish Editing</source>
         <translation>完成编辑</translation>
     </message>
@@ -231,75 +203,58 @@ UX to the road</source>
 <context>
     <name>EnergyPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="45"/>
         <source>Present</source>
         <translation>现在</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="46"/>
         <source>1 day</source>
         <translation>1天</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="47"/>
         <source>1 week</source>
         <translation>1周</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="48"/>
         <source>1 month</source>
         <translation>1月</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="71"/>
         <source>Projected distance to empty</source>
         <translation>续航里程</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="93"/>
         <source>184</source>
         <translation>184</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="104"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="163"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="213"/>
         <source>km</source>
         <translation>km</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="120"/>
         <source>Charging stations</source>
         <translation>充电站</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="129"/>
         <source>Show on map</source>
         <translation>在地图上显示</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="152"/>
         <source>21</source>
         <translation>21</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="178"/>
         <source>Donald Weese Ct, Las Vegas</source>
         <translation>Donald Weese Ct, 拉斯维加斯</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="185"/>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="235"/>
         <source>Route</source>
         <translation>路线</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="198"/>
         <source>27</source>
         <translation>27</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/EnergyPanel.qml" line="228"/>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, 拉斯维加斯</translation>
     </message>
@@ -307,12 +262,10 @@ UX to the road</source>
 <context>
     <name>FavoriteDestinationButtons</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="58"/>
         <source>Home</source>
         <translation>家</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/FavoriteDestinationButtons.qml" line="75"/>
         <source>Work</source>
         <translation>工作</translation>
     </message>
@@ -324,7 +277,6 @@ UX to the road</source>
         <translation type="vanished">收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/FavoritesWidget.qml" line="206"/>
         <source>more</source>
         <comment>more contacts</comment>
         <translation>更多</translation>
@@ -348,14 +300,10 @@ UX to the road</source>
 <context>
     <name>FrontDoorsPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="64"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="78"/>
         <source>Close</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="64"/>
-        <location filename="../../../apps/com.luxoft.vehicle/FrontDoorsPanel.qml" line="78"/>
         <source>Open</source>
         <translation>开</translation>
     </message>
@@ -410,7 +358,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../../apps/com.theqtcompany.cluster/Main.qml" line="45"/>
         <source>Instrument Cluster</source>
         <translation>仪表盘</translation>
     </message>
@@ -425,28 +372,24 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MapRouting</name>
     <message numerus="yes">
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="58"/>
         <source>%n kilometer(s)</source>
         <translation>
             <numerusform>%n公里</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="68"/>
         <source>%n day(s)</source>
         <translation>
             <numerusform>%n天</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="70"/>
         <source>%n hour(s)</source>
         <translation>
             <numerusform>%n小时</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../../apps/com.pelagicore.qtlocation/MapRouting.qml" line="72"/>
         <source>%n minute(s)</source>
         <translation>
             <numerusform>%n分钟</numerusform>
@@ -474,12 +417,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="vanished">状态栏进程监控</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="48"/>
         <source>System Monitor Overlay</source>
         <translation>系统监视器覆盖</translation>
     </message>
     <message>
-        <location filename="../../../sysui/procmon/MonitorView.qml" line="75"/>
         <source>Version</source>
         <translation>版</translation>
     </message>
@@ -507,17 +448,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="obsolete">文件夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="97"/>
         <source>Next</source>
         <translation>下一首</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="239"/>
         <source>Unknown Artist</source>
         <translation>未知艺术家</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="240"/>
         <source>%1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -526,7 +464,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="vanished">%1的歌曲 (%2)</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="306"/>
         <source>Unknown Track</source>
         <translation>未知的歌曲</translation>
     </message>
@@ -535,7 +472,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="vanished">音乐不可用</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="139"/>
         <source>Browse</source>
         <translation>浏览</translation>
     </message>
@@ -543,17 +479,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="85"/>
         <source>Unknown Track</source>
         <translation>未知的歌曲</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="89"/>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicBrowseList.qml" line="139"/>
         <source>Play All</source>
         <translation>全部播放</translation>
     </message>
@@ -577,7 +510,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="vanished">歌手</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/MusicList.qml" line="76"/>
         <source>Unknown Track</source>
         <translation>未知的歌曲</translation>
     </message>
@@ -585,27 +517,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="185"/>
         <source>favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="186"/>
         <source>artists</source>
         <translation>歌手</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="187"/>
         <source>playlists</source>
         <translation>播放列表</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="188"/>
         <source>albums</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.music/Music.qml" line="189"/>
         <source>folders</source>
         <translation>文件夹</translation>
     </message>
@@ -617,7 +544,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>NavigationConfirm</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationConfirm.qml" line="103"/>
         <source>Start Navigation</source>
         <translation>开始导航</translation>
     </message>
@@ -625,12 +551,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>NavigationSearch</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="55"/>
         <source>Where do you wanna go today?</source>
         <translation>今天你想要去哪儿？</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.qtlocation/NavigationSearch.qml" line="77"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
@@ -638,7 +562,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>NetworkMonitor</name>
     <message>
-        <location filename="../../../sysui/procmon/NetworkMonitor.qml" line="44"/>
         <source>Network</source>
         <translation>网络</translation>
     </message>
@@ -688,32 +611,26 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>PhoneToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="170"/>
         <source>recents</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="171"/>
         <source>favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="172"/>
         <source>voicemail</source>
         <translation>语音邮件</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="173"/>
         <source>keypad</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="174"/>
         <source>contacts</source>
         <translation>联系人</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.phone/Phone.qml" line="175"/>
         <source>messages</source>
         <translation>短信</translation>
     </message>
@@ -721,7 +638,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RadioContent</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/RadioContent.qml" line="86"/>
         <source></source>
         <translation></translation>
     </message>
@@ -729,27 +645,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RadioStore</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="51"/>
         <source>FM1</source>
         <translation>FM1</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="53"/>
         <source>FM2</source>
         <translation>FM2</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="55"/>
         <source>AM</source>
         <translation>AM</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>KHz</source>
         <translation>KHz</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.radio/stores/RadioStore.qml" line="72"/>
         <source>MHz</source>
         <translation>MHz</translation>
     </message>
@@ -757,12 +668,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RoofPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="75"/>
         <source>Close</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/RoofPanel.qml" line="62"/>
         <source>Open</source>
         <translation>开</translation>
     </message>
@@ -770,12 +679,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>RootStore</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="86"/>
         <source>Light</source>
         <translation>浅色</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/store/RootStore.qml" line="87"/>
         <source>Dark</source>
         <translation>深色</translation>
     </message>
@@ -783,98 +690,79 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsModel</name>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="44"/>
         <source>Driver 1</source>
         <translation>驾驶员1</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="45"/>
         <source>Driver 2</source>
         <translation>驾驶员2</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="46"/>
         <source>Driver 3</source>
         <translation>驾驶员3</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="47"/>
         <source>Driver 4</source>
         <translation>驾驶员4</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="58"/>
         <source>USER PROFILE</source>
         <translation>用户信息</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="59"/>
         <source>SERVICE &amp; SUPPORT</source>
         <translation>服务 &amp; 支持</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="60"/>
         <source>TRAFFIC INFORMATION</source>
         <translation>交通信息</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="61"/>
         <source>TOLL &amp; CONGESTION FEES</source>
         <translation>停车 &amp; 拥堵费</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="62"/>
         <source>METRIC SYSTEM</source>
         <translation>公制</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="63"/>
         <source>APP UPDATES</source>
         <translatorcomment>In chinerse, &quot;APP&quot; can translate to &quot;程序&quot; . which is old school style.</translatorcomment>
         <translation>APP升级</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="64"/>
         <source>SYSTEM MONITOR</source>
         <translation>系统监测</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="90"/>
         <source>Hill Descent Control</source>
         <translation>坡度保持</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="95"/>
         <source>Intelligent Speed Adaptation</source>
         <translation>自适应巡航</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="100"/>
         <source>Automatic Beam Switching</source>
         <translation>自动大灯开关</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="105"/>
         <source>Collision Avoidance</source>
         <translation>智能避碰</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="110"/>
         <source>Lane Assist</source>
         <translation>窄路辅助</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="115"/>
         <source>Traffic Jam Assist</source>
         <translation>交通拥堵辅助</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="120"/>
         <source>Driver Drowsiness Alert</source>
         <translation>疲劳驾驶预警系统</translation>
     </message>
     <message>
-        <location filename="../../system/models/settings/SettingsModel.qml" line="125"/>
         <source>Park Assist</source>
         <translation>泊车辅助</translation>
     </message>
@@ -905,17 +793,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>SettingsToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="77"/>
         <source>languages</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="78"/>
         <source>date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.pelagicore.apps.settings/views/SettingsView.qml" line="79"/>
         <source>themes</source>
         <translation>主题</translation>
     </message>
@@ -976,43 +861,30 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>TiresPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="58"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="86"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="114"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="141"/>
         <source>240</source>
         <translation>240</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="64"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="92"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="120"/>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="148"/>
         <source>kPa</source>
         <translation>kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="166"/>
         <source>Normal load</source>
         <translation>正常负载</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="173"/>
         <source>Target: 240 kPa</source>
         <translation>目标值:240kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="189"/>
         <source>Max load</source>
         <translation>最大负载</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="197"/>
         <source>Target: 270 kPa</source>
         <translation>目标值:270kPa</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TiresPanel.qml" line="212"/>
         <source>Calibrate</source>
         <translation>校准</translation>
     </message>
@@ -1058,12 +930,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>TrunkPanel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="77"/>
         <source>Close</source>
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/TrunkPanel.qml" line="77"/>
         <source>Open</source>
         <translation>开</translation>
     </message>
@@ -1071,25 +941,18 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>VehicleControlModel</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="35"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="39"/>
         <source>Fees</source>
         <translation>费用</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="36"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="40"/>
         <source>Hill Descent Control</source>
         <translation>坡度保持</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="37"/>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="41"/>
         <source>Traffic Jam Assist</source>
         <translation>交通拥堵辅助</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlModel.qml" line="38"/>
         <source>Intelligent speed adaptation</source>
         <translation>自适应巡航</translation>
     </message>
@@ -1235,22 +1098,18 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="57"/>
         <source>support</source>
         <translation>支持</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="58"/>
         <source>energy</source>
         <translation>能源</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="59"/>
         <source>doors</source>
         <translation>车门</translation>
     </message>
     <message>
-        <location filename="../../../apps/com.luxoft.vehicle/VehicleControlPanel.qml" line="60"/>
         <source>tires</source>
         <translation>轮胎</translation>
     </message>
