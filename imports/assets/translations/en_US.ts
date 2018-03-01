@@ -297,11 +297,7 @@ UX to the road</source>
 <context>
     <name>Music</name>
     <message>
-        <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown Artist</source>
+        <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -309,7 +305,11 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Browse</source>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

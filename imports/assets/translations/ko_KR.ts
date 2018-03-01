@@ -431,6 +431,10 @@ UX to the road</source>
         <translation type="unfinished">다음 곡</translation>
     </message>
     <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>

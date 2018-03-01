@@ -53,21 +53,13 @@ Store {
 
         onCountChanged: {
             if (count > 0 && !modelPopulated) {
+                if (musicCount === 0) {
+                    root.searchAndBrowseModel.contentType = "album";
+                    player.playQueue.insert(0, searchAndBrowseModel.get(0));
+                }
                 root.songModelPopulated();
                 modelPopulated = true;
             }
-        }
-    }
-
-    property MediaIndexerControl indexerControl: MediaIndexerControl {
-        onProgressChanged: {
-            if (progress > 0.2 && musicCount === 0) {
-                // insert some songs from album index 0 to the play queue as initial data
-                // when music application is started.
-                root.searchAndBrowseModel.contentType = "album";
-                player.playQueue.insert(0, searchAndBrowseModel.get(0));
-            }
-            root.indexerProgress = progress;
         }
     }
 

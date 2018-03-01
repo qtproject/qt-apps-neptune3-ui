@@ -452,6 +452,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished">下一首</translation>
     </message>
     <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -467,12 +471,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <source>Unknown Track</source>
-        <translation>未知的歌曲</translation>
-    </message>
-    <message>
         <source>Play All</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">未知的歌曲</translation>
     </message>
 </context>
 <context>

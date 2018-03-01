@@ -36,6 +36,8 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import "stores"
 
+import com.pelagicore.styles.triton 1.0
+
 import QtApplicationManager 1.0
 
 import com.pelagicore.styles.triton 1.0
@@ -63,8 +65,7 @@ QtObject {
             x: mainWindow.exposedRect.x
             y: mainWindow.exposedRect.y - 224
             width: mainWindow.exposedRect.width
-            height: Math.max(sourceSize.height, musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y )
-
+            height: Math.max(sourceSize.height, musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y)
             border.bottom: 0
             border.top: sourceSize.height - 1
             border.left: 0
@@ -76,7 +77,6 @@ QtObject {
 
             source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
         }
-
 
         Music {
             id: musicAppContent

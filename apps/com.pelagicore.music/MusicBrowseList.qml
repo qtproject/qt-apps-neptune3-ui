@@ -43,7 +43,6 @@ Control {
     property string contentType: "track"
     property alias listView: listView
     property alias headerText: headerLabel.text
-    property alias showHeader: listHeader.visible
     // Since contentType might have some unique id's when we browse a music by going
     // from one level to another level, a content type slicing is needed to get the
     // intended content type. This property helper will return the actual content type.
@@ -106,8 +105,7 @@ Control {
             opacity: visible ? 1.0 : 0.0
             width: visible ? Style.hspan(720/45) : 0
             height: visible ? Style.vspan(94/80) : 0
-            //TODO check with Johan for animation here
-            //Behavior on height { DefaultNumberAnimation {}}
+            visible: ((toolsColumn.currentText.indexOf(actualContentType) === -1) && (toolsColumn.currentText !== "favorites"))
 
             Tool {
                 id: backButton

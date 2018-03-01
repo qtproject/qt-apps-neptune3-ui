@@ -62,7 +62,6 @@ Item {
         anchors.top: parent.top
         height: root.topExpanded ? (root.height - 100) : (660 - 224)
         Behavior on height { DefaultNumberAnimation { duration: 270 } }
-
         opacity: root.state === "Maximized" ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
@@ -70,7 +69,7 @@ Item {
         ToolButton {
             id: showPlayingQueueButton
             width: contentItem.childrenRect.width + Style.hspan(1)
-            height: contentItem.childrenRect.height + Style.hspan(0.5)
+            height: Style.hspan(0.5)
             anchors.verticalCenter: parent.top
             anchors.verticalCenterOffset: Style.vspan(370/80)
             anchors.horizontalCenter: parent.horizontalCenter
@@ -104,7 +103,6 @@ Item {
             anchors.leftMargin: 100
             anchors.right: parent.right
             anchors.rightMargin: 100
-            clip: true
             listView.model: root.store.musicPlaylist
             onItemClicked: {
                 root.store.musicPlaylist.currentIndex = index;
@@ -115,7 +113,7 @@ Item {
         ToolButton {
             id: showNormalBrowseViewButton
             width: contentItem.childrenRect.width + Style.hspan(1)
-            height: contentItem.childrenRect.height + Style.hspan(0.5)
+            height: Style.hspan(0.5)
             anchors.verticalCenter: parent.bottom
             anchors.verticalCenterOffset: Style.vspan(44/80)
             anchors.horizontalCenter: parent.horizontalCenter
@@ -190,32 +188,19 @@ Item {
                 ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
             }
             onCurrentTextChanged: {
-                musicLibrary.showHeader = false;
-                // as per specification, states in music content should be remembered
-                // when switching from artists to albums and a specific artist was selected
-                // before should return back to that when switching from albums to artists again
-                // and vice versa
                 if (currentText === "artists") {
+                    fullscreenBottom.headerTextInAlbums = musicLibrary.headerText;
+                    //store text in albums view
+                    musicLibrary.headerText = fullscreenBottom.headerTextInArtists;
                     //store content type in albums view
                     fullscreenBottom.albumsContentState = root.store.searchAndBrowseModel.contentType;
-                    //store text in albums view
-                    fullscreenBottom.headerTextInAlbums = musicLibrary.headerText;
-                    if (fullscreenBottom.contentTypeContainsArtistUniqueID) {
-                        //set previous text in artists view and show header
-                        musicLibrary.headerText = fullscreenBottom.headerTextInArtists;
-                        musicLibrary.showHeader = true;
-                    }
                 } else if (currentText === "albums") {
                     //TODO sort albums list alphabetically
-                    //store content type in artists view
-                    fullscreenBottom.artistsContentState = root.store.searchAndBrowseModel.contentType;
                     //store text in artists view
                     fullscreenBottom.headerTextInArtists = musicLibrary.headerText;
-                    if (fullscreenBottom.contentTypeContainsAlbumUniqueID) {
-                        //set previous text in albums view and show header
-                        musicLibrary.headerText = fullscreenBottom.headerTextInAlbums;
-                        musicLibrary.showHeader = true;
-                    }
+                    musicLibrary.headerText = fullscreenBottom.headerTextInAlbums;
+                    //store content type in artists view
+                    fullscreenBottom.artistsContentState = root.store.searchAndBrowseModel.contentType;
                 }
             }
         }
@@ -271,22 +256,20 @@ Item {
                     headerText = artistName;
                 } else if (toolsColumn.currentText.indexOf(contentType) !== -1) {
                     headerText = "";
-                    showHeader = false;
+                    artistName = "";
                 }
             }
 
             onItemClicked: {
                 if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-6) === "artist") {
-                    root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
                     //set header text props
                     artistName = title;
                     headerText = title;
-                    showHeader = true;
-                } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
                     root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
+                } else if (root.store.searchAndBrowseModel.canGoForward(index) && musicLibrary.contentType.slice(-5) === "album") {
                     var albumArtist = artist !== "" ? artist : qsTr("Unknown Artist");
                     headerText = qsTr("%1 (%2)").arg(title).arg(albumArtist);
-                    showHeader = true;
+                    root.store.searchAndBrowseModel.goForward(index, root.store.searchAndBrowseModel.InModelNavigation);
                 } else {
                     root.store.musicPlaylist.insert(root.store.musicCount, root.store.searchAndBrowseModel.get(index));
                     root.store.musicPlaylist.currentIndex = index;
@@ -448,11 +431,9 @@ Item {
 //                PropertyChanges { target: nextListFlickable; contentY: 0 }
 //                PropertyChanges { target: nextListFlickableItemWrapper; opacity: 1 }
 //                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 271 - Math.min(20, widgetAndFullscreen.widget3QueueContentY/6) }
-//                PropertyChanges { target: nextListShadow; opacity: Math.max(0, Math.min(1, (widgetAndFullscreen.widget3QueueContentY / 120 - 0.3))) }
-//                PropertyChanges { target: nextListShadow; anchors.topMargin: 20 - Math.min(20, widgetAndFullscreen.widget3QueueContentY/6) }
 //                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: -71 - Math.min(60, widgetAndFullscreen.widget3QueueContentY/2) }
-//                PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 100)) }
-//                PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 100))}
+//                PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140)) }
+//                PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140))}
             },
             State {
                 name: "Maximized"

@@ -155,7 +155,6 @@ Item {
                 PathAttribute { name: "iconOpacity"; value: 0.0 }
                 PathLine { x: coverslide.width*2+8; y: coverslide.height/2 }
                 PathAttribute { name: "iconOpacity"; value: 0.0 }
-
             }
         }
 
@@ -163,13 +162,15 @@ Item {
             id: searchingMedia
             width: Style.hspan(180/45)
             height: width
-            opacity: root.mediaIndexerProgress < 0.2 ? 1.0 : 0.0
+            opacity: root.mediaReady ? 0.0 : 1.0
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
             anchors.centerIn: coverslide
 
             BusyIndicator {
                 anchors.centerIn: parent
+                visible: parent.visible
+                running: visible
                 width: 60
                 height: 60
             }

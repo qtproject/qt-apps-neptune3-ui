@@ -41,6 +41,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QFileInfo>
+#include <QDir>
 
 #include <QDebug>
 
@@ -90,6 +91,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     }
 
     try {
+        qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         setenv("QT_IM_MODULE", "qtvirtualkeyboard", 1);
         // this is needed for both WebEngine and Wayland Multi-screen rendering
         QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);

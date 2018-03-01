@@ -424,6 +424,10 @@ UX to the road</source>
         <translation type="unfinished">次</translation>
     </message>
     <message>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Unknown Artist</source>
         <translation type="unfinished"></translation>
     </message>
@@ -439,12 +443,12 @@ UX to the road</source>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <source>Unknown Track</source>
-        <translation>未知の歌</translation>
-    </message>
-    <message>
         <source>Play All</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">未知の歌</translation>
     </message>
 </context>
 <context>
