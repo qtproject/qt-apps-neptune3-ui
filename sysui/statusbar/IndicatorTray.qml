@@ -57,7 +57,7 @@ Control {
                  height: root.height
                  source: Style.symbol(modelData.icon, TritonStyle.theme)
                  fillMode: Image.Pad
-                 opacity: modelData.active ? 1 : 0.4
+                 opacity: modelData.active ? TritonStyle.fontOpacityHigh : TritonStyle.fontOpacityLow
              }
          }
     }
