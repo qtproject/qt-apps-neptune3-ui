@@ -32,6 +32,8 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
+
 import utils 1.0
 import com.pelagicore.styles.triton 1.0
 
@@ -73,15 +75,27 @@ ItemDelegate {
     signal rightToolClicked()
 
     indicator: Item  {
+
+        ColorOverlay {
+            anchors.fill: parent
+            source: colorOverlaySource
+            color: TritonStyle.contrastColor
+        }
         implicitWidth: root.symbol || root.imageSource ? Style.hspan(2) : 0
         implicitHeight: root.symbol || root.imageSource ? root.height : 0
-        Image {
-            anchors.centerIn: parent
-            source: root.symbol
-        }
-        Image {
+        opacity: root.enabled ? 1 : 0.3
+        Item {
+            id: colorOverlaySource
             anchors.fill: parent
-            source: root.imageSource
+            visible: false
+            Image {
+                anchors.centerIn: parent
+                source: root.symbol
+            }
+            Image {
+                anchors.fill: parent
+                source: root.imageSource
+            }
         }
     }
 
@@ -94,10 +108,9 @@ ItemDelegate {
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-
-            opacity: enabled ? 0.94 : 0.2
+            opacity: enabled ? 0.94 : 0.3
             visible: root.text
-            color: enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
+            color: TritonStyle.contrastColor
         }
 
         Label {
