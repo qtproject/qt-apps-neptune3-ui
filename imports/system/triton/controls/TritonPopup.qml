@@ -111,6 +111,13 @@ Control {
         state = "open";
     }
 
+    function openLeft() {
+        var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
+        _openFromX = originPos.x - (root.width / 2);
+        _openFromY = originPos.y - root.height;
+        state = "open_left";
+    }
+
     function close() {
         state = "closed";
     }
@@ -136,6 +143,16 @@ Control {
             }
         },
         State {
+            name: "open_left"
+            extend: "open"
+            PropertyChanges {
+                target: root
+                visible: true
+                x: Style.hspan(1.5)
+                y: (root.parent.height - root.height) / 2
+            }
+        },
+        State {
             name: "closed"
             PropertyChanges {
                 target: root
@@ -152,7 +169,7 @@ Control {
 
     transitions: [
         Transition {
-            to: "open"
+            to: "open,open_left"
             SequentialAnimation {
                 PropertyAction { target: root; property: "visible"; value: true }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }
@@ -166,7 +183,7 @@ Control {
             }
         },
         Transition {
-            from: "open"; to: "closed"
+            from: "open,open_left"; to: "closed"
             SequentialAnimation {
                 PropertyAction { target: root; property: "visible"; value: true }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }

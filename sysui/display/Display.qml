@@ -40,11 +40,13 @@ import controls 1.0
 import display 1.0
 import utils 1.0
 import animations 1.0
+import volume 1.0
 
 import models.application 1.0
 import models.climate 1.0
 import models.system 1.0
 import models.startup 1.0
+import models.volume 1.0
 
 import QtGraphicalEffects 1.0
 
@@ -75,6 +77,10 @@ Item {
 
     ClimateModel {
         id: climateModel
+    }
+
+    VolumeModel {
+        id: volumeModel
     }
 
     // Give some time for sysui to load itself before launching apps. Besides, starting the apps
@@ -245,6 +251,17 @@ Item {
         model: climateModel
 
         Tool {
+            id: leftIcon
+            width: climateBar.toolWidth
+            height: width
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: climateBar.lateralMargin
+            symbol: volumePopup.volumeIcon
+            onClicked: volumePopup.openLeft()
+        }
+
+        Tool {
             id: rightIcon
             width: climateBar.toolWidth
             height: width
@@ -266,6 +283,13 @@ Item {
     Binding { target: SystemModel; property: "ramTotalBytes"; value: (SystemMonitor.totalMemory / 1e6).toFixed(0) }
     Binding { target: SystemModel; property: "cpuPercentage"; value: (SystemMonitor.cpuLoad * 100).toFixed(0) }
     Binding { target: SystemModel; property: "ramBytes"; value: (SystemMonitor.memoryUsed / 1e6).toFixed(0) }
+
+    VolumePopup {
+        id: volumePopup
+        parent: root.popupParent
+        originItem: leftIcon
+        model: volumeModel
+    }
 
     // TODO load popup only before opening it and unload after closed
     About {

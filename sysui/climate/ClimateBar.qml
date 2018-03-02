@@ -47,20 +47,11 @@ Item {
     property real lateralMargin: Style.hspan(0.6)
     property real toolWidth: Style.hspan(2)
 
-    Tool {
-        id: leftIcon
-        width: root.toolWidth
-        height: width
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.leftMargin: root.lateralMargin
-        symbol: Style.symbol("volume-status-3")
-    }
-
     MouseArea {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.left: leftIcon.right
+        anchors.left: parent.left
+        anchors.leftMargin: root.toolWidth + root.lateralMargin
         anchors.right: parent.right
         anchors.rightMargin: root.toolWidth + root.lateralMargin
         onClicked: popup.open()
