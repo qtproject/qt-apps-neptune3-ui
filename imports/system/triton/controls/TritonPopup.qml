@@ -42,11 +42,40 @@ import animations 1.0
 Control {
     id: root
 
-    // TODO: Add a shadow around the rectangle
-    background: Rectangle {
+    width: 800
+    focus: visible
+
+    property bool headerBackgroundVisible: false
+    property int headerBackgroundHeight: 0
+    property Item originItem
+    property real _openFromX
+    property real _openFromY
+    readonly property int minHeight: 548
+
+    BorderImage {
+        anchors.top: parent.top
+        width: parent.width
+        height: root.headerBackgroundHeight
+        visible: root.headerBackgroundVisible
+        source: Style.gfx2("floating-panel-top-bg")
+        border {
+            left: 20
+            top: 30
+            right: 20
+            bottom: 0
+        }
+    }
+    background: BorderImage {
         anchors.fill: root
-        color: root.TritonStyle.backgroundColor
-        radius: Style.hspan(0.7)
+        source: Style.gfx2("popup-background-9patch", TritonStyle.theme)
+        anchors.leftMargin: -40
+        anchors.rightMargin: -40
+        anchors.topMargin: -28
+        anchors.bottomMargin: -52
+        border.left: 70
+        border.right: 70
+        border.top: 50
+        border.bottom: 90
 
         // click eater
         MouseArea {
@@ -55,13 +84,25 @@ Control {
             onWheel: wheel.accepted = true;
         }
     }
-    focus: visible
+
+    Tool {
+        anchors.verticalCenter: parent.top
+        anchors.verticalCenterOffset: 10
+        anchors.horizontalCenter: parent.right
+        anchors.horizontalCenterOffset: -10
+        width: bg.sourceSize.width
+        height: width
+        onClicked: close()
+        symbol: Style.symbol("ic-close")
+        background: Image {
+            id: bg
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 6
+            source: Style.gfx2("popup-close-button-bg", TritonStyle.theme)
+        }
+    }
+
     Keys.onEscapePressed: close()
-
-    property Item originItem
-
-    width: Style.hspan(16)
-    height: Style.vspan(14)
 
     function open() {
         var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
@@ -109,8 +150,6 @@ Control {
         }
     ]
 
-    property real _openFromX
-    property real _openFromY
     transitions: [
         Transition {
             to: "open"
@@ -141,21 +180,4 @@ Control {
             }
         }
     ]
-
-    Tool {
-        anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: 10
-        anchors.horizontalCenter: parent.right
-        anchors.horizontalCenterOffset: -10
-        width: bg.sourceSize.width
-        height: width
-        onClicked: close()
-        symbol: Style.symbol("ic-close")
-        background: Image {
-            id: bg
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: 6
-            source: Style.gfx2("popup-close-button-bg", TritonStyle.theme)
-        }
-    }
 }

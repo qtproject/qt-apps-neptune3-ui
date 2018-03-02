@@ -49,12 +49,6 @@ Item {
 
     signal linkToggled(bool linked)
 
-    Rectangle {
-        anchors.fill: parent
-        color: TritonStyle.contrastColor
-        opacity: 0.05
-    }
-
     Row {
         anchors.centerIn: parent
         spacing: Style.hspan(0.5)

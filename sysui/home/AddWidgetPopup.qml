@@ -39,22 +39,25 @@ import utils 1.0
 import animations 1.0
 
 import triton.controls 1.0
+import com.pelagicore.styles.triton 1.0
 
 TritonPopup {
     id: root
 
     property alias model: delegateModel.model
+    readonly property int popupHeight: popupContent.height
+    height: Math.max(root.minHeight, popupHeight)
 
     DelegateModel {
         id: delegateModel
 
         groups: [
             DelegateModelGroup {
-                id: widgetModelGroup
-                name: "supports-widget-state"
+                name: "supportsWidgetState"
                 includeByDefault: false
             },
             DelegateModelGroup {
+                id: allItemsGroup
                 name: "all"
                 includeByDefault: true
                 onChanged: {
@@ -66,7 +69,7 @@ TritonPopup {
                             var entry = get(index);
                             var appInfo = entry.model.appInfo;
                             if (appInfo.categories.indexOf("widget") !== -1) {
-                                entry.groups = ["all", "supports-widget-state"];
+                                entry.groups = ["all", "supportsWidgetState"];
                             }
                         }
                     }
@@ -74,41 +77,61 @@ TritonPopup {
             }
         ]
 
-        filterOnGroup: "supports-widget-state"
+        filterOnGroup: "supportsWidgetState"
 
-        delegate: MouseArea {
-            width: parent.width
+        delegate: ListItem {
+            width: ListView.view.width
             height: Style.vspan(1)
+            symbol: Qt.resolvedUrl(model.appInfo.icon)
+            text: model.name
             enabled: !model.appInfo.asWidget
-            Label {
-                anchors.fill: parent
-                text: model.name
-                enabled: parent.enabled // doesn't seem to be propagating, so making it explicit
-            }
             onClicked: {
                 model.appInfo.asWidget = true
                 root.state = "closed"
             }
+            dividerVisible: delegateModel.count - 1 !== DelegateModel.supportsWidgetStateIndex
         }
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: Style.hspan(1)
+    Item {
+        id: popupContent
+        width: parent.width
+        height: widgetListview.contentHeight + widgetListview.anchors.topMargin + widgetListview.anchors.bottomMargin + shadow.anchors.topMargin + shadow.paintedHeight
+
         Label {
             id: header
-            text: qsTr("Add widget")
-            horizontalAlignment: Text.AlignHCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: Style.vspan(1)
-        }
-        ListView {
-            id: listView
+            anchors.baseline: parent.top
+            anchors.baselineOffset: Style.vspan(78/80)
             width: parent.width
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            clip: true
+            horizontalAlignment: Text.AlignHCenter
+            elide: Text.ElideRight
+            text: qsTr("Add widget")
+            font.weight: Font.Light
+        }
+        Image {
+            id: shadow
+            anchors.top: parent.top
+            anchors.topMargin: 120
+            width: parent.width
+            source: Style.gfx2("popup-title-shadow")
+        }
+
+        ListView {
+            id: widgetListview
+            anchors {
+                top: shadow.bottom
+                topMargin: 51
+                left: parent.left
+                leftMargin: 74
+                right: parent.right
+                rightMargin: 74
+                bottom: parent.bottom
+                bottomMargin: 74
+            }
             model: delegateModel
+            interactive: false
         }
     }
 }
+
+

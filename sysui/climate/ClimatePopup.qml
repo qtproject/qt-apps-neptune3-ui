@@ -43,6 +43,8 @@ TritonPopup {
     id: root
     width: Style.hspan(910/45)
     height: Style.vspan(1426/80)
+    headerBackgroundVisible: true
+    headerBackgroundHeight: Style.hspan(278/45)
 
     property var model
     property bool seatTemperaturesLinked: false
@@ -128,6 +130,7 @@ TritonPopup {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
+            font.weight: Font.Light
         }
         background: Rectangle {
             radius: bigFatButton.radius
