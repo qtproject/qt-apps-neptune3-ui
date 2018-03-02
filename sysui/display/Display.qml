@@ -227,14 +227,11 @@ Item {
 
     StageLoader {
         id: launcherLoader
-        width: Style.launcherWidth
-        height: launcherLoader.item && launcherLoader.item.open ? launcherLoader.item.expandedHeight : Style.launcherHeight
-        Behavior on height { DefaultSmoothedAnimation {} }
-
         property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
         anchors.top: statusBarLoader.bottom
-        anchors.topMargin: Style.vspan(0.5)
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: launcherLoader.item ? launcherLoader.item.height : Style.launcherHeight
         active: StagedStartupModel.loadDisplay
         source: "../launcher/Launcher.qml"
         Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }

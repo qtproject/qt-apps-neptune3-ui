@@ -52,8 +52,7 @@ Item {
     }
 
     Image {
-        width: parent.width
-        height: width
+        width: Style.hspan(1.5)
         anchors.centerIn: icon
         fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
@@ -62,22 +61,26 @@ Item {
 
     Image {
         id: icon
-        width: parent.width
-        height: Style.vspan(1)
-        anchors.top: parent.top
-        anchors.topMargin: root.gridOpen ? Style.vspan(0.6) : 0
-        Behavior on anchors.topMargin { DefaultNumberAnimation { } }
-
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
         fillMode: Image.Pad
     }
 
     Label {
         id: appLabel
         anchors.top: icon.bottom
+        anchors.topMargin: Style.vspan(10/80)
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        width: root.width*0.8
+        font.pixelSize: TritonStyle.fontSizeS
         opacity: root.gridOpen ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: "white"
+        visible: opacity > 0
+        elide: Text.ElideRight
+        maximumLineCount: 2
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Text.AlignHCenter
+        lineHeight: 0.9
     }
 }

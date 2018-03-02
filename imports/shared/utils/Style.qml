@@ -57,7 +57,6 @@ QtObject {
     //StatusBar config
     property real statusBarHeight: vspan(1)
 
-    property real launcherWidth: hspan(20)
     property real launcherHeight: vspan(1.3)
 
     property string assetPath: Qt.resolvedUrl("../../assets/")

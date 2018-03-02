@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -40,13 +40,14 @@ import animations 1.0
 Item {
     id: root
 
-    implicitHeight: Style.hspan(4.5) * Math.ceil(grid.count/root.numIconsPerRow)
+    height: cellHeight * Math.ceil(grid.count/root.numIconsPerRow)
 
     property alias gridEditMode: grid.editMode
     property alias model: visualModel.model
-    property alias gridCellWidth: grid.cellWidth
     readonly property int numIconsPerRow: 4
     property var exclusiveButtonGroup
+    readonly property alias cellWidth: grid.cellWidth
+    readonly property alias cellHeight: grid.cellHeight
 
     property bool showDevApps: false
     property bool gridOpen: false
@@ -67,7 +68,7 @@ Item {
             readonly property bool devApp: model.appInfo.categories.indexOf("dev") !== -1
 
             width: grid.cellWidth
-            height: width
+            height: grid.cellHeight
 
             opacity: {
                 if (delegateRoot.visualIndex > (root.numIconsPerRow - 1)) {
@@ -85,15 +86,12 @@ Item {
 
             AppButton {
                 id: appButton
-                width: root.gridOpen ? Style.hspan(4) : Style.hspan(1.8)
-                height: root.gridOpen ? width : Style.vspan(1.5)
 
                 ButtonGroup.group: root.exclusiveButtonGroup
 
-                Behavior on height { DefaultNumberAnimation { } }
-
-                anchors.horizontalCenter: parent.horizontalCenter;
-                anchors.verticalCenter: parent.verticalCenter;
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: -Style.vspan(12/80)
 
                 Connections {
                     target: model.appInfo
@@ -162,49 +160,58 @@ Item {
             onReleased: {
                 drag.target = undefined;
             }
+
+            state: grid.editMode ? "editing" : "normal"
+            states: [
+                State {
+                    name: "normal"
+                    PropertyChanges {
+                        target: appButton
+                        width: grid.cellWidth
+                        height: grid.cellHeight
+                    }
+                },
+                State {
+                    name: "editing"
+                    PropertyChanges {
+                        target: appButton
+                        width: Style.hspan(172/45)
+                        height: Style.vspan(172/80)
+                    }
+                }
+            ]
+            transitions: Transition {
+                DefaultNumberAnimation { properties: "width, height" }
+            }
         }
     }
 
     GridView {
         id: grid
+        property bool editMode: false
 
         Layout.alignment: Qt.AlignTop
         anchors.fill: parent
-
-        property bool editMode: false
-
         interactive: false
         model: visualModel
         cellWidth: width / root.numIconsPerRow
         cellHeight: cellWidth
 
         displaced: Transition {
-            NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
+            DefaultNumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
         }
     }
 
-    ToolButton {
+    Button {
         id: exitEditMode
-        width: root.width
-        height: Style.vspan(1)
-        opacity: grid.editMode ? 1.0 : 0.0
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
         anchors.top: grid.bottom
         anchors.topMargin: Style.vspan(0.2)
-
-        background: Rectangle {
-            width: root.width
-            height: Style.vspan(1)
-            color: "#1c1a18"
-        }
-
-        contentItem: Label {
-            text: exitEditMode.text
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            color: "white"
-        }
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: root.width/2
+        height: Style.vspan(1)
+        opacity: grid.editMode ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+        visible: opacity > 0
 
         text: qsTr("Finish Editing")
         onClicked: grid.editMode = false

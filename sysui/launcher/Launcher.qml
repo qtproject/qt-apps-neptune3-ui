@@ -40,88 +40,176 @@ import utils 1.0
 Item {
     id: root
 
-    width: Style.launcherWidth
-    height: open ? expandedHeight : Style.launcherHeight
-
     readonly property real expandedHeight: Style.vspan(10)
     readonly property bool open: gridButton.checked
     property bool showDevApps: false
-
     property var applicationModel
 
-    Behavior on height { DefaultSmoothedAnimation {} }
+    readonly property bool _isThereActiveApp: applicationModel && applicationModel.activeAppInfo
 
     ButtonGroup {
         id: buttonGroup
     }
 
-    Connections {
-        target: root.applicationModel
-        onActiveAppInfoChanged: homeButton.checked = !root.applicationModel.activeAppInfo.active
-    }
-
     Tool {
         id: homeButton
 
-        width: Style.hspan(1.8)
-        height: width
-        Layout.alignment: Qt.AlignTop
+        anchors.top: parent.top
         anchors.left: parent.left
-
-        opacity: root.open ? 0.0 : 1.0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        anchors.leftMargin: Style.hspan(134/45) - width/2
+        width: Style.hspan(1.5)
 
         symbol: Style.symbol("ic-menu-home")
-
         ButtonGroup.group: buttonGroup
         checkable: true
-        checked: true
-        onClicked: root.applicationModel.goHome();
+        checked: !_isThereActiveApp
+        visible: opacity > 0
 
         background: Image {
             width: homeButton.width
-            height: width
             fillMode: Image.PreserveAspectFit
             visible: homeButton.checked
             source: Style.symbol("ic-app-active-bg")
         }
+        onClicked: root.applicationModel.goHome()
     }
 
-    RowLayout {
-        id: applicationLauncher
+    Tool {
+        id: gridButton
 
-        width: root.open ? Style.launcherWidth : Style.hspan(12)
-        Behavior on width { DefaultNumberAnimation { } }
+        readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
 
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(134/45) - width/2
+
+        opacity: useCloseIcon ? 0.2 : 1
+        symbol: useCloseIcon ? Style.symbol("ic-close") : Style.symbol("ic-menu-allapps")
+        checkable: true
+    }
+
+    EditableGridView {
+        id: editableLauncher
+
+        anchors.top: parent.top
         anchors.right: parent.right
 
-        EditableGridView {
-            id: editableLauncher
+        gridOpen: root.open
+        model: root.applicationModel
+        showDevApps: root.showDevApps
+        exclusiveButtonGroup: buttonGroup
 
-            Layout.fillWidth: true
-            Layout.preferredHeight: implicitHeight
-
-            anchors.top: parent.top
-            gridOpen: root.open
-            model: root.applicationModel
-            showDevApps: root.showDevApps
-            exclusiveButtonGroup: buttonGroup
-            onAppButtonClicked: gridButton.checked = false
-        }
-
-        Tool {
-            id: gridButton
-
-            implicitWidth: Style.hspan(2.3)
-            implicitHeight: Style.vspan(0.9)
-
-            readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
-
-            opacity: useCloseIcon ? 0.2 : 1
-
-            Layout.alignment: Qt.AlignTop
-            symbol: useCloseIcon ? Style.symbol("ic-close") : Style.symbol("ic-menu-allapps")
-            checkable: true
+        onAppButtonClicked: {
+            gridButton.checked = false;
         }
     }
+    state: _isThereActiveApp ? (root.open ? "open_active_app" : "closed_active_app") : (root.open ? "open_no_app" : "closed_no_app")
+    states: [
+        State {
+            name: "open"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.rightMargin: Style.hspan(168/45)
+                width: Style.hspan(744/45)
+            }
+            PropertyChanges {
+                target: homeButton
+                opacity: 0
+            }
+            PropertyChanges {
+                target: root
+                height: expandedHeight
+            }
+        },
+
+        State {
+            name: "open_no_app"
+            extend: "open"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.topMargin: Style.vspan(150/80) - Style.statusBarHeight
+            }
+            PropertyChanges {
+                target: homeButton
+                anchors.topMargin: Style.vspan(152/80) - Style.statusBarHeight - homeButton.height/2
+            }
+            PropertyChanges {
+                target: gridButton
+                anchors.topMargin: Style.vspan(152/80) - Style.statusBarHeight - gridButton.width/2
+            }
+        },
+
+        State {
+            name: "open_active_app"
+            extend: "open"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.topMargin: Style.vspan(134/80) - Style.statusBarHeight
+            }
+            PropertyChanges {
+                target: homeButton
+                anchors.topMargin: Style.vspan(120/80) - Style.statusBarHeight - homeButton.height/2
+            }
+            PropertyChanges {
+                target: gridButton
+                anchors.topMargin: Style.vspan(120/80) - Style.statusBarHeight - gridButton.width/2
+            }
+        },
+
+        State {
+            name: "closed"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.rightMargin: Style.hspan(134/45) + (cellWidth - gridButton.width)/2
+                width: Style.hspan(480/45)
+            }
+            PropertyChanges {
+                target: homeButton
+                opacity: 1
+            }
+            PropertyChanges {
+                target: root
+                height: Style.launcherHeight
+            }
+        },
+
+        State {
+            name: "closed_no_app"
+            extend: "closed"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.topMargin: Style.vspan(32/80)
+            }
+            PropertyChanges {
+                target: homeButton
+                anchors.topMargin: Style.vspan(152/80) - Style.statusBarHeight - homeButton.height/2
+            }
+            PropertyChanges {
+                target: gridButton
+                anchors.topMargin: Style.vspan(152/80) - Style.statusBarHeight - gridButton.width/2
+            }
+        },
+
+        State {
+            name: "closed_active_app"
+            extend: "closed"
+            PropertyChanges {
+                target: editableLauncher
+                anchors.topMargin: 0
+            }
+            PropertyChanges {
+                target: homeButton
+                anchors.topMargin: Style.vspan(120/80) - Style.statusBarHeight - homeButton.height/2
+            }
+            PropertyChanges {
+                target: gridButton
+                anchors.topMargin: Style.vspan(120/80) - Style.statusBarHeight - gridButton.width/2
+            }
+        }
+    ]
+
+    transitions: Transition {
+        DefaultNumberAnimation { properties: "anchors.topMargin, anchors.rightMargin, width, opacity, height" }
+    }
+
 }
