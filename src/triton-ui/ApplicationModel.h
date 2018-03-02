@@ -160,6 +160,7 @@ private:
     void remove(const QtAM::Application *);
     int indexFromApplication(const QtAM::Application *);
 
+    static ApplicationModel* m_instance;
     QList<ApplicationInfo*> m_appInfoList;
     QtAM::ApplicationManager *m_appMan{nullptr};
     QtAM::WindowManager *m_windowManager{nullptr};

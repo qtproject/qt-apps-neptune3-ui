@@ -45,9 +45,16 @@ using QtAM::WindowManager;
 using QtAM::ApplicationManager;
 using QtAM::Application;
 
+ApplicationModel* ApplicationModel::m_instance = nullptr;
+
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    if (m_instance) {
+        qFatal("Only one instance of ApplicationModel at a time is possible.");
+    } else {
+        m_instance = this;
+    }
     setLangCode(QLocale::system().name());
 }
 
@@ -55,6 +62,7 @@ ApplicationModel::~ApplicationModel()
 {
     qDeleteAll(m_appInfoList);
     delete m_instrumentClusterApp;
+    m_instance = nullptr;
 }
 
 void ApplicationModel::setApplicationManager(QtAM::ApplicationManager *appMan)
