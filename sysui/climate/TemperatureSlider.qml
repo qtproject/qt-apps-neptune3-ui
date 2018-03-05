@@ -30,12 +30,9 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 
 import utils 1.0
-
-import com.pelagicore.styles.triton 1.0
 
 Slider {
     id: root
@@ -47,40 +44,5 @@ Slider {
     stepSize: 0.5
 
     property var convertFunc
-    property int count: stepSize != 0 ? (to-from)/stepSize : 0.5
-    readonly property alias handleHeight: handleItem.height
-
-    background: Item {
-        id: bgItem
-        anchors.fill: parent
-        Column {
-            id: rulerNumbers
-            anchors.top: parent.top
-            anchors.topMargin: handleItem.height/2
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: handleItem.height/2
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            width: Style.hspan(30/45)
-            spacing: Style.vspan(3/80)
-
-            Repeater {
-                model: root.count
-                delegate: Rectangle {
-                    id: rect
-                    width: parent.width
-                    height: rulerNumbers.height/root.count - rulerNumbers.spacing
-                    color: TritonStyle.contrastColor
-                    opacity: (handleItem.y-handleItem.height/2) > rect.y ? 0.1 : 0.6
-                }
-            }
-        }
-    }
-
-    handle: Image {
-        id: handleItem
-        x: root.leftPadding + (root.availableWidth - width) / 2
-        y: root.topPadding + (root.visualPosition * (root.availableHeight - height))
-        source: Style.gfx2("vertical-slider-handle", TritonStyle.theme)
-    }
+    readonly property real handleHeight: handle.height
 }

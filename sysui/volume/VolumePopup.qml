@@ -53,7 +53,7 @@ TritonPopup {
     property var model
 
     readonly property string volumeIcon: {
-        if (volumeStates.state === "muted") {
+        if (privateValues.muted) {
             return Style.symbol("ic-volume-0")
         } else if (value <= 33) {
             return Style.symbol("ic-volume-1")
@@ -66,7 +66,7 @@ TritonPopup {
 
     QtObject {
         id: privateValues
-        property int volumeBeforeMute: 0
+        property bool muted: false
     }
 
     Row {
@@ -78,13 +78,13 @@ TritonPopup {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: TritonStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: 0.6
+            opacity: TritonStyle.fontOpacityMedium
             text: value
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: TritonStyle.fontSizeL
-            opacity: 0.4
+            opacity: TritonStyle.fontOpacityLow
             text: " %"
         }
     }
@@ -95,9 +95,9 @@ TritonPopup {
         height: Style.vspan(14)
         from: 0
         to: 100
-        value: Math.round(model.volume*100)
+        value: privateValues.muted ? 0 : Math.round(model.volume*100)
         onValueChanged: {
-            if (model) {
+            if (model && !privateValues.muted) {
                 model.setVolume(value/100.0)
             }
         }
@@ -111,37 +111,16 @@ TritonPopup {
         width: Style.hspan(200/45)
         height: Style.vspan(100/80)
         checkable: true
-        checked: volumeStates.state === "muted"
+        checked: privateValues.muted
         background: Rectangle {
             radius: height/2
             opacity: muteButton.checked ? 1 : 0.06
-            color: parent.checked ? TritonStyle.accentColor : TritonStyle.contrastColor
+            color: muteButton.checked ? TritonStyle.accentColor : TritonStyle.contrastColor
         }
         Image {
             anchors.centerIn: parent
             source: Style.symbol("ic-volume-0")
         }
-        onClicked: {
-            if (volumeStates.state === "muted") {
-                slider.value = privateValues.volumeBeforeMute
-            } else {
-                privateValues.volumeBeforeMute = slider.value
-                slider.value = 0
-            }
-        }
-    }
-
-    StateGroup {
-        id: volumeStates
-        states: [
-            State {
-                name: "muted"
-                when: value === 0
-            },
-            State {
-                name: "unmuted"
-                when: value !== 0
-            }
-        ]
+        onToggled: privateValues.muted = !privateValues.muted
     }
 }
