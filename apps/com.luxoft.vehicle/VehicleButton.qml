@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,7 +31,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ToolButton {
     id: root
@@ -50,7 +50,7 @@ ToolButton {
             }
             PropertyChanges {
                 target: contentText
-                font.pixelSize: root.TritonStyle.fontSizeM
+                font.pixelSize: root.NeptuneStyle.fontSizeM
             }
         },
         State {
@@ -64,7 +64,7 @@ ToolButton {
             }
             PropertyChanges {
                 target: contentText
-                font.pixelSize: root.TritonStyle.fontSizeS
+                font.pixelSize: root.NeptuneStyle.fontSizeS
             }
         },
         State {
@@ -77,7 +77,7 @@ ToolButton {
             }
             PropertyChanges {
                 target: contentText
-                font.pixelSize: root.TritonStyle.fontSizeS
+                font.pixelSize: root.NeptuneStyle.fontSizeS
             }
         }
     ]
@@ -91,7 +91,7 @@ ToolButton {
 
         text: root.text
         font.weight: Font.Light
-        color: root.down ? "#41403f" : TritonStyle.primaryTextColor
+        color: root.down ? "#41403f" : NeptuneStyle.primaryTextColor
         opacity: 0.94
     }
     background: Rectangle {

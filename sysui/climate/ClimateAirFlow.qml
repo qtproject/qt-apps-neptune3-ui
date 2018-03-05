@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 
 import animations 1.0
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -64,7 +64,7 @@ Item {
             height: 100
             Image {
                 anchors.centerIn: parent
-                source: Style.gfx2(("fan-speed-"+index), TritonStyle.theme)
+                source: Style.gfx2(("fan-speed-"+index), NeptuneStyle.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
             }
         }
@@ -82,7 +82,7 @@ Item {
         height: airFlowTop.sourceSize.height + airFlowMiddle.sourceSize.height + airFlowDown.sourceSize.height - 40 + 20
         Image {
             id: seatImage
-            source: Style.gfx2("seat", TritonStyle.theme)
+            source: Style.gfx2("seat", NeptuneStyle.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: -10
@@ -91,8 +91,8 @@ Item {
             id: airFlowTop
             anchors.left: parent.left
             anchors.top: parent.top
-            source: root.model.airflow.windshield ? Style.gfx2("air-flow-top-active", TritonStyle.theme)
-                                                  : Style.gfx2("air-flow-top", TritonStyle.theme)
+            source: root.model.airflow.windshield ? Style.gfx2("air-flow-top-active", NeptuneStyle.theme)
+                                                  : Style.gfx2("air-flow-top", NeptuneStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
@@ -104,8 +104,8 @@ Item {
             anchors.left: parent.left
             anchors.top: airFlowTop.bottom
             anchors.topMargin: -40
-            source: root.model.airflow.dashboard ? Style.gfx2("air-flow-middle-active", TritonStyle.theme)
-                                                 : Style.gfx2("air-flow-middle", TritonStyle.theme)
+            source: root.model.airflow.dashboard ? Style.gfx2("air-flow-middle-active", NeptuneStyle.theme)
+                                                 : Style.gfx2("air-flow-middle", NeptuneStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
@@ -117,8 +117,8 @@ Item {
             anchors.left: parent.left
             anchors.top: airFlowMiddle.bottom
             anchors.topMargin: 20
-            source: root.model.airflow.floor ? Style.gfx2("air-flow-bottom-active", TritonStyle.theme)
-                                             : Style.gfx2("air-flow-bottom", TritonStyle.theme)
+            source: root.model.airflow.floor ? Style.gfx2("air-flow-bottom-active", NeptuneStyle.theme)
+                                             : Style.gfx2("air-flow-bottom", NeptuneStyle.theme)
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode

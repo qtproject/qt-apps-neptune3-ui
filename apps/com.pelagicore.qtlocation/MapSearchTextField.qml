@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,23 +32,23 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.0
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 TextField {
     id: root
 
     property alias busy: searchBusyIndicator.running
 
-    font.family: TritonStyle.fontFamily
-    font.pixelSize: TritonStyle.fontSizeM
-    color: TritonStyle.primaryTextColor
-    selectedTextColor: TritonStyle.highlightedTextColor
+    font.family: NeptuneStyle.fontFamily
+    font.pixelSize: NeptuneStyle.fontSizeM
+    color: NeptuneStyle.primaryTextColor
+    selectedTextColor: NeptuneStyle.highlightedTextColor
     leftPadding: Style.hspan(0.4)
     rightPadding: Style.hspan(1.4)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
-        border.color: TritonStyle.buttonColor
+        border.color: NeptuneStyle.buttonColor
         border.width: 1
         color: "transparent"
         radius: height/2
@@ -59,7 +59,7 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Style.hspan(0.4)
                 anchors.verticalCenter: parent.verticalCenter
-                source: Style.localAsset("ic-search", TritonStyle.theme)
+                source: Style.localAsset("ic-search", NeptuneStyle.theme)
                 visible: !searchBusyIndicator.visible
             }
             BusyIndicator {

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,12 +32,12 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ToolButton {
     id: root
     property string symbol
-    property color labelColor: TritonStyle.primaryTextColor
+    property color labelColor: NeptuneStyle.primaryTextColor
     property real labelOpacity: 1
     property bool symbolOnTop: false
 
@@ -81,7 +81,7 @@ ToolButton {
         anchors.verticalCenterOffset: root.symbolOnTop ? - Style.vspan(0.2) : 0
 
         fillMode: Image.Pad
-        source: root.symbol ? (TritonStyle.theme === TritonStyle.Dark ? root.symbol.replace("\.png","-dark\.png")
+        source: root.symbol ? (NeptuneStyle.theme === NeptuneStyle.Dark ? root.symbol.replace("\.png","-dark\.png")
                                                                       : root.symbol)
                             : ""
     }

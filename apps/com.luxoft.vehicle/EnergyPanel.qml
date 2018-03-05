@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
 Item {
@@ -54,7 +54,7 @@ Item {
         anchors.top: energyControls.bottom
         anchors.left: energyControls.left
         anchors.topMargin: 40
-        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         width: parent.width
         source: "assets/images/energy-graph" + sourceSuffix
     }
@@ -82,7 +82,7 @@ Item {
         Image {
             height: 2
             width: parent.width
-            source: Style.gfx2("list-divider", TritonStyle.theme)
+            source: Style.gfx2("list-divider", NeptuneStyle.theme)
         }
 
         Label {
@@ -92,7 +92,7 @@ Item {
             anchors.leftMargin: 40
             text: qsTr("184")
             font {
-                pixelSize: TritonStyle.fontSizeL
+                pixelSize: NeptuneStyle.fontSizeL
             }
 
             Label {
@@ -103,10 +103,10 @@ Item {
 
                 text: qsTr("km")
                 font {
-                    pixelSize: TritonStyle.fontSizeXS
+                    pixelSize: NeptuneStyle.fontSizeXS
                     weight: Font.Light
                 }
-                opacity: TritonStyle.fontOpacityLow
+                opacity: NeptuneStyle.fontOpacityLow
             }
         }
 
@@ -134,7 +134,7 @@ Item {
             width: 750
             anchors.top: parent.top
             anchors.topMargin: 168
-            source: Style.gfx2("list-divider", TritonStyle.theme)
+            source: Style.gfx2("list-divider", NeptuneStyle.theme)
         }
 
         //ToDo: this probably should be in a model later
@@ -151,7 +151,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("21")
                 font {
-                    pixelSize: TritonStyle.fontSizeL
+                    pixelSize: NeptuneStyle.fontSizeL
                 }
 
                 Label {
@@ -162,10 +162,10 @@ Item {
 
                     text: qsTr("km")
                     font {
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
 
@@ -201,7 +201,7 @@ Item {
                 anchors.leftMargin: 40
                 anchors.verticalCenter: parent.verticalCenter
                 font {
-                    pixelSize: TritonStyle.fontSizeL
+                    pixelSize: NeptuneStyle.fontSizeL
                 }
 
                 Label {
@@ -212,10 +212,10 @@ Item {
 
                     text: qsTr("km")
                     font {
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
 

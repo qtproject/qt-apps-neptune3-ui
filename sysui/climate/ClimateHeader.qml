@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
 Item {
@@ -66,7 +66,7 @@ Item {
             Label {
                 id: tempLabelLeft
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: TritonStyle.fontSizeXL
+                font.pixelSize: NeptuneStyle.fontSizeXL
                 font.weight: Font.DemiBold
                 opacity: 0.6
             }
@@ -102,7 +102,7 @@ Item {
             Label {
                 id: tempLabelRight
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: TritonStyle.fontSizeXL
+                font.pixelSize: NeptuneStyle.fontSizeXL
                 font.weight: Font.DemiBold
                 opacity: 0.6
             }

@@ -1,2 +1,2 @@
-module TritonWidgetGrid
+module NeptuneWidgetGrid
 plugin widgetgridplugin

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -41,7 +41,7 @@ class WidgetGridPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(uri == QLatin1String("TritonWidgetGrid"));
+        Q_ASSERT(uri == QLatin1String("NeptuneWidgetGrid"));
         qmlRegisterType<WidgetListModel>(uri, 1, 0, "WidgetListModel");
     }
 };

@@ -19,7 +19,7 @@ OTHER_FILES = qmldir
 include(../config.pri)
 
 qmldir.files = qmldir
-installPath = $$INSTALL_PREFIX/triton/imports/shared/$$replace(uri, \\., /)
+installPath = $$INSTALL_PREFIX/neptune3/imports/shared/$$replace(uri, \\., /)
 qmldir.path = $$installPath
 target.path = $$installPath
 INSTALLS += target qmldir

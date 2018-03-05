@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,7 +32,7 @@
 pragma Singleton
 import QtQuick 2.6
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.translation 1.0
 import com.pelagicore.settings 1.0
 
@@ -47,12 +47,12 @@ QtObject {
     property int cellWidth
     property int cellHeight
     property real fontWeight: Font.Light
-    property int fontSizeXS: TritonStyle.fontSizeXS
-    property int fontSizeS: TritonStyle.fontSizeS
-    property int fontSizeM: TritonStyle.fontSizeM
-    property int fontSizeL: TritonStyle.fontSizeL
-    property int fontSizeXL: TritonStyle.fontSizeXL
-    property int fontSizeXXL: TritonStyle.fontSizeXXL
+    property int fontSizeXS: NeptuneStyle.fontSizeXS
+    property int fontSizeS: NeptuneStyle.fontSizeS
+    property int fontSizeM: NeptuneStyle.fontSizeM
+    property int fontSizeL: NeptuneStyle.fontSizeL
+    property int fontSizeXL: NeptuneStyle.fontSizeXL
+    property int fontSizeXXL: NeptuneStyle.fontSizeXXL
 
     //StatusBar config
     property real statusBarHeight: vspan(1)
@@ -84,12 +84,12 @@ QtObject {
     }
 
     function symbol(name, theme) {
-        var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
+        var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
         return symbolUrl + '/' + name + themeStr + '.png';
     }
 
     function gfx2(name, theme) {
-        var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
+        var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
         return gfxUrl + name + themeStr + '.png'
     }
 
@@ -98,7 +98,7 @@ QtObject {
     }
 
     function localAsset(asset, theme) {
-        var themeStr = theme === TritonStyle.Dark ? "-dark" : "";
+        var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
         return "assets/" + asset + themeStr + '.png'
     }
 

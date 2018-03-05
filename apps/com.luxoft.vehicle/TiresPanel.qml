@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,7 +32,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -64,9 +64,9 @@ Item {
                     text: qsTr("kPa")
                     font {
                         weight: Font.Light
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
         }
@@ -91,10 +91,10 @@ Item {
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
         }
@@ -119,10 +119,10 @@ Item {
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
         }
@@ -147,10 +147,10 @@ Item {
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: TritonStyle.fontSizeXS
+                        pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: TritonStyle.fontOpacityLow
+                    opacity: NeptuneStyle.fontOpacityLow
                 }
             }
         }
@@ -172,7 +172,7 @@ Item {
 
             text: qsTr("Target: 240 kPa")
             font {
-                pixelSize: TritonStyle.fontSizeS
+                pixelSize: NeptuneStyle.fontSizeS
                 weight: Font.Light
             }
         }
@@ -196,7 +196,7 @@ Item {
 
             text: qsTr("Target: 270 kPa")
             font {
-                pixelSize: TritonStyle.fontSizeS
+                pixelSize: NeptuneStyle.fontSizeS
                 weight: Font.Light
             }
         }
@@ -210,7 +210,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 22
         text: qsTr("Calibrate")
-        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         iconSource: "assets/images/ic-calibrate" + sourceSuffix
     }
 }

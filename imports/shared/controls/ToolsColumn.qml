@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
 /*
@@ -78,9 +78,9 @@ ColumnLayout {
             checked: root.currentIndex === index
             symbol: model.icon ? Style.symbol(checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
             text: qsTranslate(root.translationContext, model.text)
-            labelColor: checked ? TritonStyle.highlightedTextColor : TritonStyle.primaryTextColor
-            labelOpacity: checked ? 1 : TritonStyle.fontOpacityLow
-            font.pixelSize: TritonStyle.fontSizeS
+            labelColor: checked ? NeptuneStyle.highlightedTextColor : NeptuneStyle.primaryTextColor
+            labelOpacity: checked ? 1 : NeptuneStyle.fontOpacityLow
+            font.pixelSize: NeptuneStyle.fontSizeS
             opacity: model.greyedOut ? 0.5 : 1.0
             enabled: !model.greyedOut
             symbolOnTop: true

@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtQuick.Controls 2.2
 
 import utils 1.0
 import controls 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -85,7 +85,7 @@ Item {
                 anchors.bottom: parent.bottom
                 text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
             }
 
             Label {
@@ -95,7 +95,7 @@ Item {
                 anchors.bottomMargin: Style.paddingXS
                 text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: TritonStyle.fontSizeM
+                font.pixelSize: NeptuneStyle.fontSizeM
             }
 
             Label {
@@ -104,7 +104,7 @@ Item {
                 anchors.bottom: parent.bottom
                 text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
             }
         }
 
@@ -155,7 +155,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
 
-            color: TritonStyle.accentColor
+            color: NeptuneStyle.accentColor
             radius: width
         }
 

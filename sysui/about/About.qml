@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,13 +33,13 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
-import triton.controls 1.0
+import neptune.controls 1.0
 
 import "../procmon"
 
-TritonPopup {
+NeptunePopup {
     id: root
     width: Style.hspan(22)
     height: Style.vspan(19)
@@ -71,7 +71,7 @@ TritonPopup {
                 // to automatic word-wrapping
                 text: qsTr("Bringing stunning\nUX to the road")
                 verticalAlignment: Text.AlignTop
-                font.pixelSize: TritonStyle.fontSizeXXL
+                font.pixelSize: NeptuneStyle.fontSizeXXL
                 font.weight: Font.Bold
             }
 
@@ -81,7 +81,7 @@ TritonPopup {
                 anchors.left: slogan.left
                 text: qsTr("QtAuto - Agile UX Development")
                 font.weight: Font.DemiBold
-                font.pixelSize: TritonStyle.fontSizeL
+                font.pixelSize: NeptuneStyle.fontSizeL
             }
         }
 

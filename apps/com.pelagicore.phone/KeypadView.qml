@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import animations 1.0
 import controls 1.0
@@ -54,7 +54,7 @@ Item {
         anchors.verticalCenter: textedit.verticalCenter
         width: 2
         height: 60
-        color: TritonStyle.contrastColor
+        color: NeptuneStyle.contrastColor
         opacity: 0
         SequentialAnimation {
             running: true
@@ -64,7 +64,7 @@ Item {
         }
     }
 
-    // TODO: Use a TextField instead so that it follows TritonStyle automatically
+    // TODO: Use a TextField instead so that it follows NeptuneStyle automatically
     TextEdit {
         id: textedit
         anchors.left: gridlayout.left
@@ -74,7 +74,7 @@ Item {
         leftPadding: Style.hspan(0.5)
         rightPadding: Style.hspan(0.5)
         readOnly: true
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
         font.pixelSize: Style.fontSizeXL
         font.weight: Font.Light

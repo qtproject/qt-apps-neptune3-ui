@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -133,7 +133,7 @@ Store {
     }
 
     function previousSong() {
-        console.log(Logging.apps, 'TritonUI::Music - previous track');
+        console.log(Logging.apps, 'NeptuneUI::Music - previous track');
         if (player.playQueue.currentIndex === 0) {
             player.playQueue.currentIndex = root.musicCount - 1;
         } else {
@@ -142,7 +142,7 @@ Store {
     }
 
     function nextSong() {
-        console.log(Logging.apps, 'TritonUI::Music - next track');
+        console.log(Logging.apps, 'NeptuneUI::Music - next track');
         if (player.playQueue.currentIndex === root.musicCount - 1) {
             player.playQueue.currentIndex = 0;
         } else {

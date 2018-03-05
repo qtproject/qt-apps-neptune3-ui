@@ -23,10 +23,10 @@ HEADERS += \
     connectionmonitoringdynamic.h
 
 
-TARGET = TritonControlApp
+TARGET = NeptuneControlApp
 DESTDIR = $$BUILD_DIR
 
-target.path = $$INSTALL_PREFIX/triton
+target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
 
 DISTFILES += \

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
@@ -56,7 +56,7 @@ ColumnLayout {
             checked: root.currentTool === model.name
             symbol: model.name ? Style.symbol(buttonGroup.checkedButton === this ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
             text: qsTr(model.name)
-            font.pixelSize: TritonStyle.fontSizeXS
+            font.pixelSize: NeptuneStyle.fontSizeXS
             symbolOnTop: true
             onClicked: {
                 root.toolClicked(model.name, index);

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -50,7 +50,7 @@ import models.volume 1.0
 
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -70,8 +70,8 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx2(TritonStyle.backgroundImage)
-        opacity: launcherLoader.launcherOpen && TritonStyle.theme === TritonStyle.Light ? 0.7 : 1
+        source: Style.gfx2(NeptuneStyle.backgroundImage)
+        opacity: launcherLoader.launcherOpen && NeptuneStyle.theme === NeptuneStyle.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }
 

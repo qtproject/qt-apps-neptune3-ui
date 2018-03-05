@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -37,7 +37,7 @@ import controls 1.0
 import utils 1.0
 import "stores"
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -79,7 +79,7 @@ Item {
             Label {
                 Layout.preferredWidth: Style.hspan(5)
                 text: root.store.currentFreqPreset
-                font.pixelSize: TritonStyle.fontSizeXXL
+                font.pixelSize: NeptuneStyle.fontSizeXXL
                 horizontalAlignment: Text.AlignHCenter
             }
 
@@ -95,7 +95,7 @@ Item {
             Label {
                 Layout.preferredWidth: Style.hspan(5)
                 text: root.store.freqUnit
-                font.pixelSize: TritonStyle.fontSizeXXL
+                font.pixelSize: NeptuneStyle.fontSizeXXL
                 horizontalAlignment: Text.AlignHCenter
             }
 

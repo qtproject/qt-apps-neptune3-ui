@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtApplicationManager 1.0
 
 import com.pelagicore.settings 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ApplicationManagerWindow {
     id: root
@@ -45,7 +45,7 @@ ApplicationManagerWindow {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            root.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+            root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
         }
     }
 }

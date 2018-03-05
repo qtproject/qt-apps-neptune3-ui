@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -39,9 +39,9 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     // single instance guard
-    QLockFile lockFile(QStringLiteral("%1/TritonRemoteSettingsServer.lock").arg(QDir::tempPath()));
+    QLockFile lockFile(QStringLiteral("%1/NeptuneRemoteSettingsServer.lock").arg(QDir::tempPath()));
     if (!lockFile.tryLock(100)) {
-        qCritical("Triton RemoteSettingsServer already running, aborting...");
+        qCritical("Neptune RemoteSettingsServer already running, aborting...");
         return EXIT_FAILURE;
     }
 

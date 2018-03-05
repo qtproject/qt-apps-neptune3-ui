@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,9 +32,9 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 
-import controls 1.0 as TritonControls
+import controls 1.0 as NeptuneControls
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Row {
     id: root
@@ -70,7 +70,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: Style.localAsset("ic-search", TritonStyle.theme)
+                    source: Style.localAsset("ic-search", NeptuneStyle.theme)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -45,7 +45,7 @@ Item {
     signal loginSuccessful()
 
     function checkServer() {
-        console.log(Logging.sysui, "Triton-UI::Application Store - Check Server");
+        console.log(Logging.sysui, "Neptune-UI::Application Store - Check Server");
         var url = serverUrl + "/hello";
         var data = {"platform" : "TRITON", "version" : "1"};
         JSONBackend.setErrorFunction(function () {

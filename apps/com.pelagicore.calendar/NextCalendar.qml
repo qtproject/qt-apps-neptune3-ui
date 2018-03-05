@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import Qt.labs.calendar 1.0
 import utils 1.0
 import controls 1.0
 import animations 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -60,16 +60,16 @@ Item {
                     Layout.fillWidth: true
                     delegate: Text {
                         text: model.shortName
-                        font.pixelSize: TritonStyle.fontSizeXS
-                        font.family: TritonStyle.fontFamily
-                        color: TritonStyle.primaryTextColor
+                        font.pixelSize: NeptuneStyle.fontSizeXS
+                        font.family: NeptuneStyle.fontFamily
+                        color: NeptuneStyle.primaryTextColor
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
                 }
                 MonthGrid {
                     id: grid
-                    property color labelColor: TritonStyle.primaryTextColor
+                    property color labelColor: NeptuneStyle.primaryTextColor
                     locale: Qt.locale(Style.languageLocale)
                     month: index
                     year: {
@@ -80,8 +80,8 @@ Item {
                     delegate: Label {
                         text: model.day
                         color: grid.labelColor
-                        font.pixelSize: TritonStyle.fontSizeXS
-                        font.family: TritonStyle.fontFamily
+                        font.pixelSize: NeptuneStyle.fontSizeXS
+                        font.family: NeptuneStyle.fontFamily
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         opacity: model.month === grid.month ? 1 : 0

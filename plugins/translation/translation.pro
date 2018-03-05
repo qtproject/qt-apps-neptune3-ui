@@ -61,7 +61,7 @@ qm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += qm
 
 qmfiles.files = $$prependAll(supportedLocales, $$shadowed($$assetsPath/translations)/, .qm)
-qmfiles.path = $$INSTALL_PREFIX/triton/imports/assets/translations
+qmfiles.path = $$INSTALL_PREFIX/neptune3/imports/assets/translations
 qmfiles.CONFIG += no_check_exist
 
 INSTALLS += qmfiles

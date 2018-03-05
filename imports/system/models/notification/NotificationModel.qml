@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -53,7 +53,7 @@ QtObject {
 
     property var loggingCategory: LoggingCategory {
         id: logCategory
-        name: "triton.notificationmodel"
+        name: "neptune.notificationmodel"
     }
 
     property Timer notificationTimer: Timer {

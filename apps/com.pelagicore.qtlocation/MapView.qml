@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,8 +36,8 @@ import QtLocation 5.9
 import QtPositioning 5.9
 
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
-import controls 1.0 as TritonControls
+import com.pelagicore.styles.neptune 3.0
+import controls 1.0 as NeptuneControls
 import animations 1.0
 
 Item {
@@ -147,7 +147,7 @@ Item {
     Image {
         id: mask
         anchors.fill: mainMap
-        source: Style.localAsset("bg-home-navigation-overlay", TritonStyle.theme)
+        source: Style.localAsset("bg-home-navigation-overlay", NeptuneStyle.theme)
         visible: root.state === "Maximized"
         scale: root.state === "Maximized" ? 1 : 1.6
         Behavior on scale {
@@ -203,7 +203,7 @@ Item {
         }
     }
 
-    TritonControls.Tool {
+    NeptuneControls.Tool {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
@@ -214,7 +214,7 @@ Item {
         visible: opacity > 0
         background: Image {
             fillMode: Image.Pad
-            source: Style.localAsset("floating-button-bg", TritonStyle.theme)
+            source: Style.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         symbol: checked ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
@@ -226,6 +226,6 @@ Item {
         anchors.leftMargin: Style.hspan(.5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(TritonStyle.primaryTextColor).arg(TritonStyle.fontFamily).arg(TritonStyle.fontSizeXXS)
+        .arg(NeptuneStyle.primaryTextColor).arg(NeptuneStyle.fontFamily).arg(NeptuneStyle.fontSizeXXS)
     }
 }

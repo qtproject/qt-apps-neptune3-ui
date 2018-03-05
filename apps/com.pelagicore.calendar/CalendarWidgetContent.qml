@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -99,7 +99,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        source: Style.gfx2("widget-left-section-bg", TritonStyle.theme)
+        source: Style.gfx2("widget-left-section-bg", NeptuneStyle.theme)
         fillMode: Image.TileVertically
 
         Item {
@@ -144,7 +144,7 @@ Item {
                 Behavior on opacity { DefaultNumberAnimation { } }
                 visible: opacity > 0
 
-                weatherIcon: Style.symbol(root.weatherIcon, TritonStyle.theme)
+                weatherIcon: Style.symbol(root.weatherIcon, NeptuneStyle.theme)
                 weatherText: qsTr(root.weatherName)
 
                 temperatureValue: root.temp
@@ -169,7 +169,7 @@ Item {
         Behavior on opacity { DefaultNumberAnimation { } }
         visible: opacity > 0
 
-        weatherIcon: Style.symbol(root.weatherIcon, TritonStyle.theme)
+        weatherIcon: Style.symbol(root.weatherIcon, NeptuneStyle.theme)
         weatherText: qsTr(root.weatherName)
 
         temperatureValue: root.temp
@@ -226,7 +226,7 @@ Item {
                     height: Style.vspan(33/80)
                     horizontalAlignment: Text.AlignRight
                     opacity: 0.5    //todo: connect to style or similar
-                    font.pixelSize: TritonStyle.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                     font.weight: Font.Light
                     text: eventModel.get(index).timeStart
                 }
@@ -236,7 +236,7 @@ Item {
                     anchors.bottom: parent.bottom
                     width: calendarEvents.width - eventTimeStart.width - Style.hspan(26/45)
                     height: Style.vspan(33/80)
-                    font.pixelSize: TritonStyle.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                     font.weight: Font.Light
                     elide: Text.ElideRight
                     text: eventModel.get(index).event

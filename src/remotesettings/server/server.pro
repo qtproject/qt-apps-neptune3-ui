@@ -23,12 +23,12 @@ LIBS += -L$$OUT_PWD/../../../lib -l$$qtLibraryTarget(RemoteSettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 
-QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3)
 
 DISTFILES +=
 
 TARGET = RemoteSettingsServer
 DESTDIR = $$BUILD_DIR
 
-target.path = $$INSTALL_PREFIX/triton
+target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target

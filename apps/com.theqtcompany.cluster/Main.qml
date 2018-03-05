@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton Cluster UI.
+** This file is part of the Neptune 3 Cluster UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtQuick.Window 2.2
 import com.pelagicore.settings 1.0
 import QtApplicationManager 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ApplicationManagerWindow {
     id: root
@@ -53,7 +53,7 @@ ApplicationManagerWindow {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            root.contentItem.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+            root.contentItem.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
         }
     }
 
@@ -69,7 +69,7 @@ ApplicationManagerWindow {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 390 * d.scaleRatio
-        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         source: "img/cluster-fullscreen-overlay" + sourceSuffix
     }
 

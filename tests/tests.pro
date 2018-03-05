@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += qmltests triton-qmlscene
+SUBDIRS += qmltests neptune-qmlscene

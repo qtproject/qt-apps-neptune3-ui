@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import utils 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -49,14 +49,14 @@ Item {
             Button {
                 implicitWidth: Style.hspan(7)
                 implicitHeight: Style.vspan(0.8)
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 text: "This is a button"
             }
 
             Button {
                 implicitWidth: Style.hspan(7)
                 implicitHeight: Style.vspan(0.8)
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 text: "Disabled Button"
                 enabled: false
             }
@@ -64,7 +64,7 @@ Item {
             Button {
                 implicitWidth: Style.hspan(7)
                 implicitHeight: Style.vspan(0.8)
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 text: "Button Checkable"
                 checkable: true
             }

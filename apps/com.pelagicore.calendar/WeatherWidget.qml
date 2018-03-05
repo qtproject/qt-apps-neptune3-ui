@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -72,9 +72,9 @@ Item {
             height: Style.vspan(33/80)
             anchors.left: parent.left
             anchors.right: parent.right
-            font.pixelSize: TritonStyle.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             font.weight: Font.Light
-            opacity: 0.8    //Todo: this should be connected to Styles or a triton Label control in some way
+            opacity: 0.8    //Todo: this should be connected to Styles or a neptune Label control in some way
             visible: root.temperatureVisible
             text: root.temperatureValue + "°"
         }
@@ -83,9 +83,9 @@ Item {
             height: Style.vspan(33/80)
             anchors.left: parent.left
             anchors.right: parent.right
-            font.pixelSize: TritonStyle.fontSizeS //Todo: font size in the plugin is not correct.
+            font.pixelSize: NeptuneStyle.fontSizeS //Todo: font size in the plugin is not correct.
             font.weight: Font.Light
-            opacity: 0.8 //Todo: this should be connected to Styles or a triton Label control in some way
+            opacity: 0.8 //Todo: this should be connected to Styles or a neptune Label control in some way
             text: (temperatureVisible ? root.weatherText : root.temperatureValue + "° " + root.weatherText) + (precipitationVisible ? "," : "")
         }
         Item {
@@ -106,7 +106,7 @@ Item {
                 anchors.left: precipitationIcon.right
                 anchors.leftMargin: Style.hspan(13/45)
                 anchors.right: parent.right
-                font.pixelSize: TritonStyle.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 font.weight: Font.Light
                 opacity: 0.8 //Todo
             }

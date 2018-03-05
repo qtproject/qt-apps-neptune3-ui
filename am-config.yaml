@@ -6,9 +6,9 @@ formatType: am-configuration
 
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
-  installedAppsManifestDir: "/tmp/triton-ui/manifests"
-  appImageMountDir: "/tmp/triton-ui/image-mounts"
-  database: "/tmp/triton-ui/apps.db"
+  installedAppsManifestDir: "/tmp/neptune3-ui/manifests"
+  appImageMountDir: "/tmp/neptune3-ui/image-mounts"
+  database: "/tmp/neptune3-ui/apps.db"
 
 # QML apps will be able to import from modules...
 
@@ -28,7 +28,7 @@ runtimes:
 
 ui:
   fullscreen: no
-  style: "${CONFIG_PWD}/styles/triton"
+  style: "${CONFIG_PWD}/styles/neptune"
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
   windowIcon: "${CONFIG_PWD}/imports/assets/icons/ic-menu-home.png"
@@ -51,7 +51,7 @@ flags:
 
 installationLocations:
 - id: "internal-0"
-  installationPath: "/tmp/triton-ui/apps"
-  documentPath: "/tmp/triton-ui/docs"
+  installationPath: "/tmp/neptune3-ui/apps"
+  documentPath: "/tmp/neptune3-ui/docs"
   mountPoint: "/tmp"
   isDefault: true

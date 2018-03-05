@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,11 +36,11 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import "stores"
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 import QtApplicationManager 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 QtObject {
     property var mainWindow: AppUIScreen {
@@ -71,11 +71,11 @@ QtObject {
             border.left: 0
             border.right: 0
 
-            opacity: (mainWindow.tritonState === "Maximized") ? 1.0 : 0.0
+            opacity: (mainWindow.neptuneState === "Maximized") ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
 
-            source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+            source: Style.gfx2("app-fullscreen-top-bg", NeptuneStyle.theme)
         }
 
         Music {
@@ -85,7 +85,7 @@ QtObject {
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height
 
-            state: mainWindow.tritonState
+            state: mainWindow.neptuneState
             store: MusicStore { }
             onFlickableAreaClicked: {
                 multiPoint.count += 1;

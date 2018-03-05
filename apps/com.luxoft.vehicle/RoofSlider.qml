@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Slider {
     id: root
@@ -75,7 +75,7 @@ Slider {
             anchors.fill: rect
             glowRadius: 2
             spread: 0.1
-            color: TritonStyle.contrastColor
+            color: NeptuneStyle.contrastColor
             opacity: 0.5
             cornerRadius: rect.radius
         }
@@ -87,7 +87,7 @@ Slider {
             implicitWidth: 52
             implicitHeight: 110
 
-            color: TritonStyle.offMainColor
+            color: NeptuneStyle.offMainColor
             radius: implicitWidth / 2
         }
     }

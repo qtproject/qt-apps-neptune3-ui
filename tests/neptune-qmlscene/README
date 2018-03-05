@@ -1,0 +1,6 @@
+neptune-qmlscene is useful when you want to manually interact with a qml file that has a TestCase in it.
+
+It's just qmlscene from qtdeclarative with minor modifications. Namely:
+  - Made it register a dummy QTestRootObject singleton type under a Qt.test.qtestroot so that qml files
+    that have a TestCase (ie, that import QtTest) can be loaded and displayed.
+  - Added a MouseTouchAdaptor for emulating touch interaction with a mouse device

@@ -14,7 +14,7 @@ SOURCES += main.cpp
 RESOURCES += qml.qrc \
     app.qrc
 
-#target.path = $$INSTALL_PREFIX/triton
+#target.path = $$INSTALL_PREFIX/neptune3
 #INSTALLS += target
 
-QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/triton/lib, $$INSTALL_PREFIX/triton/)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/)

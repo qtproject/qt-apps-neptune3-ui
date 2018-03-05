@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import controls 1.0
 import utils 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -91,7 +91,7 @@ Item {
                     width: parent.width
                     height: 5
                     anchors.bottom: parent.bottom
-                    source: Style.gfx2("divider", TritonStyle.theme)
+                    source: Style.gfx2("divider", NeptuneStyle.theme)
                 }
 
                 MouseArea{

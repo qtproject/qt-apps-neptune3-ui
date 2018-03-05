@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -44,8 +44,8 @@ QtObject {
 
         property var secondaryWindowObject
 
-        onTritonStateChanged: {
-            if (mainWindow.secondaryWindowObject && !tritonState) { // widget got closed
+        onNeptuneStateChanged: {
+            if (mainWindow.secondaryWindowObject && !neptuneState) { // widget got closed
                 mainWindow.secondaryWindowObject.destroy();
                 mainWindow.secondaryWindowObject = null;
             } else if (!mainWindow.secondaryWindowObject) { // app got killed, recreate
@@ -72,7 +72,7 @@ QtObject {
             y: state === "Maximized" ? mainWindow.y : mainWindow.exposedRect.y
             width: state === "Maximized" ? mainWindow.width : mainWindow.exposedRect.width
             height: state === "Maximized" ? mainWindow.height : mainWindow.exposedRect.height
-            state: mainWindow.tritonState
+            state: mainWindow.neptuneState
             offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
 
             onMapReadyChanged: {

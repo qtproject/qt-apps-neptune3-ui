@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,7 +32,7 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import controls 1.0
 
@@ -51,7 +51,7 @@ ListView {
             id: supportDelegateIconImage
             anchors.left: parent.left
             anchors.leftMargin: Style.hspan(50/45)
-            source: "assets/images/" + model.icon + (TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png")
+            source: "assets/images/" + model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png")
         }
 
         Label {
@@ -78,7 +78,7 @@ ListView {
             // don't show the separator after the last element
             visible: model.index < root.model.count - 1
 
-            source: Style.gfx2("list-divider", TritonStyle.theme)
+            source: Style.gfx2("list-divider", NeptuneStyle.theme)
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom

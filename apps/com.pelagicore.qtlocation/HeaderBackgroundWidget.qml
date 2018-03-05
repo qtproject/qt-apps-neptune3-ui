@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick 2.8
 import utils 1.0
 import animations 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -49,7 +49,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: root.state === "Widget2Rows" ? -root.height/2 : 0
         fillMode: Image.TileHorizontally
-        source: Style.localAsset("navigation-widget-overlay-top", TritonStyle.theme)
+        source: Style.localAsset("navigation-widget-overlay-top", NeptuneStyle.theme)
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on height { DefaultNumberAnimation {} }
     }

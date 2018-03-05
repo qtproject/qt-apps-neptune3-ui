@@ -12,12 +12,12 @@ The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs
 Here are the commands:
 
     $ git lfs install
-    $ GIT_SSL_NO_VERIFY=true git clone https://git-lfs.qt.io/Gerrit/triton-ui.git
-    $ cd triton-ui
+    $ git clone git://code.qt.io/qt-apps/neptune3-ui.git
+    $ cd neptune3-ui
     $ git config credential.helper cache
     $ git config http.sslverify false
 
-# Build and install triton-ui
+# Build and install neptune3-ui
 
     $ qmake --version
 
@@ -25,7 +25,7 @@ This should report a Qt 5.10 version
 
     $ qmake INSTALL_PREFIX=/path/to/install/folder && make && make install
 
-This will install all qml files and plugins into the triton subfolder of '/path/to/install/folder'. If INSTALL_PREFIX is not defined, then this will build all triton-ui plugins and installs the complete triton-ui to /opt/triton folder.
+This will install all qml files and plugins into the neptune subfolder of '/path/to/install/folder'. If INSTALL_PREFIX is not defined, then this will build all neptune3-ui plugins and installs the complete neptune3-ui to /opt/neptune3 folder.
 
 The installation part is optional.
 
@@ -33,17 +33,17 @@ The installation part is optional.
 
 # Run entire UI
 
-Building Triton will make 'triton-ui' executable which will be then run:
+Building Neptune will make 'neptune3-ui' executable which will be then run:
 
-    $ triton-ui --start-session-dbus -r
+    $ neptune3-ui --start-session-dbus -r
 
 To get more detailed log output, run:
 
-    $ triton-ui --start-session-dbus -r --verbose
+    $ neptune3-ui --start-session-dbus -r --verbose
 
 *macOS Fix*: The RPATh feature is not currently working and libraries (esp. settings lib) are not found by default. Please use this workaround:
 
-    $ DYLD_LIBRARY_PATH=$PWD/lib ./triton-ui -r
+    $ DYLD_LIBRARY_PATH=$PWD/lib ./neptune3-ui -r
 
 This will lookup the settings lib from the `./lib` folder.
 
@@ -53,12 +53,12 @@ To run the settings server, just run the executable RemoteSettings_server
 
 In case QtIVI is not installed, 'dummyimports' folder contains QML dummy implementation of QtIVI:
 
-    $ QML2_IMPORT_PATH=/path/to/dummyimports triton-ui -r
+    $ QML2_IMPORT_PATH=/path/to/dummyimports neptune3-ui -r
 
 
 # Style Configuration
 
-Triton UI supports different style configurations which can be used to adapt the style to the needs of the Hardware the UI should be running on.
+Neptune 3 UI supports different style configurations which can be used to adapt the style to the needs of the Hardware the UI should be running on.
 The following resolutions are available:
 
 * 1080x1920 - default

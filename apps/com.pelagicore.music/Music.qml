@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,7 +38,7 @@ import QtQuick.Layouts 1.2
 import QtGraphicalEffects 1.0
 import "stores"
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -88,7 +88,7 @@ Item {
                 Image {
                     opacity: root.topExpanded ? 0.0 : 1.0
                     Behavior on opacity { DefaultNumberAnimation {} }
-                    source: root.topExpanded ? "" : Style.symbol("ic-expand", TritonStyle.theme)
+                    source: root.topExpanded ? "" : Style.symbol("ic-expand", NeptuneStyle.theme)
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }
@@ -137,7 +137,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Image {
-                    source: Style.symbol("ic-expand-up", TritonStyle.theme)
+                    source: Style.symbol("ic-expand-up", NeptuneStyle.theme)
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }
@@ -346,7 +346,7 @@ Item {
             id: artAndTitleBackground
             height: 260
             width: parent.width
-            color: TritonStyle.offMainColor
+            color: NeptuneStyle.offMainColor
         }
 
         Image {
@@ -355,7 +355,7 @@ Item {
             width: parent.width
             height: sourceSize.height
             anchors.top: artAndTitleBackground.bottom
-            source: Style.gfx2("panel-inner-shadow", TritonStyle.theme)
+            source: Style.gfx2("panel-inner-shadow", NeptuneStyle.theme)
         }
 
         AlbumArtRow {

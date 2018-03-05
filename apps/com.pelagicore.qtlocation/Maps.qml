@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -39,10 +39,10 @@ import QtGraphicalEffects 1.0
 import Qt.labs.platform 1.0
 
 import utils 1.0
-import controls 1.0 as TritonControls
+import controls 1.0 as NeptuneControls
 import animations 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -138,7 +138,7 @@ Item {
         }
 
         // OSM Plugin Parameters
-        PluginParameter { name: "osm.useragent"; value: "Triton UI" }
+        PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
 
         // Offline maps support
         PluginParameter { name: "mapboxgl.mapping.cache.directory";
@@ -153,7 +153,7 @@ Item {
         locales: Style.languageLocale
 
         // OSM Plugin Parameters
-        PluginParameter { name: "osm.useragent"; value: "Triton UI" }
+        PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
     }
 
     GeocodeModel {
@@ -175,7 +175,7 @@ Item {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
             }
-            return TritonStyle.theme === TritonStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
+            return NeptuneStyle.theme === NeptuneStyle.Light ? getMapType(priv.defaultLightThemeId) : getMapType(priv.defaultDarkThemeId);
         }
         onOpenSearchTextInput: {
             root.maximizeMap();
@@ -185,7 +185,7 @@ Item {
         onMaximizeMap: root.maximizeMap()
     }
 
-    TritonControls.Tool {
+    NeptuneControls.Tool {
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.6)
         anchors.top: parent.top
@@ -196,7 +196,7 @@ Item {
         symbol: Qt.resolvedUrl("assets/ic-search.png")
         background: Image {
             fillMode: Image.Pad
-            source: Style.localAsset("floating-button-bg", TritonStyle.theme)
+            source: Style.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         onClicked: root.maximizeMap()
     }
@@ -272,7 +272,7 @@ Item {
         model: geocodeModel
         visible: searchViewEnabled
         state: root.state
-        delegate: TritonControls.ListItem {
+        delegate: NeptuneControls.ListItem {
             id: itemDelegate
             width: parent.width
             readonly property string addressText: locationData.address.text

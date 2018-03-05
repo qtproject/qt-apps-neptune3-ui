@@ -7,5 +7,5 @@ HEADERS += WidgetListModel.h
 
 TARGET = widgetgridplugin
 
-uri = TritonWidgetGrid
+uri = NeptuneWidgetGrid
 load(qmlplugin)

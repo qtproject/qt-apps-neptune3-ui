@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -39,9 +39,9 @@ import QtApplicationManager 1.0
     \brief An interface for requesting notifications.
 
     NotificationInterface inherits \l {Notification} from \l{Qt Application Manager}
-    and acts like an adapter for Triton UI.
+    and acts like an adapter for Neptune 3 UI.
     The NotificationInterface properties \c timeout and \c category are adopted
-    to match Triton UI requirements and should not be used. In the Triton UI
+    to match Neptune 3 UI requirements and should not be used. In the Neptune 3 UI
     interaction, notifications should always be dismissed by an end user
     instead of a time-out.
 

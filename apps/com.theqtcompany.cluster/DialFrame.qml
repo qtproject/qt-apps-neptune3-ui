@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton Cluster UI.
+** This file is part of the Neptune 3 Cluster UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -194,7 +194,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        readonly property string sourceSuffix: TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         source: "./img/dial-small-bg" + sourceSuffix
     }
 

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 import com.pelagicore.settings 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 /*!
     \qmltype AppUIScreen
@@ -45,10 +45,10 @@ import com.pelagicore.styles.triton 1.0
     \brief A base QML item for developing applications.
 
     AppUIScreen is a QML item which should be a root element in every
-    Triton UI application. It provides APIs for interacting with a system UI and
+    Neptune 3 UI application. It provides APIs for interacting with a system UI and
     for positioning the application's visual elements.
 
-    See \l{Triton UI Application Development} for best practices on how to use the APIs.
+    See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 
@@ -79,11 +79,11 @@ ApplicationManagerWindow {
      */
     readonly property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
 
-    readonly property int targetHeight: tritonState === "Maximized" ? root.height : d.widgetHeight;
+    readonly property int targetHeight: neptuneState === "Maximized" ? root.height : d.widgetHeight;
 
     property int currentHeight
 
-    property string tritonState
+    property string neptuneState
 
     QtObject {
         id: d
@@ -110,17 +110,17 @@ ApplicationManagerWindow {
         case "exposedRectTopMargin":
             d.exposedRectTopMargin = value;
             break;
-        case "tritonWidgetHeight":
+        case "neptuneWidgetHeight":
             d.widgetHeight = value;
             break;
-        case "tritonCurrentWidth":
+        case "neptuneCurrentWidth":
             d.currentWidth = value;
             break;
-        case "tritonCurrentHeight":
+        case "neptuneCurrentHeight":
             root.currentHeight = value;
             break;
-        case "tritonState":
-            root.tritonState = value;
+        case "neptuneState":
+            root.neptuneState = value;
             break;
         case "locale":
             Style.languageLocale = value;
@@ -132,7 +132,7 @@ ApplicationManagerWindow {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            root.TritonStyle.theme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
+            root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
         }
     }
 }

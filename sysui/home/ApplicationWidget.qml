@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import animations 1.0
 import utils 1.0
 import controls 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -79,7 +79,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx2("widget-bg-2", TritonStyle.theme)
+        source: Style.gfx2("widget-bg-2", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -236,7 +236,7 @@ Item {
     Image {
         anchors.right: parent.right
         anchors.top: parent.top
-        source: Style.gfx2("widget-corner", TritonStyle.theme)
+        source: Style.gfx2("widget-corner", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }

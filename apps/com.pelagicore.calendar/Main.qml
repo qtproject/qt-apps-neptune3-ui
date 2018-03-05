@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -54,7 +54,7 @@ AppUIScreen {
         width: root.exposedRect.width
         height: root.exposedRect.height
 
-        state: root.tritonState
+        state: root.neptuneState
         bottomWidgetHide: root.exposedRect.height === root.targetHeight
         store: CalendarStore { }
     }

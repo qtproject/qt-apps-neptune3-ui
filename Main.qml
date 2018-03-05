@@ -3,7 +3,7 @@
 ** Copyright (C) 2017, 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 import animations 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 import display 1.0
 import models.system 1.0
 import utils 1.0
@@ -48,7 +48,7 @@ import QtApplicationManager 1.0
 Window {
     id: root
 
-    title: "Triton UI - Center Console"
+    title: "Neptune UI - Center Console"
     color: "black"
 
     readonly property bool isLandscape: width > height
@@ -117,10 +117,10 @@ Window {
             onThemeChanged: updateTheme()
             Component.onCompleted: updateTheme()
             function updateTheme() {
-                var chosenTheme = theme === 0 ? TritonStyle.Light : TritonStyle.Dark;
-                root.contentItem.TritonStyle.theme = chosenTheme;
+                var chosenTheme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+                root.contentItem.NeptuneStyle.theme = chosenTheme;
                 if (instrumentClusterWindowLoader.item) {
-                    instrumentClusterWindowLoader.item.contentItem.TritonStyle.theme = chosenTheme;
+                    instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
                 }
             }
         }
@@ -207,7 +207,7 @@ Window {
             Behavior on opacity { DefaultNumberAnimation {}  }
             Image {
                 anchors.fill: parent
-                source: Style.gfx2(TritonStyle.backgroundImage)
+                source: Style.gfx2(NeptuneStyle.backgroundImage)
                 FastBlur {
                     anchors.fill: parent
                     radius: Style.hspan(1)
@@ -239,11 +239,11 @@ Window {
             anchors.rightMargin: Style.hspan(1)
             Label {
                 text: qsTr("CPU: %1 %").arg(SystemModel.cpuPercentage)
-                font.pixelSize: TritonStyle.fontSizeXS
+                font.pixelSize: NeptuneStyle.fontSizeXS
             }
             Label {
                 text: qsTr("RAM: %1 MB (%2 %)").arg(SystemModel.ramBytes).arg(SystemModel.ramPercentage)
-                font.pixelSize: TritonStyle.fontSizeXS
+                font.pixelSize: NeptuneStyle.fontSizeXS
             }
         }
     }
@@ -305,7 +305,7 @@ Window {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        width = root.contentItem.TritonStyle.windowWidth
-        height = root.contentItem.TritonStyle.windowHeight
+        width = root.contentItem.NeptuneStyle.windowWidth
+        height = root.contentItem.NeptuneStyle.windowHeight
     }
 }

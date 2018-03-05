@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtPositioning 5.9
 
 import animations 1.0
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -54,7 +54,7 @@ Item {
             id: buttonGoHome
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Style.localAsset("ic-home", TritonStyle.theme)
+            iconSource: Style.localAsset("ic-home", NeptuneStyle.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -65,13 +65,13 @@ Item {
             width: 1
             height: parent.height
             opacity: 0.2
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
         }
         MapToolButton {
             id: buttonGoWork
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Style.localAsset("ic-work", TritonStyle.theme)
+            iconSource: Style.localAsset("ic-work", NeptuneStyle.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

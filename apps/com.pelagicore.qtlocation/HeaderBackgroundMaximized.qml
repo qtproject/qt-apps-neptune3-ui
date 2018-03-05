@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick 2.8
 import utils 1.0
 import animations 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -52,7 +52,7 @@ Item {
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Style.vspan(.5)
         height: root.navigationMode && !root.guidanceMode ? sourceSize.height - root.destinationButtonrowHeight : sourceSize.height
-        source: Style.localAsset("panel-shadow", TritonStyle.theme)
+        source: Style.localAsset("panel-shadow", NeptuneStyle.theme)
         border {
             left: 0
             top: 101
@@ -67,7 +67,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
-        source: Style.localAsset("panel-more-contrast-background", TritonStyle.theme)
+        source: Style.localAsset("panel-more-contrast-background", NeptuneStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -83,7 +83,7 @@ Item {
         anchors.right: searchPanel.right
         anchors.left: searchPanel.left
         width: searchPanel.width
-        source: Style.gfx2("panel-inner-shadow", TritonStyle.theme)
+        source: Style.gfx2("panel-inner-shadow", NeptuneStyle.theme)
     }
 
     BorderImage {
@@ -93,7 +93,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
         height: root.guidanceMode ? sourceSize.height : destinationButtonsPanel.sourceSize.height - root.destinationButtonrowHeight
-        source: Style.localAsset("panel-background", TritonStyle.theme)
+        source: Style.localAsset("panel-background", NeptuneStyle.theme)
         border {
             left: 0
             top: 20

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import animations 1.0
 import utils 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ScrollIndicator {
     id: root
@@ -46,7 +46,7 @@ ScrollIndicator {
             anchors.horizontalCenter: parent.horizontalCenter
             radius: height
 
-            // TODO: Use a named color from TritonStyle when available.
+            // TODO: Use a named color from NeptuneStyle when available.
             color: "#969494"
             opacity: root.active ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation { } }
@@ -56,7 +56,7 @@ ScrollIndicator {
     contentItem: Rectangle {
         implicitWidth: Style.hspan(0.1)
         radius: height
-        color: TritonStyle.accentColor
+        color: NeptuneStyle.accentColor
         opacity: root.active ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
     }

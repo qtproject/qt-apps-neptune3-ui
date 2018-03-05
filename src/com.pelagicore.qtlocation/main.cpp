@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -55,7 +55,7 @@ void copyOfflineDB(const QString &prefix) {
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
     // same as the main app so that we get the same predictable subdir under ~/.cache
-    QCoreApplication::setApplicationName(qSL("Triton UI"));
+    QCoreApplication::setApplicationName(qSL("Neptune UI"));
     QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
     QCoreApplication::setOrganizationDomain(qSL("pelagicore.com"));
 

@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 /*
     A default ListItem that is used for delegated view of a model. ListItem is inherited
@@ -79,7 +79,7 @@ ItemDelegate {
         ColorOverlay {
             anchors.fill: parent
             source: colorOverlaySource
-            color: TritonStyle.contrastColor
+            color: NeptuneStyle.contrastColor
         }
         implicitWidth: root.symbol || root.imageSource ? Style.hspan(2) : 0
         implicitHeight: root.symbol || root.imageSource ? root.height : 0
@@ -110,7 +110,7 @@ ItemDelegate {
             verticalAlignment: Text.AlignVCenter
             opacity: enabled ? 0.94 : 0.3
             visible: root.text
-            color: TritonStyle.contrastColor
+            color: NeptuneStyle.contrastColor
         }
 
         Label {
@@ -121,7 +121,7 @@ ItemDelegate {
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: TritonStyle.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             visible: text
             opacity: 0.6
         }
@@ -133,14 +133,14 @@ ItemDelegate {
         Label {
             id: secondaryText
             Layout.preferredWidth: Style.hspan(3.5)
-            font.pixelSize: TritonStyle.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
 
             opacity: root.enabled ? 0.6 : 0.2
             visible: root.secondaryText
-            color: root.enabled ? TritonStyle.contrastColor : TritonStyle.disabledTextColor
+            color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
         }
 
         // additional margins when rightTool is not available.

@@ -1,5 +1,5 @@
 TEMPLATE=app
-TARGET=triton-qmltestsrunner
+TARGET=neptune-qmltestsrunner
 SOURCES += testrunner.cpp
 
 CONFIG += qmltestcase
@@ -13,7 +13,7 @@ COMPONENT_NAMES += WidgetDrawer
 for(COMPONENT_NAME, COMPONENT_NAMES) {
     targetName = try$$COMPONENT_NAME
     QMAKE_EXTRA_TARGETS += $${targetName}
-    $${targetName}.commands = $$OUT_PWD/../triton-qmlscene/triton-qmlscene
+    $${targetName}.commands = $$OUT_PWD/../neptune-qmlscene/neptune-qmlscene
     !isEmpty(IMPORTPATH) {
         for(import, IMPORTPATH): $${targetName}.commands += -I \"$$import\"
     }

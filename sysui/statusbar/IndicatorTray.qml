@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import utils 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Control {
     id: root
@@ -55,9 +55,9 @@ Control {
              // TODO: Replace this with real implementation. this is currently just a placeholder.
              delegate: Image {
                  height: root.height
-                 source: Style.symbol(modelData.icon, TritonStyle.theme)
+                 source: Style.symbol(modelData.icon, NeptuneStyle.theme)
                  fillMode: Image.Pad
-                 opacity: modelData.active ? TritonStyle.fontOpacityHigh : TritonStyle.fontOpacityLow
+                 opacity: modelData.active ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
              }
          }
     }

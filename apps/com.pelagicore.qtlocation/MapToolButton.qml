@@ -3,7 +3,7 @@
 ** Copyright (C) 2017 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -32,22 +32,22 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 ToolButton {
     id: root
     property alias iconSource: buttonImage.source
-    property color labelColor: TritonStyle.primaryTextColor
+    property color labelColor: NeptuneStyle.primaryTextColor
 
     property string primaryText
 
     property string extendedText: ""
-    property color extendedTextColor: TritonStyle.highlightedTextColor
-    property int extendedTextFontSize: TritonStyle.fontSizeS
+    property color extendedTextColor: NeptuneStyle.highlightedTextColor
+    property int extendedTextFontSize: NeptuneStyle.fontSizeS
 
     property string secondaryText: ""
-    property color secondaryTextColor: TritonStyle.primaryTextColor
-    property int secondaryTextFontSize: TritonStyle.fontSizeS
+    property color secondaryTextColor: NeptuneStyle.primaryTextColor
+    property int secondaryTextFontSize: NeptuneStyle.fontSizeS
 
     background: Item {
         Row {

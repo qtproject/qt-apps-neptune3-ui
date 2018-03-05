@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import utils 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Button {
     id: root
@@ -44,7 +44,7 @@ Button {
     height: Style.vspan(146/80)
 
     property string icon
-    property int textFontSize: TritonStyle.fontSizeXS
+    property int textFontSize: NeptuneStyle.fontSizeXS
 
     background: null
 
@@ -55,7 +55,7 @@ Button {
             Image {
                 id: image
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: Style.symbol(root.icon, TritonStyle.theme)
+                source: Style.symbol(root.icon, NeptuneStyle.theme)
                 fillMode: Image.Pad
             }
             Label {

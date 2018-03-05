@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,11 +35,11 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 import animations 1.0
-import com.pelagicore.styles.triton 1.0
-import triton.controls 1.0
+import com.pelagicore.styles.neptune 3.0
+import neptune.controls 1.0
 import controls 1.0
 
-TritonPopup {
+NeptunePopup {
     id: root
 
     width: Style.hspan(270/45)
@@ -76,15 +76,15 @@ TritonPopup {
         anchors.horizontalCenter: parent.horizontalCenter
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: TritonStyle.fontSizeXL
+            font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: TritonStyle.fontOpacityMedium
+            opacity: NeptuneStyle.fontOpacityMedium
             text: value
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: TritonStyle.fontSizeL
-            opacity: TritonStyle.fontOpacityLow
+            font.pixelSize: NeptuneStyle.fontSizeL
+            opacity: NeptuneStyle.fontOpacityLow
             text: " %"
         }
     }
@@ -115,7 +115,7 @@ TritonPopup {
         background: Rectangle {
             radius: height/2
             opacity: muteButton.checked ? 1 : 0.06
-            color: muteButton.checked ? TritonStyle.accentColor : TritonStyle.contrastColor
+            color: muteButton.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
         }
         Image {
             anchors.centerIn: parent

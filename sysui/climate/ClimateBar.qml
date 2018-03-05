@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import utils 1.0
 
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -65,7 +65,7 @@ Item {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", TritonStyle.theme)
+            source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
             fillMode: Image.Pad
             visible: model.leftSeat.heat
         }
@@ -75,20 +75,20 @@ Item {
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.leftSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: TritonStyle.fontSizeXL
+            font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
             opacity: 0.6
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-rear-defrost-status", TritonStyle.theme)
+            source: Style.symbol("ic-rear-defrost-status", NeptuneStyle.theme)
             fillMode: Image.Pad
             visible: model.rearHeat.enabled
         }
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-front-defrost-status", TritonStyle.theme)
+            source: Style.symbol("ic-front-defrost-status", NeptuneStyle.theme)
             fillMode: Image.Pad
             visible: model.frontHeat.enabled
         }
@@ -98,13 +98,13 @@ Item {
             Layout.rightMargin: Style.hspan(.8)
             text: root.model ? root.model.rightSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: TritonStyle.fontSizeXL
+            font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
             opacity: 0.6
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            source: Style.symbol("ic-seat-heat-status", TritonStyle.theme)
+            source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
             fillMode: Image.Pad
             visible: model.rightSeat.heat
         }

@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@ import utils 1.0
 import animations 1.0
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 AppUIScreen {
     id: root
@@ -65,15 +65,15 @@ AppUIScreen {
         border.left: 0
         border.right: 0
 
-        opacity: (root.tritonState === "Maximized") ? 1.0 : 0.0
+        opacity: (root.neptuneState === "Maximized") ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
 
-        source: Style.gfx2("app-fullscreen-top-bg", TritonStyle.theme)
+        source: Style.gfx2("app-fullscreen-top-bg", NeptuneStyle.theme)
     }
 
     BlurredImageBackground {
-        opacity: (root.tritonState === "Maximized" && phone.callerHandle !== "") ? 1.0 : 0.0
+        opacity: (root.neptuneState === "Maximized" && phone.callerHandle !== "") ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         anchors.fill: fullscreenTopPartBackground
@@ -86,7 +86,7 @@ AppUIScreen {
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-        state: root.tritonState
+        state: root.neptuneState
         onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
     }
 }

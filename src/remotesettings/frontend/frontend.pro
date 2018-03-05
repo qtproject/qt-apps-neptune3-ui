@@ -13,5 +13,5 @@ QFACE_SOURCES = ../settings.qface
 
 DEPENDPATH += $$OUT_PWD/../frontend
 
-target.path = $$INSTALL_PREFIX/triton/lib
+target.path = $$INSTALL_PREFIX/neptune3/lib
 INSTALLS += target

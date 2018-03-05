@@ -11,7 +11,7 @@ SOURCES = main.cpp
 
 DESTDIR = $$OUT_PWD/../../
 
-DEFINES += "INSTALL_PATH=$$INSTALL_PREFIX/triton/"
+DEFINES += "INSTALL_PATH=$$INSTALL_PREFIX/neptune3/"
 
-target.path = $$INSTALL_PREFIX/triton/apps/com.pelagicore.qtlocation/
+target.path = $$INSTALL_PREFIX/neptune3/apps/com.pelagicore.qtlocation/
 INSTALLS += target

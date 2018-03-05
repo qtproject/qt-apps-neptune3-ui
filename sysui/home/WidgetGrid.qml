@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,7 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 
-import TritonWidgetGrid 1.0
+import NeptuneWidgetGrid 1.0
 
 Item {
     id: root

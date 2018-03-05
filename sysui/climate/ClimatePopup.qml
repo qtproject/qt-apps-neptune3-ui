@@ -3,7 +3,7 @@
 ** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,11 +35,11 @@ import QtQuick.Layouts 1.3
 
 import utils 1.0
 import animations 1.0
-import com.pelagicore.styles.triton 1.0
-import triton.controls 1.0
+import com.pelagicore.styles.neptune 3.0
+import neptune.controls 1.0
 import controls 1.0
 
-TritonPopup {
+NeptunePopup {
     id: root
     width: Style.hspan(910/45)
     height: Style.vspan(1426/80)
@@ -135,7 +135,7 @@ TritonPopup {
         background: Rectangle {
             radius: bigFatButton.radius
             opacity: bigFatButton.checked ? 1.0 : 0.1
-            color: bigFatButton.checked ? TritonStyle.accentColor : TritonStyle.contrastColor
+            color: bigFatButton.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
         }
         text: qsTr("Auto")
         onCheckedChanged: {

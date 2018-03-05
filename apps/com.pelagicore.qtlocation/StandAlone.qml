@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,26 +33,26 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 
 import utils 1.0
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Window {
     id: root
     width: 1080
     height: 1920
 
-    color: root.contentItem.TritonStyle.theme === TritonStyle.Dark ? "black" : "white"
+    color: root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? "black" : "white"
 
     Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
     Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
-    Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/triton/imports/assets/") }
+    Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
 
     Shortcut {
         sequence: "Ctrl+t"
         context: Qt.ApplicationShortcut
         onActivated: {
-            var otherTheme = root.contentItem.TritonStyle.theme === TritonStyle.Dark ? TritonStyle.Light
-                                                                                     : TritonStyle.Dark;
-            root.contentItem.TritonStyle.theme = otherTheme;
+            var otherTheme = root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? NeptuneStyle.Light
+                                                                                     : NeptuneStyle.Dark;
+            root.contentItem.NeptuneStyle.theme = otherTheme;
         }
     }
 

@@ -13,4 +13,4 @@ SOURCES += \
 uri = com.pelagicore.settings
 load(qmlplugin)
 
-QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/triton/lib, $$installPath)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$installPath)

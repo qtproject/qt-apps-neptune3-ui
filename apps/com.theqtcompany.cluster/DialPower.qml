@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Triton Cluster UI.
+** This file is part of the Neptune 3 Cluster UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,7 +33,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 1.4
 
-import com.pelagicore.styles.triton 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -69,7 +69,7 @@ Item {
         property bool overrideEPower: false
         readonly property int ePower: overrideEPower ? ePowerOverride : root.ePower
 
-        readonly property string sourceSuffix: root.TritonStyle.theme === TritonStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: root.NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
     }
 
     //states and transitions
@@ -277,7 +277,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
             opacity: (root.drivetrain === 0) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -289,7 +289,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
             opacity: (root.drivetrain === 3) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -301,7 +301,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
             opacity: (root.drivetrain === 1) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -312,7 +312,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
             opacity: (root.drivetrain === 2) ? 0.94 : 0.4
             font.pixelSize: 34 * d.scaleRatio
         }
@@ -328,7 +328,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 80 * d.scaleRatio
     }
@@ -340,7 +340,7 @@ Item {
         text: qsTr("% power")
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -354,7 +354,7 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         opacity: 0.4
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -375,7 +375,7 @@ Item {
         text: "184"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -387,7 +387,7 @@ Item {
         text: "21"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: TritonStyle.primaryTextColor
+        color: NeptuneStyle.primaryTextColor
         opacity: 0.94
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -423,7 +423,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: TritonStyle.primaryTextColor
+            color: NeptuneStyle.primaryTextColor
             opacity: graduationNumber.opacity
             font.family: "Open Sans"
             font.weight: Font.Light
