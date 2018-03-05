@@ -78,9 +78,11 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY neptuneStyleChanged FINAL)
 
+    // TODO drop the "font" prefix, this applies to other items like Image
     Q_PROPERTY(qreal fontOpacityHigh READ fontOpacityHigh NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(qreal fontOpacityMedium READ fontOpacityMedium NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(qreal fontOpacityLow READ fontOpacityLow NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal fontOpacityDisabled READ fontOpacityDisabled NOTIFY neptuneStyleChanged FINAL)
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(int fontFactor READ fontFactor NOTIFY neptuneStyleChanged FINAL)
@@ -140,6 +142,7 @@ public:
     qreal fontOpacityHigh() const;
     qreal fontOpacityMedium() const;
     qreal fontOpacityLow() const;
+    qreal fontOpacityDisabled() const;
 
     Q_INVOKABLE QColor lighter25(const QColor& color);
     Q_INVOKABLE QColor lighter50(const QColor& color);

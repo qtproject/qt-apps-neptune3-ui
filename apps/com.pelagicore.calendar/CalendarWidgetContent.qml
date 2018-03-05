@@ -225,7 +225,7 @@ Item {
                     width: Style.hspan(68/45)
                     height: Style.vspan(33/80)
                     horizontalAlignment: Text.AlignRight
-                    opacity: 0.5    //todo: connect to style or similar
+                    opacity: NeptuneStyle.fontSizeS
                     font.pixelSize: NeptuneStyle.fontSizeS
                     font.weight: Font.Light
                     text: eventModel.get(index).timeStart

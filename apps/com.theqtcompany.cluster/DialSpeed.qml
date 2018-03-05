@@ -84,9 +84,9 @@ Item {
         State {
             name: "normal"
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 265 }
-            PropertyChanges { target: graduationNumber; opacity: 0.6 }
-            PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
-            PropertyChanges { target: signKMH; opacity: 0.4 }
+            PropertyChanges { target: graduationNumber; opacity: NeptuneStyle.fontOpacityMedium }
+            PropertyChanges { target: indicatorSpeed; opacity: NeptuneStyle.fontOpacityHigh }
+            PropertyChanges { target: signKMH; opacity: NeptuneStyle.fontOpacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
             PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
         },
@@ -94,8 +94,8 @@ Item {
             name: "navi"
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 265 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
-            PropertyChanges { target: indicatorSpeed; opacity: 0.94 }
-            PropertyChanges { target: signKMH; opacity: 0.4 }
+            PropertyChanges { target: indicatorSpeed; opacity: NeptuneStyle.fontOpacityHigh }
+            PropertyChanges { target: signKMH; opacity: NeptuneStyle.fontOpacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
             PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
         }
@@ -274,7 +274,7 @@ Item {
         font.family: "Open Sans"
         font.weight: Font.DemiBold
         color: NeptuneStyle.primaryTextColor
-        opacity: 0.94
+        opacity: NeptuneStyle.fontOpacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
@@ -286,7 +286,7 @@ Item {
         font.family: "Open Sans"
         font.weight: Font.Light
         color: NeptuneStyle.primaryTextColor
-        opacity: 0.4
+        opacity: NeptuneStyle.fontOpacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -304,7 +304,7 @@ Item {
             font.family: "Open Sans"
             font.weight: Font.Light
             color: "black"
-            opacity: 0.94
+            opacity: NeptuneStyle.fontOpacityHigh
             font.pixelSize: 34 * d.scaleRatio
         }
     }
@@ -405,7 +405,7 @@ Item {
 
     Text {
         id: indicatorCruise
-        opacity: (root.cruiseSpeed >= 30) ? 0.94 : 0.0
+        opacity: (root.cruiseSpeed >= 30) ? NeptuneStyle.fontOpacityHigh : 0.0
         anchors.horizontalCenter: parent.horizontalCenter
         y: 466 * d.scaleRatio
         text:  Math.round(cruiseSpeed)
@@ -423,7 +423,7 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        opacity: 0.6
+        opacity: NeptuneStyle.fontOpacityMedium
 
         //size and layout
         readonly property real radius: width / 2 - 55 * d.scaleRatio

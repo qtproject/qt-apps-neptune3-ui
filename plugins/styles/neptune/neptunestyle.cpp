@@ -491,6 +491,11 @@ void NeptuneStyle::inheritTheme(Theme theme)
     emit neptuneStyleChanged();
 }
 
+qreal NeptuneStyle::fontOpacityDisabled() const
+{
+    return 0.3;
+}
+
 qreal NeptuneStyle::fontOpacityLow() const
 {
     return 0.4;

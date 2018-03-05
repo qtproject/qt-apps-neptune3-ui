@@ -65,7 +65,7 @@ Item {
             Image {
                 anchors.centerIn: parent
                 source: Style.gfx2(("fan-speed-"+index), NeptuneStyle.theme)
-                opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
+                opacity: index === Tumbler.tumbler.currentIndex ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
             }
         }
         currentIndex: root.model.ventilationLevels

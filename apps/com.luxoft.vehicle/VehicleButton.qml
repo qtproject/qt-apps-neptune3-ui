@@ -92,8 +92,8 @@ ToolButton {
         text: root.text
         font.weight: Font.Light
         color: root.down ? "#41403f" : NeptuneStyle.primaryTextColor
-        opacity: 0.94
     }
+
     background: Rectangle {
         id: backgroundItem
 
@@ -101,7 +101,7 @@ ToolButton {
         implicitHeight: 100
 
         radius: height / 2
-        color: "#d0cbc8" //ToDo: Replace with an actual button color
+        color: NeptuneStyle.buttonColor
 
         readonly property int defaultWidth: sideMargins + contentMargin + contentText.contentWidth
         property int minWidth: 220

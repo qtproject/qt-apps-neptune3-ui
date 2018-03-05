@@ -64,7 +64,7 @@ ItemDelegate {
                     visible: root.eventTimeStart !== root.eventTimeEnd
                     text: root.eventTimeEnd
                     font.pixelSize: NeptuneStyle.fontSizeXS
-                    opacity: 0.6
+                    opacity: NeptuneStyle.fontOpacityMedium
                 }
             }
 

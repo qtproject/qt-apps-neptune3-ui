@@ -36,6 +36,8 @@ import animations 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
+import com.pelagicore.styles.neptune 3.0
+
 Control {
     id: root
 
@@ -64,7 +66,7 @@ Control {
             font.pixelSize: 22 //Todo: Change to Style.fontSizeS when that value is corrected
             font.weight: Font.Light
             text: root.progressText
-            opacity: 0.6
+            opacity: NeptuneStyle.fontOpacityMedium
         }
 
         Slider {

@@ -72,7 +72,7 @@ Control {
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             font.weight: Font.Light
-            opacity: 0.5
+            opacity: NeptuneStyle.fontOpacityMedium
             visible: text !== ""
         }
 

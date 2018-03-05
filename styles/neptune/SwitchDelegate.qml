@@ -75,7 +75,7 @@ T.SwitchDelegate {
         color: 'transparent'
         border.width: control.visualFocus ? 2 : 1.4
         border.color: control.checked ? control.NeptuneStyle.accentColor : control.NeptuneStyle.primaryTextColor
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : 0.2 // FIXME add 0.2 to NeptuneStyle
+        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
@@ -106,7 +106,7 @@ T.SwitchDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : 0.2 // FIXME add 0.2 to NeptuneStyle
+        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
         color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
     }
 }

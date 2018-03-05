@@ -74,7 +74,7 @@ Item {
             anchors.right: parent.right
             font.pixelSize: NeptuneStyle.fontSizeS
             font.weight: Font.Light
-            opacity: 0.8    //Todo: this should be connected to Styles or a neptune Label control in some way
+            opacity: NeptuneStyle.fontOpacityMedium
             visible: root.temperatureVisible
             text: root.temperatureValue + "°"
         }
@@ -85,7 +85,7 @@ Item {
             anchors.right: parent.right
             font.pixelSize: NeptuneStyle.fontSizeS //Todo: font size in the plugin is not correct.
             font.weight: Font.Light
-            opacity: 0.8 //Todo: this should be connected to Styles or a neptune Label control in some way
+            opacity: NeptuneStyle.fontOpacityMedium
             text: (temperatureVisible ? root.weatherText : root.temperatureValue + "° " + root.weatherText) + (precipitationVisible ? "," : "")
         }
         Item {
@@ -108,7 +108,7 @@ Item {
                 anchors.right: parent.right
                 font.pixelSize: NeptuneStyle.fontSizeS
                 font.weight: Font.Light
-                opacity: 0.8 //Todo
+                opacity: NeptuneStyle.fontOpacityMedium
             }
         }
     }

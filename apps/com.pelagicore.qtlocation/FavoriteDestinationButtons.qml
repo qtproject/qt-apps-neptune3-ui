@@ -64,7 +64,7 @@ Item {
         Rectangle {
             width: 1
             height: parent.height
-            opacity: 0.2
+            opacity: NeptuneStyle.fontOpacityDisabled
             color: NeptuneStyle.primaryTextColor
         }
         MapToolButton {

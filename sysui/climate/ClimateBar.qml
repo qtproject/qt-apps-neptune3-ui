@@ -77,7 +77,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: 0.6
+            opacity: NeptuneStyle.fontOpacityMedium
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
@@ -100,7 +100,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: 0.6
+            opacity: NeptuneStyle.fontOpacityMedium
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter

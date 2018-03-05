@@ -84,7 +84,7 @@ Control {
             text: qsTr("Time Zone")
 
             Image {
-                opacity: 0.3    //disabled
+                opacity: NeptuneStyle.fontOpacityDisabled
                 anchors.right: parent.right
                 anchors.rightMargin: Style.hspan(22/45)
                 height: parent.height

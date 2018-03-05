@@ -96,7 +96,7 @@ Row {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
                     source: Style.localAsset("ic-start-navigation", NeptuneStyle.theme)
-                    opacity: startNavigationButton.enabled ? 1.0 : 0.3
+                    opacity: startNavigationButton.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

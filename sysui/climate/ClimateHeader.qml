@@ -68,7 +68,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: NeptuneStyle.fontSizeXL
                 font.weight: Font.DemiBold
-                opacity: 0.6
+                opacity: NeptuneStyle.fontOpacityMedium
             }
             ClimateButton {
                 width: 90
@@ -104,7 +104,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.pixelSize: NeptuneStyle.fontSizeXL
                 font.weight: Font.DemiBold
-                opacity: 0.6
+                opacity: NeptuneStyle.fontOpacityMedium
             }
             ClimateButton {
                 width: 90

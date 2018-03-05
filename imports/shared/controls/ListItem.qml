@@ -75,7 +75,6 @@ ItemDelegate {
     signal rightToolClicked()
 
     indicator: Item  {
-
         ColorOverlay {
             anchors.fill: parent
             source: colorOverlaySource
@@ -83,7 +82,7 @@ ItemDelegate {
         }
         implicitWidth: root.symbol || root.imageSource ? Style.hspan(2) : 0
         implicitHeight: root.symbol || root.imageSource ? root.height : 0
-        opacity: root.enabled ? 1 : 0.3
+        opacity: root.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
         Item {
             id: colorOverlaySource
             anchors.fill: parent
@@ -108,7 +107,7 @@ ItemDelegate {
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            opacity: enabled ? 0.94 : 0.3
+            opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
             visible: root.text
             color: NeptuneStyle.contrastColor
         }
@@ -123,7 +122,7 @@ ItemDelegate {
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: NeptuneStyle.fontSizeS
             visible: text
-            opacity: 0.6
+            opacity: NeptuneStyle.fontOpacityMedium
         }
     }
 
@@ -138,7 +137,7 @@ ItemDelegate {
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
 
-            opacity: root.enabled ? 0.6 : 0.2
+            opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
             visible: root.secondaryText
             color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
         }

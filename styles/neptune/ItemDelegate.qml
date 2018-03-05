@@ -67,7 +67,7 @@ T.ItemDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : 0.2 // FIXME add 0.2 to NeptuneStyle
+        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
         color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
     }
 }

@@ -63,7 +63,7 @@ Button {
                 wrapMode: Text.WordWrap
                 text: root.text
                 font.pixelSize: root.textFontSize
-                opacity: root.checked ? 1.0 : 0.3
+                opacity: root.checked ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
                 Behavior on opacity { OpacityAnimator {} }
             }
         }

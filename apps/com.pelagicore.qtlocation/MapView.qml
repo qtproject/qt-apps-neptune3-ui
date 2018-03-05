@@ -108,7 +108,7 @@ Item {
                 line.color: "#798bd9"
                 line.width: 3
                 smooth: true
-                opacity: 0.9
+                opacity: NeptuneStyle.fontOpacityHigh
             }
         }
 

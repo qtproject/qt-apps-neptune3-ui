@@ -35,6 +35,8 @@ import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
+import com.pelagicore.styles.neptune 3.0
+
 ColumnLayout {
     id: root
     spacing: 15
@@ -47,7 +49,6 @@ ColumnLayout {
         id: songTitle
         Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
-        font.pixelSize: Style.fontSizeM
         font.weight: Font.Light
         maximumLineCount: 2
         elide: Text.ElideRight
@@ -60,7 +61,7 @@ ColumnLayout {
         font.pixelSize: Style.fontSizeS
         font.weight: Font.Light
         visible: text !== ""
-        opacity: 0.6
+        opacity: NeptuneStyle.fontOpacityMedium
         maximumLineCount: 1
         elide: Text.ElideRight
     }
