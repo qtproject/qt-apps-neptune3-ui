@@ -41,55 +41,13 @@ import com.pelagicore.styles.triton 1.0
 Item {
     id: root
 
-    ListView {
-        id: componentListView
-        width: parent.width
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.topMargin: Style.vspan(4)
-        visible: !stack.currentItem
-
-        model: FolderListModel{
-            showDirs: false
-            showDotAndDotDot: false
-            folder: "./components"
-            nameFilters: [ "*Panel.qml" ]
-        }
-
-        delegate: Item {
-            width: componentListView.width
-            height: Style.vspan(0.8)
-
-            Label {
-                anchors.fill: parent
-                anchors.margins: Style.hspan(1)
-                text: fileName.substring(0, fileName.length - 9);
-            }
-
-            Image {
-                width: parent.width
-                height: 5
-                anchors.bottom: parent.bottom
-                source: Style.gfx2("divider", TritonStyle.theme)
-            }
-
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    componentListView.currentIndex = index
-                    stack.push(Qt.resolvedUrl("./components/" + fileName), StackView.PushTransition)
-                }
-            }
-        }
-    }
-
     Row {
         width: parent.width
         height: parent.height * 0.1
         anchors.bottom: stack.top
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(0.8)
-        visible: stack.currentItem
+        visible: stack.depth >= 2
         spacing: Style.hspan(0.2)
 
         Image {
@@ -103,7 +61,44 @@ Item {
             baselineOffset: 0
             text: qsTr("Back")
             font.pixelSize: Style.fontSizeS
-            onClicked: stack.clear(StackView.PopTransition)
+            onClicked: stack.pop()
+        }
+    }
+
+    Component {
+        id: componentInitialItem
+        ListView {
+            id: componentListView
+
+            model: FolderListModel{
+                showDirs: false
+                showDotAndDotDot: false
+                folder: "./components"
+                nameFilters: [ "*Panel.qml" ]
+            }
+
+            delegate: Item {
+                width: componentListView.width
+                height: Style.vspan(0.8)
+
+                Label {
+                    anchors.fill: parent
+                    anchors.margins: Style.hspan(1)
+                    text: fileName.substring(0, fileName.length - 9);
+                }
+
+                Image {
+                    width: parent.width
+                    height: 5
+                    anchors.bottom: parent.bottom
+                    source: Style.gfx2("divider", TritonStyle.theme)
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: stack.push(Qt.resolvedUrl("./components/" + fileName), StackView.PushTransition)
+                }
+            }
         }
     }
 
@@ -112,6 +107,8 @@ Item {
         width: parent.width
         height: parent.height * 0.9
         anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        initialItem: componentInitialItem
     }
 }
 
