@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.0
 import Qt3D.Core 2.0
 import Qt3D.Render 2.9
@@ -35,18 +36,20 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
+import "paths"
+
 Entity {
     Mesh {
         id: shadowMesh
         meshName: "shadow"
-        source: "assets/models/shadow.obj"
+        source: Paths.model("shadow.obj")
     }
 
     DiffuseMapMaterial {
         id: shadowMaterial
         diffuse: Texture2D {
             TextureImage {
-                source: "assets/textures/shadow.png"
+                source: Paths.image("shadow.png")
             }
         }
     }

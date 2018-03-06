@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.0
 import Qt3D.Core 2.0
 import Qt3D.Render 2.9
@@ -36,6 +37,8 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 import animations 1.0
+
+import "paths"
 
 Entity {
     id: root
@@ -62,7 +65,7 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: "assets/models/silver_paint_2.obj"
+            source: Paths.model("silver_paint_2.obj")
         }
         components: [mesh, whiteHood]
     }
@@ -70,7 +73,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: "assets/models/glass_2.obj"
+            source: Paths.model("glass_2.obj")
         }
         components: [glass, glassMaterial]
     }
@@ -78,7 +81,7 @@ Entity {
     Entity {
         Mesh {
             id: chrome
-            source: "assets/models/chrome_3.obj"
+            source: Paths.model("chrome_3.obj")
         }
         components: [chrome, chromeMaterial]
     }
@@ -86,7 +89,7 @@ Entity {
     Entity {
         Mesh {
             id: black
-            source: "assets/models/black_right.obj"
+            source: Paths.model("black_right.obj")
         }
         components: [black, blackMaterial]
     }
@@ -94,7 +97,7 @@ Entity {
     Entity {
         Mesh {
             id: black1
-            source: "assets/models/black_3.stl"
+            source: Paths.model("black_3.obj")
         }
         components: [black1, blackMaterial]
     }

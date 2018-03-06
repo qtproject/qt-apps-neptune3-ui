@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.2
 
 import utils 1.0

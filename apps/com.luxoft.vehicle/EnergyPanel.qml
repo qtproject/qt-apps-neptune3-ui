@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
+import "paths"
+
 Item {
     TabBar {
         id: energyControls
@@ -56,7 +58,7 @@ Item {
         anchors.topMargin: 40
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         width: parent.width
-        source: "assets/images/energy-graph" + sourceSuffix
+        source: Paths.image("energy-graph" + sourceSuffix)
     }
 
     Label {

@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.3
@@ -35,6 +36,8 @@ import QtQuick.Controls 2.3
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import controls 1.0
+
+import "paths"
 
 ListView {
     id: root
@@ -51,7 +54,7 @@ ListView {
             id: supportDelegateIconImage
             anchors.left: parent.left
             anchors.leftMargin: Style.hspan(50/45)
-            source: "assets/images/" + model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png")
+            source: Paths.image(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))
         }
 
         Label {

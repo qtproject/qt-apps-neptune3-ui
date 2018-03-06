@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,35 +29,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import Qt3D.Core 2.0
-import Qt3D.Render 2.9
-import Qt3D.Extras 2.9
-import Qt3D.Input 2.0
-import QtQuick.Scene3D 2.0
+pragma Singleton
 
-import "paths"
+import QtQml 2.2
+import QtQuick 2.8
 
-Entity {
-    id: root
-
-    Mesh {
-        id: seats
-        source: Paths.model("seats.obj")
+QtObject {
+    function model(name) {
+        return "assets/models/" + name
     }
 
-    Texture2D {
-        id: seatsTexture
-        format: Texture.SRGB8_Alpha8
-        TextureImage {
-            source: Paths.image("seats.png")
-        }
+    function image(name) {
+        return "assets/images/" + name
     }
-
-    DiffuseMapMaterial {
-        id: seatsMaterial
-        diffuse: seatsTexture
-    }
-
-    components: [seats, seatsMaterial]
 }

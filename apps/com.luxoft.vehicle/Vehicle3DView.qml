@@ -28,6 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.0
 import Qt3D.Core 2.0
 import Qt3D.Render 2.9
@@ -35,6 +36,8 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 import QtQuick.Controls 2.3
+
+import "paths"
 
 Item {
     id: vehicle3DView
@@ -47,7 +50,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "assets/images/back.png"
+        source: Paths.image("back.png")
 
         //ToDo: Replace later with an actual splash screen
         BusyIndicator {

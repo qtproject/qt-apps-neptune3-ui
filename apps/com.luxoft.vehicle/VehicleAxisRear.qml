@@ -36,6 +36,8 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
+import "paths"
+
 Entity {
     id: root
 
@@ -62,7 +64,7 @@ Entity {
     Entity {
         Mesh {
             id: wheelMesh
-            source: "assets/models/rear_wheel_chrome.obj"
+            source: Paths.model("rear_wheel_chrome.obj")
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -71,12 +73,12 @@ Entity {
         components: [
             Mesh {
                 id: rear_tires
-                source: "assets/models/rear_tires.obj"
+                source: Paths.model("rear_tires.obj")
             },
             DiffuseMapMaterial {
                 diffuse: Texture2D {
                             TextureImage {
-                                source: "assets/textures/rear_tires.png"
+                                source: Paths.image("rear_tires.png")
                             }
                         }
             }

@@ -33,6 +33,8 @@ import QtQuick 2.9
 
 import animations 1.0
 
+import "paths"
+
 Item {
     id: root
 
@@ -49,7 +51,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
-        source: "assets/images/car-model-base.png"
+        source: Paths.image("car-model-base.png")
     }
 
     Image {
@@ -58,7 +60,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 284
         anchors.horizontalCenter: parent.horizontalCenter
-        source: "assets/images/sunroof.png"
+        source: Paths.image("sunroof.png")
     }
 
     Image {
@@ -69,7 +71,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         height: root.trunkOpen ? sourceSize.height * 0.3 : sourceSize.height
         Behavior on height { DefaultNumberAnimation { duration: 800 } }
-        source: "assets/images/trunk.png"
+        source: Paths.image("trunk.png")
     }
 
     Image {
@@ -82,7 +84,7 @@ Item {
         transformOrigin: Item.TopLeft
         rotation: root.leftDoorOpen ? 60 : 0
         Behavior on rotation { DefaultNumberAnimation { duration: 800 } }
-        source: "assets/images/door-left.png"
+        source: Paths.image("door-left.png")
     }
 
     Image {
@@ -96,7 +98,7 @@ Item {
         transformOrigin: Item.TopRight
         rotation: root.rightDoorOpen ? -60 : 0
         Behavior on rotation { DefaultNumberAnimation { duration: 800 } }
-        source: "assets/images/door-left.png"
+        source: Paths.image("door-left.png")
     }
 
     Image {
@@ -105,6 +107,6 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 124
         anchors.horizontalCenter: parent.horizontalCenter
-        source: "assets/images/car-model-top.png"
+        source: Paths.image("car-model-top.png")
     }
 }

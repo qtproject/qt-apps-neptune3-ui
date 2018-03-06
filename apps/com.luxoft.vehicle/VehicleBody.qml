@@ -35,6 +35,8 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
+import "paths"
+
 Entity {
     id: root
 
@@ -50,7 +52,7 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: "assets/models/chrome.obj"
+            source: Paths.model("chrome.obj")
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
@@ -60,7 +62,7 @@ Entity {
     Entity {
         Mesh {
             id: shell
-            source: "assets/models/shell.obj"
+            source: Paths.model("shell.obj")
         }
         components: [shell, whiteHood]
     }
@@ -68,7 +70,7 @@ Entity {
     Entity {
         Mesh {
             id: matt_black
-            source: "assets/models/matt_black.obj"
+            source: Paths.model("matt_black.obj")
         }
         components: [matt_black, blackMaterial]
     }
@@ -76,7 +78,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: "assets/models/glass_4.obj"
+            source: Paths.model("glass_4.obj")
         }
         components: [glass, glassMaterial]
     }
@@ -84,7 +86,7 @@ Entity {
     Entity {
         Mesh {
             id: license_plates
-            source: "assets/models/licence_plates.obj"
+            source: Paths.model("licence_plates.obj")
         }
         components: [license_plates, whiteMaterial]
     }
@@ -92,7 +94,7 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: "assets/models/front_ights.obj"
+            source: Paths.model("front_ights.obj")
         }
         PhongAlphaMaterial {
             id: frontLightsMaterial
@@ -107,7 +109,7 @@ Entity {
     Entity {
         Mesh {
             id: taillights
-            source: "assets/models/taillights.obj"
+            source: Paths.model("taillights.obj")
         }
         components: [taillights, taillightsMaterial]
     }
@@ -115,7 +117,7 @@ Entity {
     Entity {
         Mesh {
             id: interior
-            source: "assets/models/interior.obj"
+            source: Paths.model("interior.obj")
         }
         components: [interior, interiorMaterial]
     }

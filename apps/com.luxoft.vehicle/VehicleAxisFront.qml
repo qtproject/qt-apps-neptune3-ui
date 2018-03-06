@@ -28,12 +28,15 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+
 import QtQuick 2.0
 import Qt3D.Core 2.0
 import Qt3D.Render 2.9
 import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
+
+import "paths"
 
 Entity {
     id: root
@@ -62,7 +65,7 @@ Entity {
         id: chromeWheel
         Mesh {
             id: wheelMesh
-            source: "assets/models/front_wheel_chrome.obj"
+            source: Paths.model("front_wheel_chrome.obj")
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -70,13 +73,13 @@ Entity {
     Entity {
         components: [
             Mesh {
-                source: "assets/models/front_tires.obj"
+                source: Paths.model("front_tires.obj")
             },
             DiffuseMapMaterial {
                 id: frontTiresMaterial
                 diffuse: Texture2D {
                     TextureImage {
-                        source: "assets/textures/front_tires.png"
+                        source: Paths.image("front_tires.png")
                     }
                 }
             }

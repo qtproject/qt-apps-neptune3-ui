@@ -34,6 +34,8 @@ import QtQuick.Controls 2.2
 
 import com.pelagicore.styles.neptune 3.0
 
+import "paths"
+
 Item {
     id: root
 
@@ -41,14 +43,14 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
 
-        source: "assets/images/car-tires.png"
+        source: Paths.image("car-tires.png")
 
         Image {
             anchors.top: parent.top
             anchors.topMargin: 120
             anchors.left: parent.left
             anchors.leftMargin: 110
-            source: "assets/images/tire.png"
+            source: Paths.image("tire.png")
 
             Label {
                 anchors.right: parent.left
@@ -76,7 +78,7 @@ Item {
             anchors.topMargin: 120
             anchors.right: parent.right
             anchors.rightMargin: 146
-            source: "assets/images/tire.png"
+            source: Paths.image("tire.png")
 
             Label {
                 anchors.left: parent.right
@@ -104,7 +106,7 @@ Item {
             anchors.topMargin: 480
             anchors.left: parent.left
             anchors.leftMargin: 110
-            source: "assets/images/tire.png"
+            source: Paths.image("tire.png")
 
             Label {
                 anchors.right: parent.left
@@ -132,7 +134,7 @@ Item {
             anchors.topMargin: 480
             anchors.right: parent.right
             anchors.rightMargin: 146
-            source: "assets/images/tire.png"
+            source: Paths.image("tire.png")
 
             Label {
                 anchors.left: parent.right
@@ -211,6 +213,6 @@ Item {
         anchors.rightMargin: 22
         text: qsTr("Calibrate")
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
-        iconSource: "assets/images/ic-calibrate" + sourceSuffix
+        iconSource: Paths.image("ic-calibrate" + sourceSuffix)
     }
 }
