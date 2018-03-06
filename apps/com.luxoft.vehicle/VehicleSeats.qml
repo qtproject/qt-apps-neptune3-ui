@@ -39,25 +39,18 @@ import QtQuick.Scene3D 2.0
 import "paths"
 
 Entity {
-    id: root
-
-    Mesh {
-        id: seats
-        source: Paths.model("seats.obj")
-    }
-
-    Texture2D {
-        id: seatsTexture
-        format: Texture.SRGB8_Alpha8
-        TextureImage {
-            source: Paths.image("seats.png")
+    components: [
+        Mesh {
+            id: seats
+            source: Paths.model("seats.obj")
+        },
+        DiffuseMapMaterial {
+            id: seatsMaterial
+            diffuse: Texture2D {
+                TextureImage {
+                    source: Paths.image("seats.png")
+                }
+            }
         }
-    }
-
-    DiffuseMapMaterial {
-        id: seatsMaterial
-        diffuse: seatsTexture
-    }
-
-    components: [seats, seatsMaterial]
+    ]
 }

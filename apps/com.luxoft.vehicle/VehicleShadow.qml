@@ -39,20 +39,17 @@ import QtQuick.Scene3D 2.0
 import "paths"
 
 Entity {
-    Mesh {
-        id: shadowMesh
-        meshName: "shadow"
-        source: Paths.model("shadow.obj")
-    }
-
-    DiffuseMapMaterial {
-        id: shadowMaterial
-        diffuse: Texture2D {
-            TextureImage {
-                source: Paths.image("shadow.png")
+    components: [
+        Mesh {
+            meshName: "shadow"
+            source: Paths.model("shadow.obj")
+        },
+        DiffuseMapMaterial {
+            diffuse: Texture2D {
+                TextureImage {
+                    source: Paths.image("shadow.png")
+                }
             }
         }
-    }
-
-    components: [shadowMesh, shadowMaterial]
+    ]
 }

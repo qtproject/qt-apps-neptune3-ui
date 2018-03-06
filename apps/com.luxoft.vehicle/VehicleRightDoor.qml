@@ -42,6 +42,7 @@ import "paths"
 
 Entity {
     id: root
+
     Transform {
         id: transform
         property real userAngle: root.open ? -55 : 0
