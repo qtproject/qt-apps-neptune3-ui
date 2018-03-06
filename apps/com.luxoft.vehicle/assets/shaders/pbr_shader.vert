@@ -3,7 +3,7 @@
 ** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Triton IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,50 +29,31 @@
 **
 ****************************************************************************/
 
-import Qt3D.Core 2.0
-import Qt3D.Render 2.0
+#define FP highp
 
-RenderSurfaceSelector {
-    property alias camera: cameraSelector.camera
-    property alias clearColor: clearBuffer.clearColor
+attribute vec3 vertexPosition;
+attribute vec3 vertexNormal;
+attribute vec4 vertexTangent;
+attribute vec2 vertexTexCoord;
 
-    id: surfaceSelector
-    RenderStateSet {
+varying FP vec3 worldPosition;
+varying FP vec3 worldNormal;
+varying FP vec4 worldTangent;
+varying FP vec2 texCoord;
 
-        DepthTest {
-            id: depth
-            depthFunction: DepthTest.Less
-        }
+uniform FP mat4 modelMatrix;
+uniform FP mat3 modelNormalMatrix;
+uniform FP mat4 modelViewProjection;
 
-        BlendEquation {
-            id: blendEq
-            blendFunction: BlendEquation.Add
-        }
+void main()
+{
+    texCoord = vertexTexCoord;
 
-        BlendEquationArguments {
-            id: blendEqArgs
-            sourceRgb: BlendEquationArguments.SourceAlpha;
-            destinationRgb: BlendEquationArguments.OneMinusSourceAlpha
-        }
+    // Transform position, normal, and tangent to world space
+    worldPosition = vec3(modelMatrix * vec4(vertexPosition, 1.0));
+    worldNormal = normalize(modelNormalMatrix * vertexNormal);
+    worldTangent.xyz = normalize(vec3(modelMatrix * vec4(vertexTangent.xyz, 0.0)));
+    worldTangent.w = vertexTangent.w;
 
-        renderStates: [depth, blendEq, blendEqArgs]
-
-        Viewport {
-            id: viewport
-            normalizedRect: Qt.rect(0.0, 0.0, 1.0, 1.0)
-            SortPolicy {
-                sortTypes: [
-                    SortPolicy.BackToFront // For alpha blending
-                ]
-            }
-            ClearBuffers {
-                id: clearBuffer
-                clearColor: "transparent"
-                buffers: ClearBuffers.ColorDepthBuffer
-                CameraSelector {
-                    id: cameraSelector
-                }
-            }
-        }
-    }
+    gl_Position = modelViewProjection * vec4(vertexPosition, 1.0);
 }

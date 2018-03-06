@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -36,6 +36,7 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 import "paths"
+import "materials"
 
 Entity {
     id: root
@@ -96,11 +97,11 @@ Entity {
             id: frontLights
             source: Paths.model("front_ights.obj")
         }
-        PhongAlphaMaterial {
+        CookTorranceMaterial {
             id: frontLightsMaterial
-            diffuse: "gray"
-            specular: "gray"
-            shininess: 512
+            albedo: "black"
+            metalness: 1.0
+            roughness: 0.1
             alpha: 0.7
         }
         components: [frontLights, frontLightsMaterial]

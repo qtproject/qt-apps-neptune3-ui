@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -38,6 +38,7 @@ import QtQuick.Scene3D 2.0
 import QtQuick.Controls 2.3
 
 import "paths"
+import "materials"
 
 Item {
     id: vehicle3DView
@@ -80,21 +81,6 @@ Item {
                 id: inputSettings
             }
 
-            Entity {
-                components: [
-                    DirectionalLight {
-                        worldDirection: Qt.vector3d(1, -1, -1).normalized()
-                        color: "white"
-                        intensity: 0.3
-                    },
-                    DirectionalLight {
-                        worldDirection: Qt.vector3d(-1, -1, 1).normalized()
-                        color: "white"
-                        intensity: 0.3
-                    }
-                ]
-            }
-
             components: [inputSettings, renderSettings]
 
             // Uncomment this camera and use it for from up to down renderer to take a screenshot
@@ -120,59 +106,59 @@ Item {
                 upVector: Qt.vector3d(0.0, 1.0, 0.0)
             }
 
-            PhongMaterial {
-                id: blackMaterial
-                diffuse: "#000000"
-                specular: "#121212"
-                shininess: 10
-            }
-
-            PhongMaterial {
-                id: whiteHood
-                diffuse: "#FFFFFF"
-                specular: "#FFFFFF"
-                shininess: 1
-            }
-
-            PhongMaterial {
-                id: chromeMaterial
-                ambient: "#000000"
-                diffuse: "#858687"
-                specular: "#858687"
-                shininess: 8
-            }
-
-            PhongAlphaMaterial {
-                id: taillightsMaterial
-                diffuse: "red"
-                specular: "#d14545"
-                alpha: 0.85
-                shininess: 512
-            }
-
-            PhongMaterial {
-                id: interiorMaterial
-                diffuse: "#927B51"
-            }
-
-            PhongMaterial {
-                id: whiteMaterial
-                ambient: "#606060"
-                diffuse: "white"
-                specular: "white"
-                shininess: 128
-            }
-
-            PhongAlphaMaterial {
-                id: glassMaterial
-                ambient: "black"
-                diffuse: "black"
-                specular: "black"
-                alpha: 0.9
-            }
-
             VehicleCameraController {
                 camera: camera
+            }
+
+            CookTorranceMaterial {
+                id: blackMaterial
+                albedo: "black"
+                metalness: 0.5
+                roughness: 0.8
+            }
+
+            CookTorranceMaterial {
+                id: whiteHood
+                albedo: "white"
+                metalness: 0.1
+                roughness: 0.35
+            }
+
+            CookTorranceMaterial {
+                id: chromeMaterial
+                albedo: "black"
+                metalness: 0.1
+                roughness: 0.2
+            }
+
+            CookTorranceMaterial {
+                id: taillightsMaterial
+                albedo: "red"
+                metalness: 0.1
+                roughness: 0.2
+                alpha: 0.5
+            }
+
+            CookTorranceMaterial {
+                id: interiorMaterial
+                albedo: "gray"
+                metalness: 1.0
+                roughness: 0.1
+            }
+
+            CookTorranceMaterial {
+                id: whiteMaterial
+                albedo: "white"
+                metalness: 0.5
+                roughness: 0.5
+            }
+
+            CookTorranceMaterial {
+                id: glassMaterial
+                albedo: "black"
+                metalness: 0.1
+                roughness: 0.1
+                alpha: 0.8
             }
 
             VehicleShadow {}

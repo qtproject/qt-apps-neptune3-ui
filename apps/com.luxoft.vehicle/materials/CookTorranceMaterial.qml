@@ -29,50 +29,67 @@
 **
 ****************************************************************************/
 
+import QtQuick 2.2
 import Qt3D.Core 2.0
 import Qt3D.Render 2.0
 
-RenderSurfaceSelector {
-    property alias camera: cameraSelector.camera
-    property alias clearColor: clearBuffer.clearColor
+import "../paths"
 
-    id: surfaceSelector
-    RenderStateSet {
+Material {
+    id: root
 
-        DepthTest {
-            id: depth
-            depthFunction: DepthTest.Less
+    property color albedo: "red"
+    property real metalness: 1.0
+    property real roughness: 1.0
+    property real ao: 1.0
+    property real alpha: 1.0
+
+    parameters: [
+        Parameter {
+            name: "albedo"
+            value: albedo
+        },
+        Parameter {
+            name: "metalness"
+            value: metalness
+        },
+        Parameter {
+            name: "roughness"
+            value: roughness
+        },
+        Parameter {
+            name: "ao"
+            value: ao
+        },
+        Parameter {
+            name: "alpha"
+            value: alpha
         }
+    ]
 
-        BlendEquation {
-            id: blendEq
-            blendFunction: BlendEquation.Add
+    effect : Effect {
+        property string vertex: "file:assets/shaders/pbr_shader.vert"
+        property string fragment: "file:assets/shaders/pbr_shader.frag"
+
+        ShaderProgram {
+            id: es2Shader
+            vertexShaderCode: loadSource(parent.vertex)
+            fragmentShaderCode: loadSource(parent.fragment)
         }
-
-        BlendEquationArguments {
-            id: blendEqArgs
-            sourceRgb: BlendEquationArguments.SourceAlpha;
-            destinationRgb: BlendEquationArguments.OneMinusSourceAlpha
-        }
-
-        renderStates: [depth, blendEq, blendEqArgs]
-
-        Viewport {
-            id: viewport
-            normalizedRect: Qt.rect(0.0, 0.0, 1.0, 1.0)
-            SortPolicy {
-                sortTypes: [
-                    SortPolicy.BackToFront // For alpha blending
-                ]
-            }
-            ClearBuffers {
-                id: clearBuffer
-                clearColor: "transparent"
-                buffers: ClearBuffers.ColorDepthBuffer
-                CameraSelector {
-                    id: cameraSelector
+        techniques: [
+            Technique {
+                graphicsApiFilter {
+                    api: GraphicsApiFilter.OpenGLES
+                    profile: GraphicsApiFilter.CoreProfile
+                    majorVersion: 2
+                    minorVersion: 0
+                }
+                renderPasses: RenderPass {
+                    shaderProgram: es2Shader
                 }
             }
-        }
+        ]
     }
+
 }
+
