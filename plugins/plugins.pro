@@ -3,5 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS = styles \
           translation \
           widgetgrid \
-          systeminfo
-
+          systeminfo \
+          com.pelagicore.qtlocation

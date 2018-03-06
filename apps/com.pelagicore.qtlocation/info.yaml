@@ -3,8 +3,8 @@ formatType: am-application
 ---
 id:      'com.pelagicore.qtlocation'
 icon:    'icon.png'
-code:    'com.pelagicore.qtlocation'
-runtime: 'native'
+code:    'Main.qml'
+runtime: 'qml'
 name:
   en: 'Maps'
   de: 'Karten'

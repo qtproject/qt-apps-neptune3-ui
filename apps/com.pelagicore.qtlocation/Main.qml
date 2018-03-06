@@ -33,11 +33,15 @@ import QtQuick 2.9
 import utils 1.0
 
 import com.pelagicore.systeminfo 1.0
+import com.pelagicore.qtlocation 1.0
 
 import QtApplicationManager 1.0
 
 QtObject {
     id: root
+
+    // used for copying the offline DB
+    readonly property var _mapsHelper: MapsHelper {}
 
     property var mainWindow: AppUIScreen {
         id: mainWindow

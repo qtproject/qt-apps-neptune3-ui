@@ -29,20 +29,24 @@
 **
 ****************************************************************************/
 
-#include <QtAppManLauncher/private/applicationmanagerwindow_p.h>
-
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
 #include <QStandardPaths>
 #include <QDir>
+
+#include "mapshelper.h"
 
 // code to transform a macro into a string literal
 #define QUOTE(name) #name
 #define STR(macro) QUOTE(macro)
 
-QT_USE_NAMESPACE_AM
+MapsHelper::MapsHelper(QObject *parent)
+    : QObject(parent)
+{
+}
 
-void copyOfflineDB(const QString &prefix) {
+void MapsHelper::classBegin()
+{
+    // copy mapboxgl offline DB
+    const QString prefix = STR(INSTALL_PATH) + QStringLiteral("apps/com.pelagicore.qtlocation/");
     const QString sourceFile = prefix + QStringLiteral("maps/mapboxgl.db");
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     const QString destFile = destDir + QStringLiteral("/mapboxgl.db");
@@ -52,26 +56,6 @@ void copyOfflineDB(const QString &prefix) {
     QFile::copy(sourceFile, destFile);
 }
 
-Q_DECL_EXPORT int main(int argc, char *argv[])
+void MapsHelper::componentComplete()
 {
-    // same as the main app so that we get the same predictable subdir under ~/.cache
-    QCoreApplication::setApplicationName(qSL("Neptune UI"));
-    QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
-    QCoreApplication::setOrganizationDomain(qSL("pelagicore.com"));
-
-    QGuiApplication app(argc, argv);
-
-    qmlRegisterType<ApplicationManagerWindow>("QtApplicationManager", 1, 0, "ApplicationManagerWindow");
-
-    const QString prefix = STR(INSTALL_PATH) + QStringLiteral("apps/com.pelagicore.qtlocation/");
-    const QString mainQml = prefix + QStringLiteral("Main.qml");
-
-    copyOfflineDB(prefix);
-
-    QQmlApplicationEngine engine;
-    engine.addImportPath(STR(INSTALL_PATH) + QStringLiteral("imports/shared"));
-    engine.addPluginPath(STR(INSTALL_PATH));
-    engine.load(mainQml);
-
-    return app.exec();
 }
