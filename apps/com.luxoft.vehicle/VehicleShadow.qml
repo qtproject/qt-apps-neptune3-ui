@@ -41,7 +41,6 @@ import "paths"
 Entity {
     components: [
         Mesh {
-            meshName: "shadow"
             source: Paths.model("shadow.obj")
         },
         DiffuseMapMaterial {
