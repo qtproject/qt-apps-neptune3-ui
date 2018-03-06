@@ -33,6 +33,7 @@ import QtQuick 2.8
 import utils 1.0
 import controls 1.0
 import animations 1.0
+import QtQuick.Controls 1.4 as QQC
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import QtGraphicalEffects 1.0
@@ -286,58 +287,45 @@ Item {
         anchors.top: parent.top
         height: 260
         state: root.state
-        property alias widget3QueueContentY: nextListFlickable.contentY
-
-        Item {
-            id: nextListFlickableItemWrapper
+        onStateChanged: {
+            //reset scroll view
+            nextListFlickable.flickableItem.contentY = 0;
+        }
+        QQC.ScrollView {
+            id: nextListFlickable
             anchors.fill: parent
             opacity: 0
-            Behavior on opacity { DefaultNumberAnimation { duration: 300 } }
             visible: opacity > 0
+            clip: true
+            property real contentY: 0.0
 
-            Flickable {
-                id: nextListFlickable
-                anchors.fill: parent
-                contentWidth: parent.width
-                contentHeight: nextListContent.height
-                pressDelay: 100
+            flickableItem.onContentYChanged: {
+                contentY = flickableItem.contentY;
+            }
 
-                Column {
-                    id: nextListContent
+            Column {
+                id: nextListContent
 
-                    Item { //spacer
-                        width: nextListFlickable.width
-                        height: 430
-                    }
+                Item { //spacer
+                    width: nextListFlickable.width
+                    height: 430
+                }
 
-                    MusicList { //playing queue
-                        id: nextList
-                        width: nextListFlickable.width
-                        height: (listView.count * Style.vspan(1.3))
-                        listView.model: root.store.musicPlaylist
-                        listView.interactive: false
-                        onItemClicked: {
-                            root.store.musicPlaylist.currentIndex = index;
-                            root.store.player.play();
-                        }
-                    }
-
-                    Item { //spacer
-                        width: nextListFlickable.width
-                        height: 20
+                MusicList { //playing queue
+                    id: nextList
+                    width: nextListFlickable.width
+                    height: (listView.count * Style.vspan(1.3))
+                    listView.model: root.store.musicPlaylist
+                    listView.interactive: false
+                    onItemClicked: {
+                        root.store.musicPlaylist.currentIndex = index;
+                        root.store.player.play();
                     }
                 }
-                MouseArea {
-                    //when clicking anywhere else, go to Maximized state
-                    width: parent.width
-                    //artAndTitleBackground.height
-                    height: 260
-                    anchors.top: parent.top
-                    //keep this always to the top
-                    anchors.topMargin: (nextListFlickable.contentY < 0) ? 0 : nextListFlickable.contentY
-                    onClicked: {
-                        root.flickableAreaClicked();
-                    }
+
+                Item { //spacer
+                    width: nextListFlickable.width
+                    height: 20
                 }
             }
         }
@@ -347,6 +335,16 @@ Item {
             height: 260
             width: parent.width
             color: NeptuneStyle.offMainColor
+            MouseArea {
+                //prevent clicking on list items when the list
+                //is scrolled under the header component
+                //should go to maximized state instead
+                anchors.fill: parent
+                enabled: (nextListFlickable.contentY > 0)
+                onClicked: {
+                    root.flickableAreaClicked();
+                }
+            }
         }
 
         Image {
@@ -366,7 +364,7 @@ Item {
             anchors.verticalCenterOffset: 0
             songModel: root.store.musicPlaylist
             currentIndex: root.store.musicPlaylist.currentIndex
-            currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : ""//qsTr("Unknown Track")
+            currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : ""
             currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
             parentStateMaximized: root.state === "Maximized"
             mediaReady: root.store.searchAndBrowseModel.count > 0
@@ -412,33 +410,28 @@ Item {
         states: [
             State {
                 name: "Widget1Row"
-                PropertyChanges { target: nextListFlickable; contentY: 0 }
             },
             State {
                 name: "Widget2Rows"
                 PropertyChanges { target: widgetAndFullscreen; height: 550 }
                 PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 62 }
-                PropertyChanges { target: nextListFlickable; contentY: 0 }
                 PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: 138 }
                 PropertyChanges { target: progressBarBlock; opacity: 1 }
                 PropertyChanges { target: musicTools; opacity: 1 }
             },
             State {
                 name: "Widget3Rows"
-                //TODO remove 'extend' and uncommend this when the flickable bug in multi-process mode is fixed
-                extend: "Widget2Rows"
-//                PropertyChanges { target: widgetAndFullscreen; height: 840 }
-//                PropertyChanges { target: nextListFlickable; contentY: 0 }
-//                PropertyChanges { target: nextListFlickableItemWrapper; opacity: 1 }
-//                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 271 - Math.min(20, widgetAndFullscreen.widget3QueueContentY/6) }
-//                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: -71 - Math.min(60, widgetAndFullscreen.widget3QueueContentY/2) }
-//                PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140)) }
-//                PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, widgetAndFullscreen.widget3QueueContentY / 140))}
+                PropertyChanges { target: widgetAndFullscreen; height: 840 }
+                PropertyChanges { target: nextListFlickable; opacity: 1 }
+                PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: - 271 - Math.min(20, nextListFlickable.contentY / 6) }
+                PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: -71 - Math.min(60, nextListFlickable.contentY / 2) }
+                PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, nextListFlickable.contentY / 140)) }
+                PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, nextListFlickable.contentY / 140))}
+                PropertyChanges { target: nextListShadow; opacity: 0 + Math.max(0, Math.min(1, nextListFlickable.contentY / 140))}
             },
             State {
                 name: "Maximized"
                 PropertyChanges { target: widgetAndFullscreen; height: 660 - 224 }
-                PropertyChanges { target: nextListFlickable; contentY: 0 }
                 PropertyChanges { target: artAndTitleBackground; opacity: 0 }   //todo: do something else here because it is blocking the gray background.
                 PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: -110 }
                 PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: 90 }
