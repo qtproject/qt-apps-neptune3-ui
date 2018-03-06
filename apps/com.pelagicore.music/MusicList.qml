@@ -98,10 +98,13 @@ Control {
             anchors.rightMargin: Style.hspan(40/45)
             boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
             delegate: delegatedItem
-        }
-
-        MusicScrollBar {
-            attachTo: listView
+            ScrollIndicator.vertical: ScrollIndicator {
+                parent: listView.parent
+                anchors.top: listView.top
+                anchors.left: listView.right
+                anchors.leftMargin: Style.hspan(1)
+                anchors.bottom: listView.bottom
+            }
         }
     }
 }

@@ -100,7 +100,7 @@ Item {
         delegate: delegatedCalendar
         cellWidth: Style.hspan(7)
         cellHeight: Style.vspan(3)
-        ScrollIndicator.vertical: CalendarScrollIndicator {
+        ScrollIndicator.vertical: ScrollIndicator {
             parent: gridView.parent
             anchors.top: gridView.top
             anchors.left: gridView.right

@@ -44,7 +44,7 @@ ListView {
         eventTimeEnd: timeEnd
         eventLabel: event
     }
-    ScrollIndicator.vertical: CalendarScrollIndicator {
+    ScrollIndicator.vertical: ScrollIndicator {
         parent: root.parent
         anchors.top: root.top
         anchors.left: root.right
