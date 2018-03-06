@@ -45,10 +45,9 @@ Entity {
         Behavior on userAngle { DefaultNumberAnimation { duration: 1000 } }
         matrix: {
             var m = Qt.matrix4x4();
-            var xOffset = 14.9;
-            var yOffset = 11.38;
-            var zOffset = 12.20;
-            m.scale(vehicle3DView.scaleFactor);
+            var xOffset = 1.65;
+            var yOffset = 1.4;
+            var zOffset = 1.4;
             m.translate( Qt.vector3d(xOffset, yOffset, zOffset))
             m.rotate(userAngle, Qt.vector3d(0, 1, 0))
             m.translate( Qt.vector3d(-xOffset, -yOffset, -zOffset))
@@ -62,14 +61,6 @@ Entity {
 
     Entity {
         Mesh {
-            id: mesh
-            source: "assets/models/silver_paint.obj"
-        }
-        components: [mesh, whiteHood]
-    }
-
-    Entity {
-        Mesh {
             id: mesh2
             source: "assets/models/silver_paint_1.obj"
         }
@@ -79,7 +70,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: "assets/models/glass.stl"
+            source: "assets/models/glass.obj"
         }
         components: [glass, glassMaterial]
     }
@@ -87,23 +78,15 @@ Entity {
     Entity {
         Mesh {
             id: chrome1
-            source: "assets/models/chrome_1.stl"
+            source: "assets/models/chrome_2.obj"
         }
         components: [chrome1, chromeMaterial]
     }
 
     Entity {
         Mesh {
-            id: black
-            source: "assets/models/black.stl"
-        }
-        components: [black, blackMaterial]
-    }
-
-    Entity {
-        Mesh {
             id: black1
-            source: "assets/models/black_1.stl"
+            source: "assets/models/black_left.obj"
         }
         components: [black1, blackMaterial]
     }

@@ -49,13 +49,11 @@ Entity {
             var m = Qt.matrix4x4();
             var yOffset = 6;
             var zOffset = 23.64;
-            m.scale(vehicle3DView.scaleFactor);
             m.translate(Qt.vector3d(0, yOffset, zOffset))
             m.rotate(userAngle, Qt.vector3d(1, 0, 0))
             m.translate(Qt.vector3d(0, -yOffset, -zOffset))
             return m;
         }
-        scale: vehicle3DView.scaleFactor
     }
 
     components: [transform]
@@ -64,7 +62,7 @@ Entity {
         id: chromeWheel
         Mesh {
             id: wheelMesh
-            source: "assets/models/front_wheel_chrome_1.stl"
+            source: "assets/models/front_wheel_chrome.obj"
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -72,7 +70,7 @@ Entity {
     Entity {
         components: [
             Mesh {
-                source: "assets/models/front_tires.stl"
+                source: "assets/models/front_tires.obj"
             },
             DiffuseMapMaterial {
                 id: frontTiresMaterial

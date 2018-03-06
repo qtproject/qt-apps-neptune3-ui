@@ -40,7 +40,7 @@ Entity {
 
     Mesh {
         id: seats
-        source: "assets/models/seats.stl"
+        source: "assets/models/seats.obj"
     }
 
     Texture2D {
@@ -56,10 +56,5 @@ Entity {
         diffuse: seatsTexture
     }
 
-    Transform {
-        id: transform
-        scale: vehicle3DView.scaleFactor
-    }
-
-    components: [transform, seats, seatsMaterial]
+    components: [seats, seatsMaterial]
 }

@@ -50,13 +50,11 @@ Entity {
             var m = Qt.matrix4x4()
             var yOffset = 6
             var zOffset = -30
-            m.scale(vehicle3DView.scaleFactor)
             m.translate(Qt.vector3d(0, yOffset, zOffset))
             m.rotate(userAngle, Qt.vector3d(1, 0, 0))
             m.translate(Qt.vector3d(0, -yOffset, -zOffset))
             return m
         }
-        scale: vehicle3DView.scaleFactor
     }
 
     components: [transform]
@@ -64,7 +62,7 @@ Entity {
     Entity {
         Mesh {
             id: wheelMesh
-            source: "assets/models/rear_wheel_chrome_1.stl"
+            source: "assets/models/rear_wheel_chrome.obj"
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -73,7 +71,7 @@ Entity {
         components: [
             Mesh {
                 id: rear_tires
-                source: "assets/models/rear_tires.stl"
+                source: "assets/models/rear_tires.obj"
             },
             DiffuseMapMaterial {
                 diffuse: Texture2D {

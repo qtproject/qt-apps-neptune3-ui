@@ -48,9 +48,8 @@ Entity {
         Behavior on userAngle { DefaultNumberAnimation { duration: 1000 } }
         matrix: {
             var m = Qt.matrix4x4();
-            var yOffset = 21;
-            var zOffset = 18;
-            m.scale(vehicle3DView.scaleFactor);
+            var yOffset = 1.9;
+            var zOffset = 2.1;
             m.translate( Qt.vector3d(0, yOffset, -zOffset));
             m.rotate(userAngle, Qt.vector3d(1, 0, 0));
             m.translate( Qt.vector3d(0, -yOffset, zOffset));
@@ -60,7 +59,7 @@ Entity {
 
     Mesh {
         id: rearDoorMesh
-        source: "assets/models/back_window.stl"
+        source: "assets/models/back_window.obj"
     }
 
     components: [transform, rearDoorMesh, glassMaterial]

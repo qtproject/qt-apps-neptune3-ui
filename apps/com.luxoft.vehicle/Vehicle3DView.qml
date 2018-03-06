@@ -40,7 +40,6 @@ Item {
     id: vehicle3DView
 
     property alias roofOpenProgress: roof.openProgress
-    readonly property real scaleFactor: 0.1
 
     property alias leftDoorOpen: leftDoor.open
     property alias rightDoorOpen: rightDoor.open

@@ -45,20 +45,18 @@ Entity {
 
     Transform {
         id: transform
-        property real translationZ: -1.15
+        readonly property real translationZ: -1.15
         matrix: {
             var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0.0, 0.0, translationZ * openProgress));
-            m.scale(Qt.vector3d(vehicle3DView.scaleFactor,
-                                vehicle3DView.scaleFactor,
-                                vehicle3DView.scaleFactor * (1 - openProgress)));
+            m.translate(Qt.vector3d(0, 0, translationZ * openProgress));
+            m.scale(Qt.vector3d(1, 1, 1 - openProgress));
             return m;
         }
     }
 
     Mesh {
         id: mesh
-        source: "assets/models/sun_roof.stl"
+        source: "assets/models/sun_roof.obj"
     }
 
     components: [transform, mesh, whiteHood]

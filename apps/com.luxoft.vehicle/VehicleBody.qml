@@ -43,7 +43,6 @@ Entity {
     Transform {
         id: transform
         property real userAngle: 0.0
-        scale: vehicle3DView.scaleFactor
     }
 
     components: [transform]
@@ -51,7 +50,7 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: "assets/models/chrome.stl"
+            source: "assets/models/chrome.obj"
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
@@ -61,7 +60,7 @@ Entity {
     Entity {
         Mesh {
             id: shell
-            source: "assets/models/shell.stl"
+            source: "assets/models/shell.obj"
         }
         components: [shell, whiteHood]
     }
@@ -69,7 +68,7 @@ Entity {
     Entity {
         Mesh {
             id: matt_black
-            source: "assets/models/matt_black.stl"
+            source: "assets/models/matt_black.obj"
         }
         components: [matt_black, blackMaterial]
     }
@@ -77,7 +76,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: "assets/models/glass_4.stl"
+            source: "assets/models/glass_4.obj"
         }
         components: [glass, glassMaterial]
     }
@@ -85,7 +84,7 @@ Entity {
     Entity {
         Mesh {
             id: license_plates
-            source: "assets/models/licence_plates.stl"
+            source: "assets/models/licence_plates.obj"
         }
         components: [license_plates, whiteMaterial]
     }
@@ -93,7 +92,7 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: "assets/models/front_ights.stl"
+            source: "assets/models/front_ights.obj"
         }
         PhongAlphaMaterial {
             id: frontLightsMaterial
@@ -108,7 +107,7 @@ Entity {
     Entity {
         Mesh {
             id: taillights
-            source: "assets/models/taillights.stl"
+            source: "assets/models/taillights.obj"
         }
         components: [taillights, taillightsMaterial]
     }
@@ -116,7 +115,7 @@ Entity {
     Entity {
         Mesh {
             id: interior
-            source: "assets/models/interior.stl"
+            source: "assets/models/interior.obj"
         }
         components: [interior, interiorMaterial]
     }
