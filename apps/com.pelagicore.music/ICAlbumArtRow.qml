@@ -93,7 +93,7 @@ Item {
                 anchors.centerIn: parent
                 width: 180
                 height: width
-                source: model.item.coverArtUrl !== undefined ? model.item.coverArtUrl : ""
+                source: model.item !== undefined ? model.item.coverArtUrl : ""
                 fillMode: Image.PreserveAspectCrop
             }
         }
