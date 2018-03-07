@@ -36,10 +36,10 @@
 #include <QTimer>
 
 #include "core.h"
-#include "uisettingssource.h"
-#include "instrumentclustersource.h"
-#include "systemuisource.h"
-#include "connectionmonitoringsource.h"
+#include "rep_uisettings_source.h"
+#include "rep_instrumentcluster_source.h"
+#include "rep_systemui_source.h"
+#include "rep_connectionmonitoring_source.h"
 
 Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
 
@@ -59,10 +59,10 @@ protected slots:
     void onTimeout();
 
 protected:
-    QScopedPointer<UISettingsSource> m_UISettingsService;
-    QScopedPointer<InstrumentClusterSource> m_instrumentClusterService;
-    QScopedPointer<SystemUISource> m_systemUIService;
-    QScopedPointer<ConnectionMonitoringSource> m_connectionMonitoringService;
+    QScopedPointer<UISettingsSimpleSource> m_UISettingsService;
+    QScopedPointer<InstrumentClusterSimpleSource> m_instrumentClusterService;
+    QScopedPointer<SystemUISimpleSource> m_systemUIService;
+    QScopedPointer<ConnectionMonitoringSimpleSource> m_connectionMonitoringService;
 
     void setInstrumentClusterDefaultValues();
     void initConnectionMonitoring();

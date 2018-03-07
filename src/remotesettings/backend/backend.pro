@@ -13,7 +13,7 @@ PLUGIN_TYPE = qtivi
 PLUGIN_EXTENDS = qtivi
 PLUGIN_CLASS_NAME = IviSettingsBackendInterface
 
-QT += core remoteobjects ivicore
+QT += core ivicore
 
 QFACE_FORMAT = backend_qtro
 QFACE_SOURCES = ../settings.qface

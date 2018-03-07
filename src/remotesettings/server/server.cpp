@@ -42,19 +42,19 @@ Server::Server(QObject *parent) : QObject(parent)
 
 void Server::start()
 {
-    m_UISettingsService.reset(new UISettingsSource());
+    m_UISettingsService.reset(new UISettingsSimpleSource());
     Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "Settings.UISettings");
     qCDebug(remoteSettingsServer) << "register service at: Settings.UISettings";
 
-    m_instrumentClusterService.reset(new InstrumentClusterSource());
+    m_instrumentClusterService.reset(new InstrumentClusterSimpleSource());
     Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "Settings.InstrumentCluster");
     qCDebug(remoteSettingsServer) << "register service at: Settings.InstrumentCluster";
 
-    m_systemUIService.reset(new SystemUISource());
+    m_systemUIService.reset(new SystemUISimpleSource());
     Core::instance()->host()->enableRemoting(m_systemUIService.data(), "Settings.SystemUI");
     qCDebug(remoteSettingsServer) << "register service at: Settings.SystemUI";
 
-    m_connectionMonitoringService.reset(new ConnectionMonitoringSource());
+    m_connectionMonitoringService.reset(new ConnectionMonitoringSimpleSource());
     Core::instance()->host()->enableRemoting(m_connectionMonitoringService.data(), "Settings.ConnectionMonitoring");
     qCDebug(remoteSettingsServer) << "register service at: Settings.ConnectionMonitoring";
 

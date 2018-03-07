@@ -1,5 +1,4 @@
 QT -= gui
-QT += remoteobjects
 
 CONFIG += c++11 console
 macos: CONFIG -= app_bundle
