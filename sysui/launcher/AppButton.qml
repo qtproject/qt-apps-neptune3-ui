@@ -72,7 +72,7 @@ Item {
         anchors.topMargin: Style.vspan(10/80)
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.width*0.8
-        font.pixelSize: TritonStyle.fontSizeS
+        font.pixelSize: NeptuneStyle.fontSizeS
         opacity: root.gridOpen ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: "white"
