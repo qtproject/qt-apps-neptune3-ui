@@ -37,10 +37,29 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import models.system 1.0
 
+import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 
 ColumnLayout {
     id: root
+
+    function graphicsInformation() {
+        var result = "";
+        var api = GraphicsInfo.api;
+        if (api == GraphicsInfo.Software) {
+            result = "Software rendering";
+        } else if (api == GraphicsInfo.OpenGL) {
+            result = "OpenGL";
+            if (GraphicsInfo.renderableType == GraphicsInfo.SurfaceFormatOpenGLES) {
+                result += " ES";
+            }
+        } else if (api == GraphicsInfo.Direct3D12) {
+            result = "Direct3D";
+        }
+        return result + " " + GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion;
+    }
+
+    SystemInfo { id: info }
 
     Switch {
         anchors.right: parent.right
@@ -69,6 +88,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         Layout.topMargin: Style.vspan(0.25)
+        addressList: info.addressList
     }
 
     Label {
@@ -78,7 +98,7 @@ ColumnLayout {
         Layout.topMargin: Style.vspan(0.25)
     }
     Label {
-        text: Qt.application.version
+        text: Qt.application.version + " " + qsTr("(using Qt %1 and %2)").arg(info.qtVersion).arg(graphicsInformation())
         font.pixelSize: Style.fontSizeS
         Layout.fillWidth: true
         Layout.preferredHeight: font.pixelSize * 1.1

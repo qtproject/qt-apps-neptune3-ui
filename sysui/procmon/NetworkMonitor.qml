@@ -34,11 +34,12 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import utils 1.0
-import com.pelagicore.systeminfo 1.0
 
 ColumnLayout {
     id: root
-    SystemInfo { id: info }
+
+    property var addressList
+
     Label {
         Layout.fillWidth: true
         text: qsTr("Network")
@@ -47,12 +48,12 @@ ColumnLayout {
         clip: true
         Layout.fillWidth: true
         Layout.fillHeight: true
-        model: info.addressList
+        model: root.addressList
         delegate: ItemDelegate {
             width: ListView.view.width
             text: modelData
             font.pixelSize: Style.fontSizeS
         }
-        ScrollBar.vertical: ScrollBar { }
+        ScrollIndicator.vertical: ScrollIndicator {}
     }
 }

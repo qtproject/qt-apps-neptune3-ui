@@ -88,6 +88,11 @@ bool SystemInfo::online() const
     return m_online;
 }
 
+QString SystemInfo::qtVersion() const
+{
+    return QString::fromLatin1(qVersion());
+}
+
 void SystemInfo::classBegin()
 {
     auto conn = QDBusConnection::systemBus();

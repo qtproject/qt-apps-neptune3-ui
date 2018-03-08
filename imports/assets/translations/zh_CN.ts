@@ -424,6 +424,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>Version</source>
         <translation>版</translation>
     </message>
+    <message>
+        <source>(using Qt %1 and %2)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Music</name>

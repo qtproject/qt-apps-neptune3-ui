@@ -396,6 +396,10 @@ UX to the road</source>
         <source>Version</source>
         <translation>バージョン</translation>
     </message>
+    <message>
+        <source>(using Qt %1 and %2)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Music</name>
