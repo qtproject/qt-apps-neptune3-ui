@@ -141,7 +141,10 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.leftMargin: root.active ? 0 : widgetStripe.width
-        Behavior on anchors.leftMargin { DefaultSmoothedAnimation { } }
+        //NumberAnimation should be used here as SmoothedAnimation
+        //causes some movement from right to left of the fullscreen
+        //app content when going from widget to fullscreen state
+        Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
         anchors.right: parent.right
         layer.enabled: root.clipWindow
         layer.effect: OpacityMask {
