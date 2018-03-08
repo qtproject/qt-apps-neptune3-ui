@@ -1,3 +1,5 @@
 Tool 1.0 Tool.qml
 ToolsColumn 1.0 ToolsColumn.qml
 ListItem 1.0 ListItem.qml
+ListItemBasic 1.0 ListItemBasic.qml
+ListItemProgress 1.0 ListItemProgress.qml

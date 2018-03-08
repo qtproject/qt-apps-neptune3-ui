@@ -51,6 +51,7 @@ Item {
             implicitWidth: Style.hspan(17)
             implicitHeight: Style.vspan(1.3)
             text: "Basic ListItem"
+            dividerVisible: false
         }
 
         ListItem {
@@ -58,6 +59,13 @@ Item {
             implicitHeight: Style.vspan(1.3)
             text: "ListItem Text"
             subText: "ListItem Subtext"
+        }
+
+        ListItem {
+            implicitWidth: Style.hspan(17)
+            implicitHeight: Style.vspan(1.3)
+            text: "ListItem with an image"
+            imageSource: Style.gfx2("fan-speed-5")
         }
 
         ListItem {
@@ -91,6 +99,51 @@ Item {
             rightToolSymbol: Style.symbol("ic-close")
             text: "ListItem with Looooooooooonnngggg Text"
             secondaryText: "Loooooooong Secondary Text"
+        }
+
+        ListItemProgress {
+            id: listItemProgress
+            implicitWidth: Style.hspan(17)
+            implicitHeight: Style.vspan(1.3)
+            minimumValue: 0
+            maximumValue: 100
+            symbol: Style.symbol("ic-placeholder")
+            text: "Downloading application"
+            secondaryText: value + " % of 46 MB"
+            cancelable: timerDowloading.running
+            value: 0
+            onProgressCanceled: {
+                timerDowloading.stop()
+                value = 0
+            }
+            onClicked: {
+                timerDowloading.start()
+            }
+
+            Timer {
+                id: timerDowloading
+                interval: 1000
+                repeat: true
+                running: true
+                onTriggered: {
+                    if (listItemProgress.value === listItemProgress.maximumValue) {
+                        listItemProgress.value = 0
+                    } else {
+                        listItemProgress.value += 5
+                    }
+                }
+            }
+        }
+        ListItemProgress {
+            id: listItemProgressIndeterminate
+            implicitWidth: Style.hspan(17)
+            implicitHeight: Style.vspan(1.3)
+            indeterminate: true
+            symbol: Style.symbol("ic-placeholder")
+            cancelable: indeterminate
+            text: indeterminate ? "Downloading pending" : "Downloading canceled"
+            onProgressCanceled: indeterminate = false
+            onClicked: indeterminate = true
         }
     }
 }

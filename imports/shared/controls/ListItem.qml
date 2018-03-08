@@ -29,138 +29,62 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
 /*
-    A default ListItem that is used for delegated view of a model. ListItem is inherited
-    from ItemDelegate and have extra properties that support several use cases according
-    to the component design spec ('components_lists').
+ * ListItemBasic provides a type of a list item with one button or text at the right side
+ *
+ * Properties:
+ *  - secondaryText - This property holds a textual component that is aligned to the right side of ListItem.
+ *  - rightToolSymbol - This property holds the tool icon source that is aligned to the right side of ListItem.
+ *   Usage example:
+ *
+ *  Usage example:
+ *
+ *   ListItem {
+ *       Layout.fillWidth: true
+ *       symbol: Style.symbol("ic-update")
+ *       rightToolSymbol: Style.symbol("ic-close")
+ *       text: "ListItem with Secondary Text"
+ *       secondaryText: "68% of 14 MB"
+ *   }
+ */
 
-    symbol          : This property holds the name of icon to be used as ListItem indicator
-    subText         : This property holds a sub textual description of ListItem.
-    secondaryText   : This property holds a textual component that is aligned to the right
-                      side of ListItem.
-    rightToolSymbol : This property holds the tool icon source that is aligned to the
-                      right side of ListItem.
-
-    Usage example:
-
-    ListItem {
-        Layout.fillWidth: true
-        symbol: Style.symbol("ic-update")
-        rightToolSymbol: Style.symbol("ic-close")
-        text: "ListItem with Secondary Text"
-        secondaryText: "68% of 14 MB"
-    }
-
-*/
-
-ItemDelegate {
+ListItemBasic {
     id: root
 
-    // TODO: use icon.source / icon.name
-    property string symbol: ""
-    property string imageSource: ""
-    property alias subText: subtitle.text
-    property alias secondaryText: secondaryText.text
-    property alias rightToolSymbol: rightTool.symbol
-    property bool dividerVisible: true
+    property string secondaryText: ""
+    property string rightToolSymbol: ""
 
     signal rightToolClicked()
 
-    indicator: Item  {
-        ColorOverlay {
-            anchors.fill: parent
-            source: colorOverlaySource
-            color: NeptuneStyle.contrastColor
-        }
-        implicitWidth: root.symbol || root.imageSource ? Style.hspan(2) : 0
-        implicitHeight: root.symbol || root.imageSource ? root.height : 0
-        opacity: root.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-        Item {
-            id: colorOverlaySource
-            anchors.fill: parent
-            visible: false
-            Image {
-                anchors.centerIn: parent
-                source: root.symbol
-            }
-            Image {
-                anchors.fill: parent
-                source: root.imageSource
-            }
-        }
+    accessoryDelegateComponent1: Label {
+        Layout.preferredWidth: Style.hspan(3.5)
+        font.pixelSize: NeptuneStyle.fontSizeS
+        elide: Text.ElideRight
+        horizontalAlignment: Text.AlignRight
+        verticalAlignment: Text.AlignVCenter
+        opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
+        visible: root.secondaryText
+        color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+        text: root.secondaryText
     }
 
-    contentItem: ColumnLayout {
-        Label {
-            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : root.width - rightTool.width
-            leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
-            text: root.text
-            font: root.font
-            elide: Text.ElideRight
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-            visible: root.text
-            color: NeptuneStyle.contrastColor
-        }
+    rightSpacerUsed: (root.secondaryText !== "")&&(root.rightToolSymbol === "")
+    middleSpacerUsed: root.secondaryText !== ""
+    dividerVisible: true
 
-        Label {
-            id: subtitle
-            Layout.preferredWidth: secondaryText.text ? Style.hspan(11) : root.width - rightTool.width
-            leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
-            rightPadding: root.indicator ? root.indicator.width + root.spacing : 0
-            elide: Text.ElideRight
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-            font.pixelSize: NeptuneStyle.fontSizeS
-            visible: text
-            opacity: NeptuneStyle.fontOpacityMedium
-        }
-    }
-
-    RowLayout {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        Label {
-            id: secondaryText
-            Layout.preferredWidth: Style.hspan(3.5)
-            font.pixelSize: NeptuneStyle.fontSizeS
-            elide: Text.ElideRight
-            horizontalAlignment: Text.AlignRight
-            verticalAlignment: Text.AlignVCenter
-
-            opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
-            visible: root.secondaryText
-            color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
-        }
-
-        // additional margins when rightTool is not available.
-        Item {
-            implicitWidth: !rightTool.symbol && secondaryText.text ? Style.hspan(0.6) : 0
-            implicitHeight: !rightTool.symbol && secondaryText.text ? root.height : 0
-        }
-
-        Tool {
-            id: rightTool
-            implicitWidth: rightTool.symbol ? Style.hspan(2) : 0
-            implicitHeight: rightTool.symbol ? root.height : 0
-            baselineOffset: 0
-            onClicked: root.rightToolClicked()
-        }
-    }
-
-    Image {
-        width: root.width
-        anchors.bottom: root.bottom
-        source: Style.gfx2("list-divider")
-        visible: root.dividerVisible
+    accessoryDelegateComponent2: Tool {
+        implicitWidth: rightToolSymbol ? Style.hspan(100/45) : 0
+        implicitHeight: rightToolSymbol ? root.height : 0
+        baselineOffset: 0
+        symbol: root.rightToolSymbol
+        visible: root.rightToolSymbol != ""
+        onClicked: root.rightToolClicked()
     }
 }
