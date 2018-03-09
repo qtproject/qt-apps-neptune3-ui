@@ -140,7 +140,7 @@ private slots:
     void onWindowReady(int index, QQuickItem *window);
     void onWindowLost(int index, QQuickItem *window);
     void onApplicationActivated(const QString &appId, const QString &aliasId);
-    void onApplicationRunStateChanged(const QString &id, QtAM::ApplicationManager::RunState runState);
+    void onApplicationRunStateChanged(const QString &id, QtAM::Application::RunState runState);
     void onWindowPropertyChanged(QQuickItem *window, const QString &name, const QVariant &value);
     void onAsWidgetChanged(ApplicationInfo *appInfo);
     void onApplicationChanged(const QtAM::Application *application);

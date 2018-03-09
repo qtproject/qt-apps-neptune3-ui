@@ -282,16 +282,16 @@ void ApplicationModel::onApplicationActivated(const QString &appId, const QStrin
     emit activeAppInfoChanged();
 }
 
-void ApplicationModel::onApplicationRunStateChanged(const QString &id, QtAM::ApplicationManager::RunState runState)
+void ApplicationModel::onApplicationRunStateChanged(const QString &id, QtAM::Application::RunState runState)
 {
     ApplicationInfo *appInfo = application(id);
     if (!appInfo) {
         return;
     }
 
-    appInfo->setRunning(runState == ApplicationManager::Running);
+    appInfo->setRunning(runState == Application::Running);
 
-    if (runState == ApplicationManager::NotRunning) {
+    if (runState == Application::NotRunning) {
         if (appInfo == m_activeAppInfo) {
             goHome();
         }
@@ -452,7 +452,7 @@ void ApplicationModel::setHomePageRowHeight(qreal value)
 
 void ApplicationModel::onAsWidgetChanged(ApplicationInfo *appInfo)
 {
-    if (appInfo->asWidget() && m_appMan->applicationRunState(appInfo->id()) == ApplicationManager::NotRunning) {
+    if (appInfo->asWidget() && m_appMan->applicationRunState(appInfo->id()) == Application::NotRunning) {
         // Starting an app causes it to emit activated() but we don't want it to go active (as being
         // active makes it maximized/fullscreen). We want it to stay as a widget.
         appInfo->setCanBeActive(false);
