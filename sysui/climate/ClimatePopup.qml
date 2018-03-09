@@ -117,7 +117,7 @@ NeptunePopup {
         model: root.model
     }
 
-    RoundButton {
+    Button {
         id: bigFatButton
         width: Style.hspan(460/45)
         height: Style.vspan(1)
@@ -125,18 +125,6 @@ NeptunePopup {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Style.vspan(118/80)
         checkable: true
-        contentItem: Label {
-            text: bigFatButton.text
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
-            font.weight: Font.Light
-        }
-        background: Rectangle {
-            radius: bigFatButton.radius
-            opacity: bigFatButton.checked ? 1.0 : 0.1
-            color: bigFatButton.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
-        }
         text: qsTr("Auto")
         onCheckedChanged: {
             airFlow.autoMode = checked

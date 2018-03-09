@@ -77,6 +77,7 @@ Control {
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes' }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color' }
                 }
             }
         }
@@ -106,6 +107,12 @@ Control {
                 model: store.themeModel
                 currentTheme: store.currentTheme
                 onThemeRequested: store.updateTheme(theme);
+            }
+
+            ColorsPanel {
+                model: store.accentColorsModel
+                currentAccentColor: store.currentAccentColor
+                onAccentColorRequested: store.updateAccentColor(accentColor)
             }
         }
     }

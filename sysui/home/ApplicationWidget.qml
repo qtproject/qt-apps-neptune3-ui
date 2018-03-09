@@ -97,7 +97,6 @@ Item {
         if (!root.appInfo)
             return;
 
-
         var window = root.appInfo.window
         if (window) {
             window.parent = windowSlot;
@@ -137,15 +136,12 @@ Item {
     }
     Item {
         id: windowSlot
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
+        anchors.fill: parent
         anchors.leftMargin: root.active ? 0 : widgetStripe.width
         //NumberAnimation should be used here as SmoothedAnimation
         //causes some movement from right to left of the fullscreen
         //app content when going from widget to fullscreen state
         Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
-        anchors.right: parent.right
         layer.enabled: root.clipWindow
         layer.effect: OpacityMask {
             maskSource: mask
@@ -164,6 +160,12 @@ Item {
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         source: Style.gfx2("widget-stripe")
+
+        layer.enabled: true
+        layer.effect: ColorOverlay {
+            source: widgetStripe
+            color: NeptuneStyle.accentColor
+        }
 
         opacity: root.active ? 0 : 1
         visible: opacity != 0

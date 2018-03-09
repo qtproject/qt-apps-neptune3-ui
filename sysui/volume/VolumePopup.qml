@@ -103,7 +103,7 @@ NeptunePopup {
         }
     }
 
-    AbstractButton {
+    Button {
         id: muteButton
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -112,11 +112,6 @@ NeptunePopup {
         height: Style.vspan(100/80)
         checkable: true
         checked: privateValues.muted
-        background: Rectangle {
-            radius: height/2
-            opacity: muteButton.checked ? 1 : 0.06
-            color: muteButton.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
-        }
         Image {
             anchors.centerIn: parent
             source: Style.symbol("ic-volume-0")

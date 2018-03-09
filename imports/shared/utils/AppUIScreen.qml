@@ -130,6 +130,9 @@ ApplicationManagerWindow {
 
     UISettings {
         onThemeChanged: updateTheme()
+        onAccentColorChanged: {
+            root.NeptuneStyle.accentColor = accentColor;
+        }
         Component.onCompleted: updateTheme()
         function updateTheme() {
             root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;

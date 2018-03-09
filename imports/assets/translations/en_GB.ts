@@ -565,6 +565,10 @@ UX to the road</source>
         <source>themes</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>colors</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TiresPanel</name>

@@ -809,6 +809,10 @@ UX to the road</source>
         <source>themes</source>
         <translation>테마</translation>
     </message>
+    <message>
+        <source>colors</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StatusBar</name>

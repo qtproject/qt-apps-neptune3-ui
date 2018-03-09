@@ -115,6 +115,9 @@ Window {
                 }
             }
             onThemeChanged: updateTheme()
+            onAccentColorChanged: {
+                root.contentItem.NeptuneStyle.accentColor = accentColor;
+            }
             Component.onCompleted: updateTheme()
             function updateTheme() {
                 var chosenTheme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;

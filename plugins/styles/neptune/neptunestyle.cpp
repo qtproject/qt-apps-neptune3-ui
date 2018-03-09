@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -229,7 +229,26 @@ QColor NeptuneStyle::systemColor(SystemColor role) const
 
 QColor NeptuneStyle::accentColor() const
 {
-    return systemColor(AccentColor);
+    return m_accentColor.isValid() ? m_accentColor : systemColor(AccentColor);
+}
+
+void NeptuneStyle::setAccentColor(const QColor &accent)
+{
+    if (m_accentColor == accent || !accent.isValid())
+        return;
+
+    m_accentColor = accent;
+    propagateAccentColor();
+    emit accentColorChanged();
+}
+
+void NeptuneStyle::propagateAccentColor()
+{
+    for (QQuickAttachedObject *child : attachedChildren()) {
+        NeptuneStyle* neptune = qobject_cast<NeptuneStyle *>(child);
+        if (neptune)
+            neptune->setAccentColor(m_accentColor);
+    }
 }
 
 QColor NeptuneStyle::mainColor() const
@@ -276,7 +295,6 @@ QColor NeptuneStyle::darker25(const QColor& color)
 {
     return color.darker(150);
 }
-
 
 QColor NeptuneStyle::darker50(const QColor& color)
 {
@@ -426,8 +444,10 @@ void NeptuneStyle::parentStyleChange(QQuickStyleAttached *newParent, QQuickStyle
 {
     Q_UNUSED(oldParent);
     NeptuneStyle* neptune = qobject_cast<NeptuneStyle *>(newParent);
-    if (neptune)
+    if (neptune) {
         inheritStyle(*neptune->m_data);
+        setAccentColor(neptune->accentColor());
+    }
 }
 
 void NeptuneStyle::inheritStyle(const StyleData& data)
@@ -435,6 +455,7 @@ void NeptuneStyle::inheritStyle(const StyleData& data)
     m_data.reset(new StyleData(data));
     propagateStyle(data);
     emit neptuneStyleChanged();
+    emit accentColorChanged();
 }
 
 void NeptuneStyle::propagateStyle(const StyleData& data)
@@ -463,6 +484,7 @@ void NeptuneStyle::setTheme(Theme value)
         propagateTheme();
         emit themeChanged();
         emit neptuneStyleChanged();
+        emit accentColorChanged();
     }
 }
 
@@ -489,6 +511,7 @@ void NeptuneStyle::inheritTheme(Theme theme)
     propagateTheme();
     emit themeChanged();
     emit neptuneStyleChanged();
+    emit accentColorChanged();
 }
 
 qreal NeptuneStyle::fontOpacityDisabled() const

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -63,7 +63,7 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(QColor highlightedButtonColor READ highlightedButtonColor NOTIFY neptuneStyleChanged FINAL)
 
     // naming scheme used in the design specs
-    Q_PROPERTY(QColor accentColor READ accentColor NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged FINAL)
     Q_PROPERTY(QColor mainColor READ mainColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor offMainColor READ offMainColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor accentDetailColor READ accentDetailColor NOTIFY neptuneStyleChanged FINAL)
@@ -124,7 +124,11 @@ public:
     QColor backgroundColor() const { return systemColor(BackgroundColor); }
     QColor buttonColor() const { return systemColor(ButtonColor); }
     QColor highlightedButtonColor() const { return systemColor(HighlightedButtonColor); }
+
     QColor accentColor() const;
+    void setAccentColor(const QColor &accent);
+    void propagateAccentColor();
+
     QColor mainColor() const;
     QColor offMainColor() const;
     QColor accentDetailColor() const;
@@ -168,11 +172,13 @@ public:
 protected:
     void init();
 signals:
+    void accentColorChanged();
     void neptuneStyleChanged();
     void themeChanged();
 
 private:
     QScopedPointer<StyleData> m_data;
+    QColor m_accentColor;
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)

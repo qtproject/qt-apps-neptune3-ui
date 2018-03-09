@@ -100,7 +100,7 @@ Control {
                     height: Style.hspan(0.15)
                     anchors.verticalCenter: parent.verticalCenter
                     radius: height
-                    color: "#FA9E54"
+                    color: NeptuneStyle.accentColor
                 }
             }
         }

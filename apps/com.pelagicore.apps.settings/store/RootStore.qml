@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -33,6 +33,7 @@ import QtQml 2.2
 import QtQml.Models 2.3
 import utils 1.0
 import com.pelagicore.settings 1.0
+import com.pelagicore.styles.neptune 3.0
 
 import "../helper"
 
@@ -40,7 +41,13 @@ QtObject {
     id: root
 
 
-    readonly property UISettings uiSettings: UISettings {}
+    readonly property UISettings uiSettings: UISettings {
+        onAccentColorChanged: {
+            accentColorsModel.forEach(function(element) {
+                element.selected = Qt.colorEqual(element.color, accentColor);
+            });
+        }
+    }
 
     // Time And Date Segment
     readonly property bool twentyFourHourTimeFormat: uiSettings.twentyFourHourTimeFormat !== undefined ?
@@ -90,6 +97,25 @@ QtObject {
     function updateTheme(value) {
         console.log(Helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
+    }
+
+    // (Accent) Colors segment
+    readonly property color currentAccentColor: !!uiSettings.accentColor ? uiSettings.accentColor : NeptuneStyle.accentColor
+
+    property var accentColorsModel: [
+        { color: "#D25555", value: 5, selected: false },
+        { color: "#FA9E54", value: 5, selected: true }, // default orange
+        { color: "#9EAE83", value: 5, selected: false },
+        { color: "#78887B", value: 5, selected: false },
+        { color: "#7BA2A5", value: 5, selected: false },
+        { color: "#51A7F4", value: 5, selected: false },
+        { color: "#535258", value: 5, selected: false },
+        { color: "#DB3B9F", value: 5, selected: false }
+    ]
+
+    function updateAccentColor(value) {
+        console.log(Helper.category, 'updateAccentColor: ', value)
+        uiSettings.accentColor = value;
     }
 
     // Initialization

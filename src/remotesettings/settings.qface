@@ -18,6 +18,7 @@ interface UISettings {
     real balance;
 
     int theme;
+    string accentColor;
 
     bool door1Open;
     bool door2Open;
