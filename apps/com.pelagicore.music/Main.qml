@@ -65,7 +65,7 @@ QtObject {
             x: mainWindow.exposedRect.x
             y: mainWindow.exposedRect.y - 224
             width: mainWindow.exposedRect.width
-            height: Math.max(sourceSize.height, musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y)
+            height: musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y - y
             border.bottom: 0
             border.top: sourceSize.height - 1
             border.left: 0

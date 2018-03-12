@@ -381,12 +381,11 @@ Item {
 
         MusicProgress {
             id: progressBarBlock
+            //TODO use Style.hspan and Style.vspan instead
+            width: 880
             height: 220
 
-            anchors.left: parent.left
-            anchors.leftMargin: 40
-            anchors.right: parent.right
-            anchors.rightMargin: 40
+            anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: 200
 
@@ -401,8 +400,7 @@ Item {
             id: musicTools
             anchors.top: progressBarBlock.bottom
             anchors.topMargin: -progressBarBlock.height/2
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(28/45)
+            anchors.right: progressBarBlock.right
             onShuffleClicked: root.store.shuffleSong()
             onRepeatClicked: root.store.repeatSong()
         }
@@ -437,9 +435,6 @@ Item {
                 PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: 90 }
                 PropertyChanges { target: progressBarBlock; opacity: 1 }
                 PropertyChanges { target: musicTools; opacity: 1 }
-                PropertyChanges { target: musicTools; anchors.rightMargin: Style.hspan(100/45) }
-                PropertyChanges { target: progressBarBlock; anchors.leftMargin: 100 }
-                PropertyChanges { target: progressBarBlock; anchors.rightMargin: 100 }
             }
         ]
 
