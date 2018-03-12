@@ -100,7 +100,7 @@ Window {
 
             readonly property bool selectedNavigation: {
                 if (root.applicationModel) {
-                    var app = root.applicationModel.application(secondaryAppWindows.selectedApplicationId)
+                    var app = root.applicationModel.applicationFromId(secondaryAppWindows.selectedApplicationId)
                     if (app) {
                         return app.categories.indexOf("navigation") !== -1;
                     }

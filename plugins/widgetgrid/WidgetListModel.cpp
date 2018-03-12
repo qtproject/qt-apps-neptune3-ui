@@ -72,8 +72,6 @@ void WidgetListModel::setApplicationModel(QAbstractItemModel *appModel)
         return;
     }
 
-    fetchAppInfoRoleIndex();
-
     if (appModel->rowCount() > 0) {
         trackRowsFromApplicationModel(0, appModel->rowCount() - 1);
     }
@@ -332,6 +330,8 @@ void WidgetListModel::remove(int index)
 
 QObject *WidgetListModel::getApplicationInfoFromModelAt(int index)
 {
+    fetchAppInfoRoleIndex();
+
     auto rowIndex = m_applicationModel->index(index, 0, QModelIndex());
     QVariant variant = m_applicationModel->data(rowIndex, m_appInfoRoleIndex);
     auto appInfo = variant.value<QObject*>();

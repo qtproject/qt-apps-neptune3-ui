@@ -60,7 +60,7 @@ Item {
                 target: model.appInfo
                 onSecondaryWindowChanged: {
                     if (model.appInfo.secondaryWindow) {
-                        secondaryWindowList.append({"applicationId" : model.applicationId,
+                        secondaryWindowList.append({"applicationId" : model.appInfo.id,
                                                      "secondaryWindow": model.appInfo.secondaryWindow});
                     } else {
                         secondaryWindowList.removeWithAppId(model.applicationId);

@@ -65,7 +65,7 @@ Item {
             id: delegateRoot
 
             property int visualIndex: DelegateModel.itemsIndex
-            readonly property bool devApp: model.appInfo.categories.indexOf("dev") !== -1
+            readonly property bool devApp: model.appInfo ? model.appInfo.categories.indexOf("dev") !== -1 : false
 
             width: grid.cellWidth
             height: grid.cellHeight
@@ -107,8 +107,8 @@ Item {
                 editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
                 editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
 
-                iconSource: model.icon
-                labelText: model.name
+                iconSource: model.appInfo ? model.appInfo.icon : null
+                labelText: model.appInfo ? model.appInfo.name : null
                 gridOpen: root.gridOpen
 
                 Drag.active: delegateRoot.drag.active

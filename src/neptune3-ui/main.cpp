@@ -42,11 +42,10 @@
 #include <QLibraryInfo>
 #include <QFileInfo>
 #include <QDir>
+#include <QProcess>
+#include <QTouchDevice>
 
 #include <QDebug>
-
-#include "ApplicationInfo.h"
-#include "ApplicationModel.h"
 
 QT_USE_NAMESPACE_AM
 
@@ -116,16 +115,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             searchPaths.prepend(STR(NEPTUNE_ICONS_PATH));
             QIcon::setThemeSearchPaths(searchPaths);
         }
-
-        qmlRegisterUncreatableType<ApplicationInfo>("models.application", 1, 0, "ApplicationInfo", "You canot create ApplicationInfo instances from QML");
-        qRegisterMetaType<ApplicationInfo*>();
-        qRegisterMetaType<const QObject*>();
-        // ApplicatinoModel uses QtAppMan headers and QtAplicationManager is distributed as a static library.
-        // So loading it from both the binary executable and from a plugin shared lib would cause two AppMan
-        // instances to reside in memory.
-        // That's why ApplicationModel can't be put in a QML plugin right now.
-        // TODO: Try to have ApplicationModel working without accessing QtAppMan headers
-        qmlRegisterType<ApplicationModel>("models.application", 1, 0, "ApplicationModel");
 
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
         cfg.parse();

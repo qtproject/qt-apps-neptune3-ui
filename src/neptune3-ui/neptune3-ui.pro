@@ -20,8 +20,7 @@ isEmpty(GIT_REVISION) {
 
 DEFINES *= NEPTUNE_VERSION=\""\\\"$$GIT_REVISION, $$GIT_COMMITTER_DATE\\\""\"
 
-SOURCES = main.cpp ApplicationInfo.cpp ApplicationModel.cpp
-HEADERS = ApplicationInfo.h ApplicationModel.h
+SOURCES = main.cpp
 
 DESTDIR = $$OUT_PWD/../../
 

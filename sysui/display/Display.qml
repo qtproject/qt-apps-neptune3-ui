@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -60,12 +60,9 @@ Item {
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
-        applicationManager: ApplicationManager
-        windowManager: WindowManager
         cellWidth: Style.cellWidth
         cellHeight: Style.cellHeight
-        homePageRowHeight: homePageLoader.homePageRowHeight
-        langCode: Style.languageLocale
+        localeCode: Style.languageLocale
     }
 
     Image {
@@ -81,15 +78,6 @@ Item {
 
     VolumeModel {
         id: volumeModel
-    }
-
-    // Give some time for sysui to load itself before launching apps. Besides, starting the apps
-    // that are shown as widgets immediately on ApplicationModel creation fails anyway.
-    Timer {
-        interval: 500
-        running: true
-        repeat: false
-        onTriggered: applicationModel.readyToStartApps = true
     }
 
     Instantiator {
@@ -145,7 +133,7 @@ Item {
 
                 active: true //StagedStartupModel.loadRest
                 source: "../home/HomePage.qml"
-                Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel }
+                Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel.populating ? null : applicationModel }
 
                 // widgets will reparent themselves to the active application slot when active
                 Binding { target: homePageLoader.item; property: "activeApplicationParent"; value: activeApplicationSlot }

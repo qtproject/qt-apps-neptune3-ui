@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -64,14 +64,14 @@ Item {
                 target: model.appInfo
                 onRunningChanged: {
                     if (model.appInfo.running) {
-                        runningAppsModel.appendAppInfo(model.appInfo, model.name);
+                        runningAppsModel.appendAppInfo(model.appInfo);
                     } else {
                         runningAppsModel.removeAppInfo(model.appInfo);
                     }
                 }
                 Component.onCompleted: {
                     if (model.appInfo.running) {
-                        runningAppsModel.appendAppInfo(model.appInfo, model.name);
+                        runningAppsModel.appendAppInfo(model.appInfo);
                     }
                 }
             }
@@ -81,8 +81,8 @@ Item {
     ListModel {
         id: runningAppsModel
 
-        function appendAppInfo(appInfo, name) {
-            append({"appInfo":appInfo,"name":name});
+        function appendAppInfo(appInfo) {
+            append({"appInfo":appInfo});
         }
         function removeAppInfo(appInfo) {
             var i;
@@ -117,7 +117,7 @@ Item {
                 onClicked: model.appInfo.stop()
             }
             Label {
-                text: model.name
+                text: model.appInfo.name
                 height: parent.height
             }
         }

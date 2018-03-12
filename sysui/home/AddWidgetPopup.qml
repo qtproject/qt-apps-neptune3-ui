@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -82,9 +82,9 @@ NeptunePopup {
         delegate: ListItem {
             width: ListView.view.width
             height: Style.vspan(1)
-            symbol: Qt.resolvedUrl(model.appInfo.icon)
-            text: model.name
-            enabled: !model.appInfo.asWidget
+            symbol: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : null
+            text: model.appInfo ? model.appInfo.name : null
+            enabled: model.appInfo ? !model.appInfo.asWidget : false
             onClicked: {
                 model.appInfo.asWidget = true
                 root.state = "closed"
