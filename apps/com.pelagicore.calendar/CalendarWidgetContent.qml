@@ -250,7 +250,7 @@ Item {
         readonly property bool graphActive: (root.height > (sourceSize.height + calendarEvents.height + Style.hspan(1))) && (root.state === "Widget3Rows")
         anchors.top: parent.top
         anchors.topMargin: graphActive ? 0 : -Style.vspan(0.5)
-        anchors.left: leftColoredArea.right
+        anchors.right: parent.right
         opacity: graphActive ? 1 : 0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { duration: 600 } }
