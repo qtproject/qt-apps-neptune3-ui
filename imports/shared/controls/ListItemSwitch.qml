@@ -31,58 +31,44 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
 
-import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
 /*
- * ListItem provides a type of a list item with one button or text at the right side
+ * ListItemSwitch provides a type of a list item with a Switch at the right side.
  *
  * Properties:
- *  - secondaryText - This property holds a textual component that is aligned to the right side of ListItem.
- *  - rightToolSymbol - This property holds the tool icon source that is aligned to the right side of ListItem.
+ *  - switchOn - Indicates if the switch is on or off
+ *  - position - This property holds the logical position of the thumb indicator.
  *
  *  Usage example:
  *
- *   ListItem {
+ *   ListItemSwitch {
  *       Layout.fillWidth: true
  *       symbol: Style.symbol("ic-update")
  *       rightToolSymbol: Style.symbol("ic-close")
- *       text: "ListItem with Secondary Text"
- *       secondaryText: "68% of 14 MB"
+ *       text: "..."
+ *       onClicked: { ... }
+ *       onSwitchClicked { ... }
  *   }
  */
 
 ListItemBasic {
     id: root
 
-    property string secondaryText: ""
-    property string rightToolSymbol: ""
+    property bool switchOn: false
+    property real position: 0.0
 
-    signal rightToolClicked()
+    signal switchToggled()
+    signal switchClicked()
 
-    accessoryDelegateComponent1: Label {
-        font.pixelSize: NeptuneStyle.fontSizeS
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignRight
-        verticalAlignment: Text.AlignVCenter
-        opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
-        visible: root.secondaryText
-        color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
-        text: root.secondaryText
-    }
+    rightSpacerUsed: true
 
-    rightSpacerUsed: (root.secondaryText !== "")&&(root.rightToolSymbol === "")
-    middleSpacerUsed: root.secondaryText !== ""
-    dividerVisible: true
-
-    accessoryDelegateComponent2: Tool {
-        implicitWidth: rightToolSymbol ? Style.hspan(100/45) : 0
-        implicitHeight: rightToolSymbol ? root.height : 0
-        baselineOffset: 0
-        symbol: root.rightToolSymbol
-        visible: root.rightToolSymbol != ""
-        onClicked: root.rightToolClicked()
+    accessoryDelegateComponent1: Switch {
+        checked: root.switchOn
+        onPositionChanged: root.position = position
+        onToggled: root.switchToggled()
+        onClicked: root.switchClicked()
+        onCheckedChanged: root.switchOn = checked
     }
 }

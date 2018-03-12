@@ -79,11 +79,12 @@ Item {
 
             delegate: Item {
                 width: componentListView.width
-                height: Style.vspan(0.8)
+                height: Style.vspan(1.5)
 
                 Label {
-                    anchors.fill: parent
-                    anchors.margins: Style.hspan(1)
+                    anchors.left: parent.left
+                    anchors.leftMargin: Style.hspan(2)
+                    anchors.verticalCenter: parent.verticalCenter
                     text: fileName.substring(0, fileName.length - 9);
                 }
 

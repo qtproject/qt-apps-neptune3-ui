@@ -39,111 +39,143 @@ Item {
     id: root
     anchors.horizontalCenter: parent ? parent.horizontalCenter : null
     anchors.top: parent ? parent.top : null
-    anchors.topMargin: Style.vspan(1)
+    anchors.topMargin: Style.vspan(0.5)
     anchors.bottom: parent ? parent.bottom : null
 
-    ColumnLayout {
+    Flickable {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(17)
-        spacing: Style.vspan(0.05)
+        contentHeight: columnContent.height
+        contentWidth: columnContent.width
+        flickableDirection: Flickable.VerticalFlick
+        clip: true
+        ColumnLayout {
+            id: columnContent
+            spacing: Style.vspan(0.05)
 
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            text: "Basic ListItem"
-            dividerVisible: false
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            text: "ListItem Text"
-            subText: "ListItem Subtext"
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            text: "ListItem with an image"
-            imageSource: Style.gfx2("fan-speed-5")
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            symbol: Style.symbol("ic-update")
-            text: "ListItem with Icon"
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            symbol: Style.symbol("ic-update")
-            text: "ListItem with Secondary Text"
-            secondaryText: "Company"
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            symbol: Style.symbol("ic-update")
-            rightToolSymbol: Style.symbol("ic-close")
-            text: "ListItem with Secondary Text"
-            secondaryText: "68% of 14 MB"
-        }
-
-        ListItem {
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            symbol: Style.symbol("ic-update")
-            rightToolSymbol: Style.symbol("ic-close")
-            text: "ListItem with Looooooooooonnngggg Text"
-            secondaryText: "Loooooooong Secondary Text"
-        }
-
-        ListItemProgress {
-            id: listItemProgress
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            minimumValue: 0
-            maximumValue: 100
-            symbol: Style.symbol("ic-placeholder")
-            text: "Downloading application"
-            secondaryText: value + " % of 46 MB"
-            cancelable: timerDowloading.running
-            value: 0
-            onProgressCanceled: {
-                timerDowloading.stop()
-                value = 0
-            }
-            onClicked: {
-                timerDowloading.start()
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                text: "Basic ListItem"
+                dividerVisible: false
             }
 
-            Timer {
-                id: timerDowloading
-                interval: 1000
-                repeat: true
-                running: true
-                onTriggered: {
-                    if (listItemProgress.value === listItemProgress.maximumValue) {
-                        listItemProgress.value = 0
-                    } else {
-                        listItemProgress.value += 5
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                text: "ListItem Text"
+                subText: "ListItem Subtext"
+            }
+
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                text: "ListItem with an image"
+                imageSource: Style.gfx2("fan-speed-5")
+            }
+
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-update")
+                text: "ListItem with Icon"
+            }
+
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-update")
+                text: "ListItem with Secondary Text"
+                secondaryText: "Company"
+            }
+
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-update")
+                rightToolSymbol: Style.symbol("ic-close")
+                text: "ListItem with Secondary Text"
+                secondaryText: "68% of 14 MB"
+            }
+
+            ListItem {
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-update")
+                rightToolSymbol: Style.symbol("ic-close")
+                text: "ListItem with Looooooooooonnngggg Text"
+                secondaryText: "Loooooooong Secondary Text"
+            }
+
+            ListItemProgress {
+                id: listItemProgress
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                minimumValue: 0
+                maximumValue: 100
+                symbol: Style.symbol("ic-placeholder")
+                text: "Downloading application"
+                secondaryText: value + " % of 46 MB"
+                cancelable: timerDowloading.running
+                value: 0
+                onProgressCanceled: {
+                    timerDowloading.stop()
+                    value = 0
+                }
+                onClicked: {
+                    timerDowloading.start()
+                }
+
+                Timer {
+                    id: timerDowloading
+                    interval: 1000
+                    repeat: true
+                    running: true
+                    onTriggered: {
+                        if (listItemProgress.value === listItemProgress.maximumValue) {
+                            listItemProgress.value = 0
+                        } else {
+                            listItemProgress.value += 5
+                        }
                     }
                 }
             }
-        }
-        ListItemProgress {
-            id: listItemProgressIndeterminate
-            implicitWidth: Style.hspan(17)
-            implicitHeight: Style.vspan(1.3)
-            indeterminate: true
-            symbol: Style.symbol("ic-placeholder")
-            cancelable: indeterminate
-            text: indeterminate ? "Downloading pending" : "Downloading canceled"
-            onProgressCanceled: indeterminate = false
-            onClicked: indeterminate = true
+            ListItemProgress {
+                id: listItemProgressIndeterminate
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                indeterminate: true
+                symbol: Style.symbol("ic-placeholder")
+                cancelable: indeterminate
+                text: indeterminate ? "Downloading pending" : "Downloading canceled"
+                onProgressCanceled: indeterminate = false
+                onClicked: indeterminate = true
+            }
+
+            ListItemSwitch {
+                id: listItemSwitch
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-placeholder")
+                text: "List item with a switch " + (listItemSwitch.switchOn ? "(ON)" : "(OFF)")
+                onSwitchClicked: console.log("Switch is clicked")
+                onSwitchToggled: console.log("Switch is toggled")
+            }
+
+            ListItemTwoButtons {
+                id: listItemTwoButtons
+                implicitWidth: Style.hspan(17)
+                implicitHeight: Style.vspan(1.3)
+                symbol: Style.symbol("ic-placeholder")
+                text: "List item with two accessory buttons"
+                symbolAccessoryButton1: Style.symbol("ic-call-contrast")
+                symbolAccessoryButton2: Style.symbol("ic-message-contrast")
+                onAccessoryButton1Clicked: listItemTwoButtons.text = "Call clicked"
+                onAccessoryButton2Clicked: listItemTwoButtons.text = "Message clicked"
+                onClicked: listItemTwoButtons.text = "List item with two accessory buttons"
+            }
         }
     }
 }
