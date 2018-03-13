@@ -48,6 +48,17 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+    </message>
+</context>
+<context>
     <name>ButtonBoard</name>
     <message>
         <source>Button</source>
@@ -136,19 +147,57 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Partly rain</source>
-        <translation>Částečný déšť</translation>
+        <translation type="vanished">Částečný déšť</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation>Déšť</translation>
+        <translation type="vanished">Déšť</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation>Lehké sněžení</translation>
+        <translation type="vanished">Lehké sněžení</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation>Slunečno</translation>
+        <translation type="vanished">Slunečno</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetPanel</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="unfinished">Částečný déšť</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished">Déšť</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="unfinished">Lehké sněžení</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="unfinished">Slunečno</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetView</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="obsolete">Částečný déšť</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="obsolete">Déšť</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="obsolete">Lehké sněžení</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="obsolete">Slunečno</translation>
     </message>
 </context>
 <context>
@@ -981,6 +1030,17 @@ UX na cestu</translation>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="vanished">RAM: %1 MB (%2%)</translation>
+    </message>
+</context>
+<context>
+    <name>StorePanel</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
     </message>
 </context>
 <context>

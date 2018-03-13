@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import "stores"
+import "views"
 
 AppUIScreen {
     id: root
@@ -48,7 +49,7 @@ AppUIScreen {
         }
     }
 
-    Calendar {
+    CalendarView {
         x: root.exposedRect.x
         y: root.exposedRect.y
         width: root.exposedRect.width

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -34,8 +34,6 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import Qt.labs.calendar 1.0
 import utils 1.0
-import controls 1.0
-import animations 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -104,7 +102,6 @@ Item {
             parent: gridView.parent
             anchors.top: gridView.top
             anchors.left: gridView.right
-            anchors.leftMargin: Style.hspan(2)
             anchors.bottom: gridView.bottom
         }
     }

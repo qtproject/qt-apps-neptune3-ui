@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -35,13 +35,13 @@ import QtQuick.Layouts 1.2
 import Qt.labs.calendar 1.0
 import utils 1.0
 import controls 1.0
-import animations 1.0
 import com.pelagicore.styles.neptune 3.0
+import "../controls"
 
 Item {
     id: root
 
-    property alias eventModel: listView.model
+    property alias eventModel: eventList.model
 
     Component {
         id: delegatedCalendar
@@ -111,8 +111,8 @@ Item {
             }
         }
 
-        ListView {
-            id: listView
+        EventList {
+            id: eventList
             Layout.preferredWidth: Style.hspan(10)
             Layout.preferredHeight: root.height
             anchors.top: parent.top
@@ -122,13 +122,6 @@ Item {
                 eventTimeStart: timeStart
                 eventTimeEnd: timeEnd
                 eventLabel: event
-            }
-            ScrollIndicator.vertical: ScrollIndicator {
-                parent: listView.parent
-                anchors.top: listView.top
-                anchors.left: listView.right
-                anchors.leftMargin: Style.hspan(0.5)
-                anchors.bottom: listView.bottom
             }
         }
     }

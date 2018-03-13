@@ -47,6 +47,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">Keine Programme gefunden!</translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -65,19 +76,57 @@ UX to the road</source>
     <name>CalendarWidgetContent</name>
     <message>
         <source>Partly rain</source>
-        <translation>teilweise Regen</translation>
+        <translation type="vanished">teilweise Regen</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation>Regen</translation>
+        <translation type="vanished">Regen</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation>leichter Schnee</translation>
+        <translation type="vanished">leichter Schnee</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation>sonnig</translation>
+        <translation type="vanished">sonnig</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetPanel</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="unfinished">teilweise Regen</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished">Regen</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="unfinished">leichter Schnee</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="unfinished">sonnig</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetView</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="obsolete">teilweise Regen</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="obsolete">Regen</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="obsolete">leichter Schnee</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="obsolete">sonnig</translation>
     </message>
 </context>
 <context>
@@ -745,6 +794,17 @@ UX to the road</source>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="vanished">RAM: %1 MB (%2 %)</translation>
+    </message>
+</context>
+<context>
+    <name>StorePanel</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">Keine Programme gefunden!</translation>
     </message>
 </context>
 <context>

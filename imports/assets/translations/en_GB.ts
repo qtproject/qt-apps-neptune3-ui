@@ -43,6 +43,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -58,7 +69,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>CalendarWidgetContent</name>
+    <name>CalendarWidgetPanel</name>
     <message>
         <source>Partly rain</source>
         <translation type="unfinished"></translation>
@@ -567,6 +578,17 @@ UX to the road</source>
     </message>
     <message>
         <source>colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StorePanel</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -54,6 +54,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">앱을 찾을 수 없습니다!</translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -72,19 +83,57 @@ UX to the road</source>
     <name>CalendarWidgetContent</name>
     <message>
         <source>Partly rain</source>
-        <translation>비가 약간 내린다</translation>
+        <translation type="vanished">비가 약간 내린다</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation>빗발</translation>
+        <translation type="vanished">빗발</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation>가벼운 눈</translation>
+        <translation type="vanished">가벼운 눈</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation>맑은</translation>
+        <translation type="vanished">맑은</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetPanel</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="unfinished">비가 약간 내린다</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished">빗발</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="unfinished">가벼운 눈</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="unfinished">맑은</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetView</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="obsolete">비가 약간 내린다</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="obsolete">빗발</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="obsolete">가벼운 눈</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="obsolete">맑은</translation>
     </message>
 </context>
 <context>
@@ -827,6 +876,17 @@ UX to the road</source>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="vanished">RAM: %1 MB (%2 %)</translation>
+    </message>
+</context>
+<context>
+    <name>StorePanel</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">앱을 찾을 수 없습니다!</translation>
     </message>
 </context>
 <context>

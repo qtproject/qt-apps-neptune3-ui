@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -31,24 +31,55 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 import utils 1.0
-import controls 1.0
 
-ListView {
+import com.pelagicore.styles.neptune 3.0
+
+ItemDelegate {
     id: root
 
-    delegate: EventListItem {
-        width: Style.hspan(15)
-        height: Style.vspan(1)
-        eventTimeStart: timeStart
-        eventTimeEnd: timeEnd
-        eventLabel: event
-    }
-    ScrollIndicator.vertical: ScrollIndicator {
-        parent: root.parent
-        anchors.top: root.top
-        anchors.left: root.right
-        anchors.leftMargin: Style.hspan(0.5)
-        anchors.bottom: root.bottom
+    property string eventTimeStart
+    property string eventTimeEnd
+    property alias eventLabel: event.text
+
+    highlighted: false
+    background: null
+
+    contentItem: Item {
+        anchors.fill: root
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            spacing: Style.hspan(1)
+
+            ColumnLayout {
+                Layout.preferredWidth: Style.hspan(1)
+                Label {
+                    text: root.eventTimeStart
+                    font.pixelSize: NeptuneStyle.fontSizeXS
+                }
+                Label {
+                    visible: root.eventTimeStart !== root.eventTimeEnd
+                    text: root.eventTimeEnd
+                    font.pixelSize: NeptuneStyle.fontSizeXS
+                    opacity: NeptuneStyle.fontOpacityMedium
+                }
+            }
+
+            Label {
+                id: event
+                visible: text !== ""
+                font.pixelSize: NeptuneStyle.fontSizeS
+            }
+        }
+
+        Image {
+            width: parent.width
+            height: 5
+            anchors.bottom: parent.bottom
+            source: Style.gfx2("divider", NeptuneStyle.theme)
+        }
     }
 }

@@ -34,13 +34,13 @@ import QtQml 2.2
 import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
-
+import "../controls"
 import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
 
-    property string precipitationIcon: Style.symbol("ic-rain-amount")
+    property string precipitationIcon
     property string precipitationText: "0 - 2 mm"
     property string weatherName
     property string weatherIcon
@@ -255,6 +255,6 @@ Item {
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { duration: 600 } }
         Behavior on anchors.topMargin { DefaultNumberAnimation { duration: 600 } }
-        source: Qt.resolvedUrl("./assets/weather-graph.png")
+        source: Qt.resolvedUrl("../assets/weather-graph.png")
     }
 }

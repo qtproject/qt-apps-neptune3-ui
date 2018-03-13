@@ -54,6 +54,17 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">未找到app!</translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -72,19 +83,57 @@ UX to the road</source>
     <name>CalendarWidgetContent</name>
     <message>
         <source>Partly rain</source>
-        <translation>局部有雨</translation>
+        <translation type="vanished">局部有雨</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation>有雨</translation>
+        <translation type="vanished">有雨</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation>小雪</translation>
+        <translation type="vanished">小雪</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation>晴</translation>
+        <translation type="vanished">晴</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetPanel</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="unfinished">局部有雨</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished">有雨</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="unfinished">小雪</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="unfinished">晴</translation>
+    </message>
+</context>
+<context>
+    <name>CalendarWidgetView</name>
+    <message>
+        <source>Partly rain</source>
+        <translation type="obsolete">局部有雨</translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="obsolete">有雨</translation>
+    </message>
+    <message>
+        <source>Light Snow</source>
+        <translation type="obsolete">小雪</translation>
+    </message>
+    <message>
+        <source>Sunny</source>
+        <translation type="obsolete">晴</translation>
     </message>
 </context>
 <context>
@@ -868,6 +917,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="vanished">内存: %1 MB (%2 %)</translation>
+    </message>
+</context>
+<context>
+    <name>StorePanel</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">未找到app!</translation>
     </message>
 </context>
 <context>
