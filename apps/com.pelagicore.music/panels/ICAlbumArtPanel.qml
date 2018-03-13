@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,9 +30,9 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtGraphicalEffects 1.0
 import utils 1.0
-import animations 1.0
+
+import "../controls"
 
 Item {
     id: root
@@ -152,7 +152,6 @@ Item {
         anchors.leftMargin: 40
         anchors.rightMargin: 40
         value: root.musicPosition
-        onUpdatePosition: root.updatePosition(value)
         progressBarLabelLeftMargin: 3
     }
 

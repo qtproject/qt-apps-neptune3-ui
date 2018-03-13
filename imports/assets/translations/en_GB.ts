@@ -95,13 +95,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>ClusterMusic</name>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DateTimePanel</name>
     <message>
         <source>24h time</source>
@@ -246,6 +239,35 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Main</name>
     <message>
         <source>Instrument Cluster</source>
@@ -299,41 +321,25 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>Music</name>
-    <message>
-        <source>Next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MusicBrowseList</name>
-    <message>
-        <source>Play All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source></source>
         <translation></translation>
     </message>
 </context>
 <context>
-    <name>MusicList</name>
+    <name>MusicBrowseListPanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>

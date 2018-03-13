@@ -120,13 +120,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>ClusterMusic</name>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -287,6 +280,43 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">次</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">ブラウズ</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">次</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">ブラウズ</translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
@@ -425,34 +455,33 @@ UX to the road</source>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished">次</translation>
+        <translation type="obsolete">次</translation>
     </message>
     <message>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Browse</source>
-        <translation type="unfinished">ブラウズ</translation>
+        <translation type="obsolete">ブラウズ</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <source>Unknown Track</source>
+        <translation type="obsolete">未知の歌</translation>
     </message>
+</context>
+<context>
+    <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished">未知の歌</translation>
+    </message>
+    <message>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -475,7 +504,21 @@ UX to the road</source>
     </message>
     <message>
         <source>Unknown Track</source>
-        <translation>未知の歌</translation>
+        <translation type="vanished">未知の歌</translation>
+    </message>
+</context>
+<context>
+    <name>MusicListPanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">未知の歌</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">未知の歌</translation>
     </message>
 </context>
 <context>
@@ -499,6 +542,17 @@ UX to the road</source>
     <message>
         <source>folders</source>
         <translation type="unfinished">フォルダー</translation>
+    </message>
+</context>
+<context>
+    <name>MusicView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">次</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">ブラウズ</translation>
     </message>
 </context>
 <context>

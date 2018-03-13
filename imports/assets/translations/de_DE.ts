@@ -123,7 +123,14 @@ UX to the road</source>
     <name>ClusterMusic</name>
     <message>
         <source>Track unavailable</source>
-        <translation>Track nicht verfügbar</translation>
+        <translation type="vanished">Track nicht verfügbar</translation>
+    </message>
+</context>
+<context>
+    <name>ClusterMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="obsolete">Track nicht verfügbar</translation>
     </message>
 </context>
 <context>
@@ -287,6 +294,43 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">Nächster</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">Liste</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">Nächster</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">Liste</translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished">Track nicht verfügbar</translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
@@ -390,34 +434,29 @@ UX to the road</source>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished">Liste</translation>
+        <translation type="obsolete">Liste</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished">Nächster</translation>
-    </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Nächster</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <source></source>
+        <translation></translation>
     </message>
+</context>
+<context>
+    <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -438,6 +477,9 @@ UX to the road</source>
         <source>Artist</source>
         <translation type="vanished">Artist</translation>
     </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished"></translation>
@@ -464,6 +506,17 @@ UX to the road</source>
     <message>
         <source>folders</source>
         <translation>Ordner</translation>
+    </message>
+</context>
+<context>
+    <name>MusicView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">Nächster</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">Liste</translation>
     </message>
 </context>
 <context>

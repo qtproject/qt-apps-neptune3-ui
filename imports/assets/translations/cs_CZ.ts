@@ -191,13 +191,6 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
-    <name>ClusterMusic</name>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -370,6 +363,43 @@ UX na cestu</translation>
     <message>
         <source>Open</source>
         <translation>Otevřít</translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">Další</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">Procházet</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">Další</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">Procházet</translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -555,27 +585,26 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished">Další</translation>
+        <translation type="obsolete">Další</translation>
     </message>
     <message>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Browse</source>
-        <translation type="unfinished">Procházet</translation>
+        <translation type="obsolete">Procházet</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">Neznámá skladba</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished">Neznámá skladba</translation>
@@ -605,7 +634,21 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Unknown Track</source>
-        <translation>Neznámá skladba</translation>
+        <translation type="vanished">Neznámá skladba</translation>
+    </message>
+</context>
+<context>
+    <name>MusicListPanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">Neznámá skladba</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">Neznámá skladba</translation>
     </message>
 </context>
 <context>
@@ -633,6 +676,17 @@ UX na cestu</translation>
     <message>
         <source>folders</source>
         <translation type="unfinished">složky</translation>
+    </message>
+</context>
+<context>
+    <name>MusicView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">Další</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">Procházet</translation>
     </message>
 </context>
 <context>

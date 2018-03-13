@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -32,38 +32,56 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
-import "stores"
-import com.pelagicore.styles.neptune 3.0
+import QtQuick.Controls 2.2
 
-Item {
+
+Row {
     id: root
 
-    property MusicStore store
+    width: 3 * buttonWidth
+    height: Style.vspan(3)
 
-    Image {
-        anchors.fill: parent
-        source: Style.gfx2("instrument-cluster-bg", NeptuneStyle.theme)
-        fillMode: Image.Stretch
+    property bool play: false
+    property real spacing: 0    //not used
+    property real buttonWidth: Style.hspan(100/45)
+    signal previousClicked()
+    signal playClicked()
+    signal nextClicked()
+
+    Tool {
+        width: root.buttonWidth
+        height: parent.height
+        symbol: Style.symbol("ic_skipprevious")
+        onClicked: root.previousClicked()
     }
 
-    ICAlbumArtRow {
-        id: albumArt
-        width: 540
-        height: 464
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: 50
-        musicPlaying: root.store.playing
-        musicPosition: root.store.currentTrackPosition
-        mediaReady: root.store.searchAndBrowseModel.count > 0
-        songModel: root.store.musicPlaylist
-        currentIndex: root.store.musicPlaylist.currentIndex
-        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
-        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
-        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
+    AbstractButton {
+        width: root.buttonWidth
+        height: parent.height
 
-        Connections {
-            target: root.store
-            onSongModelPopulated: albumArt.populateModel()
+        onClicked: root.playClicked()
+
+        contentItem: Item {
+            anchors.fill: parent
+
+            Image {
+                anchors.centerIn: parent
+                source: Style.symbol("ic_button-bg")
+                fillMode: Image.Pad
+            }
+
+            Image {
+                anchors.centerIn: parent
+                source: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
+                fillMode: Image.Pad
+            }
         }
+    }
+
+    Tool {
+        width: root.buttonWidth
+        height: parent.height
+        symbol: Style.symbol("ic_skipnext")
+        onClicked: root.nextClicked()
     }
 }

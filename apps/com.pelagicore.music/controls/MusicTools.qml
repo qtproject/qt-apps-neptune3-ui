@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -32,57 +32,28 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
-
 
 Row {
     id: root
 
-    width: 3 * buttonWidth
-    height: Style.vspan(3)
+    width: 2 * buttonWidth
+    height: Style.vspan(0.9)
 
-    property bool play: false
-    property real spacing: 0    //not used
     property real buttonWidth: Style.hspan(100/45)
-    signal previousClicked()
-    signal playClicked()
-    signal nextClicked()
+    signal shuffleClicked()
+    signal repeatClicked()
 
     Tool {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic_skipprevious")
-        onClicked: root.previousClicked()
-    }
-
-    AbstractButton {
-        width: root.buttonWidth
-        height: parent.height
-
-        onClicked: root.playClicked()
-
-        contentItem: Item {
-            anchors.fill: parent
-
-            Image {
-                anchors.centerIn: parent
-                source: Style.symbol("ic_button-bg")
-                fillMode: Image.Pad
-            }
-
-            Image {
-                anchors.centerIn: parent
-                source: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
-                fillMode: Image.Pad
-            }
-        }
+        symbol: Style.symbol("ic-shuffle")
+        onClicked: root.shuffleClicked()
     }
 
     Tool {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic_skipnext")
-        onClicked: root.nextClicked()
+        symbol: Style.symbol("ic-repeat")
+        onClicked: root.repeatClicked()
     }
 }

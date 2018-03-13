@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -31,31 +31,39 @@
 
 import QtQuick 2.8
 import utils 1.0
-import controls 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
+import "../stores"
+import "../panels"
+import com.pelagicore.styles.neptune 3.0
 
-Row {
+Item {
     id: root
 
-    width: 2 * buttonWidth
-    height: Style.vspan(0.9)
+    property MusicStore store
 
-    property real buttonWidth: Style.hspan(100/45)
-    signal shuffleClicked()
-    signal repeatClicked()
-
-    Tool {
-        width: root.buttonWidth
-        height: parent.height
-        symbol: Style.symbol("ic-shuffle")
-        onClicked: root.shuffleClicked()
+    Image {
+        anchors.fill: parent
+        source: Style.gfx2("instrument-cluster-bg", NeptuneStyle.theme)
+        fillMode: Image.Stretch
     }
 
-    Tool {
-        width: root.buttonWidth
-        height: parent.height
-        symbol: Style.symbol("ic-repeat")
-        onClicked: root.repeatClicked()
+    ICAlbumArtPanel {
+        id: albumArt
+        width: 540
+        height: 464
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: 50
+        musicPlaying: root.store.playing
+        musicPosition: root.store.currentTrackPosition
+        mediaReady: root.store.searchAndBrowseModel.count > 0
+        songModel: root.store.musicPlaylist
+        currentIndex: root.store.musicPlaylist.currentIndex
+        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
+        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
+        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
+
+        Connections {
+            target: root.store
+            onSongModelPopulated: albumArt.populateModel()
+        }
     }
 }

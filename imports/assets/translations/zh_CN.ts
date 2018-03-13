@@ -127,13 +127,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>ClusterMusic</name>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -309,6 +302,43 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">下一首</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">浏览</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">下一首</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">浏览</translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
@@ -453,34 +483,33 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished">下一首</translation>
+        <translation type="obsolete">下一首</translation>
     </message>
     <message>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Browse</source>
-        <translation type="unfinished">浏览</translation>
+        <translation type="obsolete">浏览</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
     <message>
-        <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <source>Unknown Track</source>
+        <translation type="obsolete">未知的歌曲</translation>
     </message>
+</context>
+<context>
+    <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished">未知的歌曲</translation>
+    </message>
+    <message>
+        <source>Play All</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -503,7 +532,21 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Unknown Track</source>
-        <translation>未知的歌曲</translation>
+        <translation type="vanished">未知的歌曲</translation>
+    </message>
+</context>
+<context>
+    <name>MusicListPanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">未知的歌曲</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">未知的歌曲</translation>
     </message>
 </context>
 <context>
@@ -531,6 +574,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>folders</source>
         <translation type="unfinished">文件夹</translation>
+    </message>
+</context>
+<context>
+    <name>MusicView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">下一首</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">浏览</translation>
     </message>
 </context>
 <context>

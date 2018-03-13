@@ -127,13 +127,6 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>ClusterMusic</name>
-    <message>
-        <source>Track unavailable</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -294,6 +287,43 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">다음 곡</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">파일 탐색</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FullScreenTopView</name>
+    <message>
+        <source>Next</source>
+        <translation type="unfinished">다음 곡</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="unfinished">파일 탐색</translation>
+    </message>
+</context>
+<context>
+    <name>ICMusicView</name>
+    <message>
+        <source>Track unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstalledAppList</name>
     <message>
         <source>Updates</source>
@@ -432,27 +462,26 @@ UX to the road</source>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished">다음 곡</translation>
+        <translation type="obsolete">다음 곡</translation>
     </message>
     <message>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Browse</source>
-        <translation type="unfinished">파일 탐색</translation>
+        <translation type="obsolete">파일 탐색</translation>
     </message>
 </context>
 <context>
     <name>MusicBrowseList</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">알 수없는 노래</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
         <translation type="unfinished">알 수없는 노래</translation>
@@ -482,7 +511,21 @@ UX to the road</source>
     </message>
     <message>
         <source>Unknown Track</source>
-        <translation>알 수없는 노래</translation>
+        <translation type="vanished">알 수없는 노래</translation>
+    </message>
+</context>
+<context>
+    <name>MusicListPanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="obsolete">알 수없는 노래</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayQueuePanel</name>
+    <message>
+        <source>Unknown Track</source>
+        <translation type="unfinished">알 수없는 노래</translation>
     </message>
 </context>
 <context>
@@ -506,6 +549,17 @@ UX to the road</source>
     <message>
         <source>folders</source>
         <translation type="unfinished">폴더</translation>
+    </message>
+</context>
+<context>
+    <name>MusicView</name>
+    <message>
+        <source>Next</source>
+        <translation type="obsolete">다음 곡</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation type="obsolete">파일 탐색</translation>
     </message>
 </context>
 <context>

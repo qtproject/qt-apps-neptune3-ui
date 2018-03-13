@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -35,10 +35,7 @@ import animations 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import "stores"
-
-import com.pelagicore.styles.neptune 3.0
-
-import QtApplicationManager 1.0
+import "views"
 
 import com.pelagicore.styles.neptune 3.0
 
@@ -78,7 +75,7 @@ QtObject {
             source: Style.gfx2("app-fullscreen-top-bg", NeptuneStyle.theme)
         }
 
-        Music {
+        MusicView {
             id: musicAppContent
             x: mainWindow.exposedRect.x
             y: mainWindow.exposedRect.y
@@ -95,7 +92,7 @@ QtObject {
     }
 
     property var secondaryWindow: SecondaryWindow {
-        ClusterMusic {
+        ICMusicView {
             anchors.fill: parent
             store: musicAppContent.store
         }

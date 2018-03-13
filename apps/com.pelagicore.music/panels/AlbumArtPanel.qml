@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -31,11 +31,10 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
 import utils 1.0
 import animations 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import "../controls"
 
 Item {
     id: root
@@ -50,7 +49,6 @@ Item {
     property alias currentSongTitle: titleColumn.currentSongTitle
     property alias currentArtisName: titleColumn.currentArtisName
     property bool parentStateMaximized: false
-    property real mediaIndexerProgress: 0.0
 
     signal previousClicked()
     signal nextClicked()
