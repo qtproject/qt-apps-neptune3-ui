@@ -39,14 +39,14 @@ import com.pelagicore.styles.neptune 3.0
 Control {
     id: root
 
-    width: Style.hspan(model ? model.length : 0)
-    height: Style.vspan(0.4)
+    width: 24 * 4 * NeptuneStyle.scale // roughly 4 icons
+    height: 19 * NeptuneStyle.scale
 
     property alias model: repeater.model
 
     RowLayout {
         id: iconLayout
-        spacing: Style.paddingXL
+        spacing: 16 * NeptuneStyle.scale
         height: parent.height
 
          Repeater {
@@ -54,9 +54,10 @@ Control {
 
              // TODO: Replace this with real implementation. this is currently just a placeholder.
              delegate: Image {
-                 height: root.height
+                 Layout.preferredWidth: sourceSize.width * NeptuneStyle.scale
+                 Layout.preferredHeight: sourceSize.height * NeptuneStyle.scale
                  source: Style.symbol(modelData.icon, NeptuneStyle.theme)
-                 fillMode: Image.Pad
+                 fillMode: Image.PreserveAspectFit
                  opacity: modelData.active ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
              }
          }

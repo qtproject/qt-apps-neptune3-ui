@@ -36,24 +36,14 @@ import utils 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-Control {
+Label {
     id: root
-
     property var currentDate: new Date()
     property var uiSettings
 
-    width: Style.hspan(1.5)
-    height: Style.vspan(0.5)
-
-    Label {
-        id: clock
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: NeptuneStyle.fontSizeS
-        font.weight: Style.fontWeight
-        text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
-    }
+    horizontalAlignment: Text.AlignRight
+    verticalAlignment: Text.AlignVCenter
+    font.pixelSize: NeptuneStyle.fontSizeS
+    font.weight: Style.fontWeight
+    text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
 }

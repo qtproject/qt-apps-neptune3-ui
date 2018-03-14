@@ -39,32 +39,27 @@ import models.statusbar 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-Pane {
+Item {
     id: root
 
-    height: Style.statusBarHeight
+    height: Style.statusBarHeight * NeptuneStyle.scale
 
     property var uiSettings
 
     IndicatorTray {
-        Layout.fillHeight: true
         model: StatusBarModel.indicators
         anchors.left: parent.left
+        anchors.leftMargin: 20 * NeptuneStyle.scale
         anchors.top: parent.top
+        anchors.bottom: parent.bottom
     }
 
-    RowLayout {
-        spacing: Style.paddingXL * 2
-        Layout.maximumWidth: Style.hspan(12)
-        Layout.maximumHeight: Style.statusBarHeight
+    DateAndTime {
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(0.5)
+        anchors.rightMargin: 20 * NeptuneStyle.scale
         anchors.top: parent.top
-
-        DateAndTime {
-            Layout.fillHeight: true
-            currentDate: StatusBarModel.currentDate
-            uiSettings: root.uiSettings
-        }
+        anchors.bottom: parent.bottom
+        currentDate: StatusBarModel.currentDate
+        uiSettings: root.uiSettings
     }
 }

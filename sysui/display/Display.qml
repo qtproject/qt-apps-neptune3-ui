@@ -93,7 +93,7 @@ Item {
             property var exposedRectTopMarginBinding: Binding {
                 target: model.appInfo
                 property: "exposedRectTopMargin"
-                value: model.appInfo.active ? launcherLoader.y + Style.launcherHeight : 0
+                value: model.appInfo.active ? launcherLoader.y + (Style.launcherHeight *  NeptuneStyle.scale) : 0
             }
 
             property var windowHeightBinding: Binding {
@@ -117,7 +117,7 @@ Item {
         z: 0
 
         Item {
-            y: launcherLoader.height - Style.launcherHeight
+            y: launcherLoader.height - (Style.launcherHeight * NeptuneStyle.scale)
             width: parent.width
             height: parent.height
 
@@ -127,7 +127,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                y: launcherLoader.y + Style.launcherHeight
+                y: launcherLoader.y + (Style.launcherHeight * NeptuneStyle.scale)
                 height: parent.height - y - climateBar.height
 
                 active: true //StagedStartupModel.loadRest
@@ -202,7 +202,7 @@ Item {
 
     StageLoader {
         id: statusBarLoader
-        height: Style.statusBarHeight
+        height: Style.statusBarHeight * NeptuneStyle.scale
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
@@ -218,7 +218,7 @@ Item {
         anchors.top: statusBarLoader.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        height: launcherLoader.item ? launcherLoader.item.height : Style.launcherHeight
+        height: launcherLoader.item ? launcherLoader.item.height : Style.launcherHeight * NeptuneStyle.scale
         active: StagedStartupModel.loadDisplay
         source: "../launcher/Launcher.qml"
         Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }

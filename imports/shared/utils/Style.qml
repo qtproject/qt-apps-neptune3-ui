@@ -39,8 +39,6 @@ import com.pelagicore.settings 1.0
 QtObject {
     id: root
 
-    property int paddingXL: 16
-
     property int instrumentClusterWidth: 1920
     property int instrumentClusterHeight: 1080
     property real instrumentClusterUIAspectRatio: 1920 / 720
@@ -54,9 +52,9 @@ QtObject {
     property real fontWeight: Font.Light
 
     //StatusBar config
-    property real statusBarHeight: vspan(1)
+    property real statusBarHeight: 80
 
-    property real launcherHeight: vspan(1.3)
+    property real launcherHeight: 104
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
     property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
