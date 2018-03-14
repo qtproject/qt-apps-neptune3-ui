@@ -135,7 +135,7 @@ Control {
                 target: root
                 visible: true
                 x: (root.parent.width - root.width) / 2
-                y: (root.parent.height - root.height) / 2
+                y: root.parent.height - root.height - Style.vspan(90/80)
             }
             PropertyChanges {
                 target: root.parent
@@ -149,7 +149,7 @@ Control {
                 target: root
                 visible: true
                 x: Style.hspan(1.5)
-                y: (root.parent.height - root.height) / 2
+                y: root.parent.height - root.height - Style.vspan(90/80)
             }
         },
         State {
