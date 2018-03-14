@@ -239,6 +239,7 @@ Item {
 
     // Maximize button
     Image {
+        id: cornerImage
         anchors.right: parent.right
         anchors.top: parent.top
         source: Style.gfx2("widget-corner", NeptuneStyle.theme)
@@ -246,13 +247,34 @@ Item {
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
 
-        Tool {
+        function isInRoundCorner(point) {
+            var rx2 = Math.pow((cornerImage.width-point.x),2)
+            var ry2 = Math.pow(point.y,2)
+            var r = Math.sqrt(rx2 + ry2)
+            return r < (cornerImage.width+cornerImage.height)/2
+        }
+
+        Image {
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(.2)
+            anchors.rightMargin: Style.hspan(.5)
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(.1)
-            symbol: Style.symbol("ic-expand-to-fullscreen")
-            onClicked: root.appInfo.start()
+            anchors.topMargin: Style.vspan(.3)
+            source: Style.symbol("ic-expand-to-fullscreen")
+            scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
+            Behavior on scale { DefaultNumberAnimation{} }
+        }
+
+        MouseArea {
+            id: maCorner
+            property var clickedPoint
+            anchors.fill: parent
+            onClicked: {
+                var p = Qt.point(mouse.x, mouse.y)
+                if (cornerImage.isInRoundCorner(p)) {
+                    root.appInfo.start()
+                }
+            }
+            onPressed: maCorner.clickedPoint = Qt.point(mouse.x, mouse.y)
         }
     }
 }
