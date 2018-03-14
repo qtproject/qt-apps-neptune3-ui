@@ -60,7 +60,6 @@ QtObject {
     property real launcherHeight: vspan(1.3)
 
     property string assetPath: Qt.resolvedUrl("../../assets/")
-    property url drawableUrl: Qt.resolvedUrl(root.assetPath + 'drawable-ldpi')
     property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
     property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
 
@@ -92,10 +91,6 @@ QtObject {
         return gfxUrl + name + themeStr + '.png'
     }
 
-    function gfx2Dynamic(name, size) {
-        return gfxUrl + name + '@' + size + 'x.png'
-    }
-
     function localAsset(asset, theme) {
         var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
         return "assets/" + asset + themeStr + '.png'
@@ -105,19 +100,11 @@ QtObject {
         return drawableUrl + '/' + name + '.png';
     }
 
-    function gfx(name) {
-        return drawableUrl + '/' + name + '.png';
-    }
-
     function hspan(value) {
         return Math.round(cellWidth * value)
     }
 
     function vspan(value) {
         return Math.round(cellHeight * value)
-    }
-
-    function asset(name) {
-        return Qt.resolvedUrl(root.assetPath + name)
     }
 }
