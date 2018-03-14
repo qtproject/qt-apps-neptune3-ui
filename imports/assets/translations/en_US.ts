@@ -220,7 +220,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>FavoritesWidget</name>
+    <name>FavoritesWidgetView</name>
     <message>
         <source>more</source>
         <comment>more contacts</comment>

@@ -30,42 +30,69 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+
+import utils 1.0
+import animations 1.0
+
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
+    width: 160
+    height: Style.vspan(100/80)
 
-    property string callerHandle: ""
+    property alias primaryText: primaryLabel.text
+    property alias secondaryText: secondaryLabel.text
+    property alias iconSource: img.source
+    property alias backgroundColor: background.color
+    property alias backgroundOpacity: background.opacity
 
-    Image {
-        id: contactImage
-        anchors.fill: parent
-        source: (root.callerHandle !== "") ? "assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
-        fillMode: Image.PreserveAspectCrop
-        visible: false
-    }
-
-    FastBlur {
-        id: contactImageBlur
-        anchors.fill: contactImage
-        source: contactImage
-        radius: 64
-        visible: false
-    }
+    signal clicked()
 
     Rectangle {
-        id: contactImageMask
-        anchors.fill: contactImage
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#00ffffff" }  //0% opacity
-            GradientStop { position: 1.0; color: "#32ffffff" }  //20% opacity
-        }
-        visible: false
+        id: background
+        anchors.fill: parent
+        radius: height/2
+        color: NeptuneStyle.contrastColor
+        opacity: 0.06
     }
 
-    OpacityMask {
-        anchors.fill: contactImage
-        maskSource: contactImageMask
-        source: contactImageBlur
+    MouseArea {
+        id: mouseArea
+        enabled: root.enabled
+        anchors.fill: parent
+        onReleased: root.clicked()
     }
+
+    ColumnLayout {
+        id: column
+        anchors.centerIn: parent
+        visible: root.primaryText
+
+        Label {
+            id: primaryLabel
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: NeptuneStyle.fontSizeL
+            font.weight: Font.Light
+        }
+
+        Label {
+            id: secondaryLabel
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: NeptuneStyle.fontSizeS
+            visible: text
+        }
+    }
+
+    Image {
+        id: img
+        anchors.centerIn: parent
+        visible: root.iconSource
+    }
+
+    transformOrigin: Item.Top
+    scale: mouseArea.containsPress ? 0.95 : 1.0
+    Behavior on scale { DefaultSmoothedAnimation {} }
 }

@@ -39,15 +39,15 @@ import controls 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-import "models"
+import "../controls"
+import "../stores"
 
 Item {
     id: root
 
-    readonly property alias duration: callTimer.duration
-
-    property string callerHandle
-    property bool ongoingCall
+    property PhoneStore store
+    property bool ongoingCall: false
+    property string callerHandle: store.callerHandle
 
     signal callEndRequested(string handle)
     signal keypadRequested()
@@ -59,26 +59,10 @@ Item {
 
     onOngoingCallChanged: {
         if (root.ongoingCall) {
-            var person = ContactsModel.findPerson(callerHandle);
+            var person = root.store.findPerson(callerHandle);
             priv.callerName = person.firstName + " " + person.surname;
         } else {
             priv.callerName = "";
-        }
-    }
-
-    Timer {
-        id: callTimer
-        interval: 1000
-        repeat: true
-        running: root.ongoingCall
-        property int duration: 0
-        onTriggered: {
-            duration += 1;
-        }
-        onRunningChanged: {
-            if (!running) {
-                duration = 0; // reset when hidden
-            }
         }
     }
 
@@ -167,7 +151,7 @@ Item {
 
     RoundImage {
         id: contactImage
-        source: root.callerHandle ? "assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
+        source: root.callerHandle ? "../assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
     }
 
     ColumnLayout {

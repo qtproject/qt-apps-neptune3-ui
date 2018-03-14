@@ -1,9 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune IVI UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,18 +29,43 @@
 **
 ****************************************************************************/
 
-pragma Singleton
-
 import QtQuick 2.8
+import QtGraphicalEffects 1.0
 
-ListModel {
-//    template
-//    ListElement { peerHandle: ""; type: ""; duration: 0 }
-    ListElement { peerHandle: "aharvester"; type: "missed"; duration: 0 }
-    ListElement { peerHandle: "jsmith"; type: "incoming"; duration: 140 }
-    ListElement { peerHandle: "hcarter"; type: "incoming"; duration: 35 }
-    ListElement { peerHandle: "dalleson"; type: "outgoing"; duration: 345 }
-    ListElement { peerHandle: "cmcgilbert"; type: "incoming"; duration: 20 }
-    ListElement { peerHandle: "jbrown"; type: "missed"; duration: 0 }
-    ListElement { peerHandle: "ejackson"; type: "outgoing"; duration: 605 }
+Item {
+    id: root
+
+    property string callerHandle: ""
+
+    Image {
+        id: contactImage
+        anchors.fill: parent
+        source: (root.callerHandle !== "") ? "../assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
+        fillMode: Image.PreserveAspectCrop
+        visible: false
+    }
+
+    FastBlur {
+        id: contactImageBlur
+        anchors.fill: contactImage
+        source: contactImage
+        radius: 64
+        visible: false
+    }
+
+    Rectangle {
+        id: contactImageMask
+        anchors.fill: contactImage
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00ffffff" }  //0% opacity
+            GradientStop { position: 1.0; color: "#32ffffff" }  //20% opacity
+        }
+        visible: false
+    }
+
+    OpacityMask {
+        anchors.fill: contactImage
+        maskSource: contactImageMask
+        source: contactImageBlur
+    }
 }

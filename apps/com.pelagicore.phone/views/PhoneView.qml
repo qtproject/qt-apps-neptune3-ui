@@ -37,7 +37,9 @@ import utils 1.0
 import animations 1.0
 import controls 1.0
 
-import "models"
+import "../stores"
+import "../views"
+
 import com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -45,37 +47,8 @@ Item {
 
     property bool ongoingCall
     signal activateApp()
-    property alias callerHandle: callWidget.callerHandle
-
-    function startCall(handle) {
-        if (root.ongoingCall) { // end the current one first
-            endCall(callWidget.callerHandle);
-        }
-
-        callWidget.callerHandle = handle;
-        root.ongoingCall = true;
-    }
-
-    function endCall(handle) {
-        // insert an entry into the CallsModel
-        CallsModel.insert(0, {"peerHandle": handle, "type": "outgoing", "duration": callWidget.duration});
-
-        root.ongoingCall = false;
-        callWidget.callerHandle = "";
-    }
-
-    ListModel {
-        id: favoritesModel // faking a "filtered" model ;)
-
-        Component.onCompleted: {
-            for (var i = 0; i < ContactsModel.count; i++) {
-                var person = ContactsModel.get(i);
-                if (person.favorite) {
-                    favoritesModel.append(person);
-                }
-            }
-        }
-    }
+    property PhoneStore store
+    property string callerHandle: root.store.callerHandle
 
     states: [
         State {
@@ -99,7 +72,7 @@ Item {
     ]
 
 
-    FavoritesWidget {
+    FavoritesWidgetView {
         id: favoritesWidget
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(960/45)
@@ -107,24 +80,22 @@ Item {
         state: root.state
 
         exposedRectHeight: root.height
-        ongoingCall: root.ongoingCall
-        model: favoritesModel
-        onCallRequested: startCall(handle)
+        store: root.store
 
-        opacity: !ongoingCall ? 1.0 : 0.0
+        opacity: !root.store.ongoingCall ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
     }
 
-    CallWidget {
+    CallWidgetView {
         id: callWidget
         anchors.fill: root.state === "Widget1Row" ? parent : undefined
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.rightMargin: Style.hspan(0.9)
         state: root.state
-        ongoingCall: root.ongoingCall
-
-        onCallEndRequested: endCall(handle)
+        store: root.store
+        ongoingCall: root.store.ongoingCall
+        onCallEndRequested: root.store.endCall(handle)
         onKeypadRequested: {
             toolsColumn.currentIndex = 3; // keypad
             root.activateApp();
@@ -174,45 +145,69 @@ Item {
                     ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts"); greyedOut: false }
                     ListElement { icon: "ic-messages"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "messages"); greyedOut: true }
                 }
+                onCurrentTextChanged: {
+                    switch (currentText) {
+                    case "recents":
+                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store});
+                        break;
+                    case "favorites":
+                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model": root.store.favoritesModel});
+                        break;
+                    case "contacts":
+                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model" : root.store.contactsModel});
+                        break;
+                    case "keypad":
+                        stackView.push(Qt.resolvedUrl("../panels/KeypadViewPanel.qml"));
+                        break;
+                    default:
+                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store});
+                        break;
+                    }
+                }
             }
+
         }
 
-        Loader {
-            id: viewLoader
+        StackView {
+            id: stackView
             anchors.left: toolsColumn.right
             anchors.top: parent.top
             anchors.topMargin: Style.vspan(53/80)
             anchors.bottom: parent.bottom
             width: Style.hspan(720/45)
-
-            Binding {
-                target: viewLoader.item; property: "model";
-                value: ContactsModel; when: toolsColumn.currentText === "contacts"
+            pushEnter: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 100
+                }
             }
-
-            Binding {
-                target: viewLoader.item; property: "model";
-                value: favoritesModel; when: toolsColumn.currentText === "favorites"
+            pushExit: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 1
+                    to:0
+                    duration: 100
+                }
             }
-
-            Connections {
-                target: viewLoader.item
-                onCallRequested: startCall(handle)
-                ignoreUnknownSignals: true
+            popEnter: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 100
+                }
             }
-
-            source: {
-                switch (toolsColumn.currentText) {
-                    case "recents":
-                        return "RecentCallsView.qml";
-                    case "favorites":
-                    case "contacts":
-                        return "ContactsView.qml";
-                    case "keypad":
-                        return "KeypadView.qml";
-                    default: return "";
+            popExit: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 1
+                    to:0
+                    duration: 100
                 }
             }
         }
     }
 }
+

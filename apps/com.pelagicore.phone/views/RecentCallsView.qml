@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -38,18 +38,20 @@ import animations 1.0
 import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 
-import "models"
+import "../stores"
 
 ListView {
-    id: root
     clip: true
-
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
 
-    signal callRequested(string handle)
+    property var store
 
-    delegate: ItemDelegate { // FIXME right component?
+    model: store.callsModel
+
+    delegate: ItemDelegate {
+        id: delegate
+        readonly property var person: store.findPerson(model.peerHandle)
         width: ListView.view.width
         bottomPadding: 0
         contentItem: Column {
@@ -58,24 +60,20 @@ ListView {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 spacing: Style.hspan(.5)
-                RoundImage {
-                    height: parent.height
-                    width: height
-                    source: "assets/profile_photos/%1.jpg".arg(model.handle)
+                Tool {
+                    symbol: model.type ? Style.symbol("ic-phone-%1".arg(model.type)) : ""
                 }
                 Label {
-                    text: model.firstName + " " + model.surname
                     font.weight: Font.Light
+                    text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
                 }
                 Item { // spacer
                     Layout.fillWidth: true
                 }
-                Tool {
-                    symbol: Style.symbol("ic-message-contrast")
-                }
-                Tool {
-                    symbol: Style.symbol("ic-call-contrast")
-                    onClicked: root.callRequested(model.handle)
+                Label {
+                    text: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
+                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.weight: Font.Light
                 }
             }
             Image {

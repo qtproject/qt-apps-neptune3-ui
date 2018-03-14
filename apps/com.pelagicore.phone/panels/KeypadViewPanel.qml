@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -37,9 +37,9 @@ import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import animations 1.0
 import controls 1.0
+import "../controls"
 
 Item {
-    property var model // dummy to silence warnings
 
     Component.onCompleted: textedit.forceActiveFocus()
 

@@ -317,7 +317,15 @@ UX to the road</source>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation>更多</translation>
+        <translation type="vanished">更多</translation>
+    </message>
+</context>
+<context>
+    <name>FavoritesWidgetView</name>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished">更多</translation>
     </message>
 </context>
 <context>

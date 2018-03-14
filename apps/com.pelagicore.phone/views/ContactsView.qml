@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,69 +30,59 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
 import utils 1.0
 import animations 1.0
-
+import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 
-Item {
+import "../controls"
+
+ListView {
     id: root
-    width: 160
-    height: Style.vspan(100/80)
+    clip: true
 
-    property alias primaryText: primaryLabel.text
-    property alias secondaryText: secondaryLabel.text
-    property alias iconSource: img.source
-    property alias backgroundColor: background.color
-    property alias backgroundOpacity: background.opacity
+    opacity: visible ? 1 : 0
+    Behavior on opacity { DefaultNumberAnimation { } }
 
-    signal clicked()
+    property var store
 
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        radius: height/2
-        color: NeptuneStyle.contrastColor
-        opacity: 0.06
-    }
-
-    MouseArea {
-        id: mouseArea
-        enabled: root.enabled
-        anchors.fill: parent
-        onReleased: root.clicked()
-    }
-
-    ColumnLayout {
-        id: column
-        anchors.centerIn: parent
-        visible: root.primaryText
-
-        Label {
-            id: primaryLabel
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: NeptuneStyle.fontSizeL
-            font.weight: Font.Light
-        }
-
-        Label {
-            id: secondaryLabel
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: NeptuneStyle.fontSizeS
-            visible: text
+    delegate: ItemDelegate { // FIXME right component?
+        width: ListView.view.width
+        bottomPadding: 0
+        contentItem: Column {
+            spacing: Style.vspan(.2)
+            RowLayout {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                spacing: Style.hspan(.5)
+                RoundImage {
+                    height: parent.height
+                    width: height
+                    source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+                }
+                Label {
+                    text: model.firstName + " " + model.surname
+                    font.weight: Font.Light
+                }
+                Item { // spacer
+                    Layout.fillWidth: true
+                }
+                Tool {
+                    symbol: Style.symbol("ic-message-contrast")
+                }
+                Tool {
+                    symbol: Style.symbol("ic-call-contrast")
+                    onClicked: root.store.startCall(model.handle)
+                }
+            }
+            Image {
+                width: parent.width
+                height: 2
+                source: Style.gfx2("list-divider", NeptuneStyle.theme)
+            }
         }
     }
-
-    Image {
-        id: img
-        anchors.centerIn: parent
-        visible: root.iconSource
-    }
-
-    transformOrigin: Item.Top
-    scale: mouseArea.containsPress ? 0.95 : 1.0
-    Behavior on scale { DefaultSmoothedAnimation {} }
 }

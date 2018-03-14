@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AB
+** Copyright (C) 2017-2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -38,15 +38,12 @@ import animations 1.0
 import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 
-import "models"
+import "../controls"
 
 Item {
     id: root
-    property bool ongoingCall
-    property var model
+    property var store
     property real exposedRectHeight: 0
-
-    signal callRequested(string handle)
 
     states: [
         State {
@@ -119,13 +116,13 @@ Item {
         interactive: false
         clip: true
         spacing: Style.hspan(50/45)
-        model: root.model
+        model: root.store.favoritesModel
         delegate: RoundImage {
             height: Style.hspan(130/45)
             width: height
             anchors.verticalCenter: parent.verticalCenter
-            source: "assets/profile_photos/%1.jpg".arg(model.handle)
-            onClicked: root.callRequested(model.handle)
+            source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+            onClicked: root.store.startCall(model.handle)
         }
     }
 
@@ -156,7 +153,7 @@ Item {
             height: allItemsFit ? favoritesMoreRows.height : Math.floor(favoritesMoreRows.height / delegateHeight)*delegateHeight - delegateHeight
             width: parent.width
             clip: true
-            model: root.model
+            model: root.store.favoritesModel
 
             delegate: ItemDelegate { // FIXME replace with ListItem when it supports components (for RoundImage and 2 tools on the right)
                 width: ListView.view.width
@@ -168,7 +165,7 @@ Item {
                     RoundImage {
                         height: parent.height
                         width: height
-                        source: "assets/profile_photos/%1.jpg".arg(model.handle)
+                        source: "../assets/profile_photos/%1.jpg".arg(model.handle)
                     }
                     Label {
                         Layout.leftMargin: Style.hspan(22/45)
@@ -185,7 +182,7 @@ Item {
                         Layout.preferredWidth: Style.hspan(100/45)
                         height: parent.height
                         symbol: Style.symbol("ic-call-contrast")
-                        onClicked: root.callRequested(model.handle)
+                        onClicked: root.store.startCall(model.handle)
                     }
                 }
 

@@ -36,6 +36,10 @@ import QtGraphicalEffects 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
+import "views"
+import "controls"
+import "stores"
+
 AppUIScreen {
     id: root
 
@@ -80,7 +84,7 @@ AppUIScreen {
         callerHandle: phone.callerHandle
     }
 
-    Phone {
+    PhoneView {
         id: phone
         x: root.exposedRect.x
         y: root.exposedRect.y
@@ -88,5 +92,6 @@ AppUIScreen {
         height: root.exposedRect.height
         state: root.neptuneState
         onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
+        store: PhoneStore {}
     }
 }

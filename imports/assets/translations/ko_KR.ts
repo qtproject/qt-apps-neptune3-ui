@@ -317,7 +317,15 @@ UX to the road</source>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation>더 보기</translation>
+        <translation type="vanished">더 보기</translation>
+    </message>
+</context>
+<context>
+    <name>FavoritesWidgetView</name>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished">더 보기</translation>
     </message>
 </context>
 <context>

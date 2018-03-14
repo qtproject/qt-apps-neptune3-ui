@@ -324,7 +324,15 @@ UX to the road</source>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation>mehr</translation>
+        <translation type="vanished">mehr</translation>
+    </message>
+</context>
+<context>
+    <name>FavoritesWidgetView</name>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished">mehr</translation>
     </message>
 </context>
 <context>

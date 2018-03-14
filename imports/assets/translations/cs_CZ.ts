@@ -381,7 +381,15 @@ UX na cestu</translation>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation>více</translation>
+        <translation type="vanished">více</translation>
+    </message>
+</context>
+<context>
+    <name>FavoritesWidgetView</name>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished">více</translation>
     </message>
 </context>
 <context>

@@ -310,7 +310,15 @@ UX to the road</source>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation>さらに表示</translation>
+        <translation type="vanished">さらに表示</translation>
+    </message>
+</context>
+<context>
+    <name>FavoritesWidgetView</name>
+    <message>
+        <source>more</source>
+        <comment>more contacts</comment>
+        <translation type="unfinished">さらに表示</translation>
     </message>
 </context>
 <context>
