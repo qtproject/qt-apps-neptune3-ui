@@ -108,6 +108,9 @@ ItemDelegate {
         Image {
             id: imageSymbolSource
             anchors.centerIn: parent
+            width: (sourceSize.width > parent.width) ? parent.width : sourceSize.width
+            height: (sourceSize.height > parent.height) ? parent.height : sourceSize.height
+            fillMode: Image.PreserveAspectFit
             source: root.imageSource
             visible: root.imageSource !== ""
         }
