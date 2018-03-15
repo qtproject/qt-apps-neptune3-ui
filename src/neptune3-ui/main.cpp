@@ -99,6 +99,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
         Main a(argc, argv);
+        QObject::connect(&a, &QGuiApplication::lastWindowClosed, [&a]() {
+            a.shutDown();
+            a.quit();
+        });
 
         // start the server; the server itself will ensure one instance only
         startRemoteSettingsServer(QFile::decodeName(argv[0]));
