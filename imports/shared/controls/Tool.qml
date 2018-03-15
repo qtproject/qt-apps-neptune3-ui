@@ -47,6 +47,7 @@ ToolButton {
         color: root.labelColor
         opacity: root.labelOpacity
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: root.symbolOnTop ? 0 : indicator.width
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: root.symbolOnTop ? Style.vspan(0.2) : 0
         horizontalAlignment: Text.AlignHCenter
@@ -55,28 +56,8 @@ ToolButton {
     indicator: Image {
         width: Style.hspan(1.3)
         height: Style.vspan(0.8)
-        anchors.horizontalCenter: {
-            if (!root.symbolOnTop) {
-                if (root.text !== "") {
-                    return undefined
-                } else {
-                    return parent.horizontalCenter
-                }
-            } else {
-                return parent.horizontalCenter
-            }
-        }
-        anchors.right: {
-            if (!root.symbolOnTop) {
-                if (root.text !== "") {
-                    return parent.right
-                } else {
-                    return undefined
-                }
-            } else {
-                return undefined
-            }
-        }
+        anchors.horizontalCenter: !root.symbolOnTop && root.text !== "" ? undefined : parent.horizontalCenter
+        anchors.left: !root.symbolOnTop && root.text !== "" ? parent.left : undefined
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: root.symbolOnTop ? - Style.vspan(0.2) : 0
 
