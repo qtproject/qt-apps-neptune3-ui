@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
 import controls 1.0 as NeptuneControls
 import utils 1.0
@@ -50,31 +51,42 @@ Row {
     spacing: Style.hspan(.5)
 
     NeptuneControls.Tool {
-        id: cancelNavButton
-
-        width: Style.vspan(.9)
+        width: Style.hspan(.9)
         height: width
-
+        visible: root.guidanceMode
         symbol: Qt.resolvedUrl("assets/ic-end-route.png")
         onClicked: root.stopNavigation()
     }
 
-    Column {
+    RowLayout {
         width: root.guidanceMode ? parent.width : parent.width / 2
         anchors.verticalCenter: parent.verticalCenter
-        spacing: Style.vspan(.7)
+        spacing: Style.hspan(.7)
 
-        Label {
-            width: parent.width
-            wrapMode: Text.WordWrap
-            font.pixelSize: Style.fontSizeS
-            text: destination
+        NeptuneControls.Tool {
+            Layout.leftMargin: parent.spacing
+            width: Style.hspan(1)
+            height: width
+            enabled: visible
+            visible: !root.guidanceMode
+            symbol: Style.symbol("ic_back")
+            onClicked: root.stopNavigation()
         }
-        Label {
-            width: parent.width
-            wrapMode: Text.WordWrap
-            font.pixelSize: Style.fontSizeXS
-            text: "%1 · %2".arg(routeDistance).arg(routeTime)
+
+        Column {
+            Layout.fillWidth: true
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                font.pixelSize: Style.fontSizeS
+                text: destination
+            }
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                font.pixelSize: Style.fontSizeXS
+                text: "%1 · %2".arg(routeDistance).arg(routeTime)
+            }
         }
     }
 
@@ -83,7 +95,6 @@ Row {
         width: parent.width / 3
         height: Style.vspan(1)
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: Style.vspan(.5)
         scale: pressed ? 1.1 : 1.0
         visible: !root.guidanceMode
         Behavior on scale { NumberAnimation { duration: 50 } }

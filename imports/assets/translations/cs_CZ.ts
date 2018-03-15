@@ -586,6 +586,10 @@ UX na cestu</translation>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">Kam se chcete vydat dnes?</translation>
     </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitorView</name>

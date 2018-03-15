@@ -451,6 +451,10 @@ UX to the road</source>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">Wo soll es heute hingehen?</translation>
     </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitorView</name>

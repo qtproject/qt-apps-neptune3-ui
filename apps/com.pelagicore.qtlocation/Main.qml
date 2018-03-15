@@ -72,12 +72,13 @@ QtObject {
 
         Maps {
             id: mainMap
-            x: state === "Maximized" ? mainWindow.x : mainWindow.exposedRect.x
-            y: state === "Maximized" ? mainWindow.y : mainWindow.exposedRect.y
-            width: state === "Maximized" ? mainWindow.width : mainWindow.exposedRect.width
-            height: state === "Maximized" ? mainWindow.height : mainWindow.exposedRect.height
+            x: state === "Maximized" && !searchViewEnabled ? mainWindow.x : mainWindow.exposedRect.x
+            y: state === "Maximized" && !searchViewEnabled ? mainWindow.y : mainWindow.exposedRect.y
+            width: state === "Maximized" && !searchViewEnabled ? mainWindow.width : mainWindow.exposedRect.width
+            height: state === "Maximized" && !searchViewEnabled ? mainWindow.height : mainWindow.exposedRect.height
             state: mainWindow.neptuneState
             offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
+            mapInteractive: !searchViewEnabled
 
             onMapReadyChanged: {
                 if (mapReady && !mainWindow.secondaryWindowObject) {

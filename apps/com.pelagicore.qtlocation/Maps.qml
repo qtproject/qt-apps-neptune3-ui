@@ -218,20 +218,28 @@ Item {
         source: Style.gfx2("input-overlay")
         visible: searchViewEnabled
     }
-    Item {
-        id: mapSearchField
-        anchors.top: mainMap.top
-        anchors.topMargin: Style.vspan(3.8)
-        anchors.left: mainMap.left
-        anchors.leftMargin: Style.hspan(1)
-        anchors.right: mainMap.right
-        anchors.rightMargin: Style.hspan(1)
-        width: mainMap.width
-        height: Style.hspan(1.2)
+
+    ColumnLayout {
+        id: searchOverlay
+        anchors.fill: root
+        anchors.topMargin: Style.vspan(1)
         visible: searchViewEnabled
+        spacing: Style.vspan(1)
+
+        NeptuneControls.Tool {
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(1)
+            symbol: Style.symbol("ic_back")
+            onClicked: searchViewEnabled = false
+            text: qsTr("Back")
+        }
+
         MapSearchTextField {
             id: searchField
-            anchors.fill: parent
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(2)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(2)
             selectByMouse: true
             focus: searchViewEnabled
             busy: geocodeModel.status == GeocodeModel.Loading
@@ -250,6 +258,46 @@ Item {
             }
             Keys.onEscapePressed: searchViewEnabled = false
         }
+
+        ListView {
+            id: searchResultsList
+            Layout.fillHeight: true
+            anchors.left: parent.left
+            anchors.leftMargin: Style.hspan(2)
+            anchors.right: parent.right
+            anchors.rightMargin: Style.hspan(2)
+            clip: true
+            model: geocodeModel
+            visible: searchViewEnabled
+            state: root.state
+            delegate: NeptuneControls.ListItem {
+                id: itemDelegate
+                width: parent.width
+                height: Style.vspan(1.5)
+                readonly property string addressText: locationData.address.text
+                readonly property string city: locationData.address.city
+                readonly property string country: locationData.address.country
+                text: addressText
+                subText: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
+                onClicked: {
+                    searchViewEnabled = false;
+                    mainMap.center = locationData.coordinate;
+                    mainMap.startCoord = priv.positionCoordinate;
+                    mainMap.destCoord = locationData.coordinate;
+                    mainMap.destination = itemDelegate.addressText;
+                    if (locationData.boundingBox.isValid) {
+                        mainMap.visibleRegion = locationData.boundingBox;
+                    }
+                    mainMap.navigationMode = true;
+                }
+            }
+            onStateChanged: {
+                if (state !== "Maximized") {
+                    searchViewEnabled = false;
+                }
+            }
+            ScrollIndicator.vertical: ScrollIndicator {}
+        }
     }
 
     Timer {
@@ -258,44 +306,6 @@ Item {
         onTriggered: {
             geocodeModel.query = searchField.text;
             geocodeModel.update();
-        }
-    }
-
-    ListView {
-        id: searchResultsList
-        height: root.height - mapSearchField.height - anchors.topMargin
-        anchors.top: mapSearchField.bottom
-        anchors.topMargin: Style.vspan(0.6)
-        anchors.left: mapSearchField.left
-        anchors.right: mapSearchField.right
-        clip: true
-        model: geocodeModel
-        visible: searchViewEnabled
-        state: root.state
-        delegate: NeptuneControls.ListItem {
-            id: itemDelegate
-            width: parent.width
-            readonly property string addressText: locationData.address.text
-            readonly property string city: locationData.address.city
-            readonly property string country: locationData.address.country
-            text: locationData.address.text
-            subText: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
-            onClicked: {
-                searchViewEnabled = false;
-                mainMap.center = locationData.coordinate;
-                mainMap.startCoord = priv.positionCoordinate;
-                mainMap.destCoord = locationData.coordinate;
-                mainMap.destination = itemDelegate.addressText;
-                if (locationData.boundingBox.isValid) {
-                    mainMap.visibleRegion = locationData.boundingBox;
-                }
-                mainMap.navigationMode = true;
-            }
-        }
-        onStateChanged: {
-            if (state !== "Maximized") {
-                searchViewEnabled = false;
-            }
         }
     }
 }

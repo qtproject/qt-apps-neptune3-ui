@@ -306,6 +306,13 @@ UX to the road</source>
     </message>
 </context>
 <context>
+    <name>Maps</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MonitorView</name>
     <message>
         <source>System Monitor Overlay</source>

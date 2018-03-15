@@ -463,6 +463,10 @@ UX to the road</source>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitorView</name>
