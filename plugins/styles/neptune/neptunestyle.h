@@ -92,6 +92,15 @@ class NeptuneStyle : public QQuickStyleAttached
 
     Q_PROPERTY(QString backgroundImage READ backgroundImage NOTIFY neptuneStyleChanged)
 
+    /*
+        Scale factor to be applied to pixel values
+
+        Neptune 3 UI was designed for a specific aspect ratio, physical size and DPI.
+        In order to support other pixel densities this scale factor has to be applied to all
+        pixel values (ie, pixel values have to be multiplied by it).
+     */
+    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
+
 public:
     explicit NeptuneStyle(QObject *parent = nullptr);
     virtual ~NeptuneStyle();
@@ -169,12 +178,16 @@ public:
     void inheritTheme(Theme theme);
     void propagateTheme();
 
+    qreal scale() const;
+    void setScale(qreal);
+
 protected:
     void init();
 signals:
     void accentColorChanged();
     void neptuneStyleChanged();
     void themeChanged();
+    void scaleChanged();
 
 private:
     QScopedPointer<StyleData> m_data;
@@ -189,6 +202,7 @@ protected:
     void inheritStyle(const StyleData &data);
     void propagateStyle(const StyleData &data);
     void resolveGlobalThemeData(const QSharedPointer<QSettings> &settings);
+    void propagateScale();
 };
 
 QML_DECLARE_TYPEINFO(NeptuneStyle, QML_HAS_ATTACHED_PROPERTIES)

@@ -107,6 +107,7 @@ public:
         , fontFactor(1.0)
         , theme(NeptuneStyle::Light)
         , windowSize(1080, 1920)
+        , scale(1.0)
     {
         compute();
     }
@@ -115,6 +116,7 @@ public:
         , fontFactor(data.fontFactor)
         , theme(data.theme)
         , windowSize(data.windowSize)
+        , scale(data.scale)
     {
         compute();
     }
@@ -140,6 +142,7 @@ public:
     int fontSizeL;
     int fontSizeXL;
     int fontSizeXXL;
+    qreal scale;
 };
 
 static StyleData GlobalStyleData;
@@ -456,6 +459,7 @@ void NeptuneStyle::inheritStyle(const StyleData& data)
     propagateStyle(data);
     emit neptuneStyleChanged();
     emit accentColorChanged();
+    emit scaleChanged();
 }
 
 void NeptuneStyle::propagateStyle(const StyleData& data)
@@ -532,4 +536,28 @@ qreal NeptuneStyle::fontOpacityMedium() const
 qreal NeptuneStyle::fontOpacityHigh() const
 {
     return 0.94;
+}
+
+qreal NeptuneStyle::scale() const
+{
+    return m_data->scale;
+}
+
+void NeptuneStyle::setScale(qreal value)
+{
+    if (value == m_data->scale)
+        return;
+
+    m_data->scale = value;
+    propagateScale();
+    emit scaleChanged();
+}
+
+void NeptuneStyle::propagateScale()
+{
+    for (QQuickAttachedObject *child : attachedChildren()) {
+        NeptuneStyle* neptune = qobject_cast<NeptuneStyle *>(child);
+        if (neptune)
+            neptune->setScale(m_data->scale);
+    }
 }

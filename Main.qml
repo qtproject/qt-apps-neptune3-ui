@@ -58,6 +58,10 @@ Window {
     Display {
         id: display
 
+        onWidthChanged: {
+            root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
+        }
+
         // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
         // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
         states: [
