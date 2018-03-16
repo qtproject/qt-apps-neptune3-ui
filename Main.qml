@@ -57,8 +57,31 @@ Window {
 
     Display {
         id: display
-        width: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
-        height: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
+
+        // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
+        // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
+        states: [
+            State {
+                name: "constrainWidth"
+                when: display.availableAspectRatio > Style.centerConsoleAspectRatio
+                PropertyChanges { target: display
+                    width: display.height * Style.centerConsoleAspectRatio
+                    height: display.availableHeight
+                }
+            },
+            State {
+                name: "constrainHeight"
+                when: display.availableAspectRatio <= Style.centerConsoleAspectRatio
+                PropertyChanges { target: display
+                    width: display.availableWidth
+                    height: display.width / Style.centerConsoleAspectRatio
+                }
+            }
+        ]
+
+        readonly property real availableAspectRatio: availableWidth / availableHeight
+        readonly property real availableWidth: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
+        readonly property real availableHeight: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
 
         readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
                                                        || orientation === Qt.InvertedPortraitOrientation

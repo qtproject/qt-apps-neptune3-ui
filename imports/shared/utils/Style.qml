@@ -44,6 +44,11 @@ QtObject {
     property int instrumentClusterWidth: 1920
     property int instrumentClusterHeight: 1080
     property real instrumentClusterUIAspectRatio: 1920 / 720
+
+    readonly property int centerConsoleWidth: 1080
+    readonly property int centerConsoleHeight: 1920
+    readonly property real centerConsoleAspectRatio: centerConsoleWidth / centerConsoleHeight
+
     property int cellWidth
     property int cellHeight
     property real fontWeight: Font.Light
