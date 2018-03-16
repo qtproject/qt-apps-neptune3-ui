@@ -56,12 +56,8 @@ UX to the road</source>
 <context>
     <name>ApplicationStoreView</name>
     <message>
-        <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No apps found!</source>
-        <translation type="unfinished">앱을 찾을 수 없습니다!</translation>
+        <translation type="obsolete">앱을 찾을 수 없습니다!</translation>
     </message>
 </context>
 <context>
@@ -881,12 +877,8 @@ UX to the road</source>
 <context>
     <name>StorePanel</name>
     <message>
-        <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No apps found!</source>
-        <translation type="unfinished">앱을 찾을 수 없습니다!</translation>
+        <translation type="obsolete">앱을 찾을 수 없습니다!</translation>
     </message>
 </context>
 <context>

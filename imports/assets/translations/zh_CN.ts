@@ -56,12 +56,8 @@ UX to the road</source>
 <context>
     <name>ApplicationStoreView</name>
     <message>
-        <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No apps found!</source>
-        <translation type="unfinished">未找到app!</translation>
+        <translation type="obsolete">未找到app!</translation>
     </message>
 </context>
 <context>
@@ -922,12 +918,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>StorePanel</name>
     <message>
-        <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>No apps found!</source>
-        <translation type="unfinished">未找到app!</translation>
+        <translation type="obsolete">未找到app!</translation>
     </message>
 </context>
 <context>
