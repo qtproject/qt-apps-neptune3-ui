@@ -127,9 +127,8 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                property int topMargin: Style.vspan(0.5)
-                y: launcherLoader.y + Style.launcherHeight + topMargin
-                height: parent.height - y - climateBar.height - topMargin
+                y: launcherLoader.y + Style.launcherHeight
+                height: parent.height - y - climateBar.height
 
                 active: true //StagedStartupModel.loadRest
                 source: "../home/HomePage.qml"

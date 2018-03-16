@@ -53,11 +53,13 @@ Item {
         id: widgetGrid
 
         anchors.top: parent.top
+        anchors.topMargin: Style.vspan(76/80)
         anchors.bottom: addWidgetButton.top
+        anchors.bottomMargin: Style.vspan(5/80)
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: Style.hspan(1)
-        anchors.rightMargin: Style.hspan(1)
+        anchors.leftMargin: Style.hspan(40/45)
+        anchors.rightMargin: Style.hspan(40/45)
 
         applicationModel: root.applicationModel
     }
@@ -65,6 +67,7 @@ Item {
     Tool {
         id: addWidgetButton
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.vspan(40/80)
         anchors.horizontalCenter: parent.horizontalCenter
         width: Style.hspan(1)
         height: width
