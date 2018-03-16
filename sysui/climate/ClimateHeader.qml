@@ -59,7 +59,7 @@ Item {
                 height: 90
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: Style.fontSizeXL
+                textFontSize: NeptuneStyle.fontSizeXL
                 icon: "ic-temperature-plus"
                 onClicked: root.driverSeatTemperatureIncreased()
             }
@@ -75,7 +75,7 @@ Item {
                 height: 90
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: Style.fontSizeXL
+                textFontSize: NeptuneStyle.fontSizeXL
                 icon: "ic-temperature-minus"
                 onClicked: root.driverSeatTemperatureDecreased()
             }
@@ -95,7 +95,7 @@ Item {
                 height: 90
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: Style.fontSizeXL
+                textFontSize: NeptuneStyle.fontSizeXL
                 icon: "ic-temperature-plus"
                 onClicked: root.passengerSeatTemperatureIncreased()
             }
@@ -111,7 +111,7 @@ Item {
                 height: 90
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: Style.fontSizeXL
+                textFontSize: NeptuneStyle.fontSizeXL
                 icon: "ic-temperature-minus"
                 onClicked: root.passengerSeatTemperatureDecreased()
             }

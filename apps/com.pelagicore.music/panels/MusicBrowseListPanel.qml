@@ -34,6 +34,8 @@ import utils 1.0
 import controls 1.0
 import QtQuick.Controls 2.2
 
+import com.pelagicore.styles.neptune 3.0
+
 Control {
     id: root
     property string contentType: "track"
@@ -114,7 +116,7 @@ Control {
             }
             Label {
                 id: headerLabel
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 anchors.centerIn: parent
                 horizontalAlignment: Text.AlignHCenter
             }
@@ -135,7 +137,7 @@ Control {
                     opacity: 0.06
                 }
                 text: qsTr("Play All")
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 onClicked: { root.playAllClicked(); }
             }
 

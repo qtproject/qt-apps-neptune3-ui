@@ -99,7 +99,7 @@ ColumnLayout {
     }
     Label {
         text: Qt.application.version + " " + qsTr("(using Qt %1 and %2)").arg(info.qtVersion).arg(graphicsInformation())
-        font.pixelSize: Style.fontSizeS
+        font.pixelSize: NeptuneStyle.fontSizeS
         Layout.fillWidth: true
         Layout.preferredHeight: font.pixelSize * 1.1
     }

@@ -71,7 +71,7 @@ ListView {
                 }
                 Label {
                     text: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
-                    font.pixelSize: Style.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                     font.weight: Font.Light
                 }
             }

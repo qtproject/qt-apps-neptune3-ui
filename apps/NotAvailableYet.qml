@@ -32,6 +32,7 @@
 import QtQuick 2.6
 
 import controls 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
 AppUIScreen {
@@ -47,6 +48,6 @@ AppUIScreen {
         anchors.verticalCenter: parent.verticalCenter
         horizontalAlignment: Qt.AlignHCenter
         text: "The application is not available yet"
-        font.pixelSize: Style.fontSizeXL
+        font.pixelSize: NeptuneStyle.fontSizeXL
     }
 }

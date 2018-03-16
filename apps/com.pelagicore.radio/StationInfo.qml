@@ -64,7 +64,7 @@ Control {
             verticalAlignment: Text.AlignVCenter
 
             text: root.frequency.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-            font.pixelSize: Style.fontSizeXXL
+            font.pixelSize: NeptuneStyle.fontSizeXXL
         }
 
         Label {

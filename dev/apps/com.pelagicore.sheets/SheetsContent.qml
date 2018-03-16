@@ -60,7 +60,7 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             baselineOffset: 0
             text: qsTr("Back")
-            font.pixelSize: Style.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             onClicked: stack.pop()
         }
     }

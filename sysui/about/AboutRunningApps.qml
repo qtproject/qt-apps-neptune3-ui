@@ -52,7 +52,7 @@ Item {
 
         text: qsTr("Running applications:")
         wrapMode: Text.Wrap
-        font.pixelSize: Style.fontSizeXL
+        font.pixelSize: NeptuneStyle.fontSizeXL
         font.bold: true
     }
 

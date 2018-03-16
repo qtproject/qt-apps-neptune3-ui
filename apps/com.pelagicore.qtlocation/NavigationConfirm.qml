@@ -78,13 +78,13 @@ Row {
             Label {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 text: destination
             }
             Label {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                font.pixelSize: Style.fontSizeXS
+                font.pixelSize: NeptuneStyle.fontSizeXS
                 text: "%1 · %2".arg(routeDistance).arg(routeTime)
             }
         }
@@ -112,7 +112,7 @@ Row {
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     text: qsTr("Start Navigation")
-                    font.pixelSize: Style.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                 }
             }
         }

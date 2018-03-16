@@ -34,6 +34,8 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Control {
     id: root
 
@@ -50,7 +52,7 @@ Control {
         anchors.right: parent.right
 
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Style.fontSizeS
+        font.pixelSize: NeptuneStyle.fontSizeS
         font.weight: Style.fontWeight
         text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
     }

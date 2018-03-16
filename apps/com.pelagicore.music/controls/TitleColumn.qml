@@ -57,7 +57,7 @@ ColumnLayout {
         id: artistName
         Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
-        font.pixelSize: Style.fontSizeS
+        font.pixelSize: NeptuneStyle.fontSizeS
         font.weight: Font.Light
         visible: text !== ""
         opacity: NeptuneStyle.fontOpacityMedium

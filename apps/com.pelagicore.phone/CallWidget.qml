@@ -181,7 +181,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
-            font.pixelSize: Style.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             opacity: NeptuneStyle.fontOpacityMedium
             text: Qt.formatTime(new Date(callTimer.duration * 1000), "m:ss")
         }

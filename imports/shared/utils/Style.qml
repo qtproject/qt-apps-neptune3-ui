@@ -52,12 +52,6 @@ QtObject {
     property int cellWidth
     property int cellHeight
     property real fontWeight: Font.Light
-    property int fontSizeXS: NeptuneStyle.fontSizeXS
-    property int fontSizeS: NeptuneStyle.fontSizeS
-    property int fontSizeM: NeptuneStyle.fontSizeM
-    property int fontSizeL: NeptuneStyle.fontSizeL
-    property int fontSizeXL: NeptuneStyle.fontSizeXL
-    property int fontSizeXXL: NeptuneStyle.fontSizeXXL
 
     //StatusBar config
     property real statusBarHeight: vspan(1)

@@ -83,7 +83,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.verticalCenterOffset: 20
                         text: model.subtitle
-                        font.pixelSize: Style.fontSizeS
+                        font.pixelSize: NeptuneStyle.fontSizeS
                         font.weight: Style.fontWeight
                     }
                 }

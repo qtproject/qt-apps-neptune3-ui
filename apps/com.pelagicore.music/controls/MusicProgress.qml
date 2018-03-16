@@ -60,7 +60,7 @@ Control {
             anchors.topMargin: root.labelOnTop ? Style.vspan(0.6) : 0
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
-            font.pixelSize: 22 //Todo: Change to Style.fontSizeS when that value is corrected
+            font.pixelSize: 22 //Todo: Change to NeptuneStyle.fontSizeS when that value is corrected
             font.weight: Font.Light
             text: root.progressText
             opacity: NeptuneStyle.fontOpacityMedium

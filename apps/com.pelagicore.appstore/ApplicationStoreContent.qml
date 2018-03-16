@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -35,6 +35,8 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import animations 1.0
 import "stores"
+
+import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -73,7 +75,7 @@ Item {
     Label {
         anchors.centerIn: parent
         color: "grey"
-        font.pixelSize: Style.fontSizeM
+        font.pixelSize: NeptuneStyle.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
         visible: appList.model.count < 1

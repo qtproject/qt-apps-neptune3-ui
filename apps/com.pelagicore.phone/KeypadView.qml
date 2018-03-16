@@ -76,7 +76,7 @@ Item {
         readOnly: true
         color: NeptuneStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
-        font.pixelSize: Style.fontSizeXL
+        font.pixelSize: NeptuneStyle.fontSizeXL
         font.weight: Font.Light
         wrapMode: TextEdit.Wrap
         horizontalAlignment: TextEdit.AlignRight

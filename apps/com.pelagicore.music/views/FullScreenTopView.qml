@@ -58,7 +58,7 @@ Item {
         contentItem: Row {
             spacing: Style.hspan(10/45)
             Label {
-                font.pixelSize: Style.fontSizeS
+                font.pixelSize: NeptuneStyle.fontSizeS
                 font.capitalization: Font.AllUppercase
                 text: qsTr("Next")
                 anchors.verticalCenter: parent.verticalCenter
@@ -109,7 +109,7 @@ Item {
         contentItem: Row {
             spacing: Style.hspan(10/45)
             Label {
-                font.pixelSize: 22 //todo: change to Style.fontSizeS when the value is corrected in style plugin
+                font.pixelSize: 22 //todo: change to NeptuneStyle.fontSizeS when the value is corrected in style plugin
                 font.capitalization: Font.AllUppercase
                 text: qsTr("Browse")
                 anchors.verticalCenter: parent.verticalCenter

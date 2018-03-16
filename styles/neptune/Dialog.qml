@@ -63,7 +63,7 @@ T.Dialog {
         elide: Label.ElideRight
         height: Style.vspan(2)
         text: control.title
-        font.pixelSize: Style.fontSizeM
+        font.pixelSize: NeptuneStyle.fontSizeM
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }

@@ -97,7 +97,7 @@ RowLayout {
             Layout.preferredWidth: Style.hspan(6)
             text: Qt.locale().standaloneMonthName(grid.month) + " " + grid.year
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: Style.fontSizeM
+            font.pixelSize: NeptuneStyle.fontSizeM
             font.weight: Font.Light
         }
         Tool {

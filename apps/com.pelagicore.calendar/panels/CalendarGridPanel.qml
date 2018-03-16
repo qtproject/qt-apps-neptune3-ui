@@ -50,7 +50,7 @@ Item {
                     Layout.preferredWidth: Style.hspan(6)
                     text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: Style.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                 }
                 DayOfWeekRow {
                     locale: Qt.locale(Style.languageLocale)

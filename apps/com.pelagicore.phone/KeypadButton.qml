@@ -74,14 +74,14 @@ Item {
         Label {
             id: primaryLabel
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Style.fontSizeL
+            font.pixelSize: NeptuneStyle.fontSizeL
             font.weight: Font.Light
         }
 
         Label {
             id: secondaryLabel
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Style.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             visible: text
         }
     }

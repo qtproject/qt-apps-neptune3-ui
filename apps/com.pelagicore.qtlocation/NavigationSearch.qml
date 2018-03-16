@@ -51,7 +51,7 @@ Row {
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Label.ElideRight
-            font.pixelSize: Style.fontSizeS
+            font.pixelSize: NeptuneStyle.fontSizeS
             text: qsTr("Where do you wanna go today?")
         }
     }
@@ -75,7 +75,7 @@ Row {
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     text: qsTr("Search")
-                    font.pixelSize: Style.fontSizeS
+                    font.pixelSize: NeptuneStyle.fontSizeS
                 }
             }
         }
