@@ -50,14 +50,18 @@ UX to the road</source>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation>未找到app!</translation>
+        <translation type="vanished">未找到app!</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="obsolete">未找到app!</translation>
+        <translation type="unfinished">未找到app!</translation>
+    </message>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

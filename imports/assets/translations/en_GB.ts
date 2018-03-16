@@ -36,7 +36,11 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>ApplicationStoreContent</name>
+    <name>ApplicationStoreView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>No apps found!</source>
         <translation type="unfinished"></translation>

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -33,26 +33,32 @@ import QtQuick 2.8
 import utils 1.0
 import animations 1.0
 import QtQuick.Controls 2.2
+import "views"
 import "stores"
 
 AppUIScreen {
     id: root
 
-    MultiPointTouchArea {
-        id: multiPoint
-        anchors.fill: parent
-        anchors.margins: 30
-        touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    Image {
+        id: topImage
 
-        property int count: 0
-        onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
-        }
+        x: root.exposedRect.x
+        y: 0
+        width: root.exposedRect.width
+
+        //TODO: later use method from style to keep the aspect ratio
+        height: 660 - 224 + exposedRect.y
+        fillMode: Image.Pad
+
+        source: Style.gfx2("hero-appstore")
+        asynchronous: true
     }
 
-    ApplicationStoreContent {
-        anchors.fill: parent
-        store: AppStore { }
+    ApplicationStoreView {
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width
+        height: root.exposedRect.height
+        store: AppStoreServer { }
     }
 }

@@ -50,14 +50,18 @@ UX to the road</source>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation>앱을 찾을 수 없습니다!</translation>
+        <translation type="vanished">앱을 찾을 수 없습니다!</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="obsolete">앱을 찾을 수 없습니다!</translation>
+        <translation type="unfinished">앱을 찾을 수 없습니다!</translation>
+    </message>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

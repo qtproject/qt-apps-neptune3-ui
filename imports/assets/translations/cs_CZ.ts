@@ -44,14 +44,18 @@ UX na cestu</translation>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation>Žádné aplikace nenalezeny!</translation>
+        <translation type="vanished">Žádné aplikace nenalezeny!</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="obsolete">Žádné aplikace nenalezeny!</translation>
+        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+    </message>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -34,29 +34,24 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import utils 1.0
 import animations 1.0
-import "stores"
+import "../stores"
+import "../controls"
 
 import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
 
-    property AppStore store
+    property AppStoreServer store
 
     property int categoryid: 1
     property string filter: ""
 
-    Image {
-        id: topImage
-        anchors.top: parent.top
-        source: Style.gfx2("hero-appstore")
-    }
-
     BusyIndicator {
         id: busyIndicator
 
-        width: Style.hspan(10)
-        height: Style.vspan(10.5)
+        width: Style.hspan(5)
+        height: Style.vspan(5.5)
         anchors.centerIn: parent
         running: visible
         opacity: root.store.categoryModel.count < 1 ? 1.0 : 0.0
@@ -71,10 +66,19 @@ Item {
         }
     }
 
-    // TODO: Check with designer, what suppose to be shown here.
+    Label {
+        anchors.top: busyIndicator.bottom
+        anchors.topMargin: Style.vspan(0.1)
+        anchors.horizontalCenter: parent.horizontalCenter
+        color: NeptuneStyle.contrastColor
+        font.pixelSize: Style.fontSizeM
+        opacity: busyIndicator.opacity
+        text: qsTr("Fetching data from Neptune Server")
+    }
+
     Label {
         anchors.centerIn: parent
-        color: "grey"
+        color: NeptuneStyle.contrastColor
         font.pixelSize: NeptuneStyle.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
@@ -82,14 +86,15 @@ Item {
     }
 
     RowLayout {
-        anchors.top: topImage.bottom
         anchors.left: parent.left
-        anchors.margins: Style.hspan(2)
-        spacing: 80
+        anchors.top: parent.top
+        anchors.topMargin: Style.vspan(500/80)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Style.vspan(20/80)
 
-        // FIXME: Use ToolsColumn from controls module instead
-        ToolsColumn {
+        AppStoreToolsColumn {
             id: toolsColumn
+            Layout.preferredWidth: Style.hspan(264/45)
             Layout.preferredHeight: Style.vspan(4)
             anchors.top: parent.top
             model: root.store.categoryModel
@@ -116,5 +121,5 @@ Item {
         }
     }
 
-    Component.onCompleted: root.store.appStoreServer.checkServer();
+    Component.onCompleted: root.store.appStoreConfig.checkServer();
 }

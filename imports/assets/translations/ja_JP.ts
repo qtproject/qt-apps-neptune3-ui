@@ -43,14 +43,18 @@ UX to the road</source>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation>アプリが見つかりません！</translation>
+        <translation type="vanished">アプリが見つかりません！</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="obsolete">アプリが見つかりません！</translation>
+        <translation type="unfinished">アプリが見つかりません！</translation>
+    </message>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

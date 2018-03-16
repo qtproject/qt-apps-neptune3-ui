@@ -43,14 +43,18 @@ UX to the road</source>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
-        <translation>Keine Programme gefunden!</translation>
+        <translation type="vanished">Keine Programme gefunden!</translation>
     </message>
 </context>
 <context>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="obsolete">Keine Programme gefunden!</translation>
+        <translation type="unfinished">Keine Programme gefunden!</translation>
+    </message>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
