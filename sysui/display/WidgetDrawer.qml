@@ -55,6 +55,8 @@ MouseArea {
     drag.minimumX: 0
     drag.maximumX: root.width - stickOutWidth
 
+    opacity: 0.5 + 0.5*(1 - (root.x - drag.minimumX)/(drag.maximumX - drag.minimumX))
+
     // Whether the drag behavior is enabled.
     property bool dragEnabled: true
 
