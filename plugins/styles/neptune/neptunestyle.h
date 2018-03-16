@@ -70,13 +70,14 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(QColor contrastColor READ contrastColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor clusterMarksColor READ clusterMarksColor NOTIFY neptuneStyleChanged FINAL)
 
-    Q_PROPERTY(int fontSizeXXS READ fontSizeXXS NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeXS READ fontSizeXS NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeS READ fontSizeS NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeM READ fontSizeM NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeL READ fontSizeL NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY neptuneStyleChanged FINAL)
+    // Font sizes are already premultiplied by NeptuneStyle::scale
+    Q_PROPERTY(int fontSizeXXS READ fontSizeXXS NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeXS READ fontSizeXS NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeS READ fontSizeS NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeM READ fontSizeM NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeL READ fontSizeL NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY scaleChanged FINAL)
+    Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY scaleChanged FINAL)
 
     // TODO drop the "font" prefix, this applies to other items like Image
     Q_PROPERTY(qreal fontOpacityHigh READ fontOpacityHigh NOTIFY neptuneStyleChanged FINAL)

@@ -311,37 +311,37 @@ QColor NeptuneStyle::darker75(const QColor& color)
 
 int NeptuneStyle::fontSizeXXS() const
 {
-    return m_data->fontSizeXXS;
+    return m_data->fontSizeXXS * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeXS() const
 {
-    return m_data->fontSizeXS;
+    return m_data->fontSizeXS * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeS() const
 {
-    return m_data->fontSizeS;
+    return m_data->fontSizeS * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeM() const
 {
-    return m_data->fontSizeM;
+    return m_data->fontSizeM * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeL() const
 {
-    return m_data->fontSizeL;
+    return m_data->fontSizeL * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeXL() const
 {
-    return m_data->fontSizeXL;
+    return m_data->fontSizeXL * m_data->scale;
 }
 
 int NeptuneStyle::fontSizeXXL() const
 {
-    return m_data->fontSizeXXL;
+    return m_data->fontSizeXXL * m_data->scale;
 }
 
 QString NeptuneStyle::backgroundImage() const
