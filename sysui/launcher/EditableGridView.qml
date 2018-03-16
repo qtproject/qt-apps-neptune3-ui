@@ -91,7 +91,7 @@ Item {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: -Style.vspan(12/80)
+                anchors.verticalCenterOffset: -Style.vspan(10/80)
 
                 Connections {
                     target: model.appInfo

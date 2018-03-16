@@ -160,7 +160,7 @@ Item {
             name: "closed"
             PropertyChanges {
                 target: editableLauncher
-                anchors.rightMargin: Style.hspan(134/45) + (cellWidth - gridButton.width)/2
+                anchors.rightMargin: Style.hspan(134/45) + cellWidth/2
                 width: Style.hspan(480/45)
             }
             PropertyChanges {
