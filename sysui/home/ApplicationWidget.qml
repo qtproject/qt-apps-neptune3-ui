@@ -54,13 +54,13 @@ Item {
     property string widgetState
     property int widgetHeight
 
-    BorderImage {
+    ScalableBorderImage {
         // extra shadow when being dragged
         anchors.fill: parent
-        anchors.leftMargin: -59
-        anchors.rightMargin: -59
-        anchors.topMargin: -59
-        anchors.bottomMargin: -59
+        anchors.leftMargin: -59 * NeptuneStyle.scale
+        anchors.rightMargin: -59 * NeptuneStyle.scale
+        anchors.topMargin: -59 * NeptuneStyle.scale
+        anchors.bottomMargin: -59 * NeptuneStyle.scale
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -70,12 +70,12 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
     }
 
-    BorderImage {
+    ScalableBorderImage {
         anchors.fill: parent
-        anchors.leftMargin: -59
-        anchors.rightMargin: -59
-        anchors.topMargin: -59
-        anchors.bottomMargin: -59
+        anchors.leftMargin: -59 * NeptuneStyle.scale
+        anchors.rightMargin: -59 * NeptuneStyle.scale
+        anchors.topMargin: -59 * NeptuneStyle.scale
+        anchors.bottomMargin: -59 * NeptuneStyle.scale
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -125,7 +125,7 @@ Item {
         target: root.appInfo; property: "windowState"; value: root.active ? "Maximized" : root.widgetState
     }
 
-    BorderImage {
+    ScalableBorderImage {
         id: mask
         visible: false
         anchors.fill: parent
@@ -151,11 +151,12 @@ Item {
         clip: true
     }
 
-    BorderImage {
+    ScalableBorderImage {
         id: widgetStripe
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: parent.left
+        width: 40 * NeptuneStyle.scale
         border { top: 30; bottom: 30 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -172,7 +173,8 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
 
         Image {
-            width: parent.width * 0.6
+            width: sourceSize.width * NeptuneStyle.scale
+            height: sourceSize.height * NeptuneStyle.scale
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -214,8 +216,9 @@ Item {
 
         Image {
             anchors.centerIn: parent
+            width: sourceSize.width * NeptuneStyle.scale
+            height: sourceSize.height * NeptuneStyle.scale
             source: Style.symbol("ic-widget-move")
-            fillMode: Image.Pad
         }
     }
 
@@ -232,8 +235,9 @@ Item {
 
         Image {
             anchors.centerIn: parent
+            width: sourceSize.width * NeptuneStyle.scale
+            height: sourceSize.height * NeptuneStyle.scale
             source: Style.symbol("ic-widget-close")
-            fillMode: Image.Pad
         }
     }
 
@@ -242,6 +246,8 @@ Item {
         id: cornerImage
         anchors.right: parent.right
         anchors.top: parent.top
+        width: sourceSize.width * NeptuneStyle.scale
+        height: sourceSize.height * NeptuneStyle.scale
         source: Style.gfx2("widget-corner", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
@@ -259,6 +265,8 @@ Item {
             anchors.rightMargin: Style.hspan(.5)
             anchors.top: parent.top
             anchors.topMargin: Style.vspan(.3)
+            width: sourceSize.width * NeptuneStyle.scale
+            height: sourceSize.height * NeptuneStyle.scale
             source: Style.symbol("ic-expand-to-fullscreen")
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }
