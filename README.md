@@ -1,8 +1,8 @@
 # Prerequisite
 
-* Qt5 (branch 5.10)
+* Qt5 (branch 5.10), built with Open GL ES (-opengl es2 -opengles3)
 * QtIvi (branch dev)
-* Application Manager (branch 5.9)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.10)
 * Unix system (e.g. Ubuntu 16.04)
 
 # Clone Repository
