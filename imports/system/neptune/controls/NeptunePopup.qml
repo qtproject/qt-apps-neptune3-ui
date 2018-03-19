@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -42,7 +42,7 @@ import animations 1.0
 Control {
     id: root
 
-    width: 800
+    width: 800 * NeptuneStyle.scale
     focus: visible
 
     property bool headerBackgroundVisible: false
@@ -50,9 +50,9 @@ Control {
     property Item originItem
     property real _openFromX
     property real _openFromY
-    readonly property int minHeight: 548
+    readonly property int minHeight: 548 * NeptuneStyle.scale
 
-    BorderImage {
+    ScalableBorderImage {
         anchors.top: parent.top
         width: parent.width
         height: root.headerBackgroundHeight
@@ -65,13 +65,13 @@ Control {
             bottom: 0
         }
     }
-    background: BorderImage {
+    background: ScalableBorderImage {
         anchors.fill: root
         source: Style.gfx2("popup-background-9patch", NeptuneStyle.theme)
-        anchors.leftMargin: -40
-        anchors.rightMargin: -40
-        anchors.topMargin: -28
-        anchors.bottomMargin: -52
+        anchors.leftMargin: -40 * NeptuneStyle.scale
+        anchors.rightMargin: -40 * NeptuneStyle.scale
+        anchors.topMargin: -28 * NeptuneStyle.scale
+        anchors.bottomMargin: -52 * NeptuneStyle.scale
         border.left: 70
         border.right: 70
         border.top: 50
@@ -87,18 +87,20 @@ Control {
 
     Tool {
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: 10
+        anchors.verticalCenterOffset: 10 * NeptuneStyle.scale
         anchors.horizontalCenter: parent.right
-        anchors.horizontalCenterOffset: -10
-        width: bg.sourceSize.width
-        height: width
+        anchors.horizontalCenterOffset: -10 * NeptuneStyle.scale
+        width: 27 * NeptuneStyle.scale
+        height: 27 * NeptuneStyle.scale
         onClicked: close()
         symbol: Style.symbol("ic-close")
         background: Image {
-            id: bg
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: 6
+            width: 101 * NeptuneStyle.scale
+            height: 100 * NeptuneStyle.scale
+            anchors.centerIn: parent
+            anchors.verticalCenterOffset: 6 * NeptuneStyle.scale
             source: Style.gfx2("popup-close-button-bg", NeptuneStyle.theme)
+            fillMode: Image.PreserveAspectFit
         }
     }
 
