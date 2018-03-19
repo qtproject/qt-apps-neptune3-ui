@@ -69,10 +69,6 @@ void startRemoteSettingsServer(const QString &argv) {
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-#if defined(Q_OS_UNIX) && defined(AM_MULTI_PROCESS)
-    // set a reasonable default for OSes/distros that do not set this by default
-    setenv("XDG_RUNTIME_DIR", "/tmp", 0);
-#endif
 
     QCoreApplication::setApplicationName(qSL("Neptune UI"));
     QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
@@ -83,26 +79,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     Package::ensureCorrectLocale();
 
-    QString error;
-    if (Q_UNLIKELY(!forkSudoServer(DropPrivilegesPermanently, &error))) {
-        qCCritical(LogSystem) << "ERROR:" << qPrintable(error);
-        return 2;
-    }
-
     try {
+        QStringList deploymentWarnings;
+        Sudo::forkServer(Sudo::DropPrivilegesPermanently, &deploymentWarnings);
+
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         setenv("QT_IM_MODULE", "qtvirtualkeyboard", 1);
-        // this is needed for both WebEngine and Wayland Multi-screen rendering
-        QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-#if !defined(QT_NO_SESSIONMANAGER)
-        QGuiApplication::setFallbackSessionManagementEnabled(false);
-#endif
 
         Main a(argc, argv);
-        QObject::connect(&a, &QGuiApplication::lastWindowClosed, [&a]() {
-            a.shutDown();
-            a.quit();
-        });
 
         // start the server; the server itself will ensure one instance only
         startRemoteSettingsServer(QFile::decodeName(argv[0]));
@@ -122,12 +106,11 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
         cfg.parse();
-        a.setup(&cfg);
+        a.setup(&cfg, deploymentWarnings);
 
         // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
-        if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty()) {
+        if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty())
             TouchEmulation::createInstance();
-        }
 
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
