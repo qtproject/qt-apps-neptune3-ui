@@ -49,7 +49,7 @@ T.Slider {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                             (handle ? handle.implicitHeight : 0) + topPadding + bottomPadding)
 
-    padding: 6
+    padding: 6 * NeptuneStyle.scale
 
     readonly property int count: stepSize != 0 ? (to-from)/stepSize : 0.5
 
@@ -57,7 +57,10 @@ T.Slider {
         id: handleItem
         x: control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.visualPosition * (control.availableHeight - height))
+        width: 139 * NeptuneStyle.scale
+        height: 85 * NeptuneStyle.scale
         source: Style.gfx2("vertical-slider-handle", NeptuneStyle.theme)
+        fillMode: Image.PreserveAspectFit
     }
 
     background: Column {
