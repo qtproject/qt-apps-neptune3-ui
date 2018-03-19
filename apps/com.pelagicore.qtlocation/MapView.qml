@@ -65,6 +65,9 @@ Item {
 
     signal openSearchTextInput()
     signal maximizeMap()
+    signal startNavigationRequested()
+    signal stopNavigationRequested()
+    signal showRouteRequested()
 
     function zoomIn() {
         mainMap.zoomLevel += 1.0;
@@ -186,14 +189,17 @@ Item {
 
         onOpenSearchTextInput: root.openSearchTextInput()
         onStartNavigation: {
+            root.startNavigationRequested();
             root.maximizeMap();
             root.guidanceMode = true;
         }
         onStopNavigation: {
+            root.stopNavigationRequested();
             root.navigationMode = false;
             root.guidanceMode = false;
         }
         onShowRoute: {
+            root.showRouteRequested();
             root.center = destCoord;
             root.startCoord = root.currentLocation;
             root.destCoord = destCoord;

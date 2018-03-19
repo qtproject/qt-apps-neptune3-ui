@@ -111,6 +111,7 @@ Item {
         readonly property var plugins: ["mapboxgl", "osm"]
         property var positionCoordinate: offlineMapsEnabled ? QtPositioning.coordinate(57.709912, 11.966632) // Gothenburg
                                                             : QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc
+        property var originalPosition: positionCoordinate
         readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
         readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
     }
@@ -181,6 +182,17 @@ Item {
             root.maximizeMap();
             searchViewEnabled = true;
         }
+        onStartNavigationRequested: {
+            priv.originalPosition = priv.positionCoordinate;
+        }
+        onShowRouteRequested: {
+            priv.originalPosition = priv.positionCoordinate;
+        }
+        onStopNavigationRequested: {
+            priv.positionCoordinate = priv.originalPosition;
+            mainMap.center = priv.positionCoordinate;
+        }
+
         onMapReadyChanged: getAvailableMapsAndLocation();
         onMaximizeMap: root.maximizeMap()
     }
