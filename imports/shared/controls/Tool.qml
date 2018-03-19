@@ -54,14 +54,14 @@ ToolButton {
     }
 
     indicator: Image {
-        width: Style.hspan(1.3)
-        height: Style.vspan(0.8)
+        width: sourceSize.width * NeptuneStyle.scale
+        height: sourceSize.height * NeptuneStyle.scale
         anchors.horizontalCenter: !root.symbolOnTop && root.text !== "" ? undefined : parent.horizontalCenter
         anchors.left: !root.symbolOnTop && root.text !== "" ? parent.left : undefined
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: root.symbolOnTop ? - Style.vspan(0.2) : 0
 
-        fillMode: Image.Pad
+        fillMode: Image.PreserveAspectFit
         source: root.symbol ? (NeptuneStyle.theme === NeptuneStyle.Dark ? root.symbol.replace("\.png","-dark\.png")
                                                                       : root.symbol)
                             : ""
