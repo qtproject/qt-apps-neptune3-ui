@@ -53,10 +53,11 @@ Button {
             anchors.centerIn: parent
             spacing: Style.vspan(0.1)
             Image {
-                id: image
+                width: sourceSize.width * NeptuneStyle.scale
+                height: sourceSize.height * NeptuneStyle.scale
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: Style.symbol(root.icon, NeptuneStyle.theme)
-                fillMode: Image.Pad
+                fillMode: Image.PreserveAspectFit
             }
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter

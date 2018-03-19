@@ -55,8 +55,8 @@ Item {
         Column {
             anchors.verticalCenter: parent.verticalCenter
             ClimateButton {
-                width: 90
-                height: 90
+                width: 90 * NeptuneStyle.scale
+                height: 90 * NeptuneStyle.scale
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
                 textFontSize: NeptuneStyle.fontSizeXL
@@ -71,8 +71,8 @@ Item {
                 opacity: NeptuneStyle.fontOpacityMedium
             }
             ClimateButton {
-                width: 90
-                height: 90
+                width: 90 * NeptuneStyle.scale
+                height: 90 * NeptuneStyle.scale
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
                 textFontSize: NeptuneStyle.fontSizeXL
@@ -91,8 +91,8 @@ Item {
         Column {
             anchors.verticalCenter: parent.verticalCenter
             ClimateButton {
-                width: 90
-                height: 90
+                width: 90 * NeptuneStyle.scale
+                height: 90 * NeptuneStyle.scale
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
                 textFontSize: NeptuneStyle.fontSizeXL
@@ -107,8 +107,8 @@ Item {
                 opacity: NeptuneStyle.fontOpacityMedium
             }
             ClimateButton {
-                width: 90
-                height: 90
+                width: 90 * NeptuneStyle.scale
+                height: 90 * NeptuneStyle.scale
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
                 textFontSize: NeptuneStyle.fontSizeXL
