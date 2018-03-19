@@ -58,6 +58,8 @@ Item {
     property string widgetStateWhenMaximized: ""
     property int clickedIndexWhenMaximized: -1
 
+    property bool _hideAllHandles: false
+
     WidgetListModel {
         id: widgetsList
         applicationModel: root.applicationModel
@@ -533,6 +535,7 @@ Item {
                                     scale: 1
                                     width: appWidgetSlot.width; height: appWidgetSlot.height
                                 }
+                                PropertyChanges { target: root; _hideAllHandles: true }
                             }
                         ]
 
@@ -572,7 +575,7 @@ Item {
                     objectName: "resizeHandle" + model.index
 
                     visible: repeaterDelegate.isAtBottom || opacity === 0 ? false : true
-                    opacity: root.applicationModel.activeAppInfo ? 0 : 1
+                    opacity: _hideAllHandles || root.applicationModel.activeAppInfo ? 0 : 1
                     Behavior on opacity { DefaultNumberAnimation{} }
 
                     width: parent.width
