@@ -79,6 +79,12 @@ QtObject {
     // Currrent window width
     property int currentWidth: 0
 
+    // UI scale factor to be applied to window. See NeptuneStyle.scale
+    property real windowScale: 1
+
+    // UI scale factor to be applied to secondaryWindow. See NeptuneStyle.scale
+    property real secondaryWindowScale: 1
+
     // Whether the application window should be shown as a widget
     property bool asWidget: false
 
@@ -136,6 +142,14 @@ QtObject {
         }
     }
 
+    onWindowScaleChanged: {
+        if (window)
+            AM.WindowManager.setWindowProperty(window, "neptuneScale", windowScale);
+    }
+    onSecondaryWindowScaleChanged: {
+        if (secondaryWindow)
+            AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
+    }
     onWidgetHeightChanged: {
         if (window)
             AM.WindowManager.setWindowProperty(window, "neptuneWidgetHeight", widgetHeight);

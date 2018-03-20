@@ -119,6 +119,9 @@ ApplicationManagerWindow {
         case "neptuneCurrentHeight":
             root.currentHeight = value;
             break;
+        case "neptuneScale":
+            root.NeptuneStyle.scale = value;
+            break;
         case "neptuneState":
             root.neptuneState = value;
             break;

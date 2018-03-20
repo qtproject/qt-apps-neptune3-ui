@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -49,6 +49,10 @@ Item {
 
     Binding {
         target: root.appInfo; property: "currentWidth"; value: root.width
+    }
+
+    Binding {
+        target: root.appInfo; property: "windowScale"; value: root.NeptuneStyle.scale
     }
 
     Binding {

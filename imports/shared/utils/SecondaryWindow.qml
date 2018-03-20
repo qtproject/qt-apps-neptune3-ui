@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -41,6 +41,15 @@ ApplicationManagerWindow {
         setWindowProperty("windowType", "secondary")
         visible = true
     }
+
+    onWindowPropertyChanged: {
+        switch (name) {
+        case "neptuneScale":
+            root.NeptuneStyle.scale = value;
+            break;
+        }
+    }
+
     UISettings {
         onThemeChanged: updateTheme()
         Component.onCompleted: updateTheme()

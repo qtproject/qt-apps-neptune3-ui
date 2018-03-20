@@ -110,6 +110,10 @@ Item {
     }
 
     Binding {
+        target: root.appInfo; property: "windowScale"; value: root.NeptuneStyle.scale
+    }
+
+    Binding {
         target: root.appInfo; property: "widgetHeight"; value: root.widgetHeight
     }
 

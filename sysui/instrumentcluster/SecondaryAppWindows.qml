@@ -33,6 +33,7 @@ import QtQuick 2.7
 import QtQml.Models 2.2
 
 import animations 1.0
+import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
 Item {
@@ -49,7 +50,7 @@ Item {
 
     property int selectedIndex: 0
     readonly property string selectedApplicationId: selectedIndex < secondaryWindowList.count
-                                                        ? secondaryWindowList.get(selectedIndex).applicationId
+                                                        ? secondaryWindowList.get(selectedIndex).appInfo.id
                                                         : ""
     readonly property bool empty: secondaryWindowList.count === 0
 
@@ -60,10 +61,9 @@ Item {
                 target: model.appInfo
                 onSecondaryWindowChanged: {
                     if (model.appInfo.secondaryWindow) {
-                        secondaryWindowList.append({"applicationId" : model.appInfo.id,
-                                                     "secondaryWindow": model.appInfo.secondaryWindow});
+                        secondaryWindowList.append({"appInfo" : model.appInfo});
                     } else {
-                        secondaryWindowList.removeWithAppId(model.applicationId);
+                        secondaryWindowList.removeWithAppId(model.appInfo.id);
                     }
                 }
             }
@@ -76,7 +76,7 @@ Item {
             var i;
             for (i = 0; i < count; i++) {
                 var item = get(i);
-                if (item.applicationId === appId) {
+                if (item.appInfo.id === appId) {
                     remove(i, 1);
                     break;
                 }
@@ -104,9 +104,10 @@ Item {
             //visible: opacity > 0
 
             Behavior on opacity { DefaultNumberAnimation {}  }
-            Binding { target: model.secondaryWindow; property: "width"; value: secondaryWindowSlot.width }
-            Binding { target: model.secondaryWindow; property: "height"; value: secondaryWindowSlot.height }
-            Binding { target: model.secondaryWindow; property: "parent"; value: secondaryWindowSlot }
+            Binding { target: model.appInfo.secondaryWindow; property: "width"; value: secondaryWindowSlot.width }
+            Binding { target: model.appInfo.secondaryWindow; property: "height"; value: secondaryWindowSlot.height }
+            Binding { target: model.appInfo.secondaryWindow; property: "parent"; value: secondaryWindowSlot }
+            Binding { target: model.appInfo; property: "secondaryWindowScale"; value: secondaryWindowSlot.NeptuneStyle.scale }
         }
     }
 }

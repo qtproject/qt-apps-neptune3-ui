@@ -76,6 +76,10 @@ Window {
         onSecondaryWindowSwitchCountChanged: secondaryAppWindows.next();
     }
 
+    onWidthChanged: {
+        root.contentItem.NeptuneStyle.scale = root.width / Style.instrumentClusterWidth;
+    }
+
     Item {
         id: uiSlot
         anchors.centerIn: parent
