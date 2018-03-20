@@ -840,20 +840,12 @@ UX na cestu</translation>
         <translation>oblíbené</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation>hlas. schránka</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation>číselník</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation>kontakty</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation>zprávy</translation>
     </message>
 </context>
 <context>

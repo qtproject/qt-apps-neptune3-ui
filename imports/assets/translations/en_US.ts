@@ -408,19 +408,11 @@ UX to the road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>contacts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>messages</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

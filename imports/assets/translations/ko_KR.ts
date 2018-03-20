@@ -659,20 +659,12 @@ UX to the road</source>
         <translation type="obsolete">즐겨찾기</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation type="obsolete">음성 메시지</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation type="obsolete">키패드</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation type="obsolete">연락처</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation type="obsolete">메시지</translation>
     </message>
 </context>
 <context>
@@ -686,20 +678,12 @@ UX to the road</source>
         <translation>즐겨찾기</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation>음성 메시지</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation>키패드</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation>연락처</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation>메시지</translation>
     </message>
 </context>
 <context>

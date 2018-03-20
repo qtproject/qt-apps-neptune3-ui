@@ -652,20 +652,12 @@ UX to the road</source>
         <translation type="obsolete">おきにいり</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation type="obsolete">ボイスメール</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation type="obsolete">キーパッド</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation type="obsolete">コンタクト</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation type="obsolete">メッセージ</translation>
     </message>
 </context>
 <context>
@@ -679,20 +671,12 @@ UX to the road</source>
         <translation>おきにいり</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation>ボイスメール</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation>キーパッド</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation>コンタクト</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation>メッセージ</translation>
     </message>
 </context>
 <context>

@@ -699,20 +699,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="obsolete">收藏夹</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation type="obsolete">语音邮件</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation type="obsolete">键盘</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation type="obsolete">联系人</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation type="obsolete">短信</translation>
     </message>
 </context>
 <context>
@@ -726,20 +718,12 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>收藏夹</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation>语音邮件</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation>键盘</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation>联系人</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation>短信</translation>
     </message>
 </context>
 <context>

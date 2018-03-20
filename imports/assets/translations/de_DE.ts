@@ -616,20 +616,12 @@ UX to the road</source>
         <translation>Favouriten</translation>
     </message>
     <message>
-        <source>voicemail</source>
-        <translation>Voicemail</translation>
-    </message>
-    <message>
         <source>keypad</source>
         <translation>Tastatur</translation>
     </message>
     <message>
         <source>contacts</source>
         <translation>Kontakte</translation>
-    </message>
-    <message>
-        <source>messages</source>
-        <translation>Nachrichten</translation>
     </message>
 </context>
 <context>
