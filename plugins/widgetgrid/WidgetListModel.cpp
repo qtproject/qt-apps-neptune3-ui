@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -285,7 +285,7 @@ void WidgetListModel::distributeHeightOfDetachedAppInfo(int indexOfDetacheItem)
         remainingHeight -= heightIncrement;
     };
 
-    while (remainingHeight > 0) {
+    while (remainingHeight > 0 && (iAbove >= 0 || iBelow < m_list.count())) {
         while (true) {
             if (iAbove < 0) {
                 // no items left above
@@ -307,7 +307,7 @@ void WidgetListModel::distributeHeightOfDetachedAppInfo(int indexOfDetacheItem)
                 break;
             } else if (m_list[iBelow].detached) {
                 // try the next one
-                ++iAbove;
+                ++iBelow;
             } else {
                 // do it
                 giveRemainingHeight(m_list[iBelow].appInfo);
