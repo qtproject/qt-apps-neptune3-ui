@@ -47,9 +47,7 @@ QtObject {
     function checkServer() {
         console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
         var url = serverUrl + "/hello";
-
-        //TODO: Change the platform name when the server is updated
-        var data = {"platform" : "TRITON", "version" : "1"};
+        var data = {"platform" : "NEPTUNE3", "version" : "1"};
         JSONBackend.setErrorFunction(function () {
             serverOnline = false;
             serverReason = "unknown";
