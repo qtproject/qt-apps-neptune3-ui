@@ -88,9 +88,6 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(int fontFactor READ fontFactor NOTIFY neptuneStyleChanged FINAL)
 
-    Q_PROPERTY(qreal windowWidth READ windowWidth NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(qreal windowHeight READ windowHeight NOTIFY neptuneStyleChanged FINAL)
-
     Q_PROPERTY(QString backgroundImage READ backgroundImage NOTIFY neptuneStyleChanged)
 
     /*
@@ -169,10 +166,6 @@ public:
 
     QString fontFamily() const;
     int fontFactor() const;
-
-    qreal windowWidth() const;
-
-    qreal windowHeight() const;
 
     Theme theme() const;
     void setTheme(Theme);

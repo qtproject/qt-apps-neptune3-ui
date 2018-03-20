@@ -55,17 +55,4 @@ In case QtIVI is not installed, 'dummyimports' folder contains QML dummy impleme
 
     $ QML2_IMPORT_PATH=/path/to/dummyimports neptune3-ui -r
 
-
-# Style Configuration
-
-Neptune 3 UI supports different style configurations which can be used to adapt the style to the needs of the Hardware the UI should be running on.
-The following resolutions are available:
-
-* 1080x1920 - default
-* 1280x800
-* 1080x1920
-* 768x1024
-
-To set the UI for wanted (other than default one) resolution, set the 'QT_QUICK_CONTROLS_CONF' to the location of QtQuickControls 2 configuration file. Configuration files are within 'styles' folder (https://doc.qt.io/qt-5/qtquickcontrols2-environment.html).
-
 NOTE: You need to have Open Sans font installed (see assets folder within the modules)

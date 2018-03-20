@@ -335,7 +335,7 @@ Window {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        width = root.contentItem.NeptuneStyle.windowWidth
-        height = root.contentItem.NeptuneStyle.windowHeight
+        width = Style.centerConsoleWidth
+        height = Style.centerConsoleHeight
     }
 }

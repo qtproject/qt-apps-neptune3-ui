@@ -106,7 +106,6 @@ public:
         : font(QGuiApplication::font())
         , fontFactor(1.0)
         , theme(NeptuneStyle::Light)
-        , windowSize(1080, 1920)
         , scale(1.0)
     {
         compute();
@@ -115,7 +114,6 @@ public:
         : font(data.font)
         , fontFactor(data.fontFactor)
         , theme(data.theme)
-        , windowSize(data.windowSize)
         , scale(data.scale)
     {
         compute();
@@ -134,7 +132,6 @@ public:
     QFont font;
     qreal fontFactor;
     NeptuneStyle::Theme theme;
-    QSize windowSize;
     int fontSizeXXS;
     int fontSizeXS;
     int fontSizeS;
@@ -360,16 +357,6 @@ int NeptuneStyle::fontFactor() const
     return m_data->fontFactor;
 }
 
-qreal NeptuneStyle::windowWidth() const
-{
-    return m_data->windowSize.width();
-}
-
-qreal NeptuneStyle::windowHeight() const
-{
-    return m_data->windowSize.height();
-}
-
 void NeptuneStyle::init()
 {
     static bool initialized = false;
@@ -392,12 +379,6 @@ void NeptuneStyle::init()
 
         data = resolveSetting(settings, "FontFamily");
         GlobalStyleData.font.setFamily(toString(data, GlobalStyleData.font.family()));
-
-        data = resolveSetting(settings, "WindowWidth");
-        GlobalStyleData.windowSize.setWidth(toInteger(data, GlobalStyleData.windowSize.width()));
-
-        data = resolveSetting(settings, "WindowHeight");
-        GlobalStyleData.windowSize.setHeight(toInteger(data, GlobalStyleData.windowSize.height()));
 
         resolveGlobalThemeData(settings);
 
