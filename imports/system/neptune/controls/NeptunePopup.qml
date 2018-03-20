@@ -87,18 +87,17 @@ Control {
 
     Tool {
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: 10 * NeptuneStyle.scale
         anchors.horizontalCenter: parent.right
-        anchors.horizontalCenterOffset: -10 * NeptuneStyle.scale
-        width: 27 * NeptuneStyle.scale
-        height: 27 * NeptuneStyle.scale
+        width: bg.width
+        height: bg.height
         onClicked: close()
         symbol: Style.symbol("ic-close")
         background: Image {
-            width: 101 * NeptuneStyle.scale
-            height: 100 * NeptuneStyle.scale
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: 6 * NeptuneStyle.scale
+            id: bg
+            width: sourceSize.width * NeptuneStyle.scale
+            height: sourceSize.height * NeptuneStyle.scale
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 4 * NeptuneStyle.scale
             source: Style.gfx2("popup-close-button-bg", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
         }
