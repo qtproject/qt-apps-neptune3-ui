@@ -106,7 +106,7 @@ Item {
 
     Loader {
         id: navigationSearchButtonsWidget
-        width: headerBackgroundWidget.width - Style.hspan(2)
+        width: headerBackgroundWidget.width - (184 * NeptuneStyle.scale) // compensate for the "expand" button in the widget corner
         height: headerBackgroundWidget.height
         active: headerBackgroundWidget.active
         anchors.top: headerBackgroundWidget.top

@@ -47,10 +47,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: root.state === "Widget2Rows" ? -root.height/2 : 0
         fillMode: Image.TileHorizontally
         source: Style.localAsset("navigation-widget-overlay-top", NeptuneStyle.theme)
-        Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on height { DefaultNumberAnimation {} }
     }
 }

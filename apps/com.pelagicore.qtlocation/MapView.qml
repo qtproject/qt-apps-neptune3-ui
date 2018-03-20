@@ -165,15 +165,8 @@ Item {
         anchors.rightMargin: guidanceMode ? Style.hspan(18) : 0
         anchors.top: parent.top
         opacity: root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
-        Behavior on opacity {
-            SequentialAnimation {
-                PauseAnimation { duration: 180 }
-                DefaultNumberAnimation {}
-            }
-        }
-        Behavior on anchors.rightMargin {
-            DefaultNumberAnimation { }
-        }
+        Behavior on opacity { DefaultNumberAnimation {} }
+        Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
         visible: opacity > 0
         state: root.state
 
