@@ -38,6 +38,7 @@ Store {
 
     property bool ongoingCall: false
     property string callerHandle: ""
+    property alias callDuration: callTimer.duration
 
     function findPerson(handle) {
         for (var i = 0; i < contactsModel.count; i++) {

@@ -167,7 +167,7 @@ Item {
             horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeS
             opacity: NeptuneStyle.fontOpacityMedium
-            text: Qt.formatTime(new Date(callTimer.duration * 1000), "m:ss")
+            text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
         }
     }
 
