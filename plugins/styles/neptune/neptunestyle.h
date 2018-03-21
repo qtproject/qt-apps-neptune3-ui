@@ -35,6 +35,7 @@
 #include <QtGui/QColor>
 #include <QtCore/QSharedPointer>
 #include <QtCore/QScopedPointer>
+#include <QJSValue>
 
 QT_FORWARD_DECLARE_CLASS(QSettings)
 
@@ -95,9 +96,23 @@ class NeptuneStyle : public QQuickStyleAttached
 
         Neptune 3 UI was designed for a specific aspect ratio, physical size and DPI.
         In order to support other pixel densities this scale factor has to be applied to all
-        pixel values (ie, pixel values have to be multiplied by it).
+        pixel values (ie, pixel values have to be multiplied by it), preferably via
+        the NeptuneStyle.dp() function.
+
+        \sa dp
      */
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
+
+    /*
+        Converts pixels values from the reference pixel density to the current one
+
+        Applies the current scale factor to the given pixel value, effectively
+        converting it into device pixels (dp). It might also round it up to the
+        nearest integer to minimize aliasing artifacts.
+
+        \sa scale
+     */
+    Q_PROPERTY(QJSValue dp READ dp NOTIFY scaleChanged)
 
 public:
     explicit NeptuneStyle(QObject *parent = nullptr);
@@ -175,6 +190,8 @@ public:
     qreal scale() const;
     void setScale(qreal);
 
+    QJSValue dp() const;
+
 protected:
     void init();
 signals:
@@ -186,6 +203,7 @@ signals:
 private:
     QScopedPointer<StyleData> m_data;
     QColor m_accentColor;
+    mutable QJSValue m_dp;
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)

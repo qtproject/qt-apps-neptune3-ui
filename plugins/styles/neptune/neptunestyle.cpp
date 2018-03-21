@@ -35,6 +35,7 @@
 #include <QtQuick/QQuickWindow>
 #include <QtGui/QGuiApplication>
 #include <QtCore/QSettings>
+#include <QQmlEngine>
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #include <QtQuickControls2/private/qquickstyle_p.h>
@@ -531,6 +532,7 @@ void NeptuneStyle::setScale(qreal value)
 
     m_data->scale = value;
     propagateScale();
+    m_dp = QJSValue();
     emit scaleChanged();
 }
 
@@ -541,4 +543,16 @@ void NeptuneStyle::propagateScale()
         if (neptune)
             neptune->setScale(m_data->scale);
     }
+}
+
+QJSValue NeptuneStyle::dp() const
+{
+    if (!m_dp.isCallable()) {
+        QQmlEngine *engine = qmlEngine(parent());
+        if (engine) {
+            auto str = QStringLiteral("function(value) { return Math.round(value * %1); }").arg(scale());
+            m_dp = engine->evaluate(str);
+        }
+    }
+    return m_dp;
 }

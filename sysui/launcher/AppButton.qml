@@ -63,8 +63,8 @@ Item {
         id: icon
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
-        width: 35 * NeptuneStyle.scale
-        height: 35 * NeptuneStyle.scale
+        width: NeptuneStyle.dp(35)
+        height: NeptuneStyle.dp(35)
         fillMode: Image.PreserveAspectFit
     }
 

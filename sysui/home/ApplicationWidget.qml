@@ -57,10 +57,10 @@ Item {
     ScalableBorderImage {
         // extra shadow when being dragged
         anchors.fill: parent
-        anchors.leftMargin: -59 * NeptuneStyle.scale
-        anchors.rightMargin: -59 * NeptuneStyle.scale
-        anchors.topMargin: -59 * NeptuneStyle.scale
-        anchors.bottomMargin: -59 * NeptuneStyle.scale
+        anchors.leftMargin: NeptuneStyle.dp(-59)
+        anchors.rightMargin: NeptuneStyle.dp(-59)
+        anchors.topMargin: NeptuneStyle.dp(-59)
+        anchors.bottomMargin: NeptuneStyle.dp(-59)
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -72,10 +72,10 @@ Item {
 
     ScalableBorderImage {
         anchors.fill: parent
-        anchors.leftMargin: -59 * NeptuneStyle.scale
-        anchors.rightMargin: -59 * NeptuneStyle.scale
-        anchors.topMargin: -59 * NeptuneStyle.scale
-        anchors.bottomMargin: -59 * NeptuneStyle.scale
+        anchors.leftMargin: NeptuneStyle.dp(-59)
+        anchors.rightMargin: NeptuneStyle.dp(-59)
+        anchors.topMargin: NeptuneStyle.dp(-59)
+        anchors.bottomMargin: NeptuneStyle.dp(-59)
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -160,7 +160,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        width: 40 * NeptuneStyle.scale
+        width: NeptuneStyle.dp(40)
         border { top: 30; bottom: 30 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -177,8 +177,8 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
 
         Image {
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             fillMode: Image.PreserveAspectFit
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -220,8 +220,8 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-widget-move")
         }
     }
@@ -239,8 +239,8 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-widget-close")
         }
     }
@@ -250,8 +250,8 @@ Item {
         id: cornerImage
         anchors.right: parent.right
         anchors.top: parent.top
-        width: sourceSize.width * NeptuneStyle.scale
-        height: sourceSize.height * NeptuneStyle.scale
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
         source: Style.gfx2("widget-corner", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
@@ -269,8 +269,8 @@ Item {
             anchors.rightMargin: Style.hspan(.5)
             anchors.top: parent.top
             anchors.topMargin: Style.vspan(.3)
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-expand-to-fullscreen")
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }

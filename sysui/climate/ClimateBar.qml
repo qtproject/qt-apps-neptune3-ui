@@ -65,8 +65,8 @@ Item {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.preferredWidth: sourceSize.width * NeptuneStyle.scale
-            Layout.preferredHeight: sourceSize.height * NeptuneStyle.scale
+            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
             visible: model.leftSeat.heat
@@ -83,8 +83,8 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.preferredWidth: sourceSize.width * NeptuneStyle.scale
-            Layout.preferredHeight: sourceSize.height * NeptuneStyle.scale
+            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-rear-defrost-status", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
             visible: model.rearHeat.enabled
@@ -92,8 +92,8 @@ Item {
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.preferredWidth: sourceSize.width * NeptuneStyle.scale
-            Layout.preferredHeight: sourceSize.height * NeptuneStyle.scale
+            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-front-defrost-status", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
             visible: model.frontHeat.enabled
@@ -110,8 +110,8 @@ Item {
         }
         Image {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.preferredWidth: sourceSize.width * NeptuneStyle.scale
-            Layout.preferredHeight: sourceSize.height * NeptuneStyle.scale
+            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
             visible: model.rightSeat.heat

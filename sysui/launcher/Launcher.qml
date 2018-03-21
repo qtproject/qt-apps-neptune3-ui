@@ -59,8 +59,8 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(134/45) - width/2
-        width: 29 * NeptuneStyle.scale
-        height: 32 * NeptuneStyle.scale
+        width: NeptuneStyle.dp(29)
+        height: NeptuneStyle.dp(32)
 
         symbol: Style.symbol("ic-menu-home")
         ButtonGroup.group: buttonGroup
@@ -70,8 +70,8 @@ Item {
 
         background: Image {
             anchors.centerIn: parent
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             fillMode: Image.PreserveAspectFit
             visible: homeButton.checked
             source: Style.symbol("ic-app-active-bg")
@@ -81,8 +81,8 @@ Item {
 
     Tool {
         id: gridButton
-        width: 23 * NeptuneStyle.scale
-        height: 23 * NeptuneStyle.scale
+        width: NeptuneStyle.dp(23)
+        height: NeptuneStyle.dp(23)
 
         readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
 
@@ -134,15 +134,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Style.vspan(150/80) - (Style.statusBarHeight * root.NeptuneStyle.scale)
+                anchors.topMargin: Style.vspan(150/80) - root.NeptuneStyle.dp(Style.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(152/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - homeButton.height/2
+                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(152/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - gridButton.width/2
+                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -151,15 +151,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Style.vspan(134/80) - (Style.statusBarHeight * root.NeptuneStyle.scale)
+                anchors.topMargin: Style.vspan(134/80) - root.NeptuneStyle.dp(Style.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(120/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - homeButton.height/2
+                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(120/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - gridButton.width/2
+                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -189,11 +189,11 @@ Item {
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(152/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - homeButton.height/2
+                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(152/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - gridButton.width/2
+                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -206,11 +206,11 @@ Item {
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(120/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - homeButton.height/2
+                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(120/80) - (Style.statusBarHeight * root.NeptuneStyle.scale) - gridButton.width/2
+                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         }
     ]

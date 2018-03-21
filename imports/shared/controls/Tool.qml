@@ -54,8 +54,8 @@ ToolButton {
     }
 
     indicator: Image {
-        width: sourceSize.width * NeptuneStyle.scale
-        height: sourceSize.height * NeptuneStyle.scale
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
         anchors.horizontalCenter: !root.symbolOnTop && root.text !== "" ? undefined : parent.horizontalCenter
         anchors.left: !root.symbolOnTop && root.text !== "" ? parent.left : undefined
         anchors.verticalCenter: parent.verticalCenter

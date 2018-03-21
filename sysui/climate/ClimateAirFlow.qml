@@ -51,8 +51,8 @@ Item {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
         model: 9
-        height: 300 * NeptuneStyle.scale
-        width: 100 * NeptuneStyle.scale
+        height: NeptuneStyle.dp(300)
+        width: NeptuneStyle.dp(100)
         clip: true
         visibleItemCount: 3
         wrap: false
@@ -60,12 +60,12 @@ Item {
         opacity: autoMode ? 0 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
         delegate: Item {
-            width: 100 * NeptuneStyle.scale
-            height: 100 * NeptuneStyle.scale
+            width: NeptuneStyle.dp(100)
+            height: NeptuneStyle.dp(100)
             Image {
                 anchors.centerIn: parent
-                width: sourceSize.width * NeptuneStyle.scale
-                height: sourceSize.height * NeptuneStyle.scale
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
                 source: Style.gfx2(("fan-speed-"+index), NeptuneStyle.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
                 fillMode: Image.PreserveAspectFit
@@ -81,24 +81,24 @@ Item {
 
     Item {
         anchors.centerIn: parent
-        width: Math.max(airFlowTop.width, airFlowMiddle.width, airFlowDown.width) + (70 * NeptuneStyle.scale)
-        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - ((40 + 20)  * NeptuneStyle.scale)
+        width: Math.max(airFlowTop.width, airFlowMiddle.width, airFlowDown.width) + NeptuneStyle.dp(70)
+        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - NeptuneStyle.dp(40 + 20)
         Image {
             id: seatImage
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.gfx2("seat", NeptuneStyle.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: -10 * NeptuneStyle.scale
+            anchors.verticalCenterOffset: NeptuneStyle.dp(-10)
             fillMode: Image.PreserveAspectFit
         }
         Image {
             id: airFlowTop
             anchors.left: parent.left
             anchors.top: parent.top
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: root.model.airflow.windshield ? Style.gfx2("air-flow-top-active", NeptuneStyle.theme)
                                                   : Style.gfx2("air-flow-top", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
@@ -112,9 +112,9 @@ Item {
             id: airFlowMiddle
             anchors.left: parent.left
             anchors.top: airFlowTop.bottom
-            anchors.topMargin: -40 * NeptuneStyle.scale
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            anchors.topMargin: NeptuneStyle.dp(-40)
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: root.model.airflow.dashboard ? Style.gfx2("air-flow-middle-active", NeptuneStyle.theme)
                                                  : Style.gfx2("air-flow-middle", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
@@ -128,9 +128,9 @@ Item {
             id: airFlowDown
             anchors.left: parent.left
             anchors.top: airFlowMiddle.bottom
-            anchors.topMargin: 20 * NeptuneStyle.scale
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            anchors.topMargin: NeptuneStyle.dp(20)
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: root.model.airflow.floor ? Style.gfx2("air-flow-bottom-active", NeptuneStyle.theme)
                                              : Style.gfx2("air-flow-bottom", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
@@ -143,8 +143,8 @@ Item {
         MouseArea {
             anchors.left: parent.left
             anchors.bottom: airFlowTop.bottom
-            width: 120 * NeptuneStyle.scale
-            height: 40 * NeptuneStyle.scale
+            width: NeptuneStyle.dp(120)
+            height: NeptuneStyle.dp(40)
             enabled: !autoMode
             onClicked: root.model.airflow.windshield = !root.model.airflow.windshield;
         }

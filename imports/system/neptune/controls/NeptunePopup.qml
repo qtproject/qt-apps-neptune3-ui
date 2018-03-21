@@ -42,7 +42,7 @@ import animations 1.0
 Control {
     id: root
 
-    width: 800 * NeptuneStyle.scale
+    width: NeptuneStyle.dp(800)
     focus: visible
 
     property bool headerBackgroundVisible: false
@@ -50,7 +50,7 @@ Control {
     property Item originItem
     property real _openFromX
     property real _openFromY
-    readonly property int minHeight: 548 * NeptuneStyle.scale
+    readonly property int minHeight: NeptuneStyle.dp(548)
 
     ScalableBorderImage {
         anchors.top: parent.top
@@ -68,10 +68,10 @@ Control {
     background: ScalableBorderImage {
         anchors.fill: root
         source: Style.gfx2("popup-background-9patch", NeptuneStyle.theme)
-        anchors.leftMargin: -40 * NeptuneStyle.scale
-        anchors.rightMargin: -40 * NeptuneStyle.scale
-        anchors.topMargin: -28 * NeptuneStyle.scale
-        anchors.bottomMargin: -52 * NeptuneStyle.scale
+        anchors.leftMargin: NeptuneStyle.dp(-40)
+        anchors.rightMargin: NeptuneStyle.dp(-40)
+        anchors.topMargin: NeptuneStyle.dp(-28)
+        anchors.bottomMargin: NeptuneStyle.dp(-52)
         border.left: 70
         border.right: 70
         border.top: 50
@@ -94,10 +94,10 @@ Control {
         symbol: Style.symbol("ic-close")
         background: Image {
             id: bg
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: 4 * NeptuneStyle.scale
+            anchors.verticalCenterOffset: NeptuneStyle.dp(4)
             source: Style.gfx2("popup-close-button-bg", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
         }

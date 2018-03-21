@@ -39,9 +39,9 @@ T.Button {
     implicitWidth: NeptuneStyle.cellWidth + leftPadding + rightPadding
     implicitHeight: NeptuneStyle.cellHeight + leftPadding + rightPadding
 
-    padding: 6 * NeptuneStyle.scale
-    leftPadding: padding + (2 * NeptuneStyle.scale)
-    rightPadding: padding + (2 * NeptuneStyle.scale)
+    padding: NeptuneStyle.dp(6)
+    leftPadding: padding + NeptuneStyle.dp(2)
+    rightPadding: padding + NeptuneStyle.dp(2)
     font.pixelSize: NeptuneStyle.fontSizeM
     font.weight: Font.Light
 
@@ -61,7 +61,7 @@ T.Button {
     }
 
     background: Rectangle {
-        border.width: !control.enabled && !control.checked ? 2 * NeptuneStyle.scale : 0
+        border.width: !control.enabled && !control.checked ? NeptuneStyle.dp(2) : 0
         border.color: NeptuneStyle.contrastColor
         visible: !control.flat
 

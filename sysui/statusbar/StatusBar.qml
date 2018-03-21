@@ -42,21 +42,21 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    height: Style.statusBarHeight * NeptuneStyle.scale
+    height: NeptuneStyle.dp(Style.statusBarHeight)
 
     property var uiSettings
 
     IndicatorTray {
         model: StatusBarModel.indicators
         anchors.left: parent.left
-        anchors.leftMargin: 20 * NeptuneStyle.scale
+        anchors.leftMargin: NeptuneStyle.dp(20)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
     }
 
     DateAndTime {
         anchors.right: parent.right
-        anchors.rightMargin: 20 * NeptuneStyle.scale
+        anchors.rightMargin: NeptuneStyle.dp(20)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         currentDate: StatusBarModel.currentDate

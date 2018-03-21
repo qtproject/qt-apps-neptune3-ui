@@ -111,9 +111,9 @@ NeptunePopup {
         Image {
             id: shadow
             anchors.top: parent.top
-            anchors.topMargin: 120 * NeptuneStyle.scale
-            width: sourceSize.width * NeptuneStyle.scale
-            height: sourceSize.height * NeptuneStyle.scale
+            anchors.topMargin: NeptuneStyle.dp(120)
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.gfx2("popup-title-shadow")
         }
 
@@ -121,13 +121,13 @@ NeptunePopup {
             id: widgetListview
             anchors {
                 top: shadow.bottom
-                topMargin: 51 * NeptuneStyle.scale
+                topMargin: NeptuneStyle.dp(51)
                 left: parent.left
-                leftMargin: 74 * NeptuneStyle.scale
+                leftMargin: NeptuneStyle.dp(74)
                 right: parent.right
-                rightMargin: 74 * NeptuneStyle.scale
+                rightMargin: NeptuneStyle.dp(74)
                 bottom: parent.bottom
-                bottomMargin: 74 * NeptuneStyle.scale
+                bottomMargin: NeptuneStyle.dp(74)
             }
             model: delegateModel
             interactive: false
