@@ -49,40 +49,77 @@ T.Slider {
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                             (handle ? handle.implicitHeight : 0) + topPadding + bottomPadding)
 
-    padding: NeptuneStyle.dp(6)
+    live: false
+    snapMode: Slider.SnapOnRelease
 
-    readonly property int count: stepSize != 0 ? (to-from)/stepSize : 0.5
+    opacity: enabled ? 1.0 : 0.3
 
-    handle: Image {
-        id: handleItem
-        x: control.leftPadding + (control.availableWidth - width) / 2
-        y: control.topPadding + (control.visualPosition * (control.availableHeight - height))
-        width: NeptuneStyle.dp(139)
-        height: NeptuneStyle.dp(85)
-        source: Style.gfx2("vertical-slider-handle", NeptuneStyle.theme)
-        fillMode: Image.PreserveAspectFit
+    QtObject {
+        id: d
+        readonly property int numberSteps: control.stepSize !== 0 ?
+                                               (control.to - control.from) / control.stepSize : 0
+        readonly property int railSize: numberSteps > 0 ?
+                                   30 * NeptuneStyle.scale : 10 * NeptuneStyle.scale
+        readonly property real railLength: control.horizontal ?
+                                      control.availableWidth - handle.width : control.availableHeight - handle.height
+        readonly property real stepLength: numberSteps ?
+                                               (railLength - gap * (numberSteps - 1)) / numberSteps : 0.0
+        readonly property int gap: 3 * NeptuneStyle.scale
     }
 
-    background: Column {
-        id: rulerNumbers
-        anchors.top: parent.top
-        anchors.topMargin: handleItem.height/2
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: handleItem.height/2
-        anchors.horizontalCenter: parent.horizontalCenter
+    handle: Image {
+        id: handle
+        x: control.leftPadding +
+           (control.horizontal ? control.visualPosition * (control.availableWidth - width) :
+                                 (control.availableWidth - width) / 2)
+        y: control.topPadding +
+           (control.horizontal ? (control.availableHeight - height) / 2 :
+                                 control.visualPosition * (control.availableHeight - height))
+        source: control.horizontal ?
+                    Style.gfx2("slider-handle-horizontal", NeptuneStyle.theme) :
+                    Style.gfx2("slider-handle-vertical", NeptuneStyle.theme)
+    }
 
-        width: Style.hspan(30/45)
-        spacing: Style.vspan(3/80)
+    background: Item {
+        id: railContainer
+        x: control.leftPadding + (control.horizontal ? handle.width / 2 : (control.availableWidth - width) / 2)
+        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : handle.height / 2)
+
+        width: control.horizontal ? d.railLength : d.railSize
+        height: control.horizontal ? d.railSize : d.railLength
 
         Repeater {
-            model: control.count
+            enabled: d.numberSteps
+            model: d.numberSteps
             delegate: Rectangle {
-                id: rect
-                width: parent.width
-                height: rulerNumbers.height/control.count - rulerNumbers.spacing
+                id: rectStep
+                x: control.horizontal ? index * (d.stepLength + d.gap) : 0
+                y: control.horizontal ? 0 : index * (d.stepLength + d.gap)
+                width: control.horizontal ? d.stepLength : railContainer.width
+                height: control.horizontal ? railContainer.height : d.stepLength
                 color: NeptuneStyle.contrastColor
-                opacity: (handleItem.y-handleItem.height/2) > rect.y ? 0.1 : 0.6
+                opacity: control.horizontal ?
+                             (handle.x > (rectStep.x+d.stepLength/2) ? 0.6 : 0.1) :
+                             (handle.y > rectStep.y+d.stepLength/2 ? 0.1 : 0.6)
             }
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: NeptuneStyle.contrastColor
+            visible: d.numberSteps === 0
+            opacity: 0.1
+        }
+
+        Rectangle {
+            x: control.horizontal ? 0 : (parent.width - width) / 2
+            y: control.horizontal ? (parent.height - height) / 2 : control.visualPosition * parent.height
+            width: control.horizontal ? control.position * parent.width : parent.width
+            height: control.horizontal ? parent.height : control.position * parent.height
+            visible: d.numberSteps === 0
+            color: NeptuneStyle.contrastColor
+            opacity: 0.5
         }
     }
 }
