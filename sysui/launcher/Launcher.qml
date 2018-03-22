@@ -59,8 +59,8 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: Style.hspan(134/45) - width/2
-        width: NeptuneStyle.dp(29)
-        height: NeptuneStyle.dp(32)
+        width: NeptuneStyle.dp(90)
+        height: NeptuneStyle.dp(90)
 
         symbol: Style.symbol("ic-menu-home")
         ButtonGroup.group: buttonGroup
@@ -81,8 +81,8 @@ Item {
 
     Tool {
         id: gridButton
-        width: NeptuneStyle.dp(23)
-        height: NeptuneStyle.dp(23)
+        width: NeptuneStyle.dp(90)
+        height: NeptuneStyle.dp(90)
 
         readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
 
