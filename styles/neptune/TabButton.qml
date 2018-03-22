@@ -35,6 +35,7 @@ import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
 
 import com.pelagicore.styles.neptune 3.0
+import controls 1.0
 import utils 1.0
 
 T.TabButton {
@@ -71,7 +72,7 @@ T.TabButton {
 
     readonly property bool selected: TabBar.tabBar.currentIndex == TabBar.index
 
-    background: BorderImage {
+    background: ScalableBorderImage {
         id: borderImage
         anchors.fill: parent
         source: Style.gfx2("tabbar-bg-" + control.positionState, NeptuneStyle.theme)

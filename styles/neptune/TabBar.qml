@@ -31,6 +31,7 @@
 
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
+import com.pelagicore.styles.neptune 3.0
 
 T.TabBar {
     id: control
@@ -54,7 +55,7 @@ T.TabBar {
 
         highlightMoveDuration: 0
         highlightRangeMode: ListView.ApplyRange
-        preferredHighlightBegin: 40
-        preferredHighlightEnd: width - 40
+        preferredHighlightBegin: NeptuneStyle.dp(40)
+        preferredHighlightEnd: width - NeptuneStyle.dp(40)
     }
 }
