@@ -41,6 +41,9 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
+    implicitWidth: NeptuneStyle.dp(borderImage.sourceSize.width)
+    implicitHeight: NeptuneStyle.dp(borderImage.sourceSize.height)
+
     property alias asynchronous: borderImage.asynchronous
     property alias border: borderImage.border
     property alias cache: borderImage.cache
