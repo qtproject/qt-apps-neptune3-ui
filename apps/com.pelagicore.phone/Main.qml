@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import animations 1.0
+import controls 1.0
 import QtGraphicalEffects 1.0
 
 import com.pelagicore.styles.neptune 3.0
@@ -46,7 +47,7 @@ AppUIScreen {
     MultiPointTouchArea {
         id: multiPoint
         anchors.fill: parent
-        anchors.margins: 30
+        anchors.margins: NeptuneStyle.dp(30)
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
         property int count: 0
@@ -56,16 +57,16 @@ AppUIScreen {
         }
     }
 
-    BorderImage {
+    ScalableBorderImage {
         id: fullscreenTopPartBackground
 
         x: root.exposedRect.x
-        y: root.exposedRect.y - 224
+        y: root.exposedRect.y - NeptuneStyle.dp(224)
         width: root.exposedRect.width
-        height: Math.max(sourceSize.height, ((660 - 224) + root.exposedRect.y))
+        height: Math.max(NeptuneStyle.dp(sourceSize.height), NeptuneStyle.dp(660 - 224) + root.exposedRect.y)
 
         border.bottom: 0
-        border.top: sourceSize.height - 1
+        border.top: height - NeptuneStyle.dp(1)
         border.left: 0
         border.right: 0
 

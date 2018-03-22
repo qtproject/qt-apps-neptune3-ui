@@ -50,10 +50,10 @@ Item {
         id: cursor
         visible: textedit.text !== ""
         anchors.right: textedit.right
-        anchors.rightMargin: Style.hspan(0.4)
+        anchors.rightMargin: NeptuneStyle.dp(18)
         anchors.verticalCenter: textedit.verticalCenter
-        width: 2
-        height: 60
+        width: NeptuneStyle.dp(2)
+        height: NeptuneStyle.dp(60)
         color: NeptuneStyle.contrastColor
         opacity: 0
         SequentialAnimation {
@@ -70,9 +70,9 @@ Item {
         anchors.left: gridlayout.left
         anchors.right: gridlayout.right
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(0.5)
-        leftPadding: Style.hspan(0.5)
-        rightPadding: Style.hspan(0.5)
+        anchors.topMargin: NeptuneStyle.dp(40)
+        leftPadding: NeptuneStyle.dp(45 * 0.5)
+        rightPadding: NeptuneStyle.dp(45 * 0.5)
         readOnly: true
         color: NeptuneStyle.primaryTextColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
@@ -86,7 +86,7 @@ Item {
     Tool {
         anchors.right: parent.right
         anchors.verticalCenter: textedit.verticalCenter
-        width: Style.hspan(2)
+        width: NeptuneStyle.dp(90)
         symbol: Style.symbol("ic-erase")
         opacity: textedit.text ? 1.0 : 0.0
         visible: opacity > 0
@@ -97,14 +97,14 @@ Item {
     GridLayout {
         id: gridlayout
 
-        width: 500
-        height: 540
+        width: NeptuneStyle.dp(500)
+        height: NeptuneStyle.dp(540)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textedit.bottom
-        anchors.topMargin: Style.vspan(1)
+        anchors.topMargin: NeptuneStyle.dp(80)
         columns: 3
-        columnSpacing: 10
-        rowSpacing: 10
+        columnSpacing: NeptuneStyle.dp(10)
+        rowSpacing: NeptuneStyle.dp(10)
         KeypadButton {
             primaryText: "1"
             secondaryText: " " // to keep the "1" above

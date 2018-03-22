@@ -75,7 +75,7 @@ Item {
     FavoritesWidgetView {
         id: favoritesWidget
         anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(960/45)
+        width: NeptuneStyle.dp(960)
         anchors.top: parent.top
         state: root.state
 
@@ -91,7 +91,7 @@ Item {
         id: callWidget
         anchors.fill: root.state === "Widget1Row" ? parent : undefined
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.rightMargin: Style.hspan(0.9)
+        anchors.rightMargin: NeptuneStyle.dp(45 * 0.9)
         state: root.state
         store: root.store
         ongoingCall: root.store.ongoingCall
@@ -109,12 +109,12 @@ Item {
     Item {
         id: fullscreenBottom
 
-        width: Style.hspan(1080/45)
+        width: NeptuneStyle.dp(1080)
         anchors.left: parent.left
-        anchors.leftMargin: root.state === "Maximized" ? 0 : -80
+        anchors.leftMargin: root.state === "Maximized" ? 0 : NeptuneStyle.dp(-80)
         Behavior on anchors.leftMargin { DefaultSmoothedAnimation {} }
         anchors.top: parent.top
-        anchors.topMargin: 660 - 224
+        anchors.topMargin: NeptuneStyle.dp(660 - 224)
         anchors.bottom: parent.bottom
 
 
@@ -128,13 +128,13 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: Style.hspan(264/45)
+            width: NeptuneStyle.dp(264)
 
             ToolsColumn {
                 id: toolsColumnComponent
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: Style.vspan(53/80)
+                anchors.topMargin: NeptuneStyle.dp(53)
 
                 translationContext: "PhoneToolsColumn"
                 model: ListModel {
@@ -170,9 +170,9 @@ Item {
             id: stackView
             anchors.left: toolsColumn.right
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(53/80)
+            anchors.topMargin: NeptuneStyle.dp(53)
             anchors.bottom: parent.bottom
-            width: Style.hspan(720/45)
+            width: NeptuneStyle.dp(720)
             pushEnter: Transition {
                 PropertyAnimation {
                     property: "opacity"
@@ -208,4 +208,3 @@ Item {
         }
     }
 }
-

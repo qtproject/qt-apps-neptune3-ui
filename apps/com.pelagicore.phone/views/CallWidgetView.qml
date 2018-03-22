@@ -80,10 +80,10 @@ Item {
                 target: buttonRow; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
             }
             PropertyChanges {
-                target: contactImage; width: Style.hspan(200/45); height: width
+                target: contactImage; width: NeptuneStyle.dp(200); height: width
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: Style.hspan(.7)
+                target: textColumn; anchors.leftMargin: NeptuneStyle.dp(45 * .7)
             }
         },
         State {
@@ -99,7 +99,7 @@ Item {
                 anchors.verticalCenter: contactImage.bottom
             }
             PropertyChanges {
-                target: contactImage; width: 258; height: width; anchors.topMargin: Style.vspan(1)
+                target: contactImage; width: NeptuneStyle.dp(258); height: width; anchors.topMargin: NeptuneStyle.dp(80)
             }
             PropertyChanges {
                 target: textColumn; anchors.leftMargin: 0
@@ -109,7 +109,7 @@ Item {
             name: "Widget3Rows"
             extend: "Widget2Rows"
             PropertyChanges {
-                target: contactImage; width: 413; height: width; anchors.topMargin: Style.vspan(1.6)
+                target: contactImage; width: NeptuneStyle.dp(413); height: width; anchors.topMargin: NeptuneStyle.dp(128)
             }
         },
         State {
@@ -119,7 +119,7 @@ Item {
                 target: buttonRow; scale: .8
             }
             PropertyChanges {
-                target: contactImage; width: Style.hspan(200/45); height: width; anchors.topMargin: Style.vspan(0.3)
+                target: contactImage; width: NeptuneStyle.dp(200); height: width; anchors.topMargin: NeptuneStyle.dp(24)
             }
         }
     ]
@@ -175,7 +175,7 @@ Item {
         id: buttonRow
 
         Tool {
-            Layout.rightMargin: root.state !== "Widget1Row" ? Style.hspan(2) : 0
+            Layout.rightMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
             symbol: Style.symbol("ic-mute-ongoing")
         }
 
@@ -190,7 +190,7 @@ Item {
         }
 
         Tool {
-            Layout.leftMargin: root.state !== "Widget1Row" ? Style.hspan(2) : 0
+            Layout.leftMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
             symbol: Style.symbol("ic-keypad-ongoing")
             //onClicked: root.keypadRequested() // TODO, disabled for now
         }

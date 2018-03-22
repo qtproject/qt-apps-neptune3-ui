@@ -55,11 +55,11 @@ ListView {
         width: ListView.view.width
         bottomPadding: 0
         contentItem: Column {
-            spacing: Style.vspan(.2)
+            spacing: NeptuneStyle.dp(16)
             RowLayout {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: Style.hspan(.5)
+                spacing: NeptuneStyle.dp(45 * .5)
                 Tool {
                     symbol: model.type ? Style.symbol("ic-phone-%1".arg(model.type)) : ""
                 }
@@ -78,7 +78,7 @@ ListView {
             }
             Image {
                 width: parent.width
-                height: 2
+                height: NeptuneStyle.dp(2)
                 source: Style.gfx2("list-divider", NeptuneStyle.theme)
             }
         }

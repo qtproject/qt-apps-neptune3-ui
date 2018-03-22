@@ -40,8 +40,8 @@ import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
-    width: 160
-    height: Style.vspan(100/80)
+    width: NeptuneStyle.dp(160)
+    height: NeptuneStyle.dp(100)
 
     property alias primaryText: primaryLabel.text
     property alias secondaryText: secondaryLabel.text

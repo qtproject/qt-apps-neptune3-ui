@@ -48,22 +48,22 @@ Item {
     states: [
         State {
             name: "Widget1Row"
-            PropertyChanges { target: root; height: 260 }
+            PropertyChanges { target: root; height: NeptuneStyle.dp(260) }
         },
         State {
             name: "Widget2Rows"
-            PropertyChanges { target: root; height: 550 }
+            PropertyChanges { target: root; height: NeptuneStyle.dp(550) }
             PropertyChanges { target: favorites1Row; opacity: 0 }
             PropertyChanges { target: favoritesMoreRows; opacity: 1 }
         },
         State {
             name: "Widget3Rows"
             extend: "Widget2Rows"
-            PropertyChanges { target: root; height: 840 }
+            PropertyChanges { target: root; height: NeptuneStyle.dp(840) }
         },
         State {
             name: "Maximized"
-            PropertyChanges { target: root; height: 436 }
+            PropertyChanges { target: root; height: NeptuneStyle.dp(436) }
         }
 
     ]
@@ -103,11 +103,11 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: Style.hspan(50/45)
-            rightMargin: Style.hspan(50/45)
+            leftMargin: NeptuneStyle.dp(50)
+            rightMargin: NeptuneStyle.dp(50)
         }
 
-        height: Math.min(436, root.exposedRectHeight)
+        height: Math.min(NeptuneStyle.dp(436), root.exposedRectHeight)
 
         opacity: 1.0
         visible: opacity > 0
@@ -115,11 +115,11 @@ Item {
         orientation: ListView.Horizontal
         interactive: false
         clip: true
-        spacing: Style.hspan(50/45)
+        spacing: NeptuneStyle.dp(50)
         model: root.store.favoritesModel
         delegate: RoundImage {
-            height: Style.hspan(130/45)
-            width: height
+            width: NeptuneStyle.dp(130)
+            height: width
             anchors.verticalCenter: parent.verticalCenter
             source: "../assets/profile_photos/%1.jpg".arg(model.handle)
             onClicked: root.store.startCall(model.handle)
@@ -136,12 +136,12 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: Style.hspan(58/45)
-            rightMargin: Style.hspan(58/45)
-            topMargin: Style.vspan(45/80)
+            leftMargin: NeptuneStyle.dp(58)
+            rightMargin: NeptuneStyle.dp(58)
+            topMargin: NeptuneStyle.dp(45)
         }
 
-        height: root.exposedRectHeight - anchors.topMargin - Style.vspan(25/80)
+        height: root.exposedRectHeight - anchors.topMargin - NeptuneStyle.dp(25)
 
         ListView {
             id: listviewMoreRows
@@ -168,18 +168,18 @@ Item {
                         source: "../assets/profile_photos/%1.jpg".arg(model.handle)
                     }
                     Label {
-                        Layout.leftMargin: Style.hspan(22/45)
+                        Layout.leftMargin: NeptuneStyle.dp(22)
                         Layout.fillWidth: true
                         text: model.firstName + " " + model.surname
                         color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
                     }
                     Tool {
-                        Layout.preferredWidth: Style.hspan(100/45)
+                        Layout.preferredWidth: NeptuneStyle.dp(100)
                         height: parent.height
                         symbol: Style.symbol("ic-message-contrast")
                     }
                     Tool {
-                        Layout.preferredWidth: Style.hspan(100/45)
+                        Layout.preferredWidth: NeptuneStyle.dp(100)
                         height: parent.height
                         symbol: Style.symbol("ic-call-contrast")
                         onClicked: root.store.startCall(model.handle)
@@ -201,7 +201,7 @@ Item {
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
             text: qsTr("more", "more contacts")
-            font.pixelSize: 22//NeptuneStyle.fontSizeS   //TODO change to NeptuneStyle when that one has a correct value
+            font.pixelSize: NeptuneStyle.dp(22)//NeptuneStyle.fontSizeS   //TODO change to NeptuneStyle when that one has a correct value
             //TODO make it a button that takes the user to fullscreen with the favorites page.
         }
     }
