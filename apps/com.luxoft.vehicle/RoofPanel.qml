@@ -30,6 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import animations 1.0
@@ -40,7 +41,7 @@ Item {
 
     property real roofOpenProgress: 0.0
 
-    RoofSlider {
+    Slider {
         id: roofSlider
 
         anchors.top: parent.top
