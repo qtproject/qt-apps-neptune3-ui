@@ -53,33 +53,33 @@ T.Switch {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: 8
-    spacing: 8
+    padding: NeptuneStyle.dp(8)
+    spacing: NeptuneStyle.dp(8)
 
     indicator: PaddedRectangle {
-        implicitWidth: 50
-        implicitHeight: 30
+        implicitWidth: NeptuneStyle.dp(50)
+        implicitHeight: NeptuneStyle.dp(30)
 
         x: text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
 
-        radius: 15
+        radius: NeptuneStyle.dp(15)
         leftPadding: 0
         rightPadding: 0
-        padding: (height - 30) / 2
+        padding: (height - NeptuneStyle.dp(30)) / 2
         color: 'transparent'
-        border.width: control.visualFocus ? 2 : 1.4
+        border.width: control.visualFocus ? NeptunStyle.dp(2) : NeptuneStyle.dp(1.4)
         border.color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
         opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
             y: (parent.height - height) / 2
-            width: 28
+            width: NeptuneStyle.dp(28)
             height: width
             radius: width/2
             color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
-            border.width: control.visualFocus ? 2 : 1
+            border.width: control.visualFocus ? NeptuneStyle.dp(2) : NeptuneStyle.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
             Behavior on x {
