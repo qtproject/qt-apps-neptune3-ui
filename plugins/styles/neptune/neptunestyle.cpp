@@ -121,13 +121,13 @@ public:
     }
 
     void compute() {
-        fontSizeXXS = font.pixelSize() * 0.4 * fontFactor;
-        fontSizeXS = font.pixelSize() * 0.6 * fontFactor;
-        fontSizeS = font.pixelSize() * 0.8 * fontFactor;
-        fontSizeM = font.pixelSize() * 1.0 * fontFactor;
-        fontSizeL = font.pixelSize() * 1.25 * fontFactor;
-        fontSizeXL = font.pixelSize() * 1.5 * fontFactor;
-        fontSizeXXL = font.pixelSize() * 1.75 * fontFactor;
+        fontSizeXXS = qRound(font.pixelSize() * 0.4 * fontFactor);
+        fontSizeXS = qRound(font.pixelSize() * 0.6 * fontFactor);
+        fontSizeS = qRound(font.pixelSize() * 0.8 * fontFactor);
+        fontSizeM = qRound(font.pixelSize() * 1.0 * fontFactor);
+        fontSizeL = qRound(font.pixelSize() * 1.25 * fontFactor);
+        fontSizeXL = qRound(font.pixelSize() * 1.5 * fontFactor);
+        fontSizeXXL = qRound(font.pixelSize() * 1.75 * fontFactor);
     }
 
     QFont font;
@@ -169,7 +169,7 @@ static int toInteger(const QByteArray &data, int defaultValue)
 static qreal toReal(const QByteArray &data, qreal defaultValue)
 {
     bool ok;
-    int value = data.toFloat(&ok);
+    qreal value = data.toDouble(&ok);
     if (ok)
         return value;
     return defaultValue;
@@ -309,37 +309,37 @@ QColor NeptuneStyle::darker75(const QColor& color)
 
 int NeptuneStyle::fontSizeXXS() const
 {
-    return m_data->fontSizeXXS * m_data->scale;
+    return qRound(m_data->fontSizeXXS * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeXS() const
 {
-    return m_data->fontSizeXS * m_data->scale;
+    return qRound(m_data->fontSizeXS * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeS() const
 {
-    return m_data->fontSizeS * m_data->scale;
+    return qRound(m_data->fontSizeS * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeM() const
 {
-    return m_data->fontSizeM * m_data->scale;
+    return qRound(m_data->fontSizeM * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeL() const
 {
-    return m_data->fontSizeL * m_data->scale;
+    return qRound(m_data->fontSizeL * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeXL() const
 {
-    return m_data->fontSizeXL * m_data->scale;
+    return qRound(m_data->fontSizeXL * m_data->scale);
 }
 
 int NeptuneStyle::fontSizeXXL() const
 {
-    return m_data->fontSizeXXL * m_data->scale;
+    return qRound(m_data->fontSizeXXL * m_data->scale);
 }
 
 QString NeptuneStyle::backgroundImage() const
@@ -355,7 +355,7 @@ QString NeptuneStyle::fontFamily() const
 
 int NeptuneStyle::fontFactor() const
 {
-    return m_data->fontFactor;
+    return qRound(m_data->fontFactor);
 }
 
 void NeptuneStyle::init()
