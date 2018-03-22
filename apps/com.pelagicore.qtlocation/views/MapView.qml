@@ -44,23 +44,39 @@ import animations 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
+import "../controls"
+import "../panels"
+import "../stores"
+import "../helpers"
+
 Item {
     id: root
 
     property bool offlineMapsEnabled
     onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()
 
+    property MapStore store
+
     // props for secondary window
-    property alias mapInteractive: mainMap.mapInteractive
-    property alias mapCenter: mainMap.center
-    property alias mapZoomLevel: mainMap.zoomLevel
-    property alias mapTilt: mainMap.tilt
-    property alias mapBearing: mainMap.bearing
-    readonly property alias mapReady: mainMap.mapReady
+    property alias mapInteractive: mapBoxView.mapInteractive
+    property alias mapCenter: mapBoxView.center
+    property alias mapZoomLevel: mapBoxView.zoomLevel
+    property alias mapTilt: mapBoxView.tilt
+    property alias mapBearing: mapBoxView.bearing
+    readonly property alias mapReady: mapBoxView.mapReady
+    readonly property alias currentLocation: priv.positionCoordinate
 
     property bool searchViewEnabled: false
+    property Helper helper: Helper {}
 
     signal maximizeMap()
+
+    Component.onCompleted: {
+        root.store.homeCoord = mapBoxView.mapHeader.homeAddressData;
+        root.store.workCoord = mapBoxView.mapHeader.workAddressData;
+    }
+
+    onStateChanged: root.searchViewEnabled = false;
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;
@@ -80,11 +96,11 @@ Item {
     }
 
     function getAvailableMapsAndLocation() {
-        if (mainMap.mapReady) {
+        if (mapBoxView.mapReady) {
             mapTypeModel.clear();
             console.info("Supported map types:");
-            for (var i = 0; i < mainMap.supportedMapTypes.length; i++) {
-                var map = mainMap.supportedMapTypes[i];
+            for (var i = 0; i < mapBoxView.supportedMapTypes.length; i++) {
+                var map = mapBoxView.supportedMapTypes[i];
                 mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
                 console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
             }
@@ -95,7 +111,7 @@ Item {
     }
 
     function getMapType(name) {
-        if (!mainMap.mapReady || !mapTypeModel.count) {
+        if (!mapBoxView.mapReady || !mapTypeModel.count) {
             return
         }
         for (var i = 0; i < mapTypeModel.count; i++) {
@@ -163,15 +179,23 @@ Item {
         limit: 20
     }
 
-    MapView {
-        id: mainMap
+    MapBoxPanel {
+        id: mapBoxView
         anchors.fill: parent
         plugin: mapPlugin
-        routingPlugin: geocodePlugin
         center: priv.positionCoordinate
         state: root.state
         currentLocation: priv.positionCoordinate
         offlineMapsEnabled: root.offlineMapsEnabled
+        destination: root.store.destination
+        model: root.store.model
+        routeDistance: root.store.routeDistance
+        routeTime: root.store.routeTime
+        routeSegments: root.store.routeSegments
+        homeRouteTime: root.store.homeRouteTime
+        workRouteTime: root.store.workRouteTime
+        destCoord: root.store.destCoord
+
         activeMapType: {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
@@ -187,14 +211,20 @@ Item {
         }
         onShowRouteRequested: {
             priv.originalPosition = priv.positionCoordinate;
+            root.store.destCoord = destCoord;
+            root.store.destination = description;
+            root.store.startCoord = mapBoxView.currentLocation;
         }
         onStopNavigationRequested: {
             priv.positionCoordinate = priv.originalPosition;
-            mainMap.center = priv.positionCoordinate;
+            mapBoxView.center = priv.positionCoordinate;
         }
 
         onMapReadyChanged: getAvailableMapsAndLocation();
-        onMaximizeMap: root.maximizeMap()
+        onMaximizeMap: root.maximizeMap();
+        Component.onCompleted: {
+            root.store.routingPlugin = geocodePlugin
+        }
     }
 
     NeptuneControls.Tool {
@@ -205,17 +235,17 @@ Item {
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-        symbol: Qt.resolvedUrl("assets/ic-search.png")
+        symbol: Qt.resolvedUrl("../assets/ic-search.png")
         background: Image {
             fillMode: Image.Pad
-            source: Style.localAsset("floating-button-bg", NeptuneStyle.theme)
+            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         onClicked: root.maximizeMap()
     }
 
     FastBlur {
-        anchors.fill: mainMap
-        source: mainMap
+        anchors.fill: mapBoxView
+        source: mapBoxView
         radius: 64
         visible: searchViewEnabled
     }
@@ -231,93 +261,40 @@ Item {
         visible: searchViewEnabled
     }
 
-    ColumnLayout {
+    SearchOverlayPanel {
         id: searchOverlay
         anchors.fill: root
         anchors.topMargin: Style.vspan(1)
         visible: searchViewEnabled
         spacing: Style.vspan(1)
+        model: geocodeModel
 
-        NeptuneControls.Tool {
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
-            symbol: Style.symbol("ic_back")
-            onClicked: searchViewEnabled = false
-            text: qsTr("Back")
-        }
+        onBackButtonClicked: searchViewEnabled = false
 
-        MapSearchTextField {
-            id: searchField
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(2)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(2)
-            selectByMouse: true
-            focus: searchViewEnabled
-            busy: geocodeModel.status == GeocodeModel.Loading
-            onAccepted: {
-                geocodeModel.query = searchField.text;
-                geocodeModel.update();
-                searchViewEnabled = false;
-            }
-            onTextChanged: {
-                if (text.length > 1) {
-                    searchTimer.restart();
-                } else {
-                    searchTimer.stop();
-                    geocodeModel.reset();
-                }
-            }
-            Keys.onEscapePressed: searchViewEnabled = false
-        }
-
-        ListView {
-            id: searchResultsList
-            Layout.fillHeight: true
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(2)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(2)
-            clip: true
-            model: geocodeModel
-            visible: searchViewEnabled
-            state: root.state
-            delegate: NeptuneControls.ListItem {
-                id: itemDelegate
-                width: parent.width
-                height: Style.vspan(1.5)
-                readonly property string addressText: locationData.address.text
-                readonly property string city: locationData.address.city
-                readonly property string country: locationData.address.country
-                text: addressText
-                subText: itemDelegate.city !== "" ? itemDelegate.city + ", " + itemDelegate.country : itemDelegate.country;
-                onClicked: {
-                    searchViewEnabled = false;
-                    mainMap.center = locationData.coordinate;
-                    mainMap.startCoord = priv.positionCoordinate;
-                    mainMap.destCoord = locationData.coordinate;
-                    mainMap.destination = itemDelegate.addressText;
-                    if (locationData.boundingBox.isValid) {
-                        mainMap.visibleRegion = locationData.boundingBox;
-                    }
-                    mainMap.navigationMode = true;
-                }
-            }
-            onStateChanged: {
-                if (state !== "Maximized") {
-                    searchViewEnabled = false;
-                }
-            }
-            ScrollIndicator.vertical: ScrollIndicator {}
-        }
-    }
-
-    Timer {
-        id: searchTimer
-        interval: 500
-        onTriggered: {
-            geocodeModel.query = searchField.text;
+        onSearchFieldAccepted: {
+            geocodeModel.query = searchOverlay.searchQuery;
             geocodeModel.update();
+            searchViewEnabled = false;
+        }
+
+        onSearchQueryChanged: {
+            geocodeModel.reset();
+            geocodeModel.query = searchQuery;
+            geocodeModel.update();
+        }
+
+        onEscapePressed: searchViewEnabled = false
+
+        onItemClicked: {
+            searchViewEnabled = false;
+            mapBoxView.center = coordinate;
+            root.store.startCoord = priv.positionCoordinate;
+            root.store.destCoord = coordinate;
+            root.store.destination = addressText;
+            if (boundingBox.isValid) {
+                mapBoxView.visibleRegion = boundingBox;
+            }
+            mapBoxView.navigationMode = true;
         }
     }
 }

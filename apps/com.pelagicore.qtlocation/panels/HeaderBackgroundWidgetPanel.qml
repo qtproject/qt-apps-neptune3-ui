@@ -30,55 +30,27 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.2
 
-import controls 1.0 as NeptuneControls
 import utils 1.0
-import com.pelagicore.styles.neptune 3.0
+import animations 1.0
 
-Row {
+import com.pelagicore.styles.neptune 3.0
+import "../helpers"
+
+Item {
     id: root
 
-    signal openSearchTextInput()
+    property Helper helper: Helper {}
+    height: widgetBackgroundImage.height
 
-    spacing: Style.hspan(.5)
-
-    Item {
-        width: parent.width/2
-        height: parent.height
-        Label {
-            width: parent.width/2
-            wrapMode: Text.WordWrap
-            maximumLineCount: 2
-            elide: Label.ElideRight
-            font.pixelSize: NeptuneStyle.fontSizeS
-            text: qsTr("Where do you wanna go today?")
-        }
-    }
-
-    Button {
-        id: searchButton
-        width: parent.width / 2
-        height: Style.vspan(.9)
-        scale: pressed ? 1.1 : 1.0
-        Behavior on scale { NumberAnimation { duration: 50 } }
-
-        contentItem: Item {
-            Row {
-                anchors.centerIn: parent
-                spacing: Style.hspan(0.3)
-                Image {
-                    anchors.verticalCenter: parent.verticalCenter
-                    fillMode: Image.Pad
-                    source: Style.localAsset("ic-search", NeptuneStyle.theme)
-                }
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Search")
-                    font.pixelSize: NeptuneStyle.fontSizeS
-                }
-            }
-        }
-        onClicked: root.openSearchTextInput()
+    Image {
+        id: widgetBackgroundImage
+        height: root.state === "Widget3Rows" ? sourceSize.height : sourceSize.height/2
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        fillMode: Image.TileHorizontally
+        source: helper.localAsset("navigation-widget-overlay-top", NeptuneStyle.theme)
+        Behavior on height { DefaultNumberAnimation {} }
     }
 }

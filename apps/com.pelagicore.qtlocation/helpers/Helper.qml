@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Pelagicore AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,26 +29,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-
-import utils 1.0
-import animations 1.0
-
+import QtQuick 2.10
 import com.pelagicore.styles.neptune 3.0
 
-Item {
+QtObject {
     id: root
 
-    height: widgetBackgroundImage.height
-
-    Image {
-        id: widgetBackgroundImage
-        height: root.state === "Widget3Rows" ? sourceSize.height : sourceSize.height/2
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        fillMode: Image.TileHorizontally
-        source: Style.localAsset("navigation-widget-overlay-top", NeptuneStyle.theme)
-        Behavior on height { DefaultNumberAnimation {} }
+    function localAsset(asset, theme) {
+        var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
+        return "../assets/" + asset + themeStr + '.png'
     }
 }

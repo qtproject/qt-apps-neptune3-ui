@@ -73,7 +73,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(210/80)
         active: root.state === "Maximized"
-        sourceComponent: HeaderBackgroundMaximized {
+        sourceComponent: HeaderBackgroundMaximizedPanel {
             navigationMode: root.navigationMode
             guidanceMode: root.guidanceMode
             destinationButtonrowHeight: root.destinationButtonrowHeight
@@ -86,7 +86,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         active: root.state === "Widget2Rows" || root.state === "Widget3Rows"
-        sourceComponent: HeaderBackgroundWidget {
+        sourceComponent: HeaderBackgroundWidgetPanel {
             state: root.state
         }
     }
@@ -99,7 +99,7 @@ Item {
         anchors.top: headerBackgroundFullscreen.top
         anchors.topMargin: Style.vspan(1.4)
         anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
-        sourceComponent: NavigationSearch {
+        sourceComponent: NavigationSearchPanel {
             onOpenSearchTextInput: root.openSearchTextInput()
         }
     }
@@ -112,7 +112,7 @@ Item {
         anchors.top: headerBackgroundWidget.top
         anchors.topMargin: Style.vspan(.6)
         anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
-        sourceComponent: NavigationSearch {
+        sourceComponent: NavigationSearchPanel {
             onOpenSearchTextInput: root.openSearchTextInput()
         }
     }
@@ -122,7 +122,7 @@ Item {
         anchors.fill: headerBackgroundFullscreen
         anchors.rightMargin: Style.hspan(.5)
         active: headerBackgroundFullscreen.active && root.navigationMode
-        sourceComponent: NavigationConfirm {
+        sourceComponent: NavigationConfirmPanel {
             guidanceMode: root.guidanceMode
             destination: root.destination
             routeDistance: root.routeDistance
@@ -143,7 +143,7 @@ Item {
         anchors.rightMargin: Style.hspan(1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundFullscreen.active && !root.navigationMode
-        sourceComponent: FavoriteDestinationButtons {
+        sourceComponent: FavDestinationButtonsPanel {
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime
@@ -162,7 +162,7 @@ Item {
         anchors.rightMargin: Style.hspan(1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundWidget.active && root.state === "Widget3Rows"
-        sourceComponent: FavoriteDestinationButtons {
+        sourceComponent: FavDestinationButtonsPanel {
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime

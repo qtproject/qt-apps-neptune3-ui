@@ -36,6 +36,8 @@ import QtPositioning 5.9
 import animations 1.0
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
+import "../controls"
+import "../helpers"
 
 Item {
     id: root
@@ -46,6 +48,8 @@ Item {
     property string homeRouteTime: ""
     property string workRouteTime: ""
 
+    property Helper helper: Helper {}
+
     signal showRoute(var destCoord, string description)
 
     RowLayout {
@@ -54,7 +58,7 @@ Item {
             id: buttonGoHome
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Style.localAsset("ic-home", NeptuneStyle.theme)
+            iconSource: helper.localAsset("ic-home", NeptuneStyle.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -71,7 +75,7 @@ Item {
             id: buttonGoWork
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Style.localAsset("ic-work", NeptuneStyle.theme)
+            iconSource: helper.localAsset("ic-work", NeptuneStyle.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

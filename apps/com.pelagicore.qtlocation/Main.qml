@@ -36,6 +36,8 @@ import com.pelagicore.systeminfo 1.0
 import com.pelagicore.qtlocation 1.0
 
 import QtApplicationManager 1.0
+import "views"
+import "stores"
 
 QtObject {
     id: root
@@ -70,7 +72,7 @@ QtObject {
             }
         }
 
-        Maps {
+        MapView {
             id: mainMap
             x: state === "Maximized" && !searchViewEnabled ? mainWindow.x : mainWindow.exposedRect.x
             y: state === "Maximized" && !searchViewEnabled ? mainWindow.y : mainWindow.exposedRect.y
@@ -79,6 +81,9 @@ QtObject {
             state: mainWindow.neptuneState
             offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
             mapInteractive: !searchViewEnabled
+            store: MapStore {
+                currentLocationCoord: mainMap.currentLocation
+            }
 
             onMapReadyChanged: {
                 if (mapReady && !mainWindow.secondaryWindowObject) {
@@ -98,7 +103,7 @@ QtObject {
     property Component secondaryWindowComponent: Component {
         id: secondaryWindowComponent
         SecondaryWindow {
-            Maps {
+            MapView {
                 anchors.fill: parent
                 mapInteractive: false
                 mapCenter: mainMap.mapCenter
@@ -106,6 +111,7 @@ QtObject {
                 mapTilt: mainMap.mapTilt
                 mapBearing: mainMap.mapBearing
                 offlineMapsEnabled: mainMap.offlineMapsEnabled
+                store: mainMap.store
             }
         }
     }

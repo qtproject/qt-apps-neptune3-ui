@@ -35,6 +35,7 @@ import utils 1.0
 import animations 1.0
 
 import com.pelagicore.styles.neptune 3.0
+import "../helpers"
 
 Item {
     id: root
@@ -42,6 +43,8 @@ Item {
     property int destinationButtonrowHeight: 0
     property bool navigationMode: false
     property bool guidanceMode: false
+    property Helper helper: Helper {}
+
     height: destinationButtonsPanel.visible ? destinationButtonsPanel.sourceSize.height : searchPanel.height
 
     BorderImage {
@@ -52,7 +55,7 @@ Item {
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Style.vspan(.5)
         height: root.navigationMode && !root.guidanceMode ? sourceSize.height - root.destinationButtonrowHeight : sourceSize.height
-        source: Style.localAsset("panel-shadow", NeptuneStyle.theme)
+        source: helper.localAsset("panel-shadow", NeptuneStyle.theme)
         border {
             left: 0
             top: 101
@@ -67,7 +70,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
-        source: Style.localAsset("panel-more-contrast-background", NeptuneStyle.theme)
+        source: helper.localAsset("panel-more-contrast-background", NeptuneStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -93,7 +96,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: -Style.vspan(1)
         height: root.guidanceMode ? sourceSize.height : destinationButtonsPanel.sourceSize.height - root.destinationButtonrowHeight
-        source: Style.localAsset("panel-background", NeptuneStyle.theme)
+        source: helper.localAsset("panel-background", NeptuneStyle.theme)
         border {
             left: 0
             top: 20

@@ -39,6 +39,8 @@ import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 import controls 1.0 as NeptuneControls
 import animations 1.0
+import "../controls"
+import "../helpers"
 
 Item {
     id: root
@@ -53,21 +55,29 @@ Item {
     property alias tilt: mainMap.tilt
     property alias bearing: mainMap.bearing
     property alias zoomLevel: mainMap.zoomLevel
+    property alias mapHeader: header
+
+    property string destination
+    property RouteModel model
+    property string routeDistance
+    property string routeTime
+    property var routeSegments
+    property string homeRouteTime
+    property string workRouteTime
+    property var destCoord: QtPositioning.coordinate()
 
     property bool offlineMapsEnabled
     property bool navigationMode
     property bool guidanceMode
-    property alias routingPlugin: mapRouting.routingPlugin
-    property alias startCoord: mapRouting.startCoord
-    property alias destCoord: mapRouting.destCoord
-    property alias destination: mapRouting.destination
     property var currentLocation
+
+    property Helper helper: Helper {}
 
     signal openSearchTextInput()
     signal maximizeMap()
     signal startNavigationRequested()
     signal stopNavigationRequested()
-    signal showRouteRequested()
+    signal showRouteRequested(var destCoord, var description)
 
     function zoomIn() {
         mainMap.zoomLevel += 1.0;
@@ -96,16 +106,9 @@ Item {
             console.warn("Map error:", error, errorString)
         }
 
-        MapRouting {
-            id: mapRouting
-            currentLocationCoord: root.currentLocation
-            homeCoord: header.homeAddressData
-            workCoord: header.workAddressData
-        }
-
         MapItemView {
             autoFitViewport: true
-            model: root.guidanceMode ? mapRouting.model : null
+            model: root.guidanceMode ? root.model : null
             delegate: MapRoute {
                 route: routeData
                 line.color: "#798bd9"
@@ -118,12 +121,12 @@ Item {
         MapQuickItem {
             id: destMarker
             anchorPoint: Qt.point(markerImage.width * 0.5, markerImage.height * 0.8)
-            coordinate: mapRouting.destCoord ? mapRouting.destCoord : QtPositioning.coordinate()
-            visible: root.navigationMode && mapRouting.destCoord.isValid
+            coordinate: root.destCoord ? root.destCoord : QtPositioning.coordinate()
+            visible: root.navigationMode && root.destCoord.isValid
 
             sourceItem: Image {
                 id: markerImage
-                source: Qt.resolvedUrl("assets/pin-destination.png")
+                source: Qt.resolvedUrl("../assets/pin-destination.png")
                 width: 139/2
                 height: 161/2
             }
@@ -132,17 +135,17 @@ Item {
         MapQuickItem {
             id: posMarker
             anchorPoint: Qt.point(posImage.width * 0.5, posImage.height * 0.5)
-            coordinate: mapRouting.routeSegments && mapRouting.routeSegments[0] ? mapRouting.routeSegments[0].path[0]
-                                                                                : QtPositioning.coordinate()
+            coordinate: root.routeSegments && root.routeSegments[0] ? root.routeSegments[0].path[0]
+                                                                       : QtPositioning.coordinate()
             visible: root.guidanceMode
 
             sourceItem: Image {
                 id: posImage
-                source: Qt.resolvedUrl("assets/pin-your-position.png")
+                source: Qt.resolvedUrl("../assets/pin-your-position.png")
                 width: 116/2
                 height: 135/2
             }
-            rotation: mapRouting.routeSegments ? mapRouting.routeSegments[0].path[0].azimuthTo(mapRouting.routeSegments[0].path[1])
+            rotation: root.routeSegments ? root.routeSegments[0].path[0].azimuthTo(root.routeSegments[0].path[1])
                                                : 0
         }
     }
@@ -150,7 +153,7 @@ Item {
     Image {
         id: mask
         anchors.fill: mainMap
-        source: Style.localAsset("bg-home-navigation-overlay", NeptuneStyle.theme)
+        source: helper.localAsset("bg-home-navigation-overlay", NeptuneStyle.theme)
         visible: root.state === "Maximized"
         scale: root.state === "Maximized" ? 1 : 1.6
         Behavior on scale {
@@ -158,7 +161,7 @@ Item {
         }
     }
 
-    MapHeader {
+    MapHeaderPanel {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
@@ -174,11 +177,11 @@ Item {
         navigationMode: root.navigationMode
         guidanceMode: root.guidanceMode
         currentLocation: root.currentLocation
-        destination: mapRouting.destination
-        routeDistance: mapRouting.routeDistance
-        routeTime: mapRouting.routeTime
-        homeRouteTime: mapRouting.homeRouteTime
-        workRouteTime: mapRouting.workRouteTime
+        destination: root.destination
+        routeDistance: root.routeDistance
+        routeTime: root.routeTime
+        homeRouteTime: root.homeRouteTime
+        workRouteTime: root.workRouteTime
 
         onOpenSearchTextInput: root.openSearchTextInput()
         onStartNavigation: {
@@ -192,11 +195,8 @@ Item {
             root.guidanceMode = false;
         }
         onShowRoute: {
-            root.showRouteRequested();
+            root.showRouteRequested(destCoord, description);
             root.center = destCoord;
-            root.startCoord = root.currentLocation;
-            root.destCoord = destCoord;
-            root.destination = description;
             root.navigationMode = true;
             root.maximizeMap();
         }
@@ -213,9 +213,9 @@ Item {
         visible: opacity > 0
         background: Image {
             fillMode: Image.Pad
-            source: Style.localAsset("floating-button-bg", NeptuneStyle.theme)
+            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
-        symbol: checked ? Qt.resolvedUrl("assets/ic-3D_ON.png") : Qt.resolvedUrl("assets/ic-3D_OFF.png")
+        symbol: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 

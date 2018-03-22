@@ -29,46 +29,37 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.0
+import QtQuick 2.9
+import QtQuick.Window 2.3
+
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-TextField {
+import ".."
+
+Window {
     id: root
+    width: 1080
+    height: 1920
 
-    property alias busy: searchBusyIndicator.running
+    color: root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? "black" : "white"
 
-    font.family: NeptuneStyle.fontFamily
-    font.pixelSize: NeptuneStyle.fontSizeM
-    color: NeptuneStyle.primaryTextColor
-    selectedTextColor: NeptuneStyle.highlightedTextColor
-    leftPadding: Style.hspan(0.4)
-    rightPadding: Style.hspan(1.4)
-    horizontalAlignment: TextInput.AlignLeft
+    Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
+    Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
+    Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
 
-    background: Rectangle {
-        border.color: NeptuneStyle.buttonColor
-        border.width: 1
-        color: "transparent"
-        radius: height/2
-        Item {
-            anchors.fill: parent
-            Image {
-                id: iconSearch
-                anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(0.4)
-                anchors.verticalCenter: parent.verticalCenter
-                source: Style.localAsset("ic-search", NeptuneStyle.theme)
-                visible: !searchBusyIndicator.visible
-            }
-            BusyIndicator {
-                id: searchBusyIndicator
-                anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(0.4)
-                anchors.verticalCenter: parent.verticalCenter
-                visible: running
-            }
+    Shortcut {
+        sequence: "Ctrl+t"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            var otherTheme = root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? NeptuneStyle.Light
+                                                                                     : NeptuneStyle.Dark;
+            root.contentItem.NeptuneStyle.theme = otherTheme;
         }
+    }
+
+    Maps {
+        anchors.fill: parent
+        state: "Maximized"
     }
 }

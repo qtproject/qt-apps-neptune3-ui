@@ -366,14 +366,25 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
-    <name>FavoriteDestinationButtons</name>
+    <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
-        <translation>Domů</translation>
+        <translation type="unfinished">Domů</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation>Práce</translation>
+        <translation type="unfinished">Práce</translation>
+    </message>
+</context>
+<context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <source>Home</source>
+        <translation type="vanished">Domů</translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="vanished">Práce</translation>
     </message>
 </context>
 <context>
@@ -538,7 +549,7 @@ UX na cestu</translation>
     <name>MapRouting</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n kilometr</numerusform>
             <numerusform>%n kilometry</numerusform>
             <numerusform>%n kilometrů</numerusform>
@@ -546,7 +557,7 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n den</numerusform>
             <numerusform>%n dny</numerusform>
             <numerusform>%n dnů</numerusform>
@@ -554,7 +565,7 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n hodina</numerusform>
             <numerusform>%n hodiny</numerusform>
             <numerusform>%n hodin</numerusform>
@@ -562,7 +573,42 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="vanished">
+            <numerusform>%n minuta</numerusform>
+            <numerusform>%n minuty</numerusform>
+            <numerusform>%n minut</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapStore</name>
+    <message numerus="yes">
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n kilometr</numerusform>
+            <numerusform>%n kilometry</numerusform>
+            <numerusform>%n kilometrů</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n den</numerusform>
+            <numerusform>%n dny</numerusform>
+            <numerusform>%n dnů</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n hodina</numerusform>
+            <numerusform>%n hodiny</numerusform>
+            <numerusform>%n hodin</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
             <numerusform>%n minuta</numerusform>
             <numerusform>%n minuty</numerusform>
             <numerusform>%n minut</numerusform>
@@ -597,10 +643,6 @@ UX na cestu</translation>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">Kam se chcete vydat dnes?</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -766,18 +808,36 @@ UX na cestu</translation>
     <name>NavigationConfirm</name>
     <message>
         <source>Start Navigation</source>
-        <translation>Spustit navigaci</translation>
+        <translation type="vanished">Spustit navigaci</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirmPanel</name>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished">Spustit navigaci</translation>
     </message>
 </context>
 <context>
     <name>NavigationSearch</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation>Kam se chcete vydat dnes?</translation>
+        <translation type="vanished">Kam se chcete vydat dnes?</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Hledat</translation>
+        <translation type="vanished">Hledat</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearchPanel</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">Kam se chcete vydat dnes?</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
     </message>
 </context>
 <context>
@@ -898,6 +958,13 @@ UX na cestu</translation>
     <message>
         <source>Dark</source>
         <translation>Tmavý</translation>
+    </message>
+</context>
+<context>
+    <name>SearchOverlayPanel</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

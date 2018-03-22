@@ -295,14 +295,25 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>FavoriteDestinationButtons</name>
+    <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
-        <translation>ホーム</translation>
+        <translation type="unfinished">ホーム</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation>作業</translation>
+        <translation type="unfinished">作業</translation>
+    </message>
+</context>
+<context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <source>Home</source>
+        <translation type="vanished">ホーム</translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="vanished">作業</translation>
     </message>
 </context>
 <context>
@@ -432,25 +443,52 @@ UX to the road</source>
     <name>MapRouting</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%nキロメートル</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n日</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n時間</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="vanished">
+            <numerusform>%n分</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapStore</name>
+    <message numerus="yes">
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform>%nキロメートル</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n日</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n時間</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
             <numerusform>%n分</numerusform>
         </translation>
     </message>
@@ -467,10 +505,6 @@ UX to the road</source>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">あなたはヒンジを握っていますか？</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -620,18 +654,36 @@ UX to the road</source>
     <name>NavigationConfirm</name>
     <message>
         <source>Start Navigation</source>
-        <translation>ナビゲーションを開始する</translation>
+        <translation type="vanished">ナビゲーションを開始する</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirmPanel</name>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished">ナビゲーションを開始する</translation>
     </message>
 </context>
 <context>
     <name>NavigationSearch</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation>あなたはヒンジを握っていますか？</translation>
+        <translation type="vanished">あなたはヒンジを握っていますか？</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>探す</translation>
+        <translation type="vanished">探す</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearchPanel</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">あなたはヒンジを握っていますか？</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">探す</translation>
     </message>
 </context>
 <context>
@@ -729,6 +781,13 @@ UX to the road</source>
     <message>
         <source>Dark</source>
         <translation>ダーク</translation>
+    </message>
+</context>
+<context>
+    <name>SearchOverlayPanel</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

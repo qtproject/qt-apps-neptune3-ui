@@ -36,6 +36,7 @@ import QtQuick.Layouts 1.3
 import controls 1.0 as NeptuneControls
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
+import "../helpers"
 
 Row {
     id: root
@@ -44,6 +45,7 @@ Row {
     property string destination: ""
     property string routeDistance: ""
     property string routeTime: ""
+    property Helper helper: Helper {}
 
     signal startNavigation()
     signal stopNavigation()
@@ -54,7 +56,7 @@ Row {
         width: Style.hspan(.9)
         height: width
         visible: root.guidanceMode
-        symbol: Qt.resolvedUrl("assets/ic-end-route.png")
+        symbol: Qt.resolvedUrl("../assets/ic-end-route.png")
         onClicked: root.stopNavigation()
     }
 
@@ -106,7 +108,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.Pad
-                    source: Style.localAsset("ic-start-navigation", NeptuneStyle.theme)
+                    source: helper.localAsset("ic-start-navigation", NeptuneStyle.theme)
                     opacity: startNavigationButton.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
                 }
                 Label {

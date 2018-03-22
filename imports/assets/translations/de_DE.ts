@@ -309,7 +309,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>FavoriteDestinationButtons</name>
+    <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
         <translation type="unfinished"></translation>
@@ -420,7 +420,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>MapRouting</name>
+    <name>MapStore</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
         <translation type="unfinished">
@@ -462,10 +462,6 @@ UX to the road</source>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">Wo soll es heute hingehen?</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -581,7 +577,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>NavigationConfirm</name>
+    <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
         <translation type="unfinished"></translation>
@@ -589,6 +585,13 @@ UX to the road</source>
 </context>
 <context>
     <name>NavigationSearch</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="obsolete">Wo soll es heute hingehen?</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished">Wo soll es heute hingehen?</translation>
@@ -674,6 +677,13 @@ UX to the road</source>
     <message>
         <source>Dark</source>
         <translation type="unfinished">Dunkel</translation>
+    </message>
+</context>
+<context>
+    <name>SearchOverlayPanel</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

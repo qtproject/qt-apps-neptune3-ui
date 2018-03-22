@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,35 +29,58 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Window 2.3
+import QtQuick 2.8
+import QtQuick.Controls 2.2
 
+import controls 1.0 as NeptuneControls
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
+import "../helpers"
 
-Window {
+Row {
     id: root
-    width: 1080
-    height: 1920
 
-    color: root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? "black" : "white"
+    property Helper helper: Helper {}
+    signal openSearchTextInput()
 
-    Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
-    Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
-    Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
+    spacing: Style.hspan(.5)
 
-    Shortcut {
-        sequence: "Ctrl+t"
-        context: Qt.ApplicationShortcut
-        onActivated: {
-            var otherTheme = root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? NeptuneStyle.Light
-                                                                                     : NeptuneStyle.Dark;
-            root.contentItem.NeptuneStyle.theme = otherTheme;
+    Item {
+        width: parent.width/2
+        height: parent.height
+        Label {
+            width: parent.width/2
+            wrapMode: Text.WordWrap
+            maximumLineCount: 2
+            elide: Label.ElideRight
+            font.pixelSize: NeptuneStyle.fontSizeS
+            text: qsTr("Where do you wanna go today?")
         }
     }
 
-    Maps {
-        anchors.fill: parent
-        state: "Maximized"
+    Button {
+        id: searchButton
+        width: parent.width / 2
+        height: Style.vspan(.9)
+        scale: pressed ? 1.1 : 1.0
+        Behavior on scale { NumberAnimation { duration: 50 } }
+
+        contentItem: Item {
+            Row {
+                anchors.centerIn: parent
+                spacing: Style.hspan(0.3)
+                Image {
+                    anchors.verticalCenter: parent.verticalCenter
+                    fillMode: Image.Pad
+                    source: helper.localAsset("ic-search", NeptuneStyle.theme)
+                }
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Search")
+                    font.pixelSize: NeptuneStyle.fontSizeS
+                }
+            }
+        }
+        onClicked: root.openSearchTextInput()
     }
 }

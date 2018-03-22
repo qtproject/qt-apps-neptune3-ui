@@ -213,7 +213,7 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>FavoriteDestinationButtons</name>
+    <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
         <translation type="unfinished"></translation>
@@ -282,38 +282,62 @@ UX to the road</source>
     <name>MapRouting</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n kilometer</numerusform>
             <numerusform>%n kilometers</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n day</numerusform>
             <numerusform>%n days</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n hour</numerusform>
             <numerusform>%n hours</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n minute</numerusform>
             <numerusform>%n minutes</numerusform>
         </translation>
     </message>
 </context>
 <context>
-    <name>Maps</name>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
+    <name>MapStore</name>
+    <message numerus="yes">
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n kilometer</numerusform>
+            <numerusform>%n kilometers</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n day</numerusform>
+            <numerusform>%n days</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n hour</numerusform>
+            <numerusform>%n hours</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n minute</numerusform>
+            <numerusform>%n minutes</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -380,14 +404,14 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>NavigationConfirm</name>
+    <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>NavigationSearch</name>
+    <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="unfinished"></translation>
@@ -472,6 +496,13 @@ UX to the road</source>
     </message>
     <message>
         <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchOverlayPanel</name>
+    <message>
+        <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

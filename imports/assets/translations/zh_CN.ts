@@ -302,14 +302,25 @@ UX to the road</source>
     </message>
 </context>
 <context>
-    <name>FavoriteDestinationButtons</name>
+    <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
-        <translation>家</translation>
+        <translation type="unfinished">家</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation>工作</translation>
+        <translation type="unfinished">工作</translation>
+    </message>
+</context>
+<context>
+    <name>FavoriteDestinationButtons</name>
+    <message>
+        <source>Home</source>
+        <translation type="vanished">家</translation>
+    </message>
+    <message>
+        <source>Work</source>
+        <translation type="vanished">工作</translation>
     </message>
 </context>
 <context>
@@ -460,25 +471,52 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>MapRouting</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n公里</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n天</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation>
+        <translation type="vanished">
             <numerusform>%n小时</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="vanished">
+            <numerusform>%n分钟</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>MapStore</name>
+    <message numerus="yes">
+        <source>%n kilometer(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n公里</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n天</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform>%n小时</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation type="unfinished">
             <numerusform>%n分钟</numerusform>
         </translation>
     </message>
@@ -495,10 +533,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">今天你想要去哪儿？</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -652,18 +686,36 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>NavigationConfirm</name>
     <message>
         <source>Start Navigation</source>
-        <translation>开始导航</translation>
+        <translation type="vanished">开始导航</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationConfirmPanel</name>
+    <message>
+        <source>Start Navigation</source>
+        <translation type="unfinished">开始导航</translation>
     </message>
 </context>
 <context>
     <name>NavigationSearch</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation>今天你想要去哪儿？</translation>
+        <translation type="vanished">今天你想要去哪儿？</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>搜索</translation>
+        <translation type="vanished">搜索</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationSearchPanel</name>
+    <message>
+        <source>Where do you wanna go today?</source>
+        <translation type="unfinished">今天你想要去哪儿？</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">搜索</translation>
     </message>
 </context>
 <context>
@@ -776,6 +828,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Dark</source>
         <translation>深色</translation>
+    </message>
+</context>
+<context>
+    <name>SearchOverlayPanel</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
