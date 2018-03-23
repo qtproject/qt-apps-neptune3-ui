@@ -46,8 +46,8 @@ Item {
     property real zeroAng: minAng
     property real maxAng: 90
     property real minAng: -270
-    property color positiveColor: "#fba054"
-    property color negativeColor: "#fba054"
+    property color positiveColor: NeptuneStyle.accentColor
+    property color negativeColor: NeptuneStyle.accentColor
 
     //private
     QtObject {

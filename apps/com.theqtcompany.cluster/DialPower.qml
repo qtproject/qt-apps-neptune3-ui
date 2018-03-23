@@ -249,7 +249,7 @@ Item {
         minAng: -210
         maxAng: 0
         zeroAng: -180
-        positiveColor: "#fba054"
+        positiveColor: NeptuneStyle.accentColor
         negativeColor: "#80447191"
         highLightAng: d.power2Angle(d.ePower)
     }
