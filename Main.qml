@@ -30,7 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.7
-import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 import animations 1.0
@@ -219,50 +218,10 @@ Window {
         }
     }
 
-    // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
-    // hence the implementation of our own modal overlay scheme
-    Item {
+    ModalOverlay {
         id: popupParent
         anchors.fill: display
-        rotation: display.rotation
-
-        property bool showModalOverlay
-        onShowModalOverlayChanged: {
-            effectSource.scheduleUpdate();
-        }
-
-        signal overlayClicked()
-
-        // TODO: Load only when needed
-        MouseArea {
-            anchors.fill: parent
-            visible: opacity > 0
-            opacity: popupParent.showModalOverlay ? 1 : 0
-            Behavior on opacity { DefaultNumberAnimation {}  }
-            Image {
-                anchors.fill: parent
-                source: Style.gfx2(NeptuneStyle.backgroundImage)
-                FastBlur {
-                    anchors.fill: parent
-                    radius: Style.hspan(1)
-                    source: ShaderEffectSource {
-                        id: effectSource
-                        sourceItem: display
-                        live: false
-                    }
-                }
-            }
-            z: -2
-            onClicked: popupParent.overlayClicked()
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "black"
-            opacity: popupParent.showModalOverlay ? 0.3 : 0
-            Behavior on opacity { DefaultNumberAnimation {}  }
-            z: -1
-        }
+        target: display
     }
 
     // System Monitor Overlay
