@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,18 +29,40 @@
 **
 ****************************************************************************/
 
-pragma Singleton
-import QtQuick 2.0
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 
-QtObject {
-    id: root
+import com.pelagicore.styles.neptune 3.0
+import models.system 1.0
 
-    property bool systemOverlayEnabled: false
-    property bool centerConsolePerfOverlayEnabled: false
-    property bool instrumentClusterPerfOverlayEnabled: false
+Column {
+    topPadding: NeptuneStyle.dp(20)
+    spacing: NeptuneStyle.dp(20)
 
-    property int cpuPercentage: -1
-    readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
-    property int ramBytes: -1
-    property int ramTotalBytes: -1
+    Label {
+        width: parent.width
+        wrapMode: Text.WordWrap
+        text: qsTr("Enabling performance monitoring forces System UI and/or the chosen" +
+                    " application to constantly redraw itself, therefore having a constant," +
+                    " unnecessary, GPU/CPU consumption.")
+        font.pixelSize: NeptuneStyle.fontSizeS
+    }
+
+    SwitchDelegate {
+        width: parent.width
+        text: qsTr("Center Console Performance Overlay")
+        checked: SystemModel.centerConsolePerfOverlayEnabled
+        onToggled: {
+            SystemModel.centerConsolePerfOverlayEnabled = checked;
+        }
+    }
+
+    SwitchDelegate {
+        width: parent.width
+        text: qsTr("Instrument Cluster Performance Overlay")
+        checked: SystemModel.instrumentClusterPerfOverlayEnabled
+        onToggled: {
+            SystemModel.instrumentClusterPerfOverlayEnabled = checked;
+        }
+    }
 }

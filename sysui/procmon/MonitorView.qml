@@ -66,9 +66,9 @@ ColumnLayout {
         anchors.top: parent.top
         text: qsTr("System Monitor Overlay")
         font.pixelSize: NeptuneStyle.fontSizeS
-        checked: SystemModel.showMonitorOverlay
+        checked: SystemModel.systemOverlayEnabled
         onToggled: {
-            SystemModel.showMonitorOverlay = checked;
+            SystemModel.systemOverlayEnabled = checked;
         }
     }
 

@@ -4,10 +4,6 @@
 <context>
     <name>About</name>
     <message>
-        <source>Monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Running Apps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -18,6 +14,29 @@ UX to the road</source>
     </message>
     <message>
         <source>QtAuto - Agile UX Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Performance</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutPerformance</name>
+    <message>
+        <source>Enabling performance monitoring forces System UI and/or the chosen application to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Console Performance Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Performance Overlay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -77,6 +96,17 @@ UX to the road</source>
     </message>
     <message>
         <source>Sunny</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CenterConsoleMonitorOverlay</name>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -338,6 +368,13 @@ UX to the road</source>
             <numerusform>%n minute</numerusform>
             <numerusform>%n minutes</numerusform>
         </translation>
+    </message>
+</context>
+<context>
+    <name>MonitorOverlay</name>
+    <message>
+        <source>FPS: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

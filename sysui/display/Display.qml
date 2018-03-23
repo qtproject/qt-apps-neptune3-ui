@@ -258,8 +258,8 @@ Item {
     }
 
 
-    readonly property bool systemMonitorEnabled: SystemModel.showMonitorOverlay
-                                              || (about.state === "open" && about.currentTabName === "monitor")
+    readonly property bool systemMonitorEnabled: SystemModel.systemOverlayEnabled
+                                              || (about.state === "open" && about.currentTabName === "system")
 
     Binding { target: SystemMonitor; property: "memoryReportingEnabled"; value: root.systemMonitorEnabled }
     Binding { target: SystemMonitor; property: "cpuLoadReportingEnabled"; value: root.systemMonitorEnabled }

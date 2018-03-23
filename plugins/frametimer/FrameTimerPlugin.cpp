@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -28,19 +28,22 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#include <QQmlExtensionPlugin>
+#include <QQmlEngine>
 
-pragma Singleton
-import QtQuick 2.0
+#include "FrameTimer.h"
 
-QtObject {
-    id: root
+class FrameTimerPlugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
-    property bool systemOverlayEnabled: false
-    property bool centerConsolePerfOverlayEnabled: false
-    property bool instrumentClusterPerfOverlayEnabled: false
+public:
+    void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(uri == QLatin1String("FrameTimer"));
+        qmlRegisterType<FrameTimer>(uri, 1, 0, "FrameTimer");
+    }
+};
 
-    property int cpuPercentage: -1
-    readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
-    property int ramBytes: -1
-    property int ramTotalBytes: -1
-}
+#include "FrameTimerPlugin.moc"

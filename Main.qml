@@ -224,25 +224,12 @@ Window {
         target: display
     }
 
-    // System Monitor Overlay
-    Item {
+    CenterConsoleMonitorOverlay {
         anchors.fill: display
         rotation: display.rotation
-        visible: SystemModel.showMonitorOverlay
-        Column {
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(0.5)
-            anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(1)
-            Label {
-                text: qsTr("CPU: %1 %").arg(SystemModel.cpuPercentage)
-                font.pixelSize: NeptuneStyle.fontSizeXS
-            }
-            Label {
-                text: qsTr("RAM: %1 MB (%2 %)").arg(SystemModel.ramBytes).arg(SystemModel.ramPercentage)
-                font.pixelSize: NeptuneStyle.fontSizeXS
-            }
-        }
+        model: SystemModel
+        fpsVisible: SystemModel.centerConsolePerfOverlayEnabled
+        window: root
     }
 
     Binding { target: Style; property: "cellWidth"; value: display.width / 24 }
@@ -286,6 +273,7 @@ Window {
             InstrumentClusterWindow {
                 applicationModel: display.applicationModel
                 invertedOrientation: instrumentClusterWindowLoader.invertedOrientation
+                performanceOverlayVisible: SystemModel.instrumentClusterPerfOverlayEnabled
                 Component.onCompleted: uiSettings.updateTheme()
             }
         }

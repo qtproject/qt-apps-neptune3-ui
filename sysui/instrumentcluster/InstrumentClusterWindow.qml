@@ -38,6 +38,8 @@ import QtApplicationManager 1.0
 import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.settings 1.0 as Settings
 
+import "../procmon"
+
 Window {
     id: root
     width: Style.instrumentClusterWidth
@@ -49,6 +51,7 @@ Window {
 
     property var applicationModel
     property bool invertedOrientation: false
+    property bool performanceOverlayVisible: false
 
     function nextSecondaryWindow() {
         secondaryAppWindows.next();
@@ -113,6 +116,13 @@ Window {
             }
             Binding { target: instrumentClusterSettings; property: "navigationMode"; value: secondaryAppWindows.selectedNavigation }
         }
+    }
+
+    MonitorOverlay {
+        anchors.fill: parent
+        fpsVisible: root.performanceOverlayVisible
+        window: root
+        rotation: root.invertedOrientation ? 180 : 0
     }
 
 

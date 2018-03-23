@@ -19,11 +19,34 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Monitor</source>
-        <translation>Monitor</translation>
+        <translation type="vanished">Monitor</translation>
     </message>
     <message>
         <source>Running Apps</source>
         <translation>Spuštěné aplikace</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Performance</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutPerformance</name>
+    <message>
+        <source>Enabling performance monitoring forces System UI and/or the chosen application to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Console Performance Overlay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Performance Overlay</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -198,6 +221,17 @@ UX na cestu</translation>
     <message>
         <source>Sunny</source>
         <translation type="obsolete">Slunečno</translation>
+    </message>
+</context>
+<context>
+    <name>CenterConsoleMonitorOverlay</name>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="unfinished">CPU: %1%</translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
+        <translation type="unfinished">RAM: %1 MB (%2%)</translation>
     </message>
 </context>
 <context>
@@ -643,6 +677,21 @@ UX na cestu</translation>
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="vanished">Kam se chcete vydat dnes?</translation>
+    </message>
+</context>
+<context>
+    <name>MonitorOverlay</name>
+    <message>
+        <source>CPU: %1 %</source>
+        <translation type="obsolete">CPU: %1%</translation>
+    </message>
+    <message>
+        <source>RAM: %1 MB (%2 %)</source>
+        <translation type="obsolete">RAM: %1 MB (%2%)</translation>
+    </message>
+    <message>
+        <source>FPS: %1</source>
+        <translation type="unfinished">FPS: %1</translation>
     </message>
 </context>
 <context>

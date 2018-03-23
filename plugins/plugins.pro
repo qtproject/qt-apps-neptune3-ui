@@ -1,6 +1,8 @@
 TEMPLATE = subdirs
 
-SUBDIRS = styles \
+SUBDIRS = \
+          frametimer \
+          styles \
           translation \
           widgetgrid \
           systeminfo \
