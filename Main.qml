@@ -227,6 +227,10 @@ Window {
         rotation: display.rotation
 
         property bool showModalOverlay
+        onShowModalOverlayChanged: {
+            effectSource.scheduleUpdate();
+        }
+
         signal overlayClicked()
 
         // TODO: Load only when needed
@@ -241,7 +245,11 @@ Window {
                 FastBlur {
                     anchors.fill: parent
                     radius: Style.hspan(1)
-                    source: display
+                    source: ShaderEffectSource {
+                        id: effectSource
+                        sourceItem: display
+                        live: false
+                    }
                 }
             }
             z: -2
