@@ -242,7 +242,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: climateBar.lateralMargin
             symbol: volumePopup.volumeIcon
-            onClicked: volumePopup.openLeft()
+            onClicked: volumePopup.open()
         }
 
         Tool {
@@ -271,6 +271,7 @@ Item {
     VolumePopup {
         id: volumePopup
         parent: root.popupParent
+        popupX: originItem.mapToItem(parent, 0, 0).x
         originItem: leftIcon
         model: volumeModel
     }

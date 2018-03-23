@@ -45,6 +45,12 @@ Control {
     width: NeptuneStyle.dp(800)
     focus: visible
 
+    // X and Y potition of the popup when open.
+    // By default you have it horizontally centered and vertically aligned to the bottom
+    property real popupX: (root.parent.width - root.width) / 2
+    property real popupY: root.parent.height - root.height - NeptuneStyle.dp(90)
+
+
     property bool headerBackgroundVisible: false
     property int headerBackgroundHeight: 0
     property Item originItem
@@ -105,21 +111,19 @@ Control {
 
     Keys.onEscapePressed: close()
 
-    function open() {
+    function updateOpenFromPosition() {
         var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
         _openFromX = originPos.x - (root.width / 2);
         _openFromY = originPos.y - root.height;
+    }
+
+    function open() {
+        updateOpenFromPosition();
         state = "open";
     }
 
-    function openLeft() {
-        var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
-        _openFromX = originPos.x - (root.width / 2);
-        _openFromY = originPos.y - root.height;
-        state = "open_left";
-    }
-
     function close() {
+        updateOpenFromPosition();
         state = "closed";
     }
 
@@ -135,8 +139,8 @@ Control {
             PropertyChanges {
                 target: root
                 visible: true
-                x: (root.parent.width - root.width) / 2
-                y: root.parent.height - root.height - Style.vspan(90/80)
+                x: root.popupX
+                y: root.popupY
             }
             PropertyChanges {
                 target: root.parent
@@ -144,22 +148,12 @@ Control {
             }
         },
         State {
-            name: "open_left"
-            extend: "open"
-            PropertyChanges {
-                target: root
-                visible: true
-                x: Style.hspan(1.5)
-                y: root.parent.height - root.height - Style.vspan(90/80)
-            }
-        },
-        State {
             name: "closed"
             PropertyChanges {
                 target: root
+                x: root._openFromX
+                y: root._openFromY
                 visible: false
-                x: (root.parent.width - root.width) / 2
-                y: (root.parent.height - root.height) / 2
             }
             PropertyChanges {
                 target: root.parent
@@ -170,29 +164,27 @@ Control {
 
     transitions: [
         Transition {
-            to: "open,open_left"
+            to: "open"
             SequentialAnimation {
                 PropertyAction { target: root; property: "visible"; value: true }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }
                 ParallelAnimation {
                     DefaultNumberAnimation { target: root; property: "opacity"; from: 0.25; to: 1.0}
                     DefaultNumberAnimation { target: root; property: "scale"; from: 0.25; to: 1}
-                    DefaultNumberAnimation { target: root; property: "x"; from: root._openFromX }
-                    DefaultNumberAnimation { target: root; property: "y"; from: root._openFromY }
+                    DefaultNumberAnimation { target: root; properties: "x,y" }
                 }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
             }
         },
         Transition {
-            from: "open,open_left"; to: "closed"
+            from: "open"; to: "closed"
             SequentialAnimation {
                 PropertyAction { target: root; property: "visible"; value: true }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Bottom }
                 ParallelAnimation {
                     DefaultNumberAnimation { target: root; property: "opacity"; to: 0.25 }
                     DefaultNumberAnimation { target: root; property: "scale"; to: 0.25 }
-                    DefaultNumberAnimation { target: root; property: "x"; to: root._openFromX }
-                    DefaultNumberAnimation { target: root; property: "y"; to: root._openFromY }
+                    DefaultNumberAnimation { target: root; properties: "x,y" }
                 }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
             }
