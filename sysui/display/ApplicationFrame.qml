@@ -32,6 +32,7 @@
 import QtQuick 2.7
 
 import animations 1.0
+import com.pelagicore.styles.neptune 3.0
 
 /*
     Displays the main window of a given application using in and out transition animations
