@@ -116,6 +116,16 @@ QtObject {
     property real exposedRectBottomMargin
     property real exposedRectTopMargin
 
+    /*
+        Whether a performance monitor overlay is enabled on the primary window
+     */
+    property bool windowPerfMonitorEnabled: false
+
+    /*
+        Whether a performance monitor overlay is enabled on the secondary window
+     */
+    property bool secondaryWindowPerfMonitorEnabled: false
+
     function start() {
         // TODO Add a start() method to QtAM::Application itself
         if (application) {
@@ -174,6 +184,14 @@ QtObject {
     onLocaleCodeChanged: {
         if (window)
             AM.WindowManager.setWindowProperty(window, "locale", localeCode);
+    }
+    onWindowPerfMonitorEnabledChanged: {
+        if (window)
+            AM.WindowManager.setWindowProperty(window, "performanceMonitorEnabled", windowPerfMonitorEnabled);
+    }
+    onSecondaryWindowPerfMonitorEnabledChanged: {
+        if (window)
+            AM.WindowManager.setWindowProperty(secondaryWindow, "performanceMonitorEnabled", secondaryWindowPerfMonitorEnabled);
     }
 
     onSecondaryWindowChanged: {

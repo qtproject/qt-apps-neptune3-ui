@@ -38,8 +38,6 @@ import QtApplicationManager 1.0
 import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.settings 1.0 as Settings
 
-import "../procmon"
-
 Window {
     id: root
     width: Style.instrumentClusterWidth

@@ -41,6 +41,9 @@ Item {
     property bool fpsVisible
     default property alias columnData: column.data
 
+    implicitWidth: column.width
+    implicitHeight: column.height
+
     visible: fpsVisible
 
     FrameTimer {

@@ -128,7 +128,21 @@ ApplicationManagerWindow {
         case "locale":
             Style.languageLocale = value;
             break;
+        case "performanceMonitorEnabled":
+            monitorOverlay.fpsVisible = value;
+            break;
         }
+    }
+
+    MonitorOverlay {
+        id: monitorOverlay
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width - NeptuneStyle.dp(100)
+        height: root.exposedRect.height - NeptuneStyle.dp(50)
+        fpsVisible: false
+        window: root
+        z: 9999
     }
 
     UISettings {

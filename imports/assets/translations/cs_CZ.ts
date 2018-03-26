@@ -48,6 +48,22 @@ UX na cestu</translation>
         <source>Instrument Cluster Performance Overlay</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>System UI Compositing Windows:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application Windows:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 primary window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 secondary window</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutRunningApps</name>

@@ -32,9 +32,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
-import "../procmon"
-
 import com.pelagicore.styles.neptune 3.0
+import utils 1.0
 
 MonitorOverlay {
     id: root

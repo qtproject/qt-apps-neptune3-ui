@@ -122,6 +122,7 @@ NeptunePopup {
                 applicationModel: root.applicationModel
             }
             AboutPerformance {
+                applicationModel: root.applicationModel
             }
         }
     }

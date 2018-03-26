@@ -35,34 +35,81 @@ import QtQuick.Controls 2.3
 import com.pelagicore.styles.neptune 3.0
 import models.system 1.0
 
-Column {
-    topPadding: NeptuneStyle.dp(20)
-    spacing: NeptuneStyle.dp(20)
+Flickable {
+    id: root
 
-    Label {
-        width: parent.width
-        wrapMode: Text.WordWrap
-        text: qsTr("Enabling performance monitoring forces System UI and/or the chosen" +
-                    " application to constantly redraw itself, therefore having a constant," +
-                    " unnecessary, GPU/CPU consumption.")
-        font.pixelSize: NeptuneStyle.fontSizeS
-    }
+    property var applicationModel
 
-    SwitchDelegate {
-        width: parent.width
-        text: qsTr("Center Console Performance Overlay")
-        checked: SystemModel.centerConsolePerfOverlayEnabled
-        onToggled: {
-            SystemModel.centerConsolePerfOverlayEnabled = checked;
+    clip: true
+    contentWidth: column.width
+    contentHeight: column.height
+
+    Column {
+        id: column
+        width: root.width
+
+        topPadding: NeptuneStyle.dp(20)
+        spacing: NeptuneStyle.dp(20)
+
+        Label {
+            width: parent.width
+            wrapMode: Text.WordWrap
+            text: qsTr("Enabling performance monitoring forces System UI and/or the chosen" +
+                        " application to constantly redraw itself, therefore having a constant," +
+                        " unnecessary, GPU/CPU consumption.")
+            font.pixelSize: NeptuneStyle.fontSizeS
         }
-    }
 
-    SwitchDelegate {
-        width: parent.width
-        text: qsTr("Instrument Cluster Performance Overlay")
-        checked: SystemModel.instrumentClusterPerfOverlayEnabled
-        onToggled: {
-            SystemModel.instrumentClusterPerfOverlayEnabled = checked;
+        Label {
+            text: qsTr("System UI Compositing Windows:")
+            font.weight: Font.Bold
+        }
+
+        SwitchDelegate {
+            width: parent.width
+            text: qsTr("Center Console Performance Overlay")
+            checked: SystemModel.centerConsolePerfOverlayEnabled
+            onToggled: {
+                SystemModel.centerConsolePerfOverlayEnabled = checked;
+            }
+        }
+
+        SwitchDelegate {
+            width: parent.width
+            text: qsTr("Instrument Cluster Performance Overlay")
+            checked: SystemModel.instrumentClusterPerfOverlayEnabled
+            onToggled: {
+                SystemModel.instrumentClusterPerfOverlayEnabled = checked;
+            }
+        }
+
+        Label {
+            text: qsTr("Application Windows:")
+            font.weight: Font.Bold
+        }
+
+        Repeater {
+            model: root.applicationModel
+            delegate: Column {
+                width: parent.width
+                height: implicitHeight
+                spacing: NeptuneStyle.dp(20)
+                visible: model.appInfo.window != null || model.appInfo.secondaryWindow != null
+                SwitchDelegate {
+                    id: primarySwitch
+                    width: parent.width
+                    text: qsTr("%1 primary window").arg(model.appInfo.name)
+                    visible: model.appInfo.window != null
+                    Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+                }
+                SwitchDelegate {
+                    id: secondarySwitch
+                    width: parent.width
+                    text: qsTr("%1 secondary window").arg(model.appInfo.name)
+                    visible: model.appInfo.secondaryWindow != null
+                    Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                }
+            }
         }
     }
 }

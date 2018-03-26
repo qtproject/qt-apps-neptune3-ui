@@ -34,6 +34,7 @@ import QtApplicationManager 1.0
 
 import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
+import utils 1.0
 
 ApplicationManagerWindow {
     id: root
@@ -47,7 +48,19 @@ ApplicationManagerWindow {
         case "neptuneScale":
             root.NeptuneStyle.scale = value;
             break;
+        case "performanceMonitorEnabled":
+            performanceOverlay.fpsVisible = value;
+            break;
         }
+    }
+
+    MonitorOverlay {
+        id: performanceOverlay
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        fpsVisible: false
+        window: root
+        z: 9999
     }
 
     UISettings {
