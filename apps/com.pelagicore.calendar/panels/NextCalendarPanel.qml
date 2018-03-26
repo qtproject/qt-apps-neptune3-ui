@@ -46,11 +46,11 @@ Item {
     Component {
         id: delegatedCalendar
         Item {
-            width: Style.hspan(7)
-            height: Style.vspan(3)
+            width: NeptuneStyle.dp(315)
+            height: NeptuneStyle.dp(240)
             ColumnLayout {
                 Label {
-                    Layout.preferredWidth: Style.hspan(6)
+                    Layout.preferredWidth: NeptuneStyle.dp(270)
                     text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: NeptuneStyle.fontSizeS
@@ -95,14 +95,14 @@ Item {
         anchors.top: parent.top
         GridView {
             id: gridView
-            Layout.preferredWidth: Style.hspan(7)
+            Layout.preferredWidth: NeptuneStyle.dp(315)
             Layout.preferredHeight: root.height
             anchors.top: parent.top
             clip: true
             model: 12
             delegate: delegatedCalendar
-            cellWidth: Style.hspan(7)
-            cellHeight: Style.vspan(3)
+            cellWidth: NeptuneStyle.dp(315)
+            cellHeight: NeptuneStyle.dp(240)
             ScrollIndicator.vertical: ScrollIndicator {
                 parent: gridView.parent
                 anchors.top: gridView.top
@@ -113,12 +113,12 @@ Item {
 
         EventList {
             id: eventList
-            Layout.preferredWidth: Style.hspan(10)
+            Layout.preferredWidth: NeptuneStyle.dp(450)
             Layout.preferredHeight: root.height
             anchors.top: parent.top
             delegate: EventListItem {
-                width: Style.hspan(10)
-                height: Style.vspan(1)
+                width: NeptuneStyle.dp(450)
+                height: NeptuneStyle.dp(80)
                 eventTimeStart: timeStart
                 eventTimeEnd: timeEnd
                 eventLabel: event

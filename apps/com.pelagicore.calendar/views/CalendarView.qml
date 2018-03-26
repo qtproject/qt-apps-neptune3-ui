@@ -74,9 +74,9 @@ Item {
     TopCalendarPanel {
         id: calendarOnTop
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(1)
+        anchors.topMargin: NeptuneStyle.dp(80)
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(3)
+        anchors.leftMargin: NeptuneStyle.dp(135)
         visible: root.state === "Maximized"
     }
 
@@ -85,13 +85,13 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: calendarOnTop.bottom
-        anchors.topMargin: Style.vspan(0.8)
+        anchors.topMargin: NeptuneStyle.dp(64)
         anchors.bottom: root.bottom
         visible: root.state === "Maximized"
 
         Item {
             anchors.left: parent.left
-            width: Style.hspan(264/45)
+            width: NeptuneStyle.dp(264)
             anchors.top: parent.top
             anchors.bottom: parent.bottom
 
@@ -99,7 +99,7 @@ Item {
                 id: toolsColumn
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: Style.vspan(53/80)
+                anchors.topMargin: NeptuneStyle.dp(53)
 
                 translationContext: "CalendarToolsColumn"
                 model: ListModel {
@@ -113,11 +113,11 @@ Item {
 
         StackLayout {
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(53/80)
+            anchors.topMargin: NeptuneStyle.dp(53)
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(96/45)
+            anchors.rightMargin: NeptuneStyle.dp(96)
             anchors.bottom: parent.bottom
-            width: Style.hspan(16)
+            width: NeptuneStyle.dp(720)
 
             currentIndex: toolsColumn.currentIndex
 

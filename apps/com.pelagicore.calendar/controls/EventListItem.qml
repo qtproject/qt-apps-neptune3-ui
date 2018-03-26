@@ -51,11 +51,11 @@ ItemDelegate {
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
-            spacing: Style.hspan(1)
+            anchors.leftMargin: NeptuneStyle.dp(45)
+            spacing: NeptuneStyle.dp(45)
 
             ColumnLayout {
-                Layout.preferredWidth: Style.hspan(1)
+                Layout.preferredWidth: NeptuneStyle.dp(45)
                 Label {
                     text: root.eventTimeStart
                     font.pixelSize: NeptuneStyle.fontSizeXS

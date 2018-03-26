@@ -53,9 +53,9 @@ Item {
     Image {
         id: imgWeather
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: Style.vspan(66/80)//Style.vspan(66/80)
+        anchors.verticalCenterOffset: NeptuneStyle.dp(66)
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: Style.hspan(-61/45)
+        anchors.horizontalCenterOffset: NeptuneStyle.dp(-61)
         fillMode: Image.Pad
     }
 
@@ -64,11 +64,11 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(120/80)//Style.vspan(140/80)
+        anchors.topMargin: NeptuneStyle.dp(120)
 
         Label {
             id: temperatureLabel
-            height: Style.vspan(33/80)
+            height: NeptuneStyle.dp(33)
             anchors.left: parent.left
             anchors.right: parent.right
             font.pixelSize: NeptuneStyle.fontSizeS
@@ -79,7 +79,7 @@ Item {
         }
         Label {
             id: weatherLabel
-            height: Style.vspan(33/80)
+            height: NeptuneStyle.dp(33)
             anchors.left: parent.left
             anchors.right: parent.right
             font.pixelSize: NeptuneStyle.fontSizeS //Todo: font size in the plugin is not correct.
@@ -101,9 +101,9 @@ Item {
 
             Label {
                 id: precipitationText
-                height: Style.vspan(33/80)
+                height: NeptuneStyle.dp(33)
                 anchors.left: precipitationIcon.right
-                anchors.leftMargin: Style.hspan(13/45)
+                anchors.leftMargin: NeptuneStyle.dp(13)
                 anchors.right: parent.right
                 font.pixelSize: NeptuneStyle.fontSizeS
                 font.weight: Font.Light

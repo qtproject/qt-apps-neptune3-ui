@@ -34,12 +34,14 @@ import QtQuick.Controls 2.2
 import utils 1.0
 import controls 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 ListView {
     id: root
 
     delegate: EventListItem {
-        width: Style.hspan(15)
-        height: Style.vspan(1)
+        width: NeptuneStyle.dp(675)
+        height: NeptuneStyle.dp(80)
         eventTimeStart: timeStart
         eventTimeEnd: timeEnd
         eventLabel: event
@@ -48,7 +50,7 @@ ListView {
         parent: root.parent
         anchors.top: root.top
         anchors.left: root.right
-        anchors.leftMargin: Style.hspan(0.5)
+        anchors.leftMargin: NeptuneStyle.dp(23)
         anchors.bottom: root.bottom
     }
 }

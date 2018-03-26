@@ -107,14 +107,14 @@ Item {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(1)
+            anchors.leftMargin: NeptuneStyle.dp(45)
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(30/45)
+            anchors.rightMargin: NeptuneStyle.dp(30)
 
             Label {
                 id: firstRowOfText
                 anchors.baseline: parent.top
-                anchors.baselineOffset: Style.vspan(87/80)
+                anchors.baselineOffset: NeptuneStyle.dp(87)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 elide: Text.ElideRight
@@ -124,7 +124,7 @@ Item {
 
             Label {
                 anchors.baseline: parent.top
-                anchors.baselineOffset: Style.vspan(120/80)
+                anchors.baselineOffset: NeptuneStyle.dp(120)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 elide: Text.ElideRight
@@ -136,9 +136,9 @@ Item {
             WeatherWidget {
                 // weather info when in left area (size 2 & 3)
                 anchors.top: parent.top
-                anchors.topMargin: Style.vspan(252/80)
+                anchors.topMargin: NeptuneStyle.dp(252)
                 anchors.left: parent.left
-                width: Style.hspan(175/45)
+                width: NeptuneStyle.dp(175)
 
                 opacity: calendarEvents.isMultiLineWidget ? 1 : 0
                 Behavior on opacity { DefaultNumberAnimation { } }
@@ -161,10 +161,10 @@ Item {
         //weather info when in right area (size 1)
         id: weatherColumn
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: Style.hspan(59/45)
-        width: Style.hspan(175/45)
+        anchors.leftMargin: NeptuneStyle.dp(59)
+        width: NeptuneStyle.dp(175)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(1)
+        anchors.bottomMargin: NeptuneStyle.dp(80)
         opacity: !calendarEvents.isMultiLineWidget
         Behavior on opacity { DefaultNumberAnimation { } }
         visible: opacity > 0
@@ -183,17 +183,17 @@ Item {
     Item {
         id: calendarEvents
 
-        readonly property bool isMultiLineWidget: root.height > Style.hspan(6)
-        readonly property real rowHeight: Style.vspan(38/80)
+        readonly property bool isMultiLineWidget: root.height > NeptuneStyle.dp(270)
+        readonly property real rowHeight: NeptuneStyle.dp(38)
 
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: isMultiLineWidget ? Style.vspan(77/80) : Style.vspan(75/80)
+        anchors.bottomMargin: isMultiLineWidget ? NeptuneStyle.dp(77) : NeptuneStyle.dp(75)
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: isMultiLineWidget ? Style.hspan(45/45) : Style.hspan(340/45)
+        anchors.leftMargin: isMultiLineWidget ? NeptuneStyle.dp(45) : NeptuneStyle.dp(340)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(45/45)
+        anchors.rightMargin: NeptuneStyle.dp(45)
 
-        readonly property real _height: root.height < Style.vspan(300/80) ? rowHeight : root.height < Style.vspan(680/80) ? parent.height - Style.vspan(2) : parent.height - weatherGraphPlaceholder.height - Style.vspan(1.6)
+        readonly property real _height: root.height < NeptuneStyle.dp(300) ? rowHeight : root.height < NeptuneStyle.dp(680) ? parent.height - NeptuneStyle.dp(160) : parent.height - weatherGraphPlaceholder.height - NeptuneStyle.dp(128)
         height: Math.min(eventList.count * rowHeight, _height - (_height % rowHeight))
 
         Behavior on anchors.bottomMargin { DefaultNumberAnimation {} }
@@ -207,7 +207,7 @@ Item {
             model: {
                 if (eventModel.count === 0) {
                     return 0
-                } else if (root.height < Style.vspan(300/80)) {
+                } else if (root.height < NeptuneStyle.dp(300)) {
                     return 1
                 } else {
                     return eventModel.count
@@ -222,8 +222,8 @@ Item {
                     id: eventTimeStart
                     anchors.left: parent.left
                     anchors.bottom: parent.bottom
-                    width: Style.hspan(68/45)
-                    height: Style.vspan(33/80)
+                    width: NeptuneStyle.dp(68)
+                    height: NeptuneStyle.dp(33)
                     horizontalAlignment: Text.AlignRight
                     opacity: NeptuneStyle.fontSizeS
                     font.pixelSize: NeptuneStyle.fontSizeS
@@ -234,8 +234,8 @@ Item {
                     id: eventName
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
-                    width: calendarEvents.width - eventTimeStart.width - Style.hspan(26/45)
-                    height: Style.vspan(33/80)
+                    width: calendarEvents.width - eventTimeStart.width - NeptuneStyle.dp(26)
+                    height: NeptuneStyle.dp(33)
                     font.pixelSize: NeptuneStyle.fontSizeS
                     font.weight: Font.Light
                     elide: Text.ElideRight
@@ -247,9 +247,9 @@ Item {
 
     Image {
         id: weatherGraphPlaceholder
-        readonly property bool graphActive: (root.height > (sourceSize.height + calendarEvents.height + Style.hspan(1))) && (root.state === "Widget3Rows")
+        readonly property bool graphActive: (root.height > (sourceSize.height + calendarEvents.height + NeptuneStyle.dp(45))) && (root.state === "Widget3Rows")
         anchors.top: parent.top
-        anchors.topMargin: graphActive ? 0 : -Style.vspan(0.5)
+        anchors.topMargin: graphActive ? 0 : -NeptuneStyle.dp(40)
         anchors.right: parent.right
         opacity: graphActive ? 1 : 0
         visible: opacity > 0

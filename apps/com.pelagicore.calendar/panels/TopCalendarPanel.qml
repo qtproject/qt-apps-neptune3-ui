@@ -40,7 +40,7 @@ import com.pelagicore.styles.neptune 3.0
 RowLayout {
     id: root
 
-    spacing: Style.hspan(3)
+    spacing: NeptuneStyle.dp(135)
 
     ColumnLayout {
         DayOfWeekRow {
@@ -80,7 +80,7 @@ RowLayout {
 
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: - Style.vspan(0.5)
+        anchors.verticalCenterOffset: - NeptuneStyle.dp(45)
         Tool {
             anchors.verticalCenter: parent.verticalCenter
             symbol: Style.symbol("ic_skipprevious")
@@ -94,7 +94,7 @@ RowLayout {
             }
         }
         Label {
-            Layout.preferredWidth: Style.hspan(6)
+            Layout.preferredWidth: NeptuneStyle.dp(270)
             text: Qt.locale().standaloneMonthName(grid.month) + " " + grid.year
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeM
