@@ -65,6 +65,7 @@ ColumnLayout {
     spacing: Style.vspan(0.3)
 
     property string translationContext
+    signal clicked()
 
     Repeater {
         id: repeater
@@ -87,6 +88,7 @@ ColumnLayout {
             onClicked: {
                 if (enabled) {
                     root.currentIndex = index;
+                    root.clicked();
                 }
             }
             ButtonGroup.group: buttonGroup
