@@ -219,6 +219,25 @@ Item {
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
+    NeptuneControls.Tool {
+        anchors.right: parent.right
+        anchors.rightMargin: Style.hspan(0.6)
+        anchors.top: offlineMapsEnabled ? parent.top : header.bottom
+        anchors.topMargin: Style.vspan(3)
+        checkable: true
+        opacity: root.state === "Maximized" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+        visible: opacity > 0
+        background: Image {
+            fillMode: Image.Pad
+            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
+        }
+        enabled: !checked
+        checked: mainMap.center === root.currentLocation
+        symbol: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png") : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
+        onToggled: mainMap.center = root.currentLocation;
+    }
+
     MapCopyrightNotice {
         anchors.left: mainMap.left
         anchors.bottom: mainMap.bottom
