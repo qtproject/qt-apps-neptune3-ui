@@ -40,11 +40,11 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    property string precipitationIcon
+    property string precipitationIcon: ""
     property string precipitationText: "0 - 2 mm"
-    property string weatherName
-    property string weatherIcon
-    property int temp
+    property string weatherName: QT_TR_NOOP("Sunny")
+    property string weatherIcon: "ic-weather-sun"
+    property int temp: 30
 
     property date currentTime: new Date()
     property ListModel eventModel
