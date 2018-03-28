@@ -176,7 +176,7 @@ Item {
             }
             PropertyChanges {
                 target: root
-                height: Style.launcherHeight
+                height: NeptuneStyle.dp(Style.launcherHeight)
             }
         },
 

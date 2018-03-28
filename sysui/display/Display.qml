@@ -93,7 +93,7 @@ Item {
             property var exposedRectTopMarginBinding: Binding {
                 target: model.appInfo
                 property: "exposedRectTopMargin"
-                value: model.appInfo.active ? launcherLoader.y + NeptuneStyle.dp(Style.launcherHeight) : 0
+                value: model.appInfo.active ? launcherLoader.y + (launcherLoader.item.open ? NeptuneStyle.dp(Style.launcherHeight) : launcherLoader.height) : 0
             }
 
             property var windowHeightBinding: Binding {
