@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import animations 1.0
+import controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import "stores"
@@ -46,7 +47,7 @@ QtObject {
         MultiPointTouchArea {
             id: multiPoint
             anchors.fill: parent
-            anchors.margins: 30
+            anchors.margins: NeptuneStyle.dp(30)
             touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
             property int count: 0
@@ -56,17 +57,14 @@ QtObject {
             }
         }
 
-        BorderImage {
+        ScalableBorderImage {
             id: topImage
 
             x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y - 224
+            y: mainWindow.exposedRect.y - NeptuneStyle.dp(224)
             width: mainWindow.exposedRect.width
             height: musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y - y
-            border.bottom: 0
-            border.top: sourceSize.height - 1
-            border.left: 0
-            border.right: 0
+            border.top: sourceSize.height - NeptuneStyle.dp(1)
 
             opacity: (mainWindow.neptuneState === "Maximized") ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation {} }

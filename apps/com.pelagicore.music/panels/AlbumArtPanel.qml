@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import utils 1.0
 import animations 1.0
+import com.pelagicore.styles.neptune 3.0
 
 import "../controls"
 
@@ -67,7 +68,7 @@ Item {
 
         Item {
             id: itemDelegated
-            height: Style.vspan(4)
+            height: NeptuneStyle.dp(180)
             width: height
 
             layer.enabled: true
@@ -88,7 +89,7 @@ Item {
                 opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
                 Behavior on opacity {DefaultNumberAnimation {}}
                 anchors.centerIn: parent
-                width: Style.hspan(180/45)
+                width: NeptuneStyle.dp(180)
                 height: width
                 source: Style.gfx2("album-art-placeholder")
 
@@ -102,7 +103,7 @@ Item {
                 opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
                 Behavior on opacity {DefaultNumberAnimation {}}
                 anchors.centerIn: parent
-                width: Style.hspan(180/45)
+                width: NeptuneStyle.dp(180)
                 height: width
                 source: model.item.coverArtUrl !== undefined ? model.item.coverArtUrl : ""
 
@@ -120,7 +121,7 @@ Item {
             width: height
             height: parent.height
             anchors.left: parent.left
-            anchors.leftMargin: parentStateMaximized ? 100 : 40
+            anchors.leftMargin: parentStateMaximized ? NeptuneStyle.dp(100) : NeptuneStyle.dp(40)
             Behavior on anchors.leftMargin { DefaultNumberAnimation { } }
             preferredHighlightBegin: 0.5
             preferredHighlightEnd: 0.5
@@ -158,7 +159,7 @@ Item {
 
         Item {
             id: searchingMedia
-            width: Style.hspan(180/45)
+            width: NeptuneStyle.dp(180)
             height: width
             opacity: root.mediaReady ? 0.0 : 1.0
             Behavior on opacity { DefaultNumberAnimation {} }
@@ -169,27 +170,27 @@ Item {
                 anchors.centerIn: parent
                 visible: parent.visible
                 running: visible
-                width: 60
-                height: 60
+                width: NeptuneStyle.dp(60)
+                height: NeptuneStyle.dp(60)
             }
         }
 
         TitleColumn {
             id: titleColumn
             anchors.left: coverslide.right
-            anchors.leftMargin: Style.hspan(100/45)
+            anchors.leftMargin: NeptuneStyle.dp(100)
             anchors.right: controlsRow.left
-            anchors.rightMargin: Style.hspan(20/45)
+            anchors.rightMargin: NeptuneStyle.dp(20)
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: Style.vspan(-4/80)
-            preferredWidth: Style.vspan(6)
+            anchors.verticalCenterOffset: NeptuneStyle.dp(-4)
+            preferredWidth: NeptuneStyle.dp(480)
         }
 
         MusicControls {
             id: controlsRow
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: parentStateMaximized ? Style.hspan(100/45) : Style.hspan(28/45)
+            anchors.rightMargin: parentStateMaximized ? NeptuneStyle.dp(100) : NeptuneStyle.dp(28)
             Behavior on anchors.rightMargin { DefaultNumberAnimation { } }
             play: root.musicPlaying
             onPreviousClicked: {

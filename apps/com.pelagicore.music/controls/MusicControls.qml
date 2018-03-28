@@ -33,17 +33,16 @@ import QtQuick 2.8
 import utils 1.0
 import controls 1.0
 import QtQuick.Controls 2.2
-
+import com.pelagicore.styles.neptune 3.0
 
 Row {
     id: root
 
     width: 3 * buttonWidth
-    height: Style.vspan(3)
+    height: NeptuneStyle.dp(240)
 
     property bool play: false
-    property real spacing: 0    //not used
-    property real buttonWidth: Style.hspan(100/45)
+    property real buttonWidth: NeptuneStyle.dp(100)
     signal previousClicked()
     signal playClicked()
     signal nextClicked()
@@ -55,27 +54,18 @@ Row {
         onClicked: root.previousClicked()
     }
 
-    AbstractButton {
+    Tool {
         width: root.buttonWidth
         height: parent.height
-
-        onClicked: root.playClicked()
-
-        contentItem: Item {
-            anchors.fill: parent
-
-            Image {
-                anchors.centerIn: parent
-                source: Style.symbol("ic_button-bg")
-                fillMode: Image.Pad
-            }
-
-            Image {
-                anchors.centerIn: parent
-                source: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
-                fillMode: Image.Pad
-            }
+        background: Image {
+            anchors.centerIn: parent
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
+            source: Style.symbol("ic_button-bg")
+            fillMode: Image.PreserveAspectFit
         }
+        symbol: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
+        onClicked: root.playClicked()
     }
 
     Tool {

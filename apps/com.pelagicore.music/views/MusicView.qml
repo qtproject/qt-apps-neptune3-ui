@@ -58,7 +58,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: 260
+        height: NeptuneStyle.dp(260)
         state: root.state
         store: root.store
         onFlickableAreaClicked: { root.flickableAreaClicked(); }
@@ -69,7 +69,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: topExpanded ? (root.height - 100) : (660 - 224)
+        height: topExpanded ? (root.height - NeptuneStyle.dp(100)) : (NeptuneStyle.dp(660 - 224))
         Behavior on height { DefaultNumberAnimation { duration: 270 } }
         opacity: root.state === "Maximized" ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -79,7 +79,7 @@ Item {
 
     FullScreenBottomView {
         id: fullscreenBottom
-        width: Style.hspan(1080/45)
+        width: NeptuneStyle.dp(1080)
         anchors.left: parent.left
         anchors.leftMargin: root.state === "Maximized" ? 0 : -80
         Behavior on anchors.leftMargin { DefaultNumberAnimation {} }

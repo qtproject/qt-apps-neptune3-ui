@@ -62,7 +62,7 @@ Control {
             ListItem {
                 id: delegatedSong
                 width: listView.width
-                height: Style.vspan(1.3)
+                height: NeptuneStyle.dp(104)
                 imageSource: {
                     if ((actualContentType === "album") && (toolsColumnText === "artists") && model.item) {
                         if (model.item.data.coverArtUrl !==  undefined) {
@@ -99,17 +99,17 @@ Control {
         Item {
             id: listHeader
             anchors.top:parent.top
-            anchors.topMargin: Style.vspan(53/80)
+            anchors.topMargin:NeptuneStyle.dp(53)
             anchors.left: parent.left
             opacity: visible ? 1.0 : 0.0
-            width: visible ? Style.hspan(720/45) : 0
-            height: visible ? Style.vspan(94/80) : 0
+            width: visible ? NeptuneStyle.dp(720) : 0
+            height: visible ? NeptuneStyle.dp(94) : 0
             visible: ((toolsColumnText.indexOf(actualContentType) === -1) && (toolsColumnText !== "favorites"))
 
             Tool {
                 id: backButton
                 anchors.left: parent.left
-                anchors.leftMargin: Style.hspan(0.3)
+                anchors.leftMargin: NeptuneStyle.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
                 symbol: Style.symbol("ic_back")
                 onClicked: root.backClicked()
@@ -121,10 +121,10 @@ Control {
                 horizontalAlignment: Text.AlignHCenter
             }
             Tool {
-                width: Style.hspan(2.7)
-                height: Style.vspan(0.6)
+                width: NeptuneStyle.dp(121.5)
+                height: NeptuneStyle.dp(48)
                 anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(0.3)
+                anchors.rightMargin: NeptuneStyle.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
                 // Check if contentType has unique id (so is > 5) when in albums view.
                 // This means that the albums of a specific artist are displayed
@@ -143,7 +143,7 @@ Control {
 
             Rectangle {
                 width: parent.width
-                height: 1
+                height: NeptuneStyle.dp(1)
                 anchors.bottom: parent.bottom
                 color: "grey"   //todo: change to #contrast 60%
             }
@@ -152,7 +152,7 @@ Control {
         ListView {
             id: listView
             anchors.top:parent.top
-            anchors.topMargin: Style.vspan(53/80) + listHeader.height
+            anchors.topMargin: NeptuneStyle.dp(53) + listHeader.height
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             width: Style.hspan(720/45)
@@ -163,7 +163,7 @@ Control {
                 parent: listView.parent
                 anchors.top: listView.top
                 anchors.left: listView.right
-                anchors.leftMargin: Style.hspan(1)
+                anchors.leftMargin: NeptuneStyle.dp(45)
                 anchors.bottom: listView.bottom
             }
         }

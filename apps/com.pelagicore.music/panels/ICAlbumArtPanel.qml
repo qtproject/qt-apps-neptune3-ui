@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import utils 1.0
+import com.pelagicore.styles.neptune 3.0
 
 import "../controls"
 
@@ -65,7 +66,7 @@ Item {
 
         Item {
             id: itemDelegated
-            height: 320
+            height: NeptuneStyle.dp(320)
             width: height
             layer.enabled: true
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
@@ -91,7 +92,7 @@ Item {
             Image {
                 id: albumArt
                 anchors.centerIn: parent
-                width: 180
+                width: NeptuneStyle.dp(180)
                 height: width
                 source: model.item !== undefined ? model.item.coverArtUrl : ""
                 fillMode: Image.PreserveAspectCrop
@@ -104,7 +105,7 @@ Item {
         id: pathView
 
         width: root.width
-        height: 180
+        height: NeptuneStyle.dp(180)
         anchors.top: parent.top
 
         PathView {
@@ -147,10 +148,10 @@ Item {
     MusicProgress {
         id: musicProgress
         width: root.width
-        height: 220
+        height: NeptuneStyle.dp(220)
         anchors.top: pathView.bottom
-        anchors.leftMargin: 40
-        anchors.rightMargin: 40
+        anchors.leftMargin: NeptuneStyle.dp(40)
+        anchors.rightMargin: NeptuneStyle.dp(40)
         value: root.musicPosition
         progressBarLabelLeftMargin: 3
     }
@@ -158,10 +159,8 @@ Item {
     TitleColumn {
         id: titleColumn
         anchors.left: parent.left
-        anchors.leftMargin: 0
         anchors.right: parent.right
-        anchors.rightMargin: 0
         anchors.top: musicProgress.bottom
-        anchors.topMargin: -80
+        anchors.topMargin: NeptuneStyle.dp(-80)
     }
 }

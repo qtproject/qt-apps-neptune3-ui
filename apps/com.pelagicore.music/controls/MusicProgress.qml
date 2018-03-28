@@ -41,12 +41,12 @@ Control {
     property bool labelOnTop: true
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
-    property int progressBarLabelLeftMargin: Style.hspan(10/45)
+    property int progressBarLabelLeftMargin: NeptuneStyle.dp(10)
     property int progressBarWidth: {
         if (root.labelOnTop) {
-            return root.width - Style.hspan(6/45);
+            return root.width - NeptuneStyle.dp(6);
         } else {
-            return root.width - Style.hspan(5);
+            return root.width - NeptuneStyle.dp(5);
         }
     }
 
@@ -57,10 +57,10 @@ Control {
         Label {
             id: progressLabel
             anchors.top: parent.top
-            anchors.topMargin: root.labelOnTop ? Style.vspan(0.6) : 0
+            anchors.topMargin: root.labelOnTop ? NeptuneStyle.dp(48) : 0
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
-            font.pixelSize: 22 //Todo: Change to NeptuneStyle.fontSizeS when that value is corrected
+            font.pixelSize: NeptuneStyle.fontSizeS
             font.weight: Font.Light
             text: root.progressText
             opacity: NeptuneStyle.fontOpacityMedium
@@ -69,13 +69,13 @@ Control {
         Slider {
             id: trackProgressBar
             implicitWidth: root.progressBarWidth
-            implicitHeight: Style.vspan(0.5)
+            implicitHeight: NeptuneStyle.dp(40)
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: Style.vspan(-24/80)
-            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Style.hspan(2)
+            anchors.verticalCenterOffset: NeptuneStyle.dp(-24)
+            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : NeptuneStyle.dp(90)
             value: root.value
 
-            padding: 2
+            padding: NeptuneStyle.dp(2)
 
             onValueChanged: {
                 if (trackProgressBar.pressed) {
@@ -89,7 +89,7 @@ Control {
                 x: trackProgressBar.leftPadding
                 y: trackProgressBar.topPadding + trackProgressBar.availableHeight / 2 - height / 2
                 implicitWidth: root.progressBarWidth
-                implicitHeight: Style.hspan(0.02)
+                implicitHeight: NeptuneStyle.dp(0.9)
                 width: trackProgressBar.availableWidth
                 height: implicitHeight
                 color: "#828282"
@@ -97,7 +97,7 @@ Control {
 
                 Rectangle {
                     width: trackProgressBar.visualPosition * parent.width
-                    height: Style.hspan(0.15)
+                    height: NeptuneStyle.dp(6.75)
                     anchors.verticalCenter: parent.verticalCenter
                     radius: height
                     color: NeptuneStyle.accentColor

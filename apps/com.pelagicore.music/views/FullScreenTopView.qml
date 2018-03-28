@@ -46,17 +46,17 @@ Item {
 
     ToolButton {
         id: showPlayingQueueButton
-        width: contentItem.childrenRect.width + Style.hspan(1)
-        height: Style.hspan(0.5)
+        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
+        height: NeptuneStyle.dp(22.5)
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: Style.vspan(370/80)
+        anchors.verticalCenterOffset: NeptuneStyle.dp(370)
         anchors.horizontalCenter: parent.horizontalCenter
 
         enabled: !root.topExpanded
         onClicked: { root.topExpanded = true; }
 
         contentItem: Row {
-            spacing: Style.hspan(10/45)
+            spacing: NeptuneStyle.dp(10)
             Label {
                 font.pixelSize: NeptuneStyle.fontSizeS
                 font.capitalization: Font.AllUppercase
@@ -75,12 +75,12 @@ Item {
     MusicPlayQueuePanel {
         id: playingQueueList    //playing queue
         anchors.top: parent.top
-        anchors.topMargin: 660 - 224
+        anchors.topMargin: NeptuneStyle.dp(660) - NeptuneStyle.dp(224)
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: 100
+        anchors.leftMargin: NeptuneStyle.dp(100)
         anchors.right: parent.right
-        anchors.rightMargin: 100
+        anchors.rightMargin: NeptuneStyle.dp(100)
         listView.model: store.musicPlaylist
         onItemClicked: {
             store.musicPlaylist.currentIndex = index;
@@ -90,10 +90,10 @@ Item {
 
     ToolButton {
         id: showNormalBrowseViewButton
-        width: contentItem.childrenRect.width + Style.hspan(1)
-        height: Style.hspan(0.5)
+        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
+        height: NeptuneStyle.dp(22.5)
         anchors.verticalCenter: parent.bottom
-        anchors.verticalCenterOffset: Style.vspan(44/80)
+        anchors.verticalCenterOffset: NeptuneStyle.dp(44)
         anchors.horizontalCenter: parent.horizontalCenter
         opacity: root.topExpanded ? 1.0 : 0.0
         Behavior on opacity {
@@ -107,7 +107,7 @@ Item {
         onClicked: { root.topExpanded = false; }
 
         contentItem: Row {
-            spacing: Style.hspan(10/45)
+            spacing: NeptuneStyle.dp(10)
             Label {
                 font.pixelSize: 22 //todo: change to NeptuneStyle.fontSizeS when the value is corrected in style plugin
                 font.capitalization: Font.AllUppercase

@@ -38,9 +38,9 @@ import com.pelagicore.styles.neptune 3.0
 
 ColumnLayout {
     id: root
-    spacing: 15
+    spacing: NeptuneStyle.dp(15)
 
-    property int preferredWidth: Style.vspan(3)
+    property int preferredWidth: NeptuneStyle.dp(240)
     property alias currentSongTitle: songTitle.text
     property alias currentArtisName: artistName.text
 

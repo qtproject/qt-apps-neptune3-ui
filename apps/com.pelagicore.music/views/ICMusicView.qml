@@ -48,10 +48,10 @@ Item {
 
     ICAlbumArtPanel {
         id: albumArt
-        width: 540
-        height: 464
+        width: NeptuneStyle.dp(540)
+        height: NeptuneStyle.dp(464)
         anchors.centerIn: parent
-        anchors.verticalCenterOffset: 50
+        anchors.verticalCenterOffset: NeptuneStyle.dp(50)
         musicPlaying: root.store.playing
         musicPosition: root.store.currentTrackPosition
         mediaReady: root.store.searchAndBrowseModel.count > 0
