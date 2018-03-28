@@ -97,13 +97,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             a.installTranslator(&qtTranslator);
         }
 
-        QIcon::setThemeName("neptune");
-        {
-            QStringList searchPaths = QIcon::themeSearchPaths();
-            searchPaths.prepend(STR(NEPTUNE_ICONS_PATH));
-            QIcon::setThemeSearchPaths(searchPaths);
-        }
-
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
         cfg.parse();
         a.setup(&cfg, deploymentWarnings);

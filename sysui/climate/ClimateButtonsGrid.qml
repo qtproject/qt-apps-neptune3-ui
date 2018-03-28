@@ -29,24 +29,27 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.3
 
 import utils 1.0
+
+import com.pelagicore.styles.neptune 3.0
 
 GridLayout {
     id: root
 
     property var model
 
-    width: Style.hspan(448/45)
-    height: Style.vspan(312/80)
+    width: NeptuneStyle.dp(448)
+    height: NeptuneStyle.dp(312)
     columns: 3
     ClimateButton {
         id: rear_defrost
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: rear_defrost.checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
+        icon.name: checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
         checked: model.rearHeat.enabled
         onToggled: model.rearHeat.setEnabled(!model.rearHeat.enabled)
     }
@@ -54,7 +57,7 @@ GridLayout {
         id: front_defrost
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: front_defrost.checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
+        icon.name: checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
         checked: model.frontHeat.enabled
         onToggled: model.frontHeat.setEnabled(!model.frontHeat.enabled)
     }
@@ -62,7 +65,7 @@ GridLayout {
         id: recirculation
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: recirculation.checked ? "ic-recirculation_ON" : "ic-recirculation_OFF"
+        icon.name: checked ? "ic-recirculation_ON" : "ic-recirculation_OFF"
         checked: model.airQuality.enabled
         onToggled: model.airQuality.setEnabled(!model.airQuality.enabled)
     }
@@ -70,7 +73,8 @@ GridLayout {
         id: seat_heater_driver
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: seat_heater_driver.checked ? "ic-seat-heat-driver_ON" : "ic-seat-heat-driver_OFF"
+        icon.name: checked ? "ic-seat-heat-driver_ON" : "ic-seat-heat-driver_OFF"
+        display: AbstractButton.TextUnderIcon
         text: qsTr("DRIVER")
         checked: model.leftSeat.heat
         onToggled: model.leftSeat.setHeat(!model.leftSeat.heat)
@@ -79,7 +83,7 @@ GridLayout {
         id: steering_wheel_heat
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: steering_wheel_heat.checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
+        icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
         checked: model.steeringWheelHeat.enabled
         onToggled: model.steeringWheelHeat.setEnabled(!model.steeringWheelHeat.enabled)
     }
@@ -87,7 +91,8 @@ GridLayout {
         id: seat_heater_passenger
         Layout.fillWidth: true
         Layout.fillHeight: true
-        icon: seat_heater_passenger.checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
+        icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
+        display: AbstractButton.TextUnderIcon
         text: qsTr("PASSENGER")
         checked: model.rightSeat.heat
         onToggled: model.rightSeat.setHeat(!model.rightSeat.heat)

@@ -43,6 +43,7 @@ public:
     NeptuneTheme(QPlatformTheme *theme = nullptr);
 
     const QFont *font(QPlatformTheme::Font type = SystemFont) const override;
+    QVariant themeHint(QPlatformTheme::ThemeHint hint) const override;
 private:
     QFont m_systemFont;
 };

@@ -29,13 +29,19 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick 2.10
 import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.2 as T
+import QtQuick.Templates 2.3 as T
+import QtQuick.Controls 2.3
+import QtQuick.Controls.impl 2.3
+
 import com.pelagicore.styles.neptune 3.0
 
 T.Button {
     id: control
+
+    property string customBackgroundColor: ""
+
     implicitWidth: NeptuneStyle.cellWidth + leftPadding + rightPadding
     implicitHeight: NeptuneStyle.cellHeight + leftPadding + rightPadding
 
@@ -44,47 +50,52 @@ T.Button {
     rightPadding: padding + NeptuneStyle.dp(2)
     font.pixelSize: NeptuneStyle.fontSizeM
     font.weight: Font.Light
+    spacing: NeptuneStyle.dp(22)
 
-    contentItem: Text {
-        Layout.fillHeight: true
-        Layout.fillWidth: true
+    icon.color: NeptuneStyle.primaryTextColor
+
+    contentItem: IconLabel {
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+
+        anchors.verticalCenter: control.verticalCenter
+        icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled || control.highlighted || control.checked ?
-                     NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
-
         color: NeptuneStyle.primaryTextColor
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-        elide: Text.ElideRight
-        wrapMode: Text.WordWrap
+        opacity: control.enabled ? 1.0 : 0.3
     }
 
     background: Rectangle {
         border.width: !control.enabled && !control.checked ? NeptuneStyle.dp(2) : 0
         border.color: NeptuneStyle.contrastColor
         visible: !control.flat
-
         color: {
-            if (control.checked) {
+            if (customBackgroundColor !== "") {
+                if (control.pressed) {
+                    return Qt.darker(customBackgroundColor, (1 / 0.94))
+                }
+                return customBackgroundColor;
+            } else if (control.checked) {
                 return NeptuneStyle.accentColor;
             } else if (!control.enabled) {
-                return "transparent"
+                return "transparent";
             } else {
                 return NeptuneStyle.contrastColor;
             }
         }
-
         opacity: {
-            if (control.pressed && !control.checked) {
+            if (control.pressed && !control.checked && customBackgroundColor === "") {
                 return 0.12;
-            } else if (control.checked) {
+            } else if (control.checked || customBackgroundColor !== "") {
                 return 1.0;
             } else {
                 return 0.06;
             }
         }
         Behavior on opacity { NumberAnimation { duration: 200 } }
+        Behavior on color { ColorAnimation { duration: 200 } }
 
         radius: width / 2
     }

@@ -39,10 +39,16 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
+    readonly property int largeButtonHeight: 100
+    readonly property int smallButtonHeight: 52
+    readonly property int largeButtonPadding: 58
+    readonly property int smallButtonPadding: 26
+
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: Style.vspan(1)
+        spacing: Style.vspan(.5)
         RowLayout {
             spacing: Style.hspan(0.3)
 
@@ -67,6 +73,114 @@ Item {
                 font.pixelSize: NeptuneStyle.fontSizeS
                 text: "Button Checkable"
                 checkable: true
+            }
+        }
+        RowLayout {
+            spacing: Style.hspan(0.3)
+
+            Button {
+                implicitHeight: smallButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: smallButtonPadding
+                rightPadding: smallButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Small button"
+            }
+            Button {
+                implicitHeight: smallButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: smallButtonPadding
+                rightPadding: smallButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Small button"
+                icon.name: "ic-steering-wheel-heat_OFF"
+            }
+            Button {
+                implicitHeight: smallButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: smallButtonPadding
+                rightPadding: smallButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Checkable"
+                icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
+                checkable: true
+            }
+        }
+        RowLayout {
+            spacing: Style.hspan(0.3)
+            Button {
+                text: "Large button"
+                implicitHeight: largeButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: largeButtonPadding
+                rightPadding: largeButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+
+            }
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: largeButtonPadding
+                rightPadding: largeButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Large button"
+                icon.name: "ic-steering-wheel-heat_OFF"
+            }
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: largeButtonPadding
+                rightPadding: largeButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Checkable"
+                icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
+                checkable: true
+            }
+        }
+        RowLayout {
+            spacing: Style.hspan(0.3)
+
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: 160
+                icon.width: 40
+                icon.height: 40
+                customBackgroundColor: NeptuneStyle.clusterMarksColor
+                icon.name: "ic-seat-heat-passenger_OFF"
+                icon.color: "white"
+            }
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: 160
+                icon.width: 35
+                icon.height: 35
+                customBackgroundColor: NeptuneStyle.highlightedTextColor
+                icon.name: "ic-seat-heat-passenger_OFF"
+                text: "text"
+                font.pixelSize: NeptuneStyle.fontSizeS
+                display: AbstractButton.TextUnderIcon
+                spacing: 0
+            }
+        }
+        RowLayout {
+            spacing: Style.hspan(0.3)
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: 500
+                leftPadding: largeButtonPadding
+                rightPadding: largeButtonPadding
+                text: "Wide button"
+                font.pixelSize: NeptuneStyle.fontSizeS
+                icon.name: "ic-steering-wheel-heat_OFF"
+            }
+            Button {
+                implicitHeight: largeButtonHeight
+                implicitWidth: Style.hspan(7)
+                leftPadding: largeButtonPadding
+                rightPadding: largeButtonPadding
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: "Elide too long text"
+                icon.name: "ic-steering-wheel-heat_OFF"
             }
         }
     }

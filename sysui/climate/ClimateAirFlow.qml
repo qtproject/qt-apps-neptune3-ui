@@ -40,8 +40,8 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    width: Style.hspan(550/45)
-    height: Style.vspan(400/80)
+    width: NeptuneStyle.dp(550)
+    height: NeptuneStyle.dp(400)
 
     property var model
     property bool autoMode: false
@@ -82,7 +82,7 @@ Item {
     Item {
         anchors.centerIn: parent
         width: Math.max(airFlowTop.width, airFlowMiddle.width, airFlowDown.width) + NeptuneStyle.dp(70)
-        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - NeptuneStyle.dp(40 + 20)
+        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - NeptuneStyle.dp(60)
         Image {
             id: seatImage
             width: NeptuneStyle.dp(sourceSize.width)

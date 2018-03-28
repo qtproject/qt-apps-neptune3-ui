@@ -44,8 +44,8 @@ Item {
     property Item popupParent
     property var model
 
-    property real lateralMargin: Style.hspan(0.6)
-    property real toolWidth: Style.hspan(2)
+    property real lateralMargin: NeptuneStyle.dp(27)
+    property real toolWidth: NeptuneStyle.dp(90)
 
     MouseArea {
         anchors.top: parent.top
@@ -60,8 +60,8 @@ Item {
     RowLayout {
         anchors.centerIn: parent
 
-        height: Style.vspan(1)
-        spacing: Style.hspan(0.2)
+        height: NeptuneStyle.dp(80)
+        spacing: NeptuneStyle.dp(9)
 
         Image {
             anchors.verticalCenter: parent.verticalCenter
@@ -73,8 +73,8 @@ Item {
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.leftMargin: Style.hspan(.8)
-            Layout.rightMargin: Style.hspan(.8)
+            Layout.leftMargin: NeptuneStyle.dp(36)
+            Layout.rightMargin: NeptuneStyle.dp(36)
             text: root.model ? root.model.leftSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
@@ -100,8 +100,8 @@ Item {
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            Layout.leftMargin: Style.hspan(.8)
-            Layout.rightMargin: Style.hspan(.8)
+            Layout.leftMargin: NeptuneStyle.dp(36)
+            Layout.rightMargin: NeptuneStyle.dp(36)
             text: root.model ? root.model.rightSeat.valueString : ""
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL

@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import com.pelagicore.styles.neptune 3.0
@@ -51,7 +51,7 @@ Item {
 
     Row {
         anchors.centerIn: parent
-        spacing: Style.hspan(0.5)
+        spacing: NeptuneStyle.dp(22)
         Column {
             anchors.verticalCenter: parent.verticalCenter
             ClimateButton {
@@ -59,8 +59,8 @@ Item {
                 height: NeptuneStyle.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: NeptuneStyle.fontSizeXL
-                icon: "ic-temperature-plus"
+                font.pixelSize: NeptuneStyle.fontSizeXL
+                icon.name: "ic-temperature-plus"
                 onClicked: root.driverSeatTemperatureIncreased()
             }
             Label {
@@ -75,8 +75,8 @@ Item {
                 height: NeptuneStyle.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: NeptuneStyle.fontSizeXL
-                icon: "ic-temperature-minus"
+                font.pixelSize: NeptuneStyle.fontSizeXL
+                icon.name: "ic-temperature-minus"
                 onClicked: root.driverSeatTemperatureDecreased()
             }
         }
@@ -84,7 +84,9 @@ Item {
         ClimateButton {
             id: linkTemp
             anchors.verticalCenter: parent.verticalCenter
-            icon: linkTemp.checked ? "ic-link_ON" : "ic-link_OFF"
+            icon.name: checked ? "ic-link_ON" : "ic-link_OFF"
+            icon.width: NeptuneStyle.dp(24)
+            icon.height: NeptuneStyle.dp(24)
             onToggled: root.linkToggled(checked)
         }
 
@@ -95,8 +97,8 @@ Item {
                 height: NeptuneStyle.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: NeptuneStyle.fontSizeXL
-                icon: "ic-temperature-plus"
+                font.pixelSize: NeptuneStyle.fontSizeXL
+                icon.name: "ic-temperature-plus"
                 onClicked: root.passengerSeatTemperatureIncreased()
             }
             Label {
@@ -111,8 +113,8 @@ Item {
                 height: NeptuneStyle.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                textFontSize: NeptuneStyle.fontSizeXL
-                icon: "ic-temperature-minus"
+                font.pixelSize: NeptuneStyle.fontSizeXL
+                icon.name: "ic-temperature-minus"
                 onClicked: root.passengerSeatTemperatureDecreased()
             }
         }

@@ -41,10 +41,10 @@ import controls 1.0
 
 NeptunePopup {
     id: root
-    width: Style.hspan(910/45)
-    height: Style.vspan(1426/80)
+    width: NeptuneStyle.dp(910)
+    height: NeptuneStyle.dp(1426)
     headerBackgroundVisible: true
-    headerBackgroundHeight: Style.hspan(278/45)
+    headerBackgroundHeight: NeptuneStyle.dp(278)
 
     property var model
     property bool seatTemperaturesLinked: false
@@ -75,7 +75,7 @@ NeptunePopup {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: Style.hspan(278/45)
+        height: NeptuneStyle.dp(278)
         temperatureDriverSeat: model.leftSeat.valueString
         temperaturePassengerSeat: model.rightSeat.valueString
         onDriverSeatTemperatureIncreased: {
@@ -104,7 +104,7 @@ NeptunePopup {
     ClimateButtonsGrid {
         id: buttonsGrid
         anchors.top: header.bottom
-        anchors.topMargin: Style.vspan(36/45)
+        anchors.topMargin: NeptuneStyle.dp(64)
         anchors.horizontalCenter: parent.horizontalCenter
         model: root.model
     }
@@ -113,17 +113,17 @@ NeptunePopup {
         id: airFlow
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: buttonsGrid.bottom
-        anchors.topMargin: Style.vspan(36/45)
+        anchors.topMargin: NeptuneStyle.dp(64)
         model: root.model
     }
 
     Button {
         id: bigFatButton
-        width: Style.hspan(460/45)
-        height: Style.vspan(1)
+        width: NeptuneStyle.dp(460)
+        height: NeptuneStyle.dp(80)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(118/80)
+        anchors.bottomMargin: NeptuneStyle.dp(118)
         checkable: true
         text: qsTr("Auto")
         onCheckedChanged: {
@@ -135,10 +135,10 @@ NeptunePopup {
     TemperatureSlider {
         id: leftTempSlider
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(130/80) - leftTempSlider.handleHeight/2
+        anchors.topMargin: NeptuneStyle.dp(130) - leftTempSlider.handleHeight/2
         anchors.left: parent.left
-        anchors.leftMargin: -leftTempSlider.width/2 + Style.hspan(30/45)/2
-        height: Style.vspan(15)
+        anchors.leftMargin: -leftTempSlider.width/2 + NeptuneStyle.dp(30)/2
+        height: NeptuneStyle.dp(1200)
         convertFunc: model.calculateUnitValue
 
         property bool sliderChanging: false
@@ -166,10 +166,10 @@ NeptunePopup {
     TemperatureSlider {
         id: rightTempSlider
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(130/80) - rightTempSlider.handleHeight/2
+        anchors.topMargin: NeptuneStyle.dp(130) - rightTempSlider.handleHeight/2
         anchors.right: parent.right
-        anchors.rightMargin: -rightTempSlider.width/2 + Style.hspan(30/45)/2
-        height: Style.vspan(15)
+        anchors.rightMargin: -rightTempSlider.width/2 + NeptuneStyle.dp(30)/2
+        height: NeptuneStyle.dp(1200)
         convertFunc: model.calculateUnitValue
 
         property bool sliderChanging: false

@@ -34,6 +34,11 @@
 #include <QDebug>
 #include <QtGui/QFont>
 #include <QtGui/QFontInfo>
+#include <QtGui/QIcon>
+
+// code to transform a macro into a string literal
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
 
 Q_LOGGING_CATEGORY(neptuneTheme, "neptune.theme")
 
@@ -56,4 +61,14 @@ const QFont *NeptuneTheme::font(QPlatformTheme::Font type) const
     default:
         return &m_systemFont;
     }
+}
+
+QVariant NeptuneTheme::themeHint(QPlatformTheme::ThemeHint hint) const
+{
+    if (hint == SystemIconThemeName || hint == StyleNames) {
+        return QStringLiteral("neptune");
+    } else if (hint == IconThemeSearchPaths) {
+        return STR(NEPTUNE_ICONS_PATH);
+    }
+    return QQuickProxyTheme::themeHint(hint);
 }

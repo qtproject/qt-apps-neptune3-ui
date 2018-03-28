@@ -29,9 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import utils 1.0
 
 import com.pelagicore.styles.neptune 3.0
@@ -39,34 +38,9 @@ import com.pelagicore.styles.neptune 3.0
 Button {
     id: root
     checkable: true
-
-    width: Style.hspan(156/45)
-    height: Style.vspan(146/80)
-
-    property string icon
-    property int textFontSize: NeptuneStyle.fontSizeXS
-
-    background: null
-
-    contentItem: Item {
-        Column {
-            anchors.centerIn: parent
-            spacing: Style.vspan(0.1)
-            Image {
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: Style.symbol(root.icon, NeptuneStyle.theme)
-                fillMode: Image.PreserveAspectFit
-            }
-            Label {
-                anchors.horizontalCenter: parent.horizontalCenter
-                wrapMode: Text.WordWrap
-                text: root.text
-                font.pixelSize: root.textFontSize
-                opacity: root.checked ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-                Behavior on opacity { OpacityAnimator {} }
-            }
-        }
-    }
+    width: NeptuneStyle.dp(156)
+    height: NeptuneStyle.dp(146)
+    font.pixelSize: NeptuneStyle.fontSizeXS
+    flat: true
+    icon.color: checked ? NeptuneStyle.accentDetailColor : NeptuneStyle.primaryTextColor
 }

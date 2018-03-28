@@ -24,7 +24,5 @@ SOURCES = main.cpp
 
 DESTDIR = $$OUT_PWD/../../
 
-DEFINES += "NEPTUNE_ICONS_PATH=$$INSTALL_PREFIX/neptune3/imports/assets/icons"
-
 target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
