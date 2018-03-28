@@ -66,8 +66,8 @@ Item {
             onClicked: root.showRoute(root.homeAddressData, secondaryText)
         }
         Rectangle {
-            width: 1
-            height: parent.height
+            Layout.fillHeight: true
+            Layout.preferredWidth: NeptuneStyle.dp(1)
             opacity: NeptuneStyle.fontOpacityDisabled
             color: NeptuneStyle.primaryTextColor
         }

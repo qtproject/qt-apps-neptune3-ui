@@ -43,7 +43,7 @@ Row {
     property Helper helper: Helper {}
     signal openSearchTextInput()
 
-    spacing: Style.hspan(.5)
+    spacing: NeptuneStyle.dp(45 * .5)
 
     Item {
         width: parent.width/2
@@ -61,18 +61,20 @@ Row {
     Button {
         id: searchButton
         width: parent.width / 2
-        height: Style.vspan(.9)
+        height: NeptuneStyle.dp(72)
         scale: pressed ? 1.1 : 1.0
         Behavior on scale { NumberAnimation { duration: 50 } }
 
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
-                spacing: Style.hspan(0.3)
+                spacing: NeptuneStyle.dp(45 * 0.3)
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
-                    fillMode: Image.Pad
+                    fillMode: Image.PreserveAspectFit
                     source: helper.localAsset("ic-search", NeptuneStyle.theme)
+                    width: NeptuneStyle.dp(sourceSize.width)
+                    height: NeptuneStyle.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

@@ -45,13 +45,13 @@ TextField {
     font.pixelSize: NeptuneStyle.fontSizeM
     color: NeptuneStyle.primaryTextColor
     selectedTextColor: NeptuneStyle.highlightedTextColor
-    leftPadding: Style.hspan(0.4)
-    rightPadding: Style.hspan(1.4)
+    leftPadding: NeptuneStyle.dp(18)
+    rightPadding: NeptuneStyle.dp(63)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
         border.color: NeptuneStyle.buttonColor
-        border.width: 1
+        border.width: NeptuneStyle.dp(1)
         color: "transparent"
         radius: height/2
         Item {
@@ -59,15 +59,18 @@ TextField {
             Image {
                 id: iconSearch
                 anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(0.4)
+                anchors.rightMargin: NeptuneStyle.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
                 source: helper.localAsset("ic-search", NeptuneStyle.theme)
                 visible: !searchBusyIndicator.visible
+                fillMode: Image.PreserveAspectFit
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
             }
             BusyIndicator {
                 id: searchBusyIndicator
                 anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(0.4)
+                anchors.rightMargin: NeptuneStyle.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
                 visible: running
             }

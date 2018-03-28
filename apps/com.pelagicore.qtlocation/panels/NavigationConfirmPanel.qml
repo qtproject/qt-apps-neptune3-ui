@@ -50,10 +50,10 @@ Row {
     signal startNavigation()
     signal stopNavigation()
 
-    spacing: Style.hspan(.5)
+    spacing: NeptuneStyle.dp(45 * .5)
 
     NeptuneControls.Tool {
-        width: Style.hspan(.9)
+        width: NeptuneStyle.dp(45 * .9)
         height: width
         visible: root.guidanceMode
         symbol: Qt.resolvedUrl("../assets/ic-end-route.png")
@@ -63,11 +63,11 @@ Row {
     RowLayout {
         width: root.guidanceMode ? parent.width : parent.width / 2
         anchors.verticalCenter: parent.verticalCenter
-        spacing: Style.hspan(.7)
+        spacing: NeptuneStyle.dp(45 * .7)
 
         NeptuneControls.Tool {
             Layout.leftMargin: parent.spacing
-            width: Style.hspan(1)
+            width: NeptuneStyle.dp(45)
             height: width
             enabled: visible
             visible: !root.guidanceMode
@@ -95,7 +95,7 @@ Row {
     Button {
         id: startNavigationButton
         width: parent.width / 3
-        height: Style.vspan(1)
+        height: NeptuneStyle.dp(80)
         anchors.verticalCenter: parent.verticalCenter
         scale: pressed ? 1.1 : 1.0
         visible: !root.guidanceMode
@@ -104,12 +104,14 @@ Row {
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
-                spacing: Style.hspan(0.3)
+                spacing: NeptuneStyle.dp(45 * 0.3)
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
-                    fillMode: Image.Pad
+                    fillMode: Image.PreserveAspectFit
                     source: helper.localAsset("ic-start-navigation", NeptuneStyle.theme)
                     opacity: startNavigationButton.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+                    width: NeptuneStyle.dp(sourceSize.width)
+                    height: NeptuneStyle.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter

@@ -229,15 +229,17 @@ Item {
 
     NeptuneControls.Tool {
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.6)
+        anchors.leftMargin: NeptuneStyle.dp(27)
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(0.6)
+        anchors.topMargin: NeptuneStyle.dp(48)
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         symbol: Qt.resolvedUrl("../assets/ic-search.png")
+        width: NeptuneStyle.dp(background.sourceSize.width)
+        height: width
         background: Image {
-            fillMode: Image.Pad
+            fillMode: Image.PreserveAspectFit
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         onClicked: root.maximizeMap()
@@ -246,15 +248,15 @@ Item {
     FastBlur {
         anchors.fill: mapBoxView
         source: mapBoxView
-        radius: 64
+        radius: NeptuneStyle.dp(64)
         visible: searchViewEnabled
     }
 
-    BorderImage {
+    NeptuneControls.ScalableBorderImage {
         id: overlay
         anchors.fill: root
-        border.top: 322
-        border.bottom: 323
+        border.top: NeptuneStyle.dp(322)
+        border.bottom: NeptuneStyle.dp(323)
         border.left: 0
         border.right: 0
         source: Style.gfx2("input-overlay")
@@ -264,9 +266,9 @@ Item {
     SearchOverlayPanel {
         id: searchOverlay
         anchors.fill: root
-        anchors.topMargin: Style.vspan(1)
+        anchors.topMargin: NeptuneStyle.dp(80)
         visible: searchViewEnabled
-        spacing: Style.vspan(1)
+        spacing: NeptuneStyle.dp(80)
         model: geocodeModel
 
         onBackButtonClicked: searchViewEnabled = false

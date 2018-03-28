@@ -51,17 +51,19 @@ ToolButton {
 
     background: Item {
         Row {
-            spacing: Style.hspan(0.5)
+            spacing: NeptuneStyle.dp(45 * 0.5)
             anchors.centerIn: parent
             Image {
                 id: buttonImage
                 anchors.verticalCenter: parent.verticalCenter
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
             }
             Column {
-                spacing: Style.hspan(0.1)
+                spacing: NeptuneStyle.dp(8)
                 anchors.verticalCenter: parent.verticalCenter
                 Row {
-                    spacing: Style.hspan(0.3)
+                    spacing: NeptuneStyle.dp(45 * 0.3)
                     Label {
                         id: primaryButtonText
                         anchors.verticalCenter: parent.verticalCenter

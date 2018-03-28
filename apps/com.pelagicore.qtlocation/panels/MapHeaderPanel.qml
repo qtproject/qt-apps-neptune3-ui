@@ -59,7 +59,7 @@ Item {
     readonly property var homeAddressData: QtPositioning.coordinate(57.706436, 12.018661)
     readonly property var workAddressData: QtPositioning.coordinate(57.709545, 11.967005)
 
-    readonly property int destinationButtonrowHeight: 150
+    readonly property int destinationButtonrowHeight: NeptuneStyle.dp(150)
 
     signal showRoute(var destCoord, string description)
     signal startNavigation()
@@ -71,7 +71,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(210/80)
+        anchors.topMargin: NeptuneStyle.dp(210)
         active: root.state === "Maximized"
         sourceComponent: HeaderBackgroundMaximizedPanel {
             navigationMode: root.navigationMode
@@ -93,11 +93,11 @@ Item {
 
     Loader {
         id: navigationSearchButtonsFullscreen
-        width: headerBackgroundFullscreen.width - Style.hspan(2)
+        width: headerBackgroundFullscreen.width - NeptuneStyle.dp(90)
         height: headerBackgroundFullscreen.height
         active: headerBackgroundFullscreen.active && !root.navigationMode
         anchors.top: headerBackgroundFullscreen.top
-        anchors.topMargin: Style.vspan(1.4)
+        anchors.topMargin: NeptuneStyle.dp(112)
         anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
         sourceComponent: NavigationSearchPanel {
             onOpenSearchTextInput: root.openSearchTextInput()
@@ -106,11 +106,10 @@ Item {
 
     Loader {
         id: navigationSearchButtonsWidget
-        width: headerBackgroundWidget.width - (184 * NeptuneStyle.scale) // compensate for the "expand" button in the widget corner
-        height: headerBackgroundWidget.height
+        width: headerBackgroundWidget.width - NeptuneStyle.dp(184) // compensate for the "expand" button in the widget corner
         active: headerBackgroundWidget.active
         anchors.top: headerBackgroundWidget.top
-        anchors.topMargin: Style.vspan(.6)
+        anchors.topMargin: NeptuneStyle.dp(48)
         anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
         sourceComponent: NavigationSearchPanel {
             onOpenSearchTextInput: root.openSearchTextInput()
@@ -120,7 +119,7 @@ Item {
     Loader {
         id: navigationConfirmButtons
         anchors.fill: headerBackgroundFullscreen
-        anchors.rightMargin: Style.hspan(.5)
+        anchors.rightMargin: NeptuneStyle.dp(45 * .5)
         active: headerBackgroundFullscreen.active && root.navigationMode
         sourceComponent: NavigationConfirmPanel {
             guidanceMode: root.guidanceMode
@@ -138,9 +137,9 @@ Item {
         anchors.top: headerBackgroundFullscreen.top
         anchors.topMargin: headerBackgroundFullscreen.height - height
         anchors.left: headerBackgroundFullscreen.left
-        anchors.leftMargin: Style.hspan(1)
+        anchors.leftMargin: NeptuneStyle.dp(45)
         anchors.right: headerBackgroundFullscreen.right
-        anchors.rightMargin: Style.hspan(1.5)
+        anchors.rightMargin: NeptuneStyle.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundFullscreen.active && !root.navigationMode
         sourceComponent: FavDestinationButtonsPanel {
@@ -155,11 +154,11 @@ Item {
     Loader {
         id: favoriteDestinationButtonsWidget
         anchors.top: headerBackgroundWidget.top
-        anchors.topMargin: Style.vspan(2)
+        anchors.topMargin: NeptuneStyle.dp(130)
         anchors.left: headerBackgroundWidget.left
-        anchors.leftMargin: Style.hspan(1)
+        anchors.leftMargin: NeptuneStyle.dp(45)
         anchors.right: headerBackgroundWidget.right
-        anchors.rightMargin: Style.hspan(1.5)
+        anchors.rightMargin: NeptuneStyle.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundWidget.active && root.state === "Widget3Rows"
         sourceComponent: FavDestinationButtonsPanel {

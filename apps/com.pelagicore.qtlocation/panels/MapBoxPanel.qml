@@ -112,7 +112,7 @@ Item {
             delegate: MapRoute {
                 route: routeData
                 line.color: "#798bd9"
-                line.width: 3
+                line.width: NeptuneStyle.dp(3)
                 smooth: true
                 opacity: NeptuneStyle.fontOpacityHigh
             }
@@ -127,8 +127,8 @@ Item {
             sourceItem: Image {
                 id: markerImage
                 source: Qt.resolvedUrl("../assets/pin-destination.png")
-                width: 139/2
-                height: 161/2
+                width: NeptuneStyle.dp(139/2)
+                height: NeptuneStyle.dp(161/2)
             }
         }
 
@@ -142,8 +142,8 @@ Item {
             sourceItem: Image {
                 id: posImage
                 source: Qt.resolvedUrl("../assets/pin-your-position.png")
-                width: 116/2
-                height: 135/2
+                width: NeptuneStyle.dp(116/2)
+                height: NeptuneStyle.dp(135/2)
             }
             rotation: root.routeSegments ? root.routeSegments[0].path[0].azimuthTo(root.routeSegments[0].path[1])
                                                : 0
@@ -165,7 +165,7 @@ Item {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: guidanceMode ? Style.hspan(18) : 0
+        anchors.rightMargin: guidanceMode ? NeptuneStyle.dp(810) : 0
         anchors.top: parent.top
         opacity: root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -204,15 +204,17 @@ Item {
 
     NeptuneControls.Tool {
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.6)
+        anchors.leftMargin: NeptuneStyle.dp(27)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
-        anchors.topMargin: Style.vspan(3)
+        anchors.topMargin: NeptuneStyle.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
+        width: NeptuneStyle.dp(background.sourceSize.width)
+        height: width
         background: Image {
-            fillMode: Image.Pad
+            fillMode: Image.PreserveAspectFit
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         symbol: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
@@ -221,15 +223,17 @@ Item {
 
     NeptuneControls.Tool {
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(0.6)
+        anchors.rightMargin: NeptuneStyle.dp(27)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
-        anchors.topMargin: Style.vspan(3)
+        anchors.topMargin: NeptuneStyle.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
+        width: NeptuneStyle.dp(background.sourceSize.width)
+        height: width
         background: Image {
-            fillMode: Image.Pad
+            fillMode: Image.PreserveAspectFit
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         enabled: !checked
@@ -241,7 +245,7 @@ Item {
     MapCopyrightNotice {
         anchors.left: mainMap.left
         anchors.bottom: mainMap.bottom
-        anchors.leftMargin: Style.hspan(.5)
+        anchors.leftMargin: NeptuneStyle.dp(45 * .5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
         .arg(NeptuneStyle.primaryTextColor).arg(NeptuneStyle.fontFamily).arg(NeptuneStyle.fontSizeXXS)

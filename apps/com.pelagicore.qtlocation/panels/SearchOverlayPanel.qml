@@ -46,7 +46,7 @@ ColumnLayout {
 
     property GeocodeModel model
 
-    spacing: Style.vspan(1)
+    spacing: NeptuneStyle.dp(80)
 
     signal backButtonClicked()
     signal searchFieldAccepted()
@@ -56,7 +56,7 @@ ColumnLayout {
 
     Tool {
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
+        anchors.leftMargin: NeptuneStyle.dp(45)
         symbol: Style.symbol("ic_back")
         text: qsTr("Back")
         onClicked: root.backButtonClicked()
@@ -65,9 +65,9 @@ ColumnLayout {
     MapSearchTextField {
         id: searchField
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2)
+        anchors.leftMargin: NeptuneStyle.dp(90)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(2)
+        anchors.rightMargin: NeptuneStyle.dp(90)
         selectByMouse: true
         focus: root.visible
         busy: root.model.status === GeocodeModel.Loading
@@ -86,16 +86,16 @@ ColumnLayout {
         id: searchResultsList
         Layout.fillHeight: true
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(2)
+        anchors.leftMargin: NeptuneStyle.dp(90)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(2)
+        anchors.rightMargin: NeptuneStyle.dp(90)
         clip: true
         visible: root.visible
         model: root.model
         delegate: ListItem {
             id: itemDelegate
             width: parent.width
-            height: Style.vspan(1.5)
+            height: NeptuneStyle.dp(120)
             readonly property string addressText: locationData.address.text
             readonly property string city: locationData.address.city
             readonly property string country: locationData.address.country

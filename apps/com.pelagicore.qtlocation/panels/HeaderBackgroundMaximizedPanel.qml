@@ -33,6 +33,7 @@ import QtQuick 2.8
 
 import utils 1.0
 import animations 1.0
+import controls 1.0
 
 import com.pelagicore.styles.neptune 3.0
 import "../helpers"
@@ -45,38 +46,39 @@ Item {
     property bool guidanceMode: false
     property Helper helper: Helper {}
 
-    height: destinationButtonsPanel.visible ? destinationButtonsPanel.sourceSize.height : searchPanel.height
+    height: destinationButtonsPanel.visible ? NeptuneStyle.dp(destinationButtonsPanel.sourceSize.height) : searchPanel.height
 
-    BorderImage {
+    ScalableBorderImage {
         id: outerShadow
         anchors.top: destinationButtonsPanel.top
-        anchors.topMargin: -40
+        anchors.topMargin: NeptuneStyle.dp(-40)
         anchors.left: destinationButtonsPanel.left
         anchors.right: destinationButtonsPanel.right
-        anchors.rightMargin: -Style.vspan(.5)
-        height: root.navigationMode && !root.guidanceMode ? sourceSize.height - root.destinationButtonrowHeight : sourceSize.height
+        anchors.rightMargin: -NeptuneStyle.dp(45 * .5)
+        height: root.navigationMode && !root.guidanceMode ? NeptuneStyle.dp(sourceSize.height) - root.destinationButtonrowHeight
+                                                          : NeptuneStyle.dp(sourceSize.height)
         source: helper.localAsset("panel-shadow", NeptuneStyle.theme)
         border {
             left: 0
-            top: 101
-            right: 101
-            bottom: 106
+            top: NeptuneStyle.dp(101)
+            right: NeptuneStyle.dp(101)
+            bottom: NeptuneStyle.dp(106)
         }
     }
 
-    BorderImage {
+    ScalableBorderImage {
         id: destinationButtonsPanel
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: -Style.vspan(1)
+        anchors.rightMargin: -NeptuneStyle.dp(45)
         source: helper.localAsset("panel-more-contrast-background", NeptuneStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
-            top: 20
-            right: 32
-            bottom: 22
+            top: NeptuneStyle.dp(20)
+            right: NeptuneStyle.dp(32)
+            bottom: NeptuneStyle.dp(22)
         }
     }
 
@@ -89,18 +91,19 @@ Item {
         source: Style.gfx2("panel-inner-shadow", NeptuneStyle.theme)
     }
 
-    BorderImage {
+    ScalableBorderImage {
         id: searchPanel
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: -Style.vspan(1)
-        height: root.guidanceMode ? sourceSize.height : destinationButtonsPanel.sourceSize.height - root.destinationButtonrowHeight
+        anchors.rightMargin: -NeptuneStyle.dp(45)
+        height: root.guidanceMode ? NeptuneStyle.dp(sourceSize.height) :
+                                    NeptuneStyle.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
         source: helper.localAsset("panel-background", NeptuneStyle.theme)
         border {
             left: 0
-            top: 20
-            right: 22
+            top: NeptuneStyle.dp(20)
+            right: NeptuneStyle.dp(22)
             bottom: 0
         }
     }

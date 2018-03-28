@@ -45,7 +45,7 @@ Item {
 
     Image {
         id: widgetBackgroundImage
-        height: root.state === "Widget3Rows" ? sourceSize.height : sourceSize.height/2
+        height: root.state === "Widget3Rows" ? NeptuneStyle.dp(sourceSize.height) : NeptuneStyle.dp(sourceSize.height/2)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
