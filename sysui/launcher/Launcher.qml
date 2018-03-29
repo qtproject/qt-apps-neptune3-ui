@@ -42,7 +42,7 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    readonly property real expandedHeight: Style.vspan(10)
+    readonly property real expandedHeight: NeptuneStyle.dp(800)
     readonly property bool open: gridButton.checked
     property bool showDevApps: false
     property var applicationModel
@@ -58,7 +58,7 @@ Item {
 
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(134/45) - width/2
+        anchors.leftMargin: NeptuneStyle.dp(134) - width/2
         width: NeptuneStyle.dp(90)
         height: NeptuneStyle.dp(90)
 
@@ -88,7 +88,7 @@ Item {
 
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(134/45) - width/2
+        anchors.rightMargin: NeptuneStyle.dp(134) - width/2
 
         opacity: useCloseIcon ? 0.2 : 1
         symbol: useCloseIcon ? Style.symbol("ic-close") : Style.symbol("ic-menu-allapps")
@@ -116,8 +116,8 @@ Item {
             name: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.rightMargin: Style.hspan(168/45)
-                width: Style.hspan(744/45)
+                anchors.rightMargin: NeptuneStyle.dp(168)
+                width: NeptuneStyle.dp(744)
             }
             PropertyChanges {
                 target: homeButton
@@ -134,15 +134,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Style.vspan(150/80) - root.NeptuneStyle.dp(Style.statusBarHeight)
+                anchors.topMargin: NeptuneStyle.dp(150) - root.NeptuneStyle.dp(Style.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: NeptuneStyle.dp(152) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: NeptuneStyle.dp(152) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -151,15 +151,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Style.vspan(134/80) - root.NeptuneStyle.dp(Style.statusBarHeight)
+                anchors.topMargin: NeptuneStyle.dp(134) - root.NeptuneStyle.dp(Style.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: NeptuneStyle.dp(120) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: NeptuneStyle.dp(120) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -167,8 +167,8 @@ Item {
             name: "closed"
             PropertyChanges {
                 target: editableLauncher
-                anchors.rightMargin: Style.hspan(134/45) + cellWidth/2
-                width: Style.hspan(480/45)
+                anchors.rightMargin: NeptuneStyle.dp(134) + cellWidth/2
+                width: NeptuneStyle.dp(480)
             }
             PropertyChanges {
                 target: homeButton
@@ -185,15 +185,15 @@ Item {
             extend: "closed"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Style.vspan(32/80)
+                anchors.topMargin: NeptuneStyle.dp(32)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: NeptuneStyle.dp(152) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(152/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: NeptuneStyle.dp(152) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -206,11 +206,11 @@ Item {
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: NeptuneStyle.dp(120) - root.NeptuneStyle.dp(Style.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Style.vspan(120/80) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: NeptuneStyle.dp(120) - root.NeptuneStyle.dp(Style.statusBarHeight) - gridButton.width/2
             }
         }
     ]

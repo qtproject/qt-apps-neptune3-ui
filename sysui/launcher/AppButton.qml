@@ -52,7 +52,7 @@ Item {
     }
 
     Image {
-        width: Style.hspan(1.5)
+        width: NeptuneStyle.dp(68)
         anchors.centerIn: icon
         fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
@@ -71,7 +71,7 @@ Item {
     Label {
         id: appLabel
         anchors.top: icon.bottom
-        anchors.topMargin: Style.vspan(10/80)
+        anchors.topMargin: NeptuneStyle.dp(10)
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.width*0.8
         font.pixelSize: NeptuneStyle.fontSizeS
