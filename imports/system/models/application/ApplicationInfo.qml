@@ -132,6 +132,7 @@ QtObject {
 
     onWindowChanged: {
         if (window) {
+            AM.WindowManager.setWindowProperty(window, "neptuneScale", windowScale);
             AM.WindowManager.setWindowProperty(window, "neptuneWidgetHeight", widgetHeight);
             AM.WindowManager.setWindowProperty(window, "neptuneCurrentWidth", currentWidth);
             AM.WindowManager.setWindowProperty(window, "neptuneCurrentHeight", currentHeight);
@@ -145,10 +146,6 @@ QtObject {
     onWindowScaleChanged: {
         if (window)
             AM.WindowManager.setWindowProperty(window, "neptuneScale", windowScale);
-    }
-    onSecondaryWindowScaleChanged: {
-        if (secondaryWindow)
-            AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
     }
     onWidgetHeightChanged: {
         if (window)
@@ -177,6 +174,16 @@ QtObject {
     onLocaleCodeChanged: {
         if (window)
             AM.WindowManager.setWindowProperty(window, "locale", localeCode);
+    }
+
+    onSecondaryWindowChanged: {
+        if (secondaryWindow)
+            AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
+    }
+
+    onSecondaryWindowScaleChanged: {
+        if (secondaryWindow)
+            AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
     }
 
     onAsWidgetChanged: {
