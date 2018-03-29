@@ -57,7 +57,12 @@ Control {
         delegate: ItemDelegate {
             id: delegate
             onClicked: root.themeRequested(index)
+            width: ListView.view.width
+
             contentItem: ColumnLayout {
+                id: columnContent
+                anchors.fill: parent
+
                 RowLayout {
                     RadioButton {
                         checked: index === root.currentTheme
@@ -67,11 +72,16 @@ Control {
                         text: qsTranslate("RootStore", model.title)
                     }
                 }
+
                 Image {
+                    Layout.maximumWidth: columnContent.width
+                    Layout.minimumWidth: columnContent.width
+                    Layout.maximumHeight: NeptuneStyle.dp(sourceSize.height)
                     source: Assets.gfx("theme_" + model.theme)
                 }
                 Image {
-                    Layout.fillWidth: true
+                    Layout.maximumWidth: columnContent.width
+                    Layout.minimumWidth: columnContent.width
                     source: Style.gfx2("list-divider", NeptuneStyle.theme)
                     visible: index !== view.count - 1
                 }

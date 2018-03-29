@@ -56,14 +56,14 @@ Control {
             id: languageDelegate
 
             width: ListView.view.width
-            height: Style.vspan(110/80)
+            height: NeptuneStyle.dp(110)
             onClicked: root.languageRequested(model.language)
 
             contentItem: Item {
                 RadioButton {
                     id: radio
                     checked: model.language === root.currentLanguage
-                    width: Style.hspan(100/45)
+                    width: NeptuneStyle.dp(100)
                     height: parent.height
 
                     onToggled: languageDelegate.clicked()
@@ -75,13 +75,13 @@ Control {
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: -20
+                        anchors.verticalCenterOffset: NeptuneStyle.dp(-20)
                         text: model.title
                         font.weight: Style.fontWeight
                     }
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: 20
+                        anchors.verticalCenterOffset: NeptuneStyle.dp(20)
                         text: model.subtitle
                         font.pixelSize: NeptuneStyle.fontSizeS
                         font.weight: Style.fontWeight

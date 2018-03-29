@@ -50,7 +50,7 @@ Control {
     contentItem: Column {
         SwitchDelegate {
             id: twentyFourHourTime
-            height: Style.vspan(95/80)
+            height: NeptuneStyle.dp(95)
             width: parent.width
             text: qsTr("24h time")
             onToggled: root.twentyFourHourTimeFormatRequested(checked)
@@ -64,7 +64,7 @@ Control {
         }
 
         SwitchDelegate {
-            height: Style.vspan(95/80)
+            height: NeptuneStyle.dp(95)
             width: parent.width
             enabled: false // TODO
             text: qsTr("Set Automatically")
@@ -78,7 +78,7 @@ Control {
         }
 
         ItemDelegate {
-            height: Style.vspan(95/80)
+            height: NeptuneStyle.dp(95)
             width: parent.width
             enabled: false // TODO
             text: qsTr("Time Zone")
@@ -86,7 +86,7 @@ Control {
             Image {
                 opacity: NeptuneStyle.fontOpacityDisabled
                 anchors.right: parent.right
-                anchors.rightMargin: Style.hspan(22/45)
+                anchors.rightMargin: NeptuneStyle.dp(22)
                 height: parent.height
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter

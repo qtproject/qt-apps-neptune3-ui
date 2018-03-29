@@ -32,6 +32,8 @@
 import QtQuick 2.8
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 import "views"
 import "store"
 import "assets"
@@ -45,7 +47,7 @@ AppUIScreen {
         x: root.exposedRect.x
         y: 0
         width: root.exposedRect.width
-        height: 660 - 224 + exposedRect.y
+        height: NeptuneStyle.dp(436) + exposedRect.y
         fillMode: Image.Pad
 
         source: Assets.gfx("hero-settings")

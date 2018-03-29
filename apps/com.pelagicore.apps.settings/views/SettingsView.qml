@@ -35,14 +35,16 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import controls 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 import "../assets"
 import "../store"
 import "../panels"
 
 Control {
     id: root
-    implicitWidth: Style.hspan(12)
-    implicitHeight: Style.vspan(12)
+    implicitWidth: NeptuneStyle.dp(960)
+    implicitHeight: NeptuneStyle.dp(540)
 
     property RootStore store
 
@@ -51,18 +53,18 @@ Control {
     }
 
     Item {
-        width: Style.hspan(1080/45)
+        width: NeptuneStyle.dp(1080)
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(436/80)
+        anchors.topMargin: NeptuneStyle.dp(436)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(20/80)
+        anchors.bottomMargin: NeptuneStyle.dp(20)
 
         clip: true
 
         Item {
             anchors.left: parent.left
-            width: Style.hspan(264/45)
+            width: NeptuneStyle.dp(264)
             anchors.top: parent.top
             anchors.bottom: parent.bottom
 
@@ -70,7 +72,7 @@ Control {
                 id: toolsColumn
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: Style.vspan(53/80)
+                anchors.topMargin: NeptuneStyle.dp(53)
 
                 translationContext: "SettingsToolsColumn"
                 model: ListModel {
@@ -84,11 +86,11 @@ Control {
 
         StackLayout {
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(53/80)
+            anchors.topMargin: NeptuneStyle.dp(53)
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(96/45)
+            anchors.rightMargin: NeptuneStyle.dp(96)
             anchors.bottom: parent.bottom
-            width: Style.hspan(16)
+            width: NeptuneStyle.dp(720)
 
             currentIndex: toolsColumn.currentIndex
 
