@@ -60,8 +60,10 @@ T.Slider {
                                                (control.to - control.from) / control.stepSize : 0
         readonly property int railSize: numberSteps > 0 ?
                                    30 * NeptuneStyle.scale : 10 * NeptuneStyle.scale
-        readonly property real railLength: control.horizontal ?
-                                      control.availableWidth - handle.width : control.availableHeight - handle.height
+        readonly property real railLength: handle ? (control.horizontal ?
+                                                         control.availableWidth - handle.width :
+                                                         control.availableHeight - handle.height) :
+                                                    (control.horizontal ? control.implicitWidth : control.implicitHeight)
         readonly property real stepLength: numberSteps ?
                                                (railLength - gap * (numberSteps - 1)) / numberSteps : 0.0
         readonly property int gap: 3 * NeptuneStyle.scale
