@@ -33,8 +33,8 @@ import QtQuick 2.9
 import utils 1.0
 
 import com.pelagicore.systeminfo 1.0
-import com.pelagicore.qtlocation 1.0
 import com.pelagicore.styles.neptune 3.0
+import com.pelagicore.map 1.0
 
 import QtApplicationManager 1.0
 
@@ -76,15 +76,16 @@ QtObject {
 
         MapView {
             id: mainMap
-            x: state === "Maximized" && !searchViewEnabled ? mainWindow.x : mainWindow.exposedRect.x
-            y: state === "Maximized" && !searchViewEnabled ? mainWindow.y : mainWindow.exposedRect.y
-            width: state === "Maximized" && !searchViewEnabled ? mainWindow.width : mainWindow.exposedRect.width
-            height: state === "Maximized" && !searchViewEnabled ? mainWindow.height : mainWindow.exposedRect.height
+            x: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.x : mainWindow.exposedRect.x
+            y: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.y : mainWindow.exposedRect.y
+            width: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.width : mainWindow.exposedRect.width
+            height: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.height : mainWindow.exposedRect.height
             state: mainWindow.neptuneState
-            offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
-            mapInteractive: !searchViewEnabled
+            mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
-                currentLocationCoord: mainMap.currentLocation
+                offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
+                currentLocationCoord: positionCoordinate
+                onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()
             }
 
             onMapReadyChanged: {
@@ -112,7 +113,6 @@ QtObject {
                 mapZoomLevel: mainMap.mapZoomLevel
                 mapTilt: mainMap.mapTilt
                 mapBearing: mainMap.mapBearing
-                offlineMapsEnabled: mainMap.offlineMapsEnabled
                 store: mainMap.store
             }
         }

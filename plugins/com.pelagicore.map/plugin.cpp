@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Pelagicore AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,33 +29,22 @@
 **
 ****************************************************************************/
 
-#include <QStandardPaths>
-#include <QDir>
+#include <QQmlExtensionPlugin>
+#include <QtQml>
 
 #include "mapshelper.h"
 
-// code to transform a macro into a string literal
-#define QUOTE(name) #name
-#define STR(macro) QUOTE(macro)
-
-MapsHelper::MapsHelper(QObject *parent)
-    : QObject(parent)
+class MapsHelperPlugin : public QQmlExtensionPlugin
 {
-}
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+public:
+    void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.map"));
 
-void MapsHelper::classBegin()
-{
-    // copy mapboxgl offline DB
-    const QString prefix = STR(INSTALL_PATH) + QStringLiteral("apps/com.pelagicore.qtlocation/");
-    const QString sourceFile = prefix + QStringLiteral("maps/mapboxgl.db");
-    const QString destDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-    const QString destFile = destDir + QStringLiteral("/mapboxgl.db");
-    QDir dir;
-    dir.mkpath(destDir);
-    QFile::remove(destFile);
-    QFile::copy(sourceFile, destFile);
-}
+        qmlRegisterType<MapsHelper>(uri, 1, 0, "MapsHelper");
+    }
+};
 
-void MapsHelper::componentComplete()
-{
-}
+#include "plugin.moc"

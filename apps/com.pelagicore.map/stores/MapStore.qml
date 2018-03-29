@@ -32,6 +32,8 @@
 import QtQuick 2.8
 import QtPositioning 5.9
 import QtLocation 5.9
+import Qt.labs.platform 1.0
+import utils 1.0
 
 QtObject {
     id: root
@@ -43,6 +45,14 @@ QtObject {
     property var routeSegments
     property string homeRouteTime
     property string workRouteTime
+    property bool searchViewEnabled: false
+    property bool offlineMapsEnabled: false
+
+    property var positionCoordinate: root.offlineMapsEnabled ? QtPositioning.coordinate(57.709912, 11.966632) // Gothenburg
+                                                        : QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc
+    property var originalPosition: positionCoordinate
+    readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
+    readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
 
     property alias routingPlugin: routeModel.plugin
     property var currentLocationCoord
@@ -53,6 +63,50 @@ QtObject {
     property var destCoord: QtPositioning.coordinate()
 
     property string destination
+
+    function fetchCurrentLocation() { // PositionSource doesn't work on Linux
+        var req = new XMLHttpRequest;
+        req.onreadystatechange = function() {
+            if (req.readyState === XMLHttpRequest.DONE) {
+                var objectArray = JSON.parse(req.responseText);
+                if (objectArray.errors !== undefined) {
+                    console.warn("Error fetching location:", objectArray.errors[0].message);
+                } else {
+                    root.positionCoordinate = QtPositioning.coordinate(objectArray.location.lat, objectArray.location.lng);
+                    console.info("Current location:", root.positionCoordinate);
+                }
+            }
+        }
+        req.open("GET", "https://location.services.mozilla.com/v1/geolocate?key=geoclue");
+        req.send();
+    }
+
+    function getAvailableMapsAndLocation(mapReady, supportedMapTypes) {
+        if (mapReady) {
+            mapTypeModel.clear();
+            console.info("Supported map types:");
+            for (var i = 0; i < supportedMapTypes.length; i++) {
+                var map = supportedMapTypes[i];
+                mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
+                console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
+            }
+            if (!root.offlineMapsEnabled) {
+                fetchCurrentLocation();
+            }
+        }
+    }
+
+    function getMapType(mapBoxPanelReady, name) {
+        if (!mapBoxPanelReady || !mapTypeModel.count) {
+            return
+        }
+        for (var i = 0; i < mapTypeModel.count; i++) {
+            var map = mapTypeModel.get(i);
+            if (map && map.name === name) {
+                return map.data;
+            }
+        }
+    }
 
     function formatMeters(meters) {
         return qsTr("%n kilometer(s)", "", meters/1000)
@@ -72,6 +126,45 @@ QtObject {
             result += qsTr("%n minute(s)", "", numminutes);
 
         return result;
+    }
+
+    // lists the various map styles (including the custom ones); filled in Map.onMapReadyChanged
+    readonly property ListModel mapTypeModel: ListModel { }
+
+    readonly property Plugin mapPlugin: Plugin {
+        name: "mapboxgl"
+        locales: Style.languageLocale
+
+        readonly property string cacheDirUrl: StandardPaths.writableLocation(StandardPaths.CacheLocation);
+
+        // Mapbox Plugin Parameters
+        PluginParameter {
+            name: "mapboxgl.access_token"
+            value: "pk.eyJ1IjoicXRhdXRvIiwiYSI6ImNqY20wbDZidzBvcTQyd3J3NDlkZ21jdjUifQ.4KYDlP7UmQEVPYffr6VuVQ"
+        }
+        PluginParameter {
+            name: "mapboxgl.mapping.additional_style_urls"
+            value: [root.defaultLightThemeId, root.defaultDarkThemeId].join(",")
+        }
+
+        // Offline maps support
+        PluginParameter { name: "mapboxgl.mapping.cache.directory";
+            // needs to be an absolute filepath so strip the file:/// protocol; several leading slashes don't matter
+            value: mapPlugin.cacheDirUrl.toString().substring(mapPlugin.cacheDirUrl.indexOf(':')+1) }
+    }
+
+    // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
+    readonly property Plugin geocodePlugin: Plugin {
+        name: "osm"
+        locales: Style.languageLocale
+
+        // OSM Plugin Parameters
+        PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
+    }
+
+    readonly property GeocodeModel geocodeModel: GeocodeModel {
+        plugin: root.geocodePlugin
+        limit: 20
     }
 
     readonly property RouteModel routeModel: RouteModel {

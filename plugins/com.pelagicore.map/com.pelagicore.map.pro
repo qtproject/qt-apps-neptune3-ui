@@ -3,7 +3,7 @@ TARGET  = mapshelperplugin
 QT += quick
 CONFIG += qt plugin c++11
 
-uri = com.pelagicore.qtlocation
+uri = com.pelagicore.map
 load(qmlplugin)
 
 SOURCES += \

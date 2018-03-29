@@ -6,4 +6,4 @@ SUBDIRS = \
           translation \
           widgetgrid \
           systeminfo \
-          com.pelagicore.qtlocation
+          com.pelagicore.map
