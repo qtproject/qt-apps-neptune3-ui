@@ -271,7 +271,7 @@ Item {
             anchors.topMargin: NeptuneStyle.dp(24)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: Style.symbol("ic-expand-to-fullscreen")
+            source: Style.symbol("ic-expand-to-fullscreen", NeptuneStyle.theme)
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }
         }
