@@ -81,7 +81,7 @@ NeptunePopup {
 
         delegate: ListItem {
             width: ListView.view.width
-            height: Style.vspan(1)
+            height: NeptuneStyle.dp(80)
             symbol: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : null
             text: model.appInfo ? model.appInfo.name : null
             enabled: model.appInfo ? !model.appInfo.asWidget : false
@@ -101,7 +101,7 @@ NeptunePopup {
         Label {
             id: header
             anchors.baseline: parent.top
-            anchors.baselineOffset: Style.vspan(78/80)
+            anchors.baselineOffset: NeptuneStyle.dp(78)
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight

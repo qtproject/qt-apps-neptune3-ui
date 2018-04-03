@@ -100,8 +100,8 @@ Item {
         var window = root.appInfo.window
         if (window) {
             window.parent = windowSlot;
-            window.width = Qt.binding(function() { return Style.hspan(24); });
-            window.height = Qt.binding(function() { return Style.vspan(24); });
+            window.width = Qt.binding(function() { return NeptuneStyle.dp(1080); });
+            window.height = Qt.binding(function() { return NeptuneStyle.dp(1920); });
             window.visible = true;
             loadingStateGroup.state = "live"
         } else {
@@ -211,7 +211,7 @@ Item {
     MouseArea {
         id: dragHandle
         anchors.fill: widgetStripe
-        anchors.margins: -Style.hspan(0.2)
+        anchors.margins: NeptuneStyle.dp(-9)
         visible: root.buttonsVisible
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
@@ -231,7 +231,7 @@ Item {
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.bottom: parent.bottom
 
-        width: widgetStripe.width + Style.hspan(.4)
+        width: widgetStripe.width + NeptuneStyle.dp(18)
         height: width
         visible: root.buttonsVisible
 
@@ -266,9 +266,9 @@ Item {
 
         Image {
             anchors.right: parent.right
-            anchors.rightMargin: Style.hspan(.5)
+            anchors.rightMargin: NeptuneStyle.dp(23)
             anchors.top: parent.top
-            anchors.topMargin: Style.vspan(.3)
+            anchors.topMargin: NeptuneStyle.dp(24)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-expand-to-fullscreen")

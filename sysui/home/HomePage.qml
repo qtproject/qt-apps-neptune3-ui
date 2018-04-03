@@ -36,6 +36,8 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Item {
     id: root
 
@@ -53,13 +55,13 @@ Item {
         id: widgetGrid
 
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(76/80)
+        anchors.topMargin: NeptuneStyle.dp(76)
         anchors.bottom: addWidgetButton.top
-        anchors.bottomMargin: Style.vspan(5/80)
+        anchors.bottomMargin: NeptuneStyle.dp(5)
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: Style.hspan(40/45)
-        anchors.rightMargin: Style.hspan(40/45)
+        anchors.leftMargin: NeptuneStyle.dp(40)
+        anchors.rightMargin: NeptuneStyle.dp(40)
 
         applicationModel: root.applicationModel
     }
@@ -67,9 +69,9 @@ Item {
     Tool {
         id: addWidgetButton
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(40/80)
+        anchors.bottomMargin: NeptuneStyle.dp(40)
         anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(1)
+        width: NeptuneStyle.dp(45)
         height: width
         symbol: Style.symbol("ic-addwidget-plus")
         onClicked: popup.open()
