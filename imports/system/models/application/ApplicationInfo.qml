@@ -150,6 +150,7 @@ QtObject {
             AM.WindowManager.setWindowProperty(window, "exposedRectBottomMargin", exposedRectBottomMargin);
             AM.WindowManager.setWindowProperty(window, "exposedRectTopMargin", exposedRectTopMargin);
             AM.WindowManager.setWindowProperty(window, "locale", localeCode);
+            AM.WindowManager.setWindowProperty(window, "performanceMonitorEnabled", windowPerfMonitorEnabled);
         }
     }
 
@@ -197,6 +198,7 @@ QtObject {
     onSecondaryWindowChanged: {
         if (secondaryWindow)
             AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
+            AM.WindowManager.setWindowProperty(secondaryWindow, "performanceMonitorEnabled", secondaryWindowPerfMonitorEnabled);
     }
 
     onSecondaryWindowScaleChanged: {
