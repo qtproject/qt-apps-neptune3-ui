@@ -63,7 +63,7 @@ Control {
         width: parent.width
         height: root.headerBackgroundHeight
         visible: root.headerBackgroundVisible
-        source: Style.gfx2("floating-panel-top-bg")
+        source: Style.gfx("floating-panel-top-bg")
         border {
             left: 20
             top: 30
@@ -73,7 +73,7 @@ Control {
     }
     background: ScalableBorderImage {
         anchors.fill: root
-        source: Style.gfx2("popup-background-9patch", NeptuneStyle.theme)
+        source: Style.gfx("popup-background-9patch", NeptuneStyle.theme)
         anchors.leftMargin: NeptuneStyle.dp(-40)
         anchors.rightMargin: NeptuneStyle.dp(-40)
         anchors.topMargin: NeptuneStyle.dp(-28)
@@ -104,7 +104,7 @@ Control {
             height: NeptuneStyle.dp(sourceSize.height)
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: NeptuneStyle.dp(4)
-            source: Style.gfx2("popup-close-button-bg", NeptuneStyle.theme)
+            source: Style.gfx("popup-close-button-bg", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
         }
     }

@@ -56,7 +56,7 @@ NeptunePopup {
 
         Image {
             Layout.fillWidth: true
-            source: Style.gfx2("hero-about")
+            source: Style.gfx("hero-about")
             asynchronous: true
 
             Label {

@@ -74,7 +74,7 @@ RowLayout {
             }
         }
         Image {
-            source: Style.gfx2("album-art-shadow-widget")
+            source: Style.gfx("album-art-shadow-widget")
         }
     }
 

@@ -142,7 +142,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        source: Style.gfx2("widget-left-section-bg", NeptuneStyle.theme)
+        source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
 
         opacity: root.state == "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0

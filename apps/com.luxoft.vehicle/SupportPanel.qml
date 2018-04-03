@@ -81,7 +81,7 @@ ListView {
             // don't show the separator after the last element
             visible: model.index < root.model.count - 1
 
-            source: Style.gfx2("list-divider", NeptuneStyle.theme)
+            source: Style.gfx("list-divider", NeptuneStyle.theme)
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom

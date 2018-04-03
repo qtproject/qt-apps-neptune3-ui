@@ -50,7 +50,7 @@ AppUIScreen {
         height: 660 - 224 + exposedRect.y
         fillMode: Image.Pad
 
-        source: Style.gfx2("hero-appstore")
+        source: Style.gfx("hero-appstore")
         asynchronous: true
     }
 

@@ -67,7 +67,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx2(NeptuneStyle.backgroundImage)
+        source: Style.gfx(NeptuneStyle.backgroundImage)
         opacity: launcherLoader.launcherOpen && NeptuneStyle.theme === NeptuneStyle.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }

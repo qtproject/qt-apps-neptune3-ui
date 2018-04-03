@@ -76,7 +76,7 @@ Item {
             Image {
                 id: albumArtShadow
                 anchors.centerIn: parent
-                source: Style.gfx2("album-art-shadow")
+                source: Style.gfx("album-art-shadow")
                 fillMode: Image.Pad
             }
 
@@ -85,7 +85,7 @@ Item {
                 anchors.centerIn: parent
                 width: Style.hspan(180/45)
                 height: width
-                source: Style.gfx2("album-art-placeholder")
+                source: Style.gfx("album-art-placeholder")
                 fillMode: Image.PreserveAspectCrop
             }
 

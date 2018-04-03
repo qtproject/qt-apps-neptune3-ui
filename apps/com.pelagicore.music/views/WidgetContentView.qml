@@ -112,7 +112,7 @@ Item {
         width: parent.width
         height: sourceSize.height
         anchors.top: artAndTitleBackground.bottom
-        source: Style.gfx2("panel-inner-shadow", NeptuneStyle.theme)
+        source: Style.gfx("panel-inner-shadow", NeptuneStyle.theme)
     }
 
     AlbumArtPanel {

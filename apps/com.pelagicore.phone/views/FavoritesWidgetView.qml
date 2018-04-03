@@ -189,7 +189,7 @@ Item {
                 Image {
                     anchors.bottom: parent.bottom
                     width: parent.width
-                    source: Style.gfx2("list-divider", NeptuneStyle.theme)
+                    source: Style.gfx("list-divider", NeptuneStyle.theme)
                     visible: index !== listviewMoreRows.count - 1
                 }
             }

@@ -153,7 +153,7 @@ Item {
         border.bottom: NeptuneStyle.dp(323)
         border.left: 0
         border.right: 0
-        source: Style.gfx2("input-overlay")
+        source: Style.gfx("input-overlay")
         visible: root.store.searchViewEnabled
     }
 

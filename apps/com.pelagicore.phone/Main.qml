@@ -74,7 +74,7 @@ AppUIScreen {
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
 
-        source: Style.gfx2("app-fullscreen-top-bg", NeptuneStyle.theme)
+        source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
     }
 
     BlurredImageBackground {

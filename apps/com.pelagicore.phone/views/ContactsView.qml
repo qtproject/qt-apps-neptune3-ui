@@ -81,7 +81,7 @@ ListView {
             Image {
                 width: parent.width
                 height: NeptuneStyle.dp(2)
-                source: Style.gfx2("list-divider", NeptuneStyle.theme)
+                source: Style.gfx("list-divider", NeptuneStyle.theme)
             }
         }
     }

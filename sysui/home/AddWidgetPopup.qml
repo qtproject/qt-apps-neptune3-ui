@@ -114,7 +114,7 @@ NeptunePopup {
             anchors.topMargin: NeptuneStyle.dp(120)
             width: parent.width
             height: NeptuneStyle.dp(sourceSize.height)
-            source: Style.gfx2("popup-title-shadow")
+            source: Style.gfx("popup-title-shadow")
         }
 
         ListView {

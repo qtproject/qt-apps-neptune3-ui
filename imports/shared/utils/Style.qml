@@ -83,7 +83,7 @@ QtObject {
         return symbolUrl + '/' + name + themeStr + '.png';
     }
 
-    function gfx2(name, theme) {
+    function gfx(name, theme) {
         var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
         return gfxUrl + name + themeStr + '.png'
     }

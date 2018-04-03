@@ -99,7 +99,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        source: Style.gfx2("widget-left-section-bg", NeptuneStyle.theme)
+        source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
         fillMode: Image.TileVertically
 
         Item {

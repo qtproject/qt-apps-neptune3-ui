@@ -78,8 +78,8 @@ T.Slider {
            (control.horizontal ? (control.availableHeight - height) / 2 :
                                  control.visualPosition * (control.availableHeight - height))
         source: control.horizontal ?
-                    Style.gfx2("slider-handle-horizontal", NeptuneStyle.theme) :
-                    Style.gfx2("slider-handle-vertical", NeptuneStyle.theme)
+                    Style.gfx("slider-handle-horizontal", NeptuneStyle.theme) :
+                    Style.gfx("slider-handle-vertical", NeptuneStyle.theme)
     }
 
     background: Item {

@@ -68,7 +68,7 @@ Control {
                         if (model.item.data.coverArtUrl !==  undefined) {
                             return model.item.data.coverArtUrl;
                         } else {
-                            return Style.gfx2("album-art-placeholder");
+                            return Style.gfx("album-art-placeholder");
                         }
                     } else {
                         return "";

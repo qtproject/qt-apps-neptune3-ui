@@ -82,7 +82,7 @@ Control {
                 Image {
                     Layout.maximumWidth: columnContent.width
                     Layout.minimumWidth: columnContent.width
-                    source: Style.gfx2("list-divider", NeptuneStyle.theme)
+                    source: Style.gfx("list-divider", NeptuneStyle.theme)
                     visible: index !== view.count - 1
                 }
             }

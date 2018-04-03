@@ -84,7 +84,7 @@ Item {
         Image {
             height: 2
             width: parent.width
-            source: Style.gfx2("list-divider", NeptuneStyle.theme)
+            source: Style.gfx("list-divider", NeptuneStyle.theme)
         }
 
         Label {
@@ -136,7 +136,7 @@ Item {
             width: 750
             anchors.top: parent.top
             anchors.topMargin: 168
-            source: Style.gfx2("list-divider", NeptuneStyle.theme)
+            source: Style.gfx("list-divider", NeptuneStyle.theme)
         }
 
         //ToDo: this probably should be in a model later

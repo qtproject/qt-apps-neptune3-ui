@@ -188,7 +188,7 @@ ItemDelegate {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
-            source: Style.gfx2("list-divider")
+            source: Style.gfx("list-divider")
         }
     }
 }

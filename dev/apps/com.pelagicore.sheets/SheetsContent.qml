@@ -92,7 +92,7 @@ Item {
                     width: parent.width
                     height: 5
                     anchors.bottom: parent.bottom
-                    source: Style.gfx2("divider", NeptuneStyle.theme)
+                    source: Style.gfx("divider", NeptuneStyle.theme)
                 }
 
                 MouseArea{

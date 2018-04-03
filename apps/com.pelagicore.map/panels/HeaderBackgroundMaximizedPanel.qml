@@ -88,7 +88,7 @@ Item {
         anchors.right: searchPanel.right
         anchors.left: searchPanel.left
         width: searchPanel.width
-        source: Style.gfx2("panel-inner-shadow", NeptuneStyle.theme)
+        source: Style.gfx("panel-inner-shadow", NeptuneStyle.theme)
     }
 
     ScalableBorderImage {

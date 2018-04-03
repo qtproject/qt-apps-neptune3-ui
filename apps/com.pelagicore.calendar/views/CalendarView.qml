@@ -67,7 +67,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         height: calendarOnTop.height + calendarOnTop.anchors.topMargin + mainControl.anchors.topMargin
-        source: Style.gfx2("app-fullscreen-top-bg", NeptuneStyle.theme)
+        source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
         visible: root.state == "Maximized"
     }
 

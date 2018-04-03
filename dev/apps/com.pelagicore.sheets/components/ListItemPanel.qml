@@ -73,7 +73,7 @@ Item {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
                 text: "ListItem with an image"
-                imageSource: Style.gfx2("fan-speed-5")
+                imageSource: Style.gfx("fan-speed-5")
             }
 
             ListItem {

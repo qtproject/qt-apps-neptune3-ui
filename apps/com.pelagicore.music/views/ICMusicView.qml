@@ -42,7 +42,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx2("instrument-cluster-bg", NeptuneStyle.theme)
+        source: Style.gfx("instrument-cluster-bg", NeptuneStyle.theme)
         fillMode: Image.Stretch
     }
 
