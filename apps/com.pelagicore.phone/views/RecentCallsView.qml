@@ -60,8 +60,8 @@ ListView {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 spacing: NeptuneStyle.dp(45 * .5)
-                Tool {
-                    symbol: model.type ? Style.symbol("ic-phone-%1".arg(model.type)) : ""
+                ToolButton {
+                    icon.name: model.type ? "ic-phone-%1".arg(model.type) : ""
                 }
                 Label {
                     font.weight: Font.Light

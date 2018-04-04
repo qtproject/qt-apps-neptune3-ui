@@ -53,7 +53,7 @@ Item {
         id: buttonGroup
     }
 
-    Tool {
+    ToolButton {
         id: homeButton
 
         anchors.top: parent.top
@@ -62,7 +62,10 @@ Item {
         width: NeptuneStyle.dp(90)
         height: NeptuneStyle.dp(90)
 
-        symbol: Style.symbol("ic-menu-home")
+        icon.name: "ic-menu-home"
+        icon.color: "white"
+        icon.width: NeptuneStyle.dp(35)
+        icon.height: NeptuneStyle.dp(35)
         ButtonGroup.group: buttonGroup
         checkable: true
         checked: !_isThereActiveApp
@@ -79,7 +82,7 @@ Item {
         onClicked: root.applicationModel.goHome()
     }
 
-    Tool {
+    ToolButton {
         id: gridButton
         width: NeptuneStyle.dp(90)
         height: NeptuneStyle.dp(90)
@@ -90,8 +93,11 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(134) - width/2
 
-        opacity: useCloseIcon ? 0.2 : 1
-        symbol: useCloseIcon ? Style.symbol("ic-close") : Style.symbol("ic-menu-allapps")
+        opacity: useCloseIcon ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityHigh
+        icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
+        icon.color: "white"
+        icon.width: NeptuneStyle.dp(35)
+        icon.height: NeptuneStyle.dp(35)
         checkable: true
     }
 

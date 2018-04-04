@@ -61,7 +61,7 @@ ListView {
 
         symbol: root.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
-        rightToolSymbol: delegatedItem.isInstalled ? Style.symbol("ic-close") : Style.symbol("ic-download_OFF")
+        rightToolSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
         onRightToolClicked: {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;

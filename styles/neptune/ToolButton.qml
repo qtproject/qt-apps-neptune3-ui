@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,13 +30,12 @@
 **
 ****************************************************************************/
 
+import QtQuick 2.10
+import QtQuick.Templates 2.3 as T
+import QtQuick.Controls 2.3
+import QtQuick.Controls.impl 2.3
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
-import QtQuick.Controls.impl 2.2
-import QtQuick.Templates 2.2 as T
 import com.pelagicore.styles.neptune 3.0
-import controls 1.0
 
 T.ToolButton {
     id: control
@@ -46,31 +46,29 @@ T.ToolButton {
                              contentItem.implicitHeight + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: 6
-    font.pixelSize: control.NeptuneStyle.fontSizeM
-    font.family: control.NeptuneStyle.fontFamily
+    padding: NeptuneStyle.dp(6)
+    spacing: NeptuneStyle.dp(6)
+
+    font.pixelSize: NeptuneStyle.fontSizeM
+    font.family: NeptuneStyle.fontFamily
+
+    icon.color: !enabled ? NeptuneStyle.disabledTextColor : checked || highlighted ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
 
     scale: pressed ? 1.1 : 1.0
     Behavior on scale { NumberAnimation { duration: 50 } }
 
-    // 5.9 does not support icon property and its subsidiaries.
-    //icon.width: Symbol.symbolSizeM
-    //icon.height: Symbol.symbolSizeM
-    //icon.color: checked ? "#f07d00" : "transparent"
+    contentItem: NeptuneIconLabel {
+        readonly property real textOpacity: !enabled ? NeptuneStyle.fontOpacityDisabled
+                                                     : control.checkable && !control.checked && control.display === AbstractButton.TextUnderIcon // ToolsColumn
+                                                       ? NeptuneStyle.fontOpacityLow : NeptuneStyle.fontOpacityHigh
 
-    // TODO: We should probably try to find something better than this solution. This will
-    // forward the signal to the control itself. Without this, it can only be clicked on the
-    // the rendered indicator.
-    background: MouseArea {
-        id: mouseArea
-        implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
-        implicitWidth: implicitHeight
-        onPressed: mouse.accepted = false
-        onReleased: mouse.accepted = false
-        onClicked: control.clicked()
-    }
-
-    contentItem: Label {
+        iconScale: NeptuneStyle.scale
+        spacing: control.spacing
+        mirrored: control.mirrored
+        display: control.display
+        icon: control.icon
         text: control.text
+        font: control.font
+        color: Qt.rgba(control.icon.color.r, control.icon.color.g, control.icon.color.b, textOpacity)
     }
 }

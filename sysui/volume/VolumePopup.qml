@@ -54,13 +54,13 @@ NeptunePopup {
 
     readonly property string volumeIcon: {
         if (privateValues.muted) {
-            return Style.symbol("ic-volume-0")
+            return "ic-volume-0"
         } else if (value <= 33) {
-            return Style.symbol("ic-volume-1")
+            return "ic-volume-1"
         } else if (value <= 66) {
-            return Style.symbol("ic-volume-2")
+            return "ic-volume-2"
         } else {
-            return Style.symbol("ic-volume-3")
+            return "ic-volume-3"
         }
     }
 
@@ -112,10 +112,7 @@ NeptunePopup {
         height: Style.vspan(100/80)
         checkable: true
         checked: privateValues.muted
-        Image {
-            anchors.centerIn: parent
-            source: Style.symbol("ic-volume-0")
-        }
+        icon.name: "ic-volume-0"
         onToggled: privateValues.muted = !privateValues.muted
     }
 }

@@ -29,9 +29,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import utils 1.0
-import controls 1.0
 
 Row {
     id: root
@@ -43,17 +43,17 @@ Row {
     signal shuffleClicked()
     signal repeatClicked()
 
-    Tool {
+    ToolButton {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic-shuffle")
+        icon.name: "ic-shuffle"
         onClicked: root.shuffleClicked()
     }
 
-    Tool {
+    ToolButton {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic-repeat")
+        icon.name: "ic-repeat"
         onClicked: root.repeatClicked()
     }
 }

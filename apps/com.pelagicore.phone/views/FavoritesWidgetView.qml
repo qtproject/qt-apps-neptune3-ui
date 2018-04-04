@@ -173,15 +173,15 @@ Item {
                         text: model.firstName + " " + model.surname
                         color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
                     }
-                    Tool {
+                    ToolButton {
                         Layout.preferredWidth: NeptuneStyle.dp(100)
                         height: parent.height
-                        symbol: Style.symbol("ic-message-contrast")
+                        icon.name: "ic-message-contrast"
                     }
-                    Tool {
+                    ToolButton {
                         Layout.preferredWidth: NeptuneStyle.dp(100)
                         height: parent.height
-                        symbol: Style.symbol("ic-call-contrast")
+                        icon.name: "ic-call-contrast"
                         onClicked: root.store.startCall(model.handle)
                     }
                 }

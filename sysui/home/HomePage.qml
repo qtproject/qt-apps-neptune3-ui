@@ -66,14 +66,14 @@ Item {
         applicationModel: root.applicationModel
     }
 
-    Tool {
+    ToolButton {
         id: addWidgetButton
         anchors.bottom: parent.bottom
         anchors.bottomMargin: NeptuneStyle.dp(40)
         anchors.horizontalCenter: parent.horizontalCenter
         width: NeptuneStyle.dp(45)
         height: width
-        symbol: Style.symbol("ic-addwidget-plus")
+        icon.name: "ic-addwidget-plus"
         onClicked: popup.open()
         visible: widgetGrid.widgetCount < widgetGrid.maxWidgetCount && opacity > 0
         opacity: root.applicationModel.activeAppInfo ? 0 : 1

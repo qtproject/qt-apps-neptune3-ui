@@ -106,12 +106,12 @@ Control {
             height: visible ? NeptuneStyle.dp(94) : 0
             visible: ((toolsColumnText.indexOf(actualContentType) === -1) && (toolsColumnText !== "favorites"))
 
-            Tool {
+            ToolButton {
                 id: backButton
                 anchors.left: parent.left
                 anchors.leftMargin: NeptuneStyle.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
-                symbol: Style.symbol("ic_back")
+                icon.name: "ic_back"
                 onClicked: root.backClicked()
             }
             Label {
@@ -120,7 +120,7 @@ Control {
                 anchors.centerIn: parent
                 horizontalAlignment: Text.AlignHCenter
             }
-            Tool {
+            ToolButton {
                 width: NeptuneStyle.dp(121.5)
                 height: NeptuneStyle.dp(48)
                 anchors.right: parent.right

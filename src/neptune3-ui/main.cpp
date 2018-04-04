@@ -37,7 +37,6 @@
 #include <QtAppManInstaller/sudo.h>
 #include <QtAppManWindow/touchemulation.h>
 #include <QGuiApplication>
-#include <QIcon>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QFileInfo>

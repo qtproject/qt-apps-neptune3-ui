@@ -30,6 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtQuick.Controls 2.3
 
 import controls 1.0
 import utils 1.0
@@ -39,10 +40,10 @@ import com.pelagicore.styles.neptune 3.0
  * ListItemTwoButtons provides a type of a list item with two tool buttons at the right side.
  *
  * Properties:
- *  - symbolAccessoryButton1 - This property holds a path to an icon to be displayed on the first accessory button.
+ *  - symbolAccessoryButton1 - This property holds an icon name to be displayed on the first accessory button.
  *  - accessoryButton1Checkable - This property holds whether the first accessory button is checkable.
  *  - accessoryButton1Checked - This property holds whether the first accessory button is checked.
- *  - symbolAccessoryButton2 - This property holds a path to an icon to be displayed on the second accessory button.
+ *  - symbolAccessoryButton2 - This property an icon name to be displayed on the second accessory button.
  *  - accessoryButton2Checkable - This property holds whether the second accessory button is checkable.
  *  - accessoryButton2Checked - This property holds whether the second accessory button is checked.
  *
@@ -55,8 +56,8 @@ import com.pelagicore.styles.neptune 3.0
  *   ListItemTwoButtons {
  *       Layout.fillWidth: true
  *       symbol: Style.symbol("ic-update")
- *       symbolAccessoryButton1: Style.symbol("ic-call-contrast")
- *       symbolAccessoryButton2: Style.symbol("ic-message-contrast")
+ *       symbolAccessoryButton1: "ic-call-contrast"
+ *       symbolAccessoryButton2: "ic-message-contrast"
  *       text: "..."
  *       onClicked: { ... }
  *       onAccessoryButton1Clicked: { ... }
@@ -78,21 +79,21 @@ ListItemBasic {
     signal accessoryButton1Clicked()
     signal accessoryButton2Clicked()
 
-    accessoryDelegateComponent1: Tool {
+    accessoryDelegateComponent1: ToolButton {
         implicitWidth: Style.hspan(100/45)
         implicitHeight: root.height
         checkable: root.accessoryButton1Checkable
         checked: root.accessoryButton1Checked
-        symbol: root.symbolAccessoryButton1
+        icon.name: root.symbolAccessoryButton1
         onClicked: root.accessoryButton1Clicked()
         onCheckedChanged: root.accessoryButton1Checked = checked
     }
-    accessoryDelegateComponent2: Tool {
+    accessoryDelegateComponent2: ToolButton {
         implicitWidth: Style.hspan(100/45)
         implicitHeight: root.height
         checkable: root.accessoryButton2Checkable
         checked: root.accessoryButton2Checked
-        symbol: root.symbolAccessoryButton2
+        icon.name: root.symbolAccessoryButton2
         onClicked: root.accessoryButton2Clicked()
         onCheckedChanged: root.accessoryButton2Checked = checked
     }

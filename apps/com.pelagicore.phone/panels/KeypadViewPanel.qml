@@ -83,11 +83,11 @@ Item {
         Keys.onEscapePressed: clear()
     }
 
-    Tool {
+    ToolButton {
         anchors.right: parent.right
         anchors.verticalCenter: textedit.verticalCenter
         width: NeptuneStyle.dp(90)
-        symbol: Style.symbol("ic-erase")
+        icon.name: "ic-erase"
         opacity: textedit.text ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }

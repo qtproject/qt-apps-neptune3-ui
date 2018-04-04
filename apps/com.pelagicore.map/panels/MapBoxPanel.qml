@@ -29,15 +29,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtLocation 5.9
 import QtPositioning 5.9
 
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
-import controls 1.0 as NeptuneControls
 import animations 1.0
 import "../controls"
 import "../helpers"
@@ -202,7 +201,7 @@ Item {
         }
     }
 
-    NeptuneControls.Tool {
+    ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(27)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
@@ -217,11 +216,11 @@ Item {
             fillMode: Image.PreserveAspectFit
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
-        symbol: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
+        icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
         onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
-    NeptuneControls.Tool {
+    ToolButton {
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(27)
         anchors.top: offlineMapsEnabled ? parent.top : header.bottom
@@ -238,7 +237,7 @@ Item {
         }
         enabled: !checked
         checked: mainMap.center === root.currentLocation
-        symbol: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png") : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
+        icon.source: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png") : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
         onToggled: mainMap.center = root.currentLocation;
     }
 

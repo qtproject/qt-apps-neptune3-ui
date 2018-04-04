@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 
 import com.pelagicore.styles.neptune 3.0
@@ -70,26 +70,21 @@ ColumnLayout {
     Repeater {
         id: repeater
 
-        Tool {
+        ToolButton {
             Layout.preferredWidth: Style.hspan(3)
             Layout.preferredHeight: Style.vspan(1.2)
             Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
             checked: root.currentIndex === index
-            symbol: model.icon ? Style.symbol(checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
+            icon.name: model.icon ? (checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
             text: qsTranslate(root.translationContext, model.text)
-            labelColor: checked ? NeptuneStyle.highlightedTextColor : NeptuneStyle.primaryTextColor
-            labelOpacity: checked ? 1 : NeptuneStyle.fontOpacityLow
             font.pixelSize: NeptuneStyle.fontSizeS
-            opacity: model.greyedOut ? 0.5 : 1.0
             enabled: !model.greyedOut
-            symbolOnTop: true
+            display: AbstractButton.TextUnderIcon
             onClicked: {
-                if (enabled) {
-                    root.currentIndex = index;
-                    root.clicked();
-                }
+                root.currentIndex = index;
+                root.clicked();
             }
             ButtonGroup.group: buttonGroup
         }

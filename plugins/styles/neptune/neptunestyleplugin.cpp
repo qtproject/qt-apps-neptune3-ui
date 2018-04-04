@@ -34,6 +34,7 @@
 #include <QtQml>
 #include "neptunestyle.h"
 #include "neptunetheme.h"
+#include "qquickiconlabel_p.h"
 
 Q_LOGGING_CATEGORY(neptuneStyle, "neptune.style")
 
@@ -44,6 +45,7 @@ NeptuneStylePlugin::NeptuneStylePlugin(QObject *parent)
 
 void NeptuneStylePlugin::registerTypes(const char *uri)
 {
+    qmlRegisterType<QQuickIconLabel>(uri, 3, 0, "NeptuneIconLabel");
     qmlRegisterUncreatableType<NeptuneStyle>(uri, 3, 0, "NeptuneStyle", "NeptuneStyle is an attached property");
 }
 

@@ -174,24 +174,25 @@ Item {
     RowLayout {
         id: buttonRow
 
-        Tool {
+        ToolButton {
             Layout.rightMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
-            symbol: Style.symbol("ic-mute-ongoing")
+            icon.name: "ic-mute-ongoing"
         }
 
-        Tool {
+        ToolButton {
             background: Image {
                 anchors.centerIn: parent
                 fillMode: Image.Pad
                 source: Style.symbol("ic_button-bg-red")
             }
-            symbol: Style.symbol("ic-end-call")
+            icon.name: "ic-end-call"
+            icon.color: "white"
             onClicked: root.callEndRequested(root.callerHandle)
         }
 
-        Tool {
+        ToolButton {
             Layout.leftMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
-            symbol: Style.symbol("ic-keypad-ongoing")
+            icon.name: "ic-keypad-ongoing"
             //onClicked: root.keypadRequested() // TODO, disabled for now
         }
     }

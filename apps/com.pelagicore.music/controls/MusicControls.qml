@@ -29,10 +29,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.10
 import utils 1.0
 import controls 1.0
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 import com.pelagicore.styles.neptune 3.0
 
 Row {
@@ -47,16 +47,20 @@ Row {
     signal playClicked()
     signal nextClicked()
 
-    Tool {
+    ToolButton {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic_skipprevious")
+        icon.name: "ic_skipprevious"
         onClicked: root.previousClicked()
     }
 
-    Tool {
+    ToolButton {
         width: root.buttonWidth
         height: parent.height
+        icon.name: root.play ? "ic-pause" : "ic_play"
+        icon.color: "white"
+        onClicked: root.playClicked()
+
         background: Image {
             anchors.centerIn: parent
             width: NeptuneStyle.dp(sourceSize.width)
@@ -64,14 +68,12 @@ Row {
             source: Style.symbol("ic_button-bg")
             fillMode: Image.PreserveAspectFit
         }
-        symbol: root.play ? Style.symbol("ic-pause") : Style.symbol("ic_play")
-        onClicked: root.playClicked()
     }
 
-    Tool {
+    ToolButton {
         width: root.buttonWidth
         height: parent.height
-        symbol: Style.symbol("ic_skipnext")
+        icon.name: "ic_skipnext"
         onClicked: root.nextClicked()
     }
 }

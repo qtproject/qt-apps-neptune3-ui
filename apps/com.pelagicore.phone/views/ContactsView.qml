@@ -70,11 +70,11 @@ ListView {
                 Item { // spacer
                     Layout.fillWidth: true
                 }
-                Tool {
-                    symbol: Style.symbol("ic-message-contrast")
+                ToolButton {
+                    icon.name: "ic-message-contrast"
                 }
-                Tool {
-                    symbol: Style.symbol("ic-call-contrast")
+                ToolButton {
+                    icon.name: "ic-call-contrast"
                     onClicked: root.store.startCall(model.handle)
                 }
             }

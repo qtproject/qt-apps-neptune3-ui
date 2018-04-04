@@ -48,7 +48,7 @@ import com.pelagicore.styles.neptune 3.0
  *   ListItem {
  *       Layout.fillWidth: true
  *       symbol: Style.symbol("ic-update")
- *       rightToolSymbol: Style.symbol("ic-close")
+ *       rightToolSymbol: "ic-close"
  *       text: "ListItem with Secondary Text"
  *       secondaryText: "68% of 14 MB"
  *   }
@@ -77,11 +77,11 @@ ListItemBasic {
     middleSpacerUsed: root.secondaryText !== ""
     dividerVisible: true
 
-    accessoryDelegateComponent2: Tool {
+    accessoryDelegateComponent2: ToolButton {
         implicitWidth: rightToolSymbol ? Style.hspan(100/45) : 0
         implicitHeight: rightToolSymbol ? root.height : 0
         baselineOffset: 0
-        symbol: root.rightToolSymbol
+        icon.name: root.rightToolSymbol
         visible: root.rightToolSymbol != ""
         onClicked: root.rightToolClicked()
     }

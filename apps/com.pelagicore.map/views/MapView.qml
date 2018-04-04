@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtPositioning 5.9
 import QtLocation 5.9
@@ -121,7 +121,7 @@ Item {
         }
     }
 
-    NeptuneControls.Tool {
+    ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(27)
         anchors.top: parent.top
@@ -129,7 +129,7 @@ Item {
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-        symbol: Qt.resolvedUrl("../assets/ic-search.png")
+        icon.source: Qt.resolvedUrl("../assets/ic-search.png")
         width: NeptuneStyle.dp(background.sourceSize.width)
         height: width
         background: Image {

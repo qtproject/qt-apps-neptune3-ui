@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 import Qt.labs.calendar 1.0
 import utils 1.0
@@ -81,9 +81,9 @@ RowLayout {
     RowLayout {
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: - NeptuneStyle.dp(45)
-        Tool {
+        ToolButton {
             anchors.verticalCenter: parent.verticalCenter
-            symbol: Style.symbol("ic_skipprevious")
+            icon.name: "ic_skipprevious"
             onClicked: {
                 if (grid.month === 0) {
                     grid.month = 11;
@@ -100,9 +100,9 @@ RowLayout {
             font.pixelSize: NeptuneStyle.fontSizeM
             font.weight: Font.Light
         }
-        Tool {
+        ToolButton {
             anchors.verticalCenter: parent.verticalCenter
-            symbol: Style.symbol("ic_skipnext")
+            icon.name: "ic_skipnext"
             onClicked: {
                 if (grid.month === 11) {
                     grid.month = 0;

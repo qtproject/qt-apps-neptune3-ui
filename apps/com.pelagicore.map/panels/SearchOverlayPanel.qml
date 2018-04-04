@@ -54,10 +54,10 @@ ColumnLayout {
     signal searchQueryChanged(var searchQuery)
     signal itemClicked(var index, string addressText, var coordinate, var boundingBox)
 
-    Tool {
+    ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(45)
-        symbol: Style.symbol("ic_back")
+        icon.name: "ic_back"
         text: qsTr("Back")
         onClicked: root.backButtonClicked()
     }

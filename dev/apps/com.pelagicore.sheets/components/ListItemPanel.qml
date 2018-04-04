@@ -95,7 +95,7 @@ Item {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
                 symbol: Style.symbol("ic-update")
-                rightToolSymbol: Style.symbol("ic-close")
+                rightToolSymbol: "ic-close"
                 text: "ListItem with Secondary Text"
                 secondaryText: "68% of 14 MB"
             }
@@ -104,7 +104,7 @@ Item {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
                 symbol: Style.symbol("ic-update")
-                rightToolSymbol: Style.symbol("ic-close")
+                rightToolSymbol: "ic-close"
                 text: "ListItem with Looooooooooonnngggg Text"
                 secondaryText: "Loooooooong Secondary Text"
             }
@@ -170,8 +170,8 @@ Item {
                 implicitHeight: Style.vspan(1.3)
                 symbol: Style.symbol("ic-placeholder")
                 text: "List item with two accessory buttons"
-                symbolAccessoryButton1: Style.symbol("ic-call-contrast")
-                symbolAccessoryButton2: Style.symbol("ic-message-contrast")
+                symbolAccessoryButton1: "ic-call-contrast"
+                symbolAccessoryButton2: "ic-message-contrast"
                 onAccessoryButton1Clicked: listItemTwoButtons.text = "Call clicked"
                 onAccessoryButton2Clicked: listItemTwoButtons.text = "Message clicked"
                 onClicked: listItemTwoButtons.text = "List item with two accessory buttons"

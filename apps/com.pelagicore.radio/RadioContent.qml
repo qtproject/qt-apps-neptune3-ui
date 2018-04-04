@@ -67,10 +67,10 @@ Item {
         RowLayout {
             anchors.horizontalCenter: parent.horizontalCenter
 
-            Tool {
+            ToolButton {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(1)
-                symbol: Style.symbol("ic_skipprevious")
+                icon.name: "ic_skipprevious"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.prevStation()
                 onPressAndHold: root.store.scanBack()
@@ -99,10 +99,10 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            Tool {
+            ToolButton {
                 Layout.preferredWidth: Style.hspan(1)
                 Layout.preferredHeight: Style.vspan(1)
-                symbol: Style.symbol("ic_skipnext")
+                icon.name: "ic_skipnext"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.nextStation()
                 onPressAndHold: root.store.scanForward()

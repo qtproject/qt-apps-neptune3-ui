@@ -29,11 +29,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import controls 1.0 as NeptuneControls
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 import "../helpers"
@@ -52,11 +51,11 @@ Row {
 
     spacing: NeptuneStyle.dp(45 * .5)
 
-    NeptuneControls.Tool {
+    ToolButton {
         width: NeptuneStyle.dp(45 * .9)
         height: width
         visible: root.guidanceMode
-        symbol: Qt.resolvedUrl("../assets/ic-end-route.png")
+        icon.source: Qt.resolvedUrl("../assets/ic-end-route.png")
         onClicked: root.stopNavigation()
     }
 
@@ -65,13 +64,13 @@ Row {
         anchors.verticalCenter: parent.verticalCenter
         spacing: NeptuneStyle.dp(45 * .7)
 
-        NeptuneControls.Tool {
+        ToolButton {
             Layout.leftMargin: parent.spacing
             width: NeptuneStyle.dp(45)
             height: width
             enabled: visible
             visible: !root.guidanceMode
-            symbol: Style.symbol("ic_back")
+            icon.name: "ic_back"
             onClicked: root.stopNavigation()
         }
 

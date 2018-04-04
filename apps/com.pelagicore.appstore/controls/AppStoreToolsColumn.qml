@@ -29,9 +29,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 import utils 1.0
-import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
@@ -50,15 +50,15 @@ ColumnLayout {
         id: toolsRepeater
         anchors.horizontalCenter: parent.horizontalCenter
 
-        Tool {
+        ToolButton {
             anchors.horizontalCenter: parent.horizontalCenter
             baselineOffset: 0
             checkable: true
             checked: root.currentTool === model.name
-            symbol: model.name ? Style.symbol(buttonGroup.checkedButton === this ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
+            icon.name: model.name ? (checked ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
+            display: AbstractButton.TextUnderIcon
             text: qsTr(model.name)
             font.pixelSize: NeptuneStyle.fontSizeXS
-            symbolOnTop: true
             onClicked: {
                 root.toolClicked(model.name, index);
                 root.currentTool = model.name;

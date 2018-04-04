@@ -77,7 +77,7 @@ ListItemBasic {
     property bool indeterminate: false
 
     property string secondaryText: ""
-    property string cancelSymbol: Style.symbol("ic-close")
+    property string cancelSymbol: "ic-close"
     property bool cancelable: true
 
     signal progressCanceled()
@@ -90,11 +90,11 @@ ListItemBasic {
         text: root.secondaryText
     }
 
-    accessoryDelegateComponent2: Tool {
+    accessoryDelegateComponent2: ToolButton {
         implicitWidth: Style.hspan(100/45)
         implicitHeight: root.height
         anchors.verticalCenter: parent.verticalCenter
-        symbol: root.cancelSymbol
+        icon.name: root.cancelSymbol
         visible: root.cancelable
         onClicked: root.progressCanceled()
     }

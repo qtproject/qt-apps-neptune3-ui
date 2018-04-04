@@ -91,13 +91,13 @@ Control {
         }
     }
 
-    Tool {
+    ToolButton {
         anchors.verticalCenter: parent.top
         anchors.horizontalCenter: parent.right
         width: bg.width
         height: bg.height
         onClicked: close()
-        symbol: Style.symbol("ic-close")
+        icon.name: "ic-close"
         background: Image {
             id: bg
             width: NeptuneStyle.dp(sourceSize.width)

@@ -234,25 +234,25 @@ Item {
         popupParent: root.popupParent
         model: climateModel
 
-        Tool {
+        ToolButton {
             id: leftIcon
             width: climateBar.toolWidth
             height: width
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: climateBar.lateralMargin
-            symbol: volumePopup.volumeIcon
+            icon.name: volumePopup.volumeIcon
             onClicked: volumePopup.open()
         }
 
-        Tool {
+        ToolButton {
             id: rightIcon
             width: climateBar.toolWidth
             height: width
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: climateBar.lateralMargin
-            symbol: Style.symbol("qt-badge")
+            icon.name: "qt-badge"
             onClicked: about.open()
         }
     }
