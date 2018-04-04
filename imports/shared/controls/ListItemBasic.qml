@@ -78,11 +78,11 @@ ItemDelegate {
     indicator: Item {
         implicitWidth: {
             if ((root.symbol === "")&&(root.imageSource === "")) {
-                return Style.hspan(22/45)
+                return NeptuneStyle.dp(22)
             } else if ((root.symbol !== "")&&(root.imageSource === "")) {
-                return Style.hspan(100/45)
+                return NeptuneStyle.dp(100)
             } else {
-                return Style.hspan(122/45)
+                return NeptuneStyle.dp(122)
             }
         }
 
@@ -117,7 +117,7 @@ ItemDelegate {
     }
 
     contentItem: Item {
-        implicitHeight: Style.vspan(75/80)
+        implicitHeight: NeptuneStyle.dp(75)
         RowLayout {
             anchors.fill: parent
             ColumnLayout {
@@ -150,9 +150,9 @@ ItemDelegate {
             }
             Item {
                 id: spacer
-                Layout.minimumWidth: Style.hspan(22/45)
-                Layout.maximumWidth: Style.hspan(22/45)
-                Layout.minimumHeight: parent.height
+                Layout.minimumWidth: NeptuneStyle.dp(22)
+                Layout.maximumWidth: NeptuneStyle.dp(22)
+                Layout.maximumHeight: parent.height
                 visible: middleSpacerUsed
             }
             Loader {
@@ -169,9 +169,9 @@ ItemDelegate {
             }
             Item {
                 id: spacerRight
-                Layout.minimumWidth: Style.hspan(22/45)
-                Layout.maximumWidth: Style.hspan(22/45)
-                Layout.minimumHeight: parent.height
+                Layout.minimumWidth: NeptuneStyle.dp(22)
+                Layout.maximumWidth: NeptuneStyle.dp(22)
+                Layout.maximumHeight: parent.height
                 visible: rightSpacerUsed
             }
         }

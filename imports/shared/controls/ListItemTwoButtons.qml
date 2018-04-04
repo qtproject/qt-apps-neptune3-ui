@@ -80,7 +80,7 @@ ListItemBasic {
     signal accessoryButton2Clicked()
 
     accessoryDelegateComponent1: ToolButton {
-        implicitWidth: Style.hspan(100/45)
+        implicitWidth: NeptuneStyle.dp(100)
         implicitHeight: root.height
         checkable: root.accessoryButton1Checkable
         checked: root.accessoryButton1Checked
@@ -89,7 +89,7 @@ ListItemBasic {
         onCheckedChanged: root.accessoryButton1Checked = checked
     }
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: Style.hspan(100/45)
+        implicitWidth: NeptuneStyle.dp(100)
         implicitHeight: root.height
         checkable: root.accessoryButton2Checkable
         checked: root.accessoryButton2Checked

@@ -91,7 +91,7 @@ ListItemBasic {
     }
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: Style.hspan(100/45)
+        implicitWidth: NeptuneStyle.dp(100)
         implicitHeight: root.height
         anchors.verticalCenter: parent.verticalCenter
         icon.name: root.cancelSymbol

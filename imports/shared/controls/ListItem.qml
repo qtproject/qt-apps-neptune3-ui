@@ -78,7 +78,7 @@ ListItemBasic {
     dividerVisible: true
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: rightToolSymbol ? Style.hspan(100/45) : 0
+        implicitWidth: rightToolSymbol ? NeptuneStyle.dp(100) : 0
         implicitHeight: rightToolSymbol ? root.height : 0
         baselineOffset: 0
         icon.name: root.rightToolSymbol

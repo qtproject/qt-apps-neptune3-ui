@@ -53,7 +53,7 @@ import utils 1.0
 ColumnLayout {
     id: root
 
-    width: Style.hspan(3)
+    width: NeptuneStyle.dp(135)
 
     property int currentIndex: 0
     readonly property string currentText: model ? model.get(currentIndex).text : ""
@@ -62,7 +62,7 @@ ColumnLayout {
 
     ButtonGroup { id: buttonGroup }
 
-    spacing: Style.vspan(0.3)
+    spacing: NeptuneStyle.dp(24)
 
     property string translationContext
     signal clicked()
@@ -71,8 +71,8 @@ ColumnLayout {
         id: repeater
 
         ToolButton {
-            Layout.preferredWidth: Style.hspan(3)
-            Layout.preferredHeight: Style.vspan(1.2)
+            Layout.preferredWidth: NeptuneStyle.dp(135)
+            Layout.preferredHeight: NeptuneStyle.dp(96)
             Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
