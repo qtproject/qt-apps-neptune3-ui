@@ -10,12 +10,12 @@
     <message>
         <source>Bringing stunning
 UX to the road</source>
-        <translation>Přinášíme ohromující
+        <translation type="vanished">Přinášíme ohromující
 UX na cestu</translation>
     </message>
     <message>
         <source>QtAuto - Agile UX Development</source>
-        <translation>QtAuto - Agilní UX vývoj</translation>
+        <translation type="vanished">QtAuto - Agilní UX vývoj</translation>
     </message>
     <message>
         <source>Monitor</source>
@@ -70,6 +70,10 @@ UX na cestu</translation>
     <message>
         <source>Running applications:</source>
         <translation>Spuštěné aplikace:</translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

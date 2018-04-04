@@ -31,9 +31,11 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.3
+import QtApplicationManager 1.0
 
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
+import controls 1.0
 
 Item {
     id: root
@@ -60,6 +62,26 @@ Item {
     Instantiator {
         model: root.applicationModel
         delegate: QtObject {
+            property ProcessMonitor monitor: ProcessMonitor {
+                applicationId: model.appInfo.id
+                reportingInterval: 1000
+                memoryReportingEnabled: root.visible
+                cpuLoadReportingEnabled: root.visible
+                onMemoryReportingChanged: {
+                    var mPSS = (memoryPss.total / 1e6).toFixed(0)
+                    var mRSS = (memoryRss.total / 1e6).toFixed(0)
+                    var mVirtual = (memoryVirtual.total / 1e6).toFixed(0)
+                    var indx = runningAppsModel.getAppIndex(model.appInfo.id);
+                    runningAppsModel.setProperty(indx, "memoryPSS", mPSS)
+                    runningAppsModel.setProperty(indx, "memoryRSS", mRSS)
+                    runningAppsModel.setProperty(indx, "memoryVirtual", mVirtual)
+                }
+                onCpuLoadReportingChanged: {
+                    var indx = runningAppsModel.getAppIndex(model.appInfo.id);
+                    runningAppsModel.setProperty(indx, "cpuLoad", (load * 100).toFixed(1))
+                }
+            }
+
             property var con: Connections {
                 target: model.appInfo
                 onRunningChanged: {
@@ -82,7 +104,13 @@ Item {
         id: runningAppsModel
 
         function appendAppInfo(appInfo) {
-            append({"appInfo":appInfo});
+            append({
+                       "appInfo": appInfo,
+                       "memoryPSS": "0",
+                       "memoryRSS": "0",
+                       "memoryVirtual": "0",
+                       "cpuLoad": "0.0"
+                   });
         }
         function removeAppInfo(appInfo) {
             var i;
@@ -94,32 +122,37 @@ Item {
                 }
             }
         }
+        function getAppIndex(id) {
+            for (var j = 0; j < count; j++) {
+                var item = get(j);
+                if (item.appInfo.id === id) {
+                    return j;
+                }
+            }
+            return -1;
+        }
     }
 
     ListView {
         id: listView
+        clip: true
         model: runningAppsModel
 
         anchors.top: description.bottom
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
         anchors.bottom: parent.bottom
 
-        delegate: Row {
-            height: Style.vspan(1)
-            Button {
-                width: Style.hspan(2)
-                height: parent.height
-                flat: true
-                text: "X"
-                onClicked: model.appInfo.stop()
-            }
-            Label {
-                text: model.appInfo.name
-                height: parent.height
-            }
+        delegate: ListItem {
+            width: parent.width
+            height: NeptuneStyle.dp(110)
+            rightToolSymbol: Style.symbol("ic-close")
+            text: model.appInfo.name
+            subText: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
+                    arg(model.cpuLoad).arg(model.memoryVirtual).
+                    arg(model.memoryRSS).arg(model.memoryPSS)
+            onRightToolClicked: model.appInfo.stop()
         }
+        ScrollIndicator.vertical: ScrollIndicator {}
     }
 }

@@ -46,7 +46,8 @@ NeptunePopup {
 
     property var applicationModel
 
-    bottomPadding: Style.hspan(0.35)
+    topPadding: NeptuneStyle.dp(20)
+    bottomPadding: NeptuneStyle.dp(20)
 
     property string currentTabName: tabBar.currentItem.name
 
@@ -54,34 +55,28 @@ NeptunePopup {
         id: mainLayout
         readonly property real contentSideMargin: Style.hspan(1.5)
 
-        Image {
+        RowLayout {
             Layout.fillWidth: true
-            source: Style.gfx("hero-about")
-            asynchronous: true
-
-            Label {
-                id: slogan
-                anchors.top: parent.top
-                anchors.topMargin: parent.height * 0.1
-                anchors.left: parent.left
-                anchors.leftMargin: parent.width * 0.04
-                anchors.right: parent.right
-                anchors.rightMargin: parent.width * 0.45
-                // manual line break to ensure it looks the best instead of leaving it up
-                // to automatic word-wrapping
-                text: qsTr("Bringing stunning\nUX to the road")
-                verticalAlignment: Text.AlignTop
-                font.pixelSize: NeptuneStyle.fontSizeXXL
-                font.weight: Font.Bold
+            Layout.leftMargin: mainLayout.contentSideMargin
+            Layout.rightMargin: mainLayout.contentSideMargin
+            spacing: NeptuneStyle.dp(50)
+            Image {
+                Layout.fillWidth: true
+                Layout.preferredWidth: parent.width / 3
+                fillMode: Image.PreserveAspectFit
+                source: Style.gfx("logo-theqtcompany")
             }
-
-            Label {
-                anchors.top: slogan.bottom
-                anchors.topMargin: font.pixelSize * 0.5
-                anchors.left: slogan.left
-                text: qsTr("QtAuto - Agile UX Development")
-                font.weight: Font.DemiBold
-                font.pixelSize: NeptuneStyle.fontSizeL
+            Image {
+                Layout.fillWidth: true
+                Layout.preferredWidth: parent.width / 3
+                fillMode: Image.PreserveAspectFit
+                source: Style.gfx("logo-luxoft")
+            }
+            Image {
+                Layout.fillWidth: true
+                Layout.preferredWidth: parent.width / 3
+                fillMode: Image.PreserveAspectFit
+                source: Style.gfx("logo-kdab")
             }
         }
 
@@ -112,6 +107,7 @@ NeptunePopup {
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.topMargin: NeptuneStyle.dp(10)
             Layout.leftMargin: mainLayout.contentSideMargin
             Layout.rightMargin: mainLayout.contentSideMargin
             Layout.bottomMargin: Style.vspan(0.3)

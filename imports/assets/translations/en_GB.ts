@@ -8,15 +8,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bringing stunning
-UX to the road</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QtAuto - Agile UX Development</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
@@ -60,6 +51,10 @@ UX to the road</source>
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

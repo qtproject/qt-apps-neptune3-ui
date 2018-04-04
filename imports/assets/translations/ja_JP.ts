@@ -8,15 +8,6 @@
         <translation type="vanished">マーケティング</translation>
     </message>
     <message>
-        <source>Bringing stunning
-UX to the road</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>QtAuto - Agile UX Development</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Monitor</source>
         <translation type="vanished">モニター</translation>
     </message>
@@ -69,6 +60,10 @@ UX to the road</source>
     <message>
         <source>Running applications:</source>
         <translation>アプリケーションの実行：</translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -8,15 +8,6 @@
         <translation type="vanished">마케팅</translation>
     </message>
     <message>
-        <source>Bringing stunning
-UX to the road</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>QtAuto - Agile UX Development</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Monitor</source>
         <translation type="vanished">모니터</translation>
     </message>
@@ -76,6 +67,10 @@ UX to the road</source>
     <message>
         <source>Running applications:</source>
         <translation>실행중인 응용 프로그램 :</translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
