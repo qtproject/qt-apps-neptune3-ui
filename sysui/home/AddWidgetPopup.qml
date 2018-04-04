@@ -112,7 +112,7 @@ NeptunePopup {
             id: shadow
             anchors.top: parent.top
             anchors.topMargin: NeptuneStyle.dp(120)
-            width: NeptuneStyle.dp(sourceSize.width)
+            width: parent.width
             height: NeptuneStyle.dp(sourceSize.height)
             source: Style.gfx2("popup-title-shadow")
         }
