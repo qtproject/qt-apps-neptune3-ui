@@ -94,6 +94,11 @@ NeptunePopup {
             }
             TabButton {
                 Layout.preferredWidth: Style.hspan(4)
+                text: qsTr("Startup")
+                property string name: "startup"
+            }
+            TabButton {
+                Layout.preferredWidth: Style.hspan(4)
                 text: qsTr("Running Apps")
                 property string name: "apps"
             }
@@ -113,6 +118,8 @@ NeptunePopup {
             Layout.bottomMargin: Style.vspan(0.3)
             currentIndex: tabBar.currentIndex
             MonitorView {
+            }
+            AboutStartup {
             }
             AboutRunningApps {
                 applicationModel: root.applicationModel
