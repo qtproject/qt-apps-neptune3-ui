@@ -41,7 +41,7 @@ import "views"
 import com.pelagicore.styles.neptune 3.0
 
 QtObject {
-    property var mainWindow: AppUIScreen {
+    property var mainWindow: PrimaryWindow {
         id: mainWindow
 
         MultiPointTouchArea {

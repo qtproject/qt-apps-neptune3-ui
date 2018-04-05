@@ -34,7 +34,7 @@ import utils 1.0
 import "stores"
 
 QtObject {
-    property var mainWindow: AppUIScreen {
+    property var mainWindow: PrimaryWindow {
         id: mainWindow
 
         MultiPointTouchArea {

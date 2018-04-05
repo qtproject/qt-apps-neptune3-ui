@@ -39,25 +39,32 @@ import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
 
 /*!
-    \qmltype AppUIScreen
+    \qmltype PrimaryWindow
     \inqmlmodule utils
     \inherits ApplicationManagerWindow
-    \brief A base QML item for developing applications.
+    \brief The primary window of a Neptune 3 application
 
-    AppUIScreen is a QML item which should be a root element in every
-    Neptune 3 UI application. It provides APIs for interacting with a system UI and
-    for positioning the application's visual elements.
+    The primary window of a Neptune 3 application is displayed on the Center Console.
+    This component also provides APIs for interacting with system UI and for positioning
+    the application's visual elements.
 
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 
-    The following example uses \l{AppUIScreen} as a root element:
+    The following example uses \l{PrimaryWindow} as a root element:
 
     \qml
-    AppUIScreen {
-        Content {
+    PrimaryWindow {
+        id: root
+        Background {
             anchors.fill: parent
+        }
+        Content {
+            x: root.exposedRect.x
+            y: root.exposedRect.x
+            width: root.exposedRect.width
+            height: root.exposedRect.height
         }
 
     }

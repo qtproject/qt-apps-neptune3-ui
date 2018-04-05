@@ -47,7 +47,7 @@ QtObject {
     // used for copying the offline DB
     readonly property var _mapsHelper: MapsHelper {}
 
-    property var mainWindow: AppUIScreen {
+    property var mainWindow: PrimaryWindow {
         id: mainWindow
 
         property var secondaryWindowObject

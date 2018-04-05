@@ -35,7 +35,7 @@ import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     width: Style.hspan(24)

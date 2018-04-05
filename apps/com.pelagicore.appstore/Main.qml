@@ -36,7 +36,7 @@ import QtQuick.Controls 2.2
 import "views"
 import "stores"
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     Image {

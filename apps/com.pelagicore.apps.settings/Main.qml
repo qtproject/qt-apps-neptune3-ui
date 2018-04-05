@@ -38,7 +38,7 @@ import "views"
 import "store"
 import "assets"
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     Image {

@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     SheetsContent {

@@ -32,7 +32,7 @@
 import QtQuick 2.2
 import utils 1.0
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     Vehicle {

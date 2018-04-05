@@ -41,7 +41,7 @@ import "views"
 import "controls"
 import "stores"
 
-AppUIScreen {
+PrimaryWindow {
     id: root
 
     MultiPointTouchArea {
