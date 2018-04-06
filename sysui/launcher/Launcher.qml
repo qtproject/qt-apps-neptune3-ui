@@ -64,8 +64,6 @@ Item {
 
         icon.name: "ic-menu-home"
         icon.color: "white"
-        icon.width: NeptuneStyle.dp(35)
-        icon.height: NeptuneStyle.dp(35)
         ButtonGroup.group: buttonGroup
         checkable: true
         checked: !_isThereActiveApp
@@ -96,8 +94,6 @@ Item {
         opacity: useCloseIcon ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityHigh
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
-        icon.width: NeptuneStyle.dp(35)
-        icon.height: NeptuneStyle.dp(35)
         checkable: true
     }
 
