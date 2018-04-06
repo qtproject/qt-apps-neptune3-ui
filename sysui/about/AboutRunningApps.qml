@@ -146,7 +146,7 @@ Item {
         delegate: ListItem {
             width: parent.width
             height: NeptuneStyle.dp(110)
-            rightToolSymbol: Style.symbol("ic-close")
+            rightToolSymbol: "ic-close"
             text: model.appInfo.name
             subText: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
                     arg(model.cpuLoad).arg(model.memoryVirtual).
