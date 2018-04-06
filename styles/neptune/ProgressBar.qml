@@ -45,8 +45,8 @@ T.ProgressBar {
                              contentItem.implicitHeight + topPadding + bottomPadding)
 
     contentItem: ProgressBarImpl {
-        implicitHeight: 6
-        implicitWidth: 116
+        implicitHeight: NeptuneStyle.dp(6)
+        implicitWidth: NeptuneStyle.dp(116)
         scale: control.mirrored ? -1 : 1
         progress: control.position
         indeterminate: control.visible && control.indeterminate
@@ -54,9 +54,9 @@ T.ProgressBar {
     }
 
     background: Item {
-        implicitWidth: 200
-        implicitHeight: 6
+        implicitWidth: NeptuneStyle.dp(200)
+        implicitHeight: NeptuneStyle.dp(6)
         y: (control.height - height) / 2
-        height: 6
+        height: NeptuneStyle.dp(6)
     }
 }
