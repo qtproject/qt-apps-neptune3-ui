@@ -1,13 +1,38 @@
-# Prerequisite
+# Neptune 3 UI
 
-* Qt5 (branch 5.10), built with Open GL ES (-opengl es2 -opengles3)
-* QtIvi (branch dev)
-* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.10)
-* Unix system (e.g. Ubuntu 16.04)
+Neptune 3 is a reference implementation of a multiprocess System UI using Qt Automotive Suite.
 
-# Clone Repository
+You can easily fetch, build and install it along with all its dependencies using the qtauto-admin tool which can be found here:
+https://gitlab.com/jryannel/qauto-admin
 
-The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first. Due to the SSL issues we need to use the HTTPS clone URL. To not enter every time the credentials you can use the git credential cache. The GitLab server uses a self-signed certification, so we need to override the ssl verification.
+Otherwise you can read on for information on how to fetch its dependencies and build it yourself.
+
+## Prerequisites and dependencies
+
+### Multi-process UI (preferred)
+
+When in multi process mode, application run as independent processes, as wayland clients,
+and the System UI acts as a wayland server, compositing the application windows in its own
+QML scene, as regular QML items.
+
+* Linux (e.g. Ubuntu 16.04)
+* Qt5 (branch 5.11) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
+* QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.11)
+
+### Single-process UI (fallback option)
+
+When in single process mode, all application code run in the same QML scene and
+process as the System UI itself.
+
+* Linux (e.g. Ubuntu 16.04) or macOS
+* Qt5 (branch 5.11)
+* QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.11)
+
+## Clone Repository
+
+The repo uses git-lfs. You need to install [https://git-lfs.github.com/](git-lfs) first. To not enter every time the credentials you can use the git credential cache. The GitLab server uses a self-signed certification, so we need to override the ssl verification.
 
 Here are the commands:
 
@@ -17,21 +42,23 @@ Here are the commands:
     $ git config credential.helper cache
     $ git config http.sslverify false
 
-# Build and install neptune3-ui
+## Build and install neptune3-ui
 
     $ qmake --version
 
-This should report a Qt 5.10 version
+This should report a Qt 5.11 version
 
     $ qmake INSTALL_PREFIX=/path/to/install/folder && make && make install
 
 This will install all qml files and plugins into the neptune subfolder of '/path/to/install/folder'. If INSTALL_PREFIX is not defined, then this will build all neptune3-ui plugins and installs the complete neptune3-ui to /opt/neptune3 folder.
 
+You should have the Open Sans font installed in your system (see the ttf files in imports/assets/fonts). Its installation is *not* being done automatically.
+
 The installation part is optional.
 
 * (Optional) Run scripts within the plugins/scripts folder to scan the media on the system
 
-# Run entire UI
+## Run entire UI
 
 Building Neptune will make 'neptune3-ui' executable which will be then run:
 
@@ -54,5 +81,3 @@ To run the settings server, just run the executable RemoteSettings_server
 In case QtIVI is not installed, 'dummyimports' folder contains QML dummy implementation of QtIVI:
 
     $ QML2_IMPORT_PATH=/path/to/dummyimports neptune3-ui -r
-
-NOTE: You need to have Open Sans font installed (see assets folder within the modules)
