@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -45,9 +45,11 @@ QtObject {
         property string description: ""
         property int priority: 15
         property string icon: ""
+        property string image: ""
     }
 
-    property bool notificationVisible: false
+    property bool notificationCenterVisible: false
+    property bool notificationToastVisible: false
     property var notificationQueue:[]
     property var buttonModel: []
 
@@ -73,7 +75,7 @@ QtObject {
             if (receivedContent.category === "notification") {
                 console.log(logCategory, "::: Notification received :::", id);
 
-                if (!root.notificationVisible && root.notificationQueue.length === 0) {
+                if (!root.notificationToastVisible && root.notificationQueue.length === 0) {
                     root.addNotification(id);
                 }
                 else {
@@ -101,7 +103,7 @@ QtObject {
                 }
 
                 if (notificationExisted) {
-                    if (!root.notificationVisible && root.notificationQueue.length === 0) {
+                    if (!root.notificationToastVisible && root.notificationQueue.length === 0) {
                         updateNotification(id);
                     } else {
                         if (receivedContent.priority < 5 && root.currentNotification.priority < receivedContent.priority) {
@@ -151,13 +153,14 @@ QtObject {
         root.currentNotification.description = contentToShow.body
         root.currentNotification.priority = contentToShow.priority
         root.currentNotification.icon = contentToShow.icon
+        root.currentNotification.image = contentToShow.image
         root.currentNotification.id = contentToShow.id
 
         return root.currentNotification
     }
 
     function showNotification() {
-        root.notificationVisible = true;
+        root.notificationToastVisible = true;
         root.notificationTimer.restart();
     }
 
@@ -179,11 +182,12 @@ QtObject {
     }
 
     function closeNotification() {
-        root.notificationVisible = false;
+        root.notificationToastVisible = false;
         root.currentNotification.title = ""
         root.currentNotification.description = ""
         root.currentNotification.priority = 15
         root.currentNotification.icon = ""
+        root.currentNotification.image = ""
         root.currentNotification.id = -1
     }
 

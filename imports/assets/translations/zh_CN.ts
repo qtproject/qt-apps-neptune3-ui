@@ -844,6 +844,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
+    <name>NotificationCenter</name>
+    <message>
+        <source>Clear list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PaneBoard</name>
     <message>
         <source>E-mail</source>

@@ -716,6 +716,13 @@
     </message>
 </context>
 <context>
+    <name>NotificationCenter</name>
+    <message>
+        <source>Clear list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PhoneToolsColumn</name>
     <message>
         <source>recents</source>

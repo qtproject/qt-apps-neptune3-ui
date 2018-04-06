@@ -35,6 +35,7 @@ import QtQuick.Controls 2.2
 import animations 1.0
 import com.pelagicore.styles.neptune 3.0
 import display 1.0
+import notification 1.0
 import models.system 1.0
 import utils 1.0
 import instrumentcluster 1.0
@@ -62,6 +63,7 @@ Window {
         target: root
         onFrameSwapped: {
             display.loadUI();
+            notificationLoader.active = true;
             windowConns.enabled = false;
         }
     }
@@ -230,12 +232,37 @@ Window {
                 display.applicationModel.goBack();
             }
         }
+        Shortcut {
+            sequence: "Ctrl+n"
+            context: Qt.ApplicationShortcut
+            onActivated: {
+                notificationInterface.show();
+            }
+        }
     }
 
     ModalOverlay {
         id: popupParent
         anchors.fill: display
         target: display
+    }
+
+    // TODO:: Dummy Notification. will be removed when real implementation is in place.
+    Notification {
+        id: notificationInterface
+        summary: "Battery level is low"
+        body: "Start route to 'EV Connect Charging Station' ? "
+        category: "notification"
+    }
+
+    StageLoader {
+        id: notificationLoader
+
+        anchors.fill: display
+        source: "sysui/notification/NotificationContent.qml"
+
+        Binding { target: notificationLoader.item; property: "target";
+            value: popupParent.showModalOverlay ? popupParent : display }
     }
 
     CenterConsoleMonitorOverlay {
