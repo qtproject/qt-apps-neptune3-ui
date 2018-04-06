@@ -40,8 +40,8 @@ import controls 1.0
 
 Item {
     id: root
-    implicitWidth: Style.hspan(18)
-    implicitHeight: Style.vspan(16)
+    implicitWidth: NeptuneStyle.dp(810)
+    implicitHeight: NeptuneStyle.dp(1280)
 
     property var applicationModel
 

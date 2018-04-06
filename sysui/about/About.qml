@@ -41,8 +41,8 @@ import "../procmon"
 
 NeptunePopup {
     id: root
-    width: Style.hspan(22)
-    height: Style.vspan(19)
+    width: NeptuneStyle.dp(990)
+    height: NeptuneStyle.dp(1520)
 
     property var applicationModel
 
@@ -53,7 +53,7 @@ NeptunePopup {
 
     contentItem: ColumnLayout {
         id: mainLayout
-        readonly property real contentSideMargin: Style.hspan(1.5)
+        readonly property real contentSideMargin: NeptuneStyle.dp(68)
 
         RowLayout {
             Layout.fillWidth: true
@@ -86,19 +86,19 @@ NeptunePopup {
             Layout.alignment: Qt.AlignHCenter
             Layout.leftMargin: mainLayout.contentSideMargin
             Layout.rightMargin: mainLayout.contentSideMargin
-            Layout.topMargin: Style.vspan(0.5)
+            Layout.topMargin: NeptuneStyle.dp(40)
             TabButton {
-                Layout.preferredWidth: Style.hspan(4)
+                Layout.preferredWidth: NeptuneStyle.dp(180)
                 text: qsTr("System")
                 property string name: "system"
             }
             TabButton {
-                Layout.preferredWidth: Style.hspan(4)
+                Layout.preferredWidth: NeptuneStyle.dp(180)
                 text: qsTr("Running Apps")
                 property string name: "apps"
             }
             TabButton {
-                Layout.preferredWidth: Style.hspan(4)
+                Layout.preferredWidth: NeptuneStyle.dp(180)
                 text: qsTr("Performance")
                 property string name: "performance"
             }
@@ -110,7 +110,7 @@ NeptunePopup {
             Layout.topMargin: NeptuneStyle.dp(10)
             Layout.leftMargin: mainLayout.contentSideMargin
             Layout.rightMargin: mainLayout.contentSideMargin
-            Layout.bottomMargin: Style.vspan(0.3)
+            Layout.bottomMargin: NeptuneStyle.dp(24)
             currentIndex: tabBar.currentIndex
             MonitorView {
             }
