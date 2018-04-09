@@ -289,7 +289,7 @@ Window {
         readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
                                                        && (Qt.application.screens.length === 1)
 
-        active: !runningOnSingleScreenEmbedded
+        active: !runningOnSingleScreenEmbedded && ApplicationManager.systemProperties.showCluster
 
         property bool invertedOrientation: false
     }
