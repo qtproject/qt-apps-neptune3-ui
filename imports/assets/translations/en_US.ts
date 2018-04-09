@@ -135,6 +135,10 @@
         <source>RAM: %1 MB (%2 %)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClimateButtonsGrid</name>

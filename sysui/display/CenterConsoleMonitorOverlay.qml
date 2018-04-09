@@ -38,7 +38,9 @@ import utils 1.0
 MonitorOverlay {
     id: root
     property var model
+    property string activeAppId
 
+    title: qsTr("System")
     visible: (model && model.systemOverlayEnabled) || fpsVisible
 
     Label {
@@ -61,5 +63,31 @@ MonitorOverlay {
                                         .arg(root.model ? root.model.ramPercentage : "?")
         font.pixelSize: NeptuneStyle.fontSizeXS
         visible: root.model ? root.model.systemOverlayEnabled : false
+    }
+    Label {
+        text: "||"
+        font.pixelSize: NeptuneStyle.fontSizeXS
+        visible: root.activeAppId && root.model.systemOverlayEnabled
+    }
+    Label {
+        text: root.activeAppId + ": "
+        font.pixelSize: NeptuneStyle.fontSizeXS
+        visible: root.activeAppId && root.model.systemOverlayEnabled
+    }
+    Label {
+        text: qsTr("CPU: %1 %").arg(root.model ? root.model.appCpuPercentage : "?")
+        font.pixelSize: NeptuneStyle.fontSizeXS
+        visible: root.activeAppId && root.model.systemOverlayEnabled
+    }
+    Label {
+        text: "|"
+        font.pixelSize: NeptuneStyle.fontSizeXS
+        visible: root.activeAppId && root.model.systemOverlayEnabled
+    }
+    Label {
+        text: qsTr("RAM: %1 MB (%2 %)").arg(root.model ? root.model.appRamBytes : "?")
+        .arg(root.model ? root.model.appRamPercentage : "?")
+        font.pixelSize: NeptuneStyle.fontSizeXS
+        visible: root.activeAppId && root.model.systemOverlayEnabled
     }
 }

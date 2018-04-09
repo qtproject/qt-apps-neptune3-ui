@@ -39,6 +39,7 @@ Item {
     id: root
     property alias window: frameTimer.window
     property bool fpsVisible
+    property string title
     default property alias columnData: column.data
 
     implicitWidth: column.width
@@ -64,6 +65,13 @@ Item {
         spacing: NeptuneStyle.dp(10)
         leftPadding: NeptuneStyle.dp(10)
         rightPadding: NeptuneStyle.dp(10)
+
+        Label {
+            text: root.title + ": "
+            font.pixelSize: NeptuneStyle.fontSizeXS
+            visible: root.title !== ""
+        }
+
         Rectangle {
             id: rotatingRect
             width: NeptuneStyle.fontSizeXS

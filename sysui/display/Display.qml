@@ -268,6 +268,22 @@ Item {
     Binding { target: SystemModel; property: "cpuPercentage"; value: (SystemMonitor.cpuLoad * 100).toFixed(0) }
     Binding { target: SystemModel; property: "ramBytes"; value: (SystemMonitor.memoryUsed / 1e6).toFixed(0) }
 
+    ProcessMonitor {
+        id: processMonitor
+        applicationId: applicationModel.activeAppInfo ? applicationModel.activeAppInfo.id : ""
+        reportingInterval: 1000
+        memoryReportingEnabled: applicationModel.activeAppInfo
+        cpuLoadReportingEnabled: applicationModel.activeAppInfo
+
+        onCpuLoadReportingChanged: {
+            SystemModel.appCpuPercentage = (load * 100).toFixed(1)
+        }
+
+        onMemoryReportingChanged: {
+            SystemModel.appRamBytes = (memoryPss.total / 1e6).toFixed(1)
+        }
+    }
+
     VolumePopup {
         id: volumePopup
         parent: root.popupParent

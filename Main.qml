@@ -237,6 +237,7 @@ Window {
         rotation: display.rotation
         model: SystemModel
         fpsVisible: SystemModel.centerConsolePerfOverlayEnabled
+        activeAppId: display.applicationModel.activeAppInfo ? display.applicationModel.activeAppInfo.id : ""
         window: root
     }
 

@@ -43,4 +43,8 @@ QtObject {
     readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
     property int ramBytes: -1
     property int ramTotalBytes: -1
+
+    property real appCpuPercentage: -1
+    property real appRamBytes: -1
+    readonly property real appRamPercentage: ((appRamBytes / ramTotalBytes) * 100).toFixed(1)
 }
