@@ -35,7 +35,8 @@ import QtQuick.Window 2.3
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-import ".."
+import "../stores"
+import "../views"
 
 Window {
     id: root
@@ -58,8 +59,12 @@ Window {
         }
     }
 
-    Maps {
+    MapView {
         anchors.fill: parent
         state: "Maximized"
+        store: MapStore {
+            currentLocationCoord: positionCoordinate
+            onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()
+        }
     }
 }
