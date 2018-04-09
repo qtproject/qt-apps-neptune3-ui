@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.3
 import QtApplicationManager 1.0
 
 import com.pelagicore.styles.neptune 3.0
@@ -138,36 +139,96 @@ Item {
         clip: true
         model: runningAppsModel
 
+        spacing: NeptuneStyle.dp(20)
+
         anchors.top: infoLabel.bottom
+        anchors.topMargin: NeptuneStyle.dp(30)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
-        delegate: ListItem {
+        delegate: Item {
             width: parent.width
-            height: NeptuneStyle.dp(160)
-            rightToolSymbol: "ic-close"
-            text: model.appInfo.name
-            subText: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
-                    arg(model.cpuLoad).arg(model.memoryVirtual).
-                    arg(model.memoryRSS).arg(model.memoryPSS)
-            onRightToolClicked: model.appInfo.stop()
-            accessoryBottomDelegateComponent: Row {
-                Switch {
-                    id: primarySwitch
-                    leftPadding: NeptuneStyle.dp(35)
-                    visible: !!model.appInfo.window
-                    font.pixelSize: NeptuneStyle.fontSizeXS
-                    text: qsTr("Performance (FPS) monitor")
-                    Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+            implicitHeight: column.height
+
+            ToolButton {
+                anchors.top: parent.top
+                anchors.right: parent.right
+                icon.name: "ic-close"
+                onClicked: model.appInfo.stop()
+            }
+
+            Column {
+                id: column
+                width: parent.width
+                Label {
+                    text: model.appInfo.name
                 }
-                Switch {
-                    id: secondarySwitch
-                    leftPadding: NeptuneStyle.dp(35)
+                Label {
+                    text: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
+                            arg(model.cpuLoad).arg(model.memoryVirtual).
+                            arg(model.memoryRSS).arg(model.memoryPSS)
+                    font.pixelSize: NeptuneStyle.fontSizeS
+                    opacity: NeptuneStyle.fontOpacityMedium
+                }
+                Column {
+                    width: parent.width
+                    visible: !!model.appInfo.window
+                    leftPadding: NeptuneStyle.dp(40)
+                    Label {
+                        text: qsTr("Primary Window, on Center Console")
+                        font.pixelSize: NeptuneStyle.fontSizeS
+                    }
+                    RowLayout {
+                        width: parent.width - parent.leftPadding
+                        Label {
+                            Layout.fillWidth: true
+                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame)
+                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            opacity: NeptuneStyle.fontOpacityMedium
+                        }
+                        Switch {
+                            id: primarySwitch
+                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            text: qsTr("Performance monitor")
+                            opacity: NeptuneStyle.fontOpacityMedium
+                            Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+                        }
+                    }
+                    bottomPadding: secondaryWindowColumn.visible ? 0 : NeptuneStyle.dp(20)
+                }
+                Column {
+                    id: secondaryWindowColumn
+                    width: parent.width
                     visible: !!model.appInfo.secondaryWindow
-                    font.pixelSize: NeptuneStyle.fontSizeXS
-                    text: qsTr("Secondary window performance (FPS) monitor")
-                    Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                    leftPadding: NeptuneStyle.dp(40)
+                    Label {
+                        text: qsTr("Secondary Window, on Instrument Cluster")
+                        font.pixelSize: NeptuneStyle.fontSizeS
+                    }
+                    RowLayout {
+                        width: parent.width - parent.leftPadding
+                        Label {
+                            Layout.fillWidth: true
+                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstSecondaryWindowFrame)
+                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            opacity: NeptuneStyle.fontOpacityMedium
+                        }
+                        Switch {
+                            id: secondarySwitch
+                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            text: qsTr("Performance monitor")
+                            opacity: NeptuneStyle.fontOpacityMedium
+                            Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                        }
+                    }
+                    bottomPadding: NeptuneStyle.dp(20)
+                }
+                Image {
+                    visible: model.index !== listView.model.count - 1
+                    width: parent.width
+                    height: NeptuneStyle.dp(sourceSize.height)
+                    source: Style.gfx("list-divider", NeptuneStyle.theme)
                 }
             }
         }

@@ -46,19 +46,27 @@
         <translation type="vanished">アプリケーションの実行：</translation>
     </message>
     <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Performance (FPS) monitor</source>
+        <source>Time to first frame: %1 ms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Secondary window performance (FPS) monitor</source>
+        <source>Performance monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <source>Primary Window, on Center Console</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary Window, on Instrument Cluster</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

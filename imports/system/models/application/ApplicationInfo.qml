@@ -126,9 +126,27 @@ QtObject {
      */
     property bool secondaryWindowPerfMonitorEnabled: false
 
+    /*
+        Time elapsed between start() was called and the moment sysui received its first
+        frame from window
+     */
+    readonly property int timeToFirstWindowFrame:
+        d.startCallTime !== null && d.windowFirstFrameTime !== null ? d.windowFirstFrameTime - d.startCallTime
+                                                                    : -1
+
+    /*
+        Time elapsed between start() was called and the moment sysui received its first
+        frame from secondaryWindow
+     */
+    readonly property int timeToFirstSecondaryWindowFrame:
+        d.startCallTime !== null && d.secondaryWindowFirstFrameTime !== null ? d.secondaryWindowFirstFrameTime - d.startCallTime
+                                                                    : -1
     function start() {
         // TODO Add a start() method to QtAM::Application itself
         if (application) {
+            if (application.runState === AM.Application.NotRunning && d.startCallTime === null) {
+                d.startCallTime = Date.now();
+            }
             AM.ApplicationManager.startApplication(id);
         }
     }
@@ -215,6 +233,56 @@ QtObject {
         property bool active: false
         property var window: null
         property var secondaryWindow: null
+
+        // Time when start() was called, in ms since Unix Epoch
+        property var startCallTime: null
+
+        // Time when window had its first frame rendered, in ms since Unix Epoch
+        property var windowFirstFrameTime: null
+
+        // Time when secondaryWindow had its first frame rendered, in ms since Unix Epoch
+        property var secondaryWindowFirstFrameTime: null
+
+        property var appConns: Connections {
+            target: root.application
+            enabled: target != null
+            ignoreUnknownSignals: true
+            onRunStateChanged: {
+                if (root.application.runState === AM.Application.NotRunning) {
+                    d.startCallTime = null;
+                }
+            }
+        }
+
+        property var windowConns: Connections {
+            target: d.window ? d.window.surface : null
+            enabled: target != null && d.windowFirstFrameTime === null
+            ignoreUnknownSignals: true
+            onRedraw: {
+                d.windowFirstFrameTime = Date.now();
+            }
+        }
+
+        property var secondaryWindowConns: Connections {
+            target: d.secondaryWindow ? d.secondaryWindow.surface : null
+            enabled: target != null && d.secondaryWindowFirstFrameTime === null
+            ignoreUnknownSignals: true
+            onRedraw: {
+                d.secondaryWindowFirstFrameTime = Date.now();
+            }
+        }
+
+        onWindowChanged: {
+            if (!window) {
+                windowFirstFrameTime = null;
+            }
+        }
+
+        onSecondaryWindowChanged: {
+            if (!secondaryWindow) {
+                secondaryWindowFirstFrameTime = null;
+            }
+        }
 
         // ISO 639-1 two-letter language code (eg: "en", "de, "zh")
         readonly property string languageCode: {
