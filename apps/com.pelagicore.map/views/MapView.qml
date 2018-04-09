@@ -71,6 +71,19 @@ Item {
     }
 
     onStateChanged: root.store.searchViewEnabled = false;
+    Connections {
+        target: root.store
+        onIntentNavigationRequested: {
+            mapBoxPanel.center = coord;
+            root.store.startCoord = root.store.positionCoordinate;
+            root.store.destCoord = coord;
+            root.store.destination = address;
+            if (boundingBox.isValid) {
+                mapBoxPanel.visibleRegion = boundingBox;
+            }
+            mapBoxPanel.navigationMode = true;
+        }
+    }
 
     MapBoxPanel {
         id: mapBoxPanel

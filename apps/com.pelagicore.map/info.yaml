@@ -15,3 +15,4 @@ name:
   ko: '지도'
 
 categories: [ 'navigation', 'widget' ]
+mimeTypes: [ 'x-scheme-handler/x-map' ]

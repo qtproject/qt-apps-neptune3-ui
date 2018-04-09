@@ -61,8 +61,34 @@ QtObject {
 
     property var startCoord: QtPositioning.coordinate()
     property var destCoord: QtPositioning.coordinate()
-
     property string destination
+
+    property var appInterface: Connections {
+        target: ApplicationInterface
+        onOpenDocument: {
+            var request = documentUrl.slice(8, documentUrl.length);
+            var dest = "";
+            if (request.indexOf("getmeto/") >= 0) {
+                dest = request.slice(8, request.length);
+                root.destination = dest;
+                intentGeoCodeModel.reset();
+                intentGeoCodeModel.query = dest;
+                intentGeoCodeModel.update();
+            }
+        }
+    }
+
+    property GeocodeModel intentGeoCodeModel: GeocodeModel {
+        plugin: root.geocodePlugin
+        limit: 20
+        onCountChanged: {
+            if (count > 0) {
+                root.intentNavigationRequested(get(0).address.text, get(0).coordinate, get(0).boundingBox);
+            }
+        }
+    }
+
+    signal intentNavigationRequested(string address, var coord, var boundingBox)
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;

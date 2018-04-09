@@ -172,6 +172,7 @@ Item {
             }
 
             Label {
+                id: firstStationAddressLabel
                 anchors.left: parent.left
                 anchors.leftMargin: 140
                 anchors.verticalCenter: parent.verticalCenter
@@ -185,6 +186,10 @@ Item {
                 anchors.rightMargin: 22
                 state: "SMALL"
                 text: qsTr("Route")
+                onClicked: {
+                    var pathToRoute = "x-map://getMeTo/" + firstStationAddressLabel.text;
+                    Qt.openUrlExternally(pathToRoute);
+                }
             }
         }
 
@@ -222,6 +227,7 @@ Item {
             }
 
             Label {
+                id: secondStationAddressLabel
                 anchors.left: parent.left
                 anchors.leftMargin: 140
                 anchors.verticalCenter: parent.verticalCenter
@@ -235,6 +241,10 @@ Item {
                 anchors.rightMargin: 22
                 state: "SMALL"
                 text: qsTr("Route")
+                onClicked: {
+                    var pathToRoute = "x-map://getMeTo/" + secondStationAddressLabel.text;
+                    Qt.openUrlExternally(pathToRoute);
+                }
             }
         }
     }
