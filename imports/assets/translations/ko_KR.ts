@@ -38,10 +38,6 @@
 <context>
     <name>AboutPerformance</name>
     <message>
-        <source>Enabling performance monitoring forces System UI and/or the chosen application to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Center Console Performance Overlay</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,19 +46,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>System UI Compositing Windows:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Application Windows:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 primary window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 secondary window</source>
+        <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -70,10 +54,22 @@
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>
-        <translation>실행중인 응용 프로그램 :</translation>
+        <translation type="vanished">실행중인 응용 프로그램 :</translation>
     </message>
     <message>
         <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Performance (FPS) monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Secondary window performance (FPS) monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

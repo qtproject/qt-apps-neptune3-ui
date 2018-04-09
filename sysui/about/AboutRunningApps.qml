@@ -44,20 +44,6 @@ Item {
 
     property var applicationModel
 
-    Label {
-        id: description
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        width: Style.hspan(16)
-        height: Style.vspan(2)
-        horizontalAlignment: Text.AlignHCenter
-
-        text: qsTr("Running applications:")
-        wrapMode: Text.Wrap
-        font.pixelSize: NeptuneStyle.fontSizeXL
-        font.bold: true
-    }
-
     // FIXME: Name is not being updated when language changes
     Instantiator {
         model: root.applicationModel
@@ -133,25 +119,57 @@ Item {
         }
     }
 
+    Label {
+        id: infoLabel
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        topPadding: NeptuneStyle.dp(20)
+
+        wrapMode: Text.WordWrap
+        text: qsTr("Enabling performance monitoring forces the chosen application " +
+                    " to constantly redraw itself, therefore having a constant," +
+                    " unnecessary, GPU/CPU consumption.")
+        font.pixelSize: NeptuneStyle.fontSizeS
+    }
+
     ListView {
         id: listView
         clip: true
         model: runningAppsModel
 
-        anchors.top: description.bottom
+        anchors.top: infoLabel.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
         delegate: ListItem {
             width: parent.width
-            height: NeptuneStyle.dp(110)
+            height: NeptuneStyle.dp(160)
             rightToolSymbol: "ic-close"
             text: model.appInfo.name
             subText: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
                     arg(model.cpuLoad).arg(model.memoryVirtual).
                     arg(model.memoryRSS).arg(model.memoryPSS)
             onRightToolClicked: model.appInfo.stop()
+            accessoryBottomDelegateComponent: Row {
+                Switch {
+                    id: primarySwitch
+                    leftPadding: NeptuneStyle.dp(35)
+                    visible: !!model.appInfo.window
+                    font.pixelSize: NeptuneStyle.fontSizeXS
+                    text: qsTr("Performance (FPS) monitor")
+                    Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+                }
+                Switch {
+                    id: secondarySwitch
+                    leftPadding: NeptuneStyle.dp(35)
+                    visible: !!model.appInfo.secondaryWindow
+                    font.pixelSize: NeptuneStyle.fontSizeXS
+                    text: qsTr("Secondary window performance (FPS) monitor")
+                    Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                }
+            }
         }
         ScrollIndicator.vertical: ScrollIndicator {}
     }
