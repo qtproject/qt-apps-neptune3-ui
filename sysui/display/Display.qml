@@ -42,6 +42,7 @@ import utils 1.0
 import animations 1.0
 import volume 1.0
 import statusbar 1.0
+import ipc 1.0
 
 import models.application 1.0
 import models.climate 1.0
@@ -81,6 +82,8 @@ Item {
         cellHeight: Style.cellHeight
         localeCode: Style.languageLocale
     }
+
+    property var musicIntentsIPC: MusicIntentsIPC { }
 
     Image {
         anchors.fill: parent

@@ -43,6 +43,19 @@ Store {
     property alias contentType: searchBrowseModel.contentType
     property real indexerProgress: 0.0
 
+    property ListModel toolsColumnModel: ListModel {
+        id: toolsColumnModel
+        ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites"); greyedOut: false}
+        ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists"); greyedOut: false }
+        ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists"); greyedOut: true }
+        ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); greyedOut: false }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
+        //TODO use right icons here
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "radio"); greyedOut: false }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "spotify"); greyedOut: true }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "web radio"); greyedOut: true }
+    }
+
     property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
         id: searchBrowseModel
         contentType: ""
@@ -82,6 +95,26 @@ Store {
     }
 
     property Item ipc: Item {
+        ApplicationInterfaceExtension {
+            id: musicIntentsInterface
+            name: "neptune.musicintents.interface"
+            Component.onCompleted: {
+                toolsColumnModel.get(6).greyedOut = !object.spotifyInstalled;
+                toolsColumnModel.get(7).greyedOut = !object.webradioInstalled;
+            }
+        }
+
+        Connections {
+            target: musicIntentsInterface.object
+
+            onSpotifyInstalledChanged: {
+                toolsColumnModel.get(6).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
+            }
+            onWebradioInstalledChanged: {
+                toolsColumnModel.get(7).greyedOut = !musicIntentsInterface.object.webradioInstalled;
+            }
+        }
+
         ApplicationInterfaceExtension {
             id: musicRemoteControl
 

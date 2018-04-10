@@ -442,6 +442,18 @@
         <source>folders</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>spotify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>web radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>radio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NavigationConfirmPanel</name>
@@ -522,6 +534,21 @@
     </message>
     <message>
         <source>AM</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RadioToolsColumn</name>
+    <message>
+        <source>music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>spotify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>web radio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

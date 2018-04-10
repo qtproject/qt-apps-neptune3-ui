@@ -15,3 +15,4 @@ name:
   ko: '음악'
 
 categories: [ 'media', 'widget' ]
+mimeTypes: [ 'x-scheme-handler/x-music' ]

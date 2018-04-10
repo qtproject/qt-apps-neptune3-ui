@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import QtMultimedia 5.9
+import QtApplicationManager 1.0
 import utils 1.0
 
 Store {
@@ -70,6 +71,35 @@ Store {
                                                                     convertHzToMHz(tunerControl.currentFrequency)
 
     readonly property string freqUnit: root.tunerBand === tunerControl.band.AMBand ? qsTr("KHz") : qsTr("MHz")
+
+    property var ipc: QtObject {
+        property var musicIntentsInterface: ApplicationInterfaceExtension {
+            id: musicIntentsInterface
+            name: "neptune.musicintents.interface"
+            Component.onCompleted: {
+                toolsColumnModel.get(1).greyedOut = !object.spotifyInstalled;
+                toolsColumnModel.get(2).greyedOut = !object.webradioInstalled;
+            }
+        }
+
+        property var ipcConx: Connections {
+            target: musicIntentsInterface.object
+
+            onSpotifyInstalledChanged: {
+                toolsColumnModel.get(1).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
+            }
+            onWebradioInstalledChanged: {
+                toolsColumnModel.get(2).greyedOut = !musicIntentsInterface.object.webradioInstalled;
+            }
+        }
+    }
+
+    property ListModel toolsColumnModel: ListModel {
+        id: toolsColumnModel
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "music"); greyedOut: false }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "spotify"); greyedOut: true }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "web radio"); greyedOut: true }
+    }
 
     property ListModel freqPresetsModel: ListModel {
 

@@ -137,6 +137,23 @@ Item {
             }
         }
     }
+    ToolsColumn {
+        id: toolsColumn
+        width: NeptuneStyle.dp(264)
+        anchors.left: parent.left
+        anchors.top: stationControl.bottom
+        anchors.topMargin: NeptuneStyle.dp(2)
+        model: store.toolsColumnModel
+        onClicked: {
+            if (currentText === "music") {
+                Qt.openUrlExternally("x-music://");
+            } else if (currentText === "web radio") {
+                Qt.openUrlExternally("x-webradio://");
+            } else if (currentText === "spotify") {
+                Qt.openUrlExternally("x-spotify://");
+            }
+        }
+    }
 
     GridView {
         id: freqPresetsGrid
@@ -146,6 +163,7 @@ Item {
         anchors.top: stationControl.bottom
         anchors.topMargin: Style.vspan(2)
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: toolsColumn.width / 3
 
         model: root.store.freqPresetsModel
         cellWidth: Style.hspan(4.8); cellHeight: Style.hspan(2.2)
@@ -169,6 +187,7 @@ Item {
         height: Style.vspan(5)
         anchors.top: freqPresetsGrid.bottom
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenterOffset: toolsColumn.width / 3
 
         cellWidth: Style.hspan(4.8); cellHeight: cellWidth
         interactive: false

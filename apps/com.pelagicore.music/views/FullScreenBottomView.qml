@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import utils 1.0
+import controls 1.0
 import animations 1.0
 import QtQuick.Controls 2.2
 
@@ -54,19 +55,27 @@ Item {
 
     clip: true
 
-    AppToolBar {
+    ToolsColumn {
         id: toolsColumn
+        width: Style.hspan(264/45)
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        anchors.topMargin: Style.vspan(53/80)
         translationContext: "MusicToolsColumn"
-        model: ListModel {
-            ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites"); greyedOut: false}
-            ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists"); greyedOut: false }
-            ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists"); greyedOut: true }
-            ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); greyedOut: false }
-            ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
+        model: store.toolsColumnModel
+        onClicked: {
+            if (currentText === "radio") {
+                Qt.openUrlExternally("x-radio://");
+                currentIndex = 0;
+            } else if (currentText === "web radio") {
+                Qt.openUrlExternally("x-webradio://");
+                currentIndex = 0;
+            } else if (currentText === "spotify") {
+                Qt.openUrlExternally("x-spotify://");
+                currentIndex = 0;
+            }
         }
+
         onCurrentTextChanged: {
             musicLibrary.toolsColumnText = currentText;
             if (currentText === "artists") {
@@ -104,6 +113,9 @@ Item {
                 }
             case "folders":
                 return "album";
+            case "radio":
+            case "spotify":
+            case "web radio":
             case "favorites":
                 // TODO: check if IVI already support favorites list.
             default:

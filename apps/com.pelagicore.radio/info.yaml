@@ -10,3 +10,4 @@ name:
   de: 'Radio'
 
 categories: [ 'media' ]
+mimeTypes: [ 'x-scheme-handler/x-radio' ]
