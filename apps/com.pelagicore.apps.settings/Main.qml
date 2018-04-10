@@ -59,10 +59,6 @@ PrimaryWindow {
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-        store: RootStore {
-            onCurrentLanguageChanged: {
-                root.setWindowProperty("requestedLanguage", currentLanguage);
-            }
-        }
+        store: RootStore {}
     }
 }

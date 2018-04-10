@@ -132,9 +132,6 @@ ApplicationManagerWindow {
         case "neptuneState":
             root.neptuneState = value;
             break;
-        case "locale":
-            Style.languageLocale = value;
-            break;
         case "performanceMonitorEnabled":
             monitorOverlay.fpsVisible = value;
             break;
@@ -160,6 +157,11 @@ ApplicationManagerWindow {
         Component.onCompleted: updateTheme()
         function updateTheme() {
             root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+        }
+        onLanguageChanged: {
+            if (language !== Style.languageLocale) {
+                Style.languageLocale = language;
+            }
         }
     }
 }

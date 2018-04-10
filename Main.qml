@@ -195,16 +195,7 @@ Window {
                 const currentLocale = Style.languageLocale;
                 const currentIndex = locales.indexOf(currentLocale);
                 var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
-                Style.languageLocale = locales[nextIndex];
-            }
-        }
-
-        Connections {
-            target: WindowManager
-            onWindowPropertyChanged: {
-                if (name === "requestedLanguage") {
-                    Style.languageLocale = value;
-                }
+                uiSettings.language = locales[nextIndex];
             }
         }
 
