@@ -23,10 +23,6 @@
         <source>Performance</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Startup</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AboutMarketing</name>
@@ -70,25 +66,6 @@
     </message>
     <message>
         <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AboutStartup</name>
-    <message>
-        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Startup timings:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From boot to System UI process start: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From System UI process start to first frame drawn: %1 ms</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -998,6 +975,25 @@
     </message>
     <message>
         <source>colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StartupInfo</name>
+    <message>
+        <source>From boot to System UI process start: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From System UI process start to first frame drawn: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Startup timings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

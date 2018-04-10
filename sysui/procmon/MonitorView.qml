@@ -72,6 +72,11 @@ ColumnLayout {
         }
     }
 
+    StartupInfo {
+        Layout.fillWidth: true
+        Layout.topMargin: Style.vspan(0.25)
+    }
+
     CpuMonitor {
         Layout.fillWidth: true
         Layout.preferredHeight: Style.vspan(2.5)
@@ -86,7 +91,6 @@ ColumnLayout {
 
     NetworkMonitor {
         Layout.fillWidth: true
-        Layout.fillHeight: true
         Layout.topMargin: Style.vspan(0.25)
         addressList: info.addressList
     }

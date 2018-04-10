@@ -36,33 +36,28 @@ import QtQml 2.2
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
-// TODO: Probably move this content to some other tab as there's not much going on here.
 // NB: StartupTimer is injected by qtapplicationmanager into the root context, so no import is needed.
-Item {
+Column {
     id: root
+    spacing: NeptuneStyle.dp(20)
 
-    // TODO: Make sure this title here matches the size and layout of ones from other tabs
-    //       If we're going to keep this tab in the first place, that is
     Label {
         id: title
-        anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(20)
         anchors.left: parent.left
         anchors.right: parent.right
-        horizontalAlignment: Text.AlignHCenter
-        text: qsTr("Startup timings:")
+        text: qsTr("Startup timings")
         wrapMode: Text.Wrap
-        font.pixelSize: NeptuneStyle.fontSizeXL
-        font.bold: true
+        height: font.pixelSize * 1.1
     }
 
     readonly property bool hasStartupData: StartupTimer.timeToFirstFrame > 0 && StartupTimer.systemUpTime > 0
+
     Label {
         id: upTimeLabel
-        anchors.top: title.bottom
-        anchors.topMargin: NeptuneStyle.dp(20)
         anchors.left: parent.left
         anchors.right: parent.right
+        font.pixelSize: NeptuneStyle.fontSizeS
+        font.weight: Font.Light
         text: qsTr("From boot to System UI process start: %1 ms")
                 .arg(Number(StartupTimer.systemUpTime).toLocaleString(Qt.locale(), 'f', 0))
         visible: root.hasStartupData
@@ -70,16 +65,17 @@ Item {
     Label {
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.top: upTimeLabel.bottom
+        font.pixelSize: NeptuneStyle.fontSizeS
+        font.weight: Font.Light
         text: qsTr("From System UI process start to first frame drawn: %1 ms")
                 .arg(Number(StartupTimer.timeToFirstFrame).toLocaleString(Qt.locale(), 'f', 0))
         visible: root.hasStartupData
     }
     Label {
-        anchors.top: title.bottom
-        anchors.topMargin: NeptuneStyle.dp(20)
         anchors.left: parent.left
         anchors.right: parent.right
+        font.pixelSize: NeptuneStyle.fontSizeS
+        font.weight: Font.Light
         text: qsTr("Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set")
         wrapMode: Text.Wrap
         visible: !root.hasStartupData
