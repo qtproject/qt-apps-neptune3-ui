@@ -132,10 +132,13 @@ QtObject {
     readonly property ListModel mapTypeModel: ListModel { }
 
     readonly property Plugin mapPlugin: Plugin {
-        name: "mapboxgl"
+        preferred: ["mapboxgl", "osm"]
         locales: Style.languageLocale
 
         readonly property string cacheDirUrl: StandardPaths.writableLocation(StandardPaths.CacheLocation);
+
+        // OSM Plugin Parameters
+        PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
 
         // Mapbox Plugin Parameters
         PluginParameter {
