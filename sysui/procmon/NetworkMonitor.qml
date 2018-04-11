@@ -40,10 +40,11 @@ ColumnLayout {
     id: root
 
     property var addressList
+    property bool online
 
     Label {
         Layout.fillWidth: true
-        text: qsTr("Network")
+        text: qsTr("Network: %1").arg(root.online ? qsTr("online") : qsTr("offline"))
     }
     ListView {
         clip: true

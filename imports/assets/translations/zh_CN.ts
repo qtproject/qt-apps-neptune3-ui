@@ -622,7 +622,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>版</translation>
     </message>
     <message>
-        <source>(using Qt %1 and %2)</source>
+        <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -794,7 +794,19 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>NetworkMonitor</name>
     <message>
         <source>Network</source>
-        <translation>网络</translation>
+        <translation type="vanished">网络</translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -93,6 +93,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.topMargin: Style.vspan(0.25)
         addressList: info.addressList
+        online: info.online
     }
 
     Label {
@@ -102,9 +103,25 @@ ColumnLayout {
         Layout.topMargin: Style.vspan(0.25)
     }
     Label {
-        text: Qt.application.version + " " + qsTr("(using Qt %1 and %2)").arg(info.qtVersion).arg(graphicsInformation())
+        text: Qt.application.version
+        font.weight: Font.Light
         font.pixelSize: NeptuneStyle.fontSizeS
         Layout.fillWidth: true
         Layout.preferredHeight: font.pixelSize * 1.1
+    }
+
+    Label {
+        text: qsTr("Platform")
+        Layout.fillWidth: true
+        Layout.preferredHeight: font.pixelSize * 1.1
+        Layout.topMargin: Style.vspan(0.25)
+    }
+    Label {
+        text: info.productName + " · " + info.cpu + " · " + info.kernel + " · " +
+              "Qt %1".arg(info.qtVersion) + " · " + graphicsInformation()
+        font.weight: Font.Light
+        font.pixelSize: NeptuneStyle.fontSizeS
+        Layout.fillWidth: true
+        wrapMode: TextInput.Wrap
     }
 }

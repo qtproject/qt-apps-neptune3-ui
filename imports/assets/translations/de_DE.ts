@@ -551,7 +551,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>(using Qt %1 and %2)</source>
+        <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -677,7 +677,19 @@
     <name>NetworkMonitor</name>
     <message>
         <source>Network</source>
-        <translation>Netzwerk</translation>
+        <translation type="vanished">Netzwerk</translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

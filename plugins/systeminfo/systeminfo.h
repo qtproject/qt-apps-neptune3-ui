@@ -43,6 +43,9 @@ class SystemInfo : public QObject, public QQmlParserStatus
 
     Q_PROPERTY(QStringList addressList READ addressList NOTIFY addressListChanged)
     Q_PROPERTY(bool online READ online NOTIFY onlineChanged)
+    Q_PROPERTY(QString productName READ productName CONSTANT)
+    Q_PROPERTY(QString cpu READ cpu CONSTANT)
+    Q_PROPERTY(QString kernel READ kernel CONSTANT)
     Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
 
 public:
@@ -50,6 +53,9 @@ public:
     QStringList addressList() const;
     bool online() const;
     QString qtVersion() const;
+    QString productName() const;
+    QString cpu() const;
+    QString kernel() const;
 
 public slots:
     void init();

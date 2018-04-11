@@ -742,7 +742,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>(using Qt %1 and %2)</source>
-        <translation>(používá Qt %1 a %2)</translation>
+        <translation type="vanished">(používá Qt %1 a %2)</translation>
+    </message>
+    <message>
+        <source>Platform</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -925,7 +929,19 @@ UX na cestu</translation>
     <name>NetworkMonitor</name>
     <message>
         <source>Network</source>
-        <translation>Síť</translation>
+        <translation type="vanished">Síť</translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

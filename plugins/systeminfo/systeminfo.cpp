@@ -33,6 +33,7 @@
 
 #include <QDBusConnection>
 #include <QDBusPendingReply>
+#include <QSysInfo>
 
 #include "systeminfo.h"
 
@@ -91,6 +92,21 @@ bool SystemInfo::online() const
 QString SystemInfo::qtVersion() const
 {
     return QString::fromLatin1(qVersion());
+}
+
+QString SystemInfo::productName() const
+{
+    return QSysInfo::prettyProductName();
+}
+
+QString SystemInfo::cpu() const
+{
+    return QSysInfo::currentCpuArchitecture();
+}
+
+QString SystemInfo::kernel() const
+{
+    return QSysInfo::kernelType() + QStringLiteral(" ") + QSysInfo::kernelVersion();
 }
 
 void SystemInfo::classBegin()
