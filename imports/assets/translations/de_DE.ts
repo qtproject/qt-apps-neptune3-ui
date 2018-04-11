@@ -13,15 +13,7 @@
     </message>
     <message>
         <source>Running Apps</source>
-        <translation>Laufende Programme</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Laufende Programme</translation>
     </message>
 </context>
 <context>
@@ -36,6 +28,21 @@
     </message>
     <message>
         <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutPopup</name>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running Apps</source>
+        <translation type="unfinished">Laufende Programme</translation>
+    </message>
+    <message>
+        <source>Performance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -47,6 +47,7 @@ import models.climate 1.0
 import models.system 1.0
 import models.startup 1.0
 import models.volume 1.0
+import neptune.controls 1.0
 
 import QtGraphicalEffects 1.0
 
@@ -241,7 +242,17 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: climateBar.lateralMargin
-            icon.name: volumePopup.volumeIcon
+            icon.name: {
+                if (volumeModel.muted) {
+                    return "ic-volume-0"
+                } else if (volumeModel.volume <= 0.33) {
+                    return "ic-volume-1"
+                } else if (volumeModel.volume <= 0.66) {
+                    return "ic-volume-2"
+                } else {
+                    return "ic-volume-3"
+                }
+            }
             onClicked: volumePopup.open()
         }
 
@@ -284,18 +295,18 @@ Item {
         }
     }
 
-    VolumePopup {
+    NeptunePopupLoader {
         id: volumePopup
-        parent: root.popupParent
+        source: "../volume/VolumePopup.qml"
+        popupParent: root.popupParent
         popupX: originItem.mapToItem(parent, 0, 0).x
         originItem: leftIcon
-        model: volumeModel
+        Binding { target: volumePopup.item; property: "model"; value: volumeModel }
     }
 
-    // TODO load popup only before opening it and unload after closed
     About {
         id: about
-        parent: root.popupParent
+        popupParent: root.popupParent
         originItem: rightIcon
         applicationModel: root.applicationModel
     }

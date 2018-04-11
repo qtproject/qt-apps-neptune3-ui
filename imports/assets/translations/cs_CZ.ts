@@ -23,15 +23,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Running Apps</source>
-        <translation>Spuštěné aplikace</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Spuštěné aplikace</translation>
     </message>
 </context>
 <context>
@@ -46,6 +38,21 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AboutPopup</name>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running Apps</source>
+        <translation type="unfinished">Spuštěné aplikace</translation>
+    </message>
+    <message>
+        <source>Performance</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

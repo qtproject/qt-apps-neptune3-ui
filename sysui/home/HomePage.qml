@@ -80,11 +80,10 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
     }
 
-    // TODO: Load only when needed
-    AddWidgetPopup {
+    AddWidgetPopupLoader {
         id: popup
-        model: root.applicationModel
-        parent: root.popupParent
+        popupParent: root.popupParent
         originItem: addWidgetButton
+        model: root.applicationModel
     }
 }

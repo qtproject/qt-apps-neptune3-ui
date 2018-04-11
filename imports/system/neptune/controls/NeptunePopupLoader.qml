@@ -29,20 +29,41 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import com.pelagicore.settings 1.0
-import models.settings 1.0
+import QtQuick 2.10
 
-QtObject {
+/*
+    Loads a NeptunePopup on demand
+
+    It provides the same API as NeptunePopup so that it can be used as a drop-in
+    replacement.
+ */
+Loader {
     id: root
 
-    readonly property UISettings uiSettings: UISettings {}
+    active: false
 
-    readonly property real volume: uiSettings.volume
+    // to be set/called from outside
+    property Item popupParent
+    property Item originItem
+    property var popupX: null
+    property var popupY: null
 
-    function setVolume(value) {
-        uiSettings.volume = value
+    function open() {
+        if (!active) {
+            active = true;
+        } else {
+            item.open();
+        }
     }
 
-    property bool muted: false
+    onStatusChanged: {
+        if (status === Loader.Ready) {
+            root.item.open();
+        }
+    }
+
+    Binding { target: root.item; property: "parent"; value: root.popupParent }
+    Binding { target: root.item; property: "originItem"; value: root.originItem }
+    Binding { target: root.item; when: root.popupX !== null; property: "popupX"; value: root.popupX }
+    Binding { target: root.item; when: root.popupY !== null; property: "popupY"; value: root.popupY }
 }

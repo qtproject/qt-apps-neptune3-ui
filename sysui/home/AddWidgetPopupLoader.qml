@@ -31,22 +31,52 @@
 
 import QtQuick 2.10
 
-import neptune.controls 1.0
-
 /*
-    A seamless wrapper for AboutPopup that loads it on demand
+    A seamless wrapper for AddWidgetPopup that loads it on demand
  */
-NeptunePopupLoader {
+Loader {
     id: root
+    active: false
+    source: "AddWidgetPopup.qml"
 
-    source: "AboutPopup.qml"
+    property Item popupParent: root.popupParent
+    property Item originItem: addWidgetButton
+    property var model
 
-    // to be set/called from outside
-    property var applicationModel
+    function open() {
+        if (!active) {
+            active = true;
+        } else if (itemInitialized) {
+            item.open();
+        }
+    }
 
-    // to be read from outside
-    state: item ? item.state : ""
-    readonly property string currentTabName: item ? item.currentTabName : ""
+    onStatusChanged: {
+        if (status === Loader.Ready) {
+            loadedTimer.start();
+        }
+    }
 
-    Binding { target: root.item; property: "applicationModel"; value: root.applicationModel }
+    // FIXME: This whole timer thing is a work around the fact that the final height (and hence y position)
+    //        of this popup is not known from the get go as it's derived from the contentHeight of a list view
+    //        which is not immediately know, likely due to the animated nature of ListView.
+    //        Refactor AddWidgetPopup so that we no longer need to delay opening it
+    property bool itemInitialized: false
+    onItemInitializedChanged: {
+        if (itemInitialized) {
+            item.open();
+        }
+    }
+
+    Timer {
+        id: loadedTimer
+        interval: 50
+        onTriggered: {
+            root.itemInitialized = true;
+        }
+    }
+
+    Binding { target: root.item; property: "parent"; value: root.popupParent }
+    Binding { target: root.item; property: "originItem"; value: root.originItem }
+    Binding { target: root.item; property: "model"; value: root.model }
 }

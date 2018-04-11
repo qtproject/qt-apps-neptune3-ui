@@ -118,9 +118,9 @@ Item {
         }
     }
 
-    ClimatePopup {
+    ClimatePopupLoader {
         id: popup
-        parent: root.popupParent
+        popupParent: root.popupParent
         originItem: root
         model: root.model
     }

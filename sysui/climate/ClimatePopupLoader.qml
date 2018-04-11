@@ -29,20 +29,20 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import com.pelagicore.settings 1.0
-import models.settings 1.0
+import QtQuick 2.10
 
-QtObject {
+import neptune.controls 1.0
+
+/*
+    A seamless wrapper for ClimatePopup that loads it on demand
+ */
+NeptunePopupLoader {
     id: root
 
-    readonly property UISettings uiSettings: UISettings {}
+    source: "ClimatePopup.qml"
 
-    readonly property real volume: uiSettings.volume
+    // to be set from outside
+    property var model
 
-    function setVolume(value) {
-        uiSettings.volume = value
-    }
-
-    property bool muted: false
+    Binding { target: root.item; property: "model"; value: root.model }
 }

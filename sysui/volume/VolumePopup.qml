@@ -52,23 +52,6 @@ NeptunePopup {
 
     property var model
 
-    readonly property string volumeIcon: {
-        if (privateValues.muted) {
-            return "ic-volume-0"
-        } else if (value <= 33) {
-            return "ic-volume-1"
-        } else if (value <= 66) {
-            return "ic-volume-2"
-        } else {
-            return "ic-volume-3"
-        }
-    }
-
-    QtObject {
-        id: privateValues
-        property bool muted: false
-    }
-
     Row {
         id: labelVolumeValue
         anchors.top: parent.top
@@ -95,9 +78,9 @@ NeptunePopup {
         height: Style.vspan(14)
         from: 0
         to: 100
-        value: privateValues.muted ? 0 : Math.round(model.volume*100)
+        value: root.model && root.model.muted ? 0 : Math.round(model.volume*100)
         onValueChanged: {
-            if (model && !privateValues.muted) {
+            if (root.model && !root.model.muted) {
                 model.setVolume(value/100.0)
             }
         }
@@ -111,8 +94,8 @@ NeptunePopup {
         width: Style.hspan(200/45)
         height: Style.vspan(100/80)
         checkable: true
-        checked: privateValues.muted
+        checked: root.model ? root.model.muted : false
         icon.name: "ic-volume-0"
-        onToggled: privateValues.muted = !privateValues.muted
+        onToggled: if (root.model) { root.model.muted = !root.model.muted }
     }
 }
