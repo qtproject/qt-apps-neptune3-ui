@@ -344,6 +344,8 @@ Item {
                     if (initialized) {
                         if (root.applicationModel.activeAppInfo && !appInfo.active && !isAtBottom) {
                             return "hidden";
+                        } else if (!appInfo.asWidget) {
+                            return "closing";
                         } else {
                             return column.resizingWidgets ? "resizing" : "normal"
                         }
@@ -453,7 +455,6 @@ Item {
                         onBeingDraggedChanged: d.widgetIsBeingDragged = beingDragged
 
                         onCloseClicked: {
-                            repeaterDelegate.state = "closing"
                             appInfo.asWidget = false;
                         }
 
