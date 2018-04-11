@@ -1,4 +1,4 @@
-requires(linux:!android|win32-msvc2013:!winrt|win32-msvc2015:!winrt|macos|win32-g++*)
+requires(linux:!android|win32:!winrt|macos)
 
 TEMPLATE = subdirs
 
