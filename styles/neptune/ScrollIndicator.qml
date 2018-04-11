@@ -50,14 +50,14 @@ T.ScrollIndicator {
                             topPadding + bottomPadding)
 
     background: Item {
-        implicitWidth: Style.hspan(5/45)
+        implicitWidth: NeptuneStyle.dp(5)
         implicitHeight: control.height
 
         Rectangle {
-            width: Style.hspan(5/45)
+            width: NeptuneStyle.dp(5)
             height: parent.height * control.position
             anchors.top: parent.top
-            anchors.topMargin: - Style.vspan(9/80)
+            anchors.topMargin: - NeptuneStyle.dp(9)
             radius: width / 2
             color: NeptuneStyle.contrastColor
             opacity: control.active ? 0.14 : 0
@@ -66,10 +66,10 @@ T.ScrollIndicator {
         }
 
         Rectangle {
-            width: Style.hspan(5/45)
+            width: NeptuneStyle.dp(5)
             height: ((parent.height - (parent.height * control.size)) - (parent.height * control.position))
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: - Style.vspan(9/80)
+            anchors.bottomMargin: - NeptuneStyle.dp(9)
             radius: width / 2
             color: NeptuneStyle.contrastColor
             opacity: control.active ? 0.14 : 0
@@ -79,7 +79,7 @@ T.ScrollIndicator {
     }
 
     contentItem: Rectangle {
-        implicitWidth: Style.hspan(7/45)
+        implicitWidth: NeptuneStyle.dp(7)
         radius: width / 2
         color: NeptuneStyle.accentDetailColor
         opacity: control.active ? 1.0 : 0.0
