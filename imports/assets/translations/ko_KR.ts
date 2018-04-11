@@ -140,19 +140,23 @@
     <name>CalendarWidgetPanel</name>
     <message>
         <source>Partly rain</source>
-        <translation type="unfinished">비가 약간 내린다</translation>
+        <translation type="obsolete">비가 약간 내린다</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation type="unfinished">빗발</translation>
+        <translation type="obsolete">빗발</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation type="unfinished">가벼운 눈</translation>
+        <translation type="obsolete">가벼운 눈</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation type="unfinished">맑은</translation>
+        <translation type="obsolete">맑은</translation>
+    </message>
+    <message>
+        <source>Partly cloudy</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

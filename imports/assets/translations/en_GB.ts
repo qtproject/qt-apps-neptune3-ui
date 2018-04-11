@@ -94,19 +94,7 @@
 <context>
     <name>CalendarWidgetPanel</name>
     <message>
-        <source>Partly rain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Light Snow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sunny</source>
+        <source>Partly cloudy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

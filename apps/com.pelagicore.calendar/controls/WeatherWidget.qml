@@ -42,73 +42,28 @@ Item {
     property string weatherText: ""
 
     property int temperatureValue: 0
-    property bool temperatureVisible: true  //temperature on own row or not
 
-    property alias precipitationVisible: precipitationRow.visible
-    property alias precipitationIcon: precipitationIcon.source
-    property alias precipitationText: precipitationText.text
+    property bool precipitationVisible: false
+    property string precipitationText: ""
 
-    height: childrenRect.height
+    height: imgWeather.height + weatherLabel.height
 
     Image {
         id: imgWeather
-        anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: NeptuneStyle.dp(66)
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.horizontalCenterOffset: NeptuneStyle.dp(-61)
-        fillMode: Image.Pad
+        anchors.bottom: weatherLabel.top
+        fillMode: Image.PreserveAspectFit
+        width: NeptuneStyle.dp(sourceSize.width)
     }
 
-    Column {
-        id: textColumn
+    Label {
+        id: weatherLabel
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(120)
-
-        Label {
-            id: temperatureLabel
-            height: NeptuneStyle.dp(33)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            font.pixelSize: NeptuneStyle.fontSizeS
-            font.weight: Font.Light
-            opacity: NeptuneStyle.fontOpacityMedium
-            visible: root.temperatureVisible
-            text: root.temperatureValue + "°"
-        }
-        Label {
-            id: weatherLabel
-            height: NeptuneStyle.dp(33)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            font.pixelSize: NeptuneStyle.fontSizeS //Todo: font size in the plugin is not correct.
-            font.weight: Font.Light
-            opacity: NeptuneStyle.fontOpacityMedium
-            text: (temperatureVisible ? root.weatherText : root.temperatureValue + "° " + root.weatherText) + (precipitationVisible ? "," : "")
-        }
-        Item {
-            id: precipitationRow
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: precipitationText.height
-
-            Image {
-                id: precipitationIcon
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-            }
-
-            Label {
-                id: precipitationText
-                height: NeptuneStyle.dp(33)
-                anchors.left: precipitationIcon.right
-                anchors.leftMargin: NeptuneStyle.dp(13)
-                anchors.right: parent.right
-                font.pixelSize: NeptuneStyle.fontSizeS
-                font.weight: Font.Light
-                opacity: NeptuneStyle.fontOpacityMedium
-            }
-        }
+        anchors.baseline: parent.bottom
+        anchors.baselineOffset: -(lineCount-1) * height/lineCount
+        font.pixelSize: NeptuneStyle.fontSizeS
+        font.weight: Font.Light
+        opacity: NeptuneStyle.fontOpacityMedium
+        text: root.temperatureValue + "° " + root.weatherText + (precipitationVisible ? (",\n" + precipitationText) : "")
     }
 }

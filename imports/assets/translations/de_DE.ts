@@ -133,19 +133,23 @@
     <name>CalendarWidgetPanel</name>
     <message>
         <source>Partly rain</source>
-        <translation type="unfinished">teilweise Regen</translation>
+        <translation type="obsolete">teilweise Regen</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation type="unfinished">Regen</translation>
+        <translation type="obsolete">Regen</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation type="unfinished">leichter Schnee</translation>
+        <translation type="obsolete">leichter Schnee</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation type="unfinished">sonnig</translation>
+        <translation type="obsolete">sonnig</translation>
+    </message>
+    <message>
+        <source>Partly cloudy</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -213,19 +213,23 @@ UX na cestu</translation>
     <name>CalendarWidgetPanel</name>
     <message>
         <source>Partly rain</source>
-        <translation type="unfinished">Částečný déšť</translation>
+        <translation type="obsolete">Částečný déšť</translation>
     </message>
     <message>
         <source>Rain</source>
-        <translation type="unfinished">Déšť</translation>
+        <translation type="obsolete">Déšť</translation>
     </message>
     <message>
         <source>Light Snow</source>
-        <translation type="unfinished">Lehké sněžení</translation>
+        <translation type="obsolete">Lehké sněžení</translation>
     </message>
     <message>
         <source>Sunny</source>
-        <translation type="unfinished">Slunečno</translation>
+        <translation type="obsolete">Slunečno</translation>
+    </message>
+    <message>
+        <source>Partly cloudy</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
