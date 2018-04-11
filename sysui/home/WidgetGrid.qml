@@ -455,7 +455,6 @@ Item {
                         onCloseClicked: {
                             repeaterDelegate.state = "closing"
                             appInfo.asWidget = false;
-                            appInfo.windowState = "";
                         }
 
                         onActiveChanged: {
@@ -466,21 +465,21 @@ Item {
                             }
                         }
 
-                        onHeightChanged: {
-                            if ((widgetStateWhenMaximized !== "") && (clickedIndexWhenMaximized > -1) && (clickedIndexWhenMaximized === index)) {
-                                widgetState =  widgetStateWhenMaximized;
+                        widgetState: {
+                            if (!appInfo || !appInfo.asWidget) {
+                                return "";
+                            } else if ((widgetStateWhenMaximized !== "") && (clickedIndexWhenMaximized > -1)
+                                        && (clickedIndexWhenMaximized === index)) {
+                                return widgetStateWhenMaximized;
                             } else {
                                 switch (Math.round(height / (root.rowHeight - root.resizerHandleHeight))) {
                                 case 0:
                                 case 1:
-                                    widgetState =  "Widget1Row";
-                                    break;
+                                    return "Widget1Row";
                                 case 2:
-                                    widgetState = "Widget2Rows";
-                                    break;
+                                    return "Widget2Rows";
                                 default:
-                                    widgetState = "Widget3Rows";
-                                    break;
+                                    return "Widget3Rows";
                                 }
                             }
                         }
