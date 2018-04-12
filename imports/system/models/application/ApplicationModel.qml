@@ -56,6 +56,14 @@ ListModel {
     // Whether the model is still being populated. It's true during start up.
     readonly property bool populating: d.populating
 
+    // Populate the model
+    function populate() {
+        // Configures which applications should be shown as widgets,
+        // which, in turn, will cause them to be started.
+        d.configureApps();
+        d.populating = false;
+    }
+
     // Returns an ApplicationInfo given its index
     function application(index) {
         return get(index).appInfo;
@@ -167,8 +175,6 @@ ListModel {
             var app = AM.ApplicationManager.application(i);
             d.appendApplication(app);
         }
-        d.configureApps();
-        d.populating = false;
     }
 
     property var appManConns: Connections {

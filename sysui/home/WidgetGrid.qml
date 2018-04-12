@@ -323,7 +323,9 @@ Item {
                 readonly property real heightNormal: appInfo? appInfo.heightRows * root.rowHeight : 0
                 property real heightWhenResizing
 
-                property bool geometryBehaviorsEnabled: false
+                // Only enable geometry behaviors once WidgetGrid gets its size,
+                // otherwise widgets will animate from size (0,0) to their final sizes on startup.
+                property bool geometryBehaviorsEnabled: root.width > 0 && !widgetsList.populating
                 Behavior on y { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
                 Behavior on height { enabled: geometryBehaviorsEnabled; DefaultSmoothedAnimation {} }
 
@@ -358,9 +360,6 @@ Item {
                         name: "normal"
                         PropertyChanges {
                             target: repeaterDelegate; y: yNormal; height: heightNormal
-                            // Only enable geometry behaviors once WidgetGrid gets its size,
-                            // otherwise widgets will animate from size (0,0) to their final sizes on startup.
-                            geometryBehaviorsEnabled: root.width > 0
                         }
                     },
                     State {

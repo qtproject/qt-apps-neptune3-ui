@@ -54,6 +54,24 @@ Window {
     readonly property real smallerDimension: isLandscape ? height : width
     readonly property real largerDimension: isLandscape ? width : height
 
+    // Load the full UI once a frame has been drawn with the ligth version of it
+    // The very first frame is a blank. Only the second one has actual content,
+    // hence the counter.
+    // FIXME: Find a better way of finding out when the first proper frame has been
+    //       rendered (scene no longer dirty. render thread idle)
+    Connections {
+        id: windowConns
+        property int frameCount: 0
+        target: root
+        onFrameSwapped: {
+            frameCount = frameCount + 1;
+            if (frameCount === 2) {
+                display.loadUI();
+                windowConns.enabled = false;
+            }
+        }
+    }
+
     Display {
         id: display
 

@@ -41,6 +41,7 @@ import display 1.0
 import utils 1.0
 import animations 1.0
 import volume 1.0
+import statusbar 1.0
 
 import models.application 1.0
 import models.climate 1.0
@@ -56,6 +57,22 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
+    /*
+        The UI is loaded in two steps
+        This is done in order to ensure that something is rendered on the screen as
+        soon as possible during start up.
+
+        Only the lightest elements are present upon creation of this component.
+        They are the ones that will be present on the very first rendered frame.
+
+        Others, which are more complex and thus take more time to load, will be
+        loaded afterwards, once this function is called.
+     */
+    function loadUI() {
+        applicationModel.populate();
+        mainContentArea.active = true;
+    }
+
     property Item popupParent
     property var settings
 
@@ -69,7 +86,7 @@ Item {
     Image {
         anchors.fill: parent
         source: Style.gfx(NeptuneStyle.backgroundImage)
-        opacity: launcherLoader.launcherOpen && NeptuneStyle.theme === NeptuneStyle.Light ? 0.7 : 1
+        opacity: mainContentArea.item && mainContentArea.item.launcherOpen && NeptuneStyle.theme === NeptuneStyle.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }
 
@@ -81,149 +98,25 @@ Item {
         id: volumeModel
     }
 
-    Instantiator {
-        model: applicationModel
-        delegate: QtObject {
-            property var exposedRectBottomMarginBinding: Binding {
-                target: model.appInfo
-                property: "exposedRectBottomMargin"
-                value: model.appInfo.active && widgetDrawer.open && widgetDrawer.visible
-                        ? activeApplicationSlot.height - widgetDrawer.y : climateBar.height
-            }
-
-            property var exposedRectTopMarginBinding: Binding {
-                target: model.appInfo
-                property: "exposedRectTopMargin"
-                value: model.appInfo.active ? launcherLoader.y + (launcherLoader.item.open ? NeptuneStyle.dp(Style.launcherHeight) : launcherLoader.height) : 0
-            }
-
-            property var windowHeightBinding: Binding {
-                target: model.appInfo.window
-                property: "height"
-                value: activeApplicationSlot.height
-            }
-        }
-    }
-
     // Content Elements
 
-    Item {
-        id: mainContentArea
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: root.height
-        opacity: launcherLoader.launcherOpen ? 0 : 1
-        Behavior on opacity { DefaultNumberAnimation {} }
-        enabled: !launcherLoader.launcherOpen
-        z: 0
-
-        Item {
-            y: launcherLoader.height - NeptuneStyle.dp(Style.launcherHeight)
-            width: parent.width
-            height: parent.height
-
-            StageLoader {
-                id: homePageLoader
-
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                y: launcherLoader.y + NeptuneStyle.dp(Style.launcherHeight)
-                height: parent.height - y - climateBar.height
-
-                active: true //StagedStartupModel.loadRest
-                source: "../home/HomePage.qml"
-                Binding { target: homePageLoader.item; property: "applicationModel"; value: applicationModel.populating ? null : applicationModel }
-
-                // widgets will reparent themselves to the active application slot when active
-                Binding { target: homePageLoader.item; property: "activeApplicationParent"; value: activeApplicationSlot }
-                Binding { target: homePageLoader.item; property: "moveBottomWidgetToDrawer"; value: !widgetDrawer.showingHomePage }
-                Binding { target: homePageLoader.item; property: "widgetDrawer"; value: widgetDrawerSlot }
-                Binding { target: homePageLoader.item; property: "popupParent"; value: popupParent }
-
-                property real homePageRowHeight: item ? item.rowHeight : 0
-            }
-
-            // slot for the maximized, active, application
-            Item {
-                id: activeApplicationSlot
-                anchors.fill: parent
-
-                ApplicationFrame {
-                    anchors.fill: parent
-                    appInfo: applicationModel.activeAppInfo && !applicationModel.activeAppInfo.asWidget ? applicationModel.activeAppInfo : null
-                }
-            }
-
-            WidgetDrawer {
-                id: widgetDrawer
-                width: parent.width
-                height: homePageLoader.homePageRowHeight
-                anchors.bottom: homePageLoader.bottom
-
-                dragEnabled: !showingHomePage
-                visible: !showingHomePage && !widgetDrawerSlot.empty
-
-                Item {
-                    id: widgetDrawerSlot
-                    width: widgetDrawer.homePageWidgetWidth
-                    height: homePageLoader.homePageRowHeight
-                    anchors.horizontalCenter: widgetDrawer.horizontalCenter
-                    readonly property bool empty: children.length == 0
-                }
-
-                property bool showingHomePage: applicationModel.activeAppInfo === null
-                onShowingHomePageChanged: {
-                    if (showingHomePage) {
-                        widgetDrawer.open = true;
-                    }
-                }
-
-                property real homePageWidgetWidth: homePageLoader.item ? homePageLoader.item.widgetWidth : 0
-            }
-        }
-    }
-
-    Rectangle {
-        id: mainContentMask
-        anchors.fill: mainContentArea
-        gradient: Gradient {
-            GradientStop { position: 0; color: Qt.rgba(1, 1, 1, 0.3) }
-            GradientStop { position: 0.8; color: Qt.rgba(1, 1, 1, 0.3) }
-            GradientStop { position: 0.95; color: Qt.rgba(1, 1, 1, 0) }
-        }
-        visible: false
-    }
-
-    OpacityMask {
-        anchors.fill: mainContentArea
-        source: mainContentArea
-        maskSource: mainContentMask
-    }
-
     StageLoader {
-        id: statusBarLoader
+        id: mainContentArea
+        source: "MainContentArea.qml"
+        anchors.fill: parent
+
+        Binding { target: mainContentArea.item; property: "applicationModel"; value: root.applicationModel }
+        Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
+        Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: climateBar.height }
+    }
+
+    StatusBar {
+        id: statusBar
         height: NeptuneStyle.dp(Style.statusBarHeight)
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        active: StagedStartupModel.loadDisplay
-        source: "../statusbar/StatusBar.qml"
-        Binding { target: statusBarLoader.item; property: "uiSettings"; value: settings }
-        z: 1
-    }
-
-    StageLoader {
-        id: launcherLoader
-        property bool launcherOpen: launcherLoader.item ? launcherLoader.item.open : false
-        anchors.top: statusBarLoader.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: launcherLoader.item ? launcherLoader.item.height : NeptuneStyle.dp(Style.launcherHeight)
-        active: StagedStartupModel.loadDisplay
-        source: "../launcher/Launcher.qml"
-        Binding { target: launcherLoader.item; property: "applicationModel"; value: applicationModel }
-        Binding { target: launcherLoader.item; property: "showDevApps"; value: ApplicationManager.systemProperties.devMode }
+        uiSettings: settings
         z: 1
     }
 
@@ -315,9 +208,5 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-    }
-
-    Component.onCompleted: {
-        StagedStartupModel.enterMenuState()
     }
 }
