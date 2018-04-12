@@ -39,24 +39,28 @@ import com.pelagicore.styles.neptune 3.0
 T.ProgressBar {
     id: control
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
+    property bool backgroundVisible: true
+
+    readonly property real progressBarWidth: control.width - NeptuneStyle.dp(5)
 
     contentItem: ProgressBarImpl {
-        implicitHeight: NeptuneStyle.dp(6)
-        implicitWidth: NeptuneStyle.dp(116)
+        implicitWidth: control.progressBarWidth
+        implicitHeight: NeptuneStyle.dp(7)
         scale: control.mirrored ? -1 : 1
         progress: control.position
         indeterminate: control.visible && control.indeterminate
         color: NeptuneStyle.accentColor
     }
 
-    background: Item {
-        implicitWidth: NeptuneStyle.dp(200)
-        implicitHeight: NeptuneStyle.dp(6)
-        y: (control.height - height) / 2
-        height: NeptuneStyle.dp(6)
+    background: Rectangle {
+        visible: control.backgroundVisible
+        anchors.verticalCenter: parent.verticalCenter
+        implicitWidth: control.progressBarWidth
+        implicitHeight: NeptuneStyle.dp(1)
+        width: control.progressBarWidth
+        height: implicitHeight
+        //TODO check with designer if color is correct
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.fontOpacityMedium
     }
 }

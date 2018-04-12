@@ -75,6 +75,7 @@ ListItemBasic {
     property real maximumValue: 1.0
     property real value: 0.0
     property bool indeterminate: false
+    property bool backgroundVisible: false
 
     property string secondaryText: ""
     property string cancelSymbol: "ic-close"
@@ -100,11 +101,13 @@ ListItemBasic {
     }
 
     accessoryBottomDelegateComponent: ProgressBar {
-        width: root.width
+        implicitWidth: root.width
+        implicitHeight: NeptuneStyle.dp(8)
         from: root.minimumValue
         to: root.maximumValue
         value: root.value
         indeterminate: root.indeterminate
+        backgroundVisible: root.backgroundVisible
     }
 
     middleSpacerUsed: true
