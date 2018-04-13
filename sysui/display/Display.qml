@@ -46,7 +46,6 @@ import statusbar 1.0
 import models.application 1.0
 import models.climate 1.0
 import models.system 1.0
-import models.startup 1.0
 import models.volume 1.0
 import neptune.controls 1.0
 
