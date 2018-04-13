@@ -59,7 +59,7 @@ ListView {
         height: Style.vspan(1)
         property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
 
-        symbol: root.appServerUrl + "/app/icon?id=" + model.id
+        icon.source: root.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
         rightToolSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
         onRightToolClicked: {

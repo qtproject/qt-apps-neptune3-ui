@@ -55,7 +55,7 @@ import com.pelagicore.styles.neptune 3.0
  *
  *   ListItemTwoButtons {
  *       Layout.fillWidth: true
- *       symbol: Style.symbol("ic-update")
+ *       icon.name: "ic-update"
  *       symbolAccessoryButton1: "ic-call-contrast"
  *       symbolAccessoryButton2: "ic-message-contrast"
  *       text: "..."

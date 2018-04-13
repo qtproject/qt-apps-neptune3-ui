@@ -73,20 +73,21 @@ Item {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
                 text: "ListItem with an image"
-                imageSource: Style.gfx("fan-speed-5")
+                icon.source: Style.gfx("fan-speed-5")
+                icon.color: "transparent"
             }
 
             ListItem {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-update")
+                icon.name: "ic-update"
                 text: "ListItem with Icon"
             }
 
             ListItem {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-update")
+                icon.name: "ic-update"
                 text: "ListItem with Secondary Text"
                 secondaryText: "Company"
             }
@@ -94,7 +95,7 @@ Item {
             ListItem {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-update")
+                icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Secondary Text"
                 secondaryText: "68% of 14 MB"
@@ -103,7 +104,7 @@ Item {
             ListItem {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-update")
+                icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Looooooooooonnngggg Text"
                 secondaryText: "Loooooooong Secondary Text"
@@ -115,7 +116,7 @@ Item {
                 implicitHeight: Style.vspan(1.3)
                 minimumValue: 0
                 maximumValue: 100
-                symbol: Style.symbol("ic-placeholder")
+                icon.name: "ic-placeholder"
                 text: "Downloading application"
                 secondaryText: value + " % of 46 MB"
                 cancelable: timerDowloading.running
@@ -147,7 +148,7 @@ Item {
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
                 indeterminate: true
-                symbol: Style.symbol("ic-placeholder")
+                icon.name: "ic-placeholder"
                 cancelable: indeterminate
                 text: indeterminate ? "Downloading pending" : "Downloading canceled"
                 onProgressCanceled: indeterminate = false
@@ -158,7 +159,7 @@ Item {
                 id: listItemSwitch
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-placeholder")
+                icon.name: "ic-placeholder"
                 text: "List item with a switch " + (listItemSwitch.switchOn ? "(ON)" : "(OFF)")
                 onSwitchClicked: console.log("Switch is clicked")
                 onSwitchToggled: console.log("Switch is toggled")
@@ -168,7 +169,7 @@ Item {
                 id: listItemTwoButtons
                 implicitWidth: Style.hspan(17)
                 implicitHeight: Style.vspan(1.3)
-                symbol: Style.symbol("ic-placeholder")
+                icon.name: "ic-placeholder"
                 text: "List item with two accessory buttons"
                 symbolAccessoryButton1: "ic-call-contrast"
                 symbolAccessoryButton2: "ic-message-contrast"

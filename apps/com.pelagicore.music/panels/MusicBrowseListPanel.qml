@@ -63,7 +63,8 @@ Control {
                 id: delegatedSong
                 width: listView.width
                 height: NeptuneStyle.dp(104)
-                imageSource: {
+                icon.color: "transparent"
+                icon.source: {
                     if ((actualContentType === "album") && (toolsColumnText === "artists") && model.item) {
                         if (model.item.data.coverArtUrl !==  undefined) {
                             return model.item.data.coverArtUrl;

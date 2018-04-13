@@ -47,7 +47,7 @@ import com.pelagicore.styles.neptune 3.0
  *
  *   ListItem {
  *       Layout.fillWidth: true
- *       symbol: Style.symbol("ic-update")
+ *       icon.name: "ic-update"
  *       rightToolSymbol: "ic-close"
  *       text: "ListItem with Secondary Text"
  *       secondaryText: "68% of 14 MB"

@@ -60,7 +60,7 @@ import com.pelagicore.styles.neptune 3.0
  *
  *   ListItemProgress {
  *      Layout.fillWidth: true
- *      symbol: Style.symbol("ic-update")
+ *      icon.name: "ic-update"
  *      text: "Downloading the application"
  *      secondaryText: value + " % of 46 MB"
  *      cancelable: true

@@ -45,7 +45,7 @@ import com.pelagicore.styles.neptune 3.0
  *
  *   ListItemSwitch {
  *       Layout.fillWidth: true
- *       symbol: Style.symbol("ic-update")
+ *       icon.name: "ic-update"
  *       rightToolSymbol: "ic-close"
  *       text: "..."
  *       onClicked: { ... }

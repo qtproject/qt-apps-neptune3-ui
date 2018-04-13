@@ -82,7 +82,7 @@ NeptunePopup {
         delegate: ListItem {
             width: ListView.view.width
             height: NeptuneStyle.dp(80)
-            symbol: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : null
+            icon.source: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : null
             text: model.appInfo ? model.appInfo.name : null
             enabled: model.appInfo ? !model.appInfo.asWidget : false
             onClicked: {

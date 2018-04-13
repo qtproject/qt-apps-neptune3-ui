@@ -42,8 +42,10 @@ import com.pelagicore.styles.neptune 3.0
  * ListItemBasic provides a basic type of a list item with an indicator as an icon or an image and text with subtest following by the indicator.
  *
  * Properties:
- *  - symbol - This property holds a path to an icon to be displayed on a list item.
- *  - imageSource - This property holds a path to an image to be displayed on a list item.
+ *  - icon.name - This property holds the name of an icon to be displayed on a list item.
+ *  - icon.source - This property holds a path to an icon or an image to be displayed on a list item. In case the property takes an image which color is
+ *                  not intented to be altered, icon.color has to be set transparent
+ *  - icon.color - This property holds the color of an icon or and image to be displayed on a list item.
  *  - subText - holds text in the second line on a list item.
  *  - dividerVisible - defines if there is a divider on a list item. Default value is true.
  *  - accessoryDelegateComponent1 - a component at the right side of list item.
@@ -55,10 +57,6 @@ import com.pelagicore.styles.neptune 3.0
 
 ItemDelegate {
     id: root
-
-    // TODO: use icon.source / icon.name
-    property string symbol: ""
-    property string imageSource: ""
 
     property alias subText: subtitle.text
     property alias dividerVisible: dividerImage.visible
@@ -75,56 +73,35 @@ ItemDelegate {
     bottomPadding: 0
     topPadding: 0
 
-    indicator: Item {
-        implicitWidth: {
-            if ((root.symbol === "")&&(root.imageSource === "")) {
-                return NeptuneStyle.dp(22)
-            } else if ((root.symbol !== "")&&(root.imageSource === "")) {
-                return NeptuneStyle.dp(100)
-            } else {
-                return NeptuneStyle.dp(122)
-            }
-        }
-
-        implicitHeight: root.symbol || root.imageSource ? root.height : 0
-        opacity: root.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-        Item {
-            id: colorOverlaySource
-            anchors.fill: parent
-            visible: false
-            Image {
-                id: imageSymbol
-                anchors.centerIn: parent
-                source: root.symbol
-                visible: root.symbol !== ""
-            }
-        }
-        ColorOverlay {
-            anchors.fill: parent
-            source: colorOverlaySource
-            color: NeptuneStyle.contrastColor
-            visible: root.symbol !== ""
-        }
-        Image {
-            id: imageSymbolSource
-            anchors.centerIn: parent
-            width: (sourceSize.width > parent.width) ? parent.width : sourceSize.width
-            height: (sourceSize.height > parent.height) ? parent.height : sourceSize.height
-            fillMode: Image.PreserveAspectFit
-            source: root.imageSource
-            visible: root.imageSource !== ""
-        }
-    }
+    icon.color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
 
     contentItem: Item {
         implicitHeight: NeptuneStyle.dp(75)
+        NeptuneIconLabel {
+            id: iconItem
+            width: {
+                if (root.icon.source.toString() === "" && root.icon.name === "") {
+                    return NeptuneStyle.dp(22)
+                } else {
+                    return NeptuneStyle.dp(100)
+                }
+            }
+            height: parent.height
+            opacity: root.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+            iconScale: NeptuneStyle.scale
+            spacing: root.spacing
+            mirrored: root.mirrored
+            display: root.display
+            icon: root.icon
+        }
+
         RowLayout {
             anchors.fill: parent
+            anchors.leftMargin: iconItem.width + root.spacing
             ColumnLayout {
                 Layout.fillWidth: true
                 Label {
                     Layout.fillWidth: true
-                    leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
                     text: root.text
                     font: root.font
                     elide: Text.ElideRight
@@ -138,8 +115,7 @@ ItemDelegate {
                 Label {
                     id: subtitle
                     Layout.fillWidth: true
-                    leftPadding: root.indicator ? root.indicator.width + root.spacing : 0
-                    rightPadding: root.indicator ? root.indicator.width + root.spacing : 0
+                    rightPadding: iconItem ? iconItem.width + root.spacing : 0
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
