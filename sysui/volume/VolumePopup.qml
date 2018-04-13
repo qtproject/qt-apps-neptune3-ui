@@ -42,11 +42,11 @@ import controls 1.0
 NeptunePopup {
     id: root
 
-    width: Style.hspan(270/45)
-    height: Style.vspan(1426/80)
+    width: NeptuneStyle.dp(270)
+    height: NeptuneStyle.dp(1426)
 
     headerBackgroundVisible: true
-    headerBackgroundHeight: Style.vspan(140/80)
+    headerBackgroundHeight: NeptuneStyle.dp(140)
 
     readonly property alias value: slider.value
 
@@ -55,7 +55,7 @@ NeptunePopup {
     Row {
         id: labelVolumeValue
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(50/80)
+        anchors.topMargin: NeptuneStyle.dp(50)
         anchors.horizontalCenter: parent.horizontalCenter
         Label {
             anchors.verticalCenter: parent.verticalCenter
@@ -75,7 +75,7 @@ NeptunePopup {
     VolumeSlider {
         id: slider
         anchors.centerIn: parent
-        height: Style.vspan(14)
+        height: NeptuneStyle.dp(1120)
         from: 0
         to: 100
         value: root.model && root.model.muted ? 0 : Math.round(model.volume*100)
@@ -90,9 +90,9 @@ NeptunePopup {
         id: muteButton
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(40/80)
-        width: Style.hspan(200/45)
-        height: Style.vspan(100/80)
+        anchors.bottomMargin: NeptuneStyle.dp(40)
+        width: NeptuneStyle.dp(200)
+        height: NeptuneStyle.dp(100)
         checkable: true
         checked: root.model ? root.model.muted : false
         icon.name: "ic-volume-0"

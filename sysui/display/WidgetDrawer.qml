@@ -31,6 +31,7 @@
 
 import QtQuick 2.6
 import utils 1.0
+import com.pelagicore.styles.neptune 3.0
 
 /*
   Displays a child item on the screen which can be dismissed by swiping it to the right.
@@ -62,7 +63,7 @@ MouseArea {
 
     // how much of it should be sticking out from the right side of the display when
     // the widget drawer has been closed
-    readonly property real stickOutWidth: Style.hspan(2)
+    readonly property real stickOutWidth: NeptuneStyle.dp(90)
 
     // true if in full view, false if it's tucked away on the right side of the display
     property bool open: true
@@ -99,7 +100,7 @@ MouseArea {
         property real lastX
         property int direction
         property bool dragging: false
-        readonly property real minimumDrag: Style.hspan(2)
+        readonly property real minimumDrag: NeptuneStyle.dp(90)
 
         function applyOpenState() {
             if (root.open) {
@@ -128,7 +129,7 @@ MouseArea {
     Behavior on x {
         SmoothedAnimation {
             easing.type: Easing.InOutQuad
-            velocity: Style.hspan(40)
+            velocity: NeptuneStyle.dp(1800)
         }
         enabled: !d.dragging
     }

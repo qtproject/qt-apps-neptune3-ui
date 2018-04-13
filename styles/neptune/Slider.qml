@@ -77,6 +77,9 @@ T.Slider {
         y: control.topPadding +
            (control.horizontal ? (control.availableHeight - height) / 2 :
                                  control.visualPosition * (control.availableHeight - height))
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
+
         source: control.horizontal ?
                     Style.gfx("slider-handle-horizontal", NeptuneStyle.theme) :
                     Style.gfx("slider-handle-vertical", NeptuneStyle.theme)

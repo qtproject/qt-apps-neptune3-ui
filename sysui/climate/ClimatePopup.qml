@@ -137,7 +137,7 @@ NeptunePopup {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(130) - leftTempSlider.handleHeight/2
         anchors.left: parent.left
-        anchors.leftMargin: -leftTempSlider.width/2 + NeptuneStyle.dp(30)/2
+        anchors.leftMargin: -leftTempSlider.width/2 + leftTempSlider.background.width/2
         height: NeptuneStyle.dp(1200)
         convertFunc: model.calculateUnitValue
 
@@ -168,7 +168,7 @@ NeptunePopup {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(130) - rightTempSlider.handleHeight/2
         anchors.right: parent.right
-        anchors.rightMargin: -rightTempSlider.width/2 + NeptuneStyle.dp(30)/2
+        anchors.rightMargin: -rightTempSlider.width/2 + rightTempSlider.background.width/2
         height: NeptuneStyle.dp(1200)
         convertFunc: model.calculateUnitValue
 

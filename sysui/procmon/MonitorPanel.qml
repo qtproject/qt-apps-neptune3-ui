@@ -103,7 +103,7 @@ Item {
 
     Label {
         id: middleLineText
-        width: Style.hspan(1)
+        width: NeptuneStyle.dp(45)
         anchors.right: parent.right
         anchors.verticalCenter: graphContainer.verticalCenter
         font.pixelSize: NeptuneStyle.fontSizeS

@@ -122,7 +122,7 @@ Item {
     ClimateBar {
         id: climateBar
         width: root.width
-        height: Style.vspan(1.5)
+        height: NeptuneStyle.dp(120)
         anchors.bottom: parent.bottom
         popupParent: root.popupParent
         model: climateModel

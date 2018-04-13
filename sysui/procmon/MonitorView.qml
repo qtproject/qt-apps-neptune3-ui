@@ -74,24 +74,24 @@ ColumnLayout {
 
     StartupInfo {
         Layout.fillWidth: true
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.topMargin: NeptuneStyle.dp(20)
     }
 
     CpuMonitor {
         Layout.fillWidth: true
-        Layout.preferredHeight: Style.vspan(2.5)
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.preferredHeight: NeptuneStyle.dp(20)
+        Layout.topMargin: NeptuneStyle.dp(20)
     }
 
     RamMonitor {
         Layout.fillWidth: true
-        Layout.preferredHeight: Style.vspan(2.5)
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.preferredHeight: NeptuneStyle.dp(20)
+        Layout.topMargin: NeptuneStyle.dp(20)
     }
 
     NetworkMonitor {
         Layout.fillWidth: true
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.topMargin: NeptuneStyle.dp(20)
         addressList: info.addressList
         online: info.online
     }
@@ -100,7 +100,7 @@ ColumnLayout {
         text: qsTr("Version")
         Layout.fillWidth: true
         Layout.preferredHeight: font.pixelSize * 1.1
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.topMargin: NeptuneStyle.dp(20)
     }
     Label {
         text: Qt.application.version
@@ -114,7 +114,7 @@ ColumnLayout {
         text: qsTr("Platform")
         Layout.fillWidth: true
         Layout.preferredHeight: font.pixelSize * 1.1
-        Layout.topMargin: Style.vspan(0.25)
+        Layout.topMargin: NeptuneStyle.dp(20)
     }
     Label {
         text: info.productName + " · " + info.cpu + " · " + info.kernel + " · " +
