@@ -176,8 +176,8 @@ Item {
         id: processMonitor
         applicationId: applicationModel.activeAppInfo ? applicationModel.activeAppInfo.id : ""
         reportingInterval: 1000
-        memoryReportingEnabled: applicationModel.activeAppInfo
-        cpuLoadReportingEnabled: applicationModel.activeAppInfo
+        memoryReportingEnabled: SystemModel.systemOverlayEnabled && applicationModel.activeAppInfo
+        cpuLoadReportingEnabled: SystemModel.systemOverlayEnabled && applicationModel.activeAppInfo
 
         onCpuLoadReportingChanged: {
             SystemModel.appCpuPercentage = (load * 100).toFixed(1)
