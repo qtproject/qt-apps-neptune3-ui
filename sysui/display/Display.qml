@@ -107,6 +107,7 @@ Item {
         Binding { target: mainContentArea.item; property: "applicationModel"; value: root.applicationModel }
         Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
         Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: climateBar.height }
+        Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
     }
 
     StatusBar {

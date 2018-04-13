@@ -48,6 +48,7 @@ Item {
     property alias launcherY: launcher.y
     property alias launcherOpen: launcher.open
     property real homeBottomMargin
+    property Item popupParent
 
     Instantiator {
         model: root.applicationModel
@@ -106,7 +107,7 @@ Item {
                 activeApplicationParent: activeApplicationSlot
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
                 widgetDrawer: widgetDrawerSlot
-                popupParent: popupParent
+                popupParent: root.popupParent
             }
 
             // slot for the maximized, active, application
