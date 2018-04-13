@@ -40,10 +40,10 @@ Item {
     property alias window: frameTimer.window
     property bool fpsVisible
     property string title
-    default property alias columnData: column.data
+    default property alias rowData: row.data
 
-    implicitWidth: column.width
-    implicitHeight: column.height
+    implicitWidth: row.width
+    implicitHeight: row.height
 
     visible: fpsVisible
 
@@ -54,12 +54,12 @@ Item {
     }
 
     Rectangle {
-        anchors.fill: column
+        anchors.fill: row
         color: NeptuneStyle.backgroundColor
     }
 
     Row {
-        id: column
+        id: row
         anchors.top: parent.top
         anchors.right: parent.right
         spacing: NeptuneStyle.dp(10)
