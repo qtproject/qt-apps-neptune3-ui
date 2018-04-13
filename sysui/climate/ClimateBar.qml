@@ -64,7 +64,6 @@ Item {
         spacing: NeptuneStyle.dp(9)
 
         Image {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
             Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
@@ -72,7 +71,6 @@ Item {
             visible: model.leftSeat.heat
         }
         Label {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.leftMargin: NeptuneStyle.dp(36)
             Layout.rightMargin: NeptuneStyle.dp(36)
             text: root.model ? root.model.leftSeat.valueString : ""
@@ -82,7 +80,6 @@ Item {
             opacity: NeptuneStyle.fontOpacityMedium
         }
         Image {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
             Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-rear-defrost-status", NeptuneStyle.theme)
@@ -91,7 +88,6 @@ Item {
         }
 
         Image {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
             Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-front-defrost-status", NeptuneStyle.theme)
@@ -99,7 +95,6 @@ Item {
             visible: model.frontHeat.enabled
         }
         Label {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.leftMargin: NeptuneStyle.dp(36)
             Layout.rightMargin: NeptuneStyle.dp(36)
             text: root.model ? root.model.rightSeat.valueString : ""
@@ -109,7 +104,6 @@ Item {
             opacity: NeptuneStyle.fontOpacityMedium
         }
         Image {
-            anchors.verticalCenter: parent.verticalCenter
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
             Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic-seat-heat-status", NeptuneStyle.theme)
