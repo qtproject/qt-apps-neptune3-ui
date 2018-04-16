@@ -62,8 +62,7 @@ ColumnLayout {
     SystemInfo { id: info }
 
     Switch {
-        anchors.right: parent.right
-        anchors.top: parent.top
+        Layout.alignment: Qt.AlignRight
         text: qsTr("System Monitor Overlay")
         font.pixelSize: NeptuneStyle.fontSizeS
         checked: SystemModel.systemOverlayEnabled
