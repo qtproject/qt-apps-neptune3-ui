@@ -78,13 +78,13 @@ ColumnLayout {
 
     CpuMonitor {
         Layout.fillWidth: true
-        Layout.preferredHeight: NeptuneStyle.dp(20)
+        Layout.preferredHeight: NeptuneStyle.dp(200)
         Layout.topMargin: NeptuneStyle.dp(20)
     }
 
     RamMonitor {
         Layout.fillWidth: true
-        Layout.preferredHeight: NeptuneStyle.dp(20)
+        Layout.preferredHeight: NeptuneStyle.dp(200)
         Layout.topMargin: NeptuneStyle.dp(20)
     }
 
