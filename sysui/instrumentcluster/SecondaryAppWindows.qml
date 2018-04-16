@@ -61,7 +61,16 @@ Item {
                 target: model.appInfo
                 onSecondaryWindowChanged: {
                     if (model.appInfo.secondaryWindow) {
-                        secondaryWindowList.append({"appInfo" : model.appInfo});
+                        var appInList = false;
+                        for (var i = 0; i < secondaryWindowList.count; i++) {
+                            if (secondaryWindowList.get(i).appInfo.id === model.appInfo.id) {
+                                appInList = true;
+                                break;
+                            }
+                        }
+                        if (!appInList) {
+                            secondaryWindowList.append({"appInfo" : model.appInfo});
+                        }
                     } else {
                         secondaryWindowList.removeWithAppId(model.appInfo.id);
                     }
