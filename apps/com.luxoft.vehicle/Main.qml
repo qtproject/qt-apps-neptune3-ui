@@ -36,6 +36,9 @@ PrimaryWindow {
     id: root
 
     Vehicle {
-        anchors.fill: parent
+        x: root.exposedRect.x
+        y: 0
+        width: root.exposedRect.width
+        height: root.exposedRect.y + root.exposedRect.height
     }
 }
