@@ -45,9 +45,9 @@ ToolButton {
             name: "FAT"
             PropertyChanges {
                 target: backgroundItem
-                minWidth: 220
-                implicitHeight: 100
-                sideMargins: 58
+                minWidth: NeptuneStyle.dp(220)
+                implicitHeight: NeptuneStyle.dp(100)
+                sideMargins: NeptuneStyle.dp(58)
             }
             PropertyChanges {
                 target: contentText
@@ -59,9 +59,9 @@ ToolButton {
             PropertyChanges {
                 target: backgroundItem
                 minWidth: 0
-                implicitHeight: 100
+                implicitHeight: NeptuneStyle.dp(100)
                 iconMargin: 0
-                sideMargins: 42
+                sideMargins: NeptuneStyle.dp(42)
             }
             PropertyChanges {
                 target: contentText
@@ -73,8 +73,8 @@ ToolButton {
             PropertyChanges {
                 target: backgroundItem
                 minWidth: 0
-                implicitHeight: 52
-                sideMargins: 22
+                implicitHeight: NeptuneStyle.dp(52)
+                sideMargins: NeptuneStyle.dp(22)
             }
             PropertyChanges {
                 target: contentText
@@ -99,15 +99,15 @@ ToolButton {
         id: backgroundItem
 
         implicitWidth: defaultWidth < minWidth ? minWidth : defaultWidth
-        implicitHeight: 100
+        implicitHeight: NeptuneStyle.dp(100)
 
         radius: height / 2
         color: NeptuneStyle.buttonColor
 
         readonly property int defaultWidth: sideMargins + contentMargin + contentText.contentWidth
-        property int minWidth: 220
-        property int sideMargins: 58
-        property int iconMargin: 10
+        property int minWidth: NeptuneStyle.dp(220)
+        property int sideMargins: NeptuneStyle.dp(58)
+        property int iconMargin: NeptuneStyle.dp(10)
         property int contentMargin: sideMargins + iconImage.width + iconMargin
 
         Image {
@@ -117,6 +117,9 @@ ToolButton {
             anchors.left: parent.left
             anchors.leftMargin: backgroundItem.sideMargins
             source: root.iconSource
+
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
         }
     }
 }

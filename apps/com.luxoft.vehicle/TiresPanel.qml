@@ -42,25 +42,29 @@ Item {
     Image {
         anchors.top: parent.top
         anchors.left: parent.left
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
 
         source: Paths.image("car-tires.png")
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 120
+            anchors.topMargin: NeptuneStyle.dp(120)
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: NeptuneStyle.dp(110)
             source: Paths.image("tire.png")
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
 
             Label {
                 anchors.right: parent.left
-                anchors.rightMargin: 26
+                anchors.rightMargin: NeptuneStyle.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: -6
+                    anchors.topMargin: NeptuneStyle.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
@@ -75,20 +79,22 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 120
+            anchors.topMargin: NeptuneStyle.dp(120)
             anchors.right: parent.right
-            anchors.rightMargin: 146
+            anchors.rightMargin: NeptuneStyle.dp(146)
             source: Paths.image("tire.png")
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
 
             Label {
                 anchors.left: parent.right
-                anchors.leftMargin: 26
+                anchors.leftMargin: NeptuneStyle.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: -6
+                    anchors.topMargin: NeptuneStyle.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
@@ -103,20 +109,22 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 480
+            anchors.topMargin: NeptuneStyle.dp(480)
             anchors.left: parent.left
-            anchors.leftMargin: 110
+            anchors.leftMargin: NeptuneStyle.dp(110)
             source: Paths.image("tire.png")
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
 
             Label {
                 anchors.right: parent.left
-                anchors.rightMargin: 26
+                anchors.rightMargin: NeptuneStyle.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: -6
+                    anchors.topMargin: NeptuneStyle.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
@@ -131,20 +139,22 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: 480
+            anchors.topMargin: NeptuneStyle.dp(480)
             anchors.right: parent.right
-            anchors.rightMargin: 146
+            anchors.rightMargin: NeptuneStyle.dp(146)
             source: Paths.image("tire.png")
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
 
             Label {
                 anchors.left: parent.right
-                anchors.leftMargin: 26
+                anchors.leftMargin: NeptuneStyle.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("240")
 
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: -6
+                    anchors.topMargin: NeptuneStyle.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
@@ -160,16 +170,16 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: 22
+        anchors.rightMargin: NeptuneStyle.dp(22)
         anchors.top: parent.top
-        anchors.topMargin: 132
+        anchors.topMargin: NeptuneStyle.dp(132)
 
         font.weight: Font.Light
         text: qsTr("Normal load")
 
         Label {
             anchors.top: parent.bottom
-            anchors.topMargin: 10
+            anchors.topMargin: NeptuneStyle.dp(10)
             anchors.right: parent.right
 
             text: qsTr("Target: 240 kPa")
@@ -183,9 +193,9 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: 22
+        anchors.rightMargin: NeptuneStyle.dp(22)
         anchors.top: parent.top
-        anchors.topMargin: 270
+        anchors.topMargin: NeptuneStyle.dp(270)
 
         font.weight: Font.Light
         text: qsTr("Max load")
@@ -193,7 +203,7 @@ Item {
 
         Label {
             anchors.top: parent.bottom
-            anchors.topMargin: 10
+            anchors.topMargin: NeptuneStyle.dp(10)
             anchors.right: parent.right
 
             text: qsTr("Target: 270 kPa")
@@ -208,9 +218,9 @@ Item {
         id: calibrateButton
 
         anchors.top: parent.top
-        anchors.topMargin: 470
+        anchors.topMargin: NeptuneStyle.dp(470)
         anchors.right: parent.right
-        anchors.rightMargin: 22
+        anchors.rightMargin: NeptuneStyle.dp(22)
         text: qsTr("Calibrate")
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         iconSource: Paths.image("ic-calibrate" + sourceSuffix)

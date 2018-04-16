@@ -33,6 +33,8 @@ import QtQuick 2.9
 
 import animations 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 import "paths"
 
 Item {
@@ -49,64 +51,72 @@ Item {
         id: base
 
         anchors.top: parent.top
-        anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
         source: Paths.image("car-model-base.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
     }
 
     Image {
         id: sunroof
 
         anchors.top: parent.top
-        anchors.topMargin: 284
+        anchors.topMargin: NeptuneStyle.dp(284)
         anchors.horizontalCenter: parent.horizontalCenter
         source: Paths.image("sunroof.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
     }
 
     Image {
         id: trunk
 
         anchors.top: parent.top
-        anchors.topMargin: 466
+        anchors.topMargin: NeptuneStyle.dp(466)
         anchors.horizontalCenter: parent.horizontalCenter
-        height: root.trunkOpen ? sourceSize.height * 0.3 : sourceSize.height
-        Behavior on height { DefaultNumberAnimation { duration: 800 } }
         source: Paths.image("trunk.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(root.trunkOpen ? sourceSize.height * 0.3 : sourceSize.height)
+        Behavior on height { DefaultNumberAnimation { duration: 800 } }
     }
 
     Image {
         id: leftDoor
 
         anchors.top: parent.top
-        anchors.topMargin: 167
-        anchors.left: parent.left
-        anchors.leftMargin: 218
+        anchors.topMargin: NeptuneStyle.dp(167)
+        anchors.right: trunk.left
         transformOrigin: Item.TopLeft
         rotation: root.leftDoorOpen ? 60 : 0
         Behavior on rotation { DefaultNumberAnimation { duration: 800 } }
         source: Paths.image("door-left.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
     }
 
     Image {
         id: rightDoor
 
         anchors.top: parent.top
-        anchors.topMargin: 167
-        anchors.right: parent.right
-        anchors.rightMargin: 218
+        anchors.topMargin: NeptuneStyle.dp(167)
+        anchors.left: trunk.right
         mirror: true
         transformOrigin: Item.TopRight
         rotation: root.rightDoorOpen ? -60 : 0
         Behavior on rotation { DefaultNumberAnimation { duration: 800 } }
         source: Paths.image("door-left.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
     }
 
     Image {
         id: top
 
         anchors.top: parent.top
-        anchors.topMargin: 124
+        anchors.topMargin: NeptuneStyle.dp(124)
         anchors.horizontalCenter: parent.horizontalCenter
         source: Paths.image("car-model-top.png")
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
     }
 }

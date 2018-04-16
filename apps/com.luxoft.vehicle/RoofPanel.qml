@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import animations 1.0
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Item {
     id: root
 
@@ -45,7 +47,7 @@ Item {
         id: roofSlider
 
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(2.5)
+        anchors.topMargin: NeptuneStyle.dp(200)
         anchors.left: parent.left
         width: parent.width - anchors.leftMargin
         onValueChanged: {
@@ -56,8 +58,8 @@ Item {
     VehicleButton {
         id: roofOpenButton
 
-        anchors.top: parent.top
-        anchors.topMargin: 400
+        anchors.top: roofSlider.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
         anchors.right: parent.right
         state: "REGULAR"
         text: qsTr("Open")
@@ -69,8 +71,8 @@ Item {
     VehicleButton {
         id: roofCloseButton
 
-        anchors.top: parent.top
-        anchors.topMargin: 400
+        anchors.top: roofSlider.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
         anchors.left: parent.left
         state: "REGULAR"
         text: qsTr("Close")

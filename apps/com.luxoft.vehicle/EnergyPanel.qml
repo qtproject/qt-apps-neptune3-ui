@@ -55,9 +55,10 @@ Item {
 
         anchors.top: energyControls.bottom
         anchors.left: energyControls.left
-        anchors.topMargin: 40
+        anchors.topMargin: NeptuneStyle.dp(40)
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         width: parent.width
+        height: NeptuneStyle.dp(sourceSize.height)
         source: Paths.image("energy-graph" + sourceSuffix)
     }
 
@@ -65,9 +66,9 @@ Item {
         id: energyGraphTitle
 
         anchors.top: energyGraph.bottom
-        anchors.topMargin: 46
+        anchors.topMargin: NeptuneStyle.dp(46)
         anchors.left: energyGraph.left
-        anchors.leftMargin: 22
+        anchors.leftMargin: NeptuneStyle.dp(22)
 
         font.weight: Font.Light
         text: qsTr("Projected distance to empty")
@@ -77,21 +78,21 @@ Item {
         id: chargingInfoItem
 
         anchors.top: energyGraphTitle.bottom
-        anchors.topMargin: 24
+        anchors.topMargin: NeptuneStyle.dp(24)
         width: parent.width
-        height: 340
+        height: NeptuneStyle.dp(340)
 
         Image {
-            height: 2
+            height: NeptuneStyle.dp(2)
             width: parent.width
             source: Style.gfx("list-divider", NeptuneStyle.theme)
         }
 
         Label {
             anchors.top: parent.top
-            anchors.topMargin: 16
+            anchors.topMargin: NeptuneStyle.dp(16)
             anchors.left: parent.left
-            anchors.leftMargin: 40
+            anchors.leftMargin: NeptuneStyle.dp(40)
             text: qsTr("184")
             font {
                 pixelSize: NeptuneStyle.fontSizeL
@@ -99,9 +100,9 @@ Item {
 
             Label {
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 4
+                anchors.bottomMargin: NeptuneStyle.dp(4)
                 anchors.left: parent.right
-                anchors.leftMargin: 12
+                anchors.leftMargin: NeptuneStyle.dp(12)
 
                 text: qsTr("km")
                 font {
@@ -114,9 +115,9 @@ Item {
 
         Label {
             anchors.top: parent.top
-            anchors.topMargin: 114
+            anchors.topMargin: NeptuneStyle.dp(114)
             anchors.left: parent.left
-            anchors.leftMargin: 22
+            anchors.leftMargin: NeptuneStyle.dp(22)
 
             font.weight: Font.Light
             text: qsTr("Charging stations")
@@ -124,32 +125,32 @@ Item {
 
         VehicleButton {
             anchors.top: parent.top
-            anchors.topMargin: 102
+            anchors.topMargin: NeptuneStyle.dp(102)
             anchors.right: parent.right
-            anchors.rightMargin: 22
+            anchors.rightMargin: NeptuneStyle.dp(22)
             state: "SMALL"
             text: qsTr("Show on map")
         }
 
         Image {
-            height: 2
-            width: 750
+            height: NeptuneStyle.dp(2)
+            width: NeptuneStyle.dp(750)
             anchors.top: parent.top
-            anchors.topMargin: 168
+            anchors.topMargin: NeptuneStyle.dp(168)
             source: Style.gfx("list-divider", NeptuneStyle.theme)
         }
 
         //ToDo: this probably should be in a model later
         Item {
             anchors.top: parent.top
-            anchors.topMargin: 180
+            anchors.topMargin: NeptuneStyle.dp(180)
             anchors.left: parent.left
             width: parent.width
-            height: 60
+            height: NeptuneStyle.dp(60)
 
             Label {
                 anchors.left: parent.left
-                anchors.leftMargin: 40
+                anchors.leftMargin: NeptuneStyle.dp(40)
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("21")
                 font {
@@ -158,9 +159,9 @@ Item {
 
                 Label {
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 4
+                    anchors.bottomMargin: NeptuneStyle.dp(4)
                     anchors.left: parent.right
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: NeptuneStyle.dp(10)
 
                     text: qsTr("km")
                     font {
@@ -174,7 +175,7 @@ Item {
             Label {
                 id: firstStationAddressLabel
                 anchors.left: parent.left
-                anchors.leftMargin: 140
+                anchors.leftMargin: NeptuneStyle.dp(140)
                 anchors.verticalCenter: parent.verticalCenter
 
                 font.weight: Font.Light
@@ -183,7 +184,7 @@ Item {
 
             VehicleButton {
                 anchors.right: parent.right
-                anchors.rightMargin: 22
+                anchors.rightMargin: NeptuneStyle.dp(22)
                 state: "SMALL"
                 text: qsTr("Route")
                 onClicked: {
@@ -196,16 +197,16 @@ Item {
         //ToDo: this probably should be in a model later
         Item {
             anchors.top: parent.top
-            anchors.topMargin: 245
+            anchors.topMargin: NeptuneStyle.dp(245)
             anchors.left: parent.left
             width: parent.width
-            height: 60
+            height: NeptuneStyle.dp(60)
 
             Label {
                 text: qsTr("27")
 
                 anchors.left: parent.left
-                anchors.leftMargin: 40
+                anchors.leftMargin: NeptuneStyle.dp(40)
                 anchors.verticalCenter: parent.verticalCenter
                 font {
                     pixelSize: NeptuneStyle.fontSizeL
@@ -213,9 +214,9 @@ Item {
 
                 Label {
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 4
+                    anchors.bottomMargin: NeptuneStyle.dp(4)
                     anchors.left: parent.right
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: NeptuneStyle.dp(10)
 
                     text: qsTr("km")
                     font {
@@ -229,7 +230,7 @@ Item {
             Label {
                 id: secondStationAddressLabel
                 anchors.left: parent.left
-                anchors.leftMargin: 140
+                anchors.leftMargin: NeptuneStyle.dp(140)
                 anchors.verticalCenter: parent.verticalCenter
 
                 font.weight: Font.Light
@@ -238,7 +239,7 @@ Item {
 
             VehicleButton {
                 anchors.right: parent.right
-                anchors.rightMargin: 22
+                anchors.rightMargin: NeptuneStyle.dp(22)
                 state: "SMALL"
                 text: qsTr("Route")
                 onClicked: {

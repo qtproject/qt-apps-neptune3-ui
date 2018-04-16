@@ -37,6 +37,8 @@ import QtQuick.Controls 2.2
 import controls 1.0
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Item {
     id: root
 
@@ -49,8 +51,8 @@ Item {
         id: toolsColumn
         anchors.top: parent.top
         anchors.left: parent.left
-        width: 264
-        height: 460
+        width: NeptuneStyle.dp(264)
+        height: NeptuneStyle.dp(460)
 
         translationContext: "VehicleToolsColumn"
         model: ListModel {
@@ -63,10 +65,10 @@ Item {
 
     StackLayout {
         anchors.left: toolsColumn.right
+        anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 500
-        width: 740
+        width: root.width - toolsColumn.width
 
         currentIndex: toolsColumn.currentIndex
 

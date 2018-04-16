@@ -57,9 +57,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(4)
+        anchors.topMargin: NeptuneStyle.dp(320)
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(1)
+        anchors.leftMargin: NeptuneStyle.dp(45)
         state: "REGULAR"
         text: leftDoorOpen ? qsTr("Close") : qsTr("Open")
 
@@ -71,9 +71,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(4)
+        anchors.topMargin: NeptuneStyle.dp(320)
         anchors.right: parent.right
-        anchors.rightMargin: Style.hspan(1)
+        anchors.rightMargin: NeptuneStyle.dp(45)
         state: "REGULAR"
         text: rightDoorOpen ? qsTr("Close") : qsTr("Open")
 
