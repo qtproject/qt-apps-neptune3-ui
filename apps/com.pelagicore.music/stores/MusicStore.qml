@@ -41,7 +41,6 @@ Store {
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
     property alias contentType: searchBrowseModel.contentType
-    property real indexerProgress: 0.0
 
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel
@@ -72,6 +71,22 @@ Store {
                 }
                 root.songModelPopulated();
                 modelPopulated = true;
+            }
+        }
+    }
+
+    readonly property MediaIndexerControl indexerControl: MediaIndexerControl {
+        property bool databaseReloaded: false
+        onProgressChanged: {
+            // SearchAndBrowseModel need to be reloaded when indexing process reach 20 %
+            // to get the music data and after indexing process is done.
+            // Without reloading the model, Neptune 3 won't see any music during the first
+            // run.
+            if (progress > 0.2 && progress < 0.3 && !databaseReloaded) {
+                searchAndBrowseModel.reload();
+            } else if (progress === 1.0 && !databaseReloaded) {
+                searchAndBrowseModel.reload();
+                databaseReloaded = true;
             }
         }
     }
