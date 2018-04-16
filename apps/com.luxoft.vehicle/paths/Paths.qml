@@ -40,6 +40,6 @@ QtObject {
     }
 
     function image(name) {
-        return "assets/images/" + name
+        return Qt.resolvedUrl("../assets/images/" + name)
     }
 }

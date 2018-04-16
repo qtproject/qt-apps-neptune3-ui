@@ -30,7 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.3
 
 import com.pelagicore.styles.neptune 3.0
@@ -42,54 +41,13 @@ import "paths"
 ListView {
     id: root
 
-    spacing: Style.vspan(0.25)
-    orientation: Qt.Vertical
+    spacing: NeptuneStyle.dp(20)
     model: VehicleControlModel {}
-    interactive: false
-    delegate: ListItem {
+    delegate: ListItemSwitch {
         width: parent.width
-        height: Style.vspan(0.9)
-
-        Image {
-            id: supportDelegateIconImage
-            anchors.left: parent.left
-            anchors.leftMargin: Style.hspan(50/45)
-            source: Paths.image(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))
-        }
-
-        Label {
-            text: qsTranslate("VehicleControlModel", model.name)
-            anchors.top: parent.top
-            anchors.topMargin: Style.vspan(0.15)
-            anchors.left: supportDelegateIconImage.right
-            anchors.leftMargin: Style.hspan(0.622)
-        }
-
-        Switch {
-            id: vehicleControlSwitch
-
-            anchors.top: parent.top
-            anchors.topMargin: 2
-            anchors.right: parent.right
-            anchors.rightMargin: 22
-            checked: model.active
-        }
-
-        Image {
-            height: 2
-
-            // don't show the separator after the last element
-            visible: model.index < root.model.count - 1
-
-            source: Style.gfx("list-divider", NeptuneStyle.theme)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: vehicleControlSwitch.checked = !vehicleControlSwitch.checked
-        }
+        icon.source: Paths.image(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))
+        text: qsTranslate("VehicleControlModel", model.name)
     }
+
+    ScrollIndicator.vertical: ScrollIndicator {}
 }
