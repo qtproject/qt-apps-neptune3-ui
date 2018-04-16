@@ -65,10 +65,18 @@ ListItemBasic {
     rightSpacerUsed: true
 
     accessoryDelegateComponent1: Switch {
+        id: switchDelegate
         checked: root.switchOn
         onPositionChanged: root.position = position
-        onToggled: root.switchToggled()
+        onToggled: {
+            root.switchToggled()
+            root.switchOn = checked
+        }
         onClicked: root.switchClicked()
-        onCheckedChanged: root.switchOn = checked
+
+        Connections {
+            target: root
+            onClicked: switchDelegate.toggle()
+        }
     }
 }
