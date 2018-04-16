@@ -156,10 +156,6 @@ Control {
                 y: root._openFromY
                 visible: false
             }
-            PropertyChanges {
-                target: root.parent
-                showModalOverlay: false
-            }
         }
     ]
 
