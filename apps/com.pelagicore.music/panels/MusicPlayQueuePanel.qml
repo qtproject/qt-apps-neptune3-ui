@@ -73,9 +73,9 @@ Control {
                     }
                 }
                 subText: {
-                    if (model.item.artist && (root.actualContentType === "track")) {
+                    if ((model.item.artist !== undefined) && (root.actualContentType === "track")) {
                         return model.item.artist;
-                    } else if (model.item.data.artist && root.actualContentType === "album") {
+                    } else if ((model.item.data.artist !== undefined) && (root.actualContentType === "album")) {
                         return model.item.data.artist;
                     }
                 }
