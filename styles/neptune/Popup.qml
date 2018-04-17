@@ -48,9 +48,9 @@ T.Popup {
     contentWidth: contentItem.implicitWidth || (contentChildren.length === 1 ? contentChildren[0].implicitWidth : 0)
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
-    padding: Style.hspan(1)
+    padding: NeptuneStyle.dp(45)
 
     background: Rectangle {
-        radius: Style.hspan(0.7)
+        radius: NeptuneStyle.dp(31)
     }
 }
