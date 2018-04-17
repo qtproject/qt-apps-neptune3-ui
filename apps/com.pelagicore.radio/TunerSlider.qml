@@ -77,7 +77,7 @@ Item {
         Item {
             anchors.left: parent.left
             anchors.right: parent.right
-            height: Style.vspan(0.7)
+            height: NeptuneStyle.dp(56)
 
             Label {
                 width: contentWidth
@@ -110,7 +110,7 @@ Item {
 
         Item {
             id: markers
-            height: Style.vspan(0.5)
+            height: NeptuneStyle.dp(40)
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
@@ -126,7 +126,7 @@ Item {
                     delegate: Rectangle {
                         Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
                         transformOrigin: Item.Bottom
-                        height: Style.vspan(0.5)
+                        height: NeptuneStyle.dp(40)
                         width: markers.markerWidth
                         radius: markers.markerWidth
                         opacity: index % 10 ? 0.25 : 0.5
@@ -151,7 +151,7 @@ Item {
 
         Rectangle {
             width: 2
-            height: Style.vspan(0.4)
+            height: NeptuneStyle.dp(32)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
 
@@ -161,7 +161,7 @@ Item {
 
         MouseArea {
             id: area
-            width: Style.hspan(2)
+            width: NeptuneStyle.dp(90)
             height: width
             anchors.centerIn: parent
             hoverEnabled: false

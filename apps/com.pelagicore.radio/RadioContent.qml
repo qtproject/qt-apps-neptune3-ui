@@ -62,14 +62,14 @@ Item {
         id: stationControl
         width: root.width
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing: Style.vspan(2)
+        spacing: NeptuneStyle.dp(160)
 
         RowLayout {
             anchors.horizontalCenter: parent.horizontalCenter
 
             ToolButton {
-                Layout.preferredWidth: Style.hspan(1)
-                Layout.preferredHeight: Style.vspan(1)
+                Layout.preferredWidth: NeptuneStyle.dp(45)
+                Layout.preferredHeight: NeptuneStyle.dp(80)
                 icon.name: "ic_skipprevious"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.prevStation()
@@ -77,7 +77,7 @@ Item {
             }
 
             Label {
-                Layout.preferredWidth: Style.hspan(5)
+                Layout.preferredWidth: NeptuneStyle.dp(225)
                 text: root.store.currentFreqPreset
                 font.pixelSize: NeptuneStyle.fontSizeXXL
                 horizontalAlignment: Text.AlignHCenter
@@ -86,22 +86,22 @@ Item {
             StationInfo {
                 id: stationInfo
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: Style.vspan(0.25)
+                anchors.verticalCenterOffset: NeptuneStyle.dp(20)
                 title: root.store.currentStationName
                 numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
                 frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
             }
 
             Label {
-                Layout.preferredWidth: Style.hspan(5)
+                Layout.preferredWidth: NeptuneStyle.dp(225)
                 text: root.store.freqUnit
                 font.pixelSize: NeptuneStyle.fontSizeXXL
                 horizontalAlignment: Text.AlignHCenter
             }
 
             ToolButton {
-                Layout.preferredWidth: Style.hspan(1)
-                Layout.preferredHeight: Style.vspan(1)
+                Layout.preferredWidth: NeptuneStyle.dp(45)
+                Layout.preferredHeight: NeptuneStyle.dp(80)
                 icon.name: "ic_skipnext"
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.nextStation()
@@ -112,8 +112,8 @@ Item {
         TunerSlider {
             id: slider
 
-            Layout.preferredWidth: Style.hspan(20)
-            Layout.preferredHeight: Style.vspan(1)
+            Layout.preferredWidth: NeptuneStyle.dp(900)
+            Layout.preferredHeight: NeptuneStyle.dp(80)
             anchors.horizontalCenter: parent.horizontalCenter
 
             readonly property real minFrequency: root.store.minimumFrequency
@@ -159,19 +159,19 @@ Item {
         id: freqPresetsGrid
 
         width: root.width * 0.6
-        height: Style.vspan(2.5)
+        height: NeptuneStyle.dp(200)
         anchors.top: stationControl.bottom
-        anchors.topMargin: Style.vspan(2)
+        anchors.topMargin: NeptuneStyle.dp(160)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: toolsColumn.width / 3
 
         model: root.store.freqPresetsModel
-        cellWidth: Style.hspan(4.8); cellHeight: Style.hspan(2.2)
+        cellWidth: NeptuneStyle.dp(216) ; cellHeight: NeptuneStyle.dp(99)
         currentIndex: 0
 
         delegate: DelegatedGrid {
-            width: Style.hspan(4.65)
-            height: Style.hspan(2)
+            width: NeptuneStyle.dp(209)
+            height: NeptuneStyle.dp(90)
             text: name
             checked: index === freqPresetsGrid.currentIndex
             onClicked: {
@@ -184,12 +184,12 @@ Item {
     GridView {
         id: stationsGrid
         width: root.width * 0.8
-        height: Style.vspan(5)
+        height: NeptuneStyle.dp(400)
         anchors.top: freqPresetsGrid.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: toolsColumn.width / 3
 
-        cellWidth: Style.hspan(4.8); cellHeight: cellWidth
+        cellWidth: NeptuneStyle.dp(216); cellHeight: cellWidth
         interactive: false
         highlightFollowsCurrentItem: false
         currentIndex: 0
@@ -200,8 +200,8 @@ Item {
         model: root.store.currentPresetModel
 
         delegate: DelegatedGrid {
-            width: Style.hspan(4.65)
-            height: Style.hspan(4)
+            width: NeptuneStyle.dp(209)
+            height: NeptuneStyle.dp(180)
             readonly property real frequency: freq
             readonly property int numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
             text: frequency.toLocaleString(Qt.locale(), 'f', numberOfDecimals)

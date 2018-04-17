@@ -41,8 +41,8 @@ import com.pelagicore.styles.neptune 3.0
 
 Control {
     id: root
-    width: Style.hspan(6.5)
-    height: Style.vspan(2)
+    width: NeptuneStyle.dp(292)
+    height: NeptuneStyle.dp(160)
 
     property bool tuningMode: false
     property alias title: title.text
@@ -55,7 +55,7 @@ Control {
         id: theLayout
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        spacing: Style.vspan(0.2)
+        spacing: NeptuneStyle.dp(16)
 
         Label {
             id: frequency
