@@ -37,6 +37,9 @@ import animations 1.0
 
 Item {
     id: root
+
+    readonly property bool isOpen: inputPanel.state === "active"
+
     height: inputPanel.height
 
     InputPanel {

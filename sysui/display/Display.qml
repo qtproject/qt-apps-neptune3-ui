@@ -111,6 +111,7 @@ Item {
         Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
         Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: climateBar.height }
         Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
+        Binding { target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard }
     }
 
     StatusBar {
@@ -208,6 +209,7 @@ Item {
     }
 
     VirtualKeyboard {
+        id: virtualKeyboard
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom

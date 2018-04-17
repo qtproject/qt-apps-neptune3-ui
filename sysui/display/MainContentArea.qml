@@ -49,16 +49,24 @@ Item {
     property alias launcherOpen: launcher.open
     property real homeBottomMargin
     property Item popupParent
+    property Item virtualKeyboard
 
     Instantiator {
+        id: instantiator
         model: root.applicationModel
+        readonly property real activeAppBottomMargin: {
+            var margin = root.homeBottomMargin;
+            if (widgetDrawer.open && widgetDrawer.visible)
+                margin = Math.max(margin, activeApplicationSlot.height - widgetDrawer.y);
+            if (root.virtualKeyboard.isOpen)
+                margin = Math.max(margin, activeApplicationSlot.height - root.virtualKeyboard.y);
+            return margin;
+        }
         delegate: QtObject {
             property var exposedRectBottomMarginBinding: Binding {
                 target: model.appInfo
                 property: "exposedRectBottomMargin"
-                value: model.appInfo.active && widgetDrawer.open && widgetDrawer.visible
-                        ? activeApplicationSlot.height - widgetDrawer.y
-                        : root.homeBottomMargin
+                value: model.appInfo.active ? instantiator.activeAppBottomMargin : root.homeBottomMargin
             }
 
             property var exposedRectTopMarginBinding: Binding {
