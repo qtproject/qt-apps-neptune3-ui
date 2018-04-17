@@ -37,11 +37,12 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import models.system 1.0
 
-import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 
 ColumnLayout {
     id: root
+
+    property var sysinfo
 
     function graphicsInformation() {
         var result = "";
@@ -58,8 +59,6 @@ ColumnLayout {
         }
         return result + " " + GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion;
     }
-
-    SystemInfo { id: info }
 
     Switch {
         Layout.alignment: Qt.AlignRight
@@ -91,8 +90,8 @@ ColumnLayout {
     NetworkMonitor {
         Layout.fillWidth: true
         Layout.topMargin: NeptuneStyle.dp(20)
-        addressList: info.addressList
-        online: info.online
+        addressList: sysinfo.addressList
+        online: sysinfo.online
     }
 
     Label {
@@ -116,8 +115,8 @@ ColumnLayout {
         Layout.topMargin: NeptuneStyle.dp(20)
     }
     Label {
-        text: info.productName + " · " + info.cpu + " · " + info.kernel + " · " +
-              "Qt %1".arg(info.qtVersion) + " · " + graphicsInformation()
+        text: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " · " +
+              "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation()
         font.weight: Font.Light
         font.pixelSize: NeptuneStyle.fontSizeS
         Layout.fillWidth: true

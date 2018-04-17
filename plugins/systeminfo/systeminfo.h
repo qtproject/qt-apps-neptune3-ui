@@ -35,6 +35,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QTimer>
 #include <QtQml/QQmlParserStatus>
+#include <QProcess>
 
 class SystemInfo : public QObject, public QQmlParserStatus
 {
@@ -47,15 +48,18 @@ class SystemInfo : public QObject, public QQmlParserStatus
     Q_PROPERTY(QString cpu READ cpu CONSTANT)
     Q_PROPERTY(QString kernel READ kernel CONSTANT)
     Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
+    Q_PROPERTY(QString qtDiag READ qtDiag NOTIFY qtDiagChanged)
 
 public:
     explicit SystemInfo(QObject *parent = nullptr);
+    ~SystemInfo() override;
     QStringList addressList() const;
     bool online() const;
     QString qtVersion() const;
     QString productName() const;
     QString cpu() const;
     QString kernel() const;
+    QString qtDiag() const;
 
 public slots:
     void init();
@@ -63,6 +67,7 @@ public slots:
 signals:
     void addressListChanged();
     void onlineChanged();
+    void qtDiagChanged();
 
 protected:
     void classBegin() override;
@@ -73,8 +78,11 @@ private slots:
 
 private:
     void getAddress();
+    void getQtDiagInfo();
     QStringList m_addressList;
     bool m_online{false};
+    QString m_qtDiagContents;
+    QProcess *m_diagProc{nullptr};
 };
 
 #endif // SYSTEMINFO_H

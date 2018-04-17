@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
+import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import neptune.controls 1.0
@@ -50,6 +51,8 @@ NeptunePopup {
     bottomPadding: NeptuneStyle.dp(20)
 
     property string currentTabName: tabBar.currentItem.name
+
+    SystemInfo { id: info }
 
     contentItem: ColumnLayout {
         id: mainLayout
@@ -102,6 +105,11 @@ NeptunePopup {
                 text: qsTr("Performance")
                 property string name: "performance"
             }
+            TabButton {
+                Layout.preferredWidth: NeptuneStyle.dp(180)
+                text: qsTr("Diagnostics")
+                property string name: "diagnostics"
+            }
         }
 
         StackLayout {
@@ -113,12 +121,16 @@ NeptunePopup {
             Layout.bottomMargin: NeptuneStyle.dp(24)
             currentIndex: tabBar.currentIndex
             MonitorView {
+                sysinfo: info
             }
             AboutRunningApps {
                 applicationModel: root.applicationModel
             }
             AboutPerformance {
                 applicationModel: root.applicationModel
+            }
+            AboutDiagnostics {
+                sysinfo: info
             }
         }
     }

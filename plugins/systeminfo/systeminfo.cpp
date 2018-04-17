@@ -33,6 +33,7 @@
 
 #include <QDBusConnection>
 #include <QDBusPendingReply>
+#include <QStandardPaths>
 #include <QSysInfo>
 
 #include "systeminfo.h"
@@ -44,6 +45,11 @@
 SystemInfo::SystemInfo(QObject *parent)
     : QObject(parent)
 {
+}
+
+SystemInfo::~SystemInfo()
+{
+    delete m_diagProc;
 }
 
 void SystemInfo::init()
@@ -68,6 +74,29 @@ void SystemInfo::getAddress()
             }
         }
     }
+}
+
+void SystemInfo::getQtDiagInfo()
+{
+    const QString qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"));
+    if (qtdiagExe.isEmpty()) {
+        m_qtDiagContents = QObject::tr("The qtdiag program could not be found.");
+        emit this->qtDiagChanged();
+        return;
+    }
+
+    m_diagProc = new QProcess;
+    connect(m_diagProc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+            [this](int, QProcess::ExitStatus exitStatus) {
+        if (exitStatus == QProcess::NormalExit) {
+            m_qtDiagContents = QString::fromUtf8(m_diagProc->readAllStandardOutput());
+        } else {
+            m_qtDiagContents = QObject::tr("The qtdiag program exited unsuccessfully/crashed.");
+        }
+        m_diagProc->close();
+        emit this->qtDiagChanged();
+    });
+    m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
 }
 
 void SystemInfo::updateOnlineStatus(quint32 state)
@@ -109,6 +138,11 @@ QString SystemInfo::kernel() const
     return QSysInfo::kernelType() + QStringLiteral(" ") + QSysInfo::kernelVersion();
 }
 
+QString SystemInfo::qtDiag() const
+{
+    return m_qtDiagContents;
+}
+
 void SystemInfo::classBegin()
 {
     auto conn = QDBusConnection::systemBus();
@@ -128,6 +162,7 @@ void SystemInfo::classBegin()
             qWarning() << "Error getting online status" << reply.error().name() << reply.error().message();
         }
     });
+    getQtDiagInfo();
 }
 
 void SystemInfo::componentComplete()

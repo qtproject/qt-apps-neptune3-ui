@@ -17,6 +17,13 @@
     </message>
 </context>
 <context>
+    <name>AboutDiagnostics</name>
+    <message>
+        <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutPerformance</name>
     <message>
         <source>Center Console Performance Overlay</source>
@@ -43,6 +50,10 @@
     </message>
     <message>
         <source>Performance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
