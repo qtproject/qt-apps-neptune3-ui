@@ -148,12 +148,14 @@ Item {
     MusicProgress {
         id: musicProgress
         width: root.width
-        height: NeptuneStyle.dp(220)
+        height: NeptuneStyle.dp(100)
         anchors.top: pathView.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
         anchors.leftMargin: NeptuneStyle.dp(40)
         anchors.rightMargin: NeptuneStyle.dp(40)
         value: root.musicPosition
         progressBarLabelLeftMargin: 3
+        clusterView: true
     }
 
     TitleColumn {
@@ -161,6 +163,5 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: musicProgress.bottom
-        anchors.topMargin: NeptuneStyle.dp(-80)
     }
 }

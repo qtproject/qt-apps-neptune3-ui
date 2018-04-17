@@ -38,6 +38,7 @@ import com.pelagicore.styles.neptune 3.0
 Control {
     id: root
 
+    property bool clusterView: false
     property bool labelOnTop: true
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
@@ -61,42 +62,24 @@ Control {
             opacity: NeptuneStyle.fontOpacityMedium
         }
 
-        Slider {
-            id: trackProgressBar
+        ProgressBar {
+            id: progressBar
             implicitWidth: root.progressBarWidth
-            implicitHeight: NeptuneStyle.dp(40)
+            implicitHeight: NeptuneStyle.dp(8)
             anchors.centerIn: parent
             anchors.verticalCenterOffset: NeptuneStyle.dp(-24)
             anchors.horizontalCenterOffset: root.labelOnTop ? 0 : NeptuneStyle.dp(90)
             value: root.value
+        }
 
-            padding: NeptuneStyle.dp(2)
-
-            onValueChanged: {
-                if (trackProgressBar.pressed) {
-                    root.updatePosition(value)
-                }
-            }
-
-            handle: null
-
-            background: Rectangle {
-                x: trackProgressBar.leftPadding
-                y: trackProgressBar.topPadding + trackProgressBar.availableHeight / 2 - height / 2
-                implicitWidth: root.progressBarWidth
-                implicitHeight: NeptuneStyle.dp(0.9)
-                width: trackProgressBar.availableWidth
-                height: implicitHeight
-                color: "#828282"
-                radius: 1
-
-                Rectangle {
-                    width: trackProgressBar.visualPosition * parent.width
-                    height: NeptuneStyle.dp(6.75)
-                    anchors.verticalCenter: parent.verticalCenter
-                    radius: height
-                    color: NeptuneStyle.accentColor
-                }
+        MouseArea {
+            width: parent.width
+            height: NeptuneStyle.dp(50)
+            anchors.centerIn: progressBar
+            enabled: !root.clusterView
+            onPressed: {
+                var newValue = (mouseX / root.width);
+                root.updatePosition(newValue);
             }
         }
     }

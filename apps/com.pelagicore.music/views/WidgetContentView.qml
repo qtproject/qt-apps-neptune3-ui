@@ -140,12 +140,10 @@ Item {
     MusicProgress {
         id: progressBarBlock
         width: NeptuneStyle.dp(880)
-        height: NeptuneStyle.dp(220)
-
+        height: NeptuneStyle.dp(50)
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: NeptuneStyle.dp(200)
-
+        anchors.top: artAndTitlesBlock.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
         opacity: 0
         visible: opacity > 0
         value: store.currentTrackPosition
@@ -156,7 +154,6 @@ Item {
     MusicTools {
         id: musicTools
         anchors.top: progressBarBlock.bottom
-        anchors.topMargin: -progressBarBlock.height/2
         anchors.right: progressBarBlock.right
         onShuffleClicked: store.shuffleSong()
         onRepeatClicked: store.repeatSong()
