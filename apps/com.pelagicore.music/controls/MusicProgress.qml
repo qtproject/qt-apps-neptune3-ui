@@ -42,13 +42,8 @@ Control {
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
     property int progressBarLabelLeftMargin: NeptuneStyle.dp(10)
-    property int progressBarWidth: {
-        if (root.labelOnTop) {
-            return root.width - NeptuneStyle.dp(6);
-        } else {
-            return root.width - NeptuneStyle.dp(5);
-        }
-    }
+    readonly property int progressBarWidth: root.width - (root.labelOnTop
+                                                ? NeptuneStyle.dp(6) : NeptuneStyle.dp(5))
 
     signal updatePosition(var value)
 
