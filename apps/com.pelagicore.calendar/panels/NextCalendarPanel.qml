@@ -92,30 +92,25 @@ Item {
     }
 
     RowLayout {
-        anchors.top: parent.top
+        Layout.alignment: Qt.AlignTop
         GridView {
             id: gridView
             Layout.preferredWidth: NeptuneStyle.dp(315)
             Layout.preferredHeight: root.height
-            anchors.top: parent.top
+            Layout.alignment: Qt.AlignTop
             clip: true
             model: 12
             delegate: delegatedCalendar
             cellWidth: NeptuneStyle.dp(315)
             cellHeight: NeptuneStyle.dp(240)
-            ScrollIndicator.vertical: ScrollIndicator {
-                parent: gridView.parent
-                anchors.top: gridView.top
-                anchors.left: gridView.right
-                anchors.bottom: gridView.bottom
-            }
+            ScrollIndicator.vertical: ScrollIndicator { }
         }
 
         EventList {
             id: eventList
             Layout.preferredWidth: NeptuneStyle.dp(450)
             Layout.preferredHeight: root.height
-            anchors.top: parent.top
+            Layout.alignment: Qt.AlignTop
             delegate: EventListItem {
                 width: NeptuneStyle.dp(450)
                 height: NeptuneStyle.dp(80)

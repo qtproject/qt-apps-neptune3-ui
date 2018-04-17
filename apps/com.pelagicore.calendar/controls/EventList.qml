@@ -46,11 +46,5 @@ ListView {
         eventTimeEnd: timeEnd
         eventLabel: event
     }
-    ScrollIndicator.vertical: ScrollIndicator {
-        parent: root.parent
-        anchors.top: root.top
-        anchors.left: root.right
-        anchors.leftMargin: NeptuneStyle.dp(23)
-        anchors.bottom: root.bottom
-    }
+    ScrollIndicator.vertical: ScrollIndicator { }
 }

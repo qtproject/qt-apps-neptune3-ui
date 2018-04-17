@@ -155,8 +155,7 @@ Item {
 
                 Label {
                     id: eventTimeStart
-                    anchors.baseline: parent.bottom
-                    anchors.baselineOffset: -(lineCount-1) * height/lineCount
+                    Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: NeptuneStyle.dp(74)
                     Layout.preferredHeight: parent.height
                     opacity: NeptuneStyle.fontSizeS
@@ -166,8 +165,7 @@ Item {
                 }
                 Label {
                     id: eventName
-                    anchors.baseline: parent.bottom
-                    anchors.baselineOffset: -(lineCount-1) * height/lineCount
+                    Layout.alignment: Qt.AlignBottom
                     Layout.fillWidth: true
                     Layout.preferredHeight: parent.height
                     font.pixelSize: NeptuneStyle.fontSizeS

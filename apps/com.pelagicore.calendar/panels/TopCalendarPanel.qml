@@ -79,10 +79,10 @@ RowLayout {
     }
 
     RowLayout {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: - NeptuneStyle.dp(45)
+        Layout.alignment: Qt.AlignVCenter
+        Layout.bottomMargin: NeptuneStyle.dp(45)
         ToolButton {
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             icon.name: "ic_skipprevious"
             onClicked: {
                 if (grid.month === 0) {
@@ -101,7 +101,7 @@ RowLayout {
             font.weight: Font.Light
         }
         ToolButton {
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             icon.name: "ic_skipnext"
             onClicked: {
                 if (grid.month === 11) {
