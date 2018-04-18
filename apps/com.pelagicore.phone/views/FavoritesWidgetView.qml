@@ -136,9 +136,9 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: NeptuneStyle.dp(58)
-            rightMargin: NeptuneStyle.dp(58)
-            topMargin: NeptuneStyle.dp(45)
+            leftMargin: NeptuneStyle.dp(40)
+            rightMargin: NeptuneStyle.dp(40)
+            topMargin: NeptuneStyle.dp(48)
         }
 
         height: root.exposedRectHeight - anchors.topMargin - NeptuneStyle.dp(25)
@@ -156,41 +156,46 @@ Item {
             model: root.store.favoritesModel
 
             delegate: ItemDelegate { // FIXME replace with ListItem when it supports components (for RoundImage and 2 tools on the right)
+                id: itemDelegate
+                padding: 0
                 width: ListView.view.width
-                contentItem: RowLayout {
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: parent.width
-                    spacing: 0
-
-                    RoundImage {
-                        height: parent.height
-                        width: height
-                        source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+                height: NeptuneStyle.dp(70)
+                contentItem: Item {
+                    RowLayout {
+                        anchors.fill: parent
+                        spacing: 0
+                        RoundImage {
+                            Layout.preferredHeight: NeptuneStyle.dp(64)
+                            Layout.preferredWidth: NeptuneStyle.dp(64)
+                            Layout.alignment: Qt.AlignVCenter
+                            source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+                        }
+                        Label {
+                            Layout.leftMargin: NeptuneStyle.dp(22)
+                            Layout.fillWidth: true
+                            text: model.firstName + " " + model.surname
+                            color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+                        }
+                        ToolButton {
+                            Layout.preferredWidth: NeptuneStyle.dp(100)
+                            Layout.alignment: Qt.AlignVCenter
+                            height: parent.height
+                            icon.name: "ic-message-contrast"
+                        }
+                        ToolButton {
+                            Layout.preferredWidth: NeptuneStyle.dp(100)
+                            Layout.alignment: Qt.AlignVCenter
+                            height: parent.height
+                            icon.name: "ic-call-contrast"
+                            onClicked: root.store.startCall(model.handle)
+                        }
                     }
-                    Label {
-                        Layout.leftMargin: NeptuneStyle.dp(22)
-                        Layout.fillWidth: true
-                        text: model.firstName + " " + model.surname
-                        color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+                    Image {
+                        anchors.bottom: parent.bottom
+                        width: parent.width
+                        source: Style.gfx("list-divider", NeptuneStyle.theme)
+                        visible: index !== listviewMoreRows.count - 1
                     }
-                    ToolButton {
-                        Layout.preferredWidth: NeptuneStyle.dp(100)
-                        height: parent.height
-                        icon.name: "ic-message-contrast"
-                    }
-                    ToolButton {
-                        Layout.preferredWidth: NeptuneStyle.dp(100)
-                        height: parent.height
-                        icon.name: "ic-call-contrast"
-                        onClicked: root.store.startCall(model.handle)
-                    }
-                }
-
-                Image {
-                    anchors.bottom: parent.bottom
-                    width: parent.width
-                    source: Style.gfx("list-divider", NeptuneStyle.theme)
-                    visible: index !== listviewMoreRows.count - 1
                 }
             }
         }

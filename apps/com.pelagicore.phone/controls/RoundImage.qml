@@ -33,10 +33,12 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Item {
     id: root
-    implicitWidth: img.width
-    implicitHeight: img.height
+    implicitWidth: NeptuneStyle.dp(img.sourceSize.width)
+    implicitHeight: NeptuneStyle.dp(img.sourceSize.height)
 
     property alias source: img.source
 

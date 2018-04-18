@@ -51,16 +51,15 @@ ListView {
 
     delegate: ItemDelegate { // FIXME right component?
         width: ListView.view.width
-        bottomPadding: 0
-        contentItem: Column {
-            spacing: NeptuneStyle.dp(16)
+        height: NeptuneStyle.dp(70)
+        padding: 0
+        contentItem: Item {
             RowLayout {
-                anchors.left: parent.left
-                anchors.right: parent.right
+                anchors.fill: parent
                 spacing: NeptuneStyle.dp(45 * .5)
                 RoundImage {
-                    height: parent.height
-                    width: height
+                    Layout.preferredHeight: NeptuneStyle.dp(64)
+                    Layout.preferredWidth: NeptuneStyle.dp(64)
                     source: "../assets/profile_photos/%1.jpg".arg(model.handle)
                 }
                 Label {
@@ -79,8 +78,8 @@ ListView {
                 }
             }
             Image {
+                anchors.bottom: parent.bottom
                 width: parent.width
-                height: NeptuneStyle.dp(2)
                 source: Style.gfx("list-divider", NeptuneStyle.theme)
             }
         }
