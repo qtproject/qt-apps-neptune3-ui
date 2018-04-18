@@ -14,9 +14,7 @@ QML_IMPORT_PATH += imports/shared imports/system sysui
 copydata.file = copydata.pro
 copydata.depends = plugins
 
-!qtHaveModule(appman_main-private) {
-   error("Module appman_main-private not found.")
-}
+requires(qtHaveModule(appman_main-private))
 
 SUBDIRS += src
 copydata.depends += src
