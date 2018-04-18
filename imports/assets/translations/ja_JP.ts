@@ -666,7 +666,7 @@
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">未知の歌</translation>
+        <translation type="obsolete">未知の歌</translation>
     </message>
     <message>
         <source>Play All</source>
@@ -707,7 +707,7 @@
     <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">未知の歌</translation>
+        <translation type="obsolete">未知の歌</translation>
     </message>
 </context>
 <context>

@@ -673,7 +673,7 @@
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">알 수없는 노래</translation>
+        <translation type="obsolete">알 수없는 노래</translation>
     </message>
     <message>
         <source>Play All</source>
@@ -714,7 +714,7 @@
     <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">알 수없는 노래</translation>
+        <translation type="obsolete">알 수없는 노래</translation>
     </message>
 </context>
 <context>

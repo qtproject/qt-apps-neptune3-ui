@@ -829,7 +829,7 @@ UX na cestu</translation>
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation>Neznámá skladba</translation>
+        <translation type="vanished">Neznámá skladba</translation>
     </message>
     <message>
         <source>Play All</source>
@@ -870,7 +870,7 @@ UX na cestu</translation>
     <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation>Neznámá skladba</translation>
+        <translation type="vanished">Neznámá skladba</translation>
     </message>
 </context>
 <context>

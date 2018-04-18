@@ -34,6 +34,7 @@ import utils 1.0
 import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 import QtQuick.Controls 2.2
+import "../helpers/metaDataProvider.js" as MetaData
 
 Control {
     id: root
@@ -64,22 +65,8 @@ Control {
                 width: listView.width
                 height: NeptuneStyle.dp(104)
                 highlighted: false
-                text: {
-                    if (model.item.title && (root.actualContentType === "track")) {
-                        return model.item.title;
-                    } else if (model.name) {
-                        return model.name;
-                    } else {
-                        return qsTr("Unknown Track");
-                    }
-                }
-                subText: {
-                    if ((model.item.artist !== undefined) && (root.actualContentType === "track")) {
-                        return model.item.artist;
-                    } else if ((model.item.data.artist !== undefined) && (root.actualContentType === "album")) {
-                        return model.item.data.artist;
-                    }
-                }
+                text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
+                subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
                 onClicked: root.itemClicked(model.index, model.item, delegatedSong.text)
             }
         }

@@ -602,10 +602,6 @@
 <context>
     <name>MusicBrowseListPanel</name>
     <message>
-        <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Play All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -627,13 +623,6 @@
     <message>
         <source>Artist</source>
         <translation type="vanished">Artist</translation>
-    </message>
-</context>
-<context>
-    <name>MusicPlayQueuePanel</name>
-    <message>
-        <source>Unknown Track</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

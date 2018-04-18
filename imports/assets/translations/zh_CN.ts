@@ -694,7 +694,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">未知的歌曲</translation>
+        <translation type="obsolete">未知的歌曲</translation>
     </message>
     <message>
         <source>Play All</source>
@@ -735,7 +735,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>MusicPlayQueuePanel</name>
     <message>
         <source>Unknown Track</source>
-        <translation type="unfinished">未知的歌曲</translation>
+        <translation type="obsolete">未知的歌曲</translation>
     </message>
 </context>
 <context>

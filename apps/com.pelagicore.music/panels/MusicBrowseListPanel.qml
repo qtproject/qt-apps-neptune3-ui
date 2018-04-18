@@ -33,6 +33,7 @@ import QtQuick 2.8
 import utils 1.0
 import controls 1.0
 import QtQuick.Controls 2.2
+import "../helpers/metaDataProvider.js" as MetaData
 
 import com.pelagicore.styles.neptune 3.0
 
@@ -64,35 +65,9 @@ Control {
                 width: listView.width
                 height: NeptuneStyle.dp(104)
                 icon.color: "transparent"
-                icon.source: {
-                    if ((actualContentType === "album") && (toolsColumnText === "artists") && model.item) {
-                        if (model.item.data.coverArtUrl !==  undefined) {
-                            return model.item.data.coverArtUrl;
-                        } else {
-                            return Style.gfx("album-art-placeholder");
-                        }
-                    } else {
-                        return "";
-                    }
-                }
-                text: {
-                    if (model.item.title && (root.actualContentType === "track")) {
-                        return model.item.title;
-                    } else if (model.name) {
-                        return model.name;
-                    } else {
-                        return qsTr("Unknown Track");
-                    }
-                }
-                subText: {
-                    if (model.item.artist && (root.actualContentType === "track")) {
-                        return model.item.artist;
-                    } else if (model.item.data.artist && root.actualContentType === "album") {
-                        return model.item.data.artist;
-                    } else {
-                        return "";
-                    }
-                }
+                icon.source: MetaData.getIconSource(model.item, root.actualContentType, toolsColumnText)
+                text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
+                subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
                 onClicked: { root.itemClicked(model.index, model.item, delegatedSong.text, delegatedSong.subText); }
             }
         }
