@@ -33,13 +33,15 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Row {
     id: root
 
     width: 2 * buttonWidth
-    height: Style.vspan(0.9)
+    height: NeptuneStyle.dp(72)
 
-    property real buttonWidth: Style.hspan(100/45)
+    property real buttonWidth: NeptuneStyle.dp(100)
     signal shuffleClicked()
     signal repeatClicked()
 
