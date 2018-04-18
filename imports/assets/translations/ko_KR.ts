@@ -101,6 +101,10 @@
         <source>Add widget</source>
         <translation>위젯 추가</translation>
     </message>
+    <message>
+        <source>No more widgets available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>

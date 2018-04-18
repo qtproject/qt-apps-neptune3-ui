@@ -94,6 +94,10 @@
         <source>Add widget</source>
         <translation>Ansicht hinzufügen</translation>
     </message>
+    <message>
+        <source>No more widgets available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>

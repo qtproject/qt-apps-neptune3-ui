@@ -94,6 +94,10 @@
         <source>Add widget</source>
         <translation>ウィジェットを追加</translation>
     </message>
+    <message>
+        <source>No more widgets available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>

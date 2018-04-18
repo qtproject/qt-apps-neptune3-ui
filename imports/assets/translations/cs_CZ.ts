@@ -104,6 +104,10 @@ UX na cestu</translation>
         <source>Add widget</source>
         <translation>Přidat widget</translation>
     </message>
+    <message>
+        <source>No more widgets available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>

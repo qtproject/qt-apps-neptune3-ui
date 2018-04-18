@@ -101,6 +101,10 @@
         <source>Add widget</source>
         <translation>添加窗口</translation>
     </message>
+    <message>
+        <source>No more widgets available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ApplicationStoreContent</name>

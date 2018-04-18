@@ -48,6 +48,32 @@ NeptunePopup {
     readonly property int popupHeight: popupContent.height
     height: Math.max(root.minHeight, popupHeight)
 
+    function fixupDivider() {
+        var found = false;
+        widgetListview.currentIndex = widgetListview.count - 1;
+        while (widgetListview.currentItem && widgetListview.currentIndex >= 0) {
+            var item = widgetListview.currentItem;
+            if (item) {
+                if (!found && item.visible) {
+                    item.dividerVisible = false;
+                    found = true;
+                } else if (item.visible) {
+                    item.dividerVisible = true;
+                }
+            }
+            if (widgetListview.currentIndex > 0) {
+                widgetListview.decrementCurrentIndex();
+            }
+            else break;
+        }
+    }
+
+    onVisibleChanged: {
+        if (visible && widgetListview.count === delegateModel.groups[2].count) {
+            fixupDivider();
+        }
+    }
+
     DelegateModel {
         id: delegateModel
 
@@ -81,15 +107,14 @@ NeptunePopup {
 
         delegate: ListItem {
             width: ListView.view.width
-            height: NeptuneStyle.dp(80)
-            icon.source: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : null
-            text: model.appInfo ? model.appInfo.name : null
-            enabled: model.appInfo ? !model.appInfo.asWidget : false
+            height: visible ? NeptuneStyle.dp(80) : 0
+            visible: model.appInfo && !model.appInfo.asWidget
+            icon.source: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : ""
+            text: model.appInfo ? model.appInfo.name : ""
             onClicked: {
-                model.appInfo.asWidget = true
-                root.state = "closed"
+                model.appInfo.asWidget = true;
+                root.close();
             }
-            dividerVisible: delegateModel.count - 1 !== DelegateModel.supportsWidgetStateIndex
         }
     }
 
@@ -131,6 +156,16 @@ NeptunePopup {
             }
             model: delegateModel
             interactive: false
+        }
+
+        Label {
+            height: root.height
+            width: root.width
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text: qsTr("No more widgets available.")
+            font.weight: Font.Light
+            visible: widgetListview.contentHeight === 0 && root.state === "open"
         }
     }
 }
