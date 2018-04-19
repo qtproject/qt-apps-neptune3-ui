@@ -2,9 +2,9 @@
 QMAKE_RPATHDIR += "$$INSTALL_PREFIX/long_padding/long_padding/long_padding/long_padding/long_padding\
                    long_padding/long_padding/long_padding/long_padding/long_padding/long_padding/"
 
+CONFIG += skip_target_version_ext
 TARGET = $$qtLibraryTarget($$TARGET)
 DESTDIR = $$BUILD_DIR/imports/shared/$$replace(uri, \\., /)
-CONFIG += skip_target_version_ext
 
 OTHER_FILES = qmldir
 

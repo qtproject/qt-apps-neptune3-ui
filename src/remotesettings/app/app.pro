@@ -5,7 +5,7 @@ DESTDIR = ../qtivi
 
 include($$SOURCE_DIR/config.pri)
 
-LIBS += -L$$OUT_PWD/../../../lib -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 

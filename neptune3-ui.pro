@@ -18,6 +18,7 @@ requires(qtHaveModule(appman_main-private))
 
 SUBDIRS += src
 copydata.depends += src
+copydata.depends += plugins
 
 SUBDIRS += copydata
 

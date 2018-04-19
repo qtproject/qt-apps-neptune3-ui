@@ -58,7 +58,7 @@ QT_BEGIN_NAMESPACE
 
 class QQuickIconPrivate;
 
-class Q_DECL_EXPORT QQuickIcon
+class QQuickIcon
 {
     Q_GADGET
     Q_PROPERTY(QString name READ name WRITE setName FINAL)

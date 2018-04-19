@@ -4,7 +4,7 @@ CONFIG += ivigenerator plugin
 
 include($$SOURCE_DIR/config.pri)
 
-LIBS += -L$$OUT_PWD/../../../lib -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
 DESTDIR = ../../../qtivi
 
 CONFIG += warn_off

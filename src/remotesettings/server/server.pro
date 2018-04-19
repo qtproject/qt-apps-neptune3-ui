@@ -18,7 +18,7 @@ HEADERS += \
 
 DEPENDPATH += $$OUT_PWD/../server
 
-LIBS += -L$$OUT_PWD/../../../lib -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 

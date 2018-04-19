@@ -83,7 +83,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Sudo::forkServer(Sudo::DropPrivilegesPermanently, &deploymentWarnings);
 
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
-        setenv("QT_IM_MODULE", "qtvirtualkeyboard", 1);
+        qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
 
         Main a(argc, argv);
 
