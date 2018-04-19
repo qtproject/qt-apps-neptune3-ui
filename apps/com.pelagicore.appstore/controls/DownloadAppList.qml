@@ -55,8 +55,8 @@ ListView {
 
     delegate: ListItem {
         id: delegatedItem
-        width: Style.hspan(15)
-        height: Style.vspan(1)
+        width: NeptuneStyle.dp(675)
+        height: NeptuneStyle.dp(80)
         property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
 
         icon.source: root.appServerUrl + "/app/icon?id=" + model.id
@@ -72,7 +72,7 @@ ListView {
         ProgressBar {
             id: control
 
-            height: Style.vspan(0.1)
+            height: NeptuneStyle.dp(8)
             anchors.bottom: parent.bottom
             value: root.installationProgress
             padding: 2
@@ -81,8 +81,8 @@ ListView {
             background: null
 
             contentItem: Item {
-                implicitWidth: Style.hspan(15)
-                implicitHeight: Style.hspan(0.08)
+                implicitWidth: NeptuneStyle.dp(675)
+                implicitHeight: NeptuneStyle.dp(4)
 
                 Rectangle {
                     width: control.visualPosition * parent.width

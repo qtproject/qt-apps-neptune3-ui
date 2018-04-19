@@ -50,8 +50,8 @@ Item {
     BusyIndicator {
         id: busyIndicator
 
-        width: Style.hspan(5)
-        height: Style.vspan(5.5)
+        width: NeptuneStyle.dp(225)
+        height: NeptuneStyle.dp(440)
         anchors.centerIn: parent
         running: visible
         opacity: root.store.categoryModel.count < 1 ? 1.0 : 0.0
@@ -68,7 +68,7 @@ Item {
 
     Label {
         anchors.top: busyIndicator.bottom
-        anchors.topMargin: Style.vspan(0.1)
+        anchors.topMargin: NeptuneStyle.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
         color: NeptuneStyle.contrastColor
         font.pixelSize: Style.fontSizeM
@@ -88,14 +88,14 @@ Item {
     RowLayout {
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(500/80)
+        anchors.topMargin: NeptuneStyle.dp(500)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: Style.vspan(20/80)
+        anchors.bottomMargin: NeptuneStyle.dp(20)
 
         AppStoreToolsColumn {
             id: toolsColumn
-            Layout.preferredWidth: Style.hspan(264/45)
-            Layout.preferredHeight: Style.vspan(4)
+            Layout.preferredWidth: NeptuneStyle.dp(264)
+            Layout.preferredHeight: NeptuneStyle.dp(320)
             anchors.top: parent.top
             model: root.store.categoryModel
             onToolClicked: root.store.selectCategory(index)
@@ -104,10 +104,10 @@ Item {
         DownloadAppList {
             id: appList
             installedApps: root.store.installedApps
-            Layout.preferredHeight: Style.vspan(10)
-            Layout.preferredWidth: Style.hspan(15)
+            Layout.preferredHeight: NeptuneStyle.dp(800)
+            Layout.preferredWidth: NeptuneStyle.dp(675)
             anchors.top: parent ? parent.top : undefined
-            anchors.topMargin: Style.vspan(0.2)
+            anchors.topMargin: NeptuneStyle.dp(16)
             model: root.store.applicationModel
             appServerUrl: root.store.appServerUrl
             installationProgress: root.store.currentInstallationProgress
