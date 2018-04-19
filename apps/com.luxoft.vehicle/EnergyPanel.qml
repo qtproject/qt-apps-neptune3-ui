@@ -109,7 +109,7 @@ Item {
                     pixelSize: NeptuneStyle.fontSizeXS
                     weight: Font.Light
                 }
-                opacity: NeptuneStyle.fontOpacityLow
+                opacity: NeptuneStyle.opacityLow
             }
         }
 
@@ -168,7 +168,7 @@ Item {
                         pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: NeptuneStyle.fontOpacityLow
+                    opacity: NeptuneStyle.opacityLow
                 }
             }
 
@@ -223,7 +223,7 @@ Item {
                         pixelSize: NeptuneStyle.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: NeptuneStyle.fontOpacityLow
+                    opacity: NeptuneStyle.opacityLow
                 }
             }
 

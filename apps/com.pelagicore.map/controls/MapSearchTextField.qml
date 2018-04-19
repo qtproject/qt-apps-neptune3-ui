@@ -43,8 +43,8 @@ TextField {
 
     font.family: NeptuneStyle.fontFamily
     font.pixelSize: NeptuneStyle.fontSizeM
-    color: NeptuneStyle.primaryTextColor
-    selectedTextColor: NeptuneStyle.highlightedTextColor
+    color: NeptuneStyle.contrastColor
+    selectedTextColor: NeptuneStyle.contrastColor
     leftPadding: NeptuneStyle.dp(18)
     rightPadding: NeptuneStyle.dp(63)
     horizontalAlignment: TextInput.AlignLeft

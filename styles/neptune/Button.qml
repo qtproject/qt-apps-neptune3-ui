@@ -52,7 +52,7 @@ T.Button {
     font.weight: Font.Light
     spacing: NeptuneStyle.dp(22)
 
-    icon.color: NeptuneStyle.primaryTextColor
+    icon.color: NeptuneStyle.contrastColor
 
     contentItem: IconLabel {
         spacing: control.spacing
@@ -63,8 +63,8 @@ T.Button {
         icon: control.icon
         text: control.text
         font: control.font
-        color: NeptuneStyle.primaryTextColor
-        opacity: control.enabled ? 1.0 : 0.3
+        color: control.icon.color
+        opacity: control.enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
     }
 
     background: Rectangle {

@@ -35,6 +35,6 @@ import com.pelagicore.styles.neptune 3.0
 T.Control {
     font.family: NeptuneStyle.fontFamily
     font.pixelSize: NeptuneStyle.fontSizeM
-    palette.windowText: NeptuneStyle.primaryTextColor
+    palette.windowText: NeptuneStyle.contrastColor
     palette.brightText: NeptuneStyle.mainColor
 }

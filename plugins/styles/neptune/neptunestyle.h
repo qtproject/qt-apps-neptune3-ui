@@ -56,9 +56,6 @@ class NeptuneStyle : public QQuickStyleAttached
 
     // naming scheme use by other qt control styles
     // TODO: update controls to use colors from the design spec group or update the specs if needed
-    Q_PROPERTY(QColor primaryTextColor READ primaryTextColor NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(QColor disabledTextColor READ disabledTextColor NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(QColor highlightedTextColor READ highlightedTextColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor backgroundColor READ backgroundColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor buttonColor READ buttonColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor highlightedButtonColor READ highlightedButtonColor NOTIFY neptuneStyleChanged FINAL)
@@ -80,11 +77,13 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY scaleChanged FINAL)
     Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY scaleChanged FINAL)
 
-    // TODO drop the "font" prefix, this applies to other items like Image
-    Q_PROPERTY(qreal fontOpacityHigh READ fontOpacityHigh NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(qreal fontOpacityMedium READ fontOpacityMedium NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(qreal fontOpacityLow READ fontOpacityLow NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(qreal fontOpacityDisabled READ fontOpacityDisabled NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal opacityLow READ opacityLow NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal opacityMedium READ opacityMedium NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal opacityHigh READ opacityHigh NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal defaultDisabledOpacity READ defaultDisabledOpacity NOTIFY neptuneStyleChanged FINAL)
+
+    Q_PROPERTY(qreal primaryTextLetterSpacing READ primaryTextLetterSpacing NOTIFY neptuneStyleChanged FINAL)
+    Q_PROPERTY(qreal secondaryTextLetterSpacing READ secondaryTextLetterSpacing NOTIFY neptuneStyleChanged FINAL)
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(int fontFactor READ fontFactor NOTIFY neptuneStyleChanged FINAL)
@@ -124,9 +123,6 @@ public:
     Q_ENUM(Theme)
 
     enum SystemColor {
-        PrimaryTextColor,
-        HighlightedTextColor,
-        DisabledTextColor,
         BackgroundColor,
         ButtonColor,
         HighlightedButtonColor,
@@ -140,9 +136,6 @@ public:
     Q_ENUM(SystemColor)
 
     QColor systemColor(SystemColor role) const;
-    QColor primaryTextColor() const { return systemColor(PrimaryTextColor); }
-    QColor highlightedTextColor() const { return systemColor(HighlightedTextColor); }
-    QColor disabledTextColor() const { return systemColor(DisabledTextColor); }
     QColor backgroundColor() const { return systemColor(BackgroundColor); }
     QColor buttonColor() const { return systemColor(ButtonColor); }
     QColor highlightedButtonColor() const { return systemColor(HighlightedButtonColor); }
@@ -165,10 +158,13 @@ public:
     int fontSizeXL() const;
     int fontSizeXXL() const;
 
-    qreal fontOpacityHigh() const;
-    qreal fontOpacityMedium() const;
-    qreal fontOpacityLow() const;
-    qreal fontOpacityDisabled() const;
+    qreal opacityHigh() const;
+    qreal opacityMedium() const;
+    qreal opacityLow() const;
+    qreal defaultDisabledOpacity() const;
+
+    qreal primaryTextLetterSpacing() const;
+    qreal secondaryTextLetterSpacing() const;
 
     Q_INVOKABLE QColor lighter25(const QColor& color);
     Q_INVOKABLE QColor lighter50(const QColor& color);

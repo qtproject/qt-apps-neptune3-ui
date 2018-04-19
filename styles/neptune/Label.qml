@@ -36,11 +36,9 @@ import com.pelagicore.styles.neptune 3.0
 T.Label {
     id: control
     verticalAlignment: Text.AlignVCenter
-
-    color: control.enabled ? (control.visualFocus ? NeptuneStyle.highlightedTextColor : NeptuneStyle.primaryTextColor)
-                           : NeptuneStyle.disabledTextColor
-
+    color: NeptuneStyle.contrastColor
     font.pixelSize: NeptuneStyle.fontSizeM
+    font.weight: Font.Light
     font.family: NeptuneStyle.fontFamily
-    opacity: NeptuneStyle.fontOpacityHigh
+    opacity: enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
 }

@@ -43,21 +43,26 @@ T.TabButton {
 
     font.pixelSize: NeptuneStyle.fontSizeS
 
+    font.letterSpacing: selected ? font.pixelSize === NeptuneStyle.fontSizeS ?
+                                   NeptuneStyle.secondaryTextLetterSpacing
+                                 : NeptuneStyle.primaryTextLetterSpacing : 0
+
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
                              contentItem.implicitHeight + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
+    font.weight: selected ? Font.Normal : Font.Light
+
     contentItem: IconLabel {
         spacing: control.spacing
         mirrored: control.mirrored
         display: control.display
-
         icon: control.icon
         text: control.text
         font: control.font
-        color: NeptuneStyle.mainColor
+        color: selected ? NeptuneStyle.mainColor : NeptuneStyle.contrastColor
     }
 
     readonly property string positionState: {

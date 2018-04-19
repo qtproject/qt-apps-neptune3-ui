@@ -62,14 +62,14 @@ Item {
                         text: model.shortName
                         font.pixelSize: NeptuneStyle.fontSizeXS
                         font.family: NeptuneStyle.fontFamily
-                        color: NeptuneStyle.primaryTextColor
+                        color: NeptuneStyle.contrastColor
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
                 }
                 MonthGrid {
                     id: grid
-                    property color labelColor: NeptuneStyle.primaryTextColor
+                    property color labelColor: NeptuneStyle.contrastColor
                     locale: Qt.locale(Style.languageLocale)
                     month: index
                     year: {

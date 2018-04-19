@@ -72,8 +72,8 @@ ItemDelegate {
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
-
-    icon.color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+    opacity: enabled ? root.opacity : NeptuneStyle.defaultDisabledOpacity
+    icon.color: NeptuneStyle.contrastColor
 
     contentItem: Item {
         implicitHeight: NeptuneStyle.dp(75)
@@ -87,7 +87,7 @@ ItemDelegate {
                 }
             }
             height: parent.height
-            opacity: root.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+            opacity: NeptuneStyle.opacityHigh
             iconScale: NeptuneStyle.scale
             spacing: root.spacing
             mirrored: root.mirrored
@@ -107,7 +107,7 @@ ItemDelegate {
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-                    opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+                    opacity: NeptuneStyle.opacityHigh
                     visible: root.text
                     color: NeptuneStyle.contrastColor
                 }
@@ -121,7 +121,7 @@ ItemDelegate {
                     verticalAlignment: Text.AlignVCenter
                     font.pixelSize: NeptuneStyle.fontSizeS
                     visible: text
-                    opacity: NeptuneStyle.fontOpacityMedium
+                    opacity: NeptuneStyle.opacityMedium
                 }
             }
             Item {

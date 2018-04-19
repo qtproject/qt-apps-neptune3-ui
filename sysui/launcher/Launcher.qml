@@ -91,7 +91,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(134) - width/2
 
-        opacity: useCloseIcon ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityHigh
+        opacity: useCloseIcon ? NeptuneStyle.opacityMedium : NeptuneStyle.opacityHigh
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
         checkable: true

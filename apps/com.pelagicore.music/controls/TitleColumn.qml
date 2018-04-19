@@ -58,9 +58,8 @@ ColumnLayout {
         Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
         font.pixelSize: NeptuneStyle.fontSizeS
-        font.weight: Font.Light
         visible: text !== ""
-        opacity: NeptuneStyle.fontOpacityMedium
+        opacity: NeptuneStyle.opacityMedium
         maximumLineCount: 1
         elide: Text.ElideRight
     }

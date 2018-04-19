@@ -93,15 +93,15 @@ Item {
             name: "normal"
             PropertyChanges { target: scaleEnergyArea; opacity: 1 }
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 105 }
-            PropertyChanges { target: graduationNumber; opacity: NeptuneStyle.fontOpacityMedium }
+            PropertyChanges { target: graduationNumber; opacity: NeptuneStyle.opacityMedium }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.fontOpacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
-            PropertyChanges { target: signBatteryRemain; opacity: NeptuneStyle.fontOpacityHigh }
+            PropertyChanges { target: signBatteryRemain; opacity: NeptuneStyle.opacityHigh }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: NeptuneStyle.fontOpacityLow; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.fontOpacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: NeptuneStyle.fontOpacityLow }
+            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: NeptuneStyle.opacityLow }
         },
         State {
             name: "navi"
@@ -109,13 +109,13 @@ Item {
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 105 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.fontOpacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: NeptuneStyle.fontOpacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.fontOpacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: NeptuneStyle.fontOpacityLow }
+            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: NeptuneStyle.opacityLow }
         }
     ]
 
@@ -277,8 +277,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            color: NeptuneStyle.primaryTextColor
-            opacity: (root.drivetrain === 0) ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
+            color: NeptuneStyle.contrastColor
+            opacity: (root.drivetrain === 0) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -289,8 +289,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            color: NeptuneStyle.primaryTextColor
-            opacity: (root.drivetrain === 3) ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
+            color: NeptuneStyle.contrastColor
+            opacity: (root.drivetrain === 3) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -301,8 +301,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            color: NeptuneStyle.primaryTextColor
-            opacity: (root.drivetrain === 1) ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
+            color: NeptuneStyle.contrastColor
+            opacity: (root.drivetrain === 1) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Text {
@@ -312,8 +312,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.family: "Open Sans"
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            color: NeptuneStyle.primaryTextColor
-            opacity: (root.drivetrain === 2) ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
+            color: NeptuneStyle.contrastColor
+            opacity: (root.drivetrain === 2) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
     }
@@ -328,8 +328,8 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: NeptuneStyle.primaryTextColor
-        opacity: NeptuneStyle.fontOpacityHigh
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
@@ -340,8 +340,8 @@ Item {
         text: qsTr("% power")
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.primaryTextColor
-        opacity: NeptuneStyle.fontOpacityLow
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -354,8 +354,8 @@ Item {
         horizontalAlignment: Text.AlignHCenter
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.primaryTextColor
-        opacity: NeptuneStyle.fontOpacityLow
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -375,8 +375,8 @@ Item {
         text: "184"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.primaryTextColor
-        opacity: NeptuneStyle.fontOpacityHigh
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -387,8 +387,8 @@ Item {
         text: "21"
         font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.primaryTextColor
-        opacity: NeptuneStyle.fontOpacityHigh
+        color: NeptuneStyle.contrastColor
+        opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -406,7 +406,7 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        opacity: NeptuneStyle.fontOpacityMedium
+        opacity: NeptuneStyle.opacityMedium
 
         //size and layout
         readonly property real radius: width / 2 - 50 * d.scaleRatio
@@ -423,7 +423,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: NeptuneStyle.primaryTextColor
+            color: NeptuneStyle.contrastColor
             opacity: graduationNumber.opacity
             font.family: "Open Sans"
             font.weight: Font.Light

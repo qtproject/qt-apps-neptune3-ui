@@ -69,8 +69,8 @@ T.Switch {
         padding: (height - NeptuneStyle.dp(30)) / 2
         color: 'transparent'
         border.width: control.visualFocus ? NeptunStyle.dp(2) : NeptuneStyle.dp(1.4)
-        border.color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+        border.color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
+        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
@@ -78,7 +78,7 @@ T.Switch {
             width: NeptuneStyle.dp(28)
             height: width
             radius: width/2
-            color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
+            color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
             border.width: control.visualFocus ? NeptuneStyle.dp(2) : NeptuneStyle.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
@@ -101,7 +101,7 @@ T.Switch {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-        color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        color: NeptuneStyle.contrastColor
     }
 }

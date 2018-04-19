@@ -77,7 +77,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: NeptuneStyle.fontOpacityMedium
+            opacity: NeptuneStyle.opacityMedium
         }
         Image {
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
@@ -101,7 +101,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: NeptuneStyle.fontOpacityMedium
+            opacity: NeptuneStyle.opacityMedium
         }
         Image {
             Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)

@@ -88,7 +88,7 @@ ListItemBasic {
     accessoryDelegateComponent1: Label {
         id: secondaryTextLabel
         anchors.verticalCenter: parent.verticalCenter
-        opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
+        opacity: NeptuneStyle.opacityMedium
         font.pixelSize: NeptuneStyle.fontSizeS
         text: root.secondaryText
     }

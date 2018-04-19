@@ -67,9 +67,8 @@ ListItemBasic {
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter
-        opacity: root.enabled ? NeptuneStyle.fontOpacityMedium : NeptuneStyle.fontOpacityDisabled
         visible: root.secondaryText
-        color: root.enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+        color: NeptuneStyle.contrastColor
         text: root.secondaryText
     }
 

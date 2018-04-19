@@ -37,16 +37,16 @@ import com.pelagicore.styles.neptune 3.0
 ToolButton {
     id: root
     property alias iconSource: buttonImage.source
-    property color labelColor: NeptuneStyle.primaryTextColor
+    property color labelColor: NeptuneStyle.contrastColor
 
     property string primaryText
 
     property string extendedText: ""
-    property color extendedTextColor: NeptuneStyle.highlightedTextColor
+    property color extendedTextColor: NeptuneStyle.accentDetailColor
     property int extendedTextFontSize: NeptuneStyle.fontSizeS
 
     property string secondaryText: ""
-    property color secondaryTextColor: NeptuneStyle.primaryTextColor
+    property color secondaryTextColor: NeptuneStyle.contrastColor
     property int secondaryTextFontSize: NeptuneStyle.fontSizeS
 
     background: Item {

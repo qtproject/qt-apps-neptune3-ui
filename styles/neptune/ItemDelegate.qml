@@ -69,7 +69,7 @@ T.ItemDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
-        color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
+        opacity: enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
+        color: NeptuneStyle.contrastColor
     }
 }

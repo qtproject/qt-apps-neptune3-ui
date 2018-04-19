@@ -65,7 +65,7 @@ T.ComboBox {
         source: "image://default/double-arrow/" + (!control.editable && control.visualFocus ? Default.focusColor : Default.textColor)
         sourceSize.width: width
         sourceSize.height: height
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
     }
 
     contentItem: T.TextField {
@@ -83,12 +83,12 @@ T.ComboBox {
         validator: control.validator
 
         font: control.font
-        color: !control.editable && control.visualFocus ? Default.focusColor : control.NeptuneStyle.primaryTextColor
+        color: !control.editable && control.visualFocus ? Default.focusColor : control.NeptuneStyle.contrastColor
         selectionColor: control.NeptuneStyle.accentColor
-        selectedTextColor: control.NeptuneStyle.primaryTextColor
+        selectedTextColor: control.NeptuneStyle.contrastColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        opacity: control.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+        opacity: control.enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
 
         background: Rectangle {
             visible: control.editable && !control.flat

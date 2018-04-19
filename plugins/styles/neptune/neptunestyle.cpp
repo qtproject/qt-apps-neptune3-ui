@@ -59,9 +59,6 @@ public:
 
 static QHash<NeptuneStyle::SystemColor, QColor>
 GlobalLightThemeColors {
-                      {NeptuneStyle::PrimaryTextColor, QColor(0xFF000000)},
-                      {NeptuneStyle::HighlightedTextColor, QColor(0xFFCE8042)},
-                      {NeptuneStyle::DisabledTextColor, QColor(0xFF989898)},
                       {NeptuneStyle::BackgroundColor, QColor(0xFFF1EFED)},
                       {NeptuneStyle::ButtonColor, QColor(0xFF969696)},
                       {NeptuneStyle::HighlightedButtonColor, QColor(0XFFCBCAC8)},
@@ -76,9 +73,6 @@ GlobalLightThemeColors {
 
 static QHash<NeptuneStyle::SystemColor, QColor>
 GlobalDarkThemeColors {
-                     {NeptuneStyle::PrimaryTextColor, QColor(0xFFFFFFFF)},
-                     {NeptuneStyle::HighlightedTextColor, QColor(0xFFCE8042)},
-                     {NeptuneStyle::DisabledTextColor, QColor(0xFF989898)},
                      {NeptuneStyle::BackgroundColor, QColor(0xFF5E5954)},
                      {NeptuneStyle::ButtonColor, QColor(0xFF969696)},
                      {NeptuneStyle::HighlightedButtonColor, QColor(0xFF6D6B64)},
@@ -121,10 +115,12 @@ public:
     }
 
     void compute() {
+        //TODO correct all font sizes when spec is updated accordingly
+        //for the moment only S and M are specified
         fontSizeXXS = qRound(font.pixelSize() * 0.4 * fontFactor);
         fontSizeXS = qRound(font.pixelSize() * 0.6 * fontFactor);
-        fontSizeS = qRound(font.pixelSize() * 0.8 * fontFactor);
-        fontSizeM = qRound(font.pixelSize() * 1.0 * fontFactor);
+        fontSizeS = qRound(24 * fontFactor);
+        fontSizeM = qRound(28 * fontFactor);
         fontSizeL = qRound(font.pixelSize() * 1.25 * fontFactor);
         fontSizeXL = qRound(font.pixelSize() * 1.5 * fontFactor);
         fontSizeXXL = qRound(font.pixelSize() * 1.75 * fontFactor);
@@ -500,29 +496,39 @@ void NeptuneStyle::inheritTheme(Theme theme)
     emit accentColorChanged();
 }
 
-qreal NeptuneStyle::fontOpacityDisabled() const
-{
-    return 0.3;
-}
-
-qreal NeptuneStyle::fontOpacityLow() const
+qreal NeptuneStyle::opacityLow() const
 {
     return 0.4;
 }
 
-qreal NeptuneStyle::fontOpacityMedium() const
+qreal NeptuneStyle::opacityMedium() const
 {
     return 0.6;
 }
 
-qreal NeptuneStyle::fontOpacityHigh() const
+qreal NeptuneStyle::opacityHigh() const
 {
     return 0.94;
+}
+
+qreal NeptuneStyle::defaultDisabledOpacity() const
+{
+    return 0.3;
 }
 
 qreal NeptuneStyle::scale() const
 {
     return m_data->scale;
+}
+
+qreal NeptuneStyle::primaryTextLetterSpacing() const
+{
+    return -0.57;
+}
+
+qreal NeptuneStyle::secondaryTextLetterSpacing() const
+{
+    return -0.41;
 }
 
 void NeptuneStyle::setScale(qreal value)

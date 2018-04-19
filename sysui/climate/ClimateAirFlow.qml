@@ -67,7 +67,7 @@ Item {
                 width: NeptuneStyle.dp(sourceSize.width)
                 height: NeptuneStyle.dp(sourceSize.height)
                 source: Style.gfx(("fan-speed-"+index), NeptuneStyle.theme)
-                opacity: index === Tumbler.tumbler.currentIndex ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+                opacity: index === Tumbler.tumbler.currentIndex ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
                 fillMode: Image.PreserveAspectFit
             }
         }

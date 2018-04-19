@@ -57,9 +57,8 @@ Control {
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
             font.pixelSize: NeptuneStyle.fontSizeS
-            font.weight: Font.Light
             text: root.progressText
-            opacity: NeptuneStyle.fontOpacityMedium
+            opacity: NeptuneStyle.opacityMedium
         }
 
         ProgressBar {

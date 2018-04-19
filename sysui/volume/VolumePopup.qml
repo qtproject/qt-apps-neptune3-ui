@@ -61,13 +61,13 @@ NeptunePopup {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: NeptuneStyle.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: NeptuneStyle.fontOpacityMedium
+            opacity: NeptuneStyle.opacityMedium
             text: value
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: NeptuneStyle.fontSizeL
-            opacity: NeptuneStyle.fontOpacityLow
+            opacity: NeptuneStyle.opacityLow
             text: " %"
         }
     }

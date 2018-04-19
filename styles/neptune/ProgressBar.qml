@@ -61,6 +61,6 @@ T.ProgressBar {
         height: implicitHeight
         //TODO check with designer if color is correct
         color: NeptuneStyle.contrastColor
-        opacity: NeptuneStyle.fontOpacityMedium
+        opacity: NeptuneStyle.opacityMedium
     }
 }

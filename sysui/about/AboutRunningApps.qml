@@ -169,7 +169,7 @@ Item {
                             arg(model.cpuLoad).arg(model.memoryVirtual).
                             arg(model.memoryRSS).arg(model.memoryPSS)
                     font.pixelSize: NeptuneStyle.fontSizeS
-                    opacity: NeptuneStyle.fontOpacityMedium
+                    opacity: NeptuneStyle.opacityMedium
                 }
                 Column {
                     width: parent.width
@@ -185,13 +185,13 @@ Item {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame)
                             font.pixelSize: NeptuneStyle.fontSizeXS
-                            opacity: NeptuneStyle.fontOpacityMedium
+                            opacity: NeptuneStyle.opacityMedium
                         }
                         Switch {
                             id: primarySwitch
                             font.pixelSize: NeptuneStyle.fontSizeXS
                             text: qsTr("Performance monitor")
-                            opacity: NeptuneStyle.fontOpacityMedium
+                            opacity: NeptuneStyle.opacityMedium
                             Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
                         }
                     }
@@ -212,13 +212,13 @@ Item {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstSecondaryWindowFrame)
                             font.pixelSize: NeptuneStyle.fontSizeXS
-                            opacity: NeptuneStyle.fontOpacityMedium
+                            opacity: NeptuneStyle.opacityMedium
                         }
                         Switch {
                             id: secondarySwitch
                             font.pixelSize: NeptuneStyle.fontSizeXS
                             text: qsTr("Performance monitor")
-                            opacity: NeptuneStyle.fontOpacityMedium
+                            opacity: NeptuneStyle.opacityMedium
                             Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
                         }
                     }

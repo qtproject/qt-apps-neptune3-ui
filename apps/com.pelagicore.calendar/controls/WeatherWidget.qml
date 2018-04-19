@@ -62,8 +62,7 @@ Item {
         anchors.baseline: parent.bottom
         anchors.baselineOffset: -(lineCount-1) * height/lineCount
         font.pixelSize: NeptuneStyle.fontSizeS
-        font.weight: Font.Light
-        opacity: NeptuneStyle.fontOpacityMedium
+        opacity: NeptuneStyle.opacityMedium
         text: root.temperatureValue + "° " + root.weatherText + (precipitationVisible ? (",\n" + precipitationText) : "")
     }
 }

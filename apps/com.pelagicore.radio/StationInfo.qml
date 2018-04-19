@@ -71,8 +71,7 @@ Control {
             id: title
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
-            font.weight: Font.Light
-            opacity: NeptuneStyle.fontOpacityMedium
+            opacity: NeptuneStyle.opacityMedium
             visible: text !== ""
         }
 

@@ -76,7 +76,7 @@ Item {
             id: rotatingRect
             width: NeptuneStyle.fontSizeXS
             height: NeptuneStyle.fontSizeXS
-            color: NeptuneStyle.primaryTextColor
+            color: NeptuneStyle.contrastColor
             visible: root.fpsVisible
             // Have something constantly moving on the screen to force constant rendering
             RotationAnimator {

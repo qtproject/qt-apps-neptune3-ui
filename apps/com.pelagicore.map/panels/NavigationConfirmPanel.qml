@@ -108,7 +108,7 @@ Row {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: helper.localAsset("ic-start-navigation", NeptuneStyle.theme)
-                    opacity: startNavigationButton.enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+                    opacity: startNavigationButton.enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
                     width: NeptuneStyle.dp(sourceSize.width)
                     height: NeptuneStyle.dp(sourceSize.height)
                 }

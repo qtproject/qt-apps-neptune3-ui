@@ -58,7 +58,7 @@ Control {
                  Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
                  source: Style.symbol(modelData.icon, NeptuneStyle.theme)
                  fillMode: Image.PreserveAspectFit
-                 opacity: modelData.active ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityLow
+                 opacity: modelData.active ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
              }
          }
     }

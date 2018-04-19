@@ -74,7 +74,7 @@ Item {
         leftPadding: NeptuneStyle.dp(45 * 0.5)
         rightPadding: NeptuneStyle.dp(45 * 0.5)
         readOnly: true
-        color: NeptuneStyle.primaryTextColor
+        color: NeptuneStyle.contrastColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
         font.pixelSize: NeptuneStyle.fontSizeXL
         font.weight: Font.Light

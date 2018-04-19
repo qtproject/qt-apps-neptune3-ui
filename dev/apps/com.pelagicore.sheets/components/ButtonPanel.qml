@@ -154,7 +154,7 @@ Item {
                 implicitWidth: 160
                 icon.width: 35
                 icon.height: 35
-                customBackgroundColor: NeptuneStyle.highlightedTextColor
+                customBackgroundColor: NeptuneStyle.accentDetailColor
                 icon.name: "ic-seat-heat-passenger_OFF"
                 text: "text"
                 font.pixelSize: NeptuneStyle.fontSizeS

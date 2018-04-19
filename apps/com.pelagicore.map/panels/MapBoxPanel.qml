@@ -113,7 +113,7 @@ Item {
                 line.color: "#798bd9"
                 line.width: NeptuneStyle.dp(3)
                 smooth: true
-                opacity: NeptuneStyle.fontOpacityHigh
+                opacity: NeptuneStyle.opacityHigh
             }
         }
 
@@ -247,6 +247,6 @@ Item {
         anchors.leftMargin: NeptuneStyle.dp(45 * .5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(NeptuneStyle.primaryTextColor).arg(NeptuneStyle.fontFamily).arg(NeptuneStyle.fontSizeXXS)
+        .arg(NeptuneStyle.contrastColor).arg(NeptuneStyle.fontFamily).arg(NeptuneStyle.fontSizeXXS)
     }
 }

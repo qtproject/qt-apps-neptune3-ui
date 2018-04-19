@@ -51,16 +51,16 @@ T.ToolButton {
 
     font.pixelSize: NeptuneStyle.fontSizeM
     font.family: NeptuneStyle.fontFamily
-
-    icon.color: !enabled ? NeptuneStyle.disabledTextColor : checked || highlighted ? NeptuneStyle.accentColor : NeptuneStyle.primaryTextColor
+    opacity: enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
+    icon.color: (checked || highlighted) ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
 
     scale: pressed ? 1.1 : 1.0
     Behavior on scale { NumberAnimation { duration: 50 } }
 
     contentItem: NeptuneIconLabel {
-        readonly property real textOpacity: !enabled ? NeptuneStyle.fontOpacityDisabled
+        readonly property real textOpacity: !enabled ? NeptuneStyle.defaultDisabledOpacity
                                                      : control.checkable && !control.checked && control.display === AbstractButton.TextUnderIcon // ToolsColumn
-                                                       ? NeptuneStyle.fontOpacityLow : NeptuneStyle.fontOpacityHigh
+                                                       ? NeptuneStyle.opacityLow : NeptuneStyle.opacityHigh
 
         iconScale: NeptuneStyle.scale
         spacing: control.spacing

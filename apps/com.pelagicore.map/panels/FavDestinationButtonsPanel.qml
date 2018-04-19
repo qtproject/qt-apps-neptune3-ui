@@ -69,8 +69,8 @@ Item {
         Rectangle {
             Layout.fillHeight: true
             Layout.preferredWidth: NeptuneStyle.dp(1)
-            opacity: NeptuneStyle.fontOpacityDisabled
-            color: NeptuneStyle.primaryTextColor
+            opacity: NeptuneStyle.defaultDisabledOpacity
+            color: NeptuneStyle.contrastColor
         }
         MapToolButton {
             id: buttonGoWork

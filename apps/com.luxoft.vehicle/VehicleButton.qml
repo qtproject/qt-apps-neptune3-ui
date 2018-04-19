@@ -92,7 +92,7 @@ ToolButton {
 
         text: root.text
         font.weight: Font.Light
-        color: root.down ? "#41403f" : NeptuneStyle.primaryTextColor
+        color: root.down ? "#41403f" : NeptuneStyle.contrastColor
     }
 
     background: Rectangle {
