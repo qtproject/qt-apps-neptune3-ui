@@ -81,3 +81,9 @@ To run the settings server, just run the executable RemoteSettings_server
 In case QtIVI is not installed, 'dummyimports' folder contains QML dummy implementation of QtIVI:
 
     $ QML2_IMPORT_PATH=/path/to/dummyimports neptune3-ui -r
+
+# Building the settings app for Android
+
+The NeptuneControlApp may also be built and run on android. For building just the app for android, there is a separate project file, settings_app_android.pro, in the root directory. The project includes only the app and its dependencies. This requires the android build of qt 5.11 with the qtivi built for android.
+
+

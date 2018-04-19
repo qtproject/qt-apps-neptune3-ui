@@ -30,18 +30,21 @@
 ****************************************************************************/
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <settingsmodule.h>
+#include <QQmlContext>
+#include <QDir>
+#include "client.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
-    SettingsModule::registerTypes();
-    SettingsModule::registerQmlTypes(QLatin1String("Settings"), 1, 0);
+    Client client;
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
+    engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports/shared/"));
+    engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 

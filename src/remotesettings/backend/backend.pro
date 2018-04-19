@@ -5,7 +5,10 @@ CONFIG += ivigenerator plugin
 include($$SOURCE_DIR/config.pri)
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
-DESTDIR = ../../../qtivi
+DESTDIR = $$BUILD_DIR/qtivi
+
+#needed for the android deployment to work
+android: DESTDIR = $$BUILD_DIR/plugins/qtivi
 
 CONFIG += warn_off
 INCLUDEPATH += $$OUT_PWD/../frontend

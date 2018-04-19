@@ -42,7 +42,7 @@ Flickable {
 
     ColumnLayout {
         id: baseLayout
-        enabled: instrumentCluster.connected && client.connected
+        enabled: instrumentCluster.isInitialized && client.connected
         spacing: 20
         anchors.centerIn: parent
 

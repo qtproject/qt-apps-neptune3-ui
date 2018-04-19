@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -28,26 +28,29 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QtRemoteObjects>
-#include <QQmlContext>
-#include <QMetaObject>
-#include "client.h"
+import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+Flickable {
+    id: root
+    flickableDirection: Flickable.VerticalFlick
+    contentHeight: baseLayout.height
 
-    Client client;
+    ScrollIndicator.vertical: ScrollIndicator { }
 
-    QQmlApplicationEngine engine;
-    client.setContextProperties(engine.rootContext());
-    engine.rootContext()->setContextProperty("client", &client);
-    engine.load(QUrl(QLatin1String("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    ColumnLayout {
+        id: baseLayout
+        enabled: systemUI.isInitialized && client.connected
+        anchors.centerIn: parent
 
-    return app.exec();
+        Button {
+            text: qsTr("Show Next Secondary Window");
+            onClicked: {
+                // This is a hack. See the documentation of this property for details
+                systemUI.secondaryWindowSwitchCount = systemUI.secondaryWindowSwitchCount + 1
+            }
+        }
+    }
 }
+

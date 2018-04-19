@@ -29,35 +29,29 @@
 **
 ****************************************************************************/
 #include "client.h"
-#include <QQmlContext>
 
-Q_LOGGING_CATEGORY(remoteSettingsDynamicApp, "remotesettings.dynamicApp")
+Q_LOGGING_CATEGORY(remoteSettingsApp, "remotesettings.App")
 
-const QString Client::settingsLastUrlsPrefix = "lastUrls";
-const QString Client::settingsLastUrlsItem = "url";
+const QString Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
+const QString Client::settingsLastUrlsItem = QStringLiteral("url");
 const int Client::numOfUrlsStored = 5;
 const int Client::timeoutToleranceMS = 1000;
 const int Client::reconnectionIntervalMS = 3000;
-const QString Client::defaultUrl = "tcp://127.0.0.1:9999";
+const QString Client::defaultUrl = QStringLiteral("tcp://127.0.0.1:9999");
 
 Client::Client(QObject *parent) : QObject(parent),
-    m_repNode(nullptr),
     m_connected(false),
     m_timedOut(false),
-    m_settings("Pelagicore", "NeptuneControlApp")
+    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneControlApp"))
 {
     setStatus(tr("Not connected"));
-    connect(&m_UISettings, &AbstractDynamic::connectedChanged,
-            this, &Client::updateConnectionStatus);
-    connect(&m_instrumentCluster, &AbstractDynamic::connectedChanged,
-            this, &Client::updateConnectionStatus);
-    connect(&m_systemUI, &AbstractDynamic::connectedChanged,
-            this, &Client::updateConnectionStatus);
-    connect(&m_connectionMonitoring, &AbstractDynamic::connectedChanged,
-            this, &Client::updateConnectionStatus);
-    connect(&m_connectionMonitoringTimer,&QTimer::timeout, this, &Client::onCMTimeout);
-    connect(&m_connectionMonitoring, &ConnectionMonitoringDynamic::counterChanged,
+    connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);
+    connect(&m_connectionMonitoring, &ConnectionMonitoring::counterChanged,
             this, &Client::onCMCounterChanged);
+    connect(&m_connectionMonitoring, &QIviAbstractFeature::isInitializedChanged,
+            this, &Client::updateConnectionStatus);
+    connect(&m_connectionMonitoring, &QIviAbstractFeature::errorChanged,
+            this, &Client::updateConnectionStatus);
     connect(&m_reconnectionTimer, &QTimer::timeout, this, &Client::onReconnectionTimeout);
     readSettings();
     m_connectionMonitoringTimer.setSingleShot(true);
@@ -66,14 +60,6 @@ Client::Client(QObject *parent) : QObject(parent),
 
 Client::~Client()
 {
-    delete m_repNode;
-}
-
-void Client::setContextProperties(QQmlContext *context)
-{
-    context->setContextProperty(QStringLiteral("uiSettings"), &m_UISettings);
-    context->setContextProperty(QStringLiteral("instrumentCluster"), &m_instrumentCluster);
-    context->setContextProperty(QStringLiteral("systemUI"), &m_systemUI);
 }
 
 QUrl Client::serverUrl() const
@@ -109,28 +95,20 @@ void Client::connectToServer(const QString &serverUrl)
     if (url==m_serverUrl && connected())
         return;
 
-    if (m_repNode)
-        QObject::disconnect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+    QString configPath(QStringLiteral("./server.conf"));
+    if (qEnvironmentVariableIsSet("SERVER_CONF_PATH"))
+        configPath = QString::fromLocal8Bit(qgetenv("SERVER_CONF_PATH"));
 
-    delete m_repNode;
+    QSettings settings(configPath, QSettings::IniFormat);
+    settings.beginGroup(QStringLiteral("settings"));
+    settings.setValue(QStringLiteral("Registry"), serverUrl);
+    settings.sync();
 
-    m_repNode = new QRemoteObjectNode();
-    connect(m_repNode, &QRemoteObjectNode::error, this, &Client::onError);
+    m_connectionMonitoring.setServiceObject(nullptr);
+    m_connectionMonitoring.startAutoDiscovery();
 
-    if (m_repNode->connectToNode(url)) {
-        m_UISettings.resetReplica(m_repNode->acquireDynamic("Settings.UISettings"));
-        m_instrumentCluster.resetReplica(m_repNode->acquireDynamic("Settings.InstrumentCluster"));
-        m_systemUI.resetReplica(m_repNode->acquireDynamic("Settings.SystemUI"));
-        m_connectionMonitoring.resetReplica(m_repNode->acquireDynamic("Settings.ConnectionMonitoring"));
-        setStatus(tr("Connecting to %1...").arg(url.toString()));
-        updateLastUrls(url.toString());
-    } else {
-        setStatus(tr("Connection to %1 failed").arg(url.toString()));
-        m_UISettings.resetReplica(nullptr);
-        m_instrumentCluster.resetReplica(nullptr);
-        m_systemUI.resetReplica(nullptr);
-        m_connectionMonitoring.resetReplica(nullptr);
-    }
+    setStatus(tr("Connecting to %1...").arg(url.toString()));
+    updateLastUrls(url.toString());
 
     if (m_serverUrl!=url) {
         m_serverUrl=url;
@@ -139,14 +117,11 @@ void Client::connectToServer(const QString &serverUrl)
     }
 }
 
-void Client::onError(QRemoteObjectNode::ErrorCode code)
-{
-    qCWarning(remoteSettingsDynamicApp) << "Remote objects error, code:" << code;
-}
-
 void Client::updateConnectionStatus()
 {
-    bool c = (m_UISettings.connected() || m_instrumentCluster.connected() || m_systemUI.connected()) && !m_timedOut;
+    bool c = m_connectionMonitoring.isInitialized() &&
+             m_connectionMonitoring.error()==QIviAbstractFeature::NoError &&
+             !m_timedOut;
     if (c == m_connected)
         return;
     m_connected = c;
@@ -157,7 +132,7 @@ void Client::updateConnectionStatus()
     } else {
         setStatus(tr("Disconnected"));
         if (m_timedOut) {
-            qCWarning(remoteSettingsDynamicApp) << "Server heartbeat timed out.";
+            qCWarning(remoteSettingsApp) << "Server heartbeat timed out.";
             m_reconnectionTimer.start(reconnectionIntervalMS);
         }
     }
@@ -189,16 +164,16 @@ void Client::setStatus(const QString &status)
     if (status==m_status)
         return;
     m_status=status;
-    qCWarning(remoteSettingsDynamicApp) << "Client status: " << status;
+    qCWarning(remoteSettingsApp) << "Client status: " << status;
     emit statusChanged(m_status);
 }
 
 void Client::readSettings()
 {
-    int size=m_settings.beginReadArray("lastUrls");
-    for (int i=0; i<size;i++) {
+    int size=m_settings.beginReadArray(settingsLastUrlsPrefix);
+    for (int i=0; i<size; i++) {
         m_settings.setArrayIndex(i);
-        m_lastUrls.append(m_settings.value("url").toString());
+        m_lastUrls.append(m_settings.value(settingsLastUrlsItem).toString());
     }
     m_settings.endArray();
     emit lastUrlsChanged(m_lastUrls);
@@ -206,10 +181,10 @@ void Client::readSettings()
 
 void Client::writeSettings()
 {
-    m_settings.beginWriteArray("lastUrls");
-    for (int i=0; i<m_lastUrls.size();i++) {
+    m_settings.beginWriteArray(settingsLastUrlsPrefix);
+    for (int i=0; i<m_lastUrls.size(); i++) {
         m_settings.setArrayIndex(i);
-        m_settings.setValue("url",m_lastUrls.at(i));
+        m_settings.setValue(settingsLastUrlsItem, m_lastUrls.at(i));
     }
     m_settings.endArray();
 }
@@ -218,7 +193,7 @@ void Client::updateLastUrls(const QString &url)
 {
     m_lastUrls.removeOne(url);
     m_lastUrls.push_front(url);
-    while (m_lastUrls.size()>numOfUrlsStored)
+    while (m_lastUrls.size() > numOfUrlsStored)
         m_lastUrls.pop_back();
     writeSettings();
     emit lastUrlsChanged(m_lastUrls);

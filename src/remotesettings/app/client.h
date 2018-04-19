@@ -34,16 +34,15 @@
 #include <QObject>
 #include <QSettings>
 #include <QTimer>
-#include "uisettingsdynamic.h"
-#include "instrumentclusterdynamic.h"
-#include "systemuidynamic.h"
-#include "connectionmonitoringdynamic.h"
+#include <QLoggingCategory>
+#include <QUrl>
+#include "connectionmonitoring.h"
 
 QT_BEGIN_NAMESPACE
 class QQmlContext;
 QT_END_NAMESPACE
 
-Q_DECLARE_LOGGING_CATEGORY(remoteSettingsDynamicApp)
+Q_DECLARE_LOGGING_CATEGORY(remoteSettingsApp)
 
 class Client : public QObject
 {
@@ -65,7 +64,6 @@ public:
     explicit Client(QObject *parent = nullptr);
     ~Client();
 
-    void setContextProperties(QQmlContext *context);
     QUrl serverUrl() const;
     QString status() const;
     QStringList lastUrls() const;
@@ -81,7 +79,6 @@ public slots:
     void connectToServer(const QString &url);
 
 protected slots:
-    void onError(QRemoteObjectNode::ErrorCode code);
     void updateConnectionStatus();
     void onCMCounterChanged();
     void onCMTimeout();
@@ -93,7 +90,6 @@ private:
     void writeSettings();
     void updateLastUrls(const QString &url);
 
-    QRemoteObjectNode *m_repNode;
     QUrl m_serverUrl;
     QStringList m_lastUrls;
     bool m_connected;
@@ -101,10 +97,7 @@ private:
     QString m_status;
     QSettings m_settings;
 
-    UISettingsDynamic m_UISettings;
-    InstrumentClusterDynamic m_instrumentCluster;
-    SystemUIDynamic m_systemUI;
-    ConnectionMonitoringDynamic m_connectionMonitoring;
+    ConnectionMonitoring m_connectionMonitoring;
 
     QTimer m_connectionMonitoringTimer;
     QTimer m_reconnectionTimer;

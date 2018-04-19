@@ -31,105 +31,127 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import Settings 1.0
+import QtIvi 1.0
+import com.pelagicore.settings 1.0
+
+import QtQuick.Window 2.3
 
 ApplicationWindow {
+    id: root
+
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Settings")
+    width: 1280
+    height: 800
+    title: qsTr("Settings app")
 
-    CultureSettings {
-        id: cultureSettings
+    function sc(value) {
+        return value * Screen.pixelDensity;
     }
 
-    AudioSettings {
-        id: audioSettings;
-
-        volume: volumeSlider.value
-        balance: balanceSlider.value
-        muted: muteCheckbox.checked
+    Component.onCompleted: {
+        connectionDialog.open()
     }
 
-    NavigationSettings {
-        id: navigationSettings;
+    UISettings {
+        id: uiSettings
     }
 
-    Model3DSettings {
-        id: model3dSettings
+    InstrumentCluster {
+        id: instrumentCluster
     }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.margins: 10
+    ConnectionMonitoring {
+        id: connectionMonitoring
+    }
 
-        spacing: 10
+    SystemUI {
+        id: systemUI
+    }
 
-        GroupBox {
-            title: qsTr("Culture settings")
+    ConnectionDialog {
+        id: connectionDialog
+        statusText: client.status
+        lastUrls: client.lastUrls
 
-            Layout.fillWidth: true
+        x: (parent.width-width) /2
+        y: (parent.height-height) /2
 
-            Row {
-
-                Label {
-                    text: qsTr("Language:")
-                }
-
-                ComboBox {
-                    id: languageComboBox
-                    model: cultureSettings.languages
-                    currentIndex: cultureSettings.languages.indexOf(cultureSettings.language)
-
-                    onActivated: cultureSettings.language = currentText
-                }
-
+        onAccepted: {
+            if (accepted) {
+                client.connectToServer(url);
+                uiSettings.setServiceObject(null);
+                instrumentCluster.setServiceObject(null);
+                systemUI.setServiceObject(null);
+                uiSettings.startAutoDiscovery();
+                instrumentCluster.startAutoDiscovery();
+                systemUI.startAutoDiscovery();
             }
-
+            connectionDialog.close();
         }
 
-        GroupBox {
-            title: qsTr("Audio settings")
-
-            Layout.fillWidth: true
-
-            Row {
-                Label {
-                    text: qsTr("Volume:")
-                }
-                Slider {
-                    id: volumeSlider
-                    value: audioSettings.volume
-                }
-                Label {
-                    text: qsTr("Balance:")
-                }
-                Slider {
-                    id: balanceSlider
-                    value: audioSettings.balance
-                }
-                Label {
-                    text: qsTr("Mute:")
-                }
-                CheckBox {
-                    id: muteCheckbox
-                    checked: audioSettings.muted
-                }
+        Connections {
+            target: client
+            onServerUrlChanged: {
+                if (client.serverUrl.toString().length)
+                    connectionDialog.url = client.serverUrl.toString();
+                else
+                    connectionDialog.url = defaultUrl;
             }
         }
 
-        GroupBox {
-            title: qsTr("Navigation settings")
-
-            Layout.fillWidth: true
-        }
-
-        GroupBox {
-            title: qsTr("3D-model settings")
-
-            Layout.fillWidth: true
+        Connections {
+            target: client
+            onConnectedChanged: {
+                if (client.connected)
+                    connectionDialog.close();
+            }
         }
 
     }
 
+    header: ToolBar {
+        leftPadding: 8
+        rightPadding: 8
+        RowLayout {
+            anchors.fill: parent
+            Label {
+                text: client.status
+            }
+            Item {
+                Layout.fillWidth: true
+            }
+
+            ToolButton {
+                text: qsTr("Connect...")
+                onClicked: connectionDialog.open()
+            }
+        }
+    }
+
+   StackLayout {
+       id: stack
+       anchors.fill: parent
+       anchors.margins: 16
+       SettingsPage {}
+       ClusterPage {}
+       SystemUIPage {}
+   }
+
+   footer: TabBar {
+       TabButton {
+           text: uiSettings.isInitialized && client.connected ?
+                     qsTr("Settings") : qsTr("Settings (Offline)")
+           onClicked: stack.currentIndex = 0
+       }
+       TabButton {
+           text: instrumentCluster.isInitialized && client.connected ?
+                     qsTr("Cluster") : qsTr("Cluster (Offline)")
+           onClicked: stack.currentIndex = 1
+       }
+       TabButton {
+           text: systemUI.isInitialized && client.connected ?
+                     qsTr("System UI") : qsTr("System UI (Offline)")
+           onClicked: stack.currentIndex = 2
+       }
+   }
 }

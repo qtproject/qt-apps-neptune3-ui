@@ -4,9 +4,8 @@ SUBDIRS += \
     frontend \
     backend \
     server \
-    app \
-    app_dynamicreplica \
-    qml_plugin
+    qml_plugin \
+    app
 
 backend.depends = frontend
 server.depends = frontend

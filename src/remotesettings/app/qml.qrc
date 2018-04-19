@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>ClusterPage.qml</file>
+        <file>ConnectionDialog.qml</file>
+        <file>SettingsPage.qml</file>
+        <file>SystemUIPage.qml</file>
     </qresource>
 </RCC>
