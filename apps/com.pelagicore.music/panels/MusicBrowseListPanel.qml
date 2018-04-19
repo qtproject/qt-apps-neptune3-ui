@@ -158,7 +158,7 @@ Control {
             anchors.topMargin: NeptuneStyle.dp(53) + listHeader.height
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: Style.hspan(720/45)
+            width: NeptuneStyle.dp(720)
             interactive: contentHeight > height
             delegate: delegatedItem
             clip: true

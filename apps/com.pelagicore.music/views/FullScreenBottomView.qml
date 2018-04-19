@@ -57,10 +57,10 @@ Item {
 
     ToolsColumn {
         id: toolsColumn
-        width: Style.hspan(264/45)
+        width: NeptuneStyle.dp(264)
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(53/80)
+        anchors.topMargin: NeptuneStyle.dp(53)
         translationContext: "MusicToolsColumn"
         model: store.toolsColumnModel
         onClicked: {

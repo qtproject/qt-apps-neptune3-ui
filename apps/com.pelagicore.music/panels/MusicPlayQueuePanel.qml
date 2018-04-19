@@ -32,6 +32,7 @@
 import QtQuick 2.8
 import utils 1.0
 import controls 1.0
+import com.pelagicore.styles.neptune 3.0
 import QtQuick.Controls 2.2
 
 Control {
@@ -61,7 +62,7 @@ Control {
             ListItem {
                 id: delegatedSong
                 width: listView.width
-                height: Style.vspan(1.3)
+                height: NeptuneStyle.dp(104)
                 highlighted: false
                 text: {
                     if (model.item.title && (root.actualContentType === "track")) {
@@ -85,20 +86,20 @@ Control {
 
         ListView {
             id: listView
-            implicitWidth: Style.hspan(17)
+            implicitWidth: NeptuneStyle.dp(765)
             implicitHeight: root.height
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: Style.hspan(40/45)
-            anchors.rightMargin: Style.hspan(40/45)
+            anchors.leftMargin: NeptuneStyle.dp(40)
+            anchors.rightMargin: NeptuneStyle.dp(40)
             boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
             delegate: delegatedItem
             ScrollIndicator.vertical: ScrollIndicator {
                 parent: listView.parent
                 anchors.top: listView.top
                 anchors.left: listView.right
-                anchors.leftMargin: Style.hspan(1)
+                anchors.leftMargin: NeptuneStyle.dp(45)
                 anchors.bottom: listView.bottom
             }
         }

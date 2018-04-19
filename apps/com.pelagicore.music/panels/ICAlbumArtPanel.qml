@@ -83,7 +83,7 @@ Item {
             Image {
                 id: albumArtUndefined
                 anchors.centerIn: parent
-                width: Style.hspan(180/45)
+                width: NeptuneStyle.dp(180)
                 height: width
                 source: Style.gfx("album-art-placeholder")
                 fillMode: Image.PreserveAspectCrop
