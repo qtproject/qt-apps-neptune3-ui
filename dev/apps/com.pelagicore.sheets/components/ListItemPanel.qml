@@ -35,66 +35,68 @@ import QtQuick.Layouts 1.3
 import controls 1.0
 import utils 1.0
 
+import com.pelagicore.styles.neptune 3.0
+
 Item {
     id: root
     anchors.horizontalCenter: parent ? parent.horizontalCenter : null
     anchors.top: parent ? parent.top : null
-    anchors.topMargin: Style.vspan(0.5)
+    anchors.topMargin: NeptuneStyle.dp(40)
     anchors.bottom: parent ? parent.bottom : null
 
     Flickable {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: Style.hspan(17)
+        width: NeptuneStyle.dp(765)
         contentHeight: columnContent.height
         contentWidth: columnContent.width
         flickableDirection: Flickable.VerticalFlick
         clip: true
         ColumnLayout {
             id: columnContent
-            spacing: Style.vspan(0.05)
+            spacing: NeptuneStyle.dp(4)
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 text: "Basic ListItem"
                 dividerVisible: false
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 text: "ListItem Text"
                 subText: "ListItem Subtext"
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 text: "ListItem with an image"
                 icon.source: Style.gfx("fan-speed-5")
                 icon.color: "transparent"
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-update"
                 text: "ListItem with Icon"
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-update"
                 text: "ListItem with Secondary Text"
                 secondaryText: "Company"
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Secondary Text"
@@ -102,8 +104,8 @@ Item {
             }
 
             ListItem {
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Looooooooooonnngggg Text"
@@ -112,8 +114,8 @@ Item {
 
             ListItemProgress {
                 id: listItemProgress
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 minimumValue: 0
                 maximumValue: 100
                 icon.name: "ic-placeholder"
@@ -145,8 +147,8 @@ Item {
             }
             ListItemProgress {
                 id: listItemProgressIndeterminate
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 indeterminate: true
                 icon.name: "ic-placeholder"
                 cancelable: indeterminate
@@ -157,8 +159,8 @@ Item {
 
             ListItemSwitch {
                 id: listItemSwitch
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-placeholder"
                 text: "List item with a switch " + (listItemSwitch.switchOn ? "(ON)" : "(OFF)")
                 onSwitchClicked: console.log("Switch is clicked")
@@ -167,8 +169,8 @@ Item {
 
             ListItemTwoButtons {
                 id: listItemTwoButtons
-                implicitWidth: Style.hspan(17)
-                implicitHeight: Style.vspan(1.3)
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
                 icon.name: "ic-placeholder"
                 text: "List item with two accessory buttons"
                 symbolAccessoryButton1: "ic-call-contrast"

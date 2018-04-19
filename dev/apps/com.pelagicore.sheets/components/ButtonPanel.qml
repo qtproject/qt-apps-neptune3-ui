@@ -47,40 +47,40 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: Style.vspan(1)
-        spacing: Style.vspan(.5)
+        anchors.topMargin: NeptuneStyle.dp(80)
+        spacing: NeptuneStyle.dp(40)
         RowLayout {
-            spacing: Style.hspan(0.3)
+            spacing: NeptuneStyle.dp(13)
 
             Button {
-                implicitWidth: Style.hspan(7)
-                implicitHeight: Style.vspan(0.8)
+                implicitWidth: NeptuneStyle.dp(315)
+                implicitHeight: NeptuneStyle.dp(64)
                 font.pixelSize: NeptuneStyle.fontSizeS
                 text: "This is a button"
             }
 
             Button {
-                implicitWidth: Style.hspan(7)
-                implicitHeight: Style.vspan(0.8)
+                implicitWidth: NeptuneStyle.dp(315)
+                implicitHeight: NeptuneStyle.dp(64)
                 font.pixelSize: NeptuneStyle.fontSizeS
                 text: "Disabled Button"
                 enabled: false
             }
 
             Button {
-                implicitWidth: Style.hspan(7)
-                implicitHeight: Style.vspan(0.8)
+                implicitWidth: NeptuneStyle.dp(315)
+                implicitHeight: NeptuneStyle.dp(64)
                 font.pixelSize: NeptuneStyle.fontSizeS
                 text: "Button Checkable"
                 checkable: true
             }
         }
         RowLayout {
-            spacing: Style.hspan(0.3)
+            spacing: NeptuneStyle.dp(13)
 
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -88,7 +88,7 @@ Item {
             }
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -97,7 +97,7 @@ Item {
             }
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -107,11 +107,11 @@ Item {
             }
         }
         RowLayout {
-            spacing: Style.hspan(0.3)
+            spacing: NeptuneStyle.dp(13)
             Button {
                 text: "Large button"
                 implicitHeight: largeButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -119,7 +119,7 @@ Item {
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -128,7 +128,7 @@ Item {
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS
@@ -138,7 +138,7 @@ Item {
             }
         }
         RowLayout {
-            spacing: Style.hspan(0.3)
+            spacing: NeptuneStyle.dp(13)
 
             Button {
                 implicitHeight: largeButtonHeight
@@ -163,7 +163,7 @@ Item {
             }
         }
         RowLayout {
-            spacing: Style.hspan(0.3)
+            spacing: NeptuneStyle.dp(13)
             Button {
                 implicitHeight: largeButtonHeight
                 implicitWidth: 500
@@ -175,7 +175,7 @@ Item {
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: Style.hspan(7)
+                implicitWidth: NeptuneStyle.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: NeptuneStyle.fontSizeS

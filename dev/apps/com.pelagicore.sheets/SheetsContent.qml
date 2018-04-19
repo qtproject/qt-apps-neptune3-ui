@@ -46,9 +46,9 @@ Item {
         height: parent.height * 0.1
         anchors.bottom: stack.top
         anchors.left: parent.left
-        anchors.leftMargin: Style.hspan(0.8)
+        anchors.leftMargin: NeptuneStyle.dp(36)
         visible: stack.depth >= 2
-        spacing: Style.hspan(0.2)
+        spacing: NeptuneStyle.dp(9)
 
         ToolButton {
             anchors.verticalCenter: parent.verticalCenter
@@ -74,11 +74,11 @@ Item {
 
             delegate: Item {
                 width: componentListView.width
-                height: Style.vspan(1.5)
+                height: NeptuneStyle.dp(120)
 
                 Label {
                     anchors.left: parent.left
-                    anchors.leftMargin: Style.hspan(2)
+                    anchors.leftMargin: NeptuneStyle.dp(90)
                     anchors.verticalCenter: parent.verticalCenter
                     text: fileName.substring(0, fileName.length - 9);
                 }
