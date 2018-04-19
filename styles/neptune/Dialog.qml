@@ -61,7 +61,7 @@ T.Dialog {
     header: Label {
         visible: control.title
         elide: Label.ElideRight
-        height: Style.vspan(2)
+        height: NeptuneStyle.dp(160)
         text: control.title
         font.pixelSize: NeptuneStyle.fontSizeM
         horizontalAlignment: Text.AlignHCenter
