@@ -47,6 +47,7 @@ NeptunePopup {
     property alias model: delegateModel.model
     readonly property int popupHeight: popupContent.height
     height: Math.max(root.minHeight, popupHeight)
+    popupY: (root.parent.height - root.height)/2 - NeptuneStyle.dp(40)
 
     function fixupDivider() {
         var found = false;
