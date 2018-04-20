@@ -35,6 +35,8 @@ import controls 1.0
 import animations 1.0
 import QtQuick.Controls 2.2
 
+import com.pelagicore.styles.neptune 3.0
+
 import "../stores"
 import "../panels"
 import "../controls"
