@@ -159,6 +159,9 @@ Window {
             Component.onCompleted: updateTheme()
             function updateTheme() {
                 var chosenTheme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+                if (popupParent.visible) {
+                    popupParent.updateOverlay();
+                }
                 root.contentItem.NeptuneStyle.theme = chosenTheme;
                 if (instrumentClusterWindowLoader.item) {
                     instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;

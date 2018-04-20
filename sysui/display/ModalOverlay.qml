@@ -50,6 +50,10 @@ Item {
         effectSource.scheduleUpdate();
     }
 
+    function updateOverlay() {
+        effectSource.scheduleUpdate();
+    }
+
     signal overlayClicked()
 
     // TODO: Load only when needed
