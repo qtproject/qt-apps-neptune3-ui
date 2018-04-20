@@ -105,12 +105,6 @@ ApplicationManagerWindow {
 
     onWindowPropertyChanged: {
         switch (name) {
-        case "cellWidth":
-            Style.cellWidth = value;
-            break;
-        case "cellHeight":
-            Style.cellHeight = value;
-            break;
         case "exposedRectBottomMargin":
             d.exposedRectBottomMargin = value;
             break;

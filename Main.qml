@@ -244,9 +244,6 @@ Window {
         window: root
     }
 
-    Binding { target: Style; property: "cellWidth"; value: display.width / 24 }
-    Binding { target: Style; property: "cellHeight"; value: display.height / 24 }
-
     function orientationFromString(str) {
         str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
 

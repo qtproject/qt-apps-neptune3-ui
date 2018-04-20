@@ -42,10 +42,6 @@ Item {
     width: 600
     height: 600
 
-    // TODO: move this to a common base component
-    Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
-    Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
-
     FakeAppInfo {
         id: redApp
         property Item window: Rectangle { color: "red" }

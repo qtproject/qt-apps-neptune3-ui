@@ -47,8 +47,6 @@ QtObject {
     readonly property int centerConsoleHeight: 1920
     readonly property real centerConsoleAspectRatio: centerConsoleWidth / centerConsoleHeight
 
-    property int cellWidth
-    property int cellHeight
     property real fontWeight: Font.Light
 
     //StatusBar config
@@ -90,13 +88,5 @@ QtObject {
 
     function icon(name) {
         return drawableUrl + '/' + name + '.png';
-    }
-
-    function hspan(value) {
-        return Math.round(cellWidth * value)
-    }
-
-    function vspan(value) {
-        return Math.round(cellHeight * value)
     }
 }

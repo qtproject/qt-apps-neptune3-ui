@@ -45,11 +45,6 @@ ListModel {
     // The instrument cluster application.
     readonly property var instrumentClusterAppInfo: d.instrumentClusterAppInfo
 
-    // Used to calculate Style.hspan() and Style.vspan() in client apps
-    // Theses values change at runtime as the system ui gets resized and rotated in the display
-    property real cellWidth
-    property real cellHeight
-
     // The locale code (eg: "en_US") that is passed down to applications
     property string localeCode
 
@@ -242,9 +237,6 @@ ListModel {
 
             var isRegularApp = !!appInfo;
 
-            AM.WindowManager.setWindowProperty(window, "cellWidth", root.cellWidth);
-            AM.WindowManager.setWindowProperty(window, "cellHeight", root.cellHeight);
-
             if (isRegularApp) {
                 var isSecondaryWindow = AM.WindowManager.windowProperty(window, "windowType") == "secondary";
 
@@ -287,20 +279,6 @@ ListModel {
                 AM.ApplicationManager.application(appId).activated();
                 d.reactOnAppActivation(appId);
             }
-        }
-    }
-
-    onCellWidthChanged: {
-        for (var i = 0; i < AM.WindowManager.count; i++) {
-            var window = AM.WindowManager.get(i).windowItem;
-            AM.WindowManager.setWindowProperty(window, "cellWidth", root.cellWidth);
-        }
-    }
-
-    onCellHeightChanged: {
-        for (var i = 0; i < AM.WindowManager.count; i++) {
-            var window = AM.WindowManager.get(i).windowItem;
-            AM.WindowManager.setWindowProperty(window, "cellHeight", root.cellHeight);
         }
     }
 }

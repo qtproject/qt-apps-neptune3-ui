@@ -78,8 +78,6 @@ Item {
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
-        cellWidth: Style.cellWidth
-        cellHeight: Style.cellHeight
         localeCode: Style.languageLocale
     }
 

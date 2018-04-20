@@ -45,8 +45,6 @@ Window {
 
     color: root.contentItem.NeptuneStyle.theme === NeptuneStyle.Dark ? "black" : "white"
 
-    Binding { target: Style; property: "cellWidth"; value: root.width / 24 }
-    Binding { target: Style; property: "cellHeight"; value: root.height / 24 }
     Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
 
     Shortcut {
