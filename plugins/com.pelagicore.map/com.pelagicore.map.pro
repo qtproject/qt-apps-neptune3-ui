@@ -13,4 +13,4 @@ SOURCES += \
 HEADERS += \
     mapshelper.h \
 
-DEFINES += "INSTALL_PATH=$$INSTALL_PREFIX/neptune3/"
+DEFINES += "INSTALL_PATH=$$clean_path($$INSTALL_PREFIX/neptune3/)"
