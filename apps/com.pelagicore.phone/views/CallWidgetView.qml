@@ -83,7 +83,7 @@ Item {
                 target: contactImage; width: NeptuneStyle.dp(200); height: width
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: NeptuneStyle.dp(45 * .7)
+                target: textColumn; anchors.leftMargin: NeptuneStyle.dp(32)
             }
         },
         State {
@@ -102,7 +102,7 @@ Item {
                 target: contactImage; width: NeptuneStyle.dp(258); height: width; anchors.topMargin: NeptuneStyle.dp(80)
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: 0
+                target: textColumn; anchors.leftMargin: 0; anchors.topMargin: NeptuneStyle.dp(32)
             }
         },
         State {
@@ -115,9 +115,6 @@ Item {
         State {
             name: "Maximized"
             extend: "Widget2Rows"
-            PropertyChanges {
-                target: buttonRow; scale: .8
-            }
             PropertyChanges {
                 target: contactImage; width: NeptuneStyle.dp(200); height: width; anchors.topMargin: NeptuneStyle.dp(24)
             }
@@ -143,6 +140,8 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
 
         opacity: root.state == "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0
@@ -173,6 +172,7 @@ Item {
 
     RowLayout {
         id: buttonRow
+        spacing: root.state === "Widget1Row" ? NeptuneStyle.dp(60) : NeptuneStyle.dp(5)
 
         ToolButton {
             Layout.rightMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
@@ -180,9 +180,12 @@ Item {
         }
 
         ToolButton {
+            Layout.preferredWidth: NeptuneStyle.dp(90)
+            Layout.preferredHeight: NeptuneStyle.dp(90)
             background: Image {
                 anchors.centerIn: parent
-                fillMode: Image.Pad
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
                 source: Style.symbol("ic_button-bg-red")
             }
             icon.name: "ic-end-call"
