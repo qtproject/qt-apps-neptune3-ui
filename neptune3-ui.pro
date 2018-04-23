@@ -36,3 +36,5 @@ OTHER_FILES += $$PWD/plugins.yaml.in
 OTHER_FILES += .qmake.conf
 PLUGINS_DIR = $$OUT_PWD/qml
 QMAKE_SUBSTITUTES += $$PWD/plugins.yaml.in
+
+tests.depends = copydata plugins src
