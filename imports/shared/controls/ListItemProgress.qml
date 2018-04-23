@@ -52,6 +52,7 @@ import com.pelagicore.styles.neptune 3.0
  *  - cancelSymbol - This property holds the name of icon to be used as the cancel icon. The default value is "ic-close"
  *  - cancelable - Defines if the progress is cancelable. In case if it's false, cancelSymbol is hidden and cannot be clicked.
  *                 The default value is true
+ *  - progressVisible - The property defines whether the progress bar is visible or not.
  *
  * Signals:
  *   progressCanceled: This signal is emitted when the cancel button is clicked by the user.
@@ -80,6 +81,7 @@ ListItemBasic {
     property string secondaryText: ""
     property string cancelSymbol: "ic-close"
     property bool cancelable: true
+    property bool progressVisible: true
 
     signal progressCanceled()
 
@@ -108,6 +110,7 @@ ListItemBasic {
         value: root.value
         indeterminate: root.indeterminate
         backgroundVisible: root.backgroundVisible
+        visible: root.progressVisible
     }
 
     middleSpacerUsed: true

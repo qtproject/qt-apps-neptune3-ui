@@ -53,43 +53,21 @@ ListView {
 
     currentIndex: -1
 
-    delegate: ListItem {
+    delegate: ListItemProgress {
         id: delegatedItem
+        readonly property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
         width: NeptuneStyle.dp(675)
         height: NeptuneStyle.dp(80)
-        property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
-
         icon.source: root.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
-        rightToolSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
-        onRightToolClicked: {
+        cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
+        value: root.installationProgress
+        progressVisible: root.currentIndex === index && root.installationProgress < 1.0
+        onProgressCanceled: {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;
             }
             root.toolClicked(model.id);
-        }
-
-        ProgressBar {
-            id: control
-
-            height: NeptuneStyle.dp(8)
-            anchors.bottom: parent.bottom
-            value: root.installationProgress
-            padding: 2
-            visible: root.currentIndex === index && root.installationProgress < 1.0
-
-            background: null
-
-            contentItem: Item {
-                implicitWidth: NeptuneStyle.dp(675)
-                implicitHeight: NeptuneStyle.dp(4)
-
-                Rectangle {
-                    width: control.visualPosition * parent.width
-                    height: parent.height
-                    color: NeptuneStyle.accentColor
-                }
-            }
         }
     }
 }
