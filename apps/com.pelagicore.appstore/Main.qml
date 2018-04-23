@@ -45,10 +45,7 @@ PrimaryWindow {
         x: root.exposedRect.x
         y: 0
         width: root.exposedRect.width
-
-        //TODO: later use method from style to keep the aspect ratio
-        height: 660 - 224 + exposedRect.y
-        fillMode: Image.Pad
+        fillMode: Image.PreserveAspectFit
 
         source: Style.gfx("hero-appstore")
         asynchronous: true
