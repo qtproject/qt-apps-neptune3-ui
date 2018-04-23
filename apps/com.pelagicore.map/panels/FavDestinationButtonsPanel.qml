@@ -56,6 +56,7 @@ Item {
         anchors.fill: parent
         MapToolButton {
             id: buttonGoHome
+            Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
             iconSource: helper.localAsset("ic-home", NeptuneStyle.theme)
@@ -73,6 +74,7 @@ Item {
         }
         MapToolButton {
             id: buttonGoWork
+            Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
             anchors.verticalCenter: parent.verticalCenter
             iconSource: helper.localAsset("ic-work", NeptuneStyle.theme)
