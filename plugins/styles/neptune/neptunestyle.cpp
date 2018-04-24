@@ -550,7 +550,7 @@ QJSValue NeptuneStyle::dp() const
     if (!m_dp.isCallable()) {
         QQmlEngine *engine = qmlEngine(parent());
         if (engine) {
-            auto str = QStringLiteral("function(value) { return Math.round(value * %1); }").arg(scale());
+            auto str = QStringLiteral("(function(value) { return Math.round(value * %1); })").arg(scale());
             m_dp = engine->evaluate(str);
         }
     }
