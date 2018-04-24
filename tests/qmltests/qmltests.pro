@@ -2,9 +2,18 @@ TEMPLATE=app
 TARGET=neptune-qmltestsrunner
 SOURCES += testrunner.cpp
 
+include(../../config.pri)
+
 CONFIG += qmltestcase
 
-IMPORTPATH = $$BUILD_DIR/imports/shared $$BUILD_DIR/imports/system $$SOURCE_DIR/sysui $$SOURCE_DIR/tests/dummyimports
+# TODO: Check what is the import precedence to ensure Qt looks for modules first in the
+# build dir and only after in the installation dir.
+IMPORTPATH = $$BUILD_DIR/imports/shared \
+             $$BUILD_DIR/imports/system \
+             $$SOURCE_DIR/sysui \
+             $$SOURCE_DIR/tests/dummyimports \
+             $$INSTALL_PREFIX/neptune3/imports/system \
+             $$INSTALL_PREFIX/neptune3/imports/shared
 
 COMPONENT_NAMES = ApplicationWidget
 COMPONENT_NAMES += WidgetGrid
