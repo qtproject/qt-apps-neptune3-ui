@@ -33,6 +33,7 @@ import QtQuick 2.10
 import utils 1.0
 import controls 1.0
 import QtQuick.Controls 2.3
+import QtGraphicalEffects 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Row {
@@ -62,11 +63,17 @@ Row {
         onClicked: root.playClicked()
 
         background: Image {
+            id: playButtonBackground
             anchors.centerIn: parent
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
             source: Style.symbol("ic_button-bg")
             fillMode: Image.PreserveAspectFit
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                source: playButtonBackground
+                color: NeptuneStyle.accentColor
+            }
         }
     }
 
