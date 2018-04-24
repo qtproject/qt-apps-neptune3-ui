@@ -32,23 +32,40 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.0
 import controls 1.0
-import animations 1.0
 import com.pelagicore.styles.neptune 3.0
 
-NotificationItem {
+Control {
     id: root
 
-    property var notificationModel
+    property string notificationText
+    property string notificationSubtext
+    property string notificationIcon
+    property string notificationAccessoryButtonIcon
+    property real contentOpacity: 1.0
+    property bool dividerVisible: false
 
-    y: root.notificationModel.notificationToastVisible
-       && !root.notificationModel.notificationCenterVisible ? 0 : -root.height
-    Behavior on y { DefaultNumberAnimation { } }
+    signal buttonClicked()
+    signal closeClicked()
 
-    contentOpacity: root.notificationModel.notificationToastVisible ? 1.0 : 0.0
-    Behavior on contentOpacity { DefaultNumberAnimation { } }
+    implicitHeight: NeptuneStyle.dp(130)
 
-    notificationIcon: root.notificationModel.currentNotification.icon
-    notificationText: root.notificationModel.currentNotification.title
-    notificationSubtext: root.notificationModel.currentNotification.description
-    notificationAccessoryButtonIcon: root.notificationModel.currentNotification.image
+    background: Rectangle {
+        color: NeptuneStyle.offMainColor
+        opacity: root.contentOpacity
+    }
+
+    contentItem: ListItemTwoButtons {
+        implicitWidth: root.width
+        implicitHeight: NeptuneStyle.dp(110)
+        opacity: root.contentOpacity
+        icon.name: root.notificationIcon
+        text: root.notificationText
+        subText: root.notificationSubtext
+        symbolAccessoryButton1: root.notificationAccessoryButtonIcon
+        symbolAccessoryButton2: "ic-close"
+        dividerVisible: root.dividerVisible
+
+        onAccessoryButton1Clicked: root.buttonClicked()
+        onAccessoryButton2Clicked: root.closeClicked()
+    }
 }

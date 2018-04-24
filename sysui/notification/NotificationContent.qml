@@ -31,22 +31,26 @@
 
 import QtQuick 2.10
 import display 1.0
+import animations 1.0
+import models.notification 1.0
 import com.pelagicore.styles.neptune 3.0
 
 ModalOverlay {
     id: root
 
-    showModalOverlay: notificationCenter.y > 0
+    showModalOverlay: notificationCenter.notificationCenterVisible
     onOverlayClicked: notificationCenter.closeNotificationCenter()
 
     NotificationToast {
         anchors.left: parent.left
         anchors.right: parent.right
+        notificationModel: notificationCenter.notificationModel
 
         NotificationCenter {
             id: notificationCenter
             anchors.left: parent.left
             anchors.right: parent.right
+            notificationModel: NotificationModel { }
         }
     }
 }

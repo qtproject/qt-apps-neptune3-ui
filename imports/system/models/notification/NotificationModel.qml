@@ -29,10 +29,7 @@
 **
 ****************************************************************************/
 
-pragma Singleton
 import QtQuick 2.8
-
-import utils 1.0
 import QtApplicationManager 1.0
 
 QtObject {
@@ -123,11 +120,6 @@ QtObject {
 
             if (receivedContent.category === "notification") {
                 root.closeNotification();
-                for (var x = 0; x < root.model.count; ++x) {
-                    if (id === root.model.get(x).id) {
-                        root.model.remove(x);
-                    }
-                }
             }
         }
     }
@@ -199,6 +191,13 @@ QtObject {
     function removeNotification(index) {
         NotificationManager.dismissNotification(root.model.get(index).id);
         root.model.remove(index);
+    }
+
+    function clearNotification() {
+        root.model.clear();
+        for (var x = 0; x < root.model.count; ++x) {
+            NotificationManager.dismissNotification(root.model.get(x).id);
+        }
     }
 }
 

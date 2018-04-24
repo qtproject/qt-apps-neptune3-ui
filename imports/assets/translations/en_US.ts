@@ -491,6 +491,10 @@
         <source>Clear list</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No Notifications</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PhoneToolsColumn</name>

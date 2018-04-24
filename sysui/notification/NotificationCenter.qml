@@ -48,28 +48,29 @@ Item {
         return totalHeight;
     }
 
+    property NotificationModel notificationModel
     readonly property int notificationTopMargin: NeptuneStyle.dp(80)
     readonly property int notificationBottomMargin: NeptuneStyle.dp(144)
     readonly property int dragMaximumY: NeptuneStyle.dp(130)
     readonly property int dragMinimumY: root.height - NeptuneStyle.dp(130)
+    readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
 
-    y: NotificationModel.notificationCenterVisible ? root.dragMaximumY
+    y: root.notificationCenterVisible ? root.dragMaximumY
                                                    : - root.dragMinimumY
     Behavior on y { DefaultNumberAnimation { } }
 
     function closeNotificationCenter() {
-        NotificationModel.notificationCenterVisible = !NotificationModel.notificationCenterVisible;
+        root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
     }
 
     Rectangle {
         id: notificationCenterBg
         anchors.fill: parent
-        opacity: NotificationModel.notificationCenterVisible ? 1.0 : 0.0
+        opacity: root.notificationCenterVisible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: NeptuneStyle.offMainColor
     }
 
-    //TODO: Use real notification model
     Column {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(80)
@@ -94,39 +95,49 @@ Item {
             }
             opacity: notificationCenterBg.opacity
 
-            readonly property int delegatedHeight: NeptuneStyle.dp(110) * (notificationList.count - 1)
+            readonly property int delegatedHeight: NeptuneStyle.dp(110) * (notificationList.count)
 
-            model: 8
+            model: root.notificationModel.model
 
             clip: true
             ScrollIndicator.vertical: ScrollIndicator {}
-            delegate: ListItemTwoButtons {
+            delegate: NotificationItem {
                 id: delegatedItem
                 implicitWidth: notificationList.width
                 implicitHeight: NeptuneStyle.dp(110)
-
-                // TODO: Update this text mockup with real notification model data.
-                icon.name: ""
-                text: "Notification Title"
-                subText: "Notification Description"
-                symbolAccessoryButton2: "ic-close"
-                onAccessoryButton2Clicked: NotificationModel.removeNotification(index);
+                notificationIcon: icon
+                notificationText: title
+                notificationSubtext: description
+                notificationAccessoryButtonIcon: image
+                onCloseClicked: root.notificationModel.removeNotification(index);
             }
         }
 
-        Button {
+        Item {
             implicitHeight: NeptuneStyle.dp(40)
             implicitWidth: NeptuneStyle.dp(150)
             anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: NeptuneStyle.fontSizeS
-            text: qsTr("Clear list")
 
-            // HACK!! TODO: Clear real notification model
-            // and adapt notification center height accordingly.
-            onClicked: {
-                notificationList.height = 0;
-                root.height = root.notificationBottomMargin + root.notificationTopMargin;
-                notificationList.model = 0;
+            Label {
+                anchors.centerIn: parent
+                font.pixelSize: NeptuneStyle.fontSizeM
+                opacity: root.notificationModel.model.count < 1
+                Behavior on opacity { DefaultNumberAnimation { } }
+                text: qsTr("No Notifications")
+            }
+
+            Button {
+                implicitHeight: NeptuneStyle.dp(40)
+                implicitWidth: NeptuneStyle.dp(150)
+                anchors.centerIn: parent
+                opacity: root.notificationModel.model.count > 0
+                Behavior on opacity { DefaultNumberAnimation { } }
+                font.pixelSize: NeptuneStyle.fontSizeS
+                text: qsTr("Clear list")
+
+                onClicked: {
+                    root.notificationModel.clearNotification();
+                }
             }
         }
     }
@@ -138,8 +149,8 @@ Item {
         anchors.top: root.bottom
 
         onClicked: {
-            NotificationModel.notificationToastVisible = false;
-            NotificationModel.notificationCenterVisible = !NotificationModel.notificationCenterVisible;
+            root.notificationModel.notificationToastVisible = false;
+            root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
         }
     }
 }
