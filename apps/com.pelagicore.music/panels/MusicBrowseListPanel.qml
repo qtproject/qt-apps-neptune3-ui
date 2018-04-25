@@ -95,10 +95,15 @@ Control {
             Label {
                 id: headerLabel
                 font.pixelSize: NeptuneStyle.fontSizeS
-                anchors.centerIn: parent
-                horizontalAlignment: Text.AlignHCenter
+                anchors.left: backButton.right
+                anchors.leftMargin: NeptuneStyle.dp(13)
+                anchors.right: buttonPlayAll.left
+                anchors.rightMargin: NeptuneStyle.dp(13)
+                anchors.verticalCenter: parent.verticalCenter
+                elide: Text.ElideRight
             }
             ToolButton {
+                id: buttonPlayAll
                 width: NeptuneStyle.dp(121.5)
                 height: NeptuneStyle.dp(48)
                 anchors.right: parent.right
