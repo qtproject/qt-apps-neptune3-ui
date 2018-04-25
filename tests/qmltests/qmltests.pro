@@ -4,6 +4,16 @@ SOURCES += testrunner.cpp
 
 include(../../config.pri)
 
+# This will add the install directory to the PATH variable of the target_wrapper.bat for the autotest
+# This is needed as the libRemoteSettings.dll will be installed there
+win32 {
+    extra_path.name = PATH
+    extra_path.CONFIG = prepend
+    extra_path.value += $$clean_path($$BUILD_DIR)
+    extra_path.value += $$clean_path($$INSTALL_PREFIX/neptune3)
+    QT_TOOL_ENV += extra_path
+}
+
 CONFIG += qmltestcase
 
 # TODO: Check what is the import precedence to ensure Qt looks for modules first in the
