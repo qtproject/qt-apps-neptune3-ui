@@ -73,14 +73,14 @@ Item {
 
         Label {
             id: primaryLabel
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeL
             font.weight: Font.Light
         }
 
         Label {
             id: secondaryLabel
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             font.pixelSize: NeptuneStyle.fontSizeS
             visible: text
         }
