@@ -926,6 +926,13 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>MusicComboBox</name>
+    <message>
+        <source>sources</source>
+        <translation type="obsolete">zdroje</translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
         <source>Next</source>
@@ -963,11 +970,14 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
-    <name>MusicStore</name>
+    <name>MusicSourcesPopup</name>
     <message>
-        <source>%1 (%2)</source>
-        <translation type="obsolete">%1 (%2)</translation>
+        <source>Choose Source</source>
+        <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>MusicStore</name>
     <message>
         <source>Unknown Artist</source>
         <translation type="unfinished">Neznámý umělec</translation>
@@ -981,7 +991,7 @@ UX na cestu</translation>
     <name>MusicToolsColumn</name>
     <message>
         <source>sources</source>
-        <translation type="obsolete">zdroje</translation>
+        <translation type="unfinished">zdroje</translation>
     </message>
     <message>
         <source>favorites</source>
@@ -1002,22 +1012,6 @@ UX na cestu</translation>
     <message>
         <source>folders</source>
         <translation>složky</translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation>spotify</translation>
-    </message>
-    <message>
-        <source>web radio</source>
-        <translation>web radio</translation>
-    </message>
-    <message>
-        <source>radio</source>
-        <translation type="vanished">rádio</translation>
-    </message>
-    <message>
-        <source>tuner</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

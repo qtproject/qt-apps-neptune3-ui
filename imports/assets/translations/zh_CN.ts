@@ -783,6 +783,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
+    <name>MusicComboBox</name>
+    <message>
+        <source>sources</source>
+        <translation type="obsolete">播放源</translation>
+    </message>
+</context>
+<context>
     <name>MusicList</name>
     <message>
         <source>Next</source>
@@ -820,6 +827,13 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
 </context>
 <context>
+    <name>MusicSourcesPopup</name>
+    <message>
+        <source>Choose Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicStore</name>
     <message>
         <source>Unknown Artist</source>
@@ -834,7 +848,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>MusicToolsColumn</name>
     <message>
         <source>sources</source>
-        <translation type="obsolete">播放源</translation>
+        <translation type="unfinished">播放源</translation>
     </message>
     <message>
         <source>favorites</source>
@@ -855,18 +869,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>folders</source>
         <translation type="unfinished">文件夹</translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>web radio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>tuner</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

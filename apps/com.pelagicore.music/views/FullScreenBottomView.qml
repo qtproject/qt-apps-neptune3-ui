@@ -40,6 +40,7 @@ import com.pelagicore.styles.neptune 3.0
 import "../stores"
 import "../panels"
 import "../controls"
+import "../popups"
 
 Item {
     id: root
@@ -54,7 +55,6 @@ Item {
     readonly property bool contentTypeContainsAlbumUniqueID: (albumsContentState.length > 5)
     property var store
 
-
     clip: true
 
     ToolsColumn {
@@ -65,18 +65,6 @@ Item {
         anchors.topMargin: NeptuneStyle.dp(53)
         translationContext: "MusicToolsColumn"
         model: store.toolsColumnModel
-        onClicked: {
-            if (currentText === "tuner") {
-                Qt.openUrlExternally("x-tuner://");
-                currentIndex = 0;
-            } else if (currentText === "web radio") {
-                Qt.openUrlExternally("x-webradio://");
-                currentIndex = 0;
-            } else if (currentText === "spotify") {
-                Qt.openUrlExternally("x-spotify://");
-                currentIndex = 0;
-            }
-        }
 
         onCurrentTextChanged: {
             musicLibrary.toolsColumnText = currentText;
@@ -88,6 +76,28 @@ Item {
                 root.artistsContentState = root.store.searchAndBrowseModel.contentType;
             }
         }
+        onClicked: {
+            if (currentText === "sources") {
+                //FIXME in multiprocess store.musicSourcesModel.length returns 1
+                //even though is more. When spotify and/or web radio are uninstalled
+                //and installed again, then it updates fine.
+                // caclulate popup height based on musicSources list items
+                // + 200 for header & margins
+                var calculateHeight = 200 + (store.musicSourcesModel.length * 96);
+                var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
+                //set model each time to ensure data accuracy
+                musicSourcesPopup.model = store.musicSourcesModel;
+                musicSourcesPopup.originItemX = pos.x;
+                musicSourcesPopup.originItemY = pos.y;
+                musicSourcesPopup.popupWidth = 910;
+                musicSourcesPopup.popupHeight = calculateHeight;
+                musicSourcesPopup.openPopup = true;
+            }
+        }
+    }
+
+    MusicSourcesPopup {
+        id: musicSourcesPopup
     }
 
     Binding {
@@ -108,9 +118,6 @@ Item {
                 }
             case "folders":
                 return "album";
-            case "radio":
-            case "spotify":
-            case "web radio":
             case "favorites":
                 // TODO: check if IVI already support favorites list.
             default:

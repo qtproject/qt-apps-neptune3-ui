@@ -95,6 +95,7 @@ ColumnLayout {
         This property's default is 0.
     */
     readonly property string currentText: model ? model.get(currentIndex).text : ""
+    property Item currentItem: repeater.itemAt(currentIndex)
 
     /*!
         \qmlproperty var ToolsColumn::model

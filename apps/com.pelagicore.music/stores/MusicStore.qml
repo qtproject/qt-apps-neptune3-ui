@@ -49,10 +49,7 @@ Store {
         ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists"); greyedOut: true }
         ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); greyedOut: false }
         ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
-        //TODO use right icons here
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "tuner"); greyedOut: false }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "spotify"); greyedOut: true }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "web radio"); greyedOut: true }
+        ListElement { icon: "ic-sources-bt"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "sources"); greyedOut: false }
     }
 
     property string headerText: (contentType.indexOf("artist") === -1) ? headerTextInAlbumsView :
@@ -117,6 +114,7 @@ Store {
     property string elapsedTime: Qt.formatTime(new Date(player.position), 'mm:ss')
     property string totalTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
     property real currentTrackPosition : player.position / player.duration
+    property var musicSourcesModel: [{ "text": "AM/FM Radio"}]
 
     property Connections con: Connections {
         target: player.playQueue
@@ -132,8 +130,12 @@ Store {
             id: musicIntentsInterface
             name: "neptune.musicintents.interface"
             Component.onCompleted: {
-                toolsColumnModel.get(6).greyedOut = !object.spotifyInstalled;
-                toolsColumnModel.get(7).greyedOut = !object.webradioInstalled;
+                if (object.webradioInstalled) {
+                    musicSourcesModel.push({"text" : "Web radio"});
+                }
+                if (object.spotifyInstalled) {
+                    musicSourcesModel.push({"text" : "Spotify"});
+                }
             }
         }
 
@@ -141,10 +143,26 @@ Store {
             target: musicIntentsInterface.object
 
             onSpotifyInstalledChanged: {
-                toolsColumnModel.get(6).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
+                if (musicIntentsInterface.object.spotifyInstalled) {
+                    musicSourcesModel.push({"text" : "Spotify"});
+                } else {
+                    for (var i in musicSourcesModel) {
+                        if (musicSourcesModel[i].text === "Spotify") {
+                            musicSourcesModel.splice(i, 1);
+                        }
+                    }
+                }
             }
             onWebradioInstalledChanged: {
-                toolsColumnModel.get(7).greyedOut = !musicIntentsInterface.object.webradioInstalled;
+                if (musicIntentsInterface.object.webradioInstalled) {
+                    musicSourcesModel.push({"text" : "Web radio"});
+                } else {
+                    for (var i in musicSourcesModel) {
+                        if (musicSourcesModel[i].text === "Web radio") {
+                            musicSourcesModel.splice(i, 1);
+                        }
+                    }
+                }
             }
         }
 
