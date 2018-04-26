@@ -60,66 +60,72 @@ ColumnLayout {
         return result + " " + GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion;
     }
 
-    Switch {
-        Layout.alignment: Qt.AlignRight
-        text: qsTr("System Monitor Overlay")
-        font.pixelSize: NeptuneStyle.fontSizeS
-        checked: SystemModel.systemOverlayEnabled
-        onToggled: {
-            SystemModel.systemOverlayEnabled = checked;
+    Flickable {
+        id: flickable
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        contentWidth: width - NeptuneStyle.dp(30)
+        contentHeight: contentList.height
+        clip: true
+
+        ScrollBar.vertical: ScrollBar {
+            policy: ScrollBar.AlwaysOn
         }
-    }
 
-    StartupInfo {
-        Layout.fillWidth: true
-        Layout.topMargin: NeptuneStyle.dp(20)
-    }
+        Column {
+            id: contentList
+            width: parent.width
+            spacing: NeptuneStyle.dp(24)
 
-    CpuMonitor {
-        Layout.fillWidth: true
-        Layout.preferredHeight: NeptuneStyle.dp(200)
-        Layout.topMargin: NeptuneStyle.dp(20)
-    }
+            Switch {
+                anchors.left: parent.left
+                anchors.leftMargin: NeptuneStyle.dp(24)
+                text: qsTr("System Monitor Overlay")
+                checked: SystemModel.systemOverlayEnabled
+                onToggled: {
+                    SystemModel.systemOverlayEnabled = checked;
+                }
+            }
 
-    RamMonitor {
-        Layout.fillWidth: true
-        Layout.preferredHeight: NeptuneStyle.dp(200)
-        Layout.topMargin: NeptuneStyle.dp(20)
-    }
+            MonitorListItem {
+                readonly property bool hasStartupData: StartupTimer.timeToFirstFrame > 0 && StartupTimer.systemUpTime > 0
+                title: qsTr("Startup timings")
+                subtitle: hasStartupData ? qsTr("From boot to System UI process start: %1 ms")
+                                           .arg(Number(StartupTimer.systemUpTime).toLocaleString(Qt.locale(), 'f', 0)) + "\n" +
+                                           qsTr("From System UI process start to first frame drawn: %1 ms")
+                                           .arg(Number(StartupTimer.timeToFirstFrame).toLocaleString(Qt.locale(), 'f', 0))
+                                         : qsTr("Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set")
+            }
 
-    NetworkMonitor {
-        Layout.fillWidth: true
-        Layout.topMargin: NeptuneStyle.dp(20)
-        addressList: sysinfo.addressList
-        online: sysinfo.online
-    }
+            MonitorListItem {
+                complexContent: CpuMonitor {
+                    width: contentList.width
+                    height: NeptuneStyle.dp(300)
+                }
+            }
 
-    Label {
-        text: qsTr("Version")
-        Layout.fillWidth: true
-        Layout.preferredHeight: font.pixelSize * 1.1
-        Layout.topMargin: NeptuneStyle.dp(20)
-    }
-    Label {
-        text: Qt.application.version
-        font.weight: Font.Light
-        font.pixelSize: NeptuneStyle.fontSizeS
-        Layout.fillWidth: true
-        Layout.preferredHeight: font.pixelSize * 1.1
-    }
+            MonitorListItem {
+                complexContent: RamMonitor {
+                    width: contentList.width
+                    height: NeptuneStyle.dp(300)
+                }
+            }
 
-    Label {
-        text: qsTr("Platform")
-        Layout.fillWidth: true
-        Layout.preferredHeight: font.pixelSize * 1.1
-        Layout.topMargin: NeptuneStyle.dp(20)
-    }
-    Label {
-        text: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " · " +
-              "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation()
-        font.weight: Font.Light
-        font.pixelSize: NeptuneStyle.fontSizeS
-        Layout.fillWidth: true
-        wrapMode: TextInput.Wrap
+            MonitorListItem {
+                title: qsTr("Network: %1").arg(sysinfo.online ? qsTr("online") : qsTr("offline"))
+                subtitle: sysinfo.addressList.join("\n")
+            }
+
+            MonitorListItem {
+                title: qsTr("Version")
+                subtitle: Qt.application.version
+            }
+
+            MonitorListItem {
+                title: qsTr("Platform")
+                subtitle: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " · " +
+                          "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation()
+            }
+        }
     }
 }

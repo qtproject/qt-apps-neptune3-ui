@@ -1,6 +1,7 @@
+import QtQuick 2.10
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2018 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,33 +30,50 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.10
 import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
 
-import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-ColumnLayout {
+Item {
     id: root
+    width: parent.width
+    height: complexItem.item ? complexItem.item.height : titleAndSubtitle.height
 
-    property var addressList
-    property bool online
+    property string title: ""
+    property string subtitle: ""
+    property alias complexContent: complexItem.sourceComponent
 
-    Label {
-        Layout.fillWidth: true
-        text: qsTr("Network: %1").arg(root.online ? qsTr("online") : qsTr("offline"))
-    }
-    ListView {
-        clip: true
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        model: root.addressList
-        delegate: ItemDelegate {
-            width: ListView.view.width
-            text: modelData
-            font.pixelSize: NeptuneStyle.fontSizeS
+    Item {
+        id: titleAndSubtitle
+        height: root.subtitle !== "" ? NeptuneStyle.dp(96) + subTitle.lineCount * NeptuneStyle.dp(16) : NeptuneStyle.dp(96)
+        visible: title !== "" || subtitle !== ""
+        width: root.width
+
+        Column {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: NeptuneStyle.dp(24)
+            anchors.right: parent.right
+            anchors.rightMargin: NeptuneStyle.dp(24)
+
+            Label {
+                id: title
+                text: root.title
+            }
+
+            Label {
+                id: subTitle
+                font.pixelSize: NeptuneStyle.fontSizeS
+                opacity: NeptuneStyle.opacityMedium
+                text: root.subtitle
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                width: parent.width
+            }
         }
-        ScrollIndicator.vertical: ScrollIndicator {}
+    }
+
+    Loader {
+        id: complexItem
     }
 }

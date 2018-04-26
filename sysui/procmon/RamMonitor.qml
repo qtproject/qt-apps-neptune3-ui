@@ -38,25 +38,29 @@ import models.system 1.0
 MonitorPanel {
     id: root
 
-    descriptionText: "RAM: "
-    middleText: "50%"
+    descriptionText: qsTr("RAM: ")
+    middleText: qsTr("50%")
 
     model: SystemMonitor
 
-    valueText: SystemModel.ramPercentage + "% " + SystemModel.ramBytes + "MB"
+    valueText: "%1%, %2 MB".arg(SystemModel.ramPercentage).arg(SystemModel.ramBytes)
 
     delegate: Item {
-        width: parent.width / root.model.count
+        width: root.width / root.model.count
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
-            color: NeptuneStyle.accentColor
+            color: "#0F000000"
+            opacity: Math.min(1, (root.model.count - index - 0.5) * 0.3)
+
             Rectangle {
-                width: parent.width
-                height: parent.height - ((model.memoryUsed/SystemMonitor.totalMemory) * parent.height)
-                color: "#efefef"
+                anchors.bottom: parent.bottom
+                width: parent.width - NeptuneStyle.dp(2)
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: model.memoryUsed / SystemMonitor.totalMemory * parent.height
+                color: "#30000000"
             }
         }
     }

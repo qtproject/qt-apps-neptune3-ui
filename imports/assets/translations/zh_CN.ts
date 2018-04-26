@@ -255,6 +255,17 @@
     </message>
 </context>
 <context>
+    <name>CpuMonitor</name>
+    <message>
+        <source>CPU: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>50%</source>
+        <translation type="unfinished">50%</translation>
+    </message>
+</context>
+<context>
     <name>DateTimePanel</name>
     <message>
         <source>Date &amp; Time</source>
@@ -644,6 +655,34 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>版</translation>
     </message>
     <message>
+        <source>Startup timings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From boot to System UI process start: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From System UI process start to first frame drawn: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
@@ -830,18 +869,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>Network</source>
         <translation type="vanished">网络</translation>
     </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>NotificationCenter</name>
@@ -950,6 +977,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>web radio</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RamMonitor</name>
+    <message>
+        <source>RAM: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>50%</source>
+        <translation type="unfinished">50%</translation>
     </message>
 </context>
 <context>
@@ -1100,25 +1138,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>colors</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>StartupInfo</name>
-    <message>
-        <source>From boot to System UI process start: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From System UI process start to first frame drawn: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Startup timings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

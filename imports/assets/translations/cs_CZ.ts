@@ -30,41 +30,41 @@ UX na cestu</translation>
     <name>AboutDiagnostics</name>
     <message>
         <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
-        <translation type="unfinished"></translation>
+        <translation>Níže je výstup z nástroje &lt;i&gt;qtdiag&lt;/i&gt;:</translation>
     </message>
 </context>
 <context>
     <name>AboutPerformance</name>
     <message>
         <source>Center Console Performance Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>Překryvná vrstva výkonu na středové konzoli</translation>
     </message>
     <message>
         <source>Instrument Cluster Performance Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>Překryvná vrstva výkonu na přístrojové desce</translation>
     </message>
     <message>
         <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolením sledování výkonu vnutíte aplikaci neustálé překreslování, tudíž i konstantní a zbytečné zatížení CPU/GPU.</translation>
     </message>
 </context>
 <context>
     <name>AboutPopup</name>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Systém</translation>
     </message>
     <message>
         <source>Running Apps</source>
-        <translation type="unfinished">Spuštěné aplikace</translation>
+        <translation>Spuštěné aplikace</translation>
     </message>
     <message>
         <source>Performance</source>
-        <translation type="unfinished"></translation>
+        <translation>Výkon</translation>
     </message>
     <message>
         <source>Diagnostics</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnostika</translation>
     </message>
 </context>
 <context>
@@ -75,27 +75,27 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolením sledování výkonu vnutíte aplikaci neustálé překreslování, tudíž i konstantní a zbytečné zatížení CPU/GPU.</translation>
     </message>
     <message>
         <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</translation>
     </message>
     <message>
         <source>Time to first frame: %1 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas do prvního snímku: %1 ms</translation>
     </message>
     <message>
         <source>Performance monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Monitor výkonu</translation>
     </message>
     <message>
         <source>Primary Window, on Center Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Primární okno, na středové konzoli</translation>
     </message>
     <message>
         <source>Secondary Window, on Instrument Cluster</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekundární okno, na přístrojové desce</translation>
     </message>
 </context>
 <context>
@@ -106,7 +106,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>No more widgets available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádné další widgety k dispozici.</translation>
     </message>
 </context>
 <context>
@@ -120,11 +120,11 @@ UX na cestu</translation>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+        <translation>Žádné aplikace nenalezeny!</translation>
     </message>
     <message>
         <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahuji data z Neptune serveru</translation>
     </message>
 </context>
 <context>
@@ -251,7 +251,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Partly cloudy</source>
-        <translation type="unfinished"></translation>
+        <translation>Částečně zataženo</translation>
     </message>
 </context>
 <context>
@@ -277,15 +277,15 @@ UX na cestu</translation>
     <name>CenterConsoleMonitorOverlay</name>
     <message>
         <source>CPU: %1 %</source>
-        <translation type="unfinished">CPU: %1%</translation>
+        <translation>CPU: %1%</translation>
     </message>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished">RAM: %1 MB (%2%)</translation>
+        <translation>RAM: %1 MB (%2%)</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Systém</translation>
     </message>
 </context>
 <context>
@@ -325,6 +325,17 @@ UX na cestu</translation>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
+    </message>
+</context>
+<context>
+    <name>CpuMonitor</name>
+    <message>
+        <source>CPU: </source>
+        <translation>CPU: </translation>
+    </message>
+    <message>
+        <source>50%</source>
+        <translation>50%</translation>
     </message>
 </context>
 <context>
@@ -457,11 +468,11 @@ UX na cestu</translation>
     <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
-        <translation type="unfinished">Domů</translation>
+        <translation>Domů</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation type="unfinished">Práce</translation>
+        <translation>Práce</translation>
     </message>
 </context>
 <context>
@@ -492,7 +503,7 @@ UX na cestu</translation>
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation type="unfinished">více</translation>
+        <translation>více</translation>
     </message>
 </context>
 <context>
@@ -672,7 +683,7 @@ UX na cestu</translation>
     <name>MapStore</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n kilometr</numerusform>
             <numerusform>%n kilometry</numerusform>
             <numerusform>%n kilometrů</numerusform>
@@ -680,7 +691,7 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n den</numerusform>
             <numerusform>%n dny</numerusform>
             <numerusform>%n dnů</numerusform>
@@ -688,7 +699,7 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n hodina</numerusform>
             <numerusform>%n hodiny</numerusform>
             <numerusform>%n hodin</numerusform>
@@ -696,7 +707,7 @@ UX na cestu</translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n minuta</numerusform>
             <numerusform>%n minuty</numerusform>
             <numerusform>%n minut</numerusform>
@@ -745,7 +756,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>FPS: %1</source>
-        <translation type="unfinished">FPS: %1</translation>
+        <translation>FPS: %1</translation>
     </message>
 </context>
 <context>
@@ -767,8 +778,36 @@ UX na cestu</translation>
         <translation type="vanished">(používá Qt %1 a %2)</translation>
     </message>
     <message>
+        <source>Startup timings</source>
+        <translation>Časování startu</translation>
+    </message>
+    <message>
+        <source>From boot to System UI process start: %1 ms</source>
+        <translation>Od spuštění systému ke startu aplikace: %1 ms</translation>
+    </message>
+    <message>
+        <source>From System UI process start to first frame drawn: %1 ms</source>
+        <translation>Od startu aplikace k prvnímu vykreslenému snímku: %1 ms</translation>
+    </message>
+    <message>
+        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
+        <translation>Časování startu nedostupné; ujistěte se, že je nastavena proměnná prostředí AM_STARTUP_TIMER</translation>
+    </message>
+    <message>
+        <source>Network: %1</source>
+        <translation>Síť: %1</translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation>online</translation>
+    </message>
+    <message>
+        <source>offline</source>
+        <translation>offline</translation>
+    </message>
+    <message>
         <source>Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Platforma</translation>
     </message>
 </context>
 <context>
@@ -901,15 +940,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>spotify</source>
-        <translation type="unfinished"></translation>
+        <translation>spotify</translation>
     </message>
     <message>
         <source>web radio</source>
-        <translation type="unfinished"></translation>
+        <translation>web radio</translation>
     </message>
     <message>
         <source>radio</source>
-        <translation type="unfinished"></translation>
+        <translation>rádio</translation>
     </message>
 </context>
 <context>
@@ -934,7 +973,7 @@ UX na cestu</translation>
     <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
-        <translation type="unfinished">Spustit navigaci</translation>
+        <translation>Spustit navigaci</translation>
     </message>
 </context>
 <context>
@@ -952,11 +991,11 @@ UX na cestu</translation>
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">Kam se chcete vydat dnes?</translation>
+        <translation>Kam se chcete vydat dnes?</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Hledat</translation>
+        <translation>Hledat</translation>
     </message>
 </context>
 <context>
@@ -965,28 +1004,16 @@ UX na cestu</translation>
         <source>Network</source>
         <translation type="vanished">Síť</translation>
     </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>NotificationCenter</name>
     <message>
         <source>Clear list</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistit seznam</translation>
     </message>
     <message>
         <source>No Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádná upozornění</translation>
     </message>
 </context>
 <context>
@@ -1084,15 +1111,26 @@ UX na cestu</translation>
     <name>RadioToolsColumn</name>
     <message>
         <source>music</source>
-        <translation type="unfinished"></translation>
+        <translation>hudba</translation>
     </message>
     <message>
         <source>spotify</source>
-        <translation type="unfinished"></translation>
+        <translation>spotify</translation>
     </message>
     <message>
         <source>web radio</source>
-        <translation type="unfinished"></translation>
+        <translation>web radio</translation>
+    </message>
+</context>
+<context>
+    <name>RamMonitor</name>
+    <message>
+        <source>RAM: </source>
+        <translation>RAM: </translation>
+    </message>
+    <message>
+        <source>50%</source>
+        <translation>50%</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1159,7 @@ UX na cestu</translation>
     <name>SearchOverlayPanel</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zpět</translation>
     </message>
 </context>
 <context>
@@ -1199,25 +1237,6 @@ UX na cestu</translation>
     <message>
         <source>colors</source>
         <translation>barvy</translation>
-    </message>
-</context>
-<context>
-    <name>StartupInfo</name>
-    <message>
-        <source>From boot to System UI process start: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>From System UI process start to first frame drawn: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Startup timings</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

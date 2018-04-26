@@ -45,15 +45,16 @@ Item {
     default property alias content: graphContent.children
     property alias model: graph.model
     property alias delegate: graph.delegate
-    readonly property int margin: 15
+
+    clip: true
 
     Label {
         id: titleLine
         anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.topMargin: NeptuneStyle.dp(24)
         anchors.left: parent.left
+        anchors.leftMargin: NeptuneStyle.dp(24)
         anchors.right: parent.right
-        height: NeptuneStyle.fontSizeM * 1.1
 
         text: root.descriptionText + root.valueText
     }
@@ -61,19 +62,23 @@ Item {
     Item {
         id: graphContainer
         anchors.top: titleLine.bottom
+        anchors.topMargin: NeptuneStyle.dp(24)
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: NeptuneStyle.dp(24)
         anchors.left: parent.left
-        anchors.right: middleLineText.left
+        anchors.right: parent.right
 
         Item {
             id: graphContent
             anchors.fill: parent
-            clip: true
+
+            LayoutMirroring.enabled: true
+            LayoutMirroring.childrenInherit: true
 
             ListView {
                 id: graph
                 width: parent.width
-                height: parent.height - root.margin
+                height: parent.height
                 anchors.bottom: parent.bottom
                 orientation: ListView.Horizontal
                 interactive: false
@@ -81,21 +86,21 @@ Item {
         }
 
         Row {
-            id: dottedLine
+            id: dashedLine
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.right: parent.right
-            spacing: 4
-            height: 4
+            spacing: NeptuneStyle.dp(8)
+            height: NeptuneStyle.dp(1)
 
             Repeater {
                 model: graphContainer.width/8
 
                 Rectangle {
-                    width: 4
-                    height: width
-                    radius: width
-                    color: "#4d4d4d"
+                    width: 4 // N.B. intentionally not scalable
+                    height: 1
+                    color: "black"
+                    opacity: NeptuneStyle.opacityMedium
                 }
             }
         }
@@ -106,6 +111,10 @@ Item {
         width: NeptuneStyle.dp(45)
         anchors.right: parent.right
         anchors.verticalCenter: graphContainer.verticalCenter
+        anchors.verticalCenterOffset: -height * 0.7
+        anchors.rightMargin: NeptuneStyle.dp(24)
+
         font.pixelSize: NeptuneStyle.fontSizeS
+        opacity: NeptuneStyle.opacityMedium
     }
 }

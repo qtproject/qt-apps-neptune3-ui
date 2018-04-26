@@ -42,12 +42,13 @@ import "../procmon"
 
 NeptunePopup {
     id: root
-    width: NeptuneStyle.dp(990)
-    height: NeptuneStyle.dp(1520)
+    width: NeptuneStyle.dp(910)
+    height: NeptuneStyle.dp(1426)
 
     property var applicationModel
 
-    topPadding: NeptuneStyle.dp(20)
+    headerBackgroundVisible: true
+    headerBackgroundHeight: NeptuneStyle.dp(278)
     bottomPadding: NeptuneStyle.dp(20)
 
     property string currentTabName: tabBar.currentItem.name
@@ -58,28 +59,39 @@ NeptunePopup {
         id: mainLayout
         readonly property real contentSideMargin: NeptuneStyle.dp(68)
 
-        RowLayout {
+        Item {
+            id: header
             Layout.fillWidth: true
-            Layout.leftMargin: mainLayout.contentSideMargin
-            Layout.rightMargin: mainLayout.contentSideMargin
-            spacing: NeptuneStyle.dp(50)
-            Image {
-                Layout.fillWidth: true
-                Layout.preferredWidth: parent.width / 3
-                fillMode: Image.PreserveAspectFit
-                source: Style.gfx("logo-theqtcompany")
-            }
-            Image {
-                Layout.fillWidth: true
-                Layout.preferredWidth: parent.width / 3
-                fillMode: Image.PreserveAspectFit
-                source: Style.gfx("logo-luxoft")
-            }
-            Image {
-                Layout.fillWidth: true
-                Layout.preferredWidth: parent.width / 3
-                fillMode: Image.PreserveAspectFit
-                source: Style.gfx("logo-kdab")
+            Layout.preferredHeight: root.headerBackgroundHeight
+
+            RowLayout {
+                id: logoRow
+                anchors.centerIn: parent
+                width: parent.width * 0.8
+                height: NeptuneStyle.dp(80)
+                spacing: NeptuneStyle.dp(60)
+
+                Image {
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.width / 3
+                    Layout.maximumHeight: parent.height
+                    fillMode: Image.PreserveAspectFit
+                    source: Style.gfx("logo-theqtcompany")
+                }
+                Image {
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.width / 3
+                    Layout.maximumHeight: parent.height
+                    fillMode: Image.PreserveAspectFit
+                    source: Style.gfx("logo-luxoft")
+                }
+                Image {
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.width / 3
+                    Layout.maximumHeight: parent.height
+                    fillMode: Image.PreserveAspectFit
+                    source: Style.gfx("logo-kdab")
+                }
             }
         }
 
@@ -87,8 +99,8 @@ NeptunePopup {
             id: tabBar
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
-            Layout.leftMargin: mainLayout.contentSideMargin
-            Layout.rightMargin: mainLayout.contentSideMargin
+            Layout.leftMargin: NeptuneStyle.dp(50)
+            Layout.rightMargin: NeptuneStyle.dp(50)
             Layout.topMargin: NeptuneStyle.dp(40)
             TabButton {
                 Layout.preferredWidth: NeptuneStyle.dp(180)
@@ -115,7 +127,7 @@ NeptunePopup {
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: NeptuneStyle.dp(10)
+            Layout.topMargin: NeptuneStyle.dp(24)
             Layout.leftMargin: mainLayout.contentSideMargin
             Layout.rightMargin: mainLayout.contentSideMargin
             Layout.bottomMargin: NeptuneStyle.dp(24)

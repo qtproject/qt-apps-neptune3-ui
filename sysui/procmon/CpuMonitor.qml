@@ -38,24 +38,28 @@ import models.system 1.0
 MonitorPanel {
     id: root
 
-    descriptionText: "CPU: "
-    middleText: "50%"
-    valueText: SystemModel.cpuPercentage + "%"
+    descriptionText: qsTr("CPU: ")
+    middleText: qsTr("50%")
+    valueText: "%1%".arg(SystemModel.cpuPercentage)
 
     model: SystemMonitor
 
     delegate: Item {
-        width: parent.width / root.model.count
+        width: root.width / root.model.count
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
-            color: NeptuneStyle.accentColor
+            color: "#0F000000"
+            opacity: Math.min(1, (root.model.count - index - 0.5) * 0.3)
+
             Rectangle {
-                width: parent.width
-                height: parent.height - (model.cpuLoad * parent.height)
-                color: "#efefef"
+                anchors.bottom: parent.bottom
+                width: parent.width - NeptuneStyle.dp(2)
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: model.cpuLoad * parent.height
+                color: "#30000000"
             }
         }
     }
