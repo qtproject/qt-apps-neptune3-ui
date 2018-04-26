@@ -105,5 +105,6 @@ T.SwitchDelegate {
         text: control.text
         font: control.font
         opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        color: NeptuneStyle.contrastColor
     }
 }
