@@ -54,19 +54,30 @@ Item {
     readonly property int dragMaximumY: NeptuneStyle.dp(130)
     readonly property int dragMinimumY: root.height - NeptuneStyle.dp(130)
     readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
+    property Item notificationCenterParent
 
-    y: root.notificationCenterVisible ? root.dragMaximumY
-                                                   : - root.dragMinimumY
+    y: root.notificationCenterVisible ? root.dragMaximumY : - root.dragMinimumY
     Behavior on y { DefaultNumberAnimation { } }
+
+    onYChanged: {
+        if (root.y > - root.dragMinimumY && !root.notificationModel.notificationToastVisible) {
+            notificationCenterBg.opacity = 1.0;
+        } else if (root.y === - root.dragMinimumY && !root.notificationCenterVisible) {
+            notificationCenterBg.opacity = 0.0;
+        }
+    }
 
     function closeNotificationCenter() {
         root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
+        if (!root.notificationModel.notificationCenterVisible) {
+            notificationCenterBg.opacity = 0.0;
+        }
     }
 
     Rectangle {
         id: notificationCenterBg
         anchors.fill: parent
-        opacity: root.notificationCenterVisible ? 1.0 : 0.0
+        opacity: 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: NeptuneStyle.offMainColor
     }
@@ -127,8 +138,7 @@ Item {
             }
 
             Button {
-                implicitHeight: NeptuneStyle.dp(40)
-                implicitWidth: NeptuneStyle.dp(150)
+                anchors.fill: parent
                 anchors.centerIn: parent
                 opacity: root.notificationModel.model.count > 0
                 Behavior on opacity { DefaultNumberAnimation { } }
@@ -143,14 +153,57 @@ Item {
     }
 
     NotificationHandle {
-        width: NeptuneStyle.dp(300)
-        height: NeptuneStyle.dp(30)
+        id: notificationHandle
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: root.bottom
+        dragTarget: root.notificationModel.notificationToastVisible ? root.notificationCenterParent : root
 
-        onClicked: {
-            root.notificationModel.notificationToastVisible = false;
-            root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
+        drag.minimumY: root.notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : - root.dragMinimumY
+        drag.maximumY: root.notificationModel.notificationToastVisible ? 0 : root.dragMaximumY
+
+        drag.onActiveChanged: {
+            notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+        }
+
+        onPressed: {
+            if (!root.notificationModel.notificationToastVisible) {
+                // reset values
+                notificationHandle.dragDelta = 0;
+                notificationHandle.dragOrigin = notificationHandle.dragTarget.y;
+                notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+                notificationCenterBg.opacity = 1.0;
+
+                // start drag filter timer
+                notificationHandle.dragFilterTimer.running = true;
+            }
+        }
+
+        onReleased: {
+            if (root.notificationCenterParent.y === - root.notificationCenterParent.height
+                    && !root.notificationModel.notificationToastVisible) {
+                if (!notificationHandle.drag.active && notificationHandle.swipe) {
+                    if (root.notificationModel.notificationCenterVisible && notificationHandle.dragDelta > 0) {
+                        root.notificationModel.notificationCenterVisible = true;
+                    } else if (root.notificationModel.notificationCenterVisible && notificationHandle.dragDelta < 0) {
+                        root.notificationModel.notificationCenterVisible = false;
+                    } else {
+                        root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
+                    }
+                } else {
+                    root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
+                }
+
+                // stop drag filter timer
+                notificationHandle.dragFilterTimer.running = false;
+                notificationHandle.dragDelta = notificationHandle.dragTarget.y - notificationHandle.dragOrigin;
+
+                if (!root.notificationModel.notificationCenterVisible) {
+                    notificationCenterBg.opacity = 0.0;
+                }
+            } else {
+                // close notification toast
+                root.notificationModel.closeNotification();
+            }
         }
     }
 }

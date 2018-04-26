@@ -50,6 +50,7 @@ ModalOverlay {
             id: notificationCenter
             anchors.left: parent.left
             anchors.right: parent.right
+            notificationCenterParent: parent
             notificationModel: NotificationModel { }
         }
     }

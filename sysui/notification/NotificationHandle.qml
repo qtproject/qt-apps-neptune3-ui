@@ -37,7 +37,21 @@ MouseArea {
     id: root
 
     width: NeptuneStyle.dp(300)
-    height: NeptuneStyle.dp(26)
+    height: NeptuneStyle.dp(30)
+
+    drag.axis: Drag.YAxis
+    drag.filterChildren: true
+
+    property var dragTarget: undefined
+    property int prevDragY: 0
+    property int dragDelta: 0
+    property int dragOrigin: 0
+
+    property bool swipe: Math.abs(root.prevDragY - root.dragTarget.y) > 0
+
+    property alias dragFilterTimer: dragFilterTimer
+
+    drag.target: root.dragTarget
 
     Rectangle {
         id: handle
@@ -45,5 +59,14 @@ MouseArea {
         height: NeptuneStyle.dp(2)
         anchors.centerIn: root
         color: NeptuneStyle.contrastColor
+    }
+
+    Timer {
+        id: dragFilterTimer
+        interval: 100
+        repeat: true
+        onTriggered: {
+            root.prevDragY = root.dragTarget.y;
+        }
     }
 }
