@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,12 @@
 **
 ****************************************************************************/
 
-pragma Singleton
 import QtQuick 2.0
 
 import com.pelagicore.systeminfo 1.0
 
 QtObject {
     id: root
-
-    property string clusterTitle: ""
 
     readonly property SystemInfo _systemInfo: SystemInfo {}
 

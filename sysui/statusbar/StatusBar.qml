@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -45,9 +45,10 @@ Item {
     height: NeptuneStyle.dp(Style.statusBarHeight)
 
     property var uiSettings
+    property StatusBarModel model
 
     IndicatorTray {
-        model: StatusBarModel.indicators
+        model: root.model.indicators
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(20)
         anchors.top: parent.top
@@ -59,7 +60,7 @@ Item {
         anchors.rightMargin: NeptuneStyle.dp(20)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        currentDate: StatusBarModel.currentDate
+        currentDate: root.model.currentDate
         uiSettings: root.uiSettings
     }
 }

@@ -49,6 +49,7 @@ import models.climate 1.0
 import models.settings 1.0
 import models.system 1.0
 import models.volume 1.0
+import models.statusbar 1.0
 import neptune.controls 1.0
 
 import QtGraphicalEffects 1.0
@@ -126,6 +127,7 @@ Item {
         anchors.right: parent.right
         uiSettings: settings
         z: 1
+        model: StatusBarModel {}
     }
 
     ClimateBar {
