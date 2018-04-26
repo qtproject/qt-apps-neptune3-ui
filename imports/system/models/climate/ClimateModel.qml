@@ -40,6 +40,8 @@ QtObject {
         discoveryMode: ClimateControl.AutoDiscovery
     }
 
+    property int measurementSystem
+
     property QtObject leftSeat: QtObject {
         readonly property real minValue: 17
         readonly property real maxValue: 25
@@ -150,7 +152,7 @@ QtObject {
     property int ventilation: climateControl.fanSpeedLevel
 
     // Not showing the measurement unit is the fashionable thing to do
-    readonly property string tempSuffix: "°" // SettingsModel.measurementSystem === Locale.MetricSystem ? "°C" : "°F"
+    readonly property string tempSuffix: "°" // root.measurementSystem === Locale.MetricSystem ? "°C" : "°F"
 
     property int ventilationLevels: 7 // 6 + off (0)
 
@@ -201,7 +203,7 @@ QtObject {
 
     function calculateUnitValue(value) {
         // Default value is the celsius
-        return SettingsModel.measurementSystem === Locale.MetricSystem || SettingsModel.measurementSystem === Locale.ImperialUKSystem ?
+        return root.measurementSystem === Locale.MetricSystem || root.measurementSystem === Locale.ImperialUKSystem ?
                     value : Math.round(value * 1.8 + 32)
     }
 }

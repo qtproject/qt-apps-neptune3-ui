@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,102 +29,10 @@
 **
 ****************************************************************************/
 
-pragma Singleton
 import QtQuick 2.6
 
 QtObject {
     id: root
 
     property int measurementSystem: Qt.locale().measurementSystem
-
-    property bool settingsPageVisible: false
-    property bool clusterVisible: true
-
-    readonly property ListModel profiles: ListModel {
-        ListElement { name: QT_TR_NOOP("Driver 1") }
-        ListElement { name: QT_TR_NOOP("Driver 2") }
-        ListElement { name: QT_TR_NOOP("Driver 3") }
-        ListElement { name: QT_TR_NOOP("Driver 4") }
-    }
-    property int currentProfileIndex: 0
-
-    property bool appUpdatesEnabled: false
-    property bool liveTrafficEnabled: false
-    property bool satelliteViewEnabled: false
-
-    property int windowTransitionsIndex: 0
-
-    property ListModel entries: ListModel {
-        ListElement { title: QT_TR_NOOP("USER PROFILE"); icon: "profile"; checked: true; hasChildren: true; hasCheck: true }
-        ListElement { title: QT_TR_NOOP("SERVICE & SUPPORT"); icon: "service"; checked: false; hasChildren: false }
-        ListElement { title: QT_TR_NOOP("TRAFFIC INFORMATION"); icon: "warning"; checked: true; hasChildren: true }
-        ListElement { title: QT_TR_NOOP("TOLL & CONGESTION FEES"); icon: "toll"; checked: false; hasChildren: true }
-        ListElement { title: QT_TR_NOOP("METRIC SYSTEM"); icon: "fees"; checked: true; hasChildren: false }
-        ListElement { title: QT_TR_NOOP("APP UPDATES"); icon: "updates"; checked: true; hasChildren: true }
-        ListElement { title: QT_TR_NOOP("SYSTEM MONITOR"); icon: "insurance"; checked: false; hasChildren: true }
-    }
-
-    property var carSettings: [ // FIXME l10n section ?
-        { section: "Units", option: speedOption },
-        { section: "Communication", option: bluetoothOption }
-    ]
-
-    property var speedOption: QtObject {
-        property var options: ['KMH', 'MPH']
-        property string name: "Speed" // FIXME l10n name?
-        property int active: 0
-
-        function setActive(index) { active = index }
-    }
-
-    property var bluetoothOption: QtObject {
-
-        property string name: "Bluetooth" // FIXME l10n name?
-        property bool active: false
-
-        function setActive(value) { active = value }
-    }
-
-    property ListModel functions: ListModel {
-        ListElement {
-            description: QT_TR_NOOP("Hill Descent Control")
-            icon: "hill_descent_control"
-            active: true
-        }
-        ListElement {
-            description: QT_TR_NOOP("Intelligent Speed Adaptation")
-            icon: "intelligent_speed_adaptation"
-            active: false
-        }
-        ListElement {
-            description: QT_TR_NOOP("Automatic Beam Switching")
-            icon: "automatic_beam_switching"
-            active: true
-        }
-        ListElement {
-            description: QT_TR_NOOP("Collision Avoidance")
-            icon: "collision_avoidance"
-            active: false
-        }
-        ListElement {
-            description: QT_TR_NOOP("Lane Assist")
-            icon: "lane_keeping_assist"
-            active: false
-        }
-        ListElement {
-            description: QT_TR_NOOP("Traffic Jam Assist")
-            icon: "traffic_jam_assist"
-            active: false
-        }
-        ListElement {
-            description: QT_TR_NOOP("Driver Drowsiness Alert")
-            icon: "driver_drownsyness_alert"
-            active: true
-        }
-        ListElement {
-            description: QT_TR_NOOP("Park Assist")
-            icon: "park_assist"
-            active: false
-        }
-    }
 }

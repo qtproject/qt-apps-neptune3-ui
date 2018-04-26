@@ -46,6 +46,7 @@ import ipc 1.0
 
 import models.application 1.0
 import models.climate 1.0
+import models.settings 1.0
 import models.system 1.0
 import models.volume 1.0
 import neptune.controls 1.0
@@ -92,6 +93,11 @@ Item {
 
     ClimateModel {
         id: climateModel
+        measurementSystem: settingsModel.measurementSystem
+    }
+
+    SettingsModel {
+        id: settingsModel
     }
 
     VolumeModel {
