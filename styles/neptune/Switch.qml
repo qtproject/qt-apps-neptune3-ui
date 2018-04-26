@@ -53,6 +53,9 @@ T.Switch {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
+    font.weight: Font.Light
+    font.pixelSize: NeptuneStyle.fontSizeM
+
     padding: NeptuneStyle.dp(8)
     spacing: NeptuneStyle.dp(8)
 
