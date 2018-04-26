@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 
-import neptune.controls 1.0
+import controls 1.0
 
 /*
     A seamless wrapper for AboutPopup that loads it on demand

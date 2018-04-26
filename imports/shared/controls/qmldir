@@ -5,3 +5,5 @@ ListItemBasic 1.0 ListItemBasic.qml
 ListItemProgress 1.0 ListItemProgress.qml
 ListItemSwitch 1.0 ListItemSwitch.qml
 ListItemTwoButtons 1.0 ListItemTwoButtons.qml
+NeptunePopup 1.0 NeptunePopup.qml
+NeptunePopupLoader 1.0 NeptunePopupLoader.qml

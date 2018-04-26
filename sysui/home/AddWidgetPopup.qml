@@ -38,7 +38,6 @@ import controls 1.0
 import utils 1.0
 import animations 1.0
 
-import neptune.controls 1.0
 import com.pelagicore.styles.neptune 3.0
 
 NeptunePopup {

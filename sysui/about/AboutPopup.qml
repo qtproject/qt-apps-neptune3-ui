@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
-import neptune.controls 1.0
+import controls 1.0
 
 import "../procmon"
 
