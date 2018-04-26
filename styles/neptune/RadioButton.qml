@@ -78,6 +78,6 @@ T.RadioButton {
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
 
-        opacity: enabled ? NeptuneStyle.fontOpacityHigh : NeptuneStyle.fontOpacityDisabled
+        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
     }
 }
