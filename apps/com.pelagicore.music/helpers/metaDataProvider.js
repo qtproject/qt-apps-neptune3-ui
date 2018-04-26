@@ -44,10 +44,10 @@ function getTitleName(itemText, altText, contentType) {
 }
 
 function getArtistName(itemText, contentType) {
-    if (itemText && (contentType === "track")) {
+    if (itemText && (contentType === "track" || contentType === "album")) {
         return itemText;
-    } else if (itemText && contentType === "album") {
-        return itemText;
+    } else {
+        return "";
     }
 }
 
