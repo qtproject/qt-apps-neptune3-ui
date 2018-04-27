@@ -35,6 +35,7 @@
 #include "neptunestyle.h"
 #include "neptunetheme.h"
 #include "qquickiconlabel_p.h"
+#include "qquickdefaultprogressbar_p.h"
 
 Q_LOGGING_CATEGORY(neptuneStyle, "neptune.style")
 
@@ -46,6 +47,7 @@ NeptuneStylePlugin::NeptuneStylePlugin(QObject *parent)
 void NeptuneStylePlugin::registerTypes(const char *uri)
 {
     qmlRegisterType<QQuickIconLabel>(uri, 3, 0, "NeptuneIconLabel");
+    qmlRegisterType<QQuickDefaultProgressBar>(uri, 3, 0, "NeptuneProgressBar");
     qmlRegisterUncreatableType<NeptuneStyle>(uri, 3, 0, "NeptuneStyle", "NeptuneStyle is an attached property");
 }
 

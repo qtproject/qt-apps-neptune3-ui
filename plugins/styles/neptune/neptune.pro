@@ -14,7 +14,8 @@ SOURCES += \
     neptunestyleplugin.cpp \
     neptunetheme.cpp \
     qquickiconlabel.cpp \
-    qquickicon.cpp
+    qquickicon.cpp \
+    qquickdefaultprogressbar.cpp
 
 HEADERS += \
     neptunestyle.h \
@@ -22,7 +23,8 @@ HEADERS += \
     neptunetheme.h \
     qquickiconlabel_p.h \
     qquickiconlabel_p_p.h \
-    qquickicon_p.h
+    qquickicon_p.h \
+    qquickdefaultprogressbar_p.h
 
 RESOURCES += \
     neptunestyle.qrc

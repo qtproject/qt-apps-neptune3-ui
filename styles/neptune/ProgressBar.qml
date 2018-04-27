@@ -43,7 +43,7 @@ T.ProgressBar {
 
     readonly property real progressBarWidth: control.width - NeptuneStyle.dp(5)
 
-    contentItem: ProgressBarImpl {
+    contentItem: NeptuneProgressBar {
         implicitWidth: control.progressBarWidth
         implicitHeight: NeptuneStyle.dp(7)
         scale: control.mirrored ? -1 : 1
