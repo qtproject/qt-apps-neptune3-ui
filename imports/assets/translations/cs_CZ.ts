@@ -1127,80 +1127,36 @@ UX na cestu</translation>
 <context>
     <name>SettingsModel</name>
     <message>
-        <source>Driver 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>USER PROFILE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SERVICE &amp; SUPPORT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TRAFFIC INFORMATION</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TOLL &amp; CONGESTION FEES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>METRIC SYSTEM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>APP UPDATES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SYSTEM MONITOR</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hill Descent Control</source>
-        <translation>Asistent sjezdu z kopce</translation>
+        <translation type="vanished">Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>Inteligentní přizpůsobení rychlosti</translation>
+        <translation type="vanished">Inteligentní přizpůsobení rychlosti</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>Automatické přepínání světel</translation>
+        <translation type="vanished">Automatické přepínání světel</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>Vyhnutí se kolizi</translation>
+        <translation type="vanished">Vyhnutí se kolizi</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>Asistent jízdy v pruhu</translation>
+        <translation type="vanished">Asistent jízdy v pruhu</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Asistent v dopravní zácpě</translation>
+        <translation type="vanished">Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>Upozornění na únavu řidiče</translation>
+        <translation type="vanished">Upozornění na únavu řidiče</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>Parkovací asistent</translation>
+        <translation type="vanished">Parkovací asistent</translation>
     </message>
 </context>
 <context>

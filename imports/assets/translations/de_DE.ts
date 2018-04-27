@@ -823,79 +823,79 @@
     <name>SettingsModel</name>
     <message>
         <source>Hill Descent Control</source>
-        <translation>Bergabfahrhilfe</translation>
+        <translation type="vanished">Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>Intelligente Geschwindigkeitsanpassung</translation>
+        <translation type="vanished">Intelligente Geschwindigkeitsanpassung</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>Automatische Fernlichtschaltung</translation>
+        <translation type="vanished">Automatische Fernlichtschaltung</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>Kollisionsvermeidung</translation>
+        <translation type="vanished">Kollisionsvermeidung</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>Spur-Assistent</translation>
+        <translation type="vanished">Spur-Assistent</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Stau-Assistent</translation>
+        <translation type="vanished">Stau-Assistent</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>Fahrermüdigkeitserkennung</translation>
+        <translation type="vanished">Fahrermüdigkeitserkennung</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>Park Assistenzsysteme</translation>
+        <translation type="vanished">Park Assistenzsysteme</translation>
     </message>
     <message>
         <source>Driver 1</source>
-        <translation>Fahrer-1</translation>
+        <translation type="vanished">Fahrer-1</translation>
     </message>
     <message>
         <source>Driver 2</source>
-        <translation>Fahrer-2</translation>
+        <translation type="vanished">Fahrer-2</translation>
     </message>
     <message>
         <source>Driver 3</source>
-        <translation>Fahrer-3</translation>
+        <translation type="vanished">Fahrer-3</translation>
     </message>
     <message>
         <source>Driver 4</source>
-        <translation>Fahrer-4</translation>
+        <translation type="vanished">Fahrer-4</translation>
     </message>
     <message>
         <source>USER PROFILE</source>
-        <translation>Benutzer Profil</translation>
+        <translation type="vanished">Benutzer Profil</translation>
     </message>
     <message>
         <source>SERVICE &amp; SUPPORT</source>
-        <translation>Service</translation>
+        <translation type="vanished">Service</translation>
     </message>
     <message>
         <source>TRAFFIC INFORMATION</source>
-        <translation>Verkehrsinformationen</translation>
+        <translation type="vanished">Verkehrsinformationen</translation>
     </message>
     <message>
         <source>TOLL &amp; CONGESTION FEES</source>
-        <translation>Gebühren</translation>
+        <translation type="vanished">Gebühren</translation>
     </message>
     <message>
         <source>METRIC SYSTEM</source>
-        <translation>Metrisches System</translation>
+        <translation type="vanished">Metrisches System</translation>
     </message>
     <message>
         <source>APP UPDATES</source>
-        <translation>Programm Neuerungen</translation>
+        <translation type="vanished">Programm Neuerungen</translation>
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation>System Monitor</translation>
+        <translation type="vanished">System Monitor</translation>
     </message>
 </context>
 <context>

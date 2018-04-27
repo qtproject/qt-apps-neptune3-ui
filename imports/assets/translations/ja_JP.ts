@@ -938,79 +938,79 @@
     <name>SettingsModel</name>
     <message>
         <source>Driver 1</source>
-        <translation>ドライバー１</translation>
+        <translation type="vanished">ドライバー１</translation>
     </message>
     <message>
         <source>Driver 2</source>
-        <translation>ドライバー２</translation>
+        <translation type="vanished">ドライバー２</translation>
     </message>
     <message>
         <source>Driver 3</source>
-        <translation>ドライバー３</translation>
+        <translation type="vanished">ドライバー３</translation>
     </message>
     <message>
         <source>Driver 4</source>
-        <translation>ドライバー４</translation>
+        <translation type="vanished">ドライバー４</translation>
     </message>
     <message>
         <source>USER PROFILE</source>
-        <translation>ユーザープロファイル</translation>
+        <translation type="vanished">ユーザープロファイル</translation>
     </message>
     <message>
         <source>SERVICE &amp; SUPPORT</source>
-        <translation>サービス＆サポート</translation>
+        <translation type="vanished">サービス＆サポート</translation>
     </message>
     <message>
         <source>TRAFFIC INFORMATION</source>
-        <translation>交通情報</translation>
+        <translation type="vanished">交通情報</translation>
     </message>
     <message>
         <source>TOLL &amp; CONGESTION FEES</source>
-        <translation>通行料＆混雑課金</translation>
+        <translation type="vanished">通行料＆混雑課金</translation>
     </message>
     <message>
         <source>METRIC SYSTEM</source>
-        <translation>メートル法</translation>
+        <translation type="vanished">メートル法</translation>
     </message>
     <message>
         <source>APP UPDATES</source>
-        <translation>アプリアップデート</translation>
+        <translation type="vanished">アプリアップデート</translation>
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation>システムモニター</translation>
+        <translation type="vanished">システムモニター</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>ダウンヒルアシストコントロール</translation>
+        <translation type="vanished">ダウンヒルアシストコントロール</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>自動速度制限</translation>
+        <translation type="vanished">自動速度制限</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>自動ビーム切替</translation>
+        <translation type="vanished">自動ビーム切替</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>衝突回避</translation>
+        <translation type="vanished">衝突回避</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>レーンアシスト</translation>
+        <translation type="vanished">レーンアシスト</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>渋滞アシスト</translation>
+        <translation type="vanished">渋滞アシスト</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>居眠り検知</translation>
+        <translation type="vanished">居眠り検知</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>パーキングアシスト</translation>
+        <translation type="vanished">パーキングアシスト</translation>
     </message>
 </context>
 <context>

@@ -600,79 +600,35 @@
     <name>SettingsModel</name>
     <message>
         <source>Hill Descent Control</source>
-        <translation>Hill Descent Control</translation>
+        <translation type="vanished">Hill Descent Control</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>Intelligent Speed Adaptation</translation>
+        <translation type="vanished">Intelligent Speed Adaptation</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>Automatic Beam Switching</translation>
+        <translation type="vanished">Automatic Beam Switching</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>Collision Avoidance</translation>
+        <translation type="vanished">Collision Avoidance</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>Lane Assist</translation>
+        <translation type="vanished">Lane Assist</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Traffic Jam Assist</translation>
+        <translation type="vanished">Traffic Jam Assist</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>Driver Drowsiness Alert</translation>
+        <translation type="vanished">Driver Drowsiness Alert</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>Park Assist</translation>
-    </message>
-    <message>
-        <source>Driver 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driver 4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>USER PROFILE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SERVICE &amp; SUPPORT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TRAFFIC INFORMATION</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TOLL &amp; CONGESTION FEES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>METRIC SYSTEM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>APP UPDATES</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SYSTEM MONITOR</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Park Assist</translation>
     </message>
 </context>
 <context>

@@ -945,79 +945,79 @@
     <name>SettingsModel</name>
     <message>
         <source>Driver 1</source>
-        <translation>운전자 1</translation>
+        <translation type="vanished">운전자 1</translation>
     </message>
     <message>
         <source>Driver 2</source>
-        <translation>운전자 2</translation>
+        <translation type="vanished">운전자 2</translation>
     </message>
     <message>
         <source>Driver 3</source>
-        <translation>운전자 3</translation>
+        <translation type="vanished">운전자 3</translation>
     </message>
     <message>
         <source>Driver 4</source>
-        <translation>운전자 4</translation>
+        <translation type="vanished">운전자 4</translation>
     </message>
     <message>
         <source>USER PROFILE</source>
-        <translation>사용자 정보</translation>
+        <translation type="vanished">사용자 정보</translation>
     </message>
     <message>
         <source>SERVICE &amp; SUPPORT</source>
-        <translation>서비스 &amp; 지원</translation>
+        <translation type="vanished">서비스 &amp; 지원</translation>
     </message>
     <message>
         <source>TRAFFIC INFORMATION</source>
-        <translation>교통 정보</translation>
+        <translation type="vanished">교통 정보</translation>
     </message>
     <message>
         <source>TOLL &amp; CONGESTION FEES</source>
-        <translation>통행료</translation>
+        <translation type="vanished">통행료</translation>
     </message>
     <message>
         <source>METRIC SYSTEM</source>
-        <translation>표시 단위</translation>
+        <translation type="vanished">표시 단위</translation>
     </message>
     <message>
         <source>APP UPDATES</source>
-        <translation>앱 업데이트</translation>
+        <translation type="vanished">앱 업데이트</translation>
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation>시스템 모니터</translation>
+        <translation type="vanished">시스템 모니터</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>내리막길 주행 지원</translation>
+        <translation type="vanished">내리막길 주행 지원</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>지능형 속도 제어</translation>
+        <translation type="vanished">지능형 속도 제어</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>자동 점등 스위치</translation>
+        <translation type="vanished">자동 점등 스위치</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>충돌 방지 시스템</translation>
+        <translation type="vanished">충돌 방지 시스템</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>차로 이탈 방지 시스템</translation>
+        <translation type="vanished">차로 이탈 방지 시스템</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>교통 체증 보조 시스템</translation>
+        <translation type="vanished">교통 체증 보조 시스템</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>운전자 졸음 경고</translation>
+        <translation type="vanished">운전자 졸음 경고</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>주차 보조 시스템</translation>
+        <translation type="vanished">주차 보조 시스템</translation>
     </message>
 </context>
 <context>

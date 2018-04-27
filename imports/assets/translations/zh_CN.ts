@@ -985,80 +985,80 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>SettingsModel</name>
     <message>
         <source>Driver 1</source>
-        <translation>驾驶员1</translation>
+        <translation type="vanished">驾驶员1</translation>
     </message>
     <message>
         <source>Driver 2</source>
-        <translation>驾驶员2</translation>
+        <translation type="vanished">驾驶员2</translation>
     </message>
     <message>
         <source>Driver 3</source>
-        <translation>驾驶员3</translation>
+        <translation type="vanished">驾驶员3</translation>
     </message>
     <message>
         <source>Driver 4</source>
-        <translation>驾驶员4</translation>
+        <translation type="vanished">驾驶员4</translation>
     </message>
     <message>
         <source>USER PROFILE</source>
-        <translation>用户信息</translation>
+        <translation type="vanished">用户信息</translation>
     </message>
     <message>
         <source>SERVICE &amp; SUPPORT</source>
-        <translation>服务 &amp; 支持</translation>
+        <translation type="vanished">服务 &amp; 支持</translation>
     </message>
     <message>
         <source>TRAFFIC INFORMATION</source>
-        <translation>交通信息</translation>
+        <translation type="vanished">交通信息</translation>
     </message>
     <message>
         <source>TOLL &amp; CONGESTION FEES</source>
-        <translation>停车 &amp; 拥堵费</translation>
+        <translation type="vanished">停车 &amp; 拥堵费</translation>
     </message>
     <message>
         <source>METRIC SYSTEM</source>
-        <translation>公制</translation>
+        <translation type="vanished">公制</translation>
     </message>
     <message>
         <source>APP UPDATES</source>
         <translatorcomment>In chinerse, &quot;APP&quot; can translate to &quot;程序&quot; . which is old school style.</translatorcomment>
-        <translation>APP升级</translation>
+        <translation type="vanished">APP升级</translation>
     </message>
     <message>
         <source>SYSTEM MONITOR</source>
-        <translation>系统监测</translation>
+        <translation type="vanished">系统监测</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>坡度保持</translation>
+        <translation type="vanished">坡度保持</translation>
     </message>
     <message>
         <source>Intelligent Speed Adaptation</source>
-        <translation>自适应巡航</translation>
+        <translation type="vanished">自适应巡航</translation>
     </message>
     <message>
         <source>Automatic Beam Switching</source>
-        <translation>自动大灯开关</translation>
+        <translation type="vanished">自动大灯开关</translation>
     </message>
     <message>
         <source>Collision Avoidance</source>
-        <translation>智能避碰</translation>
+        <translation type="vanished">智能避碰</translation>
     </message>
     <message>
         <source>Lane Assist</source>
-        <translation>窄路辅助</translation>
+        <translation type="vanished">窄路辅助</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>交通拥堵辅助</translation>
+        <translation type="vanished">交通拥堵辅助</translation>
     </message>
     <message>
         <source>Driver Drowsiness Alert</source>
-        <translation>疲劳驾驶预警系统</translation>
+        <translation type="vanished">疲劳驾驶预警系统</translation>
     </message>
     <message>
         <source>Park Assist</source>
-        <translation>泊车辅助</translation>
+        <translation type="vanished">泊车辅助</translation>
     </message>
 </context>
 <context>
