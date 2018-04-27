@@ -156,14 +156,11 @@ Item {
     ColumnLayout {
         id: textColumn
         Label {
-            anchors.left: root.state == "Widget1Row" ? parent.left : undefined
-            anchors.horizontalCenter: root.state !== "Widget1Row" ? parent.horizontalCenter : undefined
+            Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
             text: priv.callerName
         }
         Label {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            horizontalAlignment: root.state == "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
+            Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignCenter
             font.pixelSize: NeptuneStyle.fontSizeS
             opacity: NeptuneStyle.opacityMedium
             text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
