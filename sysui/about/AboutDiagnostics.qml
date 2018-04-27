@@ -53,6 +53,7 @@ ColumnLayout {
             readOnly: true
             font.pixelSize: NeptuneStyle.fontSizeXS
             text: sysinfo.qtDiag
+            color: NeptuneStyle.contrastColor
         }
     }
 }
