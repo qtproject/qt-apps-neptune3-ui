@@ -74,36 +74,38 @@ Item {
         anchors.bottomMargin: markers.markerWidth
         spacing: 0
 
-        Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
+        RowLayout {
             height: NeptuneStyle.dp(56)
 
             Label {
-                width: contentWidth
-                anchors.horizontalCenter: parent.left
-                anchors.bottom: parent.bottom
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.preferredWidth: root.width / 3
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignBottom
+                leftPadding: -contentWidth / 2
                 text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: NeptuneStyle.fontSizeS
             }
 
             Label {
-                width: contentWidth
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: Style.paddingXS
-                text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.preferredWidth: root.width / 3
                 horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignBottom
+                text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
                 font.pixelSize: NeptuneStyle.fontSizeM
             }
 
             Label {
-                width: contentWidth
-                anchors.horizontalCenter: parent.right
-                anchors.bottom: parent.bottom
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.preferredWidth: root.width / 3
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignBottom
+                rightPadding: -contentWidth / 2
                 text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: NeptuneStyle.fontSizeS
             }
         }
@@ -111,9 +113,8 @@ Item {
         Item {
             id: markers
             height: NeptuneStyle.dp(40)
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
+            Layout.preferredWidth: parent.width
+            Layout.alignment: Qt.AlignBottom
 
             readonly property int markerWidth: 2
             readonly property int markerCount: 41

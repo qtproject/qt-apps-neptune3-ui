@@ -51,25 +51,23 @@ Control {
     property int numberOfDecimals: 1
     signal clicked()
 
-    ColumnLayout {
+    contentItem: ColumnLayout {
         id: theLayout
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
         spacing: NeptuneStyle.dp(16)
 
         Label {
             id: frequency
-            anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignRight
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-
             text: root.frequency.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
             font.pixelSize: NeptuneStyle.fontSizeXXL
         }
 
         Label {
             id: title
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
             opacity: NeptuneStyle.opacityMedium
             visible: text !== ""

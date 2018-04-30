@@ -65,13 +65,12 @@ Item {
         spacing: NeptuneStyle.dp(160)
 
         RowLayout {
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
 
             ToolButton {
                 Layout.preferredWidth: NeptuneStyle.dp(45)
                 Layout.preferredHeight: NeptuneStyle.dp(80)
                 icon.name: "ic_skipprevious"
-                anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.prevStation()
                 onPressAndHold: root.store.scanBack()
             }
@@ -85,8 +84,7 @@ Item {
 
             StationInfo {
                 id: stationInfo
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: NeptuneStyle.dp(20)
+                topPadding: NeptuneStyle.dp(20)
                 title: root.store.currentStationName
                 numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
                 frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
@@ -103,7 +101,6 @@ Item {
                 Layout.preferredWidth: NeptuneStyle.dp(45)
                 Layout.preferredHeight: NeptuneStyle.dp(80)
                 icon.name: "ic_skipnext"
-                anchors.verticalCenter: parent.verticalCenter
                 onClicked: root.store.nextStation()
                 onPressAndHold: root.store.scanForward()
             }
@@ -114,7 +111,7 @@ Item {
 
             Layout.preferredWidth: NeptuneStyle.dp(900)
             Layout.preferredHeight: NeptuneStyle.dp(80)
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
 
             readonly property real minFrequency: root.store.minimumFrequency
             readonly property real maxFrequency: root.store.maximumFrequency
