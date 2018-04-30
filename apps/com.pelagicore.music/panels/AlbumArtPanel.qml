@@ -79,8 +79,9 @@ Item {
             Image {
                 id: albumArtShadow
                 anchors.centerIn: parent
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
                 source: Style.gfx("album-art-shadow")
-                fillMode: Image.Pad
             }
 
             Image {
