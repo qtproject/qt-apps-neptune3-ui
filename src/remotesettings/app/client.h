@@ -38,10 +38,6 @@
 #include <QUrl>
 #include "connectionmonitoring.h"
 
-QT_BEGIN_NAMESPACE
-class QQmlContext;
-QT_END_NAMESPACE
-
 Q_DECLARE_LOGGING_CATEGORY(remoteSettingsApp)
 
 class Client : public QObject
