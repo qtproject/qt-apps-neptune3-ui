@@ -108,6 +108,7 @@ QtObject {
         SecondaryWindow {
             MapView {
                 anchors.fill: parent
+                clusterView: true
                 mapInteractive: false
                 mapCenter: mainMap.mapCenter
                 mapZoomLevel: mainMap.mapZoomLevel

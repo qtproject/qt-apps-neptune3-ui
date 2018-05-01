@@ -54,6 +54,7 @@ Item {
 
     property MapStore store
     property Helper helper: Helper {}
+    property bool clusterView: false
 
     // props for secondary window
     property alias mapInteractive: mapBoxPanel.mapInteractive
@@ -156,7 +157,7 @@ Item {
         anchors.fill: mapBoxPanel
         source: mapBoxPanel
         radius: NeptuneStyle.dp(64)
-        visible: root.store.searchViewEnabled
+        visible: (root.store.searchViewEnabled && !root.clusterView)
     }
 
     NeptuneControls.ScalableBorderImage {
@@ -167,14 +168,14 @@ Item {
         border.left: 0
         border.right: 0
         source: Style.gfx("input-overlay")
-        visible: root.store.searchViewEnabled
+        visible: (root.store.searchViewEnabled && !root.clusterView)
     }
 
     SearchOverlayPanel {
         id: searchOverlay
         anchors.fill: root
         anchors.topMargin: NeptuneStyle.dp(80)
-        visible: root.store.searchViewEnabled
+        visible: (root.store.searchViewEnabled && !root.clusterView)
         spacing: NeptuneStyle.dp(80)
         model: root.store.geocodeModel
 
