@@ -1,0 +1,31 @@
+project = Neptune3UI
+version = $QT_VERSION
+url     = http://doc.qt.io/Neptune3UI
+
+sourcedirs += src ../
+imagedirs += src/images
+
+depends += qtquick qtqml applicationmanager
+
+qhp.projects                               = Neptune3UI
+qhp.Neptune3UI.file                = neptune3ui.qhp
+qhp.Neptune3UI.namespace           = io.qt.neptune3ui.$QT_VERSION_TAG
+qhp.Neptune3UI.virtualFolder       = neptune3ui
+qhp.Neptune3UI.indexTitle          = Neptune 3 UI
+qhp.Neptune3UI.indexRoot           =
+
+qhp.Neptune3UI.filterAttributes = Neptune3UI $QT_VERSION
+qhp.Neptune3UI.customFilters.Neptune3UI.name = Neptune 3 UI $QT_VERSION
+qhp.Neptune3UI.customFilters.Neptune3UI.filterAttributes = Neptune3UI $QT_VERSION
+
+qhp.Neptune3UI.subprojects                   = manual components interfaces
+qhp.Neptune3UI.subprojects.manual.title      = Neptune 3 UI
+qhp.Neptune3UI.subprojects.manual.indexTitle = Neptune 3 UI TOC
+qhp.Neptune3UI.subprojects.manual.selectors  = manual
+
+navigation.landingpage = "Neptune 3 UI"
+navigation.homepage    = "Qt Automotive Suite"
+navigation.qmltypespage = "Neptune 3 UI Components and Interfaces"
+buildversion = "Neptune 3 UI $QT_VERSION"
+
+macro.QAS = "Qt Automotive Suite"

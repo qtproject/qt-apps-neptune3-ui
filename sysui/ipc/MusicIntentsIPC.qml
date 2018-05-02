@@ -33,6 +33,11 @@ import QtQuick 2.0
 import QtApplicationManager 1.0
 
 /*!
+    \qmltype MusicIntentsIPC
+    \inqmlmodule service
+    \inherits ApplicationIPCInterface
+    \brief An IPC for music intents
+
     The MusicIntentsIPC is meant to be used only for the music intents use case, enabling music,
     radio and webradio apps to know whether spotify and/or webradio are installed from the appstore,
     or added / removed. This interface can be accessed only from the mentioned apps.
@@ -41,8 +46,28 @@ import QtApplicationManager 1.0
 ApplicationIPCInterface {
     id: root
 
+    /*!
+        \qmlproperty rect MusicIntentsIPC::spotifyInstalled
+
+        This property holds whether spotify application is installed or not in Neptune 3.
+    */
+
     property bool spotifyInstalled: false
+
+    /*!
+        \qmlproperty rect MusicIntentsIPC::webradioInstalled
+
+        This property holds whether web radio application is installed or not in Neptune 3.
+    */
+
     property bool webradioInstalled: false
+
+    /*!
+        \qmlproperty rect MusicIntentsIPC::appmanCnx
+
+        This property is used to listen to the ApplicationManager to get the status of
+        external application in Neptune 3.
+    */
 
     property var appmanCnx: Connections {
         target: ApplicationManager

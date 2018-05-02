@@ -47,7 +47,9 @@ import com.pelagicore.styles.neptune 3.0
     The primary window of a Neptune 3 application is displayed on the Center Console.
     This component also provides APIs for interacting with system UI and for positioning
     the application's visual elements.
+*/
 
+/*!
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
@@ -77,18 +79,42 @@ ApplicationManagerWindow {
 
     color: "transparent"
 
-    /*
-        Area of the window that is exposed to the user (ie, not blocked or occluded by other UI elements)
+    // A window can be occluded by some other UI elements such as floating widgets, virtual keyboards
+    // etc. In such cases you will want to relayout to that the important content is contained within
+    // exposedRect boundaries.
 
-        A window can be occluded by some other UI elements such as floating widgets, virtual keyboards
-        etc. In such cases you will want to relayout to that the important content is contained within
-        exposedRect boundaries.
-     */
+    /*!
+        \qmlproperty rect PrimaryWindow::exposedRect
+        \readonly
+
+        This property holds the area of the window that is exposed to the user (ie, not blocked or
+        occluded by other UI elements)
+    */
     readonly property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
+
+    /*!
+        \qmlproperty int PrimaryWindow::targetHeight
+        \readonly
+
+        This property holds the target height of the application. This property will be updated
+        when the neptune state is being changed.
+    */
+
 
     readonly property int targetHeight: neptuneState === "Maximized" ? root.height : d.widgetHeight;
 
+    /*!
+        \qmlproperty int PrimaryWindow::currentHeight
+        This property holds the current height of the application.
+    */
+
     property int currentHeight
+
+    /*!
+        \qmlproperty string PrimaryWindow::neptuneState
+        This property holds the current state of the application. The valid values for neptuneState are
+        (Maximized, Widget1Row, Widget2Rows or Widget3Rows)
+    */
 
     property string neptuneState
 

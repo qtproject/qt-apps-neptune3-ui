@@ -5,7 +5,7 @@ TEMPLATE = subdirs
 include(config.pri)
 
 SUBDIRS += plugins
-
+SUBDIRS += doc
 SUBDIRS += tests
 
 # mainly a hint for Qt Creator

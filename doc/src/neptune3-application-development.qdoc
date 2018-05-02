@@ -1,0 +1,167 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3-app-development.html
+   \title Neptune 3 UI Application Development
+   \previouspage neptune3ui-components.html
+   \brief Introduction to application development and best practices for Neptune 3 UI
+
+    When you are developing an application for Neptune 3 UI, you must follow these rules:
+    \list
+      \li The info.yaml manifest file needs to be under the application root folder.
+      See \l{Manifest File}.
+      \li The name of the folder that contains \e info.yaml must be the same as
+      the value of the \c id property in the info.yaml file.
+      \li Depending on your application type, either \l{PrimaryWindow}. See
+      \l{Application Root QML Element}.
+    \endlist
+
+It is important to follow all the defined rules in order for the application to
+become available in the system.
+
+\section1 Manifest File
+
+The manifest file must have the name \e {info.yaml}. The manifest file content
+should be as follows:
+
+\badcode
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.temp'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Template'
+
+categories: [ 'app' ]
+\endcode
+
+For any additional information about the manifest file, please refer to
+\l{Qt Application Manager Manifest File}.
+
+\section1 Application Root QML Element
+
+The following table defines the application root QML elements that should be
+used when developing applications:
+
+\table
+    \header
+        \li Root element
+        \li Description
+    \row
+        \li \l{PrimaryWindow}
+        \li Can be used in all kind of applications.
+\endtable
+
+The following QML code demonstrates how to use \l{PrimaryWindow} as a root element:
+
+\qml
+import QtQuick 2.10
+import controls 1.0
+import utils 1.0
+
+PrimaryWindow {
+    id: root
+    Background {
+        anchors.fill: parent
+    }
+    Content {
+        x: root.exposedRect.x
+        y: root.exposedRect.x
+        width: root.exposedRect.width
+        height: root.exposedRect.height
+    }
+
+}
+\endqml
+
+\section1 Interfaces
+
+You can use the following interfaces in application development:
+
+\table
+    \header
+        \li Interface
+        \li Description
+    \row
+        \li \l {NotificationInterface}
+        \li Provides an interface for requesting notifications. It uses the
+        \l {Notification} component and is based on the
+        \l {GNOME Desktop Notifications Specification} {org.freedesktop.Notifications}
+        D-Bus interface.
+\endtable
+
+\section1 Best Practices
+
+When you are developing an automotive UI application with
+\l{Qt Automotive Suite Product} {Qt Automotive Suite}, it is recommended to follow
+the best practices:
+
+    \list
+        \li Implement each visual part of the application (for example the application screen)
+        in a separate, independent component.
+        \li Load UI components and a backend on demand when they are not visible
+        or not needed in the device startup.
+        \li Separate the application logic from the visual UI components.
+        Use models to store methods, properties, and a backend connection.
+    \endlist
+
+If you need to monitor an application startup performance, read the log output.
+The log title must have an application ID. The log content should be as follows:
+
+\badcode
+== STARTUP TIMING REPORT: com.pelagicore.temp ==
+0'020.000 entered main
+0'115.359 after logging and qml register initialization
+0'120.385 after application config initialization
+0'127.403 after quick launch qml initialization
+0'176.884 after application interface initialization
+0'176.889 after dbus initialization
+0'191.890 starting application
+0'192.046 after loading plugins and import paths
+0'974.908 after engine loading main qml file
+0'974.914 after creating and setting application window
+0'974.949 after showing application window
+0'974.996 component loading and creating complete.
+\endcode
+
+\note The log output is available only in a multi-process mode when you have set
+the \e AM_STARTUP_TIMER value to \e 1.
+
+You can add checkpoints to your QML code. The following example
+demonstrates how you can add a checkpoint to the application QML code when a plugin
+is loaded:
+
+\qml
+    StartupTimer.checkpoint("plugin xxx loaded");
+    StartupTimer.createReport("Plugin xxx report");
+\endqml
+
+*/
