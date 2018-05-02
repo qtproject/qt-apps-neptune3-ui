@@ -99,23 +99,39 @@ QtObject {
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
 
+            Binding {
+                target: icMapView
+                property: "mapCenter"
+                value: mainMap.mapCenter
+            }
+            Binding {
+                target: icMapView
+                property: "mapZoomLevel"
+                value: mainMap.mapZoomLevel
+            }
+            Binding {
+                target: icMapView
+                property: "mapTilt"
+                value: mainMap.mapTilt
+            }
+            Binding {
+                target: icMapView
+                property: "mapBearing"
+                value: mainMap.mapBearing
+            }
+
             SystemInfo { id: sysinfo }
         }
     }
 
-    property Component secondaryWindowComponent: Component {
+    property var secondaryWindowComponent: SecondaryWindow {
         id: secondaryWindowComponent
-        SecondaryWindow {
-            MapView {
-                anchors.fill: parent
-                clusterView: true
-                mapInteractive: false
-                mapCenter: mainMap.mapCenter
-                mapZoomLevel: mainMap.mapZoomLevel
-                mapTilt: mainMap.mapTilt
-                mapBearing: mainMap.mapBearing
-                store: mainMap.store
-            }
+        MapView {
+            id: icMapView
+            anchors.fill: parent
+            clusterView: true
+            mapInteractive: false
+            store: mainMap.store
         }
     }
 }
