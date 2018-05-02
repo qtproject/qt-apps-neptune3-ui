@@ -41,11 +41,14 @@ import utils 1.0
 T.TabButton {
     id: control
 
+    //internal to avoid binding loops
+    readonly property real letterSpacing: font.pixelSize === NeptuneStyle.fontSizeS ?
+                                          NeptuneStyle.secondaryTextLetterSpacing
+                                        : NeptuneStyle.primaryTextLetterSpacing
+
     font.pixelSize: NeptuneStyle.fontSizeS
 
-    font.letterSpacing: selected ? font.pixelSize === NeptuneStyle.fontSizeS ?
-                                   NeptuneStyle.secondaryTextLetterSpacing
-                                 : NeptuneStyle.primaryTextLetterSpacing : 0
+    font.letterSpacing: selected ? control.letterSpacing : 0
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)
