@@ -50,7 +50,7 @@ Item {
         id: tumblerFanSpeed
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        model: 9
+        model: 7
         height: NeptuneStyle.dp(300)
         width: NeptuneStyle.dp(100)
         clip: true
