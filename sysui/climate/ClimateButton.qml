@@ -42,5 +42,5 @@ Button {
     height: NeptuneStyle.dp(146)
     font.pixelSize: NeptuneStyle.fontSizeXS
     flat: true
-    icon.color: checked ? NeptuneStyle.accentDetailColor : NeptuneStyle.contrastColor
+    icon.color: checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
 }

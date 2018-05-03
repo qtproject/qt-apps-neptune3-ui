@@ -32,6 +32,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import animations 1.0
 import utils 1.0
@@ -50,6 +51,7 @@ Item {
         id: tumblerFanSpeed
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
+        anchors.verticalCenterOffset: NeptuneStyle.dp(32)
         model: 7
         height: NeptuneStyle.dp(300)
         width: NeptuneStyle.dp(100)
@@ -66,9 +68,23 @@ Item {
                 anchors.centerIn: parent
                 width: NeptuneStyle.dp(sourceSize.width)
                 height: NeptuneStyle.dp(sourceSize.height)
-                source: Style.gfx(("fan-speed-"+index), NeptuneStyle.theme)
-                opacity: index === Tumbler.tumbler.currentIndex ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+                source: Style.gfx(("fan-speed-background"), NeptuneStyle.theme)
                 fillMode: Image.PreserveAspectFit
+            }
+            Image {
+                id: tumblerImage
+                anchors.centerIn: parent
+                width: NeptuneStyle.dp(sourceSize.width)
+                height: NeptuneStyle.dp(sourceSize.height)
+                source: Style.gfx(("fan-speed-"+index), NeptuneStyle.theme)
+                opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
+                fillMode: Image.PreserveAspectFit
+                layer.enabled: true
+                layer.effect: ColorOverlay {
+                    source: tumblerImage
+                    color: NeptuneStyle.accentColor
+                }
+
             }
         }
         currentIndex: root.model.ventilationLevels
@@ -102,6 +118,11 @@ Item {
             source: root.model.airflow.windshield ? Style.gfx("air-flow-top-active", NeptuneStyle.theme)
                                                   : Style.gfx("air-flow-top", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                source: airFlowTop
+                color: NeptuneStyle.accentColor
+            }
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
@@ -118,6 +139,11 @@ Item {
             source: root.model.airflow.dashboard ? Style.gfx("air-flow-middle-active", NeptuneStyle.theme)
                                                  : Style.gfx("air-flow-middle", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                source: airFlowMiddle
+                color: NeptuneStyle.accentColor
+            }
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
@@ -134,6 +160,11 @@ Item {
             source: root.model.airflow.floor ? Style.gfx("air-flow-bottom-active", NeptuneStyle.theme)
                                              : Style.gfx("air-flow-bottom", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                source: airFlowDown
+                color: NeptuneStyle.accentColor
+            }
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
