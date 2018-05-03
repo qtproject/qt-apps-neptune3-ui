@@ -126,12 +126,10 @@ QtObject {
 
     property var secondaryWindowComponent: SecondaryWindow {
         id: secondaryWindowComponent
-        MapView {
+        ICMapView {
             id: icMapView
             anchors.fill: parent
-            clusterView: true
-            mapInteractive: false
-            store: mainMap.store
+            mapPlugin: mainMap.store.mapPlugin
         }
     }
 }
