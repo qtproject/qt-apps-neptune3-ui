@@ -41,8 +41,6 @@ import com.pelagicore.styles.neptune 3.0
 
 Control {
     id: root
-    width: NeptuneStyle.dp(292)
-    height: NeptuneStyle.dp(160)
 
     property bool tuningMode: false
     property alias title: title.text

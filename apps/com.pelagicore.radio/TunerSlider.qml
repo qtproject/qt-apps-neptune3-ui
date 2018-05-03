@@ -60,7 +60,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        height: 4
+        height: NeptuneStyle.dp(4)
         radius: 4
         border.color: Qt.lighter(color, 1.1)
         color: "#999"
@@ -112,7 +112,7 @@ Item {
 
         Item {
             id: markers
-            height: NeptuneStyle.dp(40)
+            Layout.preferredHeight: NeptuneStyle.dp(40)
             Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignBottom
 
@@ -121,14 +121,14 @@ Item {
 
             Row {
                 anchors.fill: parent
-                spacing: (parent.width - (markers.markerCount * markers.markerWidth)) / (markers.markerCount - 1)
+                spacing: ((parent.width - NeptuneStyle.dp(markers.markerWidth)) / (markers.markerCount - 1)) - NeptuneStyle.dp(markers.markerWidth)
                 Repeater {
                     model: markers.markerCount
                     delegate: Rectangle {
                         Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
                         transformOrigin: Item.Bottom
                         height: NeptuneStyle.dp(40)
-                        width: markers.markerWidth
+                        width: NeptuneStyle.dp(markers.markerWidth)
                         radius: markers.markerWidth
                         opacity: index % 10 ? 0.25 : 0.5
                         scale: index % 10 ? 0.7 : 1
@@ -141,8 +141,9 @@ Item {
 
     Rectangle {
         id: handle
-        width: 26
-        height: width; radius: width/2
+        width: NeptuneStyle.dp(26)
+        height: width
+        radius: width/2
         y: (root.height - height)/2
         x: (root.value - root.minimum) * root.length / (root.maximum - root.minimum)
 
@@ -151,11 +152,10 @@ Item {
         smooth: true
 
         Rectangle {
-            width: 2
+            width: NeptuneStyle.dp(2)
             height: NeptuneStyle.dp(32)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.top
-
             color: NeptuneStyle.accentColor
             radius: width
         }

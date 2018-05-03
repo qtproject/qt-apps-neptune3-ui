@@ -85,6 +85,8 @@ Item {
             StationInfo {
                 id: stationInfo
                 topPadding: NeptuneStyle.dp(20)
+                Layout.preferredWidth: NeptuneStyle.dp(292)
+                Layout.preferredHeight: NeptuneStyle.dp(160)
                 title: root.store.currentStationName
                 numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
                 frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
@@ -163,7 +165,8 @@ Item {
         anchors.horizontalCenterOffset: toolsColumn.width / 3
 
         model: root.store.freqPresetsModel
-        cellWidth: NeptuneStyle.dp(216) ; cellHeight: NeptuneStyle.dp(99)
+        cellWidth: width / 3
+        cellHeight: NeptuneStyle.dp(99)
         currentIndex: 0
 
         delegate: DelegatedGrid {
@@ -186,7 +189,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: toolsColumn.width / 3
 
-        cellWidth: NeptuneStyle.dp(216); cellHeight: cellWidth
+        cellWidth: width / 4
+        cellHeight: cellWidth
         interactive: false
         highlightFollowsCurrentItem: false
         currentIndex: 0
