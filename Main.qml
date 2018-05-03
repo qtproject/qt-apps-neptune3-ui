@@ -31,6 +31,7 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.2
+import Qt.labs.platform 1.0
 
 import animations 1.0
 import com.pelagicore.styles.neptune 3.0
@@ -40,6 +41,7 @@ import models.system 1.0
 import utils 1.0
 import instrumentcluster 1.0
 import com.pelagicore.settings 1.0
+import com.pelagicore.systeminfo 1.0
 
 import QtQuick.Window 2.3
 
@@ -74,6 +76,8 @@ Window {
         onWidthChanged: {
             root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
         }
+
+        onScreenshotRequested: screenshot.dumpScreenshotAndVersion()
 
         // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
         // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
@@ -237,6 +241,41 @@ Window {
             context: Qt.ApplicationShortcut
             onActivated: {
                 notificationInterface.show();
+            }
+        }
+
+        SystemInfo { id: sysinfo }
+        Shortcut {
+            id: screenshot
+            sequence: "Ctrl+p"
+            context: Qt.ApplicationShortcut
+
+            function saveFile(fileUrl, text) {
+                var request = new XMLHttpRequest();
+                request.open("PUT", fileUrl);
+                request.send("Neptune 3: " + Qt.application.version + "\n\n" + text);
+            }
+
+            function dumpScreenshotAndVersion() {
+                var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
+                tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
+                const timestamp = new Date().toISOString();
+                const screenshotUrl = tempDir + "/" + timestamp + "_neptune3_screenshot.png";
+                display.grabToImage(function(result) {
+                    var ret = result.saveToFile(screenshotUrl);
+                    console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
+                });
+
+                const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
+                saveFile(diagFile, sysinfo.qtDiag);
+
+                notificationInterface.summary = qsTr("Information saved");
+                notificationInterface.body = qsTr("Screenshot and diagnostics info saved to %1").arg(tempDir);
+                notificationInterface.show();
+            }
+
+            onActivated: {
+                dumpScreenshotAndVersion();
             }
         }
     }

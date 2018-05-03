@@ -84,6 +84,8 @@ Item {
 
     property var musicIntentsIPC: MusicIntentsIPC { }
 
+    signal screenshotRequested()
+
     Image {
         anchors.fill: parent
         source: Style.gfx(NeptuneStyle.backgroundImage)
@@ -127,6 +129,7 @@ Item {
         uiSettings: settings
         z: 1
         model: StatusBarModel {}
+        onScreenshotRequested: root.screenshotRequested()
     }
 
     ClimateBar {

@@ -47,6 +47,8 @@ Item {
     property var uiSettings
     property StatusBarModel model
 
+    signal screenshotRequested()
+
     IndicatorTray {
         model: root.model.indicators
         anchors.left: parent.left
@@ -62,5 +64,13 @@ Item {
         anchors.bottom: parent.bottom
         currentDate: root.model.currentDate
         uiSettings: root.uiSettings
+
+        MouseArea {
+            anchors.fill: parent
+            onPressAndHold: {
+                root.screenshotRequested();
+                mouse.accepted = true;
+            }
+        }
     }
 }
