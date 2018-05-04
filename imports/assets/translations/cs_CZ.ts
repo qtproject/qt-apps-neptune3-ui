@@ -809,6 +809,18 @@ UX na cestu</translation>
         <source>Platform</source>
         <translation>Platforma</translation>
     </message>
+    <message>
+        <source>Qt Application Manager: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt IVI: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Neptune 3: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Music</name>

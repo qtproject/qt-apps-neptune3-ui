@@ -38,7 +38,7 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
     width: parent.width
-    height: complexItem.item ? complexItem.item.height : titleAndSubtitle.height
+    height: complexItem.item ? complexItem.item.height : titleAndSubtitle.childrenRect.height
 
     property string title: ""
     property string subtitle: ""

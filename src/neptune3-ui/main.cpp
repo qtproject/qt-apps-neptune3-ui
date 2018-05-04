@@ -31,6 +31,8 @@
 
 #include <QtAppManCommon/global.h>
 #include <QtAppManCommon/logging.h>
+#include <QtAppManCommonVersion>
+#include <QtIviCore/QtIviCoreVersion>
 #include <QtAppManMain/main.h>
 #include <QtAppManMain/defaultconfiguration.h>
 #include <QtAppManPackage/package.h>
@@ -43,6 +45,8 @@
 #include <QDir>
 #include <QProcess>
 #include <QTouchDevice>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include <QDebug>
 
@@ -106,6 +110,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
+
+        auto ctx = a.qmlEngine()->rootContext();
+        ctx->setContextProperty("qtamVersion", QTAPPMANCOMMON_VERSION_STR);
+        ctx->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
 
         return MainBase::exec();
     } catch (const std::exception &e) {

@@ -118,13 +118,15 @@ ColumnLayout {
 
             MonitorListItem {
                 title: qsTr("Version")
-                subtitle: Qt.application.version
+                subtitle: qsTr("Neptune 3: %1").arg(Qt.application.version) + "\n" +
+                          qsTr("Qt Application Manager: %1").arg(qtamVersion) + "\n" +
+                          qsTr("Qt IVI: %1").arg(qtiviVersion)
             }
 
             MonitorListItem {
                 title: qsTr("Platform")
                 subtitle: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " · " +
-                          "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation()
+                          "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation() + "\n"
             }
         }
     }

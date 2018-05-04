@@ -253,7 +253,10 @@ Window {
             function saveFile(fileUrl, text) {
                 var request = new XMLHttpRequest();
                 request.open("PUT", fileUrl);
-                request.send("Neptune 3: " + Qt.application.version + "\n\n" + text);
+                request.send("Neptune 3: " + Qt.application.version + "\n" +
+                             "Qt Application Manager: %1".arg(qtamVersion) + "\n" +
+                             "Qt IVI: %1".arg(qtiviVersion) + "\n\n" +
+                             text);
             }
 
             function dumpScreenshotAndVersion() {
