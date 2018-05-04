@@ -18,7 +18,7 @@ QML scene, as regular QML items.
 * Linux (e.g. Ubuntu 16.04)
 * Qt5 (branch 5.11) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
 * QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
-* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.11)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
 
 ### Single-process UI (fallback option)
 
@@ -28,7 +28,7 @@ process as the System UI itself.
 * Linux (e.g. Ubuntu 16.04) or macOS
 * Qt5 (branch 5.11)
 * QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
-* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.11)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
 
 ## Clone Repository
 

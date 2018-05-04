@@ -51,6 +51,8 @@ import com.pelagicore.styles.neptune 3.0
 PopupItem {
     id: root
 
+    property alias window: windowItem.window
+
     /*!
         \qmlproperty var ApplicationPopup::appInfo
 
@@ -78,14 +80,14 @@ PopupItem {
     width: NeptuneStyle.dp(popupWindowWidth)
     onWidthChanged: {
         if (root.appInfo) {
-            WindowManager.setWindowProperty(root.appInfo.popupWindow, "popupScale", NeptuneStyle.scale);
+            root.appInfo.popupWindow.setWindowProperty("popupScale", NeptuneStyle.scale);
         }
     }
 
     height: NeptuneStyle.dp(popupWindowHeight)
     onHeightChanged: {
         if (root.appInfo) {
-            WindowManager.setWindowProperty(root.appInfo.popupWindow, "popupScale", NeptuneStyle.scale);
+            root.appInfo.popupWindow.setWindowProperty("popupScale", NeptuneStyle.scale);
         }
     }
 
@@ -93,5 +95,10 @@ PopupItem {
         if (root.appInfo) {
             root.appInfo.openPopup = false;
         }
+    }
+
+    WindowItem {
+        id: windowItem
+        anchors.fill: parent
     }
 }

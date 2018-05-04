@@ -32,6 +32,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
+import QtApplicationManager 1.0
 import animations 1.0
 import utils 1.0
 import controls 1.0
@@ -85,30 +86,6 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
     }
 
-    Connections {
-        target: root.appInfo ? root.appInfo : null
-        onWindowChanged: {
-            root.updateState()
-        }
-    }
-    onAppInfoChanged: updateState()
-
-    function updateState() {
-        if (!root.appInfo)
-            return;
-
-        var window = root.appInfo.window
-        if (window) {
-            window.parent = windowSlot;
-            window.width = Qt.binding(function() { return NeptuneStyle.dp(1080); });
-            window.height = Qt.binding(function() { return NeptuneStyle.dp(1920); });
-            window.visible = true;
-            loadingStateGroup.state = "live"
-        } else {
-            loadingStateGroup.state = "loading"
-        }
-    }
-
     Binding {
         target: root.appInfo; property: "windowScale"; value: root.NeptuneStyle.scale
     }
@@ -153,6 +130,13 @@ Item {
 
         // don't let the window get input events outside the slot area
         clip: true
+
+        WindowItem {
+            id: windowItem
+            window: root.appInfo ? root.appInfo.window : null
+            width: NeptuneStyle.dp(Style.centerConsoleWidth)
+            height: NeptuneStyle.dp(Style.centerConsoleHeight)
+        }
     }
 
     ScalableBorderImage {
@@ -189,22 +173,9 @@ Item {
 
     BusyIndicator {
         id: busyIndicator
-        running: true
+        running: !windowItem.window
+        visible: running
         anchors.centerIn: parent
-    }
-
-    StateGroup {
-        id: loadingStateGroup
-        state: "loading"
-        states: [
-            State {
-                name: "loading"
-            },
-            State {
-                name: "live"
-                PropertyChanges { target: busyIndicator; running: false; visible: false }
-            }
-        ]
     }
 
     // Drag handle

@@ -76,12 +76,6 @@ Item {
                                                                           : launcher.height)
                                             : 0
             }
-
-            property var windowHeightBinding: Binding {
-                target: model.appInfo.window
-                property: "height"
-                value: activeApplicationSlot.height
-            }
         }
     }
 

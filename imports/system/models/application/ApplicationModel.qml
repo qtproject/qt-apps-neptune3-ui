@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager 1.0 as AM
+import QtApplicationManager 1.0
 import requests 1.0
 
 /*
@@ -52,7 +52,7 @@ ListModel {
     readonly property bool populating: d.populating
 
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
-    readonly property bool singleProcess: AM.ApplicationManager.singleProcess
+    readonly property bool singleProcess: ApplicationManager.singleProcess
 
     // Populate the model
     function populate() {
@@ -169,14 +169,14 @@ ListModel {
 
     Component.onCompleted: {
         var i;
-        for (i = 0; i < AM.ApplicationManager.count; i++) {
-            var app = AM.ApplicationManager.application(i);
+        for (i = 0; i < ApplicationManager.count; i++) {
+            var app = ApplicationManager.application(i);
             d.appendApplication(app);
         }
     }
 
     property var appManConns: Connections {
-        target: AM.ApplicationManager
+        target: ApplicationManager
 
         onApplicationWasActivated: d.reactOnAppActivation(id);
 
@@ -186,7 +186,7 @@ ListModel {
                 return;
             }
 
-            if (runState === AM.Application.NotRunning) {
+            if (runState === ApplicationObject.NotRunning) {
                 if (appInfo === d.activeAppInfo) {
                     root.goHome();
                 }
@@ -202,7 +202,7 @@ ListModel {
         }
 
         onApplicationAdded: {
-            var app = AM.ApplicationManager.application(id);
+            var app = ApplicationManager.application(id);
             d.appendApplication(app);
         }
 
@@ -232,17 +232,16 @@ ListModel {
     }
 
     property var winManConns: Connections {
-        target: AM.WindowManager
+        target: WindowManager
 
-        onWindowReady: {
-            var appID = AM.WindowManager.get(index).applicationId;
-            var appInfo = applicationFromId(appID);
+        onWindowAdded: {
+            var appInfo = applicationFromId(window.application.id);
 
             var isRegularApp = !!appInfo;
 
             if (isRegularApp) {
-                var isSecondaryWindow = AM.WindowManager.windowProperty(window, "windowType") === "secondary";
-                var isPopupWindow = AM.WindowManager.windowProperty(window, "windowType") === "popup";
+                var isSecondaryWindow = window.windowProperty("windowType") === "secondary";
+                var isPopupWindow = window.windowProperty("windowType") === "popup";
 
                 if (isSecondaryWindow) {
                     appInfo.priv.secondaryWindow = window;
@@ -259,13 +258,11 @@ ListModel {
             }
         }
 
-        onWindowLost: {
-            var appID = AM.WindowManager.get(index).applicationId;
-
-            var appInfo = applicationFromId(appID);
+        onWindowAboutToBeRemoved: {
+            var appInfo = applicationFromId(window.application.id);
             if (!appInfo) {
                 // must be the instrument cluster, which is set apart
-                console.assert(d.instrumentClusterAppInfo && d.instrumentClusterAppInfo.id === appID);
+                console.assert(d.instrumentClusterAppInfo && d.instrumentClusterAppInfo.id === window.application.id);
                 appInfo = d.instrumentClusterAppInfo;
             }
 
@@ -276,18 +273,14 @@ ListModel {
             } else if (appInfo.priv.popupWindow === window) {
                 appInfo.priv.popupWindow = null;
             }
-
-            // TODO care about animating before releasing
-            AM.WindowManager.releaseWindow(window);
         }
 
         onWindowPropertyChanged: {
-            var appId = AM.WindowManager.get(AM.WindowManager.indexOfWindow(window)).applicationId;
-            var appInfo = applicationFromId(appId);
+            var appInfo = applicationFromId(window.application.id);
             switch (name) {
             case "activationCount":
-                AM.ApplicationManager.application(appId).activated();
-                d.reactOnAppActivation(appId);
+                window.application.activated();
+                d.reactOnAppActivation(window.application.id);
                 break;
             case "openPopup":
                 appInfo.openPopup = value;

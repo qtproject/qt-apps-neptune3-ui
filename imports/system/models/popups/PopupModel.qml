@@ -108,9 +108,7 @@ QtObject {
                         popupLoader.item.popupWindowHeight = model.appInfo.popupHeight;
 
                         //set popup window properties
-                        model.appInfo.popupWindow.parent = popupLoader.item;
-                        model.appInfo.popupWindow.anchors.fill = popupLoader.item;
-                        model.appInfo.popupWindow.visible = true;
+                        popupLoader.item.window =  model.appInfo.popupWindow
                     } else {
                         //close popup in case where explicitily requested
                         //from another than the close button press action

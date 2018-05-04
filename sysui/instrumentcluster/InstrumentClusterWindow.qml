@@ -59,15 +59,6 @@ Window {
         WindowManager.registerCompositorView(root)
     }
 
-    readonly property var window: applicationModel && applicationModel.instrumentClusterAppInfo
-            ? applicationModel.instrumentClusterAppInfo.window : null
-
-    Binding { target: root.window; property: "width"; value: uiSlot.width }
-    Binding { target: root.window; property: "height"; value: uiSlot.height }
-    Binding { target: root.window; property: "parent"; value: uiSlot }
-    Binding { target: root.window; property: "z"; value: 2 }
-
-
     Settings.InstrumentCluster {
         id: instrumentClusterSettings
     }
@@ -98,7 +89,6 @@ Window {
         SecondaryAppWindows {
             id: secondaryAppWindows
             anchors.fill: parent
-            z: 1
             applicationModel: root.applicationModel
 
             visible: !empty
@@ -114,6 +104,13 @@ Window {
             }
             Binding { target: instrumentClusterSettings; property: "navigationMode"; value: secondaryAppWindows.selectedNavigation }
         }
+
+        WindowItem {
+            id: windowItem
+            anchors.fill: parent
+            window: applicationModel && applicationModel.instrumentClusterAppInfo
+                    ? applicationModel.instrumentClusterAppInfo.window : null
+        }
     }
 
     MonitorOverlay {
@@ -127,5 +124,5 @@ Window {
     // lazy way of putting the instrument cluster in a separate screen, if available
     screen: Qt.application.screens[Qt.application.screens.length - 1]
 
-    visible: window != null
+    visible: windowItem.window != null
 }

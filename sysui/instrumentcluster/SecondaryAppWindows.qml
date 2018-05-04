@@ -31,6 +31,7 @@
 
 import QtQuick 2.7
 import QtQml.Models 2.2
+import QtApplicationManager 1.0
 
 import animations 1.0
 import com.pelagicore.styles.neptune 3.0
@@ -102,7 +103,7 @@ Item {
 
     Repeater {
         model: secondaryWindowList
-        delegate: Item {
+        delegate: WindowItem {
             id: secondaryWindowSlot
             anchors.fill: root
             opacity: model.index === root.selectedIndex ? 1 : 0
@@ -112,10 +113,9 @@ Item {
             // TODO: Investigate
             //visible: opacity > 0
 
-            Behavior on opacity { DefaultNumberAnimation {}  }
-            Binding { target: model.appInfo.secondaryWindow; property: "width"; value: secondaryWindowSlot.width }
-            Binding { target: model.appInfo.secondaryWindow; property: "height"; value: secondaryWindowSlot.height }
-            Binding { target: model.appInfo.secondaryWindow; property: "parent"; value: secondaryWindowSlot }
+            window: model.appInfo.secondaryWindow
+
+            Behavior on opacity { DefaultNumberAnimation {} }
             Binding { target: model.appInfo; property: "secondaryWindowScale"; value: secondaryWindowSlot.NeptuneStyle.scale }
         }
     }

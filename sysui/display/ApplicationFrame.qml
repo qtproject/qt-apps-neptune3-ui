@@ -30,6 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtApplicationManager 1.0
 
 import animations 1.0
 import com.pelagicore.styles.neptune 3.0
@@ -65,7 +66,7 @@ Item {
     QtObject {
         id: d
 
-        property Item window: root.appInfo ? root.appInfo.window : null
+        property var window: root.appInfo ? root.appInfo.window : null
         onWindowChanged: {
             if (currentMaxWindow) {
                 currentMaxWindow.removeAnimation.start();
@@ -73,7 +74,7 @@ Item {
             }
 
             if (window) {
-                currentMaxWindow = maximizedWindowComponent.createObject(d, {"window":window});
+                currentMaxWindow = maximizedWindowComponent.createObject(d, {"parent":root,"window":window});
                 window.parent = root;
                 currentMaxWindow.addAnimation.start();
             }
@@ -86,47 +87,19 @@ Item {
 
     Component {
         id: maximizedWindowComponent
-        QtObject {
+        WindowItem {
             id: maxWindowObj
-            property var window;
+            anchors.fill: parent
             property var addAnimation: SequentialAnimation {
-                id: addWindowAnimation
-                ScriptAction { script: {
-                    window.x = 0;
-                    window.y = 0;
-                    window.z = 1;
-                    window.width = Qt.binding(function() { return root.width; });
-                    window.height = Qt.binding(function() { return root.height; });
-                    window.visible = true;
-                }}
-                DefaultNumberAnimation { target: window; property: "opacity"; from: 0; to: 1 }
+                DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
             }
-
             property var removeAnimation: SequentialAnimation {
-                id: removeWindowAnimation
-                DefaultNumberAnimation { target: window; property: "opacity"; from: 1; to: 0 }
+                DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 1; to: 0 }
                 ScriptAction { script: {
-                    // if the application got killed or crashed, there will be no window by now anymore
-                    if (window) {
-                        window.parent = null;
-
-                        // break bindings
-                        window.width = window.width;
-                        window.height = window.height;
-
-                        window.visible = false;
-
-                        // leave it the way you found it
-                        window.opacity = 1;
-
-                        window = null;
-                    }
-
                     // self destruct
                     maxWindowObj.destroy();
                 }}
             }
         }
     }
-
 }
