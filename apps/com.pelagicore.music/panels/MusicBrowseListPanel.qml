@@ -81,7 +81,7 @@ Control {
             width: visible ? NeptuneStyle.dp(720) : 0
             height: visible ? NeptuneStyle.dp(94) : 0
             //no header when one of below views is selected
-            property var labels: ["favorites", "radio", "spotify", "web radio"]
+            property var labels: ["favorites", "tuner", "spotify", "web radio"]
             visible: ((toolsColumnText.indexOf(actualContentType) === -1) && (labels.indexOf(toolsColumnText) === -1))
 
             ToolButton {

@@ -488,6 +488,14 @@
         <source>Browse</source>
         <translation type="unfinished">浏览</translation>
     </message>
+    <message>
+        <source>MANUAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BROWSE</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Helper</name>
@@ -835,7 +843,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>radio</source>
+        <source>tuner</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -972,38 +980,30 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>RadioStore</name>
     <message>
         <source>FM1</source>
-        <translation>FM1</translation>
+        <translation type="vanished">FM1</translation>
     </message>
     <message>
         <source>FM2</source>
-        <translation>FM2</translation>
+        <translation type="vanished">FM2</translation>
     </message>
     <message>
         <source>AM</source>
-        <translation>AM</translation>
+        <translation type="vanished">AM</translation>
     </message>
     <message>
         <source>KHz</source>
-        <translation>KHz</translation>
+        <translation type="vanished">KHz</translation>
     </message>
     <message>
         <source>MHz</source>
-        <translation>MHz</translation>
+        <translation type="vanished">MHz</translation>
     </message>
 </context>
 <context>
     <name>RadioToolsColumn</name>
     <message>
-        <source>music</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>web radio</source>
-        <translation type="unfinished"></translation>
+        <source>favorites</source>
+        <translation type="obsolete">收藏夹</translation>
     </message>
 </context>
 <context>
@@ -1306,6 +1306,60 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Open</source>
         <translation>开</translation>
+    </message>
+</context>
+<context>
+    <name>TunerStore</name>
+    <message>
+        <source>FM1</source>
+        <translation type="unfinished">FM1</translation>
+    </message>
+    <message>
+        <source>FM2</source>
+        <translation type="unfinished">FM2</translation>
+    </message>
+    <message>
+        <source>AM</source>
+        <translation type="unfinished">AM</translation>
+    </message>
+    <message>
+        <source>KHz</source>
+        <translation type="unfinished">KHz</translation>
+    </message>
+    <message>
+        <source>MHz</source>
+        <translation type="unfinished">MHz</translation>
+    </message>
+</context>
+<context>
+    <name>TunerToolsColumn</name>
+    <message>
+        <source>favorites</source>
+        <translation type="unfinished">收藏夹</translation>
+    </message>
+    <message>
+        <source>AM band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM 1 band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM 2 band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>spotify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>web radio</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

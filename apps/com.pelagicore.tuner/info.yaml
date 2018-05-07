@@ -1,13 +1,13 @@
 formatVersion: 1
 formatType: am-application
 ---
-id:      'com.pelagicore.radio'
+id:      'com.pelagicore.tuner'
 icon:    'icon.png'
 code:    'Main.qml'
 runtime: 'qml'
 name:
-  en: 'Radio'
-  de: 'Radio'
+  en: 'Tuner'
+  de: 'Tuner'
 
 categories: [ 'media' ]
-mimeTypes: [ 'x-scheme-handler/x-radio' ]
+mimeTypes: [ 'x-scheme-handler/x-tuner' ]

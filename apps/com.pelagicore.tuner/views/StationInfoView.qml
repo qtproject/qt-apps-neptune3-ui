@@ -31,33 +31,39 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
-
-import controls 1.0
 import utils 1.0
-import "../stores"
+import animations 1.0
+import com.pelagicore.styles.neptune 3.0
+
 import "../controls"
 import "../panels"
-
-import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
 
-    property RadioStore store
+    //TODO implement here all widget states
 
-    FullScreenTopView {
-        id: fullscreenTopView
-        height: NeptuneStyle.dp(660 - 224)
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        store: root.store
-    }
+    property var store
+    property alias currentFrequency: stationInfoPanel.currentFrequency
 
-    FullScreenBottomView {
-        width: NeptuneStyle.dp(1080)
-        anchors.top: fullscreenTopView.bottom
-        anchors.bottom: parent.bottom
-        store: root.store
+    StationInfoPanel {
+        id: stationInfoPanel
+        height: NeptuneStyle.dp(180)
+        width: parent.width
+        anchors.verticalCenter: parent.verticalCenter
+        stationName: root.store.currentStationName
+        radioText: root.store.currentStationText
+        stationLogoUrl: root.store.currentStationLogo
+        numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
+        radioPlaying: root.store.radioPlaying
+        onPreviousClicked: {
+            root.store.prevStation();
+        }
+        onNextClicked: {
+            root.store.nextStation();
+        }
+        onPlayClicked: {
+            root.store.playStation();
+        }
     }
 }

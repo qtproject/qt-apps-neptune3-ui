@@ -39,7 +39,7 @@ import QtApplicationManager 1.0
     \brief An IPC for music intents
 
     The MusicIntentsIPC is meant to be used only for the music intents use case, enabling music,
-    radio and webradio apps to know whether spotify and/or webradio are installed from the appstore,
+    tuner and webradio apps to know whether spotify and/or webradio are installed from the appstore,
     or added / removed. This interface can be accessed only from the mentioned apps.
 */
 
@@ -92,7 +92,7 @@ ApplicationIPCInterface {
     Component.onCompleted: {
         ApplicationIPCManager.registerInterface(root, "neptune.musicintents.interface",
                                                 { "applicationIds": [ "com.pelagicore.music",
-                                                                      "com.pelagicore.radio",
+                                                                      "com.pelagicore.tuner",
                                                                       "com.pelagicore.webradio" ] })
 
         if (ApplicationManager.applicationIds().indexOf("com.pelagicore.spotify") >= 0) {

@@ -30,34 +30,55 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.2
-
-import controls 1.0
 import utils 1.0
+import animations 1.0
 import com.pelagicore.styles.neptune 3.0
 
-Button {
+import "../controls"
+
+Item {
     id: root
 
-    checkable: true
-    background: Rectangle {
-        opacity: 0.2
-        color: "black"
-        border.width: root.pressed ? 2 : 1
-        border.color: "#888"
-        radius: 4
-        // TODO: Later check with designer, which color / asset should be used.
-        gradient: Gradient {
-            GradientStop { position: 0 ; color: root.pressed ? "#ccc" : root.checked ? "#fcd699" : "#eee" }
-            GradientStop { position: 1 ; color: root.pressed ? "#aaa" : "#ccc" }
-        }
-    }
+    property alias stationName: stationInfo.stationName
+    property alias radioText: stationInfo.radioText
+    property alias stationLogoUrl: stationInfo.stationLogoUrl
+    property alias currentFrequency: stationInfo.frequency
+    property alias numberOfDecimals: stationInfo.numberOfDecimals
+    property alias radioPlaying: controlsRow.play
 
-    contentItem: Label {
-        wrapMode: Text.WordWrap
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: NeptuneStyle.fontSizeS
-        text: root.text
+    signal previousClicked()
+    signal nextClicked()
+    signal playClicked()
+
+    Item {
+        anchors.fill: parent
+
+        StationInfoColumn {
+            id: stationInfo
+            anchors.left: parent.left
+            anchors.leftMargin: NeptuneStyle.dp(40)
+            anchors.right: controlsRow.left
+            anchors.rightMargin: NeptuneStyle.dp(20)
+            anchors.verticalCenter: parent.verticalCenter
+            width: NeptuneStyle.dp(480)
+        }
+
+        MusicControls {
+            id: controlsRow
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: parent.right
+            anchors.rightMargin: NeptuneStyle.dp(100)
+            Behavior on anchors.rightMargin { DefaultNumberAnimation { } }
+            onPreviousClicked: {
+                root.previousClicked();
+            }
+            onNextClicked: {
+                root.nextClicked();
+            }
+            onPlayClicked: {
+                root.playClicked();
+            }
+        }
     }
 }

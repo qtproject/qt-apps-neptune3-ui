@@ -29,34 +29,58 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick 2.10
 import utils 1.0
-import "stores"
-import "views"
+import controls 1.0
+import QtQuick.Controls 2.3
+import QtGraphicalEffects 1.0
+import com.pelagicore.styles.neptune 3.0
 
-QtObject {
-    property var mainWindow: PrimaryWindow {
-        id: mainWindow
+Row {
+    id: root
 
-        MultiPointTouchArea {
-            id: multiPoint
-            anchors.fill: parent
-            anchors.margins: 30
-            touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    width: 3 * buttonWidth
+    height: NeptuneStyle.dp(240)
 
-            property int count: 0
-            onReleased: {
-                count += 1;
-                mainWindow.setWindowProperty("activationCount", count);
+    property bool play: false
+    readonly property real buttonWidth: NeptuneStyle.dp(100)
+    signal previousClicked()
+    signal playClicked()
+    signal nextClicked()
+
+    ToolButton {
+        width: root.buttonWidth
+        height: parent.height
+        icon.name: "ic_skipprevious"
+        onClicked: root.previousClicked()
+    }
+
+    ToolButton {
+        width: root.buttonWidth
+        height: parent.height
+        icon.name: root.play ? "ic-pause" : "ic_play"
+        icon.color: "white"
+        onClicked: root.playClicked()
+
+        background: Image {
+            id: playButtonBackground
+            anchors.centerIn: parent
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
+            source: Style.symbol("ic_button-bg")
+            fillMode: Image.PreserveAspectFit
+            layer.enabled: true
+            layer.effect: ColorOverlay {
+                source: playButtonBackground
+                color: NeptuneStyle.accentColor
             }
         }
+    }
 
-        RadioView {
-            x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y
-            width: mainWindow.exposedRect.width
-            height: mainWindow.exposedRect.height
-            store: RadioStore { }
-        }
+    ToolButton {
+        width: root.buttonWidth
+        height: parent.height
+        icon.name: "ic_skipnext"
+        onClicked: root.nextClicked()
     }
 }

@@ -45,6 +45,8 @@ Store {
         source: root.currentStationUrl
     }
 
+    property bool radioPlaying: (player.playbackState === MediaPlayer.PlayingState)
+
     property int freqPresets: 0 // 0: FM1; 1: FM2; 2: AM;
     readonly property string currentFreqPreset: {
         switch (root.freqPresets) {
@@ -60,6 +62,8 @@ Store {
     }
     property int currentStationIndex
     readonly property string currentStationName: root.getStationName()
+    readonly property string currentStationText: root.getStationText()
+    readonly property string currentStationLogo: root.getStationLogo()
     property string currentStationUrl
 
     readonly property int tunerBand: tunerControl.currentBand
@@ -77,8 +81,8 @@ Store {
             id: musicIntentsInterface
             name: "neptune.musicintents.interface"
             Component.onCompleted: {
-                toolsColumnModel.get(1).greyedOut = !object.spotifyInstalled;
-                toolsColumnModel.get(2).greyedOut = !object.webradioInstalled;
+                toolsColumnModel.get(5).greyedOut = !object.spotifyInstalled;
+                toolsColumnModel.get(6).greyedOut = !object.webradioInstalled;
             }
         }
 
@@ -86,22 +90,30 @@ Store {
             target: musicIntentsInterface.object
 
             onSpotifyInstalledChanged: {
-                toolsColumnModel.get(1).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
+                toolsColumnModel.get(5).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
             }
             onWebradioInstalledChanged: {
-                toolsColumnModel.get(2).greyedOut = !musicIntentsInterface.object.webradioInstalled;
+                toolsColumnModel.get(6).greyedOut = !musicIntentsInterface.object.webradioInstalled;
             }
         }
     }
 
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "music"); greyedOut: false }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "spotify"); greyedOut: true }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("RadioToolsColumn", "web radio"); greyedOut: true }
+        ListElement { icon: "ic-favorite-tuner"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "favorites"); greyedOut: true }
+        ListElement { icon: "ic-toolbar-am-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "AM band"); greyedOut: false }
+        ListElement { icon: "ic-toolbar-fm-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "FM 1 band"); greyedOut: false }
+        ListElement { icon: "ic-toolbar-fm-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "FM 2 band"); greyedOut: false }
+        //ListElement { icon: "ic-toolbar-sources-tuner"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "sources"); greyedOut: false }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "music"); greyedOut: false }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "spotify"); greyedOut: true }
+        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "web radio"); greyedOut: true }
     }
 
     property ListModel freqPresetsModel: ListModel {
+        ListElement {
+            name: "AM"
+        }
 
         ListElement {
             name: "FM 1"
@@ -109,10 +121,6 @@ Store {
 
         ListElement {
             name: "FM 2"
-        }
-
-        ListElement {
-            name: "AM"
         }
     }
 
@@ -122,6 +130,7 @@ Store {
             freq: 87.5
             stationName: "Jazzophile"
             url: "http://streaming.radionomy.com/Jazzophile?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+            stationLogo: "https://upstream-i3.radionomy.com/radios/400/06f3a487-fc12-4f7a-a997-c3d4ef967677.jpg"
         }
 
         ListElement {
@@ -134,6 +143,8 @@ Store {
             freq: 101.0
             stationName: "Smooth Jazz"
             url: "http://streaming.radionomy.com/101SMOOTHJAZZ?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+            stationLogo: "http://www.mitrofm.com/site/wp-content/uploads/2016/03/smooth-jazz.jpg"
+            stationText: "24 Jazz "
         }
 
         ListElement {
@@ -158,12 +169,15 @@ Store {
             freq: 93.5
             stationName: "Hotmix Radio"
             url: "http://streaming.hotmixradio.fr/hotmixradio-80-128.mp3?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+            stationLogo: "https://static.hotmixradio.fr/wp-content/uploads/HOTMIXRADIO-Hits.png"
+            stationText: "Best hits from 80s and 90s"
         }
 
         ListElement {
             freq: 103.8
             stationName: "Beatles Radio"
             url: "http://www.beatlesradio.com:8000/stream/1/;.m3u"
+            stationLogo: "http://static.radio.net/images/broadcasts/ea/a3/1436/c175.png"
         }
     }
 
@@ -179,6 +193,7 @@ Store {
             freq: 95.0
             stationName: "ABC Lounge"
             url: "http://streaming.radionomy.com/ABC-Lounge?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+            stationLogo: "https://store-images.s-microsoft.com/image/apps.1062.13510798882983804.b2b1bdcd-6fef-4240-bd56-837d11282665.7fde7c77-c4b3-442d-b234-78799dadd1bd?w=180&h=180&q=60"
         }
 
         ListElement {
@@ -203,6 +218,7 @@ Store {
             freq: 100.7
             stationName: "Radio RTM"
             url: "http://streaming.radionomy.com/RadioRTM?lang=en-US%2cen%3bq%3d0.9%2cid%3bq%3d0.8"
+            stationLogo: "https://upload.wikimedia.org/wikipedia/commons/3/3d/RTM.png"
         }
 
         ListElement {
@@ -215,6 +231,7 @@ Store {
             freq: 104.2
             stationName: "Discofox FM"
             url: "http://87.118.78.71:12000/;.m3u"
+            stationText: "Best disco hits"
         }
     }
 
@@ -242,6 +259,7 @@ Store {
             freq: 1001
             stationName: "Radio 4"
             url: ""
+            stationText: "Non stop hits"
         }
 
         ListElement {
@@ -266,6 +284,7 @@ Store {
             freq: 1690
             stationName: "Radio 8"
             url: ""
+            stationText: "Sports news"
         }
     }
 
@@ -279,23 +298,47 @@ Store {
         }
     }
 
+    function playStation() {
+        if (root.radioPlaying) {
+            player.pause();
+        } else {
+            player.play();
+        }
+    }
+
+    function getStationLogo() {
+        if (freqPresets === 0) {
+            return root.fm1Stations.get(root.currentStationIndex).stationLogo ?
+                   root.fm1Stations.get(root.currentStationIndex).stationLogo : "";
+        } else if (freqPresets === 1) {
+            return root.fm2Stations.get(root.currentStationIndex).stationLogo ?
+                   root.fm2Stations.get(root.currentStationIndex).stationLogo : "";
+        } else if (freqPresets === 2) {
+            return root.amStations.get(root.currentStationIndex).stationLogo ?
+                   root.amStations.get(root.currentStationIndex).stationLogo : "";
+        }
+    }
+
     function getStationName() {
         if (freqPresets === 0) {
-            return root.fm1Stations.get(root.currentStationIndex).stationName
+            return root.fm1Stations.get(root.currentStationIndex).stationName;
         } else if (freqPresets === 1) {
-            return root.fm2Stations.get(root.currentStationIndex).stationName
+            return root.fm2Stations.get(root.currentStationIndex).stationName;
         } else if (freqPresets === 2) {
-            return root.amStations.get(root.currentStationIndex).stationName
+            return root.amStations.get(root.currentStationIndex).stationName;
         }
     }
 
     function getStationText() {
         if (freqPresets === 0) {
-            return root.fm1Stations.get(root.currentStationIndex).stationText
+            return root.fm1Stations.get(root.currentStationIndex).stationText ?
+                   root.fm1Stations.get(root.currentStationIndex).stationText : "";
         } else if (freqPresets === 1) {
-            return root.fm2Stations.get(root.currentStationIndex).stationText
+            return root.fm2Stations.get(root.currentStationIndex).stationText ?
+                   root.fm2Stations.get(root.currentStationIndex).stationText : "";
         } else if (freqPresets === 2) {
-            return root.amStations.get(root.currentStationIndex).stationText
+            return root.amStations.get(root.currentStationIndex).stationText ?
+                   root.amStations.get(root.currentStationIndex).stationText : "";
         }
     }
 

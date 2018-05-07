@@ -46,9 +46,9 @@ import QtApplicationManager 1.0
     \qml
 
     Button {
-        id: openRadioApp
+        id: openTunerApp
         onClicked: {
-            Qt.openUrlExternally("x-radio://");
+            Qt.openUrlExternally("x-tuner://");
         }
     }
 
@@ -67,7 +67,7 @@ import QtApplicationManager 1.0
     the Qt.openUrlExternally() function passing as parameter the applications' mime-Type
     and desired url to be followed. For that to be successful, the respective mime-Types
     should be added accordingly to the applications' info.yaml files (example: mimeTypes:
-    [ 'x-scheme-handler/x-radio' ]) The ApplicationManager will then consult its internal
+    [ 'x-scheme-handler/x-tuner' ]) The ApplicationManager will then consult its internal
     database of applications looking for a match with x-scheme-handler/x-mimeType. If there
     is a successful match, then the openUrlRequested signal will be emitted and its receiver
     (IntentsInterface) can then either acknowledge the request by calling acknowledgeOpenUrlRequest
@@ -83,8 +83,7 @@ QtObject {
         \qmlproperty string IntentsInterface::activeAppId
 
         This property holds the active application id. It is used to store the active application id
-        before an intent request is submitted in
-        order to be able to navigate back to it accordingly.
+        before an intent request is submitted in order to be able to navigate back to it accordingly.
     */
 
     property string activeAppId: ""

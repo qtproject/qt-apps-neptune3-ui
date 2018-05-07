@@ -322,6 +322,14 @@
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>MANUAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BROWSE</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Helper</name>
@@ -517,7 +525,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>radio</source>
+        <source>tuner</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -578,44 +586,6 @@
     <message>
         <source></source>
         <translation></translation>
-    </message>
-</context>
-<context>
-    <name>RadioStore</name>
-    <message>
-        <source>KHz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MHz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FM1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FM2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AM</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RadioToolsColumn</name>
-    <message>
-        <source>music</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>web radio</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -751,6 +721,60 @@
     </message>
     <message>
         <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TunerStore</name>
+    <message>
+        <source>FM1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TunerToolsColumn</name>
+    <message>
+        <source>favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM 1 band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FM 2 band</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>spotify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>web radio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

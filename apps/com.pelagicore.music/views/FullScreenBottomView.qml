@@ -66,8 +66,8 @@ Item {
         translationContext: "MusicToolsColumn"
         model: store.toolsColumnModel
         onClicked: {
-            if (currentText === "radio") {
-                Qt.openUrlExternally("x-radio://");
+            if (currentText === "tuner") {
+                Qt.openUrlExternally("x-tuner://");
                 currentIndex = 0;
             } else if (currentText === "web radio") {
                 Qt.openUrlExternally("x-webradio://");
