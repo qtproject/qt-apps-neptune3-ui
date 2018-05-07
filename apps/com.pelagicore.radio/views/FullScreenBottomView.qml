@@ -30,19 +30,20 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.2
-
-import controls 1.0
 import utils 1.0
-import "stores"
+import controls 1.0
+import animations 1.0
+import QtQuick.Controls 2.2
 
 import com.pelagicore.styles.neptune 3.0
 
+import "../stores"
+import "../panels"
+import "../controls"
+
 Item {
     id: root
-
-    property RadioStore store
+    property var store
 
     Connections {
         target: root.store
@@ -50,99 +51,15 @@ Item {
         onCurrentStationIndexChanged: {
             stationsGrid.currentIndex = root.store.currentStationIndex;
         }
-
-        onCurrentFrequencyChanged: {
-            if (!slider.dragging) {
-                stationInfo.tuningMode = false
-            }
-        }
     }
 
-    ColumnLayout {
-        id: stationControl
-        width: root.width
-        anchors.horizontalCenter: parent.horizontalCenter
-        spacing: NeptuneStyle.dp(160)
-
-        RowLayout {
-            Layout.alignment: Qt.AlignHCenter
-
-            ToolButton {
-                Layout.preferredWidth: NeptuneStyle.dp(45)
-                Layout.preferredHeight: NeptuneStyle.dp(80)
-                icon.name: "ic_skipprevious"
-                onClicked: root.store.prevStation()
-                onPressAndHold: root.store.scanBack()
-            }
-
-            Label {
-                Layout.preferredWidth: NeptuneStyle.dp(225)
-                text: root.store.currentFreqPreset
-                font.pixelSize: NeptuneStyle.fontSizeXXL
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-            StationInfo {
-                id: stationInfo
-                topPadding: NeptuneStyle.dp(20)
-                Layout.preferredWidth: NeptuneStyle.dp(292)
-                Layout.preferredHeight: NeptuneStyle.dp(160)
-                title: root.store.currentStationName
-                numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
-                frequency: stationInfo.tuningMode ? slider.value : root.store.currentFrequency
-            }
-
-            Label {
-                Layout.preferredWidth: NeptuneStyle.dp(225)
-                text: root.store.freqUnit
-                font.pixelSize: NeptuneStyle.fontSizeXXL
-                horizontalAlignment: Text.AlignHCenter
-            }
-
-            ToolButton {
-                Layout.preferredWidth: NeptuneStyle.dp(45)
-                Layout.preferredHeight: NeptuneStyle.dp(80)
-                icon.name: "ic_skipnext"
-                onClicked: root.store.nextStation()
-                onPressAndHold: root.store.scanForward()
-            }
-        }
-
-        TunerSlider {
-            id: slider
-
-            Layout.preferredWidth: NeptuneStyle.dp(900)
-            Layout.preferredHeight: NeptuneStyle.dp(80)
-            Layout.alignment: Qt.AlignHCenter
-
-            readonly property real minFrequency: root.store.minimumFrequency
-            readonly property real maxFrequency: root.store.maximumFrequency
-
-            value: root.store.currentFrequency
-            minimum: minFrequency
-            maximum: maxFrequency
-            useAnimation: true
-            numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
-
-            onActiveValueChanged: value = activeValue
-
-            onDraggingChanged: {
-                if (dragging) {
-                    stationInfo.tuningMode = true
-                } else {
-                    stationInfo.tuningMode = false
-                    root.store.setFrequency(value)
-                }
-            }
-        }
-    }
     ToolsColumn {
         id: toolsColumn
         width: NeptuneStyle.dp(264)
         anchors.left: parent.left
-        anchors.top: stationControl.bottom
-        anchors.topMargin: NeptuneStyle.dp(2)
-        model: store.toolsColumnModel
+        anchors.top: parent.top
+        anchors.topMargin: NeptuneStyle.dp(53)
+        model: root.store.toolsColumnModel
         onClicked: {
             if (currentText === "music") {
                 Qt.openUrlExternally("x-music://");
@@ -159,8 +76,6 @@ Item {
 
         width: root.width * 0.6
         height: NeptuneStyle.dp(200)
-        anchors.top: stationControl.bottom
-        anchors.topMargin: NeptuneStyle.dp(160)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.horizontalCenterOffset: toolsColumn.width / 3
 

@@ -30,33 +30,34 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+
+import controls 1.0
 import utils 1.0
-import "stores"
-import "views"
+import "../stores"
+import "../controls"
+import "../panels"
 
-QtObject {
-    property var mainWindow: PrimaryWindow {
-        id: mainWindow
+import com.pelagicore.styles.neptune 3.0
 
-        MultiPointTouchArea {
-            id: multiPoint
-            anchors.fill: parent
-            anchors.margins: 30
-            touchPoints: [ TouchPoint { id: touchPoint1 } ]
+Item {
+    id: root
 
-            property int count: 0
-            onReleased: {
-                count += 1;
-                mainWindow.setWindowProperty("activationCount", count);
-            }
-        }
+    property RadioStore store
 
-        RadioView {
-            x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y
-            width: mainWindow.exposedRect.width
-            height: mainWindow.exposedRect.height
-            store: RadioStore { }
-        }
+    FullScreenTopView {
+        id: fullscreenTopView
+        height: NeptuneStyle.dp(660 - 224)
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        store: root.store
+    }
+
+    FullScreenBottomView {
+        width: NeptuneStyle.dp(1080)
+        anchors.top: fullscreenTopView.bottom
+        anchors.bottom: parent.bottom
+        store: root.store
     }
 }
