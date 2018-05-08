@@ -51,6 +51,8 @@ Item {
             ColumnLayout {
                 Label {
                     Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.fillHeight: true
                     text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: NeptuneStyle.fontSizeS
@@ -58,6 +60,13 @@ Item {
                 DayOfWeekRow {
                     locale: Qt.locale(Style.languageLocale)
                     Layout.fillWidth: true
+                    Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.maximumHeight: 0.1 * gridView.cellHeight
+                    Layout.preferredHeight: 0.1 * gridView.cellHeight
+                    spacing: NeptuneStyle.dp(6)
+                    topPadding: NeptuneStyle.dp(6)
+                    bottomPadding: NeptuneStyle.dp(6)
                     delegate: Text {
                         text: model.shortName
                         font.pixelSize: NeptuneStyle.fontSizeXS
@@ -70,13 +79,17 @@ Item {
                 MonthGrid {
                     id: grid
                     property color labelColor: NeptuneStyle.contrastColor
+                    spacing: NeptuneStyle.dp(6)
                     locale: Qt.locale(Style.languageLocale)
                     month: index
                     year: {
                         var d = new Date();
                         return d.getFullYear();
                     }
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.maximumHeight: 0.7 * gridView.cellHeight
+                    Layout.preferredHeight: 0.7 * gridView.cellHeight
                     delegate: Label {
                         text: model.day
                         color: grid.labelColor

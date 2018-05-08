@@ -48,13 +48,21 @@ Item {
 
                 Label {
                     Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.fillHeight: true
                     text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: NeptuneStyle.fontSizeS
                 }
                 DayOfWeekRow {
                     locale: Qt.locale(Style.languageLocale)
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.preferredHeight: 0.1 * gridView.cellHeight
+                    Layout.maximumHeight: 0.1 * gridView.cellHeight
+                    spacing: NeptuneStyle.dp(6)
+                    topPadding: NeptuneStyle.dp(6)
+                    bottomPadding: NeptuneStyle.dp(6)
                     delegate: Text {
                         text: model.shortName
                         font.pixelSize: NeptuneStyle.fontSizeXS
@@ -75,7 +83,11 @@ Item {
                         var d = new Date();
                         return d.getFullYear();
                     }
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: NeptuneStyle.dp(270)
+                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.preferredHeight: 0.7 * gridView.cellHeight
+                    Layout.maximumHeight: 0.7 * gridView.cellHeight
+                    spacing: NeptuneStyle.dp(6)
                     delegate: Label {
                         text: model.day
                         color: grid.labelColor

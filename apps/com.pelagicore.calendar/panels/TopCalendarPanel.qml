@@ -44,8 +44,14 @@ RowLayout {
 
     ColumnLayout {
         DayOfWeekRow {
+            Layout.preferredWidth: shadow.width
+            Layout.maximumWidth: shadow.width
+            Layout.preferredHeight: root.height / 8
+            Layout.maximumHeight: root.height / 8
+            spacing: NeptuneStyle.dp(6)
+            topPadding: NeptuneStyle.dp(6)
+            bottomPadding: NeptuneStyle.dp(6)
             locale: grid.locale
-            Layout.fillWidth: true
             delegate: Text {
                 text: model.shortName
                 font.pixelSize: NeptuneStyle.fontSizeXS
@@ -62,7 +68,11 @@ RowLayout {
             property color labelColor: NeptuneStyle.contrastColor
 
             locale: Qt.locale(Style.languageLocale)
-            Layout.fillWidth: true
+            Layout.preferredWidth: shadow.width
+            Layout.maximumWidth: shadow.width
+            Layout.preferredHeight: 0.6 * root.height
+            Layout.maximumHeight: 0.6 * root.height
+
             delegate: Label {
                 text: model.day
                 color: grid.labelColor
@@ -74,7 +84,13 @@ RowLayout {
             }
         }
         Image {
+            id: shadow
+            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.maximumWidth: NeptuneStyle.dp(sourceSize.width)
+            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+            Layout.maximumHeight: NeptuneStyle.dp(sourceSize.height)
             source: Style.gfx("album-art-shadow-widget")
+            fillMode: Image.PreserveAspectFit
         }
     }
 

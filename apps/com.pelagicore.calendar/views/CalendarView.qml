@@ -63,20 +63,27 @@ Item {
 
     // Top content background
     Image {
+        id: topContentBg
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: calendarOnTop.height + calendarOnTop.anchors.topMargin + mainControl.anchors.topMargin
+        height: NeptuneStyle.dp(436)
         source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
         visible: root.state == "Maximized"
     }
 
     TopCalendarPanel {
         id: calendarOnTop
-        anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(80)
-        anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(135)
+        anchors {
+            top: topContentBg.top
+            topMargin: NeptuneStyle.dp(80)
+            left: topContentBg.left
+            leftMargin: NeptuneStyle.dp(135)
+            right: topContentBg.right
+            rightMargin: NeptuneStyle.dp(135)
+            bottom: topContentBg.bottom
+            bottomMargin: NeptuneStyle.dp(40)
+        }
         visible: root.state === "Maximized"
     }
 
