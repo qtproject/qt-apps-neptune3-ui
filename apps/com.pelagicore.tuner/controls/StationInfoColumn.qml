@@ -44,7 +44,6 @@ Item {
     id: root
 
     property alias radioText: actualProgram.text
-    property bool tuningMode: false
     property string stationName
     property string stationLogoUrl
     property real frequency

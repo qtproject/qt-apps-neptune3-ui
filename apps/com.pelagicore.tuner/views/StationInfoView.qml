@@ -54,6 +54,7 @@ Item {
         stationName: root.store.currentStationName
         radioText: root.store.currentStationText
         stationLogoUrl: root.store.currentStationLogo
+        currentFrequency: root.store.currentStationFreq
         numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
         radioPlaying: root.store.radioPlaying
         onPreviousClicked: {

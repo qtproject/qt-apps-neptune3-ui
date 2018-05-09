@@ -32,145 +32,116 @@
 import QtQuick 2.8
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 
 import utils 1.0
 import controls 1.0
 import com.pelagicore.styles.neptune 3.0
 
-Item {
+Slider {
+    //TODO adapt it to AM band frequencies
+
     id: root
-    property real value
-    property real minimum: 0
-    property real maximum: 1
-    property int length: width - handle.width
-    property int animationDuration: 250
-    property bool useAnimation: false
-    property alias dragging: area.pressed
+    height: handle.height + valueLabel.contentHeight
+    anchors.bottom: parent.bottom
+    live: true
+
+    property alias stationIndicatorComponent: stationIndicatorComponent
     property int numberOfDecimals: 1
 
-    property real activeValue
-
-    Behavior on value {
-        enabled: useAnimation && !area.drag.active
-        NumberAnimation { duration: animationDuration}
-    }
-
-    Rectangle {
-        id: background
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        height: NeptuneStyle.dp(4)
-        radius: 4
-        border.color: Qt.lighter(color, 1.1)
-        color: "#999"
-        opacity: 0.25
-    }
-
-    ColumnLayout {
-        anchors.bottom: background.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottomMargin: markers.markerWidth
-        spacing: 0
-
-        RowLayout {
-            height: NeptuneStyle.dp(56)
-
-            Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.preferredWidth: root.width / 3
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignBottom
-                leftPadding: -contentWidth / 2
-                text: minimum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                font.pixelSize: NeptuneStyle.fontSizeS
-            }
-
-            Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.preferredWidth: root.width / 3
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignBottom
-                text: ((minimum + maximum) / 2).toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                font.pixelSize: NeptuneStyle.fontSizeM
-            }
-
-            Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.preferredWidth: root.width / 3
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignBottom
-                rightPadding: -contentWidth / 2
-                text: maximum.toLocaleString(Qt.locale(), 'f', root.numberOfDecimals)
-                font.pixelSize: NeptuneStyle.fontSizeS
+    Component {
+        id: stationIndicatorComponent
+        Rectangle {
+            anchors.bottom: markers.top
+            width: NeptuneStyle.dp(18)
+            height: NeptuneStyle.dp(18)
+            opacity: root.opacity
+            color: NeptuneStyle.accentColor
+            radius: 20
+            onOpacityChanged: {
+                if (opacity === 0.0) {
+                    //destroy indicators so that they can be created again
+                    //with possible new positions
+                    this.destroy();
+                }
             }
         }
+    }
 
-        Item {
-            id: markers
-            Layout.preferredHeight: NeptuneStyle.dp(40)
-            Layout.preferredWidth: parent.width
-            Layout.alignment: Qt.AlignBottom
+    background: Item {
+        id: markers
+        height: NeptuneStyle.dp(100)
+        width: parent.width
+        anchors.verticalCenter: handle.verticalCenter
 
-            readonly property int markerWidth: 2
-            readonly property int markerCount: 41
-
-            Row {
-                anchors.fill: parent
-                spacing: ((parent.width - NeptuneStyle.dp(markers.markerWidth)) / (markers.markerCount - 1)) - NeptuneStyle.dp(markers.markerWidth)
-                Repeater {
-                    model: markers.markerCount
-                    delegate: Rectangle {
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
-                        transformOrigin: Item.Bottom
-                        height: NeptuneStyle.dp(40)
+        readonly property int markerWidth: 2
+        readonly property int markerCount: 36
+        Row {
+            anchors.fill: parent
+            Repeater {
+                model: markers.markerCount
+                delegate: Item {
+                    width: NeptuneStyle.dp(30)
+                    height: NeptuneStyle.dp(100) + markersTextLabel.contentHeight
+                    Rectangle {
+                        id: marker
                         width: NeptuneStyle.dp(markers.markerWidth)
+                        height: (index === 3 || index === 8 || index === 13 || index === 18 || index === 23 || index === 28 || index === 33)
+                                ? NeptuneStyle.dp(100) : NeptuneStyle.dp(60)
+                        anchors.top: parent.top
+                        anchors.topMargin: NeptuneStyle.dp(12)
+                        anchors.horizontalCenter: parent.horizontalCenter
                         radius: markers.markerWidth
-                        opacity: index % 10 ? 0.25 : 0.5
-                        scale: index % 10 ? 0.7 : 1
-                        color: "#999"
+                        opacity: height === NeptuneStyle.dp(100) ? 0.6 : 0.2
+                        color: NeptuneStyle.contrastColor
+                        LinearGradient {
+                            id: gradient
+                            anchors.fill: parent
+                            visible: height === NeptuneStyle.dp(100)
+                            start: Qt.point(0, 0)
+                            end: Qt.point(0, NeptuneStyle.dp(100))
+                            gradient: Gradient {
+                                GradientStop { position: 0.4; color: "white" }
+                                GradientStop { position: 1.0; color: NeptuneStyle.contrastColor }
+                            }
+                        }
+                        Label {
+                            id: markersTextLabel
+                            anchors.top: marker.bottom
+                            anchors.horizontalCenter: marker.horizontalCenter
+                            visible: gradient.visible
+                            text: 90 + (index - 3)
+                            font.pixelSize: NeptuneStyle.fontSizeS
+                        }
                     }
                 }
             }
         }
     }
 
-    Rectangle {
+    Label {
+        id: valueLabel
+        anchors.top: parent.top
+        anchors.horizontalCenter: handle.horizontalCenter
+        x: handle.x
+        text: value.toFixed(numberOfDecimals)
+        //custom label
+        font.pixelSize: NeptuneStyle.dp(42)
+    }
+
+    handle: Item {
         id: handle
-        width: NeptuneStyle.dp(26)
-        height: width
-        radius: width/2
-        y: (root.height - height)/2
-        x: (root.value - root.minimum) * root.length / (root.maximum - root.minimum)
-
-        border.color: Qt.lighter(color, 1.1)
-        color: '#fff'
-        smooth: true
-
+        anchors.top: valueLabel.bottom
+        width: NeptuneStyle.dp(10)
+        height: NeptuneStyle.dp(300)
+        x: root.leftPadding + root.visualPosition * (root.availableWidth - width)
+        z: 100000
         Rectangle {
-            width: NeptuneStyle.dp(2)
-            height: NeptuneStyle.dp(32)
+            id: pin
+            width: NeptuneStyle.dp(1)
+            height: NeptuneStyle.dp(300)
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.top
-            color: NeptuneStyle.accentColor
-            radius: width
-        }
-
-        MouseArea {
-            id: area
-            width: NeptuneStyle.dp(90)
-            height: width
-            anchors.centerIn: parent
-            hoverEnabled: false
-            drag.target: root.dragging ? parent : undefined
-            drag.axis: Drag.XAxis; drag.minimumX: 0; drag.maximumX: root.length
-            onPositionChanged: {
-                root.activeValue = root.minimum + (root.maximum - root.minimum) * handle.x / root.length
-            }
+            color: NeptuneStyle.contrastColor
         }
     }
 }

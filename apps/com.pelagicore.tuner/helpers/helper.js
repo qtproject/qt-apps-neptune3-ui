@@ -29,55 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+.pragma library
 
-import controls 1.0
-import utils 1.0
-import animations 1.0
-import "../stores"
-import "../controls"
-import "../panels"
-
-import com.pelagicore.styles.neptune 3.0
-
-Item {
-    id: root
-
-    property TunerStore store
-    property alias fullscreenTopHeight: fullscreenTop.height
-
-    StationInfoView {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: NeptuneStyle.dp(260)
-        store: root.store
-    }
-
-    FullScreenTopView {
-        id: fullscreenTop
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        height: topExpanded ? (root.height - NeptuneStyle.dp(100)) : (NeptuneStyle.dp(660 - 224))
-        Behavior on height { DefaultNumberAnimation { duration: 270 } }
-        store: root.store
-    }
-
-    FullScreenBottomView {
-        width: NeptuneStyle.dp(1080)
-        anchors.top: fullscreenTop.bottom
-        anchors.bottom: parent.bottom
-        opacity: fullscreenTop.topExpanded ? 0 : 1
-        Behavior on opacity {
-            SequentialAnimation {
-                //delay fadeIn when manual tuner is closing
-                PauseAnimation { duration: fullscreenTop.topExpanded ? 100 : 0 }
-                DefaultNumberAnimation {}
-            }
-        }
-        visible: opacity > 0
-        store: root.store
+function createStationIndicators(model, width, rectwidth, to, from, rect, parent) {
+    var component;
+    for (var i = 0; i < model.count; i ++) {
+        var rectx = (width - rectwidth) * (model.get(i).freq - from) / (to - from);
+        component = rect.createObject(parent, {"x": rectx});
     }
 }

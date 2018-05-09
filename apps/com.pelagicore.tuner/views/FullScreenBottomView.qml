@@ -52,6 +52,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(53)
         model: root.store.toolsColumnModel
+        currentIndex: 1
         onClicked: {
             switch (currentText) {
             case "music":
@@ -84,7 +85,6 @@ Item {
         height: parent.height
         listView.model: root.store.currentPresetModel
         onItemClicked: {
-            root.store.currentStationIndex = index;
             root.store.setFrequency(root.store.currentPresetModel.get(index).freq);
         }
     }

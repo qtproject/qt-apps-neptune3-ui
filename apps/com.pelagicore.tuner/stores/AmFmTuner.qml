@@ -52,8 +52,8 @@ QtObject {
     property int currentFrequency: fmMinimumFrequency
 
     // FM data
-    readonly property int fmMinimumFrequency: 87500000
-    readonly property int fmMaximumFrequency: 108000000
+    readonly property int fmMinimumFrequency: 86700000
+    readonly property int fmMaximumFrequency: 122100000
     readonly property int fmStepSize: 100000
 
     // AM data

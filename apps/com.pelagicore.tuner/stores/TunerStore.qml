@@ -38,7 +38,7 @@ Store {
     id: root
 
     property AmFmTuner tunerControl: AmFmTuner {
-        currentBand: freqPresets === 2 ? tunerControl.band.AMBand : tunerControl.band.FMBand
+        currentBand: freqPresets === 0 ? tunerControl.band.AMBand : tunerControl.band.FMBand
     }
 
     readonly property MediaPlayer player: MediaPlayer {
@@ -47,15 +47,15 @@ Store {
 
     property bool radioPlaying: (player.playbackState === MediaPlayer.PlayingState)
 
-    property int freqPresets: 0 // 0: FM1; 1: FM2; 2: AM;
+    property int freqPresets: 0 // 0: AM; 1: FM1; 2: FM2;
     readonly property string currentFreqPreset: {
         switch (root.freqPresets) {
         case 0:
-            return qsTr("FM1")
-        case 1:
-            return qsTr("FM2")
-        case 2:
             return qsTr("AM")
+        case 1:
+            return qsTr("FM1")
+        case 2:
+            return qsTr("FM2")
         default:
             return ""
         }
@@ -64,6 +64,7 @@ Store {
     readonly property string currentStationName: root.getStationName()
     readonly property string currentStationText: root.getStationText()
     readonly property string currentStationLogo: root.getStationLogo()
+    readonly property string currentStationFreq: root.getStationFrequency()
     property string currentStationUrl
 
     readonly property int tunerBand: tunerControl.currentBand
@@ -290,11 +291,11 @@ Store {
 
     readonly property ListModel currentPresetModel: {
         if (root.freqPresets === 0) {
-            return root.fm1Stations;
-        } else if (root.freqPresets === 1) {
-            return root.fm2Stations;
-        } else {
             return root.amStations;
+        } else if (root.freqPresets === 1) {
+            return root.fm1Stations;
+        } else {
+            return root.fm2Stations;
         }
     }
 
@@ -308,37 +309,47 @@ Store {
 
     function getStationLogo() {
         if (freqPresets === 0) {
-            return root.fm1Stations.get(root.currentStationIndex).stationLogo ?
-                   root.fm1Stations.get(root.currentStationIndex).stationLogo : "";
-        } else if (freqPresets === 1) {
-            return root.fm2Stations.get(root.currentStationIndex).stationLogo ?
-                   root.fm2Stations.get(root.currentStationIndex).stationLogo : "";
-        } else if (freqPresets === 2) {
             return root.amStations.get(root.currentStationIndex).stationLogo ?
                    root.amStations.get(root.currentStationIndex).stationLogo : "";
+        } else if (freqPresets === 1) {
+            return root.fm1Stations.get(root.currentStationIndex).stationLogo ?
+                   root.fm1Stations.get(root.currentStationIndex).stationLogo : "";
+        } else if (freqPresets === 2) {
+            return root.fm2Stations.get(root.currentStationIndex).stationLogo ?
+                   root.fm2Stations.get(root.currentStationIndex).stationLogo : "";
         }
     }
 
     function getStationName() {
         if (freqPresets === 0) {
-            return root.fm1Stations.get(root.currentStationIndex).stationName;
-        } else if (freqPresets === 1) {
-            return root.fm2Stations.get(root.currentStationIndex).stationName;
-        } else if (freqPresets === 2) {
             return root.amStations.get(root.currentStationIndex).stationName;
+        } else if (freqPresets === 1) {
+            return root.fm1Stations.get(root.currentStationIndex).stationName;
+        } else if (freqPresets === 2) {
+            return root.fm2Stations.get(root.currentStationIndex).stationName;
         }
     }
 
     function getStationText() {
         if (freqPresets === 0) {
-            return root.fm1Stations.get(root.currentStationIndex).stationText ?
-                   root.fm1Stations.get(root.currentStationIndex).stationText : "";
-        } else if (freqPresets === 1) {
-            return root.fm2Stations.get(root.currentStationIndex).stationText ?
-                   root.fm2Stations.get(root.currentStationIndex).stationText : "";
-        } else if (freqPresets === 2) {
             return root.amStations.get(root.currentStationIndex).stationText ?
                    root.amStations.get(root.currentStationIndex).stationText : "";
+        } else if (freqPresets === 1) {
+            return root.fm1Stations.get(root.currentStationIndex).stationText ?
+                   root.fm1Stations.get(root.currentStationIndex).stationText : "";
+        } else if (freqPresets === 2) {
+            return root.fm2Stations.get(root.currentStationIndex).stationText ?
+                   root.fm2Stations.get(root.currentStationIndex).stationText : "";
+        }
+    }
+
+    function getStationFrequency() {
+        if (freqPresets === 0) {
+            return root.amStations.get(root.currentStationIndex).freq;
+        } else if (freqPresets === 1) {
+            return root.fm1Stations.get(root.currentStationIndex).freq;
+        } else if (freqPresets === 2) {
+            return root.fm2Stations.get(root.currentStationIndex).freq;
         }
     }
 
@@ -386,12 +397,20 @@ Store {
         if (freqPresets === 0) {
             if (root.currentStationIndex - 1 >= 0) {
                 root.currentStationIndex = root.currentStationIndex - 1;
+                setFrequency(root.amStations.get(root.currentStationIndex).freq);
+            } else {
+                root.currentStationIndex = root.amStations.count - 1;
+                setFrequency(root.amStations.get(root.amStations.count - 1).freq);
+            }
+        } else if (freqPresets === 1) {
+            if (root.currentStationIndex - 1 >= 0) {
+                root.currentStationIndex = root.currentStationIndex - 1;
                 setFrequency(root.fm1Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = root.fm1Stations.count - 1;
                 setFrequency(root.fm1Stations.get(root.fm1Stations.count - 1).freq);
             }
-        } else if (freqPresets === 1) {
+        } else if (freqPresets === 2) {
             if (root.currentStationIndex - 1 >= 0) {
                 root.currentStationIndex = root.currentStationIndex - 1;
                 setFrequency(root.fm2Stations.get(root.currentStationIndex).freq);
@@ -399,19 +418,19 @@ Store {
                 root.currentStationIndex = root.fm2Stations.count - 1;
                 setFrequency(root.fm2Stations.get(root.fm2Stations.count - 1).freq);
             }
-        } else if (freqPresets === 2) {
-            if (root.currentStationIndex - 1 >= 0) {
-                root.currentStationIndex = root.currentStationIndex - 1;
-                setFrequency(root.amStations.get(root.currentStationIndex).freq);
-            } else {
-                root.currentStationIndex = root.amStations.count - 1;
-                setFrequency(root.amStations.get(root.amStations.count - 1).freq);
-            }
         }
     }
 
     function nextStation() {
         if (freqPresets === 0) {
+            if (root.currentStationIndex + 1 < root.amStations.count) {
+                root.currentStationIndex = root.currentStationIndex + 1;
+                setFrequency(root.amStations.get(root.currentStationIndex).freq);
+            } else {
+                root.currentStationIndex = 0;
+                setFrequency(root.amStations.get(0).freq);
+            }
+        } else if (freqPresets === 1) {
             if (root.currentStationIndex + 1 < root.fm1Stations.count) {
                 root.currentStationIndex = root.currentStationIndex + 1;
                 setFrequency(root.fm1Stations.get(root.currentStationIndex).freq);
@@ -419,21 +438,13 @@ Store {
                 root.currentStationIndex = 0;
                 setFrequency(root.fm1Stations.get(0).freq);
             }
-        } else if (freqPresets === 1) {
+        } else if (freqPresets === 2) {
             if (root.currentStationIndex + 1 < root.fm2Stations.count) {
                 root.currentStationIndex = root.currentStationIndex + 1;
                 setFrequency(root.fm2Stations.get(root.currentStationIndex).freq);
             } else {
                 root.currentStationIndex = 0;
                 setFrequency(root.fm2Stations.get(0).freq);
-            }
-        } else if (freqPresets === 2) {
-            if (root.currentStationIndex + 1 < root.amStations.count) {
-                root.currentStationIndex = root.currentStationIndex + 1;
-                setFrequency(root.amStations.get(root.currentStationIndex).freq);
-            } else {
-                root.currentStationIndex = 0;
-                setFrequency(root.amStations.get(0).freq);
             }
         }
     }
@@ -446,19 +457,18 @@ Store {
             var newFrequencyAM = Math.round(frequency * 10) * 100 // Round to get a nice number in the KHz interval
             tunerControl.setFrequency(newFrequencyAM);
         }
-
-        if (root.freqPresets === 0 && root.fm1Stations.get(root.currentStationIndex).url !== "") {
-            root.currentStationUrl = root.fm1Stations.get(root.currentStationIndex).url;
-            root.player.play();
-        } else if (root.freqPresets === 1 && root.fm2Stations.get(root.currentStationIndex).url !== "") {
-            root.currentStationUrl = root.fm2Stations.get(root.currentStationIndex).url;
-            root.player.play();
-        } else if (root.freqPresets === 2 && root.amStations.get(root.currentStationIndex).url !== "") {
-            root.currentStationUrl = root.amStations.get(root.currentStationIndex).url;
-            root.player.play();
-        } else {
-            root.currentStationUrl = ""
-            root.player.stop();
+        var model = root.freqPresets === 1 ? root.fm1Stations : root.freqPresets === 2 ? root.fm2Stations : root.amStations;
+        var roundedFreq = (frequency % 1 === 0) ? Math.round(frequency) : frequency;
+        for (var i = 0; i < model.count; i++) {
+            //compare strings as types might deffer
+            if (model.get(i).freq.toString() === roundedFreq.toString()) {
+                root.currentStationIndex = i;
+                root.currentStationUrl = model.get(i).url;
+                root.player.play();
+            } else {
+                root.currentStationUrl = "";
+                root.player.stop();
+            }
         }
     }
 

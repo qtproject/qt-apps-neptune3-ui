@@ -38,6 +38,7 @@ import animations 1.0
 
 import "../controls"
 import "../panels"
+import "../helpers/helper.js" as Helper
 
 import com.pelagicore.styles.neptune 3.0
 
@@ -46,18 +47,6 @@ Item {
 
     property var store
     property bool topExpanded: false
-    property bool tuningMode: false
-    property alias sliderValue: slider.value
-
-    Connections {
-        target: root.store
-
-        onCurrentFrequencyChanged: {
-            if (!slider.dragging) {
-                root.tuningMode = false;
-            }
-        }
-    }
 
     ToolButton {
         width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
@@ -65,7 +54,8 @@ Item {
         anchors.verticalCenter: parent.top
         anchors.verticalCenterOffset: NeptuneStyle.dp(370)
         anchors.horizontalCenter: parent.horizontalCenter
-
+        //disable for AM band, to be implemented
+        visible: (root.store.tunerBand === 1)
         enabled: !root.topExpanded
         onClicked: { root.topExpanded = true; }
 
@@ -87,34 +77,26 @@ Item {
 
     TunerSlider {
         id: slider
-
-        anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(660) - NeptuneStyle.dp(224)
-        anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(100)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(100)
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: height
         opacity: root.topExpanded ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-        readonly property real minFrequency: root.store.minimumFrequency
-        readonly property real maxFrequency: root.store.maximumFrequency
-
-        value: root.store.currentFrequency
-        minimum: minFrequency
-        maximum: maxFrequency
-        useAnimation: true
-        numberOfDecimals: root.store.freqPresets === 2 ? 0 : 1
-
-        onActiveValueChanged: value = activeValue
-
-        onDraggingChanged: {
-            if (dragging) {
-                root.tuningMode = true;
-            } else {
-                root.tuningMode = false;
-                root.store.setFrequency(value);
+        onOpacityChanged: {
+            if (opacity > 0.0) {
+                Helper.createStationIndicators(root.store.currentPresetModel, slider.width, NeptuneStyle.dp(18),
+                                              slider.to, slider.from, slider.stationIndicatorComponent, slider);
+            }
+        }
+        from: root.store.minimumFrequency
+        to: root.store.maximumFrequency
+        numberOfDecimals: root.store.freqPresets === 0 ? 0 : 1
+        value: root.store.currentStationFreq
+        onPressedChanged: {
+            if (!pressed) {
+                root.store.setFrequency(value.toFixed(1));
             }
         }
     }
