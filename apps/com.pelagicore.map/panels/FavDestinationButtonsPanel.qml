@@ -42,6 +42,8 @@ import "../helpers"
 Item {
     id: root
 
+    property bool offlineMapsEnabled: false
+
     property var homeAddressData
     property var workAddressData
 
@@ -58,6 +60,7 @@ Item {
             id: buttonGoHome
             Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
+            enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
             iconSource: helper.localAsset("ic-home", NeptuneStyle.theme)
             primaryText: qsTr("Home")
@@ -76,6 +79,7 @@ Item {
             id: buttonGoWork
             Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
+            enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
             iconSource: helper.localAsset("ic-work", NeptuneStyle.theme)
             primaryText: qsTr("Work")

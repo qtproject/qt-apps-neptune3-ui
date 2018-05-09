@@ -30,10 +30,19 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtApplicationManager 1.0
 import com.pelagicore.styles.neptune 3.0
 
 QtObject {
     id: root
+
+    function showOfflineNotification() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Offline mode");
+        notification.body = qsTr("Search and navigation not available in offline mode.");
+        notification.category = "notification";
+        notification.show();
+    }
 
     function localAsset(asset, theme) {
         var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";

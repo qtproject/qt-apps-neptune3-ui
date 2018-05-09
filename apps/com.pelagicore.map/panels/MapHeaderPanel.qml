@@ -42,7 +42,7 @@ import animations 1.0
 Item {
     id: root
 
-    height: offlineMapsEnabled ? 0 : headerBackgroundFullscreen.height
+    implicitHeight: headerBackgroundFullscreen.height
 
     property bool offlineMapsEnabled
     property bool navigationMode
@@ -100,6 +100,7 @@ Item {
         anchors.topMargin: NeptuneStyle.dp(112)
         anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
         sourceComponent: NavigationSearchPanel {
+            offlineMapsEnabled: root.offlineMapsEnabled
             onOpenSearchTextInput: root.openSearchTextInput()
         }
     }
@@ -112,6 +113,7 @@ Item {
         anchors.topMargin: NeptuneStyle.dp(48)
         anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
         sourceComponent: NavigationSearchPanel {
+            offlineMapsEnabled: root.offlineMapsEnabled
             onOpenSearchTextInput: root.openSearchTextInput()
         }
     }
@@ -143,6 +145,7 @@ Item {
         height: root.destinationButtonrowHeight
         active: headerBackgroundFullscreen.active && !root.navigationMode
         sourceComponent: FavDestinationButtonsPanel {
+            offlineMapsEnabled: root.offlineMapsEnabled
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime
@@ -162,6 +165,7 @@ Item {
         height: root.destinationButtonrowHeight
         active: headerBackgroundWidget.active && root.state === "Widget3Rows"
         sourceComponent: FavDestinationButtonsPanel {
+            offlineMapsEnabled: root.offlineMapsEnabled
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime

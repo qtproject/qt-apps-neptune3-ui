@@ -36,10 +36,9 @@ import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.map 1.0
 
-import QtApplicationManager 1.0
-
 import "views"
 import "stores"
+import "helpers"
 
 QtObject {
     id: root
@@ -51,6 +50,8 @@ QtObject {
         id: mainWindow
 
         property var secondaryWindowObject
+
+        readonly property Helper helper: Helper {}
 
         onNeptuneStateChanged: {
             if (mainWindow.secondaryWindowObject && !neptuneState) { // widget got closed
@@ -85,7 +86,12 @@ QtObject {
             store: MapStore {
                 offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
                 currentLocationCoord: positionCoordinate
-                onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()
+                onOfflineMapsEnabledChanged: {
+                    getAvailableMapsAndLocation();
+                    if (offlineMapsEnabled) {
+                        mainWindow.helper.showOfflineNotification();
+                    }
+                }
             }
 
             onMapReadyChanged: {
@@ -121,6 +127,12 @@ QtObject {
             }
 
             SystemInfo { id: sysinfo }
+        }
+
+        Component.onCompleted: {
+            if (mainMap.store.offlineMapsEnabled) {
+                mainWindow.helper.showOfflineNotification();
+            }
         }
     }
 

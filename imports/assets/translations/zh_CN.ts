@@ -490,6 +490,17 @@
     </message>
 </context>
 <context>
+    <name>Helper</name>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search and navigation not available in offline mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ICMusicView</name>
     <message>
         <source>Track unavailable</source>
@@ -873,6 +884,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Search</source>
         <translation type="unfinished">搜索</translation>
+    </message>
+    <message>
+        <source>Search not available offline</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -105,6 +105,12 @@ Item {
             console.warn("Map error:", error, errorString)
         }
 
+        BusyIndicator {
+            anchors.centerIn: parent
+            running: !mapReady
+            visible: running
+        }
+
         MapItemView {
             autoFitViewport: true
             model: root.guidanceMode ? root.model : null
@@ -166,7 +172,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: guidanceMode ? NeptuneStyle.dp(810) : 0
         anchors.top: parent.top
-        opacity: root.state !== "Widget1Row" && !offlineMapsEnabled ? 1 : 0
+        opacity: root.state !== "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
         visible: opacity > 0
@@ -204,7 +210,7 @@ Item {
     ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(27)
-        anchors.top: offlineMapsEnabled ? parent.top : header.bottom
+        anchors.top: header.bottom
         anchors.topMargin: NeptuneStyle.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
@@ -223,7 +229,7 @@ Item {
     ToolButton {
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(27)
-        anchors.top: offlineMapsEnabled ? parent.top : header.bottom
+        anchors.top: header.bottom
         anchors.topMargin: NeptuneStyle.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0

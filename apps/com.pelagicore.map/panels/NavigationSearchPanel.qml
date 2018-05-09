@@ -40,6 +40,7 @@ import "../helpers"
 Row {
     id: root
 
+    property bool offlineMapsEnabled: false
     property Helper helper: Helper {}
     signal openSearchTextInput()
 
@@ -60,6 +61,7 @@ Row {
 
     Button {
         id: searchButton
+        enabled: !root.offlineMapsEnabled
         width: parent.width / 2
         height: NeptuneStyle.dp(72)
         scale: pressed ? 1.1 : 1.0
@@ -78,7 +80,7 @@ Row {
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Search")
+                    text: root.offlineMapsEnabled ? qsTr("Search not available offline") : qsTr("Search")
                     font.pixelSize: NeptuneStyle.fontSizeS
                 }
             }
