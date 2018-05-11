@@ -48,10 +48,10 @@ ColumnLayout {
 
     Repeater {
         id: toolsRepeater
-        anchors.horizontalCenter: parent.horizontalCenter
+        Layout.alignment: Qt.AlignHCenter
 
         ToolButton {
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
             checked: root.currentTool === model.name

@@ -71,7 +71,7 @@ Item {
         anchors.topMargin: NeptuneStyle.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
         color: NeptuneStyle.contrastColor
-        font.pixelSize: Style.fontSizeM
+        font.pixelSize: NeptuneStyle.fontSizeM
         opacity: busyIndicator.opacity
         text: qsTr("Fetching data from Neptune Server")
     }
@@ -96,7 +96,7 @@ Item {
             id: toolsColumn
             Layout.preferredWidth: NeptuneStyle.dp(264)
             Layout.preferredHeight: NeptuneStyle.dp(320)
-            anchors.top: parent.top
+            Layout.alignment: Qt.AlignTop
             model: root.store.categoryModel
             onToolClicked: root.store.selectCategory(index)
         }
@@ -106,8 +106,8 @@ Item {
             installedApps: root.store.installedApps
             Layout.preferredHeight: NeptuneStyle.dp(800)
             Layout.preferredWidth: NeptuneStyle.dp(675)
-            anchors.top: parent ? parent.top : undefined
-            anchors.topMargin: NeptuneStyle.dp(16)
+            Layout.alignment: Qt.AlignTop
+            Layout.topMargin: NeptuneStyle.dp(16)
             model: root.store.applicationModel
             appServerUrl: root.store.appServerUrl
             installationProgress: root.store.currentInstallationProgress
