@@ -50,6 +50,7 @@ import com.pelagicore.styles.neptune 3.0
  *  - dividerVisible - defines if there is a divider on a list item. Default value is true.
  *  - accessoryDelegateComponent1 - a component at the right side of list item.
  *  - accessoryDelegateComponent2 - a component at the right side of list item next to accessoryDelegateComponent1 if it's defined.
+ *  - accessoryButton - a button with text at the right side of the list item.
  *  - accessoryBottomDelegateComponent - some list items require an element at the bottom of list item.
  *  - rightSpacerUsed - In some cases it will be necessary to have a margin between the right side of list item and the last element at the right side. The default value is false.
  *  - middleSpacerUsed - It's a margin between the left and the right parts of a ListItem. The default value is false.
@@ -63,6 +64,7 @@ ItemDelegate {
 
     property Component accessoryDelegateComponent1: null
     property Component accessoryDelegateComponent2: null
+    property Component accessoryButton: null
     property Component accessoryBottomDelegateComponent: null
 
     property bool rightSpacerUsed: false
@@ -142,6 +144,12 @@ ItemDelegate {
                 visible: root.accessoryDelegateComponent2 !== null
                 active: root.accessoryDelegateComponent2 !== null
                 sourceComponent: root.accessoryDelegateComponent2
+            }
+            Loader {
+                id: accessoryButtonItem
+                visible: root.accessoryButton !== null
+                active: root.accessoryButton !== null
+                sourceComponent: root.accessoryButton
             }
             Item {
                 id: spacerRight

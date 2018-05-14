@@ -112,6 +112,24 @@ Item {
                 secondaryText: "Loooooooong Secondary Text"
             }
 
+            ListItem {
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
+                rightPadding: NeptuneStyle.dp(16)
+                icon.name: "ic-update"
+                rightToolButtonText: "Show on map"
+                text: "ListItem with right tool text"
+            }
+
+            ListItem {
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
+                rightPadding: NeptuneStyle.dp(16)
+                icon.name: "ic-update"
+                rightToolButtonText: "Text"
+                text: "ListItem with right tool text"
+            }
+
             ListItemProgress {
                 id: listItemProgress
                 implicitWidth: NeptuneStyle.dp(765)
