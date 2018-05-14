@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2017 - 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,13 +29,23 @@
 **
 ****************************************************************************/
 
-pragma Singleton
-
 import QtQml 2.2
 import QtQuick 2.8
+import QtApplicationManager 1.0
 
 QtObject {
+    id: root
+
     property LoggingCategory category : LoggingCategory {
         name: 'com.pelagicore.apps.settings'
+    }
+
+    function showNotification(summary, body) {
+        var notification
+        notification = ApplicationInterface.createNotification();
+        notification.summary = summary;
+        notification.body = body;
+        notification.category = "notification";
+        notification.show();
     }
 }

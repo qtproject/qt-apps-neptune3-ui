@@ -853,6 +853,14 @@
         <source>Dark</source>
         <translation type="unfinished">Dunkel</translation>
     </message>
+    <message>
+        <source>UI Accent Color changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Accent Color changed into %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchOverlayPanel</name>

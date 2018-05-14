@@ -1197,6 +1197,14 @@ UX na cestu</translation>
         <source>Dark</source>
         <translation>Tmavý</translation>
     </message>
+    <message>
+        <source>UI Accent Color changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Accent Color changed into %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchOverlayPanel</name>

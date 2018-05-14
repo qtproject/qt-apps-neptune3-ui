@@ -40,7 +40,7 @@ import "../helper"
 QtObject {
     id: root
 
-
+    readonly property Helper helper: Helper {}
     readonly property UISettings uiSettings: UISettings {
         onAccentColorChanged: {
             accentColorsModel.forEach(function(element) {
@@ -75,12 +75,12 @@ QtObject {
     }
 
     function updateLanguage(language) {
-        console.log(Helper.category, 'updateLanguage: ' + language)
+        console.log(helper.category, 'updateLanguage: ' + language)
         uiSettings.setLanguage(language);
     }
 
     function update24HourTimeFormat(value) {
-        console.log(Helper.category, 'update24HourTimeFormat: ', value)
+        console.log(helper.category, 'update24HourTimeFormat: ', value)
         uiSettings.setTwentyFourHourTimeFormat(value);
     }
 
@@ -95,7 +95,7 @@ QtObject {
     }
 
     function updateTheme(value) {
-        console.log(Helper.category, 'updateTheme: ', value)
+        console.log(helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
     }
 
@@ -114,8 +114,9 @@ QtObject {
     ]
 
     function updateAccentColor(value) {
-        console.log(Helper.category, 'updateAccentColor: ', value)
+        console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
+        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(uiSettings.accentColor))
     }
 
     // Initialization
