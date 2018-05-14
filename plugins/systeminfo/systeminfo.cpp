@@ -35,12 +35,19 @@
 #include <QDBusPendingReply>
 #include <QStandardPaths>
 #include <QSysInfo>
+#include <QTimer>
 
 #include "systeminfo.h"
 
 #define NM_SERVICE QStringLiteral("org.freedesktop.NetworkManager")
 #define NM_PATH QStringLiteral("/org/freedesktop/NetworkManager")
 #define NM_IFACE QStringLiteral("org.freedesktop.NetworkManager")
+
+#define SD_SERVICE QStringLiteral("org.freedesktop.network1")
+#define SD_PATH QStringLiteral("/org/freedesktop/network1")
+#define SD_IFACE QStringLiteral("org.freedesktop.DBus.Properties")
+#define SD_PROPPATH QStringLiteral("org.freedesktop.network1.Manager")
+#define SD_PROP QStringLiteral("OperationalState")
 
 SystemInfo::SystemInfo(QObject *parent)
     : QObject(parent)
@@ -62,6 +69,7 @@ void SystemInfo::init()
 */
 void SystemInfo::getAddress()
 {
+    m_addressList.clear();
     for (const QNetworkInterface &interface : QNetworkInterface::allInterfaces())
     {
         if (interface.flags().testFlag(QNetworkInterface::IsUp) && !interface.flags().testFlag(QNetworkInterface::IsLoopBack)) {
@@ -74,6 +82,10 @@ void SystemInfo::getAddress()
             }
         }
     }
+    if (m_addressList.removeDuplicates() > 0) {
+        emit addressListChanged();
+    }
+
 }
 
 void SystemInfo::getQtDiagInfo()
@@ -99,12 +111,32 @@ void SystemInfo::getQtDiagInfo()
     m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
 }
 
-void SystemInfo::updateOnlineStatus(quint32 state)
+void SystemInfo::updateOnlineStatusNm(quint32 state)
 {
     const bool online = state == 70; // NM_STATE_CONNECTED_GLOBAL
     if (online != m_online) {
         m_online = online;
         emit onlineChanged();
+        QTimer::singleShot(1000, this, &SystemInfo::getAddress);
+    }
+}
+
+void SystemInfo::updateOnlineStatusSd(const QVariant &state)
+{
+    const bool online = state.toString() == QStringLiteral("routable");
+    if (online != m_online) {
+        m_online = online;
+        emit onlineChanged();
+        QTimer::singleShot(1000, this, &SystemInfo::getAddress);
+    }
+}
+
+void SystemInfo::updateOnlineStatusSdPropChange(const QString &interface, const QVariantMap &changedprop, const QStringList &)
+{
+    if (interface == QStringLiteral("org.freedesktop.network1.Manager")) {
+        if (changedprop.contains(QStringLiteral("OperationalState"))) {
+            updateOnlineStatusSd(changedprop[QStringLiteral("OperationalState")]);
+        };
     }
 }
 
@@ -145,23 +177,43 @@ QString SystemInfo::qtDiag() const
 
 void SystemInfo::classBegin()
 {
+    //TODO: Refactoring needed. This code does not check presence of systemd-networkd or network manager
     auto conn = QDBusConnection::systemBus();
     conn.connect(NM_SERVICE, NM_PATH, NM_IFACE, QStringLiteral("StateChanged"),
-                 this, SLOT(updateOnlineStatus(quint32)));
+                 this, SLOT(updateOnlineStatusNm(quint32)));
+    conn.connect(SD_SERVICE, SD_PATH, SD_IFACE, QStringLiteral("PropertiesChanged"),
+                 this, SLOT(updateOnlineStatusSdPropChange(QString, QVariantMap, QStringList)));
 
 
     QDBusMessage msg = QDBusMessage::createMethodCall(NM_SERVICE, NM_PATH, NM_IFACE, QStringLiteral("state"));
-    QDBusPendingCall pCall = conn.asyncCall(msg);
-    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(pCall, this);
-    connect(watcher, &QDBusPendingCallWatcher::finished, [this](QDBusPendingCallWatcher *self) {
+    QDBusPendingCall pCall1 = conn.asyncCall(msg);
+    QDBusPendingCallWatcher *watcher1 = new QDBusPendingCallWatcher(pCall1, this);
+    connect(watcher1, &QDBusPendingCallWatcher::finished, [this](QDBusPendingCallWatcher *self) {
         QDBusPendingReply<quint32> reply = *self;
         self->deleteLater();
         if (reply.isValid()) {
-            updateOnlineStatus(reply.value());
+            updateOnlineStatusNm(reply.value());
         } else {
-            qWarning() << "Error getting online status" << reply.error().name() << reply.error().message();
+            qWarning() << "Error getting online status from NetworkManager" << reply.error().name() << reply.error().message();
         }
     });
+
+    msg = QDBusMessage::createMethodCall(SD_SERVICE, SD_PATH, SD_IFACE, QStringLiteral("Get"));
+    QList<QVariant> arguments;
+    arguments << SD_PROPPATH << SD_PROP;
+    msg.setArguments(arguments);
+    QDBusPendingCall pCall2 = conn.asyncCall(msg);
+    QDBusPendingCallWatcher *watcher2 = new QDBusPendingCallWatcher(pCall2, this);
+    connect(watcher2, &QDBusPendingCallWatcher::finished, [this](QDBusPendingCallWatcher *self) {
+        QDBusPendingReply<QVariant> reply = *self;
+        self->deleteLater();
+        if (reply.isValid()) {
+            updateOnlineStatusSd(reply.value());
+        } else {
+            qWarning() << "Error getting online status from Systemd-Networkd" << reply.error().name() << reply.error().message();
+        }
+    });
+
     getQtDiagInfo();
 }
 

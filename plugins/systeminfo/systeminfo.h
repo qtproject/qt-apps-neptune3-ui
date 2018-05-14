@@ -36,6 +36,7 @@
 #include <QtCore/QTimer>
 #include <QtQml/QQmlParserStatus>
 #include <QProcess>
+#include <QVariant>
 
 class SystemInfo : public QObject, public QQmlParserStatus
 {
@@ -74,7 +75,9 @@ protected:
     void componentComplete() override;
 
 private slots:
-    void updateOnlineStatus(quint32 state);
+    void updateOnlineStatusNm(quint32 state);
+    void updateOnlineStatusSd(const QVariant &state);
+    void updateOnlineStatusSdPropChange(const QString &interface, const QVariantMap &changedprop, const QStringList &invalidated_properties);
 
 private:
     void getAddress();
