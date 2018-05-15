@@ -47,14 +47,14 @@ ColumnLayout {
     function graphicsInformation() {
         var result = "";
         var api = GraphicsInfo.api;
-        if (api == GraphicsInfo.Software) {
+        if (api === GraphicsInfo.Software) {
             result = "Software rendering";
-        } else if (api == GraphicsInfo.OpenGL) {
+        } else if (api === GraphicsInfo.OpenGL) {
             result = "OpenGL";
-            if (GraphicsInfo.renderableType == GraphicsInfo.SurfaceFormatOpenGLES) {
+            if (GraphicsInfo.renderableType === GraphicsInfo.SurfaceFormatOpenGLES) {
                 result += " ES";
             }
-        } else if (api == GraphicsInfo.Direct3D12) {
+        } else if (api === GraphicsInfo.Direct3D12) {
             result = "Direct3D";
         }
         return result + " " + GraphicsInfo.majorVersion + "." + GraphicsInfo.minorVersion;

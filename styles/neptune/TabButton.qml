@@ -69,16 +69,16 @@ T.TabButton {
     }
 
     readonly property string positionState: {
-        if (TabBar.index == 0) {
+        if (TabBar.index === 0) {
             return "left";
-        } else if (TabBar.index ==  TabBar.tabBar.contentModel.count -1) {
+        } else if (TabBar.index ===  TabBar.tabBar.contentModel.count -1) {
             return "right";
         } else {
             return "middle";
         }
     }
 
-    readonly property bool selected: TabBar.tabBar.currentIndex == TabBar.index
+    readonly property bool selected: TabBar.tabBar.currentIndex === TabBar.index
 
     background: ScalableBorderImage {
         id: borderImage

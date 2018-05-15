@@ -61,7 +61,7 @@ ListModel {
       // className plus "(" is the class instance without modification
       // className plus "_QML" is the class instance with user-defined properties
       var str = obj.toString();
-      return str.indexOf(className + "(") == 0 || str.indexOf(className + "_QML") == 0;
+      return str.indexOf(className + "(") === 0 || str.indexOf(className + "_QML") === 0;
     }
 
     function startApplication(id) {

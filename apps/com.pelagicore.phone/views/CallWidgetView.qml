@@ -143,7 +143,7 @@ Item {
         width: NeptuneStyle.dp(sourceSize.width)
         height: NeptuneStyle.dp(sourceSize.height)
 
-        opacity: root.state == "Widget1Row" ? 1.0 : 0.0
+        opacity: root.state === "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
     }

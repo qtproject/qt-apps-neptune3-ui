@@ -238,7 +238,7 @@ ListModel {
             var isRegularApp = !!appInfo;
 
             if (isRegularApp) {
-                var isSecondaryWindow = AM.WindowManager.windowProperty(window, "windowType") == "secondary";
+                var isSecondaryWindow = AM.WindowManager.windowProperty(window, "windowType") === "secondary";
 
                 if (isSecondaryWindow) {
                     appInfo.priv.secondaryWindow = window;

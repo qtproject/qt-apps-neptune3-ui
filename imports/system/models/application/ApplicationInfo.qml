@@ -93,7 +93,7 @@ QtObject {
     property int minHeightRows: 1
 
     // Whether the application process is running
-    readonly property bool running: application ? application.runState == AM.Application.Running : false
+    readonly property bool running: application ? application.runState === AM.Application.Running : false
 
     readonly property string id: application ? application.id : ""
     readonly property url icon: application ? application.icon : ""
@@ -289,7 +289,7 @@ QtObject {
             // eg: if locale is "en_US", the language code part is "en"
             var index = root.localeCode.indexOf("_");
             if (index === -1) {
-                if (root.localeCode.length == 2) {
+                if (root.localeCode.length === 2) {
                     // seems it has just the language code there
                     return root.localeCode;
                 } else {

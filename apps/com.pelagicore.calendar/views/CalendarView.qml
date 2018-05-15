@@ -69,7 +69,7 @@ Item {
         anchors.top: parent.top
         height: NeptuneStyle.dp(436)
         source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
-        visible: root.state == "Maximized"
+        visible: root.state === "Maximized"
     }
 
     TopCalendarPanel {

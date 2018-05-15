@@ -145,7 +145,7 @@ Item {
                     width: homePage.widgetWidth
                     height: homePage.rowHeight
                     anchors.horizontalCenter: widgetDrawer.horizontalCenter
-                    readonly property bool empty: children.length == 0
+                    readonly property bool empty: children.length === 0
                 }
 
                 property bool showingHomePage: !root.applicationModel || root.applicationModel.activeAppInfo === null
