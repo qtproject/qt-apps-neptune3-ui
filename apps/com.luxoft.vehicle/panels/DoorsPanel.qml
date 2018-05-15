@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,55 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.9
+import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.3
+
+import com.pelagicore.styles.neptune 3.0
+
+import animations 1.0
 import utils 1.0
 
-import "views"
-
-PrimaryWindow {
+Item {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property alias leftDoorOpen: doorsConfig.leftDoorOpen
+    property alias rightDoorOpen: doorsConfig.rightDoorOpen
+    property alias trunkOpen: trunkConfig.trunkOpen
+    property alias roofOpenProgress: roofConfig.roofOpenProgress
+
+    TabBar {
+        id: tabBar
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        TabButton {
+            text: qsTr("Sun roof")
+        }
+        TabButton {
+            text: qsTr("Doors")
+        }
+        TabButton {
+            text: qsTr("Trunk")
+        }
+    }
+
+    StackLayout {
+        anchors.top: tabBar.bottom
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        currentIndex: tabBar.currentIndex
+        RoofPanel {
+            id: roofConfig
+        }
+        FrontDoorsPanel {
+            id: doorsConfig
+        }
+        TrunkPanel {
+            id: trunkConfig
+        }
     }
 }
+

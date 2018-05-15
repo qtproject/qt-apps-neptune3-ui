@@ -789,6 +789,24 @@
 <context>
     <name>VehicleControlModel</name>
     <message>
+        <source>Hill Descent Control</source>
+        <translation type="obsolete">Hill Descent Control</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="obsolete">Traffic Jam Assist</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleModel</name>
+    <message>
+        <source>Service in 300km</source>
+        <translation type="vanished">Service in 300km</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
         <source>Fees</source>
         <translation type="unfinished"></translation>
     </message>
@@ -803,13 +821,6 @@
     <message>
         <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>VehicleModel</name>
-    <message>
-        <source>Service in 300km</source>
-        <translation type="vanished">Service in 300km</translation>
     </message>
 </context>
 <context>

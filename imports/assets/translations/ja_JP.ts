@@ -1285,19 +1285,19 @@
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation>料金</translation>
+        <translation type="vanished">料金</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>ダウンヒルアシストコントロール</translation>
+        <translation type="vanished">ダウンヒルアシストコントロール</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>渋滞アシスト</translation>
+        <translation type="vanished">渋滞アシスト</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>インテリジェントな速度適応</translation>
+        <translation type="vanished">インテリジェントな速度適応</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
@@ -1436,6 +1436,25 @@
     <message>
         <source>Service in 300km</source>
         <translation type="vanished">300km以内のサービス</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished">料金</translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">ダウンヒルアシストコントロール</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">渋滞アシスト</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

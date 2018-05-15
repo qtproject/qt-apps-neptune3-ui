@@ -1489,19 +1489,19 @@ UX na cestu</translation>
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation>Poplatky</translation>
+        <translation type="vanished">Poplatky</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>Asistent sjezdu z kopce</translation>
+        <translation type="vanished">Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Asistent v dopravní zácpě</translation>
+        <translation type="vanished">Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>Inteligentní přizpůsobení rychlosti</translation>
+        <translation type="vanished">Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>
@@ -1636,6 +1636,25 @@ UX na cestu</translation>
     <message>
         <source>Service in 300km</source>
         <translation type="vanished">Servis za 300 km</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished">Poplatky</translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">Asistent sjezdu z kopce</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">Asistent v dopravní zácpě</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
+        <translation type="unfinished">Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>

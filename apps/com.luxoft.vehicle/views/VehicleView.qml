@@ -30,14 +30,43 @@
 ****************************************************************************/
 
 import QtQuick 2.2
+
 import utils 1.0
 
-import "views"
+import com.pelagicore.styles.neptune 3.0
 
-PrimaryWindow {
+import "../panels"
+import "../stores"
+
+Item {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property VehicleStore store : VehicleStore {}
+
+    Vehicle3DPanel {
+        id: car3dPanel
+
+        anchors.top: root.top
+        anchors.left: root.left
+        anchors.right: root.right
+        height: NeptuneStyle.dp(652)
+
+        leftDoorOpen: controlPanel.leftDoorOpen
+        rightDoorOpen: controlPanel.rightDoorOpen
+        trunkOpen: controlPanel.trunkOpen
+        roofOpenProgress: controlPanel.roofOpenProgress
+    }
+
+    Vehicle3DControlPanel {
+        id: controlPanel
+
+        anchors.top: car3dPanel.bottom
+        anchors.topMargin: NeptuneStyle.dp(80)
+        anchors.rightMargin: NeptuneStyle.dp(30)
+        anchors.left: root.left
+        anchors.right: root.right
+        anchors.bottom: parent.bottom
+        menuModel: store.menuModel
+        controlModel: store.controlModel
     }
 }

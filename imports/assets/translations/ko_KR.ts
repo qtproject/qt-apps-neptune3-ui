@@ -1304,19 +1304,19 @@
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation>통행료</translation>
+        <translation type="vanished">통행료</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>내리막길 주행 지원</translation>
+        <translation type="vanished">내리막길 주행 지원</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>교통 체증 보조 시스템</translation>
+        <translation type="vanished">교통 체증 보조 시스템</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>지능형 속도 제어</translation>
+        <translation type="vanished">지능형 속도 제어</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
@@ -1455,6 +1455,25 @@
     <message>
         <source>Service in 300km</source>
         <translation type="vanished">300km 내에 점검 필요</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished">통행료</translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">내리막길 주행 지원</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">교통 체증 보조 시스템</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
+        <translation type="unfinished">지능형 속도 제어</translation>
     </message>
 </context>
 <context>

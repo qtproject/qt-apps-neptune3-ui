@@ -29,15 +29,28 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import QtQuick 2.0
+import Qt3D.Core 2.0
+import Qt3D.Render 2.9
+import Qt3D.Extras 2.9
+import Qt3D.Input 2.0
+import QtQuick.Scene3D 2.0
 
-import "views"
+import "../../helpers/pathsProvider.js" as Paths
 
-PrimaryWindow {
-    id: root
-
-    VehicleView {
-        anchors.fill: parent
-    }
+Entity {
+    components: [
+        Mesh {
+            id: seats
+            source: Paths.getModelPath("seats.obj")
+        },
+        DiffuseMapMaterial {
+            id: seatsMaterial
+            diffuse: Texture2D {
+                TextureImage {
+                    source: Paths.getImagePath("seats.png")
+                }
+            }
+        }
+    ]
 }

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,26 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import QtQuick 2.8
 
-import "views"
-
-PrimaryWindow {
+QtObject {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property ListModel controlModel : ListModel {
+        ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }
+        ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: true; icon: "hill-descent-control" }
+        ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic-jam-assist" }
+        ListElement { name: QT_TR_NOOP("Intelligent speed adaptation"); active: false; icon: "intelligent-speed-adaptation" }
+        ListElement { name: QT_TR_NOOP("Fees"); active: true; icon: "fees" }
+        ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: false; icon: "hill-descent-control" }
+        ListElement { name: QT_TR_NOOP("Traffic Jam Assist"); active: false; icon: "traffic-jam-assist" }
+    }
+
+    property ListModel menuModel : ListModel {
+        ListElement { icon: "ic-driving-support"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "support") }
+        ListElement { icon: "ic-energy"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "energy") }
+        ListElement { icon: "ic-doors"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "doors") }
+        ListElement { icon: "ic-tires"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "tires") }
     }
 }
+

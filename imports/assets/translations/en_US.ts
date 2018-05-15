@@ -745,7 +745,7 @@
     </message>
 </context>
 <context>
-    <name>VehicleControlModel</name>
+    <name>VehicleStore</name>
     <message>
         <source>Fees</source>
         <translation type="unfinished"></translation>

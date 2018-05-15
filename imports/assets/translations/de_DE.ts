@@ -1120,19 +1120,19 @@
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation>Gebühren</translation>
+        <translation type="vanished">Gebühren</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>Bergabfahrhilfe</translation>
+        <translation type="vanished">Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>Stau-Assistent</translation>
+        <translation type="vanished">Stau-Assistent</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>Autom. Geschw. Anpassung</translation>
+        <translation type="vanished">Autom. Geschw. Anpassung</translation>
     </message>
 </context>
 <context>
@@ -1239,6 +1239,25 @@
     <message>
         <source>Service in 300km</source>
         <translation type="vanished">Service in 300 Km</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished">Gebühren</translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">Bergabfahrhilfe</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">Stau-Assistent</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

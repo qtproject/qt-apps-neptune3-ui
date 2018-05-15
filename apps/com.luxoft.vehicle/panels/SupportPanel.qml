@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,25 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.9
+import QtQuick.Controls 2.3
+
+import com.pelagicore.styles.neptune 3.0
+
 import utils 1.0
+import controls 1.0
 
-import "views"
+import "../helpers/pathsProvider.js" as Paths
 
-PrimaryWindow {
+ListView {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    spacing: NeptuneStyle.dp(20)
+    delegate: ListItemSwitch {
+        width: parent.width
+        icon.source: Paths.getImagePath(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))
+        text: qsTranslate("ControlModel", model.name)
     }
+
+    ScrollIndicator.vertical: ScrollIndicator {}
 }

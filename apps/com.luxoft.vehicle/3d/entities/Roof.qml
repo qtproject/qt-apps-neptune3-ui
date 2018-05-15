@@ -29,15 +29,38 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import QtQuick 2.0
+import Qt3D.Core 2.0
+import Qt3D.Render 2.9
+import Qt3D.Extras 2.9
+import Qt3D.Input 2.0
+import QtQuick.Scene3D 2.0
 
-import "views"
+import animations 1.0
 
-PrimaryWindow {
+import "../../helpers/pathsProvider.js" as Paths
+
+Entity {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    // 0.0 fully closed, 1.0 fully open
+    property real openProgress: 0.0
+
+    Transform {
+        id: transform
+        readonly property real translationZ: -1.15
+        matrix: {
+            var m = Qt.matrix4x4();
+            m.translate(Qt.vector3d(0, 0, translationZ * openProgress));
+            m.scale(Qt.vector3d(1, 1, 1 - openProgress));
+            return m;
+        }
     }
+
+    Mesh {
+        id: mesh
+        source: Paths.getModelPath("sun_roof.obj")
+    }
+
+    components: [transform, mesh, whiteHood]
 }

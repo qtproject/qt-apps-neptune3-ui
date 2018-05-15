@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2017 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,48 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
+import QtQuick.Controls 2.2
+
+import controls 1.0
 import utils 1.0
 
-import "views"
+import com.pelagicore.styles.neptune 3.0
 
-PrimaryWindow {
+Item {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property alias leftDoorOpen: doorsItem.leftDoorOpen
+    property alias rightDoorOpen: doorsItem.rightDoorOpen
+    property alias trunkOpen: doorsItem.trunkOpen
+    property alias roofOpenProgress: doorsItem.roofOpenProgress
+    property alias menuModel: toolsColumn.model
+    property alias controlModel: supportPanel.model
+
+    ToolsColumn {
+        id: toolsColumn
+        anchors.top: parent.top
+        anchors.left: parent.left
+        width: NeptuneStyle.dp(264)
+        height: NeptuneStyle.dp(460)
+
+        translationContext: "VehicleToolsColumn"
+    }
+
+    StackLayout {
+        anchors.left: toolsColumn.right
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: root.width - toolsColumn.width
+
+        currentIndex: toolsColumn.currentIndex
+
+        SupportPanel { id: supportPanel }
+        EnergyPanel {}
+        DoorsPanel { id: doorsItem }
+        TiresPanel {}
     }
 }

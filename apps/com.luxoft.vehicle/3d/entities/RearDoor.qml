@@ -29,15 +29,41 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import QtQuick 2.0
+import Qt3D.Core 2.0
+import Qt3D.Render 2.9
+import Qt3D.Extras 2.9
+import Qt3D.Input 2.0
+import QtQuick.Scene3D 2.0
 
-import "views"
+import animations 1.0
 
-PrimaryWindow {
+import "../../helpers/pathsProvider.js" as Paths
+
+Entity {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property bool open: false
+
+    Transform {
+        id: transform
+        property real userAngle: root.open ? 30 : 0
+        Behavior on userAngle { DefaultNumberAnimation { duration: 1000 } }
+        matrix: {
+            var m = Qt.matrix4x4();
+            var yOffset = 1.9;
+            var zOffset = 2.1;
+            m.translate( Qt.vector3d(0, yOffset, -zOffset));
+            m.rotate(userAngle, Qt.vector3d(1, 0, 0));
+            m.translate( Qt.vector3d(0, -yOffset, zOffset));
+            return m;
+        }
     }
+
+    Mesh {
+        id: rearDoorMesh
+        source: Paths.getModelPath("back_window.obj")
+    }
+
+    components: [transform, rearDoorMesh, glassMaterial]
 }

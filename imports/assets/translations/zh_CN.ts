@@ -1374,19 +1374,19 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>VehicleControlModel</name>
     <message>
         <source>Fees</source>
-        <translation>费用</translation>
+        <translation type="vanished">费用</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation>坡度保持</translation>
+        <translation type="vanished">坡度保持</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation>交通拥堵辅助</translation>
+        <translation type="vanished">交通拥堵辅助</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>自适应巡航</translation>
+        <translation type="vanished">自适应巡航</translation>
     </message>
     <message>
         <source>Intellegent speed adaptation</source>
@@ -1525,6 +1525,25 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Service in 300km</source>
         <translation type="vanished">300km后保养</translation>
+    </message>
+</context>
+<context>
+    <name>VehicleStore</name>
+    <message>
+        <source>Fees</source>
+        <translation type="unfinished">费用</translation>
+    </message>
+    <message>
+        <source>Hill Descent Control</source>
+        <translation type="unfinished">坡度保持</translation>
+    </message>
+    <message>
+        <source>Traffic Jam Assist</source>
+        <translation type="unfinished">交通拥堵辅助</translation>
+    </message>
+    <message>
+        <source>Intelligent speed adaptation</source>
+        <translation type="unfinished">自适应巡航</translation>
     </message>
 </context>
 <context>

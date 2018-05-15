@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,53 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import Qt3D.Core 2.0
+import Qt3D.Render 2.0
 
-import "views"
+import "../entities"
 
-PrimaryWindow {
-    id: root
+RenderSurfaceSelector {
+    id: surfaceSelector
 
-    VehicleView {
-        anchors.fill: parent
+    property alias camera: cameraSelector.camera
+    property alias clearColor: clearBuffer.clearColor
+
+    RenderStateSet {
+
+        DepthTest {
+            id: depth
+            depthFunction: DepthTest.Less
+        }
+
+        BlendEquation {
+            id: blendEq
+            blendFunction: BlendEquation.Add
+        }
+
+        BlendEquationArguments {
+            id: blendEqArgs
+            sourceRgb: BlendEquationArguments.SourceAlpha;
+            destinationRgb: BlendEquationArguments.OneMinusSourceAlpha
+        }
+
+        renderStates: [depth, blendEq, blendEqArgs]
+
+        Viewport {
+            id: viewport
+            normalizedRect: Qt.rect(0.0, 0.0, 1.0, 1.0)
+            SortPolicy {
+                sortTypes: [
+                    SortPolicy.BackToFront // For alpha blending
+                ]
+            }
+            ClearBuffers {
+                id: clearBuffer
+                clearColor: "transparent"
+                buffers: ClearBuffers.ColorDepthBuffer
+                CameraSelector {
+                    id: cameraSelector
+                }
+            }
+        }
     }
 }

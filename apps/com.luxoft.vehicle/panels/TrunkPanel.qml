@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,57 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+import QtQuick 2.9
+import QtGraphicalEffects 1.0
 
-import "views"
+import animations 1.0
 
-PrimaryWindow {
+import com.pelagicore.styles.neptune 3.0
+
+import "../controls"
+
+Item {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property alias trunkOpen: vehicleTopView.trunkOpen
+    property alias leftDoorOpen: vehicleTopView.leftDoorOpen
+    property alias rightDoorOpen: vehicleTopView.rightDoorOpen
+
+    Rectangle {
+        id: carImageMask
+
+        anchors.fill: vehicleTopView
+        gradient: Gradient {
+            GradientStop { position: 0.22; color: "#00000000" }
+            GradientStop { position: 0.44; color: "#ff000000" }
+            GradientStop { position: 1.0; color: "#ff000000" }
+        }
+        visible: false
+    }
+
+    OpacityMask {
+        anchors.fill: vehicleTopView
+        maskSource: carImageMask
+        source: vehicleTopView
+    }
+
+    TopPanel {
+        id: vehicleTopView
+
+        anchors.top: parent.top
+        anchors.topMargin: NeptuneStyle.dp(-160)
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: false
+    }
+
+    VehicleButton {
+        id: trunkCloseButton
+
+        anchors.top: parent.top
+        anchors.topMargin: NeptuneStyle.dp(540)
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: root.trunkOpen ? qsTr("Close") : qsTr("Open")
+
+        onClicked: root.trunkOpen = !root.trunkOpen
     }
 }

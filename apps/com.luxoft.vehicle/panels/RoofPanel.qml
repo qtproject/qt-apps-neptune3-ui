@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Luxoft GmbH
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,58 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.9
+import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.3
+
+import com.pelagicore.styles.neptune 3.0
+
+import animations 1.0
 import utils 1.0
 
-import "views"
+import "../controls"
 
-PrimaryWindow {
+Item {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property real roofOpenProgress: 0.0
+
+    Slider {
+        id: roofSlider
+
+        anchors.top: parent.top
+        anchors.topMargin: NeptuneStyle.dp(200)
+        anchors.left: parent.left
+        width: parent.width - anchors.leftMargin
+        onValueChanged: {
+            root.roofOpenProgress = value
+        }
+    }
+
+    VehicleButton {
+        id: roofOpenButton
+
+        anchors.top: roofSlider.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
+        anchors.right: parent.right
+        state: "REGULAR"
+        text: qsTr("Open")
+        onClicked: {
+            roofSlider.value = 1.0
+        }
+    }
+
+    VehicleButton {
+        id: roofCloseButton
+
+        anchors.top: roofSlider.bottom
+        anchors.topMargin: NeptuneStyle.dp(50)
+        anchors.left: parent.left
+        state: "REGULAR"
+        text: qsTr("Close")
+        onClicked: {
+            roofSlider.value = 0.0
+        }
     }
 }
+

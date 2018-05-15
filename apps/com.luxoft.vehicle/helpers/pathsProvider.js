@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Luxoft GmbH
+** Copyright (C) 2018 Pelagicore AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,15 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import utils 1.0
+.pragma library
 
-import "views"
+function getModelPath(name) {
+    return Qt.resolvedUrl("../assets/models/" + name)
+}
 
-PrimaryWindow {
-    id: root
-
-    VehicleView {
-        anchors.fill: parent
-    }
+function getImagePath(name) {
+    return Qt.resolvedUrl("../assets/images/" + name)
 }
