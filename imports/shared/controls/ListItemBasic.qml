@@ -81,13 +81,6 @@ ItemDelegate {
         implicitHeight: NeptuneStyle.dp(75)
         NeptuneIconLabel {
             id: iconItem
-            width: {
-                if (root.icon.source.toString() === "" && root.icon.name === "") {
-                    return NeptuneStyle.dp(22)
-                } else {
-                    return NeptuneStyle.dp(100)
-                }
-            }
             height: parent.height
             opacity: NeptuneStyle.opacityHigh
             iconScale: NeptuneStyle.scale

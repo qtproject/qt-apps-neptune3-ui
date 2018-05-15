@@ -86,9 +86,9 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(80)
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(120)
+        anchors.leftMargin: NeptuneStyle.dp(40)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(120)
+        anchors.rightMargin: NeptuneStyle.dp(40)
 
         opacity: notificationCenterBg.opacity
         spacing: NeptuneStyle.dp(72)
@@ -126,7 +126,7 @@ Item {
 
         Item {
             implicitHeight: NeptuneStyle.dp(40)
-            implicitWidth: NeptuneStyle.dp(150)
+            implicitWidth: childrenRect.width
             anchors.horizontalCenter: parent.horizontalCenter
 
             Label {

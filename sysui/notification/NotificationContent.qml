@@ -42,6 +42,8 @@ ModalOverlay {
     onOverlayClicked: notificationCenter.closeNotificationCenter()
 
     NotificationToast {
+        leftPadding: NeptuneStyle.dp(40)
+        rightPadding: NeptuneStyle.dp(40)
         anchors.left: parent.left
         anchors.right: parent.right
         notificationModel: notificationCenter.notificationModel
