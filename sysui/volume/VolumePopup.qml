@@ -38,7 +38,7 @@ import animations 1.0
 import com.pelagicore.styles.neptune 3.0
 import controls 1.0
 
-NeptunePopup {
+PopupItem {
     id: root
 
     width: NeptuneStyle.dp(270)

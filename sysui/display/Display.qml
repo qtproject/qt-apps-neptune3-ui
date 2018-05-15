@@ -200,7 +200,7 @@ Item {
         }
     }
 
-    NeptunePopupLoader {
+    PopupItemLoader {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent

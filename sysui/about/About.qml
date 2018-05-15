@@ -36,7 +36,7 @@ import controls 1.0
 /*
     A seamless wrapper for AboutPopup that loads it on demand
  */
-NeptunePopupLoader {
+PopupItemLoader {
     id: root
 
     source: "AboutPopup.qml"

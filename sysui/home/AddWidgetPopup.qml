@@ -40,7 +40,7 @@ import animations 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-NeptunePopup {
+PopupItem {
     id: root
 
     property alias model: delegateModel.model

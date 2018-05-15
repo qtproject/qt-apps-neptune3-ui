@@ -32,9 +32,9 @@
 import QtQuick 2.10
 
 /*
-    Loads a NeptunePopup on demand
+    Loads a PopupItem on demand
 
-    It provides the same API as NeptunePopup so that it can be used as a drop-in
+    It provides the same API as PopupItem so that it can be used as a drop-in
     replacement.
  */
 Loader {

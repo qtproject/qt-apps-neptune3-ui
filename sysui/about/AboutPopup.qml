@@ -40,7 +40,7 @@ import controls 1.0
 
 import "../procmon"
 
-NeptunePopup {
+PopupItem {
     id: root
     width: NeptuneStyle.dp(910)
     height: NeptuneStyle.dp(1426)
