@@ -29,15 +29,18 @@
    \page neptune3ui-index.html
    \title Neptune 3 UI
    \brief A best practice UI for the OEMs to test Qt Automotive Suite.
-   \nextpage neptune3ui-components.html
+   \nextpage neptune3ui-gettingstarted.html
 
 
    Neptune 3 UI provides a UI implementation for Qt in IVI (In-Vehichle Infotainment)
    systems. It demonstrates best practices for developing an Automotive UI with
-   \l{Qt Automotive Suite Product} {Qt Automotive Suite}.
+   \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3 supports a set of
+   displays: \l{Instrument Cluster}, \l{Center Stack Display}, Head Up Display and Passenger Screens.
+   At the moment the design documents only cover the first two: \l{Instrument Cluster} and
+   \l{Center Stack Display}.
 
    Neptune 3 UI depends on \l{Qt Application Manager}. It provides support for
-   a \l{ivi screen} and a \l{digital instrument cluster}. You can develop, maintain,
+   a \l{center stack display} and a \l{instrument cluster}. You can develop, maintain,
    and deploy applications with Neptune 3 UI.
 
    See \l{Getting Started} for further information on how you can start
@@ -152,27 +155,42 @@
 
    The Neptune 3 UI visual concept includes different UI elements:
 
-   \section2 Digital Instrument Cluster
-
-   A digital instrument cluster is implemented with Qt Quick. It contains two gauges and
-   \uicontrol application-window at the center. By default the music content is shown. If the
-   map application is active, user can also change the music content with the navigation
-   content.
+   \section2 Instrument Cluster
 
    \image instrument-cluster.png
 
-   \section2 IVI Screen
+   In the Instrument Cluster the user can find driving related information like the speed,
+   cruise control parameters, gear and energy use (for an electric car). Users can also
+   have information from the selected \uicontrol application-window (Music, Navigation,
+   Phone etc.) ordered in views which you can navigate between with controls on the
+   steering wheel. The size and position of meters and other driving related information
+   is flexible to make space for views, like Navigation, that requires more space.
 
-   The IVI screen contains of dynamic application widgets, a climate bar at the bottom, a status
-   bar at the top, a notification handle to drag the notification center up and down and an
-   application launcher as illustrated in the following image:
+   \image instrument-cluster-nav.png
 
-   \image ivi-screen.png
+   \section2 Center Stack Display
+
+   The Center Stack display is designed around showing the multiprocess capabilities;
+   the fact that we can run several applications at the same time with quick response and
+   smooth transitions. Even if we technically have different applications, running in
+   separate processes, the intention is to fade out the border between them, and between
+   the apps and the System UI, giving the user a perception that it is one unified system.
+
+   In addition to traditional applications, like Music Player, Phone and Navigation, the
+   Center Stack display also contains climate settings, system notifications and different
+   vehicle information and settings.
+
+   Some applications, like Music Player, can go both as fullscreen and as widgets. The widgets
+   are the actual applications, just running in a smaller window and adapting their content to
+   fit in a widget slot. The widgets are used on the customizable Home view.
+
+   \image center-stack.png
 
    When an application is shown in maximized state, it will take over the whole part of the
-   IVI screen and show the full content of the application as illustrated in the following image:
+   Center Stack and show the full content of the application as illustrated in the following
+   image:
 
-   \image ivi-screen-maximized-app.png
+   \image center-stack-maximized-app.png
 
    \section2 Application Launcher
 
@@ -182,24 +200,24 @@
    launcher by pressing-and-hold the selected application and drag it to the desired position as
    illustrated in the following image:
 
-   \image ivi-screen-app-launcher.png
+   \image center-stack-app-launcher.png
 
    \section2 Application Widget
 
-   By default, the IVI screen has three application widgets. User can choose which application
+   By default, the \l{center stack display} has three application widgets. User can choose which application
    to be shown on the home screen as widget by tapping on the \uicontrol Add-Widget icon below
    the lowest widget and choose the desired application. Only application that is specified to
    have a widget-option will be listed there.
 
-   \image ivi-screen-add-widget.png
+   \image center-stack-add-widget.png
 
    \section2 Climate Bar
 
-   Neptune 3 has a \uicontrol Climate Bar located at the bottom of the IVI screen. When tapping
+   Neptune 3 has a \uicontrol Climate Bar located at the bottom of the \l{Center Stack Display}. When tapping
    into it, a Climate Panel will be shown up with some simulation data interface to \l{Qt IVI}
    as shown in the following image:
 
-   \image ivi-screen-climate.png
+   \image center-stack-climate.png
 
    \section2 Notification Center
 
@@ -207,21 +225,6 @@
    Neptune 3. User can remove each notification in the \uicontrol Notification Center or clear
    the \uicontrol Notification Center.
 
-   \image ivi-screen-notification-center.png
-*/
-
-/*!
-   \page neptune3ui-components.html
-   \title Neptune 3 UI Components and Interfaces
-   \previouspage neptune3ui-index.html
-   \nextpage neptune3-app-development.html
-
-   Neptune UI components and interfaces:
-   \list
-       \li \l{PrimaryWindow}
-       \li \l{NotificationInterface}
-       \li \l{IntentsInterface}
-       \li \l{MusicIntentsIPC}
-   \endlist
+   \image center-stack-notification-center.png
 */
 

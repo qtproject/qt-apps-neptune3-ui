@@ -36,6 +36,11 @@
 */
 
 /*!
+   \externalpage https://doc.qt.io/QtAutomotiveSuite/qtas-install.html
+   \title Installing Qt Automotive Suite
+*/
+
+/*!
     \externalpage http://doc.qt.io/QtApplicationManager/
     \title Qt Application Manager
 */
@@ -86,6 +91,11 @@
 */
 
 /*!
+    \externalpage http://code.qt.io/cgit/qt/qtivi.git/
+    \title Qt IVI Git Repository
+*/
+
+/*!
     \externalpage http://code.qt.io/cgit/qt-apps/neptune3-ui.git/
     \title Neptune3-UI Git Repository
 */
@@ -93,5 +103,20 @@
 /*!
     \externalpage http://developer.gnome.org/notification-spec/
     \title GNOME Desktop Notifications Specification
+*/
+
+/*!
+    \externalpage http://doc.qt.io/qtcreator/creator-project-qmake.html
+    \title Create Project Qmake
+*/
+
+/*!
+    \externalpage http://doc.qt.io/qtcreator/creator-build-settings.html#build-steps
+    \title Build Steps
+*/
+
+/*!
+    \externalpage https://doc-snapshots.qt.io/qtapplicationmanager/configuration.html
+    \title Application Manager Configuration
 */
 

@@ -30,20 +30,84 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-
 import utils 1.0
+
+/*!
+    \qmltype Tracer
+    \inqmlmodule utils
+    \inherits MouseArea
+    \since 5.11
+    \brief The tracer of a Neptune 3 application
+
+    The Tracer is used to mark desired area to help developer see if the created
+    component is created as intended or not.
+
+    \section2 Example Usage
+
+    The following example shows how to use \l{Tracer}:
+
+    \qml
+    import QtQuick 2.10
+    import utils 1.0
+
+    Rectangle {
+        id: root
+
+        width: 80
+        height: 80
+
+        Tracer {
+            visible: true
+        }
+    }
+    \endqml
+*/
 
 MouseArea {
     id: root
-    anchors.fill: parent
-    property color color: randomColor();
-    property string text: parent.objectName
-    property real padding: 0.5
-    visible: Style.debugMode
-    property bool fill: root.opaque
-    acceptedButtons: Qt.RightButton
+
+    /*!
+        \qmlproperty color Tracer::color
+        \readonly
+
+        This property holds a random color to mark the desired area.
+    */
+    readonly property color color: randomColor();
+
+    /*!
+        \qmlproperty string Tracer::text
+        \readonly
+
+        This property holds the object name of its parent.
+    */
+    readonly property string text: parent.objectName
+
+    /*!
+        \qmlproperty real Tracer::padding
+        \readonly
+
+        This property specifies the default padding number of Tracer.
+    */
+    readonly property real padding: 0.5
+
+    /*!
+        \qmlproperty bool Tracer::opaque
+
+        This property specifies whether Tracer is suppose to be transparent or not.
+    */
     property bool opaque: false
 
+    /*!
+        \qmlproperty bool Tracer::fill
+        \readonly
+
+        This property describes whether Tracer is filled or not.
+    */
+    readonly property bool fill: root.opaque
+
+    visible: false
+    acceptedButtons: Qt.RightButton
+    anchors.fill: parent
     propagateComposedEvents: true
 
     Rectangle {

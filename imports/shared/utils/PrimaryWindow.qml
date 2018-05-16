@@ -42,14 +42,13 @@ import com.pelagicore.styles.neptune 3.0
     \qmltype PrimaryWindow
     \inqmlmodule utils
     \inherits ApplicationManagerWindow
+    \since 5.11
     \brief The primary window of a Neptune 3 application
 
     The primary window of a Neptune 3 application is displayed on the Center Console.
     This component also provides APIs for interacting with system UI and for positioning
     the application's visual elements.
-*/
 
-/*!
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
@@ -57,6 +56,9 @@ import com.pelagicore.styles.neptune 3.0
     The following example uses \l{PrimaryWindow} as a root element:
 
     \qml
+    import QtQuick 2.10
+    import utils 1.0
+
     PrimaryWindow {
         id: root
         Background {

@@ -26,9 +26,10 @@
 ****************************************************************************/
 
 /*!
-   \page neptune3-app-development.html
+   \page neptune3ui-app-development.html
    \title Neptune 3 UI Application Development
-   \previouspage neptune3ui-components.html
+   \previouspage neptune3ui-build-run.html
+   \nextpage neptune3ui-application-anatomy.html
    \brief Introduction to application development and best practices for Neptune 3 UI
 
     When you are developing an application for Neptune 3 UI, you must follow these rules:
@@ -37,8 +38,9 @@
       See \l{Manifest File}.
       \li The name of the folder that contains \e info.yaml must be the same as
       the value of the \c id property in the info.yaml file.
-      \li Depending on your application type, either \l{PrimaryWindow}. See
-      \l{Application Root QML Element}.
+      \li Depending on your application type, either use \l{PrimaryWindow} or also include
+      \l{SecondaryWindow} to show content in the \l{instrument cluster}. See \l{Application
+      Root QML Element}.
     \endlist
 
 It is important to follow all the defined rules in order for the application to
@@ -78,6 +80,9 @@ used when developing applications:
     \row
         \li \l{PrimaryWindow}
         \li Can be used in all kind of applications.
+    \row
+        \li \l{SecondaryWindow}
+        \li Can be used in all kind of applications to show content in the \l{instrument cluster}.
 \endtable
 
 The following QML code demonstrates how to use \l{PrimaryWindow} as a root element:
@@ -116,7 +121,14 @@ You can use the following interfaces in application development:
         \l {Notification} component and is based on the
         \l {GNOME Desktop Notifications Specification} {org.freedesktop.Notifications}
         D-Bus interface.
+    \row
+        \li \l {IntentsInterface}
+        \li Provides an interface to support the intent concept in Neptune 3 to communicate
+        \l between application within Neptune 3
 \endtable
+
+Click \l{Neptune 3 UI Components and Interfaces}{here} to see more details about available
+components and interfaces in Neptune 3 UI.
 
 \section1 Best Practices
 

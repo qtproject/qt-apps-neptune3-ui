@@ -36,6 +36,54 @@ import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
+/*!
+    \qmltype SecondaryWindow
+    \inqmlmodule utils
+    \inherits ApplicationManagerWindow
+    \since 5.11
+    \brief The secondary window of a Neptune 3 application
+
+    The secondary window of a Neptune 3 application is displayed on the \l{Instrument Cluster}.
+    The content of a secondary window will be rendered below the gauges. \l{SecondaryWindow}
+    is used by an application that wants to share content between the \l{center stack display}
+    and the \l{instrument cluster}.
+
+    See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
+
+    \section2 Example Usage
+
+    The following example uses \l{SecondaryWindow}:
+
+    \qml
+    import QtQuick 2.10
+    import utils 1.0
+
+    QtObject {
+        property var mainWindow: PrimaryWindow {
+           id: mainWindow
+           Background {
+            anchors.fill: parent
+           }
+
+           Content {
+               x: root.exposedRect.x
+               y: root.exposedRect.x
+               width: root.exposedRect.width
+               height: root.exposedRect.height
+           }
+        }
+
+        property var secondaryWindow: SecondaryWindow {
+           id: secondaryWindow
+           Background {
+            anchors.fill: parent
+           }
+        }
+    }
+    \endqml
+
+*/
+
 ApplicationManagerWindow {
     id: root
     Component.onCompleted: {

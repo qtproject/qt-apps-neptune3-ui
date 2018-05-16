@@ -35,6 +35,7 @@ import QtApplicationManager 1.0
     \qmltype IntentsInterface
     \inqmlmodule intent
     \inherits QtObject
+    \since 5.11
     \brief An object used to perform actions.
 
     The IntentsInterface is not meant to be used as is in the system, instead it is

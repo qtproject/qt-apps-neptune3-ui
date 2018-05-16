@@ -36,6 +36,7 @@ import QtApplicationManager 1.0
     \qmltype MusicIntentsIPC
     \inqmlmodule service
     \inherits ApplicationIPCInterface
+    \since 5.11
     \brief An IPC for music intents
 
     The MusicIntentsIPC is meant to be used only for the music intents use case, enabling music,

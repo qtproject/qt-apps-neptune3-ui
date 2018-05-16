@@ -36,6 +36,7 @@ import QtApplicationManager 1.0
     \qmltype NotificationInterface
     \inqmlmodule service
     \inherits Notification
+    \since 5.11
     \brief An interface for requesting notifications.
 
     NotificationInterface inherits \l {Notification} from \l{Qt Application Manager}

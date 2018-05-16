@@ -31,9 +31,37 @@
 
 import QtQuick 2.6
 
+/*!
+    \qmltype DefaultSmoothedAnimation
+    \inqmlmodule animations
+    \inherits SmoothedAnimation
+    \since 5.11
+    \brief The default smoothed animation of a Neptune 3 application
+
+
+    The DefaultSmoothedAnimation describes the default smoothed animation being
+    used in Neptune 3.
+
+    \section2 Example Usage
+
+    The following example shows how to use \l{DefaultSmoothedAnimation}:
+
+    \qml
+    import QtQuick 2.10
+    import animations 1.0
+
+    Rectangle {
+        id: root
+
+        width: 80
+        height: 80
+
+        Behavior on width { DefaultSmoothedAnimation {} }
+    }
+    \endqml
+*/
+
 SmoothedAnimation {
     easing.type: Easing.InOutQuad
-
-    //TODO: Check with designer if 270 is the correct number for duration
     duration: 270
 }

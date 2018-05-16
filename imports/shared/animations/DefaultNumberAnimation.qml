@@ -31,6 +31,35 @@
 
 import QtQuick 2.6
 
+/*!
+    \qmltype DefaultNumberAnimation
+    \inqmlmodule animations
+    \inherits NumberAnimation
+    \since 5.11
+    \brief The default number animation of a Neptune 3 application
+
+
+    The DefaultNumberAnimation describes the default number animation being
+    used in Neptune 3.
+
+    \section2 Example Usage
+
+    The following example shows how to use \l{DefaultNumberAnimation}:
+
+    \qml
+    import QtQuick 2.10
+    import animations 1.0
+
+    Rectangle {
+        id: root
+
+        width: 80
+        height: 80
+
+        Behavior on width { DefaultNumberAnimation {} }
+    }
+    \endqml
+*/
 NumberAnimation {
     easing.type: Easing.InOutQuad
     duration: 270
