@@ -54,6 +54,7 @@ ModalOverlay {
             anchors.right: parent.right
             notificationCenterParent: parent
             notificationModel: NotificationModel { }
+            toastHeight: parent.height
         }
     }
 }

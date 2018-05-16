@@ -54,6 +54,8 @@ import com.pelagicore.styles.neptune 3.0
  *  - accessoryBottomDelegateComponent - some list items require an element at the bottom of list item.
  *  - rightSpacerUsed - In some cases it will be necessary to have a margin between the right side of list item and the last element at the right side. The default value is false.
  *  - middleSpacerUsed - It's a margin between the left and the right parts of a ListItem. The default value is false.
+ *  - wrapText - The property defines if the text and subtext are wrapped. In notifications long text is shown on several lines and
+                 this property has to be set true. The default value is false. In normal lists the property value is remained false.
  */
 
 ItemDelegate {
@@ -61,13 +63,14 @@ ItemDelegate {
 
     property alias subText: subtitle.text
     property alias dividerVisible: dividerImage.visible
-
     property Component accessoryDelegateComponent1: null
     property Component accessoryDelegateComponent2: null
     property Component accessoryBottomDelegateComponent: null
-
     property bool rightSpacerUsed: false
     property bool middleSpacerUsed: false
+    property bool wrapText: false
+
+
 
     leftPadding: 0
     rightPadding: 0
@@ -76,8 +79,19 @@ ItemDelegate {
     opacity: enabled ? root.opacity : NeptuneStyle.defaultDisabledOpacity
     icon.color: NeptuneStyle.contrastColor
 
+    implicitHeight: Math.max(
+                        listItemText.contentHeight + subtitle.contentHeight,
+                        Math.max(
+                            (accessoryItem1.item ? accessoryItem1.item.implicitHeight : NeptuneStyle.dp(75)),
+                            (accessoryItem2.item ? accessoryItem2.item.implicitHeight : NeptuneStyle.dp(75))
+                            )
+                        ) + topPadding + bottomPadding
+    implicitWidth: NeptuneStyle.dp(100)
+
+
+
     contentItem: Item {
-        implicitHeight: NeptuneStyle.dp(75)
+
         NeptuneIconLabel {
             id: iconItem
             height: parent.height
@@ -95,10 +109,12 @@ ItemDelegate {
             ColumnLayout {
                 Layout.fillWidth: true
                 Label {
+                    id: listItemText
                     Layout.fillWidth: true
                     text: root.text
                     font: root.font
                     elide: Text.ElideRight
+                    wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                     opacity: NeptuneStyle.opacityHigh
@@ -111,6 +127,7 @@ ItemDelegate {
                     Layout.fillWidth: true
                     rightPadding: iconItem ? iconItem.width + root.spacing : 0
                     elide: Text.ElideRight
+                    wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                     font.pixelSize: NeptuneStyle.fontSizeS
@@ -122,7 +139,7 @@ ItemDelegate {
                 id: spacer
                 Layout.minimumWidth: NeptuneStyle.dp(22)
                 Layout.maximumWidth: NeptuneStyle.dp(22)
-                Layout.maximumHeight: parent.height
+                Layout.maximumHeight: NeptuneStyle.dp(22)
                 visible: middleSpacerUsed
             }
             Loader {
@@ -141,7 +158,7 @@ ItemDelegate {
                 id: spacerRight
                 Layout.minimumWidth: NeptuneStyle.dp(22)
                 Layout.maximumWidth: NeptuneStyle.dp(22)
-                Layout.maximumHeight: parent.height
+                Layout.maximumHeight:NeptuneStyle.dp(22)
                 visible: rightSpacerUsed
             }
         }

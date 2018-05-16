@@ -43,11 +43,14 @@ Control {
     property string notificationAccessoryButtonIcon
     property real contentOpacity: 1.0
     property bool dividerVisible: false
+    property bool wrapText: true
 
     signal buttonClicked()
     signal closeClicked()
 
-    implicitHeight: NeptuneStyle.dp(130)
+    implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
+    topPadding: NeptuneStyle.dp(27)
+    bottomPadding: NeptuneStyle.dp(27)
 
     background: Rectangle {
         color: NeptuneStyle.offMainColor
@@ -55,9 +58,8 @@ Control {
     }
 
     contentItem: ListItemTwoButtons {
-        implicitWidth: root.width
-        implicitHeight: NeptuneStyle.dp(110)
         opacity: root.contentOpacity
+        wrapText: root.wrapText
         icon.name: root.notificationIcon
         text: root.notificationText
         subText: root.notificationSubtext

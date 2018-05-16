@@ -55,6 +55,7 @@ Item {
     readonly property int dragMinimumY: root.height - NeptuneStyle.dp(130)
     readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
     property Item notificationCenterParent
+    property int toastHeight: 0
 
     y: root.notificationCenterVisible ? root.dragMaximumY : - root.dragMinimumY
     Behavior on y { DefaultNumberAnimation { } }
@@ -120,6 +121,7 @@ Item {
                 notificationText: title
                 notificationSubtext: description
                 notificationAccessoryButtonIcon: image
+                wrapText: false
                 onCloseClicked: root.notificationModel.removeNotification(index);
             }
         }
@@ -156,6 +158,7 @@ Item {
         id: notificationHandle
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: root.bottom
+        anchors.topMargin: root.notificationModel.notificationToastVisible ? root.toastHeight - root.dragMaximumY : 0
         dragTarget: root.notificationModel.notificationToastVisible ? root.notificationCenterParent : root
 
         drag.minimumY: root.notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : - root.dragMinimumY

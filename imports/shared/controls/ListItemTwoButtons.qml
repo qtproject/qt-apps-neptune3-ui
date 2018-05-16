@@ -81,7 +81,7 @@ ListItemBasic {
 
     accessoryDelegateComponent1: ToolButton {
         implicitWidth: NeptuneStyle.dp(100)
-        implicitHeight: root.height
+        implicitHeight: NeptuneStyle.dp(75)
         checkable: root.accessoryButton1Checkable
         checked: root.accessoryButton1Checked
         icon.name: root.symbolAccessoryButton1
@@ -90,7 +90,7 @@ ListItemBasic {
     }
     accessoryDelegateComponent2: ToolButton {
         implicitWidth: NeptuneStyle.dp(100)
-        implicitHeight: root.height
+        implicitHeight: NeptuneStyle.dp(75)
         checkable: root.accessoryButton2Checkable
         checked: root.accessoryButton2Checked
         icon.name: root.symbolAccessoryButton2
