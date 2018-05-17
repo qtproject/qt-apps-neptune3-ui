@@ -33,7 +33,6 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 import controls 1.0
@@ -46,14 +45,13 @@ PopupItem {
     height: NeptuneStyle.dp(1426)
 
     property var applicationModel
+    property var sysInfo
 
     headerBackgroundVisible: true
     headerBackgroundHeight: NeptuneStyle.dp(278)
     bottomPadding: NeptuneStyle.dp(20)
 
     property string currentTabName: tabBar.currentItem.name
-
-    SystemInfo { id: info }
 
     contentItem: ColumnLayout {
         id: mainLayout
@@ -133,7 +131,7 @@ PopupItem {
             Layout.bottomMargin: NeptuneStyle.dp(24)
             currentIndex: tabBar.currentIndex
             MonitorView {
-                sysinfo: info
+                sysinfo: root.sysInfo
             }
             AboutRunningApps {
                 applicationModel: root.applicationModel
@@ -142,7 +140,7 @@ PopupItem {
                 applicationModel: root.applicationModel
             }
             AboutDiagnostics {
-                sysinfo: info
+                sysinfo: root.sysInfo
             }
         }
     }

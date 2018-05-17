@@ -37,6 +37,7 @@
 #include <QtQml/QQmlParserStatus>
 #include <QProcess>
 #include <QVariant>
+#include <QNetworkAccessManager>
 
 class SystemInfo : public QObject, public QQmlParserStatus
 {
@@ -73,19 +74,21 @@ signals:
 protected:
     void classBegin() override;
     void componentComplete() override;
+    void timerEvent(QTimerEvent *event) override;
 
 private slots:
-    void updateOnlineStatusNm(quint32 state);
-    void updateOnlineStatusSd(const QVariant &state);
-    void updateOnlineStatusSdPropChange(const QString &interface, const QVariantMap &changedprop, const QStringList &invalidated_properties);
+    void updateOnlineStatus(bool status);
+    void replyFinished(QNetworkReply *reply);
 
 private:
     void getAddress();
     void getQtDiagInfo();
     QStringList m_addressList;
+    int m_timerId;
     bool m_online{false};
     QString m_qtDiagContents;
     QProcess *m_diagProc{nullptr};
+    QNetworkAccessManager *m_networkManager = nullptr;
 };
 
 #endif // SYSTEMINFO_H

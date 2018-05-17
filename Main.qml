@@ -41,7 +41,6 @@ import models.system 1.0
 import utils 1.0
 import instrumentcluster 1.0
 import com.pelagicore.settings 1.0
-import com.pelagicore.systeminfo 1.0
 
 import QtQuick.Window 2.3
 
@@ -244,7 +243,6 @@ Window {
             }
         }
 
-        SystemInfo { id: sysinfo }
         Shortcut {
             id: screenshot
             sequence: "Ctrl+p"
@@ -270,7 +268,7 @@ Window {
                 });
 
                 const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
-                saveFile(diagFile, sysinfo.qtDiag);
+                saveFile(diagFile, display.sysInfo.qtDiag);
 
                 notificationInterface.summary = qsTr("UI screenshot has been taken successfully");
                 notificationInterface.body = qsTr("UI screenshot and diagnostics information are stored in %1").arg(tempDir);

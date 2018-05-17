@@ -1,6 +1,6 @@
 TEMPLATE = lib
 TARGET  = systeminfoplugin
-QT += qml quick dbus
+QT += qml quick network
 CONFIG += qt plugin c++11
 
 uri = com.pelagicore.systeminfo

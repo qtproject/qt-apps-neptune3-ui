@@ -31,16 +31,14 @@
 
 import QtQuick 2.0
 
-import com.pelagicore.systeminfo 1.0
-
 QtObject {
     id: root
 
-    readonly property SystemInfo _systemInfo: SystemInfo {}
+    property bool isOnline: false
 
     property var indicators: [
         { id: "reception",  active: true, icon: "ic-statusbar-reception" },
-        { id: "wifi", active: _systemInfo.online, icon: "ic-statusbar-wifi" },
+        { id: "wifi", active: root.isOnline, icon: "ic-statusbar-wifi" },
         { id: "bluetooth", active: false, icon: "ic-statusbar-bluetooth" },
         { id: "battery", active: true, icon: "ic-statusbar-battery" }
     ]

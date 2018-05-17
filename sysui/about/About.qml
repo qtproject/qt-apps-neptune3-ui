@@ -43,10 +43,12 @@ PopupItemLoader {
 
     // to be set/called from outside
     property var applicationModel
+    property var sysInfo
 
     // to be read from outside
     state: item ? item.state : ""
     readonly property string currentTabName: item ? item.currentTabName : ""
 
     Binding { target: root.item; property: "applicationModel"; value: root.applicationModel }
+    Binding { target: root.item; property: "sysInfo"; value: root.sysInfo }
 }

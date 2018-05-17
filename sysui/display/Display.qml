@@ -53,6 +53,7 @@ import models.statusbar 1.0
 
 import QtGraphicalEffects 1.0
 
+import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -76,6 +77,10 @@ Item {
 
     property Item popupParent
     property var settings
+
+    property SystemInfo sysInfo: SystemInfo {
+        id: sysInfo
+    }
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
@@ -128,7 +133,9 @@ Item {
         anchors.right: parent.right
         uiSettings: settings
         z: 1
-        model: StatusBarModel {}
+        model: StatusBarModel {
+            isOnline: sysInfo.online
+        }
         onScreenshotRequested: root.screenshotRequested()
     }
 
@@ -214,6 +221,7 @@ Item {
         popupParent: root.popupParent
         originItem: rightIcon
         applicationModel: root.applicationModel
+        sysInfo: root.sysInfo
     }
 
     VirtualKeyboard {
