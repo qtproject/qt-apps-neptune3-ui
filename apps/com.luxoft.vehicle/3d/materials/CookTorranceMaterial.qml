@@ -33,6 +33,8 @@ import QtQuick 2.2
 import Qt3D.Core 2.0
 import Qt3D.Render 2.0
 
+import "../../helpers/pathsProvider.js" as Paths
+
 Material {
     id: root
 
@@ -66,14 +68,15 @@ Material {
     ]
 
     effect : Effect {
-        property string vertex: "file:assets/shaders/pbr_shader.vert"
-        property string fragment: "file:assets/shaders/pbr_shader.frag"
+        property string vertex: Paths.getMaterialPath("pbr_shader.vert")
+        property string fragment: Paths.getMaterialPath("pbr_shader.frag")
 
         ShaderProgram {
             id: es2Shader
             vertexShaderCode: loadSource(parent.vertex)
             fragmentShaderCode: loadSource(parent.fragment)
         }
+
         techniques: [
             Technique {
                 graphicsApiFilter {
@@ -85,9 +88,19 @@ Material {
                 renderPasses: RenderPass {
                     shaderProgram: es2Shader
                 }
+            },
+            Technique {
+                graphicsApiFilter {
+                    api: GraphicsApiFilter.OpenGL
+                    profile: GraphicsApiFilter.NoProfile
+                    majorVersion: 2
+                    minorVersion: 0
+                }
+                renderPasses: RenderPass {
+                    shaderProgram: es2Shader
+                }
             }
         ]
     }
-
 }
 

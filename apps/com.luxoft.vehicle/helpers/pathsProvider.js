@@ -38,3 +38,7 @@ function getModelPath(name) {
 function getImagePath(name) {
     return Qt.resolvedUrl("../assets/images/" + name)
 }
+
+function getMaterialPath(name) {
+    return Qt.resolvedUrl("../assets/shaders/" + name)
+}
