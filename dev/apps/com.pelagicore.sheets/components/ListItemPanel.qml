@@ -112,22 +112,25 @@ Item {
                 secondaryText: "Loooooooong Secondary Text"
             }
 
-            ListItem {
+            ListItemFlatButton {
                 implicitWidth: NeptuneStyle.dp(765)
                 implicitHeight: NeptuneStyle.dp(104)
-                rightPadding: NeptuneStyle.dp(16)
                 icon.name: "ic-update"
-                rightToolButtonText: "Show on map"
-                text: "ListItem with right tool text"
+                subText: "subtitle"
+                text: "ListItem with button"
+                textFlatButton: "Show on map"
+                closeButtonVisible: true
             }
 
-            ListItem {
+            ListItemFlatButton {
                 implicitWidth: NeptuneStyle.dp(765)
                 implicitHeight: NeptuneStyle.dp(104)
                 rightPadding: NeptuneStyle.dp(16)
                 icon.name: "ic-update"
-                rightToolButtonText: "Text"
-                text: "ListItem with right tool text"
+                symbolFlatButton: Style.symbol("ic-favorite")
+                subText: "subtitle"
+                text: "ListItem with button text"
+                textFlatButton: "Text"
             }
 
             ListItemProgress {

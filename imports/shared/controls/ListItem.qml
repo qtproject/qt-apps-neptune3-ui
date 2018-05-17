@@ -59,7 +59,6 @@ ListItemBasic {
 
     property string secondaryText: ""
     property string rightToolSymbol: ""
-    property string rightToolButtonText: ""
 
     signal rightToolClicked()
 
@@ -84,17 +83,5 @@ ListItemBasic {
         icon.name: root.rightToolSymbol
         visible: root.rightToolSymbol !== ""
         onClicked: root.rightToolClicked()
-    }
-
-    accessoryButton: Button {
-        text: root.rightToolButtonText
-        font.pixelSize: NeptuneStyle.fontSizeS
-        implicitHeight: root.rightToolButtonText ? contentItem.implicitHeight + topPadding + bottomPadding : 0
-        implicitWidth: root.rightToolButtonText ? contentItem.implicitWidth + leftPadding + rightPadding : 0
-        leftPadding: NeptuneStyle.dp(30)
-        rightPadding: NeptuneStyle.dp(30)
-        topPadding: NeptuneStyle.dp(8)
-        bottomPadding: NeptuneStyle.dp(8)
-        visible: root.rightToolButtonText !== ""
     }
 }

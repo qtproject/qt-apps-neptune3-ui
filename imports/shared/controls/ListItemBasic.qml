@@ -64,7 +64,6 @@ ItemDelegate {
 
     property Component accessoryDelegateComponent1: null
     property Component accessoryDelegateComponent2: null
-    property Component accessoryButton: null
     property Component accessoryBottomDelegateComponent: null
 
     property bool rightSpacerUsed: false
@@ -137,12 +136,6 @@ ItemDelegate {
                 visible: root.accessoryDelegateComponent2 !== null
                 active: root.accessoryDelegateComponent2 !== null
                 sourceComponent: root.accessoryDelegateComponent2
-            }
-            Loader {
-                id: accessoryButtonItem
-                visible: root.accessoryButton !== null
-                active: root.accessoryButton !== null
-                sourceComponent: root.accessoryButton
             }
             Item {
                 id: spacerRight

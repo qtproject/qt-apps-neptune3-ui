@@ -5,5 +5,6 @@ ListItemBasic 1.0 ListItemBasic.qml
 ListItemProgress 1.0 ListItemProgress.qml
 ListItemSwitch 1.0 ListItemSwitch.qml
 ListItemTwoButtons 1.0 ListItemTwoButtons.qml
+ListItemFlatButton 1.0 ListItemFlatButton.qml
 PopupItem 1.0 PopupItem.qml
 PopupItemLoader 1.0 PopupItemLoader.qml
