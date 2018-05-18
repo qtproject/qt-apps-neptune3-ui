@@ -82,6 +82,7 @@ Item {
                 mapBoxPanel.visibleRegion = boundingBox;
             }
             mapBoxPanel.navigationMode = true;
+            mapBoxPanel.guidanceMode = true;
         }
     }
 
@@ -129,9 +130,6 @@ Item {
 
         onMapReadyChanged: root.store.getAvailableMapsAndLocation(mapBoxPanel.mapReady, mapBoxPanel.supportedMapTypes);
         onMaximizeMap: root.maximizeMap();
-        Component.onCompleted: {
-            root.store.routingPlugin = root.store.geocodePlugin
-        }
     }
 
     ToolButton {

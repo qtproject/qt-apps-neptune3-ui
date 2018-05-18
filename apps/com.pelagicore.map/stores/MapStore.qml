@@ -54,7 +54,6 @@ QtObject {
     readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
     readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
 
-    property alias routingPlugin: routeModel.plugin
     property var currentLocationCoord
     property var homeCoord
     property var workCoord
@@ -79,7 +78,11 @@ QtObject {
     }
 
     property GeocodeModel intentGeoCodeModel: GeocodeModel {
-        plugin: root.geocodePlugin
+        plugin: Plugin {
+            name: "osm";
+            locales: Style.languageLocale
+            PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
+        }
         limit: 20
         onCountChanged: {
             if (count > 0) {
@@ -182,17 +185,23 @@ QtObject {
             value: mapPlugin.cacheDirUrl.toString().substring(mapPlugin.cacheDirUrl.indexOf(':')+1) }
     }
 
-    // This is needed since MapBox plugin does not support geocoding yet. TODO: find a better way to support geocoding.
-    readonly property Plugin geocodePlugin: Plugin {
-        name: "osm"
-        locales: Style.languageLocale
-
-        // OSM Plugin Parameters
-        PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
-    }
-
     readonly property GeocodeModel geocodeModel: GeocodeModel {
-        plugin: root.geocodePlugin
+        plugin: Plugin {
+            name: "osm";
+            locales: Style.languageLocale
+            PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
+        }
+        onStatusChanged: {
+            if (status === RouteModel.Null) {
+                console.info("Search model idle");
+            } else if (status === RouteModel.Ready) {
+                console.info("Search model ready, results:", count)
+            } else if (status === RouteModel.Loading) {
+                console.info("Search model busy");
+            } else if (status === RouteModel.Error) {
+                console.warn("Search model error:", error, errorString);
+            }
+        }
         limit: 20
     }
 
@@ -202,6 +211,8 @@ QtObject {
         query: RouteQuery {
             waypoints: [root.startCoord, root.destCoord]
         }
+        plugin: Plugin { name: "osm" }
+
         onStatusChanged: {
             if (status === RouteModel.Null) {
                 console.info("Route model idle");

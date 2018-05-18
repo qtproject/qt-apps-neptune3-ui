@@ -86,17 +86,16 @@ QtObject {
             store: MapStore {
                 offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
                 currentLocationCoord: positionCoordinate
-                onOfflineMapsEnabledChanged: {
-                    getAvailableMapsAndLocation();
-                    if (offlineMapsEnabled) {
-                        mainWindow.helper.showOfflineNotification();
-                    }
-                }
             }
 
             onMapReadyChanged: {
-                if (mapReady && !mainWindow.secondaryWindowObject) {
-                    mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
+                if (mapReady) {
+                    if (!mainWindow.secondaryWindowObject) {
+                        mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
+                    }
+                    if (store.offlineMapsEnabled) {
+                        helper.showOfflineNotification();
+                    }
                 }
             }
 
@@ -105,43 +104,22 @@ QtObject {
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
 
-            Binding {
-                target: icMapView
-                property: "mapCenter"
-                value: mainMap.mapCenter
-            }
-            Binding {
-                target: icMapView
-                property: "mapZoomLevel"
-                value: mainMap.mapZoomLevel
-            }
-            Binding {
-                target: icMapView
-                property: "mapTilt"
-                value: mainMap.mapTilt
-            }
-            Binding {
-                target: icMapView
-                property: "mapBearing"
-                value: mainMap.mapBearing
-            }
-
             SystemInfo { id: sysinfo }
-        }
-
-        Component.onCompleted: {
-            if (mainMap.store.offlineMapsEnabled) {
-                mainWindow.helper.showOfflineNotification();
-            }
         }
     }
 
-    property var secondaryWindowComponent: SecondaryWindow {
-        id: secondaryWindowComponent
-        ICMapView {
-            id: icMapView
-            anchors.fill: parent
-            mapPlugin: mainMap.store.mapPlugin
+    property var secondaryWindowComponent: Component {
+        SecondaryWindow {
+            id: secondaryWindowComponent
+            ICMapView {
+                id: icMapView
+                anchors.fill: parent
+                mapPlugin: mainMap.store.mapPlugin
+                mapCenter: mainMap.mapCenter
+                mapZoomLevel: mainMap.mapZoomLevel
+                mapTilt: mainMap.mapTilt
+                mapBearing: mainMap.mapBearing
+            }
         }
     }
 }
