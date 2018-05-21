@@ -62,6 +62,21 @@ QtObject {
     // It can be displayed on the instrument cluster screen
     readonly property var secondaryWindow: d.secondaryWindow
 
+    // the popup window of this application, if any
+    //
+    // It can be displayed on the center console screen
+    readonly property var popupWindow: d.popupWindow
+    // When true, the application popup opens, when false closes
+    property bool openPopup: false
+    // the origin item's x to be set to the application's popup loader
+    property real originItemX
+    // the origin item's y to be set to the application's popup loader
+    property real originItemY
+    //the application's popup width
+    property int popupWidth: 0
+    //the application's popup height
+    property int popupHeight: 0
+
     // State if the main window in the neptune system UI
     // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows" and "Maximized"
     // See also: window, widgetHeight
@@ -141,6 +156,15 @@ QtObject {
     readonly property int timeToFirstSecondaryWindowFrame:
         d.startCallTime !== null && d.secondaryWindowFirstFrameTime !== null ? d.secondaryWindowFirstFrameTime - d.startCallTime
                                                                     : -1
+
+    /*
+        Time elapsed between start() was called and the moment sysui received its first
+        frame from popupWindow
+     */
+    readonly property int timeToFirstPopupWindowFrame:
+        d.startCallTime !== null && d.popupWindowFirstFrameTime !== null ? d.popupWindowFirstFrameTime - d.startCallTime
+                                                                    : -1
+
     function start() {
         // TODO Add a start() method to QtAM::Application itself
         if (application) {
@@ -219,6 +243,12 @@ QtObject {
             AM.WindowManager.setWindowProperty(secondaryWindow, "neptuneScale", secondaryWindowScale);
     }
 
+    onOpenPopupChanged: {
+        if (popupWindow) {
+            AM.WindowManager.setWindowProperty(popupWindow, "openPopup", openPopup);
+        }
+    }
+
     onAsWidgetChanged: {
         if (asWidget && application.runState === AM.Application.NotRunning) {
             // Starting an app causes it to emit activated() but we don't want it to go active (as being
@@ -233,6 +263,7 @@ QtObject {
         property bool active: false
         property var window: null
         property var secondaryWindow: null
+        property var popupWindow: null
 
         // Time when start() was called, in ms since Unix Epoch
         property var startCallTime: null
@@ -242,6 +273,9 @@ QtObject {
 
         // Time when secondaryWindow had its first frame rendered, in ms since Unix Epoch
         property var secondaryWindowFirstFrameTime: null
+
+        // Time when popupWindow had its first frame rendered, in ms since Unix Epoch
+        property var popupWindowFirstFrameTime: null
 
         property var appConns: Connections {
             target: root.application
@@ -272,6 +306,15 @@ QtObject {
             }
         }
 
+        property var popupWindowConns: Connections {
+            target: d.popupWindow ? d.popupWindow.surface : null
+            enabled: target != null && d.popupWindowFirstFrameTime === null
+            ignoreUnknownSignals: true
+            onRedraw: {
+                d.popupWindowFirstFrameTime = Date.now();
+            }
+        }
+
         onWindowChanged: {
             if (!window) {
                 windowFirstFrameTime = null;
@@ -281,6 +324,12 @@ QtObject {
         onSecondaryWindowChanged: {
             if (!secondaryWindow) {
                 secondaryWindowFirstFrameTime = null;
+            }
+        }
+
+        onPopupWindowChanged: {
+            if (!popupWindow) {
+                popupWindowFirstFrameTime = null;
             }
         }
 

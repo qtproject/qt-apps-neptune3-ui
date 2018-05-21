@@ -239,9 +239,12 @@ ListModel {
 
             if (isRegularApp) {
                 var isSecondaryWindow = AM.WindowManager.windowProperty(window, "windowType") === "secondary";
+                var isPopupWindow = AM.WindowManager.windowProperty(window, "windowType") === "popup";
 
                 if (isSecondaryWindow) {
                     appInfo.priv.secondaryWindow = window;
+                } else if (isPopupWindow) {
+                    appInfo.priv.popupWindow = window;
                 } else {
                     appInfo.priv.window = window;
                     appInfo.canBeActive = true;
@@ -267,6 +270,8 @@ ListModel {
                 appInfo.priv.window = null;
             } else if (appInfo.priv.secondaryWindow === window) {
                 appInfo.priv.secondaryWindow = null;
+            } else if (appInfo.priv.popupWindow === window) {
+                appInfo.priv.popupWindow = null;
             }
 
             // TODO care about animating before releasing
@@ -274,10 +279,28 @@ ListModel {
         }
 
         onWindowPropertyChanged: {
-            if (name === "activationCount") {
-                var appId = AM.WindowManager.get(AM.WindowManager.indexOfWindow(window)).applicationId;
+            var appId = AM.WindowManager.get(AM.WindowManager.indexOfWindow(window)).applicationId;
+            var appInfo = applicationFromId(appId);
+            switch (name) {
+            case "activationCount":
                 AM.ApplicationManager.application(appId).activated();
                 d.reactOnAppActivation(appId);
+                break;
+            case "openPopup":
+                appInfo.openPopup = value;
+                break;
+            case "originItemX":
+                appInfo.originItemX = value;
+                break;
+            case "originItemY":
+                appInfo.originItemY = value;
+                break;
+            case "popupWidth":
+                appInfo.popupWidth = value;
+                break;
+            case "popupHeight":
+                appInfo.popupHeight = value;
+                break;
             }
         }
     }

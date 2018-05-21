@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 
-import controls 1.0
+import sysui.controls 1.0
 
 /*
     A seamless wrapper for ClimatePopup that loads it on demand

@@ -37,6 +37,7 @@ import QtQml.Models 2.2
 import controls 1.0
 import utils 1.0
 import animations 1.0
+import sysui.controls 1.0
 
 import com.pelagicore.styles.neptune 3.0
 

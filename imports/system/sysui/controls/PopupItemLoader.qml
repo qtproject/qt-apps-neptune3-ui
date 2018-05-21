@@ -45,6 +45,8 @@ Loader {
     // to be set/called from outside
     property Item popupParent
     property Item originItem
+    property real originItemX
+    property real originItemY
     property var popupX: null
     property var popupY: null
 
@@ -64,6 +66,8 @@ Loader {
 
     Binding { target: root.item; property: "parent"; value: root.popupParent }
     Binding { target: root.item; property: "originItem"; value: root.originItem }
+    Binding { target: root.item; property: "originItemX"; value: root.originItemX }
+    Binding { target: root.item; property: "originItemY"; value: root.originItemY }
     Binding { target: root.item; when: root.popupX !== null; property: "popupX"; value: root.popupX }
     Binding { target: root.item; when: root.popupY !== null; property: "popupY"; value: root.popupY }
 }

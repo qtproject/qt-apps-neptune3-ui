@@ -54,9 +54,12 @@ Control {
     property bool headerBackgroundVisible: false
     property int headerBackgroundHeight: 0
     property Item originItem
+    property real originItemX
+    property real originItemY
     property real _openFromX
     property real _openFromY
     readonly property int minHeight: NeptuneStyle.dp(548)
+    signal closing()
 
     ScalableBorderImage {
         anchors.top: parent.top
@@ -112,9 +115,14 @@ Control {
     Keys.onEscapePressed: close()
 
     function updateOpenFromPosition() {
-        var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
-        _openFromX = originPos.x - (root.width / 2);
-        _openFromY = originPos.y - root.height;
+        if (originItem) {
+            var originPos = originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
+            _openFromX = originPos.x - (root.width / 2);
+            _openFromY = originPos.y - root.height;
+        } else {
+            _openFromX = originItemX - (root.width / 2);
+            _openFromY = originItemY - root.height;
+        }
     }
 
     function open() {
@@ -125,6 +133,7 @@ Control {
     function close() {
         updateOpenFromPosition();
         state = "closed";
+        root.closing();
     }
 
     Connections {
