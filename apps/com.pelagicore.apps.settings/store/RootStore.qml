@@ -77,6 +77,7 @@ QtObject {
     function updateLanguage(language) {
         console.log(helper.category, 'updateLanguage: ' + language)
         uiSettings.setLanguage(language);
+        helper.showNotification(qsTr("UI Language changed"), qsTr("UI Language changed into %1").arg(language));
     }
 
     function update24HourTimeFormat(value) {
@@ -97,6 +98,14 @@ QtObject {
     function updateTheme(value) {
         console.log(helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
+
+        if (value === 0) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Light Theme"));
+        } else if (value === 1) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Dark Theme"));
+        }
+
+
     }
 
     // (Accent) Colors segment
@@ -116,7 +125,7 @@ QtObject {
     function updateAccentColor(value) {
         console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
-        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(uiSettings.accentColor))
+        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(uiSettings.accentColor));
     }
 
     // Initialization
