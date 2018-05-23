@@ -38,6 +38,7 @@ import QtQuick.Layouts 1.2
 import "stores"
 import "views"
 
+import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
 
 QtObject {
@@ -87,12 +88,23 @@ QtObject {
                 mainWindow.setWindowProperty("activationCount", multiPoint.count);
             }
         }
+
+        InstrumentCluster {
+            id: clusterSettings
+        }
     }
 
-    property var secondaryWindow: SecondaryWindow {
-        ICMusicView {
-            anchors.fill: parent
-            store: musicAppContent.store
+    readonly property Loader secondaryWindowLoader: Loader {
+        asynchronous: true
+        active: clusterSettings.available
+                || Qt.platform.os !== "linux" // FIXME and then remove; remote settings doesn't really work outside of Linux
+        sourceComponent: Component {
+            SecondaryWindow {
+                ICMusicView {
+                    anchors.fill: parent
+                    store: musicAppContent.store
+                }
+            }
         }
     }
 }

@@ -74,6 +74,8 @@ interface InstrumentCluster {
    */
   bool navigationMode;
 
+  /** Whether a secondary (cluster) screen is available */
+  bool available;
 }
 
 @config: {id: "SystemUI"}

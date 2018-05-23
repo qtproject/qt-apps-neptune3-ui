@@ -32,6 +32,7 @@
 import QtQuick 2.9
 import utils 1.0
 
+import com.pelagicore.settings 1.0
 import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.map 1.0
@@ -41,26 +42,13 @@ import "stores"
 import "helpers"
 
 QtObject {
-    id: root
-
     // used for copying the offline DB
     readonly property var _mapsHelper: MapsHelper {}
 
     property var mainWindow: PrimaryWindow {
         id: mainWindow
 
-        property var secondaryWindowObject
-
         readonly property Helper helper: Helper {}
-
-        onNeptuneStateChanged: {
-            if (mainWindow.secondaryWindowObject && !neptuneState) { // widget got closed
-                mainWindow.secondaryWindowObject.destroy();
-                mainWindow.secondaryWindowObject = null;
-            } else if (!mainWindow.secondaryWindowObject) { // app got killed, recreate
-                mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
-            }
-        }
 
         MultiPointTouchArea {
             id: multiPoint
@@ -89,13 +77,8 @@ QtObject {
             }
 
             onMapReadyChanged: {
-                if (mapReady) {
-                    if (!mainWindow.secondaryWindowObject) {
-                        mainWindow.secondaryWindowObject = secondaryWindowComponent.createObject(root);
-                    }
-                    if (store.offlineMapsEnabled) {
-                        helper.showOfflineNotification();
-                    }
+                if (mapReady && store.offlineMapsEnabled) {
+                    helper.showOfflineNotification();
                 }
             }
 
@@ -106,22 +89,32 @@ QtObject {
 
             SystemInfo { id: sysinfo }
         }
+
+        InstrumentCluster {
+            id: clusterSettings
+        }
     }
 
-    property var secondaryWindowComponent: Component {
-        SecondaryWindow {
-            id: secondaryWindowComponent
-            ICMapView {
-                id: icMapView
-                anchors.fill: parent
-                mapPlugin: mainMap.store.mapPlugin
-                mapCenter: mainMap.mapCenter
-                mapZoomLevel: mainMap.mapZoomLevel
-                mapTilt: mainMap.mapTilt
-                mapBearing: mainMap.mapBearing
-                activeMapType: NeptuneStyle.theme === NeptuneStyle.Light ?
-                               mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
-                               : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
+    readonly property Loader secondaryWindowLoader: Loader {
+        asynchronous: true
+        active: (clusterSettings.available
+                 || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
+                && mainMap.mapReady
+        sourceComponent: Component {
+            SecondaryWindow {
+                id: secondaryWindowComponent
+                ICMapView {
+                    id: icMapView
+                    anchors.fill: parent
+                    mapPlugin: mainMap.store.mapPlugin
+                    mapCenter: mainMap.mapCenter
+                    mapZoomLevel: mainMap.mapZoomLevel
+                    mapTilt: mainMap.mapTilt
+                    mapBearing: mainMap.mapBearing
+                    activeMapType: NeptuneStyle.theme === NeptuneStyle.Light ?
+                                   mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
+                                   : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
+                }
             }
         }
     }

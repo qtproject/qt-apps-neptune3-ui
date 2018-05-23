@@ -174,6 +174,11 @@ Window {
             }
         }
 
+        InstrumentCluster {
+            id: clusterSettings
+            available: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
+        }
+
         // N.B. need to use a Timer here to "push" the available languages to settings server
         // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
         Timer {
