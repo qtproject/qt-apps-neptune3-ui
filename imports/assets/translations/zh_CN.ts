@@ -1051,10 +1051,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UI Language changed into %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UI Theme changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1064,6 +1060,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Language changed into %1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

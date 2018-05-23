@@ -633,10 +633,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>UI Language changed into %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>UI Theme changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -646,6 +642,10 @@
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Language changed into %1 (%2)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

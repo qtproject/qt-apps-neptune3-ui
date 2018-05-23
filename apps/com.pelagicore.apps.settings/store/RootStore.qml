@@ -74,10 +74,10 @@ QtObject {
         }
     }
 
-    function updateLanguage(language) {
-        console.log(helper.category, 'updateLanguage: ' + language)
-        uiSettings.setLanguage(language);
-        helper.showNotification(qsTr("UI Language changed"), qsTr("UI Language changed into %1").arg(language));
+    function updateLanguage(languageCode, language) {
+        console.log(helper.category, 'updateLanguage: ' + languageCode)
+        uiSettings.setLanguage(languageCode);
+        helper.showNotification(qsTr("UI Language changed"), qsTr("UI Language changed into %1 (%2)").arg(language).arg(languageCode));
     }
 
     function update24HourTimeFormat(value) {

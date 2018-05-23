@@ -97,7 +97,7 @@ Control {
             LanguagePanel {
                 model: store.languageModel
                 currentLanguage: store.currentLanguage
-                onLanguageRequested: store.updateLanguage(language);
+                onLanguageRequested: store.updateLanguage(languageCode, language);
             }
 
             DateTimePanel {

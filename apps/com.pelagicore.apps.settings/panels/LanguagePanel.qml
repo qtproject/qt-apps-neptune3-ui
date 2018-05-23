@@ -43,7 +43,7 @@ Control {
 
     property string currentLanguage
 
-    signal languageRequested(string language)
+    signal languageRequested(string languageCode, string language)
 
     contentItem: ListView {
         id: view
@@ -57,7 +57,7 @@ Control {
 
             width: ListView.view.width
             height: NeptuneStyle.dp(110)
-            onClicked: root.languageRequested(model.language)
+            onClicked: root.languageRequested(model.language, model.title)
 
             contentItem: Item {
                 RadioButton {
