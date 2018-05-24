@@ -41,6 +41,8 @@ Item {
     property alias mapZoomLevel: mainMap.zoomLevel
     property alias mapTilt: mainMap.tilt
     property alias mapBearing: mainMap.bearing
+    property alias mapReady: mainMap.mapReady
+    property alias activeMapType: mainMap.activeMapType
     property var mapPlugin
 
     Map {

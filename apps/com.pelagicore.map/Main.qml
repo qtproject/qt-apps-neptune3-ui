@@ -119,6 +119,9 @@ QtObject {
                 mapZoomLevel: mainMap.mapZoomLevel
                 mapTilt: mainMap.mapTilt
                 mapBearing: mainMap.mapBearing
+                activeMapType: NeptuneStyle.theme === NeptuneStyle.Light ?
+                               mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
+                               : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
             }
         }
     }
