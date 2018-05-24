@@ -125,3 +125,12 @@
     \title MapBox GL Plugin Documentation
 */
 
+/*!
+    \externalpage http://doc.qt.io/QtIVI/remotebackends.html
+    \title QtIvi Remote Backends
+*/
+
+/*!
+    \externalpage http://doc.qt.io/QtIVI/qtivi-ivicore-qface-ivi-remote-example.html
+    \title Qt IVI Generator Remote Objects Example
+*/
