@@ -36,47 +36,116 @@ import controls 1.0
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-/*
- * ListItemTwoButtons provides a type of a list item with two tool buttons at the right side.
- *
- * Properties:
- *  - symbolAccessoryButton1 - This property holds an icon name to be displayed on the first accessory button.
- *  - accessoryButton1Checkable - This property holds whether the first accessory button is checkable.
- *  - accessoryButton1Checked - This property holds whether the first accessory button is checked.
- *  - symbolAccessoryButton2 - This property an icon name to be displayed on the second accessory button.
- *  - accessoryButton2Checkable - This property holds whether the second accessory button is checkable.
- *  - accessoryButton2Checked - This property holds whether the second accessory button is checked.
- *
- * Signals:
- *  - accessoryButton1Clicked() - This signal is emitted when the first accessory button is clicked by the user.
- *  - accessoryButton2Clicked() - This signal is emitted when the second accessory button is clicked by the user.
- *
- *  Usage example:
- *
- *   ListItemTwoButtons {
- *       Layout.fillWidth: true
- *       icon.name: "ic-update"
- *       symbolAccessoryButton1: "ic-call-contrast"
- *       symbolAccessoryButton2: "ic-message-contrast"
- *       text: "..."
- *       onClicked: { ... }
- *       onAccessoryButton1Clicked: { ... }
- *       onAccessoryButton2Clicked: { ... }
- *   }
- */
+/*!
+    \qmltype ListItemTwoButtons
+    \inqmlmodule controls
+    \inherits ListItemBasic
+    \since 5.11
+    \brief The list item with two buttons component of Neptune 3
+
+    The ListItemSwitch provides a type of a list item with two tool buttons at the right side.
+
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ListItemTwoButtons}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate:  ListItemTwoButtons {
+                Layout.fillWidth: true
+                icon.name: "ic-update"
+                symbolAccessoryButton1: "ic-call-contrast"
+                symbolAccessoryButton2: "ic-message-contrast"
+                text: "..."
+                onClicked: {
+                    console.log("List Item Clicked");
+                }
+                onAccessoryButton1Clicked: {
+                    console.log("Accessory Button 1 Clicked");
+                }
+                onAccessoryButton2Clicked: {
+                    console.log("Accessory Button 2 Clicked");
+                }
+            }
+        }
+    }
+    \endqml
+*/
 
 ListItemBasic {
     id: root
 
+    /*!
+        \qmlproperty string ListItemTwoButtons::symbolAccessoryButton1
+
+        This property holds an icon name to be displayed on the first accessory button.
+    */
     property string symbolAccessoryButton1: ""
+
+    /*!
+        \qmlproperty bool ListItemTwoButtons::accessoryButton1Checkable
+
+        This property holds whether the first accessory button is checkable.
+
+        This property's default is false.
+    */
     property bool accessoryButton1Checkable: false
+
+    /*!
+        \qmlproperty bool ListItemTwoButtons::accessoryButton1Checked
+
+        This property holds whether the first accessory button is checked.
+
+        This property's default is false.
+    */
     property bool accessoryButton1Checked: false
 
+    /*!
+        \qmlproperty string ListItemTwoButtons::symbolAccessoryButton2
+
+        This property holds an icon name to be displayed on the second accessory button.
+    */
     property string symbolAccessoryButton2: ""
+
+    /*!
+        \qmlproperty bool ListItemTwoButtons::accessoryButton2Checkable
+
+        This property holds whether the second accessory button is checkable.
+
+        This property's default is false.
+    */
     property bool accessoryButton2Checkable: false
+
+    /*!
+        \qmlproperty bool ListItemTwoButtons::accessoryButton2Checked
+
+        This property holds whether the second accessory button is checked.
+
+        This property's default is false.
+    */
     property bool accessoryButton2Checked: false
 
+    /*!
+        \qmlsignal ListItemTwoButtons::accessoryButton1Clicked
+
+        This signal is emitted when the first accessory button is clicked by the user.
+    */
     signal accessoryButton1Clicked()
+
+    /*!
+        \qmlsignal ListItemTwoButtons::accessoryButton2Clicked
+
+        This signal is emitted when the second accessory button is clicked by the user.
+    */
     signal accessoryButton2Clicked()
 
     accessoryDelegateComponent1: ToolButton {

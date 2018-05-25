@@ -36,53 +36,133 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
+/*!
+    \qmltype ListItemProgress
+    \inqmlmodule controls
+    \inherits ListItemBasic
+    \since 5.11
+    \brief The list item with progress bar component of Neptune 3
 
-/*
- * ListItemProgress provides a type of a list item with an integrated progress bar.
- *
- * Properties:
- *  - minimumValue - This property holds the starting value for the progress. The default value is 0.0.
- *  - maximumValue - This property holds the end value for the progress. The default value is 1.0.
- *  - value - This property holds the progress value. The default value is 0.0.
- *  - secondaryText - This property holds a textual component that is aligned to the right
- *                    side of ListItemProgress.
- *  - indeterminate - This property holds whether the progress bar is in indeterminate mode.
- *                    A progress bar in indeterminate mode displays that an operation is in progress,
- *                    but it doesn't show how much progress has been made. The default value is false.
- *  - cancelSymbol - This property holds the name of icon to be used as the cancel icon. The default value is "ic-close"
- *  - cancelable - Defines if the progress is cancelable. In case if it's false, cancelSymbol is hidden and cannot be clicked.
- *                 The default value is true
- *  - progressVisible - The property defines whether the progress bar is visible or not.
- *
- * Signals:
- *   progressCanceled: This signal is emitted when the cancel button is clicked by the user.
- *
- *  Usage example:
- *
- *   ListItemProgress {
- *      Layout.fillWidth: true
- *      icon.name: "ic-update"
- *      text: "Downloading the application"
- *      secondaryText: value + " % of 46 MB"
- *      cancelable: true
- *   }
- */
+    The ListItemProgress provides a type of a list item with an integrated progress bar.
 
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ListItemProgress}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate: ListItemProgress {
+               Layout.fillWidth: true
+               icon.name: "ic-update"
+               text: "Downloading the application"
+               secondaryText: value + " % of 46 MB"
+               cancelable: true
+            }
+        }
+    }
+    \endqml
+*/
 
 ListItemBasic {
     id: root
 
+    /*!
+        \qmlproperty real ListItemProgress::minimumValue
+
+        This property holds the starting value for the progress.
+
+        This property's default is 0.0.
+    */
     property real minimumValue: 0.0
+
+    /*!
+        \qmlproperty real ListItemProgress::maximumValue
+
+        This property holds the end value for the progress.
+
+        This property's default is 1.0.
+    */
     property real maximumValue: 1.0
+
+    /*!
+        \qmlproperty real ListItemProgress::value
+
+        This property holds the progress value.
+
+        This property's default is 0.0.
+    */
     property real value: 0.0
+
+    /*!
+        \qmlproperty bool ListItemProgress::indeterminate
+
+        This property holds whether the progress bar is in indeterminate mode.
+        A progress bar in indeterminate mode displays that an operation is in progress,
+        but it doesn't show how much progress has been made.
+
+        This property's default is false.
+    */
     property bool indeterminate: false
+
+    /*!
+        \qmlproperty bool ListItemProgress::backgroundVisible
+
+        This property holds whether list item background is visible or not.
+
+        This property's default is false.
+    */
     property bool backgroundVisible: false
 
+    /*!
+        \qmlproperty string ListItemProgress::secondaryText
+
+        This property holds a textual component that is aligned to the right
+        side of ListItemProgress.
+    */
     property string secondaryText: ""
+
+    /*!
+        \qmlproperty string ListItemProgress::cancelSymbol
+
+        This property holds the name of icon to be used as the cancel icon.
+
+        This property's default is "ic-close"
+    */
     property string cancelSymbol: "ic-close"
+
+    /*!
+        \qmlproperty bool ListItemProgress::cancelable
+
+        This property holds whether the progress is cancelable or not.
+        In case if it's false, cancelSymbol is hidden and cannot be clicked.
+
+        This property's default is true.
+    */
     property bool cancelable: true
+
+    /*!
+        \qmlproperty bool ListItemProgress::progressVisible
+
+        The property defines whether the progress bar is visible or not.
+
+        This property's default is true.
+    */
     property bool progressVisible: true
 
+    /*!
+        \qmlsignal ListItemProgress::progressCanceled
+
+        This signal is emitted when the cancel button is clicked by the user.
+    */
     signal progressCanceled()
 
     accessoryDelegateComponent1: Label {

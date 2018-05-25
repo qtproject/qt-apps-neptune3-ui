@@ -40,25 +40,39 @@ import com.pelagicore.styles.neptune 3.0
     \qmltype
     \inqmlmodule controls
     \inherits ListItemBasic
+    \since 5.11
     \brief Flat button for list items and lists and notifications
 
     ListItemFlatButton provides a type of a list item with a flat button and close button
     on the right side. The flat button supports text on one line and its width is aligned with
     text width. The visibility of close button can be defined with closeButtonVisible property.
 
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
     \section2 Example Usage
 
-    \qml
+    The following example uses \l{ListItemBasic }:
 
-    ListItemFlatButton {
-        implicitWidth: NeptuneStyle.dp(765)
-        implicitHeight: NeptuneStyle.dp(104)
-        icon.name: "ic-update"
-        symbolFlatButton: Style.symbol("ic-favorite")
-        subText: "subtitle"
-        text: "ListItem with button text"
-        textFlatButton: "Text"
-        closeButtonVisible: true
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate:  ListItemFlatButton {
+                implicitWidth: NeptuneStyle.dp(765)
+                implicitHeight: NeptuneStyle.dp(104)
+                icon.name: "ic-update"
+                symbolFlatButton: Style.symbol("ic-favorite")
+                subText: "subtitle"
+                text: "ListItem with button text"
+                textFlatButton: "Text"
+                closeButtonVisible: true
+            }
+        }
     }
 
     \endqml
@@ -90,14 +104,14 @@ ListItemBasic {
     property bool closeButtonVisible: false
 
     /*!
-        \fn ListItemBasic::flatButtonClicked()
+        \qmlsignal ListItemBasic::flatButtonClicked()
 
         The signal is emitted when flat button is clicked
     */
     signal flatButtonClicked()
 
     /*!
-        \fn ListItemBasic::closeButtonClicked()
+        \qmlsignal ListItemBasic::closeButtonClicked()
 
         The signal is emitted when close button is clicked
     */

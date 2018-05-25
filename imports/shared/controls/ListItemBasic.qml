@@ -38,36 +38,108 @@ import QtGraphicalEffects 1.0
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-/*
- * ListItemBasic provides a basic type of a list item with an indicator as an icon or an image and text with subtest following by the indicator.
- *
- * Properties:
- *  - icon.name - This property holds the name of an icon to be displayed on a list item.
- *  - icon.source - This property holds a path to an icon or an image to be displayed on a list item. In case the property takes an image which color is
- *                  not intented to be altered, icon.color has to be set transparent
- *  - icon.color - This property holds the color of an icon or and image to be displayed on a list item.
- *  - subText - holds text in the second line on a list item.
- *  - dividerVisible - defines if there is a divider on a list item. Default value is true.
- *  - accessoryDelegateComponent1 - a component at the right side of list item.
- *  - accessoryDelegateComponent2 - a component at the right side of list item next to accessoryDelegateComponent1 if it's defined.
- *  - accessoryButton - a button with text at the right side of the list item.
- *  - accessoryBottomDelegateComponent - some list items require an element at the bottom of list item.
- *  - rightSpacerUsed - In some cases it will be necessary to have a margin between the right side of list item and the last element at the right side. The default value is false.
- *  - middleSpacerUsed - It's a margin between the left and the right parts of a ListItem. The default value is false.
- *  - wrapText - The property defines if the text and subtext are wrapped. In notifications long text is shown on several lines and
-                 this property has to be set true. The default value is false. In normal lists the property value is remained false.
- */
+/*!
+    \qmltype ListItemBasic
+    \inqmlmodule controls
+    \inherits ItemDelegate
+    \since 5.11
+    \brief The basic list item component of Neptune 3
+
+    The ListItemBasic provides a basic type of a list item with an indicator as an icon
+    or an image and text with subtext followed by the indicator.
+
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ListItemBasic}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate:  ListItemBasic {
+                text: "Title ListItem"
+                subText: "Subtitle ListItem"
+            }
+        }
+    }
+    \endqml
+
+*/
 
 ItemDelegate {
     id: root
 
+    /*!
+        \qmlproperty string ListItemBasic::subText
+
+        This property holds text in the second line on a list item.
+    */
     property alias subText: subtitle.text
+
+    /*!
+        \qmlproperty bool ListItemBasic::dividerVisible
+
+        This property defines if there is a divider on a list item. Default value is true.
+    */
     property alias dividerVisible: dividerImage.visible
+
+    /*!
+        \qmlproperty Component ListItemBasic::accessoryDelegateComponent1
+
+        This property holds a component at the right side of list item.
+    */
     property Component accessoryDelegateComponent1: null
+
+    /*!
+        \qmlproperty Component ListItemBasic::accessoryDelegateComponent2
+
+        This property holds a component at the right side of list item next to
+        accessoryDelegateComponent2 if it is defined.
+    */
     property Component accessoryDelegateComponent2: null
+
+    /*!
+        \qmlproperty Component ListItemBasic::accessoryBottomDelegateComponent
+
+        This property holds an element at the bottom of the list item.
+    */
     property Component accessoryBottomDelegateComponent: null
+
+    /*!
+        \qmlproperty bool ListItemBasic::rightSpacerUsed
+
+        This property specifies a margin between the right side of list item and the
+        last element at the right side.
+
+        This property's default is false.
+    */
     property bool rightSpacerUsed: false
+
+    /*!
+        \qmlproperty bool ListItemBasic::middleSpacerUsed
+
+        This property specifies a margin between the left and the right parts of a ListItem.
+
+        This property's default is false.
+    */
     property bool middleSpacerUsed: false
+
+    /*!
+        \qmlproperty bool ListItemBasic::wrapText
+
+        The property defines if the text and subtext are wrapped. In notifications
+        long text is shown on several lines and this property has to be set true.
+        In normal lists the property value is remained false.
+
+        This property's default is false.
+    */
     property bool wrapText: false
 
 

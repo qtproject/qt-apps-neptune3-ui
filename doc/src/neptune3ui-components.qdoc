@@ -31,16 +31,36 @@
    \previouspage neptune3ui-index.html
    \nextpage neptune3ui-app-development.html
 
-   Neptune UI components and interfaces:
+   Neptune UI components:
    \list
        \li \l{PrimaryWindow}
        \li \l{SecondaryWindow}
+   \endlist
+
+   Neptune UI controls:
+   \list
+       \li \l{ListItem}
+       \li \l{ListItemBasic}
+       \li \l{ListItemFlatButton}
+       \li \l{ListItemProgress}
+       \li \l{ListItemSwitch}
+       \li \l{ListItemTwoButtons}
+       \li \l{ScalableBorderImage}
+       \li \l{ToolsColumn}
+       \li \l{Tracer}
+   \endlist
+
+   Neptune UI interfaces:
+   \list
        \li \l{NotificationInterface}
        \li \l{IntentsInterface}
        \li \l{MusicIntentsIPC}
+   \endlist
+
+   Neptune UI animations:
+   \list
        \li \l{DefaultNumberAnimation}
        \li \l{DefaultSmoothedAnimation}
-       \li \l{Tracer}
    \endlist
 */
 

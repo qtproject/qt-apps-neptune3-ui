@@ -34,32 +34,76 @@ import QtQuick.Controls 2.3
 
 import com.pelagicore.styles.neptune 3.0
 
-/*
- * ListItemSwitch provides a type of a list item with a Switch at the right side.
- *
- * Properties:
- *  - switchOn - Indicates if the switch is on or off
- *  - position - This property holds the logical position of the thumb indicator.
- *
- *  Usage example:
- *
- *   ListItemSwitch {
- *       Layout.fillWidth: true
- *       icon.name: "ic-update"
- *       rightToolSymbol: "ic-close"
- *       text: "..."
- *       onClicked: { ... }
- *       onSwitchClicked { ... }
- *   }
- */
+/*!
+    \qmltype ListItemSwitch
+    \inqmlmodule controls
+    \inherits ListItemBasic
+    \since 5.11
+    \brief The list item with progress bar component of Neptune 3
+
+    The ListItemSwitch provides a type of a list item with a Switch at the right side.
+
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ListItemSwitch}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate: ListItemSwitch {
+               Layout.fillWidth: true
+               icon.name: "ic-update"
+               text: "Downloading the application"
+               onSwitchClicked {
+                   console.log("switch clicked");
+               }
+            }
+        }
+    }
+    \endqml
+*/
 
 ListItemBasic {
     id: root
 
+    /*!
+        \qmlproperty bool ListItemSwitch::switchOn
+
+        This property holds whether the switch is on or off.
+
+        This property's default is false.
+    */
     property bool switchOn: false
+
+    /*!
+        \qmlproperty real ListItemSwitch::position
+
+        This property holds the logical position of the thumb indicator.
+
+        This property's default is 0.0.
+    */
     property real position: 0.0
 
+    /*!
+        \qmlsignal ListItemSwitch::switchToggled
+
+        This signal is emitted when the switch is toogled by the user.
+    */
     signal switchToggled()
+
+    /*!
+        \qmlsignal ListItemSwitch::switchClicked
+
+        This signal is emitted when the switch is clicked by the user.
+    */
     signal switchClicked()
 
     rightSpacerUsed: true

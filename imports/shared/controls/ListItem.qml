@@ -36,30 +36,64 @@ import QtQuick.Layouts 1.3
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
-/*
- * ListItem provides a type of a list item with one button or text at the right side
- *
- * Properties:
- *  - secondaryText - This property holds a textual component that is aligned to the right side of ListItem.
- *  - rightToolSymbol - This property holds the tool icon source that is aligned to the right side of ListItem.
- *
- *  Usage example:
- *
- *   ListItem {
- *       Layout.fillWidth: true
- *       icon.name: "ic-update"
- *       rightToolSymbol: "ic-close"
- *       text: "ListItem with Secondary Text"
- *       secondaryText: "68% of 14 MB"
- *   }
- */
+/*!
+    \qmltype ListItem
+    \inqmlmodule controls
+    \inherits ListItemBasic
+    \since 5.11
+    \brief The list item component of Neptune 3
+
+    The ListItem provides a type of a list item with one button or text at the right side
+
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ListItem}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+        ListView {
+            model: 3
+            delegate:  ListItem {
+                icon.name: "ic-update"
+                rightToolSymbol: "ic-close"
+                text: "Title ListItem"
+                secondaryText: "Secondary Text List Item"
+            }
+        }
+    }
+    \endqml
+
+*/
 
 ListItemBasic {
     id: root
 
+    /*!
+        \qmlproperty string ListItem::secondaryText
+
+        This property holds a textual component that is aligned to the right side of ListItem.
+    */
     property string secondaryText: ""
+
+    /*!
+        \qmlproperty string ListItem::rightToolSymbol
+
+        This property holds the tool icon source that is aligned to the right side of ListItem.
+    */
     property string rightToolSymbol: ""
 
+    /*!
+        \qmlsignal ListItem::rightToolClicked()
+
+        This signal is emitted when right tool is clicked.
+    */
     signal rightToolClicked()
 
     accessoryDelegateComponent1: Label {

@@ -36,36 +36,91 @@ import QtQuick.Layouts 1.2
 import com.pelagicore.styles.neptune 3.0
 import utils 1.0
 
-/*
-    A column of tool buttons where only one of them can be selected at any given time.
+/*!
+    \qmltype ToolsColumn
+    \inqmlmodule controls
+    \inherits ColumnLayout
+    \since 5.11
+    \brief The tools column component for Neptune 3 applications
 
-    Usage example:
+    The ToolsColumn provides a custom column of tool buttons for Neptune 3 Applications
+    to follow the specification where only one of them can be selected at any given time.
 
-    ToolsColumn {
-        translationContext: "MyToolsColumn"
-        model: ListModel {
-            ListElement { icon: "ic-foo"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "foo") }
-            ListElement { icon: "ic-bar"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "bar") }
+    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
+    Neptune 3 UI.
+
+    \section2 Example Usage
+
+    The following example uses \l{ToolsColumn}:
+
+    \qml
+    import QtQuick 2.10
+    import controls 1.0
+
+    Item {
+        id: root
+
+        ToolsColumn {
+            translationContext: "MyToolsColumn"
+            model: ListModel {
+                ListElement { icon: "ic-foo"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "foo") }
+                ListElement { icon: "ic-bar"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "bar") }
+            }
         }
     }
-
+    \endqml
 */
+
 ColumnLayout {
     id: root
 
     width: NeptuneStyle.dp(135)
-
-    property int currentIndex: 0
-    readonly property string currentText: model ? model.get(currentIndex).text : ""
-
-    property alias model: repeater.model
-
-    ButtonGroup { id: buttonGroup }
-
     spacing: NeptuneStyle.dp(24)
 
+    /*!
+        \qmlproperty int ToolsColumn::currentIndex
+
+        This property holds the current selected index of the tools column.
+
+        This property's default is 0.
+    */
+    property int currentIndex: 0
+
+    /*!
+        \qmlproperty string ToolsColumn::currentText
+        \readonly
+
+        This property holds the current selected text of the tools column.
+
+        This property's default is 0.
+    */
+    readonly property string currentText: model ? model.get(currentIndex).text : ""
+
+    /*!
+        \qmlproperty var ToolsColumn::model
+
+        This property holds the model to be delegated in the tools column.
+    */
+    property alias model: repeater.model
+
+    /*!
+        \qmlproperty string ToolsColumn::translationContext
+        \readonly
+
+        This property holds the translation context of the tools column.
+
+        This property's default is 0.
+    */
     property string translationContext
+
+    /*!
+        \qmlsignal ToolsColumn::clicked
+
+        This signal is emitted when one of the tool is clicked by the user.
+    */
     signal clicked()
+
+    ButtonGroup { id: buttonGroup }
 
     Repeater {
         id: repeater
