@@ -2,6 +2,9 @@ TEMPLATE=lib
 TARGET = $$qtLibraryTarget(RemoteSettings_backend)
 CONFIG += ivigenerator plugin
 
+QT_FOR_CONFIG += ivicore
+!qtConfig(ivigenerator): error("No ivigenerator available")
+
 include($$SOURCE_DIR/config.pri)
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)

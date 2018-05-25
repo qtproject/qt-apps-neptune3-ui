@@ -3,6 +3,9 @@ TEMPLATE = lib
 CONFIG += ivigenerator
 DESTDIR = $$LIB_DESTDIR
 
+QT_FOR_CONFIG += ivicore
+!qtConfig(ivigenerator): error("No ivigenerator available")
+
 macos: QMAKE_SONAME_PREFIX = @rpath
 
 include($$SOURCE_DIR/config.pri)

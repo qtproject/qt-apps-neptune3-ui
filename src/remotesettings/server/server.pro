@@ -4,6 +4,9 @@ CONFIG += c++11 console
 macos: CONFIG -= app_bundle
 CONFIG += ivigenerator
 
+QT_FOR_CONFIG += ivicore
+!qtConfig(ivigenerator): error("No ivigenerator available")
+
 include($$SOURCE_DIR/config.pri)
 
 QFACE_FORMAT = server_qtro
