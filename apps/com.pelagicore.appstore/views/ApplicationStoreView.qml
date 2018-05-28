@@ -113,9 +113,9 @@ Item {
             installationProgress: root.store.currentInstallationProgress
             onToolClicked: {
                 if (root.store.isInstalled(appId)) {
-                    root.store.uninstallApplication(appId)
+                    root.store.uninstallApplication(appId, appName)
                 } else {
-                    root.store.download(appId)
+                    root.store.download(appId, appName)
                 }
             }
         }

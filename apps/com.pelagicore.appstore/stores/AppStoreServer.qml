@@ -47,7 +47,7 @@ Item {
     property real currentInstallationProgress: 0.0
     property var installedApps: []
 
-    function download(id) {
+    function download(id, name) {
         var url = appStoreConfig.serverUrl + "/app/purchase"
         var data = {"id": id, "device_id" : "00-11-22-33-44-55" }
 
@@ -55,11 +55,12 @@ Item {
             if (data !== 0) {
                 if (data.status === "ok") {
                     console.log(Logging.apps, "start downloading")
-                    var icon = appStoreConfig.serverUrl + "/app/icon?id=" + id
+                    var icon = root.appServerUrl + "/app/icon?id=" + id
                     var installID = ApplicationInstaller.startPackageInstallation("internal-0", data.url);
                     ApplicationInstaller.acknowledgePackageInstallation(installID);
                     root.installedApps.push(id);
                     root.installedAppsChanged(root.installedApps);
+                    showNotification(qsTr("%1 Successfully Installed").arg(name), qsTr("%1 successfully installed").arg(name), icon);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
                     console.log(Logging.apps, ":::AppStoreServer::: not logged in")
                 } else {
@@ -73,10 +74,12 @@ Item {
         return root.installedApps.indexOf(appId) !== -1;
     }
 
-    function uninstallApplication(id) {
+    function uninstallApplication(id, name) {
+        var icon = root.appServerUrl + "/app/icon?id=" + id
         ApplicationInstaller.removePackage(id, false /*keepDocuments*/, true /*force*/);
         root.installedApps.splice(root.installedApps.indexOf(id), 1);
         root.installedAppsChanged(root.installedApps);
+        showNotification(qsTr("%1 Successfully Uninstalled").arg(name), qsTr("%1 successfully uninstalled").arg(name), icon);
     }
 
     function selectCategory(index) {
@@ -87,6 +90,15 @@ Item {
             root.categoryid = 1;
         }
         appModel.refresh();
+    }
+
+    function showNotification(summary, body, icon) {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = summary;
+        notification.body = body;
+        notification.icon = icon;
+        notification.category = "notification";
+        notification.show();
     }
 
     Component.onCompleted: {

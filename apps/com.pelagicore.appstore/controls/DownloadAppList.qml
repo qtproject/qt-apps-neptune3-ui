@@ -43,7 +43,7 @@ ListView {
     property string appServerUrl
     property real installationProgress: 1.0
     property var installedApps: []
-    signal toolClicked(var appId)
+    signal toolClicked(string appId, string appName)
 
     onInstallationProgressChanged: {
         if (installationProgress === 1.0) {
@@ -67,7 +67,7 @@ ListView {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;
             }
-            root.toolClicked(model.id);
+            root.toolClicked(model.id, model.name);
         }
     }
 }

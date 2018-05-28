@@ -81,6 +81,25 @@
     </message>
 </context>
 <context>
+    <name>AppStoreServer</name>
+    <message>
+        <source>%1 Successfully Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Successfully Uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ApplicationStoreView</name>
     <message>
         <source>Fetching data from Neptune Server</source>
