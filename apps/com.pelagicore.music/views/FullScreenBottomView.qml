@@ -81,18 +81,18 @@ Item {
         onCurrentTextChanged: {
             musicLibrary.toolsColumnText = currentText;
             if (currentText === "artists") {
-                fullscreenBottom.headerTextInAlbums = musicLibrary.headerText;
+                root.headerTextInAlbums = musicLibrary.headerText;
                 //store text in albums view
-                musicLibrary.headerText = fullscreenBottom.headerTextInArtists;
+                musicLibrary.headerText = root.headerTextInArtists;
                 //store content type in albums view
-                fullscreenBottom.albumsContentState = root.store.searchAndBrowseModel.contentType;
+                root.albumsContentState = root.store.searchAndBrowseModel.contentType;
             } else if (currentText === "albums") {
                 //TODO sort albums list alphabetically
                 //store text in artists view
-                fullscreenBottom.headerTextInArtists = musicLibrary.headerText;
-                musicLibrary.headerText = fullscreenBottom.headerTextInAlbums;
+                root.headerTextInArtists = musicLibrary.headerText;
+                musicLibrary.headerText = root.headerTextInAlbums;
                 //store content type in artists view
-                fullscreenBottom.artistsContentState = root.store.searchAndBrowseModel.contentType;
+                root.artistsContentState = root.store.searchAndBrowseModel.contentType;
             }
         }
     }
@@ -102,14 +102,14 @@ Item {
         value: {
             switch (toolsColumn.currentText) {
             case "artists":
-                if (fullscreenBottom.contentTypeContainsArtistUniqueID) {
-                    return fullscreenBottom.artistsContentState;
+                if (root.contentTypeContainsArtistUniqueID) {
+                    return root.artistsContentState;
                 } else {
                     return "artist";
                 }
             case "albums":
-                if (fullscreenBottom.contentTypeContainsAlbumUniqueID) {
-                    return fullscreenBottom.albumsContentState;
+                if (root.contentTypeContainsAlbumUniqueID) {
+                    return root.albumsContentState;
                 } else {
                     return "album";
                 }
