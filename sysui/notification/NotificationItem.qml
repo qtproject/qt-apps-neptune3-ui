@@ -39,7 +39,7 @@ Control {
 
     property string notificationText
     property string notificationSubtext
-    property string notificationIcon
+    property url notificationIcon
     property string notificationAccessoryButtonIcon
     property real contentOpacity: 1.0
     property bool dividerVisible: false
@@ -60,7 +60,7 @@ Control {
     contentItem: ListItemTwoButtons {
         opacity: root.contentOpacity
         wrapText: root.wrapText
-        icon.name: root.notificationIcon
+        icon.source: root.notificationIcon
         text: root.notificationText
         subText: root.notificationSubtext
         symbolAccessoryButton1: root.notificationAccessoryButtonIcon
