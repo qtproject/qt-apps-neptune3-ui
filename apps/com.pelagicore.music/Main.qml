@@ -98,9 +98,17 @@ QtObject {
         asynchronous: true
         active: clusterSettings.available
                 || Qt.platform.os !== "linux" // FIXME and then remove; remote settings doesn't really work outside of Linux
+
+        onLoaded: {
+            secondaryWindowLoader.item.icMusicView.populateModel();
+        }
+
         sourceComponent: Component {
             SecondaryWindow {
+                property alias icMusicView: icMusicView
+
                 ICMusicView {
+                    id: icMusicView
                     anchors.fill: parent
                     store: musicAppContent.store
                 }

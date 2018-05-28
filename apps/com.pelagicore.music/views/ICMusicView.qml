@@ -40,6 +40,10 @@ Item {
 
     property MusicStore store
 
+    function populateModel() {
+        albumArt.populateModel();
+    }
+
     Image {
         anchors.fill: parent
         source: Style.gfx("instrument-cluster-bg", NeptuneStyle.theme)
@@ -60,10 +64,5 @@ Item {
         currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : qsTr("Track unavailable")
         currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
         currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
-
-        Connections {
-            target: root.store
-            onSongModelPopulated: albumArt.populateModel()
-        }
     }
 }
