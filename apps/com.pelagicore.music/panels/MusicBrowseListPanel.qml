@@ -64,8 +64,6 @@ Control {
                 id: delegatedSong
                 width: listView.width
                 height: NeptuneStyle.dp(104)
-                icon.color: "transparent"
-                icon.source: MetaData.getIconSource(model.item, root.actualContentType, toolsColumnText)
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
                 subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
                 onClicked: { root.itemClicked(model.index, model.item, delegatedSong.text, delegatedSong.subText); }
