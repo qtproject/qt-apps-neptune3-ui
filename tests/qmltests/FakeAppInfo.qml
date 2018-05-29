@@ -47,6 +47,7 @@ QtObject {
     property int widgetHeight
     property int currentWidth
     property int currentHeight
+    property real windowScale
     property string windowState
 
     property bool asWidget: true
