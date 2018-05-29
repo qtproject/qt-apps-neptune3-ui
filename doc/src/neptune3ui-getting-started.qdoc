@@ -42,6 +42,9 @@
    \l{Neptune 3 UI Application Development} provides a set of best practices
    to develop applications for Neptune 3 UI.
 
+   See \l{Application Architecture of Neptune 3 UI} to understand the Core UI Architecture
+   that is applied in Neptune 3 UI.
+
    See \l{Neptune 3 UI Components and Interfaces} for a list of all
    provided UI components and interfaces in Neptune 3 UI.
 

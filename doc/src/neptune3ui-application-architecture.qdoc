@@ -1,0 +1,134 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-application-architecture.html
+   \title Application Architecture of Neptune 3 UI
+   \previouspage neptune3ui-gettingstarted.html
+   \nextpage neptune3ui-app-development.html
+   \brief Anatomy of the applications in Center Stack Display
+
+   Neptune 3 uses a common architecture for all applications. The architecture
+   approach is called Core UI Architecture.
+
+   \section1 General Overview
+
+   In general, Neptune 3 differentiates between UI primitives (e.g. rectangles and images)
+   and controls (e.g. buttons) as individual UI types. To combine several UI types, panels
+   or views are being used. These are specific container types to layout other containers
+   as child UI types or controls. UI primitives are only used inside controls, as the
+   controls have supports for styling the UI. The difference between a panel and a view is
+   that the view interfaces with the stores (the business layer of the application).
+
+   \section2 Application Architecture
+
+   An application is usually designed around a specific context, hence, it often uses a
+   particular area of the service API and it can also depend on common services to be aware
+   of the overall system state. The aim of the Core UI Architecture is to avoid having
+   such service dependencies end up directly into the UI but they should be wrapped as a
+   Store entity. The Store is the only entity that is allowed to talk to service instances.
+   Besides being the adapter to the service interfaces, it provides the necessary business
+   logic to achieve a clean UI. Finally, the UI should only contain visual logic and be free
+   of any business logic.
+
+   However, the UI itself is divided into several UI elements which are allowed to have a
+   reference to the store and those which are not allowed to. The purpose to strictly manage
+   the dependecies is to allow these components to stay testable in a later stage of the
+   project.
+
+   Example architecture:
+
+   \badcode
+
+   apps/music/
+       stores/
+           MusicStore.qml
+       views/
+           TopView.qml
+           BottomView.qml
+       panels/
+           AlbumArtPanel.qml
+           MusicBrowseList.qml
+       controls/
+           MusicControls.qml
+           MusicProgressBar.qml
+       Main.qml
+
+   \endcode
+
+   \list
+   \li Stores: Encapsulate the access to the service API and contain required business logic
+   \li Views: Have a reference to a store which provides the necessary information
+   \li Panels: Container for other controls and panels. A panel should not have any dependency
+               to a store or a view
+   \li Controls: Re-usable visual element which has no external data dependencies, besides primitives
+   \li Helpers: Collection of operations which can also be scheduled as jobs. In addition, helpers
+                should not import any store as well.
+   \endlist
+
+   \section3 Stores
+
+   A store encapsulates the business logic inside the application. It is a pure data driven
+   object. A store can have child stores which can be forwarded to sub-trees of the UI. A store
+   is the only portion of the UI layer which uses the service layer.
+
+   \section3 Views
+
+   A view is a container for UI panels which is the only one that depends on a store within the
+   application. Other UI parts need to be clear that they do not have any dependencies to any
+   stores as views do. As mentioned before, in order to allow these components to stay testable.
+
+   \image music-widget-view.jpg
+
+   The above image is an example of a simple widget view in a music application. It is a container
+   of the music control panel and an album art panel. This view takes the information from the music
+   store that is interfaced with the music service which provides a collection of songs to the application.
+
+   \section3 Panels
+
+   A panel is a container for other panels and controls. Normally panel is a layout of controls
+   that have a set of functionalities to support the application, such as Music Control Panel as
+   shown below:
+
+   \image music-control-panel.jpg
+
+   \section3 Controls
+
+   A control in this context is an application specific control that is being used only by
+   the application itself. For example the play, previous and next button that are shown in the
+   previous image.
+
+   \section3 Helpers
+
+   A helper is an object which contains computing functions and not properties. Typical helper
+   is a set of JS functions in which if required, it could be later moved into C++ depending on
+   the needs. A helper is also showing how much complex computing is done in the UI layer
+   and serves as an indicator to optimize the external API. Using helpers requires the developer
+   to carefully think which computing functions are moved out of stores and other places
+   into these helpers. Ideally all for, while loops or longer computing functions shall be
+   moved into the helper functions.
+*/
