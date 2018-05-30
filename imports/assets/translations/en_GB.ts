@@ -812,15 +812,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>music</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>web radio</source>
+        <source>sources</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

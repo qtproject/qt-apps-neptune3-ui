@@ -1402,16 +1402,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>music</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>spotify</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>web radio</source>
-        <translation type="unfinished"></translation>
+        <source>sources</source>
+        <translation type="unfinished">播放源</translation>
     </message>
 </context>
 <context>

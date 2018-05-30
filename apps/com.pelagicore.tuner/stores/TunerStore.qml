@@ -77,13 +77,22 @@ Store {
 
     readonly property string freqUnit: root.tunerBand === tunerControl.band.AMBand ? qsTr("KHz") : qsTr("MHz")
 
+    property ListModel musicSourcesModel: ListModel {
+        id: musicSourcesModel
+        ListElement { text: "Music Player"}
+    }
+
     property var ipc: QtObject {
         property var musicIntentsInterface: ApplicationInterfaceExtension {
             id: musicIntentsInterface
             name: "neptune.musicintents.interface"
             Component.onCompleted: {
-                toolsColumnModel.get(5).greyedOut = !object.spotifyInstalled;
-                toolsColumnModel.get(6).greyedOut = !object.webradioInstalled;
+                if (object.webradioInstalled) {
+                    musicSourcesModel.append({"text" : "Web radio"});
+                }
+                if (object.spotifyInstalled) {
+                    musicSourcesModel.append({"text" : "Spotify"});
+                }
             }
         }
 
@@ -91,10 +100,26 @@ Store {
             target: musicIntentsInterface.object
 
             onSpotifyInstalledChanged: {
-                toolsColumnModel.get(5).greyedOut = !musicIntentsInterface.object.spotifyInstalled;
+                if (musicIntentsInterface.object.spotifyInstalled) {
+                    musicSourcesModel.append({"text" : "Spotify"});
+                } else {
+                    for (var i = 0; i < musicSourcesModel.count; i++) {
+                        if (musicSourcesModel.get(i).text === "Spotify") {
+                            musicSourcesModel.remove(i, 1);
+                        }
+                    }
+                }
             }
             onWebradioInstalledChanged: {
-                toolsColumnModel.get(6).greyedOut = !musicIntentsInterface.object.webradioInstalled;
+                if (musicIntentsInterface.object.webradioInstalled) {
+                    musicSourcesModel.append({"text" : "Web radio"});
+                } else {
+                    for (var i = 0; i < musicSourcesModel.count; i++) {
+                        if (musicSourcesModel.get(i).text === "Web radio") {
+                            musicSourcesModel.remove(i, 1);
+                        }
+                    }
+                }
             }
         }
     }
@@ -105,10 +130,7 @@ Store {
         ListElement { icon: "ic-toolbar-am-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "AM band"); greyedOut: false }
         ListElement { icon: "ic-toolbar-fm-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "FM 1 band"); greyedOut: false }
         ListElement { icon: "ic-toolbar-fm-band"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "FM 2 band"); greyedOut: false }
-        //ListElement { icon: "ic-toolbar-sources-tuner"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "sources"); greyedOut: false }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "music"); greyedOut: false }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "spotify"); greyedOut: true }
-        ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "web radio"); greyedOut: true }
+        ListElement { icon: "ic-toolbar-sources-tuner"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "sources"); greyedOut: false }
     }
 
     property ListModel freqPresetsModel: ListModel {

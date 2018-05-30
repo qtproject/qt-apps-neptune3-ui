@@ -40,6 +40,7 @@ import com.pelagicore.styles.neptune 3.0
 import "../stores"
 import "../panels"
 import "../controls"
+import "../popups"
 
 Item {
     id: root
@@ -54,27 +55,24 @@ Item {
         model: root.store.toolsColumnModel
         currentIndex: 1
         onClicked: {
-            switch (currentText) {
-            case "music":
-                Qt.openUrlExternally("x-music://");
-                break;
-            case "web radio":
-                Qt.openUrlExternally("x-webradio://");
-                break;
-            case "spotify":
-                Qt.openUrlExternally("x-spotify://");
-                break;
-            case "AM band":
-            case "FM 1 band":
-            case "FM 2 band":
-                root.store.freqPresets = currentIndex - 1;
-                break;
-            case "favorites":
-                //return favorite stations list
-            default:
-                break;
+            if (currentText === "sources") {
+                // caclulate popup height based on musicSources list items
+                // + 200 for header & margins
+                var calculateHeight = 200 + (root.store.musicSourcesModel.count * 96);
+                var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
+                //set model each time to ensure data accuracy
+                musicSourcesPopup.model = root.store.musicSourcesModel;
+                musicSourcesPopup.originItemX = pos.x;
+                musicSourcesPopup.originItemY = pos.y;
+                musicSourcesPopup.popupWidth = 910;
+                musicSourcesPopup.popupHeight = calculateHeight;
+                musicSourcesPopup.openPopup = true;
             }
         }
+    }
+
+    MusicSourcesPopup {
+        id: musicSourcesPopup
     }
 
     StationBrowseListPanel {

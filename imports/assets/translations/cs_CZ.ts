@@ -1522,15 +1522,19 @@ UX na cestu</translation>
     </message>
     <message>
         <source>music</source>
-        <translation type="unfinished">hudba</translation>
+        <translation type="obsolete">hudba</translation>
     </message>
     <message>
         <source>spotify</source>
-        <translation type="unfinished">spotify</translation>
+        <translation type="obsolete">spotify</translation>
     </message>
     <message>
         <source>web radio</source>
-        <translation type="unfinished">web radio</translation>
+        <translation type="obsolete">web radio</translation>
+    </message>
+    <message>
+        <source>sources</source>
+        <translation type="unfinished">zdroje</translation>
     </message>
 </context>
 <context>
