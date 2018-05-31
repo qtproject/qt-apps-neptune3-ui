@@ -469,14 +469,6 @@
         <source>Browse</source>
         <translation type="obsolete">Liste</translation>
     </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>FullScreenTopView</name>
@@ -712,6 +704,17 @@
     <message>
         <source>Artist</source>
         <translation type="vanished">Artist</translation>
+    </message>
+</context>
+<context>
+    <name>MusicStore</name>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Album</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

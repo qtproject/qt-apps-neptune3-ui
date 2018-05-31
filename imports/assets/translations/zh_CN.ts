@@ -488,14 +488,6 @@
         <source>Browse</source>
         <translation type="obsolete">浏览</translation>
     </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>FullScreenTopView</name>
@@ -825,6 +817,17 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Unknown Track</source>
         <translation type="obsolete">未知的歌曲</translation>
+    </message>
+</context>
+<context>
+    <name>MusicStore</name>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Album</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

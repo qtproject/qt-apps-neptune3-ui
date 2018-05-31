@@ -563,11 +563,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Unknown Artist</source>
-        <translation>Neznámý umělec</translation>
+        <translation type="vanished">Neznámý umělec</translation>
     </message>
     <message>
         <source>%1 (%2)</source>
-        <translation>%1 (%2)</translation>
+        <translation type="vanished">%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -960,6 +960,21 @@ UX na cestu</translation>
     <message>
         <source>Unknown Track</source>
         <translation type="vanished">Neznámá skladba</translation>
+    </message>
+</context>
+<context>
+    <name>MusicStore</name>
+    <message>
+        <source>%1 (%2)</source>
+        <translation type="obsolete">%1 (%2)</translation>
+    </message>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished">Neznámý umělec</translation>
+    </message>
+    <message>
+        <source>Unknown Album</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

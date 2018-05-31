@@ -321,17 +321,6 @@
     </message>
 </context>
 <context>
-    <name>FullScreenBottomView</name>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FullScreenTopView</name>
     <message>
         <source>Next</source>
@@ -503,6 +492,17 @@
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Play All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicStore</name>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Album</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

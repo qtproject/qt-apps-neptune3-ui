@@ -466,14 +466,6 @@
         <source>Browse</source>
         <translation type="obsolete">ブラウズ</translation>
     </message>
-    <message>
-        <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>FullScreenTopView</name>
@@ -797,6 +789,17 @@
     <message>
         <source>Unknown Track</source>
         <translation type="obsolete">未知の歌</translation>
+    </message>
+</context>
+<context>
+    <name>MusicStore</name>
+    <message>
+        <source>Unknown Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown Album</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

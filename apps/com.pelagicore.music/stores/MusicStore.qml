@@ -55,6 +55,11 @@ Store {
         ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "web radio"); greyedOut: true }
     }
 
+    property string headerText: (contentType.indexOf("artist") === -1) ? headerTextInAlbumsView :
+                                                                         headerTextInArtistsView
+    property string headerTextInArtistsView: ""
+    property string headerTextInAlbumsView: ""
+
     property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
         id: searchBrowseModel
         contentType: ""
@@ -71,6 +76,19 @@ Store {
                 }
                 root.songModelPopulated();
                 modelPopulated = true;
+            }
+            var artist = (get(0) && get(0).artist !== "") ? get(0).artist : qsTr("Unknown Artist");
+            var album = (get(0) && get(0).album !== "") ? get(0).album : qsTr("Unknown Album");
+            if (get(0) && get(0).type === "album") {
+                //inside artists menu, having selected one artist
+                var artistFromAlbum = get(0).data.artist !== "" ? get(0).data.artist : qsTr("Unknown Artist");
+                headerTextInArtistsView = artistFromAlbum;
+            } else if (get(0) && get(0).type === "audiotrack" && contentType.indexOf("artist") !== -1) {
+                //inside artists menu, having selected one artist and one album
+                headerTextInArtistsView = album + " (" + artist +")";
+            } else if (get(0) && get(0).type === "audiotrack" && contentType.indexOf("artist") === -1) {
+                //inside albums menu, having selected one album
+                headerTextInAlbumsView = album + " (" + artist + ")";
             }
         }
     }

@@ -50,7 +50,7 @@ Control {
 
     clip: true
 
-    signal itemClicked(var index, var item, var title, var artist)
+    signal itemClicked(var index)
     signal libraryGoBack(var goToArtist)
     signal nextClicked()
     signal backClicked()
@@ -66,7 +66,7 @@ Control {
                 height: NeptuneStyle.dp(104)
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
                 subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
-                onClicked: { root.itemClicked(model.index, model.item, delegatedSong.text, delegatedSong.subText); }
+                onClicked: { root.itemClicked(model.index); }
             }
         }
 
