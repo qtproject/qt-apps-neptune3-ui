@@ -91,10 +91,14 @@ ColumnLayout {
         \readonly
 
         This property holds the current selected text of the tools column.
-
-        This property's default is 0.
     */
     readonly property string currentText: model ? model.get(currentIndex).text : ""
+
+    /*!
+        \qmlproperty string ToolsColumn::currentItem
+
+        This property holds the current selected item of the tools column.
+    */
     property Item currentItem: repeater.itemAt(currentIndex)
 
     /*!
