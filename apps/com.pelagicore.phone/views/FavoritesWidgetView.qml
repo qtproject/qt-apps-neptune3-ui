@@ -121,7 +121,7 @@ Item {
             width: NeptuneStyle.dp(130)
             height: width
             anchors.verticalCenter: parent.verticalCenter
-            source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+            source: "../assets/profile_photos/%1.png".arg(model.handle)
             onClicked: root.store.startCall(model.handle)
         }
     }
@@ -168,7 +168,7 @@ Item {
                             Layout.preferredHeight: NeptuneStyle.dp(64)
                             Layout.preferredWidth: NeptuneStyle.dp(64)
                             Layout.alignment: Qt.AlignVCenter
-                            source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+                            source: "../assets/profile_photos/%1.png".arg(model.handle)
                         }
                         Label {
                             Layout.leftMargin: NeptuneStyle.dp(22)

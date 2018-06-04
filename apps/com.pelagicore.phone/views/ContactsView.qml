@@ -60,7 +60,7 @@ ListView {
                 RoundImage {
                     Layout.preferredHeight: NeptuneStyle.dp(64)
                     Layout.preferredWidth: NeptuneStyle.dp(64)
-                    source: "../assets/profile_photos/%1.jpg".arg(model.handle)
+                    source: "../assets/profile_photos/%1.png".arg(model.handle)
                 }
                 Label {
                     text: model.firstName + " " + model.surname

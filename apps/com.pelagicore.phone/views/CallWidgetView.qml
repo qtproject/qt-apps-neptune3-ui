@@ -150,7 +150,7 @@ Item {
 
     RoundImage {
         id: contactImage
-        source: root.callerHandle ? "../assets/profile_photos/%1.jpg".arg(root.callerHandle) : ""
+        source: root.callerHandle ? "../assets/profile_photos/%1.png".arg(root.callerHandle) : ""
     }
 
     ColumnLayout {
