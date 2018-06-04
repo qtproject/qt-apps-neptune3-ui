@@ -157,7 +157,7 @@
 
    \section2 Instrument Cluster
 
-   \image instrument-cluster.png
+   \image instrument-cluster.jpg
 
    In the Instrument Cluster the user can find driving related information like the speed,
    cruise control parameters, gear and energy use (for an electric car). Users can also
@@ -166,7 +166,7 @@
    steering wheel. The size and position of meters and other driving related information
    is flexible to make space for views, like Navigation, that requires more space.
 
-   \image instrument-cluster-nav.png
+   \image instrument-cluster-nav.jpg
 
    \section2 Center Stack Display
 
@@ -184,13 +184,13 @@
    are the actual applications, just running in a smaller window and adapting their content to
    fit in a widget slot. The widgets are used on the customizable Home view.
 
-   \image center-stack.png
+   \image center-stack.jpg
 
    When an application is shown in maximized state, it will take over the whole part of the
    Center Stack and show the full content of the application as illustrated in the following
    image:
 
-   \image center-stack-maximized-app.png
+   \image center-stack-maximized-app.jpg
 
    \section2 Application Launcher
 
@@ -200,7 +200,7 @@
    launcher by pressing-and-hold the selected application and drag it to the desired position as
    illustrated in the following image:
 
-   \image center-stack-app-launcher.png
+   \image center-stack-app-launcher.jpg
 
    \section2 Application Widget
 
@@ -209,7 +209,7 @@
    the lowest widget and choose the desired application. Only application that is specified to
    have a widget-option will be listed there.
 
-   \image center-stack-add-widget.png
+   \image center-stack-add-widget.jpg
 
    \section2 Climate Bar
 
@@ -217,7 +217,7 @@
    into it, a Climate Panel will be shown up with some simulation data interface to \l{Qt IVI}
    as shown in the following image:
 
-   \image center-stack-climate.png
+   \image center-stack-climate.jpg
 
    \section2 Notification Center
 
@@ -225,6 +225,6 @@
    Neptune 3. User can remove each notification in the \uicontrol Notification Center or clear
    the \uicontrol Notification Center.
 
-   \image center-stack-notification-center.png
+   \image center-stack-notification-center.jpg
 */
 

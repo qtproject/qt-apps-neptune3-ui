@@ -8,4 +8,4 @@ DISTFILES += \
     *.qdocconf \
     $$PWD/online/*.qdocconf \
     $$PWD/src/*.qdoc \
-    $$PWD/src/images/*.png \
+    $$PWD/src/images/*.jpg \

@@ -39,7 +39,7 @@
 
    \section1 Fullscreen
 
-   \image center-stack-maximized-app.png
+   \image center-stack-maximized-app.jpg
 
    When applications are in fullscreen they typically have two main
    content areas: Top and Bottom. The Top area is for the most important
@@ -60,7 +60,7 @@
    content. These applications need to look different from the default,
    but should give the same impression.
 
-   \image center-stack-nav.png
+   \image center-stack-nav.jpg
 
    Some applications might not need to have the ToolBar, or not have the Top area.
    Use a layout that fits the content of your application.
@@ -73,11 +73,11 @@
    look cluttered. Make larger widgets more rich on features, or in other
    ways adding extra value for the user.
 
-   \image widget-1-row.png
+   \image widget-1-row.jpg
 
-   \image widget-2-rows.png
+   \image widget-2-rows.jpg
 
-   \image widget-3-rows.png
+   \image widget-3-rows.jpg
 
    The widget content generally designed with the transitions between the three
    states and between widget and fullscreen. The Top in fullscreen can oftentimes
@@ -91,8 +91,8 @@
    with the rectangular album art in the Music widget when it is slightly
    larger than the default size.
 
-   \image music-widget-1-row.png
+   \image music-widget-1-row.jpg
 
-   \image music-widget-3-rows.png
+   \image music-widget-3-rows.jpg
 
 */
