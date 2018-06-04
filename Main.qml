@@ -292,11 +292,39 @@ Window {
         target: display
     }
 
-    // TODO:: Dummy Notification. will be removed when real implementation is in place.
+    // simulates battery low event if accessory button is pressed, the UI
+    // jumps directly to navigation app, setting the route to the proposed charging station
+    // if not, a warning notification will be shown and stored in the notification center
     Notification {
         id: notificationInterface
-        summary: "Battery level is low"
-        body: "Start route to 'EV Connect Charging Station' ? "
+        property bool actionAccepted: false
+        summary: qsTr("Battery level is low")
+        body: qsTr("Start route to 'EV Connect Charging Station'?")
+        timeout: 4000
+        showActionsAsIcons: true
+        actions: [{"actionText": "ic-navigation-dark"}]
+        category: "notification"
+        onActionTriggered: {
+            //jump to navigation app
+            var address = body.slice(body.indexOf("'") + 1,body.indexOf("?") - 1);
+            var pathToRoute = "x-map://getMeTo/" + address;
+            Qt.openUrlExternally(pathToRoute);
+            actionAccepted = true;
+        }
+        onVisibleChanged: {
+            if (!visible && !actionAccepted) {
+                //if action is not accepted, show warning
+                notificationInterfaceInfo.show();
+            }
+            actionAccepted = false;
+        }
+    }
+
+    // simulates battery low warning event
+    Notification {
+        id: notificationInterfaceInfo
+        summary: qsTr("Warning: Battery level is low");
+        body: qsTr("Please consider charging it in the next available station");
         category: "notification"
     }
 

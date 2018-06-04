@@ -57,7 +57,7 @@ QtObject {
     }
 
     property Timer notificationTimer: Timer {
-        interval: 2000;
+        interval: 2000
         onTriggered: {
             root.closeNotification();
             root.showNotificationOnQueue();
@@ -127,7 +127,13 @@ QtObject {
 
     function addNotification(id) {
         var contentToShow = NotificationManager.notification(id);
-        root.model.append(parseNotification(contentToShow))
+        //don't save if timeout larger than 2000
+        //TODO implementation to be refactored
+        if (contentToShow.timeout <= 2000) {
+            root.model.append(parseNotification(contentToShow))
+        } else {
+            parseNotification(contentToShow);
+        }
         root.showNotification();
     }
 
@@ -142,14 +148,20 @@ QtObject {
     }
 
     function parseNotification(contentToShow) {
-        root.currentNotification.title = contentToShow.summary
-        root.currentNotification.description = contentToShow.body
-        root.currentNotification.priority = contentToShow.priority
-        root.currentNotification.icon = contentToShow.icon
-        root.currentNotification.image = contentToShow.image
-        root.currentNotification.id = contentToShow.id
-
-        return root.currentNotification
+        root.currentNotification.title = contentToShow.summary;
+        root.currentNotification.description = contentToShow.body;
+        root.currentNotification.priority = contentToShow.priority;
+        root.currentNotification.icon = contentToShow.icon;
+        if (contentToShow.actions.length > 0) {
+        // TODO improve actions assignment to support more than 1,
+        // for now there is only one specified
+            root.currentNotification.image = contentToShow.actions[0].actionText;
+        }
+        if (contentToShow.timeout !== 2000) {
+            root.notificationTimer.interval = contentToShow.timeout;
+        }
+        root.currentNotification.id = contentToShow.id;
+        return root.currentNotification;
     }
 
     function showNotification() {
@@ -182,16 +194,21 @@ QtObject {
         root.currentNotification.icon = ""
         root.currentNotification.image = ""
         root.currentNotification.id = -1
+        root.notificationTimer.interval = 2000;
     }
 
-    function buttonClicked(index) {
-        NotificationManager.triggerNotificationAction(root.notificationIndex, root.buttonModel[index]);
+    function buttonClicked() {
+        NotificationManager.triggerNotificationAction(root.currentNotification.id, "");
         root.closeNotification();
     }
 
-    function removeNotification(index) {
-        NotificationManager.dismissNotification(root.model.get(index).id);
-        root.model.remove(index);
+    function removeNotification(id) {
+        NotificationManager.dismissNotification(id);
+        for (var j = 0; j < root.model.count; j++) {
+            if (root.model.get(j).id === id) {
+                root.model.remove(j);
+            }
+        }
     }
 
     function clearNotification() {

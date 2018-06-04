@@ -122,7 +122,8 @@ Item {
                 notificationSubtext: description
                 notificationAccessoryButtonIcon: image
                 wrapText: false
-                onCloseClicked: root.notificationModel.removeNotification(index);
+                onCloseClicked: { root.notificationModel.removeNotification(id); }
+                onButtonClicked: { root.notificationModel.buttonClicked(); }
             }
         }
 
