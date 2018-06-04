@@ -151,10 +151,6 @@
       \li File
       \li Description
    \row
-       \li \c config.yaml
-       \li Defines generic parameters, such as an installation location for
-       applications installed from the APP STORE or a database.
-   \row
        \li \c am-config.yaml
        \li Defines the \l{center stack display} and cluster-specific configurations. For example,
        built-in applications and their runtime (native or QML), import paths,
