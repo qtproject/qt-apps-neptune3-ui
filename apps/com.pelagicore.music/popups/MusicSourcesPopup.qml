@@ -44,9 +44,9 @@ PopupWindow {
     /*!
         \qmlproperty var MusicSourcesPopup::model
 
-        The available music sources model.
+        The alias property of the list view's model.
     */
-    property var model
+    property alias model: listView.model
 
 
     Item {
@@ -83,7 +83,6 @@ PopupWindow {
                 bottom: parent.bottom
                 bottomMargin: popupScale * 40
             }
-            model: root.model
             interactive: false
             delegate: RadioButton {
                 width: parent.width
@@ -91,7 +90,7 @@ PopupWindow {
                 font.pixelSize: popupScale * NeptuneStyle.fontSizeS
                 indicator.implicitHeight: popupScale * 30
                 indicator.implicitWidth: popupScale * 30
-                text: modelData.text
+                text: model.text
                 spacing: 20
                 onClicked: {
                     if (text === "AM/FM Radio") {

@@ -114,7 +114,10 @@ Store {
     property string elapsedTime: Qt.formatTime(new Date(player.position), 'mm:ss')
     property string totalTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
     property real currentTrackPosition : player.position / player.duration
-    property var musicSourcesModel: [{ "text": "AM/FM Radio"}]
+    property ListModel musicSourcesModel: ListModel {
+        id: musicSourcesModel
+        ListElement { text: "AM/FM Radio"}
+    }
 
     property Connections con: Connections {
         target: player.playQueue
@@ -131,10 +134,10 @@ Store {
             name: "neptune.musicintents.interface"
             Component.onCompleted: {
                 if (object.webradioInstalled) {
-                    musicSourcesModel.push({"text" : "Web radio"});
+                    musicSourcesModel.append({"text" : "Web radio"});
                 }
                 if (object.spotifyInstalled) {
-                    musicSourcesModel.push({"text" : "Spotify"});
+                    musicSourcesModel.append({"text" : "Spotify"});
                 }
             }
         }
@@ -144,22 +147,22 @@ Store {
 
             onSpotifyInstalledChanged: {
                 if (musicIntentsInterface.object.spotifyInstalled) {
-                    musicSourcesModel.push({"text" : "Spotify"});
+                    musicSourcesModel.append({"text" : "Spotify"});
                 } else {
-                    for (var i in musicSourcesModel) {
-                        if (musicSourcesModel[i].text === "Spotify") {
-                            musicSourcesModel.splice(i, 1);
+                    for (var i = 0; i < musicSourcesModel.count; i++) {
+                        if (musicSourcesModel.get(i).text === "Spotify") {
+                            musicSourcesModel.remove(i, 1);
                         }
                     }
                 }
             }
             onWebradioInstalledChanged: {
                 if (musicIntentsInterface.object.webradioInstalled) {
-                    musicSourcesModel.push({"text" : "Web radio"});
+                    musicSourcesModel.append({"text" : "Web radio"});
                 } else {
-                    for (var i in musicSourcesModel) {
-                        if (musicSourcesModel[i].text === "Web radio") {
-                            musicSourcesModel.splice(i, 1);
+                    for (var i = 0; i < musicSourcesModel.count; i++) {
+                        if (musicSourcesModel.get(i).text === "Web radio") {
+                            musicSourcesModel.remove(i, 1);
                         }
                     }
                 }

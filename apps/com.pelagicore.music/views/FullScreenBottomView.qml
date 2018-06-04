@@ -83,10 +83,10 @@ Item {
                 //and installed again, then it updates fine.
                 // caclulate popup height based on musicSources list items
                 // + 200 for header & margins
-                var calculateHeight = 200 + (store.musicSourcesModel.length * 96);
+                var calculateHeight = 200 + (root.store.musicSourcesModel.count * 96);
                 var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
                 //set model each time to ensure data accuracy
-                musicSourcesPopup.model = store.musicSourcesModel;
+                musicSourcesPopup.model = root.store.musicSourcesModel;
                 musicSourcesPopup.originItemX = pos.x;
                 musicSourcesPopup.originItemY = pos.y;
                 musicSourcesPopup.popupWidth = 910;
