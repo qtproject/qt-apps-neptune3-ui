@@ -206,7 +206,7 @@ Item {
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
             text: qsTr("more", "more contacts")
-            font.pixelSize: NeptuneStyle.dp(22)//NeptuneStyle.fontSizeS   //TODO change to NeptuneStyle when that one has a correct value
+            font.pixelSize: NeptuneStyle.fontSizeS
             //TODO make it a button that takes the user to fullscreen with the favorites page.
         }
     }

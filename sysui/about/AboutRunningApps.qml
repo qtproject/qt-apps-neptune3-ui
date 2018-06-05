@@ -45,7 +45,6 @@ Item {
 
     property var applicationModel
 
-    // FIXME: Name is not being updated when language changes
     Instantiator {
         model: root.applicationModel
         delegate: QtObject {
