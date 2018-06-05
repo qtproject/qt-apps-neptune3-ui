@@ -127,10 +127,11 @@ PopupItem {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: NeptuneStyle.dp(118)
         checkable: true
+        checked: model.autoClimateMode.enabled
         text: qsTr("Auto")
-        onCheckedChanged: {
-            airFlow.autoMode = checked
-            //TODO: connect to the backend
+        onToggled: {
+            airFlow.autoMode = checked;
+            model.autoClimateMode.setEnabled(checked);
         }
     }
 

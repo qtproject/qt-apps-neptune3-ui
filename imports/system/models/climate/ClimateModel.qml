@@ -108,6 +108,14 @@ QtObject {
         }
     }
 
+    property QtObject autoClimateMode: QtObject {
+        readonly property bool enabled: climateControl.climateMode === ClimateControl.AutoClimate;
+
+        function setEnabled(newEnabled) {
+            climateControl.climateMode = newEnabled ? ClimateControl.AutoClimate : ClimateControl.ClimateOn;
+        }
+    }
+
     property QtObject airCondition: QtObject {
         readonly property string symbol: "ac"
         readonly property bool enabled: climateControl.airConditioningEnabled
