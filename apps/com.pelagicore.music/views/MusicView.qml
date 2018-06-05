@@ -32,7 +32,6 @@
 import QtQuick 2.8
 import utils 1.0
 import animations 1.0
-import QtQuick.Controls 1.4 as QQC
 import QtQuick.Controls 2.2
 
 import "../stores"
