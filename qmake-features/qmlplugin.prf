@@ -4,7 +4,8 @@ QMAKE_RPATHDIR += "$$INSTALL_PREFIX/long_padding/long_padding/long_padding/long_
 
 CONFIG += skip_target_version_ext
 TARGET = $$qtLibraryTarget($$TARGET)
-DESTDIR = $$BUILD_DIR/imports/shared/$$replace(uri, \\., /)
+android: DESTDIR = $$BUILD_DIR/imports/cpp/$$replace(uri, \\., /)
+else: DESTDIR = $$BUILD_DIR/imports/shared/$$replace(uri, \\., /)
 
 OTHER_FILES = qmldir
 
@@ -19,7 +20,8 @@ OTHER_FILES = qmldir
 include(../config.pri)
 
 qmldir.files = qmldir
-installPath = $$INSTALL_PREFIX/neptune3/imports/shared/$$replace(uri, \\., /)
+android: installPath = $$INSTALL_PREFIX/imports/cpp/$$replace(uri, \\., /)
+else: installPath = $$INSTALL_PREFIX/neptune3/imports/shared/$$replace(uri, \\., /)
 qmldir.path = $$installPath
 target.path = $$installPath
 INSTALLS += target qmldir

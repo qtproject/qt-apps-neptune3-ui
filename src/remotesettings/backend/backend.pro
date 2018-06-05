@@ -21,7 +21,8 @@ PLUGIN_CLASS_NAME = IviSettingsBackendInterface
 
 QT += core ivicore
 
-QFACE_FORMAT = backend_qtro
+android: QFACE_FORMAT = backend_simulator
+else: QFACE_FORMAT = backend_qtro
 QFACE_SOURCES = ../settings.qface
 
 DEPENDPATH += $$OUT_PWD/../backend

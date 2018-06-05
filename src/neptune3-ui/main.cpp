@@ -50,6 +50,10 @@
 
 #include <QDebug>
 
+#ifdef Q_OS_ANDROID
+# include "urlinterceptor.h"
+#endif
+
 QT_USE_NAMESPACE_AM
 
 // code to transform a macro into a string literal
@@ -72,6 +76,9 @@ void startRemoteSettingsServer(const QString &argv) {
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+#ifdef Q_OS_ANDROID
+    qputenv("QML_DISABLE_DISK_CACHE", "1");
+#endif
 
     QCoreApplication::setApplicationName(qSL("Neptune UI"));
     QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
@@ -89,10 +96,18 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
 
+#ifdef Q_OS_ANDROID
+        Q_UNUSED(argc)
+        char arg1[] = "--recreate-database";
+        char *_argv[] = {argv[0], arg1, NULL};
+        int _argc = 2;
+        Main a(_argc, &_argv[0]);
+#else
         Main a(argc, argv);
 
         // start the server; the server itself will ensure one instance only
         startRemoteSettingsServer(QFile::decodeName(argv[0]));
+#endif
 
         // load the Qt translations
         QTranslator qtTranslator;
@@ -100,13 +115,22 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             a.installTranslator(&qtTranslator);
         }
 
+#ifdef Q_OS_ANDROID
+        DefaultConfiguration cfg(QStringList(qSL("assets:/am-config-android.yaml")), QString());
+#else
         DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
+#endif
+
         cfg.parse();
         a.setup(&cfg, deploymentWarnings);
 
         // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
         if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty())
             TouchEmulation::createInstance();
+
+#ifdef Q_OS_ANDROID
+        a.qmlEngine()->setUrlInterceptor(new UrlInterceptor);
+#endif
 
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());

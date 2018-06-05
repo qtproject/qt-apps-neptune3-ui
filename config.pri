@@ -1,3 +1,4 @@
 isEmpty(INSTALL_PREFIX) {
-INSTALL_PREFIX=/opt
+!android: INSTALL_PREFIX=/opt
+else: INSTALL_PREFIX=/assets
 }

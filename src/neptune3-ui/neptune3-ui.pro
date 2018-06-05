@@ -26,11 +26,34 @@ SOURCES = main.cpp
 
 DESTDIR = $$OUT_PWD/../../
 
-target.path = $$INSTALL_PREFIX/neptune3
+android: target.path = $$INSTALL_PREFIX
+else: target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
 
 win32 {
     wrapper.files = neptune3-ui_wrapper.bat
     wrapper.path = $$INSTALL_PREFIX/neptune3
     INSTALLS += wrapper
+}
+
+android: {
+    SOURCES += \
+        urlinterceptor.cpp
+
+    HEADERS += \
+        urlinterceptor.h
+
+    QML_ROOT_PATH = $$PWD/../../
+
+    QML_IMPORT_PATH += \
+                        $$OUT_PWD/../../imports/cpp \
+                        $$OUT_PWD/../../imports/system \
+
+    ANDROID_EXTRA_PLUGINS += \
+                        $$OUT_PWD/../../plugins \
+                        $$[QT_INSTALL_PLUGINS]/ \
+
+    ANDROID_EXTRA_LIBS += \
+                        $$[QT_INSTALL_LIBS]/libQt5Sql.so \
+
 }

@@ -1,4 +1,4 @@
-requires(linux:!android|win32:!winrt|macos)
+requires(linux|win32:!winrt|macos)
 
 TEMPLATE = subdirs
 
@@ -22,15 +22,20 @@ copydata.depends += plugins
 
 SUBDIRS += copydata
 
+android: INSTALL_PATH = $$INSTALL_PREFIX
+else: INSTALL_PATH = $$INSTALL_PREFIX/neptune3
+
 # Install all required files
-qml.files = apps dev/apps imports sysui styles am-config.yaml Main.qml
-qml.path = $$INSTALL_PREFIX/neptune3
+qml.files = apps dev/apps imports sysui styles Main.qml
+android: qml.files += am-config-android.yaml
+else: qml.files += am-config.yaml
+qml.path = $$INSTALL_PATH
 INSTALLS += qml
 
 win32: server.files = win32/server.conf
 else: server.files = server.conf
 
-server.path = $$INSTALL_PREFIX/neptune3
+server.path = $$INSTALL_PATH
 INSTALLS += server
 
 OTHER_FILES += $$files($$PWD/*.qml, true)
