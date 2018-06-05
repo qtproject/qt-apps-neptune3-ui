@@ -53,6 +53,7 @@ PopupItem {
         if (seatTemperaturesLinked) {
             model.rightSeat.setValue(model.leftSeat.value);
         }
+        model.zoneSynchronization.setEnabled(seatTemperaturesLinked);
     }
 
     onModelChanged: {
@@ -78,6 +79,7 @@ PopupItem {
         height: NeptuneStyle.dp(278)
         temperatureDriverSeat: model.leftSeat.valueString
         temperaturePassengerSeat: model.rightSeat.valueString
+        zoneSynchronizationEnabled: root.seatTemperaturesLinked
         onDriverSeatTemperatureIncreased: {
             if (model.leftSeat.value < model.leftSeat.maxValue) {
                 model.leftSeat.setValue(model.leftSeat.value + leftTempSlider.stepSize)

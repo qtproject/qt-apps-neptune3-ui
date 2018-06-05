@@ -135,6 +135,14 @@ QtObject {
         }
     }
 
+    property QtObject zoneSynchronization: QtObject {
+        readonly property bool enabled: climateControl.zoneSynchronizationEnabled;
+
+        function setEnabled(newEnabled) {
+            climateControl.zoneSynchronizationEnabled = newEnabled;
+        }
+    }
+
     property QtObject steeringWheelHeat: QtObject {
         readonly property string symbol: "stearing_wheel"
         readonly property bool enabled: climateControl.steeringWheelHeater >= 5

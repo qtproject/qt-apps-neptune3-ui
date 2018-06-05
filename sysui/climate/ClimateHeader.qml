@@ -42,6 +42,8 @@ Item {
     property alias temperatureDriverSeat: tempLabelLeft.text
     property alias temperaturePassengerSeat: tempLabelRight.text
 
+    property bool zoneSynchronizationEnabled
+
     signal driverSeatTemperatureIncreased()
     signal driverSeatTemperatureDecreased()
     signal passengerSeatTemperatureIncreased()
@@ -87,6 +89,7 @@ Item {
             icon.name: checked ? "ic-link_ON" : "ic-link_OFF"
             icon.width: NeptuneStyle.dp(24)
             icon.height: NeptuneStyle.dp(24)
+            checked: root.zoneSynchronizationEnabled
             onToggled: root.linkToggled(checked)
         }
 
