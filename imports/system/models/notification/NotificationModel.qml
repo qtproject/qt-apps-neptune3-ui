@@ -36,6 +36,7 @@ QtObject {
     id: root
 
     property ListModel model: ListModel { }
+    readonly property int count: root.model.count
     property QtObject currentNotification: QtObject {
         property int id: -1
         property string title: ""
