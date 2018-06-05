@@ -51,4 +51,9 @@ NotificationItem {
     notificationText: root.notificationModel.currentNotification.title
     notificationSubtext: root.notificationModel.currentNotification.description
     notificationAccessoryButtonIcon: root.notificationModel.currentNotification.image
+
+    onCloseClicked: {
+        root.notificationModel.removeNotification(root.notificationModel.count - 1);
+        root.notificationModel.closeNotification()
+    }
 }
