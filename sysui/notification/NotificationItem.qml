@@ -41,9 +41,7 @@ Control {
     property string notificationSubtext
     property url notificationIcon
     property string notificationAccessoryButtonIcon
-    property real contentOpacity: 1.0
     property bool dividerVisible: false
-    property bool wrapText: true
 
     signal buttonClicked()
     signal closeClicked()
@@ -54,19 +52,16 @@ Control {
 
     background: Rectangle {
         color: NeptuneStyle.offMainColor
-        opacity: root.contentOpacity
     }
 
     contentItem: ListItemTwoButtons {
-        opacity: root.contentOpacity
-        wrapText: root.wrapText
+        wrapText: true
         icon.source: root.notificationIcon
         text: root.notificationText
         subText: root.notificationSubtext
         symbolAccessoryButton1: root.notificationAccessoryButtonIcon
         symbolAccessoryButton2: "ic-close"
         dividerVisible: root.dividerVisible
-
         onAccessoryButton1Clicked: root.buttonClicked()
         onAccessoryButton2Clicked: root.closeClicked()
     }

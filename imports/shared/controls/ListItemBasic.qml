@@ -160,29 +160,28 @@ ItemDelegate {
                         ) + topPadding + bottomPadding
     implicitWidth: NeptuneStyle.dp(100)
 
-
+    indicator: NeptuneIconLabel {
+        height: root.height
+        opacity: NeptuneStyle.opacityHigh
+        iconScale: NeptuneStyle.scale
+        spacing: root.spacing
+        mirrored: root.mirrored
+        display: root.display
+        icon: root.icon
+    }
 
     contentItem: Item {
 
-        NeptuneIconLabel {
-            id: iconItem
-            height: parent.height
-            opacity: NeptuneStyle.opacityHigh
-            iconScale: NeptuneStyle.scale
-            spacing: root.spacing
-            mirrored: root.mirrored
-            display: root.display
-            icon: root.icon
-        }
-
         RowLayout {
-            anchors.fill: parent
-            anchors.leftMargin: iconItem.width + root.spacing
+            anchors.left: parent.left
+            anchors.right: parent.right
+
             ColumnLayout {
                 Layout.fillWidth: true
                 Label {
                     id: listItemText
                     Layout.fillWidth: true
+                    Layout.leftMargin: indicator ? indicator.width + root.spacing : 0
                     text: root.text
                     font: root.font
                     elide: Text.ElideRight
@@ -197,7 +196,7 @@ ItemDelegate {
                 Label {
                     id: subtitle
                     Layout.fillWidth: true
-                    rightPadding: iconItem ? iconItem.width + root.spacing : 0
+                    Layout.leftMargin: indicator ? indicator.width + root.spacing : 0
                     elide: Text.ElideRight
                     wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft

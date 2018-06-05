@@ -44,16 +44,25 @@ NotificationItem {
        && !root.notificationModel.notificationCenterVisible ? 0 : -root.height
     Behavior on y { DefaultNumberAnimation { } }
 
-    contentOpacity: root.notificationModel.notificationToastVisible ? 1.0 : 0.0
-    Behavior on contentOpacity { DefaultNumberAnimation { } }
+    opacity: root.notificationModel.notificationToastVisible ? 1.0 : 0.0
+    Behavior on opacity { DefaultNumberAnimation { } }
 
-    notificationIcon: root.notificationModel.currentNotification.icon
-    notificationText: root.notificationModel.currentNotification.title
-    notificationSubtext: root.notificationModel.currentNotification.description
-    notificationAccessoryButtonIcon: root.notificationModel.currentNotification.image
     onButtonClicked: { root.notificationModel.buttonClicked(); }
+
     onCloseClicked: {
         root.notificationModel.removeNotification(root.notificationModel.currentNotification.id);
         root.notificationModel.closeNotification()
+    }
+
+    Connections {
+        target: root.notificationModel
+        onNotificationToastVisibleChanged: {
+            if (root.notificationModel.notificationToastVisible) {
+                root.notificationIcon = root.notificationModel.currentNotification.icon
+                root.notificationText = root.notificationModel.currentNotification.title
+                root.notificationSubtext = root.notificationModel.currentNotification.description
+                root.notificationAccessoryButtonIcon = root.notificationModel.currentNotification.image
+            }
+        }
     }
 }

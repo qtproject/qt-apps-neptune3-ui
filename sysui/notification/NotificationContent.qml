@@ -41,20 +41,17 @@ ModalOverlay {
     showModalOverlay: notificationCenter.notificationCenterVisible
     onOverlayClicked: notificationCenter.closeNotificationCenter()
 
+    NotificationCenter {
+        id: notificationCenter
+        anchors.left: parent.left
+        anchors.right: parent.right
+        notificationModel: NotificationModel { }
+    }
     NotificationToast {
         leftPadding: NeptuneStyle.dp(40)
         rightPadding: NeptuneStyle.dp(40)
         anchors.left: parent.left
         anchors.right: parent.right
         notificationModel: notificationCenter.notificationModel
-
-        NotificationCenter {
-            id: notificationCenter
-            anchors.left: parent.left
-            anchors.right: parent.right
-            notificationCenterParent: parent
-            notificationModel: NotificationModel { }
-            toastHeight: parent.height
-        }
     }
 }

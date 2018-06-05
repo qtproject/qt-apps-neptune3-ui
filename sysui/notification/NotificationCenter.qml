@@ -40,6 +40,8 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
+    y: root.notificationCenterVisible ? root.dragMaximumY : -root.dragMinimumY
+
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
         if (totalHeight > NeptuneStyle.dp(1720)) {
@@ -49,36 +51,30 @@ Item {
     }
 
     property NotificationModel notificationModel
+    readonly property int notificationCenterMaxHeight: notificationList.height + root.notificationTopMargin + root.notificationBottomMargin
+    readonly property int listviewMaxHeight: NeptuneStyle.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
     readonly property int notificationTopMargin: NeptuneStyle.dp(80)
     readonly property int notificationBottomMargin: NeptuneStyle.dp(144)
-    readonly property int dragMaximumY: NeptuneStyle.dp(130)
-    readonly property int dragMinimumY: root.height - NeptuneStyle.dp(130)
+    readonly property int dragMaximumY: 0
+    readonly property int dragMinimumY: root.height
     readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
-    property Item notificationCenterParent
-    property int toastHeight: 0
 
-    y: root.notificationCenterVisible ? root.dragMaximumY : - root.dragMinimumY
-    Behavior on y { DefaultNumberAnimation { } }
-
-    onYChanged: {
-        if (root.y > - root.dragMinimumY && !root.notificationModel.notificationToastVisible) {
-            notificationCenterBg.opacity = 1.0;
-        } else if (root.y === - root.dragMinimumY && !root.notificationCenterVisible) {
-            notificationCenterBg.opacity = 0.0;
-        }
+    Behavior on y {
+        enabled: !root.notificationModel.notificationToastVisible
+        DefaultNumberAnimation { }
+    }
+    Behavior on height {
+        enabled: !root.notificationModel.notificationToastVisible
+        DefaultNumberAnimation { }
     }
 
     function closeNotificationCenter() {
         root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
-        if (!root.notificationModel.notificationCenterVisible) {
-            notificationCenterBg.opacity = 0.0;
-        }
     }
 
     Rectangle {
         id: notificationCenterBg
         anchors.fill: parent
-        opacity: 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: NeptuneStyle.offMainColor
     }
@@ -97,31 +93,19 @@ Item {
         ListView {
             id: notificationList
             width: parent.width
-            height: {
-                var maxHeight = NeptuneStyle.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
-                if (delegatedHeight > maxHeight) {
-                    return maxHeight;
-                } else {
-                    return delegatedHeight;
-                }
-            }
+            height: Math.min(contentHeight, root.listviewMaxHeight)
+            interactive: contentHeight > root.listviewMaxHeight
             opacity: notificationCenterBg.opacity
-
-            readonly property int delegatedHeight: NeptuneStyle.dp(110) * (notificationList.count)
-
             model: root.notificationModel.model
-
             clip: true
             ScrollIndicator.vertical: ScrollIndicator {}
             delegate: NotificationItem {
                 id: delegatedItem
-                implicitWidth: notificationList.width
-                implicitHeight: NeptuneStyle.dp(110)
+                width: notificationList.width
                 notificationIcon: icon
                 notificationText: title
                 notificationSubtext: description
                 notificationAccessoryButtonIcon: image
-                wrapText: false
                 onCloseClicked: { root.notificationModel.removeNotification(id); }
                 onButtonClicked: { root.notificationModel.buttonClicked(); }
             }
@@ -157,14 +141,11 @@ Item {
 
     NotificationHandle {
         id: notificationHandle
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.horizontalCenter: root.horizontalCenter
         anchors.top: root.bottom
-        anchors.topMargin: root.notificationModel.notificationToastVisible ? root.toastHeight - root.dragMaximumY : 0
-        dragTarget: root.notificationModel.notificationToastVisible ? root.notificationCenterParent : root
-
+        dragTarget: root
         drag.minimumY: root.notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : - root.dragMinimumY
         drag.maximumY: root.notificationModel.notificationToastVisible ? 0 : root.dragMaximumY
-
         drag.onActiveChanged: {
             notificationHandle.prevDragY = notificationHandle.dragTarget.y;
         }
@@ -183,8 +164,7 @@ Item {
         }
 
         onReleased: {
-            if (root.notificationCenterParent.y === - root.notificationCenterParent.height
-                    && !root.notificationModel.notificationToastVisible) {
+            if (!root.notificationModel.notificationToastVisible) {
                 if (!notificationHandle.drag.active && notificationHandle.swipe) {
                     if (root.notificationModel.notificationCenterVisible && notificationHandle.dragDelta > 0) {
                         root.notificationModel.notificationCenterVisible = true;
