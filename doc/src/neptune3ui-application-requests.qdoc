@@ -1,0 +1,136 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-requests.html
+   \title Neptune 3 UI Application Requests
+   \previouspage neptune3ui-insights.html
+
+   An application request is used to send a request to an application to just open
+   or open in a certain state. That said, the action should be possible to be
+   performed from wherever in the system.
+
+   \section1 Brief Demo
+
+   In the following examples, a request to 'open music app', and a request to
+   'open map app and navigate to some specific charging station' are demonstrated.
+
+   The following lines are added in the requested applications info.yaml files so
+   that the ApplicationManager can identify those.
+
+   Music Player app, info.yaml:
+
+   \badcode
+   mimeTypes: [ 'x-scheme-handler/x-radio' ]
+   \endcode
+
+   Map app, info.yaml:
+
+   \badcode
+   mimeTypes: [ 'x-scheme-handler/x-map' ]
+   \endcode
+
+   And finally, randomly in the system, from wherever the request should be sent:
+
+   \badcode
+   Button {
+       id: openRadioApp
+       onClicked: {
+           Qt.openUrlExternally("x-radio://");
+       }
+   }
+
+   Button {
+       id: takeMeHome
+       onClicked: {
+           Qt.openUrlExternally("x-map://takemehome");
+       }
+   }
+   \endcode
+
+   In addition, for the Map Application, the following lines should be added in the
+   application's Store so that the url is processed as shown below, instructing
+   the application to set the selected address and prepare for starting the navigation
+   to it.
+
+   \badcode
+   Connections {
+       target: ApplicationInterface
+       //handle here all specific app behavior
+       onOpenDocument: {
+           //process documentUrl "getmeto/Donald Weese Ct, Las Vegas"
+       }
+   }
+   \endcode
+
+   For the Music Application example, since it is only about opening the app, nothing
+   has to be added in its store.
+
+   \section1 Detailed Design
+
+   An application could call the Qt.openUrlExternally() function passing as parameter
+   the mime-type of the application that is intended to be opened, followed by the
+   desired url indicating what the application should do when opening.
+
+   For that to be successful, the respective mime-Types should be added accordingly
+   to the application's info.yaml files (e.g., mimeTypes: [ 'x-scheme-handler/x-radio' ]).
+   The ApplicationManager will then consult its internal database of applications looking
+   for a match with x-scheme-handler/x-mimeType. If there is a successful match, then the
+   openUrlRequested signal will be emitted and its receiver (\l{IntentsInterface}) can then
+   either acknowledge the request by calling acknowledgeOpenUrlRequest function or reject
+   (rejectOpenUrlRequest). If then the application is started, the url is supplied to the
+   application as a document through the signal openDocument(string documentUrl, string
+   mimeType) via its ApplicationInterface.
+
+   \section2 Brief diagram of what happens when ApplicationX requests to open ApplicationY
+
+   \image application-requests.jpg
+
+   \section2 Brief diagram of what happens when a back key press is send
+
+   \image application-requests-goback.jpg
+
+   \section1 Current Use cases in Neptune 3 UI
+
+   \section2 Media Application
+   All media applications (Radio, Web Radio, Music Player) are connected to each other using
+   requests. To try it, navigating to either Music Player, Radio and/or WebRadio app and press
+   "sources" in the toolbar menu on the right side. A popup will open with all available music
+   sources. Choosing any of those will direct you to the respective music application.
+
+   \section2 Vehicle Settings
+   In the energy panel there is list with 'charging station' suggestions. If any of those is
+   pressed, then the maps application will directly open, loading the selected charging station's
+   address and ready to navigate there.
+
+   \section2 System Notifications
+   A ctrl+n press simulates a "Battery Low" event by triggering a system notification containing
+   an action button. If the action button is pressed, the maps application will directly open,
+   loading the suggested charging station's address and ready to navigate there.
+
+*/
+
