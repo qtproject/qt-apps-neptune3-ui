@@ -64,9 +64,10 @@ import QtApplicationManager 1.0
 
     The interface to act on Intent requests. An intent request is used to request an
     application to just open or open in a certain state. That said, the action should
-    be possible to be performed from wherever in the system. The application should call
-    the Qt.openUrlExternally() function passing as parameter the applications' mime-Type
-    and desired url to be followed. For that to be successful, the respective mime-Types
+    be possible to be performed from wherever in the system. An application could call
+    the Qt.openUrlExternally() function passing as parameter the mime-type of the
+    application that is intended to be opened, followed by the desired url indicating what
+    the application should do when opening. For this to be successful, the respective mime-Types
     should be added accordingly to the applications' info.yaml files (example: mimeTypes:
     [ 'x-scheme-handler/x-tuner' ]) The ApplicationManager will then consult its internal
     database of applications looking for a match with x-scheme-handler/x-mimeType. If there
