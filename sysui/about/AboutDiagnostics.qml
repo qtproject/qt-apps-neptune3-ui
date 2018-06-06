@@ -46,13 +46,23 @@ ColumnLayout {
         font.pixelSize: NeptuneStyle.fontSizeS
     }
 
-    ScrollView {
+    Flickable {
+        id: flickable
         Layout.fillWidth: true
         Layout.fillHeight: true
+        contentWidth: width - NeptuneStyle.dp(30)
+        contentHeight: output.height
+        clip: true
+        flickableDirection: Flickable.VerticalFlick
+        ScrollIndicator.vertical: ScrollIndicator {}
+
         TextArea {
+            id: output
+            width: flickable.width - NeptuneStyle.dp(20)
             readOnly: true
             font.pixelSize: NeptuneStyle.fontSizeXS
             text: sysinfo.qtDiag
+            wrapMode: TextEdit.WordWrap
             color: NeptuneStyle.contrastColor
         }
     }

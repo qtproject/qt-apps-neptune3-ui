@@ -44,9 +44,11 @@ Flickable {
     contentWidth: column.width
     contentHeight: column.height
 
+    ScrollIndicator.vertical: ScrollIndicator {}
+
     Column {
         id: column
-        width: root.width
+        width: root.width - NeptuneStyle.dp(20)
 
         topPadding: NeptuneStyle.dp(20)
         spacing: NeptuneStyle.dp(20)

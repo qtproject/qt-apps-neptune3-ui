@@ -67,10 +67,8 @@ ColumnLayout {
         contentWidth: width - NeptuneStyle.dp(30)
         contentHeight: contentList.height
         clip: true
-
-        ScrollBar.vertical: ScrollBar {
-            policy: ScrollBar.AlwaysOn
-        }
+        flickableDirection: Flickable.VerticalFlick
+        ScrollIndicator.vertical: ScrollIndicator {}
 
         Column {
             id: contentList

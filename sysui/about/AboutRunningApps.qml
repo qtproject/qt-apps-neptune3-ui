@@ -147,7 +147,7 @@ Item {
         anchors.bottom: parent.bottom
 
         delegate: Item {
-            width: parent.width
+            width: parent.width - NeptuneStyle.dp(20)
             implicitHeight: column.height
 
             ToolButton {
