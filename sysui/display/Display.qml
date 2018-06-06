@@ -90,7 +90,7 @@ Item {
         localeCode: Style.languageLocale
     }
 
-    property var musicIntentsIPC: MusicIntentsIPC { }
+    property var musicAppRequestsIPC: MusicAppRequestsIPC  { }
 
     signal screenshotRequested()
 

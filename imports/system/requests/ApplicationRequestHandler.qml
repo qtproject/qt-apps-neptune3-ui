@@ -32,13 +32,13 @@ import QtQuick 2.10
 import QtApplicationManager 1.0
 
 /*!
-    \qmltype IntentsInterface
-    \inqmlmodule intent
+    \qmltype ApplicationRequestHandler
+    \inqmlmodule requests
     \inherits QtObject
     \since 5.11
     \brief An object used to perform actions.
 
-    The IntentsInterface is not meant to be used as is in the system, instead it is
+    The ApplicationRequestHandler is not meant to be used as is in the system, instead it is
     acting as the receiver of the requests coming from the applications using the
     Qt.openUrlExternally function as shown in the example below.
 
@@ -62,7 +62,7 @@ import QtApplicationManager 1.0
 
     \endqml
 
-    The interface to act on Intent requests. An intent request is used to request an
+    The interface to act on application requests. A request is used to instruct an
     application to just open or open in a certain state. That said, the action should
     be possible to be performed from wherever in the system. An application could call
     the Qt.openUrlExternally() function passing as parameter the mime-type of the
@@ -72,17 +72,17 @@ import QtApplicationManager 1.0
     [ 'x-scheme-handler/x-tuner' ]) The ApplicationManager will then consult its internal
     database of applications looking for a match with x-scheme-handler/x-mimeType. If there
     is a successful match, then the openUrlRequested signal will be emitted and its receiver
-    (IntentsInterface) can then either acknowledge the request by calling acknowledgeOpenUrlRequest
-    function or reject (rejectOpenUrlRequest). If then the application is started, the url is
-    supplied to the application as a document through the signal openDocument(string
-    documentUrl, string mimeType) via its ApplicationInterface.
+    (ApplicationRequestHandler) can then either acknowledge the request by calling
+    acknowledgeOpenUrlRequest function or reject (rejectOpenUrlRequest). If then the application
+    is started, the url is supplied to the application as a document through the signal
+    openDocument(string documentUrl, string mimeType) via its ApplicationInterface.
 */
 
 QtObject {
     id: root
 
     /*!
-        \qmlproperty string IntentsInterface::activeAppId
+        \qmlproperty string ApplicationRequestHandler ::activeAppId
 
         This property holds the active application id. It is used to store the active application id
         before an intent request is submitted in order to be able to navigate back to it accordingly.
@@ -91,7 +91,7 @@ QtObject {
     property string activeAppId: ""
 
     /*!
-        \qmlproperty var IntentsInterface::history
+        \qmlproperty var ApplicationRequestHandler::history
 
         This property holds the history of activities started and it's used for a sequential
         navigation back to the initial state
@@ -101,7 +101,7 @@ QtObject {
     property var history: []
 
     /*!
-        \qmlproperty var IntentsInterface::appManConns
+        \qmlproperty var ApplicationRequestHandler::appManConns
         \readonly
 
         This property is used to listen to the ApplicationManager and get the request from other
@@ -116,7 +116,7 @@ QtObject {
     }
 
     /*!
-        \qmlmethod IntentsInterface::sendRequest(id, params)
+        \qmlmethod ApplicationRequestHandler::sendRequest(id, params)
 
         Requests the action to be taken in the UI. It uses the Application Managers' acknowledgeOpenUrlRequest
         function to open the requested application passing the given url to it. It also keeps and
@@ -132,7 +132,7 @@ QtObject {
     }
 
     /*!
-        \qmlmethod IntentsInterface::goBack()
+        \qmlmethod ApplicationRequestHandler::goBack()
 
         The goBack function returns to the previous state from a requested action based on the history.
         It also takes care of updating the history accordingly.

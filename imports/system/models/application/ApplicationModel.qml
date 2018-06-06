@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager 1.0 as AM
-import intents 1.0
+import requests 1.0
 
 /*
   A list of ApplicationInfo objects.
@@ -77,8 +77,8 @@ ListModel {
 
     function goBack() {
         //if an intent is requested
-        if (d.intentsInterface.history.length > 1) {
-            d.intentsInterface.goBack();
+        if (d.applicationRequestHandler.history.length > 1) {
+            d.applicationRequestHandler.goBack();
         } else {
             //else return to home
             goHome();
@@ -103,8 +103,8 @@ ListModel {
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
         property var populating: true
-        property IntentsInterface intentsInterface: IntentsInterface {
-            id: intentsInterface
+        property ApplicationRequestHandler applicationRequestHandler: ApplicationRequestHandler {
+            id: applicationRequestHandler
             activeAppId: activeAppInfo ? activeAppInfo.id : ""
         }
         readonly property var logCat: LoggingCategory {

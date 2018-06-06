@@ -33,13 +33,13 @@ import QtQuick 2.0
 import QtApplicationManager 1.0
 
 /*!
-    \qmltype MusicIntentsIPC
+    \qmltype MusicAppRequestsIPC
     \inqmlmodule service
     \inherits ApplicationIPCInterface
     \since 5.11
-    \brief An IPC for music intents
+    \brief An IPC for music application requests
 
-    The MusicIntentsIPC is meant to be used only for the music intents use case, enabling music,
+    The MusicaAppRequestsIPC is meant to be used only for the music requests use case, enabling music,
     tuner and webradio apps to know whether spotify and/or webradio are installed from the appstore,
     or added / removed. This interface can be accessed only from the mentioned apps.
 */
@@ -48,7 +48,7 @@ ApplicationIPCInterface {
     id: root
 
     /*!
-        \qmlproperty rect MusicIntentsIPC::spotifyInstalled
+        \qmlproperty rect MusicAppRequestsIPC::spotifyInstalled
 
         This property holds whether spotify application is installed or not in Neptune 3.
     */
@@ -56,7 +56,7 @@ ApplicationIPCInterface {
     property bool spotifyInstalled: false
 
     /*!
-        \qmlproperty rect MusicIntentsIPC::webradioInstalled
+        \qmlproperty rect MusicAppRequestsIPC::webradioInstalled
 
         This property holds whether web radio application is installed or not in Neptune 3.
     */
@@ -64,7 +64,7 @@ ApplicationIPCInterface {
     property bool webradioInstalled: false
 
     /*!
-        \qmlproperty rect MusicIntentsIPC::appmanCnx
+        \qmlproperty rect MusicAppRequestsIPC::appmanCnx
 
         This property is used to listen to the ApplicationManager to get the status of
         external application in Neptune 3.
@@ -91,7 +91,7 @@ ApplicationIPCInterface {
     }
 
     Component.onCompleted: {
-        ApplicationIPCManager.registerInterface(root, "neptune.musicintents.interface",
+        ApplicationIPCManager.registerInterface(root, "neptune.musicapprequests.interface",
                                                 { "applicationIds": [ "com.pelagicore.music",
                                                                       "com.pelagicore.tuner",
                                                                       "com.pelagicore.webradio" ] })

@@ -130,8 +130,8 @@ Store {
 
     property Item ipc: Item {
         ApplicationInterfaceExtension {
-            id: musicIntentsInterface
-            name: "neptune.musicintents.interface"
+            id: musicApplicationRequestIPC
+            name: "neptune.musicapprequests.interface"
             Component.onCompleted: {
                 if (object.webradioInstalled) {
                     musicSourcesModel.append({"text" : "Web radio"});
@@ -143,10 +143,10 @@ Store {
         }
 
         Connections {
-            target: musicIntentsInterface.object
+            target: musicApplicationRequestIPC.object
 
             onSpotifyInstalledChanged: {
-                if (musicIntentsInterface.object.spotifyInstalled) {
+                if (musicApplicationRequestIPC.object.spotifyInstalled) {
                     musicSourcesModel.append({"text" : "Spotify"});
                 } else {
                     for (var i = 0; i < musicSourcesModel.count; i++) {
@@ -157,7 +157,7 @@ Store {
                 }
             }
             onWebradioInstalledChanged: {
-                if (musicIntentsInterface.object.webradioInstalled) {
+                if (musicApplicationRequestIPC.object.webradioInstalled) {
                     musicSourcesModel.append({"text" : "Web radio"});
                 } else {
                     for (var i = 0; i < musicSourcesModel.count; i++) {
