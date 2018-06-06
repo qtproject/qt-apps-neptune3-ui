@@ -121,7 +121,7 @@
        \li Media application that can play the music that is indexed by the
        \l{Qt IVI} using Qt Multimedia backend.
    \row
-       \li Map Application (\c mapapp)
+       \li \l{Neptune 3 UI - Map Application}{Map Application} (\c mapapp)
        \li Map application is created using MapBoxGL plugin from Qt Location having
        some common navigation features, e.g. set destination, show current location,
        show direction to home or work from current location. The Map application also
