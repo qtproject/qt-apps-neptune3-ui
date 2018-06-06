@@ -5,9 +5,9 @@ url     = http://doc.qt.io/Neptune3UI
 sourcedirs += src ../
 imagedirs += src/images
 
-depends += qtquick qtqml applicationmanager
+depends += qtquick qtqml
 
-qhp.projects                               = Neptune3UI
+qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp
 qhp.Neptune3UI.namespace           = io.qt.neptune3ui.$QT_VERSION_TAG
 qhp.Neptune3UI.virtualFolder       = neptune3ui

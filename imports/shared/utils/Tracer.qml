@@ -105,10 +105,32 @@ MouseArea {
     */
     readonly property bool fill: root.opaque
 
+    /*!
+        \qmlmethod color Tracer::randomColor()
+
+        Generate random color for the Tracer's border.
+    */
+    function randomColor() {
+        return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0)
+    }
+
     visible: false
     acceptedButtons: Qt.RightButton
     anchors.fill: parent
     propagateComposedEvents: true
+
+    onPressAndHold: {
+        console.log(Logging.sysui, 'trace: ' + root.parent)
+
+        console.log(Logging.sysui, 'Hierarchy: ')
+        var parent = root.parent;
+        var indent = '  ';
+        while (parent) {
+            console.log(Logging.sysui, indent + '+ ' + parent)
+            indent += '  ';
+            parent = parent.parent;
+        }
+    }
 
     Rectangle {
         id: fill
@@ -137,22 +159,5 @@ MouseArea {
         text: root.text
         font.pixelSize: 10
         color: root.color
-    }
-
-    function randomColor() {
-        return Qt.rgba(Math.random(), Math.random(), Math.random(), 1.0)
-    }
-
-    onPressAndHold: {
-        console.log(Logging.sysui, 'trace: ' + root.parent)
-
-        console.log(Logging.sysui, 'Hierarchy: ')
-        var parent = root.parent;
-        var indent = '  ';
-        while (parent) {
-            console.log(Logging.sysui, indent + '+ ' + parent)
-            indent += '  ';
-            parent = parent.parent;
-        }
     }
 }
