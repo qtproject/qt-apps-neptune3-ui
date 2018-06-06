@@ -29,7 +29,7 @@
    \page neptune3ui-index.html
    \title Neptune 3 UI
    \brief A best practice UI for the OEMs to test Qt Automotive Suite.
-   \nextpage neptune3ui-gettingstarted.html
+   \nextpage neptune3ui-insights.html
 
 
    Neptune 3 UI provides a UI implementation for Qt in IVI (In-Vehichle Infotainment)
@@ -43,7 +43,7 @@
    a \l{center stack display} and a \l{instrument cluster}. You can develop, maintain,
    and deploy applications with Neptune 3 UI.
 
-   See \l{Getting Started} for further information on how you can start
+   See \l{Neptune 3 UI Insights} for further information on how you can start
    working with Neptune 3 UI.
 
    \section1 Overview
