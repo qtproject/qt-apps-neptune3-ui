@@ -30,9 +30,10 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.3
+
 import utils 1.0
 import animations 1.0
-import QtQuick.Controls 1.4
 
 import "../panels"
 import "../controls"
@@ -46,45 +47,50 @@ Item {
     signal flickableAreaClicked()
 
     onStateChanged: {
-        //reset scroll view
-        nextListFlickable.flickableItem.contentY = 0;
+        //reset flickable
+        nextListFlickable.contentY = 0;
     }
-
-    ScrollView {
-        id: nextListFlickable
-        anchors.fill: parent
+    Item {
+        id: nextListFlickableItem
+        width: parent.width
+        height: (parent.height - artAndTitleBackground.height - progressBarBlock.height)
+        anchors.bottom: parent.bottom
         opacity: 0
         visible: opacity > 0
         clip: true
-        property real contentY: 0.0
 
-        flickableItem.onContentYChanged: {
-            contentY = flickableItem.contentY;
-        }
+        Flickable {
+            id: nextListFlickable
+            anchors.fill: parent
 
-        Column {
-            id: nextListContent
+            contentWidth: parent.width
+            contentHeight: (nextList.height + musicTools.height + NeptuneStyle.dp(20))
 
-            Item { //spacer
-                width: nextListFlickable.width
-                height: NeptuneStyle.dp(430)
-            }
+            ScrollIndicator.vertical: ScrollIndicator { }
+            Column {
+                id: nextListContent
 
-            MusicPlayQueuePanel { //playing queue
-                id: nextList
-                width: nextListFlickable.width
-                height: (listView.count * NeptuneStyle.dp(104))
-                listView.model: store.musicPlaylist
-                listView.interactive: false
-                onItemClicked: {
-                    store.musicPlaylist.currentIndex = index;
-                    store.player.play();
+                Item { //spacer
+                    width: nextListFlickable.width
+                    height: musicTools.height
                 }
-            }
 
-            Item { //spacer
-                width: nextListFlickable.width
-                height: NeptuneStyle.dp(20)
+                MusicPlayQueuePanel { //playing queue
+                    id: nextList
+                    width: nextListFlickable.width
+                    height: (listView.count * NeptuneStyle.dp(104))
+                    listView.model: store.musicPlaylist
+                    listView.interactive: false
+                    onItemClicked: {
+                        store.musicPlaylist.currentIndex = index;
+                        store.player.play();
+                    }
+                }
+
+                Item { //spacer
+                    width: nextListFlickable.width
+                    height: NeptuneStyle.dp(20)
+                }
             }
         }
     }
@@ -174,7 +180,7 @@ Item {
         State {
             name: "Widget3Rows"
             PropertyChanges { target: root; height: NeptuneStyle.dp(840) }
-            PropertyChanges { target: nextListFlickable; opacity: 1 }
+            PropertyChanges { target: nextListFlickableItem; opacity: 1 }
             PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-271) - Math.min(NeptuneStyle.dp(20), nextListFlickable.contentY / 6) }
             PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-71) - Math.min(NeptuneStyle.dp(60), nextListFlickable.contentY / 2) }
             PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, nextListFlickable.contentY / 140)) }
@@ -195,14 +201,14 @@ Item {
     transitions: [
         Transition {
             from: "Maximized"
-            DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
+            DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, nextListFlickableItem, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
             SequentialAnimation {
                 PauseAnimation { duration: 200 }
                 DefaultNumberAnimation { target: artAndTitleBackground ; property: "opacity" }
             }
         },
         Transition {
-            DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
+            DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, nextListFlickableItem, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
         }
     ]
 }
