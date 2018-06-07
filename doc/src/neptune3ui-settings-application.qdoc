@@ -1,0 +1,88 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-settings-application.html
+   \title Neptune 3 UI - General Settings Application
+   \previouspage neptune3ui-index.html
+   \brief The Settings Application of Neptune 3 UI
+
+   In Neptune 3, an application called "com.pelagicore.apps.settings" is pre-installed
+   allowing the user to have their own preferences, such as languages, themes and colors.
+
+   \section1 Languages Settings
+
+   \image settings-app-languages.jpg
+
+   Settings application contains a language settings menu that allows the user to
+   set the global language used in Neptune 3 UI.
+
+   Neptune 3 UI supports following languages:
+   \list
+   \li American English
+   \li British English
+   \li Czech Language
+   \li German Language
+   \li Japanese Language
+   \li Chinese Language
+   \li Korean Language
+   \endlist
+
+   \section1 Date and Time Settings
+
+   \image settings-app-timezone.jpg
+
+   Settings application contains a date and time settings menu that allows the user to
+   set the time format and time zone.
+
+   \section1 Themes Settings
+
+   \image settings-app-themes.jpg
+
+   Neptune 3 UI supports two type of themes, dark theme and light theme. By default,
+   light theme is used. The user can change the UI theme through the Settings application
+   to switch between dark and light theme.
+
+   The images below show how the dark theme looks like:
+
+   \image neptune-dark-theme1.jpg
+
+   \image neptune-dark-theme2.jpg
+
+   \section1 Accent Color Settings
+
+   \image settings-app-accent-color.jpg
+
+   Neptune 3 UI provides eight options of color to be used as the accent color. The
+   default color is orange.
+
+   The following images show how it looks when the accent color is being changed.
+
+   \image neptune-accent-color1.jpg
+
+   \image neptune-accent-color2.jpg
+*/

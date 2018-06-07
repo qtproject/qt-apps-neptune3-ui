@@ -146,7 +146,7 @@
        Web Radio App, Same Game. User can also uninstall these external installed
        apps using the Application Store.
    \row
-       \li General Settings (\c settingsapp)
+       \li \l{Neptune 3 UI - General Settings Application}{General Settings} (\c settingsapp)
        \li General Settings provides a set of common UI settings, such as language
        settings, theme settings, date and time settings, as well as color settings.
    \endtable
