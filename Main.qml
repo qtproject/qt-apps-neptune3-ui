@@ -299,16 +299,14 @@ Window {
         id: notificationInterface
         property bool actionAccepted: false
         summary: qsTr("Battery level is low")
-        body: qsTr("Start route to 'EV Connect Charging Station'?")
+        body: qsTr("Start route to nearest charging station?")
         timeout: 4000
         showActionsAsIcons: true
         actions: [{"actionText": "ic-navigation-dark"}]
         category: "notification"
         onActionTriggered: {
             //jump to navigation app
-            var address = body.slice(body.indexOf("'") + 1,body.indexOf("?") - 1);
-            var pathToRoute = "x-map://getMeTo/" + address;
-            Qt.openUrlExternally(pathToRoute);
+            Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
             actionAccepted = true;
         }
         onVisibleChanged: {
