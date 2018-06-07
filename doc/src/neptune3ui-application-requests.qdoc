@@ -122,15 +122,21 @@
    "sources" in the toolbar menu on the right side. A popup will open with all available music
    sources. Choosing any of those will direct you to the respective music application.
 
+   \youtube qww9yMjVyos
+
    \section2 Vehicle Settings
    In the energy panel there is list with 'charging station' suggestions. If any of those is
    pressed, then the maps application will directly open, loading the selected charging station's
    address and ready to navigate there.
 
+   \youtube fwcC2TiIWps
+
    \section2 System Notifications
    A ctrl+n press simulates a "Battery Low" event by triggering a system notification containing
    an action button. If the action button is pressed, the maps application will directly open,
    loading the suggested charging station's address and ready to navigate there.
+
+   \youtube Ob3mX0enflw
 
 */
 
