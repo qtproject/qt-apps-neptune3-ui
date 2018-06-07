@@ -821,7 +821,7 @@
     </message>
     <message>
         <source>playlists</source>
-        <translation type="unfinished">プレイリスト</translation>
+        <translation type="obsolete">プレイリスト</translation>
     </message>
     <message>
         <source>albums</source>
@@ -829,7 +829,7 @@
     </message>
     <message>
         <source>folders</source>
-        <translation type="unfinished">フォルダー</translation>
+        <translation type="obsolete">フォルダー</translation>
     </message>
     <message>
         <source>sources</source>

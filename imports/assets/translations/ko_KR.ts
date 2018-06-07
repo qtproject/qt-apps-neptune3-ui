@@ -828,7 +828,7 @@
     </message>
     <message>
         <source>playlists</source>
-        <translation type="unfinished">재생 목록</translation>
+        <translation type="obsolete">재생 목록</translation>
     </message>
     <message>
         <source>albums</source>
@@ -836,7 +836,7 @@
     </message>
     <message>
         <source>folders</source>
-        <translation type="unfinished">폴더</translation>
+        <translation type="obsolete">폴더</translation>
     </message>
     <message>
         <source>sources</source>

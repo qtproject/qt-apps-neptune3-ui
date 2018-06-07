@@ -860,7 +860,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>playlists</source>
-        <translation type="unfinished">播放列表</translation>
+        <translation type="obsolete">播放列表</translation>
     </message>
     <message>
         <source>albums</source>
@@ -868,7 +868,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>folders</source>
-        <translation type="unfinished">文件夹</translation>
+        <translation type="obsolete">文件夹</translation>
     </message>
 </context>
 <context>

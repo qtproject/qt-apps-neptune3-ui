@@ -736,7 +736,7 @@
     </message>
     <message>
         <source>playlists</source>
-        <translation>Wiedergabeliste</translation>
+        <translation type="vanished">Wiedergabeliste</translation>
     </message>
     <message>
         <source>albums</source>
@@ -744,7 +744,7 @@
     </message>
     <message>
         <source>folders</source>
-        <translation>Ordner</translation>
+        <translation type="vanished">Ordner</translation>
     </message>
     <message>
         <source>sources</source>

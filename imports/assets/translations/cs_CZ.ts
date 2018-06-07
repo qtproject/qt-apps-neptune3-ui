@@ -1003,7 +1003,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>playlists</source>
-        <translation>seznamy</translation>
+        <translation type="vanished">seznamy</translation>
     </message>
     <message>
         <source>albums</source>
@@ -1011,7 +1011,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>folders</source>
-        <translation>složky</translation>
+        <translation type="vanished">složky</translation>
     </message>
 </context>
 <context>

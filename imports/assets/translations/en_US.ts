@@ -524,15 +524,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>playlists</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>albums</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>folders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
