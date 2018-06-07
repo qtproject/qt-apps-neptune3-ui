@@ -76,7 +76,7 @@ Item {
     signal maximizeMap()
     signal startNavigationRequested()
     signal stopNavigationRequested()
-    signal showRouteRequested(var destCoord, var description)
+    signal showRouteRequested(var destCoord, string description)
 
     function zoomIn() {
         mainMap.zoomLevel += 1.0;

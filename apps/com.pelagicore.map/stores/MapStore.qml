@@ -38,7 +38,6 @@ import utils 1.0
 QtObject {
     id: root
 
-    readonly property bool calculating: routeModel.status === RouteModel.Loading
     readonly property alias model: routeModel
     property string routeDistance
     property string routeTime
@@ -78,17 +77,20 @@ QtObject {
     }
 
     property GeocodeModel intentGeoCodeModel: GeocodeModel {
-        plugin: Plugin {
-            name: "osm";
-            locales: Style.languageLocale
-            PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
-        }
+        plugin: herePlugin
         limit: 20
         onCountChanged: {
             if (count > 0) {
                 root.intentNavigationRequested(get(0).address.text, get(0).coordinate, get(0).boundingBox);
             }
         }
+    }
+
+    readonly property Plugin herePlugin: Plugin {
+        name: "here";
+        locales: Style.languageLocale
+        PluginParameter { name: "here.app_id"; value: "jC7kvNx3H7lFMuExMDA7" }
+        PluginParameter { name: "here.token"; value: "0ehO2fWIAfkyOB5oxL6_cw" }
     }
 
     signal intentNavigationRequested(string address, var coord, var boundingBox)
@@ -186,11 +188,7 @@ QtObject {
     }
 
     readonly property GeocodeModel geocodeModel: GeocodeModel {
-        plugin: Plugin {
-            name: "osm";
-            locales: Style.languageLocale
-            PluginParameter { name: "osm.useragent"; value: "Neptune UI" }
-        }
+        plugin: herePlugin
         onStatusChanged: {
             if (status === RouteModel.Null) {
                 console.info("Search model idle");
@@ -211,7 +209,7 @@ QtObject {
         query: RouteQuery {
             waypoints: [root.startCoord, root.destCoord]
         }
-        plugin: Plugin { name: "osm" }
+        plugin: herePlugin
 
         onStatusChanged: {
             if (status === RouteModel.Null) {
@@ -238,7 +236,7 @@ QtObject {
         query: RouteQuery {
             waypoints: [root.currentLocationCoord, root.homeCoord]
         }
-        plugin: Plugin { name: "osm" }
+        plugin: herePlugin
 
         onStatusChanged: {
             if (status === RouteModel.Ready) {
@@ -255,7 +253,7 @@ QtObject {
         query: RouteQuery {
             waypoints: [root.currentLocationCoord, root.workCoord]
         }
-        plugin: Plugin { name: "osm" }
+        plugin: herePlugin
         onStatusChanged: {
             if (status === RouteModel.Ready) {
                 if (count > 0) {

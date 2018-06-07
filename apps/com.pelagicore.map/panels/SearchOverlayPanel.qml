@@ -51,8 +51,8 @@ ColumnLayout {
     signal backButtonClicked()
     signal searchFieldAccepted()
     signal escapePressed()
-    signal searchQueryChanged(var searchQuery)
-    signal itemClicked(var index, string addressText, var coordinate, var boundingBox)
+    signal searchQueryChanged(string searchQuery)
+    signal itemClicked(int index, string addressText, var coordinate, var boundingBox)
 
     ToolButton {
         anchors.left: parent.left
