@@ -34,6 +34,7 @@
 #include <QtQuick/QQuickItem>
 #include <QtQuick/QQuickWindow>
 #include <QtGui/QGuiApplication>
+#include <QtGui/QFontInfo>
 #include <QtCore/QSettings>
 #include <QQmlEngine>
 
@@ -98,11 +99,17 @@ static ThemeData& neptunestyle_theme_data(NeptuneStyle::Theme theme)
 class StyleData {
 public:
     StyleData()
-        : font(QGuiApplication::font())
-        , fontFactor(1.0)
+        : fontFactor(1.0)
         , theme(NeptuneStyle::Light)
         , scale(1.0)
     {
+        const QFont sansFont(QLatin1String("Open Sans"));
+
+        if (QFontInfo(sansFont).family() == QLatin1String("Open Sans"))
+            font.setFamily(font.family());
+
+        font.setPixelSize(15);
+        QGuiApplication::setFont(font);
         compute();
     }
     StyleData(const StyleData &data)

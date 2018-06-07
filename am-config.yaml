@@ -29,6 +29,8 @@ runtimes:
 ui:
   fullscreen: no
   style: "${CONFIG_PWD}/styles/neptune"
+  iconThemeName: "neptune"
+  iconThemeSearchPaths: [ "${CONFIG_PWD}/imports/assets/icons" ]
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
   windowIcon: "${CONFIG_PWD}/imports/assets/icons/neptune/sysui/ic-menu-home.png"

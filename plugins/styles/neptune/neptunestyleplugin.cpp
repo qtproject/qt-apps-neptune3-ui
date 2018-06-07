@@ -33,7 +33,6 @@
 
 #include <QtQml>
 #include "neptunestyle.h"
-#include "neptunetheme.h"
 #include "qquickiconlabel_p.h"
 #include "qquickdefaultprogressbar_p.h"
 
@@ -59,10 +58,4 @@ void NeptuneStylePlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 QString NeptuneStylePlugin::name() const
 {
     return QStringLiteral("neptune");
-}
-
-QQuickProxyTheme *NeptuneStylePlugin::createTheme() const
-{
-    qCDebug(neptuneStyle) << "Created a NeptuneTheme instance";
-    return new NeptuneTheme;
 }

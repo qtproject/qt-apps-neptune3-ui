@@ -12,7 +12,6 @@ DEFINES += "NEPTUNE_ICONS_PATH=$$clean_path($$INSTALL_PREFIX/neptune3/imports/as
 SOURCES += \
     neptunestyle.cpp \
     neptunestyleplugin.cpp \
-    neptunetheme.cpp \
     qquickiconlabel.cpp \
     qquickicon.cpp \
     qquickdefaultprogressbar.cpp
@@ -20,7 +19,6 @@ SOURCES += \
 HEADERS += \
     neptunestyle.h \
     neptunestyleplugin.h \
-    neptunetheme.h \
     qquickiconlabel_p.h \
     qquickiconlabel_p_p.h \
     qquickicon_p.h \

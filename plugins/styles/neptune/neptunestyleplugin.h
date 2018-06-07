@@ -48,8 +48,6 @@ public:
     void registerTypes(const char *uri) override;
     void initializeEngine(QQmlEngine *engine, const char *uri) override;
     QString name() const override;
-    QQuickProxyTheme *createTheme() const override;
-
 };
 
 #endif // NEPTUNESTYLEPLUGIN_H
