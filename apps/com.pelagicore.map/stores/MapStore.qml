@@ -69,19 +69,19 @@ QtObject {
             if (request.indexOf("getmeto/") >= 0) {
                 dest = request.slice(8, request.length);
                 root.destination = dest;
-                intentGeoCodeModel.reset();
-                intentGeoCodeModel.query = dest;
-                intentGeoCodeModel.update();
+                requestGeoCodeModel.reset();
+                requestGeoCodeModel.query = dest;
+                requestGeoCodeModel.update();
             }
         }
     }
 
-    property GeocodeModel intentGeoCodeModel: GeocodeModel {
+    property GeocodeModel requestGeoCodeModel: GeocodeModel {
         plugin: herePlugin
         limit: 20
         onCountChanged: {
             if (count > 0) {
-                root.intentNavigationRequested(get(0).address.text, get(0).coordinate, get(0).boundingBox);
+                root.requestNavigationReceived(get(0).address.text, get(0).coordinate, get(0).boundingBox);
             }
         }
     }
@@ -93,7 +93,7 @@ QtObject {
         PluginParameter { name: "here.token"; value: "0ehO2fWIAfkyOB5oxL6_cw" }
     }
 
-    signal intentNavigationRequested(string address, var coord, var boundingBox)
+    signal requestNavigationReceived(string address, var coord, var boundingBox)
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;

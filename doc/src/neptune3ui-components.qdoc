@@ -53,8 +53,8 @@
    Neptune UI interfaces:
    \list
        \li \l{NotificationInterface}
-       \li \l{IntentsInterface}
-       \li \l{MusicIntentsIPC}
+       \li \l{ApplicationRequestHandler}
+       \li \l{MusicAppRequestsIPC}
    \endlist
 
    Neptune UI animations:

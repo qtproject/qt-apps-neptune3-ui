@@ -85,7 +85,7 @@ QtObject {
         \qmlproperty string ApplicationRequestHandler ::activeAppId
 
         This property holds the active application id. It is used to store the active application id
-        before an intent request is submitted in order to be able to navigate back to it accordingly.
+        before an application request is submitted in order to be able to navigate back to it accordingly.
     */
 
     property string activeAppId: ""

@@ -122,9 +122,9 @@ You can use the following interfaces in application development:
         \l {GNOME Desktop Notifications Specification} {org.freedesktop.Notifications}
         D-Bus interface.
     \row
-        \li \l {IntentsInterface}
-        \li Provides an interface to support the intent concept in Neptune 3 to communicate
-            between application within Neptune 3
+        \li \l {ApplicationRequestHandler}
+        \li Provides an interface to support the application request concept in Neptune 3
+            to communicate between application within Neptune 3
 \endtable
 
 Click \l{Neptune 3 UI Components and Interfaces}{here} to see more details about available

@@ -100,7 +100,7 @@
    to the application's info.yaml files (e.g., mimeTypes: [ 'x-scheme-handler/x-radio' ]).
    The ApplicationManager will then consult its internal database of applications looking
    for a match with x-scheme-handler/x-mimeType. If there is a successful match, then the
-   openUrlRequested signal will be emitted and its receiver (\l{IntentsInterface}) can then
+   openUrlRequested signal will be emitted and its receiver (\l{ApplicationRequestHandler}) can then
    either acknowledge the request by calling acknowledgeOpenUrlRequest function or reject
    (rejectOpenUrlRequest). If then the application is started, the url is supplied to the
    application as a document through the signal openDocument(string documentUrl, string

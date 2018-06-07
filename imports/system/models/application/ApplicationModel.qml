@@ -76,7 +76,7 @@ ListModel {
     }
 
     function goBack() {
-        //if an intent is requested
+        //if a request is sent
         if (d.applicationRequestHandler.history.length > 1) {
             d.applicationRequestHandler.goBack();
         } else {
