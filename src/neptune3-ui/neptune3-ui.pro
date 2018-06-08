@@ -26,3 +26,9 @@ DESTDIR = $$OUT_PWD/../../
 
 target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
+
+win32 {
+    wrapper.files = neptune3-ui_wrapper.bat
+    wrapper.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += wrapper
+}
