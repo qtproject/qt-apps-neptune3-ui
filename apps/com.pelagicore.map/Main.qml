@@ -43,7 +43,15 @@ import "helpers"
 
 QtObject {
     // used for copying the offline DB
-    readonly property var _mapsHelper: MapsHelper {}
+    readonly property var _mapsHelper: MapsHelper {
+        appPath: Qt.resolvedUrl("./")
+
+        onAppPathChanged: {
+            if (appPath !== "") {
+                initMap();
+            }
+        }
+    }
 
     property var mainWindow: PrimaryWindow {
         id: mainWindow

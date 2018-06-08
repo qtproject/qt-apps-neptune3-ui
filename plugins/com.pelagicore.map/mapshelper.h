@@ -34,16 +34,24 @@
 #include <QObject>
 #include <QQmlParserStatus>
 
-class MapsHelper : public QObject, public QQmlParserStatus
+class MapsHelper : public QObject
 {
     Q_OBJECT
-    Q_INTERFACES(QQmlParserStatus)
+
+    Q_PROPERTY(QString appPath READ appPath WRITE setAppPath NOTIFY appPathChanged)
 
 public:
     explicit MapsHelper(QObject *parent = nullptr);
     ~MapsHelper() = default;
 
+    void setAppPath(const QString &appPath);
+    QString appPath() const;
+
+    Q_INVOKABLE void initMap();
+
+signals:
+    void appPathChanged();
+
 protected:
-    void classBegin() override;
-    void componentComplete() override;
+    QString m_appPath;
 };

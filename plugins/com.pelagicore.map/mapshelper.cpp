@@ -43,11 +43,23 @@ MapsHelper::MapsHelper(QObject *parent)
 {
 }
 
-void MapsHelper::classBegin()
+void MapsHelper::setAppPath(const QString &appPath)
+{
+    if (m_appPath != appPath) {
+        m_appPath = appPath;
+        emit appPathChanged();
+    }
+}
+
+QString MapsHelper::appPath() const
+{
+    return m_appPath;
+}
+
+void MapsHelper::initMap()
 {
     // copy mapboxgl offline DB
-    const QString prefix = STR(INSTALL_PATH) + QStringLiteral("apps/com.pelagicore.map/");
-    const QString sourceFile = prefix + QStringLiteral("maps/mapboxgl.db");
+    const QString sourceFile = m_appPath + QStringLiteral("maps/mapboxgl.db");
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     const QString destFile = destDir + QStringLiteral("/mapboxgl.db");
     QDir dir;
@@ -56,6 +68,3 @@ void MapsHelper::classBegin()
     QFile::copy(sourceFile, destFile);
 }
 
-void MapsHelper::componentComplete()
-{
-}
