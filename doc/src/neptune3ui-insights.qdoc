@@ -43,18 +43,21 @@
    to develop applications for Neptune 3 UI.
 
    See \l{Application Architecture of Neptune 3 UI} to understand the Core UI Architecture
-   that is applied in Neptune 3 UI.
+   that is applied in all applications of Neptune 3 UI.
 
-   See \l{Neptune 3 UI Application Requests} to know more about the application requests
-   concept that is implemented in Neptune 3 UI.
+   \l{Neptune 3 UI Application Requests} shows how the application requests
+   concept is implemented in Neptune 3 UI.
 
-   See \l{Neptune 3 UI Components and Interfaces} for a list of all
-   provided UI components and interfaces in Neptune 3 UI.
+   \l{Neptune 3 UI Components and Interfaces} lists all provided UI components and
+   interfaces in Neptune 3 UI.
 
    \l{Application Anatomy of Neptune 3 UI} explains how the application behavior
    is implemented in Neptune 3 UI.
 
    \l{Neptune 3 UI Remote Settings Server} shows the concept of the remote settings
    server that is used by Neptune 3 UI.
+
+   Neptune 3 UI also provides a \l{Neptune 3 UI System Dialog}{System Dialog} displaying
+   details about the environment being used and the performance monitor of the system.
 */
 

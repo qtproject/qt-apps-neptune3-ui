@@ -43,8 +43,8 @@
    a \l{center stack display} and a \l{instrument cluster}. You can develop, maintain,
    and deploy applications with Neptune 3 UI.
 
-   See \l{Neptune 3 UI Insights} for further information on how you can start
-   working with Neptune 3 UI.
+   See \l{Neptune 3 UI Insights} for further information to understand the concept
+   and how to run and start working with Neptune 3 UI.
 
    \section1 Overview
 
@@ -106,7 +106,7 @@
 
    \section1 Neptune 3 UI Applications
 
-   Neptune 3 UI contains of several pre-installed applications:
+   Neptune 3 UI contains several built-in (pre-installed) applications:
 
    \table
    \header
@@ -159,22 +159,25 @@
 
    \image instrument-cluster.jpg
 
-   In the Instrument Cluster the user can find driving related information like the speed,
+   In the Instrument Cluster, the user can find driving related information like the speed,
    cruise control parameters, gear and energy use (for an electric car). Users can also
-   have information from the selected \uicontrol application-window (Music, Navigation,
-   Phone etc.) ordered in views which you can navigate between with controls on the
-   steering wheel. The size and position of meters and other driving related information
-   is flexible to make space for views, like Navigation, that requires more space.
+   have information from the selected application-windows (Music or Navigation
+   ordered in views which you can navigate between. In order to switch between available
+   application-window, the user can use the remote settings server of Neptune 3
+   UI or a physical keyboard and press CTRL + c.  The size and position of gauges and
+   other driving related information is flexible making space for views, like Navigation,
+   that requires more space.
 
    \image instrument-cluster-nav.jpg
 
    \section2 Center Stack Display
 
-   The Center Stack display is designed around showing the multiprocess capabilities;
+   The Center Stack display is designed to show the multiprocess capabilities;
    the fact that we can run several applications at the same time with quick response and
-   smooth transitions. Even if we technically have different applications, running in
+   smooth transitions. Even if we technically have different applications running on
    separate processes, the intention is to fade out the border between them, and between
-   the apps and the System UI, giving the user a perception that it is one unified system.
+   them and the System UI, giving the user a perception that it is one unified
+   system.
 
    In addition to traditional applications, like Music Player, Phone and Navigation, the
    Center Stack display also contains climate settings, system notifications and different
@@ -194,7 +197,7 @@
 
    \section2 Application Launcher
 
-   The \uicontrol Application Launcher can be expanded by tapping on the grid icon on the upper
+   The Application Launcher can be expanded by tapping on the grid icon on the upper
    end of the screen. Users can choose which application to be maximized by tapping on the
    application icon. Users can also define four top applications to be shown without expanding the
    launcher by pressing-and-hold the selected application and drag it to the desired position as
@@ -204,16 +207,21 @@
 
    \section2 Application Widget
 
-   By default, the \l{center stack display} has three application widgets. User can choose which application
-   to be shown on the home screen as widget by tapping on the \uicontrol Add-Widget icon below
-   the lowest widget and choose the desired application. Only application that is specified to
-   have a widget-option will be listed there.
+   By default, the \l{center stack display} shows three application widgets. User can choose which
+   application to be shown on the home screen as widget by tapping on the Add-Widget icon
+   below the lowest widget and choose the desired application. Only application that is specified to
+   have a widget-option will be listed there. The user can also remove a widget from the home screen
+   by tapping on the X icon at the bottom left corner of the widget.
+
+   \note removing an application widget does not mean that the application is killed. The application
+   will be still running on the background. See \l{Neptune 3 UI System Dialog} for more information
+   about killing an application.
 
    \image center-stack-add-widget.jpg
 
    \section2 Climate Bar
 
-   Neptune 3 has a \uicontrol Climate Bar located at the bottom of the \l{Center Stack Display}. When tapping
+   Neptune 3 UI has a Climate Bar located at the bottom of the \l{Center Stack Display}. When tapping
    into it, a Climate Panel will be shown up with some simulation data interface to \l{Qt IVI}
    as shown in the following image:
 
@@ -221,9 +229,10 @@
 
    \section2 Notification Center
 
-   Neptune 3 has a \uicontrol Notification Center to store Notifications that are triggered in
-   Neptune 3. User can remove each notification in the \uicontrol Notification Center or clear
-   the \uicontrol Notification Center.
+   Neptune 3 UI has a Notification Center to store Notifications that are triggered in
+   Neptune 3 UI. When a notification is triggered, a Notification Toast will be shown first
+   and it will be stored in the Notification Center afterwards. The User can remove each
+   notification in the Notification Center or clear the Notification Center.
 
    \image center-stack-notification-center.jpg
 */
