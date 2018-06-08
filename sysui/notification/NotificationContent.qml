@@ -39,19 +39,72 @@ ModalOverlay {
     id: root
 
     showModalOverlay: notificationCenter.notificationCenterVisible
-    onOverlayClicked: notificationCenter.closeNotificationCenter()
+    onOverlayClicked: notificationModel.notificationCenterVisible = false
+
+    NotificationModel {
+        id: notificationModel
+    }
 
     NotificationCenter {
         id: notificationCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        notificationModel: NotificationModel { }
+        notificationModel: notificationModel
     }
     NotificationToast {
+        id: notificationToast
         leftPadding: NeptuneStyle.dp(40)
         rightPadding: NeptuneStyle.dp(40)
         anchors.left: parent.left
         anchors.right: parent.right
-        notificationModel: notificationCenter.notificationModel
+        notificationModel: notificationModel
+    }
+
+    NotificationHandle {
+        id: notificationHandle
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.top: notificationToast.y !== -notificationToast.height ? notificationToast.bottom : notificationCenter.bottom
+        dragTarget: notificationToast.y !== -notificationToast.height ? notificationToast : notificationCenter
+        drag.minimumY: notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : -notificationCenter.height
+        drag.maximumY: 0
+        drag.onActiveChanged: {
+            notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+        }
+
+        onPressed: {
+            if (!notificationModel.notificationToastVisible) {
+                // reset values
+                notificationHandle.dragDelta = 0;
+                notificationHandle.dragOrigin = notificationHandle.dragTarget.y;
+                notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+
+                // start drag filter timer
+                notificationHandle.dragFilterTimer.running = true;
+            }
+        }
+
+        onReleased: {
+            if (!notificationModel.notificationToastVisible) {
+                if (!notificationHandle.drag.active && notificationHandle.swipe) {
+                    if (notificationModel.notificationCenterVisible && notificationHandle.dragDelta > 0) {
+                        notificationModel.notificationCenterVisible = true;
+                    } else if (notificationModel.notificationCenterVisible && notificationHandle.dragDelta < 0) {
+                        notificationModel.notificationCenterVisible = false;
+                    } else {
+                        notificationModel.notificationCenterVisible = !notificationModel.notificationCenterVisible;
+                    }
+                } else {
+                    notificationModel.notificationCenterVisible = !notificationModel.notificationCenterVisible;
+                }
+
+                // stop drag filter timer
+                notificationHandle.dragFilterTimer.running = false;
+                notificationHandle.dragDelta = notificationHandle.dragTarget.y - notificationHandle.dragOrigin;
+
+            } else {
+                // close notification toast
+                notificationModel.closeNotification();
+            }
+        }
     }
 }

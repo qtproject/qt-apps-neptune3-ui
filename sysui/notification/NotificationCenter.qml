@@ -40,7 +40,7 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    y: root.notificationCenterVisible ? root.dragMaximumY : -root.dragMinimumY
+    y: root.notificationCenterVisible ? 0 : -root.height
 
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
@@ -55,8 +55,6 @@ Item {
     readonly property int listviewMaxHeight: NeptuneStyle.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
     readonly property int notificationTopMargin: NeptuneStyle.dp(80)
     readonly property int notificationBottomMargin: NeptuneStyle.dp(144)
-    readonly property int dragMaximumY: 0
-    readonly property int dragMinimumY: root.height
     readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
 
     Behavior on y {
@@ -66,10 +64,6 @@ Item {
     Behavior on height {
         enabled: !root.notificationModel.notificationToastVisible
         DefaultNumberAnimation { }
-    }
-
-    function closeNotificationCenter() {
-        root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
     }
 
     Rectangle {
@@ -135,58 +129,6 @@ Item {
                 onClicked: {
                     root.notificationModel.clearNotification();
                 }
-            }
-        }
-    }
-
-    NotificationHandle {
-        id: notificationHandle
-        anchors.horizontalCenter: root.horizontalCenter
-        anchors.top: root.bottom
-        dragTarget: root
-        drag.minimumY: root.notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : - root.dragMinimumY
-        drag.maximumY: root.notificationModel.notificationToastVisible ? 0 : root.dragMaximumY
-        drag.onActiveChanged: {
-            notificationHandle.prevDragY = notificationHandle.dragTarget.y;
-        }
-
-        onPressed: {
-            if (!root.notificationModel.notificationToastVisible) {
-                // reset values
-                notificationHandle.dragDelta = 0;
-                notificationHandle.dragOrigin = notificationHandle.dragTarget.y;
-                notificationHandle.prevDragY = notificationHandle.dragTarget.y;
-                notificationCenterBg.opacity = 1.0;
-
-                // start drag filter timer
-                notificationHandle.dragFilterTimer.running = true;
-            }
-        }
-
-        onReleased: {
-            if (!root.notificationModel.notificationToastVisible) {
-                if (!notificationHandle.drag.active && notificationHandle.swipe) {
-                    if (root.notificationModel.notificationCenterVisible && notificationHandle.dragDelta > 0) {
-                        root.notificationModel.notificationCenterVisible = true;
-                    } else if (root.notificationModel.notificationCenterVisible && notificationHandle.dragDelta < 0) {
-                        root.notificationModel.notificationCenterVisible = false;
-                    } else {
-                        root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
-                    }
-                } else {
-                    root.notificationModel.notificationCenterVisible = !root.notificationModel.notificationCenterVisible;
-                }
-
-                // stop drag filter timer
-                notificationHandle.dragFilterTimer.running = false;
-                notificationHandle.dragDelta = notificationHandle.dragTarget.y - notificationHandle.dragOrigin;
-
-                if (!root.notificationModel.notificationCenterVisible) {
-                    notificationCenterBg.opacity = 0.0;
-                }
-            } else {
-                // close notification toast
-                root.notificationModel.closeNotification();
             }
         }
     }
