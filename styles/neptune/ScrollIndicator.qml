@@ -81,7 +81,7 @@ T.ScrollIndicator {
     contentItem: Rectangle {
         implicitWidth: NeptuneStyle.dp(7)
         radius: width / 2
-        color: NeptuneStyle.accentDetailColor
+        color: NeptuneStyle.accentColor
         opacity: control.active ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { duration: opacity < 0.1 ? 80 : 500 } }
         visible: opacity > 0
