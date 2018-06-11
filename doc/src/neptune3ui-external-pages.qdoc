@@ -134,3 +134,8 @@
     \externalpage http://doc.qt.io/QtIVI/qtivi-ivicore-qface-ivi-remote-example.html
     \title Qt IVI Generator Remote Objects Example
 */
+
+/*!
+    \externalpage https://wiki.qt.io/QtWayland
+    \title Qt Wayland
+*/

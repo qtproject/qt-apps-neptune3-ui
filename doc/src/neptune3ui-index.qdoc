@@ -86,7 +86,7 @@
        \li Neptune 3 UI element
        \li Description
    \row
-       \li System UI (\c sysui)
+       \li \l{Neptune 3 System UI}{System UI} (\c sysui)
        \li Such as climate panel, notification center, application launcher, status
        bar, etc.
    \row
