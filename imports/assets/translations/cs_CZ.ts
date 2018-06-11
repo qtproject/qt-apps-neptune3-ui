@@ -113,19 +113,19 @@ UX na cestu</translation>
     <name>AppStoreServer</name>
     <message>
         <source>%1 Successfully Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 úspěšně nainstalován</translation>
     </message>
     <message>
         <source>%1 successfully installed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 úspěšně nainstalován</translation>
     </message>
     <message>
         <source>%1 Successfully Uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 úspěšně odinstalován</translation>
     </message>
     <message>
         <source>%1 successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 úspěšně odinstalován</translation>
     </message>
 </context>
 <context>
@@ -582,22 +582,22 @@ UX na cestu</translation>
     </message>
     <message>
         <source>MANUAL</source>
-        <translation type="unfinished"></translation>
+        <translation>RUČNĚ</translation>
     </message>
     <message>
         <source>BROWSE</source>
-        <translation type="unfinished"></translation>
+        <translation>PROCHÁZET</translation>
     </message>
 </context>
 <context>
     <name>Helper</name>
     <message>
         <source>Offline mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline režim</translation>
     </message>
     <message>
         <source>Search and navigation not available in offline mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání a navigace nedostupné v offline režimu.</translation>
     </message>
 </context>
 <context>
@@ -849,15 +849,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt Application Manager: %1</translation>
     </message>
     <message>
         <source>Qt IVI: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt IVI: %1</translation>
     </message>
     <message>
         <source>Neptune 3: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neptune 3: %1</translation>
     </message>
 </context>
 <context>
@@ -973,25 +973,25 @@ UX na cestu</translation>
     <name>MusicSourcesPopup</name>
     <message>
         <source>Choose Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat zdroj</translation>
     </message>
 </context>
 <context>
     <name>MusicStore</name>
     <message>
         <source>Unknown Artist</source>
-        <translation type="unfinished">Neznámý umělec</translation>
+        <translation>Neznámý umělec</translation>
     </message>
     <message>
         <source>Unknown Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámé album</translation>
     </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
     <message>
         <source>sources</source>
-        <translation type="unfinished">zdroje</translation>
+        <translation>zdroje</translation>
     </message>
     <message>
         <source>favorites</source>
@@ -1062,7 +1062,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Search not available offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání nedostupné offline</translation>
     </message>
 </context>
 <context>
@@ -1227,31 +1227,31 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Accent Color changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva zvýraznění UI změněna</translation>
     </message>
     <message>
         <source>UI Accent Color changed into %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barva zvýraznění UI změněna na %1</translation>
     </message>
     <message>
         <source>UI Language changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk UI změněn</translation>
     </message>
     <message>
         <source>UI Theme changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Motiv UI změněn</translation>
     </message>
     <message>
         <source>UI Theme changed into Light Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Motiv UI změněn na světlý</translation>
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Motiv UI změněn na tmavý</translation>
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk UI změněn na %1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1483,42 +1483,42 @@ UX na cestu</translation>
     <name>TunerStore</name>
     <message>
         <source>FM1</source>
-        <translation type="unfinished">FM1</translation>
+        <translation>FM1</translation>
     </message>
     <message>
         <source>FM2</source>
-        <translation type="unfinished">FM2</translation>
+        <translation>FM2</translation>
     </message>
     <message>
         <source>AM</source>
-        <translation type="unfinished">AM</translation>
+        <translation>AM</translation>
     </message>
     <message>
         <source>KHz</source>
-        <translation type="unfinished">KHz</translation>
+        <translation>KHz</translation>
     </message>
     <message>
         <source>MHz</source>
-        <translation type="unfinished">MHz</translation>
+        <translation>MHz</translation>
     </message>
 </context>
 <context>
     <name>TunerToolsColumn</name>
     <message>
         <source>favorites</source>
-        <translation type="unfinished">oblíbené</translation>
+        <translation>oblíbené</translation>
     </message>
     <message>
         <source>AM band</source>
-        <translation type="unfinished"></translation>
+        <translation>Pásmo AM</translation>
     </message>
     <message>
         <source>FM 1 band</source>
-        <translation type="unfinished"></translation>
+        <translation>Pásmo FM 1</translation>
     </message>
     <message>
         <source>FM 2 band</source>
-        <translation type="unfinished"></translation>
+        <translation>Pásmo FM 2</translation>
     </message>
     <message>
         <source>music</source>
@@ -1534,7 +1534,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>sources</source>
-        <translation type="unfinished">zdroje</translation>
+        <translation>zdroje</translation>
     </message>
 </context>
 <context>
@@ -1694,19 +1694,19 @@ UX na cestu</translation>
     <name>VehicleStore</name>
     <message>
         <source>Fees</source>
-        <translation type="unfinished">Poplatky</translation>
+        <translation>Poplatky</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Asistent sjezdu z kopce</translation>
+        <translation>Asistent sjezdu z kopce</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Asistent v dopravní zácpě</translation>
+        <translation>Asistent v dopravní zácpě</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished">Inteligentní přizpůsobení rychlosti</translation>
+        <translation>Inteligentní přizpůsobení rychlosti</translation>
     </message>
 </context>
 <context>
