@@ -142,8 +142,6 @@ ItemDelegate {
     */
     property bool wrapText: false
 
-
-
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
@@ -161,7 +159,7 @@ ItemDelegate {
     implicitWidth: NeptuneStyle.dp(100)
 
     indicator: NeptuneIconLabel {
-        height: root.height
+        height: root.icon ? root.height : 0
         opacity: NeptuneStyle.opacityHigh
         iconScale: NeptuneStyle.scale
         spacing: root.spacing
@@ -171,11 +169,10 @@ ItemDelegate {
     }
 
     contentItem: Item {
-
         RowLayout {
             anchors.left: parent.left
             anchors.right: parent.right
-
+            anchors.verticalCenter: subText ? undefined : parent.verticalCenter
             ColumnLayout {
                 Layout.fillWidth: true
                 Label {
