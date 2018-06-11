@@ -35,6 +35,7 @@
    \list
        \li \l{PrimaryWindow}
        \li \l{SecondaryWindow}
+       \li \l{PopupWindow}
    \endlist
 
    Neptune UI controls:

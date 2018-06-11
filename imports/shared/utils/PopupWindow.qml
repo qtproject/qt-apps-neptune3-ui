@@ -29,6 +29,10 @@
 **
 ****************************************************************************/
 
+
+import QtQuick 2.6
+import QtApplicationManager 1.0
+
 /*!
     \qmltype PopupWindow
     \inqmlmodule utils
@@ -107,9 +111,6 @@
     if the main window is being resized.
 */
 
-import QtQuick 2.6
-import QtApplicationManager 1.0
-
 // TODO use visible, width & height properties instead.
 // Currently width & height properties are not passed down to the
 // server so the popup doesn't scale when the window is resizing.
@@ -126,7 +127,7 @@ ApplicationManagerWindow {
         \qmlproperty bool PopupWindow::openPopup
 
         This property indicates whether the popup should open. It can be set from both
-        systemUI and application. It will be read from PopupModel which will then take
+        systemUI and application. It will be read from \l{PopupModel} which will then take
         care of showing the popup with whatever else this action implies.
 
     */

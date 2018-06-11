@@ -45,6 +45,9 @@
    See \l{Application Architecture of Neptune 3 UI} to understand the Core UI Architecture
    that is applied in all applications of Neptune 3 UI.
 
+   \l{Neptune 3 UI Application Popups} shows how the application popups
+   concept is implemented in Neptune 3 UI.
+
    \l{Neptune 3 UI Application Requests} shows how the application requests
    concept is implemented in Neptune 3 UI.
 

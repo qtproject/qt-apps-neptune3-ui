@@ -29,6 +29,10 @@
 **
 ****************************************************************************/
 
+
+import QtQuick 2.9
+import QtQml 2.2
+
 /*!
     \qmltype PopupModel
     \inqmlmodule models.popups
@@ -39,9 +43,6 @@
     The PopupModel holds a list with all application popups in Neptune3 UI which is also managing.
     It is in other words a popup manager taking care of showing and dismissing popups.
 */
-
-import QtQuick 2.9
-import QtQml 2.2
 
 QtObject {
     id: root

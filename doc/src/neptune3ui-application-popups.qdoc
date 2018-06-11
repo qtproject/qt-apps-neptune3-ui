@@ -1,0 +1,64 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-popups.html
+   \title Neptune 3 UI Application Popups
+   \previouspage neptune3ui-insights.html
+
+   An application popup is used from applications that they have the need to display
+   information inside modal popups. As these popups should be shown in the very top layer
+   of the UI, the rendereding should be done in \l{Neptune 3 System UI}{System UI}. This
+   kind of approach involves the use of ApplicationManager and its ApplicationManageWindow API.
+
+   \section1 Implementation Insights
+
+   The interface component to the application is \l{PopupWindow}. This is displayed
+   in the \l{Center Stack Display} and gives the application the flexibility to create
+   popups containing any kind of custom content and display those in system ui as a
+   modal popups. The \l{PopupModel} is responsible of holding all application popups in
+   Neptune3 UI in a list and managing it. It is in other words a popup manager taking
+   care of showing and dismissing popups. That said, is also takes care about the
+   rendering taking into account all properties the application has set for this specific
+   popup.
+
+   See \l{PopupModel} and \l{PopupWindow} for detailed information and usage examples.
+
+   \section2 Some Use-Cases in Neptune 3 UI
+
+   \section3 Media Application
+   All available at the moment media sources.
+
+   \image music-app-popup.jpg
+
+   \section4 Sheets Application
+   Popup example in sheets application.
+
+   \image sheets-app-popup.jpg
+
+*/
+
