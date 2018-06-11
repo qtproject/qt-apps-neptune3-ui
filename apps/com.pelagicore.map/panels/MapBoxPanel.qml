@@ -217,9 +217,10 @@ Item {
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         width: NeptuneStyle.dp(background.sourceSize.width)
-        height: width
+        height: NeptuneStyle.dp(background.sourceSize.height)
         background: Image {
-            fillMode: Image.PreserveAspectFit
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
@@ -236,14 +237,16 @@ Item {
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         width: NeptuneStyle.dp(background.sourceSize.width)
-        height: width
+        height: NeptuneStyle.dp(background.sourceSize.height)
         background: Image {
-            fillMode: Image.PreserveAspectFit
+            width: NeptuneStyle.dp(sourceSize.width)
+            height: NeptuneStyle.dp(sourceSize.height)
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         enabled: !checked
         checked: mainMap.center === root.currentLocation
-        icon.source: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png") : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
+        icon.source: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png")
+                             : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
         onToggled: mainMap.center = root.currentLocation;
     }
 
