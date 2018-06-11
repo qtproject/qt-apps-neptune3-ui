@@ -41,8 +41,12 @@ QtObject {
     readonly property real volume: uiSettings.volume
 
     function setVolume(value) {
-        uiSettings.volume = value
+        uiSettings.volume = value;
     }
 
-    property bool muted: false
+    readonly property bool muted: uiSettings.muted
+
+    function setMuted(value) {
+        uiSettings.muted = value;
+    }
 }

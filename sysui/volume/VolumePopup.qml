@@ -78,10 +78,13 @@ PopupItem {
         height: NeptuneStyle.dp(1120)
         from: 0
         to: 100
-        value: root.model && root.model.muted ? 0 : Math.round(model.volume*100)
+        value: Math.round(root.model.volume*100)
         onValueChanged: {
-            if (root.model && !root.model.muted) {
-                model.setVolume(value/100.0)
+            if (root.model) {
+                if (root.model.muted) {
+                    root.model.setMuted(false);
+                }
+                model.setVolume(value/100.0);
             }
         }
     }
@@ -96,6 +99,6 @@ PopupItem {
         checkable: true
         checked: root.model ? root.model.muted : false
         icon.name: "ic-volume-0"
-        onToggled: if (root.model) { root.model.muted = !root.model.muted }
+        onToggled: if (root.model) { root.model.setMuted(!root.model.muted); }
     }
 }

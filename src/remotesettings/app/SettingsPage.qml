@@ -73,9 +73,9 @@ Flickable {
         Slider {
             id: volumeSlider
             value: uiSettings.volume
-            from: 1.0
-            to: 0.0
-            onValueChanged: if (pressed) { uiSettings.volume = value }
+            from: 0.0
+            to: 1.0
+            onMoved: uiSettings.volume = value
         }
 
         // Balance Field
