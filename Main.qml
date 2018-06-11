@@ -275,9 +275,9 @@ Window {
                 const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
                 saveFile(diagFile, display.sysInfo.qtDiag);
 
-                notificationInterface.summary = qsTr("UI screenshot has been taken successfully");
-                notificationInterface.body = qsTr("UI screenshot and diagnostics information are stored in %1").arg(tempDir);
-                notificationInterface.show();
+                notificationInterfaceInfo.summary = qsTr("UI screenshot has been taken successfully");
+                notificationInterfaceInfo.body = qsTr("UI screenshot and diagnostics information are stored in %1").arg(tempDir);
+                notificationInterfaceInfo.show();
             }
 
             onActivated: {
