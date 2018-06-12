@@ -32,6 +32,7 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Controls.impl 2.3
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
@@ -158,10 +159,10 @@ ItemDelegate {
                         ) + topPadding + bottomPadding
     implicitWidth: NeptuneStyle.dp(100)
 
-    indicator: NeptuneIconLabel {
+    indicator: IconLabel {
         height: root.icon ? root.height : 0
         opacity: NeptuneStyle.opacityHigh
-        iconScale: NeptuneStyle.scale
+        scale: NeptuneStyle.scale
         spacing: root.spacing
         mirrored: root.mirrored
         display: root.display
