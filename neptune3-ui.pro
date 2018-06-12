@@ -26,7 +26,10 @@ SUBDIRS += copydata
 qml.files = apps dev/apps imports sysui styles am-config.yaml Main.qml
 qml.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += qml
-server.files = server.conf
+
+win32: server.files = win32/server.conf
+else: server.files = server.conf
+
 server.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += server
 
