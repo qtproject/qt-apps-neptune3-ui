@@ -63,5 +63,6 @@ Control {
         textFlatButton: root.notificationAccessoryButtonIcon
         dividerVisible: root.dividerVisible
         onFlatButtonClicked: root.buttonClicked()
+        onCloseButtonClicked: root.closeClicked()
     }
 }
