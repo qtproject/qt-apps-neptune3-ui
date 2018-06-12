@@ -20,12 +20,14 @@ defineReplace(prependAll) {
     return($$result)
 }
 
+rootPath = $$PWD/../../
 assetsPath = $$PWD/../../imports/assets
 qmlSysUiPath = $$PWD/../../sysui
 importsPath = $$PWD/../../imports
 appsPath = $$PWD/../../apps
 # See qml files to scan while running lupdate/lrelease
 lupdate_only {
+    SOURCES += $$files($$shell_quote($$shell_path($${rootPath}/))Main.qml, true)
     SOURCES += $$files($$shell_quote($$shell_path($${qmlSysUiPath}/))*.qml, true)
     SOURCES += $$files($$shell_quote($$shell_path($${importsPath}/))*.qml, true)
     SOURCES += $$files($$shell_quote($$shell_path($${appsPath}/))*.qml, true)

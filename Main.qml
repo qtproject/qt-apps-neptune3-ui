@@ -302,7 +302,7 @@ Window {
         body: qsTr("Start route to nearest charging station?")
         timeout: 4000
         showActionsAsIcons: true
-        actions: [{"actionText": "Show on Map"}]
+        actions: [{"actionText": qsTr("Show on Map")}]
         category: "notification"
         onActionTriggered: {
             //jump to navigation app
