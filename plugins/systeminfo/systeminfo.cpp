@@ -33,6 +33,7 @@
 #include <QtNetwork>
 #include <QStandardPaths>
 #include <QSysInfo>
+#include <QLibraryInfo>
 
 #include "systeminfo.h"
 
@@ -86,23 +87,30 @@ void SystemInfo::getAddress()
 
 void SystemInfo::getQtDiagInfo()
 {
-    const QString qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"));
+    m_qtDiagContents.clear();
+    // first try in the current Qt dir
+    QString qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"), {QLibraryInfo::location(QLibraryInfo::BinariesPath)});
+    if (qtdiagExe.isEmpty()) {
+        // try in $PATH
+        qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"));
+    }
     if (qtdiagExe.isEmpty()) {
         m_qtDiagContents = QObject::tr("The qtdiag program could not be found.");
-        emit this->qtDiagChanged();
+        emit qtDiagChanged();
         return;
     }
 
     m_diagProc = new QProcess;
     connect(m_diagProc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
-            [this](int, QProcess::ExitStatus exitStatus) {
+            [this, qtdiagExe](int, QProcess::ExitStatus exitStatus) {
         if (exitStatus == QProcess::NormalExit) {
             m_qtDiagContents = QString::fromUtf8(m_diagProc->readAllStandardOutput());
         } else {
             m_qtDiagContents = QObject::tr("The qtdiag program exited unsuccessfully/crashed.");
         }
         m_diagProc->close();
-        emit this->qtDiagChanged();
+        m_qtDiagContents.prepend(QObject::tr("Output from %1:").arg(qtdiagExe) + QStringLiteral("\n\n"));
+        emit qtDiagChanged();
     });
     m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
 }

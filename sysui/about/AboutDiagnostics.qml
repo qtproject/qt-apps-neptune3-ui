@@ -39,13 +39,6 @@ ColumnLayout {
     property var sysinfo
     spacing: NeptuneStyle.dp(20)
 
-    Label {
-        Layout.fillWidth: true
-        wrapMode: Text.WordWrap
-        text: qsTr("Below is an output of the <i>qtdiag</i> diagnostics tool:")
-        font.pixelSize: NeptuneStyle.fontSizeS
-    }
-
     Flickable {
         id: flickable
         Layout.fillWidth: true

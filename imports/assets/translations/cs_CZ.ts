@@ -30,7 +30,7 @@ UX na cestu</translation>
     <name>AboutDiagnostics</name>
     <message>
         <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
-        <translation>Níže je výstup z nástroje &lt;i&gt;qtdiag&lt;/i&gt;:</translation>
+        <translation type="vanished">Níže je výstup z nástroje &lt;i&gt;qtdiag&lt;/i&gt;:</translation>
     </message>
 </context>
 <context>

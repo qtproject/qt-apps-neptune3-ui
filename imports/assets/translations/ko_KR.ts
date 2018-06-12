@@ -17,13 +17,6 @@
     </message>
 </context>
 <context>
-    <name>AboutDiagnostics</name>
-    <message>
-        <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AboutMarketing</name>
     <message>
         <source>We put Stunning User Experience on the road</source>

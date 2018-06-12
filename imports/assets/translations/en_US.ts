@@ -2,13 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US" sourcelanguage="en_US">
 <context>
-    <name>AboutDiagnostics</name>
-    <message>
-        <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AboutPerformance</name>
     <message>
         <source>Center Console Performance Overlay</source>
