@@ -27,8 +27,7 @@
 
 /*!
    \page neptune3ui-remote-settings-server.html
-   \title Neptune 3 UI Remote Settings Server
-   \previouspage neptune3ui-insights.html
+   \title Neptune 3 UI - Remote Settings Server
    \brief Remote Settings Server for Neptune 3 UI
 
    The remote settings server of Neptune 3 UI is an example of how to implement and use remote

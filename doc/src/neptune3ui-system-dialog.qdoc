@@ -27,8 +27,7 @@
 
 /*!
    \page neptune3ui-system-dialog.html
-   \title Neptune 3 UI System Dialog
-   \previouspage neptune3ui-insights.html
+   \title Neptune 3 UI - System Dialog
 
    Neptune 3 UI has a system dialog where the user can see and monitor the performance
    of the system while running Neptune 3 UI. In order to pop the dialog up, user can

@@ -27,32 +27,43 @@
 
 /*!
    \page neptune3ui-build-run.html
-   \title Building and Running Neptune 3 UI
-   \previouspage neptune3ui-insights.html
-   \nextpage neptune3ui-app-development.html
-   \brief Building and running Neptune 3 UI
+   \title Neptune 3 UI - Running
+   \brief Running Neptune 3 UI
 
    Typically, Neptune 3 UI works out-of-the-box after your have installed
    \l{Qt Automotive Suite} and launched Qt Creator. You can run your applications
    with Neptune 3 UI on your desktop or a target device.
 
-   You can also use Neptune 3 UI as a stand-alone UI without any application.
-   The following topics describe how you can run Neptune 3 UI
-   \l {Running Neptune 3 UI without Installing Qt Automotive Suite} {without installing Qt
-   Automotive Suite}.
+   The simplest way to experience Neptune 3 UI is using the \l{Qt Automotive Suite}. For more advanced use cases it is also possible to build and run the Automotive Suite including Neptune 3 UI from source code.
 
-   \section1 Running Neptune 3 UI without Installing Qt Automotive Suite
+   \section1 Running Neptune 3 UI using Qt Automotive Suite
 
-   If you are interested in exploring Neptune 3 UI without installing \l{Qt Automotive Suite},
+   Neptune 3 UI is part of \l{Qt Automotive Suite}. See \l{Installing Qt Automotive Suite}
+   to install all components of \l{Qt Automotive Suite}. After \l{Qt Automotive Suite} have
+   been installed, Neptune 3 UI can be run either on your desktop or your embedded devices,
+   e.g. Intel NUC.
+
+   Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It provides support for
+   a center stack display and an instrument cluster and uses Qt IVI plugins to access various services. Neptune 3 UI offers a multiprocess application model using a central System UI and various applications. The System UI provides an application launcher to start and stop applications. The Application Manager Plugin for Qt Creator allows a developer to develop and deploy applications using the Neptune 3 UI.
+
+   Neptune 3 UI is distributed with the \l{Qt Automotive Suite}. Once the \e{Neptune 3 UI} component is selected and installed, the user can run the binary under \e{your-qt-installation-path/neptune3}.
+   If you use Qt Automotive Suite on an embedded device, the Neptune 3 UI binary will be located under \e{/opt/neptune3/}.
+
+
+   \section1 Running Neptune 3 UI using the source code
+
+   If you are interested in exploring Neptune 3 UI by building all components from the source code,
    follow these instructions to run Neptune 3 UI on your desktop:
 
    \section2 Platforms
 
    Neptune 3 UI is tested regularly on these platforms:
+
    \list
    \li macOS (single-process)
    \li Linux desktop (single-process)
    \li Linux desktop (multi-process)
+   \endlist
 
    \note Multi-process UI (preferred): When in multi process mode, application run as
    independent processes, as wayland clients, and the System UI acts as a wayland server,
@@ -60,16 +71,14 @@
    While in single-process mode, all application code run in the same QML scene and
    process as the System UI itself.
 
-   \endlist
-
    \section2 Prerequisites
 
    \list
-   \li \b Qt 5.11.0 or higher
+   \li \b{Qt 5.11} or higher
+   \endlist
 
    \note Qt installation need to include qtwayland submodule in order to support multi-process
    mode and built with Open GL ES (-opengl es2 -opengles3)
-   \endlist
 
    \section2 Dependencies
 
@@ -80,7 +89,7 @@
 
    \section2 Build and run Neptune 3 UI
 
-   \list 1
+   \list
 
    \li Clone the \l{Qt Application Manager Git Repository}{Qt Application Manager},
    the \l{Qt IVI Git Repository}{Qt IVI} and \l{Neptune3-UI Git Repository}{Neptune3-UI}
@@ -111,7 +120,7 @@
    you can use QtCreator as your development tool to open the project and do the
    development there. Follow these instructions to work with Neptune 3 UI using QtCreator:
 
-   \list 1
+   \list
 
    \li Start QtCreator and open the Neptune 3 project file.
 
@@ -121,9 +130,10 @@
        (under Projects → Build Settings → Build Steps) (see \l{Build Steps}{Configuring Build Steps})
 
    \li Expand the qmake steps and add an install prefix to the additional arguments:
-       e.g. INSTALL_PREFIX=/path/to/your/neptune/install/folder
+       e.g. \c INSTALL_PREFIX=/path/to/your/neptune/install/folder
+
        \note this will install your Neptune 3 to the folder that you configured,
-       otherwise by default, it will be installed under opt/neptune3/
+       otherwise by default, it will be installed under \c opt/neptune3/
 
    \li Expand the build steps and insert an argument under make arguments:
        -j8 (depending on how many jobs you want to use in your machine)

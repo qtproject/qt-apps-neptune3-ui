@@ -27,8 +27,7 @@
 
 /*!
    \page neptune3ui-system-ui.html
-   \title Neptune 3 System UI
-   \previouspage neptune3ui-index.html
+   \title Neptune 3 UI - System UI
 
    Neptune 3's System UI is a Qt QML application comprised of one or two top-level
    QWindows: a \l{center stack display}{Center Console} window and an optional

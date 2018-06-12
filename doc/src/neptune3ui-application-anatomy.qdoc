@@ -27,9 +27,7 @@
 
 /*!
    \page neptune3ui-application-anatomy.html
-   \title Application Anatomy of Neptune 3 UI
-   \previouspage neptune3ui-insights.html
-   \nextpage neptune3ui-components.html
+   \title Neptune 3 UI - Application Anatomy
    \brief Anatomy of the applications in Center Stack Display
 
    In Neptune 3, an application can have both the fullscreen state

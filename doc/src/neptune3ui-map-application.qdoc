@@ -28,7 +28,6 @@
 /*!
    \page neptune3ui-map-application.html
    \title Neptune 3 UI - Map Application
-   \previouspage neptune3ui-index.html
    \brief The Map Application of Neptune 3 UI
 
    In Neptune 3, a built-in application called "com.pelagicore.map" is included

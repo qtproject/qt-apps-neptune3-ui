@@ -27,12 +27,11 @@
 
 /*!
    \page neptune3ui-popups.html
-   \title Neptune 3 UI Application Popups
-   \previouspage neptune3ui-insights.html
+   \title Neptune 3 UI - Application Popups
 
    An application popup is used from applications to display information inside modal popups.
    As these popups should be shown in the very top layer of the UI, the rendering should be
-   done in \l{Neptune 3 System UI}{System UI}. This approach involves \l{Qt Application Manager}
+   done in \l{Neptune 3 UI - System UI}{System UI}. This approach involves \l{Qt Application Manager}
    and its ApplicationManagerWindow API.
 
    \section1 Implementation Insights

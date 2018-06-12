@@ -28,7 +28,6 @@
 /*!
    \page neptune3ui-settings-application.html
    \title Neptune 3 UI - General Settings Application
-   \previouspage neptune3ui-index.html
    \brief The Settings Application of Neptune 3 UI
 
    In Neptune 3, an application called "com.pelagicore.apps.settings" is pre-installed
