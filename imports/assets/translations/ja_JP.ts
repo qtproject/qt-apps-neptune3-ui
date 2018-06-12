@@ -718,7 +718,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Neptune 3: %1</source>
+        <source>Neptune 3: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

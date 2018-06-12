@@ -884,8 +884,8 @@ UX na cestu</translation>
         <translation>Qt IVI: %1</translation>
     </message>
     <message>
-        <source>Neptune 3: %1</source>
-        <translation>Neptune 3: %1</translation>
+        <source>Neptune 3: %1 %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

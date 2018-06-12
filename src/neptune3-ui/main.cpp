@@ -76,7 +76,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(qSL("Neptune UI"));
     QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
     QCoreApplication::setOrganizationDomain(qSL("pelagicore.com"));
-    QCoreApplication::setApplicationVersion(NEPTUNE_VERSION);
+    QCoreApplication::setApplicationVersion(STR(NEPTUNE_VERSION));
 
     Logging::initialize();
 
@@ -112,6 +112,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
 
         auto ctx = a.qmlEngine()->rootContext();
+        ctx->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
         ctx->setContextProperty("qtamVersion", QTAPPMANCOMMON_VERSION_STR);
         ctx->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
 

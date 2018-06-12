@@ -746,7 +746,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Neptune 3: %1</source>
+        <source>Neptune 3: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -116,7 +116,7 @@ ColumnLayout {
 
             MonitorListItem {
                 title: qsTr("Version")
-                subtitle: qsTr("Neptune 3: %1").arg(Qt.application.version) + "\n" +
+                subtitle: qsTr("Neptune 3: %1 %2").arg(Qt.application.version).arg(neptuneInfo) + "\n" +
                           qsTr("Qt Application Manager: %1").arg(qtamVersion) + "\n" +
                           qsTr("Qt IVI: %1").arg(qtiviVersion)
             }
