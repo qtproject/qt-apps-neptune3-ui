@@ -44,7 +44,7 @@ Item {
         summary: "Summary text: simple notification"
         body: "Body text: simple notification"
         showActionsAsIcons: true
-        actions: [{"actionText": "ic-navigation-dark"}]
+        actions: [{"actionText": "Action Text"}]
         category: "notification"
         onActionTriggered: {
             console.log("Simple notification has been triggered")

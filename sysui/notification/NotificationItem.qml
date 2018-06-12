@@ -54,15 +54,14 @@ Control {
         color: NeptuneStyle.offMainColor
     }
 
-    contentItem: ListItemTwoButtons {
+    contentItem: ListItemFlatButton {
         wrapText: true
         icon.source: root.notificationIcon
         text: root.notificationText
         subText: root.notificationSubtext
-        symbolAccessoryButton1: root.notificationAccessoryButtonIcon
-        symbolAccessoryButton2: "ic-close"
+        closeButtonVisible: true
+        textFlatButton: root.notificationAccessoryButtonIcon
         dividerVisible: root.dividerVisible
-        onAccessoryButton1Clicked: root.buttonClicked()
-        onAccessoryButton2Clicked: root.closeClicked()
+        onFlatButtonClicked: root.buttonClicked()
     }
 }
