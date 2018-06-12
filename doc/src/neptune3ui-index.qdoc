@@ -46,6 +46,10 @@
    See \l{Neptune 3 UI Insights} for further information to understand the concept
    and how to run and start working with Neptune 3 UI.
 
+   Neptune 3 UI comes with the \l{Qt Applicaton Manager Installation}. Once the component is selected
+   and installed, the user can find and run the binary under your-qt-installation-path/neptune3.
+   On the target device, the binary is located under /opt/neptune3/.
+
    \section1 Overview
 
    Neptune 3 UI intends to:
