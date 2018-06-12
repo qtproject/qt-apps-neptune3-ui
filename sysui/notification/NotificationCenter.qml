@@ -107,7 +107,7 @@ Item {
 
         Item {
             implicitHeight: NeptuneStyle.dp(40)
-            implicitWidth: NeptuneStyle.dp(120)
+            implicitWidth: NeptuneStyle.dp(140)
             anchors.horizontalCenter: parent.horizontalCenter
 
             Label {
