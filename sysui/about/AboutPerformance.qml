@@ -44,6 +44,7 @@ Flickable {
     contentWidth: column.width
     contentHeight: column.height
 
+    flickableDirection: Flickable.VerticalFlick
     ScrollIndicator.vertical: ScrollIndicator {}
 
     Column {
