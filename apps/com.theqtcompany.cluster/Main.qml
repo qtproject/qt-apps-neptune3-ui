@@ -52,11 +52,21 @@ ApplicationManagerWindow {
     UISettings {
         onThemeChanged: updateTheme()
         onAccentColorChanged: {
-            root.contentItem.NeptuneStyle.accentColor = accentColor;
+            // In single-process mode we don't have a contentItem, so we need to use root instead
+            // TODO This should be fixed in the appman abstraction at some point
+            if (root.contentItem)
+                root.contentItem.NeptuneStyle.accentColor = accentColor;
+            else
+                root.NeptuneStyle.accentColor = accentColor;
         }
         Component.onCompleted: updateTheme()
         function updateTheme() {
-            root.contentItem.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+            // In single-process mode we don't have a contentItem, so we need to use root instead
+            // TODO This should be fixed in the appman abstraction at some point
+            if (root.contentItem)
+                root.contentItem.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+            else
+                root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
         }
     }
 
