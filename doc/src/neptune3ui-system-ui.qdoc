@@ -54,5 +54,11 @@
    property. Application code doesn't have to worry about this implementation
    detail though, this is taken care of by the specialized QML components
    \l{PrimaryWindow}, \l{SecondaryWindow} and \l{PopupWindow}.
+
+   System UI also provides a way to take a screenshot of the current state of
+   Neptune 3 UI and export it. At the same time, it also exports the output of
+   Qt diagnostic tool. The exported files will be stored under \e {/tmp} folder.
+   In order to do this, the user can press and hold the clock at the top right
+   corner of the \l{center stack display}{Center Console} or press CTRL + p.
 */
 

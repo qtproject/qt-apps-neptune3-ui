@@ -34,7 +34,9 @@
    \l{Qt Automotive Suite} and launched Qt Creator. You can run your applications
    with Neptune 3 UI on your desktop or a target device.
 
-   The simplest way to experience Neptune 3 UI is using the \l{Qt Automotive Suite}. For more advanced use cases it is also possible to build and run the Automotive Suite including Neptune 3 UI from source code.
+   The simplest way to experience Neptune 3 UI is using the \l{Qt Automotive Suite}.
+   It is also possible to build and run the \l{Qt Automotive Suite} including Neptune 3 UI
+   from source code being able to modify any part of the code and experiment any changes.
 
    \section1 Running Neptune 3 UI using Qt Automotive Suite
 
@@ -44,10 +46,17 @@
    e.g. Intel NUC.
 
    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It provides support for
-   a center stack display and an instrument cluster and uses Qt IVI plugins to access various services. Neptune 3 UI offers a multiprocess application model using a central System UI and various applications. The System UI provides an application launcher to start and stop applications. The Application Manager Plugin for Qt Creator allows a developer to develop and deploy applications using the Neptune 3 UI.
+   a center stack display and an instrument cluster and uses the Qt IVI plugins to access various
+   services. Neptune 3 UI offers a multiprocess application model using a central System UI
+   and various applications. The System UI provides an application launcher to start and stop
+   applications. The Application Manager Plugin for Qt Creator allows a developer to develop
+   and deploy applications using the Neptune 3 UI.
 
-   Neptune 3 UI is distributed with the \l{Qt Automotive Suite}. Once the \e{Neptune 3 UI} component is selected and installed, the user can run the binary under \e{your-qt-installation-path/neptune3}.
-   If you use Qt Automotive Suite on an embedded device, the Neptune 3 UI binary will be located under \e{/opt/neptune3/}.
+   Neptune 3 UI is distributed with the \l{Qt Automotive Suite}. Once the \e{Neptune 3 UI}
+   component is selected and installed, the user can run the binary under
+   \e{your-qt-installation-path/qt-version/your-available-platform/neptune3}, e.g.
+   \e{/home/qt/5.11.0/gcc-64/neptune3}. If you use Qt Automotive Suite on an embedded
+   device, the Neptune 3 UI binary will be located under \e{/opt/neptune3/}.
 
 
    \section1 Running Neptune 3 UI using the source code
@@ -189,16 +198,18 @@
 
     runtimes:
       qml:
-        importPaths: [ "imports/shared" ]
+        importPaths: [ "${CONFIG_PWD}/imports/shared" ]
 
     # ... as well as the SystemUI
 
     ui:
       fullscreen: yes
       style: "${CONFIG_PWD}/styles/neptune"
-      mainQml: "Main.qml"
-      importPaths: [ "imports/shared", "imports/system" ]
-      windowIcon: "/imports/assets/icons/neptune/sysui/ic-menu-home.png"
+      iconThemeName: "neptune"
+      iconThemeSearchPaths: [ "${CONFIG_PWD}/imports/assets/icons" ]
+      mainQml: "${CONFIG_PWD}/Main.qml"
+      importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
+      windowIcon: "${CONFIG_PWD}/imports/assets/icons/neptune/sysui/ic-menu-home.png"
 
     systemProperties:
       public:
