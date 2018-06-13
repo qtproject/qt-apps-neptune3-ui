@@ -2,6 +2,7 @@ TARGET = NeptuneControlApp
 DESTDIR = $$BUILD_DIR
 QT += quick ivicore
 CONFIG += c++11
+CONFIG -= app_bundle
 
 include($$SOURCE_DIR/config.pri)
 
