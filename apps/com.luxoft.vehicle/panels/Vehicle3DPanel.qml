@@ -47,132 +47,146 @@ import "../3d/settings"
 Item {
     id: vehicle3DView
 
-    property alias roofOpenProgress: roof.openProgress
-    property alias leftDoorOpen: leftDoor.open
-    property alias rightDoorOpen: rightDoor.open
-    property alias trunkOpen: trunk.open
+    //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
+    property real roofOpenProgress: 0.0
+    property bool leftDoorOpen: false
+    property bool rightDoorOpen: false
+    property bool trunkOpen: false
 
-    Image {
+    //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
+    Loader {
         anchors.fill: parent
-        source: Paths.getImagePath("back.png")
-
-        //ToDo: Replace later with an actual splash screen
-        BusyIndicator {
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: NeptuneStyle.dp(80)
-            running: !body.loaded
-        }
+        active: vehicle3DView.visible
+        sourceComponent: sceneComponent
     }
 
-    Scene3D {
-        anchors.fill: parent
-        aspects: ["input", "logic"] // TODO: This generates warning. Need investigate why.
-        focus: true
+    Component {
+        id: sceneComponent
+        Item {
+            anchors.fill: parent
+            Image {
+                anchors.fill: parent
+                source: Paths.getImagePath("back.png")
 
-        Entity {
-            RenderSettings {
-                id: renderSettings
-                activeFrameGraph: FrameGraph {
-                    clearColor: "transparent"
-                    camera: camera
+                //ToDo: Replace later with an actual splash screen
+                BusyIndicator {
+                    anchors.centerIn: parent
+                    anchors.verticalCenterOffset: NeptuneStyle.dp(80)
+                    running: !body.loaded
                 }
-                // NB: this should work once https://codereview.qt-project.org/#/c/208218/ is merged
-                renderPolicy: RenderSettings.OnDemand
             }
 
-            InputSettings {
-                id: inputSettings
+            Scene3D {
+                anchors.fill: parent
+                aspects: ["input", "logic"]
+                focus: true
+
+                Entity {
+                    RenderSettings {
+                        id: renderSettings
+                        activeFrameGraph: FrameGraph {
+                            clearColor: "transparent"
+                            camera: camera
+                        }
+                        // NB: this should work once https://codereview.qt-project.org/#/c/208218/ is merged
+                        renderPolicy: RenderSettings.OnDemand
+                    }
+
+                    InputSettings {
+                        id: inputSettings
+                    }
+
+                    components: [inputSettings, renderSettings]
+
+                    Camera {
+                        id: camera
+                        projectionType: CameraLens.PerspectiveProjection
+                        fieldOfView: 25
+                        nearPlane: 0.1
+                        farPlane: 100.0
+                        position: Qt.vector3d(0, 2, 15)
+                        viewCenter: Qt.vector3d(0, 1.6, 0)
+                        upVector: Qt.vector3d(0.0, 1.0, 0.0)
+                    }
+
+                    CameraController {
+                        camera: camera
+                    }
+
+                    CookTorranceMaterial {
+                        id: blackMaterial
+                        albedo: "black"
+                        metalness: 0.5
+                        roughness: 0.8
+                    }
+
+                    CookTorranceMaterial {
+                        id: whiteHood
+                        albedo: "white"
+                        metalness: 0.1
+                        roughness: 0.35
+                    }
+
+                    CookTorranceMaterial {
+                        id: chromeMaterial
+                        albedo: "black"
+                        metalness: 0.1
+                        roughness: 0.2
+                    }
+
+                    CookTorranceMaterial {
+                        id: taillightsMaterial
+                        albedo: "red"
+                        metalness: 0.1
+                        roughness: 0.2
+                        alpha: 0.5
+                    }
+
+                    CookTorranceMaterial {
+                        id: interiorMaterial
+                        albedo: "gray"
+                        metalness: 1.0
+                        roughness: 0.1
+                    }
+
+                    CookTorranceMaterial {
+                        id: whiteMaterial
+                        albedo: "white"
+                        metalness: 0.5
+                        roughness: 0.5
+                    }
+
+                    CookTorranceMaterial {
+                        id: glassMaterial
+                        albedo: "black"
+                        metalness: 0.1
+                        roughness: 0.1
+                        alpha: 0.8
+                    }
+
+                    Shadow {}
+                    AxisFront {}
+                    AxisRear {}
+                    Seats {}
+                    RearDoor {
+                        id: trunk
+                        open: vehicle3DView.trunkOpen
+                    }
+                    LeftDoor {
+                        id: leftDoor
+                        open: vehicle3DView.leftDoorOpen
+                    }
+                    RightDoor {
+                        id: rightDoor
+                        open: vehicle3DView.rightDoorOpen
+                    }
+                    Roof {
+                        id: roof
+                        openProgress: vehicle3DView.roofOpenProgress
+                    }
+                    Body { id: body }
+                }
             }
-
-            components: [inputSettings, renderSettings]
-
-            // Uncomment this camera and use it for from up to down renderer to take a screenshot
-            // Camera {
-            //     id: updownRendererCamera
-            //     projectionType: CameraLens.PerspectiveProjection
-            //     fieldOfView: 25
-            //     nearPlane: 0.1
-            //     farPlane: 100.0
-            //     position: Qt.vector3d(0, 24, 1)
-            //     viewCenter: Qt.vector3d(0, 0, 1)
-            //     upVector: Qt.vector3d(0.0, 0.0, 1.0)
-            // }
-
-            Camera {
-                id: camera
-                projectionType: CameraLens.PerspectiveProjection
-                fieldOfView: 25
-                nearPlane: 0.1
-                farPlane: 100.0
-                position: Qt.vector3d(0, 2, 15)
-                viewCenter: Qt.vector3d(0, 1.6, 0)
-                upVector: Qt.vector3d(0.0, 1.0, 0.0)
-            }
-
-            CameraController {
-                camera: camera
-            }
-
-            CookTorranceMaterial {
-                id: blackMaterial
-                albedo: "black"
-                metalness: 0.5
-                roughness: 0.8
-            }
-
-            CookTorranceMaterial {
-                id: whiteHood
-                albedo: "white"
-                metalness: 0.1
-                roughness: 0.35
-            }
-
-            CookTorranceMaterial {
-                id: chromeMaterial
-                albedo: "black"
-                metalness: 0.1
-                roughness: 0.2
-            }
-
-            CookTorranceMaterial {
-                id: taillightsMaterial
-                albedo: "red"
-                metalness: 0.1
-                roughness: 0.2
-                alpha: 0.5
-            }
-
-            CookTorranceMaterial {
-                id: interiorMaterial
-                albedo: "gray"
-                metalness: 1.0
-                roughness: 0.1
-            }
-
-            CookTorranceMaterial {
-                id: whiteMaterial
-                albedo: "white"
-                metalness: 0.5
-                roughness: 0.5
-            }
-
-            CookTorranceMaterial {
-                id: glassMaterial
-                albedo: "black"
-                metalness: 0.1
-                roughness: 0.1
-                alpha: 0.8
-            }
-
-            Shadow {}
-            AxisFront {}
-            AxisRear {}
-            Seats {}
-            RearDoor { id: trunk }
-            LeftDoor { id: leftDoor }
-            RightDoor { id: rightDoor }
-            Roof { id: roof }
-            Body { id: body }
         }
     }
 }
