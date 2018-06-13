@@ -265,7 +265,7 @@ Window {
             function dumpScreenshotAndVersion() {
                 var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
                 tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
-                const timestamp = new Date().toISOString();
+                const timestamp = new Date().toLocaleString(Qt.locale(),"yyyy-MM-dd-hh-mm-ss")
                 const screenshotUrl = tempDir + "/" + timestamp + "_neptune3_screenshot.png";
                 display.grabToImage(function(result) {
                     var ret = result.saveToFile(screenshotUrl);
