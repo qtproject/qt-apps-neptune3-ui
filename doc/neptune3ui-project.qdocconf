@@ -23,13 +23,6 @@ qhp.Neptune3UI.subprojects.manual.title      = Neptune 3 UI
 qhp.Neptune3UI.subprojects.manual.indexTitle = Neptune 3 UI TOC
 qhp.Neptune3UI.subprojects.manual.selectors  = manual
 
-HTML.extraimages += images/qww9yMjVyos.jpg
-qhp.Neptune3UI.extrafiles += images/qww9yMjVyos.jpg
-HTML.extraimages += images/fwcC2TiIWps.jpg
-qhp.Neptune3UI.extrafiles += images/fwcC2TiIWps.jpg
-HTML.extraimages += images/Ob3mX0enflw.jpg
-qhp.Neptune3UI.extrafiles += images/Ob3mX0enflw.jpg
-
 navigation.landingpage = "Neptune 3 UI"
 navigation.homepage    = "Qt Automotive Suite"
 navigation.qmltypespage = "Neptune 3 UI Components and Interfaces"

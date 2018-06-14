@@ -139,3 +139,8 @@
     \externalpage https://wiki.qt.io/QtWayland
     \title Qt Wayland
 */
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qt3d-index.html
+    \title Qt 3D
+*/

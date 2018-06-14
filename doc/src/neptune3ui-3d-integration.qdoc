@@ -1,0 +1,117 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-3d-integration.html
+   \title Neptune 3 UI - 3D Integration
+   \brief The 3D Integration in Neptune 3 UI
+
+   In Neptune 3, a built-in application called "com.luxoft.vehicle" is included
+   as the vehicle settings application and contains a car 3D scene on top of
+   its content. The 3D scene is renderred by \l{Qt 3D} that provides
+   functionality for near-realtime simulation systems with support for 2D and 3D
+   rendering in both Qt C++ and Qt Quick applications.
+
+   \section1 3D Modeling
+
+   A general question about a 3D framework is to provide ways to draw 3D shapes,
+   move them around and move the camera. This is, of course, a sensible baseline,
+   and additional wishes typically include the following:
+
+   \list
+   \li Mesh: a mesh is a collection of vertices and edges which are probably triangulated
+       and describes the shape of an object in 3D space
+   \li Material:  a material is a set of coefficients
+       that define how the lighting should be applied to the model and interacts with the
+       surface
+   \li Shader:  a shader is a programmable shading that is used to do
+       shading, as the production of appropriate levels of color within an image, as well
+       as to produce special effects or do video post-processing
+   \li Texture: Textures are typically used for images to decorate 3D models, but for other
+       purposes it can also be used to store many different kinds of data
+   \li Camera: The first thing to do in the projection of the screen of a scene is to convert 3D
+       coordinates into 2D coordinates. To specify the projection, the points in the 3D
+       scene is used on a virtual screen space. The parameters of a projection will not be
+       entered directly, instead, virtual camera is configured and placed.
+   \li Animation: Movements of objects are important and can be accomplished by altering the
+       object positions
+   \endlist
+
+   \section1 Qt 3D
+
+   The \l{Qt 3D} provides some functionalities for modern 3D rendering backed by
+   the performance of OpenGL across the platforms supported by Qt. Qt3D allows developers
+   not only to visualize 3D contents but also to totally customize and control the
+   appearance of each object by using built-in materials or by providing custom GLSL
+   shaders. These controls are also accessible through QML that literally extend the ability
+   to create a 3D user interface. Integration of 2D and 3D contents is enabled by the
+   Scene3D component through QML. Qt3D is an Entity Component System (ECS), an architectural
+   pattern used mostly in game development.
+
+   An application that uses the ECS pattern involves the following:
+
+   \list
+   \li Entity: A container for any components that can be added, usually hierarchical.
+       An entity represents an object of components but by itself is devoid of any
+       specific behavior or characteristics. (An entity can also have sub-Entities)
+   \li Component: Set of objects through which behaviors and data can be added
+       to an entity
+   \endlist
+
+   \image 3d-integration-ecs.jpg
+
+   An Entity with a Component attached will tell the system that it needs to be rendered
+   and how to render it. The components of each entity could be the material, mesh or
+   transformation. These components should be defined as the components of particular
+   entity with a given identity of each component. A material component could have a
+   material effect that contains the rendering technique. In addition, within the
+   rendering technique, the shader programs can also be specified. These shader programs
+   can be an external shader files or directly written in QML. The 3D model might has
+   textures, and the connection between the 3D model and the textures can be binded
+   by using the shader and include the material component which has these material
+   effect to the same entity as the mesh component.
+
+   \section1 3D Integration in Neptune 3 UI
+
+   The current structure of the vehicle application:
+
+   \image 3d-integration-vehicle-app.jpg
+
+   As shown in the above image, each part of the vehicle has its own entity that contains
+   all the necessary parts, such as Mesh, Transform and Material. Those entities are tailored
+   to the root entity of the whole Scene 3D.
+
+   Neptune 3 UI has an own custom physical based material with Cook Torrance GGX distribution
+   since Qt3D does not provide any for OpenGL ES 2.0. It is required, because it has microfacet
+   theory based lightning, which adds more realistic lightning to the car. Car is mostly covered
+   with a color, so its easy to integrate lightning calculations. Also most of models today are
+   modeled with PBR (Metal Roughness) materials in mind, which will make easier model import.
+
+   Animations in vehicle applications are made mostly with matrices transformations. For example
+   door animation is: transform door to another origin, rotate it, transform back. So the door
+   will not rotate around own axis.
+*/
