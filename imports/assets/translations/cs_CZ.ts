@@ -660,31 +660,31 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI screenshot has been taken successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímek obrazovky úspěšně sejmut</translation>
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Snímek obrazovky a diagnostické informace uloženy v %1</translation>
     </message>
     <message>
         <source>Battery level is low</source>
-        <translation type="unfinished"></translation>
+        <translation>Úroveň baterie je nízká</translation>
     </message>
     <message>
         <source>Start route to nearest charging station?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zahájit cestu k nejbližší nabíjecí stanici?</translation>
     </message>
     <message>
         <source>Show on Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit na mapě</translation>
     </message>
     <message>
         <source>Warning: Battery level is low</source>
-        <translation type="unfinished"></translation>
+        <translation>Varování: Úroveň baterie je nízká</translation>
     </message>
     <message>
         <source>Please consider charging it in the next available station</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím zvažte její nabití na nejbližší nabíjecí stanici</translation>
     </message>
 </context>
 <context>
@@ -885,19 +885,19 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Neptune 3: %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neptune 3: %1 %2</translation>
     </message>
     <message>
         <source>Single-process mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Jednoprocesový režim</translation>
     </message>
     <message>
         <source>Multi-process mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Víceprocesový režim</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1 %2</source>
-        <translation type="unfinished">Qt Application Manager: %1 %2</translation>
+        <translation>Qt Application Manager: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -1271,7 +1271,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Accent Color changed into %1</source>
-        <translation type="unfinished">Barva zvýraznění UI změněna na %1</translation>
+        <translation>Barva zvýraznění UI změněna na %1</translation>
     </message>
     <message>
         <source>UI Language changed</source>
