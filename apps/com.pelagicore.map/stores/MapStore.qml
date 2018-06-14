@@ -190,13 +190,13 @@ QtObject {
     readonly property GeocodeModel geocodeModel: GeocodeModel {
         plugin: herePlugin
         onStatusChanged: {
-            if (status === RouteModel.Null) {
+            if (status === GeocodeModel.Null) {
                 console.info("Search model idle");
-            } else if (status === RouteModel.Ready) {
+            } else if (status === GeocodeModel.Ready) {
                 console.info("Search model ready, results:", count)
-            } else if (status === RouteModel.Loading) {
+            } else if (status === GeocodeModel.Loading) {
                 console.info("Search model busy");
-            } else if (status === RouteModel.Error) {
+            } else if (status === GeocodeModel.Error) {
                 console.warn("Search model error:", error, errorString);
             }
         }
