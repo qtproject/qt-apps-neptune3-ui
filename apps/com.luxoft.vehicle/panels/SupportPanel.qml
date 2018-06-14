@@ -46,7 +46,7 @@ ListView {
     delegate: ListItemSwitch {
         width: parent.width
         icon.source: Paths.getImagePath(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))
-        text: qsTranslate("ControlModel", model.name)
+        text: qsTranslate("VehicleStore", model.name)
     }
 
     ScrollIndicator.vertical: ScrollIndicator {}
