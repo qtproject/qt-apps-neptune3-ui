@@ -160,7 +160,7 @@ Item {
         anchors.fill: mainMap
         source: helper.localAsset("bg-home-navigation-overlay", NeptuneStyle.theme)
         visible: root.state === "Maximized"
-        scale: root.state === "Maximized" ? 1 : 1.6
+        scale: root.state === "Maximized" ? 1.2 : 1.6
         Behavior on scale {
             DefaultNumberAnimation { }
         }
