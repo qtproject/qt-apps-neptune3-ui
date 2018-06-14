@@ -133,6 +133,7 @@ PopupItem {
             currentIndex: tabBar.currentIndex
             MonitorView {
                 sysinfo: root.sysInfo
+                singleProcess: root.applicationModel.singleProcess
             }
             AboutRunningApps {
                 applicationModel: root.applicationModel

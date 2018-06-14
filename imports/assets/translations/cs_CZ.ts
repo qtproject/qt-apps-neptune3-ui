@@ -877,7 +877,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
-        <translation>Qt Application Manager: %1</translation>
+        <translation type="vanished">Qt Application Manager: %1</translation>
     </message>
     <message>
         <source>Qt IVI: %1</source>
@@ -886,6 +886,18 @@ UX na cestu</translation>
     <message>
         <source>Neptune 3: %1 %2</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single-process mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-process mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Application Manager: %1 %2</source>
+        <translation type="unfinished">Qt Application Manager: %1 %2</translation>
     </message>
 </context>
 <context>

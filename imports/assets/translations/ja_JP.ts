@@ -710,15 +710,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Qt Application Manager: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Qt IVI: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Neptune 3: %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single-process mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-process mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Application Manager: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

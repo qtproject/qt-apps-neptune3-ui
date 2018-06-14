@@ -51,6 +51,9 @@ ListModel {
     // Whether the model is still being populated. It's true during start up.
     readonly property bool populating: d.populating
 
+    // Whether the Neptune 3 UI runs on single- / multi-process mode.
+    readonly property bool singleProcess: AM.ApplicationManager.singleProcess
+
     // Populate the model
     function populate() {
         // Configures which applications should be shown as widgets,
