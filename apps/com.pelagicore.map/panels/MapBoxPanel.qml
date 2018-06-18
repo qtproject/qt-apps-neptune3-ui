@@ -98,7 +98,8 @@ Item {
         gesture {
             enabled: root.mapInteractive
             // effectively disable the rotation gesture
-            acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture
+            acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |
+                              MapGestureArea.TiltGesture
         }
 
         onErrorChanged: {
@@ -224,7 +225,8 @@ Item {
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
-        onClicked: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
+        checked: mainMap.tilt !== 0
+        onToggled: mainMap.tilt = checked ? mainMap.maximumTilt : mainMap.minimumTilt;
     }
 
     ToolButton {
