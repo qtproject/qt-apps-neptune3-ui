@@ -79,6 +79,9 @@ import com.pelagicore.styles.neptune 3.0
 ApplicationManagerWindow {
     id: root
 
+    LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
+    LayoutMirroring.childrenInherit: true
+
     color: "transparent"
 
     // A window can be occluded by some other UI elements such as floating widgets, virtual keyboards
@@ -119,6 +122,13 @@ ApplicationManagerWindow {
     */
 
     property string neptuneState
+
+    /*!
+        \qmlproperty bool PrimaryWindow::isRightToLeft
+        This property holds whether the current locale uses the right-to-left
+        text direction (RTL)
+    */
+    readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
 
     QtObject {
         id: d
@@ -172,6 +182,7 @@ ApplicationManagerWindow {
     }
 
     UISettings {
+        id: uiSettings
         onThemeChanged: updateTheme()
         onAccentColorChanged: {
             root.NeptuneStyle.accentColor = accentColor;

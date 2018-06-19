@@ -86,6 +86,12 @@ import utils 1.0
 
 ApplicationManagerWindow {
     id: root
+
+    LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
+    LayoutMirroring.childrenInherit: true
+
+    readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
+
     Component.onCompleted: {
         setWindowProperty("windowType", "secondary")
         visible = true
@@ -112,6 +118,7 @@ ApplicationManagerWindow {
     }
 
     UISettings {
+        id: uiSettings
         onThemeChanged: updateTheme()
         onAccentColorChanged: updateAccentColor()
         Component.onCompleted: {

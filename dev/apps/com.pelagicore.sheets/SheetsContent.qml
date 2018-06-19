@@ -53,7 +53,7 @@ Item {
         ToolButton {
             anchors.verticalCenter: parent.verticalCenter
             baselineOffset: 0
-            icon.name: "ic_back"
+            icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
             text: qsTr("Back")
             font.pixelSize: NeptuneStyle.fontSizeS
             onClicked: stack.pop()

@@ -50,6 +50,7 @@ ApplicationManagerWindow {
     }
 
     UISettings {
+        id: uiSettings
         onThemeChanged: updateTheme()
         onAccentColorChanged: {
             root.contentItem.NeptuneStyle.accentColor = accentColor;
@@ -85,6 +86,7 @@ ApplicationManagerWindow {
         cruiseSpeed: dataSource.speedCruise
         ePower: dataSource.ePower
         drivetrain: dataSource.driveTrainState
+        rtlMode: uiSettings.rtlMode || Qt.locale().textDirection === Qt.RightToLeft
     }
 
     TelltalesLeft {

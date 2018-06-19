@@ -156,6 +156,8 @@ Item {
             color: NeptuneStyle.accentColor
         }
 
+        mirror: LayoutMirroring.enabled
+
         opacity: root.active ? 0 : 1
         visible: opacity != 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -227,6 +229,8 @@ Item {
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
+
+        mirror: LayoutMirroring.enabled
 
         function isInRoundCorner(point) {
             var rx2 = Math.pow((cornerImage.width-point.x),2)

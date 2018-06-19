@@ -99,7 +99,7 @@ RowLayout {
         Layout.bottomMargin: NeptuneStyle.dp(45)
         ToolButton {
             Layout.alignment: Qt.AlignVCenter
-            icon.name: "ic_skipprevious"
+            icon.name: LayoutMirroring.enabled ? "ic_skipnext" : "ic_skipprevious"
             onClicked: {
                 if (grid.month === 0) {
                     grid.month = 11;
@@ -118,7 +118,7 @@ RowLayout {
         }
         ToolButton {
             Layout.alignment: Qt.AlignVCenter
-            icon.name: "ic_skipnext"
+            icon.name: LayoutMirroring.enabled ? "ic_skipprevious" : "ic_skipnext"
             onClicked: {
                 if (grid.month === 11) {
                     grid.month = 0;

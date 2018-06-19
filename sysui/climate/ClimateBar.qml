@@ -58,6 +58,8 @@ Item {
     }
 
     RowLayout {
+        LayoutMirroring.enabled: false
+
         anchors.centerIn: parent
 
         height: NeptuneStyle.dp(80)

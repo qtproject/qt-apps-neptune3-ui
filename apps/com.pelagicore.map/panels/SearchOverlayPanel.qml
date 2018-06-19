@@ -57,7 +57,7 @@ ColumnLayout {
     ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(45)
-        icon.name: "ic_back"
+        icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
         text: qsTr("Back")
         onClicked: root.backButtonClicked()
     }

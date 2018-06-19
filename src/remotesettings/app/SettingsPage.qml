@@ -66,6 +66,15 @@ Flickable {
             onToggled: uiSettings.twentyFourHourTimeFormat = checked
         }
 
+        // right hand drive mode
+        Label {
+            text: qsTr("Right-to-left mode:")
+        }
+        CheckBox {
+            checked: uiSettings.rtlMode
+            onToggled: uiSettings.rtlMode = checked
+        }
+
         // Volume Field
         Label {
             text: qsTr("Volume:")

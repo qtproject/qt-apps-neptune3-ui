@@ -51,7 +51,7 @@ Row {
     ToolButton {
         width: root.buttonWidth
         height: parent.height
-        icon.name: "ic_skipprevious"
+        icon.name: LayoutMirroring.enabled ? "ic_skipnext" : "ic_skipprevious"
         onClicked: root.previousClicked()
     }
 
@@ -80,7 +80,7 @@ Row {
     ToolButton {
         width: root.buttonWidth
         height: parent.height
-        icon.name: "ic_skipnext"
+        icon.name: LayoutMirroring.enabled ? "ic_skipprevious" : "ic_skipnext"
         onClicked: root.nextClicked()
     }
 }

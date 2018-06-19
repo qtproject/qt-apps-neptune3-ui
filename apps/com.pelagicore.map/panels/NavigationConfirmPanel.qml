@@ -70,7 +70,7 @@ Row {
             height: width
             enabled: visible
             visible: !root.guidanceMode
-            icon.name: "ic_back"
+            icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
             onClicked: root.stopNavigation()
         }
 

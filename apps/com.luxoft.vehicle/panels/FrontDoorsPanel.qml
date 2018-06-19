@@ -43,6 +43,9 @@ import "../controls"
 Item {
     id: root
 
+    LayoutMirroring.enabled: false
+    LayoutMirroring.childrenInherit: true
+
     property alias trunkOpen: vehicleTopView.trunkOpen
     property alias leftDoorOpen: vehicleTopView.leftDoorOpen
     property alias rightDoorOpen: vehicleTopView.rightDoorOpen

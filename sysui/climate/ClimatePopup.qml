@@ -41,6 +41,10 @@ import sysui.controls 1.0
 
 PopupItem {
     id: root
+
+    LayoutMirroring.enabled: false
+    LayoutMirroring.childrenInherit: true
+
     width: NeptuneStyle.dp(910)
     height: NeptuneStyle.dp(1426)
     headerBackgroundVisible: true

@@ -39,10 +39,10 @@ import models.statusbar 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-Item {
+RowLayout {
     id: root
 
-    height: NeptuneStyle.dp(Style.statusBarHeight)
+    implicitHeight: NeptuneStyle.dp(Style.statusBarHeight)
 
     property var uiSettings
     property StatusBarModel model
@@ -50,18 +50,16 @@ Item {
     signal screenshotRequested()
 
     IndicatorTray {
+        Layout.alignment: Qt.AlignLeading
+        Layout.fillHeight: true
         model: root.model.indicators
-        anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(20)
         anchors.top: parent.top
         anchors.bottom: parent.bottom
     }
 
     DateAndTime {
-        anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(20)
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        Layout.alignment: Qt.AlignTrailing
+        Layout.fillHeight: true
         currentDate: root.model.currentDate
         uiSettings: root.uiSettings
 

@@ -159,21 +159,22 @@ ItemDelegate {
                         ) + topPadding + bottomPadding
     implicitWidth: NeptuneStyle.dp(100)
 
-    indicator: IconLabel {
-        height: root.icon ? root.height : 0
-        opacity: NeptuneStyle.opacityHigh
-        scale: NeptuneStyle.scale
-        spacing: root.spacing
-        mirrored: root.mirrored
-        display: root.display
-        icon: root.icon
-    }
-
     contentItem: Item {
         RowLayout {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: subText ? undefined : parent.verticalCenter
+
+            IconLabel {
+                height: root.icon ? root.height : 0
+                opacity: NeptuneStyle.opacityHigh
+                scale: NeptuneStyle.scale
+                spacing: root.spacing
+                mirrored: root.mirrored
+                display: root.display
+                icon: root.icon
+            }
+
             ColumnLayout {
                 Layout.fillWidth: true
                 Label {
@@ -245,6 +246,7 @@ ItemDelegate {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
             source: Style.gfx("list-divider", NeptuneStyle.theme)
+            mirror: root.mirrored
         }
     }
 }

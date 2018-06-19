@@ -20,6 +20,8 @@ interface UISettings {
     int theme;
     string accentColor;
 
+    bool rtlMode;
+
     bool door1Open;
     bool door2Open;
 }

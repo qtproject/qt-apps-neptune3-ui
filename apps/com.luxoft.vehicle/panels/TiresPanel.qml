@@ -40,6 +40,9 @@ import "../controls"
 Item {
     id: root
 
+    LayoutMirroring.enabled: false
+    LayoutMirroring.childrenInherit: true
+
     Image {
         anchors.top: parent.top
         anchors.left: parent.left
@@ -224,6 +227,6 @@ Item {
         anchors.rightMargin: NeptuneStyle.dp(22)
         text: qsTr("Calibrate")
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
-        iconSource: Paths.getImagePath("ic-calibrate" + sourceSuffix)
+        icon.source: Paths.getImagePath("ic-calibrate" + sourceSuffix)
     }
 }

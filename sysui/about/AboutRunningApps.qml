@@ -159,7 +159,9 @@ Item {
 
             Column {
                 id: column
-                width: parent.width
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.rightMargin: NeptuneStyle.dp(60)
                 Label {
                     text: model.appInfo.name
                 }

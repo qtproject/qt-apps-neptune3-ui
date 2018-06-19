@@ -77,7 +77,7 @@ Control {
             anchors.centerIn: progressBar
             enabled: !root.clusterView
             onPressed: {
-                var newValue = (mouseX / root.width);
+                var newValue = LayoutMirroring.enabled ? ((1 - mouseX / root.width)) : (mouseX / root.width);
                 root.updatePosition(newValue);
             }
         }

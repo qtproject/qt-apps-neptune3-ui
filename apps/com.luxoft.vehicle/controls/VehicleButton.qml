@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 2.3
 
 import com.pelagicore.styles.neptune 3.0
 
@@ -38,88 +38,42 @@ ToolButton {
     id: root
 
     state: "FAT"
-    property string iconSource: ""
 
     states: [
         State {
             name: "FAT"
             PropertyChanges {
-                target: backgroundItem
-                minWidth: NeptuneStyle.dp(220)
+                target: root
                 implicitHeight: NeptuneStyle.dp(100)
-                sideMargins: NeptuneStyle.dp(58)
-            }
-            PropertyChanges {
-                target: contentText
+                leftPadding: NeptuneStyle.dp(58)
+                rightPadding: NeptuneStyle.dp(58)
                 font.pixelSize: root.NeptuneStyle.fontSizeM
             }
         },
         State {
             name: "REGULAR"
             PropertyChanges {
-                target: backgroundItem
-                minWidth: 0
+                target: root
                 implicitHeight: NeptuneStyle.dp(100)
-                iconMargin: 0
-                sideMargins: NeptuneStyle.dp(42)
-            }
-            PropertyChanges {
-                target: contentText
+                leftPadding: NeptuneStyle.dp(42)
+                rightPadding: NeptuneStyle.dp(42)
                 font.pixelSize: root.NeptuneStyle.fontSizeS
             }
         },
         State {
             name: "SMALL"
             PropertyChanges {
-                target: backgroundItem
-                minWidth: 0
+                target: root
                 implicitHeight: NeptuneStyle.dp(52)
-                sideMargins: NeptuneStyle.dp(22)
-            }
-            PropertyChanges {
-                target: contentText
+                leftPadding: NeptuneStyle.dp(22)
+                rightPadding: NeptuneStyle.dp(22)
                 font.pixelSize: root.NeptuneStyle.fontSizeS
             }
         }
     ]
 
-    contentItem: Label {
-        id: contentText
-
-        verticalAlignment: Text.AlignVCenter
-        anchors.left: parent.left
-        anchors.leftMargin: backgroundItem.contentMargin
-
-        text: root.text
-        font.weight: Font.Light
-        color: root.down ? "#41403f" : NeptuneStyle.contrastColor
-    }
-
     background: Rectangle {
-        id: backgroundItem
-
-        implicitWidth: defaultWidth < minWidth ? minWidth : defaultWidth
-        implicitHeight: NeptuneStyle.dp(100)
-
         radius: height / 2
         color: NeptuneStyle.buttonColor
-
-        readonly property int defaultWidth: sideMargins + contentMargin + contentText.contentWidth
-        property int minWidth: NeptuneStyle.dp(220)
-        property int sideMargins: NeptuneStyle.dp(58)
-        property int iconMargin: NeptuneStyle.dp(10)
-        property int contentMargin: sideMargins + iconImage.width + iconMargin
-
-        Image {
-            id: iconImage
-
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: backgroundItem.sideMargins
-            source: root.iconSource
-
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
-        }
     }
 }

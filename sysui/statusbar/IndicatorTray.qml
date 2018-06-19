@@ -40,14 +40,11 @@ Control {
     id: root
 
     width: NeptuneStyle.dp(24 * 4) // roughly 4 icons
-    height: NeptuneStyle.dp(19)
 
     property alias model: repeater.model
 
-    RowLayout {
-        id: iconLayout
+    contentItem: RowLayout {
         spacing: NeptuneStyle.dp(16)
-        height: parent.height
 
          Repeater {
              id: repeater

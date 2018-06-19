@@ -91,6 +91,7 @@ Control {
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter
                 source: Style.symbol("ic-next-level", NeptuneStyle.theme)
+                mirror: parent.mirrored
             }
         }
     }

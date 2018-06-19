@@ -44,19 +44,22 @@ Item {
     property alias drivetrain:dp.drivetrain
     property alias ePower: dp.ePower
 
+    property bool rtlMode
+    onRtlModeChanged: d.restart()
+
     //private
     QtObject {
         id: d
         readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 720)
         property bool running: false
         function start() { running = true; }
+        function restart() { running = false; startDelay.interval = 900; startDelay.start(); }
     }
 
     Component.onCompleted: startDelay.start();
     Timer {
         id: startDelay
         interval: 100
-        repeat: false
         onTriggered: d.start()
     }
 
@@ -66,20 +69,20 @@ Item {
         State {
             name: "stopped"
             when: !d.running
-            PropertyChanges { target: ds; x: 310 * d.scaleRatio; y: 120 * d.scaleRatio }
-            PropertyChanges { target: dp; x: 1050 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 310 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1050 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "normal"
             when: d.running && !root.navigating
-            PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 120 * d.scaleRatio }
-            PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 10 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1350 * d.scaleRatio; y: 120 * d.scaleRatio }
         },
         State {
             name: "navi"
             when: d.running && root.navigating
-            PropertyChanges { target: ds; x: 10 * d.scaleRatio; y: 180 * d.scaleRatio }
-            PropertyChanges { target: dp; x: 1350 * d.scaleRatio; y: 180 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 10 * d.scaleRatio; y: 180 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1350 * d.scaleRatio; y: 180 * d.scaleRatio }
         }
     ]
 
@@ -111,8 +114,7 @@ Item {
             SequentialAnimation {
                 //wait ds/dp to finish transition
                 PauseAnimation { duration: 70 }
-                PropertyAnimation { targets: [ds, dp]; properties: "y"; duration: 200 }
-                PropertyAnimation { targets: [ds, dp]; properties: "x"; duration: 200 }
+                PropertyAnimation { targets: [ds, dp]; properties: "x, y"; duration: 200 }
             }
         }
     ]
@@ -121,8 +123,6 @@ Item {
 
     DialSpeed {
         id: ds
-        x: 10 * d.scaleRatio
-        y: 120* d.scaleRatio
         width: 560 * d.scaleRatio
         height: width
         state: parent.state
@@ -130,8 +130,6 @@ Item {
 
     DialPower {
         id: dp
-        x: 1350 * d.scaleRatio
-        y: 120 * d.scaleRatio
         width: 560 * d.scaleRatio
         height: width
         state: parent.state

@@ -70,9 +70,9 @@ T.TabButton {
 
     readonly property string positionState: {
         if (TabBar.index === 0) {
-            return "left";
-        } else if (TabBar.index ===  TabBar.tabBar.contentModel.count -1) {
-            return "right";
+            return LayoutMirroring.enabled ? "right" : "left";
+        } else if (TabBar.index === TabBar.tabBar.contentModel.count - 1) {
+            return LayoutMirroring.enabled ? "left" : "right";
         } else {
             return "middle";
         }

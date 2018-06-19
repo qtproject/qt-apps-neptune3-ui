@@ -130,10 +130,11 @@ Item {
 
     StatusBar {
         id: statusBar
-        height: NeptuneStyle.dp(Style.statusBarHeight)
         anchors.top: parent.top
         anchors.left: parent.left
+        anchors.leftMargin: NeptuneStyle.dp(20)
         anchors.right: parent.right
+        anchors.rightMargin: NeptuneStyle.dp(20)
         uiSettings: settings
         z: 1
         model: StatusBarModel {
@@ -214,7 +215,7 @@ Item {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent
-        popupX: originItem.mapToItem(parent, 0, 0).x
+        popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -item.width + leftIcon.width: 0)
         originItem: leftIcon
         Binding { target: volumePopup.item; property: "model"; value: volumeModel }
     }

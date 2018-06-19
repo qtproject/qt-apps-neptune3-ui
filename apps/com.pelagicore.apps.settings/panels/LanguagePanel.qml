@@ -62,6 +62,7 @@ Control {
             contentItem: Item {
                 RadioButton {
                     id: radio
+                    anchors.left: parent.left
                     checked: model.language === root.currentLanguage
                     width: NeptuneStyle.dp(100)
                     height: parent.height
@@ -71,20 +72,19 @@ Control {
 
                 Item {
                     anchors.left: radio.right
+                    anchors.right: parent.right
                     height: parent.height
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.verticalCenterOffset: NeptuneStyle.dp(-20)
                         text: model.title
-                        font.weight: Style.fontWeight
                     }
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.verticalCenterOffset: NeptuneStyle.dp(20)
                         text: model.subtitle
                         font.pixelSize: NeptuneStyle.fontSizeS
-                        font.weight: Style.fontWeight
                     }
                 }
                 Image {
@@ -92,6 +92,7 @@ Control {
                     width: parent.width
                     source: Style.gfx("list-divider", NeptuneStyle.theme)
                     visible: index !== view.count - 1
+                    mirror: root.mirrored
                 }
             }
         }

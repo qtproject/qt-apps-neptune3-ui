@@ -52,6 +52,9 @@ Window {
     title: "Neptune UI - Center Console"
     color: "black"
 
+    LayoutMirroring.enabled: Qt.locale().textDirection === Qt.RightToLeft || uiSettings.rtlMode
+    LayoutMirroring.childrenInherit: true
+
     readonly property bool isLandscape: width > height
     readonly property real smallerDimension: isLandscape ? height : width
     readonly property real largerDimension: isLandscape ? width : height

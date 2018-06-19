@@ -87,7 +87,7 @@ Control {
                 anchors.left: parent.left
                 anchors.leftMargin: NeptuneStyle.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
-                icon.name: "ic_back"
+                icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
                 onClicked: root.backClicked()
             }
             Label {

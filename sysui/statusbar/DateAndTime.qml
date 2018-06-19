@@ -41,8 +41,6 @@ Label {
     property var currentDate: new Date()
     property var uiSettings
 
-    horizontalAlignment: Text.AlignRight
-    verticalAlignment: Text.AlignVCenter
     font.pixelSize: NeptuneStyle.fontSizeS
     font.weight: Style.fontWeight
     text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);

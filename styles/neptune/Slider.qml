@@ -104,7 +104,7 @@ T.Slider {
                 height: control.horizontal ? railContainer.height : d.stepLength
                 color: NeptuneStyle.contrastColor
                 opacity: control.horizontal ?
-                             (handle.x > (rectStep.x+d.stepLength/2) ? 0.6 : 0.1) :
+                             (handle.x > (rectStep.x+d.stepLength/2) ? (control.mirrored ? 0.1 : 0.6) : (control.mirrored ? 0.6 : 0.1)) :
                              (handle.y > rectStep.y+d.stepLength/2 ? 0.1 : 0.6)
             }
         }
@@ -118,7 +118,7 @@ T.Slider {
         }
 
         Rectangle {
-            x: control.horizontal ? 0 : (parent.width - width) / 2
+            x: control.horizontal ? (control.mirrored ? handle.x : 0) : (parent.width - width) / 2
             y: control.horizontal ? (parent.height - height) / 2 : control.visualPosition * parent.height
             width: control.horizontal ? control.position * parent.width : parent.width
             height: control.horizontal ? parent.height : control.position * parent.height
