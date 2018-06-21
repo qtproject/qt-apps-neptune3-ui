@@ -444,6 +444,7 @@ void NeptuneStyle::inheritStyle(const StyleData& data)
     propagateStyle(data);
     emit neptuneStyleChanged();
     emit accentColorChanged();
+    m_dp = QJSValue();
     emit scaleChanged();
 }
 
