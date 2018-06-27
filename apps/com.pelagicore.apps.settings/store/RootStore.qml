@@ -54,7 +54,7 @@ QtObject {
                                                          uiSettings.twentyFourHourTimeFormat
                                                          // "ap" here indicates the presence of AM/PM suffix;
                                                          // Locale has no other way of telling whether it uses 12 or 24h time format
-                                                       : Qt.locale().timeFormat(Locale.ShortFormat).indexOf("ap") === -1
+                                                       : Qt.locale().timeFormat(Locale.ShortFormat).indexOf("AP") === -1
 
 
     // Language Segment

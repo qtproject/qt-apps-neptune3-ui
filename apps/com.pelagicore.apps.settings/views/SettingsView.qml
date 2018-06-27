@@ -97,7 +97,10 @@ Control {
             LanguagePanel {
                 model: store.languageModel
                 currentLanguage: store.currentLanguage
-                onLanguageRequested: store.updateLanguage(languageCode, language);
+                onLanguageRequested: {
+                    store.updateLanguage(languageCode, language);
+                    store.update24HourTimeFormat(Qt.locale(languageCode).timeFormat(Locale.ShortFormat).indexOf("AP") === -1);
+                }
             }
 
             DateTimePanel {

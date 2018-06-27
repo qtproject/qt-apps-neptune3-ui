@@ -187,7 +187,10 @@ Window {
         Timer {
             id: timer
             interval: 100
-            onTriggered: uiSettings.languages = Style.translation.availableTranslations;
+            onTriggered: {
+                uiSettings.languages = Style.translation.availableTranslations;
+                uiSettings.twentyFourHourTimeFormat = Qt.locale().timeFormat(Locale.ShortFormat).indexOf("AP") === -1;
+            }
         }
 
         Component.onCompleted: {

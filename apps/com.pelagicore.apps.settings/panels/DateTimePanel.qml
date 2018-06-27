@@ -53,6 +53,7 @@ Control {
             height: NeptuneStyle.dp(95)
             width: parent.width
             text: qsTr("24h time")
+            checked: root.twentyFourHourTimeFormat
             onToggled: root.twentyFourHourTimeFormatRequested(checked)
 
             // TODO make the divider part of ItemDelegate's styled background
