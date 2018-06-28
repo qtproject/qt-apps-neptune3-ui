@@ -32,6 +32,7 @@
 
 import QtQuick 2.6
 import QtApplicationManager 1.0
+import com.pelagicore.styles.neptune 3.0
 
 /*!
     \qmltype PopupWindow
@@ -165,14 +166,6 @@ ApplicationManagerWindow {
     */
     property int popupHeight: 0
 
-    /*!
-        \qmlproperty real PopupWindow::popupScale
-
-        The popup scale. Set by the popup window parent in system UI, when the window is being
-        resized. It's used from the application's popup to properly scale its children.
-    */
-    property real popupScale: 1.0
-
     onOpenPopupChanged: {
         setWindowProperty("openPopup", openPopup);
     }
@@ -196,8 +189,8 @@ ApplicationManagerWindow {
     onWindowPropertyChanged: {
         if (name === "openPopup") {
             openPopup = value;
-        } else if (name === "popupScale") {
-            popupScale = value;
+        } else if (name === "neptuneScale") {
+            root.NeptuneStyle.scale = value;
         }
     }
 

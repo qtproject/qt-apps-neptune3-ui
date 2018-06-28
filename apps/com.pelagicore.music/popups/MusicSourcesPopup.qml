@@ -57,18 +57,18 @@ PopupWindow {
         Label {
             id: header
             anchors.baseline: parent.top
-            anchors.baselineOffset: popupScale * 75
+            anchors.baselineOffset: NeptuneStyle.dp(75)
             width: parent.width
             text: qsTr("Choose Source")
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: popupScale * NeptuneStyle.fontSizeM
+            font.pixelSize: NeptuneStyle.fontSizeM
         }
         Image {
             id: shadow
             anchors.top: parent.top
-            anchors.topMargin: popupScale * 120
+            anchors.topMargin: NeptuneStyle.dp(120)
             width: parent.width
-            height: popupScale * sourceSize.height
+            height: NeptuneStyle.dp(sourceSize.height)
             source: Style.gfx("popup-title-shadow")
         }
 
@@ -77,21 +77,21 @@ PopupWindow {
             anchors {
                 top: shadow.bottom
                 left: parent.left
-                leftMargin: popupScale * 40
+                leftMargin: NeptuneStyle.dp(40)
                 right: parent.right
-                rightMargin: popupScale * 40
+                rightMargin: NeptuneStyle.dp(40)
                 bottom: parent.bottom
-                bottomMargin: popupScale * 40
+                bottomMargin: NeptuneStyle.dp(40)
             }
             interactive: false
             delegate: RadioButton {
                 width: parent.width
-                height: popupScale * 96
-                font.pixelSize: popupScale * NeptuneStyle.fontSizeS
-                indicator.implicitHeight: popupScale * 30
-                indicator.implicitWidth: popupScale * 30
+                height: NeptuneStyle.dp(96)
+                font.pixelSize: NeptuneStyle.fontSizeS
+                indicator.implicitHeight: NeptuneStyle.dp(30)
+                indicator.implicitWidth: NeptuneStyle.dp(30)
                 text: model.text
-                spacing: 20
+                spacing: NeptuneStyle.dp(20)
                 onClicked: {
                     if (text === "AM/FM Radio") {
                         Qt.openUrlExternally("x-tuner://");

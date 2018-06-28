@@ -78,18 +78,8 @@ PopupItem {
     property int popupWindowHeight: 700
 
     width: NeptuneStyle.dp(popupWindowWidth)
-    onWidthChanged: {
-        if (root.appInfo) {
-            root.appInfo.popupWindow.setWindowProperty("popupScale", NeptuneStyle.scale);
-        }
-    }
 
     height: NeptuneStyle.dp(popupWindowHeight)
-    onHeightChanged: {
-        if (root.appInfo) {
-            root.appInfo.popupWindow.setWindowProperty("popupScale", NeptuneStyle.scale);
-        }
-    }
 
     onClosing: {
         if (root.appInfo) {
@@ -100,5 +90,13 @@ PopupItem {
     WindowItem {
         id: windowItem
         anchors.fill: parent
+
+        property real neptuneScale: NeptuneStyle.scale
+        onNeptuneScaleChanged: forwardNeptuneScale()
+        onWindowChanged: forwardNeptuneScale()
+        function forwardNeptuneScale() {
+            if (window)
+                window.setWindowProperty("neptuneScale", neptuneScale);
+        }
     }
 }
