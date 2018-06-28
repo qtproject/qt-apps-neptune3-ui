@@ -146,21 +146,12 @@ PopupItem {
         anchors.left: parent.left
         anchors.leftMargin: -leftTempSlider.width/2 + leftTempSlider.background.width/2
         height: NeptuneStyle.dp(1200)
-        convertFunc: model.calculateUnitValue
-
-        property bool sliderChanging: false
-        onValueChanged: {
-            if (pressed) {
-                sliderChanging = true;
-                model.leftSeat.setValue(value);
-                sliderChanging = false;
-            }
-        }
+        onMoved: model.leftSeat.setValue(value);
     }
     Connections {
         target: model ? model.leftSeat : null
         onValueChanged: {
-            if (!leftTempSlider.sliderChanging) {
+            if (!leftTempSlider.pressed) {
                 leftTempSlider.value = target.value
             }
             if (seatTemperaturesLinked) {
@@ -177,21 +168,12 @@ PopupItem {
         anchors.right: parent.right
         anchors.rightMargin: -rightTempSlider.width/2 + rightTempSlider.background.width/2
         height: NeptuneStyle.dp(1200)
-        convertFunc: model.calculateUnitValue
-
-        property bool sliderChanging: false
-        onValueChanged: {
-            if (pressed) {
-                sliderChanging = true;
-                model.rightSeat.setValue(value);
-                sliderChanging = false;
-            }
-        }
+        onMoved: model.rightSeat.setValue(value);
     }
     Connections {
         target: model ? model.rightSeat : null
         onValueChanged: {
-            if (!rightTempSlider.sliderChanging) {
+            if (!rightTempSlider.pressed) {
                 rightTempSlider.value = target.value
             }
             if (seatTemperaturesLinked) {

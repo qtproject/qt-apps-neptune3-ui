@@ -45,6 +45,5 @@ Slider {
     live: false
     stepSize: 0.5
 
-    property var convertFunc
     readonly property real handleHeight: handle.height
 }
