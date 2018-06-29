@@ -50,7 +50,6 @@ import models.settings 1.0
 import models.system 1.0
 import models.volume 1.0
 import models.statusbar 1.0
-import models.popups 1.0
 
 import sysui.controls 1.0
 
@@ -228,17 +227,9 @@ Item {
         sysInfo: root.sysInfo
     }
 
-    PopupModel {
-        id: popupModel
-        applicationModel: root.applicationModel
-        popupLoader: appPopupLoader
-    }
-
-    PopupItemLoader {
-        id: appPopupLoader
-        popupY: (root.height / 4)
+    ApplicationPopups {
+        anchors.fill: parent
         popupParent: root.popupParent
-        sourceComponent: ApplicationPopup { }
     }
 
     VirtualKeyboard {

@@ -38,15 +38,18 @@ import com.pelagicore.styles.neptune 3.0
 PopupWindow {
     id: root
 
-    // TODO this will be refactored in 5.12 following the API changes
-    // of the appman. See PopupWindow.qml for further explanations.
-
     /*!
         \qmlproperty var MusicSourcesPopup::model
 
         The alias property of the list view's model.
     */
     property alias model: listView.model
+
+    width: NeptuneStyle.dp(910)
+
+    // caclulate popup height based on musicSources list items
+    // + 200 for header & margins
+    height: model ? NeptuneStyle.dp(200 + (model.count * 96)) : NeptuneStyle.dp(296)
 
 
     Item {
@@ -100,7 +103,7 @@ PopupWindow {
                     } else if (text === "Spotify") {
                         Qt.openUrlExternally("x-spotify://");
                     }
-                    root.openPopup = false;
+                    root.close();
                 }
             }
         }

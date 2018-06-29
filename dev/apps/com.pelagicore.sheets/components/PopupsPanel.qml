@@ -57,14 +57,15 @@ Item {
             var pos = this.mapToItem(root.parent, this.width/2, this.height/2);
             popupWithList.originItemX = pos.x;
             popupWithList.originItemY = pos.y;
-            popupWithList.popupWidth = 910;
-            popupWithList.popupHeight = 450;
-            popupWithList.openPopup = true;
+            popupWithList.visible = true;
         }
     }
 
     PopupWithList {
         id: popupWithList
+
+        width: NeptuneStyle.dp(910)
+        height: NeptuneStyle.dp(450)
     }
 }
 

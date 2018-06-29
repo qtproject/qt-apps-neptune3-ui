@@ -241,13 +241,11 @@ ListModel {
 
             if (isRegularApp) {
                 var isSecondaryWindow = window.windowProperty("windowType") === "secondary";
-                var isPopupWindow = window.windowProperty("windowType") === "popup";
+                var isPrimaryWindow = !window.windowProperty("windowType");
 
                 if (isSecondaryWindow) {
                     appInfo.priv.secondaryWindow = window;
-                } else if (isPopupWindow) {
-                    appInfo.priv.popupWindow = window;
-                } else {
+                } else if (isPrimaryWindow) {
                     appInfo.priv.window = window;
                     appInfo.canBeActive = true;
                 }
@@ -270,8 +268,6 @@ ListModel {
                 appInfo.priv.window = null;
             } else if (appInfo.priv.secondaryWindow === window) {
                 appInfo.priv.secondaryWindow = null;
-            } else if (appInfo.priv.popupWindow === window) {
-                appInfo.priv.popupWindow = null;
             }
         }
 
@@ -281,21 +277,6 @@ ListModel {
             case "activationCount":
                 window.application.activated();
                 d.reactOnAppActivation(window.application.id);
-                break;
-            case "openPopup":
-                appInfo.openPopup = value;
-                break;
-            case "originItemX":
-                appInfo.originItemX = value;
-                break;
-            case "originItemY":
-                appInfo.originItemY = value;
-                break;
-            case "popupWidth":
-                appInfo.popupWidth = value;
-                break;
-            case "popupHeight":
-                appInfo.popupHeight = value;
                 break;
             }
         }

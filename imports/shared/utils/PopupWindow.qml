@@ -43,7 +43,7 @@ import com.pelagicore.styles.neptune 3.0
 
     The popup window of a Neptune 3 application is displayed on the Center Console. This
     component gives the application the flexibility to create a popup containing any kind
-    of custom content and display it in system ui as a modal popup.
+    of custom content and display it in system ui as a system modal popup.
 
     \section2 Example Usage
 
@@ -88,51 +88,29 @@ import com.pelagicore.styles.neptune 3.0
                 var pos = button.mapToItem(root, button.width/2, button.height/2);
                 devicesListPopup.originItemX = pos.x;
                 devicesListPopup.originItemY = pos.y;
-                devicesListPopup.popupWidth = 910;
-                devicesListPopup.popupHeight = 500;
-                deviceListPopup.openPopup = true;
+                deviceListPopup.visible = true;
             }
         }
         ......
         DevicesListPopup {
+            width: 910
+            height: 500
             id: devicesListPopup
         }
     }
 
     \endqml
 
-    The PopupWindow should be inherited by the application's custom popup component.
+    The application's custom popup component should inherit from PopupWindow.
     That said, the custom popup should then be instantiated inside the file which
     will use it and the element responsible of opening it should set its originItemX,
-    originItemY, popupWidth and popupHeight and then request to show it by setting the
-    openPopup property to true as shown in the example.
-
-    As an exception, all children should use the scale property multiplied with the desired
-    value for their dimensions and / or margins, to make sure that they'll scale correclty
-    if the main window is being resized.
+    originItemY, width and height and then request to show it by setting the
+    visible property to true as shown in the example.
 */
-
-// TODO use visible, width & height properties instead.
-// Currently width & height properties are not passed down to the
-// server so the popup doesn't scale when the window is resizing.
-// Also onVisibleChanged signal is not emitted in single process.
-// These issues should be solved with the appman Window API
-// improvements which are currently under development. Until those
-// are in, we keep the window properties as a workaround.
 
 ApplicationManagerWindow {
     id: root
     color: "transparent"
-
-    /*!
-        \qmlproperty bool PopupWindow::openPopup
-
-        This property indicates whether the popup should open. It can be set from both
-        systemUI and application. It will be read from \l{PopupModel} which will then take
-        care of showing the popup with whatever else this action implies.
-
-    */
-    property bool openPopup
 
     /*!
         \qmlproperty real PopupWindow::originItemX
@@ -140,7 +118,7 @@ ApplicationManagerWindow {
         This property holds the x position from the item that called the popup.
         It is used internally in PopupItem to trigger transition animations.
     */
-    property real originItemX
+    property real originItemX: 0
 
     /*!
         \qmlproperty real PopupWindow::originItemY
@@ -148,35 +126,10 @@ ApplicationManagerWindow {
         This property holds the y position from the item that called the popup.
         It is used internally in PopupItem to trigger transition animations.
     */
-    property real originItemY
+    property real originItemY: 0
 
-    /*!
-        \qmlproperty int PopupWindow::popupWidth
-
-        The popup width. Set by the user on the application side and passed down to the system UI
-        which then sets it to the PopupItem and the PopupWindow for rendering.
-    */
-    property int popupWidth: 0
-
-    /*!
-        \qmlproperty int PopupWindow::popupHeight
-
-        The popup height. Set by the user on the application side and passed down to the system UI
-        which then sets it to the PopupItem and the PopupWindow for rendering.
-    */
-    property int popupHeight: 0
-
-    onOpenPopupChanged: {
-        setWindowProperty("openPopup", openPopup);
-    }
-
-    onPopupWidthChanged: {
-        setWindowProperty("popupWidth", popupWidth);
-    }
-
-    onPopupHeightChanged: {
-        setWindowProperty("popupHeight", popupHeight);
-    }
+    // You have to explicitly make it visible
+    visible: false
 
     onOriginItemXChanged: {
         setWindowProperty("originItemX", originItemX);
@@ -186,15 +139,14 @@ ApplicationManagerWindow {
         setWindowProperty("originItemY", originItemY);
     }
 
-    onWindowPropertyChanged: {
-        if (name === "openPopup") {
-            openPopup = value;
-        } else if (name === "neptuneScale") {
-            root.NeptuneStyle.scale = value;
-        }
-    }
-
     Component.onCompleted: {
         setWindowProperty("windowType", "popup");
+    }
+
+    ApplicationInterfaceExtension {
+        name: "neptune.popupwindow.interface"
+
+        property real popupWindowScale: ready ? object.popupWindowScale : 1
+        onPopupWindowScaleChanged: { root.NeptuneStyle.scale = popupWindowScale; }
     }
 }

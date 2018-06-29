@@ -39,9 +39,6 @@ import com.pelagicore.styles.neptune 3.0
 PopupWindow {
     id: root
 
-    // TODO this will be refactored in 5.12 following the API changes
-    // of the appman. See PopupWindow.qml for further explanations.
-
     property var model: [{"text": "Purple"}, {"text" : "Deep blue"}, {"text" : "Violet"}]
 
     Item {

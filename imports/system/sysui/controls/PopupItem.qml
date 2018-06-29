@@ -59,7 +59,18 @@ Control {
     property real _openFromX
     property real _openFromY
     readonly property int minHeight: NeptuneStyle.dp(548)
-    signal closing()
+
+    /*
+        Called whenever a user action is requesting the Popup to be closed. The default behavior
+        simply accepts it and calls close().
+        Reimplement to override this behavior.
+     */
+    property var closeHandler: function () { close(); }
+
+    /*
+        Emitted after the close animation has finished.
+     */
+    signal closed();
 
     ScalableBorderImage {
         anchors.top: parent.top
@@ -99,7 +110,7 @@ Control {
         anchors.horizontalCenter: parent.right
         width: bg.width
         height: bg.height
-        onClicked: close()
+        onClicked: root.closeHandler()
         icon.name: "ic-close"
         background: Image {
             id: bg
@@ -112,7 +123,7 @@ Control {
         }
     }
 
-    Keys.onEscapePressed: close()
+    Keys.onEscapePressed: root.closeHandler()
 
     function updateOpenFromPosition() {
         if (originItem) {
@@ -131,15 +142,18 @@ Control {
     }
 
     function close() {
-        updateOpenFromPosition();
-        state = "closed";
-        root.closing();
+        if (state !== "closed") {
+            updateOpenFromPosition();
+            state = "closed";
+        }
     }
 
     Connections {
         target: parent ? parent : null
         ignoreUnknownSignals: true
-        onOverlayClicked: close()
+        onOverlayClicked: {
+            root.closeHandler()
+        }
     }
 
     state: "closed"
@@ -193,6 +207,7 @@ Control {
                     DefaultNumberAnimation { target: root; properties: "x,y" }
                 }
                 PropertyAction { target: root; property: "transformOrigin"; value: Popup.Center }
+                ScriptAction { script: { root.closed(); } }
             }
         }
     ]

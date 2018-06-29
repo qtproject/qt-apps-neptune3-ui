@@ -56,17 +56,12 @@ Item {
         currentIndex: 1
         onClicked: {
             if (currentText === "sources") {
-                // caclulate popup height based on musicSources list items
-                // + 200 for header & margins
-                var calculateHeight = 200 + (root.store.musicSourcesModel.count * 96);
                 var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
                 //set model each time to ensure data accuracy
                 musicSourcesPopup.model = root.store.musicSourcesModel;
                 musicSourcesPopup.originItemX = pos.x;
                 musicSourcesPopup.originItemY = pos.y;
-                musicSourcesPopup.popupWidth = 910;
-                musicSourcesPopup.popupHeight = calculateHeight;
-                musicSourcesPopup.openPopup = true;
+                musicSourcesPopup.visible = true;
             }
         }
     }

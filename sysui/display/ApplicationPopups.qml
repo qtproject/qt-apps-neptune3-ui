@@ -29,35 +29,59 @@
 **
 ****************************************************************************/
 
-/*!
-    \qmltype ApplicationPopup
-    \inherits PopupItem
-    \since 5.11
-    \brief Displays the content of an application's PopupWindow inside a PopupItem in System-UI
-*/
-
 import QtQuick 2.7
-import sysui.controls 1.0
 import QtApplicationManager 1.0
-
 import com.pelagicore.styles.neptune 3.0
 
-PopupItem {
+/*
+    Instantiates PopupItems for displaying PopupWindows created from the client side.
+ */
+Item {
     id: root
 
-    property alias window: windowItem.window
+    property Item popupParent
 
-    width: windowItem.width
-    height: windowItem.height
+    Repeater {
+        model: ListModel { id: appPopupsModel }
+        delegate: ApplicationPopup {
+            id: appPopup
+            window: model.window
+            parent: root.popupParent
 
-    WindowItem {
-        id: windowItem
-        objectFollowsItemSize: false
+            popupY: Math.round(root.height / 4)
+
+            closeHandler: function () {
+                // Forward the request to the client side.
+                window.close();
+            }
+
+            Connections {
+                target: model.window
+                onContentStateChanged: {
+                    if (model.window.contentState === WindowObject.NoSurface) {
+                        // client has closed his PopupWindow. Animate accordingly.
+                        appPopup.close();
+                    }
+                }
+            }
+
+            onClosed: { appPopupsModel.remove(model.index, 1); }
+        }
     }
 
-    Component.onCompleted: {
-        root.originItemX = root.window.windowProperty("originItemX");
-        root.originItemY = root.window.windowProperty("originItemY");
-        root.open();
+    Connections {
+        target: WindowManager
+        onWindowAdded: {
+            var isPopupWindow = window.windowProperty("windowType") === "popup";
+            if (isPopupWindow) {
+                appPopupsModel.append({"window":window});
+            }
+        }
+    }
+
+    ApplicationIPCInterface {
+        id: extension
+        property real popupWindowScale: root.NeptuneStyle.scale
+        Component.onCompleted: ApplicationIPCManager.registerInterface(extension, "neptune.popupwindow.interface", {});
     }
 }
