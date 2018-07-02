@@ -49,7 +49,7 @@ ListModel {
     property string localeCode
 
     // Whether the model is still being populated. It's true during start up.
-    readonly property bool populating: d.populating
+    readonly property alias populating: d.populating
 
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
@@ -105,7 +105,7 @@ ListModel {
         id: d
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
-        property var populating: true
+        property bool populating: true
         property ApplicationRequestHandler applicationRequestHandler: ApplicationRequestHandler {
             id: applicationRequestHandler
             activeAppId: activeAppInfo ? activeAppInfo.id : ""
@@ -220,7 +220,7 @@ ListModel {
 
             console.assert(!!appInfo);
 
-            if (d.ActiveAppInfo === appInfo) {
+            if (d.activeAppInfo === appInfo) {
                 root.goHome();
             }
             if (appInfo.asWidget) {
