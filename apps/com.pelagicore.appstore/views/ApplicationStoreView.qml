@@ -54,7 +54,7 @@ Item {
         height: NeptuneStyle.dp(440)
         anchors.centerIn: parent
         running: visible
-        opacity: root.store.categoryModel.count < 1 ? 1.0 : 0.0
+        opacity: root.store.categoryModel.count < 1 && root.store.isOnline ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { } }
 
@@ -66,14 +66,36 @@ Item {
         }
     }
 
-    Label {
+    Loader {
         anchors.top: busyIndicator.bottom
         anchors.topMargin: NeptuneStyle.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
-        color: NeptuneStyle.contrastColor
-        font.pixelSize: NeptuneStyle.fontSizeM
-        opacity: busyIndicator.opacity
-        text: qsTr("Fetching data from Neptune Server")
+        sourceComponent: root.store.isOnline ? fetchingLabel : noInternetLabel
+        visible: opacity > 0
+        opacity: root.store.isOnline ? busyIndicator.opacity : 1.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+    }
+
+    Component {
+        id: fetchingLabel
+
+        Label {
+            color: NeptuneStyle.contrastColor
+            font.pixelSize: NeptuneStyle.fontSizeM
+            text: qsTr("Fetching data from Neptune Server")
+        }
+    }
+
+    Component {
+        id: noInternetLabel
+
+        Label {
+            color: NeptuneStyle.contrastColor
+            font.pixelSize: NeptuneStyle.fontSizeM
+            horizontalAlignment: Text.AlignHCenter
+            text: qsTr("Cannot Connect to the Server") + "\n" +
+                  qsTr("An Internet connection is required")
+        }
     }
 
     Label {
@@ -82,7 +104,7 @@ Item {
         font.pixelSize: NeptuneStyle.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
-        visible: appList.model.count < 1
+        visible: appList.model.count < 1 && root.store.isOnline
     }
 
     RowLayout {
@@ -91,6 +113,9 @@ Item {
         anchors.topMargin: NeptuneStyle.dp(500)
         anchors.bottom: parent.bottom
         anchors.bottomMargin: NeptuneStyle.dp(20)
+        visible: opacity > 0
+        opacity: root.store.isOnline ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
 
         AppStoreToolsColumn {
             id: toolsColumn

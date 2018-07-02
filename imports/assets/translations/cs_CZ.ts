@@ -145,6 +145,14 @@ UX na cestu</translation>
         <source>Fetching data from Neptune Server</source>
         <translation>Stahuji data z Neptune serveru</translation>
     </message>
+    <message>
+        <source>Cannot Connect to the Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An Internet connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ButtonBoard</name>

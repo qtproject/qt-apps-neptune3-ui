@@ -135,6 +135,14 @@
         <source>Fetching data from Neptune Server</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Cannot Connect to the Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An Internet connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CalendarToolsColumn</name>

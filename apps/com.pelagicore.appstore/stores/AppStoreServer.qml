@@ -34,6 +34,7 @@ import utils 1.0
 
 import "JSONBackend.js" as JSONBackend
 import QtApplicationManager 1.0
+import com.pelagicore.systeminfo 1.0
 
 Item {
     id: root
@@ -46,6 +47,7 @@ Item {
     property string filter: ""
     property real currentInstallationProgress: 0.0
     property var installedApps: []
+    readonly property bool isOnline: sysinfo.online
 
     function download(id, name) {
         var url = appStoreConfig.serverUrl + "/app/purchase"
@@ -109,6 +111,17 @@ Item {
         target: ApplicationInstaller
 
         onTaskProgressChanged: root.currentInstallationProgress = progress
+    }
+
+
+    SystemInfo {
+        id: sysinfo
+
+        onOnlineChanged: {
+            if (sysinfo.online) {
+                appStoreConfig.checkServer();
+            }
+        }
     }
 
     // Application Store Server Configuration
