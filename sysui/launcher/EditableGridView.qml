@@ -190,6 +190,7 @@ Item {
     GridView {
         id: grid
         property bool editMode: false
+        LayoutMirroring.enabled: false
 
         Layout.alignment: Qt.AlignTop
         anchors.fill: parent
