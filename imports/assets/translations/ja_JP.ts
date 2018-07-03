@@ -1361,10 +1361,6 @@
         <source>Intelligent speed adaptation</source>
         <translation type="vanished">インテリジェントな速度適応</translation>
     </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
-        <translation type="vanished">自動速度制限</translation>
-    </message>
 </context>
 <context>
     <name>VehicleControlPanel</name>
@@ -1554,10 +1550,6 @@
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="vanished">自動速度制限</translation>
-    </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
         <translation type="vanished">自動速度制限</translation>
     </message>
 </context>

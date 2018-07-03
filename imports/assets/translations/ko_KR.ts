@@ -1380,10 +1380,6 @@
         <source>Intelligent speed adaptation</source>
         <translation type="vanished">지능형 속도 제어</translation>
     </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
-        <translation type="vanished">지능형 속도 제어</translation>
-    </message>
 </context>
 <context>
     <name>VehicleControlPanel</name>
@@ -1573,10 +1569,6 @@
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="vanished">지능형 속도 제어</translation>
-    </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
         <translation type="vanished">지능형 속도 제어</translation>
     </message>
 </context>

@@ -1453,10 +1453,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>Intelligent speed adaptation</source>
         <translation type="vanished">自适应巡航</translation>
     </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
-        <translation type="vanished">自适应巡航</translation>
-    </message>
 </context>
 <context>
     <name>VehicleControlPanel</name>
@@ -1646,10 +1642,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="vanished">自适应巡航</translation>
-    </message>
-    <message>
-        <source>Intellegent speed adaptation</source>
         <translation type="vanished">自适应巡航</translation>
     </message>
 </context>
