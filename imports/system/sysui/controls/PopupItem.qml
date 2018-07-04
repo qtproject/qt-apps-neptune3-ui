@@ -47,7 +47,7 @@ Control {
 
     // X and Y potition of the popup when open.
     // By default you have it horizontally centered and vertically aligned to the bottom
-    property real popupX: (root.parent.width - root.width) / 2
+    property real popupX: Math.round((root.parent.width - root.width) / 2)
     property real popupY: root.parent.height - root.height - NeptuneStyle.dp(90)
 
 

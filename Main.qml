@@ -88,7 +88,7 @@ Window {
                 name: "constrainWidth"
                 when: display.availableAspectRatio > Style.centerConsoleAspectRatio
                 PropertyChanges { target: display
-                    width: display.height * Style.centerConsoleAspectRatio
+                    width: Math.round(display.height * Style.centerConsoleAspectRatio)
                     height: display.availableHeight
                 }
             },
@@ -97,7 +97,7 @@ Window {
                 when: display.availableAspectRatio <= Style.centerConsoleAspectRatio
                 PropertyChanges { target: display
                     width: display.availableWidth
-                    height: display.width / Style.centerConsoleAspectRatio
+                    height: Math.round(display.width / Style.centerConsoleAspectRatio)
                 }
             }
         ]
