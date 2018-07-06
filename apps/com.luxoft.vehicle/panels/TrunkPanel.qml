@@ -41,9 +41,8 @@ import "../controls"
 Item {
     id: root
 
-    property alias trunkOpen: vehicleTopView.trunkOpen
-    property alias leftDoorOpen: vehicleTopView.leftDoorOpen
-    property alias rightDoorOpen: vehicleTopView.rightDoorOpen
+    property bool trunkOpened: false
+    signal trunkClicked()
 
     Rectangle {
         id: carImageMask
@@ -78,8 +77,8 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(540)
         anchors.horizontalCenter: parent.horizontalCenter
-        text: root.trunkOpen ? qsTr("Close") : qsTr("Open")
+        text: root.trunkOpened ? qsTr("Close") : qsTr("Open")
 
-        onClicked: root.trunkOpen = !root.trunkOpen
+        onClicked: root.trunkClicked()
     }
 }

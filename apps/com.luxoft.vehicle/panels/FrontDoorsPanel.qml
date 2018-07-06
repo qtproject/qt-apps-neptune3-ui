@@ -33,7 +33,6 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
 
 import utils 1.0
@@ -46,19 +45,11 @@ Item {
     LayoutMirroring.enabled: false
     LayoutMirroring.childrenInherit: true
 
-    property alias trunkOpen: vehicleTopView.trunkOpen
-    property alias leftDoorOpen: vehicleTopView.leftDoorOpen
-    property alias rightDoorOpen: vehicleTopView.rightDoorOpen
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
 
-    UISettings {
-        id: uiSettings
-        onDoor1OpenChanged: {
-            root.leftDoorOpen = uiSettings.door1Open
-        }
-        onDoor2OpenChanged: {
-            root.rightDoorOpen = uiSettings.door2Open
-        }
-    }
+    signal leftDoorClicked()
+    signal rightDoorClicked()
 
     VehicleButton {
         anchors.top: parent.top
@@ -66,12 +57,9 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: NeptuneStyle.dp(45)
         state: "REGULAR"
-        text: leftDoorOpen ? qsTr("Close") : qsTr("Open")
+        text: root.leftDoorOpened ? qsTr("Close") : qsTr("Open")
 
-        onClicked: {
-            root.leftDoorOpen = !root.leftDoorOpen
-            uiSettings.door1Open = root.leftDoorOpen
-        }
+        onClicked: root.leftDoorClicked();
     }
 
     VehicleButton {
@@ -80,17 +68,13 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(45)
         state: "REGULAR"
-        text: rightDoorOpen ? qsTr("Close") : qsTr("Open")
+        text: root.rightDoorOpened ? qsTr("Close") : qsTr("Open")
 
-        onClicked: {
-            root.rightDoorOpen = !root.rightDoorOpen
-            uiSettings.door2Open = root.rightDoorOpen
-        }
+        onClicked: root.rightDoorClicked()
     }
 
     Rectangle {
         id: vehicleTopViewMask
-
         anchors.fill: vehicleTopView
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#00000000" }
@@ -108,7 +92,6 @@ Item {
 
     TopPanel {
         id: vehicleTopView
-
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
     }

@@ -31,13 +31,43 @@
 
 import QtQuick 2.2
 import utils 1.0
+import com.pelagicore.settings 1.0
+import com.pelagicore.systeminfo 1.0
+import com.pelagicore.styles.neptune 3.0
 
 import "views"
+import "stores"
 
-PrimaryWindow {
+QtObject {
     id: root
 
-    VehicleView {
-        anchors.fill: parent
+    property var mainWindow: PrimaryWindow {
+        id: mainWindow
+
+        VehicleView {
+            id: vehicleView
+            anchors.fill: parent
+            store: VehicleStore {}
+        }
+
+        InstrumentCluster {
+            id: clusterSettings
+        }
+    }
+
+    readonly property Loader secondaryWindowLoader: Loader {
+        asynchronous: true
+        active: (clusterSettings.available
+                 || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
+                && mainMap.mapReady
+        sourceComponent: Component {
+            SecondaryWindow {
+                id: secondaryWindowComponent
+                VehicleICView {
+                    anchors.fill: parent
+                    store: vehicleView.store
+                }
+            }
+        }
     }
 }

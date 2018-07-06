@@ -45,18 +45,19 @@ import "../3d/entities"
 import "../3d/settings"
 
 Item {
-    id: vehicle3DView
+    id: root
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     property real roofOpenProgress: 0.0
     property bool leftDoorOpen: false
     property bool rightDoorOpen: false
     property bool trunkOpen: false
+    property bool clusterView: false
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     Loader {
         anchors.fill: parent
-        active: vehicle3DView.visible
+        active: root.visible
         sourceComponent: sceneComponent
     }
 
@@ -79,7 +80,7 @@ Item {
             Scene3D {
                 anchors.fill: parent
                 aspects: ["input", "logic"]
-                focus: true
+                focus: false
 
                 Entity {
                     RenderSettings {
@@ -111,6 +112,7 @@ Item {
 
                     CameraController {
                         camera: camera
+                        enabled: !root.clusterView
                     }
 
                     CookTorranceMaterial {
@@ -170,19 +172,19 @@ Item {
                     Seats {}
                     RearDoor {
                         id: trunk
-                        open: vehicle3DView.trunkOpen
+                        open: root.trunkOpen
                     }
                     LeftDoor {
                         id: leftDoor
-                        open: vehicle3DView.leftDoorOpen
+                        open: root.leftDoorOpen
                     }
                     RightDoor {
                         id: rightDoor
-                        open: vehicle3DView.rightDoorOpen
+                        open: root.rightDoorOpen
                     }
                     Roof {
                         id: roof
-                        openProgress: vehicle3DView.roofOpenProgress
+                        openProgress: root.roofOpenProgress
                     }
                     Body { id: body }
                 }

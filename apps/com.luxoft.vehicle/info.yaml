@@ -14,4 +14,4 @@ name:
   ja: '車両'
   ko: '차량'
 
-categories: [ 'vehicle' ]
+categories: [ 'navigation', 'vehicle' ]

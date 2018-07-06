@@ -30,9 +30,15 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import com.pelagicore.settings 1.0
 
 QtObject {
     id: root
+
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property bool trunkOpened: false
+    property real roofOpenProgress: 0.0
 
     property ListModel controlModel : ListModel {
         ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }
@@ -49,6 +55,47 @@ QtObject {
         ListElement { icon: "ic-energy"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "energy") }
         ListElement { icon: "ic-doors"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "doors") }
         ListElement { icon: "ic-tires"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "tires") }
+    }
+
+    property UISettings uiSettings: UISettings {
+        onDoor1OpenChanged: {
+            root.leftDoorOpened = uiSettings.door1Open
+        }
+        onDoor2OpenChanged: {
+            root.rightDoorOpened = uiSettings.door2Open
+        }
+    }
+
+    function setTrunk() {
+        if (root.trunkOpened) {
+            root.trunkOpened = false;
+        } else {
+            root.trunkOpened = true;
+        }
+    }
+
+    function setLeftDoor() {
+        if (root.leftDoorOpened) {
+            root.leftDoorOpened = false;
+            uiSettings.door1Open = root.leftDoorOpened;
+        } else {
+            root.leftDoorOpened = true;
+            uiSettings.door1Open = root.leftDoorOpened;
+        }
+    }
+
+    function setRightDoor() {
+        if (root.rightDoorOpened) {
+            root.rightDoorOpened = false;
+            uiSettings.door2Open = root.rightDoorOpened;
+        } else {
+            root.rightDoorOpened = true;
+            uiSettings.door2Open = root.rightDoorOpened;
+        }
+    }
+
+    function setRoofOpenProgress(value) {
+        root.roofOpenProgress = value;
     }
 }
 

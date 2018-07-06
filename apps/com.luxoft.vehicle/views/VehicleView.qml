@@ -41,7 +41,7 @@ import "../stores"
 Item {
     id: root
 
-    property VehicleStore store : VehicleStore {}
+    property VehicleStore store
 
     Vehicle3DPanel {
         id: car3dPanel
@@ -51,10 +51,10 @@ Item {
         anchors.right: root.right
         height: NeptuneStyle.dp(652)
 
-        leftDoorOpen: controlPanel.leftDoorOpen
-        rightDoorOpen: controlPanel.rightDoorOpen
-        trunkOpen: controlPanel.trunkOpen
-        roofOpenProgress: controlPanel.roofOpenProgress
+        leftDoorOpen: root.store.leftDoorOpened
+        rightDoorOpen: root.store.rightDoorOpened
+        trunkOpen: root.store.trunkOpened
+        roofOpenProgress: root.store.roofOpenProgress
     }
 
     Vehicle3DControlPanel {
@@ -68,5 +68,13 @@ Item {
         anchors.bottom: parent.bottom
         menuModel: store.menuModel
         controlModel: store.controlModel
+        leftDoorOpened: root.store.leftDoorOpened
+        rightDoorOpened: root.store.rightDoorOpened
+        trunkOpened: root.store.trunkOpened
+
+        onLeftDoorClicked: root.store.setLeftDoor()
+        onRightDoorClicked: root.store.setRightDoor()
+        onTrunkClicked: root.store.setTrunk()
+        onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
     }
 }

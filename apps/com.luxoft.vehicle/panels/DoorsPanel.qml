@@ -41,10 +41,14 @@ import utils 1.0
 Item {
     id: root
 
-    property alias leftDoorOpen: doorsConfig.leftDoorOpen
-    property alias rightDoorOpen: doorsConfig.rightDoorOpen
-    property alias trunkOpen: trunkConfig.trunkOpen
-    property alias roofOpenProgress: roofConfig.roofOpenProgress
+    property alias leftDoorOpened: frontDoorsPanel.leftDoorOpened
+    property alias rightDoorOpened: frontDoorsPanel.rightDoorOpened
+    property alias trunkOpened: trunkPanel.trunkOpened
+
+    signal leftDoorClicked()
+    signal rightDoorClicked()
+    signal trunkClicked()
+    signal roofOpenProgressChanged(var roofOpenProgressChanged)
 
     TabBar {
         id: tabBar
@@ -70,13 +74,17 @@ Item {
         anchors.left: parent.left
         currentIndex: tabBar.currentIndex
         RoofPanel {
-            id: roofConfig
+            id: roofPanel
+            onSetRoofOpenProgress: root.roofOpenProgressChanged(value)
         }
         FrontDoorsPanel {
-            id: doorsConfig
+            id: frontDoorsPanel
+            onLeftDoorClicked: root.leftDoorClicked()
+            onRightDoorClicked: root.rightDoorClicked()
         }
         TrunkPanel {
-            id: trunkConfig
+            id: trunkPanel
+            onTrunkClicked: root.trunkClicked()
         }
     }
 }

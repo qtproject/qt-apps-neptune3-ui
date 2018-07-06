@@ -42,12 +42,16 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    property alias leftDoorOpen: doorsItem.leftDoorOpen
-    property alias rightDoorOpen: doorsItem.rightDoorOpen
-    property alias trunkOpen: doorsItem.trunkOpen
-    property alias roofOpenProgress: doorsItem.roofOpenProgress
+    property alias leftDoorOpened: doorsPanel.leftDoorOpened
+    property alias rightDoorOpened: doorsPanel.rightDoorOpened
+    property alias trunkOpened: doorsPanel.trunkOpened
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
+
+    signal leftDoorClicked()
+    signal rightDoorClicked()
+    signal trunkClicked()
+    signal roofOpenProgressChanged(var value)
 
     ToolsColumn {
         id: toolsColumn
@@ -70,7 +74,13 @@ Item {
 
         SupportPanel { id: supportPanel }
         EnergyPanel {}
-        DoorsPanel { id: doorsItem }
+        DoorsPanel {
+            id: doorsPanel
+            onLeftDoorClicked: root.leftDoorClicked()
+            onRightDoorClicked: root.rightDoorClicked()
+            onTrunkClicked: root.trunkClicked()
+            onRoofOpenProgressChanged: root.roofOpenProgressChanged(value)
+        }
         TiresPanel {}
     }
 }
