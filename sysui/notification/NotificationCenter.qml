@@ -40,7 +40,7 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    y: root.notificationCenterVisible ? 0 : -root.height
+    y: root.notificationModel.notificationCenterVisible ? 0 : -root.height
 
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
@@ -55,7 +55,6 @@ Item {
     readonly property int listviewMaxHeight: NeptuneStyle.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
     readonly property int notificationTopMargin: NeptuneStyle.dp(80)
     readonly property int notificationBottomMargin: NeptuneStyle.dp(144)
-    readonly property bool notificationCenterVisible: root.notificationModel.notificationCenterVisible
 
     Behavior on y {
         enabled: !root.notificationModel.notificationToastVisible
@@ -96,12 +95,13 @@ Item {
             delegate: NotificationItem {
                 id: delegatedItem
                 width: notificationList.width
-                notificationIcon: icon
-                notificationText: title
-                notificationSubtext: description
-                notificationAccessoryButtonIcon: image
-                onCloseClicked: { root.notificationModel.removeNotification(id); }
-                onButtonClicked: { root.notificationModel.buttonClicked(); }
+                notificationIcon: model.icon
+                notificationText: model.summary
+                notificationSubtext: model.body
+                notificationImage: model.image
+                notificationActionText: model.actions.length > 0 ? model.actions[0].actionText : ""
+                onCloseClicked: root.notificationModel.removeNotification(model.id)
+                onButtonClicked: root.notificationModel.buttonClicked(model.id)
             }
         }
 
@@ -112,8 +112,8 @@ Item {
 
             Label {
                 anchors.centerIn: parent
-                font.pixelSize: NeptuneStyle.fontSizeM
-                opacity: root.notificationModel.model.count < 1
+                opacity: root.notificationModel.count < 1
+                visible: opacity > 0
                 Behavior on opacity { DefaultNumberAnimation { } }
                 text: qsTr("No Notifications")
             }
@@ -121,14 +121,13 @@ Item {
             Button {
                 anchors.fill: parent
                 anchors.centerIn: parent
-                opacity: root.notificationModel.model.count > 0
+                opacity: root.notificationModel.count > 0
+                visible: opacity > 0
                 Behavior on opacity { DefaultNumberAnimation { } }
                 font.pixelSize: NeptuneStyle.fontSizeS
                 text: qsTr("Clear list")
 
-                onClicked: {
-                    root.notificationModel.clearNotification();
-                }
+                onClicked: root.notificationModel.clearNotifications();
             }
         }
     }

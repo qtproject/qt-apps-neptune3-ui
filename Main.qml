@@ -283,6 +283,7 @@ Window {
 
                 notificationInterfaceInfo.summary = qsTr("UI screenshot has been taken successfully");
                 notificationInterfaceInfo.body = qsTr("UI screenshot and diagnostics information are stored in %1").arg(tempDir);
+                notificationInterfaceInfo.hide(); // it's sticky, so first hide it to be able to show it again
                 notificationInterfaceInfo.show();
             }
 
@@ -307,9 +308,7 @@ Window {
         summary: qsTr("Battery level is low")
         body: qsTr("Start route to nearest charging station?")
         timeout: 4000
-        showActionsAsIcons: true
         actions: [{"actionText": qsTr("Show on Map")}]
-        category: "notification"
         onActionTriggered: {
             //jump to navigation app
             Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
@@ -318,6 +317,9 @@ Window {
         onVisibleChanged: {
             if (!visible && !actionAccepted) {
                 //if action is not accepted, show warning
+                notificationInterfaceInfo.summary = qsTr("Warning: Battery level is low");
+                notificationInterfaceInfo.body = qsTr("Please consider charging it in the next available station");
+                notificationInterfaceInfo.hide(); // it's sticky, so first hide it to be able to show it again
                 notificationInterfaceInfo.show();
             }
             actionAccepted = false;
@@ -329,7 +331,7 @@ Window {
         id: notificationInterfaceInfo
         summary: qsTr("Warning: Battery level is low");
         body: qsTr("Please consider charging it in the next available station");
-        category: "notification"
+        sticky: true
     }
 
     StageLoader {

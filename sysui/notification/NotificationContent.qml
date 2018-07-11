@@ -38,7 +38,7 @@ import com.pelagicore.styles.neptune 3.0
 ModalOverlay {
     id: root
 
-    showModalOverlay: notificationCenter.notificationCenterVisible
+    showModalOverlay: notificationModel.notificationCenterVisible
     onOverlayClicked: notificationModel.notificationCenterVisible = false
 
     NotificationModel {
@@ -54,6 +54,7 @@ ModalOverlay {
         opacity: notificationModel.notificationCenterVisible ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
     }
+
     NotificationToast {
         id: notificationToast
         leftPadding: NeptuneStyle.dp(40)

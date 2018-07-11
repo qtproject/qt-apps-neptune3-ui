@@ -33,12 +33,13 @@ import QtQuick 2.10
 import QtQuick.Controls 2.0
 import controls 1.0
 import animations 1.0
+import models.notification 1.0
 import com.pelagicore.styles.neptune 3.0
 
 NotificationItem {
     id: root
 
-    property var notificationModel
+    property NotificationModel notificationModel
 
     y: root.notificationModel.notificationToastVisible
        && !root.notificationModel.notificationCenterVisible ? 0 : -root.height
@@ -47,21 +48,51 @@ NotificationItem {
     opacity: root.notificationModel.notificationToastVisible ? 1.0 : 0.0
     Behavior on opacity { DefaultNumberAnimation { } }
 
-    onButtonClicked: { root.notificationModel.buttonClicked(); }
+    onButtonClicked: { root.notificationModel.buttonClicked(priv.notificationId); }
 
     onCloseClicked: {
-        root.notificationModel.removeNotification(root.notificationModel.currentNotification.id);
-        root.notificationModel.closeNotification()
+        root.notificationModel.removeNotification(priv.notificationId);
+        root.notificationModel.closeNotification();
+    }
+
+    QtObject {
+        id: priv
+        readonly property int defaultTimeout: 2000
+        property int notificationId: -1
+    }
+
+    readonly property Timer notificationTimer: Timer {
+        interval: priv.defaultTimeout
+        onTriggered: {
+            root.notificationModel.closeNotification();
+        }
     }
 
     Connections {
         target: root.notificationModel
         onNotificationToastVisibleChanged: {
             if (root.notificationModel.notificationToastVisible) {
-                root.notificationIcon = root.notificationModel.currentNotification.icon
-                root.notificationText = root.notificationModel.currentNotification.title
-                root.notificationSubtext = root.notificationModel.currentNotification.description
-                root.notificationAccessoryButtonIcon = root.notificationModel.currentNotification.image
+                var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
+                priv.notificationId = currentNotification.id;
+                root.notificationIcon = currentNotification.icon;
+                root.notificationText = currentNotification.summary;
+                root.notificationSubtext = currentNotification.body;
+                root.notificationImage = currentNotification.image;
+                if (currentNotification.actions.length > 0) {
+                    // TODO improve actions assignment to support more than 1,
+                    // for now there is only one specified
+                    root.notificationActionText = currentNotification.actions[0].actionText;
+                } else {
+                    root.notificationActionText = "";
+                }
+                if (currentNotification.timeout > priv.defaultTimeout) {
+                    notificationTimer.interval = currentNotification.timeout;
+                }
+                notificationTimer.start();
+            } else {
+                priv.notificationId = -1;
+                notificationTimer.stop();
+                notificationTimer.interval = priv.defaultTimeout;
             }
         }
     }

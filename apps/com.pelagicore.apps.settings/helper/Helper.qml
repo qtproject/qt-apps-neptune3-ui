@@ -41,11 +41,10 @@ QtObject {
     }
 
     function showNotification(summary, body) {
-        var notification
-        notification = ApplicationInterface.createNotification();
+        var notification = ApplicationInterface.createNotification();
         notification.summary = summary;
         notification.body = body;
-        notification.category = "notification";
+        notification.sticky = true;
         notification.show();
     }
 }

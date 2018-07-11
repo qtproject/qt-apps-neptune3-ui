@@ -45,7 +45,6 @@ Item {
         body: "Body text: simple notification"
         showActionsAsIcons: true
         actions: [{"actionText": "Action Text"}]
-        category: "notification"
         onActionTriggered: {
             console.log("Simple notification has been triggered")
         }
@@ -56,23 +55,19 @@ Item {
         summary: "Summary text: timeout notification"
         body: "Body text: timeout 8 seconds"
         timeout: 8000
-        category: "notification"
     }
 
     Notification {
         id: notification3
-        summary: "Summary text: timeout sticky notification"
-        body: "Body text: timeout 6 seconds"
-        category: "notification"
+        summary: "Summary text: sticky notification"
+        body: "Sticky notification has an implicit timeout of 0, it will persist in the notification center"
         sticky: true
-        timeout: 6000
     }
 
     Notification {
         id: notification4
         summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri."
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri."
-        category: "notification"
     }
 
     ColumnLayout {
@@ -96,9 +91,7 @@ Item {
             width: NeptuneStyle.dp(500)
             height: NeptuneStyle.dp(64)
             text: "Sticky notification"
-            onClicked: {
-                notification3.show()
-            }
+            onClicked: notification3.show()
         }
         Button {
             width: NeptuneStyle.dp(500)
@@ -107,5 +100,4 @@ Item {
             onClicked: notification4.show()
         }
     }
-
 }

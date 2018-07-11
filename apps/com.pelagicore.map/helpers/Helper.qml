@@ -40,7 +40,7 @@ QtObject {
         var notification = ApplicationInterface.createNotification();
         notification.summary = qsTr("Offline mode");
         notification.body = qsTr("Search and navigation not available in offline mode.");
-        notification.category = "notification";
+        notification.sticky = true;
         notification.show();
     }
 

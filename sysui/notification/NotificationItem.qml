@@ -40,7 +40,8 @@ Control {
     property string notificationText
     property string notificationSubtext
     property url notificationIcon
-    property string notificationAccessoryButtonIcon
+    property string notificationActionText
+    property url notificationImage
     property bool dividerVisible: false
 
     signal buttonClicked()
@@ -60,7 +61,8 @@ Control {
         text: root.notificationText
         subText: root.notificationSubtext
         closeButtonVisible: true
-        textFlatButton: root.notificationAccessoryButtonIcon
+        textFlatButton: root.notificationActionText
+        symbolFlatButton: root.notificationImage
         dividerVisible: root.dividerVisible
         onFlatButtonClicked: root.buttonClicked()
         onCloseButtonClicked: root.closeClicked()

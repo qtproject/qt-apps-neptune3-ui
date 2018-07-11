@@ -99,7 +99,7 @@ Item {
         notification.summary = summary;
         notification.body = body;
         notification.icon = icon;
-        notification.category = "notification";
+        notification.sticky = true;
         notification.show();
     }
 

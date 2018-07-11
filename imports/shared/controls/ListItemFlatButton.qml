@@ -128,7 +128,7 @@ ListItemBasic {
         text: root.textFlatButton
         font.pixelSize: NeptuneStyle.fontSizeS
         icon.source: root.symbolFlatButton
-        visible: text !== ""
+        visible: text !== "" || icon.source != ""
         onClicked: root.flatButtonClicked()
     }
 
