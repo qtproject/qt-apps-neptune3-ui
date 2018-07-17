@@ -232,8 +232,9 @@ Item {
         popupParent: root.popupParent
     }
 
-    VirtualKeyboard {
+    Loader {
         id: virtualKeyboard
+        source: "VirtualKeyboard.qml"
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
