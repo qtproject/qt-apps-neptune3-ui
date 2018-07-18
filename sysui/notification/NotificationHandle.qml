@@ -30,6 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtQuick.Controls 2.2
+
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
 
@@ -51,13 +53,39 @@ MouseArea {
 
     property alias dragFilterTimer: dragFilterTimer
 
+    property int notificationCount
+    property bool notificationCounterVisible
+
     drag.target: root.dragTarget
 
+    function circledNumber(num) {
+        return String.fromCharCode(0x2460 + num - 1);
+    }
+
     Rectangle {
-        id: handle
-        width: NeptuneStyle.dp(200)
+        anchors.left: root.notificationCounterVisible ? parent.left : undefined
+        anchors.verticalCenter: parent.verticalCenter
+        width: root.notificationCounterVisible ? NeptuneStyle.dp(100) : NeptuneStyle.dp(200)
         height: NeptuneStyle.dp(2)
+        anchors.centerIn: root.notificationCounterVisible ? undefined : root
+        color: NeptuneStyle.contrastColor
+    }
+
+    Label {
         anchors.centerIn: root
+        font.pixelSize: NeptuneStyle.fontSizeS
+        text: circledNumber(root.notificationCount)
+        opacity: root.notificationCounterVisible ? 1 : 0
+        visible: opacity > 0
+    }
+
+    Rectangle {
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        width: NeptuneStyle.dp(100)
+        height: NeptuneStyle.dp(2)
+        opacity: root.notificationCounterVisible ? 1 : 0
+        visible: opacity > 0
         color: NeptuneStyle.contrastColor
     }
 

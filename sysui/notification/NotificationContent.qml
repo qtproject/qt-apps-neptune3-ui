@@ -68,6 +68,9 @@ ModalOverlay {
         id: notificationHandle
         anchors.horizontalCenter: root.horizontalCenter
         anchors.top: notificationToast.y !== -notificationToast.height ? notificationToast.bottom : notificationCenter.bottom
+        notificationCount: notificationModel.count
+        notificationCounterVisible: notificationCount > 0 &&
+                                    !notificationModel.notificationCenterVisible && !notificationModel.notificationToastVisible
         dragTarget: notificationToast.y !== -notificationToast.height ? notificationToast : notificationCenter
         drag.minimumY: notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : -notificationCenter.height
         drag.maximumY: 0
