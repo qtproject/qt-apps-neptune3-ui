@@ -52,20 +52,15 @@ RowLayout {
             topPadding: NeptuneStyle.dp(6)
             bottomPadding: NeptuneStyle.dp(6)
             locale: grid.locale
-            delegate: Text {
+            delegate: Label {
                 text: model.shortName
                 font.pixelSize: NeptuneStyle.fontSizeXS
-                font.family: NeptuneStyle.fontFamily
                 color: NeptuneStyle.contrastColor
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
             }
-
         }
         MonthGrid {
             id: grid
-
-            property color labelColor: NeptuneStyle.contrastColor
 
             locale: Qt.locale(Style.languageLocale)
             Layout.preferredWidth: shadow.width
@@ -75,11 +70,9 @@ RowLayout {
 
             delegate: Label {
                 text: model.day
-                color: grid.labelColor
+                color: NeptuneStyle.contrastColor
                 font.pixelSize: NeptuneStyle.fontSizeXS
-                font.family: NeptuneStyle.fontFamily
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 opacity: model.month === grid.month ? 1 : 0
             }
         }

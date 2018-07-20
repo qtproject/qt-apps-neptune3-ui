@@ -41,6 +41,8 @@ import "../controls"
 Item {
     id: root
 
+    readonly property int currentYear: new Date().getFullYear()
+
     property alias eventModel: eventList.model
 
     Component {
@@ -67,36 +69,28 @@ Item {
                     spacing: NeptuneStyle.dp(6)
                     topPadding: NeptuneStyle.dp(6)
                     bottomPadding: NeptuneStyle.dp(6)
-                    delegate: Text {
+                    delegate: Label {
                         text: model.shortName
                         font.pixelSize: NeptuneStyle.fontSizeXS
-                        font.family: NeptuneStyle.fontFamily
                         color: NeptuneStyle.contrastColor
                         horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                     }
                 }
                 MonthGrid {
                     id: grid
-                    property color labelColor: NeptuneStyle.contrastColor
                     spacing: NeptuneStyle.dp(6)
                     locale: Qt.locale(Style.languageLocale)
                     month: index
-                    year: {
-                        var d = new Date();
-                        return d.getFullYear();
-                    }
+                    year: root.currentYear
                     Layout.preferredWidth: NeptuneStyle.dp(270)
                     Layout.maximumWidth: NeptuneStyle.dp(270)
                     Layout.maximumHeight: 0.7 * gridView.cellHeight
                     Layout.preferredHeight: 0.7 * gridView.cellHeight
                     delegate: Label {
                         text: model.day
-                        color: grid.labelColor
+                        color: NeptuneStyle.contrastColor
                         font.pixelSize: NeptuneStyle.fontSizeXS
-                        font.family: NeptuneStyle.fontFamily
                         horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                         opacity: model.month === grid.month ? 1 : 0
                     }
                 }

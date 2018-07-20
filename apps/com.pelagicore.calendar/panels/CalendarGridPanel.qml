@@ -39,13 +39,15 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
+    readonly property int currentYear: new Date().getFullYear()
+
     Component {
         id: delegatedCalendar
         Item {
             width: NeptuneStyle.dp(315)
             height: NeptuneStyle.dp(240)
-            ColumnLayout {
 
+            ColumnLayout {
                 Label {
                     Layout.preferredWidth: NeptuneStyle.dp(270)
                     Layout.maximumWidth: NeptuneStyle.dp(270)
@@ -63,26 +65,19 @@ Item {
                     spacing: NeptuneStyle.dp(6)
                     topPadding: NeptuneStyle.dp(6)
                     bottomPadding: NeptuneStyle.dp(6)
-                    delegate: Text {
+                    delegate: Label {
                         text: model.shortName
                         font.pixelSize: NeptuneStyle.fontSizeXS
-                        font.family: NeptuneStyle.fontFamily
                         color: NeptuneStyle.contrastColor
                         horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                     }
                 }
                 MonthGrid {
                     id: grid
 
-                    property color labelColor: NeptuneStyle.contrastColor
-
                     locale: Qt.locale(Style.languageLocale)
                     month: index
-                    year: {
-                        var d = new Date();
-                        return d.getFullYear();
-                    }
+                    year: root.currentYear
                     Layout.preferredWidth: NeptuneStyle.dp(270)
                     Layout.maximumWidth: NeptuneStyle.dp(270)
                     Layout.preferredHeight: 0.7 * gridView.cellHeight
@@ -90,11 +85,9 @@ Item {
                     spacing: NeptuneStyle.dp(6)
                     delegate: Label {
                         text: model.day
-                        color: grid.labelColor
+                        color: NeptuneStyle.contrastColor
                         font.pixelSize: NeptuneStyle.fontSizeXS
-                        font.family: NeptuneStyle.fontFamily
                         horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
                         opacity: model.month === grid.month ? 1 : 0
                     }
                 }

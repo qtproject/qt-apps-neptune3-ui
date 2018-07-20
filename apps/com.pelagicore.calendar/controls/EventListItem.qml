@@ -77,7 +77,7 @@ ItemDelegate {
 
         Image {
             width: parent.width
-            height: 5
+            height: NeptuneStyle.dp(5)
             anchors.bottom: parent.bottom
             source: Style.gfx("divider", NeptuneStyle.theme)
         }
