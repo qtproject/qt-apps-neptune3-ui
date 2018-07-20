@@ -48,7 +48,7 @@ Item {
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
-    signal roofOpenProgressChanged(var roofOpenProgressChanged)
+    signal roofOpenProgressChanged(var value)
 
     TabBar {
         id: tabBar

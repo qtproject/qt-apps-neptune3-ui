@@ -59,7 +59,6 @@ QtObject {
         asynchronous: true
         active: (clusterSettings.available
                  || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
-                && mainMap.mapReady
         sourceComponent: Component {
             SecondaryWindow {
                 id: secondaryWindowComponent
