@@ -58,13 +58,17 @@ Item {
                     var mRSS = (memoryRss.total / 1e6).toFixed(0)
                     var mVirtual = (memoryVirtual.total / 1e6).toFixed(0)
                     var indx = runningAppsModel.getAppIndex(model.appInfo.id);
-                    runningAppsModel.setProperty(indx, "memoryPSS", mPSS)
-                    runningAppsModel.setProperty(indx, "memoryRSS", mRSS)
-                    runningAppsModel.setProperty(indx, "memoryVirtual", mVirtual)
+                    if (indx !== -1) {
+                        runningAppsModel.setProperty(indx, "memoryPSS", mPSS)
+                        runningAppsModel.setProperty(indx, "memoryRSS", mRSS)
+                        runningAppsModel.setProperty(indx, "memoryVirtual", mVirtual)
+                    }
                 }
                 onCpuLoadReportingChanged: {
                     var indx = runningAppsModel.getAppIndex(model.appInfo.id);
-                    runningAppsModel.setProperty(indx, "cpuLoad", (load * 100).toFixed(1))
+                    if (indx !== -1) {
+                        runningAppsModel.setProperty(indx, "cpuLoad", (load * 100).toFixed(1))
+                    }
                 }
             }
 
