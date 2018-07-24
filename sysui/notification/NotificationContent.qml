@@ -50,9 +50,6 @@ ModalOverlay {
         anchors.left: parent.left
         anchors.right: parent.right
         notificationModel: notificationModel
-        visible: opacity > 0.0
-        opacity: notificationModel.notificationCenterVisible ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation {} }
     }
 
     NotificationToast {
