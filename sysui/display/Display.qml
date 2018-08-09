@@ -73,7 +73,7 @@ Item {
         loaded afterwards, once this function is called.
      */
     function loadUI() {
-        applicationModel.populate();
+        applicationModel.populate(settingsModel.widgetStates);
         mainContentArea.active = true;
     }
 
@@ -87,6 +87,9 @@ Item {
     property var applicationModel: ApplicationModel {
         id: applicationModel
         localeCode: Style.languageLocale
+
+        // Store widget states when the UI is shutting down
+        onShuttingDown: settingsModel.widgetStates = applicationModel.serializeWidgetsState();
     }
 
     property var musicAppRequestsIPC: MusicAppRequestsIPC  { }

@@ -30,9 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.6
+import Qt.labs.settings 1.0
 
-QtObject {
+Settings {
     id: root
 
     property int measurementSystem: Qt.locale().measurementSystem
+    property string widgetStates: "com.pelagicore.phone:2,com.pelagicore.music:2,com.pelagicore.calendar:1"
 }

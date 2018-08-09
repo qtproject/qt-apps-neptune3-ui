@@ -54,11 +54,13 @@ ListModel {
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
+    signal shuttingDown()
+
     // Populate the model
-    function populate() {
+    function populate(widgetStates) {
         // Configures which applications should be shown as widgets,
         // which, in turn, will cause them to be started.
-        d.configureApps();
+        d.deserializeWidgetsState(widgetStates);
         d.populating = false;
     }
 
@@ -86,6 +88,26 @@ ListModel {
             //else return to home
             goHome();
         }
+    }
+
+    function serializeWidgetsState() {
+        var appWidgetIds = [];
+        var appWidgetHeights = [];
+        var widgetStates = [];
+
+        for (var i = 0; i < root.count; i++) {
+            var appInfo = root.get(i).appInfo;
+            if (appInfo.asWidget) {
+                appWidgetIds.push(appInfo.id);
+                appWidgetHeights.push(appInfo.heightRows)
+            }
+        }
+
+        for (var j = 0; j < appWidgetIds.length; j++) {
+            var appIdAndHeight = appWidgetIds[j] + ":" + appWidgetHeights[j];
+            widgetStates.push(appIdAndHeight);
+        }
+        return widgetStates.toString();
     }
 
     // Go back to the home screen.
@@ -150,22 +172,28 @@ ListModel {
             }
         }
 
-        // TODO: Load the widget configuration from some database or file
-        function configureApps()
+        function deserializeWidgetsState(widgetStates)
         {
-            var appInfo = root.applicationFromId("com.pelagicore.calendar");
-            appInfo.asWidget = true;
-            appInfo.heightRows = 2;
+            var appIds = []
+            var appHeights = []
 
-            appInfo = root.applicationFromId("com.pelagicore.phone");
-            appInfo.asWidget = true;
-            appInfo.heightRows = 2;
+            var apps = widgetStates.split(",");
 
-            appInfo = root.applicationFromId("com.pelagicore.music");
-            appInfo.asWidget = true;
+            for (var i = 0; i < apps.length; i++) {
+                var values = apps[i].split(":");
+                appIds.push(values[0]);
+                appHeights.push(values[1]);
+            }
+
+            for (var j = 0; j < appIds.length; j++) {
+                var appInfos = root.applicationFromId(appIds[j]);
+                if (appInfos) {
+                    appInfos.asWidget = true;
+                    appInfos.heightRows = Number(appHeights[j]);
+                }
+            }
         }
     }
-
 
     Component.onCompleted: {
         var i;
@@ -228,6 +256,12 @@ ListModel {
             }
 
             root.remove(index);
+        }
+
+        onShuttingDownChanged: {
+            if (ApplicationManager.shuttingDown) {
+                root.shuttingDown();
+            }
         }
     }
 
