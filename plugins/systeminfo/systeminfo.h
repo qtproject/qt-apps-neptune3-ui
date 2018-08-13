@@ -87,8 +87,10 @@ private:
     int m_timerId;
     bool m_online{false};
     QString m_qtDiagContents;
-    QProcess *m_diagProc{nullptr};
     QNetworkAccessManager *m_networkManager = nullptr;
+#if QT_CONFIG(process)
+    QProcess *m_diagProc{nullptr};
+#endif
 };
 
 #endif // SYSTEMINFO_H

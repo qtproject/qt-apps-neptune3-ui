@@ -1,18 +1,13 @@
 TEMPLATE = subdirs
-android: {
+
 SUBDIRS += \
     frontend \
     backend \
     qml_plugin \
-}
-else: {
-SUBDIRS += \
-    frontend \
-    backend \
+
+!android:!ios:SUBDIRS += \
     server \
-    qml_plugin \
-    app
-}
+    app \
 
 backend.depends = frontend
 server.depends = frontend

@@ -51,7 +51,9 @@ SystemInfo::SystemInfo(QObject *parent)
 SystemInfo::~SystemInfo()
 {
     killTimer(m_timerId);
+#if QT_CONFIG(process)
     delete m_diagProc;
+#endif
 }
 
 void SystemInfo::init()
@@ -100,6 +102,7 @@ void SystemInfo::getQtDiagInfo()
         return;
     }
 
+#if QT_CONFIG(process)
     m_diagProc = new QProcess;
     connect(m_diagProc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             [this, qtdiagExe](int, QProcess::ExitStatus exitStatus) {
@@ -113,6 +116,7 @@ void SystemInfo::getQtDiagInfo()
         emit qtDiagChanged();
     });
     m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
+#endif
 }
 
 void SystemInfo::timerEvent(QTimerEvent *event)

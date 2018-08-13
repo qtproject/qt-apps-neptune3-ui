@@ -61,6 +61,7 @@ QT_USE_NAMESPACE_AM
 #define STR(macro) QUOTE(macro)
 
 void startRemoteSettingsServer(const QString &argv) {
+#if QT_CONFIG(process)
     QFileInfo fi(argv);
     QProcess *serverProcess = new QProcess(qApp);
     QObject::connect(serverProcess, &QProcess::stateChanged, [serverProcess] (QProcess::ProcessState state) {
@@ -72,6 +73,7 @@ void startRemoteSettingsServer(const QString &argv) {
         serverProcess->terminate();
     });
     serverProcess->start(QStringLiteral("%1/RemoteSettingsServer").arg(fi.canonicalPath()), QProcess::ReadOnly);
+#endif
 }
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
@@ -96,10 +98,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
 
-#ifdef Q_OS_ANDROID
+#if defined(Q_OS_ANDROID) || defined(Q_OS_IOS)
         Q_UNUSED(argc)
         char arg1[] = "--recreate-database";
-        char *_argv[] = {argv[0], arg1, NULL};
+        char *_argv[] = { argv[0], arg1, nullptr };
         int _argc = 2;
         Main a(_argc, &_argv[0]);
 #else
