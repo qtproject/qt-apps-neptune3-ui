@@ -29,22 +29,44 @@
 **
 ****************************************************************************/
 
-pragma Singleton
 import QtQuick 2.0
+import QtApplicationManager 1.0
 
+/*
+ Wraps QtApplicationManger's monitor components into the most convenient format for
+ Neptune 3's consumption
+ */
 QtObject {
     id: root
 
+    // to be set from outside
+    property var activeAppInfo
     property bool systemOverlayEnabled: false
     property bool centerConsolePerfOverlayEnabled: false
     property bool instrumentClusterPerfOverlayEnabled: false
+    property bool monitorEnabled: false
 
-    property int cpuPercentage: -1
+    readonly property int cpuPercentage: (systemMonitor.cpuLoad * 100).toFixed(0)
     readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
-    property int ramBytes: -1
-    property int ramTotalBytes: -1
+    readonly property int ramBytes: (systemMonitor.memoryUsed / 1e6).toFixed(0)
+    readonly property int ramTotalBytes: (systemMonitor.totalMemory / 1e6).toFixed(0)
 
-    property real appCpuPercentage: -1
-    property real appRamBytes: -1
+    readonly property real appCpuPercentage: (processMonitor.cpuLoad * 100).toFixed(1)
+    readonly property real appRamBytes: (processMonitor.memoryPss.total / 1e6).toFixed(1)
     readonly property real appRamPercentage: ((appRamBytes / ramTotalBytes) * 100).toFixed(1)
+
+    property var monitorModel: SystemMonitor {
+        id: systemMonitor
+        memoryReportingEnabled: root.systemOverlayEnabled || root.monitorEnabled
+        cpuLoadReportingEnabled: root.systemOverlayEnabled || root.monitorEnabled
+        reportingInterval: 1000
+    }
+
+    property var _procMon: ProcessMonitor {
+        id: processMonitor
+        applicationId: root.activeAppInfo ? root.activeAppInfo.id : ""
+        reportingInterval: 1000
+        memoryReportingEnabled: root.systemOverlayEnabled && root.activeAppInfo
+        cpuLoadReportingEnabled: root.systemOverlayEnabled && root.activeAppInfo
+    }
 }

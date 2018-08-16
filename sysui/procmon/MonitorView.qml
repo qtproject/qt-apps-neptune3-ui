@@ -35,7 +35,6 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import utils 1.0
-import models.system 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
@@ -43,6 +42,7 @@ ColumnLayout {
     id: root
 
     property var sysinfo
+    property var systemModel
     property bool singleProcess
 
     function graphicsInformation() {
@@ -80,9 +80,9 @@ ColumnLayout {
                 anchors.left: parent.left
                 anchors.leftMargin: NeptuneStyle.dp(24)
                 text: qsTr("System Monitor Overlay")
-                checked: SystemModel.systemOverlayEnabled
+                checked: root.systemModel ? root.systemModel.systemOverlayEnabled : false
                 onToggled: {
-                    SystemModel.systemOverlayEnabled = checked;
+                    root.systemModel.systemOverlayEnabled = checked;
                 }
             }
 
@@ -100,6 +100,7 @@ ColumnLayout {
                 complexContent: CpuMonitor {
                     width: contentList.width
                     height: NeptuneStyle.dp(300)
+                    systemModel: root.systemModel
                 }
             }
 
@@ -107,6 +108,7 @@ ColumnLayout {
                 complexContent: RamMonitor {
                     width: contentList.width
                     height: NeptuneStyle.dp(300)
+                    systemModel: root.systemModel
                 }
             }
 

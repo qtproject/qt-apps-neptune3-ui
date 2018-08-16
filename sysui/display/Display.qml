@@ -47,7 +47,6 @@ import ipc 1.0
 import models.application 1.0
 import models.climate 1.0
 import models.settings 1.0
-import models.system 1.0
 import models.volume 1.0
 import models.statusbar 1.0
 
@@ -83,6 +82,8 @@ Item {
     property SystemInfo sysInfo: SystemInfo {
         id: sysInfo
     }
+
+    property var systemModel
 
     property var applicationModel: ApplicationModel {
         id: applicationModel
@@ -186,32 +187,8 @@ Item {
         }
     }
 
-
-    readonly property bool systemMonitorEnabled: SystemModel.systemOverlayEnabled
-                                              || (about.state === "open" && about.currentTabName === "system")
-
-    Binding { target: SystemMonitor; property: "memoryReportingEnabled"; value: root.systemMonitorEnabled }
-    Binding { target: SystemMonitor; property: "cpuLoadReportingEnabled"; value: root.systemMonitorEnabled }
-    Binding { target: SystemMonitor; property: "reportingInterval"; value: 1000 }
-    Binding { target: SystemModel; property: "ramTotalBytes"; value: (SystemMonitor.totalMemory / 1e6).toFixed(0) }
-    Binding { target: SystemModel; property: "cpuPercentage"; value: (SystemMonitor.cpuLoad * 100).toFixed(0) }
-    Binding { target: SystemModel; property: "ramBytes"; value: (SystemMonitor.memoryUsed / 1e6).toFixed(0) }
-
-    ProcessMonitor {
-        id: processMonitor
-        applicationId: applicationModel.activeAppInfo ? applicationModel.activeAppInfo.id : ""
-        reportingInterval: 1000
-        memoryReportingEnabled: SystemModel.systemOverlayEnabled && applicationModel.activeAppInfo
-        cpuLoadReportingEnabled: SystemModel.systemOverlayEnabled && applicationModel.activeAppInfo
-
-        onCpuLoadReportingChanged: {
-            SystemModel.appCpuPercentage = (load * 100).toFixed(1)
-        }
-
-        onMemoryReportingChanged: {
-            SystemModel.appRamBytes = (memoryPss.total / 1e6).toFixed(1)
-        }
-    }
+    Binding { target: root.systemModel; property: "activeAppInfo"; value: applicationModel.activeAppInfo }
+    Binding { target: root.systemModel; property: "monitorEnabled"; value: about.state === "open" && about.currentTabName === "system" }
 
     PopupItemLoader {
         id: volumePopup
@@ -227,6 +204,7 @@ Item {
         popupParent: root.popupParent
         originItem: rightIcon
         applicationModel: root.applicationModel
+        systemModel: root.systemModel
         sysInfo: root.sysInfo
     }
 

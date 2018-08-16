@@ -117,6 +117,8 @@ Window {
 
         anchors.centerIn: parent
 
+        systemModel: systemModel
+
         settings: uiSettings
 
         rotation: {
@@ -344,11 +346,15 @@ Window {
             value: popupParent.showModalOverlay ? popupParent : display }
     }
 
+    SystemModel {
+        id: systemModel
+    }
+
     CenterConsoleMonitorOverlay {
         anchors.fill: display
         rotation: display.rotation
-        model: SystemModel
-        fpsVisible: SystemModel.centerConsolePerfOverlayEnabled
+        model: systemModel
+        fpsVisible: systemModel.centerConsolePerfOverlayEnabled
         activeAppId: display.applicationModel.activeAppInfo ? display.applicationModel.activeAppInfo.id : ""
         window: root
     }
@@ -391,7 +397,7 @@ Window {
             InstrumentClusterWindow {
                 applicationModel: display.applicationModel
                 invertedOrientation: instrumentClusterWindowLoader.invertedOrientation
-                performanceOverlayVisible: SystemModel.instrumentClusterPerfOverlayEnabled
+                performanceOverlayVisible: systemModel.instrumentClusterPerfOverlayEnabled
                 Component.onCompleted: uiSettings.updateTheme()
             }
         }

@@ -43,7 +43,7 @@ Item {
     property string valueText
     property alias middleText: middleLineText.text
     default property alias content: graphContent.children
-    property alias model: graph.model
+    property var systemModel
     property alias delegate: graph.delegate
 
     clip: true
@@ -77,6 +77,7 @@ Item {
 
             ListView {
                 id: graph
+                model: root.systemModel ? root.systemModel.monitorModel : null
                 width: parent.width
                 height: parent.height
                 anchors.bottom: parent.bottom

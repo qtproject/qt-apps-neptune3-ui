@@ -1020,12 +1020,12 @@
 <context>
     <name>RamMonitor</name>
     <message>
-        <source>RAM: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>50%</source>
         <translation type="unfinished">50%</translation>
+    </message>
+    <message>
+        <source>RAM: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

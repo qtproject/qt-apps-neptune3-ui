@@ -30,29 +30,25 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtApplicationManager 1.0
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
-import models.system 1.0
 
 MonitorPanel {
     id: root
 
     descriptionText: qsTr("CPU: ")
     middleText: qsTr("50%")
-    valueText: "%1%".arg(SystemModel.cpuPercentage)
-
-    model: SystemMonitor
+    valueText: systemModel ? "%1%".arg(systemModel.cpuPercentage) : ""
 
     delegate: Item {
-        width: root.width / root.model.count
+        width: root.width / root.systemModel.monitorModel.count
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
             color: "#0F000000"
-            opacity: Math.min(1, (root.model.count - index - 0.5) * 0.3)
+            opacity: Math.min(1, (root.systemModel.monitorModel.count - index - 0.5) * 0.3)
 
             Rectangle {
                 anchors.bottom: parent.bottom

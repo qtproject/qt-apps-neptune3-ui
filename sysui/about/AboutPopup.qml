@@ -46,6 +46,7 @@ PopupItem {
     height: NeptuneStyle.dp(1426)
 
     property var applicationModel
+    property var systemModel
     property var sysInfo
 
     headerBackgroundVisible: true
@@ -133,6 +134,7 @@ PopupItem {
             currentIndex: tabBar.currentIndex
             MonitorView {
                 sysinfo: root.sysInfo
+                systemModel: root.systemModel
                 singleProcess: root.applicationModel.singleProcess
             }
             AboutRunningApps {
@@ -140,6 +142,7 @@ PopupItem {
             }
             AboutPerformance {
                 applicationModel: root.applicationModel
+                systemModel: root.systemModel
             }
             AboutDiagnostics {
                 sysinfo: root.sysInfo

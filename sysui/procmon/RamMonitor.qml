@@ -30,10 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtApplicationManager 1.0
 import utils 1.0
 import com.pelagicore.styles.neptune 3.0
-import models.system 1.0
 
 MonitorPanel {
     id: root
@@ -41,25 +39,23 @@ MonitorPanel {
     descriptionText: qsTr("RAM: ")
     middleText: qsTr("50%")
 
-    model: SystemMonitor
-
-    valueText: "%1%, %2 MB".arg(SystemModel.ramPercentage).arg(SystemModel.ramBytes)
+    valueText: systemModel ? "%1%, %2 MB".arg(systemModel.ramPercentage).arg(systemModel.ramBytes) : ""
 
     delegate: Item {
-        width: root.width / root.model.count
+        width: root.width / root.systemModel.monitorModel.count
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
             color: "#0F000000"
-            opacity: Math.min(1, (root.model.count - index - 0.5) * 0.3)
+            opacity: Math.min(1, (root.systemModel.monitorModel.count - index - 0.5) * 0.3)
 
             Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width - NeptuneStyle.dp(2)
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: model.memoryUsed / SystemMonitor.totalMemory * parent.height
+                height: (model.memoryUsed / root.systemModel.monitorModel.totalMemory) * parent.height
                 color: "#30000000"
             }
         }

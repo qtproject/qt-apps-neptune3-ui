@@ -33,12 +33,12 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 
 import com.pelagicore.styles.neptune 3.0
-import models.system 1.0
 
 Flickable {
     id: root
 
     property var applicationModel
+    property var systemModel
 
     clip: true
     contentWidth: column.width
@@ -66,18 +66,18 @@ Flickable {
         SwitchDelegate {
             width: parent.width
             text: qsTr("Center Console Performance Overlay")
-            checked: SystemModel.centerConsolePerfOverlayEnabled
+            checked: root.systemModel ? root.systemModel.centerConsolePerfOverlayEnabled : false
             onToggled: {
-                SystemModel.centerConsolePerfOverlayEnabled = checked;
+                root.systemModel.centerConsolePerfOverlayEnabled = checked;
             }
         }
 
         SwitchDelegate {
             width: parent.width
             text: qsTr("Instrument Cluster Performance Overlay")
-            checked: SystemModel.instrumentClusterPerfOverlayEnabled
+            checked: root.systemModel ? root.systemModel.instrumentClusterPerfOverlayEnabled : false
             onToggled: {
-                SystemModel.instrumentClusterPerfOverlayEnabled = checked;
+                root.systemModel.instrumentClusterPerfOverlayEnabled = checked;
             }
         }
     }
