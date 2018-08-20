@@ -71,7 +71,7 @@ Item {
     }
 
     Item {
-        id: column
+        id: widgetColumn
         anchors.fill: parent
 
         readonly property real swapThreshold: NeptuneStyle.dp(32)
@@ -349,7 +349,7 @@ Item {
                         } else if (!appInfo.asWidget) {
                             return "closing";
                         } else {
-                            return column.resizingWidgets ? "resizing" : "normal"
+                            return widgetColumn.resizingWidgets ? "resizing" : "normal"
                         }
                     } else {
                         return "";
@@ -394,7 +394,7 @@ Item {
                         enabled: !widgetsList.populating
                         from: ""; to: "normal"
                         PropertyAction { property: "height" }
-                        DefaultNumberAnimation { property: "y"; from: column.height }
+                        DefaultNumberAnimation { property: "y"; from: widgetColumn.height }
                     },
                     Transition {
                         to: "hidden"
@@ -440,7 +440,7 @@ Item {
 
                         onDraggedOntoPos: {
                             dragTouchPosY = appWidget.mapToItem(root, pos.x, pos.y).y;
-                            column.onWidgetMoved(repeaterDelegate);
+                            widgetColumn.onWidgetMoved(repeaterDelegate);
                         }
                         onDragStarted: {
                             dragStartPosY = appWidget.mapToItem(root, 0, 0).y
@@ -610,19 +610,19 @@ Item {
                         // distance between the center of the mouse area and the point that was pressed
                         property real pressedYDelta
 
-                        // Always tell column that the vertical center of the handle got pressed as it
+                        // Always tell widgetColumn that the vertical center of the handle got pressed as it
                         // sits neatly between the widget above and the widget below whereas its touch
-                        // area can spill over both neighboring widgets. Makes it possible for column
+                        // area can spill over both neighboring widgets. Makes it possible for widgetColumn
                         // to figure out which handle is being dragged without having to know about the
                         // size of their touch areas.
                         onPressed: {
                             widgetStateWhenMaximized = "";
                             clickedIndexWhenMaximized = -1;
                             pressedYDelta = mouseY - (height / 2);
-                            column.onResizeHandlePressed(mapToItem(root, mouseX, height / 2))
+                            widgetColumn.onResizeHandlePressed(mapToItem(root, mouseX, height / 2))
                         }
-                        onReleased: column.onResizeHandleReleased(mapToItem(root, mouseX, mouseY - pressedYDelta))
-                        onPositionChanged: column.onResizeHandleDragged(mapToItem(root, mouseX, mouseY - pressedYDelta))
+                        onReleased: widgetColumn.onResizeHandleReleased(mapToItem(root, mouseX, mouseY - pressedYDelta))
+                        onPositionChanged: widgetColumn.onResizeHandleDragged(mapToItem(root, mouseX, mouseY - pressedYDelta))
                     }
                 }
             }
