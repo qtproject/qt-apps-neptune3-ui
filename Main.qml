@@ -248,13 +248,6 @@ Window {
                 display.applicationModel.goBack();
             }
         }
-        Shortcut {
-            sequence: "Ctrl+n"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                notificationInterface.show();
-            }
-        }
 
         Shortcut {
             id: screenshot
@@ -328,11 +321,8 @@ Window {
         }
     }
 
-    // simulates battery low warning event
     Notification {
         id: notificationInterfaceInfo
-        summary: qsTr("Warning: Battery level is low");
-        body: qsTr("Please consider charging it in the next available station");
         sticky: true
     }
 
