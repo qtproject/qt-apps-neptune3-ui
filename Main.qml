@@ -32,32 +32,71 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import Qt.labs.platform 1.0
+import QtQuick.Window 2.3
+import QtApplicationManager 1.0
 
 import animations 1.0
-import com.pelagicore.styles.neptune 3.0
 import display 1.0
 import notification 1.0
-import models.system 1.0
 import utils 1.0
 import instrumentcluster 1.0
+import models.system 1.0
+
 import com.pelagicore.settings 1.0
-
-import QtQuick.Window 2.3
-
-import QtApplicationManager 1.0
+import com.pelagicore.styles.neptune 3.0
 
 Window {
     id: root
 
-    title: "Neptune UI - Center Console"
+    readonly property bool isLandscape: width > height
+    readonly property real smallerDimension: isLandscape ? height : width
+    readonly property real largerDimension: isLandscape ? width : height
+
+    function orientationFromString(str) {
+        str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
+
+        if (str === "portrait") {
+            return Qt.PortraitOrientation;
+        } else if (str === "invertedportrait") {
+            return Qt.InvertedPortraitOrientation;
+        } else if (str === "landscape") {
+            return Qt.LandscapeOrientation;
+        } else if (str === "invertedlandscape") {
+            return Qt.InvertedLandscapeOrientation;
+        } else {
+            // default to portrait
+            return Qt.PortraitOrientation;
+        }
+    }
+
+    function invertOrientation(orientation) {
+        switch (orientation) {
+            case Qt.PortraitOrientation:
+                return Qt.InvertedPortraitOrientation;
+            case Qt.InvertedPortraitOrientation:
+                return Qt.PortraitOrientation;
+            case Qt.LandscapeOrientation:
+                return Qt.InvertedLandscapeOrientation;
+            case Qt.InvertedLandscapeOrientation:
+                return Qt.LandscapeOrientation;
+            default:
+                return orientation;
+        }
+    }
+
+    title: "Neptune 3 UI - Center Console"
     color: "black"
 
     LayoutMirroring.enabled: Qt.locale().textDirection === Qt.RightToLeft || uiSettings.rtlMode
     LayoutMirroring.childrenInherit: true
 
-    readonly property bool isLandscape: width > height
-    readonly property real smallerDimension: isLandscape ? height : width
-    readonly property real largerDimension: isLandscape ? width : height
+    Component.onCompleted: {
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        width = Style.centerConsoleWidth
+        height = Style.centerConsoleHeight
+    }
 
     // Load the full UI once a first frame has been drawn with the ligth UI version
     // FIXME: Find a better way of finding out when the first proper frame has been
@@ -75,11 +114,18 @@ Window {
     Display {
         id: display
 
-        onWidthChanged: {
-            root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
-        }
+        readonly property real availableAspectRatio: availableWidth / availableHeight
+        readonly property real availableWidth: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
+        readonly property real availableHeight: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
 
-        onScreenshotRequested: screenshot.dumpScreenshotAndVersion()
+        readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
+                                                       || orientation === Qt.InvertedPortraitOrientation
+
+        property int orientation: {
+            var value = root.orientationFromString(ApplicationManager.systemProperties.orientation);
+            return invertedOrientation ? root.invertOrientation(value) : value;
+        }
+        property bool invertedOrientation: false
 
         // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
         // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
@@ -101,19 +147,6 @@ Window {
                 }
             }
         ]
-
-        readonly property real availableAspectRatio: availableWidth / availableHeight
-        readonly property real availableWidth: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
-        readonly property real availableHeight: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
-
-        readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
-                                                       || orientation === Qt.InvertedPortraitOrientation
-
-        property int orientation: {
-            var value = root.orientationFromString(ApplicationManager.systemProperties.orientation);
-            return invertedOrientation ? root.invertOrientation(value) : value;
-        }
-        property bool invertedOrientation: false
 
         anchors.centerIn: parent
 
@@ -155,6 +188,16 @@ Window {
 
         focus: true
 
+        onWidthChanged: {
+            root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
+        }
+
+        onScreenshotRequested: screenshot.dumpScreenshotAndVersion()
+
+        Component.onCompleted: {
+            timer.start();
+        }
+
         UISettings {
             id: uiSettings
             onLanguageChanged: {
@@ -195,10 +238,6 @@ Window {
             }
         }
 
-        Component.onCompleted: {
-            timer.start();
-        }
-
         Shortcut {
             sequence: "Ctrl+r"
             context: Qt.ApplicationShortcut
@@ -231,7 +270,6 @@ Window {
                 uiSettings.language = locales[nextIndex];
             }
         }
-
         Shortcut {
             sequence: "Ctrl+c"
             context: Qt.ApplicationShortcut
@@ -248,7 +286,6 @@ Window {
                 display.applicationModel.goBack();
             }
         }
-
         Shortcut {
             id: screenshot
             sequence: "Ctrl+p"
@@ -328,7 +365,6 @@ Window {
 
     StageLoader {
         id: notificationLoader
-
         anchors.fill: display
         source: "sysui/notification/NotificationContent.qml"
 
@@ -349,40 +385,13 @@ Window {
         window: root
     }
 
-    function orientationFromString(str) {
-        str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
-
-        if (str === "portrait") {
-            return Qt.PortraitOrientation;
-        } else if (str === "invertedportrait") {
-            return Qt.InvertedPortraitOrientation;
-        } else if (str === "landscape") {
-            return Qt.LandscapeOrientation;
-        } else if (str === "invertedlandscape") {
-            return Qt.InvertedLandscapeOrientation;
-        } else {
-            // default to portrait
-            return Qt.PortraitOrientation;
-        }
-    }
-
-    function invertOrientation(orientation) {
-        switch (orientation) {
-            case Qt.PortraitOrientation:
-                return Qt.InvertedPortraitOrientation;
-            case Qt.InvertedPortraitOrientation:
-                return Qt.PortraitOrientation;
-            case Qt.LandscapeOrientation:
-                return Qt.InvertedLandscapeOrientation;
-            case Qt.InvertedLandscapeOrientation:
-                return Qt.LandscapeOrientation;
-            default:
-                return orientation;
-        }
-    }
-
     Loader {
         id: instrumentClusterWindowLoader
+
+        property bool invertedOrientation: false
+        readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
+                                                       && (Qt.application.screens.length === 1)
+
         sourceComponent: Component {
             InstrumentClusterWindow {
                 applicationModel: display.applicationModel
@@ -391,20 +400,6 @@ Window {
                 Component.onCompleted: uiSettings.updateTheme()
             }
         }
-
-        readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
-                                                       && (Qt.application.screens.length === 1)
-
         active: !runningOnSingleScreenEmbedded && ApplicationManager.systemProperties.showCluster
-
-        property bool invertedOrientation: false
-    }
-
-    Component.onCompleted: {
-        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
-        // on every language change, which results in resetting the window size to it's initial state
-        // and might overwrite the size given by the OS or the user using the WindowManager
-        width = Style.centerConsoleWidth
-        height = Style.centerConsoleHeight
     }
 }

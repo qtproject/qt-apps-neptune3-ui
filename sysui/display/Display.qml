@@ -32,6 +32,7 @@
 import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 import QtApplicationManager 1.0
 
 import about 1.0
@@ -52,29 +53,11 @@ import models.statusbar 1.0
 
 import sysui.controls 1.0
 
-import QtGraphicalEffects 1.0
-
 import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
-
-    /*
-        The UI is loaded in two steps
-        This is done in order to ensure that something is rendered on the screen as
-        soon as possible during start up.
-
-        Only the lightest elements are present upon creation of this component.
-        They are the ones that will be present on the very first rendered frame.
-
-        Others, which are more complex and thus take more time to load, will be
-        loaded afterwards, once this function is called.
-     */
-    function loadUI() {
-        applicationModel.populate(settingsModel.widgetStates);
-        mainContentArea.active = true;
-    }
 
     property Item popupParent
     property var settings
@@ -97,6 +80,22 @@ Item {
 
     signal screenshotRequested()
 
+    /*
+        The UI is loaded in two steps
+        This is done in order to ensure that something is rendered on the screen as
+        soon as possible during start up.
+
+        Only the lightest elements are present upon creation of this component.
+        They are the ones that will be present on the very first rendered frame.
+
+        Others, which are more complex and thus take more time to load, will be
+        loaded afterwards, once this function is called.
+     */
+    function loadUI() {
+        applicationModel.populate(settingsModel.widgetStates);
+        mainContentArea.active = true;
+    }
+
     Image {
         anchors.fill: parent
         source: Style.gfx(NeptuneStyle.backgroundImage)
@@ -118,7 +117,6 @@ Item {
     }
 
     // Content Elements
-
     StageLoader {
         id: mainContentArea
         source: "MainContentArea.qml"
