@@ -33,68 +33,59 @@ import QtQuick 2.7
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
-import QtApplicationManager 1.0
+
+import controls 1.0
+import utils 1.0
+import animations 1.0
 
 import about 1.0
 import climate 1.0
-import controls 1.0
 import display 1.0
-import utils 1.0
-import animations 1.0
 import volume 1.0
 import statusbar 1.0
-import ipc 1.0
-
-import models.application 1.0
-import models.climate 1.0
-import models.settings 1.0
-import models.volume 1.0
-import models.statusbar 1.0
-
+import stores 1.0
 import sysui.controls 1.0
 
-import com.pelagicore.systeminfo 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
 
     property Item popupParent
-    property var settings
+    property RootStore store
+    property alias mainContentArea: mainContentArea
 
-    property SystemInfo sysInfo: SystemInfo {
-        id: sysInfo
+    rotation: root.store.rotateDisplay(root.store.centerConsoleOrientation, root.store.isLandscape)
+
+    // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
+    // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
+    states: [
+        State {
+            name: "constrainWidth"
+            when: root.store.availableAspectRatio > Style.centerConsoleAspectRatio
+            PropertyChanges { target: root
+                width: Math.round(root.height * Style.centerConsoleAspectRatio)
+                height: root.store.availableHeight
+            }
+        },
+        State {
+            name: "constrainHeight"
+            when: root.store.availableAspectRatio <= Style.centerConsoleAspectRatio
+            PropertyChanges { target: root
+                width: root.store.availableWidth
+                height: Math.round(root.width / Style.centerConsoleAspectRatio)
+            }
+        }
+    ]
+
+    Component.onCompleted: {
+        // N.B. need to use a Timer here to "push" the available languages to settings server
+        // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
+        root.store.languageTimer.start();
     }
 
-    property var systemModel
-
-    property var applicationModel: ApplicationModel {
-        id: applicationModel
-        localeCode: Style.languageLocale
-
-        // Store widget states when the UI is shutting down
-        onShuttingDown: settingsModel.widgetStates = applicationModel.serializeWidgetsState();
-    }
-
-    property var musicAppRequestsIPC: MusicAppRequestsIPC  { }
-
-    signal screenshotRequested()
-
-    /*
-        The UI is loaded in two steps
-        This is done in order to ensure that something is rendered on the screen as
-        soon as possible during start up.
-
-        Only the lightest elements are present upon creation of this component.
-        They are the ones that will be present on the very first rendered frame.
-
-        Others, which are more complex and thus take more time to load, will be
-        loaded afterwards, once this function is called.
-     */
-    function loadUI() {
-        applicationModel.populate(settingsModel.widgetStates);
-        mainContentArea.active = true;
-    }
+    Binding { target: root.store.systemStore; property: "activeAppInfo"; value: root.store.applicationModel.activeAppInfo }
+    Binding { target: root.store.systemStore; property: "monitorEnabled"; value: about.state === "open" && about.currentTabName === "system" }
 
     Image {
         anchors.fill: parent
@@ -103,26 +94,13 @@ Item {
         Behavior on opacity { DefaultNumberAnimation {} }
     }
 
-    ClimateModel {
-        id: climateModel
-        measurementSystem: settingsModel.measurementSystem
-    }
-
-    SettingsModel {
-        id: settingsModel
-    }
-
-    VolumeModel {
-        id: volumeModel
-    }
-
     // Content Elements
     StageLoader {
         id: mainContentArea
         source: "MainContentArea.qml"
         anchors.fill: parent
 
-        Binding { target: mainContentArea.item; property: "applicationModel"; value: root.applicationModel }
+        Binding { target: mainContentArea.item; property: "applicationModel"; value: root.store.applicationModel }
         Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
         Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: climateBar.height }
         Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
@@ -136,12 +114,10 @@ Item {
         anchors.leftMargin: NeptuneStyle.dp(20)
         anchors.right: parent.right
         anchors.rightMargin: NeptuneStyle.dp(20)
-        uiSettings: settings
+        uiSettings: root.store.uiSettings
         z: 1
-        model: StatusBarModel {
-            isOnline: sysInfo.online
-        }
-        onScreenshotRequested: root.screenshotRequested()
+        model: root.store.statusBarStore
+        onScreenshotRequested: root.store.generateScreenshotAndInfo()
     }
 
     ClimateBar {
@@ -150,43 +126,30 @@ Item {
         height: NeptuneStyle.dp(120)
         anchors.bottom: parent.bottom
         popupParent: root.popupParent
-        model: climateModel
-
-        ToolButton {
-            id: leftIcon
-            width: climateBar.toolWidth
-            height: width
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: climateBar.lateralMargin
-            icon.name: {
-                if (volumeModel.muted) {
-                    return "ic-volume-0"
-                } else if (volumeModel.volume <= 0.33) {
-                    return "ic-volume-1"
-                } else if (volumeModel.volume <= 0.66) {
-                    return "ic-volume-2"
-                } else {
-                    return "ic-volume-3"
-                }
-            }
-            onClicked: volumePopup.open()
-        }
-
-        ToolButton {
-            id: rightIcon
-            width: climateBar.toolWidth
-            height: width
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: climateBar.lateralMargin
-            icon.name: "qt-badge"
-            onClicked: about.open()
-        }
+        model: root.store.climateStore
     }
 
-    Binding { target: root.systemModel; property: "activeAppInfo"; value: applicationModel.activeAppInfo }
-    Binding { target: root.systemModel; property: "monitorEnabled"; value: about.state === "open" && about.currentTabName === "system" }
+    ToolButton {
+        id: leftIcon
+        width: climateBar.toolWidth
+        height: width
+        anchors.verticalCenter: climateBar.verticalCenter
+        anchors.left: climateBar.left
+        anchors.leftMargin: climateBar.lateralMargin
+        icon.name: root.store.volumeStore.volumeIcon
+        onClicked: volumePopup.open()
+    }
+
+    ToolButton {
+        id: rightIcon
+        width: climateBar.toolWidth
+        height: width
+        anchors.verticalCenter: climateBar.verticalCenter
+        anchors.right: climateBar.right
+        anchors.rightMargin: climateBar.lateralMargin
+        icon.name: "qt-badge"
+        onClicked: about.open()
+    }
 
     PopupItemLoader {
         id: volumePopup
@@ -194,16 +157,16 @@ Item {
         popupParent: root.popupParent
         popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -item.width + leftIcon.width: 0)
         originItem: leftIcon
-        Binding { target: volumePopup.item; property: "model"; value: volumeModel }
+        Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
     }
 
     About {
         id: about
         popupParent: root.popupParent
         originItem: rightIcon
-        applicationModel: root.applicationModel
-        systemModel: root.systemModel
-        sysInfo: root.sysInfo
+        applicationModel: root.store.applicationModel
+        systemModel: root.store.systemStore
+        sysInfo: root.store.sysInfo
     }
 
     ApplicationPopups {
@@ -217,5 +180,30 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+    }
+
+    UIShortcuts {
+        onCtrlRPressed: {
+            root.store.invertedCenterConsole = !root.store.invertedCenterConsole;
+        }
+        onCtrlShiftRPressed: {
+            root.store.clusterStore.invertedCluster = !root.store.clusterStore.invertedCluster;
+        }
+        onCtrlTPressed: {
+            root.store.uiSettings.theme = root.store.uiSettings.theme === 0 ? 1 : 0;
+        }
+        onCtrlLPressed: {
+            const locales = Style.translation.availableTranslations;
+            const currentLocale = Style.languageLocale;
+            const currentIndex = locales.indexOf(currentLocale);
+            var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
+            root.store.uiSettings.language = locales[nextIndex];
+        }
+        onCtrlBPressed: {
+            root.store.applicationModel.goBack();
+        }
+        onCtrlPPressed: {
+            root.store.generateScreenshotAndInfo();
+        }
     }
 }

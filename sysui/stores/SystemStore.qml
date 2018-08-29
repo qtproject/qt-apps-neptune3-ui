@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,14 +29,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.8
 import QtApplicationManager 1.0
+import utils 1.0
 
-/*
- Wraps QtApplicationManger's monitor components into the most convenient format for
- Neptune 3's consumption
- */
-QtObject {
+Store {
     id: root
 
     // to be set from outside

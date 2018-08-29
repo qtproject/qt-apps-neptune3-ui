@@ -31,7 +31,6 @@
 
 import QtQuick 2.0
 import QtIvi.VehicleFunctions 1.0
-import models.settings 1.0
 
 QtObject {
     id: root

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,45 +29,33 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
+import QtQuick 2.0
 
-import utils 1.0
-import controls 1.0
-
-import com.pelagicore.styles.neptune 3.0
-
-RowLayout {
+QtObject {
     id: root
 
-    implicitHeight: NeptuneStyle.dp(Style.statusBarHeight)
-
     property var uiSettings
-    property var model
-
-    signal screenshotRequested()
-
-    IndicatorTray {
-        Layout.alignment: Qt.AlignLeading
-        Layout.fillHeight: true
-        model: root.model.indicators
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+    property string volumeIcon: {
+        if (root.muted) {
+            return "ic-volume-0"
+        } else if (root.volume <= 0.33) {
+            return "ic-volume-1"
+        } else if (root.volume <= 0.66) {
+            return "ic-volume-2"
+        } else {
+            return "ic-volume-3"
+        }
     }
 
-    DateAndTime {
-        Layout.alignment: Qt.AlignTrailing
-        Layout.fillHeight: true
-        currentDate: root.model.currentDate
-        uiSettings: root.uiSettings
+    readonly property real volume: uiSettings.volume
 
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
-            }
-        }
+    function setVolume(value) {
+        uiSettings.volume = value;
+    }
+
+    readonly property bool muted: uiSettings.muted
+
+    function setMuted(value) {
+        uiSettings.muted = value;
     }
 }

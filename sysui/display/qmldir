@@ -7,3 +7,4 @@ MainContentArea 1.0 MainContentArea.qml
 ModalOverlay 1.0 ModalOverlay.qml
 WidgetDrawer 1.0 WidgetDrawer.qml
 VirtualKeyboard 1.0 VirtualKeyboard.qml
+UIShortcuts 1.0 UIShortcuts.qml

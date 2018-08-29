@@ -70,6 +70,38 @@ Item {
         body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri."
     }
 
+    // simulates battery low event if accessory button is pressed, the UI
+    // jumps directly to navigation app, setting the route to the proposed charging station
+    // if not, a warning notification will be shown and stored in the notification center
+    Notification {
+        id: notification5
+        property bool actionAccepted: false
+        summary: qsTr("Battery level is low")
+        body: qsTr("Start route to nearest charging station?")
+        timeout: 4000
+        actions: [{"actionText": qsTr("Show on Map")}]
+        onActionTriggered: {
+            //jump to navigation app
+            Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
+            actionAccepted = true;
+        }
+        onVisibleChanged: {
+            if (!visible && !actionAccepted) {
+                //if action is not accepted, show warning
+                notification6.hide(); // it's sticky, so first hide it to be able to show it again
+                notification6.show();
+            }
+            actionAccepted = false;
+        }
+    }
+
+    Notification {
+        id: notification6
+        summary: qsTr("Warning: Battery level is low")
+        body: qsTr("Please consider charging it in the next available station")
+        sticky: true
+    }
+
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
@@ -98,6 +130,12 @@ Item {
             height: NeptuneStyle.dp(64)
             text: "Long text notification"
             onClicked: notification4.show()
+        }
+        Button {
+            width: NeptuneStyle.dp(500)
+            height: NeptuneStyle.dp(64)
+            text: "Notification w/ App Request"
+            onClicked: notification5.show()
         }
     }
 }

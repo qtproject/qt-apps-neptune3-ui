@@ -29,24 +29,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.8
+import QtApplicationManager 1.0
 import com.pelagicore.settings 1.0
-import models.settings 1.0
 
 QtObject {
     id: root
 
-    readonly property UISettings uiSettings: UISettings {}
-
-    readonly property real volume: uiSettings.volume
-
-    function setVolume(value) {
-        uiSettings.volume = value;
-    }
-
-    readonly property bool muted: uiSettings.muted
-
-    function setMuted(value) {
-        uiSettings.muted = value;
-    }
+    readonly property InstrumentCluster clusterSettings: InstrumentCluster { id: clusterSettings }
+    readonly property string clusterTitle: "Neptune 3 UI - Instrument Cluster"
+    readonly property bool showCluster: ApplicationManager.systemProperties.showCluster
+    property alias clusterAvailable: clusterSettings.available
+    property bool invertedCluster: false
+    readonly property var clusterScreen: Qt.application.screens[Qt.application.screens.length - 1]
 }

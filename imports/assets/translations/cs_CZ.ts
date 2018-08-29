@@ -668,31 +668,31 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI screenshot has been taken successfully</source>
-        <translation>Snímek obrazovky úspěšně sejmut</translation>
+        <translation type="vanished">Snímek obrazovky úspěšně sejmut</translation>
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
-        <translation>Snímek obrazovky a diagnostické informace uloženy v %1</translation>
+        <translation type="vanished">Snímek obrazovky a diagnostické informace uloženy v %1</translation>
     </message>
     <message>
         <source>Battery level is low</source>
-        <translation>Úroveň baterie je nízká</translation>
+        <translation type="vanished">Úroveň baterie je nízká</translation>
     </message>
     <message>
         <source>Start route to nearest charging station?</source>
-        <translation>Zahájit cestu k nejbližší nabíjecí stanici?</translation>
+        <translation type="vanished">Zahájit cestu k nejbližší nabíjecí stanici?</translation>
     </message>
     <message>
         <source>Show on Map</source>
-        <translation>Zobrazit na mapě</translation>
+        <translation type="vanished">Zobrazit na mapě</translation>
     </message>
     <message>
         <source>Warning: Battery level is low</source>
-        <translation>Varování: Úroveň baterie je nízká</translation>
+        <translation type="vanished">Varování: Úroveň baterie je nízká</translation>
     </message>
     <message>
         <source>Please consider charging it in the next available station</source>
-        <translation>Prosím zvažte její nabití na nejbližší nabíjecí stanici</translation>
+        <translation type="vanished">Prosím zvažte její nabití na nejbližší nabíjecí stanici</translation>
     </message>
 </context>
 <context>
@@ -1300,6 +1300,14 @@ UX na cestu</translation>
     <message>
         <source>UI Language changed into %1 (%2)</source>
         <translation>Jazyk UI změněn na %1 (%2)</translation>
+    </message>
+    <message>
+        <source>UI screenshot has been taken successfully</source>
+        <translation type="unfinished">Snímek obrazovky úspěšně sejmut</translation>
+    </message>
+    <message>
+        <source>UI screenshot and diagnostics information are stored in %1</source>
+        <translation type="unfinished">Snímek obrazovky a diagnostické informace uloženy v %1</translation>
     </message>
 </context>
 <context>

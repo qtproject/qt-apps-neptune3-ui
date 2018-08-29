@@ -31,64 +31,59 @@
 
 import QtQuick 2.7
 import QtQuick.Controls 2.2
-import Qt.labs.platform 1.0
 import QtQuick.Window 2.3
-import QtApplicationManager 1.0
 
-import animations 1.0
 import display 1.0
 import notification 1.0
 import utils 1.0
 import instrumentcluster 1.0
-import models.system 1.0
+import stores 1.0
 
-import com.pelagicore.settings 1.0
 import com.pelagicore.styles.neptune 3.0
 
 Window {
     id: root
 
-    readonly property bool isLandscape: width > height
-    readonly property real smallerDimension: isLandscape ? height : width
-    readonly property real largerDimension: isLandscape ? width : height
+    readonly property RootStore store: RootStore {
+        isLandscape: root.width > root.height
+        smallerDimension: isLandscape ? root.height : root.width
+        largerDimension: isLandscape ? root.width : root.height
+        clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
-    function orientationFromString(str) {
-        str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
+        onAccentColorChanged: {
+            root.contentItem.NeptuneStyle.accentColor = newAccentColor;
+        }
 
-        if (str === "portrait") {
-            return Qt.PortraitOrientation;
-        } else if (str === "invertedportrait") {
-            return Qt.InvertedPortraitOrientation;
-        } else if (str === "landscape") {
-            return Qt.LandscapeOrientation;
-        } else if (str === "invertedlandscape") {
-            return Qt.InvertedLandscapeOrientation;
-        } else {
-            // default to portrait
-            return Qt.PortraitOrientation;
+        onGrabImageRequested: {
+            display.grabToImage(function(result) {
+                var ret = result.saveToFile(screenshotUrl);
+                console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
+            });
+        }
+
+        onUpdateThemeRequested: {
+            var chosenTheme = currentTheme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+            if (popupParent.visible) {
+                popupParent.updateOverlay();
+            }
+            root.contentItem.NeptuneStyle.theme = chosenTheme;
+            if (instrumentClusterWindowLoader.item) {
+                instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
+            }
+        }
+
+        onSecondaryWindowSwitchCountChanged: {
+            if (instrumentClusterWindowLoader.active) {
+                instrumentClusterWindowLoader.item.nextSecondaryWindow();
+            }
         }
     }
 
-    function invertOrientation(orientation) {
-        switch (orientation) {
-            case Qt.PortraitOrientation:
-                return Qt.InvertedPortraitOrientation;
-            case Qt.InvertedPortraitOrientation:
-                return Qt.PortraitOrientation;
-            case Qt.LandscapeOrientation:
-                return Qt.InvertedLandscapeOrientation;
-            case Qt.InvertedLandscapeOrientation:
-                return Qt.LandscapeOrientation;
-            default:
-                return orientation;
-        }
-    }
-
-    title: "Neptune 3 UI - Center Console"
+    title: root.store.centerConsoleTitle
     color: "black"
 
-    LayoutMirroring.enabled: Qt.locale().textDirection === Qt.RightToLeft || uiSettings.rtlMode
-    LayoutMirroring.childrenInherit: true
+    LayoutMirroring.enabled: root.store.layoutMirroringEnabled
+    LayoutMirroring.childrenInherit: root.store.layoutMirroringChildreninherit
 
     Component.onCompleted: {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
@@ -105,301 +100,90 @@ Window {
         id: windowConns
         target: root
         onFrameSwapped: {
-            display.loadUI();
+            /*
+                The UI is loaded in two steps
+                This is done in order to ensure that something is rendered on the screen as
+                soon as possible during start up.
+
+                Only the lightest elements are present upon creation of this component.
+                They are the ones that will be present on the very first rendered frame.
+
+                Others, which are more complex and thus take more time to load, will be
+                loaded afterwards, once this function is called.
+             */
+            root.store.applicationModel.populate(root.store.settingsStore.widgetStates);
+            display.mainContentArea.active = true;
             notificationLoader.active = true;
             windowConns.enabled = false;
         }
     }
 
-    Display {
-        id: display
+    /*
+        By default, Neptune 3 consists of two windows, the center console window and the
+        instrument cluster window. Below, the definition of the center console window content
+        and the loading of the instrument cluster window is done. However on a device, the
+        instrument cluster window will only be shown if there are two screens connected. There
+        is also the possibility to configure whether it should be shown or not through the main
+        yaml file, default is 'yes'.
 
-        readonly property real availableAspectRatio: availableWidth / availableHeight
-        readonly property real availableWidth: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
-        readonly property real availableHeight: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
+        If additional windows shall be added, this can be done in the same way as the
+        instrument cluster window is added in Neptune 3
 
-        readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
-                                                       || orientation === Qt.InvertedPortraitOrientation
+        For more detail information, please visit Neptune 3 documentation page.
+        (TODO: add the link here once we have the documentation)
+     */
+    Item {
+        id: centerConsole
+        anchors.fill: parent
 
-        property int orientation: {
-            var value = root.orientationFromString(ApplicationManager.systemProperties.orientation);
-            return invertedOrientation ? root.invertOrientation(value) : value;
-        }
-        property bool invertedOrientation: false
+        Display {
+            id: display
+            anchors.centerIn: parent
+            store: root.store
+            popupParent: popupParent
+            focus: true
 
-        // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
-        // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
-        states: [
-            State {
-                name: "constrainWidth"
-                when: display.availableAspectRatio > Style.centerConsoleAspectRatio
-                PropertyChanges { target: display
-                    width: Math.round(display.height * Style.centerConsoleAspectRatio)
-                    height: display.availableHeight
-                }
-            },
-            State {
-                name: "constrainHeight"
-                when: display.availableAspectRatio <= Style.centerConsoleAspectRatio
-                PropertyChanges { target: display
-                    width: display.availableWidth
-                    height: Math.round(display.width / Style.centerConsoleAspectRatio)
-                }
-            }
-        ]
-
-        anchors.centerIn: parent
-
-        systemModel: systemModel
-
-        settings: uiSettings
-
-        rotation: {
-            if (root.isLandscape) {
-                switch (orientation) {
-                    case Qt.PortraitOrientation:
-                        return 90;
-                    case Qt.LandscapeOrientation:
-                        return 0;
-                    case Qt.InvertedPortraitOrientation:
-                        return -90;
-                    case Qt.InvertedLandscapeOrientation:
-                        return 180;
-                    default:
-                        return 0;
-                }
-            } else {
-                switch (orientation) {
-                    case Qt.PortraitOrientation:
-                        return 0;
-                    case Qt.LandscapeOrientation:
-                        return -90;
-                    case Qt.InvertedPortraitOrientation:
-                        return 180;
-                    case Qt.InvertedLandscapeOrientation:
-                        return 90;
-                    default:
-                        return 0;
-                }
+            onWidthChanged: {
+                root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
             }
         }
 
-        popupParent: popupParent
-
-        focus: true
-
-        onWidthChanged: {
-            root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
+        ModalOverlay {
+            id: popupParent
+            anchors.fill: display
+            target: display
         }
 
-        onScreenshotRequested: screenshot.dumpScreenshotAndVersion()
+        StageLoader {
+            id: notificationLoader
+            anchors.fill: display
+            source: "sysui/notification/NotificationContent.qml"
 
-        Component.onCompleted: {
-            timer.start();
+            Binding { target: notificationLoader.item; property: "target";
+                value: popupParent.showModalOverlay ? popupParent : display }
         }
 
-        UISettings {
-            id: uiSettings
-            onLanguageChanged: {
-                if (language !== Style.languageLocale) {
-                    Style.languageLocale = language;
-                }
-            }
-            onThemeChanged: updateTheme()
-            onAccentColorChanged: {
-                root.contentItem.NeptuneStyle.accentColor = accentColor;
-            }
-            Component.onCompleted: updateTheme()
-            function updateTheme() {
-                var chosenTheme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-                if (popupParent.visible) {
-                    popupParent.updateOverlay();
-                }
-                root.contentItem.NeptuneStyle.theme = chosenTheme;
-                if (instrumentClusterWindowLoader.item) {
-                    instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
-                }
-            }
+        CenterConsoleMonitorOverlay {
+            anchors.fill: display
+            rotation: display.rotation
+            model: root.store.systemStore
+            fpsVisible: root.store.systemStore.centerConsolePerfOverlayEnabled
+            activeAppId: root.store.applicationModel.activeAppInfo ? root.store.applicationModel.activeAppInfo.id : ""
+            window: root
         }
-
-        InstrumentCluster {
-            id: clusterSettings
-            available: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
-        }
-
-        // N.B. need to use a Timer here to "push" the available languages to settings server
-        // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
-        Timer {
-            id: timer
-            interval: 100
-            onTriggered: {
-                uiSettings.languages = Style.translation.availableTranslations;
-                uiSettings.twentyFourHourTimeFormat = Qt.locale().timeFormat(Locale.ShortFormat).indexOf("AP") === -1;
-            }
-        }
-
-        Shortcut {
-            sequence: "Ctrl+r"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                display.invertedOrientation = !display.invertedOrientation
-            }
-        }
-        Shortcut {
-            sequence: "Ctrl+Shift+r"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                instrumentClusterWindowLoader.invertedOrientation = !instrumentClusterWindowLoader.invertedOrientation
-            }
-        }
-        Shortcut {
-            sequence: "Ctrl+t"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                uiSettings.theme = uiSettings.theme === 0 ? 1 : 0
-            }
-        }
-        Shortcut {
-            sequence: "Ctrl+l"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                const locales = Style.translation.availableTranslations;
-                const currentLocale = Style.languageLocale;
-                const currentIndex = locales.indexOf(currentLocale);
-                var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
-                uiSettings.language = locales[nextIndex];
-            }
-        }
-        Shortcut {
-            sequence: "Ctrl+c"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                if (instrumentClusterWindowLoader.item)
-                    instrumentClusterWindowLoader.item.nextSecondaryWindow();
-            }
-        }
-        Shortcut {
-        //simulates hard key back press
-            sequence: "Ctrl+b"
-            context: Qt.ApplicationShortcut
-            onActivated: {
-                display.applicationModel.goBack();
-            }
-        }
-        Shortcut {
-            id: screenshot
-            sequence: "Ctrl+p"
-            context: Qt.ApplicationShortcut
-
-            function saveFile(fileUrl, text) {
-                var request = new XMLHttpRequest();
-                request.open("PUT", fileUrl);
-                request.send("Neptune 3: %1 %2".arg(Qt.application.version).arg(neptuneInfo) + "\n" +
-                             "Qt Application Manager: %1".arg(qtamVersion) + "\n" +
-                             "Qt IVI: %1".arg(qtiviVersion) + "\n\n" +
-                             text);
-            }
-
-            function dumpScreenshotAndVersion() {
-                var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
-                tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
-                const timestamp = new Date().toLocaleString(Qt.locale(),"yyyy-MM-dd-hh-mm-ss")
-                const screenshotUrl = tempDir + "/" + timestamp + "_neptune3_screenshot.png";
-                display.grabToImage(function(result) {
-                    var ret = result.saveToFile(screenshotUrl);
-                    console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
-                });
-
-                const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
-                saveFile(diagFile, display.sysInfo.qtDiag);
-
-                notificationInterfaceInfo.summary = qsTr("UI screenshot has been taken successfully");
-                notificationInterfaceInfo.body = qsTr("UI screenshot and diagnostics information are stored in %1").arg(tempDir);
-                notificationInterfaceInfo.hide(); // it's sticky, so first hide it to be able to show it again
-                notificationInterfaceInfo.show();
-            }
-
-            onActivated: {
-                dumpScreenshotAndVersion();
-            }
-        }
-    }
-
-    ModalOverlay {
-        id: popupParent
-        anchors.fill: display
-        target: display
-    }
-
-    // simulates battery low event if accessory button is pressed, the UI
-    // jumps directly to navigation app, setting the route to the proposed charging station
-    // if not, a warning notification will be shown and stored in the notification center
-    Notification {
-        id: notificationInterface
-        property bool actionAccepted: false
-        summary: qsTr("Battery level is low")
-        body: qsTr("Start route to nearest charging station?")
-        timeout: 4000
-        actions: [{"actionText": qsTr("Show on Map")}]
-        onActionTriggered: {
-            //jump to navigation app
-            Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
-            actionAccepted = true;
-        }
-        onVisibleChanged: {
-            if (!visible && !actionAccepted) {
-                //if action is not accepted, show warning
-                notificationInterfaceInfo.summary = qsTr("Warning: Battery level is low");
-                notificationInterfaceInfo.body = qsTr("Please consider charging it in the next available station");
-                notificationInterfaceInfo.hide(); // it's sticky, so first hide it to be able to show it again
-                notificationInterfaceInfo.show();
-            }
-            actionAccepted = false;
-        }
-    }
-
-    Notification {
-        id: notificationInterfaceInfo
-        sticky: true
-    }
-
-    StageLoader {
-        id: notificationLoader
-        anchors.fill: display
-        source: "sysui/notification/NotificationContent.qml"
-
-        Binding { target: notificationLoader.item; property: "target";
-            value: popupParent.showModalOverlay ? popupParent : display }
-    }
-
-    SystemModel {
-        id: systemModel
-    }
-
-    CenterConsoleMonitorOverlay {
-        anchors.fill: display
-        rotation: display.rotation
-        model: systemModel
-        fpsVisible: systemModel.centerConsolePerfOverlayEnabled
-        activeAppId: display.applicationModel.activeAppInfo ? display.applicationModel.activeAppInfo.id : ""
-        window: root
     }
 
     Loader {
         id: instrumentClusterWindowLoader
 
-        property bool invertedOrientation: false
-        readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
-                                                       && (Qt.application.screens.length === 1)
-
         sourceComponent: Component {
             InstrumentClusterWindow {
-                applicationModel: display.applicationModel
-                invertedOrientation: instrumentClusterWindowLoader.invertedOrientation
-                performanceOverlayVisible: systemModel.instrumentClusterPerfOverlayEnabled
-                Component.onCompleted: uiSettings.updateTheme()
+                applicationModel: root.store.applicationModel
+                clusterStore: root.store.clusterStore
+                performanceOverlayVisible: root.store.systemStore.instrumentClusterPerfOverlayEnabled
+                Component.onCompleted: root.store.updateThemeRequested(root.store.uiSettings.theme)
             }
         }
-        active: !runningOnSingleScreenEmbedded && ApplicationManager.systemProperties.showCluster
+        active: !root.store.runningOnSingleScreenEmbedded && root.store.clusterStore.showCluster
     }
 }

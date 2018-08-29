@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,45 +29,51 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
+import QtQuick 2.8
 
-import utils 1.0
-import controls 1.0
+/*
+    Keyboard shortcuts to simulate specific UI events when triggered.
+*/
 
-import com.pelagicore.styles.neptune 3.0
-
-RowLayout {
+Item {
     id: root
 
-    implicitHeight: NeptuneStyle.dp(Style.statusBarHeight)
+    signal ctrlRPressed()
+    signal ctrlShiftRPressed()
+    signal ctrlTPressed()
+    signal ctrlLPressed()
+    signal ctrlBPressed()
+    signal ctrlPPressed()
 
-    property var uiSettings
-    property var model
-
-    signal screenshotRequested()
-
-    IndicatorTray {
-        Layout.alignment: Qt.AlignLeading
-        Layout.fillHeight: true
-        model: root.model.indicators
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+    Shortcut {
+        sequence: "Ctrl+r"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlRPressed()
     }
-
-    DateAndTime {
-        Layout.alignment: Qt.AlignTrailing
-        Layout.fillHeight: true
-        currentDate: root.model.currentDate
-        uiSettings: root.uiSettings
-
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
-            }
-        }
+    Shortcut {
+        sequence: "Ctrl+Shift+r"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlShiftRPressed()
+    }
+    Shortcut {
+        sequence: "Ctrl+t"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlTPressed()
+    }
+    Shortcut {
+        sequence: "Ctrl+l"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlLPressed()
+    }
+    Shortcut {
+        sequence: "Ctrl+b"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlBPressed()
+    }
+    Shortcut {
+        id: screenshot
+        sequence: "Ctrl+p"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlPPressed()
     }
 }

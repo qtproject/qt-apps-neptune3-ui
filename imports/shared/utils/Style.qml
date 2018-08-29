@@ -34,46 +34,30 @@ import QtQuick 2.6
 
 import com.pelagicore.styles.neptune 3.0
 import com.pelagicore.translation 1.0
-import com.pelagicore.settings 1.0
 
 QtObject {
     id: root
 
-    property int instrumentClusterWidth: 1920
-    property int instrumentClusterHeight: 1080
-    property real instrumentClusterUIAspectRatio: 1920 / 720
+    readonly property int instrumentClusterWidth: 1920
+    readonly property int instrumentClusterHeight: 1080
+    readonly property real instrumentClusterUIAspectRatio: 1920 / 720
 
     readonly property int centerConsoleWidth: 1080
     readonly property int centerConsoleHeight: 1920
     readonly property real centerConsoleAspectRatio: centerConsoleWidth / centerConsoleHeight
 
-    property real fontWeight: Font.Light
+    readonly property real fontWeight: Font.Light
+    readonly property real statusBarHeight: 80
+    readonly property real launcherHeight: 104
 
-    //StatusBar config
-    property real statusBarHeight: 80
-
-    property real launcherHeight: 104
-
-    property string assetPath: Qt.resolvedUrl("../../assets/")
-    property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
-    property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
-
-    readonly property var uiSettings: UISettings {}
+    readonly property string assetPath: Qt.resolvedUrl("../../assets/")
+    readonly property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
+    readonly property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
 
     property alias languageLocale: translation.languageLocale
     readonly property var translation: Translation {
         id: translation
         Component.onCompleted: translation.setPath(root.assetPath + "translations/");
-    }
-
-    Component.onCompleted: {
-        Qt.callLater(function() {
-            if (uiSettings.language) {
-                languageLocale = uiSettings.language;
-            } else {
-                languageLocale = Qt.locale().name;
-            }
-        });
     }
 
     function symbol(name, theme) {

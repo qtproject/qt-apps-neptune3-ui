@@ -559,34 +559,6 @@
         <source>Instrument Cluster</source>
         <translation>디지털 계기판</translation>
     </message>
-    <message>
-        <source>UI screenshot has been taken successfully</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UI screenshot and diagnostics information are stored in %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Battery level is low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start route to nearest charging station?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show on Map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Warning: Battery level is low</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please consider charging it in the next available station</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MapHeader</name>
@@ -1082,6 +1054,14 @@
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI screenshot has been taken successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI screenshot and diagnostics information are stored in %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

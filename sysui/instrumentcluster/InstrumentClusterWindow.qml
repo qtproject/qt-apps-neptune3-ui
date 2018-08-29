@@ -36,40 +36,33 @@ import QtQuick.Window 2.3
 import QtApplicationManager 1.0
 
 import com.pelagicore.styles.neptune 3.0
-import com.pelagicore.settings 1.0 as Settings
 
 Window {
     id: root
-    width: Style.instrumentClusterWidth
-    height: Style.instrumentClusterHeight
-    title: "Neptune UI - Instrument Cluster"
 
-    color: "black"
-
-
+    property var clusterStore
     property var applicationModel
-    property bool invertedOrientation: false
+    property var instrumentClusterSettings: root.clusterStore.clusterSettings
+    property bool invertedOrientation: root.clusterStore.invertedCluster
     property bool performanceOverlayVisible: false
 
     function nextSecondaryWindow() {
         secondaryAppWindows.next();
     }
 
-    Component.onCompleted: {
-        WindowManager.registerCompositorView(root)
-    }
-
-    Settings.InstrumentCluster {
-        id: instrumentClusterSettings
-    }
-
-    Settings.SystemUI {
-        id: sysuiSettings
-        onSecondaryWindowSwitchCountChanged: secondaryAppWindows.next();
-    }
+    width: Style.instrumentClusterWidth
+    height: Style.instrumentClusterHeight
+    color: "black"
+    title: root.clusterStore.clusterTitle
+    screen: root.clusterStore.clusterScreen
+    visible: windowItem.window !== null
 
     onWidthChanged: {
         root.contentItem.NeptuneStyle.scale = root.width / Style.instrumentClusterWidth;
+    }
+
+    Component.onCompleted: {
+        WindowManager.registerCompositorView(root)
     }
 
     Item {
@@ -120,9 +113,9 @@ Window {
         rotation: root.invertedOrientation ? 180 : 0
     }
 
-
-    // lazy way of putting the instrument cluster in a separate screen, if available
-    screen: Qt.application.screens[Qt.application.screens.length - 1]
-
-    visible: windowItem.window != null
+    Shortcut {
+        sequence: "Ctrl+c"
+        context: Qt.ApplicationShortcut
+        onActivated: root.nextSecondaryWindow();
+    }
 }
