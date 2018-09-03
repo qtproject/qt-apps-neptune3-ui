@@ -36,6 +36,7 @@ import QtQuick.Window 2.3
 import centerconsole 1.0
 import notification 1.0
 import instrumentcluster 1.0
+import hud 1.0
 import stores 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
@@ -50,6 +51,9 @@ QtObject {
             centerConsoleWindow.contentItem.NeptuneStyle.accentColor = newAccentColor;
             if (instrumentClusterWindowLoader.item) {
                 instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.accentColor = newAccentColor;
+            }
+            if (hudWindowLoader.item) {
+                hudWindowLoader.item.contentItem.NeptuneStyle.accentColor = newAccentColor;
             }
         }
 
@@ -68,6 +72,9 @@ QtObject {
             centerConsoleWindow.contentItem.NeptuneStyle.theme = chosenTheme;
             if (instrumentClusterWindowLoader.item) {
                 instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
+            }
+            if (hudWindowLoader.item) {
+                hudWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
             }
         }
 
@@ -93,5 +100,17 @@ QtObject {
             }
         }
         active: !root.store.runningOnSingleScreenEmbedded && root.store.clusterStore.showCluster
+    }
+
+    readonly property Loader hudWindowLoader: Loader {
+        id: hudWindowLoader
+
+        sourceComponent: Component {
+            HUDWindow {
+                hudAppInfo: root.store.applicationModel ? root.store.applicationModel.hudAppInfo : null
+                hudStore: root.store.hudStore
+            }
+        }
+        active: !root.store.runningOnSingleScreenEmbedded && root.store.hudStore.showHUD
     }
 }

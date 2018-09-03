@@ -609,6 +609,10 @@
         <source>Instrument Cluster</source>
         <translation>디지털 계기판</translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>

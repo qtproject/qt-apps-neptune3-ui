@@ -30,22 +30,39 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager.SystemUI 1.0
-import shared.com.pelagicore.settings 1.0
+import QtQuick.Controls 2.2
+import shared.utils 1.0
+import system.controls 1.0
+import QtQuick.Window 2.3
 
-QtObject {
+import shared.com.pelagicore.styles.neptune 3.0
+
+Window {
     id: root
 
-    readonly property InstrumentCluster clusterSettings: InstrumentCluster { id: clusterSettings }
-    readonly property string clusterTitle: "Neptune 3 UI - Instrument Cluster"
-    readonly property bool showCluster: ApplicationManager.systemProperties.showCluster
-    property bool clusterAvailable
-    property bool invertedCluster: false
-    readonly property var clusterScreen: Qt.application.screens.length > 1 ? Qt.application.screens[1] : Qt.application.screens[0]
-    readonly property var _clusterAvailableBinding: Binding {
-        target: clusterSettings
-        when: clusterSettings.isInitialized
-        property: "available"
-        value: root.clusterAvailable
+    property var hudAppInfo
+    property var hudStore
+
+    width: Style.hudWidth
+    height: Style.hudHeight
+    color: "black"
+    title: "Neptune 3 UI - HUD"
+    screen: root.hudStore.hudScreen
+
+    Component.onCompleted: {
+        // Would be better to use a regular property binding instead. But somehow, it doesn't work.
+        visible = true;
+    }
+
+    Item {
+        anchors.centerIn: parent
+        width: parent.width
+        height: width / Style.hudAspectRatio
+
+        NeptuneWindowItem {
+            anchors.fill: parent
+            window: hudAppInfo ?
+                    hudAppInfo.window : null
+        }
     }
 }

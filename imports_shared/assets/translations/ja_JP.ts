@@ -602,6 +602,10 @@
         <source>Instrument Cluster</source>
         <translation>インストルメント・クラスター</translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>

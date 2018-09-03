@@ -630,6 +630,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>Instrument Cluster</source>
         <translation>仪表盘</translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>

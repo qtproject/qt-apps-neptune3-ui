@@ -783,6 +783,10 @@ UX na cestu</translation>
         <source>Please consider charging it in the next available station</source>
         <translation type="vanished">Prosím zvažte její nabití na nejbližší nabíjecí stanici</translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>

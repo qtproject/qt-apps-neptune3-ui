@@ -36,16 +36,8 @@ import shared.com.pelagicore.settings 1.0
 QtObject {
     id: root
 
-    readonly property InstrumentCluster clusterSettings: InstrumentCluster { id: clusterSettings }
-    readonly property string clusterTitle: "Neptune 3 UI - Instrument Cluster"
-    readonly property bool showCluster: ApplicationManager.systemProperties.showCluster
-    property bool clusterAvailable
-    property bool invertedCluster: false
-    readonly property var clusterScreen: Qt.application.screens.length > 1 ? Qt.application.screens[1] : Qt.application.screens[0]
-    readonly property var _clusterAvailableBinding: Binding {
-        target: clusterSettings
-        when: clusterSettings.isInitialized
-        property: "available"
-        value: root.clusterAvailable
-    }
+    readonly property InstrumentCluster clusterSettings: InstrumentCluster {}
+    readonly property string hudTitle: "Neptune 3 UI - Head Up Display"
+    readonly property bool showHUD: ApplicationManager.systemProperties.showHUD
+    readonly property var hudScreen: Qt.application.screens.length > 2 ? Qt.application.screens[2] : Qt.application.screens[0]
 }

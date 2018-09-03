@@ -38,6 +38,7 @@ ui:
 systemProperties:
     public:
       showCluster: yes
+      showHUD: yes
       devMode: yes
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'

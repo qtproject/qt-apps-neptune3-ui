@@ -582,6 +582,10 @@
         <source>Instrument Cluster</source>
         <translation>Kombi-Instrumente</translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">Km/h</translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>

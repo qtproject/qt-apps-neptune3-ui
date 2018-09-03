@@ -48,6 +48,9 @@ ListModel {
     // The bottom bar application.
     readonly property var bottomBarAppInfo: d.bottomBarAppInfo
 
+    // The HUD application.
+    readonly property var hudAppInfo: d.hudAppInfo
+
     // The locale code (eg: "en_US") that is passed down to applications
     property string localeCode
 
@@ -132,6 +135,7 @@ ListModel {
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
         property var bottomBarAppInfo: null
+        property var hudAppInfo: null
         property bool populating: true
         property ApplicationRequestHandler applicationRequestHandler: ApplicationRequestHandler {
             id: applicationRequestHandler
@@ -169,6 +173,10 @@ ListModel {
             return app.categories.indexOf("bottombar") >= 0;
         }
 
+        function isHUDApp(app)
+        {
+            return app.categories.indexOf("hud") >= 0;
+        }
         property Component appInfoComponent: Component { ApplicationInfo{} }
         function appendApplication(app) {
             var appInfo = appInfoComponent.createObject(root, {"application":app});
@@ -179,6 +187,9 @@ ListModel {
                 appInfo.start();
             } else if (d.isBottomBarApp(app)) {
                 d.bottomBarAppInfo = appInfo;
+                appInfo.start();
+            } else if (d.isHUDApp(app)) {
+                d.hudAppInfo = appInfo;
                 appInfo.start();
             } else {
                 root.append({"appInfo":appInfo});
@@ -306,6 +317,8 @@ ListModel {
             // application will be added to the bottom bar window as well
             } else if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
                 d.bottomBarAppInfo.priv.window = window;
+            } else if (d.isHUDApp(window.application)) {
+                d.hudAppInfo.priv.window = window;
             } else if (d.isInstrumentClusterApp(window.application)) {
                 d.instrumentClusterAppInfo.priv.window = window;
             }
@@ -318,6 +331,8 @@ ListModel {
                     appInfo = d.instrumentClusterAppInfo;
                 } else if (d.isBottomBarApp(window.application)) {
                     appInfo = d.bottomBarAppInfo;
+                } else if (d.isHUDApp(window.application)) {
+                    appInfo = d.hudAppInfo;
                 }
             }
 

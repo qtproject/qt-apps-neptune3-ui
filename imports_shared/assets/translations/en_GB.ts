@@ -404,6 +404,10 @@
         <source>Instrument Cluster</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapRouting</name>

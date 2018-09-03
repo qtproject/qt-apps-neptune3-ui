@@ -46,6 +46,10 @@ QtObject {
     readonly property int centerConsoleHeight: 1920
     readonly property real centerConsoleAspectRatio: centerConsoleWidth / centerConsoleHeight
 
+    readonly property int hudWidth: 480
+    readonly property int hudHeight: 240
+    readonly property real hudAspectRatio: hudWidth / hudHeight
+
     readonly property real fontWeight: Font.Light
     readonly property real statusBarHeight: 80
     readonly property real launcherHeight: 104
