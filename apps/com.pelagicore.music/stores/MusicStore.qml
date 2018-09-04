@@ -91,7 +91,9 @@ Store {
             if (count > 0 && !modelPopulated) {
                 if (musicCount === 0) {
                     root.searchAndBrowseModel.contentType = "album";
-                    player.playQueue.insert(0, searchAndBrowseModel.get(0));
+                    if (searchAndBrowseModel.get(0)) {
+                        player.playQueue.insert(0, searchAndBrowseModel.get(0));
+                    }
                 }
                 root.songModelPopulated();
                 modelPopulated = true;
