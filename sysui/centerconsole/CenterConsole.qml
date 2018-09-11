@@ -40,7 +40,7 @@ import animations 1.0
 
 import about 1.0
 import climate 1.0
-import display 1.0
+import centerconsole 1.0
 import volume 1.0
 import statusbar 1.0
 import stores 1.0
@@ -57,7 +57,7 @@ Item {
 
     rotation: root.store.rotateDisplay(root.store.centerConsoleOrientation, root.store.isLandscape)
 
-    // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Display item will be
+    // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Center Console item will be
     // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
     states: [
         State {

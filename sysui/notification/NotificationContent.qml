@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
-import display 1.0
+import centerconsole 1.0
 import animations 1.0
 import models.notification 1.0
 import com.pelagicore.styles.neptune 3.0

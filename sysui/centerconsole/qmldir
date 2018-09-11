@@ -2,7 +2,7 @@ ApplicationFrame 1.0 ApplicationFrame.qml
 ApplicationPopup 1.0 ApplicationPopup.qml
 ApplicationPopups 1.0 ApplicationPopups.qml
 CenterConsoleMonitorOverlay 1.0 CenterConsoleMonitorOverlay.qml
-Display 1.0 Display.qml
+CenterConsole 1.0 CenterConsole.qml
 MainContentArea 1.0 MainContentArea.qml
 ModalOverlay 1.0 ModalOverlay.qml
 WidgetDrawer 1.0 WidgetDrawer.qml

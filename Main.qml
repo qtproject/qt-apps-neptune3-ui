@@ -33,7 +33,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Window 2.3
 
-import display 1.0
+import centerconsole 1.0
 import notification 1.0
 import utils 1.0
 import instrumentcluster 1.0
@@ -55,7 +55,7 @@ Window {
         }
 
         onGrabImageRequested: {
-            display.grabToImage(function(result) {
+            centerConsole.grabToImage(function(result) {
                 var ret = result.saveToFile(screenshotUrl);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
             });
@@ -112,7 +112,7 @@ Window {
                 loaded afterwards, once this function is called.
              */
             root.store.applicationModel.populate(root.store.settingsStore.widgetStates);
-            display.mainContentArea.active = true;
+            centerConsole.mainContentArea.active = true;
             notificationLoader.active = true;
             windowConns.enabled = false;
         }
@@ -133,39 +133,38 @@ Window {
         (TODO: add the link here once we have the documentation)
      */
     Item {
-        id: centerConsole
         anchors.fill: parent
 
-        Display {
-            id: display
+        CenterConsole {
+            id: centerConsole
             anchors.centerIn: parent
             store: root.store
             popupParent: popupParent
             focus: true
 
             onWidthChanged: {
-                root.contentItem.NeptuneStyle.scale = display.width / Style.centerConsoleWidth;
+                root.contentItem.NeptuneStyle.scale = centerConsole.width / Style.centerConsoleWidth;
             }
         }
 
         ModalOverlay {
             id: popupParent
-            anchors.fill: display
-            target: display
+            anchors.fill: centerConsole
+            target: centerConsole
         }
 
         StageLoader {
             id: notificationLoader
-            anchors.fill: display
+            anchors.fill: centerConsole
             source: "sysui/notification/NotificationContent.qml"
 
             Binding { target: notificationLoader.item; property: "target";
-                value: popupParent.showModalOverlay ? popupParent : display }
+                value: popupParent.showModalOverlay ? popupParent : centerConsole }
         }
 
         CenterConsoleMonitorOverlay {
-            anchors.fill: display
-            rotation: display.rotation
+            anchors.fill: centerConsole
+            rotation: centerConsole.rotation
             model: root.store.systemStore
             fpsVisible: root.store.systemStore.centerConsolePerfOverlayEnabled
             activeAppId: root.store.applicationModel.activeAppInfo ? root.store.applicationModel.activeAppInfo.id : ""

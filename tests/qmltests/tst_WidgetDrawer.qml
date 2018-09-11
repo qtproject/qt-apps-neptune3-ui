@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtTest 1.1
 
 // sysui, for getting WidgetDrawer
-import display 1.0
+import centerconsole 1.0
 
 import utils 1.0
 
