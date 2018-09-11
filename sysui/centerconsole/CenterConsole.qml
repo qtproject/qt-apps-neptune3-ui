@@ -37,7 +37,6 @@ import QtGraphicalEffects 1.0
 import controls 1.0
 import utils 1.0
 import animations 1.0
-
 import about 1.0
 import climate 1.0
 import centerconsole 1.0
@@ -48,6 +47,8 @@ import sysui.controls 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
+import "../helper/utils.js" as Utils
+
 Item {
     id: root
 
@@ -55,7 +56,7 @@ Item {
     property RootStore store
     property alias mainContentArea: mainContentArea
 
-    rotation: root.store.rotateDisplay(root.store.centerConsoleOrientation, root.store.isLandscape)
+    rotation: Utils.rotateDisplay(root.store.centerConsoleOrientation, root.store.isLandscape)
 
     // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Center Console item will be
     // letterboxed so that a Style.centerConsoleAspectRatio is preserved.

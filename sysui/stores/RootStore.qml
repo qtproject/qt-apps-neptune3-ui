@@ -39,6 +39,8 @@ import models.application 1.0
 import com.pelagicore.settings 1.0
 import com.pelagicore.systeminfo 1.0
 
+import "../helper/utils.js" as Utils
+
 Store {
     id: root
 
@@ -117,8 +119,8 @@ Store {
     property bool invertedCenterConsole: false
 
     property int centerConsoleOrientation: {
-        var value = root.orientationFromString(ApplicationManager.systemProperties.orientation);
-        return root.invertedCenterConsole ? root.invertOrientation(value) : value;
+        var value = Utils.orientationFromString(ApplicationManager.systemProperties.orientation);
+        return root.invertedCenterConsole ? Utils.invertOrientation(value) : value;
     }
     property bool isLandscape: false
     property real smallerDimension: 0.0
@@ -133,68 +135,6 @@ Store {
     signal accentColorChanged(var newAccentColor)
     signal grabImageRequested(var screenshotUrl)
     signal secondaryWindowSwitchCountChanged()
-
-    function orientationFromString(str) {
-        str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
-
-        if (str === "portrait") {
-            return Qt.PortraitOrientation;
-        } else if (str === "invertedportrait") {
-            return Qt.InvertedPortraitOrientation;
-        } else if (str === "landscape") {
-            return Qt.LandscapeOrientation;
-        } else if (str === "invertedlandscape") {
-            return Qt.InvertedLandscapeOrientation;
-        } else {
-            // default to portrait
-            return Qt.PortraitOrientation;
-        }
-    }
-
-    function invertOrientation(orientation) {
-        switch (orientation) {
-            case Qt.PortraitOrientation:
-                return Qt.InvertedPortraitOrientation;
-            case Qt.InvertedPortraitOrientation:
-                return Qt.PortraitOrientation;
-            case Qt.LandscapeOrientation:
-                return Qt.InvertedLandscapeOrientation;
-            case Qt.InvertedLandscapeOrientation:
-                return Qt.LandscapeOrientation;
-            default:
-                return orientation;
-        }
-    }
-
-    function rotateDisplay(orientation, isLandscape) {
-        if (isLandscape) {
-            switch (orientation) {
-                case Qt.PortraitOrientation:
-                    return 90;
-                case Qt.LandscapeOrientation:
-                    return 0;
-                case Qt.InvertedPortraitOrientation:
-                    return -90;
-                case Qt.InvertedLandscapeOrientation:
-                    return 180;
-                default:
-                    return 0;
-            }
-        } else {
-            switch (orientation) {
-                case Qt.PortraitOrientation:
-                    return 0;
-                case Qt.LandscapeOrientation:
-                    return -90;
-                case Qt.InvertedPortraitOrientation:
-                    return 180;
-                case Qt.InvertedLandscapeOrientation:
-                    return 90;
-                default:
-                    return 0;
-            }
-        }
-    }
 
     function saveFile(fileUrl, text) {
         var request = new XMLHttpRequest();
