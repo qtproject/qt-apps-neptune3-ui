@@ -173,6 +173,7 @@ Item {
     ApplicationPopups {
         anchors.fill: parent
         popupParent: root.popupParent
+        store: root.store.applicationPopupsStore
     }
 
     Loader {

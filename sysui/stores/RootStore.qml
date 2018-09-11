@@ -69,6 +69,8 @@ Store {
         onShuttingDown: settingsStore.widgetStates = applicationModel.serializeWidgetsState();
     }
 
+    readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}
+
     readonly property SystemUI systemUISettings: SystemUI {
         id: systemUISettings
         onSecondaryWindowSwitchCountChanged: {

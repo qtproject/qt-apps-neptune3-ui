@@ -29,46 +29,26 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import stores 1.0
+import QtQuick 2.11
 import QtApplicationManager 1.0
-import com.pelagicore.styles.neptune 3.0
+import utils 1.0
 
-/*
-    Instantiates PopupItems for displaying PopupWindows created from the client side.
- */
-Item {
+Store {
     id: root
 
-    property Item popupParent
-    property ApplicationPopupsStore store
+    property real currentScale: 0.0
+    property ListModel appPopupsModel: ListModel { id: appPopupsModel }
+    readonly property ApplicationIPCInterface extension: ApplicationIPCInterface {
+        property real popupWindowScale: root.currentScale
+        Component.onCompleted: ApplicationIPCManager.registerInterface(extension, "neptune.popupwindow.interface", {});
+    }
 
-    Binding { target: root.store; property: "currentScale"; value: root.NeptuneStyle.scale }
-
-    Repeater {
-        id: popupRepeater
-        model: root.store.appPopupsModel
-        delegate: ApplicationPopup {
-            id: appPopup
-            window: model.window
-            parent: root.popupParent
-
-            popupY: Math.round(root.height / 4)
-
-            closeHandler: function () {
-                // Forward the request to the client side.
-                window.close();
-            }
-            onClosed: root.store.appPopupsModel.remove(index, 1)
-
-            Connections {
-                target: model.window
-                onContentStateChanged: {
-                    if (model.window.contentState === WindowObject.NoSurface) {
-                        // client has closed his PopupWindow. Animate accordingly.
-                        appPopup.close();
-                    }
-                }
+    property var windowConns: Connections {
+        target: WindowManager
+        onWindowAdded: {
+            var isPopupWindow = window.windowProperty("windowType") === "popup";
+            if (isPopupWindow) {
+                appPopupsModel.append({"window":window});
             }
         }
     }
