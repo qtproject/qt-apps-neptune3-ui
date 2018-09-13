@@ -147,11 +147,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Cannot Connect to the Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze se připojit na server</translation>
     </message>
     <message>
         <source>An Internet connection is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Je vyžadováno připojení k internetu</translation>
     </message>
 </context>
 <context>
@@ -1303,11 +1303,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI screenshot has been taken successfully</source>
-        <translation type="unfinished">Snímek obrazovky úspěšně sejmut</translation>
+        <translation>Snímek obrazovky úspěšně sejmut</translation>
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
-        <translation type="unfinished">Snímek obrazovky a diagnostické informace uloženy v %1</translation>
+        <translation>Snímek obrazovky a diagnostické informace uloženy v %1</translation>
     </message>
 </context>
 <context>
