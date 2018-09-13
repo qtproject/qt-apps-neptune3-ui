@@ -92,8 +92,9 @@ bool Translation::loadTranslationFile(const QString &langLocale)
 
         QLocale::setDefault(QLocale(langLocale));
 
-        QEvent ev(QEvent::LanguageChange);
-        qApp->sendEvent(QQmlEngine::contextForObject(this)->engine(), &ev);
+        auto ctx = QQmlEngine::contextForObject(this);
+        if (ctx)
+            ctx->engine()->retranslate();
 
         return true;
     }

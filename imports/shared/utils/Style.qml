@@ -57,7 +57,10 @@ QtObject {
     property alias languageLocale: translation.languageLocale
     readonly property var translation: Translation {
         id: translation
-        Component.onCompleted: translation.setPath(root.assetPath + "translations/");
+        Component.onCompleted: {
+            translation.setPath(root.assetPath + "translations/");
+            languageLocale = Qt.locale().name;
+        }
     }
 
     function symbol(name, theme) {

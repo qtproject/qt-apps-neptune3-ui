@@ -88,8 +88,6 @@ Store {
             Qt.callLater(function() {
                 if (uiSettings.language) {
                     Style.languageLocale = uiSettings.language;
-                } else {
-                    Style.languageLocale = Qt.locale().name;
                 }
             });
             root.updateThemeRequested(uiSettings.theme)
