@@ -31,9 +31,9 @@
 
 import QtQml 2.2
 import QtQml.Models 2.3
-import utils 1.0
-import com.pelagicore.settings 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 import "../helper"
 

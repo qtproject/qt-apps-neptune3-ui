@@ -41,7 +41,7 @@ class FrameTimerPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(uri == QLatin1String("FrameTimer"));
+        Q_ASSERT(uri == QLatin1String("shared.FrameTimer"));
         qmlRegisterType<FrameTimer>(uri, 1, 0, "FrameTimer");
     }
 };

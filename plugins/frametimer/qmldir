@@ -1,2 +1,2 @@
-module FrameTimer
+module shared.FrameTimer
 plugin frametimerplugin

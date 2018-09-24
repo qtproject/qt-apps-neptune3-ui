@@ -37,7 +37,7 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 import QtQuick.Controls 2.3
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 import "../helpers/pathsProvider.js" as Paths
 import "../3d/materials"

@@ -1,9 +1,6 @@
-singleton Style 1.0 Style.qml
-PrimaryWindow 1.0 PrimaryWindow.qml
+singleton Logging 1.0 Logging.qml
 MonitorOverlay 1.0 MonitorOverlay.qml
 StageLoader 1.0 StageLoader.qml
 Store 1.0 Store.qml
-singleton Logging 1.0 Logging.qml
-SecondaryWindow 1.0 SecondaryWindow.qml
+singleton Style 1.0 Style.qml
 Tracer 1.0 Tracer.qml
-PopupWindow 1.0 PopupWindow.qml

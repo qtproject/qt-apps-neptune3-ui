@@ -30,15 +30,16 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
+import application.windows 1.0
+import shared.utils 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 import "views"
 import "store"
 import "assets"
 
-PrimaryWindow {
+ApplicationCCWindow {
     id: root
 
     Image {

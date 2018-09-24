@@ -48,7 +48,7 @@ import QtQuick 2.6
 
     \qml
     import QtQuick 2.10
-    import animations 1.0
+    import shared.animations 1.0
 
     Rectangle {
         id: root

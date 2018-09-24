@@ -45,10 +45,10 @@ Flickable {
         anchors.centerIn: parent
 
         Button {
-            text: qsTr("Show Next Secondary Window");
+            text: qsTr("Show Next Application IC Window");
             onClicked: {
                 // This is a hack. See the documentation of this property for details
-                systemUI.secondaryWindowSwitchCount = systemUI.secondaryWindowSwitchCount + 1
+                systemUI.applicationICWindowSwitchCount = systemUI.applicationICWindowSwitchCount + 1
             }
         }
     }

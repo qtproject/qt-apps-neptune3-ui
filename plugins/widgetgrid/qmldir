@@ -1,2 +1,2 @@
-module NeptuneWidgetGrid
+module shared.NeptuneWidgetGrid
 plugin widgetgridplugin

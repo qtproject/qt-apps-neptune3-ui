@@ -57,33 +57,10 @@ QtObject {
     // It can be displayed on the center console screen.
     readonly property var window: d.window
 
-    // the secondary window of this application, if any
+    // the application instrument cluster window of this application, if any
     //
     // It can be displayed on the instrument cluster screen
-    readonly property var secondaryWindow: d.secondaryWindow
-
-    // State if the main window in the neptune system UI
-    // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows" and "Maximized"
-    // See also: window, widgetHeight
-    property string windowState
-
-    // When the window is being displayed as a widget, that's the height its UI should have
-    property int widgetHeight: 0
-
-    // Currrent window height
-    //
-    // The window is kept maximized and it's clipped to fit currentHeight
-    // Application code relayouts *all* of its contents so that they fit currentHeight
-    property int currentHeight: 0
-
-    // Currrent window width
-    property int currentWidth: 0
-
-    // UI scale factor to be applied to window. See NeptuneStyle.scale
-    property real windowScale: 1
-
-    // UI scale factor to be applied to secondaryWindow. See NeptuneStyle.scale
-    property real secondaryWindowScale: 1
+    readonly property var icWindow: d.icWindow
 
     // Whether the application window should be shown as a widget
     property bool asWidget: false
@@ -108,23 +85,14 @@ QtObject {
     }
 
     /*
-        Margins of the exposed rectangular area of the apps main window
-
-        The area of the apps main window that is directly visible to the user (ie, exposed) and not occluded
-        by other items in the system ui is defined by a rectangle anchored to all screen edges.
-     */
-    property real exposedRectBottomMargin
-    property real exposedRectTopMargin
-
-    /*
         Whether a performance monitor overlay is enabled on the primary window
      */
     property bool windowPerfMonitorEnabled: false
 
     /*
-        Whether a performance monitor overlay is enabled on the secondary window
+        Whether a performance monitor overlay is enabled on the application IC window
      */
-    property bool secondaryWindowPerfMonitorEnabled: false
+    property bool icWindowPerfMonitorEnabled: false
 
     /*
         Time elapsed between start() was called and the moment sysui received its first
@@ -136,10 +104,10 @@ QtObject {
 
     /*
         Time elapsed between start() was called and the moment sysui received its first
-        frame from secondaryWindow
+        frame from icWindow
      */
-    readonly property int timeToFirstSecondaryWindowFrame:
-        d.startCallTime !== null && d.secondaryWindowFirstFrameTime !== null ? d.secondaryWindowFirstFrameTime - d.startCallTime
+    readonly property int timeToFirstICWindowFrame:
+        d.startCallTime !== null && d.icWindowFirstFrameTime !== null ? d.icWindowFirstFrameTime - d.startCallTime
                                                                     : -1
     function start() {
         if (application) {
@@ -156,68 +124,6 @@ QtObject {
         }
     }
 
-    onWindowChanged: {
-        if (window) {
-            window.setWindowProperty("neptuneScale", windowScale);
-            window.setWindowProperty("neptuneWidgetHeight", widgetHeight);
-            window.setWindowProperty("neptuneCurrentWidth", currentWidth);
-            window.setWindowProperty("neptuneCurrentHeight", currentHeight);
-            window.setWindowProperty("neptuneState", windowState);
-            window.setWindowProperty("exposedRectBottomMargin", exposedRectBottomMargin);
-            window.setWindowProperty("exposedRectTopMargin", exposedRectTopMargin);
-            window.setWindowProperty("performanceMonitorEnabled", windowPerfMonitorEnabled);
-        }
-    }
-
-    onWindowScaleChanged: {
-        if (window)
-            window.setWindowProperty("neptuneScale", windowScale);
-    }
-    onWidgetHeightChanged: {
-        if (window)
-            window.setWindowProperty("neptuneWidgetHeight", widgetHeight);
-    }
-    onCurrentWidthChanged: {
-        if (window)
-            window.setWindowProperty("neptuneCurrentWidth", currentWidth);
-    }
-    onCurrentHeightChanged: {
-        if (window)
-            window.setWindowProperty("neptuneCurrentHeight", currentHeight);
-    }
-    onWindowStateChanged: {
-        if (window)
-            window.setWindowProperty("neptuneState", windowState);
-    }
-    onExposedRectBottomMarginChanged: {
-        if (window)
-            window.setWindowProperty("exposedRectBottomMargin", exposedRectBottomMargin);
-    }
-    onExposedRectTopMarginChanged: {
-        if (window)
-            window.setWindowProperty("exposedRectTopMargin", exposedRectTopMargin);
-    }
-    onWindowPerfMonitorEnabledChanged: {
-        if (window)
-            window.setWindowProperty("performanceMonitorEnabled", windowPerfMonitorEnabled);
-    }
-    onSecondaryWindowPerfMonitorEnabledChanged: {
-        if (window)
-            secondaryWindow.setWindowProperty("performanceMonitorEnabled", secondaryWindowPerfMonitorEnabled);
-    }
-
-    onSecondaryWindowChanged: {
-        if (secondaryWindow) {
-            secondaryWindow.setWindowProperty("neptuneScale", secondaryWindowScale);
-            secondaryWindow.setWindowProperty("performanceMonitorEnabled", secondaryWindowPerfMonitorEnabled);
-        }
-    }
-
-    onSecondaryWindowScaleChanged: {
-        if (secondaryWindow)
-            secondaryWindow.setWindowProperty("neptuneScale", secondaryWindowScale);
-    }
-
     onAsWidgetChanged: {
         if (asWidget && application.runState === ApplicationObject.NotRunning) {
             // Starting an app causes it to emit activated() but we don't want it to go active (as being
@@ -231,7 +137,7 @@ QtObject {
         id: d
         property bool active: false
         property var window: null
-        property var secondaryWindow: null
+        property var icWindow: null
 
         // Time when start() was called, in ms since Unix Epoch
         property var startCallTime: null
@@ -239,8 +145,8 @@ QtObject {
         // Time when window had its first frame rendered, in ms since Unix Epoch
         property var windowFirstFrameTime: null
 
-        // Time when secondaryWindow had its first frame rendered, in ms since Unix Epoch
-        property var secondaryWindowFirstFrameTime: null
+        // Time when icWindow had its first frame rendered, in ms since Unix Epoch
+        property var icWindowFirstFrameTime: null
 
         property var appConns: Connections {
             target: root.application
@@ -262,12 +168,12 @@ QtObject {
             }
         }
 
-        property var secondaryWindowConns: Connections {
-            target: d.secondaryWindow && d.secondaryWindow.waylandSurface ? d.secondaryWindow.waylandSurface : null
-            enabled: target != null && d.secondaryWindowFirstFrameTime === null
+        property var icWindowConns: Connections {
+            target: d.icWindow && d.icWindow.waylandSurface ? d.icWindow.waylandSurface : null
+            enabled: target != null && d.icWindowFirstFrameTime === null
             ignoreUnknownSignals: true
             onRedraw: {
-                d.secondaryWindowFirstFrameTime = Date.now();
+                d.icWindowFirstFrameTime = Date.now();
             }
         }
 
@@ -277,9 +183,9 @@ QtObject {
             }
         }
 
-        onSecondaryWindowChanged: {
-            if (!secondaryWindow) {
-                secondaryWindowFirstFrameTime = null;
+        onIcWindowChanged: {
+            if (!icWindow) {
+                icWindowFirstFrameTime = null;
             }
         }
 

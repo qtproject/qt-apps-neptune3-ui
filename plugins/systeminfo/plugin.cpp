@@ -40,7 +40,7 @@ class SystemInfoPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.systeminfo"));
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.systeminfo"));
 
         qmlRegisterType<SystemInfo>(uri, 1, 0, "SystemInfo");
     }

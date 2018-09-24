@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

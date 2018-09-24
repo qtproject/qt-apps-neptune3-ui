@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import utils 1.0
+import shared.utils 1.0
 
 /*!
     \qmltype Tracer
@@ -48,7 +48,7 @@ import utils 1.0
 
     \qml
     import QtQuick 2.10
-    import utils 1.0
+    import shared.utils 1.0
 
     Rectangle {
         id: root

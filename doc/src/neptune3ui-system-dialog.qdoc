@@ -67,8 +67,8 @@
    \endlist
 
    Each application item also has a switch button to enable the performance overlay on top
-   of the application window. For an application that has two windows, \l{PrimaryWindow} and
-   \l{SecondaryWindow}, two switch buttons can be seen and selected depending on the need.
+   of the application window. For an application that has two windows, \l{ApplicationCCWindow} and
+   \l{ApplicationICWindow}, two switch buttons can be seen and selected depending on the need.
 
    In order to kill the application, an X icon on the right side of the application item
    can be tapped. Once the application is killed, it will also be removed from the application

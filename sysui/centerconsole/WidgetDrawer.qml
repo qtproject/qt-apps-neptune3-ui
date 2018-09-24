@@ -30,8 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import utils 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*
   Displays a child item on the screen which can be dismissed by swiping it to the right.

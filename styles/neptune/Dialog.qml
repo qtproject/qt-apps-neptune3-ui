@@ -33,8 +33,8 @@ import QtQuick 2.9
 import QtQuick.Templates 2.2 as T
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
-import com.pelagicore.styles.neptune 3.0
-import utils 1.0
+import shared.com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
 
 T.Dialog {
     id: control

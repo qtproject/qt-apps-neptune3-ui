@@ -35,7 +35,7 @@ import QtTest 1.1
 // sysui, for getting WidgetDrawer
 import centerconsole 1.0
 
-import utils 1.0
+import shared.utils 1.0
 
 Item {
     id: root

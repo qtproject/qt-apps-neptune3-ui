@@ -30,12 +30,13 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import utils 1.0
+import application.windows 1.0
+import shared.utils 1.0
 
-import com.pelagicore.settings 1.0
-import com.pelagicore.systeminfo 1.0
-import com.pelagicore.styles.neptune 3.0
-import com.pelagicore.map 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.systeminfo 1.0
+import shared.com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.map 1.0
 
 import "views"
 import "stores"
@@ -53,7 +54,7 @@ QtObject {
         }
     }
 
-    property var mainWindow: PrimaryWindow {
+    property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
         readonly property Helper helper: Helper {}
@@ -103,14 +104,14 @@ QtObject {
         }
     }
 
-    readonly property Loader secondaryWindowLoader: Loader {
+    readonly property Loader applicationICWindowLoader: Loader {
         asynchronous: true
         active: (clusterSettings.available
                  || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
                 && mainMap.mapReady
         sourceComponent: Component {
-            SecondaryWindow {
-                id: secondaryWindowComponent
+            ApplicationICWindow {
+                id: applicationICWindowComponent
                 ICMapView {
                     id: icMapView
                     anchors.fill: parent

@@ -31,15 +31,13 @@
 
 import QtQuick 2.10
 import QtGraphicalEffects 1.0
-
-import animations 1.0
+import QtApplicationManager 1.0
+import shared.animations 1.0
 import home 1.0
 import launcher 1.0
-import utils 1.0
+import shared.utils 1.0
 
-import com.pelagicore.styles.neptune 3.0
-
-import QtApplicationManager 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -51,32 +49,13 @@ Item {
     property Item popupParent
     property Item virtualKeyboard
 
-    Instantiator {
-        id: instantiator
-        model: root.applicationModel
-        readonly property real activeAppBottomMargin: {
-            var margin = root.homeBottomMargin;
-            if (widgetDrawer.open && widgetDrawer.visible)
-                margin = Math.max(margin, activeApplicationSlot.height - widgetDrawer.y);
-            if (root.virtualKeyboard.isOpen)
-                margin = Math.max(margin, activeApplicationSlot.height - root.virtualKeyboard.y);
-            return margin;
-        }
-        delegate: QtObject {
-            property var exposedRectBottomMarginBinding: Binding {
-                target: model.appInfo
-                property: "exposedRectBottomMargin"
-                value: model.appInfo.active ? instantiator.activeAppBottomMargin : root.homeBottomMargin
-            }
-
-            property var exposedRectTopMarginBinding: Binding {
-                target: model.appInfo
-                property: "exposedRectTopMargin"
-                value: model.appInfo.active ? launcher.y + (launcher.open ? NeptuneStyle.dp(Style.launcherHeight)
-                                                                          : launcher.height)
-                                            : 0
-            }
-        }
+    readonly property real activeAppBottomMargin: {
+        var margin = root.homeBottomMargin;
+        if (widgetDrawer.open && widgetDrawer.visible)
+            margin = Math.max(margin, activeApplicationSlot.height - widgetDrawer.y);
+        if (root.virtualKeyboard.isOpen)
+            margin = Math.max(margin, activeApplicationSlot.height - root.virtualKeyboard.y);
+        return margin;
     }
 
     Item {
@@ -110,6 +89,9 @@ Item {
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
                 widgetDrawer: widgetDrawerSlot
                 popupParent: root.popupParent
+                exposedRectTopMargin: launcher.y + (launcher.open ? NeptuneStyle.dp(Style.launcherHeight)
+                                                                  : launcher.height)
+                exposedRectBottomMargin: root.activeAppBottomMargin
             }
 
             // slot for the maximized, active, application
@@ -118,10 +100,14 @@ Item {
                 anchors.fill: parent
 
                 ApplicationFrame {
+                    id: applicationFrame
                     anchors.fill: parent
                     appInfo: root.applicationModel && root.applicationModel.activeAppInfo
                              && !root.applicationModel.activeAppInfo.asWidget ? root.applicationModel.activeAppInfo
                                                                               : null
+                    exposedRectTopMargin: launcher.y + (launcher.open ? NeptuneStyle.dp(Style.launcherHeight)
+                                                                      : launcher.height)
+                    exposedRectBottomMargin: root.activeAppBottomMargin
                 }
             }
 

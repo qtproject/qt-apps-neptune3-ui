@@ -32,8 +32,8 @@
 pragma Singleton
 import QtQuick 2.6
 
-import com.pelagicore.styles.neptune 3.0
-import com.pelagicore.translation 1.0
+import shared.com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.translation 1.0
 
 QtObject {
     id: root

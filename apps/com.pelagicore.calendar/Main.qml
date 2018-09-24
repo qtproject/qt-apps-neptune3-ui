@@ -30,11 +30,12 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
+import application.windows 1.0
+import shared.utils 1.0
 import "stores"
 import "views"
 
-PrimaryWindow {
+ApplicationCCWindow {
     id: root
 
     MultiPointTouchArea {

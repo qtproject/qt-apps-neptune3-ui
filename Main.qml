@@ -35,11 +35,11 @@ import QtQuick.Window 2.3
 
 import centerconsole 1.0
 import notification 1.0
-import utils 1.0
+import shared.utils 1.0
 import instrumentcluster 1.0
 import stores 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 QtObject {
     id: root
@@ -69,9 +69,9 @@ QtObject {
             }
         }
 
-        onSecondaryWindowSwitchCountChanged: {
+        onApplicationICWindowSwitchCountChanged: {
             if (instrumentClusterWindowLoader.active) {
-                instrumentClusterWindowLoader.item.nextSecondaryWindow();
+                instrumentClusterWindowLoader.item.nextApplicationICWindow();
             }
         }
     }

@@ -30,11 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
+import shared.utils 1.0
 
 import "JSONBackend.js" as JSONBackend
 import QtApplicationManager 1.0
-import com.pelagicore.systeminfo 1.0
+import shared.com.pelagicore.systeminfo 1.0
 
 Item {
     id: root

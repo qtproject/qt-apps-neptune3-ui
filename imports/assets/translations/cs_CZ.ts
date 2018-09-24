@@ -94,8 +94,8 @@ UX na cestu</translation>
         <translation>Primární okno, na středové konzoli</translation>
     </message>
     <message>
-        <source>Secondary Window, on Instrument Cluster</source>
-        <translation>Sekundární okno, na přístrojové desce</translation>
+        <source>Application IC Window, on Instrument Cluster</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

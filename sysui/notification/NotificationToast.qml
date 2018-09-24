@@ -31,10 +31,10 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.0
-import controls 1.0
-import animations 1.0
-import models.notification 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.controls 1.0
+import shared.animations 1.0
+import system.models.notification 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 NotificationItem {
     id: root

@@ -37,10 +37,10 @@
 */
 
 import QtQuick 2.7
-import sysui.controls 1.0
+import system.controls 1.0
 import QtApplicationManager 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 PopupItem {
     id: root

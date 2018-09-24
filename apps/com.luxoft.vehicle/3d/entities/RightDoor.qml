@@ -36,7 +36,7 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-import animations 1.0
+import shared.animations 1.0
 
 import "../../helpers/pathsProvider.js" as Paths
 

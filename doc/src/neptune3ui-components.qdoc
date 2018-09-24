@@ -32,8 +32,8 @@
    Neptune UI components:
 
    \list
-       \li \l{PrimaryWindow}
-       \li \l{SecondaryWindow}
+       \li \l{ApplicationCCWindow}
+       \li \l{ApplicationICWindow}
        \li \l{PopupWindow}
    \endlist
 

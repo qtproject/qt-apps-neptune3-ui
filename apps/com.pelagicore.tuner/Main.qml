@@ -30,17 +30,18 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
-import controls 1.0
-import animations 1.0
+import application.windows 1.0
+import shared.utils 1.0
+import shared.controls 1.0
+import shared.animations 1.0
 
 import "stores"
 import "views"
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 QtObject {
-    property var mainWindow: PrimaryWindow {
+    property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
         MultiPointTouchArea {

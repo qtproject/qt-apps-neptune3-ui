@@ -31,35 +31,34 @@
 
 import QtQuick 2.8
 import QtApplicationManager 1.0
-
-import com.pelagicore.settings 1.0
-import com.pelagicore.styles.neptune 3.0
-import utils 1.0
+import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
-    \qmltype SecondaryWindow
+    \qmltype ApplicationICWindow
     \inqmlmodule utils
     \inherits ApplicationManagerWindow
-    \since 5.11
-    \brief The secondary window of a Neptune 3 application
+    \since 5.12
+    \brief The application instrument cluster window of a Neptune 3 application
 
-    The secondary window of a Neptune 3 application is displayed on the \l{Instrument Cluster}.
-    The content of a secondary window will be rendered below the gauges. \l{SecondaryWindow}
-    is used by an application that wants to share content between the \l{center stack display}
-    and the \l{instrument cluster}.
+    The application instrument cluster window of a Neptune 3 application is displayed on the
+    \l{Instrument Cluster}. The content of an application IC window will be rendered behind
+    the gauges. \l{ApplicationICWindow} is used by an application that wants to share content
+    between the \l{center stack display} and the \l{instrument cluster}.
 
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 
-    The following example uses \l{SecondaryWindow}:
+    The following example uses \l{ApplicationICWindow}:
 
     \qml
     import QtQuick 2.10
-    import utils 1.0
+    import shared.utils 1.0
 
     QtObject {
-        property var mainWindow: PrimaryWindow {
+        property var mainWindow: ApplicationCCWindow {
            id: mainWindow
            Background {
             anchors.fill: parent
@@ -73,8 +72,8 @@ import utils 1.0
            }
         }
 
-        property var secondaryWindow: SecondaryWindow {
-           id: secondaryWindow
+        property var applicationICWindow: ApplicationICWindow {
+           id: applicationICWindow
            Background {
             anchors.fill: parent
            }
@@ -83,18 +82,22 @@ import utils 1.0
     \endqml
 
 */
-
 ApplicationManagerWindow {
     id: root
 
     LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
     LayoutMirroring.childrenInherit: true
 
+    /*!
+        \qmlproperty bool ApplicationICWindow::isRightToLeft
+        This property holds whether the current locale uses the right-to-left
+        text direction (RTL)
+    */
     readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
 
     Component.onCompleted: {
-        setWindowProperty("windowType", "secondary")
-        visible = true
+        setWindowProperty("windowType", "instrumentcluster");
+        visible = true;
     }
 
     onWindowPropertyChanged: {
@@ -104,6 +107,12 @@ ApplicationManagerWindow {
             break;
         case "performanceMonitorEnabled":
             performanceOverlay.fpsVisible = value;
+            break;
+        case "neptuneAccentColor":
+            root.NeptuneStyle.accentColor = value;
+            break;
+        case "neptuneTheme":
+            root.NeptuneStyle.theme = value;
             break;
         }
     }
@@ -119,17 +128,10 @@ ApplicationManagerWindow {
 
     UISettings {
         id: uiSettings
-        onThemeChanged: updateTheme()
-        onAccentColorChanged: updateAccentColor()
-        Component.onCompleted: {
-            updateTheme()
-            updateAccentColor()
-        }
-        function updateTheme() {
-            root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-        }
-        function updateAccentColor() {
-            root.NeptuneStyle.accentColor = accentColor
+        onLanguageChanged: {
+            if (language !== Style.languageLocale) {
+                Style.languageLocale = language;
+            }
         }
     }
 }

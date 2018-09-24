@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtLocation 5.9
 
-import animations 1.0
+import shared.animations 1.0
 
 Item {
     id: root

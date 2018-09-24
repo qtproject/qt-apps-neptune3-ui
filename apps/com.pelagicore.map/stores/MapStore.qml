@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtPositioning 5.9
 import QtLocation 5.9
 import Qt.labs.platform 1.0
-import utils 1.0
+import shared.utils 1.0
 
 QtObject {
     id: root

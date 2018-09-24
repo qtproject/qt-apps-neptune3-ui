@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

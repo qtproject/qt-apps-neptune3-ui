@@ -1,2 +1,2 @@
-module com.pelagicore.styles.neptune
+module shared.com.pelagicore.styles.neptune
 plugin neptunestyle

@@ -1,2 +1,2 @@
-module com.pelagicore.systeminfo
+module shared.com.pelagicore.systeminfo
 plugin systeminfoplugin

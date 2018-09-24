@@ -32,8 +32,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
-import utils 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 MouseArea {
     id: root

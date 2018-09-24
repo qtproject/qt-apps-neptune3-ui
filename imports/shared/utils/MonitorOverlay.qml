@@ -32,8 +32,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
-import FrameTimer 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.FrameTimer 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

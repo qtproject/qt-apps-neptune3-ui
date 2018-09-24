@@ -38,11 +38,11 @@ import QtGraphicalEffects 1.0
 
 import Qt.labs.platform 1.0
 
-import utils 1.0
-import controls 1.0 as NeptuneControls
-import animations 1.0
+import shared.utils 1.0
+import shared.controls 1.0 as NeptuneControls
+import shared.animations 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 import "../controls"
 import "../panels"
@@ -55,7 +55,7 @@ Item {
     property MapStore store
     property Helper helper: Helper {}
 
-    // props for secondary window
+    // props for application IC window
     property alias mapInteractive: mapBoxPanel.mapInteractive
     property alias mapCenter: mapBoxPanel.center
     property alias mapZoomLevel: mapBoxPanel.zoomLevel

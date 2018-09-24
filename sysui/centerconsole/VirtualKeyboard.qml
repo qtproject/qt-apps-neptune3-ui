@@ -33,7 +33,7 @@ import QtQuick 2.7
 import QtQuick.VirtualKeyboard 2.1
 import QtQuick.VirtualKeyboard.Settings 2.1
 
-import animations 1.0
+import shared.animations 1.0
 
 Item {
     id: root

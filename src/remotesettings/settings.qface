@@ -84,13 +84,13 @@ interface InstrumentCluster {
 interface SystemUI {
   /*
    * Incrementing this value will make sysui switch to display the next
-   * available secondary window.
+   * available application instrument cluster window.
    *
    * This is a hack. What we really need here is just a plain signal that
    * could be emitted on demand. So that's not really storing a setting
    * but serving as plain RPC.
    */
-  int secondaryWindowSwitchCount
+  int applicationICWindowSwitchCount
 }
 
 @config: {id: "ConnectionMonitoring"}

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2017-2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,23 +29,22 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-
+import QtQuick 2.11
 import QtApplicationManager 1.0
-import controls 1.0
-import utils 1.0
-import animations 1.0
-import com.pelagicore.settings 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.controls 1.0
+import shared.utils 1.0
+import shared.animations 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
-    \qmltype PrimaryWindow
+    \qmltype ApplicationCCWindow
     \inqmlmodule utils
     \inherits ApplicationManagerWindow
-    \since 5.11
-    \brief The primary window of a Neptune 3 application
+    \since 5.12
+    \brief The application center console window of a Neptune 3 application
 
-    The primary window of a Neptune 3 application is displayed on the Center Console.
+    The application center console window of a Neptune 3 application is displayed on the Center Console.
     This component also provides APIs for interacting with system UI and for positioning
     the application's visual elements.
 
@@ -53,13 +52,13 @@ import com.pelagicore.styles.neptune 3.0
 
     \section2 Example Usage
 
-    The following example uses \l{PrimaryWindow} as a root element:
+    The following example uses \l{ApplicationCCWindow} as a root element:
 
     \qml
     import QtQuick 2.10
-    import utils 1.0
+    import shared.utils 1.0
 
-    PrimaryWindow {
+    ApplicationCCWindow {
         id: root
         Background {
             anchors.fill: parent
@@ -89,7 +88,7 @@ ApplicationManagerWindow {
     // exposedRect boundaries.
 
     /*!
-        \qmlproperty rect PrimaryWindow::exposedRect
+        \qmlproperty rect ApplicationCCWindow::exposedRect
         \readonly
 
         This property holds the area of the window that is exposed to the user (ie, not blocked or
@@ -98,7 +97,7 @@ ApplicationManagerWindow {
     readonly property rect exposedRect: Qt.rect(0, d.exposedRectTopMargin, d.currentWidth, d.exposedRectHeight)
 
     /*!
-        \qmlproperty int PrimaryWindow::targetHeight
+        \qmlproperty int ApplicationCCWindow::targetHeight
         \readonly
 
         This property holds the target height of the application. This property will be updated
@@ -109,14 +108,14 @@ ApplicationManagerWindow {
     readonly property int targetHeight: neptuneState === "Maximized" ? root.height : d.widgetHeight;
 
     /*!
-        \qmlproperty int PrimaryWindow::currentHeight
+        \qmlproperty int ApplicationCCWindow::currentHeight
         This property holds the current height of the application.
     */
 
     property int currentHeight
 
     /*!
-        \qmlproperty string PrimaryWindow::neptuneState
+        \qmlproperty string ApplicationCCWindow::neptuneState
         This property holds the current state of the application. The valid values for neptuneState are
         (Maximized, Widget1Row, Widget2Rows or Widget3Rows)
     */
@@ -124,7 +123,7 @@ ApplicationManagerWindow {
     property string neptuneState
 
     /*!
-        \qmlproperty bool PrimaryWindow::isRightToLeft
+        \qmlproperty bool ApplicationCCWindow::isRightToLeft
         This property holds whether the current locale uses the right-to-left
         text direction (RTL)
     */
@@ -164,6 +163,12 @@ ApplicationManagerWindow {
         case "neptuneState":
             root.neptuneState = value;
             break;
+        case "neptuneAccentColor":
+            root.NeptuneStyle.accentColor = value;
+            break;
+        case "neptuneTheme":
+            root.NeptuneStyle.theme = value;
+            break;
         case "performanceMonitorEnabled":
             monitorOverlay.fpsVisible = value;
             break;
@@ -183,14 +188,6 @@ ApplicationManagerWindow {
 
     UISettings {
         id: uiSettings
-        onThemeChanged: updateTheme()
-        onAccentColorChanged: {
-            root.NeptuneStyle.accentColor = accentColor;
-        }
-        Component.onCompleted: updateTheme()
-        function updateTheme() {
-            root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-        }
         onLanguageChanged: {
             if (language !== Style.languageLocale) {
                 Style.languageLocale = language;

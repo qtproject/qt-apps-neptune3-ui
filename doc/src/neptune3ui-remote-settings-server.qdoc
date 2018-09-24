@@ -77,8 +77,8 @@
    UI. The general settings are values that apps commonly need to access or observe such as the
    language and the theme, or other values that are useful to be changed when demonstrating
    Neptune 3 UI's features. Instrument cluster view allows the changing of gauge and telltale
-   values. Finally, the System UI view has only one value for cycling between the secondary windows
-   of different apps. Secondary window is an app's alternative view that is displayed on the
+   values. Finally, the System UI view has only one value for cycling between the application IC windows
+   of different apps. application IC window is an app's alternative view that is displayed on the
    \l{instrument cluster}.
 
 

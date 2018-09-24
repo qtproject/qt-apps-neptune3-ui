@@ -34,7 +34,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.ComboBox {
     id: control

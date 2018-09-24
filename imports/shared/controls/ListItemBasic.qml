@@ -36,8 +36,8 @@ import QtQuick.Controls.impl 2.3
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-import utils 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
     \qmltype ListItemBasic
@@ -58,7 +58,7 @@ import com.pelagicore.styles.neptune 3.0
 
     \qml
     import QtQuick 2.10
-    import controls 1.0
+    import shared.controls 1.0
 
     Item {
         id: root

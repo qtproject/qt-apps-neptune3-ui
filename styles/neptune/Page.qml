@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Templates 2.1 as T
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.Page {
     id: control

@@ -33,8 +33,8 @@ import QtQuick 2.8
 import QtApplicationManager 1.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
-import utils 1.0
-import com.pelagicore.settings 1.0
+import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
 
 Store {
     id: root

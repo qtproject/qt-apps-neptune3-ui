@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager 1.0
-import requests 1.0
+import system.requests 1.0
 
 /*
   A list of ApplicationInfo objects.
@@ -281,12 +281,12 @@ ListModel {
             }
 
             if (isRegularApp) {
-                var isSecondaryWindow = window.windowProperty("windowType") === "secondary";
-                var isPrimaryWindow = !window.windowProperty("windowType");
+                var isApplicationICWindow = window.windowProperty("windowType") === "instrumentcluster";
+                var isApplicationCCWindow = !window.windowProperty("windowType");
 
-                if (isSecondaryWindow) {
-                    appInfo.priv.secondaryWindow = window;
-                } else if (isPrimaryWindow) {
+                if (isApplicationICWindow) {
+                    appInfo.priv.icWindow = window;
+                } else if (isApplicationCCWindow) {
                     appInfo.priv.window = window;
                     appInfo.canBeActive = true;
                 }
@@ -307,8 +307,8 @@ ListModel {
 
             if (appInfo.priv.window === window) {
                 appInfo.priv.window = null;
-            } else if (appInfo.priv.secondaryWindow === window) {
-                appInfo.priv.secondaryWindow = null;
+            } else if (appInfo.priv.icWindow === window) {
+                appInfo.priv.icWindow = null;
             }
         }
 

@@ -30,10 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import utils 1.0
-import com.pelagicore.settings 1.0
-import com.pelagicore.systeminfo 1.0
-import com.pelagicore.styles.neptune 3.0
+import application.windows 1.0
+import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.systeminfo 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 import "views"
 import "stores"
@@ -41,7 +42,7 @@ import "stores"
 QtObject {
     id: root
 
-    property var mainWindow: PrimaryWindow {
+    property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
         VehicleView {
@@ -55,13 +56,13 @@ QtObject {
         }
     }
 
-    readonly property Loader secondaryWindowLoader: Loader {
+    readonly property Loader applicationICWindowLoader: Loader {
         asynchronous: true
         active: (clusterSettings.available
                  || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
         sourceComponent: Component {
-            SecondaryWindow {
-                id: secondaryWindowComponent
+            ApplicationICWindow {
+                id: applicationICWindowComponent
                 VehicleICView {
                     anchors.fill: parent
                     store: vehicleView.store

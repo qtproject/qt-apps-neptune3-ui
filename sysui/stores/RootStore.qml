@@ -32,12 +32,12 @@
 import QtQuick 2.8
 import Qt.labs.platform 1.0
 import QtApplicationManager 1.0
-import utils 1.0
+import shared.utils 1.0
 
-import models.application 1.0
+import system.models.application 1.0
 
-import com.pelagicore.settings 1.0
-import com.pelagicore.systeminfo 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.systeminfo 1.0
 
 Store {
     id: root
@@ -73,8 +73,8 @@ Store {
 
     readonly property SystemUI systemUISettings: SystemUI {
         id: systemUISettings
-        onSecondaryWindowSwitchCountChanged: {
-            root.secondaryWindowSwitchCountChanged()
+        onApplicationICWindowSwitchCountChanged: {
+            root.applicationICWindowSwitchCountChanged()
         }
     }
     readonly property SystemInfo sysInfo: SystemInfo { id: sysInfo }
@@ -119,7 +119,7 @@ Store {
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
     signal grabImageRequested(var screenshotUrl)
-    signal secondaryWindowSwitchCountChanged()
+    signal applicationICWindowSwitchCountChanged()
 
     function saveFile(fileUrl, text) {
         var request = new XMLHttpRequest();

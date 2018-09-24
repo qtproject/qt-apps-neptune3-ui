@@ -35,7 +35,7 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.ToolButton {
     id: control

@@ -1,2 +1,2 @@
-module com.pelagicore.translation
+module shared.com.pelagicore.translation
 plugin translationplugin

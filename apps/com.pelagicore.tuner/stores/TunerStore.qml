@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import QtMultimedia 5.9
 import QtApplicationManager 1.0
-import utils 1.0
+import shared.utils 1.0
 
 Store {
     id: root

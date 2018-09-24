@@ -34,9 +34,9 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtApplicationManager 1.0
 
-import com.pelagicore.styles.neptune 3.0
-import utils 1.0
-import controls 1.0
+import shared.com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.controls 1.0
 
 Item {
     id: root
@@ -200,22 +200,22 @@ Item {
                             Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
                         }
                     }
-                    bottomPadding: secondaryWindowColumn.visible ? 0 : NeptuneStyle.dp(20)
+                    bottomPadding: applicationICWindowColumn.visible ? 0 : NeptuneStyle.dp(20)
                 }
                 Column {
-                    id: secondaryWindowColumn
+                    id: applicationICWindowColumn
                     width: parent.width
-                    visible: !!model.appInfo.secondaryWindow
+                    visible: !!model.appInfo.icWindow
                     leftPadding: NeptuneStyle.dp(40)
                     Label {
-                        text: qsTr("Secondary Window, on Instrument Cluster")
+                        text: qsTr("Application IC Window, on Instrument Cluster")
                         font.pixelSize: NeptuneStyle.fontSizeS
                     }
                     RowLayout {
                         width: parent.width - parent.leftPadding
                         Label {
                             Layout.fillWidth: true
-                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstSecondaryWindowFrame)
+                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame)
                             font.pixelSize: NeptuneStyle.fontSizeXS
                             opacity: NeptuneStyle.opacityMedium
                         }
@@ -224,7 +224,7 @@ Item {
                             font.pixelSize: NeptuneStyle.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: NeptuneStyle.opacityMedium
-                            Binding { target: model.appInfo; property: "secondaryWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                            Binding { target: model.appInfo; property: "applicationICWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
                         }
                     }
                     bottomPadding: NeptuneStyle.dp(20)

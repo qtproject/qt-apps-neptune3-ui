@@ -32,12 +32,12 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
-import QtApplicationManager 1.0
-import animations 1.0
-import utils 1.0
-import controls 1.0
+import shared.animations 1.0
+import shared.utils 1.0
+import shared.controls 1.0
+import system.controls 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -54,6 +54,9 @@ Item {
     property var appInfo
     property string widgetState
     property int widgetHeight
+
+    property alias exposedRectTopMargin: windowItem.exposedRectTopMargin
+    property alias exposedRectBottomMargin: windowItem.exposedRectBottomMargin
 
     ScalableBorderImage {
         // extra shadow when being dragged
@@ -86,25 +89,7 @@ Item {
         Behavior on opacity { DefaultNumberAnimation{} }
     }
 
-    Binding {
-        target: root.appInfo; property: "windowScale"; value: root.NeptuneStyle.scale
-    }
 
-    Binding {
-        target: root.appInfo; property: "widgetHeight"; value: root.widgetHeight
-    }
-
-    Binding {
-        target: root.appInfo; property: "currentWidth"; value: windowSlot.width
-    }
-
-    Binding {
-        target: root.appInfo; property: "currentHeight"; value: windowSlot.height
-    }
-
-    Binding {
-        target: root.appInfo; property: "windowState"; value: root.active ? "Maximized" : root.widgetState
-    }
 
     ScalableBorderImage {
         id: mask
@@ -131,11 +116,17 @@ Item {
         // don't let the window get input events outside the slot area
         clip: true
 
-        WindowItem {
+        ApplicationCCWindowItem {
             id: windowItem
-            window: root.appInfo ? root.appInfo.window : null
+            widgetHeight: root.widgetHeight
+            currentWidth: windowSlot.width
+            currentHeight: windowSlot.height
+            windowState: root.active ? "Maximized" : root.widgetState
+            appInfo: root.appInfo ? root.appInfo : null
             width: NeptuneStyle.dp(Style.centerConsoleWidth)
             height: NeptuneStyle.dp(Style.centerConsoleHeight)
+            exposedRectTopMargin: root.exposedRectTopMargin
+            exposedRectBottomMargin: root.exposedRectBottomMargin
         }
     }
 

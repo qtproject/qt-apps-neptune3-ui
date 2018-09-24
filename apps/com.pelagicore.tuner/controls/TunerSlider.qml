@@ -34,9 +34,9 @@ import QtQuick.Layouts 1.2
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
-import utils 1.0
-import controls 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.controls 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Slider {
     //TODO adapt it to AM band frequencies

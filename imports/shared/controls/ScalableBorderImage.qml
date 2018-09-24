@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
     \qmltype ScalableBorderImage
@@ -52,7 +52,7 @@ import com.pelagicore.styles.neptune 3.0
 
     \qml
     import QtQuick 2.10
-    import controls 1.0
+    import shared.controls 1.0
 
     Item {
         id: root

@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 import QtApplicationManager 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 QtObject {
     id: root

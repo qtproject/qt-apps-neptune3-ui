@@ -33,7 +33,7 @@
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.RadioButton {
     id: control

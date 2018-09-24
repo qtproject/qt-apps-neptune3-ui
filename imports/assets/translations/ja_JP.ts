@@ -77,7 +77,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Secondary Window, on Instrument Cluster</source>
+        <source>Application IC Window, on Instrument Cluster</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

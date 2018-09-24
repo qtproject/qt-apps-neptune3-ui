@@ -32,17 +32,17 @@
 import QtQuick 2.7
 import QtQml.Models 2.2
 import QtApplicationManager 1.0
-
-import animations 1.0
-import com.pelagicore.styles.neptune 3.0
-import utils 1.0
+import system.controls 1.0
+import shared.animations 1.0
+import shared.com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
 
 Item {
     id: root
     property var applicationModel
 
     function next() {
-        if ( selectedIndex + 1 < secondaryWindowList.count) {
+        if ( selectedIndex + 1 < applicationICWindowList.count) {
             selectedIndex++;
         } else {
             selectedIndex = 0;
@@ -50,30 +50,30 @@ Item {
     }
 
     property int selectedIndex: 0
-    readonly property string selectedApplicationId: selectedIndex < secondaryWindowList.count
-                                                        ? secondaryWindowList.get(selectedIndex).appInfo.id
+    readonly property string selectedApplicationId: selectedIndex < applicationICWindowList.count
+                                                        ? applicationICWindowList.get(selectedIndex).appInfo.id
                                                         : ""
-    readonly property bool empty: secondaryWindowList.count === 0
+    readonly property bool empty: applicationICWindowList.count === 0
 
     Instantiator {
         model: root.applicationModel
         delegate: QtObject {
             property var con: Connections {
                 target: model.appInfo
-                onSecondaryWindowChanged: {
-                    if (model.appInfo.secondaryWindow) {
+                onIcWindowChanged: {
+                    if (model.appInfo.icWindow) {
                         var appInList = false;
-                        for (var i = 0; i < secondaryWindowList.count; i++) {
-                            if (secondaryWindowList.get(i).appInfo.id === model.appInfo.id) {
+                        for (var i = 0; i < applicationICWindowList.count; i++) {
+                            if (applicationICWindowList.get(i).appInfo.id === model.appInfo.id) {
                                 appInList = true;
                                 break;
                             }
                         }
                         if (!appInList) {
-                            secondaryWindowList.append({"appInfo" : model.appInfo});
+                            applicationICWindowList.append({"appInfo" : model.appInfo});
                         }
                     } else {
-                        secondaryWindowList.removeWithAppId(model.appInfo.id);
+                        applicationICWindowList.removeWithAppId(model.appInfo.id);
                     }
                 }
             }
@@ -81,7 +81,7 @@ Item {
     }
 
     ListModel {
-        id: secondaryWindowList
+        id: applicationICWindowList
         function removeWithAppId(appId) {
             var i;
             for (i = 0; i < count; i++) {
@@ -102,9 +102,9 @@ Item {
     }
 
     Repeater {
-        model: secondaryWindowList
-        delegate: WindowItem {
-            id: secondaryWindowSlot
+        model: applicationICWindowList
+        delegate: ApplicationICWindowItem {
+            id: applicationICWindowSlot
             anchors.fill: root
             opacity: model.index === root.selectedIndex ? 1 : 0
 
@@ -113,10 +113,9 @@ Item {
             // TODO: Investigate
             //visible: opacity > 0
 
-            window: model.appInfo.secondaryWindow
+            appInfo: model.appInfo
 
             Behavior on opacity { DefaultNumberAnimation {} }
-            Binding { target: model.appInfo; property: "secondaryWindowScale"; value: secondaryWindowSlot.NeptuneStyle.scale }
         }
     }
 }

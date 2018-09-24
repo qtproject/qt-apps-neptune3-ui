@@ -36,8 +36,8 @@
       See \l{Manifest File}.
       \li The name of the folder that contains \e info.yaml must be the same as
       the value of the \c id property in the info.yaml file.
-      \li Depending on your application type, either use \l{PrimaryWindow} or also include
-      \l{SecondaryWindow} to show content in the \l{instrument cluster}. See \l{Application
+      \li Depending on your application type, either use \l{ApplicationCCWindow} or also include
+      \l{ApplicationICWindow} to show content in the \l{instrument cluster}. See \l{Application
       Root QML Element}.
     \endlist
 
@@ -76,21 +76,21 @@ used when developing applications:
         \li Root element
         \li Description
     \row
-        \li \l{PrimaryWindow}
+        \li \l{ApplicationCCWindow}
         \li Can be used in all kind of applications.
     \row
-        \li \l{SecondaryWindow}
+        \li \l{ApplicationICWindow}
         \li Can be used in all kind of applications to show content in the \l{instrument cluster}.
 \endtable
 
-The following QML code demonstrates how to use \l{PrimaryWindow} as a root element:
+The following QML code demonstrates how to use \l{ApplicationCCWindow} as a root element:
 
 \qml
 import QtQuick 2.10
-import controls 1.0
-import utils 1.0
+import shared.controls 1.0
+import shared.utils 1.0
 
-PrimaryWindow {
+ApplicationCCWindow {
     id: root
     Background {
         anchors.fill: parent

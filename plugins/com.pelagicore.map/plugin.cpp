@@ -41,7 +41,7 @@ class MapsHelperPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.map"));
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.map"));
 
         qmlRegisterType<MapsHelper>(uri, 1, 0, "MapsHelper");
     }

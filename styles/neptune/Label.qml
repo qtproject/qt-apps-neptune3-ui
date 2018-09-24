@@ -31,7 +31,7 @@
 
 import QtQuick 2.6
 import QtQuick.Templates 2.0 as T
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.Label {
     id: control

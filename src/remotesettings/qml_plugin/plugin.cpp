@@ -42,7 +42,7 @@ class RemoteSettingsPlugin : public QQmlExtensionPlugin
 public:
     virtual void registerTypes(const char *uri) override
     {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("com.pelagicore.settings"));
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.settings"));
 
         SettingsModule::registerQmlTypes(uri, 1, 0);
     }

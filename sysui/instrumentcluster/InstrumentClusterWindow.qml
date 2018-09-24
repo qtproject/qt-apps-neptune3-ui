@@ -30,12 +30,11 @@
 ****************************************************************************/
 
 import QtQuick 2.7
-import utils 1.0
+import shared.utils 1.0
 import QtQuick.Window 2.3
-
+import system.controls 1.0
 import QtApplicationManager 1.0
-
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Window {
     id: root
@@ -46,8 +45,8 @@ Window {
     property bool invertedOrientation: root.clusterStore.invertedCluster
     property bool performanceOverlayVisible: false
 
-    function nextSecondaryWindow() {
-        secondaryAppWindows.next();
+    function nextApplicationICWindow() {
+        applicationICWindows.next();
     }
 
     width: Style.instrumentClusterWidth
@@ -76,11 +75,11 @@ Window {
             anchors.fill: parent
             source: Style.gfx("instrument-cluster-bg", NeptuneStyle.theme)
             fillMode: Image.Stretch
-            visible: !secondaryAppWindows.visible
+            visible: !applicationICWindows.visible
         }
 
-        SecondaryAppWindows {
-            id: secondaryAppWindows
+        ApplicationICWindows {
+            id: applicationICWindows
             anchors.fill: parent
             applicationModel: root.applicationModel
 
@@ -88,21 +87,22 @@ Window {
 
             readonly property bool selectedNavigation: {
                 if (root.applicationModel) {
-                    var app = root.applicationModel.applicationFromId(secondaryAppWindows.selectedApplicationId)
+                    var app = root.applicationModel.applicationFromId(applicationICWindows.selectedApplicationId)
                     if (app) {
                         return app.categories.indexOf("navigation") !== -1;
                     }
                 }
                 return false;
             }
-            Binding { target: instrumentClusterSettings; property: "navigationMode"; value: secondaryAppWindows.selectedNavigation }
+            Binding { target: instrumentClusterSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
         }
 
-        WindowItem {
+        ApplicationICWindowItem {
             id: windowItem
             anchors.fill: parent
-            window: applicationModel && applicationModel.instrumentClusterAppInfo
-                    ? applicationModel.instrumentClusterAppInfo.window : null
+            appInfo: applicationModel && applicationModel.instrumentClusterAppInfo
+                     ? applicationModel.instrumentClusterAppInfo : null
+            window: appInfo ? appInfo.window : null
         }
     }
 
@@ -116,6 +116,6 @@ Window {
     Shortcut {
         sequence: "Ctrl+c"
         context: Qt.ApplicationShortcut
-        onActivated: root.nextSecondaryWindow();
+        onActivated: root.nextApplicationICWindow();
     }
 }

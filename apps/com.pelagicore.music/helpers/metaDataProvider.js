@@ -31,7 +31,7 @@
 
 .pragma library
 
-.import utils 1.0 as Style
+.import shared.utils 1.0 as Style
 
 function getTitleName(itemText, altText, contentType) {
     if (itemText && (contentType === "track")) {

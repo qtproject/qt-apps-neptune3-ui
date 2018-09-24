@@ -1,2 +1,2 @@
-module com.pelagicore.map
+module shared.com.pelagicore.map
 plugin mapshelperplugin

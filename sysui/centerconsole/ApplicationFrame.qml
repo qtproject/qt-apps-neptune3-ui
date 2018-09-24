@@ -32,8 +32,9 @@
 import QtQuick 2.7
 import QtApplicationManager 1.0
 
-import animations 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.animations 1.0
+import system.controls 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 /*
     Displays the main window of a given application using in and out transition animations
@@ -44,22 +45,8 @@ import com.pelagicore.styles.neptune 3.0
 Item {
     id: root
     property var appInfo
-
-    Binding {
-        target: root.appInfo; property: "currentHeight"; value: root.height
-    }
-
-    Binding {
-        target: root.appInfo; property: "currentWidth"; value: root.width
-    }
-
-    Binding {
-        target: root.appInfo; property: "windowScale"; value: root.NeptuneStyle.scale
-    }
-
-    Binding {
-        target: root.appInfo; property: "windowState"; value: "Maximized"
-    }
+    property real exposedRectTopMargin
+    property real exposedRectBottomMargin
 
     visible: children.length > 0
 
@@ -73,9 +60,17 @@ Item {
                 currentMaxWindow = null;
             }
 
-            if (window) {
-                currentMaxWindow = maximizedWindowComponent.createObject(d, {"parent":root,"window":window});
-                window.parent = root;
+            if (d.window) {
+                currentMaxWindow = maximizedWindowComponent.createObject(d, {
+                                                                             "parent":root,
+                                                                             "appInfo": root.appInfo,
+                                                                             "exposedRectTopMargin": root.exposedRectTopMargin,
+                                                                             "exposedRectBottomMargin": root.exposedRectBottomMargin,
+                                                                             "currentHeight": root.height,
+                                                                             "currentWidth": root.width,
+                                                                             "windowState": "Maximized"
+                                                                            });
+                d.window.parent = root;
                 currentMaxWindow.addAnimation.start();
             }
         }
@@ -87,9 +82,10 @@ Item {
 
     Component {
         id: maximizedWindowComponent
-        WindowItem {
+        ApplicationCCWindowItem {
             id: maxWindowObj
             anchors.fill: parent
+
             property var addAnimation: SequentialAnimation {
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
             }

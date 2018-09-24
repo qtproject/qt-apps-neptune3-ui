@@ -34,10 +34,10 @@ import QtQml 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import utils 1.0
-import animations 1.0
+import shared.utils 1.0
+import shared.animations 1.0
 import "../controls"
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

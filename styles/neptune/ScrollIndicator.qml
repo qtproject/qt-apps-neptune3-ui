@@ -37,9 +37,9 @@
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
-import utils 1.0
-import animations 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.utils 1.0
+import shared.animations 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 T.ScrollIndicator {
     id: control

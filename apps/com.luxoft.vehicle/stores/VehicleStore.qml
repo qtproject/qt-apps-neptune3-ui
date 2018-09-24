@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import com.pelagicore.settings 1.0
+import shared.com.pelagicore.settings 1.0
 
 QtObject {
     id: root

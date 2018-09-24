@@ -30,10 +30,10 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import utils 1.0
+import shared.utils 1.0
 import "../stores"
 import "../panels"
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

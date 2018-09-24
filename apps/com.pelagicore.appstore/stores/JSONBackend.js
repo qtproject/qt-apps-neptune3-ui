@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 .pragma library
-.import utils 1.0 as Utils
+.import shared.utils 1.0 as Utils
 
 var request = new XMLHttpRequest()
 var errorCounter = 0

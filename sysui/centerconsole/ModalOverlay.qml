@@ -32,8 +32,8 @@
 import QtQuick 2.10
 import QtGraphicalEffects 1.0
 
-import animations 1.0
-import com.pelagicore.styles.neptune 3.0
+import shared.animations 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
 // hence the implementation of our own modal overlay scheme

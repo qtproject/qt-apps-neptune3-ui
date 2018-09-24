@@ -31,12 +31,12 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.0
-import controls 1.0
-import utils 1.0
+import shared.controls 1.0
+import shared.utils 1.0
 
 import QtQuick.Layouts 1.3
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root

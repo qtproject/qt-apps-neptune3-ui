@@ -46,14 +46,15 @@
    window.
 
    Neptune 3 defines three types of application windows, each of them being handled
-   differently by System UI. Namely primary windows, secondary windows and pop-up
-   windows. A Neptune 3 application must have one primary window and, optionally, one
-   secondary window.
+   differently by System UI. Namely application center console windows, application
+   instrument cluster windows and pop-up windows. A Neptune 3 application must have
+   one application center console window and, optionally, one application instrument
+   cluster window.
 
    System UI is able to tell them apart by checking their "windowType" window
    property. Application code doesn't have to worry about this implementation
    detail though, this is taken care of by the specialized QML components
-   \l{PrimaryWindow}, \l{SecondaryWindow} and \l{PopupWindow}.
+   \l{ApplicationCCWindow}, \l{ApplicationICWindow} and \l{PopupWindow}.
 
    System UI also provides a way to take a screenshot of the current state of
    Neptune 3 UI and export it. At the same time, it also exports the output of

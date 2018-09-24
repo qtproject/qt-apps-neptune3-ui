@@ -33,9 +33,9 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
-import utils 1.0
+import shared.utils 1.0
 
 import "../controls"
 

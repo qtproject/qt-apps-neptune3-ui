@@ -41,7 +41,7 @@ class WidgetGridPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(uri == QLatin1String("NeptuneWidgetGrid"));
+        Q_ASSERT(uri == QLatin1String("shared.NeptuneWidgetGrid"));
         qmlRegisterType<WidgetListModel>(uri, 1, 0, "WidgetListModel");
     }
 };

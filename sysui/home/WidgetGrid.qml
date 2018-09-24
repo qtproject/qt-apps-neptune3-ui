@@ -32,13 +32,13 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.1
 
-import controls 1.0
-import utils 1.0
-import animations 1.0
+import shared.controls 1.0
+import shared.utils 1.0
+import shared.animations 1.0
 
-import NeptuneWidgetGrid 1.0
+import shared.NeptuneWidgetGrid 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -50,6 +50,9 @@ Item {
     readonly property int maxWidgetCount: widgetsList.numRows
 
     readonly property real resizerHandleHeight: NeptuneStyle.dp(32)
+
+    property real exposedRectTopMargin
+    property real exposedRectBottomMargin
 
     property Item activeApplicationParent
     property bool moveBottomWidgetToDrawer: false
@@ -432,6 +435,8 @@ Item {
                         id: appWidget
 
                         appInfo: model.appInfo
+                        exposedRectTopMargin: active ? root.exposedRectTopMargin : 0.0
+                        exposedRectBottomMargin: active ? root.exposedRectBottomMargin : 0.0
 
                         // in root coords
                         property real dragStartPosY

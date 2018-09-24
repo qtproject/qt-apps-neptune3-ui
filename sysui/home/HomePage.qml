@@ -32,11 +32,11 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
 
-import controls 1.0
-import utils 1.0
-import animations 1.0
+import shared.controls 1.0
+import shared.utils 1.0
+import shared.animations 1.0
 
-import com.pelagicore.styles.neptune 3.0
+import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
     id: root
@@ -47,6 +47,8 @@ Item {
     property alias activeApplicationParent: widgetGrid.activeApplicationParent
     property alias moveBottomWidgetToDrawer: widgetGrid.moveBottomWidgetToDrawer
     property alias widgetDrawer: widgetGrid.widgetDrawer
+    property alias exposedRectTopMargin: widgetGrid.exposedRectTopMargin
+    property alias exposedRectBottomMargin: widgetGrid.exposedRectBottomMargin
 
     readonly property real widgetWidth: widgetGrid.width
     readonly property real rowHeight: widgetGrid.rowHeight - widgetGrid.resizerHandleHeight

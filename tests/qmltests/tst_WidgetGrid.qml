@@ -35,7 +35,7 @@ import QtTest 1.1
 // sysui, for getting WidgetGrid
 import home 1.0
 
-import utils 1.0
+import shared.utils 1.0
 
 Item {
     id: root
