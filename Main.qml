@@ -41,21 +41,21 @@ import stores 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-Window {
+QtObject {
     id: root
 
     readonly property RootStore store: RootStore {
-        isLandscape: root.width > root.height
-        smallerDimension: isLandscape ? root.height : root.width
-        largerDimension: isLandscape ? root.width : root.height
+        isLandscape: centerConsoleWindow.width > centerConsoleWindow.height
+        smallerDimension: isLandscape ? centerConsoleWindow.height : centerConsoleWindow.width
+        largerDimension: isLandscape ? centerConsoleWindow.width : centerConsoleWindow.height
         clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
         onAccentColorChanged: {
-            root.contentItem.NeptuneStyle.accentColor = newAccentColor;
+            centerConsoleWindow.contentItem.NeptuneStyle.accentColor = newAccentColor;
         }
 
         onGrabImageRequested: {
-            centerConsole.grabToImage(function(result) {
+            centerConsoleWindow.centerConsole.grabToImage(function(result) {
                 var ret = result.saveToFile(screenshotUrl);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
             });
@@ -63,10 +63,10 @@ Window {
 
         onUpdateThemeRequested: {
             var chosenTheme = currentTheme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-            if (popupParent.visible) {
-                popupParent.updateOverlay();
+            if (centerConsoleWindow.popupParent.visible) {
+                centerConsoleWindow.popupParent.updateOverlay();
             }
-            root.contentItem.NeptuneStyle.theme = chosenTheme;
+            centerConsoleWindow.contentItem.NeptuneStyle.theme = chosenTheme;
             if (instrumentClusterWindowLoader.item) {
                 instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
             }
@@ -79,100 +79,11 @@ Window {
         }
     }
 
-    title: root.store.centerConsoleTitle
-    color: "black"
-
-    LayoutMirroring.enabled: root.store.layoutMirroringEnabled
-    LayoutMirroring.childrenInherit: root.store.layoutMirroringChildreninherit
-
-    Component.onCompleted: {
-        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
-        // on every language change, which results in resetting the window size to it's initial state
-        // and might overwrite the size given by the OS or the user using the WindowManager
-        width = Style.centerConsoleWidth
-        height = Style.centerConsoleHeight
+    readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
+        store: root.store
     }
 
-    // Load the full UI once a first frame has been drawn with the ligth UI version
-    // FIXME: Find a better way of finding out when the first proper frame has been
-    //       rendered (scene no longer dirty. render thread idle)
-    Connections {
-        id: windowConns
-        target: root
-        onFrameSwapped: {
-            /*
-                The UI is loaded in two steps
-                This is done in order to ensure that something is rendered on the screen as
-                soon as possible during start up.
-
-                Only the lightest elements are present upon creation of this component.
-                They are the ones that will be present on the very first rendered frame.
-
-                Others, which are more complex and thus take more time to load, will be
-                loaded afterwards, once this function is called.
-             */
-            root.store.applicationModel.populate(root.store.settingsStore.widgetStates);
-            centerConsole.mainContentArea.active = true;
-            notificationLoader.active = true;
-            windowConns.enabled = false;
-        }
-    }
-
-    /*
-        By default, Neptune 3 consists of two windows, the center console window and the
-        instrument cluster window. Below, the definition of the center console window content
-        and the loading of the instrument cluster window is done. However on a device, the
-        instrument cluster window will only be shown if there are two screens connected. There
-        is also the possibility to configure whether it should be shown or not through the main
-        yaml file, default is 'yes'.
-
-        If additional windows shall be added, this can be done in the same way as the
-        instrument cluster window is added in Neptune 3
-
-        For more detail information, please visit Neptune 3 documentation page.
-        (TODO: add the link here once we have the documentation)
-     */
-    Item {
-        anchors.fill: parent
-
-        CenterConsole {
-            id: centerConsole
-            anchors.centerIn: parent
-            store: root.store
-            popupParent: popupParent
-            focus: true
-
-            onWidthChanged: {
-                root.contentItem.NeptuneStyle.scale = centerConsole.width / Style.centerConsoleWidth;
-            }
-        }
-
-        ModalOverlay {
-            id: popupParent
-            anchors.fill: centerConsole
-            target: centerConsole
-        }
-
-        StageLoader {
-            id: notificationLoader
-            anchors.fill: centerConsole
-            source: "sysui/notification/NotificationContent.qml"
-
-            Binding { target: notificationLoader.item; property: "target";
-                value: popupParent.showModalOverlay ? popupParent : centerConsole }
-        }
-
-        CenterConsoleMonitorOverlay {
-            anchors.fill: centerConsole
-            rotation: centerConsole.rotation
-            model: root.store.systemStore
-            fpsVisible: root.store.systemStore.centerConsolePerfOverlayEnabled
-            activeAppId: root.store.applicationModel.activeAppInfo ? root.store.applicationModel.activeAppInfo.id : ""
-            window: root
-        }
-    }
-
-    Loader {
+    readonly property Loader instrumentClusterWindowLoader: Loader {
         id: instrumentClusterWindowLoader
 
         sourceComponent: Component {
