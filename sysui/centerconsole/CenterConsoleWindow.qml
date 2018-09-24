@@ -45,7 +45,10 @@ Window {
     property alias centerConsole: centerConsole
     property RootStore store
 
-    title: root.store.centerConsoleTitle
+    Binding {target: root.store.centerConsole; property: "windowWidth"; value: root.width }
+    Binding {target: root.store.centerConsole; property: "windowHeight"; value: root.height }
+
+    title: store.centerConsole.title
     color: "black"
     LayoutMirroring.enabled: root.store.layoutMirroringEnabled
     LayoutMirroring.childrenInherit: root.store.layoutMirroringChildreninherit

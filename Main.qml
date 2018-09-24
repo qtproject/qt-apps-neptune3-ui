@@ -45,9 +45,6 @@ QtObject {
     id: root
 
     readonly property RootStore store: RootStore {
-        isLandscape: centerConsoleWindow.width > centerConsoleWindow.height
-        smallerDimension: isLandscape ? centerConsoleWindow.height : centerConsoleWindow.width
-        largerDimension: isLandscape ? centerConsoleWindow.width : centerConsoleWindow.height
         clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
         onAccentColorChanged: {

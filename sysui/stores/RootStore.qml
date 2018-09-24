@@ -39,8 +39,6 @@ import models.application 1.0
 import com.pelagicore.settings 1.0
 import com.pelagicore.systeminfo 1.0
 
-import "../helper/utils.js" as Utils
-
 Store {
     id: root
 
@@ -51,6 +49,7 @@ Store {
     readonly property ClimateStore climateStore: ClimateStore {
         measurementSystem: settingsStore.measurementSystem
     }
+    readonly property CenterConsoleStore centerConsole: CenterConsoleStore {}
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property StatusBarStore statusBarStore: StatusBarStore {
@@ -110,26 +109,11 @@ Store {
         }
     }
 
-    readonly property string centerConsoleTitle: "Neptune 3 UI - Center Console"
-
     readonly property bool layoutMirroringEnabled: Qt.locale().textDirection === Qt.RightToLeft || root.uiSettings.rtlMode
     readonly property bool layoutMirroringChildreninherit: true
     readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
                                                    && (Qt.application.screens.length === 1)
-    property bool invertedCenterConsole: false
 
-    property int centerConsoleOrientation: {
-        var value = Utils.orientationFromString(ApplicationManager.systemProperties.orientation);
-        return root.invertedCenterConsole ? Utils.invertOrientation(value) : value;
-    }
-    property bool isLandscape: false
-    property real smallerDimension: 0.0
-    property real largerDimension: 0.0
-    readonly property real availableAspectRatio: availableWidth / availableHeight
-    readonly property real availableWidth: orientationIsSomePortrait ? root.smallerDimension : root.largerDimension
-    readonly property real availableHeight: orientationIsSomePortrait ? root.largerDimension : root.smallerDimension
-    readonly property bool orientationIsSomePortrait: root.centerConsoleOrientation === Qt.PortraitOrientation
-                                                   || root.centerConsoleOrientation === Qt.InvertedPortraitOrientation
 
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)

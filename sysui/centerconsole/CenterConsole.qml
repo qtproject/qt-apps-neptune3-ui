@@ -47,8 +47,6 @@ import sysui.controls 1.0
 
 import com.pelagicore.styles.neptune 3.0
 
-import "../helper/utils.js" as Utils
-
 Item {
     id: root
 
@@ -56,24 +54,24 @@ Item {
     property RootStore store
     property alias mainContentArea: mainContentArea
 
-    rotation: Utils.rotateDisplay(root.store.centerConsoleOrientation, root.store.isLandscape)
+    rotation: store.centerConsole.rotation
 
     // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Center Console item will be
     // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
     states: [
         State {
             name: "constrainWidth"
-            when: root.store.availableAspectRatio > Style.centerConsoleAspectRatio
+            when: root.store.centerConsole.availableAspectRatio > Style.centerConsoleAspectRatio
             PropertyChanges { target: root
                 width: Math.round(root.height * Style.centerConsoleAspectRatio)
-                height: root.store.availableHeight
+                height: root.store.centerConsole.availableHeight
             }
         },
         State {
             name: "constrainHeight"
-            when: root.store.availableAspectRatio <= Style.centerConsoleAspectRatio
+            when: root.store.centerConsole.availableAspectRatio <= Style.centerConsoleAspectRatio
             PropertyChanges { target: root
-                width: root.store.availableWidth
+                width: root.store.centerConsole.availableWidth
                 height: Math.round(root.width / Style.centerConsoleAspectRatio)
             }
         }
@@ -186,7 +184,7 @@ Item {
 
     UIShortcuts {
         onCtrlRPressed: {
-            root.store.invertedCenterConsole = !root.store.invertedCenterConsole;
+            root.store.centerConsole.inverted = !root.store.centerConsole.inverted;
         }
         onCtrlShiftRPressed: {
             root.store.clusterStore.invertedCluster = !root.store.clusterStore.invertedCluster;
