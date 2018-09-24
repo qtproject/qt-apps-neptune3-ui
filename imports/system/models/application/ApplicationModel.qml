@@ -55,6 +55,7 @@ ListModel {
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
     signal shuttingDown()
+    signal applicationPopupAdded(var window)
 
     // Populate the model
     function populate(widgetStates) {
@@ -272,6 +273,12 @@ ListModel {
             var appInfo = applicationFromId(window.application.id);
 
             var isRegularApp = !!appInfo;
+
+            var isPopupWindow = window.windowProperty("windowType") === "popup";
+
+            if (isPopupWindow) {
+                root.applicationPopupAdded(window)
+            }
 
             if (isRegularApp) {
                 var isSecondaryWindow = window.windowProperty("windowType") === "secondary";

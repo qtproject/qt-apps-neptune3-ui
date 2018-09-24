@@ -66,6 +66,7 @@ Store {
 
         // Store widget states when the UI is shutting down
         onShuttingDown: settingsStore.widgetStates = applicationModel.serializeWidgetsState();
+        onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
     }
 
     readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}

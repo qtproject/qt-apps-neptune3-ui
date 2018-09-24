@@ -42,14 +42,4 @@ Store {
         property real popupWindowScale: root.currentScale
         Component.onCompleted: ApplicationIPCManager.registerInterface(extension, "neptune.popupwindow.interface", {});
     }
-
-    property var windowConns: Connections {
-        target: WindowManager
-        onWindowAdded: {
-            var isPopupWindow = window.windowProperty("windowType") === "popup";
-            if (isPopupWindow) {
-                appPopupsModel.append({"window":window});
-            }
-        }
-    }
 }
