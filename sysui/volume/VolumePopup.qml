@@ -41,6 +41,7 @@ import system.controls 1.0
 
 PopupItem {
     id: root
+    objectName: "volumePopupItem"
 
     width: NeptuneStyle.dp(270)
     height: NeptuneStyle.dp(1426)
@@ -74,6 +75,7 @@ PopupItem {
 
     VolumeSlider {
         id: slider
+        objectName: "volumeSlider"
         anchors.centerIn: parent
         height: NeptuneStyle.dp(1120)
         from: 0

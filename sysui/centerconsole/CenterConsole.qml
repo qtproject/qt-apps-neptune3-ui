@@ -129,6 +129,7 @@ Item {
 
     ToolButton {
         id: leftIcon
+        objectName: "volumePopupButton"
         width: NeptuneStyle.dp(90)
         height: width
         anchors.verticalCenter: bottomBar.verticalCenter

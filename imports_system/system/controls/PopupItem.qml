@@ -106,6 +106,7 @@ Control {
     }
 
     ToolButton {
+        objectName: "popupClose"
         anchors.verticalCenter: parent.top
         anchors.horizontalCenter: parent.right
         width: bg.width
