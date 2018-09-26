@@ -1,0 +1,16 @@
+:Neptune UI - Center Console.borderImage_BorderImage  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='borderImage' source='$BINPATH_TEST/imports/assets/gfx/popup-background-9patch.png' type='BorderImage' unnamed='1' visible='true'}
+:Neptune UI - Center Console.grid_GridView  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='grid' type='GridView' unnamed='1' visible='true'}
+:Neptune UI - Center Console.handle_Image  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='handle' source='$BINPATH_TEST/imports/assets/gfx/slider-handle-vertical.png' type='Image' unnamed='1' visible='true'}
+:Neptune UI - Center Console.image_IconImage  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' objectName='image' source='$BINPATH_TEST/imports/assets/icons/neptune/sysui/ic-volume-1.png' type='IconImage' visible='true'}
+:Neptune UI - Center Console.image_IconImage_2  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' objectName='image' source='$BINPATH_TEST/imports/assets/icons/neptune/sysui/ic-close.png' type='IconImage' visible='true'}
+:Neptune UI - Center Console.image_IconImage_3  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' objectName='image' source='$BINPATH_TEST/imports/assets/icons/neptune/sysui/ic-menu-allapps.png' type='IconImage' visible='true'}
+:Neptune UI - Center Console.instrumentClusterWindowLoader_Loader  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='instrumentClusterWindowLoader' type='Loader' unnamed='1' visible='true'}
+:Neptune UI - Center Console.leftIcon_ToolButton  {checkable='false' container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='leftIcon' type='ToolButton' unnamed='1' visible='true'}
+:Neptune UI - Center Console.leftTempSlider_TemperatureSlider  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='leftTempSlider' type='TemperatureSlider' unnamed='1' visible='true'}
+:Neptune UI - Center Console.rightTempSlider_TemperatureSlider  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='rightTempSlider' type='TemperatureSlider' unnamed='1' visible='true'}
+:Neptune UI - Center Console.root_ClimatePopup  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' id='root' type='ClimatePopup' unnamed='1' visible='true'}
+:Neptune UI - Center Console_Image  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' source='$BINPATH_TEST/imports/assets/icons/ic-rear-defrost-status.png' type='Image' unnamed='1' visible='true'}
+:Neptune UI - Center Console_Image_2  {container=':Neptune UI - Center Console_QQuickWindowQmlImpl' source='$BINPATH_TEST/imports/assets/gfx/bg-home.png' type='Image' unnamed='1' visible='true'}
+:Neptune UI - Center Console_QQuickWindowQmlImpl  {title='Neptune UI - Center Console' type='QQuickWindowQmlImpl' unnamed='1' visible='true'}
+:Neptune UI - Instrument Cluster_QQuickWindowQmlImpl  {title='Neptune UI - Instrument Cluster' type='QQuickWindowQmlImpl' unnamed='1' visible='true' window=':_QVariant'}
+:_QVariant  {type='QVariant'}
