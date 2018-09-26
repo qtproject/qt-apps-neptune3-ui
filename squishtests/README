@@ -1,1 +1,10 @@
-Squish tests for Neptune 3 README goes here
+Squish tests for Neptune 3
+--------------------------
+
+Squish is a commercial automated GUI testing tool from froglogic (https://www.froglogic.com/squish-gui-testing/).
+
+It should provide a basic set of scripts for Neptune, QML Live, QtAMP for smoke testing on a CI.
+Further it documents and provides reference scripts as part of Neptune 3 and enable Qt Auto developers who deal with any UI to write own tests if needed.
+
+Squish is not included in the Qt Auto package, customers have to talk to Froglogic to get it.
+There is no ambition to achieve a full test coverage in Neptune 3, some tools (QML Live, QtAMP) should reach full test coverage.
