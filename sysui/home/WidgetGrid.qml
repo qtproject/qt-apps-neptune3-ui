@@ -309,6 +309,7 @@ Item {
 
             delegate: Column {
                 id: repeaterDelegate
+                objectName: "squish_homeWidget_" + (appInfo ? appInfo.id: "none")
 
                 // So that the touch area of the resize handle in this item covers the widget
                 // in the next delegate
@@ -427,12 +428,15 @@ Item {
 
                 Item {
                     id: appWidgetSlot
+                    objectName: "squish_appWidgetSlot_" + (appInfo ? appInfo.id: "none")
+
                     width: repeaterDelegate.width
                     height: repeaterDelegate.height - resizeHandle.height
 
 
                     ApplicationWidget {
                         id: appWidget
+                        objectName: "squish_applicationWidget_" + (appInfo ? appInfo.id : "none")
 
                         appInfo: model.appInfo
                         exposedRectTopMargin: active ? root.exposedRectTopMargin : 0.0
@@ -602,6 +606,7 @@ Item {
 
                     MouseArea {
                         anchors.fill: parent
+                        objectName: "squish_menuWidgetMenuDrag"
 
                         // don't let it cover the area near widget corners as they can have buttons
                         // like widget-drag and widget-close
