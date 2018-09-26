@@ -195,6 +195,10 @@ Item {
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.bottom: parent.bottom
 
+        objectName: "appWidgetClose_" + (root.appInfo ?
+                                            (root.appInfo.id ? root.appInfo.id : "none")
+                                            : "nothing"
+                                            )
         width: widgetStripe.width + NeptuneStyle.dp(18)
         height: width
         visible: root.buttonsVisible

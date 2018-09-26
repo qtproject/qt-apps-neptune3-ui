@@ -70,6 +70,7 @@ Item {
 
     ToolButton {
         id: addWidgetButton
+        objectName: "addWidgetButton"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: NeptuneStyle.dp(40)
         anchors.horizontalCenter: parent.horizontalCenter
@@ -84,6 +85,7 @@ Item {
 
     AddWidgetPopupLoader {
         id: popup
+        objectName: "addWidgetPopup"
         popupParent: root.popupParent
         originItem: addWidgetButton
         model: root.applicationModel

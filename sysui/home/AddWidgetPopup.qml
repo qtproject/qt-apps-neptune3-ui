@@ -43,6 +43,7 @@ import shared.com.pelagicore.styles.neptune 3.0
 
 PopupItem {
     id: root
+    objectName: "addWidgetPopupItem"
 
     property alias model: delegateModel.model
     readonly property int popupHeight: popupContent.height
@@ -85,6 +86,7 @@ PopupItem {
             },
             DelegateModelGroup {
                 id: allItemsGroup
+                objectName: "addWidgetItemDelegate"
                 name: "all"
                 includeByDefault: true
                 onChanged: {
@@ -107,6 +109,7 @@ PopupItem {
         filterOnGroup: "supportsWidgetState"
 
         delegate: ListItem {
+            objectName: "itemAddWidget_" + (model.appInfo ? model.appInfo.id : "none")
             width: ListView.view.width
             height: visible ? NeptuneStyle.dp(80) : 0
             visible: model.appInfo && !model.appInfo.asWidget
