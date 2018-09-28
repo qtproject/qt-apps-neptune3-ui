@@ -56,8 +56,6 @@ Window {
     visible: true
 
     Component.onCompleted: {
-        WindowManager.registerCompositorView(root);
-
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager

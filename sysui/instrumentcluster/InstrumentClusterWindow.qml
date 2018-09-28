@@ -54,14 +54,14 @@ Window {
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
-    visible: windowItem.window !== null
 
     onWidthChanged: {
         root.contentItem.NeptuneStyle.scale = root.width / Style.instrumentClusterWidth;
     }
 
     Component.onCompleted: {
-        WindowManager.registerCompositorView(root)
+        // Would like to use a regular property binding instead. But it doesn't work and I don't know why
+        visible = true;
     }
 
     Item {
