@@ -1,5 +1,5 @@
 # Add a long padded rpath, so the installer can replace it with a relative rpath
-QMAKE_RPATHDIR += "$$INSTALL_PREFIX/long_padding/long_padding/long_padding/long_padding/long_padding\
+!cross_compile: QMAKE_RPATHDIR += "$$INSTALL_PREFIX/long_padding/long_padding/long_padding/long_padding/long_padding\
                    long_padding/long_padding/long_padding/long_padding/long_padding/long_padding/"
 
 CONFIG += skip_target_version_ext
