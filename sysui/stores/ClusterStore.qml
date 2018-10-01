@@ -39,7 +39,14 @@ QtObject {
     readonly property InstrumentCluster clusterSettings: InstrumentCluster { id: clusterSettings }
     readonly property string clusterTitle: "Neptune 3 UI - Instrument Cluster"
     readonly property bool showCluster: ApplicationManager.systemProperties.showCluster
-    property alias clusterAvailable: clusterSettings.available
+    property bool clusterAvailable
     property bool invertedCluster: false
     readonly property var clusterScreen: Qt.application.screens[Qt.application.screens.length - 1]
+
+    readonly property var _clusterAvailableBinding: Binding {
+        target: clusterSettings
+        when: clusterSettings.isInitialized
+        property: "available"
+        value: root.clusterAvailable
+    }
 }
