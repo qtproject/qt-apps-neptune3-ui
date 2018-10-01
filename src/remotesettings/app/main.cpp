@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     Client client;
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports/shared/"));
+    engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports/"));
     engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
