@@ -149,7 +149,7 @@
     </message>
 </context>
 <context>
-    <name>ClimateButtonsGrid</name>
+    <name>ClimateButtonsGridPanel</name>
     <message>
         <source>DRIVER</source>
         <translation type="unfinished"></translation>

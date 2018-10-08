@@ -1,2 +1,3 @@
 RootStore 1.0 RootStore.qml
 ApplicationPopupsStore 1.0 ApplicationPopupsStore.qml
+BottomBarStore 1.0 BottomBarStore.qml

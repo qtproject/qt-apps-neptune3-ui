@@ -38,7 +38,6 @@ import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
 import about 1.0
-import climate 1.0
 import centerconsole 1.0
 import volume 1.0
 import statusbar 1.0
@@ -101,7 +100,7 @@ Item {
 
         Binding { target: mainContentArea.item; property: "applicationModel"; value: root.store.applicationModel }
         Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
-        Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: climateBar.height }
+        Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: bottomBar.height }
         Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
         Binding { target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard.item }
     }
@@ -119,33 +118,33 @@ Item {
         onScreenshotRequested: root.store.generateScreenshotAndInfo()
     }
 
-    ClimateBar {
-        id: climateBar
+     NeptuneWindowItem {
+        id: bottomBar
         width: root.width
         height: NeptuneStyle.dp(120)
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        popupParent: root.popupParent
-        model: root.store.climateStore
+        window: root.store.applicationModel.bottomBarAppInfo.window
     }
 
     ToolButton {
         id: leftIcon
-        width: climateBar.toolWidth
+        width: NeptuneStyle.dp(90)
         height: width
-        anchors.verticalCenter: climateBar.verticalCenter
-        anchors.left: climateBar.left
-        anchors.leftMargin: climateBar.lateralMargin
+        anchors.verticalCenter: bottomBar.verticalCenter
+        anchors.left: bottomBar.left
+        anchors.leftMargin: NeptuneStyle.dp(27)
         icon.name: root.store.volumeStore.volumeIcon
         onClicked: volumePopup.open()
     }
 
     ToolButton {
         id: rightIcon
-        width: climateBar.toolWidth
+        width: NeptuneStyle.dp(90)
         height: width
-        anchors.verticalCenter: climateBar.verticalCenter
-        anchors.right: climateBar.right
-        anchors.rightMargin: climateBar.lateralMargin
+        anchors.verticalCenter: bottomBar.verticalCenter
+        anchors.right: bottomBar.right
+        anchors.rightMargin: NeptuneStyle.dp(27)
         icon.name: "qt-badge"
         onClicked: about.open()
     }

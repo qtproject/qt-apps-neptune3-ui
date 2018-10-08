@@ -29,37 +29,41 @@
 **
 ****************************************************************************/
 
-/*!
-    \qmltype ApplicationPopup
-    \inherits PopupItem
-    \since 5.11
-    \brief Displays the content of an application's PopupWindow inside a PopupItem in System-UI
-*/
-
-import QtQuick 2.7
-import system.controls 1.0
-import QtApplicationManager 1.0
+import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import shared.controls 1.0
+import shared.utils 1.0
+import "../stores"
+import "../controls"
+import "../panels"
+import "../popups"
 
 import shared.com.pelagicore.styles.neptune 3.0
 
-PopupItem {
+Item {
     id: root
 
-    property alias window: windowItem.window
+    property ClimateStore store
 
-    width: windowItem.width
-    height: windowItem.height
-    popupY: 0
-
-    NeptuneWindowItem {
-        id: windowItem
-        objectFollowsItemSize: false
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        onClicked: {
+            climatePopup.store = root.store;
+            climatePopup.visible = true;
+        }
     }
 
-    Component.onCompleted: {
-        root.originItemX = root.window.windowProperty("originItemX");
-        root.originItemY = root.window.windowProperty("originItemY");
-        root.popupY = root.window.windowProperty("popupY");
-        root.open();
+    ClimateIndicatorPanel {
+        anchors.centerIn: parent
+        store: root.store
+    }
+
+    ClimatePopup {
+        id: climatePopup
+        originItemX: Math.round(Style.centerConsoleWidth / 2);
+        originItemY: Style.centerConsoleHeight - Math.round(root.height / 2);
+        popupY: NeptuneStyle.dp(Style.centerConsoleHeight) - climatePopup.height - NeptuneStyle.dp(90);
     }
 }

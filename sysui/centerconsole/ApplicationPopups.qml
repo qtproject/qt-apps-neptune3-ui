@@ -51,8 +51,6 @@ Item {
             window: model.window
             parent: root.popupParent
 
-            popupY: Math.round(root.height / 4)
-
             closeHandler: function () {
                 // Forward the request to the client side.
                 window.close();

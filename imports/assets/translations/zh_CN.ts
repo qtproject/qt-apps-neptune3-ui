@@ -253,6 +253,9 @@
         <source>Passenger seat heat</source>
         <translation type="vanished">乘客座位加热</translation>
     </message>
+</context>
+<context>
+    <name>ClimateButtonsGridPanel</name>
     <message>
         <source>DRIVER</source>
         <translation type="unfinished"></translation>

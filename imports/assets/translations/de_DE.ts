@@ -246,6 +246,9 @@
         <source>Passenger seat heat</source>
         <translation type="vanished">Beifahrer Sitzheizung</translation>
     </message>
+</context>
+<context>
+    <name>ClimateButtonsGridPanel</name>
     <message>
         <source>DRIVER</source>
         <translation type="unfinished"></translation>

@@ -37,10 +37,12 @@ import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 
+import "../controls"
+
 GridLayout {
     id: root
 
-    property var model
+    property var store
 
     width: NeptuneStyle.dp(448)
     height: NeptuneStyle.dp(312)
@@ -50,24 +52,24 @@ GridLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
-        checked: model.rearHeat.enabled
-        onToggled: model.rearHeat.setEnabled(!model.rearHeat.enabled)
+        checked: store ? store.rearHeat.enabled : false
+        onToggled: store.rearHeat.setEnabled(!store.rearHeat.enabled)
     }
     ClimateButton {
         id: front_defrost
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
-        checked: model.frontHeat.enabled
-        onToggled: model.frontHeat.setEnabled(!model.frontHeat.enabled)
+        checked: store ? store.frontHeat.enabled : false
+        onToggled: store.frontHeat.setEnabled(!store.frontHeat.enabled)
     }
     ClimateButton {
         id: recirculation
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-recirculation_ON" : "ic-recirculation_OFF"
-        checked: model.airQuality.enabled
-        onToggled: model.airQuality.setEnabled(!model.airQuality.enabled)
+        checked: store ? store.airQuality.enabled : false
+        onToggled: store.airQuality.setEnabled(!store.airQuality.enabled)
     }
     ClimateButton {
         id: seat_heater_driver
@@ -76,16 +78,16 @@ GridLayout {
         icon.name: checked ? "ic-seat-heat-driver_ON" : "ic-seat-heat-driver_OFF"
         display: AbstractButton.TextUnderIcon
         text: qsTr("DRIVER")
-        checked: model.leftSeat.heat
-        onToggled: model.leftSeat.setHeat(!model.leftSeat.heat)
+        checked: store ? store.leftSeat.heat : false
+        onToggled: store.leftSeat.setHeat(!store.leftSeat.heat)
     }
     ClimateButton {
         id: steering_wheel_heat
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
-        checked: model.steeringWheelHeat.enabled
-        onToggled: model.steeringWheelHeat.setEnabled(!model.steeringWheelHeat.enabled)
+        checked: store ? store.steeringWheelHeat.enabled : false
+        onToggled: store.steeringWheelHeat.setEnabled(!store.steeringWheelHeat.enabled)
     }
     ClimateButton {
         id: seat_heater_passenger
@@ -94,7 +96,7 @@ GridLayout {
         icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
         display: AbstractButton.TextUnderIcon
         text: qsTr("PASSENGER")
-        checked: model.rightSeat.heat
-        onToggled: model.rightSeat.setHeat(!model.rightSeat.heat)
+        checked: store ? store.rightSeat.heat : false
+        onToggled: store.rightSeat.setHeat(!store.rightSeat.heat)
     }
 }

@@ -44,7 +44,7 @@ Item {
     width: NeptuneStyle.dp(550)
     height: NeptuneStyle.dp(400)
 
-    property var model
+    property var store
     property bool autoMode: false
 
     Tumbler {
@@ -84,13 +84,12 @@ Item {
                     source: tumblerImage
                     color: NeptuneStyle.accentColor
                 }
-
             }
         }
-        currentIndex: root.model.ventilationLevels
+        currentIndex: root.store ? root.store.ventilationLevels : -1
         onCurrentIndexChanged: {
             if (tumblerFanSpeed.moving) {
-                root.model.setVentilation(tumblerFanSpeed.currentIndex)
+                root.store.setVentilation(tumblerFanSpeed.currentIndex)
             }
         }
     }
@@ -115,8 +114,8 @@ Item {
             anchors.top: parent.top
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.model.airflow.windshield ? Style.gfx("air-flow-top-active", NeptuneStyle.theme)
-                                                  : Style.gfx("air-flow-top", NeptuneStyle.theme)
+            source: root.store ? root.store.airflow.windshield ? Style.gfx("air-flow-top-active", NeptuneStyle.theme)
+                                                  : Style.gfx("air-flow-top", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
@@ -126,7 +125,7 @@ Item {
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: root.model.airflow.windshield = !root.model.airflow.windshield;
+                onClicked: root.store.airflow.windshield = !root.store.airflow.windshield;
             }
         }
         Image {
@@ -136,8 +135,8 @@ Item {
             anchors.topMargin: NeptuneStyle.dp(-40)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.model.airflow.dashboard ? Style.gfx("air-flow-middle-active", NeptuneStyle.theme)
-                                                 : Style.gfx("air-flow-middle", NeptuneStyle.theme)
+            source: root.store ? root.store.airflow.dashboard ? Style.gfx("air-flow-middle-active", NeptuneStyle.theme)
+                                                 : Style.gfx("air-flow-middle", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
@@ -147,7 +146,7 @@ Item {
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: root.model.airflow.dashboard = !root.model.airflow.dashboard
+                onClicked: root.store.airflow.dashboard = !root.store.airflow.dashboard
             }
         }
         Image {
@@ -157,8 +156,8 @@ Item {
             anchors.topMargin: NeptuneStyle.dp(20)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.model.airflow.floor ? Style.gfx("air-flow-bottom-active", NeptuneStyle.theme)
-                                             : Style.gfx("air-flow-bottom", NeptuneStyle.theme)
+            source: root.store ? root.store.airflow.floor ? Style.gfx("air-flow-bottom-active", NeptuneStyle.theme)
+                                             : Style.gfx("air-flow-bottom", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
@@ -168,7 +167,7 @@ Item {
             MouseArea {
                 anchors.fill: parent
                 enabled: !autoMode
-                onClicked: root.model.airflow.floor = !root.model.airflow.floor
+                onClicked: root.store.airflow.floor = !root.store.airflow.floor
             }
         }
         MouseArea {
@@ -177,7 +176,7 @@ Item {
             width: NeptuneStyle.dp(120)
             height: NeptuneStyle.dp(40)
             enabled: !autoMode
-            onClicked: root.model.airflow.windshield = !root.model.airflow.windshield;
+            onClicked: root.store.airflow.windshield = !root.store.airflow.windshield;
         }
     }
 }

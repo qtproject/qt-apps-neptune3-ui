@@ -335,11 +335,22 @@ UX na cestu</translation>
     </message>
     <message>
         <source>DRIVER</source>
-        <translation>ŘIDIČ</translation>
+        <translation type="vanished">ŘIDIČ</translation>
     </message>
     <message>
         <source>PASSENGER</source>
-        <translation>SPOLUJEZDEC</translation>
+        <translation type="vanished">SPOLUJEZDEC</translation>
+    </message>
+</context>
+<context>
+    <name>ClimateButtonsGridPanel</name>
+    <message>
+        <source>DRIVER</source>
+        <translation type="unfinished">ŘIDIČ</translation>
+    </message>
+    <message>
+        <source>PASSENGER</source>
+        <translation type="unfinished">SPOLUJEZDEC</translation>
     </message>
 </context>
 <context>

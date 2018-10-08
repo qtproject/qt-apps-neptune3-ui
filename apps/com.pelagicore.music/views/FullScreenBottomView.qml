@@ -86,6 +86,7 @@ Item {
                 musicSourcesPopup.model = root.store.musicSourcesModel;
                 musicSourcesPopup.originItemX = pos.x;
                 musicSourcesPopup.originItemY = pos.y;
+                musicSourcesPopup.popupY = Math.round(Style.centerConsoleHeight / 4)
                 musicSourcesPopup.visible = true;
             }
         }

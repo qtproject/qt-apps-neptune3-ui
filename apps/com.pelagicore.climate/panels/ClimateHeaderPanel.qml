@@ -36,6 +36,8 @@ import QtQuick.Layouts 1.3
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.utils 1.0
 
+import "../controls"
+
 Item {
     id: root
 

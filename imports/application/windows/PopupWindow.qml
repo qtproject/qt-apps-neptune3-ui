@@ -127,6 +127,12 @@ NeptuneWindow {
     */
     property real originItemY: 0
 
+    /*!
+        \qmlproperty real PopupWindow::popupY
+        This property holds the y position of the popup.
+    */
+    property real popupY: 0
+
     // You have to explicitly make it visible
     visible: false
 
@@ -136,6 +142,10 @@ NeptuneWindow {
 
     onOriginItemYChanged: {
         setWindowProperty("originItemY", originItemY);
+    }
+
+    onPopupYChanged: {
+        setWindowProperty("popupY", popupY);
     }
 
     Component.onCompleted: {

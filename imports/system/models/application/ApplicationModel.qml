@@ -45,6 +45,9 @@ ListModel {
     // The instrument cluster application.
     readonly property var instrumentClusterAppInfo: d.instrumentClusterAppInfo
 
+    // The bottom bar application.
+    readonly property var bottomBarAppInfo: d.bottomBarAppInfo
+
     // The locale code (eg: "en_US") that is passed down to applications
     property string localeCode
 
@@ -128,6 +131,7 @@ ListModel {
         id: d
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
+        property var bottomBarAppInfo: null
         property bool populating: true
         property ApplicationRequestHandler applicationRequestHandler: ApplicationRequestHandler {
             id: applicationRequestHandler
@@ -160,6 +164,11 @@ ListModel {
             return app.categories.indexOf("cluster") >= 0;
         }
 
+        function isBottomBarApp(app)
+        {
+            return app.categories.indexOf("bottombar") >= 0;
+        }
+
         property Component appInfoComponent: Component { ApplicationInfo{} }
         function appendApplication(app) {
             var appInfo = appInfoComponent.createObject(root, {"application":app});
@@ -167,6 +176,9 @@ ListModel {
 
             if (d.isInstrumentClusterApp(app)) {
                 d.instrumentClusterAppInfo = appInfo;
+                appInfo.start();
+            } else if (d.isBottomBarApp(app)) {
+                d.bottomBarAppInfo = appInfo;
                 appInfo.start();
             } else {
                 root.append({"appInfo":appInfo});
@@ -290,9 +302,11 @@ ListModel {
                     appInfo.priv.window = window;
                     appInfo.canBeActive = true;
                 }
-            } else {
-                // must be the instrument cluster, which is set apart
-                console.assert(!!d.instrumentClusterAppInfo, "Didn't find an Instrument Cluster application!");
+            // need to check if the window is not a popup, otherwise, a popup window that belongs to the bottom bar
+            // application will be added to the bottom bar window as well
+            } else if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
+                d.bottomBarAppInfo.priv.window = window;
+            } else if (d.isInstrumentClusterApp(window.application)) {
                 d.instrumentClusterAppInfo.priv.window = window;
             }
         }
@@ -300,9 +314,11 @@ ListModel {
         onWindowAboutToBeRemoved: {
             var appInfo = applicationFromId(window.application.id);
             if (!appInfo) {
-                // must be the instrument cluster, which is set apart
-                console.assert(d.instrumentClusterAppInfo && d.instrumentClusterAppInfo.id === window.application.id);
-                appInfo = d.instrumentClusterAppInfo;
+                if (d.isInstrumentClusterApp(window.application)) {
+                    appInfo = d.instrumentClusterAppInfo;
+                } else if (d.isBottomBarApp(window.application)) {
+                    appInfo = d.bottomBarAppInfo;
+                }
             }
 
             if (appInfo.priv.window === window) {

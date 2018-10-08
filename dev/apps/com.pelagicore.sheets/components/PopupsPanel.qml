@@ -57,6 +57,7 @@ Item {
             var pos = this.mapToItem(root.parent, this.width/2, this.height/2);
             popupWithList.originItemX = pos.x;
             popupWithList.originItemY = pos.y;
+            popupWithList.popupY = Math.round(Style.centerConsoleHeight / 4)
             popupWithList.visible = true;
         }
     }

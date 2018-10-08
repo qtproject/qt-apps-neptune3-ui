@@ -29,20 +29,28 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick 2.8
+import QtQuick.Controls 2.2
+import application.windows 1.0
+import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.styles.neptune 3.0
 
-import system.controls 1.0
+import "stores"
+import "views"
 
-/*
-    A seamless wrapper for ClimatePopup that loads it on demand
- */
-PopupItemLoader {
+NeptuneWindow {
     id: root
 
-    source: "ClimatePopup.qml"
+    Component.onCompleted: {
+        setWindowProperty("windowType", "bottombar");
+    }
 
-    // to be set from outside
-    property var model
-
-    Binding { target: root.item; property: "model"; value: root.model }
+    ClimateView {
+        anchors.fill: parent
+        store: ClimateStore {
+            measurementSystem: Qt.locale().measurementSystem
+        }
+    }
 }
+

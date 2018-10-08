@@ -29,37 +29,9 @@
 **
 ****************************************************************************/
 
-/*!
-    \qmltype ApplicationPopup
-    \inherits PopupItem
-    \since 5.11
-    \brief Displays the content of an application's PopupWindow inside a PopupItem in System-UI
-*/
+.import shared.com.pelagicore.styles.neptune 3.0 as Style
 
-import QtQuick 2.7
-import system.controls 1.0
-import QtApplicationManager 1.0
-
-import shared.com.pelagicore.styles.neptune 3.0
-
-PopupItem {
-    id: root
-
-    property alias window: windowItem.window
-
-    width: windowItem.width
-    height: windowItem.height
-    popupY: 0
-
-    NeptuneWindowItem {
-        id: windowItem
-        objectFollowsItemSize: false
-    }
-
-    Component.onCompleted: {
-        root.originItemX = root.window.windowProperty("originItemX");
-        root.originItemY = root.window.windowProperty("originItemY");
-        root.popupY = root.window.windowProperty("popupY");
-        root.open();
-    }
+function getLocalAsset(asset, theme) {
+    var themeStr = theme === Style.NeptuneStyle.Dark ? "-dark" : "";
+    return "../assets/" + asset + themeStr + '.png'
 }
