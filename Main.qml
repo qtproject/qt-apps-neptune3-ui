@@ -35,7 +35,6 @@ import QtQuick.Window 2.3
 
 import centerconsole 1.0
 import notification 1.0
-import shared.utils 1.0
 import instrumentcluster 1.0
 import stores 1.0
 
