@@ -30,17 +30,15 @@
 ****************************************************************************/
 
 import QtQuick 2.11
-import QtApplicationManager 1.0
 import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
     \qmltype ApplicationCCWindow
     \inqmlmodule utils
-    \inherits ApplicationManagerWindow
+    \inherits NeptuneWindow
     \since 5.12
     \brief The application center console window of a Neptune 3 application
 
@@ -75,13 +73,8 @@ import shared.com.pelagicore.styles.neptune 3.0
 
 */
 
-ApplicationManagerWindow {
+NeptuneWindow {
     id: root
-
-    LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
-    LayoutMirroring.childrenInherit: true
-
-    color: "transparent"
 
     // A window can be occluded by some other UI elements such as floating widgets, virtual keyboards
     // etc. In such cases you will want to relayout to that the important content is contained within
@@ -122,13 +115,6 @@ ApplicationManagerWindow {
 
     property string neptuneState
 
-    /*!
-        \qmlproperty bool ApplicationCCWindow::isRightToLeft
-        This property holds whether the current locale uses the right-to-left
-        text direction (RTL)
-    */
-    readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
-
     QtObject {
         id: d
         property real exposedRectTopMargin: 0
@@ -157,17 +143,8 @@ ApplicationManagerWindow {
         case "neptuneCurrentHeight":
             root.currentHeight = value;
             break;
-        case "neptuneScale":
-            root.NeptuneStyle.scale = value;
-            break;
         case "neptuneState":
             root.neptuneState = value;
-            break;
-        case "neptuneAccentColor":
-            root.NeptuneStyle.accentColor = value;
-            break;
-        case "neptuneTheme":
-            root.NeptuneStyle.theme = value;
             break;
         case "performanceMonitorEnabled":
             monitorOverlay.fpsVisible = value;
@@ -184,14 +161,5 @@ ApplicationManagerWindow {
         fpsVisible: false
         window: root
         z: 9999
-    }
-
-    UISettings {
-        id: uiSettings
-        onLanguageChanged: {
-            if (language !== Style.languageLocale) {
-                Style.languageLocale = language;
-            }
-        }
     }
 }

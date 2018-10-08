@@ -1,3 +1,4 @@
 ApplicationCCWindow 1.0 ApplicationCCWindow.qml
 ApplicationICWindow 1.0 ApplicationICWindow.qml
 PopupWindow 1.0 PopupWindow.qml
+NeptuneWindow 1.0 NeptuneWindow.qml

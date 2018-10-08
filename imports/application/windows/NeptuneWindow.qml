@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,78 +30,77 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtApplicationManager 1.0
 import shared.utils 1.0
+import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
-    \qmltype ApplicationICWindow
-    \inqmlmodule utils
-    \inherits NeptuneWindow
+    \qmltype NeptuneWindow
+    \inqmlmodule windows
+    \inherits ApplicationManagerWindow
     \since 5.12
-    \brief The application instrument cluster window of a Neptune 3 application
+    \brief The basic type of Neptune Window for Neptune 3 applications
 
-    The application instrument cluster window of a Neptune 3 application is displayed on the
-    \l{Instrument Cluster}. The content of an application IC window will be rendered behind
-    the gauges. \l{ApplicationICWindow} is used by an application that wants to share content
-    between the \l{center stack display} and the \l{instrument cluster}.
+    The Neptune Window provides the basic type of application window to be used by the application.
 
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 
-    The following example uses \l{ApplicationICWindow}:
+    The following example uses \l{NeptuneWindow}:
 
     \qml
     import QtQuick 2.10
-    import shared.utils 1.0
+    import application.windows 1.0
 
-    QtObject {
-        property var mainWindow: ApplicationCCWindow {
-           id: mainWindow
-           Background {
+    NeptuneWindow {
+        id: root
+
+        Rectangle {
             anchors.fill: parent
-           }
-
-           Content {
-               x: root.exposedRect.x
-               y: root.exposedRect.x
-               width: root.exposedRect.width
-               height: root.exposedRect.height
-           }
-        }
-
-        property var applicationICWindow: ApplicationICWindow {
-           id: applicationICWindow
-           Background {
-            anchors.fill: parent
-           }
+            color: "blue"
         }
     }
+
     \endqml
 
 */
-NeptuneWindow {
+ApplicationManagerWindow {
     id: root
 
-    Component.onCompleted: {
-        setWindowProperty("windowType", "instrumentcluster");
-        visible = true;
-    }
+    LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
+    LayoutMirroring.childrenInherit: true
+
+    color: "transparent"
+
+    /*!
+        \qmlproperty bool NeptuneWindow::isRightToLeft
+        This property holds whether the current locale uses the right-to-left
+        text direction (RTL)
+    */
+    readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
 
     onWindowPropertyChanged: {
         switch (name) {
-        case "performanceMonitorEnabled":
-            performanceOverlay.fpsVisible = value;
+        case "neptuneScale":
+            root.NeptuneStyle.scale = value;
+            break;
+        case "neptuneAccentColor":
+            root.NeptuneStyle.accentColor = value;
+            break;
+        case "neptuneTheme":
+            root.NeptuneStyle.theme = value;
             break;
         }
     }
 
-    MonitorOverlay {
-        id: performanceOverlay
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        fpsVisible: false
-        window: root
-        z: 9999
+    UISettings {
+        id: uiSettings
+        onLanguageChanged: {
+            if (language !== Style.languageLocale) {
+                Style.languageLocale = language;
+            }
+        }
     }
 }

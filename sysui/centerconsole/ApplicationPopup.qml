@@ -50,7 +50,7 @@ PopupItem {
     width: windowItem.width
     height: windowItem.height
 
-    WindowItem {
+    NeptuneWindowItem {
         id: windowItem
         objectFollowsItemSize: false
     }

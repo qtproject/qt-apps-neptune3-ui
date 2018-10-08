@@ -35,11 +35,5 @@ import shared.utils 1.0
 
 Store {
     id: root
-
-    property real currentScale: 0.0
     property ListModel appPopupsModel: ListModel { id: appPopupsModel }
-    readonly property ApplicationIPCInterface extension: ApplicationIPCInterface {
-        property real popupWindowScale: root.currentScale
-        Component.onCompleted: ApplicationIPCManager.registerInterface(extension, "neptune.popupwindow.interface", {});
-    }
 }

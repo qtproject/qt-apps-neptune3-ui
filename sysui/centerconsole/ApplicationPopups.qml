@@ -43,8 +43,6 @@ Item {
     property Item popupParent
     property ApplicationPopupsStore store
 
-    Binding { target: root.store; property: "currentScale"; value: root.NeptuneStyle.scale }
-
     Repeater {
         id: popupRepeater
         model: root.store.appPopupsModel

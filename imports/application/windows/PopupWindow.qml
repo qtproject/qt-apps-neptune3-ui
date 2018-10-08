@@ -108,9 +108,8 @@ import shared.com.pelagicore.styles.neptune 3.0
     visible property to true as shown in the example.
 */
 
-ApplicationManagerWindow {
+NeptuneWindow {
     id: root
-    color: "transparent"
 
     /*!
         \qmlproperty real PopupWindow::originItemX
@@ -141,12 +140,5 @@ ApplicationManagerWindow {
 
     Component.onCompleted: {
         setWindowProperty("windowType", "popup");
-    }
-
-    ApplicationInterfaceExtension {
-        name: "neptune.popupwindow.interface"
-
-        property real popupWindowScale: ready ? object.popupWindowScale : 1
-        onPopupWindowScaleChanged: { root.NeptuneStyle.scale = popupWindowScale; }
     }
 }
