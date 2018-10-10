@@ -46,9 +46,6 @@ Store {
     readonly property var musicAppRequestsIPC: MusicAppRequestsIPCStore  {}
     readonly property SettingsStore settingsStore: SettingsStore {}
     readonly property ClusterStore clusterStore: ClusterStore { id: clusterStore }
-    readonly property BottomBarStore bottomBarStore: BottomBarStore {
-        bottomBarWindow: applicationModel.bottomBarAppInfo.window
-    }
     readonly property CenterConsoleStore centerConsole: CenterConsoleStore {}
     property alias clusterAvailable: clusterStore.clusterAvailable
 
