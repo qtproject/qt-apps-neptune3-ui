@@ -93,25 +93,6 @@
     </message>
 </context>
 <context>
-    <name>AppStoreServer</name>
-    <message>
-        <source>%1 Successfully Installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 successfully installed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 Successfully Uninstalled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 successfully uninstalled</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>
@@ -122,19 +103,7 @@
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished">アプリが見つかりません！</translation>
-    </message>
-    <message>
-        <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cannot Connect to the Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>An Internet connection is required</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">アプリが見つかりません！</translation>
     </message>
 </context>
 <context>
@@ -339,6 +308,44 @@
     <message>
         <source>Open</source>
         <translation type="obsolete">開ける</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsStore</name>
+    <message>
+        <source>%1 Successfully Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Successfully Uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cannot Connect to the Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An Internet connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">アプリが見つかりません！</translation>
     </message>
 </context>
 <context>

@@ -42,7 +42,7 @@ import shared.com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    property AppStoreServer store
+    property DownloadsStore store
 
     property int categoryid: 1
     property string filter: ""
@@ -108,6 +108,7 @@ Item {
     }
 
     RowLayout {
+        id: downloadsContent
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.topMargin: NeptuneStyle.dp(500)
@@ -117,7 +118,7 @@ Item {
         opacity: root.store.isOnline ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
 
-        AppStoreToolsColumn {
+        DownloadsToolsColumn {
             id: toolsColumn
             Layout.preferredWidth: NeptuneStyle.dp(264)
             Layout.preferredHeight: NeptuneStyle.dp(320)

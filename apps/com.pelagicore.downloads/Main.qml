@@ -52,11 +52,11 @@ ApplicationCCWindow {
         asynchronous: true
     }
 
-    ApplicationStoreView {
+    DownloadsView {
         x: root.exposedRect.x
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-        store: AppStoreServer { }
+        store: DownloadsStore { }
     }
 }

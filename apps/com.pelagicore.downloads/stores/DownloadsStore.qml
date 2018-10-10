@@ -124,8 +124,8 @@ Item {
         }
     }
 
-    // Application Store Server Configuration
-    AppStoreConfig {
+    // Server Configuration
+    ServerConfig {
         id: appStoreConfig
         cpuArch: sysinfo.cpu + "-" + sysinfo.kernel
         onLoginSuccessful: categoryModel.refresh()

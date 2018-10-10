@@ -1,13 +1,13 @@
 formatVersion: 1
 formatType: am-application
 ---
-id:      'com.pelagicore.appstore'
+id:      'com.pelagicore.downloads'
 icon:    'icon.png'
 code:    'Main.qml'
 runtime: 'qml-inprocess'
 name:
-  en: 'AppStore'
-  de: 'AppStore'
-  cs: 'AppStore'
+  en: 'Downloads'
+  de: 'Downloads'
+  cs: 'Downloads'
 
-categories: [ 'appstore' ]
+categories: [ 'downloads' ]

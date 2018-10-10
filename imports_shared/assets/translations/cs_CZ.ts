@@ -113,19 +113,19 @@ UX na cestu</translation>
     <name>AppStoreServer</name>
     <message>
         <source>%1 Successfully Installed</source>
-        <translation>%1 úspěšně nainstalován</translation>
+        <translation type="vanished">%1 úspěšně nainstalován</translation>
     </message>
     <message>
         <source>%1 successfully installed</source>
-        <translation>%1 úspěšně nainstalován</translation>
+        <translation type="vanished">%1 úspěšně nainstalován</translation>
     </message>
     <message>
         <source>%1 Successfully Uninstalled</source>
-        <translation>%1 úspěšně odinstalován</translation>
+        <translation type="vanished">%1 úspěšně odinstalován</translation>
     </message>
     <message>
         <source>%1 successfully uninstalled</source>
-        <translation>%1 úspěšně odinstalován</translation>
+        <translation type="vanished">%1 úspěšně odinstalován</translation>
     </message>
 </context>
 <context>
@@ -139,19 +139,19 @@ UX na cestu</translation>
     <name>ApplicationStoreView</name>
     <message>
         <source>No apps found!</source>
-        <translation>Žádné aplikace nenalezeny!</translation>
+        <translation type="vanished">Žádné aplikace nenalezeny!</translation>
     </message>
     <message>
         <source>Fetching data from Neptune Server</source>
-        <translation>Stahuji data z Neptune serveru</translation>
+        <translation type="vanished">Stahuji data z Neptune serveru</translation>
     </message>
     <message>
         <source>Cannot Connect to the Server</source>
-        <translation>Nelze se připojit na server</translation>
+        <translation type="vanished">Nelze se připojit na server</translation>
     </message>
     <message>
         <source>An Internet connection is required</source>
-        <translation>Je vyžadováno připojení k internetu</translation>
+        <translation type="vanished">Je vyžadováno připojení k internetu</translation>
     </message>
 </context>
 <context>
@@ -434,6 +434,44 @@ UX na cestu</translation>
     <message>
         <source>Open</source>
         <translation type="vanished">Otevřít</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsStore</name>
+    <message>
+        <source>%1 Successfully Installed</source>
+        <translation type="unfinished">%1 úspěšně nainstalován</translation>
+    </message>
+    <message>
+        <source>%1 successfully installed</source>
+        <translation type="unfinished">%1 úspěšně nainstalován</translation>
+    </message>
+    <message>
+        <source>%1 Successfully Uninstalled</source>
+        <translation type="unfinished">%1 úspěšně odinstalován</translation>
+    </message>
+    <message>
+        <source>%1 successfully uninstalled</source>
+        <translation type="unfinished">%1 úspěšně odinstalován</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsView</name>
+    <message>
+        <source>Fetching data from Neptune Server</source>
+        <translation type="unfinished">Stahuji data z Neptune serveru</translation>
+    </message>
+    <message>
+        <source>Cannot Connect to the Server</source>
+        <translation type="unfinished">Nelze se připojit na server</translation>
+    </message>
+    <message>
+        <source>An Internet connection is required</source>
+        <translation type="unfinished">Je vyžadováno připojení k internetu</translation>
+    </message>
+    <message>
+        <source>No apps found!</source>
+        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
     </message>
 </context>
 <context>
