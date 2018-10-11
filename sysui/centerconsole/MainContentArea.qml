@@ -54,7 +54,7 @@ Item {
         if (widgetDrawer.open && widgetDrawer.visible)
             margin = Math.max(margin, activeApplicationSlot.height - widgetDrawer.y);
         if (root.virtualKeyboard.isOpen)
-            margin = Math.max(margin, activeApplicationSlot.height - root.virtualKeyboard.y);
+            margin = Math.max(margin, root.virtualKeyboard.y);
         return margin;
     }
 
