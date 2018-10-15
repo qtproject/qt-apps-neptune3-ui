@@ -46,8 +46,8 @@ android: {
     QML_ROOT_PATH = $$PWD/../../
 
     QML_IMPORT_PATH += \
-                        $$OUT_PWD/../../imports/cpp \
-                        $$OUT_PWD/../../imports/system \
+                        $$OUT_PWD/../../imports_shared/cpp \
+                        $$OUT_PWD/../../imports_system/system \
 
     ANDROID_EXTRA_PLUGINS += \
                         $$OUT_PWD/../../plugins \

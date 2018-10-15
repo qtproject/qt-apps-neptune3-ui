@@ -22,7 +22,7 @@ INSTALLS += target
 QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/)
 
 #needed for the android deployment to include additional qml plugins
-QML_IMPORT_PATH += $$BUILD_DIR/imports
+QML_IMPORT_PATH += $$BUILD_DIR/imports_shared
 
 android {
 #This is used to tell the deployment tool to include these additional

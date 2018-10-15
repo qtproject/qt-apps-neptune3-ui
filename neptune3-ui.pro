@@ -9,7 +9,7 @@ SUBDIRS += doc
 SUBDIRS += tests
 
 # mainly a hint for Qt Creator
-QML_IMPORT_PATH += imports sysui
+QML_IMPORT_PATH += imports_shared imports_system sysui
 
 copydata.file = copydata.pro
 copydata.depends = plugins
@@ -26,7 +26,7 @@ android: INSTALL_PATH = $$INSTALL_PREFIX
 else: INSTALL_PATH = $$INSTALL_PREFIX/neptune3
 
 # Install all required files
-qml.files = apps dev/apps imports sysui styles Main.qml
+qml.files = apps dev/apps imports_shared imports_system sysui styles Main.qml
 android: qml.files += am-config-android.yaml
 else: qml.files += am-config.yaml
 qml.path = $$INSTALL_PATH

@@ -21,9 +21,9 @@ defineReplace(prependAll) {
 }
 
 rootPath = $$PWD/../../
-assetsPath = $$PWD/../../imports/assets
+assetsPath = $$PWD/../../imports_shared/assets
 qmlSysUiPath = $$PWD/../../sysui
-importsPath = $$PWD/../../imports
+importsPath = $$PWD/../../imports_shared
 appsPath = $$PWD/../../apps
 # See qml files to scan while running lupdate/lrelease
 lupdate_only {
@@ -63,7 +63,7 @@ qm.CONFIG += no_link
 QMAKE_EXTRA_COMPILERS += qm
 
 qmfiles.files = $$prependAll(supportedLocales, $$shadowed($$assetsPath/translations)/, .qm)
-qmfiles.path = $$INSTALL_PREFIX/neptune3/imports/assets/translations
+qmfiles.path = $$INSTALL_PREFIX/neptune3/imports_shared/assets/translations
 qmfiles.CONFIG += no_check_exist
 
 INSTALLS += qmfiles

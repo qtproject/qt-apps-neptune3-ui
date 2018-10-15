@@ -4,8 +4,8 @@
 
 CONFIG += skip_target_version_ext
 TARGET = $$qtLibraryTarget($$TARGET)
-android: DESTDIR = $$BUILD_DIR/imports/cpp/$$replace(uri, \\., /)
-else: DESTDIR = $$BUILD_DIR/imports/shared/$$replace(uri, \\., /)
+android: DESTDIR = $$BUILD_DIR/imports_shared/cpp/$$replace(uri, \\., /)
+else: DESTDIR = $$BUILD_DIR/imports_shared/shared/$$replace(uri, \\., /)
 
 OTHER_FILES = qmldir
 
@@ -20,8 +20,8 @@ OTHER_FILES = qmldir
 include(../config.pri)
 
 qmldir.files = qmldir
-android: installPath = $$INSTALL_PREFIX/imports/cpp/$$replace(uri, \\., /)
-else: installPath = $$INSTALL_PREFIX/neptune3/imports/shared/$$replace(uri, \\., /)
+android: installPath = $$INSTALL_PREFIX/imports_shared/cpp/$$replace(uri, \\., /)
+else: installPath = $$INSTALL_PREFIX/neptune3/imports_shared/shared/$$replace(uri, \\., /)
 qmldir.path = $$installPath
 target.path = $$installPath
 INSTALLS += target qmldir
