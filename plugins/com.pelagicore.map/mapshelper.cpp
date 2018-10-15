@@ -62,9 +62,11 @@ void MapsHelper::initMap()
     const QString sourceFile = m_appPath + QStringLiteral("maps/mapboxgl.db");
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
     const QString destFile = destDir + QStringLiteral("/mapboxgl.db");
+
+    QString subSourceFile = sourceFile.mid(7);
     QDir dir;
     dir.mkpath(destDir);
     QFile::remove(destFile);
-    QFile::copy(sourceFile, destFile);
+    QFile::copy(subSourceFile, destFile);
 }
 
