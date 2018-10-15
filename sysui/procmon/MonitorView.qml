@@ -127,7 +127,7 @@ ColumnLayout {
 
             MonitorListItem {
                 title: qsTr("Platform")
-                subtitle: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " · " +
+                subtitle: sysinfo.productName + " · " + sysinfo.cpu + " · " + sysinfo.kernel + " " + sysinfo.kernelVersion + " · " +
                           "Qt %1".arg(sysinfo.qtVersion) + " · " + graphicsInformation() + "\n"
             }
         }

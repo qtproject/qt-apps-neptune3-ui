@@ -174,12 +174,17 @@ QString SystemInfo::productName() const
 
 QString SystemInfo::cpu() const
 {
-    return QSysInfo::currentCpuArchitecture();
+    return QSysInfo::buildAbi();
 }
 
 QString SystemInfo::kernel() const
 {
-    return QSysInfo::kernelType() + QStringLiteral(" ") + QSysInfo::kernelVersion();
+    return QSysInfo::kernelType();
+}
+
+QString SystemInfo::kernelVersion() const
+{
+    return QSysInfo::kernelVersion();
 }
 
 QString SystemInfo::qtDiag() const
