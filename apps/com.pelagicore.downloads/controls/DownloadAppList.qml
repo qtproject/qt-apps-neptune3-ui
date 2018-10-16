@@ -40,29 +40,30 @@ import shared.com.pelagicore.styles.neptune 3.0
 ListView {
     id: root
 
-    property string appServerUrl
-    property real installationProgress: 1.0
-    property var installedApps: []
+    property var store
+
     signal toolClicked(string appId, string appName)
 
-    onInstallationProgressChanged: {
-        if (installationProgress === 1.0) {
-            root.currentIndex = -1;
-        }
-    }
-
+    model: root.store.applicationModel
     currentIndex: -1
-
     delegate: ListItemProgress {
         id: delegatedItem
-        readonly property bool isInstalled: root.installedApps.indexOf(model.id) !== -1
+        readonly property bool isInstalled: root.store.installedApps.indexOf(model.id) !== -1
+
         width: NeptuneStyle.dp(675)
         height: NeptuneStyle.dp(80)
-        icon.source: root.appServerUrl + "/app/icon?id=" + model.id
+        icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
+        secondaryText: delegatedItem.isInstalled ? root.store.getInstalledApplicationSize(model.id)
+                                                 : ""
         cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
-        value: root.installationProgress
-        progressVisible: root.currentIndex === index && root.installationProgress < 1.0
+        value: root.store.currentInstallationProgress
+        onValueChanged: {
+            if (installationProgress === 1.0) {
+                root.currentIndex = -1;
+            }
+        }
+        progressVisible: root.currentIndex === index && root.store.currentInstallationProgress < 1.0
         onProgressCanceled: {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;

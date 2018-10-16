@@ -129,14 +129,12 @@ Item {
 
         DownloadAppList {
             id: appList
-            installedApps: root.store.installedApps
             Layout.preferredHeight: NeptuneStyle.dp(800)
             Layout.preferredWidth: NeptuneStyle.dp(675)
             Layout.alignment: Qt.AlignTop
             Layout.topMargin: NeptuneStyle.dp(16)
-            model: root.store.applicationModel
-            appServerUrl: root.store.appServerUrl
-            installationProgress: root.store.currentInstallationProgress
+            store: root.store
+
             onToolClicked: {
                 if (root.store.isInstalled(appId)) {
                     root.store.uninstallApplication(appId, appName)

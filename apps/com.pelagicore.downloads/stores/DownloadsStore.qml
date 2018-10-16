@@ -49,6 +49,12 @@ Item {
     property var installedApps: []
     readonly property bool isOnline: sysinfo.online
 
+    function formatBytes(bytes) {
+        if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);
+        else if (bytes < 1073741824) return qsTr("%1 MB").arg((bytes / 1048576).toFixed(2));
+        else return qsTr("%1 GB").arg((bytes / 1073741824).toFixed(2));
+    }
+
     function download(id, name) {
         var url = appStoreConfig.serverUrl + "/app/purchase"
         var data = {"id": id, "device_id" : "00-11-22-33-44-55" }
@@ -60,13 +66,12 @@ Item {
                     var icon = root.appServerUrl + "/app/icon?id=" + id
                     var installID = ApplicationInstaller.startPackageInstallation("internal-0", data.url);
                     ApplicationInstaller.acknowledgePackageInstallation(installID);
-                    root.installedApps.push(id);
-                    root.installedAppsChanged(root.installedApps);
-                    showNotification(qsTr("%1 Successfully Installed").arg(name), qsTr("%1 successfully installed").arg(name), icon);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
                     console.log(Logging.apps, ":::AppStoreServer::: not logged in")
+                    showNotification(qsTr("System is not logged in"), qsTr("System is not logged in"), icon);
                 } else {
                     console.log(Logging.apps, ":::AppStoreServer::: download failed: " + data.error)
+                    showNotification(qsTr("%1 Download Failed").arg(name), qsTr("%1 download failed").arg(name), icon);
                 }
             }
         })
@@ -79,9 +84,6 @@ Item {
     function uninstallApplication(id, name) {
         var icon = root.appServerUrl + "/app/icon?id=" + id
         ApplicationInstaller.removePackage(id, false /*keepDocuments*/, true /*force*/);
-        root.installedApps.splice(root.installedApps.indexOf(id), 1);
-        root.installedAppsChanged(root.installedApps);
-        showNotification(qsTr("%1 Successfully Uninstalled").arg(name), qsTr("%1 successfully uninstalled").arg(name), icon);
     }
 
     function selectCategory(index) {
@@ -103,6 +105,20 @@ Item {
         notification.show();
     }
 
+    function getInstalledApplicationSize(id) {
+        return formatBytes(ApplicationInstaller.installedApplicationSize(id));
+    }
+
+    function deviseApplicationId(id) {
+        // The application name defined in a specific format for Neptune 3. It has a foo.bar.name format
+        // for the application name. This function will only comply with such format.
+        var strArr = id.split('.')
+        var firstUpperCaseLetter = strArr[2].charAt(0).toUpperCase();
+        var restLetters = strArr[2].substr(1).toLowerCase();
+        var appName = firstUpperCaseLetter + restLetters;
+        return appName;
+    }
+
     Component.onCompleted: {
         root.installedApps = ApplicationManager.applicationIds()
     }
@@ -111,8 +127,49 @@ Item {
         target: ApplicationInstaller
 
         onTaskProgressChanged: root.currentInstallationProgress = progress
-    }
 
+        onTaskFailed: {
+            var appId = ApplicationInstaller.taskApplicationId(taskId);
+            var icon = root.appServerUrl + "/app/icon?id=" + appId
+            var application = ApplicationManager.application(appId)
+            var applicationName = root.deviseApplicationId(appId);
+
+            if (application !== null) {
+                if (application.state === ApplicationObject.Installed) {
+                    showNotification(qsTr("%1 Uninstallation Failed").arg(applicationName),
+                                     qsTr("%1 uninstallation failed").arg(applicationName), icon);
+                }
+            } else {
+                showNotification(qsTr("%1 Installation Failed").arg(applicationName),
+                                 qsTr("%1 installation failed").arg(applicationName), icon);
+            }
+        }
+
+        onTaskFinished: {
+            var appId = ApplicationInstaller.taskApplicationId(taskId);
+            var icon = root.appServerUrl + "/app/icon?id=" + appId;
+            var application = ApplicationManager.application(appId);
+
+            // cannot use name module from the application manager, because it won't work when the application
+            // is uninstalled as it will return null. hence, the application name need to be generated from the
+            // application id to be shown in the notification.
+            var applicationName = root.deviseApplicationId(appId);
+
+            if (application !== null) {
+                if (application.state === ApplicationObject.Installed) {
+                    root.installedApps.push(appId);
+                    root.installedAppsChanged(root.installedApps);
+                    showNotification(qsTr("%1 Successfully Installed").arg(applicationName),
+                                     qsTr("%1 successfully installed").arg(applicationName), icon);
+                }
+            } else {
+                root.installedApps.splice(root.installedApps.indexOf(appId), 1);
+                root.installedAppsChanged(root.installedApps);
+                showNotification(qsTr("%1 Successfully Uninstalled").arg(applicationName),
+                                 qsTr("%1 successfully uninstalled").arg(applicationName), icon);
+            }
+        }
+    }
 
     SystemInfo {
         id: sysinfo

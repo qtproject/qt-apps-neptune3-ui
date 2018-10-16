@@ -205,6 +205,46 @@
         <source>%1 successfully uninstalled</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>System is not logged in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Download Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 download failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Uninstallation Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 uninstallation failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Installation Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 installation failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadsView</name>
@@ -222,7 +262,7 @@
     </message>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
