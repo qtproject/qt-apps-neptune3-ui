@@ -1,0 +1,110 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-screen-config.html
+   \title Neptune 3 UI - Configuring Screens on Embedded Linux
+   \brief How to define which screen shows what content on Embedded Linux
+
+    The System UI of Neptune 3 has two top-level windows: A Center Console and an Instrument Cluster. They are not to
+    be confused with application's center console (ApplicationCCWindow) and instrument cluster windows (ApplicationICWindow),
+    which are composited in the aforementioned System UI counterparts. In this document we are referring only to the System UI
+    top level windows.
+
+    On target hardware, where Neptune 3 UI would run on the EGLFS platform, each window will be displayed (fullscreen)
+    on its own screen (QScreen). The Center Console window will shown on the screen of index 0 and the Instrument Cluster
+    on the screen of index 1 (if the target has a second screen, that is) as defined in the Qt.application.screens list
+    (or QGuiApplication::screens(), from the C++ side).
+
+    It's possible to specify the order in which the device's displays are exposed by Qt in its screens list, therefore controlling
+    where the Instrument Cluster and the Center Console are shown. To do that you have to supply Qt with a configuration file where
+    you map a display name to its index in that screens' list.
+
+    The first step is finding out what are the names of the displays in the system. This is fairly simple. Just run the Qt tool called
+    \c qtdiag in your target hardware and check the output. It will print a lot of information about the system and how Qt is configured
+    there, including information about the displays. Below is a snippet of a \c qtdiag output in a system that has two external displays
+    connected to it:
+
+    \code
+Screens: 2, High DPI scaling: inactive
+# 0 "DP1" Depth: 32 Primary: yes
+  Manufacturer: GEC
+  Model: Onlap1503
+  Serial number: 8888
+  Geometry: 1920x1080+0+0 Available: 1920x1080+0+0
+  Virtual geometry: 3520x1200+0+0 Available: 3520x1200+0+0
+  2 virtual siblings
+  Physical size: 350x200 mm  Refresh: 60 Hz Power state: 0
+  Physical DPI: 139.337,137.16 Logical DPI: 139.337,137.16 Subpixel_None
+  DevicePixelRatio: 1 Pixel density: 1
+  Primary orientation: 2 Orientation: 2 Native orientation: 0 OrientationUpdateMask: 0
+
+# 1 "DP2" Depth: 32 Primary: no
+  Manufacturer: Eizo Nanao Corporation
+  Model: L887
+  Serial number: 56110036
+  Geometry: 1600x1200+1920+0 Available: 1600x1200+1920+0
+  Virtual geometry: 3520x1200+0+0 Available: 3520x1200+0+0
+  2 virtual siblings
+  Physical size: 410x310 mm  Refresh: 60 Hz Power state: 0
+  Physical DPI: 99.122,98.3226 Logical DPI: 99.122,98.3226 Subpixel_None
+  DevicePixelRatio: 1 Pixel density: 1
+  Primary orientation: 2 Orientation: 2 Native orientation: 0 OrientationUpdateMask: 0
+    \endcode
+
+
+    In this example, by default the screen \c "DP1" is assigned index 0 (hence will show the Center Console) and \c "DP2"
+    index 1 (hence will show the Instrument Cluster). So let's suppose that in this case we want the other way around: to have
+    the Center  Console on \c "DP2" and the Instrument Cluster on \c "DP1". For that we will write the following configuration
+    file, which is in JSON format:
+
+
+    \code
+{
+  "outputs": [
+    {
+      "name": "DP1",
+      "virtualIndex": 1
+    },
+    {
+      "name": "DP2",
+      "virtualIndex": 0
+    }
+  ]
+}
+    \endcode
+
+    Now you have to tell \c neptune3-ui to use this configuration file on start up. This is done via an environment variable named
+    \c QT_QPA_EGLFS_KMS_CONFIG. Its value is the filepath of the configuration file you want to use. Eg:
+
+    \code
+    QT_QPA_EGLFS_KMS_CONFIG=/home/foo/.config/neptune3-ui-display-config.js
+    \endcode
+
+    For more information see \l{http://doc.qt.io/qt-5/embedded-linux.html#display-output}{Qt for Embedded Linux}.
+
+*/
