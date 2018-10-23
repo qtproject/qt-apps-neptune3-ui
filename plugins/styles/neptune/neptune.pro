@@ -9,6 +9,10 @@ load(qmlplugin)
 
 DEFINES += "NEPTUNE_ICONS_PATH=$$clean_path($$INSTALL_PREFIX/neptune3/imports/assets/icons)"
 
+qmlfiles.files = ButtonBackground.qml
+qmlfiles.path = $$installPath
+INSTALLS += qmlfiles
+
 SOURCES += \
     neptunestyle.cpp \
     neptunestyleplugin.cpp \

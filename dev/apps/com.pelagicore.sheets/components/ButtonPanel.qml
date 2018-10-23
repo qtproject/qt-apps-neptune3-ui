@@ -140,12 +140,20 @@ Item {
         RowLayout {
             spacing: NeptuneStyle.dp(13)
 
+            Label {
+                text: "Custom background:"
+            }
+
             Button {
                 implicitHeight: largeButtonHeight
                 implicitWidth: 160
                 icon.width: 40
                 icon.height: 40
-                customBackgroundColor: NeptuneStyle.clusterMarksColor
+                background: ButtonBackground {
+                    color: parent.pressed ? Qt.darker(NeptuneStyle.clusterMarksColor, (1 / NeptuneStyle.opacityHigh))
+                                          : NeptuneStyle.clusterMarksColor
+                    opacity: 1
+                }
                 icon.name: "ic-seat-heat-passenger_OFF"
                 icon.color: "white"
             }
@@ -154,7 +162,11 @@ Item {
                 implicitWidth: 160
                 icon.width: 35
                 icon.height: 35
-                customBackgroundColor: NeptuneStyle.accentDetailColor
+                background: ButtonBackground {
+                    color: parent.pressed ? Qt.darker(NeptuneStyle.accentDetailColor, (1 / NeptuneStyle.opacityHigh))
+                                          : NeptuneStyle.accentDetailColor
+                    opacity: 1
+                }
                 icon.name: "ic-seat-heat-passenger_OFF"
                 text: "text"
                 font.pixelSize: NeptuneStyle.fontSizeS

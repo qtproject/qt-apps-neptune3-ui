@@ -30,40 +30,33 @@
 ****************************************************************************/
 
 import QtQuick 2.10
-import QtQuick.Layouts 1.3
-import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
-import QtQuick.Controls.impl 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
 
-T.Button {
-    id: control
-
-    implicitWidth: NeptuneStyle.cellWidth + leftPadding + rightPadding
-    implicitHeight: NeptuneStyle.cellHeight + leftPadding + rightPadding
-
-    padding: NeptuneStyle.dp(6)
-    leftPadding: padding + NeptuneStyle.dp(2)
-    rightPadding: padding + NeptuneStyle.dp(2)
-    font.pixelSize: NeptuneStyle.fontSizeM
-    font.weight: Font.Light
-    spacing: NeptuneStyle.dp(22)
-
-    icon.color: NeptuneStyle.contrastColor
-
-    contentItem: IconLabel {
-        spacing: control.spacing
-        mirrored: control.mirrored
-        display: control.display
-
-        anchors.verticalCenter: control.verticalCenter
-        icon: control.icon
-        text: control.text
-        font: control.font
-        color: control.icon.color
-        opacity: control.enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
+Rectangle {
+    border.width: !parent.enabled && !parent.checked ? NeptuneStyle.dp(2) : 0
+    border.color: NeptuneStyle.contrastColor
+    visible: !parent.flat
+    color: {
+        if (parent.checked) {
+            return NeptuneStyle.accentColor;
+        } else if (!parent.enabled) {
+            return "transparent";
+        } else {
+            return NeptuneStyle.contrastColor;
+        }
     }
+    opacity: {
+        if (parent.checked) {
+            return 1.0;
+        } else if (parent.pressed) {
+            return 0.12;
+        } else {
+            return 0.06;
+        }
+    }
+    Behavior on opacity { NumberAnimation { duration: 200 } }
+    Behavior on color { ColorAnimation { duration: 200 } }
 
-    background: ButtonBackground {}
+    radius: width / 2
 }
