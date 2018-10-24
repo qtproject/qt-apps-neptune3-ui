@@ -16,7 +16,7 @@ and the System UI acts as a wayland server, compositing the application windows 
 QML scene, as regular QML items.
 
 * Linux (e.g. Ubuntu 16.04)
-* Qt5 (branch 5.11) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
+* Qt5 (branch 5.12) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
 * QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
 * Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
 
@@ -26,7 +26,7 @@ When in single process mode, all application code run in the same QML scene and
 process as the System UI itself.
 
 * Linux (e.g. Ubuntu 16.04) or macOS
-* Qt5 (branch 5.11)
+* Qt5 (branch 5.12)
 * QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
 * Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
 
@@ -46,7 +46,7 @@ Here are the commands:
 
     $ qmake --version
 
-This should report a Qt 5.11 version
+This should report a Qt 5.12 version
 
     $ qmake INSTALL_PREFIX=/path/to/install/folder && make && make install
 
@@ -84,6 +84,6 @@ In case QtIVI is not installed, 'dummyimports' folder contains QML dummy impleme
 
 # Building the settings app for Android
 
-The NeptuneControlApp may also be built and run on android. For building just the app for android, there is a separate project file, settings_app_android.pro, in the root directory. The project includes only the app and its dependencies. This requires the android build of qt 5.11 with the qtivi built for android.
+The NeptuneControlApp may also be built and run on android. For building just the app for android, there is a separate project file, settings_app_android.pro, in the root directory. The project includes only the app and its dependencies. This requires the android build of qt 5.12 with the qtivi built for android.
 
 
