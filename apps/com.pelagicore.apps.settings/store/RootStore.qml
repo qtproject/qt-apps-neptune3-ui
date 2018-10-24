@@ -86,7 +86,7 @@ QtObject {
     }
 
     // Theme Segment
-    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 0 // light
+    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 1 // dark
 
     readonly property ListModel themeModel: ListModel {
         // TODO: This data will be populated from settings server later

@@ -59,6 +59,7 @@ void Server::start()
     qCDebug(remoteSettingsServer) << "register service at: Settings.ConnectionMonitoring";
 
     setInstrumentClusterDefaultValues();
+    setDefaultThemeValues();
     initConnectionMonitoring();
 }
 
@@ -88,6 +89,12 @@ void Server::setInstrumentClusterDefaultValues()
     m_instrumentClusterService->setEPower(41);
     m_instrumentClusterService->setDriveTrainState(2); // 2 == D (drive)
     m_instrumentClusterService->setLowBeamHeadlight(true);
+}
+
+void Server::setDefaultThemeValues()
+{
+    // Set Dark theme as default value
+    m_UISettingsService->setTheme(1);
 }
 
 void Server::initConnectionMonitoring()

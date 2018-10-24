@@ -100,7 +100,7 @@ class StyleData {
 public:
     StyleData()
         : fontFactor(1.0)
-        , theme(NeptuneStyle::Light)
+        , theme(NeptuneStyle::Dark)
         , scale(1.0)
     {
         const QFont sansFont(QLatin1String("Open Sans"));
