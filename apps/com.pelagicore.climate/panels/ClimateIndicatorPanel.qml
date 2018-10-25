@@ -48,7 +48,7 @@ RowLayout {
     Image {
         Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
         Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
-        source: Utils.getLocalAsset("ic-seat-heat-status", NeptuneStyle.theme)
+        source: Utils.localIcon("ic-seat-heat-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.leftSeat.heat
     }
@@ -64,14 +64,14 @@ RowLayout {
     Image {
         Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
         Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
-        source: Utils.getLocalAsset("ic-rear-defrost-status", NeptuneStyle.theme)
+        source: Utils.localIcon("ic-rear-defrost-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rearHeat.enabled
     }
     Image {
         Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
         Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
-        source: Utils.getLocalAsset("ic-front-defrost-status", NeptuneStyle.theme)
+        source: Utils.localIcon("ic-front-defrost-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.frontHeat.enabled
     }
@@ -87,7 +87,7 @@ RowLayout {
     Image {
         Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
         Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
-        source: Utils.getLocalAsset("ic-seat-heat-status", NeptuneStyle.theme)
+        source: Utils.localIcon("ic-seat-heat-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rightSeat.heat
     }

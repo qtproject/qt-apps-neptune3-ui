@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+import "../helpers/utils.js" as Utils
 import shared.animations 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
@@ -68,7 +69,7 @@ Item {
                 anchors.centerIn: parent
                 width: NeptuneStyle.dp(sourceSize.width)
                 height: NeptuneStyle.dp(sourceSize.height)
-                source: Style.gfx(("fan-speed-background"), NeptuneStyle.theme)
+                source: Utils.localGfx("fan-speed-background", NeptuneStyle.theme)
                 fillMode: Image.PreserveAspectFit
             }
             Image {
@@ -76,7 +77,7 @@ Item {
                 anchors.centerIn: parent
                 width: NeptuneStyle.dp(sourceSize.width)
                 height: NeptuneStyle.dp(sourceSize.height)
-                source: Style.gfx(("fan-speed-"+index), NeptuneStyle.theme)
+                source: Utils.localGfx(("fan-speed-"+index), NeptuneStyle.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
                 fillMode: Image.PreserveAspectFit
                 layer.enabled: true
@@ -102,7 +103,7 @@ Item {
             id: seatImage
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: Style.gfx("seat", NeptuneStyle.theme)
+            source: Utils.localGfx("seat", NeptuneStyle.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: NeptuneStyle.dp(-10)
@@ -114,8 +115,8 @@ Item {
             anchors.top: parent.top
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.windshield ? Style.gfx("air-flow-top-active", NeptuneStyle.theme)
-                                                  : Style.gfx("air-flow-top", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", NeptuneStyle.theme)
+                                                  : Utils.localGfx("air-flow-top", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
@@ -135,8 +136,8 @@ Item {
             anchors.topMargin: NeptuneStyle.dp(-40)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.dashboard ? Style.gfx("air-flow-middle-active", NeptuneStyle.theme)
-                                                 : Style.gfx("air-flow-middle", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", NeptuneStyle.theme)
+                                                 : Utils.localGfx("air-flow-middle", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
@@ -156,8 +157,8 @@ Item {
             anchors.topMargin: NeptuneStyle.dp(20)
             width: NeptuneStyle.dp(sourceSize.width)
             height: NeptuneStyle.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.floor ? Style.gfx("air-flow-bottom-active", NeptuneStyle.theme)
-                                             : Style.gfx("air-flow-bottom", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", NeptuneStyle.theme)
+                                             : Utils.localGfx("air-flow-bottom", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
