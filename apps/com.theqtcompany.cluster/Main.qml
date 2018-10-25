@@ -33,32 +33,20 @@
 import QtQuick 2.8
 import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
+import application.windows 1.0
 import QtApplicationManager 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 
-ApplicationManagerWindow {
+NeptuneWindow {
     id: root
     visible: true
     width: 1920
     height: 720
     title: qsTr("Instrument Cluster")
-    color: "transparent"
 
     InstrumentCluster {
         id: dataSource
-    }
-
-    UISettings {
-        id: uiSettings
-        onThemeChanged: updateTheme()
-        onAccentColorChanged: {
-            root.contentItem.NeptuneStyle.accentColor = accentColor;
-        }
-        Component.onCompleted: updateTheme()
-        function updateTheme() {
-            root.contentItem.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-        }
     }
 
     //private
@@ -86,7 +74,7 @@ ApplicationManagerWindow {
         cruiseSpeed: dataSource.speedCruise
         ePower: dataSource.ePower
         drivetrain: dataSource.driveTrainState
-        rtlMode: uiSettings.rtlMode || Qt.locale().textDirection === Qt.RightToLeft
+        rtlMode: root.LayoutMirroring.enabled
     }
 
     TelltalesLeft {
