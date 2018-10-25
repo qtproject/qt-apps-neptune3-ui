@@ -49,7 +49,7 @@ def get_right_temperature_slider_Value():
 
 @Given("the climate area is tapped")
 def step(context):
-    climateMouseArea = waitForObjectExists(names.neptune_3_UI_Center_Console_squish_climateBarMouseArea_MouseArea)
+    climateMouseArea = waitForObjectExists(names.neptune_3_UI_Center_Console_climateBarMouseArea_MouseArea)
     tapObject(climateMouseArea)
 
 

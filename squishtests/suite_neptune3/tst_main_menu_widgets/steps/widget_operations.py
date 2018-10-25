@@ -77,7 +77,7 @@ def step(context):
 
 @Then("the maps widget disappeared in the home screen after '|integer|' seconds of animation")
 def step(context,seconds):
-    exists = is_object_there(names.neptune_3_UI_Center_Console_homeWidget_Maps_Column,seconds)
+    exists = is_squish_object_there(names.neptune_3_UI_Center_Console_homeWidget_Maps_Column,seconds)
     if exists:
         test.compare(True,False," volume popup is still there!")
     else:

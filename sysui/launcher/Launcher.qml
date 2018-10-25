@@ -82,7 +82,7 @@ Item {
 
     ToolButton {
         id: gridButton
-        objectName: "squish_gridButton"
+        objectName: "gridButton"
         width: NeptuneStyle.dp(90)
         height: NeptuneStyle.dp(90)
 
@@ -100,7 +100,7 @@ Item {
 
     EditableGridView {
         id: editableLauncher
-        objectName: "squish_editableLauncher"
+        objectName: "editableLauncher"
 
         anchors.top: parent.top
         anchors.right: parent.right

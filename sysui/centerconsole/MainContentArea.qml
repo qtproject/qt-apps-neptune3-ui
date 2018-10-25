@@ -157,7 +157,7 @@ Item {
 
     Launcher {
         id: launcher
-        objectName: "squish_launcher"
+        objectName: "launcher"
         anchors.left: parent.left
         anchors.right: parent.right
         applicationModel: root.applicationModel

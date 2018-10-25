@@ -1,0 +1,3 @@
+# the folder should be directly loadable by squish IDE,
+# so exclude this for now, since it uses direct (user) paths
+envvars

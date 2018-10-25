@@ -115,7 +115,7 @@ def step(context,seconds):
 # --------------------- specific not yet clear, where to put it
 @When("the popup close button is clicked")
 def step(context):
-    popup_close_button = waitForObject(names.neptune_3_UI_Center_Console_squish_popupClose_ToolButton)
+    popup_close_button = waitForObject(names.neptune_3_UI_Center_Console_popupClose_ToolButton)
     mouseClick(popup_close_button)
 
 def is_squish_object_there(squish_object,seconds):

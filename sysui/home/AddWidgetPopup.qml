@@ -86,7 +86,6 @@ PopupItem {
             },
             DelegateModelGroup {
                 id: allItemsGroup
-                objectName: "addWidgetItemDelegate"
                 name: "all"
                 includeByDefault: true
                 onChanged: {

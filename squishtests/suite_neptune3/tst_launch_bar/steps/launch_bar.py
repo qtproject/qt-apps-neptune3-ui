@@ -40,15 +40,15 @@ def hook(context):
 
 @Given("the launch bar is shown")
 def step(context):
-    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_squish_launcherCenterConsole_Launcher).enabled, True)
-    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_squish_launcherCenterConsole_Launcher).visible, True)
+    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_launcherCenterConsole_Launcher).enabled, True)
+    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_launcherCenterConsole_Launcher).visible, True)
 
 @When("the grid icon is clicked")
 def step(context):
-    grid_button = waitForObject(names.neptune_3_UI_Center_Console_squish_gridButton_ToolButton)
+    grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
     mouseClick(grid_button)
 
 @Then("the grid should be '|word|'")
 def step(context,string_open):
     open_status = string_open == 'opened'
-    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_squish_editableLauncher_EditableGridView).gridOpen, open_status)
+    test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_editableLauncher_EditableGridView).gridOpen, open_status)
