@@ -33,7 +33,6 @@ import QtQuick 2.11
 import QtQuick.Controls 2.2
 import QtApplicationManager 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 WindowItem {
@@ -43,6 +42,8 @@ WindowItem {
     readonly property real windowScale: root.NeptuneStyle.scale
     readonly property color accentColor: root.NeptuneStyle.accentColor
     readonly property int currentTheme: root.NeptuneStyle.theme
+    readonly property string currentLanguageLocale: Style.languageLocale
+    readonly property bool currentRtlMode: Style.rtlMode
 
     window: root.appInfo.window
 
@@ -51,6 +52,8 @@ WindowItem {
             window.setWindowProperty("neptuneScale", windowScale);
             window.setWindowProperty("neptuneAccentColor", accentColor);
             window.setWindowProperty("neptuneTheme", currentTheme);
+            window.setWindowProperty("neptuneLanguageLocale", currentLanguageLocale);
+            window.setWindowProperty("neptuneRtlMode", currentRtlMode);
         }
     }
 
@@ -69,17 +72,13 @@ WindowItem {
             window.setWindowProperty("neptuneTheme", currentTheme);
     }
 
-    UISettings {
-        id: uiSettings
-        function updateTheme() {
-            root.NeptuneStyle.theme = theme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
-        }
-        function updateAccentColor() {
-            root.NeptuneStyle.accentColor = accentColor;
-        }
+    onCurrentLanguageLocaleChanged: {
+        if (window)
+            window.setWindowProperty("neptuneLanguageLocale", currentLanguageLocale);
+    }
 
-        onThemeChanged: updateTheme()
-        onAccentColorChanged: updateAccentColor()
-        Component.onCompleted: updateTheme()
+    onCurrentRtlModeChanged: {
+        if (window)
+            window.setWindowProperty("neptuneRtlMode", currentRtlMode);
     }
 }

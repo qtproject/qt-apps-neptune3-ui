@@ -32,7 +32,6 @@
 import QtQuick 2.8
 import QtApplicationManager 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 /*!
@@ -69,7 +68,7 @@ import shared.com.pelagicore.styles.neptune 3.0
 ApplicationManagerWindow {
     id: root
 
-    LayoutMirroring.enabled: isRightToLeft || uiSettings.rtlMode
+    LayoutMirroring.enabled: isRightToLeft || Style.rtlMode
     LayoutMirroring.childrenInherit: true
 
     color: "transparent"
@@ -92,15 +91,12 @@ ApplicationManagerWindow {
         case "neptuneTheme":
             root.NeptuneStyle.theme = value;
             break;
-        }
-    }
-
-    UISettings {
-        id: uiSettings
-        onLanguageChanged: {
-            if (language !== Style.languageLocale) {
-                Style.languageLocale = language;
-            }
+        case "neptuneLanguageLocale":
+            Style.languageLocale = value;
+            break;
+        case "neptuneRtlMode":
+            Style.rtlMode = value;
+            break;
         }
     }
 }

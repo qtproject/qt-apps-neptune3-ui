@@ -54,6 +54,8 @@ QtObject {
     readonly property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
     readonly property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
 
+    property bool rtlMode: false
+
     property alias languageLocale: translation.languageLocale
     readonly property var translation: Translation {
         id: translation

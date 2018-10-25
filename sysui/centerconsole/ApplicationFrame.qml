@@ -68,6 +68,9 @@ Item {
                                                                              "exposedRectBottomMargin": root.exposedRectBottomMargin,
                                                                              "currentHeight": root.height,
                                                                              "currentWidth": root.width,
+                                                                             "NeptuneStyle.scale": root.NeptuneStyle.scale,
+                                                                             "NeptuneStyle.accentColor": root.NeptuneStyle.accentColor,
+                                                                             "NeptuneStyle.theme": root.NeptuneStyle.theme,
                                                                              "windowState": "Maximized"
                                                                             });
                 d.window.parent = root;

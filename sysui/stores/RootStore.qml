@@ -83,6 +83,7 @@ Store {
         }
         onThemeChanged: root.updateThemeRequested(uiSettings.theme)
         onAccentColorChanged: root.accentColorChanged(accentColor)
+        onRtlModeChanged: Style.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
                 if (uiSettings.language) {

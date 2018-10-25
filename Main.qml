@@ -48,6 +48,9 @@ QtObject {
 
         onAccentColorChanged: {
             centerConsoleWindow.contentItem.NeptuneStyle.accentColor = newAccentColor;
+            if (instrumentClusterWindowLoader.item) {
+                instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.accentColor = newAccentColor;
+            }
         }
 
         onGrabImageRequested: {
@@ -87,7 +90,6 @@ QtObject {
                 applicationModel: root.store.applicationModel
                 clusterStore: root.store.clusterStore
                 performanceOverlayVisible: root.store.systemStore.instrumentClusterPerfOverlayEnabled
-                Component.onCompleted: root.store.updateThemeRequested(root.store.uiSettings.theme)
             }
         }
         active: !root.store.runningOnSingleScreenEmbedded && root.store.clusterStore.showCluster
