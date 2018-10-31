@@ -51,7 +51,6 @@ Item {
         width: NeptuneStyle.dp(300)
         height: NeptuneStyle.dp(200)
         anchors.centerIn: parent
-        customBackgroundColor: NeptuneStyle.accentDetailColor
         text: "ListView Popup"
         onClicked: {
             var pos = this.mapToItem(root.parent, this.width/2, this.height/2);
