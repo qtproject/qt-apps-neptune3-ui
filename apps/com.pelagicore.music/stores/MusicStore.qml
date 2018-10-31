@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager 1.0
+import QtApplicationManager.Application 1.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
 import shared.utils 1.0

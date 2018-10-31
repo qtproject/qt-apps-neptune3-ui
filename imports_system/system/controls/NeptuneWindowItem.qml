@@ -31,7 +31,7 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.2
-import QtApplicationManager 1.0
+import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 

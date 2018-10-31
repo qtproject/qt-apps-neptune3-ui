@@ -31,7 +31,8 @@
 
 import QtQuick 2.8
 import Qt.labs.platform 1.0
-import QtApplicationManager 1.0
+import QtApplicationManager.Application 1.0
+import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
 
 import system.models.application 1.0

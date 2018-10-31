@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.com.pelagicore.styles.neptune 3.0
-import QtApplicationManager 1.0
+import QtApplicationManager.Application 1.0
 
 Item {
     id: root

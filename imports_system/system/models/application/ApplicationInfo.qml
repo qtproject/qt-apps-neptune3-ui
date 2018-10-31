@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
-import QtApplicationManager 1.0
+import QtApplicationManager.SystemUI 1.0
 
 /*
     Wraps QtAM::Application object adding some more properties and concepts specific to Neptune 3.

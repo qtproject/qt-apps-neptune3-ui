@@ -29,7 +29,7 @@
 **
 ****************************************************************************/
 import QtQuick 2.10
-import QtApplicationManager 1.0
+import QtApplicationManager.SystemUI 1.0
 
 /*!
     \qmltype ApplicationRequestHandler

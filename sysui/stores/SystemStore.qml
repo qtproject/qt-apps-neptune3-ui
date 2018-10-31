@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager 1.0
+import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
 
 Store {

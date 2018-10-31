@@ -31,7 +31,7 @@
 
 import QtQuick 2.7
 import stores 1.0
-import QtApplicationManager 1.0
+import QtApplicationManager.SystemUI 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 /*
