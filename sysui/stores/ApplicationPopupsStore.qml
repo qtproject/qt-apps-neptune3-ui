@@ -30,7 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.11
-import QtApplicationManager 1.0
 import shared.utils 1.0
 
 Store {

@@ -34,8 +34,6 @@ import shared.utils 1.0
 import stores 1.0
 import QtQuick.Window 2.3
 
-import QtApplicationManager 1.0
-
 import shared.com.pelagicore.styles.neptune 3.0
 
 Window {

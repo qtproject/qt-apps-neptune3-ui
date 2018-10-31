@@ -34,7 +34,6 @@ import QtQuick 2.8
 import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
 import application.windows 1.0
-import QtApplicationManager 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 

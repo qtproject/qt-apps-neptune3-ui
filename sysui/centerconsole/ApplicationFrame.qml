@@ -30,7 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.7
-import QtApplicationManager 1.0
 
 import shared.animations 1.0
 import system.controls 1.0

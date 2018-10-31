@@ -31,7 +31,6 @@
 
 import QtQuick 2.7
 import QtQml.Models 2.2
-import QtApplicationManager 1.0
 import system.controls 1.0
 import shared.animations 1.0
 import shared.com.pelagicore.styles.neptune 3.0
