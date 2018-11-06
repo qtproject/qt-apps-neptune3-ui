@@ -30,31 +30,30 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import shared.utils 1.0
 import shared.com.pelagicore.settings 1.0
 
-ClusterStoreInterface {
+Store {
     id: root
 
-    readonly property InstrumentCluster clusterDataSource: InstrumentCluster {}
+    property bool navigationMode
+    property real speed
+    property real speedLimit
+    property real speedCruise
+    property int driveTrainState
+    property int ePower
 
-    navigationMode: clusterDataSource.navigationMode
-    speed: clusterDataSource.speed
-    speedLimit: clusterDataSource.speedLimit
-    speedCruise: clusterDataSource.speedCruise
-    driveTrainState: clusterDataSource.driveTrainState
-    ePower: clusterDataSource.ePower
+    property bool lowBeamHeadlight: false
+    property bool highBeamHeadlight: false
+    property bool fogLight: false
+    property bool stabilityControl: false
+    property bool seatBeltFasten: false
+    property bool leftTurn: false
 
-    lowBeamHeadlight: clusterDataSource.lowBeamHeadlight
-    highBeamHeadlight: clusterDataSource.highBeamHeadlight
-    fogLight: clusterDataSource.fogLight
-    stabilityControl: clusterDataSource.stabilityControl
-    seatBeltFasten: clusterDataSource.seatBeltNotFastened
-    leftTurn: clusterDataSource.leftTurn
-
-    rightTurn: clusterDataSource.rightTurn
-    absFailure: clusterDataSource.ABSFailure
-    parkBrake: clusterDataSource.parkBrake
-    tyrePressureLow: clusterDataSource.tyrePressureLow
-    brakeFailure: clusterDataSource.brakeFailure
-    airbagFailure: clusterDataSource.airbagFailure
+    property bool rightTurn: false
+    property bool absFailure: false
+    property bool parkBrake: false
+    property bool tyrePressureLow: false
+    property bool brakeFailure: false
+    property bool airbagFailure: false
 }

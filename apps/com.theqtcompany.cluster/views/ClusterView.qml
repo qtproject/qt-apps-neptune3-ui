@@ -44,7 +44,7 @@ import helpers 1.0
 Item {
     id: root
 
-    property var store
+    property ClusterStoreInterface store
     property alias rtlMode: mainContent.rtlMode
 
     //private
@@ -65,12 +65,12 @@ Item {
     GaugesPanel {
         id: mainContent
         anchors.fill: parent
-        navigating: store.clusterDataSource.navigationMode
-        speed: store.clusterDataSource.speed
-        speedLimit: store.clusterDataSource.speedLimit
-        cruiseSpeed: store.clusterDataSource.speedCruise
-        ePower: store.clusterDataSource.ePower
-        drivetrain: store.clusterDataSource.driveTrainState
+        navigating: store.navigationMode
+        speed: store.speed
+        speedLimit: store.speedLimit
+        cruiseSpeed: store.speedCruise
+        ePower: store.ePower
+        drivetrain: store.driveTrainState
     }
 
     TelltalesLeftPanel {
@@ -80,12 +80,12 @@ Item {
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
 
-        lowBeamHeadLightOn: store.clusterDataSource.lowBeamHeadlight
-        highBeamHeadLightOn: store.clusterDataSource.highBeamHeadlight
-        fogLightOn: store.clusterDataSource.fogLight
-        stabilityControlOn: store.clusterDataSource.stabilityControl
-        seatBeltFastenOn: store.clusterDataSource.seatBeltNotFastened
-        leftTurnOn: store.clusterDataSource.leftTurn
+        lowBeamHeadLightOn: store.lowBeamHeadlight
+        highBeamHeadLightOn: store.highBeamHeadlight
+        fogLightOn: store.fogLight
+        stabilityControlOn: store.stabilityControl
+        seatBeltFastenOn: store.seatBeltFasten
+        leftTurnOn: store.leftTurn
     }
 
     TelltalesRightPanel {
@@ -95,11 +95,11 @@ Item {
         width: 444 * d.scaleRatio
         height: 58 * d.scaleRatio
 
-        rightTurnOn: store.clusterDataSource.rightTurn
-        absFailureOn: store.clusterDataSource.ABSFailure;
-        parkingBrakeOn: store.clusterDataSource.parkBrake;
-        lowTyrePressureOn: store.clusterDataSource.tyrePressureLow;
-        brakeFailureOn: store.clusterDataSource.brakeFailure;
-        airbagFailureOn: store.clusterDataSource.airbagFailure;
+        rightTurnOn: store.rightTurn
+        absFailureOn: store.absFailure;
+        parkingBrakeOn: store.parkBrake;
+        lowTyrePressureOn: store.tyrePressureLow;
+        brakeFailureOn: store.brakeFailure;
+        airbagFailureOn: store.airbagFailure;
     }
 }
