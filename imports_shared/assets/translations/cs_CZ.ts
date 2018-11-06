@@ -399,18 +399,36 @@ UX na cestu</translation>
     <name>DialPower</name>
     <message>
         <source>% power</source>
-        <translation>% nabití</translation>
+        <translation type="vanished">% nabití</translation>
     </message>
     <message>
         <source>km</source>
-        <translation>km</translation>
+        <translation type="vanished">km</translation>
+    </message>
+</context>
+<context>
+    <name>DialPowerPanel</name>
+    <message>
+        <source>% power</source>
+        <translation type="unfinished">% nabití</translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
     </message>
 </context>
 <context>
     <name>DialSpeed</name>
     <message>
         <source>km/h</source>
-        <translation>km/h</translation>
+        <translation type="vanished">km/h</translation>
+    </message>
+</context>
+<context>
+    <name>DialSpeedPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
     </message>
 </context>
 <context>

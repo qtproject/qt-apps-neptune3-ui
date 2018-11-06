@@ -280,18 +280,36 @@
     <name>DialPower</name>
     <message>
         <source>% power</source>
-        <translation>% 功率</translation>
+        <translation type="vanished">% 功率</translation>
     </message>
     <message>
         <source>km</source>
-        <translation>km</translation>
+        <translation type="vanished">km</translation>
+    </message>
+</context>
+<context>
+    <name>DialPowerPanel</name>
+    <message>
+        <source>% power</source>
+        <translation type="unfinished">% 功率</translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
     </message>
 </context>
 <context>
     <name>DialSpeed</name>
     <message>
         <source>km/h</source>
-        <translation>km/h</translation>
+        <translation type="vanished">km/h</translation>
+    </message>
+</context>
+<context>
+    <name>DialSpeedPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
     </message>
 </context>
 <context>

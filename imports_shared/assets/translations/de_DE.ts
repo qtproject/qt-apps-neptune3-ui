@@ -287,18 +287,36 @@
     <name>DialPower</name>
     <message>
         <source>% power</source>
-        <translation>% energy</translation>
+        <translation type="vanished">% energy</translation>
     </message>
     <message>
         <source>km</source>
-        <translation>Km</translation>
+        <translation type="vanished">Km</translation>
+    </message>
+</context>
+<context>
+    <name>DialPowerPanel</name>
+    <message>
+        <source>% power</source>
+        <translation type="unfinished">% energy</translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">Km</translation>
     </message>
 </context>
 <context>
     <name>DialSpeed</name>
     <message>
         <source>km/h</source>
-        <translation>Km/h</translation>
+        <translation type="vanished">Km/h</translation>
+    </message>
+</context>
+<context>
+    <name>DialSpeedPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">Km/h</translation>
     </message>
 </context>
 <context>

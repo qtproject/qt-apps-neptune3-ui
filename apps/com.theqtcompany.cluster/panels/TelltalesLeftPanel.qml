@@ -32,7 +32,10 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
+import "../controls"
+import "../helpers/utils.js" as Utils
 
 Item {
     id: root
@@ -40,12 +43,12 @@ Item {
     height: 58
 
     //public
-    property bool rightTurnOn: true
-    property bool absFailureOn: true
-    property bool parkingBrakeOn: true
-    property bool lowTyrePressureOn: true
-    property bool brakeFailureOn: true
-    property bool airbagFailureOn: true
+    property bool lowBeamHeadLightOn: true
+    property bool highBeamHeadLightOn: true
+    property bool fogLightOn: true
+    property bool stabilityControlOn: true
+    property bool seatBeltFastenOn: true
+    property bool leftTurnOn: true
 
     //private
     QtObject {
@@ -57,64 +60,64 @@ Item {
 //    Image {
 //        id: bg
 //        anchors.fill: parent
-//        source: "./img/telltales/telltale-bg-right.png"
+//        source: "./img/telltales/telltale-bg-left.png"
 //    }
-
-    Blinker {
-        id: blinker
-        running: root.rightTurnOn
-    }
 
     RowLayout {
         anchors.fill: parent
         spacing: root.width * 0.07
 
         Image {
-            opacity: blinker.lit ? 1 : 0
+            Layout.preferredWidth: 42 * d.scaleRatio
+            Layout.preferredHeight: 32 * d.scaleRatio
+            opacity: root.lowBeamHeadLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-right-turn.png"
+            source: Utils.localAsset("/telltales/ic-low-beam")
+        }
+
+        Image {
+            Layout.preferredWidth: 42 * d.scaleRatio
+            Layout.preferredHeight: 27 * d.scaleRatio
+            opacity: root.highBeamHeadLightOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: Utils.localAsset("/telltales/ic-high-beam")
+        }
+
+        Image {
+            Layout.preferredWidth: 34 * d.scaleRatio
+            Layout.preferredHeight: 34 * d.scaleRatio
+            opacity: root.fogLightOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: Utils.localAsset("/telltales/ic-fog-lights")
+        }
+
+        Image {
+            Layout.preferredWidth: 30 * d.scaleRatio
+            Layout.preferredHeight: 33 * d.scaleRatio
+            opacity: root.stabilityControlOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: Utils.localAsset("/telltales/ic-stability-control")
+        }
+
+        Image {
+            Layout.preferredWidth: 25 * d.scaleRatio
+            Layout.preferredHeight: 35 * d.scaleRatio
+            opacity: root.seatBeltFastenOn ? 1 : 0
+            fillMode: Image.PreserveAspectFit
+            source: Utils.localAsset("/telltales/ic-seat-belt")
+        }
+
+        Image {
             Layout.preferredWidth: 53 * d.scaleRatio
             Layout.preferredHeight: 48 * d.scaleRatio
-        }
-
-        Image {
-            opacity: root.absFailureOn ? 1 : 0
+            opacity: blinker.lit ? 1 : 0
             fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-abs-fault.png"
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
+            source: Utils.localAsset("/telltales/ic-left-turn")
         }
+    }
 
-        Image {
-            opacity: root.parkingBrakeOn ? 1 : 0
-            fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-parking-brake.png"
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
-        }
-
-        Image {
-            opacity: root.lowTyrePressureOn ? 1 : 0
-            fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-tire-pressure.png"
-            Layout.preferredWidth: 34 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
-        }
-
-        Image {
-            opacity: root.brakeFailureOn ? 1 : 0
-            fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-brake-fault.png"
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
-        }
-
-        Image {
-            opacity: root.airbagFailureOn ? 1 : 0
-            fillMode: Image.PreserveAspectFit
-            source: "./img/telltales/ic-airbag.png"
-            Layout.preferredWidth: 35 * d.scaleRatio
-            Layout.preferredHeight: 34 * d.scaleRatio
-        }
+    Blinker {
+        id: blinker
+        running: root.leftTurnOn
     }
 }

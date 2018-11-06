@@ -32,7 +32,7 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.3
-
+import "../helpers/utils.js" as Utils
 import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -68,8 +68,6 @@ Item {
         property int ePowerOverride
         property bool overrideEPower: false
         readonly property int ePower: overrideEPower ? ePowerOverride : root.ePower
-
-        readonly property string sourceSuffix: root.NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
     }
 
     //states and transitions
@@ -240,7 +238,7 @@ Item {
     ]
 
     //visual components
-    DialFrame {
+    DialFramePanel {
         id: dialFrame
         width: 560 * d.scaleRatio
         height: width
@@ -260,7 +258,7 @@ Item {
         y: 107 * d.scaleRatio
         width: 71 * d.scaleRatio
         height: 294 * d.scaleRatio
-        source: "./img/dial-energy-areas" + d.sourceSuffix
+        source: Utils.localAsset("dial-energy-areas", NeptuneStyle.theme)
     }
 
     Item {//PRND
@@ -269,56 +267,48 @@ Item {
         y: 165 * d.scaleRatio
         width: 40 * d.scaleRatio
         opacity: 1
-        Text {
+        Label {
             id: indicatorDrivetrainP
             anchors.left: parent.left
             text: "P"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans"
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            color: NeptuneStyle.contrastColor
             opacity: (root.drivetrain === 0) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
-        Text {
+        Label {
             id: indicatorDrivetrainR
             anchors.left: indicatorDrivetrainP.right
             text: "R"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans"
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            color: NeptuneStyle.contrastColor
             opacity: (root.drivetrain === 3) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
-        Text {
+        Label {
             id: indicatorDrivetrainN
             anchors.left: indicatorDrivetrainR.right
             text: "N"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans"
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            color: NeptuneStyle.contrastColor
             opacity: (root.drivetrain === 1) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
-        Text {
+        Label {
             anchors.left: indicatorDrivetrainN.right
             text: "D"
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
-            font.family: "Open Sans"
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            color: NeptuneStyle.contrastColor
             opacity: (root.drivetrain === 2) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
     }
 
-    Text {
+    Label {
         id: indicatorEPower
         x: 265 * d.scaleRatio
         y: 222 * d.scaleRatio
@@ -326,35 +316,29 @@ Item {
         text: Math.abs( Math.round(d.ePower) )
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
-    Text {
+    Label {
         id: signPower
         x: 248 * d.scaleRatio
         y: 324 * d.scaleRatio
         text: qsTr("% power")
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
-    Text {
+    Label {
         id: signKM
         x: 272 * d.scaleRatio
         y: 445 * d.scaleRatio
         text: qsTr("km")
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -365,29 +349,25 @@ Item {
         y: 483 * d.scaleRatio
         width: 23 * d.scaleRatio
         height: 14 * d.scaleRatio
-        source: "./img/ic-battery" + d.sourceSuffix
+        source: Utils.localAsset("ic-battery", NeptuneStyle.theme)
     }
 
-    Text {
+    Label {
         id: signKMRemain
         x: 207 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "184"
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
-    Text {
+    Label {
         id: signBatteryRemain
         x: 303 * d.scaleRatio
         y: 464 * d.scaleRatio
         text: "21"
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -398,7 +378,7 @@ Item {
         y: 477 * d.scaleRatio
         width: 24 * d.scaleRatio
         height: 21 * d.scaleRatio
-        source: "./img/ic-chargingstation"  + d.sourceSuffix
+        source: Utils.localAsset("ic-chargingstation", NeptuneStyle.theme)
     }
 
     Repeater{
@@ -423,9 +403,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: NeptuneStyle.contrastColor
             opacity: graduationNumber.opacity
-            font.family: "Open Sans"
             font.weight: Font.Light
             font.pixelSize: 22 * d.scaleRatio
         }

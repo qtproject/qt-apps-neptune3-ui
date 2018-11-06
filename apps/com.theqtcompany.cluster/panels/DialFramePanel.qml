@@ -33,7 +33,7 @@
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
-
+import "../helpers/utils.js" as Utils
 import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -194,8 +194,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
-        source: "./img/dial-small-bg" + sourceSuffix
+        source: Utils.localAsset("dial-small-bg", NeptuneStyle.theme)
     }
 
     Image {
@@ -204,7 +203,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: "./img/dial-outer-circle-bg.png"
+        source: Utils.localAsset("dial-outer-circle-bg")
     }
 
     Image {
@@ -214,7 +213,7 @@ Item {
         anchors.centerIn: parent
         z: 1
         visible: true
-        source: "./img/dial-outer-circle-edge.png"
+        source: Utils.localAsset("dial-outer-circle-edge")
     }
 
     Image {
@@ -224,7 +223,7 @@ Item {
         anchors.centerIn: parent
         z: 1
         visible: true
-        source: "./img/dial-outer-circle-shadow.png"
+        source: Utils.localAsset("dial-outer-circle-shadow")
     }
 
     Shape {
@@ -335,7 +334,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: "./img/dial-inner-circle.png"
+        source: Utils.localAsset("dial-inner-circle")
     }
 
     Image {
@@ -344,6 +343,6 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: "./img/dial-inner-circle_shadow.png"
+        source: Utils.localAsset("dial-inner-circle_shadow")
     }
 }

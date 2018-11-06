@@ -155,7 +155,7 @@
     </message>
 </context>
 <context>
-    <name>DialPower</name>
+    <name>DialPowerPanel</name>
     <message>
         <source>% power</source>
         <translation type="unfinished"></translation>
@@ -166,7 +166,7 @@
     </message>
 </context>
 <context>
-    <name>DialSpeed</name>
+    <name>DialSpeedPanel</name>
     <message>
         <source>km/h</source>
         <translation type="unfinished"></translation>

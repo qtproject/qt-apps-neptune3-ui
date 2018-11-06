@@ -1,10 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 Cluster UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -30,26 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Window 2.2
-import shared.com.pelagicore.settings 1.0
-import application.windows 1.0
+.import shared.com.pelagicore.styles.neptune 3.0 as Style
 
-import shared.com.pelagicore.styles.neptune 3.0
-
-import "views"
-import "stores"
-
-NeptuneWindow {
-    id: root
-    visible: true
-    width: 1920
-    height: 720
-    title: qsTr("Instrument Cluster")
-
-    ClusterView {
-        anchors.fill: parent
-        rtlMode: root.LayoutMirroring.enabled
-        store: ClusterStore {}
+function localAsset(asset, theme) {
+    var themeStr = theme === Style.NeptuneStyle.Dark ? "-dark" : "";
+    if (theme) {
+        return "../assets/" + asset + themeStr + '.png'
     }
+
+    return "../assets/" + asset + '.png'
 }

@@ -121,14 +121,14 @@ Item {
 
     //visual components
 
-    DialSpeed {
+    DialSpeedPanel {
         id: ds
         width: 560 * d.scaleRatio
         height: width
         state: parent.state
     }
 
-    DialPower {
+    DialPowerPanel {
         id: dp
         width: 560 * d.scaleRatio
         height: width

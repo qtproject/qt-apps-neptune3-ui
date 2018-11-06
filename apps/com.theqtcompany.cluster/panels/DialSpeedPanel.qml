@@ -31,9 +31,11 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
-
+import shared.controls 1.0
+import "../helpers/utils.js" as Utils
 import shared.com.pelagicore.styles.neptune 3.0
 
 Item {
@@ -65,8 +67,6 @@ Item {
                 return 30;
             }
         }
-
-        readonly property string sourceSuffix: root.NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
     }
 
     //states and transitions
@@ -113,7 +113,7 @@ Item {
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
                 PropertyAction {
-                    target: indicatorCruise
+                    target: [indicatorCruise, indicatorCruiseBg]
                     property: "visible, x, y"
                 }
                 PropertyAnimation {
@@ -133,7 +133,7 @@ Item {
             SequentialAnimation{
                 //fade out (390ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity, x, y"
                     duration: 130
                 }
@@ -149,21 +149,22 @@ Item {
                 //fade out (160ms)
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity"
                     to: 0
                     duration: 80
                 }
                 //wait DialFrame to shrink(160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "x, y"
                     duration: 160
                 }
                 //fade in (160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity"
+                    to: 1.0
                     duration: 160
                 }
             }
@@ -175,22 +176,23 @@ Item {
             SequentialAnimation{
                 //fade out (160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity"
                     to: 0
                     duration: 160
                 }
                 //wait DialFrame to expand(160ms)
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "x, y"
                     duration: 160
                 }
                 //fade in (160ms)
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 80 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity"
+                    to: 1.0
                     duration: 80
                 }
             }
@@ -206,7 +208,7 @@ Item {
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity, x, y"
                     duration: 140
                 }
@@ -222,12 +224,12 @@ Item {
                 //fade out (640ms)
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "opacity"
                     duration: 100
                 }
                 PropertyAnimation {
-                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise]
+                    targets: [indicatorSpeed, signKMH, indicatorSpdLimit, indicatorCruise, indicatorCruiseBg]
                     properties: "x, y"
                     duration: 100
                 }
@@ -252,7 +254,7 @@ Item {
     }
 
     //visual components
-    DialFrame {
+    DialFramePanel {
         id: dialFrame
         anchors.centerIn: parent
         width: 560 * d.scaleRatio
@@ -263,7 +265,7 @@ Item {
         zeroAng: -240
     }
 
-    Text {
+    Label {
         id: indicatorSpeed
         x: 257 * d.scaleRatio
         y: 218 * d.scaleRatio
@@ -271,21 +273,17 @@ Item {
         text: Math.round(speed)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
-        font.family: "Open Sans"
         font.weight: Font.DemiBold
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
-    Text {
+    Label {
         id: signKMH
         anchors.horizontalCenter: parent.horizontalCenter
         y: 325 * d.scaleRatio
         text: qsTr("km/h")
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         opacity: NeptuneStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
@@ -296,16 +294,13 @@ Item {
         y: 342 * d.scaleRatio
         width: 140 * d.scaleRatio
         height: 140 * d.scaleRatio
-        source: "./img/speed-limit-badge.png"
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+        source: Utils.localAsset("speed-limit-badge")
+        Label {
+            anchors.centerIn: parent
             text: Math.round(speedLimit)
-            font.family: "Open Sans"
-            font.weight: Font.Light
-            color: "black"
             opacity: NeptuneStyle.opacityHigh
             font.pixelSize: 34 * d.scaleRatio
+            color: root.NeptuneStyle.theme === NeptuneStyle.Dark ? NeptuneStyle.mainColor : NeptuneStyle.contrastColor
         }
     }
 
@@ -321,14 +316,14 @@ Item {
             width: 370 * d.scaleRatio
             height: width
             anchors.centerIn: parent
-            source: "./img/dial-cruise-circle-shadow.png"
+            source: Utils.localAsset("dial-cruise-circle-shadow")
         }
         Image {
             id: cruiseCircle
             width: 330 * d.scaleRatio
             height: width
             anchors.centerIn: parent
-            source: "./img/dial-cruise-circle.png"
+            source: Utils.localAsset("dial-cruise-circle")
         }
     }
 
@@ -394,7 +389,7 @@ Item {
         y: indicatorCruise.y + 4 * d.scaleRatio
         width: 35 * d.scaleRatio
         height: 31 * d.scaleRatio
-        source: "./img/ic-acc" + d.sourceSuffix
+        source: Utils.localAsset("ic-acc", NeptuneStyle.theme)
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
         }
@@ -403,15 +398,13 @@ Item {
         }
     }
 
-    Text {
+    Label {
         id: indicatorCruise
         opacity: (root.cruiseSpeed >= 30) ? NeptuneStyle.opacityHigh : 0.0
         anchors.horizontalCenter: parent.horizontalCenter
         y: 466 * d.scaleRatio
         text:  Math.round(cruiseSpeed)
-        font.family: "Open Sans"
         font.weight: Font.Light
-        color: NeptuneStyle.contrastColor
         font.pixelSize: 34 * d.scaleRatio
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 500 }
@@ -431,7 +424,7 @@ Item {
         readonly property real centerY: height / 2
 
         model: [0, 20, 40, 60, 80, 100, 120, 140, 200]
-        delegate: Text {
+        delegate: Label {
             readonly property int angle: d.speed2Angle(modelData)
             readonly property real radin: angle / 180 * Math.PI
 
@@ -440,9 +433,7 @@ Item {
             y: graduationNumber.centerY + Math.sin(radin) * graduationNumber.radius
             visible: (modelData < graduation.maxDrawValue) ? true : false
 
-            color: NeptuneStyle.contrastColor
             opacity: graduationNumber.opacity
-            font.family: "Open Sans"
             font.weight: Font.Light
             font.pixelSize: 22 * d.scaleRatio
         }
