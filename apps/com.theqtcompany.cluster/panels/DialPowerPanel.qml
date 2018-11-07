@@ -42,7 +42,9 @@ Item {
 
     //public
     property int ePower
-    property int drivetrain : 0
+    property int drivetrain: 0
+    property int remainingKm: 180
+    property int remainingPower: 20
 
     //private
     QtObject {
@@ -357,8 +359,8 @@ Item {
         x: 207 * d.scaleRatio
         y: 464 * d.scaleRatio
         width: 70 * d.scaleRatio
-        text: "184"
         horizontalAlignment: root.state !== "navi" ? Text.AlignLeft : Text.AlignHCenter
+        text: root.remainingKm
         font.weight: Font.Light
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
@@ -369,7 +371,7 @@ Item {
         x: 303 * d.scaleRatio
         y: 464 * d.scaleRatio
         width: 50 * d.scaleRatio
-        text: "21"
+        text: root.remainingPower
         font.weight: Font.Light
         horizontalAlignment: Text.AlignRight
         opacity: NeptuneStyle.opacityHigh
