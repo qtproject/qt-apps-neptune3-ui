@@ -52,4 +52,6 @@ QtObject {
 
     property bool asWidget: true
     property var categories: ["widget"]
+
+    property bool windowPerfMonitorEnabled: false
 }

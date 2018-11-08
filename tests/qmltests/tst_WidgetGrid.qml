@@ -44,18 +44,27 @@ Item {
 
     FakeAppInfo {
         id: redApp
-        property Item window: Rectangle { color: "red" }
+        property Item window: Rectangle {
+            color: "red"
+            function setWindowProperty(name, value) {}
+        }
     }
 
     FakeAppInfo {
         id: greenApp
-        property Item window: Rectangle { color: "green" }
+        property Item window: Rectangle {
+            color: "green"
+            function setWindowProperty(name, value) {}
+        }
         property int heightRows: 2
     }
 
     FakeAppInfo {
         id: blueApp
-        property Item window: Rectangle { color: "blue" }
+        property Item window: Rectangle {
+            color: "blue"
+            function setWindowProperty(name, value) {}
+        }
         property int heightRows: 2
     }
 

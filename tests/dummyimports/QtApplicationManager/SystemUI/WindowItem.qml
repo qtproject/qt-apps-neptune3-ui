@@ -32,7 +32,19 @@
 import QtQuick 2.6
 
 Item {
-    property var window: null
+    id: root
+
+    property Item window
+    onWindowChanged: {
+        if (window) {
+            window.parent = root;
+            window.x = 0;
+            window.y = 0;
+            window.width = Qt.binding(function() { return root.width; });
+            window.height = Qt.binding(function() { return root.height; });
+        }
+    }
+
     property bool primary: true
     property bool objectFollowsItemSize: true
 
