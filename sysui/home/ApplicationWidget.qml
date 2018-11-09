@@ -165,7 +165,6 @@ Item {
     }
 
     BusyIndicator {
-        id: busyIndicator
         running: !windowItem.window
         visible: running
         anchors.centerIn: parent
