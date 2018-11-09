@@ -83,7 +83,7 @@ Item {
             PropertyChanges { target: signBattery; opacity: 0; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: 0; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: 0; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
             PropertyChanges { target: signKMRemain; opacity: 0; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: 0 }
         },
@@ -97,7 +97,7 @@ Item {
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: NeptuneStyle.opacityHigh }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 272 * d.scaleRatio; y: 445 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
             PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
             PropertyChanges { target: signPower; opacity: NeptuneStyle.opacityLow }
         },
@@ -334,7 +334,7 @@ Item {
     Label {
         id: signKM
         x: 272 * d.scaleRatio
-        y: 445 * d.scaleRatio
+        y: 480 * d.scaleRatio
         text: qsTr("km")
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
@@ -356,7 +356,9 @@ Item {
         id: signKMRemain
         x: 207 * d.scaleRatio
         y: 464 * d.scaleRatio
+        width: 70 * d.scaleRatio
         text: "184"
+        horizontalAlignment: root.state !== "navi" ? Text.AlignLeft : Text.AlignHCenter
         font.weight: Font.Light
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
@@ -366,8 +368,10 @@ Item {
         id: signBatteryRemain
         x: 303 * d.scaleRatio
         y: 464 * d.scaleRatio
+        width: 50 * d.scaleRatio
         text: "21"
         font.weight: Font.Light
+        horizontalAlignment: Text.AlignRight
         opacity: NeptuneStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
@@ -375,7 +379,7 @@ Item {
     Image {
         id: signChargeStation
         x: 353 * d.scaleRatio
-        y: 477 * d.scaleRatio
+        y: 474 * d.scaleRatio
         width: 24 * d.scaleRatio
         height: 21 * d.scaleRatio
         source: Utils.localAsset("ic-chargingstation", NeptuneStyle.theme)
