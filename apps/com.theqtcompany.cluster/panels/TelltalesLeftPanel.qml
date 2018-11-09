@@ -34,8 +34,8 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
-import "../controls"
-import "../helpers/utils.js" as Utils
+import controls 1.0
+import helpers 1.0
 
 Item {
     id: root

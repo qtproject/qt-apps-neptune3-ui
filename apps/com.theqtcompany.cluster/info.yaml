@@ -5,6 +5,8 @@ id:      'com.theqtcompany.cluster'
 icon:    'icon.png'
 code:    'Main.qml'
 runtime: 'qml'
+runtimeParameters:
+    importPaths: [ '.' ]
 name:
   en: 'Instrument Cluster'
   de: 'Instrumentengruppe'
