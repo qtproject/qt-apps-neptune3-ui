@@ -152,16 +152,17 @@ Item {
         opacity: root.active ? 0 : 1
         visible: opacity != 0
         Behavior on opacity { DefaultNumberAnimation{} }
+    }
 
-        Image {
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
-            fillMode: Image.PreserveAspectFit
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: widgetStripe.border.top * 0.8
-            source: root.appInfo ? root.appInfo.icon : null
-        }
+    // Application icon
+    Image {
+        width: NeptuneStyle.dp(sourceSize.width)
+        height: NeptuneStyle.dp(sourceSize.height)
+        fillMode: Image.PreserveAspectFit
+        anchors.horizontalCenter: widgetStripe.horizontalCenter
+        anchors.top: widgetStripe.top
+        anchors.topMargin: widgetStripe.border.top * 0.8
+        source: root.appInfo ? root.appInfo.icon : null
     }
 
     BusyIndicator {
