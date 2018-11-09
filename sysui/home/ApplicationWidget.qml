@@ -136,7 +136,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         width: NeptuneStyle.dp(40)
-        border { top: 30; bottom: 30 }
+        border { top: 25; bottom: 25 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         source: Style.gfx("widget-stripe")
