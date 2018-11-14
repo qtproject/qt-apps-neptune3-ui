@@ -34,6 +34,7 @@ import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.RadioButton {
     id: control
@@ -45,24 +46,24 @@ T.RadioButton {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: NeptuneStyle.dp(6)
-    spacing: NeptuneStyle.dp(8)
+    padding: Sizes.dp(6)
+    spacing: Sizes.dp(8)
 
     indicator: Rectangle {
         x: text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
-        implicitWidth: NeptuneStyle.dp(30)
-        implicitHeight: NeptuneStyle.dp(30)
+        implicitWidth: Sizes.dp(30)
+        implicitHeight: Sizes.dp(30)
         radius: width / 2
-        border.width: NeptuneStyle.dp(2)
+        border.width: Sizes.dp(2)
         border.color: control.checked || control.down ? control.NeptuneStyle.accentColor : control.NeptuneStyle.buttonColor
         color: "transparent"
 
         Rectangle {
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
-            width: NeptuneStyle.dp(15)
-            height: NeptuneStyle.dp(15)
+            width: Sizes.dp(15)
+            height: Sizes.dp(15)
             radius: width / 2
             color: parent.border.color
             visible: control.checked || control.down

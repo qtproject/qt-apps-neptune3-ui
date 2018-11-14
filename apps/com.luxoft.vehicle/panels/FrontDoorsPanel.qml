@@ -33,7 +33,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import shared.utils 1.0
 
@@ -53,9 +53,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(320)
+        anchors.topMargin: Sizes.dp(320)
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(45)
+        anchors.leftMargin: Sizes.dp(45)
         state: "REGULAR"
         text: root.leftDoorOpened ? qsTr("Close") : qsTr("Open")
 
@@ -64,9 +64,9 @@ Item {
 
     VehicleButton {
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(320)
+        anchors.topMargin: Sizes.dp(320)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(45)
+        anchors.rightMargin: Sizes.dp(45)
         state: "REGULAR"
         text: root.rightDoorOpened ? qsTr("Close") : qsTr("Open")
 

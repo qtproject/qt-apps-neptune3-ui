@@ -34,7 +34,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import QtQuick.Controls 2.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -49,7 +49,7 @@ Control {
             id: radioStationDelegate
             ListItem {
                 width: listView.width
-                height: NeptuneStyle.dp(104)
+                height: Sizes.dp(104)
                 text: model.stationName
                 subText: model.freq
                 rightToolSymbol: "ic-favorite-tuner"
@@ -60,10 +60,10 @@ Control {
         ListView {
             id: listView
             anchors.top:parent.top
-            anchors.topMargin: NeptuneStyle.dp(53)
+            anchors.topMargin: Sizes.dp(53)
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: NeptuneStyle.dp(720)
+            width: Sizes.dp(720)
             interactive: contentHeight > height
             delegate: radioStationDelegate
             clip: true
@@ -71,7 +71,7 @@ Control {
                 parent: listView.parent
                 anchors.top: listView.top
                 anchors.left: listView.right
-                anchors.leftMargin: NeptuneStyle.dp(45)
+                anchors.leftMargin: Sizes.dp(45)
                 anchors.bottom: listView.bottom
             }
         }

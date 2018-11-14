@@ -34,14 +34,14 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Label {
     id: root
     property var currentDate: new Date()
     property var uiSettings
 
-    font.pixelSize: NeptuneStyle.fontSizeS
+    font.pixelSize: Sizes.fontSizeS
     font.weight: Style.fontWeight
     text: Style.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
 }

@@ -35,13 +35,14 @@ import QtQuick.Layouts 1.3
 import QtApplicationManager.SystemUI 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 
 Item {
     id: root
-    implicitWidth: NeptuneStyle.dp(810)
-    implicitHeight: NeptuneStyle.dp(1280)
+    implicitWidth: Sizes.dp(810)
+    implicitHeight: Sizes.dp(1280)
 
     property var applicationModel
 
@@ -128,13 +129,13 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        topPadding: NeptuneStyle.dp(20)
+        topPadding: Sizes.dp(20)
 
         wrapMode: Text.WordWrap
         text: qsTr("Enabling performance monitoring forces the chosen application " +
                     " to constantly redraw itself, therefore having a constant," +
                     " unnecessary, GPU/CPU consumption.")
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ListView {
@@ -142,16 +143,16 @@ Item {
         clip: true
         model: runningAppsModel
 
-        spacing: NeptuneStyle.dp(20)
+        spacing: Sizes.dp(20)
 
         anchors.top: infoLabel.bottom
-        anchors.topMargin: NeptuneStyle.dp(30)
+        anchors.topMargin: Sizes.dp(30)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
 
         delegate: Item {
-            width: parent.width - NeptuneStyle.dp(20)
+            width: parent.width - Sizes.dp(20)
             implicitHeight: column.height
 
             ToolButton {
@@ -165,7 +166,7 @@ Item {
                 id: column
                 anchors.left: parent.left
                 anchors.right: parent.right
-                anchors.rightMargin: NeptuneStyle.dp(60)
+                anchors.rightMargin: Sizes.dp(60)
                 Label {
                     text: model.appInfo.name
                 }
@@ -173,66 +174,66 @@ Item {
                     text: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
                             arg(model.cpuLoad).arg(model.memoryVirtual).
                             arg(model.memoryRSS).arg(model.memoryPSS)
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                     opacity: NeptuneStyle.opacityMedium
                 }
                 Column {
                     width: parent.width
                     visible: !!model.appInfo.window
-                    leftPadding: NeptuneStyle.dp(40)
+                    leftPadding: Sizes.dp(40)
                     Label {
                         text: qsTr("Primary Window, on Center Console")
-                        font.pixelSize: NeptuneStyle.fontSizeS
+                        font.pixelSize: Sizes.fontSizeS
                     }
                     RowLayout {
                         width: parent.width - parent.leftPadding
                         Label {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame)
-                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            font.pixelSize: Sizes.fontSizeXS
                             opacity: NeptuneStyle.opacityMedium
                         }
                         Switch {
                             id: primarySwitch
-                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: NeptuneStyle.opacityMedium
                             Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
                         }
                     }
-                    bottomPadding: applicationICWindowColumn.visible ? 0 : NeptuneStyle.dp(20)
+                    bottomPadding: applicationICWindowColumn.visible ? 0 : Sizes.dp(20)
                 }
                 Column {
                     id: applicationICWindowColumn
                     width: parent.width
                     visible: !!model.appInfo.icWindow
-                    leftPadding: NeptuneStyle.dp(40)
+                    leftPadding: Sizes.dp(40)
                     Label {
                         text: qsTr("Application IC Window, on Instrument Cluster")
-                        font.pixelSize: NeptuneStyle.fontSizeS
+                        font.pixelSize: Sizes.fontSizeS
                     }
                     RowLayout {
                         width: parent.width - parent.leftPadding
                         Label {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame)
-                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            font.pixelSize: Sizes.fontSizeXS
                             opacity: NeptuneStyle.opacityMedium
                         }
                         Switch {
                             id: secondarySwitch
-                            font.pixelSize: NeptuneStyle.fontSizeXS
+                            font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: NeptuneStyle.opacityMedium
                             Binding { target: model.appInfo; property: "applicationICWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
                         }
                     }
-                    bottomPadding: NeptuneStyle.dp(20)
+                    bottomPadding: Sizes.dp(20)
                 }
                 Image {
                     visible: model.index !== listView.model.count - 1
                     width: parent.width
-                    height: NeptuneStyle.dp(sourceSize.height)
+                    height: Sizes.dp(sourceSize.height)
                     source: Style.gfx("list-divider", NeptuneStyle.theme)
                 }
             }

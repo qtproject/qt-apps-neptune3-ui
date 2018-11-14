@@ -38,12 +38,13 @@ import "../helpers/utils.js" as Utils
 import shared.animations 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
 
-    width: NeptuneStyle.dp(550)
-    height: NeptuneStyle.dp(400)
+    width: Sizes.dp(550)
+    height: Sizes.dp(400)
 
     property var store
     property bool autoMode: false
@@ -52,10 +53,10 @@ Item {
         id: tumblerFanSpeed
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        anchors.verticalCenterOffset: NeptuneStyle.dp(32)
+        anchors.verticalCenterOffset: Sizes.dp(32)
         model: 7
-        height: NeptuneStyle.dp(300)
-        width: NeptuneStyle.dp(100)
+        height: Sizes.dp(300)
+        width: Sizes.dp(100)
         clip: true
         visibleItemCount: 3
         wrap: false
@@ -63,20 +64,20 @@ Item {
         opacity: autoMode ? 0 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
         delegate: Item {
-            width: NeptuneStyle.dp(100)
-            height: NeptuneStyle.dp(100)
+            width: Sizes.dp(100)
+            height: Sizes.dp(100)
             Image {
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
                 source: Utils.localGfx("fan-speed-background", NeptuneStyle.theme)
                 fillMode: Image.PreserveAspectFit
             }
             Image {
                 id: tumblerImage
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
                 source: Utils.localGfx(("fan-speed-"+index), NeptuneStyle.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
                 fillMode: Image.PreserveAspectFit
@@ -97,24 +98,24 @@ Item {
 
     Item {
         anchors.centerIn: parent
-        width: Math.max(airFlowTop.width, airFlowMiddle.width, airFlowDown.width) + NeptuneStyle.dp(70)
-        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - NeptuneStyle.dp(60)
+        width: Math.max(airFlowTop.width, airFlowMiddle.width, airFlowDown.width) + Sizes.dp(70)
+        height: airFlowTop.height + airFlowMiddle.height + airFlowDown.height - Sizes.dp(60)
         Image {
             id: seatImage
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Utils.localGfx("seat", NeptuneStyle.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: NeptuneStyle.dp(-10)
+            anchors.verticalCenterOffset: Sizes.dp(-10)
             fillMode: Image.PreserveAspectFit
         }
         Image {
             id: airFlowTop
             anchors.left: parent.left
             anchors.top: parent.top
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", NeptuneStyle.theme)
                                                   : Utils.localGfx("air-flow-top", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
@@ -133,9 +134,9 @@ Item {
             id: airFlowMiddle
             anchors.left: parent.left
             anchors.top: airFlowTop.bottom
-            anchors.topMargin: NeptuneStyle.dp(-40)
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            anchors.topMargin: Sizes.dp(-40)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", NeptuneStyle.theme)
                                                  : Utils.localGfx("air-flow-middle", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
@@ -154,9 +155,9 @@ Item {
             id: airFlowDown
             anchors.left: parent.left
             anchors.top: airFlowMiddle.bottom
-            anchors.topMargin: NeptuneStyle.dp(20)
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            anchors.topMargin: Sizes.dp(20)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", NeptuneStyle.theme)
                                              : Utils.localGfx("air-flow-bottom", NeptuneStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
@@ -174,8 +175,8 @@ Item {
         MouseArea {
             anchors.left: parent.left
             anchors.bottom: airFlowTop.bottom
-            width: NeptuneStyle.dp(120)
-            height: NeptuneStyle.dp(40)
+            width: Sizes.dp(120)
+            height: Sizes.dp(40)
             enabled: !autoMode
             onClicked: root.store.airflow.windshield = !root.store.airflow.windshield;
         }

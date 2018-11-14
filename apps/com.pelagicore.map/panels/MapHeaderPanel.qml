@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 import QtPositioning 5.9
 
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.controls 1.0 as NeptuneControls
 import shared.animations 1.0
 
@@ -59,7 +59,7 @@ Item {
     readonly property var homeAddressData: QtPositioning.coordinate(57.706436, 12.018661)
     readonly property var workAddressData: QtPositioning.coordinate(57.709545, 11.967005)
 
-    readonly property int destinationButtonrowHeight: NeptuneStyle.dp(150)
+    readonly property int destinationButtonrowHeight: Sizes.dp(150)
 
     signal showRoute(var destCoord, string description)
     signal startNavigation()
@@ -71,7 +71,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(210)
+        anchors.topMargin: Sizes.dp(210)
         active: root.state === "Maximized"
         sourceComponent: HeaderBackgroundMaximizedPanel {
             navigationMode: root.navigationMode
@@ -93,11 +93,11 @@ Item {
 
     Loader {
         id: navigationSearchButtonsFullscreen
-        width: headerBackgroundFullscreen.width - NeptuneStyle.dp(90)
+        width: headerBackgroundFullscreen.width - Sizes.dp(90)
         height: headerBackgroundFullscreen.height
         active: headerBackgroundFullscreen.active && !root.navigationMode
         anchors.top: headerBackgroundFullscreen.top
-        anchors.topMargin: NeptuneStyle.dp(112)
+        anchors.topMargin: Sizes.dp(112)
         anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
         sourceComponent: NavigationSearchPanel {
             offlineMapsEnabled: root.offlineMapsEnabled
@@ -107,10 +107,10 @@ Item {
 
     Loader {
         id: navigationSearchButtonsWidget
-        width: headerBackgroundWidget.width - NeptuneStyle.dp(184) // compensate for the "expand" button in the widget corner
+        width: headerBackgroundWidget.width - Sizes.dp(184) // compensate for the "expand" button in the widget corner
         active: headerBackgroundWidget.active
         anchors.top: headerBackgroundWidget.top
-        anchors.topMargin: NeptuneStyle.dp(48)
+        anchors.topMargin: Sizes.dp(48)
         anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
         sourceComponent: NavigationSearchPanel {
             offlineMapsEnabled: root.offlineMapsEnabled
@@ -121,7 +121,7 @@ Item {
     Loader {
         id: navigationConfirmButtons
         anchors.fill: headerBackgroundFullscreen
-        anchors.rightMargin: NeptuneStyle.dp(45 * .5)
+        anchors.rightMargin: Sizes.dp(45 * .5)
         active: headerBackgroundFullscreen.active && root.navigationMode
         sourceComponent: NavigationConfirmPanel {
             guidanceMode: root.guidanceMode
@@ -139,9 +139,9 @@ Item {
         anchors.top: headerBackgroundFullscreen.top
         anchors.topMargin: headerBackgroundFullscreen.height - height
         anchors.left: headerBackgroundFullscreen.left
-        anchors.leftMargin: NeptuneStyle.dp(45)
+        anchors.leftMargin: Sizes.dp(45)
         anchors.right: headerBackgroundFullscreen.right
-        anchors.rightMargin: NeptuneStyle.dp(45 * 1.5)
+        anchors.rightMargin: Sizes.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundFullscreen.active && !root.navigationMode
         sourceComponent: FavDestinationButtonsPanel {
@@ -157,11 +157,11 @@ Item {
     Loader {
         id: favoriteDestinationButtonsWidget
         anchors.top: headerBackgroundWidget.top
-        anchors.topMargin: NeptuneStyle.dp(130)
+        anchors.topMargin: Sizes.dp(130)
         anchors.left: headerBackgroundWidget.left
-        anchors.leftMargin: NeptuneStyle.dp(45)
+        anchors.leftMargin: Sizes.dp(45)
         anchors.right: headerBackgroundWidget.right
-        anchors.rightMargin: NeptuneStyle.dp(45 * 1.5)
+        anchors.rightMargin: Sizes.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
         active: headerBackgroundWidget.active && root.state === "Widget3Rows"
         sourceComponent: FavDestinationButtonsPanel {

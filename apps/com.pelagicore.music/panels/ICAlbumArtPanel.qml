@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -66,7 +66,7 @@ Item {
 
         Item {
             id: itemDelegated
-            height: NeptuneStyle.dp(320)
+            height: Sizes.dp(320)
             width: height
             layer.enabled: true
             opacity: PathView.iconOpacity !== undefined ? PathView.iconOpacity : 0.0
@@ -76,15 +76,15 @@ Item {
             Image {
                 id: albumArtShadow
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
                 source: Style.gfx("album-art-shadow")
             }
 
             Image {
                 id: albumArtUndefined
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(180)
+                width: Sizes.dp(180)
                 height: width
                 source: Style.gfx("album-art-placeholder")
                 fillMode: Image.PreserveAspectCrop
@@ -93,7 +93,7 @@ Item {
             Image {
                 id: albumArt
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(180)
+                width: Sizes.dp(180)
                 height: width
                 source: model.item !== undefined ? model.item.coverArtUrl : ""
                 fillMode: Image.PreserveAspectCrop
@@ -106,7 +106,7 @@ Item {
         id: pathView
 
         width: root.width
-        height: NeptuneStyle.dp(180)
+        height: Sizes.dp(180)
         anchors.top: parent.top
 
         PathView {
@@ -149,11 +149,11 @@ Item {
     MusicProgress {
         id: musicProgress
         width: root.width
-        height: NeptuneStyle.dp(100)
+        height: Sizes.dp(100)
         anchors.top: pathView.bottom
-        anchors.topMargin: NeptuneStyle.dp(50)
-        anchors.leftMargin: NeptuneStyle.dp(40)
-        anchors.rightMargin: NeptuneStyle.dp(40)
+        anchors.topMargin: Sizes.dp(50)
+        anchors.leftMargin: Sizes.dp(40)
+        anchors.rightMargin: Sizes.dp(40)
         value: root.musicPosition
         progressBarLabelLeftMargin: 3
         clusterView: true

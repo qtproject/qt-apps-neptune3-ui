@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.0
 
 import shared.controls 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ListView {
     id: root
@@ -50,8 +50,8 @@ ListView {
         id: delegatedItem
         readonly property bool isInstalled: root.store.installedApps.indexOf(model.id) !== -1
 
-        width: NeptuneStyle.dp(675)
-        height: NeptuneStyle.dp(80)
+        width: Sizes.dp(675)
+        height: Sizes.dp(80)
         icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
         secondaryText: delegatedItem.isInstalled ? root.store.getInstalledApplicationSize(model.id)

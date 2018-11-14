@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtApplicationManager.Application 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype NeptuneWindow
@@ -83,7 +84,7 @@ ApplicationManagerWindow {
     onWindowPropertyChanged: {
         switch (name) {
         case "neptuneScale":
-            root.NeptuneStyle.scale = value;
+            root.Sizes.scale = value;
             break;
         case "neptuneAccentColor":
             root.NeptuneStyle.accentColor = value;

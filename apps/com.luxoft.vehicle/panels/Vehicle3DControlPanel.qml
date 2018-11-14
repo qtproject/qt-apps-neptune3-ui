@@ -37,7 +37,7 @@ import QtQuick.Controls 2.2
 import shared.controls 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -57,9 +57,8 @@ Item {
         id: toolsColumn
         anchors.top: parent.top
         anchors.left: parent.left
-        width: NeptuneStyle.dp(264)
-        height: NeptuneStyle.dp(460)
-
+        width: Sizes.dp(264)
+        height: Sizes.dp(460)
         translationContext: "VehicleToolsColumn"
     }
 

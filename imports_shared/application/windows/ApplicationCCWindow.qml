@@ -33,7 +33,7 @@ import QtQuick 2.11
 import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ApplicationCCWindow
@@ -156,8 +156,8 @@ NeptuneWindow {
         id: monitorOverlay
         x: root.exposedRect.x
         y: root.exposedRect.y
-        width: root.exposedRect.width - NeptuneStyle.dp(100)
-        height: root.exposedRect.height - NeptuneStyle.dp(50)
+        width: root.exposedRect.width - Sizes.dp(100)
+        height: root.exposedRect.height - Sizes.dp(50)
         fpsVisible: false
         window: root
         z: 9999

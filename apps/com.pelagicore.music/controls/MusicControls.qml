@@ -35,15 +35,16 @@ import shared.controls 1.0
 import QtQuick.Controls 2.3
 import QtGraphicalEffects 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Row {
     id: root
 
     width: 3 * buttonWidth
-    height: NeptuneStyle.dp(240)
+    height: Sizes.dp(240)
 
     property bool play: false
-    property real buttonWidth: NeptuneStyle.dp(100)
+    property real buttonWidth: Sizes.dp(100)
     signal previousClicked()
     signal playClicked()
     signal nextClicked()
@@ -65,8 +66,8 @@ Row {
         background: Image {
             id: playButtonBackground
             anchors.centerIn: parent
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Style.symbol("ic_button-bg")
             fillMode: Image.PreserveAspectFit
             layer.enabled: true

@@ -35,68 +35,68 @@ import QtQuick.Layouts 1.3
 import shared.controls 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
     anchors.horizontalCenter: parent ? parent.horizontalCenter : null
     anchors.top: parent ? parent.top : null
-    anchors.topMargin: NeptuneStyle.dp(40)
+    anchors.topMargin: Sizes.dp(40)
     anchors.bottom: parent ? parent.bottom : null
 
     Flickable {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: NeptuneStyle.dp(765)
+        width: Sizes.dp(765)
         contentHeight: columnContent.height
         contentWidth: columnContent.width
         flickableDirection: Flickable.VerticalFlick
         clip: true
         ColumnLayout {
             id: columnContent
-            spacing: NeptuneStyle.dp(4)
+            spacing: Sizes.dp(4)
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 text: "Basic ListItem"
                 dividerVisible: false
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 text: "ListItem Text"
                 subText: "ListItem Subtext"
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 text: "ListItem with an image"
                 icon.source: Style.gfx("fan-speed-5")
                 icon.color: "transparent"
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 text: "ListItem with Icon"
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 text: "ListItem with Secondary Text"
                 secondaryText: "Company"
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Secondary Text"
@@ -104,8 +104,8 @@ Item {
             }
 
             ListItem {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
                 text: "ListItem with Looooooooooonnngggg Text"
@@ -113,8 +113,8 @@ Item {
             }
 
             ListItemFlatButton {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 subText: "subtitle"
                 text: "ListItem with button"
@@ -123,9 +123,9 @@ Item {
             }
 
             ListItemFlatButton {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
-                rightPadding: NeptuneStyle.dp(16)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
+                rightPadding: Sizes.dp(16)
                 icon.name: "ic-update"
                 symbolFlatButton: Style.symbol("ic-favorite")
                 subText: "subtitle"
@@ -135,8 +135,8 @@ Item {
 
             ListItemProgress {
                 id: listItemProgress
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 minimumValue: 0
                 maximumValue: 100
                 icon.name: "ic-placeholder"
@@ -168,8 +168,8 @@ Item {
             }
             ListItemProgress {
                 id: listItemProgressIndeterminate
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 indeterminate: true
                 icon.name: "ic-placeholder"
                 cancelable: indeterminate
@@ -180,8 +180,8 @@ Item {
 
             ListItemSwitch {
                 id: listItemSwitch
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-placeholder"
                 text: "List item with a switch " + (listItemSwitch.switchOn ? "(ON)" : "(OFF)")
                 onSwitchClicked: console.log("Switch is clicked")
@@ -190,8 +190,8 @@ Item {
 
             ListItemTwoButtons {
                 id: listItemTwoButtons
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-placeholder"
                 text: "List item with two accessory buttons"
                 symbolAccessoryButton1: "ic-call-contrast"

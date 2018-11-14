@@ -37,19 +37,19 @@ import shared.utils 1.0
 
 import "../popups"
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
     anchors.horizontalCenter: parent ? parent.horizontalCenter : null
     anchors.top: parent ? parent.top : null
-    anchors.topMargin: NeptuneStyle.dp(40)
+    anchors.topMargin: Sizes.dp(40)
     anchors.bottom: parent ? parent.bottom : null
 
     Button {
         id: button
-        width: NeptuneStyle.dp(300)
-        height: NeptuneStyle.dp(200)
+        width: Sizes.dp(300)
+        height: Sizes.dp(200)
         anchors.centerIn: parent
         text: "ListView Popup"
         onClicked: {
@@ -64,8 +64,8 @@ Item {
     PopupWithList {
         id: popupWithList
 
-        width: NeptuneStyle.dp(910)
-        height: NeptuneStyle.dp(450)
+        width: Sizes.dp(910)
+        height: Sizes.dp(450)
     }
 }
 

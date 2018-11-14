@@ -37,6 +37,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -51,15 +52,15 @@ ListView {
 
     delegate: ItemDelegate { // FIXME right component?
         width: ListView.view.width
-        height: NeptuneStyle.dp(70)
+        height: Sizes.dp(70)
         padding: 0
         contentItem: Item {
             RowLayout {
                 anchors.fill: parent
-                spacing: NeptuneStyle.dp(45 * .5)
+                spacing: Sizes.dp(45 * .5)
                 RoundImage {
-                    Layout.preferredHeight: NeptuneStyle.dp(64)
-                    Layout.preferredWidth: NeptuneStyle.dp(64)
+                    Layout.preferredHeight: Sizes.dp(64)
+                    Layout.preferredWidth: Sizes.dp(64)
                     source: "../assets/profile_photos/%1.png".arg(model.handle)
                 }
                 Label {

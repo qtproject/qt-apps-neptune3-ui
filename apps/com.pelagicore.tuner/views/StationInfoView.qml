@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 import "../panels"
@@ -48,7 +48,7 @@ Item {
 
     StationInfoPanel {
         id: stationInfoPanel
-        height: NeptuneStyle.dp(180)
+        height: Sizes.dp(180)
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
         stationName: root.store.currentStationName

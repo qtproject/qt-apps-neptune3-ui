@@ -34,7 +34,7 @@ import QtGraphicalEffects 1.0
 
 import shared.animations 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -66,7 +66,7 @@ Item {
         id: vehicleTopView
 
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(-160)
+        anchors.topMargin: Sizes.dp(-160)
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
     }
@@ -75,7 +75,7 @@ Item {
         id: trunkCloseButton
 
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(540)
+        anchors.topMargin: Sizes.dp(540)
         anchors.horizontalCenter: parent.horizontalCenter
         text: root.trunkOpened ? qsTr("Close") : qsTr("Open")
 

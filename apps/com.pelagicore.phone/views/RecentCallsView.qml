@@ -37,6 +37,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../stores"
 
@@ -55,11 +56,11 @@ ListView {
         width: ListView.view.width
         bottomPadding: 0
         contentItem: Column {
-            spacing: NeptuneStyle.dp(16)
+            spacing: Sizes.dp(16)
             RowLayout {
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: NeptuneStyle.dp(45 * .5)
+                spacing: Sizes.dp(45 * .5)
                 ToolButton {
                     icon.name: model.type ? "ic-phone-%1".arg(model.type) : ""
                 }
@@ -72,13 +73,13 @@ ListView {
                 }
                 Label {
                     text: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                     font.weight: Font.Light
                 }
             }
             Image {
                 width: parent.width
-                height: NeptuneStyle.dp(2)
+                height: Sizes.dp(2)
                 source: Style.gfx("list-divider", NeptuneStyle.theme)
             }
         }

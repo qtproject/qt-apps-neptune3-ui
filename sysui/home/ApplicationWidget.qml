@@ -38,6 +38,7 @@ import shared.controls 1.0
 import system.controls 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -61,10 +62,10 @@ Item {
     ScalableBorderImage {
         // extra shadow when being dragged
         anchors.fill: parent
-        anchors.leftMargin: NeptuneStyle.dp(-59)
-        anchors.rightMargin: NeptuneStyle.dp(-59)
-        anchors.topMargin: NeptuneStyle.dp(-59)
-        anchors.bottomMargin: NeptuneStyle.dp(-59)
+        anchors.leftMargin: Sizes.dp(-59)
+        anchors.rightMargin: Sizes.dp(-59)
+        anchors.topMargin: Sizes.dp(-59)
+        anchors.bottomMargin: Sizes.dp(-59)
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -76,10 +77,10 @@ Item {
 
     ScalableBorderImage {
         anchors.fill: parent
-        anchors.leftMargin: NeptuneStyle.dp(-59)
-        anchors.rightMargin: NeptuneStyle.dp(-59)
-        anchors.topMargin: NeptuneStyle.dp(-59)
-        anchors.bottomMargin: NeptuneStyle.dp(-59)
+        anchors.leftMargin: Sizes.dp(-59)
+        anchors.rightMargin: Sizes.dp(-59)
+        anchors.topMargin: Sizes.dp(-59)
+        anchors.bottomMargin: Sizes.dp(-59)
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -123,8 +124,8 @@ Item {
             currentHeight: windowSlot.height
             windowState: root.active ? "Maximized" : root.widgetState
             appInfo: root.appInfo ? root.appInfo : null
-            width: NeptuneStyle.dp(Style.centerConsoleWidth)
-            height: NeptuneStyle.dp(Style.centerConsoleHeight)
+            width: Sizes.dp(Style.centerConsoleWidth)
+            height: Sizes.dp(Style.centerConsoleHeight)
             exposedRectTopMargin: root.exposedRectTopMargin
             exposedRectBottomMargin: root.exposedRectBottomMargin
         }
@@ -135,7 +136,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        width: NeptuneStyle.dp(40)
+        width: Sizes.dp(40)
         border { top: 25; bottom: 25 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
@@ -156,8 +157,8 @@ Item {
 
     // Application icon
     Image {
-        width: NeptuneStyle.dp(sourceSize.width)
-        height: NeptuneStyle.dp(sourceSize.height)
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
         fillMode: Image.PreserveAspectFit
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.top: widgetStripe.top
@@ -178,7 +179,7 @@ Item {
     MouseArea {
         id: dragHandle
         anchors.fill: widgetStripe
-        anchors.margins: NeptuneStyle.dp(-9)
+        anchors.margins: Sizes.dp(-9)
         visible: root.buttonsVisible
 
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
@@ -187,8 +188,8 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Style.symbol("ic-widget-move")
         }
     }
@@ -202,7 +203,7 @@ Item {
                                             (root.appInfo.id ? root.appInfo.id : "none")
                                             : "nothing"
                                             )
-        width: widgetStripe.width + NeptuneStyle.dp(18)
+        width: widgetStripe.width + Sizes.dp(18)
         height: width
         visible: root.buttonsVisible
 
@@ -210,8 +211,8 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Style.symbol("ic-widget-close")
         }
     }
@@ -221,8 +222,8 @@ Item {
         id: cornerImage
         anchors.right: parent.right
         anchors.top: parent.top
-        width: NeptuneStyle.dp(sourceSize.width)
-        height: NeptuneStyle.dp(sourceSize.height)
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
         source: Style.gfx("widget-corner", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
@@ -239,11 +240,11 @@ Item {
 
         Image {
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(23)
+            anchors.rightMargin: Sizes.dp(23)
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(24)
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            anchors.topMargin: Sizes.dp(24)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Style.symbol("ic-expand-to-fullscreen", NeptuneStyle.theme)
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }

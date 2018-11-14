@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -47,98 +48,98 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(80)
-        spacing: NeptuneStyle.dp(40)
+        anchors.topMargin: Sizes.dp(80)
+        spacing: Sizes.dp(40)
         RowLayout {
-            spacing: NeptuneStyle.dp(13)
+            spacing: Sizes.dp(13)
 
             Button {
-                implicitWidth: NeptuneStyle.dp(315)
-                implicitHeight: NeptuneStyle.dp(64)
-                font.pixelSize: NeptuneStyle.fontSizeS
+                implicitWidth: Sizes.dp(315)
+                implicitHeight: Sizes.dp(64)
+                font.pixelSize: Sizes.fontSizeS
                 text: "This is a button"
             }
 
             Button {
-                implicitWidth: NeptuneStyle.dp(315)
-                implicitHeight: NeptuneStyle.dp(64)
-                font.pixelSize: NeptuneStyle.fontSizeS
+                implicitWidth: Sizes.dp(315)
+                implicitHeight: Sizes.dp(64)
+                font.pixelSize: Sizes.fontSizeS
                 text: "Disabled Button"
                 enabled: false
             }
 
             Button {
-                implicitWidth: NeptuneStyle.dp(315)
-                implicitHeight: NeptuneStyle.dp(64)
-                font.pixelSize: NeptuneStyle.fontSizeS
+                implicitWidth: Sizes.dp(315)
+                implicitHeight: Sizes.dp(64)
+                font.pixelSize: Sizes.fontSizeS
                 text: "Button Checkable"
                 checkable: true
             }
         }
         RowLayout {
-            spacing: NeptuneStyle.dp(13)
+            spacing: Sizes.dp(13)
 
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Small button"
             }
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Small button"
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
             Button {
                 implicitHeight: smallButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Checkable"
                 icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
                 checkable: true
             }
         }
         RowLayout {
-            spacing: NeptuneStyle.dp(13)
+            spacing: Sizes.dp(13)
             Button {
                 text: "Large button"
                 implicitHeight: largeButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
 
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Large button"
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Checkable"
                 icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
                 checkable: true
             }
         }
         RowLayout {
-            spacing: NeptuneStyle.dp(13)
+            spacing: Sizes.dp(13)
 
             Label {
                 text: "Custom background:"
@@ -169,28 +170,28 @@ Item {
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"
                 text: "text"
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 display: AbstractButton.TextUnderIcon
                 spacing: 0
             }
         }
         RowLayout {
-            spacing: NeptuneStyle.dp(13)
+            spacing: Sizes.dp(13)
             Button {
                 implicitHeight: largeButtonHeight
                 implicitWidth: 500
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 text: "Wide button"
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: NeptuneStyle.dp(315)
+                implicitWidth: Sizes.dp(315)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: "Elide too long text"
                 icon.name: "ic-steering-wheel-heat_OFF"
             }

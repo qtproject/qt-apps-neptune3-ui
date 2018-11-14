@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
@@ -58,7 +58,7 @@ ColumnLayout {
             icon.name: model.name ? (checked ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
             display: AbstractButton.TextUnderIcon
             text: qsTr(model.name)
-            font.pixelSize: NeptuneStyle.fontSizeXS
+            font.pixelSize: Sizes.fontSizeXS
             onClicked: {
                 root.toolClicked(model.name, index);
                 root.currentTool = model.name;

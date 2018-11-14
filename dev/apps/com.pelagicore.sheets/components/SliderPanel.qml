@@ -34,23 +34,23 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     Column {
         id: columnContent
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
-        spacing: 10 * NeptuneStyle.scale
+        spacing: Sizes.dp(10)
         Label {
             text: "Vertical / Horizontal sliders"
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 50 * NeptuneStyle.scale
+            spacing: Sizes.dp(50)
             Slider {
                 anchors.verticalCenter: parent.verticalCenter
-                height: 500 * NeptuneStyle.scale
+                height: Sizes.dp(500)
                 from: 0
                 to: 100
                 value: 35
@@ -58,7 +58,7 @@ Item {
             }
             Slider {
                 anchors.verticalCenter: parent.verticalCenter
-                width: 700 * NeptuneStyle.scale
+                width: Sizes.dp(700)
                 from: 0
                 to: 100
                 value: 35
@@ -70,10 +70,10 @@ Item {
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 50 * NeptuneStyle.scale
+            spacing: Sizes.dp(50)
             Slider {
                 anchors.verticalCenter: parent.verticalCenter
-                height: 500 * NeptuneStyle.scale
+                height: Sizes.dp(500)
                 from: 0
                 to: 100
                 value: 40
@@ -82,7 +82,7 @@ Item {
             }
             Slider {
                 anchors.verticalCenter: parent.verticalCenter
-                width: 700 * NeptuneStyle.scale
+                width: Sizes.dp(700)
                 from: 0
                 to: 100
                 value: 30

@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Flickable {
     id: root
@@ -49,10 +49,10 @@ Flickable {
 
     Column {
         id: column
-        width: root.width - NeptuneStyle.dp(20)
+        width: root.width - Sizes.dp(20)
 
-        topPadding: NeptuneStyle.dp(20)
-        spacing: NeptuneStyle.dp(20)
+        topPadding: Sizes.dp(20)
+        spacing: Sizes.dp(20)
 
         Label {
             width: parent.width
@@ -60,7 +60,7 @@ Flickable {
             text: qsTr("Enabling performance monitoring forces System UI " +
                         " to constantly redraw itself, therefore having a constant," +
                         " unnecessary, GPU/CPU consumption.")
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
         }
 
         SwitchDelegate {

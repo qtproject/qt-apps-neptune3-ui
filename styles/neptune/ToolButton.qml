@@ -36,6 +36,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.ToolButton {
     id: control
@@ -46,10 +47,10 @@ T.ToolButton {
                              contentItem.implicitHeight + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: NeptuneStyle.dp(6)
-    spacing: NeptuneStyle.dp(6)
+    padding: Sizes.dp(6)
+    spacing: Sizes.dp(6)
 
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
     font.family: NeptuneStyle.fontFamily
     opacity: enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
     icon.color: (checked || highlighted) ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
@@ -62,7 +63,7 @@ T.ToolButton {
                                                      : control.checkable && !control.checked && control.display === AbstractButton.TextUnderIcon // ToolsColumn
                                                        ? NeptuneStyle.opacityLow : NeptuneStyle.opacityHigh
 
-        iconScale: NeptuneStyle.scale
+        iconScale: Sizes.scale
         spacing: control.spacing
         mirrored: control.mirrored
         display: control.display

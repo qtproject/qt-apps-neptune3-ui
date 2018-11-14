@@ -68,15 +68,6 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(QColor contrastColor READ contrastColor NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(QColor clusterMarksColor READ clusterMarksColor NOTIFY neptuneStyleChanged FINAL)
 
-    // Font sizes are already premultiplied by NeptuneStyle::scale
-    Q_PROPERTY(int fontSizeXXS READ fontSizeXXS NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeXS READ fontSizeXS NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeS READ fontSizeS NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeM READ fontSizeM NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeL READ fontSizeL NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeXL READ fontSizeXL NOTIFY scaleChanged FINAL)
-    Q_PROPERTY(int fontSizeXXL READ fontSizeXXL NOTIFY scaleChanged FINAL)
-
     Q_PROPERTY(qreal opacityLow READ opacityLow NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(qreal opacityMedium READ opacityMedium NOTIFY neptuneStyleChanged FINAL)
     Q_PROPERTY(qreal opacityHigh READ opacityHigh NOTIFY neptuneStyleChanged FINAL)
@@ -86,32 +77,8 @@ class NeptuneStyle : public QQuickStyleAttached
     Q_PROPERTY(qreal secondaryTextLetterSpacing READ secondaryTextLetterSpacing NOTIFY neptuneStyleChanged FINAL)
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY neptuneStyleChanged FINAL)
-    Q_PROPERTY(int fontFactor READ fontFactor NOTIFY neptuneStyleChanged FINAL)
 
     Q_PROPERTY(QString backgroundImage READ backgroundImage NOTIFY neptuneStyleChanged)
-
-    /*
-        Scale factor to be applied to pixel values
-
-        Neptune 3 UI was designed for a specific aspect ratio, physical size and DPI.
-        In order to support other pixel densities this scale factor has to be applied to all
-        pixel values (ie, pixel values have to be multiplied by it), preferably via
-        the NeptuneStyle.dp() function.
-
-        \sa dp
-     */
-    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
-
-    /*
-        Converts pixels values from the reference pixel density to the current one
-
-        Applies the current scale factor to the given pixel value, effectively
-        converting it into device pixels (dp). It might also round it up to the
-        nearest integer to minimize aliasing artifacts.
-
-        \sa scale
-     */
-    Q_PROPERTY(QJSValue dp READ dp NOTIFY scaleChanged)
 
 public:
     explicit NeptuneStyle(QObject *parent = nullptr);
@@ -176,17 +143,11 @@ public:
     QString backgroundImage() const;
 
     QString fontFamily() const;
-    int fontFactor() const;
 
     Theme theme() const;
     void setTheme(Theme);
     void inheritTheme(Theme theme);
     void propagateTheme();
-
-    qreal scale() const;
-    void setScale(qreal);
-
-    QJSValue dp() const;
 
 protected:
     void init();
@@ -194,12 +155,10 @@ signals:
     void accentColorChanged();
     void neptuneStyleChanged();
     void themeChanged();
-    void scaleChanged();
 
 private:
     QScopedPointer<StyleData> m_data;
     QColor m_accentColor;
-    mutable QJSValue m_dp;
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
@@ -210,7 +169,6 @@ protected:
     void inheritStyle(const StyleData &data);
     void propagateStyle(const StyleData &data);
     void resolveGlobalThemeData(const QSharedPointer<QSettings> &settings);
-    void propagateScale();
 };
 
 QML_DECLARE_TYPEINFO(NeptuneStyle, QML_HAS_ATTACHED_PROPERTIES)

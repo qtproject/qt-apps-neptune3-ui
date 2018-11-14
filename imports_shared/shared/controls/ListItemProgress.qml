@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ListItemProgress
@@ -169,12 +170,12 @@ ListItemBasic {
         id: secondaryTextLabel
         anchors.verticalCenter: parent.verticalCenter
         opacity: NeptuneStyle.opacityMedium
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         text: root.secondaryText
     }
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: NeptuneStyle.dp(100)
+        implicitWidth: Sizes.dp(100)
         implicitHeight: root.height
         anchors.verticalCenter: parent.verticalCenter
         icon.name: root.cancelSymbol
@@ -184,7 +185,7 @@ ListItemBasic {
 
     accessoryBottomDelegateComponent: ProgressBar {
         implicitWidth: root.width
-        implicitHeight: NeptuneStyle.dp(8)
+        implicitHeight: Sizes.dp(8)
         from: root.minimumValue
         to: root.maximumValue
         value: root.value

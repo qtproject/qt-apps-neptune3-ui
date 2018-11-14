@@ -33,7 +33,7 @@ import QtQuick 2.8
 import application.windows 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "views"
 import "store"
@@ -48,7 +48,7 @@ ApplicationCCWindow {
         x: root.exposedRect.x
         y: 0
         width: root.exposedRect.width
-        height: NeptuneStyle.dp(436) + exposedRect.y
+        height: Sizes.dp(436) + exposedRect.y
         fillMode: Image.Pad
 
         source: Assets.gfx("hero-settings")

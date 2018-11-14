@@ -39,7 +39,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import system.controls 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 PopupItem {
     id: root
@@ -48,7 +48,7 @@ PopupItem {
     property alias model: delegateModel.model
     readonly property int popupHeight: popupContent.height
     height: Math.max(root.minHeight, popupHeight)
-    popupY: (root.parent.height - root.height)/2 - NeptuneStyle.dp(40)
+    popupY: (root.parent.height - root.height)/2 - Sizes.dp(40)
 
     function fixupDivider() {
         var found = false;
@@ -110,7 +110,7 @@ PopupItem {
         delegate: ListItem {
             objectName: "itemAddWidget_" + (model.appInfo ? model.appInfo.id : "none")
             width: ListView.view.width
-            height: visible ? NeptuneStyle.dp(80) : 0
+            height: visible ? Sizes.dp(80) : 0
             visible: model.appInfo && !model.appInfo.asWidget
             icon.source: model.appInfo ? Qt.resolvedUrl(model.appInfo.icon) : ""
             text: model.appInfo ? model.appInfo.name : ""
@@ -129,7 +129,7 @@ PopupItem {
         Label {
             id: header
             anchors.baseline: parent.top
-            anchors.baselineOffset: NeptuneStyle.dp(78)
+            anchors.baselineOffset: Sizes.dp(78)
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             elide: Text.ElideRight
@@ -139,9 +139,9 @@ PopupItem {
         Image {
             id: shadow
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(120)
+            anchors.topMargin: Sizes.dp(120)
             width: parent.width
-            height: NeptuneStyle.dp(sourceSize.height)
+            height: Sizes.dp(sourceSize.height)
             source: Style.gfx("popup-title-shadow")
         }
 
@@ -149,13 +149,13 @@ PopupItem {
             id: widgetListview
             anchors {
                 top: shadow.bottom
-                topMargin: NeptuneStyle.dp(51)
+                topMargin: Sizes.dp(51)
                 left: parent.left
-                leftMargin: NeptuneStyle.dp(74)
+                leftMargin: Sizes.dp(74)
                 right: parent.right
-                rightMargin: NeptuneStyle.dp(74)
+                rightMargin: Sizes.dp(74)
                 bottom: parent.bottom
-                bottomMargin: NeptuneStyle.dp(74)
+                bottomMargin: Sizes.dp(74)
             }
             model: delegateModel
             interactive: false

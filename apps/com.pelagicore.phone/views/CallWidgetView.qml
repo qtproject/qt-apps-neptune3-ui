@@ -38,6 +38,7 @@ import shared.animations 1.0
 import shared.controls 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 import "../stores"
@@ -80,10 +81,10 @@ Item {
                 target: buttonRow; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
             }
             PropertyChanges {
-                target: contactImage; width: NeptuneStyle.dp(200); height: width
+                target: contactImage; width: Sizes.dp(200); height: width
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: NeptuneStyle.dp(32)
+                target: textColumn; anchors.leftMargin: Sizes.dp(32)
             }
         },
         State {
@@ -99,24 +100,24 @@ Item {
                 anchors.verticalCenter: contactImage.bottom
             }
             PropertyChanges {
-                target: contactImage; width: NeptuneStyle.dp(258); height: width; anchors.topMargin: NeptuneStyle.dp(80)
+                target: contactImage; width: Sizes.dp(258); height: width; anchors.topMargin: Sizes.dp(80)
             }
             PropertyChanges {
-                target: textColumn; anchors.leftMargin: 0; anchors.topMargin: NeptuneStyle.dp(32)
+                target: textColumn; anchors.leftMargin: 0; anchors.topMargin: Sizes.dp(32)
             }
         },
         State {
             name: "Widget3Rows"
             extend: "Widget2Rows"
             PropertyChanges {
-                target: contactImage; width: NeptuneStyle.dp(413); height: width; anchors.topMargin: NeptuneStyle.dp(128)
+                target: contactImage; width: Sizes.dp(413); height: width; anchors.topMargin: Sizes.dp(128)
             }
         },
         State {
             name: "Maximized"
             extend: "Widget2Rows"
             PropertyChanges {
-                target: contactImage; width: NeptuneStyle.dp(200); height: width; anchors.topMargin: NeptuneStyle.dp(24)
+                target: contactImage; width: Sizes.dp(200); height: width; anchors.topMargin: Sizes.dp(24)
             }
         }
     ]
@@ -140,8 +141,8 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
-        width: NeptuneStyle.dp(sourceSize.width)
-        height: NeptuneStyle.dp(sourceSize.height)
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
 
         opacity: root.state === "Widget1Row" ? 1.0 : 0.0
         visible: opacity > 0
@@ -161,7 +162,7 @@ Item {
         }
         Label {
             Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignCenter
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             opacity: NeptuneStyle.opacityMedium
             text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
         }
@@ -169,20 +170,20 @@ Item {
 
     RowLayout {
         id: buttonRow
-        spacing: root.state === "Widget1Row" ? NeptuneStyle.dp(60) : NeptuneStyle.dp(5)
+        spacing: root.state === "Widget1Row" ? Sizes.dp(60) : Sizes.dp(5)
 
         ToolButton {
-            Layout.rightMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
+            Layout.rightMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
             icon.name: "ic-mute-ongoing"
         }
 
         ToolButton {
-            Layout.preferredWidth: NeptuneStyle.dp(90)
-            Layout.preferredHeight: NeptuneStyle.dp(90)
+            Layout.preferredWidth: Sizes.dp(90)
+            Layout.preferredHeight: Sizes.dp(90)
             background: Image {
                 anchors.centerIn: parent
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
                 source: Style.symbol("ic_button-bg-red")
             }
             icon.name: "ic-end-call"
@@ -191,7 +192,7 @@ Item {
         }
 
         ToolButton {
-            Layout.leftMargin: root.state !== "Widget1Row" ? NeptuneStyle.dp(90) : 0
+            Layout.leftMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
             icon.name: "ic-keypad-ongoing"
             //onClicked: root.keypadRequested() // TODO, disabled for now
         }

@@ -37,6 +37,7 @@ import shared.controls 1.0
 import QtGraphicalEffects 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "views"
 import "controls"
@@ -48,7 +49,7 @@ ApplicationCCWindow {
     MultiPointTouchArea {
         id: multiPoint
         anchors.fill: parent
-        anchors.margins: NeptuneStyle.dp(30)
+        anchors.margins: Sizes.dp(30)
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
         property int count: 0
@@ -62,12 +63,12 @@ ApplicationCCWindow {
         id: fullscreenTopPartBackground
 
         x: root.exposedRect.x
-        y: root.exposedRect.y - NeptuneStyle.dp(224)
+        y: root.exposedRect.y - Sizes.dp(224)
         width: root.exposedRect.width
-        height: Math.max(NeptuneStyle.dp(sourceSize.height), NeptuneStyle.dp(660 - 224) + root.exposedRect.y)
+        height: Math.max(Sizes.dp(sourceSize.height), Sizes.dp(660 - 224) + root.exposedRect.y)
 
         border.bottom: 0
-        border.top: height - NeptuneStyle.dp(1)
+        border.top: height - Sizes.dp(1)
         border.left: 0
         border.right: 0
 

@@ -36,6 +36,7 @@ import Qt.labs.calendar 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../controls"
 
 Item {
@@ -48,48 +49,48 @@ Item {
     Component {
         id: delegatedCalendar
         Item {
-            width: NeptuneStyle.dp(315)
-            height: NeptuneStyle.dp(240)
+            width: Sizes.dp(315)
+            height: Sizes.dp(240)
             ColumnLayout {
                 Label {
-                    Layout.preferredWidth: NeptuneStyle.dp(270)
-                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.preferredWidth: Sizes.dp(270)
+                    Layout.maximumWidth: Sizes.dp(270)
                     Layout.fillHeight: true
                     text: Qt.locale().standaloneMonthName(index) + " " + grid.year
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                 }
                 DayOfWeekRow {
                     locale: Qt.locale(Style.languageLocale)
                     Layout.fillWidth: true
-                    Layout.preferredWidth: NeptuneStyle.dp(270)
-                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.preferredWidth: Sizes.dp(270)
+                    Layout.maximumWidth: Sizes.dp(270)
                     Layout.maximumHeight: 0.1 * gridView.cellHeight
                     Layout.preferredHeight: 0.1 * gridView.cellHeight
-                    spacing: NeptuneStyle.dp(6)
-                    topPadding: NeptuneStyle.dp(6)
-                    bottomPadding: NeptuneStyle.dp(6)
+                    spacing: Sizes.dp(6)
+                    topPadding: Sizes.dp(6)
+                    bottomPadding: Sizes.dp(6)
                     delegate: Label {
                         text: model.shortName
-                        font.pixelSize: NeptuneStyle.fontSizeXS
+                        font.pixelSize: Sizes.fontSizeXS
                         color: NeptuneStyle.contrastColor
                         horizontalAlignment: Text.AlignHCenter
                     }
                 }
                 MonthGrid {
                     id: grid
-                    spacing: NeptuneStyle.dp(6)
+                    spacing: Sizes.dp(6)
                     locale: Qt.locale(Style.languageLocale)
                     month: index
                     year: root.currentYear
-                    Layout.preferredWidth: NeptuneStyle.dp(270)
-                    Layout.maximumWidth: NeptuneStyle.dp(270)
+                    Layout.preferredWidth: Sizes.dp(270)
+                    Layout.maximumWidth: Sizes.dp(270)
                     Layout.maximumHeight: 0.7 * gridView.cellHeight
                     Layout.preferredHeight: 0.7 * gridView.cellHeight
                     delegate: Label {
                         text: model.day
                         color: NeptuneStyle.contrastColor
-                        font.pixelSize: NeptuneStyle.fontSizeXS
+                        font.pixelSize: Sizes.fontSizeXS
                         horizontalAlignment: Text.AlignHCenter
                         opacity: model.month === grid.month ? 1 : 0
                     }
@@ -102,25 +103,25 @@ Item {
         Layout.alignment: Qt.AlignTop
         GridView {
             id: gridView
-            Layout.preferredWidth: NeptuneStyle.dp(315)
+            Layout.preferredWidth: Sizes.dp(315)
             Layout.preferredHeight: root.height
             Layout.alignment: Qt.AlignTop
             clip: true
             model: 12
             delegate: delegatedCalendar
-            cellWidth: NeptuneStyle.dp(315)
-            cellHeight: NeptuneStyle.dp(240)
+            cellWidth: Sizes.dp(315)
+            cellHeight: Sizes.dp(240)
             ScrollIndicator.vertical: ScrollIndicator { }
         }
 
         EventList {
             id: eventList
-            Layout.preferredWidth: NeptuneStyle.dp(450)
+            Layout.preferredWidth: Sizes.dp(450)
             Layout.preferredHeight: root.height
             Layout.alignment: Qt.AlignTop
             delegate: EventListItem {
-                width: NeptuneStyle.dp(450)
-                height: NeptuneStyle.dp(80)
+                width: Sizes.dp(450)
+                height: Sizes.dp(80)
                 eventTimeStart: timeStart
                 eventTimeEnd: timeEnd
                 eventLabel: event

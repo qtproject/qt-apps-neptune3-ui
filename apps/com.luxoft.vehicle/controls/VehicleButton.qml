@@ -33,6 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ToolButton {
     id: root
@@ -44,30 +45,30 @@ ToolButton {
             name: "FAT"
             PropertyChanges {
                 target: root
-                implicitHeight: NeptuneStyle.dp(100)
-                leftPadding: NeptuneStyle.dp(58)
-                rightPadding: NeptuneStyle.dp(58)
-                font.pixelSize: root.NeptuneStyle.fontSizeM
+                implicitHeight: Sizes.dp(100)
+                leftPadding: Sizes.dp(58)
+                rightPadding: Sizes.dp(58)
+                font.pixelSize: root.Sizes.fontSizeM
             }
         },
         State {
             name: "REGULAR"
             PropertyChanges {
                 target: root
-                implicitHeight: NeptuneStyle.dp(100)
-                leftPadding: NeptuneStyle.dp(42)
-                rightPadding: NeptuneStyle.dp(42)
-                font.pixelSize: root.NeptuneStyle.fontSizeS
+                implicitHeight: Sizes.dp(100)
+                leftPadding: Sizes.dp(42)
+                rightPadding: Sizes.dp(42)
+                font.pixelSize: root.Sizes.fontSizeS
             }
         },
         State {
             name: "SMALL"
             PropertyChanges {
                 target: root
-                implicitHeight: NeptuneStyle.dp(52)
-                leftPadding: NeptuneStyle.dp(22)
-                rightPadding: NeptuneStyle.dp(22)
-                font.pixelSize: root.NeptuneStyle.fontSizeS
+                implicitHeight: Sizes.dp(52)
+                leftPadding: Sizes.dp(22)
+                rightPadding: Sizes.dp(22)
+                font.pixelSize: root.Sizes.fontSizeS
             }
         }
     ]

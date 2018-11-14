@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.2
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ItemDelegate {
     id: root
@@ -51,19 +52,19 @@ ItemDelegate {
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(45)
-            spacing: NeptuneStyle.dp(45)
+            anchors.leftMargin: Sizes.dp(45)
+            spacing: Sizes.dp(45)
 
             ColumnLayout {
-                Layout.preferredWidth: NeptuneStyle.dp(45)
+                Layout.preferredWidth: Sizes.dp(45)
                 Label {
                     text: root.eventTimeStart
-                    font.pixelSize: NeptuneStyle.fontSizeXS
+                    font.pixelSize: Sizes.fontSizeXS
                 }
                 Label {
                     visible: root.eventTimeStart !== root.eventTimeEnd
                     text: root.eventTimeEnd
-                    font.pixelSize: NeptuneStyle.fontSizeXS
+                    font.pixelSize: Sizes.fontSizeXS
                     opacity: NeptuneStyle.opacityMedium
                 }
             }
@@ -71,13 +72,13 @@ ItemDelegate {
             Label {
                 id: event
                 visible: text !== ""
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
             }
         }
 
         Image {
             width: parent.width
-            height: NeptuneStyle.dp(5)
+            height: Sizes.dp(5)
             anchors.bottom: parent.bottom
             source: Style.gfx("divider", NeptuneStyle.theme)
         }

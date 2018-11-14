@@ -34,12 +34,13 @@ import QtQuick.Controls 2.2
 import application.windows 1.0
 import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 NeptuneWindow {
     id: root
 
-    width: NeptuneStyle.dp(480)
-    height: NeptuneStyle.dp(240)
+    width: Sizes.dp(480)
+    height: Sizes.dp(240)
 
     property real currentSpeed: clusterSettings.speed
     Behavior on currentSpeed {
@@ -60,25 +61,25 @@ NeptuneWindow {
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: NeptuneStyle.dp(-30)
+            anchors.verticalCenterOffset: Sizes.dp(-30)
             text: Math.round(root.currentSpeed)
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: Font.DemiBold
             color: NeptuneStyle.accentColor
             opacity: NeptuneStyle.opacityHigh
-            font.pixelSize: NeptuneStyle.fontSizeL
+            font.pixelSize: Sizes.fontSizeL
         }
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: NeptuneStyle.dp(30)
+            anchors.verticalCenterOffset: Sizes.dp(30)
             text: qsTr("km/h")
             font.weight: Font.Light
             color: NeptuneStyle.accentColor
             opacity: NeptuneStyle.opacityLow
-            font.pixelSize: NeptuneStyle.fontSizeM
+            font.pixelSize: Sizes.fontSizeM
         }
     }
 }

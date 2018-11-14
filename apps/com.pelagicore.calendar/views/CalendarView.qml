@@ -41,6 +41,7 @@ import "../controls"
 import "../panels"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -67,7 +68,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: NeptuneStyle.dp(436)
+        height: Sizes.dp(436)
         source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
         visible: root.state === "Maximized"
     }
@@ -76,13 +77,13 @@ Item {
         id: calendarOnTop
         anchors {
             top: topContentBg.top
-            topMargin: NeptuneStyle.dp(80)
+            topMargin: Sizes.dp(80)
             left: topContentBg.left
-            leftMargin: NeptuneStyle.dp(135)
+            leftMargin: Sizes.dp(135)
             right: topContentBg.right
-            rightMargin: NeptuneStyle.dp(135)
+            rightMargin: Sizes.dp(135)
             bottom: topContentBg.bottom
-            bottomMargin: NeptuneStyle.dp(40)
+            bottomMargin: Sizes.dp(40)
         }
         visible: root.state === "Maximized"
     }
@@ -92,13 +93,13 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: calendarOnTop.bottom
-        anchors.topMargin: NeptuneStyle.dp(64)
+        anchors.topMargin: Sizes.dp(64)
         anchors.bottom: root.bottom
         visible: root.state === "Maximized"
 
         Item {
             anchors.left: parent.left
-            width: NeptuneStyle.dp(264)
+            width: Sizes.dp(264)
             anchors.top: parent.top
             anchors.bottom: parent.bottom
 
@@ -106,7 +107,7 @@ Item {
                 id: toolsColumn
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: NeptuneStyle.dp(53)
+                anchors.topMargin: Sizes.dp(53)
 
                 translationContext: "CalendarToolsColumn"
                 model: ListModel {
@@ -120,11 +121,11 @@ Item {
 
         StackLayout {
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(53)
+            anchors.topMargin: Sizes.dp(53)
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(96)
+            anchors.rightMargin: Sizes.dp(96)
             anchors.bottom: parent.bottom
-            width: NeptuneStyle.dp(720)
+            width: Sizes.dp(720)
 
             currentIndex: toolsColumn.currentIndex
 

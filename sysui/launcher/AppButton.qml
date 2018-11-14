@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -52,7 +52,7 @@ Item {
     }
 
     Image {
-        width: NeptuneStyle.dp(68)
+        width: Sizes.dp(68)
         anchors.centerIn: icon
         fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
@@ -63,18 +63,18 @@ Item {
         id: icon
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
-        width: NeptuneStyle.dp(35)
-        height: NeptuneStyle.dp(35)
+        width: Sizes.dp(35)
+        height: Sizes.dp(35)
         fillMode: Image.PreserveAspectFit
     }
 
     Label {
         id: appLabel
         anchors.top: icon.bottom
-        anchors.topMargin: NeptuneStyle.dp(10)
+        anchors.topMargin: Sizes.dp(10)
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.width*0.8
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         opacity: root.gridOpen ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         color: "white"

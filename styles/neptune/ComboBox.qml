@@ -35,11 +35,12 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.ComboBox {
     id: control
 
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
                             contentItem.implicitWidth + leftPadding + rightPadding)

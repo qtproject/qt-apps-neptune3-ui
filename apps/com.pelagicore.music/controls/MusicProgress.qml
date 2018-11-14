@@ -34,6 +34,7 @@ import shared.utils 1.0
 import QtQuick.Controls 2.2
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -42,9 +43,9 @@ Control {
     property bool labelOnTop: true
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
-    property int progressBarLabelLeftMargin: NeptuneStyle.dp(10)
+    property int progressBarLabelLeftMargin: Sizes.dp(10)
     readonly property int progressBarWidth: root.width - (root.labelOnTop
-                                                ? NeptuneStyle.dp(6) : NeptuneStyle.dp(5))
+                                                ? Sizes.dp(6) : Sizes.dp(5))
 
     signal updatePosition(var value)
 
@@ -53,10 +54,10 @@ Control {
         Label {
             id: progressLabel
             anchors.top: parent.top
-            anchors.topMargin: root.labelOnTop ? NeptuneStyle.dp(48) : 0
+            anchors.topMargin: root.labelOnTop ? Sizes.dp(48) : 0
             anchors.left: parent.left
             anchors.leftMargin: root.progressBarLabelLeftMargin
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: root.progressText
             opacity: NeptuneStyle.opacityMedium
         }
@@ -64,16 +65,16 @@ Control {
         ProgressBar {
             id: progressBar
             implicitWidth: root.progressBarWidth
-            implicitHeight: NeptuneStyle.dp(8)
+            implicitHeight: Sizes.dp(8)
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: NeptuneStyle.dp(-24)
-            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : NeptuneStyle.dp(90)
+            anchors.verticalCenterOffset: Sizes.dp(-24)
+            anchors.horizontalCenterOffset: root.labelOnTop ? 0 : Sizes.dp(90)
             value: root.value
         }
 
         MouseArea {
             width: parent.width
-            height: NeptuneStyle.dp(50)
+            height: Sizes.dp(50)
             anchors.centerIn: progressBar
             enabled: !root.clusterView
             onPressed: {

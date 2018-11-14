@@ -35,6 +35,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../helpers"
 
 Item {
@@ -45,7 +46,7 @@ Item {
 
     Image {
         id: widgetBackgroundImage
-        height: root.state === "Widget3Rows" ? NeptuneStyle.dp(sourceSize.height) : NeptuneStyle.dp(sourceSize.height/2)
+        height: root.state === "Widget3Rows" ? Sizes.dp(sourceSize.height) : Sizes.dp(sourceSize.height/2)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top

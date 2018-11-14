@@ -32,9 +32,10 @@
 import QtQuick 2.10
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Rectangle {
-    border.width: !parent.enabled && !parent.checked ? NeptuneStyle.dp(2) : 0
+    border.width: !parent.enabled && !parent.checked ? Sizes.dp(2) : 0
     border.color: NeptuneStyle.contrastColor
     visible: !parent.flat
     color: {

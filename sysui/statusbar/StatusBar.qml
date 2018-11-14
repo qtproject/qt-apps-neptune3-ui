@@ -36,12 +36,12 @@ import QtQuick.Layouts 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 RowLayout {
     id: root
 
-    implicitHeight: NeptuneStyle.dp(Style.statusBarHeight)
+    implicitHeight: Sizes.dp(Style.statusBarHeight)
 
     property var uiSettings
     property var model

@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 
 import shared.FrameTimer 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -62,20 +63,20 @@ Item {
         id: row
         anchors.top: parent.top
         anchors.right: parent.right
-        spacing: NeptuneStyle.dp(10)
-        leftPadding: NeptuneStyle.dp(10)
-        rightPadding: NeptuneStyle.dp(10)
+        spacing: Sizes.dp(10)
+        leftPadding: Sizes.dp(10)
+        rightPadding: Sizes.dp(10)
 
         Label {
             text: root.title + ": "
-            font.pixelSize: NeptuneStyle.fontSizeXS
+            font.pixelSize: Sizes.fontSizeXS
             visible: root.title !== ""
         }
 
         Rectangle {
             id: rotatingRect
-            width: NeptuneStyle.fontSizeXS
-            height: NeptuneStyle.fontSizeXS
+            width: Sizes.fontSizeXS
+            height: Sizes.fontSizeXS
             color: NeptuneStyle.contrastColor
             visible: root.fpsVisible
             // Have something constantly moving on the screen to force constant rendering
@@ -90,7 +91,7 @@ Item {
         }
         Label {
             text: qsTr("FPS: %1").arg(frameTimer.framesPerSecond)
-            font.pixelSize: NeptuneStyle.fontSizeXS
+            font.pixelSize: Sizes.fontSizeXS
             visible: root.fpsVisible
         }
     }

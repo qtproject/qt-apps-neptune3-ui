@@ -36,6 +36,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.Button {
     id: control
@@ -43,12 +44,12 @@ T.Button {
     implicitWidth: NeptuneStyle.cellWidth + leftPadding + rightPadding
     implicitHeight: NeptuneStyle.cellHeight + leftPadding + rightPadding
 
-    padding: NeptuneStyle.dp(6)
-    leftPadding: padding + NeptuneStyle.dp(2)
-    rightPadding: padding + NeptuneStyle.dp(2)
-    font.pixelSize: NeptuneStyle.fontSizeM
+    padding: Sizes.dp(6)
+    leftPadding: padding + Sizes.dp(2)
+    rightPadding: padding + Sizes.dp(2)
+    font.pixelSize: Sizes.fontSizeM
     font.weight: Font.Light
-    spacing: NeptuneStyle.dp(22)
+    spacing: Sizes.dp(22)
 
     icon.color: NeptuneStyle.contrastColor
 

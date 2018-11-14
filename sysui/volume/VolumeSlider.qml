@@ -32,12 +32,12 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 Slider {
     id: root
-    width: NeptuneStyle.dp(180)
+    width: Sizes.dp(180)
 
     orientation: Qt.Vertical
     snapMode: Slider.SnapOnRelease

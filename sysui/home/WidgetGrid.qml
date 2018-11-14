@@ -38,7 +38,7 @@ import shared.animations 1.0
 
 import shared.NeptuneWidgetGrid 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -49,7 +49,7 @@ Item {
     readonly property int widgetCount: widgetsList.count
     readonly property int maxWidgetCount: widgetsList.numRows
 
-    readonly property real resizerHandleHeight: NeptuneStyle.dp(32)
+    readonly property real resizerHandleHeight: Sizes.dp(32)
 
     property real exposedRectTopMargin
     property real exposedRectBottomMargin
@@ -77,7 +77,7 @@ Item {
         id: widgetColumn
         anchors.fill: parent
 
-        readonly property real swapThreshold: NeptuneStyle.dp(32)
+        readonly property real swapThreshold: Sizes.dp(32)
         function onWidgetMoved(draggedDelegate) {
             var draggedWidget = draggedDelegate.widget;
             var deltaY = draggedWidget.y - draggedDelegate.y
@@ -598,8 +598,8 @@ Item {
                     // TODO: need to be replaced with an icon
                     Rectangle {
                         id: handlerIcon
-                        width: NeptuneStyle.dp(80)
-                        height: NeptuneStyle.dp(2)
+                        width: Sizes.dp(80)
+                        height: Sizes.dp(2)
                         color: "grey"
                         anchors.centerIn: parent
                     }
@@ -610,8 +610,8 @@ Item {
 
                         // don't let it cover the area near widget corners as they can have buttons
                         // like widget-drag and widget-close
-                        anchors.leftMargin: NeptuneStyle.dp(90)
-                        anchors.rightMargin: NeptuneStyle.dp(90)
+                        anchors.leftMargin: Sizes.dp(90)
+                        anchors.rightMargin: Sizes.dp(90)
 
                         // touch area spills out beyond resizeHandle's geometry so that it's easier to hit
                         anchors.topMargin: -parent.height

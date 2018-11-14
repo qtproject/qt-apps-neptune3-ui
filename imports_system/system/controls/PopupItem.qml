@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
@@ -42,13 +43,13 @@ import shared.animations 1.0
 Control {
     id: root
 
-    width: NeptuneStyle.dp(800)
+    width: Sizes.dp(800)
     focus: visible
 
     // X and Y potition of the popup when open.
     // By default you have it horizontally centered and vertically aligned to the bottom
     property real popupX: Math.round((root.parent.width - root.width) / 2)
-    property real popupY: root.parent.height - root.height - NeptuneStyle.dp(90)
+    property real popupY: root.parent.height - root.height - Sizes.dp(90)
 
 
     property bool headerBackgroundVisible: false
@@ -58,7 +59,7 @@ Control {
     property real originItemY
     property real _openFromX
     property real _openFromY
-    readonly property int minHeight: NeptuneStyle.dp(548)
+    readonly property int minHeight: Sizes.dp(548)
 
     /*
         Called whenever a user action is requesting the Popup to be closed. The default behavior
@@ -88,10 +89,10 @@ Control {
     background: ScalableBorderImage {
         anchors.fill: root
         source: Style.gfx("popup-background-9patch", NeptuneStyle.theme)
-        anchors.leftMargin: NeptuneStyle.dp(-40)
-        anchors.rightMargin: NeptuneStyle.dp(-40)
-        anchors.topMargin: NeptuneStyle.dp(-28)
-        anchors.bottomMargin: NeptuneStyle.dp(-52)
+        anchors.leftMargin: Sizes.dp(-40)
+        anchors.rightMargin: Sizes.dp(-40)
+        anchors.topMargin: Sizes.dp(-28)
+        anchors.bottomMargin: Sizes.dp(-52)
         border.left: 70
         border.right: 70
         border.top: 50
@@ -115,10 +116,10 @@ Control {
         icon.name: "ic-close"
         background: Image {
             id: bg
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: NeptuneStyle.dp(4)
+            anchors.verticalCenterOffset: Sizes.dp(4)
             source: Style.gfx("popup-close-button-bg", NeptuneStyle.theme)
             fillMode: Image.PreserveAspectFit
         }

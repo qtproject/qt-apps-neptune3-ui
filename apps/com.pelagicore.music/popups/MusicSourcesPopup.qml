@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 import application.windows 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 PopupWindow {
     id: root
@@ -46,11 +46,11 @@ PopupWindow {
     */
     property alias model: listView.model
 
-    width: NeptuneStyle.dp(910)
+    width: Sizes.dp(910)
 
     // caclulate popup height based on musicSources list items
     // + 200 for header & margins
-    height: model ? NeptuneStyle.dp(200 + (model.count * 96)) : NeptuneStyle.dp(296)
+    height: model ? Sizes.dp(200 + (model.count * 96)) : Sizes.dp(296)
 
 
     Item {
@@ -61,18 +61,18 @@ PopupWindow {
         Label {
             id: header
             anchors.baseline: parent.top
-            anchors.baselineOffset: NeptuneStyle.dp(75)
+            anchors.baselineOffset: Sizes.dp(75)
             width: parent.width
             text: qsTr("Choose Source")
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: NeptuneStyle.fontSizeM
+            font.pixelSize: Sizes.fontSizeM
         }
         Image {
             id: shadow
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(120)
+            anchors.topMargin: Sizes.dp(120)
             width: parent.width
-            height: NeptuneStyle.dp(sourceSize.height)
+            height: Sizes.dp(sourceSize.height)
             source: Style.gfx("popup-title-shadow")
         }
 
@@ -81,21 +81,21 @@ PopupWindow {
             anchors {
                 top: shadow.bottom
                 left: parent.left
-                leftMargin: NeptuneStyle.dp(40)
+                leftMargin: Sizes.dp(40)
                 right: parent.right
-                rightMargin: NeptuneStyle.dp(40)
+                rightMargin: Sizes.dp(40)
                 bottom: parent.bottom
-                bottomMargin: NeptuneStyle.dp(40)
+                bottomMargin: Sizes.dp(40)
             }
             interactive: false
             delegate: RadioButton {
                 width: parent.width
-                height: NeptuneStyle.dp(96)
-                font.pixelSize: NeptuneStyle.fontSizeS
-                indicator.implicitHeight: NeptuneStyle.dp(30)
-                indicator.implicitWidth: NeptuneStyle.dp(30)
+                height: Sizes.dp(96)
+                font.pixelSize: Sizes.fontSizeS
+                indicator.implicitHeight: Sizes.dp(30)
+                indicator.implicitWidth: Sizes.dp(30)
                 text: model.text
-                spacing: NeptuneStyle.dp(20)
+                spacing: Sizes.dp(20)
                 onClicked: {
                     if (text === "AM/FM Radio") {
                         Qt.openUrlExternally("x-tuner://");

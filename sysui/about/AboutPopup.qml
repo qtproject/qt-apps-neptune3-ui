@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 import system.controls 1.0
@@ -42,22 +42,22 @@ import "../procmon"
 
 PopupItem {
     id: root
-    width: NeptuneStyle.dp(910)
-    height: NeptuneStyle.dp(1426)
+    width: Sizes.dp(910)
+    height: Sizes.dp(1426)
 
     property var applicationModel
     property var systemModel
     property var sysInfo
 
     headerBackgroundVisible: true
-    headerBackgroundHeight: NeptuneStyle.dp(278)
-    bottomPadding: NeptuneStyle.dp(20)
+    headerBackgroundHeight: Sizes.dp(278)
+    bottomPadding: Sizes.dp(20)
 
     property string currentTabName: tabBar.currentItem.name
 
     contentItem: ColumnLayout {
         id: mainLayout
-        readonly property real contentSideMargin: NeptuneStyle.dp(68)
+        readonly property real contentSideMargin: Sizes.dp(68)
 
         Item {
             id: header
@@ -68,8 +68,8 @@ PopupItem {
                 id: logoRow
                 anchors.centerIn: parent
                 width: parent.width * 0.8
-                height: NeptuneStyle.dp(80)
-                spacing: NeptuneStyle.dp(60)
+                height: Sizes.dp(80)
+                spacing: Sizes.dp(60)
 
                 Image {
                     Layout.fillWidth: true
@@ -99,26 +99,26 @@ PopupItem {
             id: tabBar
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
-            Layout.leftMargin: NeptuneStyle.dp(50)
-            Layout.rightMargin: NeptuneStyle.dp(50)
-            Layout.topMargin: NeptuneStyle.dp(40)
+            Layout.leftMargin: Sizes.dp(50)
+            Layout.rightMargin: Sizes.dp(50)
+            Layout.topMargin: Sizes.dp(40)
             TabButton {
-                Layout.preferredWidth: NeptuneStyle.dp(180)
+                Layout.preferredWidth: Sizes.dp(180)
                 text: qsTr("System")
                 property string name: "system"
             }
             TabButton {
-                Layout.preferredWidth: NeptuneStyle.dp(180)
+                Layout.preferredWidth: Sizes.dp(180)
                 text: qsTr("Running Apps")
                 property string name: "apps"
             }
             TabButton {
-                Layout.preferredWidth: NeptuneStyle.dp(180)
+                Layout.preferredWidth: Sizes.dp(180)
                 text: qsTr("Performance")
                 property string name: "performance"
             }
             TabButton {
-                Layout.preferredWidth: NeptuneStyle.dp(180)
+                Layout.preferredWidth: Sizes.dp(180)
                 text: qsTr("Diagnostics")
                 property string name: "diagnostics"
             }
@@ -127,10 +127,10 @@ PopupItem {
         StackLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: NeptuneStyle.dp(24)
+            Layout.topMargin: Sizes.dp(24)
             Layout.leftMargin: mainLayout.contentSideMargin
             Layout.rightMargin: mainLayout.contentSideMargin
-            Layout.bottomMargin: NeptuneStyle.dp(24)
+            Layout.bottomMargin: Sizes.dp(24)
             currentIndex: tabBar.currentIndex
             MonitorView {
                 sysinfo: root.sysInfo

@@ -99,9 +99,7 @@ static ThemeData& neptunestyle_theme_data(NeptuneStyle::Theme theme)
 class StyleData {
 public:
     StyleData()
-        : fontFactor(1.0)
-        , theme(NeptuneStyle::Dark)
-        , scale(1.0)
+        : theme(NeptuneStyle::Dark)
     {
         const QFont sansFont(QLatin1String("Open Sans"));
 
@@ -110,40 +108,15 @@ public:
 
         font.setPixelSize(15);
         QGuiApplication::setFont(font);
-        compute();
     }
     StyleData(const StyleData &data)
         : font(data.font)
-        , fontFactor(data.fontFactor)
         , theme(data.theme)
-        , scale(data.scale)
     {
-        compute();
-    }
-
-    void compute() {
-        //TODO correct all font sizes when spec is updated accordingly
-        //for the moment only S and M are specified
-        fontSizeXXS = qRound(font.pixelSize() * 0.4 * fontFactor);
-        fontSizeXS = qRound(font.pixelSize() * 0.6 * fontFactor);
-        fontSizeS = qRound(24 * fontFactor);
-        fontSizeM = qRound(28 * fontFactor);
-        fontSizeL = qRound(font.pixelSize() * 1.25 * fontFactor);
-        fontSizeXL = qRound(font.pixelSize() * 1.5 * fontFactor);
-        fontSizeXXL = qRound(font.pixelSize() * 1.75 * fontFactor);
     }
 
     QFont font;
-    qreal fontFactor;
     NeptuneStyle::Theme theme;
-    int fontSizeXXS;
-    int fontSizeXS;
-    int fontSizeS;
-    int fontSizeM;
-    int fontSizeL;
-    int fontSizeXL;
-    int fontSizeXXL;
-    qreal scale;
 };
 
 static StyleData GlobalStyleData;
@@ -310,41 +283,6 @@ QColor NeptuneStyle::darker75(const QColor& color)
     return color.darker(400);
 }
 
-int NeptuneStyle::fontSizeXXS() const
-{
-    return qRound(m_data->fontSizeXXS * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeXS() const
-{
-    return qRound(m_data->fontSizeXS * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeS() const
-{
-    return qRound(m_data->fontSizeS * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeM() const
-{
-    return qRound(m_data->fontSizeM * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeL() const
-{
-    return qRound(m_data->fontSizeL * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeXL() const
-{
-    return qRound(m_data->fontSizeXL * m_data->scale);
-}
-
-int NeptuneStyle::fontSizeXXL() const
-{
-    return qRound(m_data->fontSizeXXL * m_data->scale);
-}
-
 QString NeptuneStyle::backgroundImage() const
 {
     auto &themeData = neptunestyle_theme_data(m_data->theme);
@@ -354,11 +292,6 @@ QString NeptuneStyle::backgroundImage() const
 QString NeptuneStyle::fontFamily() const
 {
     return m_data->font.family();
-}
-
-int NeptuneStyle::fontFactor() const
-{
-    return qRound(m_data->fontFactor);
 }
 
 void NeptuneStyle::init()
@@ -374,12 +307,6 @@ void NeptuneStyle::init()
 
         data = resolveSetting(settings, "Theme");
         GlobalStyleData.theme = toEnumValue<Theme>(data, GlobalStyleData.theme);
-
-        data = resolveSetting(settings, "FontSize");
-        GlobalStyleData.font.setPixelSize(toInteger(data, GlobalStyleData.font.pixelSize()));
-
-        data = resolveSetting(settings, "FontFactor");
-        GlobalStyleData.fontFactor = toReal(data, GlobalStyleData.fontFactor);
 
         data = resolveSetting(settings, "FontFamily");
         GlobalStyleData.font.setFamily(toString(data, GlobalStyleData.font.family()));
@@ -444,8 +371,6 @@ void NeptuneStyle::inheritStyle(const StyleData& data)
     propagateStyle(data);
     emit neptuneStyleChanged();
     emit accentColorChanged();
-    m_dp = QJSValue();
-    emit scaleChanged();
 }
 
 void NeptuneStyle::propagateStyle(const StyleData& data)
@@ -524,11 +449,6 @@ qreal NeptuneStyle::defaultDisabledOpacity() const
     return 0.3;
 }
 
-qreal NeptuneStyle::scale() const
-{
-    return m_data->scale;
-}
-
 qreal NeptuneStyle::primaryTextLetterSpacing() const
 {
     return -0.57;
@@ -537,36 +457,4 @@ qreal NeptuneStyle::primaryTextLetterSpacing() const
 qreal NeptuneStyle::secondaryTextLetterSpacing() const
 {
     return -0.41;
-}
-
-void NeptuneStyle::setScale(qreal value)
-{
-    if (value == m_data->scale)
-        return;
-
-    m_data->scale = value;
-    propagateScale();
-    m_dp = QJSValue();
-    emit scaleChanged();
-}
-
-void NeptuneStyle::propagateScale()
-{
-    for (QQuickAttachedObject *child : attachedChildren()) {
-        NeptuneStyle* neptune = qobject_cast<NeptuneStyle *>(child);
-        if (neptune)
-            neptune->setScale(m_data->scale);
-    }
-}
-
-QJSValue NeptuneStyle::dp() const
-{
-    if (!m_dp.isCallable()) {
-        QQmlEngine *engine = qmlEngine(parent());
-        if (engine) {
-            auto str = QStringLiteral("(function(value) { return Math.round(value * %1); })").arg(scale());
-            m_dp = engine->evaluate(str);
-        }
-    }
-    return m_dp;
 }

@@ -38,7 +38,7 @@ import "../stores"
 import "../panels"
 import "../controls"
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -57,7 +57,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: NeptuneStyle.dp(260)
+        height: Sizes.dp(260)
         state: root.state
         store: root.store
         onFlickableAreaClicked: { root.flickableAreaClicked(); }
@@ -68,7 +68,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: topExpanded ? (root.height - NeptuneStyle.dp(100)) : (NeptuneStyle.dp(660 - 224))
+        height: topExpanded ? (root.height - Sizes.dp(100)) : (Sizes.dp(660 - 224))
         Behavior on height { DefaultNumberAnimation { duration: 270 } }
         opacity: root.state === "Maximized" ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -78,7 +78,7 @@ Item {
 
     FullScreenBottomView {
         id: fullscreenBottom
-        width: NeptuneStyle.dp(1080)
+        width: Sizes.dp(1080)
         anchors.left: parent.left
         anchors.leftMargin: root.state === "Maximized" ? 0 : -80
         Behavior on anchors.leftMargin { DefaultNumberAnimation {} }

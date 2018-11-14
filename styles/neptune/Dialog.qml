@@ -34,6 +34,7 @@ import QtQuick.Templates 2.2 as T
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 T.Dialog {
@@ -61,9 +62,9 @@ T.Dialog {
     header: Label {
         visible: control.title
         elide: Label.ElideRight
-        height: NeptuneStyle.dp(160)
+        height: Sizes.dp(160)
         text: control.title
-        font.pixelSize: NeptuneStyle.fontSizeM
+        font.pixelSize: Sizes.fontSizeM
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }

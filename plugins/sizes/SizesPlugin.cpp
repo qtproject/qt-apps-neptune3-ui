@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -28,14 +28,22 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#include <QQmlExtensionPlugin>
+#include <QQmlEngine>
 
-import QtQuick.Templates 2.3 as T
-import shared.com.pelagicore.styles.neptune 3.0
-import shared.Sizes 1.0
+#include "Sizes.h"
 
-T.Control {
-    font.family: NeptuneStyle.fontFamily
-    font.pixelSize: Sizes.fontSizeM
-    palette.windowText: NeptuneStyle.contrastColor
-    palette.brightText: NeptuneStyle.mainColor
-}
+class SizesPlugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
+
+public:
+    void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(uri == QLatin1String("shared.Sizes"));
+        qmlRegisterUncreatableType<Sizes>(uri, 1, 0, "Sizes", "Sizes is an attached property");
+    }
+};
+
+#include "SizesPlugin.moc"

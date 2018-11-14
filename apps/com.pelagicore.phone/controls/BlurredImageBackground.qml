@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import QtGraphicalEffects 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -51,7 +51,7 @@ Item {
         id: contactImageBlur
         anchors.fill: contactImage
         source: contactImage
-        radius: NeptuneStyle.dp(64)
+        radius: Sizes.dp(64)
         visible: false
     }
 

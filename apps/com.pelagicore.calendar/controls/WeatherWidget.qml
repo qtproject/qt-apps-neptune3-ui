@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -52,7 +53,7 @@ Item {
         id: imgWeather
         anchors.bottom: weatherLabel.top
         fillMode: Image.PreserveAspectFit
-        width: NeptuneStyle.dp(sourceSize.width)
+        width: Sizes.dp(sourceSize.width)
     }
 
     Label {
@@ -61,7 +62,7 @@ Item {
         anchors.right: parent.right
         anchors.baseline: parent.bottom
         anchors.baselineOffset: -(lineCount-1) * height/lineCount
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         opacity: NeptuneStyle.opacityMedium
         text: root.temperatureValue + "° " + root.weatherText + (precipitationVisible ? (",\n" + precipitationText) : "")
     }

@@ -43,6 +43,7 @@ import shared.controls 1.0 as NeptuneControls
 import shared.animations 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 import "../panels"
@@ -134,14 +135,14 @@ Item {
 
     ToolButton {
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(27)
+        anchors.leftMargin: Sizes.dp(27)
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(48)
+        anchors.topMargin: Sizes.dp(48)
         opacity: root.state === "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         icon.source: Qt.resolvedUrl("../assets/ic-search.png")
-        width: NeptuneStyle.dp(background.sourceSize.width)
+        width: Sizes.dp(background.sourceSize.width)
         height: width
         background: Image {
             fillMode: Image.PreserveAspectFit
@@ -153,15 +154,15 @@ Item {
     FastBlur {
         anchors.fill: mapBoxPanel
         source: mapBoxPanel
-        radius: NeptuneStyle.dp(64)
+        radius: Sizes.dp(64)
         visible: root.store.searchViewEnabled
     }
 
     NeptuneControls.ScalableBorderImage {
         id: overlay
         anchors.fill: root
-        border.top: NeptuneStyle.dp(322)
-        border.bottom: NeptuneStyle.dp(323)
+        border.top: Sizes.dp(322)
+        border.bottom: Sizes.dp(323)
         border.left: 0
         border.right: 0
         source: Style.gfx("input-overlay")
@@ -171,9 +172,9 @@ Item {
     SearchOverlayPanel {
         id: searchOverlay
         anchors.fill: root
-        anchors.topMargin: NeptuneStyle.dp(80)
+        anchors.topMargin: Sizes.dp(80)
         visible: root.store.searchViewEnabled
-        spacing: NeptuneStyle.dp(80)
+        spacing: Sizes.dp(80)
         model: root.store.geocodeModel
 
         onBackButtonClicked: root.store.searchViewEnabled = false

@@ -34,6 +34,7 @@ import shared.utils 1.0
 import QtQuick.Window 2.3
 import system.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Window {
     id: root
@@ -55,7 +56,7 @@ Window {
     screen: root.clusterStore.clusterScreen
 
     onWidthChanged: {
-        root.contentItem.NeptuneStyle.scale = root.width / Style.instrumentClusterWidth;
+        root.contentItem.Sizes.scale = root.width / Style.instrumentClusterWidth;
     }
 
     Component.onCompleted: {

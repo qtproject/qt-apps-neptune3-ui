@@ -35,58 +35,59 @@ import QtQuick.Layouts 1.3
 
 import "../helpers/utils.js" as Utils
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 RowLayout {
     id: root
 
     property var store
-    height: NeptuneStyle.dp(80)
-    spacing: NeptuneStyle.dp(9)
+    height: Sizes.dp(80)
+    spacing: Sizes.dp(9)
 
     LayoutMirroring.enabled: false
 
     Image {
-        Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-        Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+        Layout.preferredWidth: Sizes.dp(sourceSize.width)
+        Layout.preferredHeight: Sizes.dp(sourceSize.height)
         source: Utils.localIcon("ic-seat-heat-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.leftSeat.heat
     }
     Label {
-        Layout.leftMargin: NeptuneStyle.dp(36)
-        Layout.rightMargin: NeptuneStyle.dp(36)
+        Layout.leftMargin: Sizes.dp(36)
+        Layout.rightMargin: Sizes.dp(36)
         text: root.store ? root.store.leftSeat.valueString : ""
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: NeptuneStyle.fontSizeXL
+        font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.DemiBold
         opacity: NeptuneStyle.opacityMedium
     }
     Image {
-        Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-        Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+        Layout.preferredWidth: Sizes.dp(sourceSize.width)
+        Layout.preferredHeight: Sizes.dp(sourceSize.height)
         source: Utils.localIcon("ic-rear-defrost-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rearHeat.enabled
     }
     Image {
-        Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-        Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+        Layout.preferredWidth: Sizes.dp(sourceSize.width)
+        Layout.preferredHeight: Sizes.dp(sourceSize.height)
         source: Utils.localIcon("ic-front-defrost-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.frontHeat.enabled
     }
     Label {
-        Layout.leftMargin: NeptuneStyle.dp(36)
-        Layout.rightMargin: NeptuneStyle.dp(36)
+        Layout.leftMargin: Sizes.dp(36)
+        Layout.rightMargin: Sizes.dp(36)
         text: root.store ? root.store.rightSeat.valueString : ""
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: NeptuneStyle.fontSizeXL
+        font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.DemiBold
         opacity: NeptuneStyle.opacityMedium
     }
     Image {
-        Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-        Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+        Layout.preferredWidth: Sizes.dp(sourceSize.width)
+        Layout.preferredHeight: Sizes.dp(sourceSize.height)
         source: Utils.localIcon("ic-seat-heat-status", NeptuneStyle.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rightSeat.heat

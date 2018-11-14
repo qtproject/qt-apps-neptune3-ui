@@ -36,6 +36,7 @@ import QtQuick.Controls 2.2
 import "../helpers/metaDataProvider.js" as MetaData
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -63,7 +64,7 @@ Control {
             ListItem {
                 id: delegatedSong
                 width: listView.width
-                height: NeptuneStyle.dp(104)
+                height: Sizes.dp(104)
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
                 subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
                 onClicked: { root.itemClicked(model.index); }
@@ -73,11 +74,11 @@ Control {
         Item {
             id: listHeader
             anchors.top:parent.top
-            anchors.topMargin:NeptuneStyle.dp(53)
+            anchors.topMargin:Sizes.dp(53)
             anchors.left: parent.left
             opacity: visible ? 1.0 : 0.0
-            width: visible ? NeptuneStyle.dp(720) : 0
-            height: visible ? NeptuneStyle.dp(94) : 0
+            width: visible ? Sizes.dp(720) : 0
+            height: visible ? Sizes.dp(94) : 0
             //no header when one of below views is selected
             property var labels: ["favorites", "sources"]
             visible: ((toolsColumnText.indexOf(actualContentType) === -1) && (labels.indexOf(toolsColumnText) === -1))
@@ -85,27 +86,27 @@ Control {
             ToolButton {
                 id: backButton
                 anchors.left: parent.left
-                anchors.leftMargin: NeptuneStyle.dp(13.5)
+                anchors.leftMargin: Sizes.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
                 icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
                 onClicked: root.backClicked()
             }
             Label {
                 id: headerLabel
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 anchors.left: backButton.right
-                anchors.leftMargin: NeptuneStyle.dp(13)
+                anchors.leftMargin: Sizes.dp(13)
                 anchors.right: buttonPlayAll.left
-                anchors.rightMargin: NeptuneStyle.dp(13)
+                anchors.rightMargin: Sizes.dp(13)
                 anchors.verticalCenter: parent.verticalCenter
                 elide: Text.ElideRight
             }
             ToolButton {
                 id: buttonPlayAll
-                width: NeptuneStyle.dp(121.5)
-                height: NeptuneStyle.dp(48)
+                width: Sizes.dp(121.5)
+                height: Sizes.dp(48)
                 anchors.right: parent.right
-                anchors.rightMargin: NeptuneStyle.dp(13.5)
+                anchors.rightMargin: Sizes.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
                 // Check if contentType has unique id (so is > 5) when in albums view.
                 // This means that the albums of a specific artist are displayed
@@ -118,13 +119,13 @@ Control {
                     opacity: 0.06
                 }
                 text: qsTr("Play All")
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 onClicked: { root.playAllClicked(); }
             }
 
             Rectangle {
                 width: parent.width
-                height: NeptuneStyle.dp(1)
+                height: Sizes.dp(1)
                 anchors.bottom: parent.bottom
                 color: "grey"   //todo: change to #contrast 60%
             }
@@ -133,10 +134,10 @@ Control {
         ListView {
             id: listView
             anchors.top:parent.top
-            anchors.topMargin: NeptuneStyle.dp(53) + listHeader.height
+            anchors.topMargin: Sizes.dp(53) + listHeader.height
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: NeptuneStyle.dp(720)
+            width: Sizes.dp(720)
             interactive: contentHeight > height
             delegate: delegatedItem
             clip: true
@@ -144,7 +145,7 @@ Control {
                 parent: listView.parent
                 anchors.top: listView.top
                 anchors.left: listView.right
-                anchors.leftMargin: NeptuneStyle.dp(45)
+                anchors.leftMargin: Sizes.dp(45)
                 anchors.bottom: listView.bottom
             }
         }

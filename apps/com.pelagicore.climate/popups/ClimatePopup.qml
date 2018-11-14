@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import shared.controls 1.0
 import application.windows 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 import "../panels"
@@ -46,8 +46,8 @@ PopupWindow {
     LayoutMirroring.enabled: false
     LayoutMirroring.childrenInherit: true
 
-    width: NeptuneStyle.dp(910)
-    height: NeptuneStyle.dp(1426)
+    width: Sizes.dp(910)
+    height: Sizes.dp(1426)
 
     property ClimateStore store
     property bool seatTemperaturesLinked: false
@@ -82,7 +82,7 @@ PopupWindow {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            height: NeptuneStyle.dp(278)
+            height: Sizes.dp(278)
             temperatureDriverSeat: root.store ? root.store.leftSeat.valueString : ""
             temperaturePassengerSeat: root.store ? root.store.rightSeat.valueString : ""
             zoneSynchronizationEnabled: root.seatTemperaturesLinked
@@ -112,7 +112,7 @@ PopupWindow {
         ClimateButtonsGridPanel {
             id: buttonsGrid
             anchors.top: header.bottom
-            anchors.topMargin: NeptuneStyle.dp(64)
+            anchors.topMargin: Sizes.dp(64)
             anchors.horizontalCenter: parent.horizontalCenter
             store: root.store
         }
@@ -121,17 +121,17 @@ PopupWindow {
             id: airFlow
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: buttonsGrid.bottom
-            anchors.topMargin: NeptuneStyle.dp(64)
+            anchors.topMargin: Sizes.dp(64)
             store: root.store ? root.store : undefined
         }
 
         Button {
             id: bigFatButton
-            width: NeptuneStyle.dp(460)
-            height: NeptuneStyle.dp(80)
+            width: Sizes.dp(460)
+            height: Sizes.dp(80)
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: NeptuneStyle.dp(118)
+            anchors.bottomMargin: Sizes.dp(118)
             checkable: true
             checked: root.store ? root.store.autoClimateMode.enabled : false
             text: qsTr("Auto")
@@ -144,9 +144,9 @@ PopupWindow {
         TemperatureSlider {
             id: leftTempSlider
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(130) - leftTempSlider.handleHeight/2
+            anchors.topMargin: Sizes.dp(130) - leftTempSlider.handleHeight/2
             anchors.left: parent.left
-            height: NeptuneStyle.dp(1200)
+            height: Sizes.dp(1200)
             onMoved: store.leftSeat.setValue(value);
         }
 
@@ -165,9 +165,9 @@ PopupWindow {
         TemperatureSlider {
             id: rightTempSlider
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(130) - rightTempSlider.handleHeight/2
+            anchors.topMargin: Sizes.dp(130) - rightTempSlider.handleHeight/2
             anchors.right: parent.right
-            height: NeptuneStyle.dp(1200)
+            height: Sizes.dp(1200)
             onMoved: root.store.rightSeat.setValue(value);
         }
 

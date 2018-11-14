@@ -34,7 +34,7 @@ import shared.utils 1.0
 import stores 1.0
 import QtQuick.Window 2.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Window {
     id: root
@@ -111,7 +111,7 @@ Window {
             focus: true
 
             onWidthChanged: {
-                root.contentItem.NeptuneStyle.scale = centerConsole.width / Style.centerConsoleWidth;
+                root.contentItem.Sizes.scale = centerConsole.width / Style.centerConsoleWidth;
             }
         }
 

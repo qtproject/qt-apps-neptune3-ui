@@ -39,6 +39,7 @@ import "stores"
 import "views"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 QtObject {
     property var mainWindow: ApplicationCCWindow {
@@ -60,10 +61,10 @@ QtObject {
         ScalableBorderImage {
 
             x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y - NeptuneStyle.dp(224)
+            y: mainWindow.exposedRect.y - Sizes.dp(224)
             width: mainWindow.exposedRect.width
             height: tunerAppContent.fullscreenTopHeight + mainWindow.exposedRect.y - y
-            border.top: sourceSize.height - NeptuneStyle.dp(1)
+            border.top: sourceSize.height - Sizes.dp(1)
 
             opacity: (mainWindow.neptuneState === "Maximized") ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation {} }

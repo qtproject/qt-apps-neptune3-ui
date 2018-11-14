@@ -35,6 +35,7 @@ import QtQuick.Controls 2.2
 import shared.controls 1.0 as NeptuneControls
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../helpers"
 
 Row {
@@ -44,7 +45,7 @@ Row {
     property Helper helper: Helper {}
     signal openSearchTextInput()
 
-    spacing: NeptuneStyle.dp(45 * .5)
+    spacing: Sizes.dp(45 * .5)
 
     Item {
         width: parent.width/2
@@ -54,7 +55,7 @@ Row {
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Label.ElideRight
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: qsTr("Where do you wanna go today?")
         }
     }
@@ -63,25 +64,25 @@ Row {
         id: searchButton
         enabled: !root.offlineMapsEnabled
         width: parent.width / 2
-        height: NeptuneStyle.dp(72)
+        height: Sizes.dp(72)
         scale: pressed ? 1.1 : 1.0
         Behavior on scale { NumberAnimation { duration: 50 } }
 
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
-                spacing: NeptuneStyle.dp(45 * 0.3)
+                spacing: Sizes.dp(45 * 0.3)
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: helper.localAsset("ic-search", NeptuneStyle.theme)
-                    width: NeptuneStyle.dp(sourceSize.width)
-                    height: NeptuneStyle.dp(sourceSize.height)
+                    width: Sizes.dp(sourceSize.width)
+                    height: Sizes.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     text: root.offlineMapsEnabled ? qsTr("Search not available offline") : qsTr("Search")
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                 }
             }
         }

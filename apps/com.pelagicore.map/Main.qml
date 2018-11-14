@@ -37,6 +37,7 @@ import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.systeminfo 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.com.pelagicore.map 1.0
+import shared.Sizes 1.0
 
 import "views"
 import "stores"
@@ -62,7 +63,7 @@ QtObject {
         MultiPointTouchArea {
             id: multiPoint
             anchors.fill: parent
-            anchors.margins: NeptuneStyle.dp(30)
+            anchors.margins: Sizes.dp(30)
             touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
             property int count: 0

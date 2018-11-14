@@ -34,6 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 import "../controls"
@@ -55,31 +56,31 @@ Item {
 
     Row {
         anchors.centerIn: parent
-        spacing: NeptuneStyle.dp(22)
+        spacing: Sizes.dp(22)
         Column {
             anchors.verticalCenter: parent.verticalCenter
             ClimateButton {
-                width: NeptuneStyle.dp(90)
-                height: NeptuneStyle.dp(90)
+                width: Sizes.dp(90)
+                height: Sizes.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 icon.name: "ic-temperature-plus"
                 onClicked: root.driverSeatTemperatureIncreased()
             }
             Label {
                 id: tempLabelLeft
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 font.weight: Font.DemiBold
                 opacity: NeptuneStyle.opacityMedium
             }
             ClimateButton {
-                width: NeptuneStyle.dp(90)
-                height: NeptuneStyle.dp(90)
+                width: Sizes.dp(90)
+                height: Sizes.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 icon.name: "ic-temperature-minus"
                 onClicked: root.driverSeatTemperatureDecreased()
             }
@@ -89,8 +90,8 @@ Item {
             id: linkTemp
             anchors.verticalCenter: parent.verticalCenter
             icon.name: checked ? "ic-link_ON" : "ic-link_OFF"
-            icon.width: NeptuneStyle.dp(24)
-            icon.height: NeptuneStyle.dp(24)
+            icon.width: Sizes.dp(24)
+            icon.height: Sizes.dp(24)
             checked: root.zoneSynchronizationEnabled
             onToggled: root.linkToggled(checked)
         }
@@ -98,27 +99,27 @@ Item {
         Column {
             anchors.verticalCenter: parent.verticalCenter
             ClimateButton {
-                width: NeptuneStyle.dp(90)
-                height: NeptuneStyle.dp(90)
+                width: Sizes.dp(90)
+                height: Sizes.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 icon.name: "ic-temperature-plus"
                 onClicked: root.passengerSeatTemperatureIncreased()
             }
             Label {
                 id: tempLabelRight
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 font.weight: Font.DemiBold
                 opacity: NeptuneStyle.opacityMedium
             }
             ClimateButton {
-                width: NeptuneStyle.dp(90)
-                height: NeptuneStyle.dp(90)
+                width: Sizes.dp(90)
+                height: Sizes.dp(90)
                 anchors.horizontalCenter: parent.horizontalCenter
                 checkable: false
-                font.pixelSize: NeptuneStyle.fontSizeXL
+                font.pixelSize: Sizes.fontSizeXL
                 icon.name: "ic-temperature-minus"
                 onClicked: root.passengerSeatTemperatureDecreased()
             }

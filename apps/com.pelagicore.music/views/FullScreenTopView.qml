@@ -37,6 +37,7 @@ import QtQuick.Controls 2.2
 import "../panels"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -46,19 +47,19 @@ Item {
 
     ToolButton {
         id: showPlayingQueueButton
-        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
-        height: NeptuneStyle.dp(22.5)
+        width: contentItem.childrenRect.width + Sizes.dp(45)
+        height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: NeptuneStyle.dp(370)
+        anchors.verticalCenterOffset: Sizes.dp(370)
         anchors.horizontalCenter: parent.horizontalCenter
 
         enabled: !root.topExpanded
         onClicked: { root.topExpanded = true; }
 
         contentItem: Row {
-            spacing: NeptuneStyle.dp(10)
+            spacing: Sizes.dp(10)
             Label {
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 font.capitalization: Font.AllUppercase
                 text: qsTr("Next")
                 anchors.verticalCenter: parent.verticalCenter
@@ -75,12 +76,12 @@ Item {
     MusicPlayQueuePanel {
         id: playingQueueList    //playing queue
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(660) - NeptuneStyle.dp(224)
+        anchors.topMargin: Sizes.dp(660) - Sizes.dp(224)
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(100)
+        anchors.leftMargin: Sizes.dp(100)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(100)
+        anchors.rightMargin: Sizes.dp(100)
         listView.model: store.musicPlaylist
         onItemClicked: {
             store.musicPlaylist.currentIndex = index;
@@ -90,10 +91,10 @@ Item {
 
     ToolButton {
         id: showNormalBrowseViewButton
-        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
-        height: NeptuneStyle.dp(22.5)
+        width: contentItem.childrenRect.width + Sizes.dp(45)
+        height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.bottom
-        anchors.verticalCenterOffset: NeptuneStyle.dp(44)
+        anchors.verticalCenterOffset: Sizes.dp(44)
         anchors.horizontalCenter: parent.horizontalCenter
         opacity: root.topExpanded ? 1.0 : 0.0
         Behavior on opacity {
@@ -107,9 +108,9 @@ Item {
         onClicked: { root.topExpanded = false; }
 
         contentItem: Row {
-            spacing: NeptuneStyle.dp(10)
+            spacing: Sizes.dp(10)
             Label {
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 font.capitalization: Font.AllUppercase
                 text: qsTr("Browse")
                 anchors.verticalCenter: parent.verticalCenter

@@ -34,16 +34,17 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ColumnLayout {
     property var sysinfo
-    spacing: NeptuneStyle.dp(20)
+    spacing: Sizes.dp(20)
 
     Flickable {
         id: flickable
         Layout.fillWidth: true
         Layout.fillHeight: true
-        contentWidth: width - NeptuneStyle.dp(30)
+        contentWidth: width - Sizes.dp(30)
         contentHeight: output.height
         clip: true
         flickableDirection: Flickable.VerticalFlick
@@ -51,9 +52,9 @@ ColumnLayout {
 
         TextArea {
             id: output
-            width: flickable.width - NeptuneStyle.dp(20)
+            width: flickable.width - Sizes.dp(20)
             readOnly: true
-            font.pixelSize: NeptuneStyle.fontSizeXS
+            font.pixelSize: Sizes.fontSizeXS
             text: sysinfo.qtDiag
             wrapMode: TextEdit.WordWrap
             color: NeptuneStyle.contrastColor

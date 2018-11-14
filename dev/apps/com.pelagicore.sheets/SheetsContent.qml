@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import shared.controls 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -46,16 +46,16 @@ Item {
         height: parent.height * 0.1
         anchors.bottom: stack.top
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(36)
+        anchors.leftMargin: Sizes.dp(36)
         visible: stack.depth >= 2
-        spacing: NeptuneStyle.dp(9)
+        spacing: Sizes.dp(9)
 
         ToolButton {
             anchors.verticalCenter: parent.verticalCenter
             baselineOffset: 0
             icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
             text: qsTr("Back")
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             onClicked: stack.pop()
         }
     }
@@ -74,11 +74,11 @@ Item {
 
             delegate: Item {
                 width: componentListView.width
-                height: NeptuneStyle.dp(120)
+                height: Sizes.dp(120)
 
                 Label {
                     anchors.left: parent.left
-                    anchors.leftMargin: NeptuneStyle.dp(90)
+                    anchors.leftMargin: Sizes.dp(90)
                     anchors.verticalCenter: parent.verticalCenter
                     text: fileName.substring(0, fileName.length - 9);
                 }

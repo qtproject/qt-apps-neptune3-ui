@@ -34,9 +34,8 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
+import shared.Sizes 1.0
 import shared.utils 1.0
-
-import shared.com.pelagicore.styles.neptune 3.0
 
 ColumnLayout {
     id: root
@@ -65,7 +64,7 @@ ColumnLayout {
         id: flickable
         Layout.fillWidth: true
         Layout.fillHeight: true
-        contentWidth: width - NeptuneStyle.dp(30)
+        contentWidth: width - Sizes.dp(30)
         contentHeight: contentList.height
         clip: true
         flickableDirection: Flickable.VerticalFlick
@@ -74,11 +73,11 @@ ColumnLayout {
         Column {
             id: contentList
             width: parent.width
-            spacing: NeptuneStyle.dp(24)
+            spacing: Sizes.dp(24)
 
             Switch {
                 anchors.left: parent.left
-                anchors.leftMargin: NeptuneStyle.dp(24)
+                anchors.leftMargin: Sizes.dp(24)
                 text: qsTr("System Monitor Overlay")
                 checked: root.systemModel ? root.systemModel.systemOverlayEnabled : false
                 onToggled: {
@@ -99,7 +98,7 @@ ColumnLayout {
             MonitorListItem {
                 complexContent: CpuMonitor {
                     width: contentList.width
-                    height: NeptuneStyle.dp(300)
+                    height: Sizes.dp(300)
                     systemModel: root.systemModel
                 }
             }
@@ -107,7 +106,7 @@ ColumnLayout {
             MonitorListItem {
                 complexContent: RamMonitor {
                     width: contentList.width
-                    height: NeptuneStyle.dp(300)
+                    height: Sizes.dp(300)
                     systemModel: root.systemModel
                 }
             }

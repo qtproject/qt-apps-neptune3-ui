@@ -31,6 +31,7 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
@@ -44,17 +45,17 @@ Item {
 
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
-        if (totalHeight > NeptuneStyle.dp(1720)) {
-            return NeptuneStyle.dp(1720);
+        if (totalHeight > Sizes.dp(1720)) {
+            return Sizes.dp(1720);
         }
         return totalHeight;
     }
 
     property NotificationModel notificationModel
     readonly property int notificationCenterMaxHeight: notificationList.height + root.notificationTopMargin + root.notificationBottomMargin
-    readonly property int listviewMaxHeight: NeptuneStyle.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
-    readonly property int notificationTopMargin: NeptuneStyle.dp(80)
-    readonly property int notificationBottomMargin: NeptuneStyle.dp(144)
+    readonly property int listviewMaxHeight: Sizes.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
+    readonly property int notificationTopMargin: Sizes.dp(80)
+    readonly property int notificationBottomMargin: Sizes.dp(144)
 
     Behavior on y {
         enabled: !root.notificationModel.notificationToastVisible
@@ -74,14 +75,14 @@ Item {
 
     Column {
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(80)
+        anchors.topMargin: Sizes.dp(80)
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(40)
+        anchors.leftMargin: Sizes.dp(40)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(40)
+        anchors.rightMargin: Sizes.dp(40)
 
         opacity: notificationCenterBg.opacity
-        spacing: NeptuneStyle.dp(72)
+        spacing: Sizes.dp(72)
 
         ListView {
             id: notificationList
@@ -106,8 +107,8 @@ Item {
         }
 
         Item {
-            implicitHeight: NeptuneStyle.dp(40)
-            implicitWidth: NeptuneStyle.dp(140)
+            implicitHeight: Sizes.dp(40)
+            implicitWidth: Sizes.dp(140)
             anchors.horizontalCenter: parent.horizontalCenter
 
             Label {
@@ -124,7 +125,7 @@ Item {
                 opacity: root.notificationModel.count > 0
                 visible: opacity > 0
                 Behavior on opacity { DefaultNumberAnimation { } }
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: qsTr("Clear list")
 
                 onClicked: root.notificationModel.clearNotifications();

@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ToolButton {
     id: root
@@ -43,27 +44,27 @@ ToolButton {
 
     property string extendedText: ""
     property color extendedTextColor: NeptuneStyle.accentDetailColor
-    property int extendedTextFontSize: NeptuneStyle.fontSizeS
+    property int extendedTextFontSize: Sizes.fontSizeS
 
     property string secondaryText: ""
     property color secondaryTextColor: NeptuneStyle.contrastColor
-    property int secondaryTextFontSize: NeptuneStyle.fontSizeS
+    property int secondaryTextFontSize: Sizes.fontSizeS
 
     background: Item {
         Row {
-            spacing: NeptuneStyle.dp(45 * 0.5)
+            spacing: Sizes.dp(45 * 0.5)
             anchors.centerIn: parent
             Image {
                 id: buttonImage
                 anchors.verticalCenter: parent.verticalCenter
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
             }
             Column {
-                spacing: NeptuneStyle.dp(8)
+                spacing: Sizes.dp(8)
                 anchors.verticalCenter: parent.verticalCenter
                 Row {
-                    spacing: NeptuneStyle.dp(45 * 0.3)
+                    spacing: Sizes.dp(45 * 0.3)
                     Label {
                         id: primaryButtonText
                         anchors.verticalCenter: parent.verticalCenter

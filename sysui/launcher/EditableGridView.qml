@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.0
 import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -92,7 +92,7 @@ Item {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: -NeptuneStyle.dp(10)
+                anchors.verticalCenterOffset: -Sizes.dp(10)
 
                 Connections {
                     target: model.appInfo
@@ -176,8 +176,8 @@ Item {
                     name: "editing"
                     PropertyChanges {
                         target: appButton
-                        width: NeptuneStyle.dp(172)
-                        height: NeptuneStyle.dp(172)
+                        width: Sizes.dp(172)
+                        height: Sizes.dp(172)
                     }
                 }
             ]
@@ -207,10 +207,10 @@ Item {
     Button {
         id: exitEditMode
         anchors.top: grid.bottom
-        anchors.topMargin: NeptuneStyle.dp(16)
+        anchors.topMargin: Sizes.dp(16)
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.width/2
-        height: NeptuneStyle.dp(80)
+        height: Sizes.dp(80)
         opacity: grid.editMode ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         visible: opacity > 0

@@ -36,6 +36,7 @@ import QtPositioning 5.9
 import shared.animations 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../controls"
 import "../helpers"
 
@@ -71,7 +72,7 @@ Item {
         }
         Rectangle {
             Layout.fillHeight: true
-            Layout.preferredWidth: NeptuneStyle.dp(1)
+            Layout.preferredWidth: Sizes.dp(1)
             opacity: NeptuneStyle.defaultDisabledOpacity
             color: NeptuneStyle.contrastColor
         }

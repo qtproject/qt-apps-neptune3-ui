@@ -38,6 +38,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import "../controls"
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -50,10 +51,10 @@ Item {
     property date currentTime: new Date()
     property ListModel eventModel
 
-    readonly property bool _isMultiLineWidget: root.height > NeptuneStyle.dp(330)
+    readonly property bool _isMultiLineWidget: root.height > Sizes.dp(330)
     readonly property int _visibleEvents: {
-        var n = Math.floor( (root.height - NeptuneStyle.dp(100)) / NeptuneStyle.dp(48) );
-        var n_max = Math.min( (NeptuneStyle.dp(652) - weatherGraphPlaceholder.height) / NeptuneStyle.dp(48), eventModel.count );
+        var n = Math.floor( (root.height - Sizes.dp(100)) / Sizes.dp(48) );
+        var n_max = Math.min( (Sizes.dp(652) - weatherGraphPlaceholder.height) / Sizes.dp(48), eventModel.count );
         if (n < n_max) {
             return n;
         } else {
@@ -73,23 +74,23 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: -NeptuneStyle.dp(50)
+        anchors.bottomMargin: -Sizes.dp(50)
         source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
         fillMode: Image.TileVertically
-        width: NeptuneStyle.dp(260)
+        width: Sizes.dp(260)
 
         Item {
             id: leftContentBox
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(40)
+            anchors.leftMargin: Sizes.dp(40)
             anchors.right: parent.right
 
             Label {
                 id: firstRowOfText
                 anchors.baseline: parent.top
-                anchors.baselineOffset: NeptuneStyle.dp(84)
+                anchors.baselineOffset: Sizes.dp(84)
                 anchors.left: parent.left
                 anchors.right: parent.right
                 elide: Text.ElideRight
@@ -101,10 +102,10 @@ Item {
 
             WeatherWidget {
                 id: weatherWidget
-                y: (root.height - weatherWidget.height - NeptuneStyle.dp(64)) < (NeptuneStyle.dp(476) - weatherWidget.height) ?
-                       root.height - weatherWidget.height - NeptuneStyle.dp(64) :
-                       (NeptuneStyle.dp(476) - weatherWidget.height)
-                width: NeptuneStyle.dp(220)
+                y: (root.height - weatherWidget.height - Sizes.dp(64)) < (Sizes.dp(476) - weatherWidget.height) ?
+                       root.height - weatherWidget.height - Sizes.dp(64) :
+                       (Sizes.dp(476) - weatherWidget.height)
+                width: Sizes.dp(220)
 
                 opacity: _isMultiLineWidget ? 1 : 0
                 Behavior on opacity { DefaultNumberAnimation {} }
@@ -123,11 +124,11 @@ Item {
         id: calendarEvents
 
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: NeptuneStyle.dp(64)
+        anchors.bottomMargin: Sizes.dp(64)
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: NeptuneStyle.dp(40)
-        width: _isMultiLineWidget ? NeptuneStyle.dp(620) : NeptuneStyle.dp(320)
-        height: eventList.count * NeptuneStyle.dp(48)
+        anchors.leftMargin: Sizes.dp(40)
+        width: _isMultiLineWidget ? Sizes.dp(620) : Sizes.dp(320)
+        height: eventList.count * Sizes.dp(48)
         Behavior on width {
             SequentialAnimation {
                 PauseAnimation { duration: _isMultiLineWidget ? 0 : 100 }
@@ -150,16 +151,16 @@ Item {
             }
 
             delegate: RowLayout {
-                width: parent.width - NeptuneStyle.dp(16)
-                height: NeptuneStyle.dp(48)
+                width: parent.width - Sizes.dp(16)
+                height: Sizes.dp(48)
 
                 Label {
                     id: eventTimeStart
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: NeptuneStyle.dp(74)
+                    Layout.preferredWidth: Sizes.dp(74)
                     Layout.preferredHeight: parent.height
-                    opacity: NeptuneStyle.fontSizeS
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    opacity: Sizes.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                     font.weight: Font.Light
                     text: eventModel.get(index).timeStart
                 }
@@ -168,7 +169,7 @@ Item {
                     Layout.alignment: Qt.AlignBottom
                     Layout.fillWidth: true
                     Layout.preferredHeight: parent.height
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                     font.weight: Font.Light
                     elide: Text.ElideRight
                     text: eventModel.get(index).event
@@ -180,10 +181,10 @@ Item {
     WeatherWidget {
         id: weatherColumn
         anchors.left: calendarEvents.right
-        anchors.rightMargin: NeptuneStyle.dp(40)
+        anchors.rightMargin: Sizes.dp(40)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: NeptuneStyle.dp(64)
-        width: NeptuneStyle.dp(220)
+        anchors.bottomMargin: Sizes.dp(64)
+        width: Sizes.dp(220)
         opacity: _isMultiLineWidget ? 0 : 1
         Behavior on opacity {
             SequentialAnimation {
@@ -203,12 +204,12 @@ Item {
 
     Image {
         id: weatherGraphPlaceholder
-        readonly property bool graphActive: root.height >= NeptuneStyle.dp(780)
+        readonly property bool graphActive: root.height >= Sizes.dp(780)
         anchors.top: parent.top
-        anchors.topMargin: graphActive ? NeptuneStyle.dp(84) : NeptuneStyle.dp(74)
+        anchors.topMargin: graphActive ? Sizes.dp(84) : Sizes.dp(74)
         anchors.right: parent.right
         anchors.left: leftColoredArea.right
-        anchors.leftMargin: NeptuneStyle.dp(40)
+        anchors.leftMargin: Sizes.dp(40)
         fillMode: Image.PreserveAspectFit
         opacity: graphActive ? 1 : 0
         visible: opacity > 0

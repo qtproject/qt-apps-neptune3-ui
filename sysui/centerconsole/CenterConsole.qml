@@ -45,6 +45,7 @@ import stores 1.0
 import system.controls 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -109,9 +110,9 @@ Item {
         id: statusBar
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(20)
+        anchors.leftMargin: Sizes.dp(20)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(20)
+        anchors.rightMargin: Sizes.dp(20)
         uiSettings: root.store.uiSettings
         z: 1
         model: root.store.statusBarStore
@@ -121,7 +122,7 @@ Item {
      NeptuneWindowItem {
         id: bottomBar
         width: root.width
-        height: NeptuneStyle.dp(120)
+        height: Sizes.dp(120)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         window: root.store.applicationModel.bottomBarAppInfo.window
@@ -130,22 +131,22 @@ Item {
     ToolButton {
         id: leftIcon
         objectName: "volumePopupButton"
-        width: NeptuneStyle.dp(90)
+        width: Sizes.dp(90)
         height: width
         anchors.verticalCenter: bottomBar.verticalCenter
         anchors.left: bottomBar.left
-        anchors.leftMargin: NeptuneStyle.dp(27)
+        anchors.leftMargin: Sizes.dp(27)
         icon.name: root.store.volumeStore.volumeIcon
         onClicked: volumePopup.open()
     }
 
     ToolButton {
         id: rightIcon
-        width: NeptuneStyle.dp(90)
+        width: Sizes.dp(90)
         height: width
         anchors.verticalCenter: bottomBar.verticalCenter
         anchors.right: bottomBar.right
-        anchors.rightMargin: NeptuneStyle.dp(27)
+        anchors.rightMargin: Sizes.dp(27)
         icon.name: "qt-badge"
         onClicked: about.open()
     }

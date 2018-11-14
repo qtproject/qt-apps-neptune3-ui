@@ -36,7 +36,7 @@ import QtLocation 5.9
 
 import shared.controls 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../helpers"
 import "../controls"
@@ -46,7 +46,7 @@ ColumnLayout {
 
     property GeocodeModel model
 
-    spacing: NeptuneStyle.dp(80)
+    spacing: Sizes.dp(80)
 
     signal backButtonClicked()
     signal searchFieldAccepted()
@@ -56,7 +56,7 @@ ColumnLayout {
 
     ToolButton {
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(45)
+        anchors.leftMargin: Sizes.dp(45)
         icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
         text: qsTr("Back")
         onClicked: root.backButtonClicked()
@@ -65,9 +65,9 @@ ColumnLayout {
     MapSearchTextField {
         id: searchField
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(90)
+        anchors.leftMargin: Sizes.dp(90)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(90)
+        anchors.rightMargin: Sizes.dp(90)
         selectByMouse: true
         focus: root.visible
         busy: root.model.status === GeocodeModel.Loading
@@ -86,16 +86,16 @@ ColumnLayout {
         id: searchResultsList
         Layout.fillHeight: true
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(90)
+        anchors.leftMargin: Sizes.dp(90)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(90)
+        anchors.rightMargin: Sizes.dp(90)
         clip: true
         visible: root.visible
         model: root.model
         delegate: ListItem {
             id: itemDelegate
             width: parent.width
-            height: NeptuneStyle.dp(120)
+            height: Sizes.dp(120)
             readonly property string addressText: locationData.address.text
             readonly property string city: locationData.address.city
             readonly property string country: locationData.address.country

@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../helpers"
 
 TextField {
@@ -42,16 +43,16 @@ TextField {
     property Helper helper: Helper {}
 
     font.family: NeptuneStyle.fontFamily
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
     color: NeptuneStyle.contrastColor
     selectedTextColor: NeptuneStyle.contrastColor
-    leftPadding: NeptuneStyle.dp(18)
-    rightPadding: NeptuneStyle.dp(63)
+    leftPadding: Sizes.dp(18)
+    rightPadding: Sizes.dp(63)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
         border.color: NeptuneStyle.buttonColor
-        border.width: NeptuneStyle.dp(1)
+        border.width: Sizes.dp(1)
         color: "transparent"
         radius: height/2
         Item {
@@ -59,18 +60,18 @@ TextField {
             Image {
                 id: iconSearch
                 anchors.right: parent.right
-                anchors.rightMargin: NeptuneStyle.dp(18)
+                anchors.rightMargin: Sizes.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
                 source: helper.localAsset("ic-search", NeptuneStyle.theme)
                 visible: !searchBusyIndicator.visible
                 fillMode: Image.PreserveAspectFit
-                width: NeptuneStyle.dp(sourceSize.width)
-                height: NeptuneStyle.dp(sourceSize.height)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
             }
             BusyIndicator {
                 id: searchBusyIndicator
                 anchors.right: parent.right
-                anchors.rightMargin: NeptuneStyle.dp(18)
+                anchors.rightMargin: Sizes.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
                 visible: running
             }

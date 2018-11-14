@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import shared.utils 1.0
 import shared.controls 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import QtQuick.Controls 2.2
 import "../helpers/metaDataProvider.js" as MetaData
 
@@ -63,7 +63,7 @@ Control {
             ListItem {
                 id: delegatedSong
                 width: listView.width
-                height: NeptuneStyle.dp(104)
+                height: Sizes.dp(104)
                 highlighted: false
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
                 subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
@@ -73,20 +73,20 @@ Control {
 
         ListView {
             id: listView
-            implicitWidth: NeptuneStyle.dp(765)
+            implicitWidth: Sizes.dp(765)
             implicitHeight: root.height
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.leftMargin: NeptuneStyle.dp(40)
-            anchors.rightMargin: NeptuneStyle.dp(40)
+            anchors.leftMargin: Sizes.dp(40)
+            anchors.rightMargin: Sizes.dp(40)
             boundsBehavior: listView.interactive ? Flickable.DragAndOvershootBounds : Flickable.StopAtBounds
             delegate: delegatedItem
             ScrollIndicator.vertical: ScrollIndicator {
                 parent: listView.parent
                 anchors.top: listView.top
                 anchors.left: listView.right
-                anchors.leftMargin: NeptuneStyle.dp(45)
+                anchors.leftMargin: Sizes.dp(45)
                 anchors.bottom: listView.bottom
             }
         }

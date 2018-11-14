@@ -35,7 +35,7 @@ import QtQuick.Controls 2.3
 
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -44,8 +44,8 @@ GridLayout {
 
     property var store
 
-    width: NeptuneStyle.dp(448)
-    height: NeptuneStyle.dp(312)
+    width: Sizes.dp(448)
+    height: Sizes.dp(312)
     columns: 3
     ClimateButton {
         id: rear_defrost

@@ -33,11 +33,11 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 GridLayout {
-    anchors.leftMargin: NeptuneStyle.dp(100)
-    anchors.rightMargin: NeptuneStyle.dp(100)
+    anchors.leftMargin: Sizes.dp(100)
+    anchors.rightMargin: Sizes.dp(100)
     columns: 2
 
     ToolButton {
@@ -46,7 +46,7 @@ GridLayout {
     }
     Label {
         text: "Icon only"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
@@ -56,7 +56,7 @@ GridLayout {
     }
     Label {
         text: "Icon with text"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
@@ -67,7 +67,7 @@ GridLayout {
     }
     Label {
         text: "Icon with text below"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
@@ -80,7 +80,7 @@ GridLayout {
     }
     Label {
         text: "Checkable tool button, icon + text below"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
@@ -94,18 +94,18 @@ GridLayout {
     }
     Label {
         text: "Checkable tool button, custom colored icon"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
         Layout.alignment: Qt.AlignCenter
         icon.name: "ic_back"
-        icon.width: NeptuneStyle.dp(16)
-        icon.height: NeptuneStyle.dp(16)
+        icon.width: Sizes.dp(16)
+        icon.height: Sizes.dp(16)
     }
     Label {
         text: "Custom icon size"
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
     }
 
     Item {

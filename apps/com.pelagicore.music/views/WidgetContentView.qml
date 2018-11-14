@@ -39,6 +39,7 @@ import "../panels"
 import "../controls"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -64,7 +65,7 @@ Item {
             anchors.fill: parent
 
             contentWidth: parent.width
-            contentHeight: (nextList.height + musicTools.height + NeptuneStyle.dp(20))
+            contentHeight: (nextList.height + musicTools.height + Sizes.dp(20))
 
             ScrollIndicator.vertical: ScrollIndicator { }
             Column {
@@ -78,7 +79,7 @@ Item {
                 MusicPlayQueuePanel { //playing queue
                     id: nextList
                     width: nextListFlickable.width
-                    height: (listView.count * NeptuneStyle.dp(104))
+                    height: (listView.count * Sizes.dp(104))
                     listView.model: store.musicPlaylist
                     listView.interactive: false
                     onItemClicked: {
@@ -89,7 +90,7 @@ Item {
 
                 Item { //spacer
                     width: nextListFlickable.width
-                    height: NeptuneStyle.dp(20)
+                    height: Sizes.dp(20)
                 }
             }
         }
@@ -97,7 +98,7 @@ Item {
 
     Rectangle {
         id: artAndTitleBackground
-        height: NeptuneStyle.dp(260)
+        height: Sizes.dp(260)
         width: parent.width
         color: NeptuneStyle.offMainColor
         MouseArea {
@@ -123,7 +124,7 @@ Item {
 
     AlbumArtPanel {
         id: artAndTitlesBlock
-        height: NeptuneStyle.dp(180)
+        height: Sizes.dp(180)
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
@@ -145,11 +146,11 @@ Item {
 
     MusicProgress {
         id: progressBarBlock
-        width: NeptuneStyle.dp(880)
-        height: NeptuneStyle.dp(50)
+        width: Sizes.dp(880)
+        height: Sizes.dp(50)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: artAndTitlesBlock.bottom
-        anchors.topMargin: NeptuneStyle.dp(50)
+        anchors.topMargin: Sizes.dp(50)
         opacity: 0
         visible: opacity > 0
         value: store.currentTrackPosition
@@ -171,28 +172,28 @@ Item {
         },
         State {
             name: "Widget2Rows"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(550) }
-            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-62) }
-            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(138) }
+            PropertyChanges { target: root; height: Sizes.dp(550) }
+            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: Sizes.dp(-62) }
+            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: Sizes.dp(138) }
             PropertyChanges { target: progressBarBlock; opacity: 1 }
             PropertyChanges { target: musicTools; opacity: 1 }
         },
         State {
             name: "Widget3Rows"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(840) }
+            PropertyChanges { target: root; height: Sizes.dp(840) }
             PropertyChanges { target: nextListFlickableItem; opacity: 1 }
-            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-271) - Math.min(NeptuneStyle.dp(20), nextListFlickable.contentY / 6) }
-            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-71) - Math.min(NeptuneStyle.dp(60), nextListFlickable.contentY / 2) }
+            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: Sizes.dp(-271) - Math.min(Sizes.dp(20), nextListFlickable.contentY / 6) }
+            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: Sizes.dp(-71) - Math.min(Sizes.dp(60), nextListFlickable.contentY / 2) }
             PropertyChanges { target: progressBarBlock; opacity: 1 - Math.max(0, Math.min(1, nextListFlickable.contentY / 140)) }
             PropertyChanges { target: musicTools; opacity: 1 - Math.max(0, Math.min(1, nextListFlickable.contentY / 140))}
             PropertyChanges { target: nextListShadow; opacity: 0 + Math.max(0, Math.min(1, nextListFlickable.contentY / 140))}
         },
         State {
             name: "Maximized"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(660) - NeptuneStyle.dp(224) }
+            PropertyChanges { target: root; height: Sizes.dp(660) - Sizes.dp(224) }
             PropertyChanges { target: artAndTitleBackground; opacity: 0 }   //todo: do something else here because it is blocking the gray background.
-            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(-110) }
-            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: NeptuneStyle.dp(90) }
+            PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: Sizes.dp(-110) }
+            PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: Sizes.dp(90) }
             PropertyChanges { target: progressBarBlock; opacity: 1 }
             PropertyChanges { target: musicTools; opacity: 1 }
         }

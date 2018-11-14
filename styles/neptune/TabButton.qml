@@ -35,6 +35,7 @@ import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.controls 1.0
 import shared.utils 1.0
 
@@ -42,11 +43,11 @@ T.TabButton {
     id: control
 
     //internal to avoid binding loops
-    readonly property real letterSpacing: font.pixelSize === NeptuneStyle.fontSizeS ?
+    readonly property real letterSpacing: font.pixelSize === Sizes.fontSizeS ?
                                           NeptuneStyle.secondaryTextLetterSpacing
                                         : NeptuneStyle.primaryTextLetterSpacing
 
-    font.pixelSize: NeptuneStyle.fontSizeS
+    font.pixelSize: Sizes.fontSizeS
 
     font.letterSpacing: selected ? control.letterSpacing : 0
 

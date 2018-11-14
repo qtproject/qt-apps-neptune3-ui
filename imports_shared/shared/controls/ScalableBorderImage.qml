@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ScalableBorderImage
@@ -40,7 +40,7 @@ import shared.com.pelagicore.styles.neptune 3.0
     \since 5.11
     \brief The scalable border image component of Neptune 3
 
-    The ScalableBorderImage provides a BorderImage that scales according to NeptuneStyle.scale.
+    The ScalableBorderImage provides a BorderImage that scales according to Sizes.scale.
     It enables a BorderImage to stretch or shrink to support any pixel density.
 
     See \l{Neptune 3 UI Components and Interfaces} to see more available components in
@@ -68,8 +68,8 @@ import shared.com.pelagicore.styles.neptune 3.0
 Item {
     id: root
 
-    implicitWidth: NeptuneStyle.dp(borderImage.sourceSize.width)
-    implicitHeight: NeptuneStyle.dp(borderImage.sourceSize.height)
+    implicitWidth: Sizes.dp(borderImage.sourceSize.width)
+    implicitHeight: Sizes.dp(borderImage.sourceSize.height)
 
     /*!
         \qmlproperty bool ScalableBorderImage::asynchronous
@@ -192,9 +192,9 @@ Item {
 
     BorderImage {
         id: borderImage
-        width: root.width / NeptuneStyle.scale
-        height: root.height / NeptuneStyle.scale
-        scale: NeptuneStyle.scale
+        width: root.width / Sizes.scale
+        height: root.height / Sizes.scale
+        scale: Sizes.scale
         transformOrigin: Item.TopLeft
     }
 }

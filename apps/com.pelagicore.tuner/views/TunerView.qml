@@ -39,7 +39,7 @@ import "../stores"
 import "../controls"
 import "../panels"
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -51,7 +51,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: NeptuneStyle.dp(260)
+        height: Sizes.dp(260)
         store: root.store
     }
 
@@ -60,13 +60,13 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        height: topExpanded ? (root.height - NeptuneStyle.dp(100)) : (NeptuneStyle.dp(660 - 224))
+        height: topExpanded ? (root.height - Sizes.dp(100)) : (Sizes.dp(660 - 224))
         Behavior on height { DefaultNumberAnimation { duration: 270 } }
         store: root.store
     }
 
     FullScreenBottomView {
-        width: NeptuneStyle.dp(1080)
+        width: Sizes.dp(1080)
         anchors.top: fullscreenTop.bottom
         anchors.bottom: parent.bottom
         opacity: fullscreenTop.topExpanded ? 0 : 1

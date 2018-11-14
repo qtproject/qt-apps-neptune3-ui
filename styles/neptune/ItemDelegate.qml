@@ -34,6 +34,7 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.ItemDelegate {
     id: control
@@ -45,18 +46,18 @@ T.ItemDelegate {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    spacing: NeptuneStyle.dp(12)
-    padding: NeptuneStyle.dp(12)
+    spacing: Sizes.dp(12)
+    padding: Sizes.dp(12)
 
-    topPadding: padding - NeptuneStyle.dp(1)
-    bottomPadding: padding + NeptuneStyle.dp(1)
+    topPadding: padding - Sizes.dp(1)
+    bottomPadding: padding + Sizes.dp(1)
 
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
     font.family: NeptuneStyle.fontFamily
     font.weight: Font.Light
 
     contentItem: NeptuneIconLabel {
-        iconScale: NeptuneStyle.scale
+        iconScale: Sizes.scale
 
         leftPadding: !control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0
         rightPadding: control.mirrored ? (control.indicator ? control.indicator.width + control.spacing : 0) : 0

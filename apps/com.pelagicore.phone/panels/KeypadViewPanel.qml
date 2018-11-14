@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
@@ -50,10 +51,10 @@ Item {
         id: cursor
         visible: textedit.text !== ""
         anchors.right: textedit.right
-        anchors.rightMargin: NeptuneStyle.dp(18)
+        anchors.rightMargin: Sizes.dp(18)
         anchors.verticalCenter: textedit.verticalCenter
-        width: NeptuneStyle.dp(2)
-        height: NeptuneStyle.dp(60)
+        width: Sizes.dp(2)
+        height: Sizes.dp(60)
         color: NeptuneStyle.contrastColor
         opacity: 0
         SequentialAnimation {
@@ -70,13 +71,13 @@ Item {
         anchors.left: gridlayout.left
         anchors.right: gridlayout.right
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(40)
-        leftPadding: NeptuneStyle.dp(45 * 0.5)
-        rightPadding: NeptuneStyle.dp(45 * 0.5)
+        anchors.topMargin: Sizes.dp(40)
+        leftPadding: Sizes.dp(45 * 0.5)
+        rightPadding: Sizes.dp(45 * 0.5)
         readOnly: true
         color: NeptuneStyle.contrastColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
-        font.pixelSize: NeptuneStyle.fontSizeXL
+        font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.Light
         wrapMode: TextEdit.Wrap
         horizontalAlignment: TextEdit.AlignRight
@@ -86,7 +87,7 @@ Item {
     ToolButton {
         anchors.right: parent.right
         anchors.verticalCenter: textedit.verticalCenter
-        width: NeptuneStyle.dp(90)
+        width: Sizes.dp(90)
         icon.name: "ic-erase"
         opacity: textedit.text ? 1.0 : 0.0
         visible: opacity > 0
@@ -97,14 +98,14 @@ Item {
     GridLayout {
         id: gridlayout
 
-        width: NeptuneStyle.dp(500)
-        height: NeptuneStyle.dp(540)
+        width: Sizes.dp(500)
+        height: Sizes.dp(540)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: textedit.bottom
-        anchors.topMargin: NeptuneStyle.dp(80)
+        anchors.topMargin: Sizes.dp(80)
         columns: 3
-        columnSpacing: NeptuneStyle.dp(10)
-        rowSpacing: NeptuneStyle.dp(10)
+        columnSpacing: Sizes.dp(10)
+        rowSpacing: Sizes.dp(10)
         KeypadButton {
             primaryText: "1"
             secondaryText: " " // to keep the "1" above

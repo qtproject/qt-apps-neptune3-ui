@@ -37,6 +37,7 @@ import QtGraphicalEffects 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Slider {
     //TODO adapt it to AM band frequencies
@@ -53,8 +54,8 @@ Slider {
         id: stationIndicatorComponent
         Rectangle {
             anchors.bottom: markers.top
-            width: NeptuneStyle.dp(18)
-            height: NeptuneStyle.dp(18)
+            width: Sizes.dp(18)
+            height: Sizes.dp(18)
             opacity: root.opacity
             color: NeptuneStyle.accentColor
             radius: 20
@@ -70,7 +71,7 @@ Slider {
 
     background: Item {
         id: markers
-        height: NeptuneStyle.dp(100)
+        height: Sizes.dp(100)
         width: parent.width
         anchors.verticalCenter: handle.verticalCenter
 
@@ -81,25 +82,25 @@ Slider {
             Repeater {
                 model: markers.markerCount
                 delegate: Item {
-                    width: NeptuneStyle.dp(30)
-                    height: NeptuneStyle.dp(100) + markersTextLabel.contentHeight
+                    width: Sizes.dp(30)
+                    height: Sizes.dp(100) + markersTextLabel.contentHeight
                     Rectangle {
                         id: marker
-                        width: NeptuneStyle.dp(markers.markerWidth)
+                        width: Sizes.dp(markers.markerWidth)
                         height: (index === 3 || index === 8 || index === 13 || index === 18 || index === 23 || index === 28 || index === 33)
-                                ? NeptuneStyle.dp(100) : NeptuneStyle.dp(60)
+                                ? Sizes.dp(100) : Sizes.dp(60)
                         anchors.top: parent.top
-                        anchors.topMargin: NeptuneStyle.dp(12)
+                        anchors.topMargin: Sizes.dp(12)
                         anchors.horizontalCenter: parent.horizontalCenter
                         radius: markers.markerWidth
-                        opacity: height === NeptuneStyle.dp(100) ? 0.6 : 0.2
+                        opacity: height === Sizes.dp(100) ? 0.6 : 0.2
                         color: NeptuneStyle.contrastColor
                         LinearGradient {
                             id: gradient
                             anchors.fill: parent
-                            visible: height === NeptuneStyle.dp(100)
+                            visible: height === Sizes.dp(100)
                             start: Qt.point(0, 0)
-                            end: Qt.point(0, NeptuneStyle.dp(100))
+                            end: Qt.point(0, Sizes.dp(100))
                             gradient: Gradient {
                                 GradientStop { position: 0.4; color: "white" }
                                 GradientStop { position: 1.0; color: NeptuneStyle.contrastColor }
@@ -111,7 +112,7 @@ Slider {
                             anchors.horizontalCenter: marker.horizontalCenter
                             visible: gradient.visible
                             text: 90 + (index - 3)
-                            font.pixelSize: NeptuneStyle.fontSizeS
+                            font.pixelSize: Sizes.fontSizeS
                         }
                     }
                 }
@@ -126,20 +127,20 @@ Slider {
         x: handle.x
         text: value.toFixed(numberOfDecimals)
         //custom label
-        font.pixelSize: NeptuneStyle.dp(42)
+        font.pixelSize: Sizes.dp(42)
     }
 
     handle: Item {
         id: handle
         anchors.top: valueLabel.bottom
-        width: NeptuneStyle.dp(10)
-        height: NeptuneStyle.dp(300)
+        width: Sizes.dp(10)
+        height: Sizes.dp(300)
         x: root.leftPadding + root.visualPosition * (root.availableWidth - width)
         z: 100000
         Rectangle {
             id: pin
-            width: NeptuneStyle.dp(1)
-            height: NeptuneStyle.dp(300)
+            width: Sizes.dp(1)
+            height: Sizes.dp(300)
             anchors.horizontalCenter: parent.horizontalCenter
             color: NeptuneStyle.contrastColor
         }

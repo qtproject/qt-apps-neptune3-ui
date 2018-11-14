@@ -38,6 +38,7 @@ import "../stores"
 import "../controls"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -50,8 +51,8 @@ Item {
     BusyIndicator {
         id: busyIndicator
 
-        width: NeptuneStyle.dp(225)
-        height: NeptuneStyle.dp(440)
+        width: Sizes.dp(225)
+        height: Sizes.dp(440)
         anchors.centerIn: parent
         running: visible
         opacity: root.store.categoryModel.count < 1 && root.store.isOnline ? 1.0 : 0.0
@@ -68,7 +69,7 @@ Item {
 
     Loader {
         anchors.top: busyIndicator.bottom
-        anchors.topMargin: NeptuneStyle.dp(8)
+        anchors.topMargin: Sizes.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
         sourceComponent: root.store.isOnline ? fetchingLabel : noInternetLabel
         visible: opacity > 0
@@ -81,7 +82,7 @@ Item {
 
         Label {
             color: NeptuneStyle.contrastColor
-            font.pixelSize: NeptuneStyle.fontSizeM
+            font.pixelSize: Sizes.fontSizeM
             text: qsTr("Fetching data from Neptune Server")
         }
     }
@@ -91,7 +92,7 @@ Item {
 
         Label {
             color: NeptuneStyle.contrastColor
-            font.pixelSize: NeptuneStyle.fontSizeM
+            font.pixelSize: Sizes.fontSizeM
             horizontalAlignment: Text.AlignHCenter
             text: qsTr("Cannot Connect to the Server") + "\n" +
                   qsTr("An Internet connection is required")
@@ -101,7 +102,7 @@ Item {
     Label {
         anchors.centerIn: parent
         color: NeptuneStyle.contrastColor
-        font.pixelSize: NeptuneStyle.fontSizeM
+        font.pixelSize: Sizes.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
         visible: appList.model.count < 1 && root.store.isOnline
@@ -111,17 +112,17 @@ Item {
         id: downloadsContent
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(500)
+        anchors.topMargin: Sizes.dp(500)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: NeptuneStyle.dp(20)
+        anchors.bottomMargin: Sizes.dp(20)
         visible: opacity > 0
         opacity: root.store.isOnline ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
 
         DownloadsToolsColumn {
             id: toolsColumn
-            Layout.preferredWidth: NeptuneStyle.dp(264)
-            Layout.preferredHeight: NeptuneStyle.dp(320)
+            Layout.preferredWidth: Sizes.dp(264)
+            Layout.preferredHeight: Sizes.dp(320)
             Layout.alignment: Qt.AlignTop
             model: root.store.categoryModel
             onToolClicked: root.store.selectCategory(index)
@@ -129,10 +130,10 @@ Item {
 
         DownloadAppList {
             id: appList
-            Layout.preferredHeight: NeptuneStyle.dp(800)
-            Layout.preferredWidth: NeptuneStyle.dp(675)
+            Layout.preferredHeight: Sizes.dp(800)
+            Layout.preferredWidth: Sizes.dp(675)
             Layout.alignment: Qt.AlignTop
-            Layout.topMargin: NeptuneStyle.dp(16)
+            Layout.topMargin: Sizes.dp(16)
             store: root.store
 
             onToolClicked: {

@@ -34,6 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 Item {
@@ -51,9 +52,9 @@ Item {
     Label {
         id: titleLine
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(24)
+        anchors.topMargin: Sizes.dp(24)
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(24)
+        anchors.leftMargin: Sizes.dp(24)
         anchors.right: parent.right
 
         text: root.descriptionText + root.valueText
@@ -62,9 +63,9 @@ Item {
     Item {
         id: graphContainer
         anchors.top: titleLine.bottom
-        anchors.topMargin: NeptuneStyle.dp(24)
+        anchors.topMargin: Sizes.dp(24)
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: NeptuneStyle.dp(24)
+        anchors.bottomMargin: Sizes.dp(24)
         anchors.left: parent.left
         anchors.right: parent.right
 
@@ -91,8 +92,8 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.right: parent.right
-            spacing: NeptuneStyle.dp(8)
-            height: NeptuneStyle.dp(1)
+            spacing: Sizes.dp(8)
+            height: Sizes.dp(1)
 
             Repeater {
                 model: graphContainer.width/8
@@ -109,13 +110,13 @@ Item {
 
     Label {
         id: middleLineText
-        width: NeptuneStyle.dp(45)
+        width: Sizes.dp(45)
         anchors.right: parent.right
         anchors.verticalCenter: graphContainer.verticalCenter
         anchors.verticalCenterOffset: -height * 0.7
-        anchors.rightMargin: NeptuneStyle.dp(24)
+        anchors.rightMargin: Sizes.dp(24)
 
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         opacity: NeptuneStyle.opacityMedium
     }
 }

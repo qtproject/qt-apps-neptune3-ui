@@ -37,6 +37,7 @@ import QtPositioning 5.9
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.animations 1.0
 import "../controls"
 import "../helpers"
@@ -118,7 +119,7 @@ Item {
             delegate: MapRoute {
                 route: routeData
                 line.color: "#798bd9"
-                line.width: NeptuneStyle.dp(3)
+                line.width: Sizes.dp(3)
                 smooth: true
                 opacity: NeptuneStyle.opacityHigh
             }
@@ -133,8 +134,8 @@ Item {
             sourceItem: Image {
                 id: markerImage
                 source: Qt.resolvedUrl("../assets/pin-destination.png")
-                width: NeptuneStyle.dp(139/2)
-                height: NeptuneStyle.dp(161/2)
+                width: Sizes.dp(139/2)
+                height: Sizes.dp(161/2)
             }
         }
 
@@ -148,8 +149,8 @@ Item {
             sourceItem: Image {
                 id: posImage
                 source: Qt.resolvedUrl("../assets/pin-your-position.png")
-                width: NeptuneStyle.dp(116/2)
-                height: NeptuneStyle.dp(135/2)
+                width: Sizes.dp(116/2)
+                height: Sizes.dp(135/2)
             }
             rotation: root.routeSegments ? root.routeSegments[0].path[0].azimuthTo(root.routeSegments[0].path[1])
                                                : 0
@@ -171,7 +172,7 @@ Item {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: guidanceMode ? NeptuneStyle.dp(810) : 0
+        anchors.rightMargin: guidanceMode ? Sizes.dp(810) : 0
         anchors.top: parent.top
         opacity: root.state !== "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -210,18 +211,18 @@ Item {
 
     ToolButton {
         anchors.left: parent.left
-        anchors.leftMargin: NeptuneStyle.dp(27)
+        anchors.leftMargin: Sizes.dp(27)
         anchors.top: header.bottom
-        anchors.topMargin: NeptuneStyle.dp(240)
+        anchors.topMargin: Sizes.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-        width: NeptuneStyle.dp(background.sourceSize.width)
-        height: NeptuneStyle.dp(background.sourceSize.height)
+        width: Sizes.dp(background.sourceSize.width)
+        height: Sizes.dp(background.sourceSize.height)
         background: Image {
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
@@ -231,18 +232,18 @@ Item {
 
     ToolButton {
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(27)
+        anchors.rightMargin: Sizes.dp(27)
         anchors.top: header.bottom
-        anchors.topMargin: NeptuneStyle.dp(240)
+        anchors.topMargin: Sizes.dp(240)
         checkable: true
         opacity: root.state === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
-        width: NeptuneStyle.dp(background.sourceSize.width)
-        height: NeptuneStyle.dp(background.sourceSize.height)
+        width: Sizes.dp(background.sourceSize.width)
+        height: Sizes.dp(background.sourceSize.height)
         background: Image {
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
         }
         enabled: !checked
@@ -255,9 +256,9 @@ Item {
     MapCopyrightNotice {
         anchors.left: mainMap.left
         anchors.bottom: mainMap.bottom
-        anchors.leftMargin: NeptuneStyle.dp(45 * .5)
+        anchors.leftMargin: Sizes.dp(45 * .5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(NeptuneStyle.contrastColor).arg(NeptuneStyle.fontFamily).arg(NeptuneStyle.fontSizeXXS)
+        .arg(NeptuneStyle.contrastColor).arg(NeptuneStyle.fontFamily).arg(Sizes.fontSizeXXS)
     }
 }

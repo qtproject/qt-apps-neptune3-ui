@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import application.windows 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 PopupWindow {
     id: root
@@ -46,8 +46,8 @@ PopupWindow {
 
         Label {
             anchors.baseline: parent.top
-            anchors.baselineOffset: NeptuneStyle.dp(78)
-            font.pixelSize: NeptuneStyle.fontSizeM
+            anchors.baselineOffset: Sizes.dp(78)
+            font.pixelSize: Sizes.fontSizeM
             width: parent.width
             text: "Choose color"
             horizontalAlignment: Text.AlignHCenter
@@ -55,9 +55,9 @@ PopupWindow {
         Image {
             id: shadow
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(120)
+            anchors.topMargin: Sizes.dp(120)
             width: parent.width
-            height: NeptuneStyle.dp(sourceSize.height)
+            height: Sizes.dp(sourceSize.height)
             source: Style.gfx("popup-title-shadow")
         }
 
@@ -65,22 +65,22 @@ PopupWindow {
             anchors {
                 top: shadow.bottom
                 left: parent.left
-                leftMargin: NeptuneStyle.dp(40)
+                leftMargin: Sizes.dp(40)
                 right: parent.right
-                rightMargin: NeptuneStyle.dp(40)
+                rightMargin: Sizes.dp(40)
                 bottom: parent.bottom
-                bottomMargin: NeptuneStyle.dp(40)
+                bottomMargin: Sizes.dp(40)
             }
             model: root.model
             interactive: false
             delegate: RadioButton {
                 width: parent.width
-                height:  NeptuneStyle.dp(96)
-                font.pixelSize: NeptuneStyle.fontSizeS
-                indicator.implicitHeight: NeptuneStyle.dp(30)
-                indicator.implicitWidth: NeptuneStyle.dp(30)
+                height:  Sizes.dp(96)
+                font.pixelSize: Sizes.fontSizeS
+                indicator.implicitHeight: Sizes.dp(30)
+                indicator.implicitWidth: Sizes.dp(30)
                 text: modelData.text
-                spacing: NeptuneStyle.dp(20)
+                spacing: Sizes.dp(20)
             }
         }
     }

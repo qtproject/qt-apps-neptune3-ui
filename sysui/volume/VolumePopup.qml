@@ -37,17 +37,18 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.controls 1.0
+import shared.Sizes 1.0
 import system.controls 1.0
 
 PopupItem {
     id: root
     objectName: "volumePopupItem"
 
-    width: NeptuneStyle.dp(270)
-    height: NeptuneStyle.dp(1426)
+    width: Sizes.dp(270)
+    height: Sizes.dp(1426)
 
     headerBackgroundVisible: true
-    headerBackgroundHeight: NeptuneStyle.dp(140)
+    headerBackgroundHeight: Sizes.dp(140)
 
     readonly property alias value: slider.value
 
@@ -56,18 +57,18 @@ PopupItem {
     Row {
         id: labelVolumeValue
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(50)
+        anchors.topMargin: Sizes.dp(50)
         anchors.horizontalCenter: parent.horizontalCenter
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: NeptuneStyle.fontSizeXL
+            font.pixelSize: Sizes.fontSizeXL
             font.weight: Font.DemiBold
             opacity: NeptuneStyle.opacityMedium
             text: value
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: NeptuneStyle.fontSizeL
+            font.pixelSize: Sizes.fontSizeL
             opacity: NeptuneStyle.opacityLow
             text: " %"
         }
@@ -77,7 +78,7 @@ PopupItem {
         id: slider
         objectName: "volumeSlider"
         anchors.centerIn: parent
-        height: NeptuneStyle.dp(1120)
+        height: Sizes.dp(1120)
         from: 0
         to: 100
         value: Math.round(root.model.volume*100)
@@ -95,9 +96,9 @@ PopupItem {
         id: muteButton
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: NeptuneStyle.dp(40)
-        width: NeptuneStyle.dp(200)
-        height: NeptuneStyle.dp(100)
+        anchors.bottomMargin: Sizes.dp(40)
+        width: Sizes.dp(200)
+        height: Sizes.dp(100)
         checkable: true
         checked: root.model ? root.model.muted : false
         icon.name: "ic-volume-0"

@@ -37,7 +37,7 @@ import home 1.0
 import launcher 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -69,7 +69,7 @@ Item {
         z: 0
 
         Item {
-            y: launcher.height - NeptuneStyle.dp(Style.launcherHeight)
+            y: launcher.height - Sizes.dp(Style.launcherHeight)
             width: parent.width
             height: parent.height
 
@@ -79,7 +79,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                y: launcher.y + NeptuneStyle.dp(Style.launcherHeight)
+                y: launcher.y + Sizes.dp(Style.launcherHeight)
                 height: parent.height - y - root.homeBottomMargin
 
                 applicationModel: !root.applicationModel || root.applicationModel.populating ? null : root.applicationModel
@@ -89,7 +89,7 @@ Item {
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
                 widgetDrawer: widgetDrawerSlot
                 popupParent: root.popupParent
-                exposedRectTopMargin: launcher.y + (launcher.open ? NeptuneStyle.dp(Style.launcherHeight)
+                exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Style.launcherHeight)
                                                                   : launcher.height)
                 exposedRectBottomMargin: root.activeAppBottomMargin
             }
@@ -105,7 +105,7 @@ Item {
                     appInfo: root.applicationModel && root.applicationModel.activeAppInfo
                              && !root.applicationModel.activeAppInfo.asWidget ? root.applicationModel.activeAppInfo
                                                                               : null
-                    exposedRectTopMargin: launcher.y + (launcher.open ? NeptuneStyle.dp(Style.launcherHeight)
+                    exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Style.launcherHeight)
                                                                       : launcher.height)
                     exposedRectBottomMargin: root.activeAppBottomMargin
                 }

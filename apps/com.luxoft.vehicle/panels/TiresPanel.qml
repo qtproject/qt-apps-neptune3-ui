@@ -33,6 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../helpers/pathsProvider.js" as Paths
 import "../controls"
@@ -46,35 +47,35 @@ Item {
     Image {
         anchors.top: parent.top
         anchors.left: parent.left
-        width: NeptuneStyle.dp(sourceSize.width)
-        height: NeptuneStyle.dp(sourceSize.height)
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
 
         source: Paths.getImagePath("car-tires.png")
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(120)
+            anchors.topMargin: Sizes.dp(120)
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(110)
+            anchors.leftMargin: Sizes.dp(110)
             source: Paths.getImagePath("tire.png")
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
 
             Label {
                 anchors.right: parent.left
-                anchors.rightMargin: NeptuneStyle.dp(26)
+                anchors.rightMargin: Sizes.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: NeptuneStyle.dp(-6)
+                    anchors.topMargin: Sizes.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
                         weight: Font.Light
-                        pixelSize: NeptuneStyle.fontSizeXS
+                        pixelSize: Sizes.fontSizeXS
                     }
                     opacity: NeptuneStyle.opacityLow
                 }
@@ -83,27 +84,27 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(120)
+            anchors.topMargin: Sizes.dp(120)
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(146)
+            anchors.rightMargin: Sizes.dp(146)
             source: Paths.getImagePath("tire.png")
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
 
             Label {
                 anchors.left: parent.right
-                anchors.leftMargin: NeptuneStyle.dp(26)
+                anchors.leftMargin: Sizes.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: NeptuneStyle.dp(-6)
+                    anchors.topMargin: Sizes.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: NeptuneStyle.fontSizeXS
+                        pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
                     opacity: NeptuneStyle.opacityLow
@@ -113,27 +114,27 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(480)
+            anchors.topMargin: Sizes.dp(480)
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(110)
+            anchors.leftMargin: Sizes.dp(110)
             source: Paths.getImagePath("tire.png")
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
 
             Label {
                 anchors.right: parent.left
-                anchors.rightMargin: NeptuneStyle.dp(26)
+                anchors.rightMargin: Sizes.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
 
                 text: qsTr("240")
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: NeptuneStyle.dp(-6)
+                    anchors.topMargin: Sizes.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: NeptuneStyle.fontSizeXS
+                        pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
                     opacity: NeptuneStyle.opacityLow
@@ -143,27 +144,27 @@ Item {
 
         Image {
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(480)
+            anchors.topMargin: Sizes.dp(480)
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(146)
+            anchors.rightMargin: Sizes.dp(146)
             source: Paths.getImagePath("tire.png")
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
 
             Label {
                 anchors.left: parent.right
-                anchors.leftMargin: NeptuneStyle.dp(26)
+                anchors.leftMargin: Sizes.dp(26)
                 anchors.verticalCenter: parent.verticalCenter
                 text: qsTr("240")
 
                 Label {
                     anchors.top: parent.bottom
-                    anchors.topMargin: NeptuneStyle.dp(-6)
+                    anchors.topMargin: Sizes.dp(-6)
                     anchors.right: parent.right
 
                     text: qsTr("kPa")
                     font {
-                        pixelSize: NeptuneStyle.fontSizeXS
+                        pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
                     opacity: NeptuneStyle.opacityLow
@@ -174,21 +175,21 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(22)
+        anchors.rightMargin: Sizes.dp(22)
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(132)
+        anchors.topMargin: Sizes.dp(132)
 
         font.weight: Font.Light
         text: qsTr("Normal load")
 
         Label {
             anchors.top: parent.bottom
-            anchors.topMargin: NeptuneStyle.dp(10)
+            anchors.topMargin: Sizes.dp(10)
             anchors.right: parent.right
 
             text: qsTr("Target: 240 kPa")
             font {
-                pixelSize: NeptuneStyle.fontSizeS
+                pixelSize: Sizes.fontSizeS
                 weight: Font.Light
             }
         }
@@ -197,9 +198,9 @@ Item {
 
     Label {
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(22)
+        anchors.rightMargin: Sizes.dp(22)
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(270)
+        anchors.topMargin: Sizes.dp(270)
 
         font.weight: Font.Light
         text: qsTr("Max load")
@@ -207,12 +208,12 @@ Item {
 
         Label {
             anchors.top: parent.bottom
-            anchors.topMargin: NeptuneStyle.dp(10)
+            anchors.topMargin: Sizes.dp(10)
             anchors.right: parent.right
 
             text: qsTr("Target: 270 kPa")
             font {
-                pixelSize: NeptuneStyle.fontSizeS
+                pixelSize: Sizes.fontSizeS
                 weight: Font.Light
             }
         }
@@ -222,9 +223,9 @@ Item {
         id: calibrateButton
 
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(470)
+        anchors.topMargin: Sizes.dp(470)
         anchors.right: parent.right
-        anchors.rightMargin: NeptuneStyle.dp(22)
+        anchors.rightMargin: Sizes.dp(22)
         text: qsTr("Calibrate")
         readonly property string sourceSuffix: NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"
         icon.source: Paths.getImagePath("ic-calibrate" + sourceSuffix)

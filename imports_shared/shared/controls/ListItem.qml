@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ListItem
@@ -97,7 +98,7 @@ ListItemBasic {
     signal rightToolClicked()
 
     accessoryDelegateComponent1: Label {
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter
@@ -111,7 +112,7 @@ ListItemBasic {
     dividerVisible: true
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: rightToolSymbol ? NeptuneStyle.dp(100) : 0
+        implicitWidth: rightToolSymbol ? Sizes.dp(100) : 0
         implicitHeight: rightToolSymbol ? root.height : 0
         baselineOffset: 0
         icon.name: root.rightToolSymbol

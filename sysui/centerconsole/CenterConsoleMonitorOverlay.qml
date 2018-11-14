@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 MonitorOverlay {
@@ -45,49 +45,49 @@ MonitorOverlay {
 
     Label {
         text: "|"
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: (root.model && root.model.systemOverlayEnabled) && root.fpsVisible
     }
     Label {
         text: qsTr("CPU: %1 %").arg(root.model ? root.model.cpuPercentage : "?")
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.model ? root.model.systemOverlayEnabled : false
     }
     Label {
         text: "|"
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.model ? root.model.systemOverlayEnabled : false
     }
     Label {
         text: qsTr("RAM: %1 MB (%2 %)").arg(root.model ? root.model.ramBytes : "?")
                                         .arg(root.model ? root.model.ramPercentage : "?")
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.model ? root.model.systemOverlayEnabled : false
     }
     Label {
         text: "||"
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.activeAppId && root.model.systemOverlayEnabled
     }
     Label {
         text: root.activeAppId + ": "
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.activeAppId && root.model.systemOverlayEnabled
     }
     Label {
         text: qsTr("CPU: %1 %").arg(root.model ? root.model.appCpuPercentage : "?")
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.activeAppId && root.model.systemOverlayEnabled
     }
     Label {
         text: "|"
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.activeAppId && root.model.systemOverlayEnabled
     }
     Label {
         text: qsTr("RAM: %1 MB (%2 %)").arg(root.model ? root.model.appRamBytes : "?")
         .arg(root.model ? root.model.appRamPercentage : "?")
-        font.pixelSize: NeptuneStyle.fontSizeXS
+        font.pixelSize: Sizes.fontSizeXS
         visible: root.activeAppId && root.model.systemOverlayEnabled
     }
 }

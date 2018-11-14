@@ -36,6 +36,7 @@ import shared.animations 1.0
 import shared.controls 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../helpers"
 
 Item {
@@ -46,23 +47,23 @@ Item {
     property bool guidanceMode: false
     property Helper helper: Helper {}
 
-    height: destinationButtonsPanel.visible ? NeptuneStyle.dp(destinationButtonsPanel.sourceSize.height) : searchPanel.height
+    height: destinationButtonsPanel.visible ? Sizes.dp(destinationButtonsPanel.sourceSize.height) : searchPanel.height
 
     ScalableBorderImage {
         id: outerShadow
         anchors.top: destinationButtonsPanel.top
-        anchors.topMargin: NeptuneStyle.dp(-40)
+        anchors.topMargin: Sizes.dp(-40)
         anchors.left: destinationButtonsPanel.left
         anchors.right: destinationButtonsPanel.right
-        anchors.rightMargin: -NeptuneStyle.dp(45 * .5)
-        height: root.navigationMode && !root.guidanceMode ? NeptuneStyle.dp(sourceSize.height) - root.destinationButtonrowHeight
-                                                          : NeptuneStyle.dp(sourceSize.height)
+        anchors.rightMargin: -Sizes.dp(45 * .5)
+        height: root.navigationMode && !root.guidanceMode ? Sizes.dp(sourceSize.height) - root.destinationButtonrowHeight
+                                                          : Sizes.dp(sourceSize.height)
         source: helper.localAsset("panel-shadow", NeptuneStyle.theme)
         border {
             left: 0
-            top: NeptuneStyle.dp(101)
-            right: NeptuneStyle.dp(101)
-            bottom: NeptuneStyle.dp(106)
+            top: Sizes.dp(101)
+            right: Sizes.dp(101)
+            bottom: Sizes.dp(106)
         }
     }
 
@@ -71,14 +72,14 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: -NeptuneStyle.dp(45)
+        anchors.rightMargin: -Sizes.dp(45)
         source: helper.localAsset("panel-more-contrast-background", NeptuneStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
-            top: NeptuneStyle.dp(20)
-            right: NeptuneStyle.dp(32)
-            bottom: NeptuneStyle.dp(22)
+            top: Sizes.dp(20)
+            right: Sizes.dp(32)
+            bottom: Sizes.dp(22)
         }
     }
 
@@ -96,14 +97,14 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: -NeptuneStyle.dp(45)
-        height: root.guidanceMode ? NeptuneStyle.dp(sourceSize.height) :
-                                    NeptuneStyle.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
+        anchors.rightMargin: -Sizes.dp(45)
+        height: root.guidanceMode ? Sizes.dp(sourceSize.height) :
+                                    Sizes.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
         source: helper.localAsset("panel-background", NeptuneStyle.theme)
         border {
             left: 0
-            top: NeptuneStyle.dp(20)
-            right: NeptuneStyle.dp(22)
+            top: Sizes.dp(20)
+            right: Sizes.dp(22)
             bottom: 0
         }
     }

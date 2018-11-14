@@ -33,7 +33,7 @@ import QtQuick 2.2
 
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../panels"
 import "../stores"
@@ -49,7 +49,7 @@ Item {
         anchors.top: root.top
         anchors.left: root.left
         anchors.right: root.right
-        height: NeptuneStyle.dp(652)
+        height: Sizes.dp(652)
 
         leftDoorOpen: root.store.leftDoorOpened
         rightDoorOpen: root.store.rightDoorOpened
@@ -61,8 +61,8 @@ Item {
         id: controlPanel
 
         anchors.top: car3dPanel.bottom
-        anchors.topMargin: NeptuneStyle.dp(80)
-        anchors.rightMargin: NeptuneStyle.dp(30)
+        anchors.topMargin: Sizes.dp(80)
+        anchors.rightMargin: Sizes.dp(30)
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottom: parent.bottom

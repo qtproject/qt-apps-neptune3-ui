@@ -37,11 +37,12 @@ import shared.utils 1.0
 import shared.animations 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: NeptuneStyle.dp(160)
-    height: NeptuneStyle.dp(100)
+    width: Sizes.dp(160)
+    height: Sizes.dp(100)
 
     property alias primaryText: primaryLabel.text
     property alias secondaryText: secondaryLabel.text
@@ -74,14 +75,14 @@ Item {
         Label {
             id: primaryLabel
             Layout.alignment: Qt.AlignHCenter
-            font.pixelSize: NeptuneStyle.fontSizeL
+            font.pixelSize: Sizes.fontSizeL
             font.weight: Font.Light
         }
 
         Label {
             id: secondaryLabel
             Layout.alignment: Qt.AlignHCenter
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             visible: text
         }
     }

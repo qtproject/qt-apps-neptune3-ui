@@ -34,12 +34,13 @@ import QtQuick.Controls 2.2
 import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 WindowItem {
     id: root
 
     property var appInfo
-    readonly property real windowScale: root.NeptuneStyle.scale
+    readonly property real windowScale: root.Sizes.scale
     readonly property color accentColor: root.NeptuneStyle.accentColor
     readonly property int currentTheme: root.NeptuneStyle.theme
     readonly property string currentLanguageLocale: Style.languageLocale

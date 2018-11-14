@@ -40,6 +40,7 @@ import QtQuick.Templates 2.3 as T
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.ScrollIndicator {
     id: control
@@ -50,14 +51,14 @@ T.ScrollIndicator {
                             topPadding + bottomPadding)
 
     background: Item {
-        implicitWidth: NeptuneStyle.dp(5)
+        implicitWidth: Sizes.dp(5)
         implicitHeight: control.height
 
         Rectangle {
-            width: NeptuneStyle.dp(5)
+            width: Sizes.dp(5)
             height: parent.height * control.position
             anchors.top: parent.top
-            anchors.topMargin: - NeptuneStyle.dp(9)
+            anchors.topMargin: - Sizes.dp(9)
             radius: width / 2
             color: NeptuneStyle.contrastColor
             opacity: control.active ? 0.14 : 0
@@ -66,10 +67,10 @@ T.ScrollIndicator {
         }
 
         Rectangle {
-            width: NeptuneStyle.dp(5)
+            width: Sizes.dp(5)
             height: ((parent.height - (parent.height * control.size)) - (parent.height * control.position))
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: - NeptuneStyle.dp(9)
+            anchors.bottomMargin: - Sizes.dp(9)
             radius: width / 2
             color: NeptuneStyle.contrastColor
             opacity: control.active ? 0.14 : 0
@@ -79,7 +80,7 @@ T.ScrollIndicator {
     }
 
     contentItem: Rectangle {
-        implicitWidth: NeptuneStyle.dp(7)
+        implicitWidth: Sizes.dp(7)
         radius: width / 2
         color: NeptuneStyle.accentColor
         opacity: control.active ? 1.0 : 0.0

@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -56,7 +57,7 @@ Control {
             id: languageDelegate
 
             width: ListView.view.width
-            height: NeptuneStyle.dp(110)
+            height: Sizes.dp(110)
             onClicked: root.languageRequested(model.language, model.title)
 
             contentItem: Item {
@@ -64,7 +65,7 @@ Control {
                     id: radio
                     anchors.left: parent.left
                     checked: model.language === root.currentLanguage
-                    width: NeptuneStyle.dp(100)
+                    width: Sizes.dp(100)
                     height: parent.height
 
                     onToggled: languageDelegate.clicked()
@@ -77,14 +78,14 @@ Control {
 
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: NeptuneStyle.dp(-20)
+                        anchors.verticalCenterOffset: Sizes.dp(-20)
                         text: model.title
                     }
                     Label {
                         anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: NeptuneStyle.dp(20)
+                        anchors.verticalCenterOffset: Sizes.dp(20)
                         text: model.subtitle
-                        font.pixelSize: NeptuneStyle.fontSizeS
+                        font.pixelSize: Sizes.fontSizeS
                     }
                 }
                 Image {

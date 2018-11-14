@@ -37,6 +37,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -48,22 +49,22 @@ Item {
     states: [
         State {
             name: "Widget1Row"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(260) }
+            PropertyChanges { target: root; height: Sizes.dp(260) }
         },
         State {
             name: "Widget2Rows"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(550) }
+            PropertyChanges { target: root; height: Sizes.dp(550) }
             PropertyChanges { target: favorites1Row; opacity: 0 }
             PropertyChanges { target: favoritesMoreRows; opacity: 1 }
         },
         State {
             name: "Widget3Rows"
             extend: "Widget2Rows"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(840) }
+            PropertyChanges { target: root; height: Sizes.dp(840) }
         },
         State {
             name: "Maximized"
-            PropertyChanges { target: root; height: NeptuneStyle.dp(436) }
+            PropertyChanges { target: root; height: Sizes.dp(436) }
         }
 
     ]
@@ -103,11 +104,11 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: NeptuneStyle.dp(50)
-            rightMargin: NeptuneStyle.dp(50)
+            leftMargin: Sizes.dp(50)
+            rightMargin: Sizes.dp(50)
         }
 
-        height: Math.min(NeptuneStyle.dp(436), root.exposedRectHeight)
+        height: Math.min(Sizes.dp(436), root.exposedRectHeight)
 
         opacity: 1.0
         visible: opacity > 0
@@ -115,10 +116,10 @@ Item {
         orientation: ListView.Horizontal
         interactive: false
         clip: true
-        spacing: NeptuneStyle.dp(50)
+        spacing: Sizes.dp(50)
         model: root.store.favoritesModel
         delegate: RoundImage {
-            width: NeptuneStyle.dp(130)
+            width: Sizes.dp(130)
             height: width
             anchors.verticalCenter: parent.verticalCenter
             source: "../assets/profile_photos/%1.png".arg(model.handle)
@@ -136,12 +137,12 @@ Item {
             top: parent.top
             left: parent.left
             right: parent.right
-            leftMargin: NeptuneStyle.dp(40)
-            rightMargin: NeptuneStyle.dp(40)
-            topMargin: NeptuneStyle.dp(48)
+            leftMargin: Sizes.dp(40)
+            rightMargin: Sizes.dp(40)
+            topMargin: Sizes.dp(48)
         }
 
-        height: root.exposedRectHeight - anchors.topMargin - NeptuneStyle.dp(25)
+        height: root.exposedRectHeight - anchors.topMargin - Sizes.dp(25)
 
         ListView {
             id: listviewMoreRows
@@ -159,31 +160,31 @@ Item {
                 id: itemDelegate
                 padding: 0
                 width: ListView.view.width
-                height: NeptuneStyle.dp(70)
+                height: Sizes.dp(70)
                 contentItem: Item {
                     RowLayout {
                         anchors.fill: parent
                         spacing: 0
                         RoundImage {
-                            Layout.preferredHeight: NeptuneStyle.dp(64)
-                            Layout.preferredWidth: NeptuneStyle.dp(64)
+                            Layout.preferredHeight: Sizes.dp(64)
+                            Layout.preferredWidth: Sizes.dp(64)
                             Layout.alignment: Qt.AlignVCenter
                             source: "../assets/profile_photos/%1.png".arg(model.handle)
                         }
                         Label {
-                            Layout.leftMargin: NeptuneStyle.dp(22)
+                            Layout.leftMargin: Sizes.dp(22)
                             Layout.fillWidth: true
                             text: model.firstName + " " + model.surname
                             color: enabled ? NeptuneStyle.contrastColor : NeptuneStyle.disabledTextColor
                         }
                         ToolButton {
-                            Layout.preferredWidth: NeptuneStyle.dp(100)
+                            Layout.preferredWidth: Sizes.dp(100)
                             Layout.alignment: Qt.AlignVCenter
                             height: parent.height
                             icon.name: "ic-message-contrast"
                         }
                         ToolButton {
-                            Layout.preferredWidth: NeptuneStyle.dp(100)
+                            Layout.preferredWidth: Sizes.dp(100)
                             Layout.alignment: Qt.AlignVCenter
                             height: parent.height
                             icon.name: "ic-call-contrast"
@@ -206,7 +207,7 @@ Item {
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0
             text: qsTr("more", "more contacts")
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             //TODO make it a button that takes the user to fullscreen with the favorites page.
         }
     }

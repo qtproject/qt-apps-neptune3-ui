@@ -34,6 +34,7 @@ import QtQuick 2.7
 import shared.animations 1.0
 import system.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*
     Displays the main window of a given application using in and out transition animations
@@ -67,7 +68,7 @@ Item {
                                                                              "exposedRectBottomMargin": root.exposedRectBottomMargin,
                                                                              "currentHeight": root.height,
                                                                              "currentWidth": root.width,
-                                                                             "NeptuneStyle.scale": root.NeptuneStyle.scale,
+                                                                             "Sizes.scale": root.Sizes.scale,
                                                                              "NeptuneStyle.accentColor": root.NeptuneStyle.accentColor,
                                                                              "NeptuneStyle.theme": root.NeptuneStyle.theme,
                                                                              "windowState": "Maximized"

@@ -34,13 +34,13 @@ import shared.utils 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ColumnLayout {
     id: root
-    spacing: NeptuneStyle.dp(15)
+    spacing: Sizes.dp(15)
 
-    property int preferredWidth: NeptuneStyle.dp(240)
+    property int preferredWidth: Sizes.dp(240)
     property alias currentSongTitle: songTitle.text
     property alias currentArtisName: artistName.text
 
@@ -57,7 +57,7 @@ ColumnLayout {
         id: artistName
         Layout.preferredWidth: root.width
         wrapMode: Text.WordWrap
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         visible: text !== ""
         opacity: NeptuneStyle.opacityMedium
         maximumLineCount: 1

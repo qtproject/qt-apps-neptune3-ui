@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import shared.utils 1.0
 
 /*!
@@ -74,8 +74,8 @@ import shared.utils 1.0
 ColumnLayout {
     id: root
 
-    width: NeptuneStyle.dp(135)
-    spacing: NeptuneStyle.dp(24)
+    width: Sizes.dp(135)
+    spacing: Sizes.dp(24)
 
     /*!
         \qmlproperty int ToolsColumn::currentIndex
@@ -131,15 +131,15 @@ ColumnLayout {
         id: repeater
 
         ToolButton {
-            Layout.preferredWidth: NeptuneStyle.dp(135)
-            Layout.preferredHeight: NeptuneStyle.dp(96)
+            Layout.preferredWidth: Sizes.dp(135)
+            Layout.preferredHeight: Sizes.dp(96)
             Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
             checked: root.currentIndex === index
             icon.name: model.icon ? (checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
             text: qsTranslate(root.translationContext, model.text)
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             enabled: !model.greyedOut
             display: AbstractButton.TextUnderIcon
             onClicked: {

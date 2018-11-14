@@ -33,6 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -45,16 +46,16 @@ Item {
 
     Item {
         id: titleAndSubtitle
-        height: root.subtitle !== "" ? NeptuneStyle.dp(96) + subTitle.lineCount * NeptuneStyle.dp(16) : NeptuneStyle.dp(96)
+        height: root.subtitle !== "" ? Sizes.dp(96) + subTitle.lineCount * Sizes.dp(16) : Sizes.dp(96)
         visible: title !== "" || subtitle !== ""
         width: root.width
 
         Column {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(24)
+            anchors.leftMargin: Sizes.dp(24)
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(24)
+            anchors.rightMargin: Sizes.dp(24)
 
             Label {
                 id: title
@@ -63,7 +64,7 @@ Item {
 
             Label {
                 id: subTitle
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 opacity: NeptuneStyle.opacityMedium
                 text: root.subtitle
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere

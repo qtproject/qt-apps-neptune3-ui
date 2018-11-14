@@ -40,6 +40,7 @@ import "../panels"
 import "../popups"
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -64,6 +65,6 @@ Item {
         id: climatePopup
         originItemX: Math.round(Style.centerConsoleWidth / 2);
         originItemY: Style.centerConsoleHeight - Math.round(root.height / 2);
-        popupY: NeptuneStyle.dp(Style.centerConsoleHeight) - climatePopup.height - NeptuneStyle.dp(90);
+        popupY: Sizes.dp(Style.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
     }
 }

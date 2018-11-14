@@ -34,6 +34,7 @@ import shared.utils 1.0
 import "../stores"
 import "../panels"
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -52,10 +53,10 @@ Item {
 
     ICAlbumArtPanel {
         id: albumArt
-        width: NeptuneStyle.dp(540)
-        height: NeptuneStyle.dp(464)
+        width: Sizes.dp(540)
+        height: Sizes.dp(464)
         anchors.centerIn: parent
-        anchors.verticalCenterOffset: NeptuneStyle.dp(50)
+        anchors.verticalCenterOffset: Sizes.dp(50)
         musicPlaying: root.store.playing
         musicPosition: root.store.currentTrackPosition
         mediaReady: root.store.searchAndBrowseModel.count > 0

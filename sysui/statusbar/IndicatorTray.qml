@@ -35,24 +35,25 @@ import QtQuick.Layouts 1.0
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
 
-    width: NeptuneStyle.dp(24 * 4) // roughly 4 icons
+    width: Sizes.dp(24 * 4) // roughly 4 icons
 
     property alias model: repeater.model
 
     contentItem: RowLayout {
-        spacing: NeptuneStyle.dp(16)
+        spacing: Sizes.dp(16)
 
          Repeater {
              id: repeater
 
              // TODO: Replace this with real implementation. this is currently just a placeholder.
              delegate: Image {
-                 Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-                 Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
+                 Layout.preferredWidth: Sizes.dp(sourceSize.width)
+                 Layout.preferredHeight: Sizes.dp(sourceSize.height)
                  source: Style.symbol(modelData.icon, NeptuneStyle.theme)
                  fillMode: Image.PreserveAspectFit
                  opacity: modelData.active ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow

@@ -32,14 +32,15 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
+import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
 MouseArea {
     id: root
 
-    width: NeptuneStyle.dp(300)
-    height: NeptuneStyle.dp(30)
+    width: Sizes.dp(300)
+    height: Sizes.dp(30)
 
     drag.axis: Drag.YAxis
     drag.filterChildren: true
@@ -65,15 +66,15 @@ MouseArea {
     Rectangle {
         anchors.left: root.notificationCounterVisible ? parent.left : undefined
         anchors.verticalCenter: parent.verticalCenter
-        width: root.notificationCounterVisible ? NeptuneStyle.dp(100) : NeptuneStyle.dp(200)
-        height: NeptuneStyle.dp(2)
+        width: root.notificationCounterVisible ? Sizes.dp(100) : Sizes.dp(200)
+        height: Sizes.dp(2)
         anchors.centerIn: root.notificationCounterVisible ? undefined : root
         color: NeptuneStyle.contrastColor
     }
 
     Label {
         anchors.centerIn: root
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         text: circledNumber(root.notificationCount)
         opacity: root.notificationCounterVisible ? 1 : 0
         visible: opacity > 0
@@ -82,8 +83,8 @@ MouseArea {
     Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        width: NeptuneStyle.dp(100)
-        height: NeptuneStyle.dp(2)
+        width: Sizes.dp(100)
+        height: Sizes.dp(2)
         opacity: root.notificationCounterVisible ? 1 : 0
         visible: opacity > 0
         color: NeptuneStyle.contrastColor

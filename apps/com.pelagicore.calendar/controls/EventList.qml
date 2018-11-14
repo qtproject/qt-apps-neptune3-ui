@@ -34,14 +34,14 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.controls 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ListView {
     id: root
 
     delegate: EventListItem {
-        width: NeptuneStyle.dp(675)
-        height: NeptuneStyle.dp(80)
+        width: Sizes.dp(675)
+        height: Sizes.dp(80)
         eventTimeStart: timeStart
         eventTimeEnd: timeEnd
         eventLabel: event

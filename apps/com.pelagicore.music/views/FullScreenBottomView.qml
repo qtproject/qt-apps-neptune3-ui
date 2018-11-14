@@ -35,7 +35,7 @@ import shared.controls 1.0
 import shared.animations 1.0
 import QtQuick.Controls 2.2
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../stores"
 import "../panels"
@@ -59,10 +59,10 @@ Item {
 
     ToolsColumn {
         id: toolsColumn
-        width: NeptuneStyle.dp(264)
+        width: Sizes.dp(264)
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(53)
+        anchors.topMargin: Sizes.dp(53)
         translationContext: "MusicToolsColumn"
         model: store.toolsColumnModel
 

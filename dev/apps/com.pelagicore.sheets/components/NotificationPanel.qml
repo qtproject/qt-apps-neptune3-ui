@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import QtApplicationManager.Application 1.0
 
 Item {
@@ -105,35 +105,35 @@ Item {
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(100)
-        spacing: NeptuneStyle.dp(50)
+        anchors.topMargin: Sizes.dp(100)
+        spacing: Sizes.dp(50)
         Button {
-            width: NeptuneStyle.dp(500)
-            height: NeptuneStyle.dp(64)
+            width: Sizes.dp(500)
+            height: Sizes.dp(64)
             text: "Simple notification"
             onClicked: notification1.show()
         }
         Button {
-            width: NeptuneStyle.dp(500)
-            height: NeptuneStyle.dp(64)
+            width: Sizes.dp(500)
+            height: Sizes.dp(64)
             text: "Timeout notification 8 secs"
             onClicked: notification2.show()
         }
         Button {
-            width: NeptuneStyle.dp(500)
-            height: NeptuneStyle.dp(64)
+            width: Sizes.dp(500)
+            height: Sizes.dp(64)
             text: "Sticky notification"
             onClicked: notification3.show()
         }
         Button {
-            width: NeptuneStyle.dp(500)
-            height: NeptuneStyle.dp(64)
+            width: Sizes.dp(500)
+            height: Sizes.dp(64)
             text: "Long text notification"
             onClicked: notification4.show()
         }
         Button {
-            width: NeptuneStyle.dp(500)
-            height: NeptuneStyle.dp(64)
+            width: Sizes.dp(500)
+            height: Sizes.dp(64)
             text: "Notification w/ App Request"
             onClicked: notification5.show()
         }

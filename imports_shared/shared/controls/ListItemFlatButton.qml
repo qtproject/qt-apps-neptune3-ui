@@ -33,8 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
-
+import shared.Sizes 1.0
 
 /*!
     \qmltype
@@ -63,8 +62,8 @@ import shared.com.pelagicore.styles.neptune 3.0
         ListView {
             model: 3
             delegate:  ListItemFlatButton {
-                implicitWidth: NeptuneStyle.dp(765)
-                implicitHeight: NeptuneStyle.dp(104)
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 symbolFlatButton: Style.symbol("ic-favorite")
                 subText: "subtitle"
@@ -121,19 +120,19 @@ ListItemBasic {
     accessoryDelegateComponent1: Button {
         implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
         implicitWidth: contentItem.implicitWidth + leftPadding + rightPadding
-        leftPadding: NeptuneStyle.dp(30)
-        rightPadding: NeptuneStyle.dp(30)
-        topPadding: NeptuneStyle.dp(8)
-        bottomPadding: NeptuneStyle.dp(8)
+        leftPadding: Sizes.dp(30)
+        rightPadding: Sizes.dp(30)
+        topPadding: Sizes.dp(8)
+        bottomPadding: Sizes.dp(8)
         text: root.textFlatButton
-        font.pixelSize: NeptuneStyle.fontSizeS
+        font.pixelSize: Sizes.fontSizeS
         icon.source: root.symbolFlatButton
         visible: text !== "" || icon.source != ""
         onClicked: root.flatButtonClicked()
     }
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: visible ? NeptuneStyle.dp(100) : 0
+        implicitWidth: visible ? Sizes.dp(100) : 0
         implicitHeight: visible ? root.height : 0
         icon.name: "ic-close"
         visible: root.closeButtonVisible

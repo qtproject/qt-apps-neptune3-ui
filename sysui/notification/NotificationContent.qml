@@ -33,7 +33,7 @@ import QtQuick 2.10
 import centerconsole 1.0
 import shared.animations 1.0
 import system.models.notification 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 ModalOverlay {
     id: root
@@ -54,8 +54,8 @@ ModalOverlay {
 
     NotificationToast {
         id: notificationToast
-        leftPadding: NeptuneStyle.dp(40)
-        rightPadding: NeptuneStyle.dp(40)
+        leftPadding: Sizes.dp(40)
+        rightPadding: Sizes.dp(40)
         anchors.left: parent.left
         anchors.right: parent.right
         notificationModel: notificationModel
@@ -69,7 +69,7 @@ ModalOverlay {
         notificationCounterVisible: notificationCount > 0 &&
                                     !notificationModel.notificationCenterVisible && !notificationModel.notificationToastVisible
         dragTarget: notificationToast.y !== -notificationToast.height ? notificationToast : notificationCenter
-        drag.minimumY: notificationModel.notificationToastVisible ? - NeptuneStyle.dp(130) : -notificationCenter.height
+        drag.minimumY: notificationModel.notificationToastVisible ? - Sizes.dp(130) : -notificationCenter.height
         drag.maximumY: 0
         drag.onActiveChanged: {
             notificationHandle.prevDragY = notificationHandle.dragTarget.y;

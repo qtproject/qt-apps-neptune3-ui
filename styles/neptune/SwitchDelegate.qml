@@ -36,6 +36,7 @@ import QtQuick.Controls.impl 2.3
 
 import shared.animations 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 // TODO: Fix the height and width more according to UI spec and based on external variables
 // TODO: Provide a better way to develop these UI controls in a more controlable fashion
@@ -50,37 +51,37 @@ T.SwitchDelegate {
                                       indicator ? indicator.implicitHeight : 0) + topPadding + bottomPadding)
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
-    padding: NeptuneStyle.dp(12)
-    spacing: NeptuneStyle.dp(12)
+    padding: Sizes.dp(12)
+    spacing: Sizes.dp(12)
 
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
     font.family: NeptuneStyle.fontFamily
     font.weight: Font.Light
 
     indicator: PaddedRectangle {
-        implicitWidth: NeptuneStyle.dp(56)
-        implicitHeight: NeptuneStyle.dp(32)
+        implicitWidth: Sizes.dp(56)
+        implicitHeight: Sizes.dp(32)
 
         x: text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
 
-        radius: NeptuneStyle.dp(16)
+        radius: Sizes.dp(16)
         leftPadding: 0
         rightPadding: 0
-        padding: (height - NeptuneStyle.dp(32)) / 2
+        padding: (height - Sizes.dp(32)) / 2
         color: 'transparent'
-        border.width: control.visualFocus ? NeptuneStyle.dp(2) : NeptuneStyle.dp(1.4)
+        border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1.4)
         border.color: control.checked ? control.NeptuneStyle.accentColor : control.NeptuneStyle.contrastColor
         opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
             y: (parent.height - height) / 2
-            width: NeptuneStyle.dp(28)
-            height: NeptuneStyle.dp(28)
-            radius: NeptuneStyle.dp(16)
+            width: Sizes.dp(28)
+            height: Sizes.dp(28)
+            radius: Sizes.dp(16)
             color: control.checked ? control.NeptuneStyle.accentColor : control.NeptuneStyle.contrastColor
-            border.width: control.visualFocus ? NeptuneStyle.dp(2) : NeptuneStyle.dp(1)
+            border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
             Behavior on x {
@@ -91,7 +92,7 @@ T.SwitchDelegate {
     }
 
     contentItem: NeptuneIconLabel {
-        iconScale: NeptuneStyle.scale
+        iconScale: Sizes.scale
 
         leftPadding: control.mirrored ? control.indicator.width + control.spacing : 0
         rightPadding: !control.mirrored ? control.indicator.width + control.spacing : 0

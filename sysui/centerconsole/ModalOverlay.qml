@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtGraphicalEffects 1.0
 
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
 // hence the implementation of our own modal overlay scheme
@@ -64,7 +64,7 @@ Item {
         Behavior on opacity { DefaultNumberAnimation {}  }
         FastBlur {
             anchors.fill: parent
-            radius: NeptuneStyle.dp(45)
+            radius: Sizes.dp(45)
             source: ShaderEffectSource {
                 id: effectSource
                 sourceItem: root.target

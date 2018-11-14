@@ -33,6 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import shared.utils 1.0
 import shared.controls 1.0
@@ -42,7 +43,7 @@ import "../helpers/pathsProvider.js" as Paths
 ListView {
     id: root
 
-    spacing: NeptuneStyle.dp(20)
+    spacing: Sizes.dp(20)
     delegate: ListItemSwitch {
         width: parent.width
         icon.source: Paths.getImagePath(model.icon + (NeptuneStyle.theme === NeptuneStyle.Dark ? "-dark.png" : ".png"))

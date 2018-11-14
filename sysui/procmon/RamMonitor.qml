@@ -30,8 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
+import shared.Sizes 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
 
 MonitorPanel {
     id: root
@@ -53,7 +53,7 @@ MonitorPanel {
 
             Rectangle {
                 anchors.bottom: parent.bottom
-                width: parent.width - NeptuneStyle.dp(2)
+                width: parent.width - Sizes.dp(2)
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: (model.memoryUsed / root.systemModel.monitorModel.totalMemory) * parent.height
                 color: "#30000000"

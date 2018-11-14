@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 import "../helpers"
 
 Row {
@@ -49,10 +50,10 @@ Row {
     signal startNavigation()
     signal stopNavigation()
 
-    spacing: NeptuneStyle.dp(45 * .5)
+    spacing: Sizes.dp(45 * .5)
 
     ToolButton {
-        width: NeptuneStyle.dp(45 * .9)
+        width: Sizes.dp(45 * .9)
         height: width
         visible: root.guidanceMode
         icon.source: Qt.resolvedUrl("../assets/ic-end-route.png")
@@ -62,11 +63,11 @@ Row {
     RowLayout {
         width: root.guidanceMode ? parent.width : parent.width / 2
         anchors.verticalCenter: parent.verticalCenter
-        spacing: NeptuneStyle.dp(45 * .7)
+        spacing: Sizes.dp(45 * .7)
 
         ToolButton {
             Layout.leftMargin: parent.spacing
-            width: NeptuneStyle.dp(45)
+            width: Sizes.dp(45)
             height: width
             enabled: visible
             visible: !root.guidanceMode
@@ -79,13 +80,13 @@ Row {
             Label {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: destination
             }
             Label {
                 width: parent.width
                 wrapMode: Text.WordWrap
-                font.pixelSize: NeptuneStyle.fontSizeXS
+                font.pixelSize: Sizes.fontSizeXS
                 text: "%1 · %2".arg(routeDistance).arg(routeTime)
             }
         }
@@ -94,7 +95,7 @@ Row {
     Button {
         id: startNavigationButton
         width: parent.width / 3
-        height: NeptuneStyle.dp(80)
+        height: Sizes.dp(80)
         anchors.verticalCenter: parent.verticalCenter
         scale: pressed ? 1.1 : 1.0
         visible: !root.guidanceMode
@@ -103,19 +104,19 @@ Row {
         contentItem: Item {
             Row {
                 anchors.centerIn: parent
-                spacing: NeptuneStyle.dp(45 * 0.3)
+                spacing: Sizes.dp(45 * 0.3)
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: helper.localAsset("ic-start-navigation", NeptuneStyle.theme)
                     opacity: startNavigationButton.enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
-                    width: NeptuneStyle.dp(sourceSize.width)
-                    height: NeptuneStyle.dp(sourceSize.height)
+                    width: Sizes.dp(sourceSize.width)
+                    height: Sizes.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     text: qsTr("Start Navigation")
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                 }
             }
         }

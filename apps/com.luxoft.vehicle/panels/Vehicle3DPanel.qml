@@ -37,7 +37,7 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 import QtQuick.Controls 2.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../helpers/pathsProvider.js" as Paths
 import "../3d/materials"
@@ -72,7 +72,7 @@ Item {
                 //ToDo: Replace later with an actual splash screen
                 BusyIndicator {
                     anchors.centerIn: parent
-                    anchors.verticalCenterOffset: NeptuneStyle.dp(80)
+                    anchors.verticalCenterOffset: Sizes.dp(80)
                     running: !body.loaded
                 }
             }

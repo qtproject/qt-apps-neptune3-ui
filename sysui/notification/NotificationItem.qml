@@ -33,6 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -48,8 +49,8 @@ Control {
     signal closeClicked()
 
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
-    topPadding: NeptuneStyle.dp(27)
-    bottomPadding: NeptuneStyle.dp(27)
+    topPadding: Sizes.dp(27)
+    bottomPadding: Sizes.dp(27)
 
     background: Rectangle {
         color: NeptuneStyle.offMainColor

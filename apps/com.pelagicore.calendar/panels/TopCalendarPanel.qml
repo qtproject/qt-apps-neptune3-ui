@@ -36,11 +36,12 @@ import Qt.labs.calendar 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 RowLayout {
     id: root
 
-    spacing: NeptuneStyle.dp(135)
+    spacing: Sizes.dp(135)
 
     ColumnLayout {
         DayOfWeekRow {
@@ -48,13 +49,13 @@ RowLayout {
             Layout.maximumWidth: shadow.width
             Layout.preferredHeight: root.height / 8
             Layout.maximumHeight: root.height / 8
-            spacing: NeptuneStyle.dp(6)
-            topPadding: NeptuneStyle.dp(6)
-            bottomPadding: NeptuneStyle.dp(6)
+            spacing: Sizes.dp(6)
+            topPadding: Sizes.dp(6)
+            bottomPadding: Sizes.dp(6)
             locale: grid.locale
             delegate: Label {
                 text: model.shortName
-                font.pixelSize: NeptuneStyle.fontSizeXS
+                font.pixelSize: Sizes.fontSizeXS
                 color: NeptuneStyle.contrastColor
                 horizontalAlignment: Text.AlignHCenter
             }
@@ -71,17 +72,17 @@ RowLayout {
             delegate: Label {
                 text: model.day
                 color: NeptuneStyle.contrastColor
-                font.pixelSize: NeptuneStyle.fontSizeXS
+                font.pixelSize: Sizes.fontSizeXS
                 horizontalAlignment: Text.AlignHCenter
                 opacity: model.month === grid.month ? 1 : 0
             }
         }
         Image {
             id: shadow
-            Layout.preferredWidth: NeptuneStyle.dp(sourceSize.width)
-            Layout.maximumWidth: NeptuneStyle.dp(sourceSize.width)
-            Layout.preferredHeight: NeptuneStyle.dp(sourceSize.height)
-            Layout.maximumHeight: NeptuneStyle.dp(sourceSize.height)
+            Layout.preferredWidth: Sizes.dp(sourceSize.width)
+            Layout.maximumWidth: Sizes.dp(sourceSize.width)
+            Layout.preferredHeight: Sizes.dp(sourceSize.height)
+            Layout.maximumHeight: Sizes.dp(sourceSize.height)
             source: Style.gfx("album-art-shadow-widget")
             fillMode: Image.PreserveAspectFit
         }
@@ -89,7 +90,7 @@ RowLayout {
 
     RowLayout {
         Layout.alignment: Qt.AlignVCenter
-        Layout.bottomMargin: NeptuneStyle.dp(45)
+        Layout.bottomMargin: Sizes.dp(45)
         ToolButton {
             Layout.alignment: Qt.AlignVCenter
             icon.name: LayoutMirroring.enabled ? "ic_skipnext" : "ic_skipprevious"
@@ -103,10 +104,10 @@ RowLayout {
             }
         }
         Label {
-            Layout.preferredWidth: NeptuneStyle.dp(270)
+            Layout.preferredWidth: Sizes.dp(270)
             text: Qt.locale().standaloneMonthName(grid.month) + " " + grid.year
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: NeptuneStyle.fontSizeM
+            font.pixelSize: Sizes.fontSizeM
             font.weight: Font.Light
         }
         ToolButton {

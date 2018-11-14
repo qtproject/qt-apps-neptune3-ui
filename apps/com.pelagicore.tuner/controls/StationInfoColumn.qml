@@ -39,6 +39,7 @@ import shared.controls 1.0
 import shared.animations 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -57,8 +58,8 @@ Item {
 
         Image {
             id: stationLogoShadow
-            width: NeptuneStyle.dp(sourceSize.width)
-            height: NeptuneStyle.dp(sourceSize.height)
+            width: Sizes.dp(sourceSize.width)
+            height: Sizes.dp(sourceSize.height)
             source: Style.gfx("album-art-shadow")
         }
 
@@ -68,7 +69,7 @@ Item {
             Behavior on opacity { DefaultNumberAnimation {} }
             visible: opacity > 0.0
             anchors.centerIn: parent
-            width: NeptuneStyle.dp(180)
+            width: Sizes.dp(180)
             height: width
             source: Style.gfx("album-art-placeholder")
             fillMode: Image.PreserveAspectCrop
@@ -77,7 +78,7 @@ Item {
         Image {
             id: stationLogoImg
             anchors.centerIn: parent
-            width: NeptuneStyle.dp(180)
+            width: Sizes.dp(180)
             height: width
             visible: opacity > 0
             opacity: (root.stationLogoUrl !== "") ? 1.0 : 0.0
@@ -89,10 +90,10 @@ Item {
 
     ColumnLayout {
         anchors.left: logoWrapper.right
-        anchors.leftMargin: NeptuneStyle.dp(100)
+        anchors.leftMargin: Sizes.dp(100)
         anchors.verticalCenter: logoWrapper.verticalCenter
-        anchors.verticalCenterOffset: NeptuneStyle.dp(-4)
-        spacing: NeptuneStyle.dp(15)
+        anchors.verticalCenterOffset: Sizes.dp(-4)
+        spacing: Sizes.dp(15)
 
         Label {
             Layout.preferredWidth: root.width
@@ -104,7 +105,7 @@ Item {
             id: actualProgram
             Layout.preferredWidth: root.width
             opacity: NeptuneStyle.opacityMedium
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             visible: text !== ""
         }
     }

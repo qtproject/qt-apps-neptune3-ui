@@ -38,6 +38,7 @@ import QtGraphicalEffects 1.0
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ListItemBasic
@@ -153,11 +154,11 @@ ItemDelegate {
     implicitHeight: Math.max(
                         listItemText.contentHeight + subtitle.contentHeight,
                         Math.max(
-                            (accessoryItem1.item ? accessoryItem1.item.implicitHeight : NeptuneStyle.dp(75)),
-                            (accessoryItem2.item ? accessoryItem2.item.implicitHeight : NeptuneStyle.dp(75))
+                            (accessoryItem1.item ? accessoryItem1.item.implicitHeight : Sizes.dp(75)),
+                            (accessoryItem2.item ? accessoryItem2.item.implicitHeight : Sizes.dp(75))
                             )
                         ) + topPadding + bottomPadding
-    implicitWidth: NeptuneStyle.dp(100)
+    implicitWidth: Sizes.dp(100)
 
     contentItem: Item {
         RowLayout {
@@ -168,7 +169,7 @@ ItemDelegate {
             IconLabel {
                 height: root.icon ? root.height : 0
                 opacity: NeptuneStyle.opacityHigh
-                scale: NeptuneStyle.scale
+                scale: Sizes.scale
                 spacing: root.spacing
                 mirrored: root.mirrored
                 display: root.display
@@ -200,16 +201,16 @@ ItemDelegate {
                     wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: NeptuneStyle.fontSizeS
+                    font.pixelSize: Sizes.fontSizeS
                     visible: text
                     opacity: NeptuneStyle.opacityMedium
                 }
             }
             Item {
                 id: spacer
-                Layout.minimumWidth: NeptuneStyle.dp(22)
-                Layout.maximumWidth: NeptuneStyle.dp(22)
-                Layout.maximumHeight: NeptuneStyle.dp(22)
+                Layout.minimumWidth: Sizes.dp(22)
+                Layout.maximumWidth: Sizes.dp(22)
+                Layout.maximumHeight: Sizes.dp(22)
                 visible: middleSpacerUsed
             }
             Loader {
@@ -226,9 +227,9 @@ ItemDelegate {
             }
             Item {
                 id: spacerRight
-                Layout.minimumWidth: NeptuneStyle.dp(22)
-                Layout.maximumWidth: NeptuneStyle.dp(22)
-                Layout.maximumHeight:NeptuneStyle.dp(22)
+                Layout.minimumWidth: Sizes.dp(22)
+                Layout.maximumWidth: Sizes.dp(22)
+                Layout.maximumHeight:Sizes.dp(22)
                 visible: rightSpacerUsed
             }
         }

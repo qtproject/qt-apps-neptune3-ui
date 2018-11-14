@@ -42,6 +42,7 @@ import QtQuick.Controls.impl 2.3
 
 import shared.animations 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.Switch {
     id: control
@@ -54,35 +55,35 @@ T.Switch {
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     font.weight: Font.Light
-    font.pixelSize: NeptuneStyle.fontSizeM
+    font.pixelSize: Sizes.fontSizeM
 
-    padding: NeptuneStyle.dp(8)
-    spacing: NeptuneStyle.dp(8)
+    padding: Sizes.dp(8)
+    spacing: Sizes.dp(8)
 
     indicator: PaddedRectangle {
-        implicitWidth: NeptuneStyle.dp(50)
-        implicitHeight: NeptuneStyle.dp(30)
+        implicitWidth: Sizes.dp(50)
+        implicitHeight: Sizes.dp(30)
 
         x: text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
         y: control.topPadding + (control.availableHeight - height) / 2
 
-        radius: NeptuneStyle.dp(15)
+        radius: Sizes.dp(15)
         leftPadding: 0
         rightPadding: 0
-        padding: (height - NeptuneStyle.dp(30)) / 2
+        padding: (height - Sizes.dp(30)) / 2
         color: 'transparent'
-        border.width: control.visualFocus ? NeptunStyle.dp(2) : NeptuneStyle.dp(1.4)
+        border.width: control.visualFocus ? NeptunStyle.dp(2) : Sizes.dp(1.4)
         border.color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
         opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
             y: (parent.height - height) / 2
-            width: NeptuneStyle.dp(28)
+            width: Sizes.dp(28)
             height: width
             radius: width/2
             color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
-            border.width: control.visualFocus ? NeptuneStyle.dp(2) : NeptuneStyle.dp(1)
+            border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
             Behavior on x {

@@ -40,6 +40,7 @@ import QtQuick.Templates 2.3 as T
 
 import shared.utils 1.0
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 T.Slider {
     id: control
@@ -59,14 +60,14 @@ T.Slider {
         readonly property int numberSteps: control.stepSize !== 0 ?
                                                (control.to - control.from) / control.stepSize : 0
         readonly property int railSize: numberSteps > 0 ?
-                                   30 * NeptuneStyle.scale : 10 * NeptuneStyle.scale
+                                   control.Sizes.dp(30) : control.Sizes.dp(10)
         readonly property real railLength: handle ? (control.horizontal ?
                                                          control.availableWidth - handle.width :
                                                          control.availableHeight - handle.height) :
                                                     (control.horizontal ? control.implicitWidth : control.implicitHeight)
         readonly property real stepLength: numberSteps ?
                                                (railLength - gap * (numberSteps - 1)) / numberSteps : 0.0
-        readonly property int gap: 3 * NeptuneStyle.scale
+        readonly property int gap: control.Sizes.dp(3)
     }
 
     handle: Image {
@@ -77,8 +78,8 @@ T.Slider {
         y: control.topPadding +
            (control.horizontal ? (control.availableHeight - height) / 2 :
                                  control.visualPosition * (control.availableHeight - height))
-        width: NeptuneStyle.dp(sourceSize.width)
-        height: NeptuneStyle.dp(sourceSize.height)
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
 
         source: control.horizontal ?
                     Style.gfx("slider-handle-horizontal", NeptuneStyle.theme) :

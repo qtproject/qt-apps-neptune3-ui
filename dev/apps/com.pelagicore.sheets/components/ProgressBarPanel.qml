@@ -34,24 +34,24 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(50)
-        spacing: NeptuneStyle.dp(100)
+        anchors.topMargin: Sizes.dp(50)
+        spacing: Sizes.dp(100)
 
         Label {
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: "Simple ProgressBar with background"
         }
 
         ProgressBar {
-            implicitWidth: NeptuneStyle.dp(880)
-            implicitHeight: NeptuneStyle.dp(8)
+            implicitWidth: Sizes.dp(880)
+            implicitHeight: Sizes.dp(8)
             from: 0
             to: 1
             value: 0
@@ -64,13 +64,13 @@ Item {
         }
 
         Label {
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: "Indeterminate ProgressBar with background"
         }
 
         ProgressBar {
-            implicitWidth: NeptuneStyle.dp(880)
-            implicitHeight: NeptuneStyle.dp(8)
+            implicitWidth: Sizes.dp(880)
+            implicitHeight: Sizes.dp(8)
             from: 0
             to: 1
             value: 0
@@ -84,13 +84,13 @@ Item {
 
 
         Label {
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: "Simple ProgressBar no background"
         }
 
         ProgressBar {
-            implicitWidth: NeptuneStyle.dp(880)
-            implicitHeight: NeptuneStyle.dp(8)
+            implicitWidth: Sizes.dp(880)
+            implicitHeight: Sizes.dp(8)
             from: 0
             to: 1
             value: 0
@@ -105,13 +105,13 @@ Item {
 
 
         Label {
-            font.pixelSize: NeptuneStyle.fontSizeS
+            font.pixelSize: Sizes.fontSizeS
             text: "Indeterminate ProgressBar no background"
         }
 
         ProgressBar {
-            implicitWidth: NeptuneStyle.dp(880)
-            implicitHeight: NeptuneStyle.dp(8)
+            implicitWidth: Sizes.dp(880)
+            implicitHeight: Sizes.dp(8)
             from: 0
             to: 1
             value: 0

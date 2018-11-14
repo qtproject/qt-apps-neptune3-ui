@@ -40,7 +40,7 @@ import shared.controls 1.0
 import "../stores"
 import "../views"
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -75,7 +75,7 @@ Item {
     FavoritesWidgetView {
         id: favoritesWidget
         anchors.horizontalCenter: parent.horizontalCenter
-        width: NeptuneStyle.dp(960)
+        width: Sizes.dp(960)
         anchors.top: parent.top
         state: root.state
 
@@ -91,7 +91,7 @@ Item {
         id: callWidget
         anchors.fill: root.state === "Widget1Row" ? parent : undefined
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.rightMargin: NeptuneStyle.dp(45 * 0.9)
+        anchors.rightMargin: Sizes.dp(45 * 0.9)
         state: root.state
         store: root.store
         ongoingCall: root.store.ongoingCall
@@ -109,12 +109,12 @@ Item {
     Item {
         id: fullscreenBottom
 
-        width: NeptuneStyle.dp(1080)
+        width: Sizes.dp(1080)
         anchors.left: parent.left
-        anchors.leftMargin: root.state === "Maximized" ? 0 : NeptuneStyle.dp(-80)
+        anchors.leftMargin: root.state === "Maximized" ? 0 : Sizes.dp(-80)
         Behavior on anchors.leftMargin { DefaultSmoothedAnimation {} }
         anchors.top: parent.top
-        anchors.topMargin: NeptuneStyle.dp(660 - 224)
+        anchors.topMargin: Sizes.dp(660 - 224)
         anchors.bottom: parent.bottom
 
 
@@ -128,13 +128,13 @@ Item {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: NeptuneStyle.dp(264)
+            width: Sizes.dp(264)
 
             ToolsColumn {
                 id: toolsColumnComponent
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: NeptuneStyle.dp(53)
+                anchors.topMargin: Sizes.dp(53)
 
                 translationContext: "PhoneToolsColumn"
                 model: ListModel {
@@ -170,9 +170,9 @@ Item {
             id: stackView
             anchors.left: toolsColumn.right
             anchors.top: parent.top
-            anchors.topMargin: NeptuneStyle.dp(53)
+            anchors.topMargin: Sizes.dp(53)
             anchors.bottom: parent.bottom
-            width: NeptuneStyle.dp(720)
+            width: Sizes.dp(720)
             pushEnter: Transition {
                 PropertyAnimation {
                     property: "opacity"

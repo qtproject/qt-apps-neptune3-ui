@@ -41,6 +41,7 @@ import "../panels"
 import "../helpers/helper.js" as Helper
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Item {
     id: root
@@ -49,10 +50,10 @@ Item {
     property bool topExpanded: false
 
     ToolButton {
-        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
-        height: NeptuneStyle.dp(22.5)
+        width: contentItem.childrenRect.width + Sizes.dp(45)
+        height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.top
-        anchors.verticalCenterOffset: NeptuneStyle.dp(370)
+        anchors.verticalCenterOffset: Sizes.dp(370)
         anchors.horizontalCenter: parent.horizontalCenter
         //disable for AM band, to be implemented
         visible: (root.store.tunerBand === 1)
@@ -60,9 +61,9 @@ Item {
         onClicked: { root.topExpanded = true; }
 
         contentItem: Row {
-            spacing: NeptuneStyle.dp(10)
+            spacing: Sizes.dp(10)
             Label {
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 text: qsTr("MANUAL")
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -86,7 +87,7 @@ Item {
         visible: opacity > 0
         onOpacityChanged: {
             if (opacity > 0.0) {
-                Helper.createStationIndicators(root.store.currentPresetModel, slider.width, NeptuneStyle.dp(18),
+                Helper.createStationIndicators(root.store.currentPresetModel, slider.width, Sizes.dp(18),
                                               slider.to, slider.from, slider.stationIndicatorComponent, slider);
             }
         }
@@ -102,10 +103,10 @@ Item {
     }
 
     ToolButton {
-        width: contentItem.childrenRect.width + NeptuneStyle.dp(45)
-        height: NeptuneStyle.dp(22.5)
+        width: contentItem.childrenRect.width + Sizes.dp(45)
+        height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.bottom
-        anchors.verticalCenterOffset: NeptuneStyle.dp(44)
+        anchors.verticalCenterOffset: Sizes.dp(44)
         anchors.horizontalCenter: parent.horizontalCenter
         opacity: root.topExpanded ? 1.0 : 0.0
         Behavior on opacity {
@@ -119,9 +120,9 @@ Item {
         onClicked: { root.topExpanded = false; }
 
         contentItem: Row {
-            spacing: NeptuneStyle.dp(10)
+            spacing: Sizes.dp(10)
             Label {
-                font.pixelSize: NeptuneStyle.fontSizeS
+                font.pixelSize: Sizes.fontSizeS
                 font.capitalization: Font.AllUppercase
                 text: qsTr("BROWSE")
                 anchors.verticalCenter: parent.verticalCenter

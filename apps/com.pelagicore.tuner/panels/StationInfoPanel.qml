@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 import "../controls"
 
@@ -57,18 +57,18 @@ Item {
         StationInfoColumn {
             id: stationInfo
             anchors.left: parent.left
-            anchors.leftMargin: NeptuneStyle.dp(40)
+            anchors.leftMargin: Sizes.dp(40)
             anchors.right: controlsRow.left
-            anchors.rightMargin: NeptuneStyle.dp(20)
+            anchors.rightMargin: Sizes.dp(20)
             anchors.verticalCenter: parent.verticalCenter
-            width: NeptuneStyle.dp(480)
+            width: Sizes.dp(480)
         }
 
         MusicControls {
             id: controlsRow
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
-            anchors.rightMargin: NeptuneStyle.dp(100)
+            anchors.rightMargin: Sizes.dp(100)
             Behavior on anchors.rightMargin { DefaultNumberAnimation { } }
             onPreviousClicked: {
                 root.previousClicked();

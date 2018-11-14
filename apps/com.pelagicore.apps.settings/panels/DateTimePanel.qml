@@ -39,6 +39,7 @@ import shared.controls 1.0
 import shared.animations 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 Control {
     id: root
@@ -50,7 +51,7 @@ Control {
     contentItem: Column {
         SwitchDelegate {
             id: twentyFourHourTime
-            height: NeptuneStyle.dp(95)
+            height: Sizes.dp(95)
             width: parent.width
             text: qsTr("24h time")
             checked: root.twentyFourHourTimeFormat
@@ -65,7 +66,7 @@ Control {
         }
 
         SwitchDelegate {
-            height: NeptuneStyle.dp(95)
+            height: Sizes.dp(95)
             width: parent.width
             enabled: false // TODO
             text: qsTr("Set Automatically")
@@ -79,7 +80,7 @@ Control {
         }
 
         ItemDelegate {
-            height: NeptuneStyle.dp(95)
+            height: Sizes.dp(95)
             width: parent.width
             enabled: false // TODO
             text: qsTr("Time Zone")
@@ -87,7 +88,7 @@ Control {
             Image {
                 opacity: NeptuneStyle.defaultDisabledOpacity
                 anchors.right: parent.right
-                anchors.rightMargin: NeptuneStyle.dp(22)
+                anchors.rightMargin: Sizes.dp(22)
                 height: parent.height
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter

@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 
 import shared.controls 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.Sizes 1.0
 
 /*!
     \qmltype ListItemTwoButtons
@@ -149,8 +149,8 @@ ListItemBasic {
     signal accessoryButton2Clicked()
 
     accessoryDelegateComponent1: ToolButton {
-        implicitWidth: NeptuneStyle.dp(100)
-        implicitHeight: NeptuneStyle.dp(75)
+        implicitWidth: Sizes.dp(100)
+        implicitHeight: Sizes.dp(75)
         checkable: root.accessoryButton1Checkable
         checked: root.accessoryButton1Checked
         icon.name: root.symbolAccessoryButton1
@@ -158,8 +158,8 @@ ListItemBasic {
         onCheckedChanged: root.accessoryButton1Checked = checked
     }
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: NeptuneStyle.dp(100)
-        implicitHeight: NeptuneStyle.dp(75)
+        implicitWidth: Sizes.dp(100)
+        implicitHeight: Sizes.dp(75)
         checkable: root.accessoryButton2Checkable
         checked: root.accessoryButton2Checked
         icon.name: root.symbolAccessoryButton2
