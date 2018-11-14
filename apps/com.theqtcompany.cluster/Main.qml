@@ -37,8 +37,8 @@ import application.windows 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 
-import "views"
-import "stores"
+import views 1.0
+import stores 1.0
 
 NeptuneWindow {
     id: root
