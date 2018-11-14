@@ -109,7 +109,7 @@ Item {
         contentItem: Row {
             spacing: NeptuneStyle.dp(10)
             Label {
-                font.pixelSize: 22 //todo: change to NeptuneStyle.fontSizeS when the value is corrected in style plugin
+                font.pixelSize: NeptuneStyle.fontSizeS
                 font.capitalization: Font.AllUppercase
                 text: qsTr("Browse")
                 anchors.verticalCenter: parent.verticalCenter
