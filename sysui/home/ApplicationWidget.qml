@@ -68,7 +68,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-bg-2-dark")
+        source: Style.gfx("widget-bg-dark")
         opacity: root.active ? 0 : root.beingDragged ? 0.3 : 0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -83,7 +83,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-bg-2", NeptuneStyle.theme)
+        source: Style.gfx("widget-bg", NeptuneStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
