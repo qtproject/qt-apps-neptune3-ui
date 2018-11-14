@@ -163,6 +163,9 @@ Item {
         anchors.top: widgetStripe.top
         anchors.topMargin: widgetStripe.border.top * 0.8
         source: root.appInfo ? root.appInfo.icon : null
+        opacity: root.active ? 0 : 1
+        visible: opacity > 0
+        Behavior on opacity { DefaultNumberAnimation{} }
     }
 
     BusyIndicator {
