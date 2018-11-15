@@ -37,9 +37,9 @@ import application.windows 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 
-import stores 1.0
-import panels 1.0
-import helpers 1.0
+import "../stores" 1.0
+import "../panels" 1.0
+import "../helpers" 1.0
 
 Item {
     id: root
