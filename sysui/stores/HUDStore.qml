@@ -38,6 +38,6 @@ QtObject {
 
     readonly property InstrumentCluster clusterSettings: InstrumentCluster {}
     readonly property string hudTitle: "Neptune 3 UI - Head Up Display"
-    readonly property bool showHUD: ApplicationManager.systemProperties.showHUD
+    readonly property bool showHUD: ApplicationManager.systemProperties.showHUD && Qt.application.screens.length > 2
     readonly property var hudScreen: Qt.application.screens.length > 2 ? Qt.application.screens[2] : Qt.application.screens[0]
 }
