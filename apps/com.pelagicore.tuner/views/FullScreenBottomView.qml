@@ -37,10 +37,10 @@ import QtQuick.Controls 2.2
 
 import shared.Sizes 1.0
 
-import "../stores"
-import "../panels"
-import "../controls"
-import "../popups"
+import "../stores" 1.0
+import "../panels" 1.0
+import "../controls" 1.0
+import "../popups" 1.0
 
 Item {
     id: root
