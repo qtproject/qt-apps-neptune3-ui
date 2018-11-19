@@ -39,11 +39,12 @@ import shared.utils 1.0 as Utils
 KeyboardStyle {
     id: currentStyle
     readonly property bool compactSelectionList: [InputEngine.Pinyin, InputEngine.Cangjie].indexOf(InputContext.inputEngine.inputMode) !== -1
-    readonly property string fontFamily: Utils.Style.fontFamily
+    readonly property string fontFamily: "Open Sans"
     readonly property real keyBackgroundMargin: Math.round(13 * scaleHint)
     readonly property real keyContentMargin: Math.round(45 * scaleHint)
     readonly property real keyIconScale: scaleHint * 0.6
     readonly property string resourcePrefix: ""
+    readonly property real fontWeight: Font.Light
 
     readonly property string inputLocale: InputContext.locale
     property color inputLocaleIndicatorColor: "white"
@@ -86,7 +87,7 @@ KeyboardStyle {
                 anchors.margins: keyContentMargin / 3
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 38 * scaleHint
                     capitalization: control.uppercased ? Font.AllUppercase : Font.MixedCase
                 }
@@ -104,7 +105,7 @@ KeyboardStyle {
                 anchors.bottomMargin: control.smallTextVisible ? keyContentMargin * 0.8 : keyContentMargin
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 52 * scaleHint
                     capitalization: control.uppercased ? Font.AllUppercase : Font.MixedCase
                 }
@@ -259,7 +260,7 @@ KeyboardStyle {
                 color: "#80c342"
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 44 * scaleHint
                     capitalization: Font.AllUppercase
                 }
@@ -431,7 +432,7 @@ KeyboardStyle {
                 anchors.centerIn: parent
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 48 * scaleHint
                 }
             }
@@ -474,7 +475,7 @@ KeyboardStyle {
                 anchors.margins: keyContentMargin
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 44 * scaleHint
                     capitalization: Font.AllUppercase
                 }
@@ -526,7 +527,7 @@ KeyboardStyle {
                 anchors.margins: keyContentMargin
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 44 * scaleHint
                     capitalization: Font.AllUppercase
                 }
@@ -639,7 +640,7 @@ KeyboardStyle {
                 anchors.margins: Math.round(48 * scaleHint)
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 82 * scaleHint
                 }
             }
@@ -658,7 +659,7 @@ KeyboardStyle {
             color: "#868482"
             font {
                 family: fontFamily
-                weight: Utils.Style.fontWeight
+                weight: currentStyle.fontWeight
                 pixelSize: 52 * scaleHint
             }
             anchors.centerIn: parent
@@ -694,7 +695,7 @@ KeyboardStyle {
             color: "#BC6608"
             font {
                 family: fontFamily
-                weight: Utils.Style.fontWeight
+                weight: currentStyle.fontWeight
                 pixelSize: 44 * scaleHint
             }
             function decorateText(text, wordCompletionLength) {
@@ -757,7 +758,7 @@ KeyboardStyle {
                 anchors.margins: keyContentMargin
                 font {
                     family: fontFamily
-                    weight: Utils.Style.fontWeight
+                    weight: currentStyle.fontWeight
                     pixelSize: 44 * scaleHint
                     capitalization: {
                         if (InputContext.capsLock)
@@ -836,7 +837,7 @@ KeyboardStyle {
             color: "#5CAA15"
             font {
                 family: fontFamily
-                weight: Utils.Style.fontWeight
+                weight: currentStyle.fontWeight
                 pixelSize: Qt.inputMethod.cursorRectangle.height * 0.8
             }
             function decorateText(text, wordCompletionLength) {

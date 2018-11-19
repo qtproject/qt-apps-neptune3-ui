@@ -50,7 +50,6 @@ QtObject {
     readonly property int hudHeight: 240
     readonly property real hudAspectRatio: hudWidth / hudHeight
 
-    readonly property real fontWeight: Font.Light
     readonly property real statusBarHeight: 80
     readonly property real launcherHeight: 104
 
