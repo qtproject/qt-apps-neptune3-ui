@@ -36,8 +36,8 @@ import shared.utils 1.0
 import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 
-import "stores"
-import "views"
+import "stores" 1.0
+import "views" 1.0
 
 NeptuneWindow {
     id: root

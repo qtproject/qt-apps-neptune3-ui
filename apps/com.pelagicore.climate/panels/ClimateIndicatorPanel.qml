@@ -33,7 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import "../helpers/utils.js" as Utils
+import "../helpers" 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.Sizes 1.0
 

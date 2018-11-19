@@ -36,9 +36,9 @@ import application.windows 1.0
 
 import shared.Sizes 1.0
 
-import "../controls"
-import "../panels"
-import "../stores"
+import "../controls" 1.0
+import "../panels" 1.0
+import "../stores" 1.0
 
 PopupWindow {
     id: root
