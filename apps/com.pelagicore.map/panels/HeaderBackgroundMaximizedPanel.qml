@@ -37,7 +37,7 @@ import shared.controls 1.0
 
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
-import "../helpers"
+import "../helpers" 1.0
 
 Item {
     id: root
@@ -45,7 +45,6 @@ Item {
     property int destinationButtonrowHeight: 0
     property bool navigationMode: false
     property bool guidanceMode: false
-    property Helper helper: Helper {}
 
     height: destinationButtonsPanel.visible ? Sizes.dp(destinationButtonsPanel.sourceSize.height) : searchPanel.height
 
@@ -58,7 +57,7 @@ Item {
         anchors.rightMargin: -Sizes.dp(45 * .5)
         height: root.navigationMode && !root.guidanceMode ? Sizes.dp(sourceSize.height) - root.destinationButtonrowHeight
                                                           : Sizes.dp(sourceSize.height)
-        source: helper.localAsset("panel-shadow", BasicStyle.theme)
+        source: Helper.localAsset("panel-shadow", BasicStyle.theme)
         border {
             left: 0
             top: Sizes.dp(101)
@@ -73,7 +72,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Sizes.dp(45)
-        source: helper.localAsset("panel-more-contrast-background", BasicStyle.theme)
+        source: Helper.localAsset("panel-more-contrast-background", BasicStyle.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -100,7 +99,7 @@ Item {
         anchors.rightMargin: -Sizes.dp(45)
         height: root.guidanceMode ? Sizes.dp(sourceSize.height) :
                                     Sizes.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
-        source: helper.localAsset("panel-background", BasicStyle.theme)
+        source: Helper.localAsset("panel-background", BasicStyle.theme)
         border {
             left: 0
             top: Sizes.dp(20)

@@ -38,8 +38,7 @@ import shared.controls 1.0
 import shared.utils 1.0
 import shared.Sizes 1.0
 
-import "../helpers"
-import "../controls"
+import "../controls" 1.0
 
 ColumnLayout {
     id: root

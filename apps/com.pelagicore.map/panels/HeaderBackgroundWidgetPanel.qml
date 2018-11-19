@@ -36,12 +36,11 @@ import shared.animations 1.0
 
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
-import "../helpers"
+import "../helpers" 1.0
 
 Item {
     id: root
 
-    property Helper helper: Helper {}
     height: widgetBackgroundImage.height
 
     Image {
@@ -51,7 +50,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         fillMode: Image.TileHorizontally
-        source: helper.localAsset("navigation-widget-overlay-top", BasicStyle.theme)
+        source: Helper.localAsset("navigation-widget-overlay-top", BasicStyle.theme)
         Behavior on height { DefaultNumberAnimation {} }
     }
 }

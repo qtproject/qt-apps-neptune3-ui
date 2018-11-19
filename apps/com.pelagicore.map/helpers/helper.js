@@ -28,24 +28,17 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+.import QtApplicationManager.Application 1.0 as ApplicationManager
+.import shared.BasicStyle 1.0 as Style
+function showOfflineNotification() {
+    var notification = ApplicationManager.ApplicationInterface.createNotification();
+    notification.summary = qsTr("Offline mode");
+    notification.body = qsTr("Search and navigation not available in offline mode.");
+    notification.sticky = true;
+    notification.show();
+}
 
-import QtQuick 2.10
-import QtApplicationManager.Application 1.0
-import shared.BasicStyle 1.0
-
-QtObject {
-    id: root
-
-    function showOfflineNotification() {
-        var notification = ApplicationInterface.createNotification();
-        notification.summary = qsTr("Offline mode");
-        notification.body = qsTr("Search and navigation not available in offline mode.");
-        notification.sticky = true;
-        notification.show();
-    }
-
-    function localAsset(asset, theme) {
-        var themeStr = theme === BasicStyle.Dark ? "-dark" : "";
-        return "../assets/" + asset + themeStr + '.png'
-    }
+function localAsset(asset, theme) {
+    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
+    return "../assets/" + asset + themeStr + '.png'
 }

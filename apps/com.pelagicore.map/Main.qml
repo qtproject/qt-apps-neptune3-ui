@@ -39,9 +39,9 @@ import shared.BasicStyle 1.0
 import shared.com.pelagicore.map 1.0
 import shared.Sizes 1.0
 
-import "views"
-import "stores"
-import "helpers"
+import "views" 1.0
+import "stores" 1.0
+import "helpers" 1.0
 
 QtObject {
     // used for copying the offline DB
@@ -57,8 +57,6 @@ QtObject {
 
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
-
-        readonly property Helper helper: Helper {}
 
         MultiPointTouchArea {
             id: multiPoint
@@ -88,7 +86,7 @@ QtObject {
 
             onMapReadyChanged: {
                 if (mapReady && store.offlineMapsEnabled) {
-                    helper.showOfflineNotification();
+                    Helper.showOfflineNotification();
                 }
             }
 

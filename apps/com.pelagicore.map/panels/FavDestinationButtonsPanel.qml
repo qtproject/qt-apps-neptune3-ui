@@ -37,8 +37,8 @@ import shared.animations 1.0
 import shared.utils 1.0
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
-import "../controls"
-import "../helpers"
+import "../controls" 1.0
+import "../helpers" 1.0
 
 Item {
     id: root
@@ -51,8 +51,6 @@ Item {
     property string homeRouteTime: ""
     property string workRouteTime: ""
 
-    property Helper helper: Helper {}
-
     signal showRoute(var destCoord, string description)
 
     RowLayout {
@@ -63,7 +61,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: helper.localAsset("ic-home", BasicStyle.theme)
+            iconSource: Helper.localAsset("ic-home", BasicStyle.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -82,7 +80,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: helper.localAsset("ic-work", BasicStyle.theme)
+            iconSource: Helper.localAsset("ic-work", BasicStyle.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

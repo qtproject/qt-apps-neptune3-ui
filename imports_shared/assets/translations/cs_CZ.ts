@@ -715,11 +715,11 @@ UX na cestu</translation>
     <name>Helper</name>
     <message>
         <source>Offline mode</source>
-        <translation>Offline režim</translation>
+        <translation type="vanished">Offline režim</translation>
     </message>
     <message>
         <source>Search and navigation not available in offline mode.</source>
-        <translation>Hledání a navigace nedostupné v offline režimu.</translation>
+        <translation type="vanished">Hledání a navigace nedostupné v offline režimu.</translation>
     </message>
 </context>
 <context>

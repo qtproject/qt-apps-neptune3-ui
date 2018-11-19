@@ -45,16 +45,15 @@ import shared.animations 1.0
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
-import "../controls"
-import "../panels"
-import "../stores"
-import "../helpers"
+import "../controls" 1.0
+import "../panels" 1.0
+import "../stores" 1.0
+import "../helpers" 1.0
 
 Item {
     id: root
 
     property MapStore store
-    property Helper helper: Helper {}
 
     // props for application IC window
     property alias mapInteractive: mapBoxPanel.mapInteractive
@@ -146,7 +145,7 @@ Item {
         height: width
         background: Image {
             fillMode: Image.PreserveAspectFit
-            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
+            source: Helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         onClicked: root.maximizeMap()
     }

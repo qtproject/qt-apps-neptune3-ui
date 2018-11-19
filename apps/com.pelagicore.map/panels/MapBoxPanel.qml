@@ -39,8 +39,8 @@ import shared.utils 1.0
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import shared.animations 1.0
-import "../controls"
-import "../helpers"
+import "../controls" 1.0
+import "../helpers" 1.0
 
 Item {
     id: root
@@ -70,8 +70,6 @@ Item {
     property bool navigationMode
     property bool guidanceMode
     property var currentLocation
-
-    property Helper helper: Helper {}
 
     signal openSearchTextInput()
     signal maximizeMap()
@@ -160,7 +158,7 @@ Item {
     Image {
         id: mask
         anchors.fill: mainMap
-        source: helper.localAsset("bg-home-navigation-overlay", BasicStyle.theme)
+        source: Helper.localAsset("bg-home-navigation-overlay", BasicStyle.theme)
         visible: root.state === "Maximized"
         scale: root.state === "Maximized" ? 1.2 : 1.6
         Behavior on scale {
@@ -223,7 +221,7 @@ Item {
         background: Image {
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
+            source: Helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
         checked: mainMap.tilt !== 0
@@ -244,7 +242,7 @@ Item {
         background: Image {
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
+            source: Helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         enabled: !checked
         checked: mainMap.center === root.currentLocation

@@ -34,13 +34,12 @@ import QtQuick.Controls 2.0
 import shared.utils 1.0
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
-import "../helpers"
+import "../helpers" 1.0
 
 TextField {
     id: root
 
     property alias busy: searchBusyIndicator.running
-    property Helper helper: Helper {}
 
     font.family: BasicStyle.fontFamily
     font.pixelSize: Sizes.fontSizeM
@@ -62,7 +61,7 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
-                source: helper.localAsset("ic-search", BasicStyle.theme)
+                source: Helper.localAsset("ic-search", BasicStyle.theme)
                 visible: !searchBusyIndicator.visible
                 fillMode: Image.PreserveAspectFit
                 width: Sizes.dp(sourceSize.width)

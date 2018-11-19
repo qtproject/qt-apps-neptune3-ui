@@ -1,0 +1,8 @@
+FavDestinationButtonsPanel 1.0 FavDestinationButtonsPanel.qml
+HeaderBackgroundMaximizedPanel 1.0 HeaderBackgroundMaximizedPanel.qml
+HeaderBackgroundWidgetPanel 1.0 HeaderBackgroundWidgetPanel.qml
+MapBoxPanel 1.0 MapBoxPanel.qml
+MapHeaderPanel 1.0 MapHeaderPanel.qml
+NavigationConfirmPanel 1.0 NavigationConfirmPanel.qml
+NavigationSearchPanel 1.0 NavigationSearchPanel.qml
+SearchOverlayPanel 1.0 SearchOverlayPanel.qml

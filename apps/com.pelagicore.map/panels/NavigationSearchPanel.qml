@@ -36,13 +36,12 @@ import shared.controls 1.0 as NeptuneControls
 import shared.utils 1.0
 import shared.BasicStyle 1.0
 import shared.Sizes 1.0
-import "../helpers"
+import "../helpers" 1.0
 
 Row {
     id: root
 
     property bool offlineMapsEnabled: false
-    property Helper helper: Helper {}
     signal openSearchTextInput()
 
     spacing: Sizes.dp(45 * .5)
@@ -75,7 +74,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: helper.localAsset("ic-search", BasicStyle.theme)
+                    source: Helper.localAsset("ic-search", BasicStyle.theme)
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }
