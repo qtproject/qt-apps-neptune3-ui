@@ -34,7 +34,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import shared.Sizes 1.0
 import QtQuick.Controls 2.2
-import "../helpers/metaDataProvider.js" as MetaData
+import "../helpers" 1.0
 
 Control {
     id: root

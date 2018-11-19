@@ -36,8 +36,8 @@ import shared.animations 1.0
 import shared.controls 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
-import "stores"
-import "views"
+import "stores" 1.0
+import "views" 1.0
 
 import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.styles.neptune 3.0

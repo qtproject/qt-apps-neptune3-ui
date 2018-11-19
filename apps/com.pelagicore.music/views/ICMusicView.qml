@@ -31,8 +31,8 @@
 
 import QtQuick 2.8
 import shared.utils 1.0
-import "../stores"
-import "../panels"
+import "../stores" 1.0
+import "../panels" 1.0
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.Sizes 1.0
 

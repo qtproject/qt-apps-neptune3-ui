@@ -34,7 +34,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import QtQuick.Controls 2.2
 
-import "../panels"
+import "../panels" 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.Sizes 1.0
