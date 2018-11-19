@@ -35,7 +35,7 @@ import shared.utils 1.0
 import system.controls 1.0
 import QtQuick.Window 2.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 Window {
     id: root

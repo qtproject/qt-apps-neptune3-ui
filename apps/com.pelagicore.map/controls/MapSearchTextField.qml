@@ -32,7 +32,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import "../helpers"
 
@@ -42,16 +42,16 @@ TextField {
     property alias busy: searchBusyIndicator.running
     property Helper helper: Helper {}
 
-    font.family: NeptuneStyle.fontFamily
+    font.family: BasicStyle.fontFamily
     font.pixelSize: Sizes.fontSizeM
-    color: NeptuneStyle.contrastColor
-    selectedTextColor: NeptuneStyle.contrastColor
+    color: BasicStyle.contrastColor
+    selectedTextColor: BasicStyle.contrastColor
     leftPadding: Sizes.dp(18)
     rightPadding: Sizes.dp(63)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
-        border.color: NeptuneStyle.buttonColor
+        border.color: BasicStyle.buttonColor
         border.width: Sizes.dp(1)
         color: "transparent"
         radius: height/2
@@ -62,7 +62,7 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
-                source: helper.localAsset("ic-search", NeptuneStyle.theme)
+                source: helper.localAsset("ic-search", BasicStyle.theme)
                 visible: !searchBusyIndicator.visible
                 fillMode: Image.PreserveAspectFit
                 width: Sizes.dp(sourceSize.width)

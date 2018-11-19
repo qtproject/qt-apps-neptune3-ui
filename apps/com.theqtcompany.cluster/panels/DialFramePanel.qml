@@ -34,7 +34,7 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 import "../helpers" 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 Item {
     id: root
@@ -46,8 +46,8 @@ Item {
     property real zeroAng: minAng
     property real maxAng: 90
     property real minAng: -270
-    property color positiveColor: NeptuneStyle.accentColor
-    property color negativeColor: NeptuneStyle.accentColor
+    property color positiveColor: BasicStyle.accentColor
+    property color negativeColor: BasicStyle.accentColor
 
     //private
     QtObject {
@@ -194,7 +194,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: Utils.localAsset("dial-small-bg", NeptuneStyle.theme)
+        source: Utils.localAsset("dial-small-bg", BasicStyle.theme)
     }
 
     Image {

@@ -33,7 +33,7 @@ import QtQuick 2.7
 
 import shared.animations 1.0
 import system.controls 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 /*
@@ -69,8 +69,8 @@ Item {
                                                                              "currentHeight": root.height,
                                                                              "currentWidth": root.width,
                                                                              "Sizes.scale": root.Sizes.scale,
-                                                                             "NeptuneStyle.accentColor": root.NeptuneStyle.accentColor,
-                                                                             "NeptuneStyle.theme": root.NeptuneStyle.theme,
+                                                                             "BasicStyle.accentColor": root.BasicStyle.accentColor,
+                                                                             "BasicStyle.theme": root.BasicStyle.theme,
                                                                              "windowState": "Maximized"
                                                                             });
                 d.window.parent = root;

@@ -33,7 +33,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import "../helpers" 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
+import shared.BasicStyle 1.0
 
 Item {
     id: root
@@ -93,15 +94,15 @@ Item {
             name: "normal"
             PropertyChanges { target: scaleEnergyArea; opacity: 1 }
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 105 }
-            PropertyChanges { target: graduationNumber; opacity: NeptuneStyle.opacityMedium }
+            PropertyChanges { target: graduationNumber; opacity: BasicStyle.opacityMedium }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.opacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: BasicStyle.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
-            PropertyChanges { target: signBatteryRemain; opacity: NeptuneStyle.opacityHigh }
+            PropertyChanges { target: signBatteryRemain; opacity: BasicStyle.opacityHigh }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: NeptuneStyle.opacityLow }
+            PropertyChanges { target: signKM; opacity: BasicStyle.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: BasicStyle.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: BasicStyle.opacityLow }
         },
         State {
             name: "navi"
@@ -109,13 +110,13 @@ Item {
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 105 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: NeptuneStyle.opacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: BasicStyle.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: NeptuneStyle.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: NeptuneStyle.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: NeptuneStyle.opacityLow }
+            PropertyChanges { target: signKM; opacity: BasicStyle.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: BasicStyle.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: BasicStyle.opacityLow }
         }
     ]
 
@@ -249,7 +250,7 @@ Item {
         minAng: -210
         maxAng: 0
         zeroAng: -180
-        positiveColor: NeptuneStyle.accentColor
+        positiveColor: BasicStyle.accentColor
         negativeColor: "#80447191"
         highLightAng: d.power2Angle(d.ePower)
     }
@@ -260,7 +261,7 @@ Item {
         y: 107 * d.scaleRatio
         width: 71 * d.scaleRatio
         height: 294 * d.scaleRatio
-        source: Utils.localAsset("dial-energy-areas", NeptuneStyle.theme)
+        source: Utils.localAsset("dial-energy-areas", BasicStyle.theme)
     }
 
     Item {//PRND
@@ -276,7 +277,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 0) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
+            opacity: (root.drivetrain === 0) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -286,7 +287,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 3) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
+            opacity: (root.drivetrain === 3) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -296,7 +297,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 1) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
+            opacity: (root.drivetrain === 1) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -305,7 +306,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 2) ? NeptuneStyle.opacityHigh : NeptuneStyle.opacityLow
+            opacity: (root.drivetrain === 2) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
     }
@@ -319,7 +320,7 @@ Item {
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.DemiBold
-        opacity: NeptuneStyle.opacityHigh
+        opacity: BasicStyle.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
@@ -329,7 +330,7 @@ Item {
         y: 324 * d.scaleRatio
         text: qsTr("% power")
         font.weight: Font.Light
-        opacity: NeptuneStyle.opacityLow
+        opacity: BasicStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -341,7 +342,7 @@ Item {
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.Light
-        opacity: NeptuneStyle.opacityLow
+        opacity: BasicStyle.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -351,7 +352,7 @@ Item {
         y: 483 * d.scaleRatio
         width: 23 * d.scaleRatio
         height: 14 * d.scaleRatio
-        source: Utils.localAsset("ic-battery", NeptuneStyle.theme)
+        source: Utils.localAsset("ic-battery", BasicStyle.theme)
     }
 
     Label {
@@ -362,7 +363,7 @@ Item {
         horizontalAlignment: root.state !== "navi" ? Text.AlignLeft : Text.AlignHCenter
         text: root.remainingKm
         font.weight: Font.Light
-        opacity: NeptuneStyle.opacityHigh
+        opacity: BasicStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -374,7 +375,7 @@ Item {
         text: root.remainingPower
         font.weight: Font.Light
         horizontalAlignment: Text.AlignRight
-        opacity: NeptuneStyle.opacityHigh
+        opacity: BasicStyle.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -384,7 +385,7 @@ Item {
         y: 474 * d.scaleRatio
         width: 24 * d.scaleRatio
         height: 21 * d.scaleRatio
-        source: Utils.localAsset("ic-chargingstation", NeptuneStyle.theme)
+        source: Utils.localAsset("ic-chargingstation", BasicStyle.theme)
     }
 
     Repeater{
@@ -392,7 +393,7 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        opacity: NeptuneStyle.opacityMedium
+        opacity: BasicStyle.opacityMedium
 
         //size and layout
         readonly property real radius: width / 2 - 50 * d.scaleRatio

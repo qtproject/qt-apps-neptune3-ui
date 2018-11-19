@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -151,8 +152,8 @@ Item {
                 icon.width: 40
                 icon.height: 40
                 background: ButtonBackground {
-                    color: parent.pressed ? Qt.darker(NeptuneStyle.clusterMarksColor, (1 / NeptuneStyle.opacityHigh))
-                                          : NeptuneStyle.clusterMarksColor
+                    color: parent.pressed ? Qt.darker(BasicStyle.clusterMarksColor, (1 / BasicStyle.opacityHigh))
+                                          : BasicStyle.clusterMarksColor
                     opacity: 1
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"
@@ -164,8 +165,8 @@ Item {
                 icon.width: 35
                 icon.height: 35
                 background: ButtonBackground {
-                    color: parent.pressed ? Qt.darker(NeptuneStyle.accentDetailColor, (1 / NeptuneStyle.opacityHigh))
-                                          : NeptuneStyle.accentDetailColor
+                    color: parent.pressed ? Qt.darker(BasicStyle.accentDetailColor, (1 / BasicStyle.opacityHigh))
+                                          : BasicStyle.accentDetailColor
                     opacity: 1
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"

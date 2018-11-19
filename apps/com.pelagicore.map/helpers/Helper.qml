@@ -31,7 +31,7 @@
 
 import QtQuick 2.10
 import QtApplicationManager.Application 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 QtObject {
     id: root
@@ -45,7 +45,7 @@ QtObject {
     }
 
     function localAsset(asset, theme) {
-        var themeStr = theme === NeptuneStyle.Dark ? "-dark" : "";
+        var themeStr = theme === BasicStyle.Dark ? "-dark" : "";
         return "../assets/" + asset + themeStr + '.png'
     }
 }

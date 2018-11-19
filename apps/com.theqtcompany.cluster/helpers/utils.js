@@ -29,10 +29,10 @@
 **
 ****************************************************************************/
 
-.import shared.com.pelagicore.styles.neptune 3.0 as Style
+.import shared.BasicStyle 1.0 as Style
 
 function localAsset(asset, theme) {
-    var themeStr = theme === Style.NeptuneStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
     if (theme) {
         return "../assets/" + asset + themeStr + '.png'
     }

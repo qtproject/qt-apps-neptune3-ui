@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import Qt.labs.calendar 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -69,7 +69,7 @@ Item {
                     delegate: Label {
                         text: model.shortName
                         font.pixelSize: Sizes.fontSizeXS
-                        color: NeptuneStyle.contrastColor
+                        color: BasicStyle.contrastColor
                         horizontalAlignment: Text.AlignHCenter
                     }
                 }
@@ -86,7 +86,7 @@ Item {
                     spacing: Sizes.dp(6)
                     delegate: Label {
                         text: model.day
-                        color: NeptuneStyle.contrastColor
+                        color: BasicStyle.contrastColor
                         font.pixelSize: Sizes.fontSizeXS
                         horizontalAlignment: Text.AlignHCenter
                         opacity: model.month === grid.month ? 1 : 0

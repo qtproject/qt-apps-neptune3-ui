@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 import "../stores" 1.0
@@ -80,7 +80,7 @@ ListView {
             Image {
                 width: parent.width
                 height: Sizes.dp(2)
-                source: Style.gfx("list-divider", NeptuneStyle.theme)
+                source: Style.gfx("list-divider", BasicStyle.theme)
             }
         }
     }

@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 /*!
     \qmltype ApplicationICWindow

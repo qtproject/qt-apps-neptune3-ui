@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import application.windows 1.0
 import shared.com.pelagicore.settings 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 NeptuneWindow {
@@ -66,8 +66,8 @@ NeptuneWindow {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: Font.DemiBold
-            color: NeptuneStyle.accentColor
-            opacity: NeptuneStyle.opacityHigh
+            color: BasicStyle.accentColor
+            opacity: BasicStyle.opacityHigh
             font.pixelSize: Sizes.fontSizeL
         }
 
@@ -77,8 +77,8 @@ NeptuneWindow {
             anchors.verticalCenterOffset: Sizes.dp(30)
             text: qsTr("km/h")
             font.weight: Font.Light
-            color: NeptuneStyle.accentColor
-            opacity: NeptuneStyle.opacityLow
+            color: BasicStyle.accentColor
+            opacity: BasicStyle.opacityLow
             font.pixelSize: Sizes.fontSizeM
         }
     }

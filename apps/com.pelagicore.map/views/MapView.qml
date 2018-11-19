@@ -42,7 +42,7 @@ import shared.utils 1.0
 import shared.controls 1.0 as NeptuneControls
 import shared.animations 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 import "../controls"
@@ -108,7 +108,7 @@ Item {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
             }
-            return NeptuneStyle.theme === NeptuneStyle.Light ? root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultLightThemeId)
+            return BasicStyle.theme === BasicStyle.Light ? root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultLightThemeId)
                                                              : root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultDarkThemeId);
         }
         onOpenSearchTextInput: {
@@ -146,7 +146,7 @@ Item {
         height: width
         background: Image {
             fillMode: Image.PreserveAspectFit
-            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
+            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         onClicked: root.maximizeMap()
     }

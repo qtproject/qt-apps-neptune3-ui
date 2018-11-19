@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 import views 1.0
@@ -62,7 +62,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx("bg-home", root.NeptuneStyle.theme)
+        source: Style.gfx("bg-home", root.BasicStyle.theme)
         fillMode: Image.Stretch
     }
 
@@ -73,6 +73,6 @@ Item {
     }
 
     Component.onCompleted: {
-        root.NeptuneStyle.theme = NeptuneStyle.Light;
+        root.BasicStyle.theme = BasicStyle.Light;
     }
 }

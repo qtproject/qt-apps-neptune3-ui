@@ -33,7 +33,8 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Button {
@@ -43,5 +44,5 @@ Button {
     height: Sizes.dp(146)
     font.pixelSize: Sizes.fontSizeXS
     flat: true
-    icon.color: checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
+    icon.color: checked ? BasicStyle.accentColor : BasicStyle.contrastColor
 }

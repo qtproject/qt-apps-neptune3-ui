@@ -40,7 +40,7 @@ import "../stores" 1.0
 import "../controls" 1.0
 import "../panels" 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -69,7 +69,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         height: Sizes.dp(436)
-        source: Style.gfx("app-fullscreen-top-bg", NeptuneStyle.theme)
+        source: Style.gfx("app-fullscreen-top-bg", BasicStyle.theme)
         visible: root.state === "Maximized"
     }
 

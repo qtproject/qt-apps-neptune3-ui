@@ -37,7 +37,8 @@ import QtGraphicalEffects 1.0
 import "../helpers" 1.0
 import shared.animations 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -70,7 +71,7 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Utils.localGfx("fan-speed-background", NeptuneStyle.theme)
+                source: Utils.localGfx("fan-speed-background", BasicStyle.theme)
                 fillMode: Image.PreserveAspectFit
             }
             Image {
@@ -78,13 +79,13 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Utils.localGfx(("fan-speed-"+index), NeptuneStyle.theme)
+                source: Utils.localGfx(("fan-speed-"+index), BasicStyle.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
                 fillMode: Image.PreserveAspectFit
                 layer.enabled: true
                 layer.effect: ColorOverlay {
                     source: tumblerImage
-                    color: NeptuneStyle.accentColor
+                    color: BasicStyle.accentColor
                 }
             }
         }
@@ -104,7 +105,7 @@ Item {
             id: seatImage
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Utils.localGfx("seat", NeptuneStyle.theme)
+            source: Utils.localGfx("seat", BasicStyle.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: Sizes.dp(-10)
@@ -116,13 +117,13 @@ Item {
             anchors.top: parent.top
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", NeptuneStyle.theme)
-                                                  : Utils.localGfx("air-flow-top", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", BasicStyle.theme)
+                                                  : Utils.localGfx("air-flow-top", BasicStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowTop
-                color: NeptuneStyle.accentColor
+                color: BasicStyle.accentColor
             }
             MouseArea {
                 anchors.fill: parent
@@ -137,13 +138,13 @@ Item {
             anchors.topMargin: Sizes.dp(-40)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", NeptuneStyle.theme)
-                                                 : Utils.localGfx("air-flow-middle", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", BasicStyle.theme)
+                                                 : Utils.localGfx("air-flow-middle", BasicStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowMiddle
-                color: NeptuneStyle.accentColor
+                color: BasicStyle.accentColor
             }
             MouseArea {
                 anchors.fill: parent
@@ -158,13 +159,13 @@ Item {
             anchors.topMargin: Sizes.dp(20)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", NeptuneStyle.theme)
-                                             : Utils.localGfx("air-flow-bottom", NeptuneStyle.theme) : ""
+            source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", BasicStyle.theme)
+                                             : Utils.localGfx("air-flow-bottom", BasicStyle.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowDown
-                color: NeptuneStyle.accentColor
+                color: BasicStyle.accentColor
             }
             MouseArea {
                 anchors.fill: parent

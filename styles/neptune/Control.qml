@@ -30,12 +30,12 @@
 ****************************************************************************/
 
 import QtQuick.Templates 2.3 as T
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.Control {
-    font.family: NeptuneStyle.fontFamily
+    font.family: BasicStyle.fontFamily
     font.pixelSize: Sizes.fontSizeM
-    palette.windowText: NeptuneStyle.contrastColor
-    palette.brightText: NeptuneStyle.mainColor
+    palette.windowText: BasicStyle.contrastColor
+    palette.brightText: BasicStyle.mainColor
 }

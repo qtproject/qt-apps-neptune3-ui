@@ -33,7 +33,7 @@ import QtQml 2.2
 import QtQml.Models 2.3
 import shared.utils 1.0
 import shared.com.pelagicore.settings 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 import "../helper"
 
@@ -109,7 +109,7 @@ QtObject {
     }
 
     // (Accent) Colors segment
-    readonly property color currentAccentColor: !!uiSettings.accentColor ? uiSettings.accentColor : NeptuneStyle.accentColor
+    readonly property color currentAccentColor: !!uiSettings.accentColor ? uiSettings.accentColor : BasicStyle.accentColor
 
     property var accentColorsModel: [
         { color: "#D25555", value: 5, selected: false },

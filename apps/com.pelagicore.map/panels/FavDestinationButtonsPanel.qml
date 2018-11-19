@@ -35,7 +35,7 @@ import QtPositioning 5.9
 
 import shared.animations 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import "../controls"
 import "../helpers"
@@ -63,7 +63,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: helper.localAsset("ic-home", NeptuneStyle.theme)
+            iconSource: helper.localAsset("ic-home", BasicStyle.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -73,8 +73,8 @@ Item {
         Rectangle {
             Layout.fillHeight: true
             Layout.preferredWidth: Sizes.dp(1)
-            opacity: NeptuneStyle.defaultDisabledOpacity
-            color: NeptuneStyle.contrastColor
+            opacity: BasicStyle.defaultDisabledOpacity
+            color: BasicStyle.contrastColor
         }
         MapToolButton {
             id: buttonGoWork
@@ -82,7 +82,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: helper.localAsset("ic-work", NeptuneStyle.theme)
+            iconSource: helper.localAsset("ic-work", BasicStyle.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

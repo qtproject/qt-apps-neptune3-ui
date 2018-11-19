@@ -37,7 +37,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 import shared.animations 1.0
 import "../controls" 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -75,7 +75,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.bottomMargin: -Sizes.dp(50)
-        source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
+        source: Style.gfx("widget-left-section-bg", BasicStyle.theme)
         fillMode: Image.TileVertically
         width: Sizes.dp(260)
 

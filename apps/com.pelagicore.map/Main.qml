@@ -35,7 +35,7 @@ import shared.utils 1.0
 
 import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.systeminfo 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.com.pelagicore.map 1.0
 import shared.Sizes 1.0
 
@@ -121,7 +121,7 @@ QtObject {
                     mapZoomLevel: mainMap.mapZoomLevel
                     mapTilt: mainMap.mapTilt
                     mapBearing: mainMap.mapBearing
-                    activeMapType: NeptuneStyle.theme === NeptuneStyle.Light ?
+                    activeMapType: BasicStyle.theme === BasicStyle.Light ?
                                    mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
                                    : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
                 }

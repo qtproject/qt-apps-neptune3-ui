@@ -14,22 +14,17 @@ qmlfiles.path = $$installPath
 INSTALLS += qmlfiles
 
 SOURCES += \
-    neptunestyle.cpp \
     neptunestyleplugin.cpp \
     qquickiconlabel.cpp \
     qquickicon.cpp \
     qquickdefaultprogressbar.cpp
 
 HEADERS += \
-    neptunestyle.h \
     neptunestyleplugin.h \
     qquickiconlabel_p.h \
     qquickiconlabel_p_p.h \
     qquickicon_p.h \
     qquickdefaultprogressbar_p.h
-
-RESOURCES += \
-    neptunestyle.qrc
 
 # Output/Intermediate Dirs
 OBJECTS_DIR             = ./objs

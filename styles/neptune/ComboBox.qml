@@ -34,7 +34,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.ComboBox {
@@ -66,7 +66,7 @@ T.ComboBox {
         source: "image://default/double-arrow/" + (!control.editable && control.visualFocus ? Default.focusColor : Default.textColor)
         sourceSize.width: width
         sourceSize.height: height
-        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
     }
 
     contentItem: T.TextField {
@@ -84,17 +84,17 @@ T.ComboBox {
         validator: control.validator
 
         font: control.font
-        color: !control.editable && control.visualFocus ? Default.focusColor : control.NeptuneStyle.contrastColor
-        selectionColor: control.NeptuneStyle.accentColor
-        selectedTextColor: control.NeptuneStyle.contrastColor
+        color: !control.editable && control.visualFocus ? Default.focusColor : control.BasicStyle.contrastColor
+        selectionColor: control.BasicStyle.accentColor
+        selectedTextColor: control.BasicStyle.contrastColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        opacity: control.enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        opacity: control.enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
 
         background: Rectangle {
             visible: control.editable && !control.flat
             border.width: parent && parent.activeFocus ? 2 : 1
-            border.color: parent && parent.activeFocus ?  control.NeptuneStyle.accentColor : control.NeptuneStyle.backgroundColor
+            border.color: parent && parent.activeFocus ?  control.BasicStyle.accentColor : control.BasicStyle.backgroundColor
         }
     }
 
@@ -103,8 +103,8 @@ T.ComboBox {
         implicitHeight: 40
 
         color: !control.editable && control.visualFocus ? (control.pressed ? Default.focusPressedColor : Default.focusLightColor) :
-            (control.down || popup.visible ? Default.buttonPressedColor : control.NeptuneStyle.backgroundColor)
-        border.color: control.NeptuneStyle.lighter25(color)
+            (control.down || popup.visible ? Default.buttonPressedColor : control.BasicStyle.backgroundColor)
+        border.color: Qt.lighter(color, 1.5)
         border.width: !control.editable && control.visualFocus ? 2 : 0
         visible: !control.flat || control.down
     }
@@ -131,12 +131,12 @@ T.ComboBox {
                 width: parent.width
                 height: parent.height
                 color: "transparent"
-                border.color: control.NeptuneStyle.lighter25(color)
+                border.color: Qt.lighter(color, 1.5)
             }
 
             T.ScrollIndicator.vertical: ScrollIndicator { }
         }
 
-        background: Rectangle { color: control.NeptuneStyle.backgroundColor}
+        background: Rectangle { color: control.BasicStyle.backgroundColor}
     }
 }

@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 ItemDelegate {
@@ -65,7 +65,7 @@ ItemDelegate {
                     visible: root.eventTimeStart !== root.eventTimeEnd
                     text: root.eventTimeEnd
                     font.pixelSize: Sizes.fontSizeXS
-                    opacity: NeptuneStyle.opacityMedium
+                    opacity: BasicStyle.opacityMedium
                 }
             }
 
@@ -80,7 +80,7 @@ ItemDelegate {
             width: parent.width
             height: Sizes.dp(5)
             anchors.bottom: parent.bottom
-            source: Style.gfx("divider", NeptuneStyle.theme)
+            source: Style.gfx("divider", BasicStyle.theme)
         }
     }
 }

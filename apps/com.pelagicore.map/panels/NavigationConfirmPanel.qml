@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import "../helpers"
 
@@ -108,8 +108,8 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: helper.localAsset("ic-start-navigation", NeptuneStyle.theme)
-                    opacity: startNavigationButton.enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+                    source: helper.localAsset("ic-start-navigation", BasicStyle.theme)
+                    opacity: startNavigationButton.enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }

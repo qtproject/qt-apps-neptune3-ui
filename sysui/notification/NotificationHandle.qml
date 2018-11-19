@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 
 import shared.Sizes 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 MouseArea {
     id: root
@@ -69,7 +69,7 @@ MouseArea {
         width: root.notificationCounterVisible ? Sizes.dp(100) : Sizes.dp(200)
         height: Sizes.dp(2)
         anchors.centerIn: root.notificationCounterVisible ? undefined : root
-        color: NeptuneStyle.contrastColor
+        color: BasicStyle.contrastColor
     }
 
     Label {
@@ -87,7 +87,7 @@ MouseArea {
         height: Sizes.dp(2)
         opacity: root.notificationCounterVisible ? 1 : 0
         visible: opacity > 0
-        color: NeptuneStyle.contrastColor
+        color: BasicStyle.contrastColor
     }
 
     Timer {

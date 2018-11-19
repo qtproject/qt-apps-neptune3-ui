@@ -31,20 +31,20 @@
 
 import QtQuick 2.10
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Rectangle {
     border.width: !parent.enabled && !parent.checked ? Sizes.dp(2) : 0
-    border.color: NeptuneStyle.contrastColor
+    border.color: BasicStyle.contrastColor
     visible: !parent.flat
     color: {
         if (parent.checked) {
-            return NeptuneStyle.accentColor;
+            return BasicStyle.accentColor;
         } else if (!parent.enabled) {
             return "transparent";
         } else {
-            return NeptuneStyle.contrastColor;
+            return BasicStyle.contrastColor;
         }
     }
     opacity: {

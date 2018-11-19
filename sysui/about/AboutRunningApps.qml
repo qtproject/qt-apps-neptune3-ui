@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtApplicationManager.SystemUI 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
@@ -175,7 +175,7 @@ Item {
                             arg(model.cpuLoad).arg(model.memoryVirtual).
                             arg(model.memoryRSS).arg(model.memoryPSS)
                     font.pixelSize: Sizes.fontSizeS
-                    opacity: NeptuneStyle.opacityMedium
+                    opacity: BasicStyle.opacityMedium
                 }
                 Column {
                     width: parent.width
@@ -191,13 +191,13 @@ Item {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
-                            opacity: NeptuneStyle.opacityMedium
+                            opacity: BasicStyle.opacityMedium
                         }
                         Switch {
                             id: primarySwitch
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
-                            opacity: NeptuneStyle.opacityMedium
+                            opacity: BasicStyle.opacityMedium
                             Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
                         }
                     }
@@ -218,13 +218,13 @@ Item {
                             Layout.fillWidth: true
                             text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
-                            opacity: NeptuneStyle.opacityMedium
+                            opacity: BasicStyle.opacityMedium
                         }
                         Switch {
                             id: secondarySwitch
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
-                            opacity: NeptuneStyle.opacityMedium
+                            opacity: BasicStyle.opacityMedium
                             Binding { target: model.appInfo; property: "applicationICWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
                         }
                     }
@@ -234,7 +234,7 @@ Item {
                     visible: model.index !== listView.model.count - 1
                     width: parent.width
                     height: Sizes.dp(sourceSize.height)
-                    source: Style.gfx("list-divider", NeptuneStyle.theme)
+                    source: Style.gfx("list-divider", BasicStyle.theme)
                 }
             }
         }

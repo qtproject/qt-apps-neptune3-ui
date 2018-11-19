@@ -37,7 +37,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 import "../controls" 1.0
@@ -140,7 +140,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        source: Style.gfx("widget-left-section-bg", NeptuneStyle.theme)
+        source: Style.gfx("widget-left-section-bg", BasicStyle.theme)
         width: Sizes.dp(sourceSize.width)
         height: Sizes.dp(sourceSize.height)
 
@@ -163,7 +163,7 @@ Item {
         Label {
             Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignCenter
             font.pixelSize: Sizes.fontSizeS
-            opacity: NeptuneStyle.opacityMedium
+            opacity: BasicStyle.opacityMedium
             text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
         }
     }

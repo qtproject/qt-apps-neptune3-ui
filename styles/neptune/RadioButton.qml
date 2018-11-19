@@ -33,7 +33,7 @@
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.RadioButton {
@@ -56,7 +56,7 @@ T.RadioButton {
         implicitHeight: Sizes.dp(30)
         radius: width / 2
         border.width: Sizes.dp(2)
-        border.color: control.checked || control.down ? control.NeptuneStyle.accentColor : control.NeptuneStyle.buttonColor
+        border.color: control.checked || control.down ? control.BasicStyle.accentColor : control.BasicStyle.buttonColor
         color: "transparent"
 
         Rectangle {
@@ -79,6 +79,6 @@ T.RadioButton {
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
 
-        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
     }
 }

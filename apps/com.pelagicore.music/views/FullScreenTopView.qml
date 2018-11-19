@@ -36,7 +36,7 @@ import QtQuick.Controls 2.2
 
 import "../panels" 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -67,7 +67,7 @@ Item {
             Image {
                 opacity: root.topExpanded ? 0.0 : 1.0
                 Behavior on opacity { DefaultNumberAnimation {} }
-                source: root.topExpanded ? "" : Style.symbol("ic-expand", NeptuneStyle.theme)
+                source: root.topExpanded ? "" : Style.symbol("ic-expand", BasicStyle.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
@@ -116,7 +116,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Image {
-                source: Style.symbol("ic-expand-up", NeptuneStyle.theme)
+                source: Style.symbol("ic-expand-up", BasicStyle.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }

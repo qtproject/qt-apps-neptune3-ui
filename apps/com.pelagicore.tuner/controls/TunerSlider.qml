@@ -36,7 +36,8 @@ import QtGraphicalEffects 1.0
 
 import shared.utils 1.0
 import shared.controls 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Slider {
@@ -57,7 +58,7 @@ Slider {
             width: Sizes.dp(18)
             height: Sizes.dp(18)
             opacity: root.opacity
-            color: NeptuneStyle.accentColor
+            color: BasicStyle.accentColor
             radius: 20
             onOpacityChanged: {
                 if (opacity === 0.0) {
@@ -94,7 +95,7 @@ Slider {
                         anchors.horizontalCenter: parent.horizontalCenter
                         radius: markers.markerWidth
                         opacity: height === Sizes.dp(100) ? 0.6 : 0.2
-                        color: NeptuneStyle.contrastColor
+                        color: BasicStyle.contrastColor
                         LinearGradient {
                             id: gradient
                             anchors.fill: parent
@@ -103,7 +104,7 @@ Slider {
                             end: Qt.point(0, Sizes.dp(100))
                             gradient: Gradient {
                                 GradientStop { position: 0.4; color: "white" }
-                                GradientStop { position: 1.0; color: NeptuneStyle.contrastColor }
+                                GradientStop { position: 1.0; color: BasicStyle.contrastColor }
                             }
                         }
                         Label {
@@ -142,7 +143,7 @@ Slider {
             width: Sizes.dp(1)
             height: Sizes.dp(300)
             anchors.horizontalCenter: parent.horizontalCenter
-            color: NeptuneStyle.contrastColor
+            color: BasicStyle.contrastColor
         }
     }
 }

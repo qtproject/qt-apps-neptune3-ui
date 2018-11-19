@@ -32,22 +32,22 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 ToolButton {
     id: root
     property alias iconSource: buttonImage.source
-    property color labelColor: NeptuneStyle.contrastColor
+    property color labelColor: BasicStyle.contrastColor
 
     property string primaryText
 
     property string extendedText: ""
-    property color extendedTextColor: NeptuneStyle.accentDetailColor
+    property color extendedTextColor: BasicStyle.accentDetailColor
     property int extendedTextFontSize: Sizes.fontSizeS
 
     property string secondaryText: ""
-    property color secondaryTextColor: NeptuneStyle.contrastColor
+    property color secondaryTextColor: BasicStyle.contrastColor
     property int secondaryTextFontSize: Sizes.fontSizeS
 
     background: Item {

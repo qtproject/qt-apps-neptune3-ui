@@ -39,7 +39,7 @@ import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.Slider {
@@ -82,8 +82,8 @@ T.Slider {
         height: Sizes.dp(sourceSize.height)
 
         source: control.horizontal ?
-                    Style.gfx("slider-handle-horizontal", NeptuneStyle.theme) :
-                    Style.gfx("slider-handle-vertical", NeptuneStyle.theme)
+                    Style.gfx("slider-handle-horizontal", BasicStyle.theme) :
+                    Style.gfx("slider-handle-vertical", BasicStyle.theme)
     }
 
     background: Item {
@@ -103,7 +103,7 @@ T.Slider {
                 y: control.horizontal ? 0 : index * (d.stepLength + d.gap)
                 width: control.horizontal ? d.stepLength : railContainer.width
                 height: control.horizontal ? railContainer.height : d.stepLength
-                color: NeptuneStyle.contrastColor
+                color: BasicStyle.contrastColor
                 opacity: control.horizontal ?
                              (handle.x > (rectStep.x+d.stepLength/2) ? (control.mirrored ? 0.1 : 0.6) : (control.mirrored ? 0.6 : 0.1)) :
                              (handle.y > rectStep.y+d.stepLength/2 ? 0.1 : 0.6)
@@ -113,7 +113,7 @@ T.Slider {
         Rectangle {
             width: parent.width
             height: parent.height
-            color: NeptuneStyle.contrastColor
+            color: BasicStyle.contrastColor
             visible: d.numberSteps === 0
             opacity: 0.1
         }
@@ -124,7 +124,7 @@ T.Slider {
             width: control.horizontal ? control.position * parent.width : parent.width
             height: control.horizontal ? parent.height : control.position * parent.height
             visible: d.numberSteps === 0
-            color: NeptuneStyle.contrastColor
+            color: BasicStyle.contrastColor
             opacity: 0.5
         }
     }

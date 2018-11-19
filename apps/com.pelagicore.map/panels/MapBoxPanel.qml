@@ -36,7 +36,7 @@ import QtLocation 5.9
 import QtPositioning 5.9
 
 import shared.utils 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import shared.animations 1.0
 import "../controls"
@@ -121,7 +121,7 @@ Item {
                 line.color: "#798bd9"
                 line.width: Sizes.dp(3)
                 smooth: true
-                opacity: NeptuneStyle.opacityHigh
+                opacity: BasicStyle.opacityHigh
             }
         }
 
@@ -160,7 +160,7 @@ Item {
     Image {
         id: mask
         anchors.fill: mainMap
-        source: helper.localAsset("bg-home-navigation-overlay", NeptuneStyle.theme)
+        source: helper.localAsset("bg-home-navigation-overlay", BasicStyle.theme)
         visible: root.state === "Maximized"
         scale: root.state === "Maximized" ? 1.2 : 1.6
         Behavior on scale {
@@ -223,7 +223,7 @@ Item {
         background: Image {
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
+            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-3D_ON.png") : Qt.resolvedUrl("../assets/ic-3D_OFF.png")
         checked: mainMap.tilt !== 0
@@ -244,7 +244,7 @@ Item {
         background: Image {
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: helper.localAsset("floating-button-bg", NeptuneStyle.theme)
+            source: helper.localAsset("floating-button-bg", BasicStyle.theme)
         }
         enabled: !checked
         checked: mainMap.center === root.currentLocation
@@ -259,6 +259,6 @@ Item {
         anchors.leftMargin: Sizes.dp(45 * .5)
         mapSource: mainMap
         styleSheet: "* { color: '%1'; font-family: '%2'; font-size: %3px}"
-        .arg(NeptuneStyle.contrastColor).arg(NeptuneStyle.fontFamily).arg(Sizes.fontSizeXXS)
+        .arg(BasicStyle.contrastColor).arg(BasicStyle.fontFamily).arg(Sizes.fontSizeXXS)
     }
 }

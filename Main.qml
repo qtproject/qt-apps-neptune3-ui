@@ -39,7 +39,7 @@ import instrumentcluster 1.0
 import hud 1.0
 import stores 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 QtObject {
     id: root
@@ -48,12 +48,12 @@ QtObject {
         clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
         onAccentColorChanged: {
-            centerConsoleWindow.contentItem.NeptuneStyle.accentColor = newAccentColor;
+            centerConsoleWindow.contentItem.BasicStyle.accentColor = newAccentColor;
             if (instrumentClusterWindowLoader.item) {
-                instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.accentColor = newAccentColor;
+                instrumentClusterWindowLoader.item.contentItem.BasicStyle.accentColor = newAccentColor;
             }
             if (hudWindowLoader.item) {
-                hudWindowLoader.item.contentItem.NeptuneStyle.accentColor = newAccentColor;
+                hudWindowLoader.item.contentItem.BasicStyle.accentColor = newAccentColor;
             }
         }
 
@@ -65,16 +65,16 @@ QtObject {
         }
 
         onUpdateThemeRequested: {
-            var chosenTheme = currentTheme === 0 ? NeptuneStyle.Light : NeptuneStyle.Dark;
+            var chosenTheme = currentTheme === 0 ? BasicStyle.Light : BasicStyle.Dark;
             if (centerConsoleWindow.popupParent.visible) {
                 centerConsoleWindow.popupParent.updateOverlay();
             }
-            centerConsoleWindow.contentItem.NeptuneStyle.theme = chosenTheme;
+            centerConsoleWindow.contentItem.BasicStyle.theme = chosenTheme;
             if (instrumentClusterWindowLoader.item) {
-                instrumentClusterWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
+                instrumentClusterWindowLoader.item.contentItem.BasicStyle.theme = chosenTheme;
             }
             if (hudWindowLoader.item) {
-                hudWindowLoader.item.contentItem.NeptuneStyle.theme = chosenTheme;
+                hudWindowLoader.item.contentItem.BasicStyle.theme = chosenTheme;
             }
         }
 

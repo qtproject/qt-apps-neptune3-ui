@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import shared.controls 1.0
 import shared.utils 1.0
@@ -43,9 +43,7 @@ T.TabButton {
     id: control
 
     //internal to avoid binding loops
-    readonly property real letterSpacing: font.pixelSize === Sizes.fontSizeS ?
-                                          NeptuneStyle.secondaryTextLetterSpacing
-                                        : NeptuneStyle.primaryTextLetterSpacing
+    readonly property real letterSpacing: font.pixelSize === Sizes.fontSizeS ? -0.41 : -0.57
 
     font.pixelSize: Sizes.fontSizeS
 
@@ -66,7 +64,7 @@ T.TabButton {
         icon: control.icon
         text: control.text
         font: control.font
-        color: selected ? NeptuneStyle.mainColor : NeptuneStyle.contrastColor
+        color: selected ? BasicStyle.mainColor : BasicStyle.contrastColor
     }
 
     readonly property string positionState: {
@@ -84,7 +82,7 @@ T.TabButton {
     background: ScalableBorderImage {
         id: borderImage
         anchors.fill: parent
-        source: Style.gfx("tabbar-bg-" + control.positionState, NeptuneStyle.theme)
+        source: Style.gfx("tabbar-bg-" + control.positionState, BasicStyle.theme)
 
         opacity: (control.selected ? 0.7 : 0.3) + (control.pressed ? 0.1 : 0)
 

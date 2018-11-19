@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Templates 2.1 as T
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 T.PageIndicator {
     id: control
@@ -49,7 +49,7 @@ T.PageIndicator {
         implicitHeight: 8
 
         radius: width / 2
-        color: control.NeptuneStyle.accentColor
+        color: control.BasicStyle.accentColor
 
         opacity: index === currentIndex ? 0.95 : pressed ? 0.7 : 0.45
         Behavior on opacity { OpacityAnimator { duration: 100 } }

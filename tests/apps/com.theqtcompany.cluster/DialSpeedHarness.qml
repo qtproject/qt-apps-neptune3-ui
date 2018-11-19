@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import shared.utils 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 import panels 1.0
 
@@ -43,7 +43,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx("instrument-cluster-bg", NeptuneStyle.theme)
+        source: Style.gfx("instrument-cluster-bg", BasicStyle.theme)
         fillMode: Image.Stretch
     }
 
@@ -79,6 +79,6 @@ Item {
     }
 
     Component.onCompleted: {
-        root.NeptuneStyle.theme = NeptuneStyle.Dark
+        root.BasicStyle.theme = BasicStyle.Dark
     }
 }

@@ -35,6 +35,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.ProgressBar {
@@ -50,7 +51,7 @@ T.ProgressBar {
         scale: control.mirrored ? -1 : 1
         progress: control.position
         indeterminate: control.visible && control.indeterminate
-        color: NeptuneStyle.accentColor
+        color: BasicStyle.accentColor
     }
 
     background: Rectangle {
@@ -61,7 +62,7 @@ T.ProgressBar {
         width: control.progressBarWidth
         height: implicitHeight
         //TODO check with designer if color is correct
-        color: NeptuneStyle.contrastColor
-        opacity: NeptuneStyle.opacityMedium
+        color: BasicStyle.contrastColor
+        opacity: BasicStyle.opacityMedium
     }
 }

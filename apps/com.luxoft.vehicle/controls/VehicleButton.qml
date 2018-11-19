@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 ToolButton {
@@ -75,6 +75,6 @@ ToolButton {
 
     background: Rectangle {
         radius: height / 2
-        color: NeptuneStyle.buttonColor
+        color: BasicStyle.buttonColor
     }
 }

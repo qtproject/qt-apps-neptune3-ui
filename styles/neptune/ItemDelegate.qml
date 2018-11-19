@@ -34,6 +34,7 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.ItemDelegate {
@@ -53,7 +54,7 @@ T.ItemDelegate {
     bottomPadding: padding + Sizes.dp(1)
 
     font.pixelSize: Sizes.fontSizeM
-    font.family: NeptuneStyle.fontFamily
+    font.family: BasicStyle.fontFamily
     font.weight: Font.Light
 
     contentItem: NeptuneIconLabel {
@@ -70,7 +71,7 @@ T.ItemDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
-        color: NeptuneStyle.contrastColor
+        opacity: enabled ? 1.0 : BasicStyle.defaultDisabledOpacity
+        color: BasicStyle.contrastColor
     }
 }

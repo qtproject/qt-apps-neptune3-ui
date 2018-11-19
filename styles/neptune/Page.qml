@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Templates 2.1 as T
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 
 T.Page {
     id: control
@@ -49,6 +49,6 @@ T.Page {
     contentHeight: contentItem.implicitHeight || (contentChildren.length === 1 ? contentChildren[0].implicitHeight : 0)
 
     background: Rectangle {
-        color: control.NeptuneStyle.backgroundColor
+        color: control.BasicStyle.backgroundColor
     }
 }

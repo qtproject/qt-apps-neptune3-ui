@@ -36,13 +36,14 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.Button {
     id: control
 
-    implicitWidth: NeptuneStyle.cellWidth + leftPadding + rightPadding
-    implicitHeight: NeptuneStyle.cellHeight + leftPadding + rightPadding
+    implicitWidth: BasicStyle.cellWidth + leftPadding + rightPadding
+    implicitHeight: BasicStyle.cellHeight + leftPadding + rightPadding
 
     padding: Sizes.dp(6)
     leftPadding: padding + Sizes.dp(2)
@@ -51,7 +52,7 @@ T.Button {
     font.weight: Font.Light
     spacing: Sizes.dp(22)
 
-    icon.color: NeptuneStyle.contrastColor
+    icon.color: BasicStyle.contrastColor
 
     contentItem: IconLabel {
         spacing: control.spacing
@@ -63,7 +64,7 @@ T.Button {
         text: control.text
         font: control.font
         color: control.icon.color
-        opacity: control.enabled ? 1.0 : NeptuneStyle.defaultDisabledOpacity
+        opacity: control.enabled ? 1.0 : BasicStyle.defaultDisabledOpacity
     }
 
     background: ButtonBackground {}

@@ -34,7 +34,7 @@ import QtQuick 2.8
 import shared.utils 1.0
 import shared.animations 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 import "../helpers"
 
@@ -51,7 +51,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         fillMode: Image.TileHorizontally
-        source: helper.localAsset("navigation-widget-overlay-top", NeptuneStyle.theme)
+        source: helper.localAsset("navigation-widget-overlay-top", BasicStyle.theme)
         Behavior on height { DefaultNumberAnimation {} }
     }
 }

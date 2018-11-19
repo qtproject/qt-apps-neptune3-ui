@@ -38,7 +38,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
 
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -61,7 +61,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Style.gfx("list-divider", NeptuneStyle.theme)
+                source: Style.gfx("list-divider", BasicStyle.theme)
             }
         }
 
@@ -75,7 +75,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Style.gfx("list-divider", NeptuneStyle.theme)
+                source: Style.gfx("list-divider", BasicStyle.theme)
             }
         }
 
@@ -86,13 +86,13 @@ Control {
             text: qsTr("Time Zone")
 
             Image {
-                opacity: NeptuneStyle.defaultDisabledOpacity
+                opacity: BasicStyle.defaultDisabledOpacity
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(22)
                 height: parent.height
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter
-                source: Style.symbol("ic-next-level", NeptuneStyle.theme)
+                source: Style.symbol("ic-next-level", BasicStyle.theme)
                 mirror: parent.mirrored
             }
         }

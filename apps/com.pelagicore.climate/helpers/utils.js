@@ -29,14 +29,14 @@
 **
 ****************************************************************************/
 
-.import shared.com.pelagicore.styles.neptune 3.0 as Style
+.import shared.BasicStyle 1.0 as Style
 
 function localIcon(asset, theme) {
-    var themeStr = theme === Style.NeptuneStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
     return "../assets/icons/" + asset + themeStr + '.png'
 }
 
 function localGfx(asset, theme) {
-    var themeStr = theme === Style.NeptuneStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
     return "../assets/gfx/" + asset + themeStr + '.png'
 }

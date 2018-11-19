@@ -41,7 +41,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.animations 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 T.Switch {
@@ -73,8 +73,8 @@ T.Switch {
         padding: (height - Sizes.dp(30)) / 2
         color: 'transparent'
         border.width: control.visualFocus ? NeptunStyle.dp(2) : Sizes.dp(1.4)
-        border.color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
-        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
+        border.color: control.checked ? BasicStyle.accentColor : BasicStyle.contrastColor
+        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
@@ -82,7 +82,7 @@ T.Switch {
             width: Sizes.dp(28)
             height: width
             radius: width/2
-            color: control.checked ? NeptuneStyle.accentColor : NeptuneStyle.contrastColor
+            color: control.checked ? BasicStyle.accentColor : BasicStyle.contrastColor
             border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
@@ -105,7 +105,7 @@ T.Switch {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? NeptuneStyle.opacityHigh : NeptuneStyle.defaultDisabledOpacity
-        color: NeptuneStyle.contrastColor
+        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
+        color: BasicStyle.contrastColor
     }
 }

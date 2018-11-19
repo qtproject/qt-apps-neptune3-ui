@@ -34,7 +34,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import QtQuick.Controls 2.3
 import QtGraphicalEffects 1.0
-import shared.com.pelagicore.styles.neptune 3.0
+import shared.BasicStyle 1.0
 import shared.Sizes 1.0
 
 Row {
@@ -73,7 +73,7 @@ Row {
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: playButtonBackground
-                color: NeptuneStyle.accentColor
+                color: BasicStyle.accentColor
             }
         }
     }
