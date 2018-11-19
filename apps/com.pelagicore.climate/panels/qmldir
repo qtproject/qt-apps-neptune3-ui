@@ -2,3 +2,4 @@ ClimateAirFlowPanel 1.0 ClimateAirFlowPanel.qml
 ClimateButtonsGridPanel 1.0 ClimateButtonsGridPanel.qml
 ClimateHeaderPanel 1.0 ClimateHeaderPanel.qml
 ClimateIndicatorPanel 1.0 ClimateIndicatorPanel.qml
+ClimateContentPanel 1.0 ClimateContentPanel.qml

@@ -354,6 +354,13 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>ClimateContentPanel</name>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+</context>
+<context>
     <name>ClimatePopup</name>
     <message>
         <source>AUTO</source>
@@ -362,7 +369,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation type="vanished">Auto</translation>
     </message>
 </context>
 <context>

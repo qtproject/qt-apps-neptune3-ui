@@ -228,15 +228,18 @@
     </message>
 </context>
 <context>
+    <name>ClimateContentPanel</name>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ClimatePopup</name>
     <message>
         <source>AUTO</source>
         <extracomment>As in &quot;automatic&quot;</extracomment>
         <translation type="vanished">AUTO</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

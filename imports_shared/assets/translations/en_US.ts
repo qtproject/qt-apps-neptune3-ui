@@ -122,7 +122,7 @@
     </message>
 </context>
 <context>
-    <name>ClimatePopup</name>
+    <name>ClimateContentPanel</name>
     <message>
         <source>Auto</source>
         <translation type="unfinished"></translation>
