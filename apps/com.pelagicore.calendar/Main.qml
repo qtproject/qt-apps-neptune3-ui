@@ -32,8 +32,8 @@
 import QtQuick 2.8
 import application.windows 1.0
 import shared.utils 1.0
-import "stores"
-import "views"
+import "stores" 1.0
+import "views" 1.0
 
 ApplicationCCWindow {
     id: root

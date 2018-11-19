@@ -36,9 +36,9 @@ import Qt.labs.calendar 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.utils 1.0
-import "../stores"
-import "../controls"
-import "../panels"
+import "../stores" 1.0
+import "../controls" 1.0
+import "../panels" 1.0
 
 import shared.com.pelagicore.styles.neptune 3.0
 import shared.Sizes 1.0
