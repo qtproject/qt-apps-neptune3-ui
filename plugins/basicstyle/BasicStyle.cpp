@@ -70,6 +70,11 @@ void BasicStyle::inheritStyle(const BasicStyle& inheritedStyle)
         emit accentColorChanged();
     }
 
+    if (m_theme != inheritedStyle.m_theme) {
+        m_theme = inheritedStyle.m_theme;
+        emit themeChanged();
+    }
+
     const auto children = attachedChildren();
     for (auto *child : children) {
         BasicStyle* basicStyle = qobject_cast<BasicStyle *>(child);
