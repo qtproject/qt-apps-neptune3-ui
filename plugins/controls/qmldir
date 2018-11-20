@@ -1,3 +1,6 @@
+module shared.controls
+plugin controlsplugin
+ButtonBackground 1.0 ButtonBackground.qml
 ScalableBorderImage 1.0 ScalableBorderImage.qml
 ToolsColumn 1.0 ToolsColumn.qml
 ListItem 1.0 ListItem.qml

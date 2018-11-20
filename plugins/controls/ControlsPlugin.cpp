@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -28,26 +28,24 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#include <QQmlExtensionPlugin>
+#include <QQmlEngine>
 
-#ifndef NEPTUNESTYLEPLUGIN_H
-#define NEPTUNESTYLEPLUGIN_H
+#include "qquickiconlabel_p.h"
+#include "qquickdefaultprogressbar_p.h"
 
-#include <QtQuickControls2/private/qquickstyleplugin_p.h>
-#include <QLoggingCategory>
-
-QT_FORWARD_DECLARE_CLASS(QQmlEngine)
-Q_DECLARE_LOGGING_CATEGORY(neptuneStyle)
-
-class NeptuneStylePlugin : public QQuickStylePlugin
+class ControlsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
 public:
-    NeptuneStylePlugin(QObject* parent=nullptr);
-    void registerTypes(const char *uri) override;
-    void initializeEngine(QQmlEngine *engine, const char *uri) override;
-    QString name() const override;
+    void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(uri == QLatin1String("shared.controls"));
+        qmlRegisterType<QQuickIconLabel>(uri, 1, 0, "NeptuneIconLabel");
+        qmlRegisterType<QQuickDefaultProgressBar>(uri, 1, 0, "NeptuneProgressBar");
+    }
 };
 
-#endif // NEPTUNESTYLEPLUGIN_H
+#include "ControlsPlugin.moc"

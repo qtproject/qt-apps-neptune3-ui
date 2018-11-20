@@ -2,9 +2,9 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
           basicstyle \
+          controls \
           frametimer \
           sizes \
-          styles \
           translation \
           widgetgrid \
           systeminfo \
