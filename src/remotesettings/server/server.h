@@ -65,7 +65,6 @@ protected:
     QScopedPointer<ConnectionMonitoringSimpleSource> m_connectionMonitoringService;
 
     void setInstrumentClusterDefaultValues();
-    void setDefaultThemeValues();
     void initConnectionMonitoring();
 
 private:

@@ -93,7 +93,6 @@ Store {
                     Style.languageLocale = uiSettings.language;
                 }
             });
-            root.updateThemeRequested(uiSettings.theme)
         }
     }
 
