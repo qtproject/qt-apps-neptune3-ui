@@ -35,8 +35,8 @@ import shared.utils 1.0
 
 import shared.Sizes 1.0
 
-import "../panels"
-import "../stores"
+import "../panels" 1.0
+import "../stores" 1.0
 
 Item {
     id: root

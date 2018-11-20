@@ -33,7 +33,7 @@ import QtQuick 2.2
 import Qt3D.Core 2.0
 import Qt3D.Render 2.0
 
-import "../../helpers/pathsProvider.js" as Paths
+import "../../helpers" 1.0
 
 Material {
     id: root

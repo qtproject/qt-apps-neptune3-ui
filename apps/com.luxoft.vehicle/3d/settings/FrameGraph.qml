@@ -32,7 +32,7 @@
 import Qt3D.Core 2.0
 import Qt3D.Render 2.0
 
-import "../entities"
+import "../entities" 1.0
 
 RenderSurfaceSelector {
     id: surfaceSelector

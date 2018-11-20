@@ -35,7 +35,7 @@ import shared.animations 1.0
 
 import shared.Sizes 1.0
 
-import "../helpers/pathsProvider.js" as Paths
+import "../helpers" 1.0
 
 Item {
     id: root

@@ -39,10 +39,10 @@ import QtQuick.Controls 2.3
 
 import shared.Sizes 1.0
 
-import "../helpers/pathsProvider.js" as Paths
-import "../3d/materials"
-import "../3d/entities"
-import "../3d/settings"
+import "../helpers"  1.0
+import "../3d/materials" 1.0
+import "../3d/entities" 1.0
+import "../3d/settings" 1.0
 
 Item {
     id: root

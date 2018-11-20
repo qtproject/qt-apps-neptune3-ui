@@ -38,7 +38,7 @@ import shared.Sizes 1.0
 import shared.animations 1.0
 import shared.utils 1.0
 
-import "../controls"
+import "../controls" 1.0
 
 Item {
     id: root

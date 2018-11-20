@@ -1,0 +1,10 @@
+Shadow 1.0 Shadow.qml
+Seats 1.0 Seats.qml
+Roof 1.0 Roof.qml
+RightDoor 1.0 RightDoor.qml
+RearDoor 1.0 RearDoor.qml
+LeftDoor 1.0 LeftDoor.qml
+CameraController 1.0 CameraController.qml
+Body 1.0 Body.qml
+AxisRear 1.0 AxisRear.qml
+AxisFront 1.0 AxisFront.qml

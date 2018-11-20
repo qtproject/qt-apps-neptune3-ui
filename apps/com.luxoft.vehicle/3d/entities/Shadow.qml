@@ -36,7 +36,7 @@ import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
-import "../../helpers/pathsProvider.js" as Paths
+import "../../helpers" 1.0
 
 Entity {
     components: [

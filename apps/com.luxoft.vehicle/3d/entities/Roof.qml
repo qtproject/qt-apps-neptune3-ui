@@ -38,7 +38,7 @@ import QtQuick.Scene3D 2.0
 
 import shared.animations 1.0
 
-import "../../helpers/pathsProvider.js" as Paths
+import "../../helpers" 1.0
 
 Entity {
     id: root

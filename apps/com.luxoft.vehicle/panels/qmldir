@@ -1,0 +1,10 @@
+DoorsPanel 1.0 DoorsPanel.qml
+EnergyPanel 1.0 EnergyPanel.qml
+FrontDoorsPanel 1.0 FrontDoorsPanel.qml
+RoofPanel 1.0 RoofPanel.qml
+SupportPanel 1.0 SupportPanel.qml
+TiresPanel 1.0 TiresPanel.qml
+TopPanel 1.0 TopPanel.qml
+TrunkPanel 1.0 TrunkPanel.qml
+Vehicle3DControlPanel 1.0 Vehicle3DControlPanel.qml
+Vehicle3DPanel 1.0 Vehicle3DPanel.qml

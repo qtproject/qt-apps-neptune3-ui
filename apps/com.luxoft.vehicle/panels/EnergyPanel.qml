@@ -38,8 +38,8 @@ import shared.Sizes 1.0
 
 import shared.utils 1.0
 
-import "../helpers/pathsProvider.js" as Paths
-import "../controls"
+import "../helpers" 1.0
+import "../controls" 1.0
 
 Item {
     TabBar {

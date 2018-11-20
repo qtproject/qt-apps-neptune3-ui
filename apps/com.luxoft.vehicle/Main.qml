@@ -36,8 +36,8 @@ import shared.com.pelagicore.settings 1.0
 import shared.com.pelagicore.systeminfo 1.0
 import shared.BasicStyle 1.0
 
-import "views"
-import "stores"
+import "views" 1.0
+import "stores" 1.0
 
 QtObject {
     id: root

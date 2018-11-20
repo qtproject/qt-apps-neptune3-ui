@@ -38,7 +38,7 @@ import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
 
-import "../helpers/pathsProvider.js" as Paths
+import "../helpers" 1.0
 
 ListView {
     id: root
