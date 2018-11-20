@@ -78,7 +78,7 @@ Control {
         width: parent.width
         height: root.headerBackgroundHeight
         visible: root.headerBackgroundVisible
-        source: Style.gfx("floating-panel-top-bg")
+        source: Config.gfx("floating-panel-top-bg")
         border {
             left: 20
             top: 30
@@ -88,7 +88,7 @@ Control {
     }
     background: ScalableBorderImage {
         anchors.fill: root
-        source: Style.gfx("popup-background-9patch", BasicStyle.theme)
+        source: Config.gfx("popup-background-9patch", BasicStyle.theme)
         anchors.leftMargin: Sizes.dp(-40)
         anchors.rightMargin: Sizes.dp(-40)
         anchors.topMargin: Sizes.dp(-28)
@@ -120,7 +120,7 @@ Control {
             height: Sizes.dp(sourceSize.height)
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: Sizes.dp(4)
-            source: Style.gfx("popup-close-button-bg", BasicStyle.theme)
+            source: Config.gfx("popup-close-button-bg", BasicStyle.theme)
             fillMode: Image.PreserveAspectFit
         }
     }

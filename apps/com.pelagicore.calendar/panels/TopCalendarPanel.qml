@@ -63,7 +63,7 @@ RowLayout {
         MonthGrid {
             id: grid
 
-            locale: Qt.locale(Style.languageLocale)
+            locale: Qt.locale(Config.languageLocale)
             Layout.preferredWidth: shadow.width
             Layout.maximumWidth: shadow.width
             Layout.preferredHeight: 0.6 * root.height
@@ -83,7 +83,7 @@ RowLayout {
             Layout.maximumWidth: Sizes.dp(sourceSize.width)
             Layout.preferredHeight: Sizes.dp(sourceSize.height)
             Layout.maximumHeight: Sizes.dp(sourceSize.height)
-            source: Style.gfx("album-art-shadow-widget")
+            source: Config.gfx("album-art-shadow-widget")
             fillMode: Image.PreserveAspectFit
         }
     }

@@ -82,8 +82,8 @@ T.Slider {
         height: Sizes.dp(sourceSize.height)
 
         source: control.horizontal ?
-                    Style.gfx("slider-handle-horizontal", BasicStyle.theme) :
-                    Style.gfx("slider-handle-vertical", BasicStyle.theme)
+                    Config.gfx("slider-handle-horizontal", BasicStyle.theme) :
+                    Config.gfx("slider-handle-vertical", BasicStyle.theme)
     }
 
     background: Item {

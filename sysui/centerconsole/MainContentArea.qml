@@ -69,7 +69,7 @@ Item {
         z: 0
 
         Item {
-            y: launcher.height - Sizes.dp(Style.launcherHeight)
+            y: launcher.height - Sizes.dp(Config.launcherHeight)
             width: parent.width
             height: parent.height
 
@@ -79,7 +79,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                y: launcher.y + Sizes.dp(Style.launcherHeight)
+                y: launcher.y + Sizes.dp(Config.launcherHeight)
                 height: parent.height - y - root.homeBottomMargin
 
                 applicationModel: !root.applicationModel || root.applicationModel.populating ? null : root.applicationModel
@@ -89,7 +89,7 @@ Item {
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
                 widgetDrawer: widgetDrawerSlot
                 popupParent: root.popupParent
-                exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Style.launcherHeight)
+                exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Config.launcherHeight)
                                                                   : launcher.height)
                 exposedRectBottomMargin: root.activeAppBottomMargin
             }
@@ -105,7 +105,7 @@ Item {
                     appInfo: root.applicationModel && root.applicationModel.activeAppInfo
                              && !root.applicationModel.activeAppInfo.asWidget ? root.applicationModel.activeAppInfo
                                                                               : null
-                    exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Style.launcherHeight)
+                    exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Config.launcherHeight)
                                                                       : launcher.height)
                     exposedRectBottomMargin: root.activeAppBottomMargin
                 }

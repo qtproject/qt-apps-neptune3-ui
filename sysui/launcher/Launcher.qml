@@ -76,7 +76,7 @@ Item {
             height: Sizes.dp(sourceSize.height)
             fillMode: Image.PreserveAspectFit
             visible: homeButton.checked
-            source: Style.symbol("ic-app-active-bg")
+            source: Config.symbol("ic-app-active-bg")
         }
         onClicked: root.applicationModel.goHome()
     }
@@ -139,15 +139,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Sizes.dp(150) - root.Sizes.dp(Style.statusBarHeight)
+                anchors.topMargin: Sizes.dp(150) - root.Sizes.dp(Config.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Config.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Config.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -156,15 +156,15 @@ Item {
             extend: "open"
             PropertyChanges {
                 target: editableLauncher
-                anchors.topMargin: Sizes.dp(134) - root.Sizes.dp(Style.statusBarHeight)
+                anchors.topMargin: Sizes.dp(134) - root.Sizes.dp(Config.statusBarHeight)
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Config.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Config.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -181,7 +181,7 @@ Item {
             }
             PropertyChanges {
                 target: root
-                height: Sizes.dp(Style.launcherHeight)
+                height: Sizes.dp(Config.launcherHeight)
             }
         },
 
@@ -194,11 +194,11 @@ Item {
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Config.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: Sizes.dp(152) - root.Sizes.dp(Config.statusBarHeight) - gridButton.width/2
             }
         },
 
@@ -211,11 +211,11 @@ Item {
             }
             PropertyChanges {
                 target: homeButton
-                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Style.statusBarHeight) - homeButton.height/2
+                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Config.statusBarHeight) - homeButton.height/2
             }
             PropertyChanges {
                 target: gridButton
-                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Style.statusBarHeight) - gridButton.width/2
+                anchors.topMargin: Sizes.dp(120) - root.Sizes.dp(Config.statusBarHeight) - gridButton.width/2
             }
         }
     ]

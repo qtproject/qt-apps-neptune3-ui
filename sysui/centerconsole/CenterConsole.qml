@@ -56,23 +56,23 @@ Item {
 
     rotation: store.centerConsole.rotation
 
-    // If the Window aspect ratio differs from Style.centerConsoleAspectRatio the Center Console item will be
-    // letterboxed so that a Style.centerConsoleAspectRatio is preserved.
+    // If the Window aspect ratio differs from Config.centerConsoleAspectRatio the Center Console item will be
+    // letterboxed so that a Config.centerConsoleAspectRatio is preserved.
     states: [
         State {
             name: "constrainWidth"
-            when: root.store.centerConsole.availableAspectRatio > Style.centerConsoleAspectRatio
+            when: root.store.centerConsole.availableAspectRatio > Config.centerConsoleAspectRatio
             PropertyChanges { target: root
-                width: Math.round(root.height * Style.centerConsoleAspectRatio)
+                width: Math.round(root.height * Config.centerConsoleAspectRatio)
                 height: root.store.centerConsole.availableHeight
             }
         },
         State {
             name: "constrainHeight"
-            when: root.store.centerConsole.availableAspectRatio <= Style.centerConsoleAspectRatio
+            when: root.store.centerConsole.availableAspectRatio <= Config.centerConsoleAspectRatio
             PropertyChanges { target: root
                 width: root.store.centerConsole.availableWidth
-                height: Math.round(root.width / Style.centerConsoleAspectRatio)
+                height: Math.round(root.width / Config.centerConsoleAspectRatio)
             }
         }
     ]
@@ -88,7 +88,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Style.gfx("bg-home", BasicStyle.theme)
+        source: Config.gfx("bg-home", BasicStyle.theme)
         opacity: mainContentArea.item && mainContentArea.item.launcherOpen && BasicStyle.theme === BasicStyle.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }
@@ -194,8 +194,8 @@ Item {
             root.store.uiSettings.theme = root.store.uiSettings.theme === 0 ? 1 : 0;
         }
         onCtrlLPressed: {
-            const locales = Style.translation.availableTranslations;
-            const currentLocale = Style.languageLocale;
+            const locales = Config.translation.availableTranslations;
+            const currentLocale = Config.languageLocale;
             const currentIndex = locales.indexOf(currentLocale);
             var nextIndex = currentIndex === locales.length - 1 ? 0 : currentIndex + 1;
             root.store.uiSettings.language = locales[nextIndex];

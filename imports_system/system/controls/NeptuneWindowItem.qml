@@ -43,8 +43,8 @@ WindowItem {
     readonly property real windowScale: root.Sizes.scale
     readonly property color accentColor: root.BasicStyle.accentColor
     readonly property int currentTheme: root.BasicStyle.theme
-    readonly property string currentLanguageLocale: Style.languageLocale
-    readonly property bool currentRtlMode: Style.rtlMode
+    readonly property string currentLanguageLocale: Config.languageLocale
+    readonly property bool currentRtlMode: Config.rtlMode
 
     window: root.appInfo.window
 

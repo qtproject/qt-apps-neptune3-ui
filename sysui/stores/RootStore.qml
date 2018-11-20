@@ -62,7 +62,7 @@ Store {
 
     readonly property var applicationModel: ApplicationModel {
         id: applicationModel
-        localeCode: Style.languageLocale
+        localeCode: Config.languageLocale
 
         // Store widget states when the UI is shutting down
         onShuttingDown: settingsStore.widgetStates = applicationModel.serializeWidgetsState();
@@ -80,17 +80,17 @@ Store {
     readonly property SystemInfo sysInfo: SystemInfo { id: sysInfo }
     readonly property UISettings uiSettings: UISettings {
         onLanguageChanged: {
-            if (language !== Style.languageLocale) {
-                Style.languageLocale = language;
+            if (language !== Config.languageLocale) {
+                Config.languageLocale = language;
             }
         }
         onThemeChanged: root.updateThemeRequested(uiSettings.theme)
         onAccentColorChanged: root.accentColorChanged(accentColor)
-        onRtlModeChanged: Style.rtlMode = uiSettings.rtlMode
+        onRtlModeChanged: Config.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
                 if (uiSettings.language) {
-                    Style.languageLocale = uiSettings.language;
+                    Config.languageLocale = uiSettings.language;
                 }
             });
         }
@@ -105,7 +105,7 @@ Store {
         id: timer
         interval: 100
         onTriggered: {
-            root.uiSettings.languages = Style.translation.availableTranslations;
+            root.uiSettings.languages = Config.translation.availableTranslations;
             root.uiSettings.twentyFourHourTimeFormat = Qt.locale().timeFormat(Locale.ShortFormat).indexOf("AP") === -1;
         }
     }

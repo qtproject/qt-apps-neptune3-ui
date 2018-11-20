@@ -56,7 +56,7 @@ Item {
         anchors.centerIn: icon
         fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
-        source: Style.symbol("ic-app-active-bg")
+        source: Config.symbol("ic-app-active-bg")
     }
 
     Image {

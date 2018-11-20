@@ -80,7 +80,7 @@ ListView {
             Image {
                 width: parent.width
                 height: Sizes.dp(2)
-                source: Style.gfx("list-divider", BasicStyle.theme)
+                source: Config.gfx("list-divider", BasicStyle.theme)
             }
         }
     }

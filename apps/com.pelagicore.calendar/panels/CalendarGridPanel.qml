@@ -58,7 +58,7 @@ Item {
                     font.pixelSize: Sizes.fontSizeS
                 }
                 DayOfWeekRow {
-                    locale: Qt.locale(Style.languageLocale)
+                    locale: Qt.locale(Config.languageLocale)
                     Layout.preferredWidth: Sizes.dp(270)
                     Layout.maximumWidth: Sizes.dp(270)
                     Layout.preferredHeight: 0.1 * gridView.cellHeight
@@ -76,7 +76,7 @@ Item {
                 MonthGrid {
                     id: grid
 
-                    locale: Qt.locale(Style.languageLocale)
+                    locale: Qt.locale(Config.languageLocale)
                     month: index
                     year: root.currentYear
                     Layout.preferredWidth: Sizes.dp(270)

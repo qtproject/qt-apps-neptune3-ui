@@ -58,12 +58,12 @@ QtObject {
 
 
     // Language Segment
-    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Style.languageLocale
+    readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Config.languageLocale
     readonly property ListModel languageModel: ListModel {}
 
     function populateLanguages() {
         languageModel.clear()
-        var translations = uiSettings.languages.length !== 0 ? uiSettings.languages : Style.translation.availableTranslations;
+        var translations = uiSettings.languages.length !== 0 ? uiSettings.languages : Config.translation.availableTranslations;
         for (var i=0; i<translations.length; i++) {
             var locale = Qt.locale(translations[i]);
             languageModel.append({

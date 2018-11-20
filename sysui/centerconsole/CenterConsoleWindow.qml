@@ -57,8 +57,8 @@ Window {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        root.width = Style.centerConsoleWidth
-        root.height = Style.centerConsoleHeight
+        root.width = Config.centerConsoleWidth
+        root.height = Config.centerConsoleHeight
     }
 
     // Load the full UI once a first frame has been drawn with the ligth UI version
@@ -111,7 +111,7 @@ Window {
             focus: true
 
             onWidthChanged: {
-                root.contentItem.Sizes.scale = centerConsole.width / Style.centerConsoleWidth;
+                root.contentItem.Sizes.scale = centerConsole.width / Config.centerConsoleWidth;
             }
         }
 

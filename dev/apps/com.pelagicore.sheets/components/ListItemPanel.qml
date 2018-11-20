@@ -75,7 +75,7 @@ Item {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 text: "ListItem with an image"
-                icon.source: Style.gfx("fan-speed-5")
+                icon.source: Config.gfx("fan-speed-5")
                 icon.color: "transparent"
             }
 
@@ -127,7 +127,7 @@ Item {
                 implicitHeight: Sizes.dp(104)
                 rightPadding: Sizes.dp(16)
                 icon.name: "ic-update"
-                symbolFlatButton: Style.symbol("ic-favorite")
+                symbolFlatButton: Config.symbol("ic-favorite")
                 subText: "subtitle"
                 text: "ListItem with button text"
                 textFlatButton: "Text"

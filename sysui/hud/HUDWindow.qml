@@ -43,8 +43,8 @@ Window {
     property var hudAppInfo
     property var hudStore
 
-    width: Style.hudWidth
-    height: Style.hudHeight
+    width: Config.hudWidth
+    height: Config.hudHeight
     color: "black"
     title: "Neptune 3 UI - HUD"
     screen: root.hudStore.hudScreen
@@ -57,7 +57,7 @@ Window {
     Item {
         anchors.centerIn: parent
         width: parent.width
-        height: width / Style.hudAspectRatio
+        height: width / Config.hudAspectRatio
 
         NeptuneWindowItem {
             anchors.fill: parent

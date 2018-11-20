@@ -76,7 +76,7 @@ ApplicationCCWindow {
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
 
-        source: Style.gfx("app-fullscreen-top-bg", BasicStyle.theme)
+        source: Config.gfx("app-fullscreen-top-bg", BasicStyle.theme)
     }
 
     BlurredImageBackground {

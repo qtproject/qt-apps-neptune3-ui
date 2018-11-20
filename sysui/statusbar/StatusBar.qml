@@ -41,7 +41,7 @@ import shared.Sizes 1.0
 RowLayout {
     id: root
 
-    implicitHeight: Sizes.dp(Style.statusBarHeight)
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
 
     property var uiSettings
     property var model

@@ -67,7 +67,7 @@ Item {
             Image {
                 opacity: root.topExpanded ? 0.0 : 1.0
                 Behavior on opacity { DefaultNumberAnimation {} }
-                source: root.topExpanded ? "" : Style.symbol("ic-expand", BasicStyle.theme)
+                source: root.topExpanded ? "" : Config.symbol("ic-expand", BasicStyle.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
@@ -116,7 +116,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Image {
-                source: Style.symbol("ic-expand-up", BasicStyle.theme)
+                source: Config.symbol("ic-expand-up", BasicStyle.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }

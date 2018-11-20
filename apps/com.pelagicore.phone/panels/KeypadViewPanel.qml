@@ -170,7 +170,7 @@ Item {
             enabled: textedit.text
             backgroundColor: "#68C97D" // app specific color
             backgroundOpacity: 1.0
-            iconSource: Style.symbol("ic-call")
+            iconSource: Config.symbol("ic-call")
         }
     }
 }

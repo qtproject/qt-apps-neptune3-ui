@@ -49,14 +49,14 @@ Window {
         applicationICWindows.next();
     }
 
-    width: Style.instrumentClusterWidth
-    height: Style.instrumentClusterHeight
+    width: Config.instrumentClusterWidth
+    height: Config.instrumentClusterHeight
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
 
     onWidthChanged: {
-        root.contentItem.Sizes.scale = root.width / Style.instrumentClusterWidth;
+        root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
     }
 
     Component.onCompleted: {
@@ -68,12 +68,12 @@ Window {
         id: uiSlot
         anchors.centerIn: parent
         width: parent.width
-        height: width / Style.instrumentClusterUIAspectRatio
+        height: width / Config.instrumentClusterUIAspectRatio
         rotation: root.invertedOrientation ? 180 : 0
 
         Image {
             anchors.fill: parent
-            source: Style.gfx("instrument-cluster-bg", BasicStyle.theme)
+            source: Config.gfx("instrument-cluster-bg", BasicStyle.theme)
             fillMode: Image.Stretch
             visible: !applicationICWindows.visible
         }

@@ -83,7 +83,7 @@ Control {
                 Image {
                     Layout.maximumWidth: columnContent.width
                     Layout.minimumWidth: columnContent.width
-                    source: Style.gfx("list-divider", BasicStyle.theme)
+                    source: Config.gfx("list-divider", BasicStyle.theme)
                     visible: index !== view.count - 1
                 }
             }

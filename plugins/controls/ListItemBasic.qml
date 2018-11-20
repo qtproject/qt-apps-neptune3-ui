@@ -246,7 +246,7 @@ ItemDelegate {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
-            source: Style.gfx("list-divider", BasicStyle.theme)
+            source: Config.gfx("list-divider", BasicStyle.theme)
             mirror: root.mirrored
         }
     }

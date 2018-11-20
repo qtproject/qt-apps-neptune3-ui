@@ -75,7 +75,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.bottomMargin: -Sizes.dp(50)
-        source: Style.gfx("widget-left-section-bg", BasicStyle.theme)
+        source: Config.gfx("widget-left-section-bg", BasicStyle.theme)
         fillMode: Image.TileVertically
         width: Sizes.dp(260)
 
@@ -95,8 +95,8 @@ Item {
                 anchors.right: parent.right
                 elide: Text.ElideRight
                 font.weight: Font.Light
-                text: root.currentTime.toLocaleDateString(Qt.locale(Style.languageLocale), "dddd") + ",\n" +
-                      Qt.locale(Style.languageLocale).standaloneMonthName(root.currentTime.getMonth(), Locale.LongFormat) +
+                text: root.currentTime.toLocaleDateString(Qt.locale(Config.languageLocale), "dddd") + ",\n" +
+                      Qt.locale(Config.languageLocale).standaloneMonthName(root.currentTime.getMonth(), Locale.LongFormat) +
                       " " + root.currentTime.getDate()
             }
 
@@ -111,7 +111,7 @@ Item {
                 Behavior on opacity { DefaultNumberAnimation {} }
                 visible: opacity > 0
 
-                weatherIcon: Style.gfx(root.weatherIcon)
+                weatherIcon: Config.gfx(root.weatherIcon)
                 weatherText: qsTr(root.weatherName)
                 temperatureValue: root.temp
                 precipitationText: root.precipitationText
@@ -194,7 +194,7 @@ Item {
         }
 
         visible: opacity > 0
-        weatherIcon: Style.gfx(root.weatherIcon)
+        weatherIcon: Config.gfx(root.weatherIcon)
         weatherText: qsTr(root.weatherName)
         temperatureValue: root.temp
         precipitationText: root.precipitationText

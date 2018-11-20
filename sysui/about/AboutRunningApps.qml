@@ -234,7 +234,7 @@ Item {
                     visible: model.index !== listView.model.count - 1
                     width: parent.width
                     height: Sizes.dp(sourceSize.height)
-                    source: Style.gfx("list-divider", BasicStyle.theme)
+                    source: Config.gfx("list-divider", BasicStyle.theme)
                 }
             }
         }

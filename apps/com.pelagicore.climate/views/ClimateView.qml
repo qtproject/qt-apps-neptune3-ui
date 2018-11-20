@@ -63,8 +63,8 @@ Item {
 
     ClimatePopup {
         id: climatePopup
-        originItemX: Math.round(Style.centerConsoleWidth / 2);
-        originItemY: Style.centerConsoleHeight - Math.round(root.height / 2);
-        popupY: Sizes.dp(Style.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
+        originItemX: Math.round(Config.centerConsoleWidth / 2);
+        originItemY: Config.centerConsoleHeight - Math.round(root.height / 2);
+        popupY: Sizes.dp(Config.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
     }
 }

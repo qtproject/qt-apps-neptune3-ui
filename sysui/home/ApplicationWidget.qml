@@ -69,7 +69,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-bg-dark")
+        source: Config.gfx("widget-bg-dark")
         opacity: root.active ? 0 : root.beingDragged ? 0.3 : 0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -84,7 +84,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-bg", BasicStyle.theme)
+        source: Config.gfx("widget-bg", BasicStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -99,7 +99,7 @@ Item {
         border { left: 0; right: 17; top: 17; bottom: 17 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-window-mask")
+        source: Config.gfx("widget-window-mask")
     }
     Item {
         id: windowSlot
@@ -124,8 +124,8 @@ Item {
             currentHeight: windowSlot.height
             windowState: root.active ? "Maximized" : root.widgetState
             appInfo: root.appInfo ? root.appInfo : null
-            width: Sizes.dp(Style.centerConsoleWidth)
-            height: Sizes.dp(Style.centerConsoleHeight)
+            width: Sizes.dp(Config.centerConsoleWidth)
+            height: Sizes.dp(Config.centerConsoleHeight)
             exposedRectTopMargin: root.exposedRectTopMargin
             exposedRectBottomMargin: root.exposedRectBottomMargin
         }
@@ -140,7 +140,7 @@ Item {
         border { top: 25; bottom: 25 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Style.gfx("widget-stripe")
+        source: Config.gfx("widget-stripe")
 
         layer.enabled: true
         layer.effect: ColorOverlay {
@@ -190,7 +190,7 @@ Item {
             anchors.centerIn: parent
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Style.symbol("ic-widget-move")
+            source: Config.symbol("ic-widget-move")
         }
     }
 
@@ -213,7 +213,7 @@ Item {
             anchors.centerIn: parent
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Style.symbol("ic-widget-close")
+            source: Config.symbol("ic-widget-close")
         }
     }
 
@@ -224,7 +224,7 @@ Item {
         anchors.top: parent.top
         width: Sizes.dp(sourceSize.width)
         height: Sizes.dp(sourceSize.height)
-        source: Style.gfx("widget-corner", BasicStyle.theme)
+        source: Config.gfx("widget-corner", BasicStyle.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -245,7 +245,7 @@ Item {
             anchors.topMargin: Sizes.dp(24)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Style.symbol("ic-expand-to-fullscreen", BasicStyle.theme)
+            source: Config.symbol("ic-expand-to-fullscreen", BasicStyle.theme)
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }
         }

@@ -78,7 +78,7 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Style.gfx("album-art-shadow")
+                source: Config.gfx("album-art-shadow")
             }
 
             Image {
@@ -86,7 +86,7 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(180)
                 height: width
-                source: Style.gfx("album-art-placeholder")
+                source: Config.gfx("album-art-placeholder")
                 fillMode: Image.PreserveAspectCrop
             }
 

@@ -89,7 +89,7 @@ Item {
         anchors.right: searchPanel.right
         anchors.left: searchPanel.left
         width: searchPanel.width
-        source: Style.gfx("panel-inner-shadow", BasicStyle.theme)
+        source: Config.gfx("panel-inner-shadow", BasicStyle.theme)
     }
 
     ScalableBorderImage {

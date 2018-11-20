@@ -76,21 +76,21 @@ PopupItem {
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Style.gfx("logo-theqtcompany")
+                    source: Config.gfx("logo-theqtcompany")
                 }
                 Image {
                     Layout.fillWidth: true
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Style.gfx("logo-luxoft")
+                    source: Config.gfx("logo-luxoft")
                 }
                 Image {
                     Layout.fillWidth: true
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Style.gfx("logo-kdab")
+                    source: Config.gfx("logo-kdab")
                 }
             }
         }

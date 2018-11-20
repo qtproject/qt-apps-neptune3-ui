@@ -48,7 +48,7 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         fillMode: Image.PreserveAspectFit
 
-        source: Style.gfx("hero-appstore")
+        source: Config.gfx("hero-appstore")
         asynchronous: true
     }
 

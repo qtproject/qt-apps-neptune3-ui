@@ -88,7 +88,7 @@ Item {
                     width: parent.width
                     height: 5
                     anchors.bottom: parent.bottom
-                    source: Style.gfx("divider", BasicStyle.theme)
+                    source: Config.gfx("divider", BasicStyle.theme)
                 }
 
                 MouseArea{

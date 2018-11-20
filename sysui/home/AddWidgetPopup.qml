@@ -142,7 +142,7 @@ PopupItem {
             anchors.topMargin: Sizes.dp(120)
             width: parent.width
             height: Sizes.dp(sourceSize.height)
-            source: Style.gfx("popup-title-shadow")
+            source: Config.gfx("popup-title-shadow")
         }
 
         ListView {

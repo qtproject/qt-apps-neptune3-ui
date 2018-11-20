@@ -194,7 +194,7 @@ Item {
                     Image {
                         anchors.bottom: parent.bottom
                         width: parent.width
-                        source: Style.gfx("list-divider", BasicStyle.theme)
+                        source: Config.gfx("list-divider", BasicStyle.theme)
                         visible: index !== listviewMoreRows.count - 1
                     }
                 }

@@ -56,7 +56,7 @@ import QtApplicationManager.Application 1.0
         summary: "Notification Prio 9"
         body: "Notification sample"
         priority: 9
-        icon: Style.symbolM("maps")
+        icon: Config.symbolM("maps")
     }
     \endqml
 

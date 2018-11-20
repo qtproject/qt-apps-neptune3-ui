@@ -165,7 +165,7 @@ Item {
         border.bottom: Sizes.dp(323)
         border.left: 0
         border.right: 0
-        source: Style.gfx("input-overlay")
+        source: Config.gfx("input-overlay")
         visible: root.store.searchViewEnabled
     }
 

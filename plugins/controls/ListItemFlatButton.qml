@@ -65,7 +65,7 @@ import shared.Sizes 1.0
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
-                symbolFlatButton: Style.symbol("ic-favorite")
+                symbolFlatButton: Config.symbol("ic-favorite")
                 subText: "subtitle"
                 text: "ListItem with button text"
                 textFlatButton: "Text"

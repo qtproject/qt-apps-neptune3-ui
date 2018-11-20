@@ -80,7 +80,7 @@ ItemDelegate {
             width: parent.width
             height: Sizes.dp(5)
             anchors.bottom: parent.bottom
-            source: Style.gfx("divider", BasicStyle.theme)
+            source: Config.gfx("divider", BasicStyle.theme)
         }
     }
 }

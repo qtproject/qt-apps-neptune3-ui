@@ -69,7 +69,7 @@ import shared.Sizes 1.0
 ApplicationManagerWindow {
     id: root
 
-    LayoutMirroring.enabled: isRightToLeft || Style.rtlMode
+    LayoutMirroring.enabled: isRightToLeft || Config.rtlMode
     LayoutMirroring.childrenInherit: true
 
     color: "transparent"
@@ -93,10 +93,10 @@ ApplicationManagerWindow {
             root.BasicStyle.theme = value;
             break;
         case "neptuneLanguageLocale":
-            Style.languageLocale = value;
+            Config.languageLocale = value;
             break;
         case "neptuneRtlMode":
-            Style.rtlMode = value;
+            Config.rtlMode = value;
             break;
         }
     }
