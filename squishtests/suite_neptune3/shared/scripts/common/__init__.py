@@ -31,14 +31,3 @@
 ## SPDX-License-Identifier: GPL-3.0
 ##
 #############################################################################
-
-source(findFile('scripts', 'python/bdd.py'))
-source(findFile('scripts', '../shared/scripts/common/__init__.py'))
-
-setupHooks('../shared/scripts/bdd_hooks.py')
-collectStepDefinitions('./steps', '../shared/steps')
-
-
-def main():
-    testSettings.throwOnFailure = True
-    runFeatureFile('test.feature')

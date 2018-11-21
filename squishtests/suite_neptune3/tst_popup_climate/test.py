@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ############################################################################
 ##
 ## Copyright (C) 2018 Luxoft GmbH
@@ -12,7 +14,8 @@
 ## with the Software or, alternatively, in accordance with the terms
 ## contained in a written agreement between you and The Qt Company.  For
 ## licensing terms and conditions see https://www.qt.io/terms-conditions.
-## For further information use the contact form at https://www.qt.io/contact-us.
+## For further information use the contact form at
+## https://www.qt.io/contact-us.
 ##
 ## GNU General Public License Usage
 ## Alternatively, this file may be used under the terms of the GNU
@@ -30,9 +33,11 @@
 #############################################################################
 
 source(findFile('scripts', 'python/bdd.py'))
+source(findFile('scripts', '../shared/scripts/common/__init__.py'))
 
 setupHooks('../shared/scripts/bdd_hooks.py')
 collectStepDefinitions('./steps', '../shared/steps')
+
 
 def main():
     testSettings.throwOnFailure = True

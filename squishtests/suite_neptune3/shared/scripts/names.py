@@ -14,7 +14,8 @@
 ## with the Software or, alternatively, in accordance with the terms
 ## contained in a written agreement between you and The Qt Company.  For
 ## licensing terms and conditions see https://www.qt.io/terms-conditions.
-## For further information use the contact form at https://www.qt.io/contact-us.
+## For further information use the contact form at
+## https://www.qt.io/contact-us.
 ##
 ## GNU General Public License Usage
 ## Alternatively, this file may be used under the terms of the GNU
@@ -36,9 +37,8 @@ from objectmaphelper import *
 o_QVariant = {"type": "QVariant"}
 neptune_UI_Center_Console = {"title": "Neptune 3 UI - Center Console", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
 neptune_UI_Center_Console_grid_GridView = {"container": neptune_UI_Center_Console, "id": "grid", "type": "GridView", "unnamed": 1, "visible": True}
-neptune_UI_Center_Console_leftTempSlider_TemperatureSlider = {"container": neptune_UI_Center_Console, "id": "leftTempSlider", "type": "TemperatureSlider", "unnamed": 1, "visible": True}
-neptune_UI_Center_Console_rightTempSlider_TemperatureSlider = {"container": neptune_UI_Center_Console, "id": "rightTempSlider", "type": "TemperatureSlider", "unnamed": 1, "visible": True}
 neptune_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True, "window": o_QVariant}
+grid_Item = {"container": neptune_UI_Center_Console_grid_GridView, "type": "Item", "unnamed": 1, "visible": True}
 neptune_UI_Center_Console_widgetListview_ListView = {"container": neptune_UI_Center_Console, "id": "widgetListview", "type": "ListView", "unnamed": 1, "visible": True}
 neptune_3_UI_Center_Console_volumePopupButton_ToolButton = {"container": neptune_UI_Center_Console, "objectName": "volumePopupButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_volumePopupItem_VolumePopup = {"container": neptune_UI_Center_Console, "objectName": "volumePopupItem", "type": "VolumePopup", "visible": True}
@@ -48,9 +48,17 @@ neptune_3_UI_Center_Console_centerConsole_CenterConsole = {"container": neptune_
 neptune_3_UI_Center_Console_addWidgetButton_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "addWidgetButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_addWidgetPopupItem_AddWidgetPopup = {"container": neptune_UI_Center_Console, "objectName": "addWidgetPopupItem", "type": "AddWidgetPopup", "visible": True}
 widgetList_AddWidgets_Maps = {"checkable": False, "container": neptune_UI_Center_Console_widgetListview_ListView, "objectName": "itemAddWidget_com.pelagicore.map", "text": "Maps", "type": "ListItem", "visible": True}
-neptune_3_UI_Center_Console_homeWidget_Maps_Column = {"container": neptune_UI_Center_Console, "objectName": "homeWidget_com.pelagicore.map", "type": "Column", "visible": True}
-good_appMainMenu_WidgetClose_Map_MouseArea = {"container": neptune_UI_Center_Console, "objectName": "appWidgetClose_com.pelagicore.map", "type": "MouseArea", "visible": True}
 neptune_3_UI_Center_Console_launcherCenterConsole_Launcher = {"container": neptune_UI_Center_Console, "objectName": "launcher", "type": "Launcher", "visible": True}
 neptune_3_UI_Center_Console_gridButton_ToolButton = {"checkable": True, "container": neptune_UI_Center_Console, "objectName": "gridButton", "type": "ToolButton", "visible": True}
-neptune_3_UI_Center_Console_climateBarMouseArea_MouseArea = {"container": neptune_UI_Center_Console, "objectName": "climateBarMouseArea", "type": "MouseArea", "visible": True}
 neptune_3_UI_Center_Console_editableLauncher_EditableGridView = {"container": neptune_UI_Center_Console, "objectName": "editableLauncher", "type": "EditableGridView", "visible": True}
+neptune_3_UI_Center_Console_activeApplicationSlot_Item = {"container": neptune_UI_Center_Console, "objectName": "activeApplicationSlot", "type": "Item", "visible": True}
+
+neptune_3_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
+o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": True}
+climateAreaMouseArea_MouseArea = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "climateAreaMouseArea", "type": "MouseArea", "visible": True}
+leftTempSlider_TemperatureSlider = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "leftTempSlider", "type": "TemperatureSlider", "visible": True}
+rightTempSlider_TemperatureSlider = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "rightTempSlider", "type": "TemperatureSlider", "visible": True}
+o_ClimateView = {"container": o_QtAM_ApplicationManagerWindow, "type": "ClimateView", "unnamed": 1, "visible": True}
+o_QtAM_ApplicationManagerWindow_2 = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": False}
+auto_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow_2, "id": "bigFatButton", "text": "Auto", "type": "Button", "unnamed": 1, "visible": True}
+neptune_3_UI_Center_Console_widgetGrid_homepage_WidgetGrid = {"container": neptune_UI_Center_Console, "objectName": "widgetGrid_homepage", "type": "WidgetGrid", "visible": True}

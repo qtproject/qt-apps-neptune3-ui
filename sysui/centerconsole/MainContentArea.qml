@@ -96,6 +96,7 @@ Item {
             // slot for the maximized, active, application
             Item {
                 id: activeApplicationSlot
+                objectName: "activeApplicationSlot"
                 anchors.fill: parent
 
                 ApplicationFrame {
@@ -104,6 +105,10 @@ Item {
                     appInfo: root.applicationModel && root.applicationModel.activeAppInfo
                              && !root.applicationModel.activeAppInfo.asWidget ? root.applicationModel.activeAppInfo
                                                                               : null
+                    objectName: "currentInFrameApplication_" + (appInfo ?
+                                                                  (appInfo.id ?
+                                                                   appInfo.id : "no_id")
+                                                              : "no_appInfo")
                     exposedRectTopMargin: launcher.y + Sizes.dp(Config.launcherHeight)
                     exposedRectBottomMargin: root.activeAppBottomMargin
                 }

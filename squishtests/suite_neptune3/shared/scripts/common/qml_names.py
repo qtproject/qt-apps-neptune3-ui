@@ -32,13 +32,9 @@
 ##
 #############################################################################
 
-source(findFile('scripts', 'python/bdd.py'))
-source(findFile('scripts', '../shared/scripts/common/__init__.py'))
 
-setupHooks('../shared/scripts/bdd_hooks.py')
-collectStepDefinitions('./steps', '../shared/steps')
-
-
-def main():
-    testSettings.throwOnFailure = True
-    runFeatureFile('test.feature')
+app_widget_close = "appWidgetClose_"
+application_widget = "applicationWidget_"
+current_inFrame_Application = "currentInFrameApplication_"
+grid_delegate = "gridDelegate_"
+home_widget = "homeWidget_"

@@ -14,7 +14,8 @@
 ## with the Software or, alternatively, in accordance with the terms
 ## contained in a written agreement between you and The Qt Company.  For
 ## licensing terms and conditions see https://www.qt.io/terms-conditions.
-## For further information use the contact form at https://www.qt.io/contact-us.
+## For further information use the contact form at
+## https://www.qt.io/contact-us.
 ##
 ## GNU General Public License Usage
 ## Alternatively, this file may be used under the terms of the GNU
@@ -32,99 +33,135 @@
 #############################################################################
 
 import names
+import common.settings as settings  # some test setting vars
+import common.app as app
 
 # coordinate
-from math import sin,cos,floor
+from math import sin, cos, floor
 
 
-G_WAIT_FOR_INEXISTANCE_MS = 1000
-# waiting time for system to get ready between test scenarios todo: change somehow and distinguish between scenario and test, since no instance will appear
-G_WAIT_SYSTEM_READY_SEC = 1
+def coord_up_px(in_pix):
+    up = QPoint(0, -in_pix)
+    transf = coord_transform2DReal(up)
+    return transf
 
-SCREEN_WIDTH  = 1920
-SCREEN_HEIGHT = 1080
-# Landscape is ambigous: can be either rotation of 90 (pi) or 270 (3/4 pi) degrees
-# rotation yet unclear, what will be the reference system (test in portrait I'd suggest)
-SCREEN_LANDSCAPE = False
 
-SCREEN_ROTATION   = 0.0 # from 0 to 2pi is clockwise
-SCREEN_SHIFT_X_px = 0
-SCREEN_SHIFT_Y_px = 0
+def coord_down_px(in_pix):
+    return coord_up_px(-in_pix)
+
+
+def coord_right_px(in_pix):
+    right = QPoint(in_pix, 0)
+    transf = coord_transform2DReal(right)
+    return transf
+
+
+def coord_left_px(in_pix):
+    return coord_right_px(-in_pix)
+
+
+def coord_addQPoints(a, b):
+    return QPoint(a.x + b.x, a.y + b.y)
+
+
+def coord_transform2DReal(src_point):
+    ti = QPoint(src_point.x, src_point.y)
+    if settings.SCREEN_LANDSCAPE:
+        ti.x = -src_point.x
+        ti.y = src_point.y
+    return ti
 
 
 def coord_transform2D(src_point):
-    global G_WAIT_SYSTEM_READY_SEC # todo: put somewhere else
-    ti = QPoint(0,0)
+    ti = QPoint(0, 0)
 
     rotation = float(0)
-    if not SCREEN_LANDSCAPE:
-            rotation = Math.pi * 0.75
-            # I misuse it to distinguish between target and test development
-            G_WAIT_SYSTEM_READY_SEC = 3
+    if settings.SCREEN_LANDSCAPE:
+            rotation = math.pi * 0.75
 
-    scale_x = float(SCREEN_WIDTH * 0.01)
-    scale_y = float(SCREEN_HEIGHT * 0.01)
+    scale_x = float(settings.SCREEN_WIDTH * 0.01)
+    scale_y = float(settings.SCREEN_HEIGHT * 0.01)
 
     r_sin_rho = sin(rotation)
     r_cos_rho = cos(rotation)
 
     # not fully tested!!!!
-    tx = float((r_cos_rho * src_point.x * scale_x) - (r_sin_rho * src_point.y * scale_y))
-    ty = float((r_sin_rho * src_point.x * scale_x) + (r_cos_rho * src_point.y * scale_y))
+    tx = float((r_cos_rho * src_point.x * scale_x)
+               - (r_sin_rho * src_point.y * scale_y))
+    ty = float((r_sin_rho * src_point.x * scale_x)
+               + (r_cos_rho * src_point.y * scale_y))
 
     # do a geometric translation (after so no rotation in a point)
-    ti.x = floor(tx) + SCREEN_SHIFT_X_px
-    ti.y = floor(ty) + SCREEN_SHIFT_Y_px
+    ti.x = floor(tx) + settings.SCREEN_SHIFT_X_px
+    ti.y = floor(ty) + settings.SCREEN_SHIFT_Y_px
     return ti
 
 
 @Given("main menu is open")
 def step(context):
-    snooze(G_WAIT_SYSTEM_READY_SEC)
-    test.compare(True,True)
+    snooze(settings.G_WAIT_SYSTEM_READY_SEC)
+    test.compare(True, True, "Main menu is open... still fake")
+
 
 @Given("main menu is focused")
 def step(context):
     worked, _obj = focus_window("console")
     test.compare(True, worked)
 
-# a dummy
+
 @When("nothing")
 def step(context):
-    test.compare(True,True)
+    test.compare(True, True)
 
-# a dummy
+
 @Given("nothing")
 def step(context):
     pass
 
-# a dummy
+
 @Then("nothing")
 def step(context):
     pass
 
+
 @Then("after some '|integer|' seconds")
-def step(context,seconds):
+def step(context, seconds):
     snooze(seconds)
 
+
 @When("after some '|integer|' seconds")
-def step(context,seconds):
+def step(context, seconds):
     snooze(seconds)
 
 
 # --------------------- specific not yet clear, where to put it
-@When("the popup close button is clicked")
-def step(context):
+def click_popup_close(context):
     popup_close_button = waitForObject(names.neptune_3_UI_Center_Console_popupClose_ToolButton)
     mouseClick(popup_close_button)
+    is_still_there = is_squish_object_there(popup_close_button, 1)
+    test.compare(True, not is_still_there, "popup should be closed by now")
 
-def is_squish_object_there(squish_object,seconds):
+
+@Then("click the popup close button")
+def step(context):
+    # this button exists only in main app
+    app.switch_to_main_app()
+
+    click_popup_close(context)
+
+
+@When("the popup close button is clicked")
+def step(context):
+    click_popup_close(context)
+
+
+def is_squish_object_there(object, seconds):
     snooze(seconds)
+    is_there = True
     try:
-        waitForObjectExists(squish_object,G_WAIT_FOR_INEXISTANCE_MS)
+        waitForObjectExists(object, settings.G_WAIT_FOR_INEXISTANCE_MS)
     except Exception:
-        return False
-    else:
-        return True
+        is_there = False
+    return is_there
 
 # -------------------------------------------------------

@@ -49,6 +49,7 @@ Item {
 
     MouseArea {
         id: mouseArea
+        objectName: "climateAreaMouseArea"
         anchors.fill: parent
         onClicked: {
             climatePopup.store = root.store;

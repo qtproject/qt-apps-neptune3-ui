@@ -14,7 +14,8 @@
 ## with the Software or, alternatively, in accordance with the terms
 ## contained in a written agreement between you and The Qt Company.  For
 ## licensing terms and conditions see https://www.qt.io/terms-conditions.
-## For further information use the contact form at https://www.qt.io/contact-us.
+## For further information use the contact form at
+## https://www.qt.io/contact-us.
 ##
 ## GNU General Public License Usage
 ## Alternatively, this file may be used under the terms of the GNU
@@ -34,10 +35,10 @@
 import os
 import sys
 
+
 @OnFeatureStart
 def hook(context):
     pass
-    #start_neptune_ui_app_w_focus("console")
 
 
 @Then("return python info")
@@ -57,7 +58,6 @@ def step(context):
     for el in sys.path:
         test.log("           '" + str(el) + "'")
 
-
     test.log("         'sys.path_importer_cache' is:")
     for el in sys.path_importer_cache:
         test.log("           '" + str(el) + "'")
@@ -65,11 +65,9 @@ def step(context):
     test.log("         'sys.path_hooks' are:")
     for el in sys.path_hooks:
         try:
-            test.log("           '" + str(el)+ "'")
+            test.log("           '" + str(el) + "'")
         except ImportError as e:
             test.log(str(e))
-
-
 
 
 '''
@@ -83,12 +81,13 @@ def step(context):
   https://stackoverflow.com/questions/4906977/how-do-i-access-environment-variables-from-python
 '''
 @Given("show the environment var '|word|' which might be '|word|'")
-def step(context,path,state):
+def step(context, path, state):
     try:
         os_path = os.environ.get(path)
         #os_path = os.getenv(path)
     except KeyError as e:
-        test.fail(str(e) + " but needs to be in the list here: " + str(os.environ))
+        test.fail(str(e) + " but needs to be in the list here: "
+                  + str(os.environ))
     else:
         if state == 'set':
             if os_path:
@@ -97,7 +96,8 @@ def step(context,path,state):
                 test.fail("Bad '" + path + "' it is not set!")
         elif state == 'empty':
             if os_path:
-                test.fail("Bad '" + path + "' is '" + str(os_path) + "' but should not be empty!")
+                test.fail("Bad '" + path + "' is '" + str(os_path)
+                          + "' but should not be empty!")
             else:
                 test.log("Good '" + path + "' is not set!")
         elif state == 'info':
@@ -106,4 +106,5 @@ def step(context,path,state):
             if os_path == state:
                 test.log("Good '" + path + "' it is '" + str(os_path) + "'!")
             else:
-                test.fail("Bad '" + path + "' it is '" + str(os_path) + "' instead of '" + state + "'!")
+                test.fail("Bad '" + path + "' it is '" + str(os_path)
+                          + "' instead of '" + state + "'!")

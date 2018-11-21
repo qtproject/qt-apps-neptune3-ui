@@ -58,6 +58,7 @@ Item {
 
     WidgetGrid {
         id: widgetGrid
+        objectName: "widgetGrid_homepage"
 
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(76)

@@ -134,6 +134,7 @@ Item {
 
     TemperatureSlider {
         id: leftTempSlider
+        objectName: "leftTempSlider"
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(130) - leftTempSlider.handleHeight/2
         anchors.left: parent.left
@@ -155,6 +156,7 @@ Item {
 
     TemperatureSlider {
         id: rightTempSlider
+        objectName: "rightTempSlider"
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(130) - rightTempSlider.handleHeight/2
         anchors.right: parent.right

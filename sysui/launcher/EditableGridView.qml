@@ -64,6 +64,7 @@ Item {
         id: visualModel
         delegate: MouseArea {
             id: delegateRoot
+            objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
             property int visualIndex: DelegateModel.itemsIndex
             readonly property bool devApp: model.appInfo ? model.appInfo.categories.indexOf("dev") !== -1 : false

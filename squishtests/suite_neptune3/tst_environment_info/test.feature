@@ -26,7 +26,7 @@ Feature: A small introspection into the testing environment
          | QT_IM_MODULE      |   info   |
          | LD_LIBRARY_PATH   |    set   |
          | PATH              | set      |
-         |  SQUISH_PREFIX    |   info   |
+         |  PREFIX    |   info   |
          | SQUISHRUNNER_PORT |   info   |
          | LC_ADDRESS        |   info   |
          | LC_NAME           |   info   |

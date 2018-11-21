@@ -17,11 +17,7 @@ Feature: Main menu widget changes
          Then add widget was tapped
           And the new widget dialogue appeared
          When add map is tapped
-         Then the maps widget is visible in the home screen
+         Then the 'map' widget is visible in the home screen
+          And tapping close 'map' widget
+          And the 'map' widget disappeared in the home screen after '1' seconds of animation
 
-    Scenario: Remove map widget
-
-        Given main menu is open
-         Then the maps widget is visible in the home screen
-         When tapping to remove the map widget
-         Then the maps widget disappeared in the home screen after '1' seconds of animation
