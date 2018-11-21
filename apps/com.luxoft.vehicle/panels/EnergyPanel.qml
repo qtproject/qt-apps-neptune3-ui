@@ -33,7 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import shared.utils 1.0
@@ -59,7 +59,7 @@ Item {
         anchors.top: energyControls.bottom
         anchors.left: energyControls.left
         anchors.topMargin: Sizes.dp(40)
-        readonly property string sourceSuffix: BasicStyle.theme === BasicStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: Style.theme === Style.Dark ? "-dark.png" : ".png"
         width: parent.width
         height: Sizes.dp(sourceSize.height)
         source: Paths.getImagePath("energy-graph" + sourceSuffix)
@@ -88,7 +88,7 @@ Item {
         Image {
             height: Sizes.dp(2)
             width: parent.width
-            source: Config.gfx("list-divider", BasicStyle.theme)
+            source: Config.gfx("list-divider", Style.theme)
         }
 
         Label {
@@ -112,7 +112,7 @@ Item {
                     pixelSize: Sizes.fontSizeXS
                     weight: Font.Light
                 }
-                opacity: BasicStyle.opacityLow
+                opacity: Style.opacityLow
             }
         }
 
@@ -140,7 +140,7 @@ Item {
             width: Sizes.dp(750)
             anchors.top: parent.top
             anchors.topMargin: Sizes.dp(168)
-            source: Config.gfx("list-divider", BasicStyle.theme)
+            source: Config.gfx("list-divider", Style.theme)
         }
 
         //ToDo: this probably should be in a model later
@@ -171,7 +171,7 @@ Item {
                         pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
 
@@ -226,7 +226,7 @@ Item {
                         pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
 

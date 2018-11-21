@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
@@ -107,8 +107,8 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: Helper.localAsset("ic-start-navigation", BasicStyle.theme)
-                    opacity: startNavigationButton.enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
+                    source: Helper.localAsset("ic-start-navigation", Style.theme)
+                    opacity: startNavigationButton.enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }

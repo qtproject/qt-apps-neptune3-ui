@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.0
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -53,7 +53,7 @@ Control {
     bottomPadding: Sizes.dp(27)
 
     background: Rectangle {
-        color: BasicStyle.offMainColor
+        color: Style.offMainColor
     }
 
     contentItem: ListItemFlatButton {

@@ -31,7 +31,7 @@
 
 import QtQuick 2.11
 import QtQuick.Controls 2.2
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 NeptuneWindowItem {
     id: root

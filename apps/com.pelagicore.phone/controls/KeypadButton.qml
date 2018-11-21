@@ -36,7 +36,7 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.animations 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -56,7 +56,7 @@ Item {
         id: background
         anchors.fill: parent
         radius: height/2
-        color: BasicStyle.contrastColor
+        color: Style.contrastColor
         opacity: 0.06
     }
 

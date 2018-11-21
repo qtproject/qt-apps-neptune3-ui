@@ -36,7 +36,7 @@ import shared.animations 1.0
 import shared.controls 1.0
 import QtGraphicalEffects 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "views" 1.0
@@ -76,7 +76,7 @@ ApplicationCCWindow {
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
 
-        source: Config.gfx("app-fullscreen-top-bg", BasicStyle.theme)
+        source: Config.gfx("app-fullscreen-top-bg", Style.theme)
     }
 
     BlurredImageBackground {

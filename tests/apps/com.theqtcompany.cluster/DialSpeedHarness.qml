@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 import panels 1.0
 
@@ -43,7 +43,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("instrument-cluster-bg", BasicStyle.theme)
+        source: Config.gfx("instrument-cluster-bg", Style.theme)
         fillMode: Image.Stretch
     }
 
@@ -79,6 +79,6 @@ Item {
     }
 
     Component.onCompleted: {
-        root.BasicStyle.theme = BasicStyle.Dark
+        root.Style.theme = Style.Dark
     }
 }

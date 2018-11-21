@@ -32,7 +32,7 @@
 import QtQuick 2.7
 import stores 1.0
 import QtApplicationManager.SystemUI 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 /*
     Instantiates PopupItems for displaying PopupWindows created from the client side.

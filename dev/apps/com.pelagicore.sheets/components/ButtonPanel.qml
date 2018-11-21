@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -152,8 +152,8 @@ Item {
                 icon.width: 40
                 icon.height: 40
                 background: ButtonBackground {
-                    color: parent.pressed ? Qt.darker(BasicStyle.clusterMarksColor, (1 / BasicStyle.opacityHigh))
-                                          : BasicStyle.clusterMarksColor
+                    color: parent.pressed ? Qt.darker(Style.clusterMarksColor, (1 / Style.opacityHigh))
+                                          : Style.clusterMarksColor
                     opacity: 1
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"
@@ -165,8 +165,8 @@ Item {
                 icon.width: 35
                 icon.height: 35
                 background: ButtonBackground {
-                    color: parent.pressed ? Qt.darker(BasicStyle.accentDetailColor, (1 / BasicStyle.opacityHigh))
-                                          : BasicStyle.accentDetailColor
+                    color: parent.pressed ? Qt.darker(Style.accentDetailColor, (1 / Style.opacityHigh))
+                                          : Style.accentDetailColor
                     opacity: 1
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"

@@ -28,14 +28,14 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include "BasicStyleDefaults.h"
+#include "StyleDefaults.h"
 #include <QDebug>
 #include <QDir>
 #include <QQuickStyle>
 
 #define CHECK_KEY(key) \
     if (!settings.contains(key)) { \
-        qCritical() << "BasicStyle: Missing key \"" key  "\" in group" << settings.group(); \
+        qCritical() << "Style: Missing key \"" key  "\" in group" << settings.group(); \
         return; \
     }
 
@@ -47,36 +47,38 @@
     CHECK_KEY(key) \
     variable = settings.value(key).toReal();
 
-BasicStyleDefaults *BasicStyleDefaults::m_instance = nullptr;
+StyleDefaults *StyleDefaults::m_instance = nullptr;
 
-BasicStyleDefaults *BasicStyleDefaults::instance()
+StyleDefaults *StyleDefaults::instance()
 {
     if (!m_instance) {
-        m_instance = new BasicStyleDefaults;
+        m_instance = new StyleDefaults;
     }
     return m_instance;
 }
 
-BasicStyleDefaults::BasicStyleDefaults()
+StyleDefaults::StyleDefaults()
 {
+    const char *confFileName = "style.conf";
+
     QDir chosenStyleDir(QDir(QQuickStyle::path()).absoluteFilePath(QQuickStyle::name()));
 
     if (!chosenStyleDir.exists()) {
-        qCritical() << "BasicStyle: directory for the chosen style does not exist:" << chosenStyleDir.absolutePath();
+        qCritical() << "Style: directory for the chosen style does not exist:" << chosenStyleDir.absolutePath();
         return;
     }
 
-    if (!chosenStyleDir.exists("basicstyle.conf")) {
-        qCritical() << "BasicStyle: Missing file" << chosenStyleDir.absoluteFilePath("basicstyle.conf");
+    if (!chosenStyleDir.exists(confFileName)) {
+        qCritical() << "Style: Missing file" << chosenStyleDir.absoluteFilePath(confFileName);
         return;
     }
 
-    QString filePath = chosenStyleDir.absoluteFilePath("basicstyle.conf");
+    QString filePath = chosenStyleDir.absoluteFilePath(confFileName);
 
     QSettings settings(filePath, QSettings::IniFormat);
 
     CHECK_KEY("Theme")
-    m_data.theme = settings.value("Theme").toString() == QString("Light") ? BasicStyleData::Light : BasicStyleData::Dark;
+    m_data.theme = settings.value("Theme").toString() == QString("Light") ? StyleData::Light : StyleData::Dark;
 
     FETCH_COLOR(m_data.accentColor, "AccentColor")
 
@@ -89,7 +91,7 @@ BasicStyleDefaults::BasicStyleDefaults()
     settings.endGroup();
 }
 
-void BasicStyleDefaults::loadTheme(BasicStyleData::ThemeData &data, QSettings &settings)
+void StyleDefaults::loadTheme(StyleData::ThemeData &data, QSettings &settings)
 {
     FETCH_COLOR(data.backgroundColor, "BackgroundColor");
     FETCH_COLOR(data.buttonColor, "ButtonColor");
@@ -109,9 +111,9 @@ void BasicStyleDefaults::loadTheme(BasicStyleData::ThemeData &data, QSettings &s
     data.fontFamily = settings.value("FontFamily").toString();
 }
 
-const BasicStyleData::ThemeData BasicStyleDefaults::dataFromTheme(BasicStyleData::Theme theme) const
+const StyleData::ThemeData StyleDefaults::dataFromTheme(StyleData::Theme theme) const
 {
-    if (theme == BasicStyleData::Light)
+    if (theme == StyleData::Light)
         return m_data.lightTheme;
     else
         return m_data.darkTheme;

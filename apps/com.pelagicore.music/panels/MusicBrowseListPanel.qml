@@ -35,7 +35,7 @@ import shared.controls 1.0
 import QtQuick.Controls 2.2
 import "../helpers" 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -115,7 +115,7 @@ Control {
                          (contentType.length > 5 && actualContentType === "album"))
                 background: Rectangle {
                     radius: height/2
-                    color: BasicStyle.contrastColor
+                    color: Style.contrastColor
                     opacity: 0.06
                 }
                 text: qsTr("Play All")

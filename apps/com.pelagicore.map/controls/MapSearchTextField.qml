@@ -32,7 +32,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.0
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
@@ -41,16 +41,16 @@ TextField {
 
     property alias busy: searchBusyIndicator.running
 
-    font.family: BasicStyle.fontFamily
+    font.family: Style.fontFamily
     font.pixelSize: Sizes.fontSizeM
-    color: BasicStyle.contrastColor
-    selectedTextColor: BasicStyle.contrastColor
+    color: Style.contrastColor
+    selectedTextColor: Style.contrastColor
     leftPadding: Sizes.dp(18)
     rightPadding: Sizes.dp(63)
     horizontalAlignment: TextInput.AlignLeft
 
     background: Rectangle {
-        border.color: BasicStyle.buttonColor
+        border.color: Style.buttonColor
         border.width: Sizes.dp(1)
         color: "transparent"
         radius: height/2
@@ -61,7 +61,7 @@ TextField {
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(18)
                 anchors.verticalCenter: parent.verticalCenter
-                source: Helper.localAsset("ic-search", BasicStyle.theme)
+                source: Helper.localAsset("ic-search", Style.theme)
                 visible: !searchBusyIndicator.visible
                 fillMode: Image.PreserveAspectFit
                 width: Sizes.dp(sourceSize.width)

@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Window 2.2
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 import views 1.0
 import stores 1.0
@@ -45,7 +45,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("instrument-cluster-bg", root.BasicStyle.theme)
+        source: Config.gfx("instrument-cluster-bg", root.Style.theme)
         fillMode: Image.Stretch
     }
 
@@ -109,6 +109,6 @@ Item {
     }
 
     Component.onCompleted: {
-        root.BasicStyle.theme = BasicStyle.Dark
+        root.Style.theme = Style.Dark
     }
 }

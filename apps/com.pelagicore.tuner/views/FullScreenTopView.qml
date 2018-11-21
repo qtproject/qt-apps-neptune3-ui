@@ -40,7 +40,7 @@ import "../controls" 1.0
 import "../panels" 1.0
 import "../helpers" 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -70,7 +70,7 @@ Item {
             Image {
                 opacity: root.topExpanded ? 0.0 : 1.0
                 Behavior on opacity { DefaultNumberAnimation {} }
-                source: root.topExpanded ? "" : Config.symbol("ic-expand", BasicStyle.theme)
+                source: root.topExpanded ? "" : Config.symbol("ic-expand", Style.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }
@@ -128,7 +128,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Image {
-                source: Config.symbol("ic-expand-up", BasicStyle.theme)
+                source: Config.symbol("ic-expand-up", Style.theme)
                 anchors.verticalCenter: parent.verticalCenter
             }
         }

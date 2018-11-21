@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import shared.controls 1.0
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -88,7 +88,7 @@ Item {
                     width: parent.width
                     height: 5
                     anchors.bottom: parent.bottom
-                    source: Config.gfx("divider", BasicStyle.theme)
+                    source: Config.gfx("divider", Style.theme)
                 }
 
                 MouseArea{

@@ -36,7 +36,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "../controls" 1.0
@@ -175,7 +175,7 @@ Item {
                             Layout.leftMargin: Sizes.dp(22)
                             Layout.fillWidth: true
                             text: model.firstName + " " + model.surname
-                            color: enabled ? BasicStyle.contrastColor : BasicStyle.disabledTextColor
+                            color: enabled ? Style.contrastColor : Style.disabledTextColor
                         }
                         ToolButton {
                             Layout.preferredWidth: Sizes.dp(100)
@@ -194,7 +194,7 @@ Item {
                     Image {
                         anchors.bottom: parent.bottom
                         width: parent.width
-                        source: Config.gfx("list-divider", BasicStyle.theme)
+                        source: Config.gfx("list-divider", Style.theme)
                         visible: index !== listviewMoreRows.count - 1
                     }
                 }

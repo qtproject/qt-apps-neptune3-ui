@@ -32,7 +32,7 @@
 pragma Singleton
 import QtQuick 2.6
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.com.pelagicore.translation 1.0
 
 QtObject {
@@ -69,12 +69,12 @@ QtObject {
     }
 
     function symbol(name, theme) {
-        var themeStr = theme === BasicStyle.Dark ? "-dark" : "";
+        var themeStr = theme === Style.Dark ? "-dark" : "";
         return symbolUrl + '/' + name + themeStr + '.png';
     }
 
     function gfx(name, theme) {
-        var themeStr = theme === BasicStyle.Dark ? "-dark" : "";
+        var themeStr = theme === Style.Dark ? "-dark" : "";
         return gfxUrl + name + themeStr + '.png'
     }
 }

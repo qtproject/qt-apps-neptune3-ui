@@ -30,12 +30,12 @@
 ****************************************************************************/
 
 import QtQuick.Templates 2.3 as T
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 T.Control {
-    font.family: BasicStyle.fontFamily
+    font.family: Style.fontFamily
     font.pixelSize: Sizes.fontSizeM
-    palette.windowText: BasicStyle.contrastColor
-    palette.brightText: BasicStyle.mainColor
+    palette.windowText: Style.contrastColor
+    palette.brightText: Style.mainColor
 }

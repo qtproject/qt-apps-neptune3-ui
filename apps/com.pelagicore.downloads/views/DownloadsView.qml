@@ -37,7 +37,7 @@ import shared.animations 1.0
 import "../stores" 1.0
 import "../controls" 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -81,7 +81,7 @@ Item {
         id: fetchingLabel
 
         Label {
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
             font.pixelSize: Sizes.fontSizeM
             text: qsTr("Fetching data from Neptune Server")
         }
@@ -91,7 +91,7 @@ Item {
         id: noInternetLabel
 
         Label {
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
             font.pixelSize: Sizes.fontSizeM
             horizontalAlignment: Text.AlignHCenter
             text: qsTr("Cannot Connect to the Server") + "\n" +
@@ -101,7 +101,7 @@ Item {
 
     Label {
         anchors.centerIn: parent
-        color: BasicStyle.contrastColor
+        color: Style.contrastColor
         font.pixelSize: Sizes.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity

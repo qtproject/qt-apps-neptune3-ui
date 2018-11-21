@@ -36,7 +36,7 @@ import QtQuick.Controls.impl 2.3
 
 import shared.animations 1.0
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 // TODO: Fix the height and width more according to UI spec and based on external variables
@@ -56,7 +56,7 @@ T.SwitchDelegate {
     spacing: Sizes.dp(12)
 
     font.pixelSize: Sizes.fontSizeM
-    font.family: BasicStyle.fontFamily
+    font.family: Style.fontFamily
     font.weight: Font.Light
 
     indicator: PaddedRectangle {
@@ -72,8 +72,8 @@ T.SwitchDelegate {
         padding: (height - Sizes.dp(32)) / 2
         color: 'transparent'
         border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1.4)
-        border.color: control.checked ? control.BasicStyle.accentColor : control.BasicStyle.contrastColor
-        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
+        border.color: control.checked ? control.Style.accentColor : control.Style.contrastColor
+        opacity: enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
 
         Rectangle {
             x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
@@ -81,7 +81,7 @@ T.SwitchDelegate {
             width: Sizes.dp(28)
             height: Sizes.dp(28)
             radius: Sizes.dp(16)
-            color: control.checked ? control.BasicStyle.accentColor : control.BasicStyle.contrastColor
+            color: control.checked ? control.Style.accentColor : control.Style.contrastColor
             border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1)
             border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
 
@@ -106,7 +106,7 @@ T.SwitchDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
-        color: BasicStyle.contrastColor
+        opacity: enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
+        color: Style.contrastColor
     }
 }

@@ -35,7 +35,7 @@ import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
 import application.windows 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 import "../stores" 1.0
 import "../panels" 1.0
@@ -59,7 +59,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 390 * d.scaleRatio
-        source: Utils.localAsset("cluster-fullscreen-overlay", BasicStyle.theme)
+        source: Utils.localAsset("cluster-fullscreen-overlay", Style.theme)
     }
 
     GaugesPanel {

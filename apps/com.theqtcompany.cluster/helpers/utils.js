@@ -29,10 +29,10 @@
 **
 ****************************************************************************/
 
-.import shared.BasicStyle 1.0 as Style
+.import shared.Style 1.0 as Style
 
 function localAsset(asset, theme) {
-    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.Style.Dark ? "-dark" : "";
     if (theme) {
         return "../assets/" + asset + themeStr + '.png'
     }

@@ -31,20 +31,20 @@
 
 import QtQuick 2.10
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Rectangle {
     border.width: !parent.enabled && !parent.checked ? Sizes.dp(2) : 0
-    border.color: BasicStyle.contrastColor
+    border.color: Style.contrastColor
     visible: !parent.flat
     color: {
         if (parent.checked) {
-            return BasicStyle.accentColor;
+            return Style.accentColor;
         } else if (!parent.enabled) {
             return "transparent";
         } else {
-            return BasicStyle.contrastColor;
+            return Style.contrastColor;
         }
     }
     opacity: {

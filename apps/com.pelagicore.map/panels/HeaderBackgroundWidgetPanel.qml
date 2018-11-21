@@ -34,7 +34,7 @@ import QtQuick 2.8
 import shared.utils 1.0
 import shared.animations 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
@@ -50,7 +50,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         fillMode: Image.TileHorizontally
-        source: Helper.localAsset("navigation-widget-overlay-top", BasicStyle.theme)
+        source: Helper.localAsset("navigation-widget-overlay-top", Style.theme)
         Behavior on height { DefaultNumberAnimation {} }
     }
 }

@@ -38,7 +38,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -104,7 +104,7 @@ Item {
         Label {
             id: actualProgram
             Layout.preferredWidth: root.width
-            opacity: BasicStyle.opacityMedium
+            opacity: Style.opacityMedium
             font.pixelSize: Sizes.fontSizeS
             visible: text !== ""
         }

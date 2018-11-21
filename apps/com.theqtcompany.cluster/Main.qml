@@ -35,7 +35,7 @@ import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
 import application.windows 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 import "views" 1.0
 import "stores" 1.0

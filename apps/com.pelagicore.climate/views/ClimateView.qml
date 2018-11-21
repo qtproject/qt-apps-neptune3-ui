@@ -39,7 +39,7 @@ import "../controls" 1.0
 import "../panels" 1.0
 import "../popups" 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {

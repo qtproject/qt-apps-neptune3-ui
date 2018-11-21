@@ -35,7 +35,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
@@ -57,7 +57,7 @@ Item {
         anchors.rightMargin: -Sizes.dp(45 * .5)
         height: root.navigationMode && !root.guidanceMode ? Sizes.dp(sourceSize.height) - root.destinationButtonrowHeight
                                                           : Sizes.dp(sourceSize.height)
-        source: Helper.localAsset("panel-shadow", BasicStyle.theme)
+        source: Helper.localAsset("panel-shadow", Style.theme)
         border {
             left: 0
             top: Sizes.dp(101)
@@ -72,7 +72,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Sizes.dp(45)
-        source: Helper.localAsset("panel-more-contrast-background", BasicStyle.theme)
+        source: Helper.localAsset("panel-more-contrast-background", Style.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
             left: 0
@@ -88,7 +88,7 @@ Item {
         anchors.right: searchPanel.right
         anchors.left: searchPanel.left
         width: searchPanel.width
-        source: Config.gfx("panel-inner-shadow", BasicStyle.theme)
+        source: Config.gfx("panel-inner-shadow", Style.theme)
     }
 
     ScalableBorderImage {
@@ -99,7 +99,7 @@ Item {
         anchors.rightMargin: -Sizes.dp(45)
         height: root.guidanceMode ? Sizes.dp(sourceSize.height) :
                                     Sizes.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
-        source: Helper.localAsset("panel-background", BasicStyle.theme)
+        source: Helper.localAsset("panel-background", Style.theme)
         border {
             left: 0
             top: Sizes.dp(20)

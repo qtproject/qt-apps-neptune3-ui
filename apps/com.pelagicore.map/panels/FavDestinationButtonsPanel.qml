@@ -35,7 +35,7 @@ import QtPositioning 5.9
 
 import shared.animations 1.0
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../controls" 1.0
 import "../helpers" 1.0
@@ -61,7 +61,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Helper.localAsset("ic-home", BasicStyle.theme)
+            iconSource: Helper.localAsset("ic-home", Style.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
@@ -71,8 +71,8 @@ Item {
         Rectangle {
             Layout.fillHeight: true
             Layout.preferredWidth: Sizes.dp(1)
-            opacity: BasicStyle.defaultDisabledOpacity
-            color: BasicStyle.contrastColor
+            opacity: Style.defaultDisabledOpacity
+            color: Style.contrastColor
         }
         MapToolButton {
             id: buttonGoWork
@@ -80,7 +80,7 @@ Item {
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
             anchors.verticalCenter: parent.verticalCenter
-            iconSource: Helper.localAsset("ic-work", BasicStyle.theme)
+            iconSource: Helper.localAsset("ic-work", Style.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally

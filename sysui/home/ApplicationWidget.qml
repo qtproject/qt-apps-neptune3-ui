@@ -37,7 +37,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import system.controls 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -84,7 +84,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Config.gfx("widget-bg", BasicStyle.theme)
+        source: Config.gfx("widget-bg", Style.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -145,7 +145,7 @@ Item {
         layer.enabled: true
         layer.effect: ColorOverlay {
             source: widgetStripe
-            color: BasicStyle.accentColor
+            color: Style.accentColor
         }
 
         mirror: LayoutMirroring.enabled
@@ -224,7 +224,7 @@ Item {
         anchors.top: parent.top
         width: Sizes.dp(sourceSize.width)
         height: Sizes.dp(sourceSize.height)
-        source: Config.gfx("widget-corner", BasicStyle.theme)
+        source: Config.gfx("widget-corner", Style.theme)
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -245,7 +245,7 @@ Item {
             anchors.topMargin: Sizes.dp(24)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.symbol("ic-expand-to-fullscreen", BasicStyle.theme)
+            source: Config.symbol("ic-expand-to-fullscreen", Style.theme)
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }
         }

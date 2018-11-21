@@ -33,8 +33,8 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import "../helpers" 1.0
-import shared.BasicStyle 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
+import shared.Style 1.0
 
 Item {
     id: root
@@ -94,15 +94,15 @@ Item {
             name: "normal"
             PropertyChanges { target: scaleEnergyArea; opacity: 1 }
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 105 }
-            PropertyChanges { target: graduationNumber; opacity: BasicStyle.opacityMedium }
+            PropertyChanges { target: graduationNumber; opacity: Style.opacityMedium }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: BasicStyle.opacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: Style.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
-            PropertyChanges { target: signBatteryRemain; opacity: BasicStyle.opacityHigh }
+            PropertyChanges { target: signBatteryRemain; opacity: Style.opacityHigh }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: BasicStyle.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: BasicStyle.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: BasicStyle.opacityLow }
+            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: Style.opacityLow }
         },
         State {
             name: "navi"
@@ -110,13 +110,13 @@ Item {
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 105 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
-            PropertyChanges { target: indicatorEPower; opacity: BasicStyle.opacityHigh }
+            PropertyChanges { target: indicatorEPower; opacity: Style.opacityHigh }
             PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: BasicStyle.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: BasicStyle.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
-            PropertyChanges { target: signPower; opacity: BasicStyle.opacityLow }
+            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
+            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
+            PropertyChanges { target: signPower; opacity: Style.opacityLow }
         }
     ]
 
@@ -250,7 +250,7 @@ Item {
         minAng: -210
         maxAng: 0
         zeroAng: -180
-        positiveColor: BasicStyle.accentColor
+        positiveColor: Style.accentColor
         negativeColor: "#80447191"
         highLightAng: d.power2Angle(d.ePower)
     }
@@ -261,7 +261,7 @@ Item {
         y: 107 * d.scaleRatio
         width: 71 * d.scaleRatio
         height: 294 * d.scaleRatio
-        source: Utils.localAsset("dial-energy-areas", BasicStyle.theme)
+        source: Utils.localAsset("dial-energy-areas", Style.theme)
     }
 
     Item {//PRND
@@ -277,7 +277,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 0) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
+            opacity: (root.drivetrain === 0) ? Style.opacityHigh : Style.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -287,7 +287,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 3) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
+            opacity: (root.drivetrain === 3) ? Style.opacityHigh : Style.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -297,7 +297,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 1) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
+            opacity: (root.drivetrain === 1) ? Style.opacityHigh : Style.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
         Label {
@@ -306,7 +306,7 @@ Item {
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
-            opacity: (root.drivetrain === 2) ? BasicStyle.opacityHigh : BasicStyle.opacityLow
+            opacity: (root.drivetrain === 2) ? Style.opacityHigh : Style.opacityLow
             font.pixelSize: 34 * d.scaleRatio
         }
     }
@@ -320,7 +320,7 @@ Item {
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.DemiBold
-        opacity: BasicStyle.opacityHigh
+        opacity: Style.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
@@ -330,7 +330,7 @@ Item {
         y: 324 * d.scaleRatio
         text: qsTr("% power")
         font.weight: Font.Light
-        opacity: BasicStyle.opacityLow
+        opacity: Style.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -342,7 +342,7 @@ Item {
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.Light
-        opacity: BasicStyle.opacityLow
+        opacity: Style.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -352,7 +352,7 @@ Item {
         y: 483 * d.scaleRatio
         width: 23 * d.scaleRatio
         height: 14 * d.scaleRatio
-        source: Utils.localAsset("ic-battery", BasicStyle.theme)
+        source: Utils.localAsset("ic-battery", Style.theme)
     }
 
     Label {
@@ -363,7 +363,7 @@ Item {
         horizontalAlignment: root.state !== "navi" ? Text.AlignLeft : Text.AlignHCenter
         text: root.remainingKm
         font.weight: Font.Light
-        opacity: BasicStyle.opacityHigh
+        opacity: Style.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -375,7 +375,7 @@ Item {
         text: root.remainingPower
         font.weight: Font.Light
         horizontalAlignment: Text.AlignRight
-        opacity: BasicStyle.opacityHigh
+        opacity: Style.opacityHigh
         font.pixelSize: 34 * d.scaleRatio
     }
 
@@ -385,7 +385,7 @@ Item {
         y: 474 * d.scaleRatio
         width: 24 * d.scaleRatio
         height: 21 * d.scaleRatio
-        source: Utils.localAsset("ic-chargingstation", BasicStyle.theme)
+        source: Utils.localAsset("ic-chargingstation", Style.theme)
     }
 
     Repeater{
@@ -393,7 +393,7 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
 
         //size and layout
         readonly property real radius: width / 2 - 50 * d.scaleRatio

@@ -44,7 +44,7 @@ import statusbar 1.0
 import stores 1.0
 import system.controls 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -88,8 +88,8 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("bg-home", BasicStyle.theme)
-        opacity: mainContentArea.item && mainContentArea.item.launcherOpen && BasicStyle.theme === BasicStyle.Light ? 0.7 : 1
+        source: Config.gfx("bg-home", Style.theme)
+        opacity: mainContentArea.item && mainContentArea.item.launcherOpen && Style.theme === Style.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }
 

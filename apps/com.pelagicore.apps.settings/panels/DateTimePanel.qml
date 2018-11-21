@@ -38,7 +38,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -61,7 +61,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Config.gfx("list-divider", BasicStyle.theme)
+                source: Config.gfx("list-divider", Style.theme)
             }
         }
 
@@ -75,7 +75,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Config.gfx("list-divider", BasicStyle.theme)
+                source: Config.gfx("list-divider", Style.theme)
             }
         }
 
@@ -86,13 +86,13 @@ Control {
             text: qsTr("Time Zone")
 
             Image {
-                opacity: BasicStyle.defaultDisabledOpacity
+                opacity: Style.defaultDisabledOpacity
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(22)
                 height: parent.height
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter
-                source: Config.symbol("ic-next-level", BasicStyle.theme)
+                source: Config.symbol("ic-next-level", Style.theme)
                 mirror: parent.mirrored
             }
         }

@@ -32,7 +32,7 @@
 import QtQuick 2.8
 import QtApplicationManager.Application 1.0
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 /*!
@@ -87,10 +87,10 @@ ApplicationManagerWindow {
             root.Sizes.scale = value;
             break;
         case "neptuneAccentColor":
-            root.BasicStyle.accentColor = value;
+            root.Style.accentColor = value;
             break;
         case "neptuneTheme":
-            root.BasicStyle.theme = value;
+            root.Style.theme = value;
             break;
         case "neptuneLanguageLocale":
             Config.languageLocale = value;

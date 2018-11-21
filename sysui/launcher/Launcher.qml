@@ -37,7 +37,7 @@ import shared.animations 1.0
 import shared.controls 1.0
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -93,7 +93,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: Sizes.dp(134) - width/2
 
-        opacity: useCloseIcon ? BasicStyle.opacityMedium : BasicStyle.opacityHigh
+        opacity: useCloseIcon ? Style.opacityMedium : Style.opacityHigh
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
         checkable: true

@@ -33,7 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.controls 1.0
 import shared.utils 1.0
@@ -88,7 +88,7 @@ Control {
     }
     background: ScalableBorderImage {
         anchors.fill: root
-        source: Config.gfx("popup-background-9patch", BasicStyle.theme)
+        source: Config.gfx("popup-background-9patch", Style.theme)
         anchors.leftMargin: Sizes.dp(-40)
         anchors.rightMargin: Sizes.dp(-40)
         anchors.topMargin: Sizes.dp(-28)
@@ -120,7 +120,7 @@ Control {
             height: Sizes.dp(sourceSize.height)
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: Sizes.dp(4)
-            source: Config.gfx("popup-close-button-bg", BasicStyle.theme)
+            source: Config.gfx("popup-close-button-bg", Style.theme)
             fillMode: Image.PreserveAspectFit
         }
     }

@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.utils 1.0
 
@@ -102,7 +102,7 @@ Item {
                     width: 4 // N.B. intentionally not scalable
                     height: 1
                     color: "black"
-                    opacity: BasicStyle.opacityMedium
+                    opacity: Style.opacityMedium
                 }
             }
         }
@@ -117,6 +117,6 @@ Item {
         anchors.rightMargin: Sizes.dp(24)
 
         font.pixelSize: Sizes.fontSizeS
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
     }
 }

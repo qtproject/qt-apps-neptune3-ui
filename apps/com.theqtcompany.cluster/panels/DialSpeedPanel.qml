@@ -36,7 +36,7 @@ import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 import shared.controls 1.0
 import "../helpers" 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 Item {
     id: root
@@ -84,9 +84,9 @@ Item {
         State {
             name: "normal"
             PropertyChanges { target: graduation; opacity: 1; maxDrawValue: 265 }
-            PropertyChanges { target: graduationNumber; opacity: BasicStyle.opacityMedium }
-            PropertyChanges { target: indicatorSpeed; opacity: BasicStyle.opacityHigh }
-            PropertyChanges { target: signKMH; opacity: BasicStyle.opacityLow }
+            PropertyChanges { target: graduationNumber; opacity: Style.opacityMedium }
+            PropertyChanges { target: indicatorSpeed; opacity: Style.opacityHigh }
+            PropertyChanges { target: signKMH; opacity: Style.opacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
             PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
         },
@@ -94,8 +94,8 @@ Item {
             name: "navi"
             PropertyChanges { target: graduation; opacity: 0; maxDrawValue: 265 }
             PropertyChanges { target: graduationNumber; opacity: 0 }
-            PropertyChanges { target: indicatorSpeed; opacity: BasicStyle.opacityHigh }
-            PropertyChanges { target: signKMH; opacity: BasicStyle.opacityLow }
+            PropertyChanges { target: indicatorSpeed; opacity: Style.opacityHigh }
+            PropertyChanges { target: signKMH; opacity: Style.opacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
             PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
         }
@@ -274,7 +274,7 @@ Item {
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.DemiBold
-        opacity: BasicStyle.opacityHigh
+        opacity: Style.opacityHigh
         font.pixelSize: 80 * d.scaleRatio
     }
 
@@ -284,7 +284,7 @@ Item {
         y: 325 * d.scaleRatio
         text: qsTr("km/h")
         font.weight: Font.Light
-        opacity: BasicStyle.opacityLow
+        opacity: Style.opacityLow
         font.pixelSize: 18 * d.scaleRatio
     }
 
@@ -298,9 +298,9 @@ Item {
         Label {
             anchors.centerIn: parent
             text: Math.round(speedLimit)
-            opacity: BasicStyle.opacityHigh
+            opacity: Style.opacityHigh
             font.pixelSize: 34 * d.scaleRatio
-            color: root.BasicStyle.theme === BasicStyle.Dark ? BasicStyle.mainColor : BasicStyle.contrastColor
+            color: root.Style.theme === Style.Dark ? Style.mainColor : Style.contrastColor
         }
     }
 
@@ -389,7 +389,7 @@ Item {
         y: indicatorCruise.y + 4 * d.scaleRatio
         width: 35 * d.scaleRatio
         height: 31 * d.scaleRatio
-        source: Utils.localAsset("ic-acc", BasicStyle.theme)
+        source: Utils.localAsset("ic-acc", Style.theme)
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
         }
@@ -400,7 +400,7 @@ Item {
 
     Label {
         id: indicatorCruise
-        opacity: (root.cruiseSpeed >= 30) ? BasicStyle.opacityHigh : 0.0
+        opacity: (root.cruiseSpeed >= 30) ? Style.opacityHigh : 0.0
         anchors.horizontalCenter: parent.horizontalCenter
         y: 466 * d.scaleRatio
         text:  Math.round(cruiseSpeed)
@@ -416,7 +416,7 @@ Item {
         anchors.centerIn: parent
         width: 520 * d.scaleRatio
         height: width
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
 
         //size and layout
         readonly property real radius: width / 2 - 55 * d.scaleRatio

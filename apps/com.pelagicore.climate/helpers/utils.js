@@ -29,14 +29,14 @@
 **
 ****************************************************************************/
 
-.import shared.BasicStyle 1.0 as Style
+.import shared.Style 1.0 as Style
 
 function localIcon(asset, theme) {
-    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.Style.Dark ? "-dark" : "";
     return "../assets/icons/" + asset + themeStr + '.png'
 }
 
 function localGfx(asset, theme) {
-    var themeStr = theme === Style.BasicStyle.Dark ? "-dark" : "";
+    var themeStr = theme === Style.Style.Dark ? "-dark" : "";
     return "../assets/gfx/" + asset + themeStr + '.png'
 }

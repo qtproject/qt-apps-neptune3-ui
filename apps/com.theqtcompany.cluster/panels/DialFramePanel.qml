@@ -34,7 +34,7 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 import "../helpers" 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 Item {
     id: root
@@ -46,8 +46,8 @@ Item {
     property real zeroAng: minAng
     property real maxAng: 90
     property real minAng: -270
-    property color positiveColor: BasicStyle.accentColor
-    property color negativeColor: BasicStyle.accentColor
+    property color positiveColor: Style.accentColor
+    property color negativeColor: Style.accentColor
 
     //private
     QtObject {
@@ -194,7 +194,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: Utils.localAsset("dial-small-bg", BasicStyle.theme)
+        source: Utils.localAsset("dial-small-bg", Style.theme)
     }
 
     Image {

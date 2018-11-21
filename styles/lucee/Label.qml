@@ -31,15 +31,15 @@
 
 import QtQuick 2.6
 import QtQuick.Templates 2.0 as T
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 T.Label {
     id: control
     verticalAlignment: Text.AlignVCenter
-    color: BasicStyle.contrastColor
+    color: Style.contrastColor
     font.pixelSize: Sizes.fontSizeM
     font.weight: Font.Light
-    font.family: BasicStyle.fontFamily
-    opacity: enabled ? 1.0 : BasicStyle.defaultDisabledOpacity
+    font.family: Style.fontFamily
+    opacity: enabled ? 1.0 : Style.defaultDisabledOpacity
 }

@@ -37,8 +37,8 @@ import QtGraphicalEffects 1.0
 import "../helpers" 1.0
 import shared.animations 1.0
 import shared.utils 1.0
-import shared.BasicStyle 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -71,7 +71,7 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Utils.localGfx("fan-speed-background", BasicStyle.theme)
+                source: Utils.localGfx("fan-speed-background", Style.theme)
                 fillMode: Image.PreserveAspectFit
             }
             Image {
@@ -79,13 +79,13 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Utils.localGfx(("fan-speed-"+index), BasicStyle.theme)
+                source: Utils.localGfx(("fan-speed-"+index), Style.theme)
                 opacity: index === Tumbler.tumbler.currentIndex ? 1 : 0.2
                 fillMode: Image.PreserveAspectFit
                 layer.enabled: true
                 layer.effect: ColorOverlay {
                     source: tumblerImage
-                    color: BasicStyle.accentColor
+                    color: Style.accentColor
                 }
             }
         }
@@ -105,7 +105,7 @@ Item {
             id: seatImage
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Utils.localGfx("seat", BasicStyle.theme)
+            source: Utils.localGfx("seat", Style.theme)
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: Sizes.dp(-10)
@@ -117,13 +117,13 @@ Item {
             anchors.top: parent.top
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", BasicStyle.theme)
-                                                  : Utils.localGfx("air-flow-top", BasicStyle.theme) : ""
+            source: root.store ? root.store.airflow.windshield ? Utils.localGfx("air-flow-top-active", Style.theme)
+                                                  : Utils.localGfx("air-flow-top", Style.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowTop
-                color: BasicStyle.accentColor
+                color: Style.accentColor
             }
             MouseArea {
                 anchors.fill: parent
@@ -138,13 +138,13 @@ Item {
             anchors.topMargin: Sizes.dp(-40)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", BasicStyle.theme)
-                                                 : Utils.localGfx("air-flow-middle", BasicStyle.theme) : ""
+            source: root.store ? root.store.airflow.dashboard ? Utils.localGfx("air-flow-middle-active", Style.theme)
+                                                 : Utils.localGfx("air-flow-middle", Style.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowMiddle
-                color: BasicStyle.accentColor
+                color: Style.accentColor
             }
             MouseArea {
                 anchors.fill: parent
@@ -159,13 +159,13 @@ Item {
             anchors.topMargin: Sizes.dp(20)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", BasicStyle.theme)
-                                             : Utils.localGfx("air-flow-bottom", BasicStyle.theme) : ""
+            source: root.store ? root.store.airflow.floor ? Utils.localGfx("air-flow-bottom-active", Style.theme)
+                                             : Utils.localGfx("air-flow-bottom", Style.theme) : ""
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {
                 source: airFlowDown
-                color: BasicStyle.accentColor
+                color: Style.accentColor
             }
             MouseArea {
                 anchors.fill: parent

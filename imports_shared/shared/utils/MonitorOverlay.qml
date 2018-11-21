@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.2
 
 import shared.FrameTimer 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -56,7 +56,7 @@ Item {
 
     Rectangle {
         anchors.fill: row
-        color: BasicStyle.backgroundColor
+        color: Style.backgroundColor
     }
 
     Row {
@@ -77,7 +77,7 @@ Item {
             id: rotatingRect
             width: Sizes.fontSizeXS
             height: Sizes.fontSizeXS
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
             visible: root.fpsVisible
             // Have something constantly moving on the screen to force constant rendering
             RotationAnimator {

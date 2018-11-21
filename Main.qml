@@ -39,7 +39,7 @@ import instrumentcluster 1.0
 import hud 1.0
 import stores 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 QtObject {
     id: root
@@ -48,12 +48,12 @@ QtObject {
         clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
         onAccentColorChanged: {
-            centerConsoleWindow.contentItem.BasicStyle.accentColor = newAccentColor;
+            centerConsoleWindow.contentItem.Style.accentColor = newAccentColor;
             if (instrumentClusterWindowLoader.item) {
-                instrumentClusterWindowLoader.item.contentItem.BasicStyle.accentColor = newAccentColor;
+                instrumentClusterWindowLoader.item.contentItem.Style.accentColor = newAccentColor;
             }
             if (hudWindowLoader.item) {
-                hudWindowLoader.item.contentItem.BasicStyle.accentColor = newAccentColor;
+                hudWindowLoader.item.contentItem.Style.accentColor = newAccentColor;
             }
         }
 
@@ -65,16 +65,16 @@ QtObject {
         }
 
         onUpdateThemeRequested: {
-            var chosenTheme = currentTheme === 0 ? BasicStyle.Light : BasicStyle.Dark;
+            var chosenTheme = currentTheme === 0 ? Style.Light : Style.Dark;
             if (centerConsoleWindow.popupParent.visible) {
                 centerConsoleWindow.popupParent.updateOverlay();
             }
-            centerConsoleWindow.contentItem.BasicStyle.theme = chosenTheme;
+            centerConsoleWindow.contentItem.Style.theme = chosenTheme;
             if (instrumentClusterWindowLoader.item) {
-                instrumentClusterWindowLoader.item.contentItem.BasicStyle.theme = chosenTheme;
+                instrumentClusterWindowLoader.item.contentItem.Style.theme = chosenTheme;
             }
             if (hudWindowLoader.item) {
-                hudWindowLoader.item.contentItem.BasicStyle.theme = chosenTheme;
+                hudWindowLoader.item.contentItem.Style.theme = chosenTheme;
             }
         }
 

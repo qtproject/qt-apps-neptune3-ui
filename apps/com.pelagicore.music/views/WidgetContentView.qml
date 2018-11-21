@@ -38,7 +38,7 @@ import shared.animations 1.0
 import "../panels" 1.0
 import "../controls" 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -100,7 +100,7 @@ Item {
         id: artAndTitleBackground
         height: Sizes.dp(260)
         width: parent.width
-        color: BasicStyle.offMainColor
+        color: Style.offMainColor
         MouseArea {
             //prevent clicking on list items when the list
             //is scrolled under the header component
@@ -119,7 +119,7 @@ Item {
         width: parent.width
         height: sourceSize.height
         anchors.top: artAndTitleBackground.bottom
-        source: Config.gfx("panel-inner-shadow", BasicStyle.theme)
+        source: Config.gfx("panel-inner-shadow", Style.theme)
     }
 
     AlbumArtPanel {

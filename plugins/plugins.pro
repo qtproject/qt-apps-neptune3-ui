@@ -1,11 +1,11 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-          basicstyle \
           controls \
           frametimer \
           sizes \
           translation \
           widgetgrid \
+          style \
           systeminfo \
           com.pelagicore.map

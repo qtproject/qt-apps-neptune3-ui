@@ -33,7 +33,7 @@ import QtQuick 2.7
 import shared.utils 1.0
 import QtQuick.Window 2.3
 import system.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Window {
@@ -73,7 +73,7 @@ Window {
 
         Image {
             anchors.fill: parent
-            source: Config.gfx("instrument-cluster-bg", BasicStyle.theme)
+            source: Config.gfx("instrument-cluster-bg", Style.theme)
             fillMode: Image.Stretch
             visible: !applicationICWindows.visible
         }

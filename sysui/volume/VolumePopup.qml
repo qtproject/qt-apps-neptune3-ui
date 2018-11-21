@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.3
 
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.controls 1.0
 import shared.Sizes 1.0
 import system.controls 1.0
@@ -63,13 +63,13 @@ PopupItem {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: Sizes.fontSizeXL
             font.weight: Font.DemiBold
-            opacity: BasicStyle.opacityMedium
+            opacity: Style.opacityMedium
             text: value
         }
         Label {
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: Sizes.fontSizeL
-            opacity: BasicStyle.opacityLow
+            opacity: Style.opacityLow
             text: " %"
         }
     }

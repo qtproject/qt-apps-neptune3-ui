@@ -39,7 +39,7 @@ import QtQuick.Templates 2.3 as T
 
 import shared.utils 1.0
 import shared.animations 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 T.ScrollIndicator {
@@ -60,7 +60,7 @@ T.ScrollIndicator {
             anchors.top: parent.top
             anchors.topMargin: - Sizes.dp(9)
             radius: width / 2
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
             opacity: control.active ? 0.14 : 0
             Behavior on opacity { DefaultNumberAnimation { duration: opacity < 0.1 ? 80 : 500 } }
             visible: opacity > 0
@@ -72,7 +72,7 @@ T.ScrollIndicator {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: - Sizes.dp(9)
             radius: width / 2
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
             opacity: control.active ? 0.14 : 0
             Behavior on opacity { DefaultNumberAnimation { duration: opacity < 0.1 ? 80 : 500 } }
             visible: opacity > 0
@@ -82,7 +82,7 @@ T.ScrollIndicator {
     contentItem: Rectangle {
         implicitWidth: Sizes.dp(7)
         radius: width / 2
-        color: BasicStyle.accentColor
+        color: Style.accentColor
         opacity: control.active ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { duration: opacity < 0.1 ? 80 : 500 } }
         visible: opacity > 0

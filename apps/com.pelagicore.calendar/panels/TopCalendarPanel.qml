@@ -35,7 +35,7 @@ import QtQuick.Layouts 1.2
 import Qt.labs.calendar 1.0
 import shared.utils 1.0
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 RowLayout {
@@ -56,7 +56,7 @@ RowLayout {
             delegate: Label {
                 text: model.shortName
                 font.pixelSize: Sizes.fontSizeXS
-                color: BasicStyle.contrastColor
+                color: Style.contrastColor
                 horizontalAlignment: Text.AlignHCenter
             }
         }
@@ -71,7 +71,7 @@ RowLayout {
 
             delegate: Label {
                 text: model.day
-                color: BasicStyle.contrastColor
+                color: Style.contrastColor
                 font.pixelSize: Sizes.fontSizeXS
                 horizontalAlignment: Text.AlignHCenter
                 opacity: model.month === grid.month ? 1 : 0

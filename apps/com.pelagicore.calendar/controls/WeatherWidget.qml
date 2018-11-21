@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -63,7 +63,7 @@ Item {
         anchors.baseline: parent.bottom
         anchors.baselineOffset: -(lineCount-1) * height/lineCount
         font.pixelSize: Sizes.fontSizeS
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
         text: root.temperatureValue + "° " + root.weatherText + (precipitationVisible ? (",\n" + precipitationText) : "")
     }
 }

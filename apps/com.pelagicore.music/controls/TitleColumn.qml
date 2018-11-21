@@ -34,7 +34,7 @@ import shared.utils 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 ColumnLayout {
@@ -60,7 +60,7 @@ ColumnLayout {
         wrapMode: Text.WordWrap
         font.pixelSize: Sizes.fontSizeS
         visible: text !== ""
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
         maximumLineCount: 1
         elide: Text.ElideRight
     }

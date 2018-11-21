@@ -34,7 +34,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -54,9 +54,9 @@ Control {
              delegate: Image {
                  Layout.preferredWidth: Sizes.dp(sourceSize.width)
                  Layout.preferredHeight: Sizes.dp(sourceSize.height)
-                 source: Config.symbol(modelData.icon, BasicStyle.theme)
+                 source: Config.symbol(modelData.icon, Style.theme)
                  fillMode: Image.PreserveAspectFit
-                 opacity: modelData.active ? BasicStyle.opacityHigh : BasicStyle.opacityLow
+                 opacity: modelData.active ? Style.opacityHigh : Style.opacityLow
              }
          }
     }

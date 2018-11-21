@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import "../helpers" 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 RowLayout {
@@ -49,7 +49,7 @@ RowLayout {
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
         Layout.preferredHeight: Sizes.dp(sourceSize.height)
-        source: Utils.localIcon("ic-seat-heat-status", BasicStyle.theme)
+        source: Utils.localIcon("ic-seat-heat-status", Style.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.leftSeat.heat
     }
@@ -60,19 +60,19 @@ RowLayout {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.DemiBold
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
         Layout.preferredHeight: Sizes.dp(sourceSize.height)
-        source: Utils.localIcon("ic-rear-defrost-status", BasicStyle.theme)
+        source: Utils.localIcon("ic-rear-defrost-status", Style.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rearHeat.enabled
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
         Layout.preferredHeight: Sizes.dp(sourceSize.height)
-        source: Utils.localIcon("ic-front-defrost-status", BasicStyle.theme)
+        source: Utils.localIcon("ic-front-defrost-status", Style.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.frontHeat.enabled
     }
@@ -83,12 +83,12 @@ RowLayout {
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.DemiBold
-        opacity: BasicStyle.opacityMedium
+        opacity: Style.opacityMedium
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
         Layout.preferredHeight: Sizes.dp(sourceSize.height)
-        source: Utils.localIcon("ic-seat-heat-status", BasicStyle.theme)
+        source: Utils.localIcon("ic-seat-heat-status", Style.theme)
         fillMode: Image.PreserveAspectFit
         visible: root.store.rightSeat.heat
     }

@@ -36,7 +36,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
 import system.models.notification 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 Item {
     id: root
@@ -70,7 +70,7 @@ Item {
         id: notificationCenterBg
         anchors.fill: parent
         Behavior on opacity { DefaultNumberAnimation { } }
-        color: BasicStyle.offMainColor
+        color: Style.offMainColor
     }
 
     Column {

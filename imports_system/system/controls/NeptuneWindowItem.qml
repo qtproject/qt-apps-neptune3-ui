@@ -33,7 +33,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.2
 import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 WindowItem {
@@ -41,8 +41,8 @@ WindowItem {
 
     property var appInfo
     readonly property real windowScale: root.Sizes.scale
-    readonly property color accentColor: root.BasicStyle.accentColor
-    readonly property int currentTheme: root.BasicStyle.theme
+    readonly property color accentColor: root.Style.accentColor
+    readonly property int currentTheme: root.Style.theme
     readonly property string currentLanguageLocale: Config.languageLocale
     readonly property bool currentRtlMode: Config.rtlMode
 

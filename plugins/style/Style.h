@@ -30,11 +30,11 @@
 ****************************************************************************/
 #pragma once
 
-#include "BasicStyleData.h"
+#include "StyleData.h"
 
 #include <QtQuickControls2/private/qquickattachedobject_p.h>
 
-class BasicStyle : public QQuickAttachedObject
+class Style : public QQuickAttachedObject
 {
     Q_OBJECT
     Q_PROPERTY(Theme theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
@@ -61,13 +61,13 @@ class BasicStyle : public QQuickAttachedObject
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY themeChanged FINAL)
 
 public:
-    enum Theme { Light=BasicStyleData::Light, Dark=BasicStyleData::Dark };
+    enum Theme { Light=StyleData::Light, Dark=StyleData::Dark };
     Q_ENUM(Theme)
 
-    explicit BasicStyle(QObject *parent = nullptr);
-    virtual ~BasicStyle();
+    explicit Style(QObject *parent = nullptr);
+    virtual ~Style();
 
-    static BasicStyle *qmlAttachedProperties(QObject *object);
+    static Style *qmlAttachedProperties(QObject *object);
 
     Theme theme() const { return (Theme) m_theme; }
     void setTheme(Theme);
@@ -100,12 +100,12 @@ signals:
     void themeChanged();
 
 private:
-    void inheritStyle(const BasicStyle& inheritedStyle);
+    void inheritStyle(const Style& inheritedStyle);
     void propagateAccentColor();
     void propagateTheme();
 
-    enum BasicStyleData::Theme m_theme;
+    enum StyleData::Theme m_theme;
     QColor m_accentColor;
 };
 
-QML_DECLARE_TYPEINFO(BasicStyle, QML_HAS_ATTACHED_PROPERTIES)
+QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

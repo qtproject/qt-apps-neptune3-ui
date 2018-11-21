@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.controls 1.0
 import shared.utils 1.0
@@ -64,7 +64,7 @@ T.TabButton {
         icon: control.icon
         text: control.text
         font: control.font
-        color: selected ? BasicStyle.mainColor : BasicStyle.contrastColor
+        color: selected ? Style.mainColor : Style.contrastColor
     }
 
     readonly property string positionState: {
@@ -82,7 +82,7 @@ T.TabButton {
     background: ScalableBorderImage {
         id: borderImage
         anchors.fill: parent
-        source: Config.gfx("tabbar-bg-" + control.positionState, BasicStyle.theme)
+        source: Config.gfx("tabbar-bg-" + control.positionState, Style.theme)
 
         opacity: (control.selected ? 0.7 : 0.3) + (control.pressed ? 0.1 : 0)
 

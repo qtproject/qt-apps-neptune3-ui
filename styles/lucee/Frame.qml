@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Templates 2.1 as T
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 T.Frame {
     id: control
@@ -45,6 +45,6 @@ T.Frame {
     padding: 12
 
     background: Rectangle {
-        color: BasicStyle.backgroundColor
+        color: Style.backgroundColor
     }
 }

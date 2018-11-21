@@ -33,7 +33,7 @@ import QtQuick 2.10
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 ColumnLayout {
@@ -57,7 +57,7 @@ ColumnLayout {
             font.pixelSize: Sizes.fontSizeXS
             text: sysinfo.qtDiag
             wrapMode: TextEdit.WordWrap
-            color: BasicStyle.contrastColor
+            color: Style.contrastColor
         }
     }
 }

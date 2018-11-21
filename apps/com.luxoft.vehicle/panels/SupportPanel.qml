@@ -32,7 +32,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import shared.utils 1.0
@@ -46,7 +46,7 @@ ListView {
     spacing: Sizes.dp(20)
     delegate: ListItemSwitch {
         width: parent.width
-        icon.source: Paths.getImagePath(model.icon + (BasicStyle.theme === BasicStyle.Dark ? "-dark.png" : ".png"))
+        icon.source: Paths.getImagePath(model.icon + (Style.theme === Style.Dark ? "-dark.png" : ".png"))
         text: qsTranslate("VehicleStore", model.name)
     }
 

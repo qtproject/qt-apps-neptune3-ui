@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -65,7 +65,7 @@ Item {
             Label {
                 id: subTitle
                 font.pixelSize: Sizes.fontSizeS
-                opacity: BasicStyle.opacityMedium
+                opacity: Style.opacityMedium
                 text: root.subtitle
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 width: parent.width

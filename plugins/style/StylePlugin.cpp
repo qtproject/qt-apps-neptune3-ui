@@ -31,9 +31,9 @@
 #include <QQmlExtensionPlugin>
 #include <QQmlEngine>
 
-#include "BasicStyle.h"
+#include "Style.h"
 
-class BasicStylePlugin : public QQmlExtensionPlugin
+class StylePlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
@@ -41,9 +41,9 @@ class BasicStylePlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri) override
     {
-        Q_ASSERT(uri == QLatin1String("shared.BasicStyle"));
-        qmlRegisterUncreatableType<BasicStyle>(uri, 1, 0, "BasicStyle", "BasicStyle is an attached property");
+        Q_ASSERT(uri == QLatin1String("shared.Style"));
+        qmlRegisterUncreatableType<Style>(uri, 1, 0, "Style", "Style is an attached property");
     }
 };
 
-#include "BasicStylePlugin.moc"
+#include "StylePlugin.moc"

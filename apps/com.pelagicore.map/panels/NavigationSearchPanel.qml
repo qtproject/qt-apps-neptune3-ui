@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 
 import shared.controls 1.0 as NeptuneControls
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
@@ -74,7 +74,7 @@ Row {
                 Image {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: Helper.localAsset("ic-search", BasicStyle.theme)
+                    source: Helper.localAsset("ic-search", Style.theme)
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }

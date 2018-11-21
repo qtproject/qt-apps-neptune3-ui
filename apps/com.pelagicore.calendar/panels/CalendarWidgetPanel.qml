@@ -37,7 +37,7 @@ import QtQuick.Layouts 1.3
 import shared.utils 1.0
 import shared.animations 1.0
 import "../controls" 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -75,7 +75,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.bottomMargin: -Sizes.dp(50)
-        source: Config.gfx("widget-left-section-bg", BasicStyle.theme)
+        source: Config.gfx("widget-left-section-bg", Style.theme)
         fillMode: Image.TileVertically
         width: Sizes.dp(260)
 

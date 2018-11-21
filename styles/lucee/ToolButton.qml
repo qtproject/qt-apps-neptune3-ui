@@ -36,7 +36,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
 import shared.controls 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 T.ToolButton {
@@ -52,17 +52,17 @@ T.ToolButton {
     spacing: Sizes.dp(6)
 
     font.pixelSize: Sizes.fontSizeM
-    font.family: BasicStyle.fontFamily
-    opacity: enabled ? 1.0 : BasicStyle.defaultDisabledOpacity
-    icon.color: (checked || highlighted) ? BasicStyle.accentColor : BasicStyle.contrastColor
+    font.family: Style.fontFamily
+    opacity: enabled ? 1.0 : Style.defaultDisabledOpacity
+    icon.color: (checked || highlighted) ? Style.accentColor : Style.contrastColor
 
     scale: pressed ? 1.1 : 1.0
     Behavior on scale { NumberAnimation { duration: 50 } }
 
     contentItem: NeptuneIconLabel {
-        readonly property real textOpacity: !enabled ? BasicStyle.defaultDisabledOpacity
+        readonly property real textOpacity: !enabled ? Style.defaultDisabledOpacity
                                                      : control.checkable && !control.checked && control.display === AbstractButton.TextUnderIcon // ToolsColumn
-                                                       ? BasicStyle.opacityLow : BasicStyle.opacityHigh
+                                                       ? Style.opacityLow : Style.opacityHigh
 
         iconScale: Sizes.scale
         spacing: control.spacing

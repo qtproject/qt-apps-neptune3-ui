@@ -34,7 +34,7 @@ import QtQuick.Controls 2.0
 import shared.controls 1.0
 import shared.animations 1.0
 import system.models.notification 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 NotificationItem {
     id: root

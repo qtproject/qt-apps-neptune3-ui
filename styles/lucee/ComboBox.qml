@@ -34,7 +34,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 T.ComboBox {
@@ -66,7 +66,7 @@ T.ComboBox {
         source: "image://default/double-arrow/" + (!control.editable && control.visualFocus ? Default.focusColor : Default.textColor)
         sourceSize.width: width
         sourceSize.height: height
-        opacity: enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
+        opacity: enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
     }
 
     contentItem: T.TextField {
@@ -84,17 +84,17 @@ T.ComboBox {
         validator: control.validator
 
         font: control.font
-        color: !control.editable && control.visualFocus ? Default.focusColor : control.BasicStyle.contrastColor
-        selectionColor: control.BasicStyle.accentColor
-        selectedTextColor: control.BasicStyle.contrastColor
+        color: !control.editable && control.visualFocus ? Default.focusColor : control.Style.contrastColor
+        selectionColor: control.Style.accentColor
+        selectedTextColor: control.Style.contrastColor
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        opacity: control.enabled ? BasicStyle.opacityHigh : BasicStyle.defaultDisabledOpacity
+        opacity: control.enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
 
         background: Rectangle {
             visible: control.editable && !control.flat
             border.width: parent && parent.activeFocus ? 2 : 1
-            border.color: parent && parent.activeFocus ?  control.BasicStyle.accentColor : control.BasicStyle.backgroundColor
+            border.color: parent && parent.activeFocus ?  control.Style.accentColor : control.Style.backgroundColor
         }
     }
 
@@ -103,7 +103,7 @@ T.ComboBox {
         implicitHeight: 40
 
         color: !control.editable && control.visualFocus ? (control.pressed ? Default.focusPressedColor : Default.focusLightColor) :
-            (control.down || popup.visible ? Default.buttonPressedColor : control.BasicStyle.backgroundColor)
+            (control.down || popup.visible ? Default.buttonPressedColor : control.Style.backgroundColor)
         border.color: Qt.lighter(color, 1.5)
         border.width: !control.editable && control.visualFocus ? 2 : 0
         visible: !control.flat || control.down
@@ -137,6 +137,6 @@ T.ComboBox {
             T.ScrollIndicator.vertical: ScrollIndicator { }
         }
 
-        background: Rectangle { color: control.BasicStyle.backgroundColor}
+        background: Rectangle { color: control.Style.backgroundColor}
     }
 }

@@ -37,7 +37,7 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 /*!
@@ -148,8 +148,8 @@ ItemDelegate {
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
-    opacity: enabled ? root.opacity : BasicStyle.defaultDisabledOpacity
-    icon.color: BasicStyle.contrastColor
+    opacity: enabled ? root.opacity : Style.defaultDisabledOpacity
+    icon.color: Style.contrastColor
 
     implicitHeight: Math.max(
                         listItemText.contentHeight + subtitle.contentHeight,
@@ -168,7 +168,7 @@ ItemDelegate {
 
             IconLabel {
                 height: root.icon ? root.height : 0
-                opacity: BasicStyle.opacityHigh
+                opacity: Style.opacityHigh
                 scale: Sizes.scale
                 spacing: root.spacing
                 mirrored: root.mirrored
@@ -188,9 +188,9 @@ ItemDelegate {
                     wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-                    opacity: BasicStyle.opacityHigh
+                    opacity: Style.opacityHigh
                     visible: root.text
-                    color: BasicStyle.contrastColor
+                    color: Style.contrastColor
                 }
 
                 Label {
@@ -203,7 +203,7 @@ ItemDelegate {
                     verticalAlignment: Text.AlignVCenter
                     font.pixelSize: Sizes.fontSizeS
                     visible: text
-                    opacity: BasicStyle.opacityMedium
+                    opacity: Style.opacityMedium
                 }
             }
             Item {
@@ -246,7 +246,7 @@ ItemDelegate {
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width
-            source: Config.gfx("list-divider", BasicStyle.theme)
+            source: Config.gfx("list-divider", Style.theme)
             mirror: root.mirrored
         }
     }

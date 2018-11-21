@@ -30,26 +30,24 @@
 ****************************************************************************/
 #pragma once
 
-#include <QColor>
+#include "StyleData.h"
 
-struct BasicStyleData
+#include <QSettings>
+
+class StyleDefaults
 {
-    enum Theme { Light = 0, Dark = 1 } theme;
-    QColor accentColor;
+public:
+    static StyleDefaults *instance();
 
-    struct ThemeData {
-        QColor backgroundColor;
-        QColor buttonColor;
-        QColor highlightedButtonColor;
-        QColor mainColor;
-        QColor offMainColor;
-        QColor accentDetailColor;
-        QColor contrastColor;
-        QColor clusterMarksColor;
-        qreal opacityHigh;
-        qreal opacityMedium;
-        qreal opacityLow;
-        qreal defaultDisabledOpacity;
-        QString fontFamily;
-    } lightTheme, darkTheme;
+    const StyleData &data() const { return m_data; }
+
+    const StyleData::ThemeData dataFromTheme(StyleData::Theme theme) const;
+
+private:
+    StyleDefaults();
+    static void loadTheme(StyleData::ThemeData &data, QSettings &settings);
+
+    StyleData m_data;
+
+    static StyleDefaults *m_instance;
 };

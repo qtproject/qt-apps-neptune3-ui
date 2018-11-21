@@ -34,7 +34,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import shared.utils 1.0
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Control {
@@ -91,7 +91,7 @@ Control {
                 Image {
                     anchors.bottom: parent.bottom
                     width: parent.width
-                    source: Config.gfx("list-divider", BasicStyle.theme)
+                    source: Config.gfx("list-divider", Style.theme)
                     visible: index !== view.count - 1
                     mirror: root.mirrored
                 }

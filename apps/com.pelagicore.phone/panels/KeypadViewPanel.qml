@@ -33,7 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.animations 1.0
@@ -55,7 +55,7 @@ Item {
         anchors.verticalCenter: textedit.verticalCenter
         width: Sizes.dp(2)
         height: Sizes.dp(60)
-        color: BasicStyle.contrastColor
+        color: Style.contrastColor
         opacity: 0
         SequentialAnimation {
             running: true
@@ -75,7 +75,7 @@ Item {
         leftPadding: Sizes.dp(45 * 0.5)
         rightPadding: Sizes.dp(45 * 0.5)
         readOnly: true
-        color: BasicStyle.contrastColor
+        color: Style.contrastColor
         inputMethodHints: Qt.ImhDialableCharactersOnly
         font.pixelSize: Sizes.fontSizeXL
         font.weight: Font.Light

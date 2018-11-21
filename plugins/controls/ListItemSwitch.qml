@@ -32,7 +32,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 /*!
     \qmltype ListItemSwitch

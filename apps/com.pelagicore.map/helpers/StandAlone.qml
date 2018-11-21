@@ -33,7 +33,7 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 
 import shared.utils 1.0
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 
 import "../stores"
 import "../views"
@@ -43,7 +43,7 @@ Window {
     width: 1080
     height: 1920
 
-    color: root.contentItem.BasicStyle.theme === BasicStyle.Dark ? "black" : "white"
+    color: root.contentItem.Style.theme === Style.Dark ? "black" : "white"
 
     Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
 
@@ -51,9 +51,9 @@ Window {
         sequence: "Ctrl+t"
         context: Qt.ApplicationShortcut
         onActivated: {
-            var otherTheme = root.contentItem.BasicStyle.theme === BasicStyle.Dark ? BasicStyle.Light
-                                                                                     : BasicStyle.Dark;
-            root.contentItem.BasicStyle.theme = otherTheme;
+            var otherTheme = root.contentItem.Style.theme === Style.Dark ? Style.Light
+                                                                                     : Style.Dark;
+            root.contentItem.Style.theme = otherTheme;
         }
     }
 

@@ -32,7 +32,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 
-import shared.BasicStyle 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "../helpers" 1.0
@@ -77,7 +77,7 @@ Item {
                         weight: Font.Light
                         pixelSize: Sizes.fontSizeXS
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
         }
@@ -107,7 +107,7 @@ Item {
                         pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
         }
@@ -137,7 +137,7 @@ Item {
                         pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
         }
@@ -167,7 +167,7 @@ Item {
                         pixelSize: Sizes.fontSizeXS
                         weight: Font.Light
                     }
-                    opacity: BasicStyle.opacityLow
+                    opacity: Style.opacityLow
                 }
             }
         }
@@ -227,7 +227,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: Sizes.dp(22)
         text: qsTr("Calibrate")
-        readonly property string sourceSuffix: BasicStyle.theme === BasicStyle.Dark ? "-dark.png" : ".png"
+        readonly property string sourceSuffix: Style.theme === Style.Dark ? "-dark.png" : ".png"
         icon.source: Paths.getImagePath("ic-calibrate" + sourceSuffix)
     }
 }
