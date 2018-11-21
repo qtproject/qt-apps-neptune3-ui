@@ -42,6 +42,6 @@ Label {
     property var uiSettings
 
     font.pixelSize: Sizes.fontSizeS
-    font.weight: Config.fontWeight
+    font.weight: Font.Normal
     text: Config.translation.formatTime(root.currentDate, uiSettings.twentyFourHourTimeFormat);
 }
