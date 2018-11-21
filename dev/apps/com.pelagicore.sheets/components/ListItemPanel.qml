@@ -35,6 +35,7 @@ import QtQuick.Layouts 1.3
 import shared.controls 1.0
 import shared.utils 1.0
 
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -75,7 +76,7 @@ Item {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 text: "ListItem with an image"
-                icon.source: Config.gfx("fan-speed-5")
+                icon.source: Style.image("fan-speed-5")
                 icon.color: "transparent"
             }
 
@@ -127,7 +128,7 @@ Item {
                 implicitHeight: Sizes.dp(104)
                 rightPadding: Sizes.dp(16)
                 icon.name: "ic-update"
-                symbolFlatButton: Config.symbol("ic-favorite")
+                symbolFlatButton: Style.image("ic-favorite")
                 subText: "subtitle"
                 text: "ListItem with button text"
                 textFlatButton: "Text"

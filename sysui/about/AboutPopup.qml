@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
+import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.controls 1.0
@@ -76,21 +77,21 @@ PopupItem {
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Config.gfx("logo-theqtcompany")
+                    source: Style.image("logo-theqtcompany")
                 }
                 Image {
                     Layout.fillWidth: true
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Config.gfx("logo-luxoft")
+                    source: Style.image("logo-luxoft")
                 }
                 Image {
                     Layout.fillWidth: true
                     Layout.preferredWidth: parent.width / 3
                     Layout.maximumHeight: parent.height
                     fillMode: Image.PreserveAspectFit
-                    source: Config.gfx("logo-kdab")
+                    source: Style.image("logo-kdab")
                 }
             }
         }

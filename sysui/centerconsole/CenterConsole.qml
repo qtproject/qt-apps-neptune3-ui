@@ -88,7 +88,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("bg-home", Style.theme)
+        source: Style.image("bg-home")
         opacity: mainContentArea.item && mainContentArea.item.launcherOpen && Style.theme === Style.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
     }

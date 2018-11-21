@@ -82,7 +82,7 @@ T.TabButton {
     background: ScalableBorderImage {
         id: borderImage
         anchors.fill: parent
-        source: Config.gfx("tabbar-bg-" + control.positionState, Style.theme)
+        source: Style.image("tabbar-bg-" + control.positionState)
 
         opacity: (control.selected ? 0.7 : 0.3) + (control.pressed ? 0.1 : 0)
 

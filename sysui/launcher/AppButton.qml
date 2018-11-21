@@ -33,6 +33,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import shared.utils 1.0
 import shared.animations 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 Item {
@@ -56,7 +57,7 @@ Item {
         anchors.centerIn: icon
         fillMode: Image.PreserveAspectFit
         visible: root.checked && !root.gridOpen
-        source: Config.symbol("ic-app-active-bg")
+        source: Style.image("ic-app-active-bg")
     }
 
     Image {

@@ -140,7 +140,7 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        source: Config.gfx("widget-left-section-bg", Style.theme)
+        source: Style.image("widget-left-section-bg")
         width: Sizes.dp(sourceSize.width)
         height: Sizes.dp(sourceSize.height)
 
@@ -184,7 +184,7 @@ Item {
                 anchors.centerIn: parent
                 width: Sizes.dp(sourceSize.width)
                 height: Sizes.dp(sourceSize.height)
-                source: Config.symbol("ic_button-bg-red")
+                source: Style.image("ic_button-bg-red")
             }
             icon.name: "ic-end-call"
             icon.color: "white"

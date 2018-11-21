@@ -73,7 +73,7 @@ PopupWindow {
             anchors.topMargin: Sizes.dp(120)
             width: parent.width
             height: Sizes.dp(sourceSize.height)
-            source: Config.gfx("popup-title-shadow")
+            source: Style.image("popup-title-shadow")
         }
 
         ListView {

@@ -54,7 +54,7 @@ Control {
              delegate: Image {
                  Layout.preferredWidth: Sizes.dp(sourceSize.width)
                  Layout.preferredHeight: Sizes.dp(sourceSize.height)
-                 source: Config.symbol(modelData.icon, Style.theme)
+                 source: Style.image(modelData.icon)
                  fillMode: Image.PreserveAspectFit
                  opacity: modelData.active ? Style.opacityHigh : Style.opacityLow
              }

@@ -83,7 +83,7 @@ RowLayout {
             Layout.maximumWidth: Sizes.dp(sourceSize.width)
             Layout.preferredHeight: Sizes.dp(sourceSize.height)
             Layout.maximumHeight: Sizes.dp(sourceSize.height)
-            source: Config.gfx("album-art-shadow-widget")
+            source: Style.image("album-art-shadow-widget")
             fillMode: Image.PreserveAspectFit
         }
     }

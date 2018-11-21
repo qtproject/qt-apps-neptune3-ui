@@ -54,8 +54,6 @@ QtObject {
     readonly property real launcherHeight: 104
 
     readonly property string assetPath: Qt.resolvedUrl("../../assets/")
-    readonly property url symbolUrl: Qt.resolvedUrl(root.assetPath + 'icons')
-    readonly property url gfxUrl: Qt.resolvedUrl(root.assetPath + 'gfx/')
 
     property bool rtlMode: false
 
@@ -66,15 +64,5 @@ QtObject {
             translation.setPath(root.assetPath + "translations/");
             languageLocale = Qt.locale().name;
         }
-    }
-
-    function symbol(name, theme) {
-        var themeStr = theme === Style.Dark ? "-dark" : "";
-        return symbolUrl + '/' + name + themeStr + '.png';
-    }
-
-    function gfx(name, theme) {
-        var themeStr = theme === Style.Dark ? "-dark" : "";
-        return gfxUrl + name + themeStr + '.png'
     }
 }

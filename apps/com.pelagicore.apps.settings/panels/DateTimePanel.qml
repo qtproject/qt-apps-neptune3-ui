@@ -61,7 +61,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Config.gfx("list-divider", Style.theme)
+                source: Style.image("list-divider")
             }
         }
 
@@ -75,7 +75,7 @@ Control {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Config.gfx("list-divider", Style.theme)
+                source: Style.image("list-divider")
             }
         }
 
@@ -92,7 +92,7 @@ Control {
                 height: parent.height
                 fillMode: Image.Pad
                 Layout.alignment: Qt.AlignVCenter
-                source: Config.symbol("ic-next-level", Style.theme)
+                source: Style.image("ic-next-level")
                 mirror: parent.mirrored
             }
         }

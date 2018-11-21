@@ -119,7 +119,7 @@ Item {
         width: parent.width
         height: sourceSize.height
         anchors.top: artAndTitleBackground.bottom
-        source: Config.gfx("panel-inner-shadow", Style.theme)
+        source: Style.image("panel-inner-shadow")
     }
 
     AlbumArtPanel {

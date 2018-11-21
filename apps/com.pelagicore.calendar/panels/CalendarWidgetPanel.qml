@@ -75,7 +75,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.bottomMargin: -Sizes.dp(50)
-        source: Config.gfx("widget-left-section-bg", Style.theme)
+        source: Style.image("widget-left-section-bg")
         fillMode: Image.TileVertically
         width: Sizes.dp(260)
 
@@ -111,7 +111,7 @@ Item {
                 Behavior on opacity { DefaultNumberAnimation {} }
                 visible: opacity > 0
 
-                weatherIcon: Config.gfx(root.weatherIcon)
+                weatherIcon: Style.image(root.weatherIcon)
                 weatherText: qsTr(root.weatherName)
                 temperatureValue: root.temp
                 precipitationText: root.precipitationText
@@ -194,7 +194,7 @@ Item {
         }
 
         visible: opacity > 0
-        weatherIcon: Config.gfx(root.weatherIcon)
+        weatherIcon: Style.image(root.weatherIcon)
         weatherText: qsTr(root.weatherName)
         temperatureValue: root.temp
         precipitationText: root.precipitationText

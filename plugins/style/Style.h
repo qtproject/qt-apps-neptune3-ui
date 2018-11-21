@@ -33,6 +33,7 @@
 #include "StyleData.h"
 
 #include <QtQuickControls2/private/qquickattachedobject_p.h>
+#include <QJSValue>
 
 class Style : public QQuickAttachedObject
 {
@@ -60,7 +61,24 @@ class Style : public QQuickAttachedObject
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY themeChanged FINAL)
 
+    /*
+        Returns the file path for the given image name in the current style and theme
+
+        Do not specify any file sufix. Ie, call Style.image("foobar"), not Style.image("foobar.png")
+     */
+    // This is a property instead of a Q_INVOKABLE so that it gets reevaluated by QML bindings when
+    // its NOTIFY signal is emitted (in that case, when the theme changes). We need that as its results
+    // are theme-dependent.
+    Q_PROPERTY(QJSValue image READ image NOTIFY themeChanged)
+
+
 public:
+
+    // Not really public API. This is a helper method for the image property (which is a javascript Function,
+    // ie. a callable object). Q_INVOKABLE as it's called from the javascript side (the QJSValue Function in
+    // the image property)
+    Q_INVOKABLE QString imageHelper(QString value);
+
     enum Theme { Light=StyleData::Light, Dark=StyleData::Dark };
     Q_ENUM(Theme)
 
@@ -91,6 +109,8 @@ public:
 
     QString fontFamily() const;
 
+    QJSValue image();
+
 protected:
     void init();
     void attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent) override;
@@ -106,6 +126,8 @@ private:
 
     enum StyleData::Theme m_theme;
     QColor m_accentColor;
+
+    mutable QJSValue m_image;
 };
 
 QML_DECLARE_TYPEINFO(Style, QML_HAS_ATTACHED_PROPERTIES)

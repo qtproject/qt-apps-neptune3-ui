@@ -32,6 +32,11 @@
 #include "Style.h"
 #include "StyleDefaults.h"
 
+#include <QDir>
+#include <QFileInfo>
+#include <QQmlEngine>
+#include <QQuickStyle>
+
 Style::Style(QObject *parent)
     : QQuickAttachedObject(parent)
 {
@@ -72,6 +77,7 @@ void Style::inheritStyle(const Style& inheritedStyle)
 
     if (m_theme != inheritedStyle.m_theme) {
         m_theme = inheritedStyle.m_theme;
+        m_image = QJSValue();
         emit themeChanged();
     }
 
@@ -99,6 +105,7 @@ void Style::setTheme(Style::Theme value)
         return;
 
     m_theme = (StyleData::Theme)value;
+    m_image = QJSValue();
     propagateTheme();
     emit themeChanged();
 }
@@ -184,4 +191,36 @@ QColor Style::clusterMarksColor() const
 QString Style::fontFamily() const
 {
     return StyleDefaults::instance()->dataFromTheme(m_theme).fontFamily;
+}
+
+QJSValue Style::image()
+{
+    if (!m_image.isCallable()) {
+        QQmlEngine *engine = qmlEngine(parent());
+        if (engine) {
+            auto str = QStringLiteral("(function(value) { return this.imageHelper(value); })");
+            m_image = engine->evaluate(str);
+
+            // Make the "this" of that javascript Function be the attached property
+            m_image.property("bind").call({engine->newQObject(this)});
+        }
+    }
+    return m_image;
+}
+
+QString Style::imageHelper(QString value)
+{
+    static QString basePath = QString("%1/%2/images/").arg(QQuickStyle::path()).arg(QQuickStyle::name());
+    QString result = basePath;
+    result.append(value);
+
+    if (m_theme == StyleData::Dark) {
+        QString darkResult = result;
+        darkResult.append("-dark.png");
+        if (QFileInfo::exists(darkResult))
+            return darkResult;
+    }
+
+    result.append(".png");
+    return result;
 }

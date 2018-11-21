@@ -69,7 +69,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
         height: Sizes.dp(436)
-        source: Config.gfx("app-fullscreen-top-bg", Style.theme)
+        source: Style.image("app-fullscreen-top-bg")
         visible: root.state === "Maximized"
     }
 

@@ -76,7 +76,7 @@ Item {
             height: Sizes.dp(sourceSize.height)
             fillMode: Image.PreserveAspectFit
             visible: homeButton.checked
-            source: Config.symbol("ic-app-active-bg")
+            source: Style.image("ic-app-active-bg")
         }
         onClicked: root.applicationModel.goHome()
     }

@@ -62,7 +62,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("bg-home", root.Style.theme)
+        source: Style.image("bg-home")
         fillMode: Image.Stretch
     }
 

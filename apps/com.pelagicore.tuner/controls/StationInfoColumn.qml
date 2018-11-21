@@ -60,7 +60,7 @@ Item {
             id: stationLogoShadow
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.gfx("album-art-shadow")
+            source: Style.image("album-art-shadow")
         }
 
         Image {
@@ -71,7 +71,7 @@ Item {
             anchors.centerIn: parent
             width: Sizes.dp(180)
             height: width
-            source: Config.gfx("album-art-placeholder")
+            source: Style.image("album-art-placeholder")
             fillMode: Image.PreserveAspectCrop
         }
 

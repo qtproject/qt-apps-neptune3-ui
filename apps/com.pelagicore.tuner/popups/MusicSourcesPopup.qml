@@ -34,6 +34,7 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 import application.windows 1.0
 
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 PopupWindow {
@@ -74,7 +75,7 @@ PopupWindow {
             anchors.topMargin: Sizes.dp(120)
             width: parent.width
             height: Sizes.dp(sourceSize.height)
-            source: Config.gfx("popup-title-shadow")
+            source: Style.image("popup-title-shadow")
         }
 
         ListView {

@@ -68,7 +68,7 @@ Row {
             anchors.centerIn: parent
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.symbol("ic_button-bg")
+            source: Style.image("ic_button-bg")
             fillMode: Image.PreserveAspectFit
             layer.enabled: true
             layer.effect: ColorOverlay {

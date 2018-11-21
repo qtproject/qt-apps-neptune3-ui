@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import application.windows 1.0
+import shared.Style 1.0
 import shared.utils 1.0
 import shared.animations 1.0
 import QtQuick.Controls 2.2
@@ -48,7 +49,7 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         fillMode: Image.PreserveAspectFit
 
-        source: Config.gfx("hero-appstore")
+        source: Style.image("hero-appstore")
         asynchronous: true
     }
 

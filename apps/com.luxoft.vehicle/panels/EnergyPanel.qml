@@ -88,7 +88,7 @@ Item {
         Image {
             height: Sizes.dp(2)
             width: parent.width
-            source: Config.gfx("list-divider", Style.theme)
+            source: Style.image("list-divider")
         }
 
         Label {
@@ -140,7 +140,7 @@ Item {
             width: Sizes.dp(750)
             anchors.top: parent.top
             anchors.topMargin: Sizes.dp(168)
-            source: Config.gfx("list-divider", Style.theme)
+            source: Style.image("list-divider")
         }
 
         //ToDo: this probably should be in a model later

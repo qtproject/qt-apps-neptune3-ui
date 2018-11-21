@@ -45,7 +45,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: Config.gfx("instrument-cluster-bg", root.Style.theme)
+        source: Style.image("instrument-cluster-bg")
         fillMode: Image.Stretch
     }
 

@@ -69,7 +69,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Config.gfx("widget-bg-dark")
+        source: Style.image("widget-bg-dark")
         opacity: root.active ? 0 : root.beingDragged ? 0.3 : 0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -84,7 +84,7 @@ Item {
         border { left: 160; right: 160; top: 160; bottom: 160 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Config.gfx("widget-bg", Style.theme)
+        source: Style.image("widget-bg")
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation{} }
@@ -99,7 +99,7 @@ Item {
         border { left: 0; right: 17; top: 17; bottom: 17 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Config.gfx("widget-window-mask")
+        source: Style.image("widget-window-mask")
     }
     Item {
         id: windowSlot
@@ -140,7 +140,7 @@ Item {
         border { top: 25; bottom: 25 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
-        source: Config.gfx("widget-stripe")
+        source: Style.image("widget-stripe")
 
         layer.enabled: true
         layer.effect: ColorOverlay {
@@ -190,7 +190,7 @@ Item {
             anchors.centerIn: parent
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.symbol("ic-widget-move")
+            source: Style.image("ic-widget-move")
         }
     }
 
@@ -213,7 +213,7 @@ Item {
             anchors.centerIn: parent
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.symbol("ic-widget-close")
+            source: Style.image("ic-widget-close")
         }
     }
 
@@ -224,7 +224,7 @@ Item {
         anchors.top: parent.top
         width: Sizes.dp(sourceSize.width)
         height: Sizes.dp(sourceSize.height)
-        source: Config.gfx("widget-corner", Style.theme)
+        source: Style.image("widget-corner")
         opacity: root.active ? 0 : 1
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -245,7 +245,7 @@ Item {
             anchors.topMargin: Sizes.dp(24)
             width: Sizes.dp(sourceSize.width)
             height: Sizes.dp(sourceSize.height)
-            source: Config.symbol("ic-expand-to-fullscreen", Style.theme)
+            source: Style.image("ic-expand-to-fullscreen")
             scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
             Behavior on scale { DefaultNumberAnimation{} }
         }

@@ -56,7 +56,7 @@ function getIconSource(item, contentType, toolsText) {
         if (item.data.coverArtUrl !==  undefined) {
             return item.data.coverArtUrl;
         } else {
-            return Config.gfx("album-art-placeholder");
+            return Style.image("album-art-placeholder");
         }
     } else {
         return "";

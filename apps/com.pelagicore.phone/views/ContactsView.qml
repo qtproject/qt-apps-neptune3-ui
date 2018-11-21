@@ -81,7 +81,7 @@ ListView {
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
-                source: Config.gfx("list-divider", Style.theme)
+                source: Style.image("list-divider")
             }
         }
     }
