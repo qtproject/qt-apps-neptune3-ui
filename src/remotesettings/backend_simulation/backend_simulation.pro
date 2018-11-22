@@ -1,5 +1,5 @@
 TEMPLATE=lib
-TARGET = $$qtLibraryTarget(RemoteSettings_backend)
+TARGET = $$qtLibraryTarget(RemoteSettings_backend_simulation)
 CONFIG += ivigenerator plugin
 
 QT_FOR_CONFIG += ivicore
@@ -21,7 +21,7 @@ PLUGIN_CLASS_NAME = IviSettingsBackendInterface
 
 QT += core ivicore
 
-QFACE_FORMAT = backend_qtro
+QFACE_FORMAT = backend_simulator
 QFACE_SOURCES = ../settings.qface
 
 DEPENDPATH += $$OUT_PWD/../backend
