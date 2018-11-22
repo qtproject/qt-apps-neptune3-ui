@@ -61,6 +61,8 @@ class Style : public QQuickAttachedObject
 
     Q_PROPERTY(QString fontFamily READ fontFamily NOTIFY themeChanged FINAL)
 
+    Q_PROPERTY(QString name READ name CONSTANT FINAL)
+
     /*
         Returns the file path for the given image name in the current style and theme
 
@@ -108,6 +110,8 @@ public:
     qreal defaultDisabledOpacity() const;
 
     QString fontFamily() const;
+
+    QString name() const;
 
     QJSValue image();
 

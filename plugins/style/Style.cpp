@@ -193,6 +193,11 @@ QString Style::fontFamily() const
     return StyleDefaults::instance()->dataFromTheme(m_theme).fontFamily;
 }
 
+QString Style::name() const
+{
+    return QQuickStyle::name();
+}
+
 QJSValue Style::image()
 {
     if (!m_image.isCallable()) {
