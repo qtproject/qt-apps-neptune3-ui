@@ -35,11 +35,12 @@ import QtQuick.Layouts 1.3
 //import Qt.SafeRenderer 1.0
 import "../controls" 1.0
 import "../helpers" 1.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 444
-    height: 58
+    width: Sizes.dp(444)
+    height: Sizes.dp(58)
 
     //public
     property bool rightTurnOn: true
@@ -48,12 +49,6 @@ Item {
     property bool lowTyrePressureOn: true
     property bool brakeFailureOn: true
     property bool airbagFailureOn: true
-
-    //private
-    QtObject {
-        id: d
-        property real scaleRatio: root.height / 58
-    }
 
     // Uncomment below to render BG when safe renderer is in use
 //    Image {
@@ -75,48 +70,48 @@ Item {
             opacity: blinker.lit ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-right-turn")
-            Layout.preferredWidth: 53 * d.scaleRatio
-            Layout.preferredHeight: 48 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(53)
+            Layout.preferredHeight: Sizes.dp(48)
         }
 
         Image {
             opacity: root.absFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-abs-fault")
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(40)
+            Layout.preferredHeight: Sizes.dp(30)
         }
 
         Image {
             opacity: root.parkingBrakeOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-parking-brake")
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(40)
+            Layout.preferredHeight: Sizes.dp(30)
         }
 
         Image {
             opacity: root.lowTyrePressureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-tire-pressure")
-            Layout.preferredWidth: 34 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(34)
+            Layout.preferredHeight: Sizes.dp(30)
         }
 
         Image {
             opacity: root.brakeFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("./telltales/ic-brake-fault")
-            Layout.preferredWidth: 40 * d.scaleRatio
-            Layout.preferredHeight: 30 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(40)
+            Layout.preferredHeight: Sizes.dp(30)
         }
 
         Image {
             opacity: root.airbagFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-airbag")
-            Layout.preferredWidth: 35 * d.scaleRatio
-            Layout.preferredHeight: 34 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(35)
+            Layout.preferredHeight: Sizes.dp(34)
         }
     }
 }

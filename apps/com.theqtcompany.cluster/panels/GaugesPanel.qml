@@ -30,11 +30,12 @@
 ****************************************************************************/
 
 import QtQuick 2.9
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 1920
-    height: 720
+    width: Sizes.dp(1920)
+    height: Sizes.dp(720)
 
     //public
     property bool navigating
@@ -50,7 +51,6 @@ Item {
     //private
     QtObject {
         id: d
-        readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 720)
         property bool running: false
         function start() { running = true; }
         function restart() { running = false; startDelay.interval = 900; startDelay.start(); }
@@ -69,20 +69,20 @@ Item {
         State {
             name: "stopped"
             when: !d.running
-            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 310 * d.scaleRatio; y: 120 * d.scaleRatio }
-            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1050 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: Sizes.dp(310); y: Sizes.dp(120) }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: Sizes.dp(1050); y: Sizes.dp(120) }
         },
         State {
             name: "normal"
             when: d.running && !root.navigating
-            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 10 * d.scaleRatio; y: 120 * d.scaleRatio }
-            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1350 * d.scaleRatio; y: 120 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: Sizes.dp(10); y: Sizes.dp(120) }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: Sizes.dp(1350); y: Sizes.dp(120) }
         },
         State {
             name: "navi"
             when: d.running && root.navigating
-            PropertyChanges { target: !root.rtlMode ? ds : dp; x: 10 * d.scaleRatio; y: 180 * d.scaleRatio }
-            PropertyChanges { target: !root.rtlMode ? dp : ds; x: 1350 * d.scaleRatio; y: 180 * d.scaleRatio }
+            PropertyChanges { target: !root.rtlMode ? ds : dp; x: Sizes.dp(10); y: Sizes.dp(180) }
+            PropertyChanges { target: !root.rtlMode ? dp : ds; x: Sizes.dp(1350); y: Sizes.dp(180) }
         }
     ]
 
@@ -123,14 +123,14 @@ Item {
 
     DialSpeedPanel {
         id: ds
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         state: parent.state
     }
 
     DialPowerPanel {
         id: dp
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         state: parent.state
     }

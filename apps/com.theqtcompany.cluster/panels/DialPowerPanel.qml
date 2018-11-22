@@ -34,11 +34,11 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 import "../helpers" 1.0
 import shared.Style 1.0
-import shared.Style 1.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 560
+    width: Sizes.dp(560)
     height: width
 
     //public
@@ -50,7 +50,6 @@ Item {
     //private
     QtObject {
         id: d
-        readonly property real scaleRatio: Math.min(root.width / 560, root.height / 560 )
 
         function power2Angle(power) {
             if (power < -25) {
@@ -83,11 +82,11 @@ Item {
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 0 }
             PropertyChanges { target: indicatorEPower; opacity: 0 }
-            PropertyChanges { target: signBattery; opacity: 0; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
+            PropertyChanges { target: signBattery; opacity: 0; x: Sizes.dp(176); y: Sizes.dp(483) }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: 0; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: 0; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: 0; x: Sizes.dp(272); y: Sizes.dp(480) }
+            PropertyChanges { target: signKMRemain; opacity: 0; x: Sizes.dp(207); y: Sizes.dp(464) }
             PropertyChanges { target: signPower; opacity: 0 }
         },
         State {
@@ -97,11 +96,11 @@ Item {
             PropertyChanges { target: graduationNumber; opacity: Style.opacityMedium }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
             PropertyChanges { target: indicatorEPower; opacity: Style.opacityHigh }
-            PropertyChanges { target: signBattery; opacity: 1; x: 176 * d.scaleRatio; y: 483 * d.scaleRatio }
+            PropertyChanges { target: signBattery; opacity: 1; x: Sizes.dp(176); y: Sizes.dp(483) }
             PropertyChanges { target: signBatteryRemain; opacity: Style.opacityHigh }
             PropertyChanges { target: signChargeStation; opacity: 1 }
-            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: 272 * d.scaleRatio; y: 480 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: 207 * d.scaleRatio; y: 464 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: Sizes.dp(272); y: Sizes.dp(480) }
+            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: Sizes.dp(207); y: Sizes.dp(464) }
             PropertyChanges { target: signPower; opacity: Style.opacityLow }
         },
         State {
@@ -111,11 +110,11 @@ Item {
             PropertyChanges { target: graduationNumber; opacity: 0 }
             PropertyChanges { target: indicatorDrivetrain; opacity: 1 }
             PropertyChanges { target: indicatorEPower; opacity: Style.opacityHigh }
-            PropertyChanges { target: signBattery; opacity: 1; x: 210 * d.scaleRatio; y: 380 * d.scaleRatio }
+            PropertyChanges { target: signBattery; opacity: 1; x: Sizes.dp(210); y: Sizes.dp(380) }
             PropertyChanges { target: signBatteryRemain; opacity: 0 }
             PropertyChanges { target: signChargeStation; opacity: 0 }
-            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: 330 * d.scaleRatio; y: 375 * d.scaleRatio }
-            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: 250 * d.scaleRatio; y: 362 * d.scaleRatio }
+            PropertyChanges { target: signKM; opacity: Style.opacityLow; x: Sizes.dp(330); y: Sizes.dp(375) }
+            PropertyChanges { target: signKMRemain; opacity: Style.opacityHigh; x: Sizes.dp(250); y: Sizes.dp(362) }
             PropertyChanges { target: signPower; opacity: Style.opacityLow }
         }
     ]
@@ -243,7 +242,7 @@ Item {
     //visual components
     DialFramePanel {
         id: dialFrame
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         anchors.centerIn: parent
         state: parent.state
@@ -257,18 +256,18 @@ Item {
 
     Image {
         id: scaleEnergyArea
-        x: 31 * d.scaleRatio
-        y: 107 * d.scaleRatio
-        width: 71 * d.scaleRatio
-        height: 294 * d.scaleRatio
+        x: Sizes.dp(31)
+        y: Sizes.dp(107)
+        width: Sizes.dp(71)
+        height: Sizes.dp(294)
         source: Utils.localAsset("dial-energy-areas", Style.theme)
     }
 
     Item {//PRND
         id: indicatorDrivetrain
-        x: 240 * d.scaleRatio
-        y: 165 * d.scaleRatio
-        width: 40 * d.scaleRatio
+        x: Sizes.dp(240)
+        y: Sizes.dp(165)
+        width: Sizes.dp(40)
         opacity: 1
         Label {
             id: indicatorDrivetrainP
@@ -278,7 +277,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 0) ? Font.Normal : Font.Light
             opacity: (root.drivetrain === 0) ? Style.opacityHigh : Style.opacityLow
-            font.pixelSize: 34 * d.scaleRatio
+            font.pixelSize: Sizes.dp(34)
         }
         Label {
             id: indicatorDrivetrainR
@@ -288,7 +287,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 3) ? Font.Normal : Font.Light
             opacity: (root.drivetrain === 3) ? Style.opacityHigh : Style.opacityLow
-            font.pixelSize: 34 * d.scaleRatio
+            font.pixelSize: Sizes.dp(34)
         }
         Label {
             id: indicatorDrivetrainN
@@ -298,7 +297,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 1) ? Font.Normal : Font.Light
             opacity: (root.drivetrain === 1) ? Style.opacityHigh : Style.opacityLow
-            font.pixelSize: 34 * d.scaleRatio
+            font.pixelSize: Sizes.dp(34)
         }
         Label {
             anchors.left: indicatorDrivetrainN.right
@@ -307,96 +306,96 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.weight: (root.drivetrain === 2) ? Font.Normal : Font.Light
             opacity: (root.drivetrain === 2) ? Style.opacityHigh : Style.opacityLow
-            font.pixelSize: 34 * d.scaleRatio
+            font.pixelSize: Sizes.dp(34)
         }
     }
 
     Label {
         id: indicatorEPower
-        x: 265 * d.scaleRatio
-        y: 222 * d.scaleRatio
+        x: Sizes.dp(265)
+        y: Sizes.dp(222)
         width: 40 * d.scaleRatio
         text: Math.abs( Math.round(d.ePower) )
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.DemiBold
         opacity: Style.opacityHigh
-        font.pixelSize: 80 * d.scaleRatio
+        font.pixelSize: Sizes.dp(80)
     }
 
     Label {
         id: signPower
-        x: 248 * d.scaleRatio
-        y: 324 * d.scaleRatio
+        x: Sizes.dp(248)
+        y: Sizes.dp(324)
         text: qsTr("% power")
         font.weight: Font.Light
         opacity: Style.opacityLow
-        font.pixelSize: 18 * d.scaleRatio
+        font.pixelSize: Sizes.dp(18)
     }
 
     Label {
         id: signKM
-        x: 272 * d.scaleRatio
-        y: 480 * d.scaleRatio
+        x: Sizes.dp(272)
+        y: Sizes.dp(480)
         text: qsTr("km")
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.Light
         opacity: Style.opacityLow
-        font.pixelSize: 18 * d.scaleRatio
+        font.pixelSize: Sizes.dp(18)
     }
 
     Image {
         id: signBattery
-        x: 176 * d.scaleRatio
-        y: 483 * d.scaleRatio
-        width: 23 * d.scaleRatio
-        height: 14 * d.scaleRatio
+        x: Sizes.dp(176)
+        y: Sizes.dp(483)
+        width: Sizes.dp(23)
+        height: Sizes.dp(14)
         source: Utils.localAsset("ic-battery", Style.theme)
     }
 
     Label {
         id: signKMRemain
-        x: 207 * d.scaleRatio
-        y: 464 * d.scaleRatio
-        width: 70 * d.scaleRatio
+        x: Sizes.dp(207)
+        y: Sizes.dp(464)
+        width: Sizes.dp(70)
         horizontalAlignment: root.state !== "navi" ? Text.AlignLeft : Text.AlignHCenter
         text: root.remainingKm
         font.weight: Font.Light
         opacity: Style.opacityHigh
-        font.pixelSize: 34 * d.scaleRatio
+        font.pixelSize: Sizes.dp(34)
     }
 
     Label {
         id: signBatteryRemain
-        x: 303 * d.scaleRatio
-        y: 464 * d.scaleRatio
-        width: 50 * d.scaleRatio
+        x: Sizes.dp(303)
+        y: Sizes.dp(464)
+        width: Sizes.dp(50)
         text: root.remainingPower
         font.weight: Font.Light
         horizontalAlignment: Text.AlignRight
         opacity: Style.opacityHigh
-        font.pixelSize: 34 * d.scaleRatio
+        font.pixelSize: Sizes.dp(34)
     }
 
     Image {
         id: signChargeStation
-        x: 353 * d.scaleRatio
-        y: 474 * d.scaleRatio
-        width: 24 * d.scaleRatio
-        height: 21 * d.scaleRatio
+        x: Sizes.dp(353)
+        y: Sizes.dp(474)
+        width: Sizes.dp(24)
+        height: Sizes.dp(21)
         source: Utils.localAsset("ic-chargingstation", Style.theme)
     }
 
     Repeater{
         id: graduationNumber
         anchors.centerIn: parent
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         opacity: Style.opacityMedium
 
         //size and layout
-        readonly property real radius: width / 2 - 50 * d.scaleRatio
+        readonly property real radius: width / 2 - Sizes.dp(50)
         readonly property real centerX: width / 2
         readonly property real centerY: height / 2
 
@@ -412,23 +411,23 @@ Item {
 
             opacity: graduationNumber.opacity
             font.weight: Font.Light
-            font.pixelSize: 22 * d.scaleRatio
+            font.pixelSize: Sizes.dp(22)
         }
     }
 
     Canvas {
         id: graduation
         anchors.centerIn: parent
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         renderTarget: Canvas.Image
 
         readonly property real radius: graduation.width / 2
         readonly property real centerX: graduation.width / 2
         readonly property real centerY: graduation.height / 2
-        readonly property real scaleLineLength: 8 * d.scaleRatio
-        readonly property real scaleLineWidth: 2 * d.scaleRatio
-        readonly property real scaleLineBlank: 8 * d.scaleRatio
+        readonly property real scaleLineLength: Sizes.dp(8)
+        readonly property real scaleLineWidth: Sizes.dp(2)
+        readonly property real scaleLineBlank: Sizes.dp(8)
 
         //for startup animation
         property int maxDrawValue: 100

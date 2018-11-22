@@ -37,10 +37,11 @@ import QtQuick.Shapes 1.0
 import shared.controls 1.0
 import "../helpers" 1.0
 import shared.Style 1.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 560
+    width: Sizes.dp(560)
     height: width
 
     //public
@@ -51,7 +52,6 @@ Item {
     //private
     QtObject {
         id: d
-        readonly property real scaleRatio: Math.min(root.width / 560, root.height/ 560)
         function speed2Angle(speed) {
             if (speed < 0) {
                 return -240;
@@ -79,7 +79,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: 0 }
             PropertyChanges { target: signKMH; opacity: 0 }
             PropertyChanges { target: indicatorSpdLimit; opacity: 0 }
-            PropertyChanges { target: indicatorCruise; visible: false; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: false; x: Sizes.dp(285); y: Sizes.dp(466) }
         },
         State {
             name: "normal"
@@ -88,7 +88,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: Style.opacityHigh }
             PropertyChanges { target: signKMH; opacity: Style.opacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
-            PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 466 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: true; x: Sizes.dp(285); y: Sizes.dp(466) }
         },
         State {
             name: "navi"
@@ -97,7 +97,7 @@ Item {
             PropertyChanges { target: indicatorSpeed; opacity: Style.opacityHigh }
             PropertyChanges { target: signKMH; opacity: Style.opacityLow }
             PropertyChanges { target: indicatorSpdLimit; opacity: 1 }
-            PropertyChanges { target: indicatorCruise; visible: true; x: 285 * d.scaleRatio; y: 374 * d.scaleRatio }
+            PropertyChanges { target: indicatorCruise; visible: true; x: Sizes.dp(285); y: Sizes.dp(374) }
         }
     ]
 
@@ -257,7 +257,7 @@ Item {
     DialFramePanel {
         id: dialFrame
         anchors.centerIn: parent
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         state: parent.state
         minAng: -240
@@ -267,39 +267,39 @@ Item {
 
     Label {
         id: indicatorSpeed
-        x: 257 * d.scaleRatio
-        y: 218 * d.scaleRatio
-        width: 40 * d.scaleRatio
+        x: Sizes.dp(257)
+        y: Sizes.dp(218)
+        width: Sizes.dp(40)
         text: Math.round(speed)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.DemiBold
         opacity: Style.opacityHigh
-        font.pixelSize: 80 * d.scaleRatio
+        font.pixelSize: Sizes.dp(80)
     }
 
     Label {
         id: signKMH
         anchors.horizontalCenter: parent.horizontalCenter
-        y: 325 * d.scaleRatio
+        y: Sizes.dp(325)
         text: qsTr("km/h")
         font.weight: Font.Light
         opacity: Style.opacityLow
-        font.pixelSize: 18 * d.scaleRatio
+        font.pixelSize: Sizes.dp(18)
     }
 
     Image {
         id: indicatorSpdLimit
-        x: 330* d.scaleRatio
-        y: 342 * d.scaleRatio
-        width: 140 * d.scaleRatio
-        height: 140 * d.scaleRatio
+        x: Sizes.dp(330)
+        y: Sizes.dp(342)
+        width: Sizes.dp(140)
+        height: Sizes.dp(140)
         source: Utils.localAsset("speed-limit-badge")
         Label {
             anchors.centerIn: parent
             text: Math.round(speedLimit)
             opacity: Style.opacityHigh
-            font.pixelSize: 34 * d.scaleRatio
+            font.pixelSize: Sizes.dp(34)
             color: root.Style.theme === Style.Dark ? Style.mainColor : Style.contrastColor
         }
     }
@@ -308,19 +308,19 @@ Item {
         id: cruiseSource
         visible: false
         color: "transparent"
-        width: 370 * d.scaleRatio
+        width: Sizes.dp(370)
         height: width
         anchors.centerIn: parent
         Image {
             id: cruiseShadow
-            width: 370 * d.scaleRatio
+            width: Sizes.dp(370)
             height: width
             anchors.centerIn: parent
             source: Utils.localAsset("dial-cruise-circle-shadow")
         }
         Image {
             id: cruiseCircle
-            width: 330 * d.scaleRatio
+            width: Sizes.dp(330)
             height: width
             anchors.centerIn: parent
             source: Utils.localAsset("dial-cruise-circle")
@@ -331,7 +331,7 @@ Item {
         id: cruiseMask
         x: -1000
         y: -1000
-        width: 370 * d.scaleRatio
+        width: Sizes.dp(370)
         height: width
         visible: true
 
@@ -385,10 +385,10 @@ Item {
         id: indicatorCruiseBg
         opacity: (root.cruiseSpeed >= 30) ? 1 : 0.0
         visible: indicatorCruise.visible
-        x: 237 * d.scaleRatio - indicatorCruise.contentWidth / 2
-        y: indicatorCruise.y + 4 * d.scaleRatio
-        width: 35 * d.scaleRatio
-        height: 31 * d.scaleRatio
+        x: Sizes.dp(237) - indicatorCruise.contentWidth / 2
+        y: indicatorCruise.y + Sizes.dp(4)
+        width: Sizes.dp(35)
+        height: Sizes.dp(31)
         source: Utils.localAsset("ic-acc", Style.theme)
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
@@ -402,10 +402,10 @@ Item {
         id: indicatorCruise
         opacity: (root.cruiseSpeed >= 30) ? Style.opacityHigh : 0.0
         anchors.horizontalCenter: parent.horizontalCenter
-        y: 466 * d.scaleRatio
+        y: Sizes.dp(466)
         text:  Math.round(cruiseSpeed)
         font.weight: Font.Light
-        font.pixelSize: 34 * d.scaleRatio
+        font.pixelSize: Sizes.dp(34)
         Behavior on opacity {
             NumberAnimation { easing.type: Easing.OutCubic; duration: 500 }
         }
@@ -414,12 +414,12 @@ Item {
     Repeater{
         id: graduationNumber
         anchors.centerIn: parent
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         opacity: Style.opacityMedium
 
         //size and layout
-        readonly property real radius: width / 2 - 55 * d.scaleRatio
+        readonly property real radius: width / 2 - Sizes.dp(55)
         readonly property real centerX: width / 2
         readonly property real centerY: height / 2
 
@@ -435,27 +435,26 @@ Item {
 
             opacity: graduationNumber.opacity
             font.weight: Font.Light
-            font.pixelSize: 22 * d.scaleRatio
+            font.pixelSize: Sizes.dp(22)
         }
     }
 
     Canvas {
         id: graduation
         anchors.centerIn: parent
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         renderTarget: Canvas.FramebufferObject
 
         readonly property real radius: graduation.width / 2
         readonly property real centerX: graduation.width / 2
         readonly property real centerY: graduation.height / 2
-        readonly property real scaleLineLong: 8 * d.scaleRatio
-        readonly property real scaleLineShort: 4 * d.scaleRatio
-        readonly property real scaleLineWidth: 2 * d.scaleRatio
-        readonly property real speedLimitLineWidth: 4 * d.scaleRatio;
-        readonly property real scaleLineBlank: 8 * d.scaleRatio
-        readonly property real scaleWordBlank: 40 * d.scaleRatio
-
+        readonly property real scaleLineLong: Sizes.dp(8)
+        readonly property real scaleLineShort: Sizes.dp(4)
+        readonly property real scaleLineWidth: Sizes.dp(2)
+        readonly property real speedLimitLineWidth: Sizes.dp(4)
+        readonly property real scaleLineBlank: Sizes.dp(8)
+        readonly property real scaleWordBlank: Sizes.dp(40)
         //for startup animation
         property int maxDrawValue: 260
         onMaxDrawValueChanged: {

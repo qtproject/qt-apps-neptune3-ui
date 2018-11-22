@@ -35,6 +35,7 @@ import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
 import application.windows 1.0
 
+import shared.Sizes 1.0
 import shared.Style 1.0
 
 import "../stores" 1.0
@@ -47,18 +48,12 @@ Item {
     property ClusterStoreInterface store
     property alias rtlMode: mainContent.rtlMode
 
-    //private
-    QtObject {
-        id: d
-        readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 720)
-    }
-
     Image {
         // Overlay between the ivi content and tellatales, cluster content
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 390 * d.scaleRatio
+        height: Sizes.dp(390)
         source: Utils.localAsset("cluster-fullscreen-overlay", Style.theme)
     }
 
@@ -75,10 +70,10 @@ Item {
 
     TelltalesLeftPanel {
         anchors.left: mainContent.left
-        anchors.leftMargin: 111 * d.scaleRatio
-        y: 23 * d.scaleRatio
-        width: 444 * d.scaleRatio
-        height: 58 * d.scaleRatio
+        anchors.leftMargin: Sizes.dp(111)
+        y: Sizes.dp(23)
+        width: Sizes.dp(444)
+        height: Sizes.dp(58)
 
         lowBeamHeadLightOn: store.lowBeamHeadlight
         highBeamHeadLightOn: store.highBeamHeadlight
@@ -90,10 +85,10 @@ Item {
 
     TelltalesRightPanel {
         anchors.right: mainContent.right
-        anchors.rightMargin: 111 * d.scaleRatio
-        y: 23 * d.scaleRatio
-        width: 444 * d.scaleRatio
-        height: 58 * d.scaleRatio
+        anchors.rightMargin: Sizes.dp(111)
+        y: Sizes.dp(23)
+        width: Sizes.dp(444)
+        height: Sizes.dp(58)
 
         rightTurnOn: store.rightTurn
         absFailureOn: store.absFailure;

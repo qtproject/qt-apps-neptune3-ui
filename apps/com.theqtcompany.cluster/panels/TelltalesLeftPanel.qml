@@ -36,11 +36,12 @@ import QtQuick.Extras 1.4
 //import Qt.SafeRenderer 1.0
 import "../controls" 1.0
 import "../helpers" 1.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 444
-    height: 58
+    width: Sizes.dp(444)
+    height: Sizes.dp(58)
 
     //public
     property bool lowBeamHeadLightOn: true
@@ -49,12 +50,6 @@ Item {
     property bool stabilityControlOn: true
     property bool seatBeltFastenOn: true
     property bool leftTurnOn: true
-
-    //private
-    QtObject {
-        id: d
-        property real scaleRatio: root.height / 58
-    }
 
     // Uncomment below to render BG when safe renderer is in use
 //    Image {
@@ -68,48 +63,48 @@ Item {
         spacing: root.width * 0.07
 
         Image {
-            Layout.preferredWidth: 42 * d.scaleRatio
-            Layout.preferredHeight: 32 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(42)
+            Layout.preferredHeight: Sizes.dp(32)
             opacity: root.lowBeamHeadLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-low-beam")
         }
 
         Image {
-            Layout.preferredWidth: 42 * d.scaleRatio
-            Layout.preferredHeight: 27 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(42)
+            Layout.preferredHeight: Sizes.dp(27)
             opacity: root.highBeamHeadLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-high-beam")
         }
 
         Image {
-            Layout.preferredWidth: 34 * d.scaleRatio
-            Layout.preferredHeight: 34 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(34)
+            Layout.preferredHeight: Sizes.dp(34)
             opacity: root.fogLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-fog-lights")
         }
 
         Image {
-            Layout.preferredWidth: 30 * d.scaleRatio
-            Layout.preferredHeight: 33 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(30)
+            Layout.preferredHeight: Sizes.dp(33)
             opacity: root.stabilityControlOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-stability-control")
         }
 
         Image {
-            Layout.preferredWidth: 25 * d.scaleRatio
-            Layout.preferredHeight: 35 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(25)
+            Layout.preferredHeight: Sizes.dp(35)
             opacity: root.seatBeltFastenOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-seat-belt")
         }
 
         Image {
-            Layout.preferredWidth: 53 * d.scaleRatio
-            Layout.preferredHeight: 48 * d.scaleRatio
+            Layout.preferredWidth: Sizes.dp(53)
+            Layout.preferredHeight: Sizes.dp(48)
             opacity: blinker.lit ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-left-turn")

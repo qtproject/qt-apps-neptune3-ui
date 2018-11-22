@@ -35,10 +35,11 @@ import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.0
 import "../helpers" 1.0
 import shared.Style 1.0
+import shared.Sizes 1.0
 
 Item {
     id: root
-    width: 560
+    width: Sizes.dp(560)
     height: width
 
     //public
@@ -52,8 +53,6 @@ Item {
     //private
     QtObject {
         id: d
-        readonly property real scaleRatio: Math.min ( root.width / 560, root.height / 560 )
-
         readonly property real maxRadin: (root.maxAng > 90) ? (Math.PI / 2) : (root.maxAng / 180 * Math.PI)
         readonly property real minRadin: (root.minAng < -270) ? (-Math.PI * 3 / 2) : (root.minAng / 180 * Math.PI)
         readonly property real zeroRadin: (root.zeroAng > root.maxAng || root.zeroAng < root.minAng) ?
@@ -72,34 +71,34 @@ Item {
             name: "stopped"
             PropertyChanges { target: highLightOut; opacity: 0 }
             PropertyChanges { target: highLightIn; opacity: 0 }
-            PropertyChanges { target: innerCircle; opacity: 0; width: 100 * d.scaleRatio }
-            PropertyChanges { target: innerCircleShadow; opacity: 0; width: 112 * d.scaleRatio }
-            PropertyChanges { target: outBg; opacity: 0; width: 140 * d.scaleRatio }
-            PropertyChanges { target: outSmallBg; opacity: 0; width: 150 * d.scaleRatio }
-            PropertyChanges { target: outEdge; opacity: 0; width: 140 * d.scaleRatio }
-            PropertyChanges { target: outShadow; opacity: 0; width: 150 * d.scaleRatio }
+            PropertyChanges { target: innerCircle; opacity: 0; width: Sizes.dp(100) }
+            PropertyChanges { target: innerCircleShadow; opacity: 0; width: Sizes.dp(112) }
+            PropertyChanges { target: outBg; opacity: 0; width: Sizes.dp(140) }
+            PropertyChanges { target: outSmallBg; opacity: 0; width: Sizes.dp(150) }
+            PropertyChanges { target: outEdge; opacity: 0; width: Sizes.dp(140) }
+            PropertyChanges { target: outShadow; opacity: 0; width: Sizes.dp(150) }
         },
         State {
             name: "normal"
             PropertyChanges { target: highLightOut; opacity: 1 }
             PropertyChanges { target: highLightIn; opacity: 1 }
-            PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
-            PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
-            PropertyChanges { target: outBg; opacity: 1; width: 520 * d.scaleRatio }
-            PropertyChanges { target: outSmallBg; opacity: 0; width: 560 * d.scaleRatio }
-            PropertyChanges { target: outEdge; opacity: 1; width: 520 * d.scaleRatio }
-            PropertyChanges { target: outShadow; opacity: 1; width: 560 * d.scaleRatio }
+            PropertyChanges { target: innerCircle; opacity: 1; width: Sizes.dp(310) }
+            PropertyChanges { target: innerCircleShadow; opacity: 1; width: Sizes.dp(350) }
+            PropertyChanges { target: outBg; opacity: 1; width: Sizes.dp(520) }
+            PropertyChanges { target: outSmallBg; opacity: 0; width: Sizes.dp(560) }
+            PropertyChanges { target: outEdge; opacity: 1; width: Sizes.dp(520) }
+            PropertyChanges { target: outShadow; opacity: 1; width: Sizes.dp(560) }
         },
         State {
             name: "navi"
             PropertyChanges { target: highLightOut; opacity: 1 }
             PropertyChanges { target: highLightIn; opacity: 1 }
-            PropertyChanges { target: innerCircle; opacity: 1; width: 310 * d.scaleRatio }
-            PropertyChanges { target: innerCircleShadow; opacity: 1; width: 350 * d.scaleRatio }
-            PropertyChanges { target: outBg; opacity: 1; width: 340 * d.scaleRatio }
-            PropertyChanges { target: outSmallBg; opacity: 1; width: 366.15 * d.scaleRatio }
-            PropertyChanges { target: outEdge; opacity: 1; width: 340 * d.scaleRatio }
-            PropertyChanges { target: outShadow; opacity: 1; width: 366.15 * d.scaleRatio }
+            PropertyChanges { target: innerCircle; opacity: 1; width: Sizes.dp(310) }
+            PropertyChanges { target: innerCircleShadow; opacity: 1; width: Sizes.dp(350) }
+            PropertyChanges { target: outBg; opacity: 1; width: Sizes.dp(340) }
+            PropertyChanges { target: outSmallBg; opacity: 1; width: Sizes.dp(366.15) }
+            PropertyChanges { target: outEdge; opacity: 1; width: Sizes.dp(340) }
+            PropertyChanges { target: outShadow; opacity: 1; width: Sizes.dp(366.15) }
         }
     ]
 
@@ -190,7 +189,7 @@ Item {
     //visual components
     Image {
         id: outSmallBg
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         anchors.centerIn: parent
         visible: true
@@ -199,7 +198,7 @@ Item {
 
     Image {
         id: outBg
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         anchors.centerIn: parent
         visible: true
@@ -208,7 +207,7 @@ Item {
 
     Image {
         id: outEdge
-        width: 520 * d.scaleRatio
+        width: Sizes.dp(520)
         height: width
         anchors.centerIn: parent
         z: 1
@@ -218,7 +217,7 @@ Item {
 
     Image {
         id: outShadow
-        width: 560 * d.scaleRatio
+        width: Sizes.dp(560)
         height: width
         anchors.centerIn: parent
         z: 1
@@ -330,7 +329,7 @@ Item {
 
     Image {
         id: innerCircle
-        width: 310 * d.scaleRatio
+        width: Sizes.dp(310)
         height: width
         anchors.centerIn: parent
         visible: true
@@ -339,7 +338,7 @@ Item {
 
     Image {
         id: innerCircleShadow
-        width: 350 * d.scaleRatio
+        width: Sizes.dp(350)
         height: width
         anchors.centerIn: parent
         visible: true
