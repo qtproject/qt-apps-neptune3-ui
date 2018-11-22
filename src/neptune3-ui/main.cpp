@@ -120,7 +120,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #ifdef Q_OS_ANDROID
         DefaultConfiguration cfg(QStringList(qSL("assets:/am-config-android.yaml")), QString());
 #else
-        DefaultConfiguration cfg(QStringList(qSL("am-config.yaml")), QString());
+        DefaultConfiguration cfg(QStringList(qSL("am-config-neptune.yaml")), QString());
 #endif
 
         cfg.parse();
