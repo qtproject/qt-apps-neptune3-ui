@@ -4,6 +4,8 @@ QT += qml quick
 QT += core-private gui-private qml-private quick-private quickcontrols2-private
 
 uri = controls
+EXTRA_FILES += $$files(*.qml, true)
+
 load(qmlplugin)
 
 SOURCES += \
@@ -19,7 +21,3 @@ HEADERS += \
     qquickdefaultprogressbar_p.h
 
 TARGET = controlsplugin
-qmlfiles.files = *.qml
-qmlfiles.path = $$installPath
-INSTALLS += qmlfiles
-

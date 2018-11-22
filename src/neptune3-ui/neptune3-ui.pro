@@ -45,9 +45,9 @@ android: {
 
     QML_ROOT_PATH = $$PWD/../../
 
-    QML_IMPORT_PATH += \
-                        $$OUT_PWD/../../imports_shared/cpp \
-                        $$OUT_PWD/../../imports_system/system \
+    # Only add the C++ plugins here as these need to be deployed with androiddeployqt
+    # Don't add QML only plugins here as they are imported using appmans import paths
+    QML_IMPORT_PATH += $$OUT_PWD/../../imports_shared_cpp \
 
     ANDROID_EXTRA_PLUGINS += \
                         $$OUT_PWD/../../plugins \
