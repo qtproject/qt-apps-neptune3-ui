@@ -5,43 +5,8 @@ formatType: am-configuration
 
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
+  installedAppsManifestDir: ~
+  appImageMountDir: ~
   database: "am/apps.db"
 
-# QML apps will be able to import from modules...
-
-runtimes:
-  qml:
-    importPaths: [ "${CONFIG_PWD}/imports_shared" ]
-    environmentVariables:
-       QT_PLUGIN_PATH: ${CONFIG_PWD}
-       SERVER_CONF_PATH: ${CONFIG_PWD}/server.conf
-  native:
-    importPaths: [ "${CONFIG_PWD}/imports_shared" ]
-    environmentVariables:
-      QT_PLUGIN_PATH: ${CONFIG_PWD}
-      SERVER_CONF_PATH: ${CONFIG_PWD}/server.conf
-
-# ... as well as the SystemUI
-
-ui:
-  fullscreen: no
-  style: "${CONFIG_PWD}/styles/neptune"
-  iconThemeName: "neptune"
-  iconThemeSearchPaths: [ "${CONFIG_PWD}/imports_shared/assets/icons" ]
-  mainQml: "${CONFIG_PWD}/Main.qml"
-  importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
-  windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
-
-systemProperties:
-    public:
-      showCluster: yes
-      devMode: yes
-    private:
-      appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
-      orientation: 'Portrait'
-
-# development setup: no security
-
-flags:
-  noSecurity: yes
-  noUiWatchdog: yes
+installationLocations: ~

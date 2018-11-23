@@ -26,9 +26,8 @@ android: INSTALL_PATH = $$INSTALL_PREFIX
 else: INSTALL_PATH = $$INSTALL_PREFIX/neptune3
 
 # Install all required files
-qml.files = apps dev/apps imports_shared imports_system sysui styles Main.qml
-android: qml.files += am-config-android.yaml
-else: qml.files += am-config-neptune.yaml am-config-lucee.yaml
+qml.files = apps dev/apps imports_shared imports_system sysui styles Main.qml \
+    am-config-neptune.yaml am-config-lucee.yaml am-config-android.yaml
 qml.path = $$INSTALL_PATH
 INSTALLS += qml
 
