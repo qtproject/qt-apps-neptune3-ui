@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,13 +29,18 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+import QtQuick 2.7
 import shared.Sizes 1.0
 
-AbstractHomePage {
+Item {
     id: root
 
-    widgetGridLeftMargin: Sizes.dp(40)
-    widgetGridRightMargin: Sizes.dp(40)
+    // TODO: need to be replaced with an icon
+    Rectangle {
+        id: handlerIcon
+        width: Sizes.dp(80)
+        height: Sizes.dp(2)
+        color: "grey"
+        anchors.centerIn: parent
+    }
 }

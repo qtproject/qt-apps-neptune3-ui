@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -39,19 +39,30 @@ import system.controls 1.0
 
 import shared.Style 1.0
 import shared.Sizes 1.0
+import home 1.0
 
 AbstractApplicationWidget {
     id: root
 
-    windowLeftMargin: widgetStripe.width
+    widgetDraggedShadowOpacity: root.active ? 0 : root.beingDragged ? 1.0 : 0.24
+    windowMaskBorder.left: 120
+    windowMaskBorder.right: 120
+    windowMaskBorder.top: 120
+    windowMaskBorder.bottom: 120
 
     ScalableBorderImage {
         id: widgetStripe
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+        anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        width: Sizes.dp(40)
-        border { top: 25; bottom: 25 }
+        width: Sizes.dp(30)
+        height: {
+            if ((root.height - Sizes.dp(228)) > Sizes.dp(120)) {
+                return root.height - Sizes.dp(228)
+            } else {
+                return Sizes.dp(120)
+            }
+        }
+        border { top: 39; bottom: 39 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         source: Style.image("widget-stripe")
@@ -73,9 +84,7 @@ AbstractApplicationWidget {
     NeptuneIconLabel {
         width: Sizes.dp(25)
         height: Sizes.dp(25)
-        anchors.horizontalCenter: widgetStripe.horizontalCenter
-        anchors.top: widgetStripe.top
-        anchors.topMargin: widgetStripe.border.top * 0.8
+        anchors.centerIn: widgetStripe
         icon.source: root.appInfo ? root.appInfo.icon : null
         icon.color: "white"
         opacity: root.active ? 0 : 1
@@ -93,82 +102,42 @@ AbstractApplicationWidget {
         onMouseYChanged: root.draggedOntoPos(dragHandle.mapToItem(root, mouseX, mouseY))
         onPressed: root.dragStarted(dragHandle.mapToItem(root, mouseX, mouseY))
         onReleased: root.dragEnded()
+    }
 
-        Image {
-            anchors.centerIn: parent
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic-widget-move")
-        }
+    Image {
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: Style.image("widget-resize-top")
+    }
+
+    Image {
+        width: Sizes.dp(sourceSize.width)
+        height: Sizes.dp(sourceSize.height)
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: Style.image("widget-resize-bottom")
     }
 
     // Close button
-    MouseArea {
-        anchors.horizontalCenter: widgetStripe.horizontalCenter
-        anchors.bottom: parent.bottom
-
+    Image {
+        id: closeIcon
         objectName: "appWidgetClose_" + (root.appInfo ?
                                             (root.appInfo.id ? root.appInfo.id : "none")
                                             : "nothing"
                                             )
-        width: widgetStripe.width + Sizes.dp(18)
-        height: width
-        visible: root.buttonsVisible
-
-        onClicked: root.closeClicked()
-
-        Image {
-            anchors.centerIn: parent
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic-widget-close")
-        }
-    }
-
-    // Maximize button
-    Image {
-        id: cornerImage
         anchors.right: parent.right
+        anchors.rightMargin: -Sizes.dp(10)
         anchors.top: parent.top
-        width: Sizes.dp(sourceSize.width)
-        height: Sizes.dp(sourceSize.height)
-        source: Style.image("widget-corner")
-        opacity: root.active ? 0 : 1
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation {} }
-
-        mirror: LayoutMirroring.enabled
-
-        function isInRoundCorner(point) {
-            var rx2 = Math.pow((cornerImage.width-point.x),2)
-            var ry2 = Math.pow(point.y,2)
-            var r = Math.sqrt(rx2 + ry2)
-            return r < (cornerImage.width+cornerImage.height)/2
-        }
-
-        Image {
-            anchors.right: parent.right
-            anchors.rightMargin: Sizes.dp(23)
-            anchors.top: parent.top
-            anchors.topMargin: Sizes.dp(24)
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic-expand-to-fullscreen")
-            scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
-            Behavior on scale { DefaultNumberAnimation{} }
-        }
-
+        width: Sizes.dp(19)
+        height: Sizes.dp(19)
+        source: Style.image("ic-widget-close")
+        visible: root.buttonsVisible
         MouseArea {
-            id: maCorner
-            property var clickedPoint
             anchors.fill: parent
-            onClicked: {
-                var p = Qt.point(mouse.x, mouse.y)
-                if (cornerImage.isInRoundCorner(p)) {
-                    root.appInfo.start()
-                }
-            }
-            onPressed: maCorner.clickedPoint = Qt.point(mouse.x, mouse.y)
+            onClicked: root.closeClicked()
         }
     }
+
 }

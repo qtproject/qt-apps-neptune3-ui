@@ -584,7 +584,8 @@ Item {
                         ]
                     }
                 }
-                Item {
+
+                ResizeHandle {
                     id: resizeHandle
                     objectName: "resizeHandle" + model.index
 
@@ -594,15 +595,6 @@ Item {
 
                     width: parent.width
                     height: root.resizerHandleHeight
-
-                    // TODO: need to be replaced with an icon
-                    Rectangle {
-                        id: handlerIcon
-                        width: Sizes.dp(80)
-                        height: Sizes.dp(2)
-                        color: "grey"
-                        anchors.centerIn: parent
-                    }
 
                     MouseArea {
                         anchors.fill: parent

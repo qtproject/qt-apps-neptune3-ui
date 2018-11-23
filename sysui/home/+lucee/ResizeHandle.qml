@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+import QtQuick 2.7
 import shared.Sizes 1.0
 
-AbstractHomePage {
+Item {
     id: root
 
-    widgetGridLeftMargin: Sizes.dp(40)
-    widgetGridRightMargin: Sizes.dp(40)
+    // NOTE: currently nothing to be shown in between widget for LUCEE.
+    //       this Item will only reserve the place in case LUCEE want
+    //       to have something here.
 }

@@ -1,3 +1,5 @@
+AbstractHomePage 1.0 AbstractHomePage.qml
 HomePage 1.0 HomePage.qml
+AbstractApplicationWidget 1.0 AbstractApplicationWidget.qml
 ApplicationWidget 1.0 ApplicationWidget.qml
 WidgetGrid 1.0 WidgetGrid.qml

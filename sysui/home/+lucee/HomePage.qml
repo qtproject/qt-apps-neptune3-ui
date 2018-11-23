@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -31,11 +31,13 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+
 import shared.Sizes 1.0
+
+import home 1.0
 
 AbstractHomePage {
     id: root
-
-    widgetGridLeftMargin: Sizes.dp(40)
-    widgetGridRightMargin: Sizes.dp(40)
+    widgetGridLeftMargin: Sizes.dp(32)
+    widgetGridRightMargin: Sizes.dp(32)
 }
