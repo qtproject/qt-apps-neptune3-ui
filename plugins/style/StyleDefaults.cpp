@@ -68,6 +68,8 @@ StyleDefaults::StyleDefaults()
         return;
     }
 
+    m_imagePath = chosenStyleDir.absoluteFilePath(QStringLiteral("images"));
+
     if (!chosenStyleDir.exists(confFileName)) {
         qCritical() << "Style: Missing file" << chosenStyleDir.absoluteFilePath(confFileName);
         return;

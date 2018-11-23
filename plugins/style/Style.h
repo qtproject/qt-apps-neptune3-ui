@@ -79,7 +79,7 @@ public:
     // Not really public API. This is a helper method for the image property (which is a javascript Function,
     // ie. a callable object). Q_INVOKABLE as it's called from the javascript side (the QJSValue Function in
     // the image property)
-    Q_INVOKABLE QString imageHelper(QString value);
+    Q_INVOKABLE QString imageHelper(const QString &value);
 
     enum Theme { Light=StyleData::Light, Dark=StyleData::Dark };
     Q_ENUM(Theme)

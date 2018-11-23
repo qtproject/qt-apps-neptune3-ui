@@ -43,11 +43,14 @@ public:
 
     const StyleData::ThemeData dataFromTheme(StyleData::Theme theme) const;
 
+    const QString imagePath() const { return m_imagePath; }
+
 private:
     StyleDefaults();
     static void loadTheme(StyleData::ThemeData &data, QSettings &settings);
 
     StyleData m_data;
+    QString m_imagePath;
 
     static StyleDefaults *m_instance;
 };

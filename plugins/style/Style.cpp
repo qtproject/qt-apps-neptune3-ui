@@ -213,11 +213,9 @@ QJSValue Style::image()
     return m_image;
 }
 
-QString Style::imageHelper(QString value)
+QString Style::imageHelper(const QString &value)
 {
-    static QString basePath = QString("%1/%2/images/").arg(QQuickStyle::path()).arg(QQuickStyle::name());
-    QString result = basePath;
-    result.append(value);
+    QString result = StyleDefaults::instance()->imagePath() + QDir::separator() + value;
 
     if (m_theme == StyleData::Dark) {
         QString darkResult = result;
