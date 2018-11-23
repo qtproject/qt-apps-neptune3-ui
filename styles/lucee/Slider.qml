@@ -59,8 +59,7 @@ T.Slider {
         id: d
         readonly property int numberSteps: control.stepSize !== 0 ?
                                                (control.to - control.from) / control.stepSize : 0
-        readonly property int railSize: numberSteps > 0 ?
-                                   control.Sizes.dp(30) : control.Sizes.dp(10)
+        readonly property int railSize: control.Sizes.dp(10)
         readonly property real railLength: handle ? (control.horizontal ?
                                                          control.availableWidth - handle.width :
                                                          control.availableHeight - handle.height) :
@@ -70,7 +69,7 @@ T.Slider {
         readonly property int gap: control.Sizes.dp(3)
     }
 
-    handle: Image {
+    handle: Rectangle {
         id: handle
         x: control.leftPadding +
            (control.horizontal ? control.visualPosition * (control.availableWidth - width) :
@@ -78,12 +77,15 @@ T.Slider {
         y: control.topPadding +
            (control.horizontal ? (control.availableHeight - height) / 2 :
                                  control.visualPosition * (control.availableHeight - height))
-        width: Sizes.dp(sourceSize.width)
-        height: Sizes.dp(sourceSize.height)
+        width: Sizes.dp(40)
+        height: width
+        implicitWidth: width
+        implicitHeight: height
 
-        source: control.horizontal ?
-                    Style.image("slider-handle-horizontal") :
-                    Style.image("slider-handle-vertical")
+        color: "#FFFFFFFF"
+        border.color: "#FF878787"
+        border.width: Sizes.dp(2)
+        radius: width / 2 // make it perfectly round
     }
 
     background: Item {
@@ -103,19 +105,19 @@ T.Slider {
                 y: control.horizontal ? 0 : index * (d.stepLength + d.gap)
                 width: control.horizontal ? d.stepLength : railContainer.width
                 height: control.horizontal ? railContainer.height : d.stepLength
-                color: Style.contrastColor
-                opacity: control.horizontal ?
-                             (handle.x > (rectStep.x+d.stepLength/2) ? (control.mirrored ? 0.1 : 0.6) : (control.mirrored ? 0.6 : 0.1)) :
-                             (handle.y > rectStep.y+d.stepLength/2 ? 0.1 : 0.6)
+                color: filled ? Style.accentColor : "#FFAAAAAA"
+
+                property bool filled: control.horizontal ?
+                             (handle.x > (rectStep.x+d.stepLength/2) ? (control.mirrored ? false : true) : (control.mirrored ? true : false)) :
+                             (handle.y > rectStep.y+d.stepLength/2 ? false : true)
             }
         }
 
         Rectangle {
             width: parent.width
             height: parent.height
-            color: Style.contrastColor
+            color: "#FFAAAAAA"
             visible: d.numberSteps === 0
-            opacity: 0.1
         }
 
         Rectangle {
@@ -124,8 +126,7 @@ T.Slider {
             width: control.horizontal ? control.position * parent.width : parent.width
             height: control.horizontal ? parent.height : control.position * parent.height
             visible: d.numberSteps === 0
-            color: Style.contrastColor
-            opacity: 0.5
+            color: Style.accentColor
         }
     }
 }
