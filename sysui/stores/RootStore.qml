@@ -94,7 +94,12 @@ Store {
                 }
             });
         }
+        onIsInitializedChanged: {
+            if (isInitialized)
+                theme = root.initialTheme;
+        }
     }
+    property int initialTheme
 
     readonly property Notification notificationInfoInterface: Notification {
         id: notificationInfoInterface

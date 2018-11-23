@@ -83,6 +83,8 @@ QtObject {
                 instrumentClusterWindowLoader.item.nextApplicationICWindow();
             }
         }
+
+        initialTheme: centerConsoleWindow.contentItem.Style.theme
     }
 
     readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
