@@ -54,7 +54,7 @@ Item {
         id: buttonGroup
     }
 
-    ToolButton {
+    HomeButton {
         id: homeButton
 
         anchors.top: parent.top
@@ -64,7 +64,6 @@ Item {
         height: Sizes.dp(90)
 
         icon.name: "ic-menu-home"
-        icon.color: "white"
         ButtonGroup.group: buttonGroup
         checkable: true
         checked: !_isThereActiveApp

@@ -31,6 +31,7 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+import shared.controls 1.0
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.Style 1.0
@@ -43,7 +44,7 @@ Item {
     property bool gridOpen: false
     property alias editModeBgOpacity: editModeBg.opacity
     property alias editModeBgColor: editModeBg.color
-    property alias iconSource: icon.source
+    property alias iconSource: icon.icon.source
     property alias labelText: appLabel.text
 
     Rectangle {
@@ -60,13 +61,13 @@ Item {
         source: Style.image("ic-app-active-bg")
     }
 
-    Image {
+    AppIcon {
         id: icon
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
         width: Sizes.dp(35)
         height: Sizes.dp(35)
-        fillMode: Image.PreserveAspectFit
+        checked: root.checked && !root.gridOpen
     }
 
     Label {
