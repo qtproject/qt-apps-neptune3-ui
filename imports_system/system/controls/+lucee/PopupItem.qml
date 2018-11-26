@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,7 +30,6 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Controls 2.2
 
 import shared.Style 1.0
 import shared.Sizes 1.0
@@ -46,23 +45,23 @@ AbstractPopupItem {
         visible: root.headerBackgroundVisible
         source: Style.image("floating-panel-top-bg")
         border {
-            left: 20
-            top: 30
-            right: 20
+            left: 56
+            top: 55
+            right: 56
             bottom: 0
         }
     }
     background: ScalableBorderImage {
         anchors.fill: root
         source: Style.image("popup-background-9patch")
-        anchors.leftMargin: Sizes.dp(-40)
-        anchors.rightMargin: Sizes.dp(-40)
-        anchors.topMargin: Sizes.dp(-28)
-        anchors.bottomMargin: Sizes.dp(-52)
-        border.left: 70
-        border.right: 70
-        border.top: 50
-        border.bottom: 90
+        anchors.leftMargin: Sizes.dp(-7)
+        anchors.rightMargin: Sizes.dp(-7)
+        anchors.topMargin: Sizes.dp(-7)
+        anchors.bottomMargin: Sizes.dp(-7)
+        border.left: 69
+        border.right: 69
+        border.top: 65
+        border.bottom: 67
 
         // click eater
         MouseArea {
@@ -72,22 +71,21 @@ AbstractPopupItem {
         }
     }
 
-    ToolButton {
+    MouseArea {
         objectName: "popupClose"
-        anchors.verticalCenter: parent.top
-        anchors.horizontalCenter: parent.right
-        width: bg.width
-        height: bg.height
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.margins: Sizes.dp(17)
         onClicked: root.closeHandler()
-        icon.name: "ic-close"
-        background: Image {
-            id: bg
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: Sizes.dp(4)
-            source: Style.image("popup-close-button-bg")
-            fillMode: Image.PreserveAspectFit
+        width: Sizes.dp(50)
+        height: Sizes.dp(50)
+
+        NeptuneIconLabel {
+            anchors.centerIn: parent
+            icon.color: Style.accentColor
+            icon.name: "ic-close"
+            iconScale: Sizes.scale
         }
+        z: 999 // lazy way of having it in front of all content
     }
 }
