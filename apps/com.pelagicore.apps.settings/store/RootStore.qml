@@ -113,7 +113,7 @@ QtObject {
 
     property var accentColorsModel: [
         { color: "#D25555", value: 5, selected: false },
-        { color: "#FA9E54", value: 5, selected: true }, // default orange
+        { color: Style.accentColor, value: 5, selected: true }, // default accent color
         { color: "#9EAE83", value: 5, selected: false },
         { color: "#78887B", value: 5, selected: false },
         { color: "#7BA2A5", value: 5, selected: false },
