@@ -31,14 +31,12 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
 import QtQml.Models 2.2
 
 import shared.controls 1.0
-import shared.utils 1.0
-import shared.animations 1.0
 import system.controls 1.0
 
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 PopupItem {
