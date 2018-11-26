@@ -43,6 +43,8 @@
 #include <QtQuick/private/qquickitem_p.h>
 #include <QtQuick/private/qquicktext_p.h>
 
+#include <QFileSelector>
+
 QT_BEGIN_NAMESPACE
 
 static void beginClass(QQuickItem *item)
@@ -92,7 +94,8 @@ bool QQuickIconLabelPrivate::createImage()
     beginClass(image);
     image->setObjectName(QStringLiteral("image"));
     image->setName(icon.name());
-    image->setSource(icon.source());
+    QFileSelector selector;
+    image->setSource(selector.select(icon.source()));
     image->setSourceSize(QSize(icon.width(), icon.height()));
     image->setColor(icon.color());
     QQmlEngine::setContextForObject(image, qmlContext(q));
@@ -125,7 +128,8 @@ void QQuickIconLabelPrivate::syncImage()
         return;
 
     image->setName(icon.name());
-    image->setSource(icon.source());
+    QFileSelector selector;
+    image->setSource(selector.select(icon.source()));
     image->setSourceSize(QSize(icon.width(), icon.height()));
     image->setColor(icon.color());
     const int valign = alignment & Qt::AlignVertical_Mask;
