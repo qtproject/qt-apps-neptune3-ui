@@ -22,8 +22,8 @@ IMPORTPATH = $$BUILD_DIR/imports_shared \
              $$BUILD_DIR/imports_system \
              $$SOURCE_DIR/sysui \
              $$SOURCE_DIR/tests/dummyimports \
-             $$INSTALL_PREFIX/neptune3/imports/system \
-             $$INSTALL_PREFIX/neptune3/imports/shared
+             $$INSTALL_PREFIX/neptune3/imports_system \
+             $$INSTALL_PREFIX/neptune3/imports_shared
 
 COMPONENT_NAMES = ApplicationWidget
 COMPONENT_NAMES += WidgetGrid
