@@ -72,19 +72,20 @@ T.Switch {
         rightPadding: 0
         padding: (height - Sizes.dp(30)) / 2
         color: 'transparent'
-        border.width: control.visualFocus ? NeptunStyle.dp(2) : Sizes.dp(1.4)
-        border.color: control.checked ? Style.accentColor : Style.contrastColor
+        border.width: Sizes.dp(2)
+        border.color: control.checked ? Style.accentColor : "#919191"
         opacity: enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
 
         Rectangle {
-            x: Math.max(0, Math.min(parent.width - width, control.visualPosition * parent.width - (width / 2)))
+            // horizontal margin between the inner ball and the outer capsule
+            readonly property real sideMargin: Sizes.dp(4)
+
+            x: Math.max(sideMargin, Math.min(parent.width - width - sideMargin, control.visualPosition * parent.width - (width / 2)))
             y: (parent.height - height) / 2
-            width: Sizes.dp(28)
+            width: Sizes.dp(22)
             height: width
             radius: width/2
-            color: control.checked ? Style.accentColor : Style.contrastColor
-            border.width: control.visualFocus ? Sizes.dp(2) : Sizes.dp(1)
-            border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
+            color: control.checked ? Style.accentColor : "#919191"
 
             Behavior on x {
                 enabled: !control.down
