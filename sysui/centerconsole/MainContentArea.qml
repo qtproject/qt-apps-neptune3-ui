@@ -89,8 +89,7 @@ Item {
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
                 widgetDrawer: widgetDrawerSlot
                 popupParent: root.popupParent
-                exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Config.launcherHeight)
-                                                                  : launcher.height)
+                exposedRectTopMargin: launcher.y + Sizes.dp(Config.launcherHeight)
                 exposedRectBottomMargin: root.activeAppBottomMargin
             }
 
@@ -105,8 +104,7 @@ Item {
                     appInfo: root.applicationModel && root.applicationModel.activeAppInfo
                              && !root.applicationModel.activeAppInfo.asWidget ? root.applicationModel.activeAppInfo
                                                                               : null
-                    exposedRectTopMargin: launcher.y + (launcher.open ? Sizes.dp(Config.launcherHeight)
-                                                                      : launcher.height)
+                    exposedRectTopMargin: launcher.y + Sizes.dp(Config.launcherHeight)
                     exposedRectBottomMargin: root.activeAppBottomMargin
                 }
             }
