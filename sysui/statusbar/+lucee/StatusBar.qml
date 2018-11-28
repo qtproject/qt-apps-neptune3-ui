@@ -29,65 +29,74 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtGraphicalEffects 1.0
-import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 
-import shared.controls 1.0
 import shared.utils 1.0
-import shared.animations 1.0
-import about 1.0
-import centerconsole 1.0
+import shared.controls 1.0
 import volume 1.0
-import statusbar 1.0
-import stores 1.0
+
+import shared.Sizes 1.0
 import system.controls 1.0
 
-import shared.Style 1.0
-import shared.Sizes 1.0
-
-AbstractCenterConsole {
+RowLayout {
     id: root
 
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
+
+    spacing: Sizes.dp(5)
+    property var uiSettings
+    property var model
+    property Item popupParent
+
+    signal screenshotRequested()
+
     ToolButton {
-        id: leftIcon
+        Layout.preferredWidth: Sizes.dp(60)
+        Layout.fillHeight: true
+        id: volumeIcon
         objectName: "volumePopupButton"
-        width: Sizes.dp(90)
-        height: width
-        anchors.verticalCenter: bottomBar.verticalCenter
-        anchors.left: bottomBar.left
+        anchors.top: parent.top
+        anchors.left: parent.left
         anchors.leftMargin: Sizes.dp(27)
-        icon.name: root.store.volumeStore.volumeIcon
+        icon.name: root.model.volumeStore.volumeIcon
         onClicked: volumePopup.open()
     }
 
-    ToolButton {
-        id: rightIcon
-        width: Sizes.dp(90)
-        height: width
-        anchors.verticalCenter: bottomBar.verticalCenter
-        anchors.right: bottomBar.right
-        anchors.rightMargin: Sizes.dp(27)
-        icon.name: "qt-badge"
-        onClicked: about.open()
+    Item {
+        Layout.fillWidth: true
     }
 
-    PopupItemLoader {
+    IndicatorTray {
+        Layout.fillHeight: true
+        model: root.model.statusBarStore.indicators
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+    }
+
+    DateAndTime {
+        Layout.fillHeight: true
+        currentDate: root.model.statusBarStore.currentDate
+        uiSettings: root.uiSettings
+
+        MouseArea {
+            anchors.fill: parent
+            onPressAndHold: {
+                root.screenshotRequested();
+                mouse.accepted = true;
+            }
+        }
+    }
+
+    property var popupLoader: PopupItemLoader {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent
-        popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -item.width + leftIcon.width: 0)
-        originItem: leftIcon
-        Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
-    }
-
-    About {
-        id: about
-        popupParent: root.popupParent
-        originItem: rightIcon
-        applicationModel: root.store.applicationModel
-        systemModel: root.store.systemStore
-        sysInfo: root.store.sysInfo
+        property var originPos: originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
+        popupX: (root.LayoutMirroring.enabled ? root.parent.width - item.width - Sizes.dp(5) : Sizes.dp(5))
+        popupY: originPos.y
+        originItem: volumeIcon
+        Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
     }
 }

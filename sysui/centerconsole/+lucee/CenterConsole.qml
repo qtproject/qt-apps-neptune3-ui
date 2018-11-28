@@ -39,7 +39,6 @@ import shared.utils 1.0
 import shared.animations 1.0
 import about 1.0
 import centerconsole 1.0
-import volume 1.0
 import statusbar 1.0
 import stores 1.0
 import system.controls 1.0
@@ -50,42 +49,22 @@ import shared.Sizes 1.0
 AbstractCenterConsole {
     id: root
 
-    ToolButton {
-        id: leftIcon
-        objectName: "volumePopupButton"
-        width: Sizes.dp(90)
-        height: width
-        anchors.verticalCenter: bottomBar.verticalCenter
-        anchors.left: bottomBar.left
-        anchors.leftMargin: Sizes.dp(27)
-        icon.name: root.store.volumeStore.volumeIcon
-        onClicked: volumePopup.open()
-    }
-
-    ToolButton {
-        id: rightIcon
-        width: Sizes.dp(90)
-        height: width
-        anchors.verticalCenter: bottomBar.verticalCenter
-        anchors.right: bottomBar.right
-        anchors.rightMargin: Sizes.dp(27)
-        icon.name: "qt-badge"
-        onClicked: about.open()
-    }
-
-    PopupItemLoader {
-        id: volumePopup
-        source: "../volume/VolumePopup.qml"
-        popupParent: root.popupParent
-        popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -item.width + leftIcon.width: 0)
-        originItem: leftIcon
-        Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
+    Image {
+        id: luxoftIcon
+        anchors.centerIn: bottomBar
+        source: Style.image("luxoft-footer")
+        MouseArea {
+            anchors.fill: parent
+            anchors.topMargin: - Sizes.dp(10)
+            anchors.bottomMargin: - Sizes.dp(10)
+            onClicked: about.open()
+        }
     }
 
     About {
         id: about
         popupParent: root.popupParent
-        originItem: rightIcon
+        originItem: luxoftIcon
         applicationModel: root.store.applicationModel
         systemModel: root.store.systemStore
         sysInfo: root.store.sysInfo

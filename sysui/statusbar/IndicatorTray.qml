@@ -40,7 +40,7 @@ import shared.Sizes 1.0
 Control {
     id: root
 
-    width: Sizes.dp(24 * 4) // roughly 4 icons
+    implicitWidth: Sizes.dp(35 * 4) // roughly 4 icons
 
     property alias model: repeater.model
 

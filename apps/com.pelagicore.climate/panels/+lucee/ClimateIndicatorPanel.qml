@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,46 +29,40 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
-import shared.utils 1.0
-import shared.controls 1.0
-
+import "../helpers" 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-RowLayout {
+Item {
     id: root
 
-    implicitHeight: Sizes.dp(Config.statusBarHeight)
+    property var store
+    width: parent.width
+    height: Sizes.dp(80)
 
-    property var uiSettings
-    property var model
-    property Item popupParent
-
-    signal screenshotRequested()
-
-    IndicatorTray {
-        Layout.alignment: Qt.AlignLeading
-        Layout.fillHeight: true
-        model: root.model.statusBarStore.indicators
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
+    Label {
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: Sizes.dp(44)
+        text: root.store ? root.store.leftSeat.valueString : ""
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: Sizes.fontSizeXL
+        font.weight: Font.DemiBold
+        opacity: Style.opacityMedium
     }
 
-    DateAndTime {
-        Layout.alignment: Qt.AlignTrailing
-        Layout.fillHeight: true
-        currentDate: root.model.statusBarStore.currentDate
-        uiSettings: root.uiSettings
-
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
-            }
-        }
+    Label {
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: Sizes.dp(44)
+        text: root.store ? root.store.rightSeat.valueString : ""
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: Sizes.fontSizeXL
+        font.weight: Font.DemiBold
+        opacity: Style.opacityMedium
     }
 }
