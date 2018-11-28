@@ -119,7 +119,7 @@ void StyleDefaults::loadTheme(StyleData::ThemeData &data, QSettings &settings)
     data.fontFamily = settings.value("FontFamily").toString();
 }
 
-const StyleData::ThemeData StyleDefaults::dataFromTheme(StyleData::Theme theme) const
+const StyleData::ThemeData &StyleDefaults::dataFromTheme(StyleData::Theme theme)
 {
     Q_ASSERT(m_data.themes.contains(theme));
     return m_data.themes[theme];
