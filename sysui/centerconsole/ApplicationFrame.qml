@@ -64,14 +64,6 @@ Item {
                 currentMaxWindow = maximizedWindowComponent.createObject(d, {
                                                                              "parent":root,
                                                                              "appInfo": root.appInfo,
-                                                                             "exposedRectTopMargin": root.exposedRectTopMargin,
-                                                                             "exposedRectBottomMargin": root.exposedRectBottomMargin,
-                                                                             "currentHeight": root.height,
-                                                                             "currentWidth": root.width,
-                                                                             "Sizes.scale": root.Sizes.scale,
-                                                                             "Style.accentColor": root.Style.accentColor,
-                                                                             "Style.theme": root.Style.theme,
-                                                                             "windowState": "Maximized"
                                                                             });
                 d.window.parent = root;
                 currentMaxWindow.addAnimation.start();
@@ -88,6 +80,13 @@ Item {
         ApplicationCCWindowItem {
             id: maxWindowObj
             anchors.fill: parent
+
+            currentHeight: root.height
+            currentWidth: root.width
+            exposedRectTopMargin: root.exposedRectTopMargin
+            exposedRectBottomMargin: root.exposedRectBottomMargin
+
+            windowState: "Maximized"
 
             property var addAnimation: SequentialAnimation {
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
