@@ -191,7 +191,8 @@ Item {
             root.store.clusterStore.invertedCluster = !root.store.clusterStore.invertedCluster;
         }
         onCtrlTPressed: {
-            root.store.uiSettings.theme = root.store.uiSettings.theme === 0 ? 1 : 0;
+            if (root.Style.supportsMultipleThemes)
+                root.store.uiSettings.theme = root.store.uiSettings.theme === 0 ? 1 : 0;
         }
         onCtrlLPressed: {
             const locales = Config.translation.availableTranslations;
