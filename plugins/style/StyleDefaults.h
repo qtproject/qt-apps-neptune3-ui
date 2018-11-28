@@ -41,6 +41,8 @@ public:
 
     const StyleData &data() const { return m_data; }
 
+    bool supportsMultipleThemes() const;
+
     const StyleData::ThemeData dataFromTheme(StyleData::Theme theme) const;
 
     const QString imagePath() const { return m_imagePath; }

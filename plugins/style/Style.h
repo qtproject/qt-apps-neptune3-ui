@@ -39,6 +39,7 @@ class Style : public QQuickAttachedObject
 {
     Q_OBJECT
     Q_PROPERTY(Theme theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
+    Q_PROPERTY(bool supportsMultipleThemes READ supportsMultipleThemes CONSTANT FINAL)
 
     // naming scheme use by other qt control styles
     // TODO: update controls to use colors from the design spec group or update the specs if needed
@@ -91,6 +92,8 @@ public:
 
     Theme theme() const { return (Theme) m_theme; }
     void setTheme(Theme);
+
+    bool supportsMultipleThemes() const;
 
     QColor accentColor() const { return m_accentColor; }
     void setAccentColor(const QColor &accent);

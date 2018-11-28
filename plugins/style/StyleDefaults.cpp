@@ -84,13 +84,19 @@ StyleDefaults::StyleDefaults()
 
     FETCH_COLOR(m_data.accentColor, "AccentColor")
 
-    settings.beginGroup("Light");
-    loadTheme(m_data.lightTheme, settings);
-    settings.endGroup();
+    QStringList themes = settings.childGroups();
 
-    settings.beginGroup("Dark");
-    loadTheme(m_data.darkTheme, settings);
-    settings.endGroup();
+    if (themes.contains("Light")) {
+        settings.beginGroup("Light");
+        loadTheme(m_data.themes[StyleData::Light], settings);
+        settings.endGroup();
+    }
+
+    if (themes.contains("Dark")) {
+        settings.beginGroup("Dark");
+        loadTheme(m_data.themes[StyleData::Dark], settings);
+        settings.endGroup();
+    }
 }
 
 void StyleDefaults::loadTheme(StyleData::ThemeData &data, QSettings &settings)
@@ -115,8 +121,11 @@ void StyleDefaults::loadTheme(StyleData::ThemeData &data, QSettings &settings)
 
 const StyleData::ThemeData StyleDefaults::dataFromTheme(StyleData::Theme theme) const
 {
-    if (theme == StyleData::Light)
-        return m_data.lightTheme;
-    else
-        return m_data.darkTheme;
+    Q_ASSERT(m_data.themes.contains(theme));
+    return m_data.themes[theme];
+}
+
+bool StyleDefaults::supportsMultipleThemes() const
+{
+    return m_data.themes.count() > 1;
 }

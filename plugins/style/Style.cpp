@@ -36,6 +36,7 @@
 #include <QFileInfo>
 #include <QQmlEngine>
 #include <QQuickStyle>
+#include <QtQml/qqmlinfo.h>
 
 Style::Style(QObject *parent)
     : QQuickAttachedObject(parent)
@@ -104,10 +105,20 @@ void Style::setTheme(Style::Theme value)
     if (value == (Theme)m_theme)
         return;
 
+    if (!supportsMultipleThemes()) {
+        qmlWarning(this) << "The \"" << name() << "\" style does not support multiple themes.";
+        return;
+    }
+
     m_theme = (StyleData::Theme)value;
     m_image = QJSValue();
     propagateTheme();
     emit themeChanged();
+}
+
+bool Style::supportsMultipleThemes() const
+{
+    return StyleDefaults::instance()->supportsMultipleThemes();
 }
 
 void Style::propagateAccentColor()

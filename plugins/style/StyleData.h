@@ -31,6 +31,7 @@
 #pragma once
 
 #include <QColor>
+#include <QMap>
 
 struct StyleData
 {
@@ -51,5 +52,6 @@ struct StyleData
         qreal opacityLow;
         qreal defaultDisabledOpacity;
         QString fontFamily;
-    } lightTheme, darkTheme;
+    };
+    QMap<Theme, ThemeData> themes;
 };
