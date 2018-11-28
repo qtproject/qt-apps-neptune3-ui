@@ -314,7 +314,7 @@ Item {
         id: indicatorEPower
         x: Sizes.dp(265)
         y: Sizes.dp(222)
-        width: 40 * d.scaleRatio
+        width: Sizes.dp(40)
         text: Math.abs( Math.round(d.ePower) )
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
