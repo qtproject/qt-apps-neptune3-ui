@@ -64,8 +64,13 @@ Item {
 
     ClimatePopup {
         id: climatePopup
-        originItemX: Math.round(Config.centerConsoleWidth / 2);
-        originItemY: Config.centerConsoleHeight - Math.round(root.height / 2);
+
+        // have to forward scale from root item as ClimatePopup is a Window, not an Item,
+        // so value propagation doesn't quite apply
+        Sizes.scale: root.Sizes.scale
+
+        originItemX: Sizes.dp(Config.centerConsoleWidth / 2);
+        originItemY: Sizes.dp(Config.centerConsoleHeight) - Math.round(root.height / 2);
         popupY: Sizes.dp(Config.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
     }
 }
