@@ -38,6 +38,8 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
     contentHeight: baseLayout.height
 
+    property bool simulationEnabled: false
+
     ScrollIndicator.vertical: ScrollIndicator { }
 
     ColumnLayout {
@@ -146,6 +148,38 @@ Flickable {
                 onClicked: instrumentCluster.navigationMode = checked
             }
 
+            Label {
+                text: qsTr("Simulation Mode:")
+            }
+            CheckBox {
+                checked: root.simulationEnabled
+                onClicked: root.simulationEnabled = !root.simulationEnabled
+            }
+
+            Timer {
+                interval: 1000
+                running: root.simulationEnabled
+                repeat: true
+                onTriggered: {
+                    if (instrumentCluster.speed < 140) {
+                        instrumentCluster.speed = instrumentCluster.speed + 10;
+                    } else {
+                        instrumentCluster.speed = 0.0;
+                    }
+
+                    if (instrumentCluster.ePower < 80) {
+                        instrumentCluster.ePower = instrumentCluster.ePower + 2;
+                    } else {
+                        instrumentCluster.ePower = 0.0;
+                    }
+
+                    if (instrumentCluster.speedCruise < 100) {
+                        instrumentCluster.speedCruise = instrumentCluster.speedCruise + 10;
+                    } else {
+                        instrumentCluster.speedCruise = 0;
+                    }
+                }
+            }
         }
 
         GridLayout {
