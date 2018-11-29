@@ -34,7 +34,7 @@ import QtQuick.Controls 2.2
 import shared.utils 1.0
 import system.controls 1.0
 import QtQuick.Window 2.3
-
+import shared.Sizes 1.0
 import shared.Style 1.0
 
 Window {
@@ -48,6 +48,10 @@ Window {
     color: "black"
     title: "Neptune 3 UI - HUD"
     screen: root.hudStore.hudScreen
+
+    onWidthChanged: {
+        root.contentItem.Sizes.scale = root.width / Config.hudWidth;
+    }
 
     Component.onCompleted: {
         // Would be better to use a regular property binding instead. But somehow, it doesn't work.
