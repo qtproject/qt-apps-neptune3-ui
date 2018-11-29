@@ -54,6 +54,7 @@ Item {
     //if the content type is longer than 5 then it contains a unique id
     readonly property bool contentTypeContainsAlbumUniqueID: (albumsContentState.length > 5)
     property var store
+    property Item rootItem
 
     clip: true
 
@@ -81,12 +82,12 @@ Item {
                 //FIXME in multiprocess store.musicSourcesModel.length returns 1
                 //even though is more. When spotify and/or web radio are uninstalled
                 //and installed again, then it updates fine.
-                var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
+                var pos = currentItem.mapToItem(root.rootItem, currentItem.width/2, currentItem.height/2);
+
                 //set model each time to ensure data accuracy
-                musicSourcesPopup.model = root.store.musicSourcesModel;
+                musicSourcesPopup.model = root.store.musicSourcesModel
                 musicSourcesPopup.originItemX = pos.x;
                 musicSourcesPopup.originItemY = pos.y;
-                musicSourcesPopup.popupY = Math.round(Config.centerConsoleHeight / 4)
                 musicSourcesPopup.visible = true;
             }
         }
@@ -94,6 +95,17 @@ Item {
 
     MusicSourcesPopup {
         id: musicSourcesPopup
+
+        // MusicSourcesPopup a Window, not an Item, propagation of attached property values don't work
+        // So have to use the Sizes from elsewhere, from an actual Item.
+
+        width: root.Sizes.dp(910)
+
+        // caclulate popup height based on musicSources list items
+        // + 200 for header & margins
+        height: model ? root.Sizes.dp(200 + (model.count * 96)) : root.Sizes.dp(296)
+
+        popupY: root.Sizes.dp(Config.centerConsoleHeight / 4)
     }
 
     Binding {

@@ -46,6 +46,7 @@ Item {
     property MusicStore store
     signal flickableAreaClicked()
     property alias fullscreenTopHeight: fullscreenTop.height
+    property Item rootItem
 
     state: "Widget1Row"
 
@@ -95,5 +96,6 @@ Item {
         }
         visible: opacity > 0
         store: root.store
+        rootItem: root.rootItem
     }
 }
