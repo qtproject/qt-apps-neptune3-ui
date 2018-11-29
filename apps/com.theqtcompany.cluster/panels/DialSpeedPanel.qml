@@ -294,7 +294,7 @@ Item {
         y: Sizes.dp(342)
         width: Sizes.dp(140)
         height: Sizes.dp(140)
-        source: Utils.localAsset("speed-limit-badge")
+        source: Utils.localAsset(root.speed > root.speedLimit ? "speed-limit-badge-red" : "speed-limit-badge")
         Label {
             anchors.centerIn: parent
             text: Math.round(speedLimit)
