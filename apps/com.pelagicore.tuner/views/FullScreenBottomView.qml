@@ -45,6 +45,7 @@ import "../popups" 1.0
 Item {
     id: root
     property var store
+    property Item rootItem
 
     ToolsColumn {
         id: toolsColumn
@@ -56,7 +57,7 @@ Item {
         currentIndex: 1
         onClicked: {
             if (currentText === "sources") {
-                var pos = currentItem.mapToItem(root.parent, currentItem.width/2, currentItem.height/2);
+                var pos = currentItem.mapToItem(root.rootItem, currentItem.width/2, currentItem.height/2);
                 //set model each time to ensure data accuracy
                 musicSourcesPopup.model = root.store.musicSourcesModel;
                 musicSourcesPopup.originItemX = pos.x;
@@ -68,6 +69,11 @@ Item {
 
     MusicSourcesPopup {
         id: musicSourcesPopup
+        width: root.Sizes.dp(910)
+        // caclulate popup height based on musicSources list items
+        // + 200 for header & margins
+        height: model ? root.Sizes.dp(200 + (model.count * 96)) : root.Sizes.dp(296)
+        popupY: root.Sizes.dp(Config.centerConsoleHeight / 4)
     }
 
     StationBrowseListPanel {

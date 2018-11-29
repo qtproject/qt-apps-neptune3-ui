@@ -48,13 +48,6 @@ PopupWindow {
 
     property alias model: listView.model
 
-
-    width: Sizes.dp(910)
-
-    // caclulate popup height based on musicSources list items
-    // + 200 for header & margins
-    height: model ? Sizes.dp(200 + (model.count * 96)) : Sizes.dp(296)
-
     Item {
         id: popupContent
 

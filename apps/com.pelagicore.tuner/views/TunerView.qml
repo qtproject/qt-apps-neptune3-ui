@@ -46,6 +46,7 @@ Item {
 
     property TunerStore store
     property alias fullscreenTopHeight: fullscreenTop.height
+    property Item rootItem
 
     StationInfoView {
         anchors.left: parent.left
@@ -79,5 +80,6 @@ Item {
         }
         visible: opacity > 0
         store: root.store
+        rootItem: root.rootItem
     }
 }

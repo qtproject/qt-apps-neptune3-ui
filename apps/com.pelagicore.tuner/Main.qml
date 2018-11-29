@@ -79,6 +79,7 @@ QtObject {
             y: mainWindow.exposedRect.y
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height
+            rootItem: mainWindow.contentItem
             store: TunerStore { }
         }
     }
