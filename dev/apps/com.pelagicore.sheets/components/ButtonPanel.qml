@@ -41,10 +41,10 @@ import shared.Sizes 1.0
 Item {
     id: root
 
-    readonly property int largeButtonHeight: 100
-    readonly property int smallButtonHeight: 52
-    readonly property int largeButtonPadding: 58
-    readonly property int smallButtonPadding: 26
+    readonly property int largeButtonHeight: Sizes.dp(100)
+    readonly property int smallButtonHeight: Sizes.dp(52)
+    readonly property int largeButtonPadding: Sizes.dp(58)
+    readonly property int smallButtonPadding: Sizes.dp(26)
 
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
@@ -148,9 +148,9 @@ Item {
 
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: 160
-                icon.width: 40
-                icon.height: 40
+                implicitWidth: Sizes.dp(160)
+                icon.width: Sizes.dp(40)
+                icon.height: Sizes.dp(40)
                 background: ButtonBackground {
                     color: parent.pressed ? Qt.darker(Style.clusterMarksColor, (1 / Style.opacityHigh))
                                           : Style.clusterMarksColor
@@ -161,9 +161,9 @@ Item {
             }
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: 160
-                icon.width: 35
-                icon.height: 35
+                implicitWidth: Sizes.dp(160)
+                icon.width: Sizes.dp(35)
+                icon.height: Sizes.dp(35)
                 background: ButtonBackground {
                     color: parent.pressed ? Qt.darker(Style.accentDetailColor, (1 / Style.opacityHigh))
                                           : Style.accentDetailColor
@@ -180,7 +180,7 @@ Item {
             spacing: Sizes.dp(13)
             Button {
                 implicitHeight: largeButtonHeight
-                implicitWidth: 500
+                implicitWidth: Sizes.dp(500)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 text: "Wide button"
