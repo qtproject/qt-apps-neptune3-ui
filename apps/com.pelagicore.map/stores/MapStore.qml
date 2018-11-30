@@ -89,8 +89,8 @@ QtObject {
     readonly property Plugin herePlugin: Plugin {
         name: "here";
         locales: Config.languageLocale
-        PluginParameter { name: "here.app_id"; value: "jC7kvNx3H7lFMuExMDA7" }
-        PluginParameter { name: "here.token"; value: "0ehO2fWIAfkyOB5oxL6_cw" }
+        PluginParameter { name: "here.app_id"; value: "g98JIvGyhYloA79p8e7O" }
+        PluginParameter { name: "here.token"; value: "KBpimsQlfj7yTILmIr1-Pw" }
     }
 
     signal requestNavigationReceived(string address, var coord, var boundingBox)
