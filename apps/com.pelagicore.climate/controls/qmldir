@@ -1,2 +1,3 @@
 ClimateButton 1.0 ClimateButton.qml
 TemperatureSlider 1.0 TemperatureSlider.qml
+TemperatureLabel 1.0 TemperatureLabel.qml

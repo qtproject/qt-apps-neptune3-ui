@@ -33,6 +33,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import "../controls" 1.0
 import "../helpers" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
@@ -53,14 +54,10 @@ RowLayout {
         fillMode: Image.PreserveAspectFit
         visible: root.store.leftSeat.heat
     }
-    Label {
+    TemperatureLabel {
         Layout.leftMargin: Sizes.dp(36)
         Layout.rightMargin: Sizes.dp(36)
-        text: root.store ? root.store.leftSeat.valueString : ""
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Sizes.fontSizeXL
-        font.weight: Font.DemiBold
-        opacity: Style.opacityMedium
+        seat: root.store ? root.store.leftSeat : null
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
@@ -76,14 +73,10 @@ RowLayout {
         fillMode: Image.PreserveAspectFit
         visible: root.store.frontHeat.enabled
     }
-    Label {
+    TemperatureLabel {
         Layout.leftMargin: Sizes.dp(36)
         Layout.rightMargin: Sizes.dp(36)
-        text: root.store ? root.store.rightSeat.valueString : ""
-        horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Sizes.fontSizeXL
-        font.weight: Font.DemiBold
-        opacity: Style.opacityMedium
+        seat: root.store ? root.store.rightSeat : null
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)

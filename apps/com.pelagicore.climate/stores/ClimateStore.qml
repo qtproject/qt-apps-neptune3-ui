@@ -46,8 +46,9 @@ QtObject {
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontLeft.targetTemperature
-        readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)
-                    + root.tempSuffix
+        readonly property real localizedValue: root.calculateUnitValue(value)
+        readonly property string valueString: Number(localizedValue).toLocaleString(Qt.locale(), 'f', 1)
+        readonly property int measurementSystem: root.measurementSystem
 
         readonly property bool heat: climateControl.zoneAt.FrontLeft.seatHeater > 0
 
@@ -70,8 +71,9 @@ QtObject {
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
         readonly property real value: climateControl.zoneAt.FrontRight.targetTemperature
-        readonly property string valueString: Number(root.calculateUnitValue(value)).toLocaleString(Qt.locale(), 'f', 1)
-                    + root.tempSuffix
+        readonly property real localizedValue: root.calculateUnitValue(value)
+        readonly property string valueString: Number(localizedValue).toLocaleString(Qt.locale(), 'f', 1)
+        readonly property int measurementSystem: root.measurementSystem
 
         readonly property bool heat: climateControl.zoneAt.FrontRight.seatHeater > 0
 

@@ -33,29 +33,41 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import "../controls" 1.0
 import "../helpers" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-Item {
+RowLayout {
     id: root
+    property var seat
+    Label {
+        readonly property int integers: root.seat ? Math.floor(root.seat.localizedValue) : 0
+        readonly property int decimals: root.seat ? (root.seat.localizedValue - Math.floor(root.seat.localizedValue)) * 10 : 0
+        Layout.fillHeight: true
 
-    property var store
-    width: parent.width
-    height: Sizes.dp(80)
+        textFormat: Text.RichText
+        text: integers + "<font size=\""+Sizes.dp(40)+"px\">" + Qt.locale().decimalPoint + decimals + "</font>"
 
-    TemperatureLabel {
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: Sizes.dp(44)
-        seat: root.store ? root.store.leftSeat : null
+        padding: 0
+        verticalAlignment: Text.AlignBottom
+        font.pixelSize: Sizes.dp(55)
+        font.weight: Font.Light
+        color: "#5e5d5d"
     }
-
-    TemperatureLabel {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: Sizes.dp(44)
-        seat: root.store ? root.store.rightSeat : null
+    // Ideally the suffix should be part of the text of the Label above, but I couldn't make
+    // Qt RichtText parser accept to <font> tags in the same string. Also tried <span style=""> to no avail.
+    // Hence the topMargin hack below
+    Label {
+        Layout.topMargin: Sizes.dp(15)
+        text: {
+            if (root.seat) {
+                return root.seat.measurementSystem === Locale.MetricSystem ? "°C" : "°F";
+            } else {
+                return "";
+            }
+        }
+        font.pixelSize: Sizes.dp(26)
+        font.weight: Font.Normal
+        color: "#5e5d5d"
     }
 }

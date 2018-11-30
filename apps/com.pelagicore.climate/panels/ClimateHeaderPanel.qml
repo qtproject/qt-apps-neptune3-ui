@@ -42,8 +42,8 @@ import "../controls" 1.0
 Item {
     id: root
 
-    property alias temperatureDriverSeat: tempLabelLeft.text
-    property alias temperaturePassengerSeat: tempLabelRight.text
+    property alias leftSeat: tempLabelLeft.seat
+    property alias rightSeat: tempLabelRight.seat
 
     property bool zoneSynchronizationEnabled
 
@@ -68,12 +68,9 @@ Item {
                 icon.name: "ic-temperature-plus"
                 onClicked: root.driverSeatTemperatureIncreased()
             }
-            Label {
+            TemperatureLabel {
                 id: tempLabelLeft
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Sizes.fontSizeXL
-                font.weight: Font.DemiBold
-                opacity: Style.opacityMedium
             }
             ClimateButton {
                 width: Sizes.dp(90)
@@ -107,12 +104,9 @@ Item {
                 icon.name: "ic-temperature-plus"
                 onClicked: root.passengerSeatTemperatureIncreased()
             }
-            Label {
+            TemperatureLabel {
                 id: tempLabelRight
                 anchors.horizontalCenter: parent.horizontalCenter
-                font.pixelSize: Sizes.fontSizeXL
-                font.weight: Font.DemiBold
-                opacity: Style.opacityMedium
             }
             ClimateButton {
                 width: Sizes.dp(90)

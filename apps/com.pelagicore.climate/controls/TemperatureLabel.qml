@@ -33,29 +33,16 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import "../controls" 1.0
 import "../helpers" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-Item {
-    id: root
-
-    property var store
-    width: parent.width
-    height: Sizes.dp(80)
-
-    TemperatureLabel {
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: Sizes.dp(44)
-        seat: root.store ? root.store.leftSeat : null
-    }
-
-    TemperatureLabel {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: Sizes.dp(44)
-        seat: root.store ? root.store.rightSeat : null
-    }
+Label {
+    property var seat
+    horizontalAlignment: Text.AlignHCenter
+    font.pixelSize: Sizes.fontSizeXL
+    font.weight: Font.DemiBold
+    opacity: Style.opacityMedium
+    // Not showing the measurement unit is the fashionable thing to do
+    text: seat ? seat.valueString + "°" : ""
 }

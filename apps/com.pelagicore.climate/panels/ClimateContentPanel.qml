@@ -74,8 +74,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         height: Sizes.dp(278)
-        temperatureDriverSeat: root.store ? root.store.leftSeat.valueString : ""
-        temperaturePassengerSeat: root.store ? root.store.rightSeat.valueString : ""
+        leftSeat: root.store ? root.store.leftSeat : null
+        rightSeat: root.store ? root.store.rightSeat : null
         zoneSynchronizationEnabled: root.seatTemperaturesLinked
         onDriverSeatTemperatureIncreased: {
             if (root.store.leftSeat.value < root.store.leftSeat.maxValue) {
