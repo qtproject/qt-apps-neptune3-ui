@@ -163,13 +163,7 @@ QtObject {
 
     readonly property var climateOptions: [frontHeat, rearHeat, airCondition, airQuality, eco, steeringWheelHeat]
 
-    property int outsideTemp: climateControl.outsideTemperature != 0 ? calculateUnitValue(climateControl.outsideTemperature)
-                                                                     : calculateUnitValue(15)
-    property string outsideTempText: qsTr("%1" + tempSuffix).arg(outsideTemp)
     property int ventilation: climateControl.fanSpeedLevel
-
-    // Not showing the measurement unit is the fashionable thing to do
-    readonly property string tempSuffix: "°" // root.measurementSystem === Locale.MetricSystem ? "°C" : "°F"
 
     property int ventilationLevels: 7 // 6 + off (0)
 
