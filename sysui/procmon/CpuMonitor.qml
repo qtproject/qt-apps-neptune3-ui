@@ -41,14 +41,14 @@ MonitorPanel {
     valueText: systemModel ? "%1%".arg(systemModel.cpuPercentage) : ""
 
     delegate: Item {
-        width: root.width / root.systemModel.monitorModel.count
+        width: root.width / root.systemModel.monitorModel.maximumCount
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
             color: "#0F000000"
-            opacity: Math.min(1, (root.systemModel.monitorModel.count - index - 0.5) * 0.3)
+            opacity: Math.min(1, (root.systemModel.monitorModel.maximumCount - index - 0.5) * 0.3)
 
             Rectangle {
                 anchors.bottom: parent.bottom

@@ -42,20 +42,20 @@ MonitorPanel {
     valueText: systemModel ? "%1%, %2 MB".arg(systemModel.ramPercentage).arg(systemModel.ramBytes) : ""
 
     delegate: Item {
-        width: root.width / root.systemModel.monitorModel.count
+        width: root.width / root.systemModel.monitorModel.maximumCount
         height: parent.height
 
         Rectangle {
             width: parent.width
             height: parent.height
             color: "#0F000000"
-            opacity: Math.min(1, (root.systemModel.monitorModel.count - index - 0.5) * 0.3)
+            opacity: Math.min(1, (root.systemModel.monitorModel.maximumCount - index - 0.5) * 0.3)
 
             Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width - Sizes.dp(2)
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: (model.memoryUsed / root.systemModel.monitorModel.totalMemory) * parent.height
+                height: ((model.memoryUsed / 1e6).toFixed(0) / root.systemModel.ramTotalBytes) * parent.height
                 color: "#30000000"
             }
         }

@@ -2,7 +2,6 @@ TEMPLATE = subdirs
 
 SUBDIRS = \
           controls \
-          frametimer \
           sizes \
           translation \
           widgetgrid \

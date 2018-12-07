@@ -49,30 +49,6 @@ Item {
     Instantiator {
         model: root.applicationModel
         delegate: QtObject {
-            property ProcessMonitor monitor: ProcessMonitor {
-                applicationId: model.appInfo.id
-                reportingInterval: 1000
-                memoryReportingEnabled: root.visible
-                cpuLoadReportingEnabled: root.visible
-                onMemoryReportingChanged: {
-                    var mPSS = (memoryPss.total / 1e6).toFixed(0)
-                    var mRSS = (memoryRss.total / 1e6).toFixed(0)
-                    var mVirtual = (memoryVirtual.total / 1e6).toFixed(0)
-                    var indx = runningAppsModel.getAppIndex(model.appInfo.id);
-                    if (indx !== -1) {
-                        runningAppsModel.setProperty(indx, "memoryPSS", mPSS)
-                        runningAppsModel.setProperty(indx, "memoryRSS", mRSS)
-                        runningAppsModel.setProperty(indx, "memoryVirtual", mVirtual)
-                    }
-                }
-                onCpuLoadReportingChanged: {
-                    var indx = runningAppsModel.getAppIndex(model.appInfo.id);
-                    if (indx !== -1) {
-                        runningAppsModel.setProperty(indx, "cpuLoad", (load * 100).toFixed(1))
-                    }
-                }
-            }
-
             property var con: Connections {
                 target: model.appInfo
                 onRunningChanged: {
@@ -155,6 +131,17 @@ Item {
             width: parent.width - Sizes.dp(20)
             implicitHeight: column.height
 
+            ProcessStatus {
+                id: processStatus
+                applicationId: model.appInfo.id
+            }
+            Timer {
+                interval: 1000
+                running: root.visible
+                repeat: true
+                onTriggered: processStatus.update()
+            }
+
             ToolButton {
                 anchors.top: parent.top
                 anchors.right: parent.right
@@ -171,9 +158,11 @@ Item {
                     text: model.appInfo.name
                 }
                 Label {
-                    text: qsTr("CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB").
-                            arg(model.cpuLoad).arg(model.memoryVirtual).
-                            arg(model.memoryRSS).arg(model.memoryPSS)
+                    readonly property string memoryPSS: (processStatus.memoryPss.total / 1e6).toFixed(0)
+                    readonly property string memoryRSS: (processStatus.memoryRss.total / 1e6).toFixed(0)
+                    readonly property string cpuLoad: (processStatus.cpuLoad * 100).toFixed(1)
+                    text: qsTr("CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB").
+                            arg(cpuLoad).arg(memoryRSS).arg(memoryPSS)
                     font.pixelSize: Sizes.fontSizeS
                     opacity: Style.opacityMedium
                 }

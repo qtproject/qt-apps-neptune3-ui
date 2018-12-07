@@ -32,9 +32,10 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.2
 
-import shared.FrameTimer 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
+
+import QtApplicationManager 1.0
 
 Item {
     id: root
@@ -51,7 +52,7 @@ Item {
     FrameTimer {
         id: frameTimer
         window: root
-        enabled: root.fpsVisible
+        running: root.fpsVisible
     }
 
     Rectangle {
@@ -90,7 +91,7 @@ Item {
             }
         }
         Label {
-            text: qsTr("FPS: %1").arg(frameTimer.framesPerSecond)
+            text: qsTr("FPS: %1").arg(frameTimer.averageFps)
             font.pixelSize: Sizes.fontSizeXS
             visible: root.fpsVisible
         }

@@ -61,10 +61,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Time to first frame: %1 ms</source>
         <translation type="unfinished"></translation>
     </message>
@@ -78,6 +74,10 @@
     </message>
     <message>
         <source>Application IC Window, on Instrument Cluster</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

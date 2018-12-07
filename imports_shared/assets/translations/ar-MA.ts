@@ -42,10 +42,6 @@
         <translation>يعمل تمكين مراقبة الأداء على فرض واجهة مستخدم النظام لإعادة رسم نفسه باستمرار ، وبالتالي وجود استهلاك GPU / CPU ثابت وغير ضروري</translation>
     </message>
     <message>
-        <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Primary Window, on Center Console</source>
         <translation>النافذة الأساسية ، على وحدة التحكم المركزية</translation>
     </message>
@@ -59,6 +55,10 @@
     </message>
     <message>
         <source>Application IC Window, on Instrument Cluster</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -30,6 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtApplicationManager 1.0
 import QtApplicationManager.SystemUI 1.0
 import shared.utils 1.0
 
@@ -43,27 +44,30 @@ Store {
     property bool instrumentClusterPerfOverlayEnabled: false
     property bool monitorEnabled: false
 
-    readonly property int cpuPercentage: (systemMonitor.cpuLoad * 100).toFixed(0)
+    readonly property int cpuPercentage: (cpuStatus.cpuLoad * 100).toFixed(0)
     readonly property int ramPercentage: ((ramBytes / ramTotalBytes) * 100).toFixed(0)
-    readonly property int ramBytes: (systemMonitor.memoryUsed / 1e6).toFixed(0)
-    readonly property int ramTotalBytes: (systemMonitor.totalMemory / 1e6).toFixed(0)
+    readonly property int ramBytes: (memoryStatus.memoryUsed / 1e6).toFixed(0)
+    readonly property int ramTotalBytes: (memoryStatus.totalMemory / 1e6).toFixed(0)
 
-    readonly property real appCpuPercentage: (processMonitor.cpuLoad * 100).toFixed(1)
-    readonly property real appRamBytes: (processMonitor.memoryPss.total / 1e6).toFixed(1)
+    readonly property real appCpuPercentage: (processStatus.cpuLoad * 100).toFixed(1)
+    readonly property real appRamBytes: (processStatus.memoryPss.total / 1e6).toFixed(1)
     readonly property real appRamPercentage: ((appRamBytes / ramTotalBytes) * 100).toFixed(1)
 
-    property var monitorModel: SystemMonitor {
-        id: systemMonitor
-        memoryReportingEnabled: root.systemOverlayEnabled || root.monitorEnabled
-        cpuLoadReportingEnabled: root.systemOverlayEnabled || root.monitorEnabled
-        reportingInterval: 1000
+    property var monitorModel: MonitorModel {
+        running: root.systemOverlayEnabled || root.monitorEnabled
+        interval: 1000
+        CpuStatus { id: cpuStatus }
+        MemoryStatus { id: memoryStatus }
     }
 
-    property var _procMon: ProcessMonitor {
-        id: processMonitor
+    property var _procStatus: ProcessStatus {
+        id: processStatus
         applicationId: root.activeAppInfo ? root.activeAppInfo.id : ""
-        reportingInterval: 1000
-        memoryReportingEnabled: root.systemOverlayEnabled && root.activeAppInfo
-        cpuLoadReportingEnabled: root.systemOverlayEnabled && root.activeAppInfo
+    }
+    property var _procStatusTimer: Timer {
+        interval: 1000
+        running: root.systemOverlayEnabled && root.activeAppInfo
+        repeat: true
+        onTriggered: processStatus.update()
     }
 }
