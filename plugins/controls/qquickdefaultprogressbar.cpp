@@ -185,6 +185,7 @@ void QQuickDefaultProgressBarNode::sync(QQuickItem *item)
             transformNode->setMatrix(m);
 
             rectNode->setColor(bar->color());
+            rectNode->setRadius(bar->radius());
             rectNode->setRect(QRectF(QPointF(0, 0), QSizeF(BlockWidth, item->implicitHeight())));
             rectNode->update();
 
@@ -202,6 +203,7 @@ void QQuickDefaultProgressBarNode::sync(QQuickItem *item)
             appendChildNode(rectNode);
         }
         rectNode->setColor(bar->color());
+        rectNode->setRadius(bar->radius());
         rectNode->setRect(QRectF(QPointF(0, 0), QSizeF(bar->progress() * item->width(), item->implicitHeight())));
         rectNode->update();
     }
@@ -255,6 +257,20 @@ void QQuickDefaultProgressBar::setColor(const QColor &color)
         return;
 
     m_color = color;
+    update();
+}
+
+int QQuickDefaultProgressBar::radius() const
+{
+    return m_radius;
+}
+
+void QQuickDefaultProgressBar::setRadius(const int &radius)
+{
+    if (radius == m_radius)
+        return;
+
+    m_radius = radius;
     update();
 }
 

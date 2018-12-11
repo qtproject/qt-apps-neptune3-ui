@@ -52,6 +52,7 @@ T.ProgressBar {
         progress: control.position
         indeterminate: control.visible && control.indeterminate
         color: Style.accentColor
+        radius: height / 2
     }
 
     background: Rectangle {
@@ -64,5 +65,6 @@ T.ProgressBar {
         //TODO check with designer if color is correct
         color: Style.contrastColor
         opacity: Style.opacityMedium
+        radius: height / 2
     }
 }

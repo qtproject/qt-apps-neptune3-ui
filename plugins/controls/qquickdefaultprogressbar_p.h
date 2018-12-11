@@ -59,6 +59,7 @@ class QQuickDefaultProgressBar : public QQuickItem
     Q_PROPERTY(bool indeterminate READ isIndeterminate WRITE setIndeterminate FINAL)
     Q_PROPERTY(qreal progress READ progress WRITE setProgress FINAL)
     Q_PROPERTY(QColor color READ color WRITE setColor FINAL)
+    Q_PROPERTY(int radius READ radius WRITE setRadius FINAL)
 
 public:
     explicit QQuickDefaultProgressBar(QQuickItem *parent = nullptr);
@@ -72,6 +73,9 @@ public:
     QColor color() const;
     void setColor(const QColor &color);
 
+    int radius() const;
+    void setRadius(const int &radius);
+
 protected:
     void itemChange(ItemChange change, const ItemChangeData &data) override;
     QSGNode *updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *) override;
@@ -80,6 +84,7 @@ private:
     qreal m_progress;
     bool m_indeterminate;
     QColor m_color;
+    int m_radius;
 };
 
 QT_END_NAMESPACE
