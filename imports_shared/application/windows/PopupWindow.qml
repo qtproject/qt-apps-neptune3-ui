@@ -35,7 +35,7 @@ import shared.Style 1.0
 
 /*!
     \qmltype PopupWindow
-    \inqmlmodule utils
+    \inqmlmodule application.windows
     \inherits ApplicationManageWindow
     \since 5.11
     \brief A window used from applications to display modal popups in sysui.

@@ -35,7 +35,7 @@ import shared.Style 1.0
 
 /*!
     \qmltype ApplicationICWindow
-    \inqmlmodule utils
+    \inqmlmodule application.windows
     \inherits NeptuneWindow
     \since 5.12
     \brief The application instrument cluster window of a Neptune 3 application
@@ -53,7 +53,7 @@ import shared.Style 1.0
 
     \qml
     import QtQuick 2.10
-    import shared.utils 1.0
+    import application.windows 1.0
 
     QtObject {
         property var mainWindow: ApplicationCCWindow {

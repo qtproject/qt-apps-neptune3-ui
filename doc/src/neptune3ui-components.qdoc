@@ -34,6 +34,7 @@
    \list
        \li \l{ApplicationCCWindow}
        \li \l{ApplicationICWindow}
+       \li \l{NeptuneWindow}
        \li \l{PopupWindow}
    \endlist
 
@@ -55,7 +56,6 @@
    \list
        \li \l{NotificationInterface}
        \li \l{ApplicationRequestHandler}
-       \li \l{MusicAppRequestsIPC}
    \endlist
 
    Neptune UI animations:

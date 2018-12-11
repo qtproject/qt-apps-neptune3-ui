@@ -37,7 +37,7 @@ import shared.Sizes 1.0
 
 /*!
     \qmltype ApplicationCCWindow
-    \inqmlmodule utils
+    \inqmlmodule application.windows
     \inherits NeptuneWindow
     \since 5.12
     \brief The application center console window of a Neptune 3 application
@@ -54,7 +54,7 @@ import shared.Sizes 1.0
 
     \qml
     import QtQuick 2.10
-    import shared.utils 1.0
+    import application.windows 1.0
 
     ApplicationCCWindow {
         id: root
@@ -67,7 +67,6 @@ import shared.Sizes 1.0
             width: root.exposedRect.width
             height: root.exposedRect.height
         }
-
     }
     \endqml
 

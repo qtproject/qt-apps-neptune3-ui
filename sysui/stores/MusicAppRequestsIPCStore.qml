@@ -33,13 +33,13 @@ import QtQuick 2.0
 import QtApplicationManager.SystemUI 1.0
 
 /*!
-    \qmltype MusicAppRequestsIPC
+    \qmltype MusicAppRequestsIPCStore
     \inqmlmodule service
     \inherits ApplicationIPCInterface
-    \since 5.11
+    \since 5.12
     \brief An IPC for music application requests
 
-    The MusicaAppRequestsIPC is meant to be used only for the music requests use case, enabling music,
+    The MusicAppRequestsIPCStore is meant to be used only for the music requests use case, enabling music,
     tuner and webradio apps to know whether spotify and/or webradio are installed from the appstore,
     or added / removed. This interface can be accessed only from the mentioned apps.
 */
@@ -48,7 +48,7 @@ ApplicationIPCInterface {
     id: root
 
     /*!
-        \qmlproperty rect MusicAppRequestsIPC::spotifyInstalled
+        \qmlproperty rect MusicAppRequestsIPCStore::spotifyInstalled
 
         This property holds whether spotify application is installed or not in Neptune 3.
     */
@@ -56,7 +56,7 @@ ApplicationIPCInterface {
     property bool spotifyInstalled: false
 
     /*!
-        \qmlproperty rect MusicAppRequestsIPC::webradioInstalled
+        \qmlproperty rect MusicAppRequestsIPCStore::webradioInstalled
 
         This property holds whether web radio application is installed or not in Neptune 3.
     */
@@ -64,7 +64,7 @@ ApplicationIPCInterface {
     property bool webradioInstalled: false
 
     /*!
-        \qmlproperty rect MusicAppRequestsIPC::appmanCnx
+        \qmlproperty rect MusicAppRequestsIPCStore::appmanCnx
 
         This property is used to listen to the ApplicationManager to get the status of
         external application in Neptune 3.

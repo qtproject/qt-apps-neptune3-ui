@@ -37,7 +37,7 @@ import shared.Sizes 1.0
 
 /*!
     \qmltype NeptuneWindow
-    \inqmlmodule windows
+    \inqmlmodule application.windows
     \inherits ApplicationManagerWindow
     \since 5.12
     \brief The basic type of Neptune Window for Neptune 3 applications
