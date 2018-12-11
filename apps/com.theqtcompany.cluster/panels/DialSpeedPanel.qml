@@ -267,8 +267,7 @@ Item {
 
     Label {
         id: indicatorSpeed
-        x: Sizes.dp(257)
-        y: Sizes.dp(218)
+        anchors.centerIn: dialFrame
         width: Sizes.dp(40)
         text: Math.round(speed)
         verticalAlignment: Text.AlignTop
@@ -329,8 +328,8 @@ Item {
 
     Shape {
         id: cruiseMask
-        x: -1000
-        y: -1000
+        x: Sizes.dp(-1000)
+        y: Sizes.dp(-1000)
         width: Sizes.dp(370)
         height: width
         visible: true
