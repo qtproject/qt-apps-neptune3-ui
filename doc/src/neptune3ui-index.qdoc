@@ -34,9 +34,9 @@
    Neptune 3 UI provides a UI implementation for Qt in IVI (In-Vehichle Infotainment)
    systems. It demonstrates best practices for developing an Automotive UI with
    \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3 supports a set of
-   displays: \l{Instrument Cluster}, \l{Center Stack Display}, Head Up Display and Passenger Screens.
+   displays: \l{Instrument Cluster}, \l{Center Console Display}, Head Up Display and Passenger Screens.
    At the moment the design documents only cover the first two: \l{Instrument Cluster} and
-   \l{Center Stack Display}.
+   \l{Center Console Display}.
 
    \section1 Topics
 

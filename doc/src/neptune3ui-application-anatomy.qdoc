@@ -28,7 +28,7 @@
 /*!
    \page neptune3ui-application-anatomy.html
    \title Neptune 3 UI - Application Anatomy
-   \brief Anatomy of the applications in Center Stack Display
+   \brief Anatomy of the applications in Center Console Display
 
    In Neptune 3, an application can have both the fullscreen state
    and the (optional) widget state. The states should not be designed

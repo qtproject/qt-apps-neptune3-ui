@@ -82,7 +82,7 @@
    \section1 Performance Tab
 
    The third tab of the system dialog contains two switch buttons to enable the performance
-   overlay of the \l{center stack display} and the \l{instrument cluster}. It forces the System UI
+   overlay of the \l{center console display} and the \l{instrument cluster}. It forces the System UI
    to constantly redraw itself to get the actual GPU/CPU consumptions.
 
    \image system-dialog-performance.jpg

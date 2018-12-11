@@ -30,7 +30,7 @@
    \title Neptune 3 UI - System UI
 
    Neptune 3's System UI is a Qt QML application comprised of one or more top-level
-   QWindows: a \l{center stack display}{Center Console} window, an optional
+   QWindows: a \l{center console display}{Center Console} window, an optional
    \l{Instrument Cluster} window and an optional HUD window. It is a special Qt
    QML application as it uses a Wayland server Qt platform backend, which turns
    it into a fully fledged compositing window manager.
@@ -54,7 +54,7 @@
    Neptune 3 UI and export it. At the same time, it also exports the output of
    Qt diagnostic tool. The exported files will be stored under \e {/tmp} folder.
    In order to do this, the user can press and hold the clock at the top right
-   corner of the \l{center stack display}{Center Console} or press CTRL + p.
+   corner of the \l{center console display}{Center Console} or press CTRL + p.
 
    \section1 Wayland Compositor
 

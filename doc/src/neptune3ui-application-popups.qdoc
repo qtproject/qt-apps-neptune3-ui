@@ -37,7 +37,7 @@
    \section1 Implementation Insights
 
    The interface component to the application is \l{PopupWindow}. This is displayed
-   in the \l{Center Stack Display} and gives the application the flexibility to create
+   in the \l{Center Console Display} and gives the application the flexibility to create
    popups containing any kind of custom content and display those in system ui as a
    modal popups. The \l{PopupModel} is responsible of holding all application popups in
    Neptune3 UI in a list and managing it. It is in other words a popup manager taking

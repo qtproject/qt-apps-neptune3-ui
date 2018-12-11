@@ -43,7 +43,7 @@ import shared.Style 1.0
     The application instrument cluster window of a Neptune 3 application is displayed on the
     \l{Instrument Cluster}. The content of an application IC window will be rendered behind
     the gauges. \l{ApplicationICWindow} is used by an application that wants to share content
-    between the \l{center stack display} and the \l{instrument cluster}.
+    between the \l{center console} and the \l{instrument cluster}.
 
     See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
 

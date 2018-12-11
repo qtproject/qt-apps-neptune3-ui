@@ -46,7 +46,7 @@
    e.g. Intel NUC.
 
    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It provides support for
-   a center stack display and an instrument cluster and uses the Qt IVI plugins to access various
+   a center console display and an instrument cluster and uses the Qt IVI plugins to access various
    services. Neptune 3 UI offers a multiprocess application model using a central System UI
    and various applications. The System UI provides an application launcher to start and stop
    applications. The Application Manager Plugin for Qt Creator allows a developer to develop
@@ -173,7 +173,7 @@
       \li Description
    \row
        \li \c am-config-neptune.yaml
-       \li Defines the \l{center stack display} and cluster-specific configurations. For example,
+       \li Defines the \l{center console display} and cluster-specific configurations. For example,
        built-in applications and their runtime (native or QML), import paths,
        UI-specific configurations such as a full-screen mode and a main QML file (if
        runtime is QML). This yaml file will configure Neptune 3 to use "neptune" style.
