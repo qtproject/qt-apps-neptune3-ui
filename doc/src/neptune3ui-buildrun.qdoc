@@ -83,7 +83,7 @@
    \section2 Prerequisites
 
    \list
-   \li \b{Qt 5.11} or higher
+   \li \b{Qt 5.12} or higher
    \endlist
 
    \note Qt installation need to include qtwayland submodule in order to support multi-process
@@ -92,8 +92,8 @@
    \section2 Dependencies
 
    \list
-   \li \l{Qt Application Manager} 5.11
-   \li \l{Qt IVI} 5.11
+   \li \l{Qt Application Manager} 5.12
+   \li \l{Qt IVI} 5.12
    \endlist
 
    \section2 Build and run Neptune 3 UI
@@ -104,10 +104,10 @@
    the \l{Qt IVI Git Repository}{Qt IVI} and \l{Neptune3-UI Git Repository}{Neptune3-UI}
    Git repositories.
 
-   \li Build \l{Qt Application Manager} against Qt 5.11 or higher. See
+   \li Build \l{Qt Application Manager} against Qt 5.12 or higher. See
    \l{Qt Applicaton Manager Installation} for more detailed build instructions.
 
-   \li Build \l{Qt IVI}. against Qt 5.11 or higher. See \l{Qt IVI}{Qt
+   \li Build \l{Qt IVI}. against Qt 5.12 or higher. See \l{Qt IVI}{Qt
    IVI documentation} for more detailed information.
 
    \li Build Neptune 3 UI and install it by running the following command in a terminal:
@@ -118,8 +118,9 @@
 
    \li Run the following command in a terminal under the \e neptune3-ui installation directory:
    \badcode
-   ./neptune3-ui -r -c
+   ./neptune3-ui -r -c --start-session-dbus
    \endcode
+   \note --start-session-dbus is required when running Neptune 3 on Linux (Multi Process mode)
 
    \endlist
 
@@ -148,12 +149,13 @@
        -j8 (depending on how many jobs you want to use in your machine)
 
    \li Add another Build Step and choose "make" step. And insert the argument under make
-       arguments: install -j8
+       arguments: install -j8 (depending on how many jobs you want to use in your machine)
 
    \li Open your Run Settings and choose "neptune3-ui" under Run configuration. You can
        also have some other application manager options to be added into the Command line
        arguments, e.g. --recreate-database, etc. See this page for more information:
-       \l{Application Manager Configuration}.
+       \l{Application Manager Configuration}. Make sure that you run "neptune3-ui" from
+       your install folder and not build folder.
 
    \li Finally you can build and run the project by pressing the Run button or press "Ctrl + R".
 
@@ -170,18 +172,22 @@
       \li File
       \li Description
    \row
-       \li \c am-config.yaml
+       \li \c am-config-neptune.yaml
        \li Defines the \l{center stack display} and cluster-specific configurations. For example,
        built-in applications and their runtime (native or QML), import paths,
        UI-specific configurations such as a full-screen mode and a main QML file (if
-       runtime is QML).
+       runtime is QML). This yaml file will configure Neptune 3 to use "neptune" style.
+   \row
+       \li \c am-config-lucee.yaml
+       \li Similar to the am-config-neptune.yaml but this yaml file will configure Neptune 3
+       to use "lucee" style.
     \row
        \li \c info.yaml
        \li Defines an application-specific configuration. For example, a main QML
        file and its imports.
    \endtable
 
-   The following code defines an example of the \c am-config.yaml file:
+   The following code defines an example of the \c am-config-neptune.yaml file:
 
    \badcode
     formatVersion: 1
@@ -214,6 +220,7 @@
     systemProperties:
       public:
         showCluster: yes
+        showHUD: yes
         devMode: yes
       private:
         appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
