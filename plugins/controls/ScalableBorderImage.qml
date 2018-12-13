@@ -38,7 +38,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits Item
     \since 5.11
-    \brief The scalable border image component of Neptune 3
+    \brief The scalable border image component of Neptune 3.
 
     The ScalableBorderImage provides a BorderImage that scales according to Sizes.scale.
     It enables a BorderImage to stretch or shrink to support any pixel density.

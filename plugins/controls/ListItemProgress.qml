@@ -42,7 +42,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief The list item with progress bar component of Neptune 3
+    \brief The list item with progress bar component of Neptune 3.
 
     The ListItemProgress provides a type of a list item with an integrated progress bar.
 

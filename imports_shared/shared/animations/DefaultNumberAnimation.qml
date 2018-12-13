@@ -36,7 +36,7 @@ import QtQuick 2.6
     \inqmlmodule animations
     \inherits NumberAnimation
     \since 5.11
-    \brief The default number animation of a Neptune 3 application
+    \brief The default number animation of a Neptune 3 application.
 
 
     The DefaultNumberAnimation describes the default number animation being

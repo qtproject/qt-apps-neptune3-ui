@@ -36,7 +36,7 @@ import QtQuick 2.6
     \inqmlmodule animations
     \inherits SmoothedAnimation
     \since 5.11
-    \brief The default smoothed animation of a Neptune 3 application
+    \brief The default smoothed animation of a Neptune 3 application.
 
 
     The DefaultSmoothedAnimation describes the default smoothed animation being

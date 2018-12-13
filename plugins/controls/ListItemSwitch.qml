@@ -39,7 +39,7 @@ import shared.Style 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief The list item with progress bar component of Neptune 3
+    \brief The list item with progress bar component of Neptune 3.
 
     The ListItemSwitch provides a type of a list item with a Switch at the right side.
 

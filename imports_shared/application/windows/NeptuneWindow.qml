@@ -40,7 +40,7 @@ import shared.Sizes 1.0
     \inqmlmodule application.windows
     \inherits ApplicationManagerWindow
     \since 5.12
-    \brief The basic type of Neptune Window for Neptune 3 applications
+    \brief The basic type of Neptune Window for Neptune 3 applications.
 
     The Neptune Window provides the basic type of application window to be used by the application.
 

@@ -37,7 +37,7 @@ import QtApplicationManager.SystemUI 1.0
     \inqmlmodule service
     \inherits ApplicationIPCInterface
     \since 5.12
-    \brief An IPC for music application requests
+    \brief An IPC for music application requests.
 
     The MusicAppRequestsIPCStore is meant to be used only for the music requests use case, enabling music,
     tuner and webradio apps to know whether spotify and/or webradio are installed from the appstore,

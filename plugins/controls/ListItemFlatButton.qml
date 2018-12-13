@@ -40,7 +40,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief Flat button for list items and lists and notifications
+    \brief Flat button for list items and lists and notifications.
 
     ListItemFlatButton provides a type of a list item with a flat button and close button
     on the right side. The flat button supports text on one line and its width is aligned with

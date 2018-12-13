@@ -40,7 +40,7 @@ import shared.Sizes 1.0
     \inqmlmodule application.windows
     \inherits NeptuneWindow
     \since 5.12
-    \brief The application center console window of a Neptune 3 application
+    \brief The application center console window of a Neptune 3 application.
 
     The application center console window of a Neptune 3 application is displayed on the Center Console.
     This component also provides APIs for interacting with system UI and for positioning
