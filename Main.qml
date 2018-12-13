@@ -58,7 +58,7 @@ QtObject {
         }
 
         onGrabImageRequested: {
-            centerConsoleWindow.centerConsole.grabToImage(function(result) {
+            centerConsoleWindow.mainCenterConsole.grabToImage(function(result) {
                 var ret = result.saveToFile(screenshotUrl);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
             });
