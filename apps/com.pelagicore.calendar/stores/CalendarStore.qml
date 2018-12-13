@@ -46,43 +46,43 @@ Store {
         ListElement {
             timeStart: "08:00"
             timeEnd: "09:00"
-            event: "Drive to office"
+            event: "Drive to the office"
         }
 
         ListElement {
             timeStart: "09:00"
             timeEnd: "10:00"
-            event: "Meeting with Partner"
+            event: "Meeting with partners"
         }
 
         ListElement {
             timeStart: "10:30"
             timeEnd: "11:00"
-            event: "Team Meeting"
+            event: "Daily meeting"
         }
 
         ListElement {
             timeStart: "12:00"
             timeEnd: "13:00"
-            event: "Lunch with Partner"
+            event: "Lunch time"
         }
 
         ListElement {
             timeStart: "12:00"
             timeEnd: "13:00"
-            event: "Annual Project Meeting"
+            event: "Annual project meeting"
         }
 
         ListElement {
             timeStart: "17:00"
             timeEnd: "18:00"
-            event: "Pick-up Daughter from school"
+            event: "Pick up daughter from school"
         }
 
         ListElement {
             timeStart: "19:00"
             timeEnd: "22:00"
-            event: "Dinner with Friends"
+            event: "Dinner with friends"
         }
     }
 
