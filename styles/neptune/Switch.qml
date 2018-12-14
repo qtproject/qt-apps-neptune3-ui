@@ -1,7 +1,8 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Copyright (C) 2017 The Qt Company Ltd.
-** Copyright (C) 2018 Pelagicore AB
 ** Contact: http://www.qt.io/licensing/
 **
 ** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
