@@ -43,6 +43,11 @@ Item {
     id: root
 
     y: root.notificationModel.notificationCenterVisible ? 0 : -root.height
+    onYChanged: {
+        if (root.y === -root.height) {
+            root.animationEnabled = false;
+        }
+    }
 
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
@@ -57,13 +62,14 @@ Item {
     readonly property int listviewMaxHeight: Sizes.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
     readonly property int notificationTopMargin: Sizes.dp(80)
     readonly property int notificationBottomMargin: Sizes.dp(144)
+    property bool animationEnabled: false
 
     Behavior on y {
-        enabled: !root.notificationModel.notificationToastVisible
+        enabled: !root.notificationModel.notificationToastVisible && root.animationEnabled
         DefaultNumberAnimation { }
     }
     Behavior on height {
-        enabled: !root.notificationModel.notificationToastVisible
+        enabled: !root.notificationModel.notificationToastVisible && root.animationEnabled
         DefaultNumberAnimation { }
     }
 

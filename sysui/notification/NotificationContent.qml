@@ -40,7 +40,10 @@ ModalOverlay {
     id: root
 
     showModalOverlay: notificationModel.notificationCenterVisible
-    onOverlayClicked: notificationModel.notificationCenterVisible = false
+    onOverlayClicked: {
+        notificationCenter.animationEnabled = true;
+        notificationModel.notificationCenterVisible = false;
+    }
 
     NotificationModel {
         id: notificationModel
@@ -86,6 +89,7 @@ ModalOverlay {
                 // start drag filter timer
                 notificationHandle.dragFilterTimer.running = true;
             }
+            notificationCenter.animationEnabled = true;
         }
 
         onReleased: {
@@ -110,6 +114,7 @@ ModalOverlay {
                 // close notification toast
                 notificationModel.closeNotification();
             }
+            notificationCenter.animationEnabled = false;
         }
     }
 }
