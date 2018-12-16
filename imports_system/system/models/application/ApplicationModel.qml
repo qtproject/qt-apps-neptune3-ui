@@ -199,10 +199,17 @@ ListModel {
 
         function deserializeWidgetsState(widgetStates)
         {
+            var apps;
+
+            // if there are no widgets stored in the settings, the default widget states is being used instead
+            if (widgetStates === "") {
+                apps = ["com.pelagicore.phone:2", "com.pelagicore.music:2", "com.pelagicore.calendar:1"]
+            } else {
+                apps = widgetStates.split(",")
+            }
+
             var appIds = []
             var appHeights = []
-
-            var apps = widgetStates.split(",");
 
             for (var i = 0; i < apps.length; i++) {
                 var values = apps[i].split(":");
