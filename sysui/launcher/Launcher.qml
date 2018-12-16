@@ -97,6 +97,17 @@ Item {
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
         checkable: true
+
+        // content item of ToolButton is not scaled correctly in some screen resolutions
+        // need to revert this changes once: QTBUG-72569 is fixed.
+        contentItem: null
+        NeptuneIconLabel {
+            anchors.centerIn: parent
+            width: Sizes.dp(35)
+            height: Sizes.dp(35)
+            icon: gridButton.icon
+            color: gridButton.icon.color
+        }
     }
 
     EditableGridView {
