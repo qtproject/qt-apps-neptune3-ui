@@ -31,9 +31,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import shared.controls 1.0
 
-NeptuneIconLabel {
+Image {
     property bool checked: false
-    icon.color: "white"
+    fillMode: Image.PreserveAspectFit
 }

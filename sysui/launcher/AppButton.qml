@@ -45,7 +45,7 @@ Item {
     property bool gridOpen: false
     property alias editModeBgOpacity: editModeBg.opacity
     property alias editModeBgColor: editModeBg.color
-    property alias iconSource: icon.icon.source
+    property alias iconSource: icon.source
     property alias labelText: appLabel.text
 
     Rectangle {
