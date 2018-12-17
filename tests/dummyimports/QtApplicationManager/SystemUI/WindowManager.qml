@@ -32,7 +32,7 @@
 
 pragma Singleton
 import QtQuick 2.2
-import QtApplicationManager 1.0
+import QtApplicationManager 2.0
 
 QtObject {
     id: root

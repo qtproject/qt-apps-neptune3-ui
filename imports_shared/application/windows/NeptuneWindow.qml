@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager.Application 1.0
+import QtApplicationManager.Application 2.0
 import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0

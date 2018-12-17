@@ -29,7 +29,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-.import QtApplicationManager.Application 1.0 as ApplicationManager
+.import QtApplicationManager.Application 2.0 as ApplicationManager
 .import shared.Style 1.0 as Style
 function showOfflineNotification() {
     var notification = ApplicationManager.ApplicationInterface.createNotification();

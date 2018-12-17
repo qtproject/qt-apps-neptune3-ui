@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
-import QtApplicationManager.SystemUI 1.0
+import QtApplicationManager.SystemUI 2.0
 
 QtObject {
     id: root
