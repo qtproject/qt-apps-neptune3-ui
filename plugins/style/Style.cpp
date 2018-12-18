@@ -103,7 +103,7 @@ void Style::setAccentColor(const QColor &accent)
 
 void Style::setTheme(Style::Theme value)
 {
-    if (value == (Theme)m_theme)
+    if (value == static_cast<Theme>(m_theme))
         return;
 
     if (!supportsMultipleThemes()) {
@@ -111,7 +111,7 @@ void Style::setTheme(Style::Theme value)
         return;
     }
 
-    m_theme = (StyleData::Theme)value;
+    m_theme = static_cast<StyleData::Theme>(value);
     m_image = QJSValue();
     propagateTheme();
     emit themeChanged();
@@ -136,7 +136,7 @@ void Style::propagateTheme()
     for (QQuickAttachedObject *child : attachedChildren()) {
         Style* basicStyle = qobject_cast<Style *>(child);
         if (basicStyle)
-            basicStyle->setTheme((Theme)m_theme);
+            basicStyle->setTheme(static_cast<Theme>(m_theme));
     }
 }
 
