@@ -233,9 +233,9 @@ QString Style::imageHelper(const QString &value)
         QString darkResult = result;
         darkResult.append("-dark.png");
         if (QFileInfo::exists(darkResult))
-            return darkResult;
+            return QUrl::fromLocalFile(darkResult).toString();
     }
 
     result.append(".png");
-    return result;
+    return QUrl::fromLocalFile(result).toString();
 }
