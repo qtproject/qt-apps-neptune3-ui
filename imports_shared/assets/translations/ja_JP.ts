@@ -82,6 +82,14 @@
     </message>
 </context>
 <context>
+    <name>AbstractApplicationWidget</name>
+    <message>
+        <source>Application window of %1 is not available.
+                    Please remove the widget and try to restart the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddWidgetPopup</name>
     <message>
         <source>Add widget</source>
