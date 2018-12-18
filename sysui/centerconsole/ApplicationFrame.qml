@@ -90,11 +90,19 @@ Item {
             windowState: "Maximized"
 
             property var addAnimation: SequentialAnimation {
+                ScriptAction { script: {
+                    maxWindowObj.visible = true;
+                }}
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
             }
             property var removeAnimation: SequentialAnimation {
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 1; to: 0 }
+
                 ScriptAction { script: {
+                    if (maxWindowObj) {
+                        maxWindowObj.visible = false;
+                    }
+
                     // self destruct
                     maxWindowObj.destroy();
                 }}
