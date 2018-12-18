@@ -88,10 +88,6 @@ QtObject {
         initialTheme: centerConsoleWindow.contentItem.Style.theme
     }
 
-    readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
-        store: root.store
-    }
-
     readonly property Loader instrumentClusterWindowLoader: Loader {
         id: instrumentClusterWindowLoader
 
@@ -116,4 +112,9 @@ QtObject {
         }
         active: !root.store.runningOnSingleScreenEmbedded && root.store.hudStore.showHUD
     }
+
+    readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
+        store: root.store
+    }
+
 }
