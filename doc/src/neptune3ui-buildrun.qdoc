@@ -119,9 +119,12 @@
 
    \li Run the following command in a terminal under the \e neptune3-ui installation directory:
    \badcode
-   ./neptune3-ui -r -c --start-session-dbus
+   ./neptune3-ui -r --start-session-dbus
    \endcode
    \note --start-session-dbus is required when running Neptune 3 on Linux (Multi Process mode)
+   \note By default, Neptune style is used and am-config-neptune.yaml is configured as the default
+   configuration file. Hence, in order to load the LUCEE style for Neptune 3, -c am-config-lucee.yaml
+   is needed when starting Neptune 3
 
    \endlist
 
@@ -152,15 +155,19 @@
    \li Add another Build Step and choose "make" step. And insert the argument under make
        arguments: install -j8 (depending on how many jobs you want to use in your machine)
 
-   \li Open your Run Settings and choose "neptune3-ui" under Run configuration. You can
-       also have some other application manager options to be added into the Command line
-       arguments, e.g. --recreate-database, etc. See this page for more information:
-       \l{Application Manager Configuration}. Make sure that you run "neptune3-ui" from
-       your install folder and not build folder.
+   \li Open your Run Settings and choose "neptune3-ui" from the install folder under Run
+       configuration. You can also have some other application manager options to be added
+       into the Command line arguments, e.g. --recreate-database, etc. See this page for
+       more information: \l{Application Manager Configuration}. Make sure that you run
+       "neptune3-ui" from your install folder and not build folder.
 
    \li Finally you can build and run the project by pressing the Run button or press "Ctrl + R".
 
    \endlist
+
+   \note On Windows, a wrapper is generated when Neptune 3 is built and installed to be able to
+   find required Qt libraries. Run the wrapper instead of the executable file to run Neptune 3.
+   (the wrapper is called: neptune3-ui_wrapper)
 
    \section2 Configuring Neptune 3 UI
 
@@ -205,7 +212,7 @@
 
     runtimes:
       qml:
-        importPaths: [ "${CONFIG_PWD}/imports/shared" ]
+        importPaths: [ "${CONFIG_PWD}/imports_shared" ]
 
     # ... as well as the SystemUI
 
@@ -213,10 +220,10 @@
       fullscreen: yes
       style: "${CONFIG_PWD}/styles/neptune"
       iconThemeName: "neptune"
-      iconThemeSearchPaths: [ "${CONFIG_PWD}/imports/assets/icons" ]
+      iconThemeSearchPaths: [ "${CONFIG_PWD}/imports_shared/assets/icons" ]
       mainQml: "${CONFIG_PWD}/Main.qml"
-      importPaths: [ "${CONFIG_PWD}/imports/shared", "${CONFIG_PWD}/imports/system", "${CONFIG_PWD}/sysui" ]
-      windowIcon: "${CONFIG_PWD}/imports/assets/icons/neptune/sysui/ic-menu-home.png"
+      importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
+      windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
 
     systemProperties:
       public:
