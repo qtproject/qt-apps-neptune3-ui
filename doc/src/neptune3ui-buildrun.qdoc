@@ -240,7 +240,17 @@
       noUiWatchdog: yes
    \endcode
 
-   These options are also configurable from the command line as a parameter to the
+   There are options for system properties available in the yaml file to show other screens such as
+   Instrument Cluster and HUD than the center console. By default, these screens are enabled. Set
+   "showCluster" or "showHUD" to "no" to let Neptune 3 know that those screens are not intended to be
+   shown.
+
+   There is also one option that can be set to "yes" or "no" called "devMode" to enable and disable
+   development mode in Neptune 3. If this option is enabled, the Sheets application will be included
+   in the application launcher and user can see all components that are supported by Neptune 3 which
+   can be used to develop an application.
+
+   All of these options are also configurable from the command line as a parameter to the
    \e appman utility. See \l{Application Manager Configuration} for more information.
 
    \badcode
