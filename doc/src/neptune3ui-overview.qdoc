@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -154,9 +155,9 @@
 
    \image instrument-cluster-nav.jpg
 
-   \section2 Center Stack Display
+   \section2 Center Console Display
 
-   The Center Stack display is designed to show the multiprocess capabilities;
+   The Center Console display is designed to show the multiprocess capabilities;
    the fact that we can run several applications at the same time with quick response and
    smooth transitions. Even if we technically have different applications running on
    separate processes, the intention is to fade out the border between them, and between
@@ -164,7 +165,7 @@
    system.
 
    In addition to traditional applications, like Music Player, Phone and Navigation, the
-   Center Stack display also contains climate settings, system notifications and different
+   Center Console display also contains climate settings, system notifications and different
    vehicle information and settings.
 
    Some applications, like Music Player, can go both as fullscreen and as widgets. The widgets
@@ -174,7 +175,7 @@
    \image center-stack.jpg
 
    When an application is shown in maximized state, it will take over the whole part of the
-   Center Stack and show the full content of the application as illustrated in the following
+   Center Console and show the full content of the application as illustrated in the following
    image:
 
    \image center-stack-maximized-app.jpg
@@ -191,7 +192,7 @@
 
    \section2 Application Widget
 
-   By default, the \l{center stack display} shows three application widgets. User can choose which
+   By default, the \l{center console display} shows three application widgets. User can choose which
    application to be shown on the home screen as widget by tapping on the Add-Widget icon
    below the lowest widget and choose the desired application. Only application that is specified to
    have a widget-option will be listed there. The user can also remove a widget from the home screen
@@ -205,7 +206,7 @@
 
    \section2 Climate Bar
 
-   Neptune 3 UI has a Climate Bar located at the bottom of the \l{Center Stack Display}. When tapping
+   Neptune 3 UI has a Climate Bar located at the bottom of the \l{Center Console Display}. When tapping
    into it, a Climate Panel will be shown up with some simulation data interface to \l{Qt IVI}
    as shown in the following image:
 

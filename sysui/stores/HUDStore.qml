@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -30,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager.SystemUI 1.0
+import QtApplicationManager.SystemUI 2.0
 import shared.com.pelagicore.settings 1.0
 
 QtObject {

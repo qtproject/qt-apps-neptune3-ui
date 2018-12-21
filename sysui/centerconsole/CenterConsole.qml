@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -60,6 +61,17 @@ AbstractCenterConsole {
         anchors.leftMargin: Sizes.dp(27)
         icon.name: root.store.volumeStore.volumeIcon
         onClicked: volumePopup.open()
+
+        // content item of ToolButton is not scaled correctly in some screen resolutions
+        // need to revert this changes once: QTBUG-72569 is fixed.
+        contentItem: null
+        NeptuneIconLabel {
+            anchors.centerIn: parent
+            width: Sizes.dp(50)
+            height: Sizes.dp(50)
+            icon: leftIcon.icon
+            color: leftIcon.icon.color
+        }
     }
 
     ToolButton {
@@ -71,6 +83,17 @@ AbstractCenterConsole {
         anchors.rightMargin: Sizes.dp(27)
         icon.name: "qt-badge"
         onClicked: about.open()
+
+        // content item of ToolButton is not scaled correctly in some screen resolutions
+        // need to revert this changes once: QTBUG-72569 is fixed.
+        contentItem: null
+        NeptuneIconLabel {
+            anchors.centerIn: parent
+            width: Sizes.dp(50)
+            height: Sizes.dp(50)
+            icon: rightIcon.icon
+            color: rightIcon.icon.color
+        }
     }
 
     PopupItemLoader {

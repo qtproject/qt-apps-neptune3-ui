@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -41,7 +42,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief The list item with two buttons component of Neptune 3
+    \brief The list item with two buttons component of Neptune 3.
 
     The ListItemSwitch provides a type of a list item with two tool buttons at the right side.
 

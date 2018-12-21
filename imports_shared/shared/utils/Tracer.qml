@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -37,7 +38,7 @@ import shared.utils 1.0
     \inqmlmodule utils
     \inherits MouseArea
     \since 5.11
-    \brief The tracer of a Neptune 3 application
+    \brief The tracer of a Neptune 3 application.
 
     The Tracer is used to mark desired area to help developer see if the created
     component is created as intended or not.

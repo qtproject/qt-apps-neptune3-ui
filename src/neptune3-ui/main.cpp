@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -83,8 +84,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QCoreApplication::setApplicationName(qSL("Neptune UI"));
-    QCoreApplication::setOrganizationName(qSL("Pelagicore AG"));
-    QCoreApplication::setOrganizationDomain(qSL("pelagicore.com"));
+    QCoreApplication::setOrganizationName(qSL("Luxsoft Sweden AB"));
+    QCoreApplication::setOrganizationDomain(qSL("luxoft.com"));
     QCoreApplication::setApplicationVersion(STR(NEPTUNE_VERSION));
 
     Logging::initialize();

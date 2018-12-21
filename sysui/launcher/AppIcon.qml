@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -30,9 +31,8 @@
 ****************************************************************************/
 
 import QtQuick 2.6
-import shared.controls 1.0
 
-NeptuneIconLabel {
+Image {
     property bool checked: false
-    icon.color: "white"
+    fillMode: Image.PreserveAspectFit
 }

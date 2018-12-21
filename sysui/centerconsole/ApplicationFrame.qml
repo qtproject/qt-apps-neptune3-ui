@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -89,11 +90,19 @@ Item {
             windowState: "Maximized"
 
             property var addAnimation: SequentialAnimation {
+                ScriptAction { script: {
+                    maxWindowObj.visible = true;
+                }}
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
             }
             property var removeAnimation: SequentialAnimation {
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 1; to: 0 }
+
                 ScriptAction { script: {
+                    if (maxWindowObj) {
+                        maxWindowObj.visible = false;
+                    }
+
                     // self destruct
                     maxWindowObj.destroy();
                 }}

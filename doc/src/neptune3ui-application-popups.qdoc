@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -37,15 +38,15 @@
    \section1 Implementation Insights
 
    The interface component to the application is \l{PopupWindow}. This is displayed
-   in the \l{Center Stack Display} and gives the application the flexibility to create
+   in the \l{Center Console Display} and gives the application the flexibility to create
    popups containing any kind of custom content and display those in system ui as a
-   modal popups. The \l{PopupModel} is responsible of holding all application popups in
+   modal popups. The Application Popup Store is responsible of holding all application popups in
    Neptune3 UI in a list and managing it. It is in other words a popup manager taking
    care of showing and dismissing popups. That said, is also takes care about the
    rendering taking into account all properties the application has set for this specific
    popup.
 
-   See \l{PopupModel} and \l{PopupWindow} for detailed information and usage examples.
+   See \l{PopupWindow} for detailed information and usage examples.
 
    \section2 Some Use-Cases in Neptune 3 UI
 

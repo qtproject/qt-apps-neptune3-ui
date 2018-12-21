@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -30,17 +31,17 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager.Application 1.0
+import QtApplicationManager.Application 2.0
 import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
 /*!
     \qmltype NeptuneWindow
-    \inqmlmodule windows
+    \inqmlmodule application.windows
     \inherits ApplicationManagerWindow
     \since 5.12
-    \brief The basic type of Neptune Window for Neptune 3 applications
+    \brief The basic type of Neptune Window for Neptune 3 applications.
 
     The Neptune Window provides the basic type of application window to be used by the application.
 

@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -39,7 +40,10 @@ ModalOverlay {
     id: root
 
     showModalOverlay: notificationModel.notificationCenterVisible
-    onOverlayClicked: notificationModel.notificationCenterVisible = false
+    onOverlayClicked: {
+        notificationCenter.animationEnabled = true;
+        notificationModel.notificationCenterVisible = false;
+    }
 
     NotificationModel {
         id: notificationModel
@@ -85,6 +89,7 @@ ModalOverlay {
                 // start drag filter timer
                 notificationHandle.dragFilterTimer.running = true;
             }
+            notificationCenter.animationEnabled = true;
         }
 
         onReleased: {
@@ -109,6 +114,7 @@ ModalOverlay {
                 // close notification toast
                 notificationModel.closeNotification();
             }
+            notificationCenter.animationEnabled = false;
         }
     }
 }

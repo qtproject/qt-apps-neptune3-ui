@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -125,6 +126,8 @@ Item {
         // don't let the window get input events outside the slot area
         clip: true
 
+        Component.onCompleted: timer.start()
+
         ApplicationCCWindowItem {
             id: windowItem
             widgetHeight: root.widgetHeight
@@ -141,8 +144,30 @@ Item {
     }
 
     BusyIndicator {
+        id: busyIndicator
         running: !windowItem.window
         visible: running
         anchors.centerIn: parent
+        Behavior on opacity { DefaultNumberAnimation {} }
+    }
+
+    Label {
+        id: warningLabel
+        anchors.centerIn: parent
+        opacity: 0.0
+        text: qsTr("Application window of %1 is not available.
+                    Please remove the widget and try to restart the application").arg(root.appInfo.id)
+        Behavior on opacity { DefaultNumberAnimation {} }
+    }
+
+    Timer {
+        id: timer
+        interval: 5000
+        onTriggered: {
+            if (!windowItem.window) {
+                busyIndicator.opacity = 0.0;
+                warningLabel.opacity = 1.0;
+            }
+        }
     }
 }

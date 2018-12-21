@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -41,7 +42,7 @@ import shared.utils 1.0
     \inqmlmodule controls
     \inherits ColumnLayout
     \since 5.11
-    \brief The tools column component for Neptune 3 applications
+    \brief The tools column component for Neptune 3 applications.
 
     The ToolsColumn provides a custom column of tool buttons for Neptune 3 Applications
     to follow the specification where only one of them can be selected at any given time.

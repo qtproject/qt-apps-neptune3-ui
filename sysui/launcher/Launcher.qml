@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -96,6 +97,17 @@ Item {
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
         checkable: true
+
+        // content item of ToolButton is not scaled correctly in some screen resolutions
+        // need to revert this changes once: QTBUG-72569 is fixed.
+        contentItem: null
+        NeptuneIconLabel {
+            anchors.centerIn: parent
+            width: Sizes.dp(35)
+            height: Sizes.dp(35)
+            icon: gridButton.icon
+            color: gridButton.icon.color
+        }
     }
 
     EditableGridView {

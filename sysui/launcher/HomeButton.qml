@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -31,7 +32,21 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+import shared.controls 1.0
+import shared.Sizes 1.0
 
 ToolButton {
+    id: root
     icon.color: "white"
+    contentItem: null
+
+    // content item of ToolButton is not scaled correctly in some screen resolutions
+    // need to revert this changes once: QTBUG-72569 is fixed.
+    NeptuneIconLabel {
+        anchors.centerIn: parent
+        width: Sizes.dp(35)
+        height: Sizes.dp(35)
+        icon: root.icon
+        color: root.icon.color
+    }
 }

@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -40,7 +41,7 @@ Window {
     id: root
 
     property alias popupParent: popupParent
-    property alias centerConsole: centerConsole
+    property alias mainCenterConsole: mainCenterConsole
     property RootStore store
 
     Binding {target: root.store.centerConsole; property: "windowWidth"; value: root.width }
@@ -101,6 +102,7 @@ Window {
                 (TODO: add the link here once we have the documentation)
              */
     Item {
+        id: mainCenterConsole
         anchors.fill: parent
 
         CenterConsole {

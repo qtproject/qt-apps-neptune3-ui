@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -120,7 +121,8 @@
    parameter for specifying the name of the generated output.
 
    \note Currently, the offline map is only available for some specific area in
-   Gothenburg, Sweden.
+   Munich, Germany (detailed map is only available in light theme due to the
+   allowed maximum size of the offline map cache).
 
    \badcode
    // Offline maps support

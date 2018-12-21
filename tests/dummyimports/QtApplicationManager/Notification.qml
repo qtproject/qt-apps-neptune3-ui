@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Copyright (C) 2016 Klarälvdalens Datakonsult AB, a KDAB Group company
 ** Contact: https://www.qt.io/licensing/
 **

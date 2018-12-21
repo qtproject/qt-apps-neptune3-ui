@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -102,7 +103,7 @@ void Style::setAccentColor(const QColor &accent)
 
 void Style::setTheme(Style::Theme value)
 {
-    if (value == (Theme)m_theme)
+    if (value == static_cast<Theme>(m_theme))
         return;
 
     if (!supportsMultipleThemes()) {
@@ -110,7 +111,7 @@ void Style::setTheme(Style::Theme value)
         return;
     }
 
-    m_theme = (StyleData::Theme)value;
+    m_theme = static_cast<StyleData::Theme>(value);
     m_image = QJSValue();
     propagateTheme();
     emit themeChanged();
@@ -135,7 +136,7 @@ void Style::propagateTheme()
     for (QQuickAttachedObject *child : attachedChildren()) {
         Style* basicStyle = qobject_cast<Style *>(child);
         if (basicStyle)
-            basicStyle->setTheme((Theme)m_theme);
+            basicStyle->setTheme(static_cast<Theme>(m_theme));
     }
 }
 
@@ -232,9 +233,9 @@ QString Style::imageHelper(const QString &value)
         QString darkResult = result;
         darkResult.append("-dark.png");
         if (QFileInfo::exists(darkResult))
-            return darkResult;
+            return QUrl::fromLocalFile(darkResult).toString();
     }
 
     result.append(".png");
-    return result;
+    return QUrl::fromLocalFile(result).toString();
 }

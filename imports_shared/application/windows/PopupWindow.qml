@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -35,7 +36,7 @@ import shared.Style 1.0
 
 /*!
     \qmltype PopupWindow
-    \inqmlmodule utils
+    \inqmlmodule application.windows
     \inherits ApplicationManageWindow
     \since 5.11
     \brief A window used from applications to display modal popups in sysui.

@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -28,7 +29,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-.import QtApplicationManager.Application 1.0 as ApplicationManager
+.import QtApplicationManager.Application 2.0 as ApplicationManager
 .import shared.Style 1.0 as Style
 function showOfflineNotification() {
     var notification = ApplicationManager.ApplicationInterface.createNotification();

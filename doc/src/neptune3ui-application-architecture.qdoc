@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -28,12 +29,25 @@
 /*!
    \page neptune3ui-application-architecture.html
    \title Neptune 3 UI - Application Architecture
-   \brief Anatomy of the applications in Center Stack Display
+   \brief The architecture and common principles of Neptune 3 applications
 
-   Neptune 3 uses a common architecture for all applications. The architecture
+   Neptune 3 uses a common architecture and principles for all applications. The architecture
    approach is called Core UI Architecture.
 
    \section1 General Overview
+
+   The Core UI architecture adapts the component-based architecture, in which it focuses
+   on the decomposition of the UI into individual UI components. The primary objective of
+   component-based architecture is to ensure component reusability. A component encapsulates
+   functionality and behaviors of a software element into a reusable unit.
+
+   Component-oriented software design has many advantages over the traditional object-oriented
+   approaches such as:
+
+   \list
+   \li Reduced time in market and the development cost by reusing existing components.
+   \li Increased reliability with the reuse of the existing components.
+   \endlist
 
    In general, Neptune 3 differentiates between UI primitives (e.g. rectangles and images)
    and controls (e.g. buttons) as individual UI types. To combine several UI types, panels
@@ -56,7 +70,9 @@
    However, the UI itself is divided into several UI elements which are allowed to have a
    reference to the store and those which are not allowed to. The purpose to strictly manage
    the dependecies is to allow these components to stay testable in a later stage of the
-   project.
+   project. Such an architecture also allows the developer to use a technique to isolate
+   part of the UI and work in that small part independently without being tied by some
+   service dependencies.
 
    Example architecture:
 
@@ -78,25 +94,32 @@
 
    \endcode
 
+   \image application-architecture.jpg
+
    \list
    \li Stores: Encapsulate the access to the service API and contain required business logic
-   \li Views: Have a reference to a store which provides the necessary information
+   \li Views: Have a reference to a store which provides the necessary information to others
    \li Panels: Container for other controls and panels. A panel should not have any dependency
                to a store or a view
    \li Controls: Re-usable visual element which has no external data dependencies, besides primitives
-   \li Helpers: Collection of operations which can also be scheduled as jobs. In addition, helpers
-                should not import any store as well.
+   \li Helpers: Collection of some operations.
    \endlist
 
    \section3 Stores
 
    A store encapsulates the business logic inside the application. It is a pure data driven
    object. A store can have child stores which can be forwarded to sub-trees of the UI. A store
-   is the only portion of the UI layer which uses the service layer.
+   is the only portion of the UI layer which uses the service layer. Ideally, a store should
+   have an interface that defines the API to allow the store being tested. The views would only
+   see this interface so that they do not depend on a concrete store. The store that inherit
+   its interface then filled with values from the required service and feed the UI. On the other
+   hand, the store interface also allows the developer to use it and feed the UI by using some
+   static simulation data or automated simulation backend that runs required states to provide
+   the desired data.
 
    \section3 Views
 
-   A view is a container for UI panels which is the only one that depends on a store within the
+   A view is a container for UI panels which is the only one that depends on a store inside the
    application. Other UI parts need to be clear that they do not have any dependencies to any
    stores as views do. As mentioned before, in order to allow these components to stay testable.
 
@@ -104,7 +127,8 @@
 
    The above image is an example of a simple widget view in a music application. It is a container
    of the music control panel and an album art panel. This view takes the information from the music
-   store that is interfaced with the music service which provides a collection of songs to the application.
+   store that is interfaced with the music service which provides a collection of songs to the
+   application.
 
    \section3 Panels
 
@@ -124,9 +148,79 @@
 
    A helper is an object which contains computing functions and not properties. Typical helper
    is a set of JS functions in which if required, it could be later moved into C++ depending on
-   the needs. A helper is also showing how much complex computing is done in the UI layer
-   and serves as an indicator to optimize the external API. Using helpers requires the developer
-   to carefully think which computing functions are moved out of stores and other places
-   into these helpers. Ideally all for, while loops or longer computing functions shall be
-   moved into the helper functions.
+   the needs.
+
+   \section2 UI Harnesses
+
+   The above architecture gives the developer, a capability to work independently without having
+   the dependencies to some services. Neptune 3 harnesses are located in the tests folder where
+   they are also being used by the unit tests.
+
+   In many large-scale UI project, it is very common that ui developers are constraint to run
+   the whole UI just to see changes on a small UI component. The UI Harness enables developers
+   to do UI live-reloading (e.g. QML Live) during their development that can significantly boost
+   their productivity.
+
+   Below is an example of the UI harness for the instrument cluster that uses some static data
+   to simulate particular state and can be run independently using qmlscene or qmllive without
+   the need to run the whole UI.
+
+   \badcode
+
+   // tests/ClusterHarness.qml
+
+   import QtQuick 2.8
+   import QtQuick.Window 2.2
+
+   import views 1.0
+   import stores 1.0
+
+   import shared.Style 1.0
+   import shared.Sizes 1.0
+
+   Item {
+       id: root
+       width: Sizes.dp(1920)
+       height: Sizes.dp(720)
+
+       Image {
+           anchors.fill: parent
+           source: Style.image("instrument-cluster-bg")
+           fillMode: Image.Stretch
+       }
+
+       // The Cluster View that shows large parts of the cluster
+       ClusterView {
+           anchors.fill: parent
+           rtlMode: root.LayoutMirroring.enabled
+
+           // A mocked cluster store to test the cluster view
+           // independently from any services it normally would
+           // depend on
+           store: ClusterStoreInterface {
+               id: dummystore
+               navigationMode: false
+               speed: 0.0
+               speedLimit: 120
+               speedCruise: 40.0
+               driveTrainState: 2
+               ePower: 50
+
+               lowBeamHeadlight: true
+               highBeamHeadlight: true
+               fogLight: true
+               stabilityControl: true
+               seatBeltFasten: true
+               leftTurn: true
+
+               rightTurn: true
+               absFailure: true
+               parkBrake: true
+               tyrePressureLow: true
+               brakeFailure: true
+               airbagFailure: true
+           }
+       }
+   }
+   \endcode
 */

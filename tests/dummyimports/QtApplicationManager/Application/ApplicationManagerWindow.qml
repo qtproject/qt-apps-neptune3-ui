@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import QtApplicationManager 1.0
+import QtApplicationManager 2.0
 
 Item {
     id: root

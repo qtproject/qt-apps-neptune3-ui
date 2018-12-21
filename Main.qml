@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017, 2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -58,7 +59,7 @@ QtObject {
         }
 
         onGrabImageRequested: {
-            centerConsoleWindow.centerConsole.grabToImage(function(result) {
+            centerConsoleWindow.mainCenterConsole.grabToImage(function(result) {
                 var ret = result.saveToFile(screenshotUrl);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
             });
@@ -87,10 +88,6 @@ QtObject {
         initialTheme: centerConsoleWindow.contentItem.Style.theme
     }
 
-    readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
-        store: root.store
-    }
-
     readonly property Loader instrumentClusterWindowLoader: Loader {
         id: instrumentClusterWindowLoader
 
@@ -115,4 +112,9 @@ QtObject {
         }
         active: !root.store.runningOnSingleScreenEmbedded && root.store.hudStore.showHUD
     }
+
+    readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
+        store: root.store
+    }
+
 }

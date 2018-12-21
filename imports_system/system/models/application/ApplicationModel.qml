@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -30,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtApplicationManager.SystemUI 1.0
+import QtApplicationManager.SystemUI 2.0
 import system.requests 1.0
 
 /*
@@ -198,10 +199,17 @@ ListModel {
 
         function deserializeWidgetsState(widgetStates)
         {
+            var apps;
+
+            // if there are no widgets stored in the settings, the default widget states is being used instead
+            if (widgetStates === "") {
+                apps = ["com.pelagicore.phone:2", "com.pelagicore.music:2", "com.pelagicore.calendar:1"]
+            } else {
+                apps = widgetStates.split(",")
+            }
+
             var appIds = []
             var appHeights = []
-
-            var apps = widgetStates.split(",");
 
             for (var i = 0; i < apps.length; i++) {
                 var values = apps[i].split(":");

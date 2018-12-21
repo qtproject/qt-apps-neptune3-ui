@@ -2,7 +2,8 @@
 
 ############################################################################
 ##
-## Copyright (C) 2018 Luxoft GmbH
+## Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -14,8 +15,7 @@
 ## with the Software or, alternatively, in accordance with the terms
 ## contained in a written agreement between you and The Qt Company.  For
 ## licensing terms and conditions see https://www.qt.io/terms-conditions.
-## For further information use the contact form at
-## https://www.qt.io/contact-us.
+## For further information use the contact form at https://www.qt.io/contact-us.
 ##
 ## GNU General Public License Usage
 ## Alternatively, this file may be used under the terms of the GNU

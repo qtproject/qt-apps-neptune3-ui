@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2018 Luxoft GmbH
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.

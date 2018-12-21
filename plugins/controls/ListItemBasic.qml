@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -45,7 +46,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ItemDelegate
     \since 5.11
-    \brief The basic list item component of Neptune 3
+    \brief The basic list item component of Neptune 3.
 
     The ListItemBasic provides a basic type of a list item with an indicator as an icon
     or an image and text with subtext followed by the indicator.

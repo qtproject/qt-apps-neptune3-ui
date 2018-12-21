@@ -31,7 +31,7 @@
 
 import QtQml 2.2
 import QtQuick 2.8
-import QtApplicationManager.Application 1.0
+import QtApplicationManager.Application 2.0
 
 QtObject {
     id: root

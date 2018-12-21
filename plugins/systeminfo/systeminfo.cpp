@@ -1,6 +1,7 @@
 /****************************************************************************
 **
-** Copyright (C) 2017-2018 Pelagicore AG
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune IVI UI.
@@ -60,7 +61,6 @@ void SystemInfo::init()
 {
     getAddress();
     m_timerId = startTimer(1000, Qt::VeryCoarseTimer);
-
 }
 
 /*
@@ -122,6 +122,7 @@ void SystemInfo::getQtDiagInfo()
 void SystemInfo::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
+    getAddress();
     auto reply = m_networkManager->get(QNetworkRequest(QUrl("https://www.google.com")));
     connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
         [=](){ updateOnlineStatus(false);
@@ -148,7 +149,6 @@ void SystemInfo::updateOnlineStatus(bool status)
     if (status != m_online) {
         m_online = status;
         emit onlineChanged();
-        getAddress();
     }
 }
 

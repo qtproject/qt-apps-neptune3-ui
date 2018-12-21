@@ -1,5 +1,6 @@
 /****************************************************************************
 **
+** Copyright (C) 2019 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -35,7 +36,7 @@ import QtQuick.Controls 2.2
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-import QtApplicationManager 1.0
+import QtApplicationManager 2.0
 
 Item {
     id: root
