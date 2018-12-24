@@ -1,0 +1,13 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.luxoft.greenomics'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Greenomics'
+  de: 'Greenomics'
+
+categories: [ 'greenomics' ]
+mimeTypes: [ 'x-scheme-handler/x-greenomics' ]
