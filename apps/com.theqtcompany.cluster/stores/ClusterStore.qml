@@ -38,6 +38,7 @@ ClusterStoreInterface {
 
     readonly property InstrumentCluster clusterDataSource: InstrumentCluster {}
 
+    hideGauges: clusterDataSource.hideGauges
     navigationMode: clusterDataSource.navigationMode
     speed: clusterDataSource.speed
     speedLimit: clusterDataSource.speedLimit

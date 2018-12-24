@@ -78,6 +78,9 @@ interface InstrumentCluster {
 
   /** Whether a secondary (cluster) screen is available */
   bool available;
+
+  /** Whether both gaueges should be hidden or not */
+  bool hideGauges;
 }
 
 @config: {id: "SystemUI"}

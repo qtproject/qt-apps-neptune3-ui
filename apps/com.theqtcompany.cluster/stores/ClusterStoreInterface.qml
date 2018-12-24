@@ -37,6 +37,7 @@ import shared.com.pelagicore.settings 1.0
 Store {
     id: root
 
+    property bool hideGauges
     property bool navigationMode
     property real speed
     property real speedLimit

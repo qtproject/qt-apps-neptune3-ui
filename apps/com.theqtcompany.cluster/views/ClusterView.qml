@@ -39,6 +39,8 @@ import application.windows 1.0
 import shared.Sizes 1.0
 import shared.Style 1.0
 
+import shared.animations 1.0
+
 import "../stores" 1.0
 import "../panels" 1.0
 import "../helpers" 1.0
@@ -67,6 +69,10 @@ Item {
         cruiseSpeed: store.speedCruise
         ePower: store.ePower
         drivetrain: store.driveTrainState
+        opacity: store.hideGauges ? 0.0 : 1.0
+        Behavior on opacity {
+            DefaultNumberAnimation {}
+        }
     }
 
     TelltalesLeftPanel {

@@ -157,6 +157,14 @@ Flickable {
                 onClicked: root.simulationEnabled = !root.simulationEnabled
             }
 
+            Label {
+                text: qsTr("Hide Gauges:")
+            }
+            CheckBox {
+                checked: instrumentCluster.hideGauges
+                onClicked: instrumentCluster.hideGauges = checked
+            }
+
             Timer {
                 interval: 1000
                 running: root.simulationEnabled
