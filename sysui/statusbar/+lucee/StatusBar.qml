@@ -44,14 +44,14 @@ import system.controls 1.0
 RowLayout {
     id: root
 
-    implicitHeight: Sizes.dp(Config.statusBarHeight)
-
-    spacing: Sizes.dp(5)
     property var uiSettings
     property var model
     property Item popupParent
 
     signal screenshotRequested()
+
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
+    spacing: Sizes.dp(10)
 
     ToolButton {
         Layout.preferredWidth: Sizes.dp(60)
@@ -71,7 +71,7 @@ RowLayout {
 
     IndicatorTray {
         Layout.fillHeight: true
-        model: root.model.statusBarStore.indicators
+        store: root.model.statusBarStore
         anchors.top: parent.top
         anchors.bottom: parent.bottom
     }

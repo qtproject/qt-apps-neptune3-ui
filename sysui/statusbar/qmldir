@@ -1,1 +1,4 @@
 StatusBar 1.0 StatusBar.qml
+DateAndTime 1.0 DateAndTime.qml
+CellularReception 1.0 CellularReception.qml
+IndicatorTray 1.0 IndicatorTray.qml
