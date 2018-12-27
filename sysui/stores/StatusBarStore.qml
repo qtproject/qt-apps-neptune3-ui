@@ -44,6 +44,8 @@ QtObject {
         { id: "battery", active: true, icon: "ic-statusbar-battery" }
     ]
 
+    property int cellularSignalStrength: 3
+
     property var currentDate: new Date();
 
     property QtObject timer: Timer {
