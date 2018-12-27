@@ -1,4 +1,5 @@
 AlbumArtPanel 1.0 AlbumArtPanel.qml
+AlbumArtDetailPanel 1.0 AlbumArtDetailPanel.qml
 ICAlbumArtPanel 1.0 ICAlbumArtPanel.qml
 MusicBrowseListPanel 1.0 MusicBrowseListPanel.qml
 MusicPlayQueuePanel 1.0 MusicPlayQueuePanel.qml

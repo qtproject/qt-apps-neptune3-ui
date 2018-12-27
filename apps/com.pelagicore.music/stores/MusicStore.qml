@@ -75,6 +75,20 @@ Store {
         //ListElement { icon: "ic-folder-browse"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "folders"); greyedOut: true }
     }
 
+    property ListModel luceeToolsColumnModel: ListModel {
+        id: luceeToolsColumnModel
+        ListElement { icon: "ic-favorites"; text: "favorites"; greyedOut: false}
+        ListElement { icon: "ic-ipod"; text: "ipod"; greyedOut: true }
+        ListElement { icon: "ic-usb"; text: "usb"; greyedOut: true }
+        ListElement { icon: "ic-spotify"; text: "spotify"; greyedOut: true  }
+        ListElement { icon: "ic-radio"; text: "radio"; greyedOut: false }
+    }
+
+    property bool isSpotifyInstalled: false
+    onIsSpotifyInstalledChanged: {
+        luceeToolsColumnModel.setProperty(3, "greyedOut", !isSpotifyInstalled)
+    }
+
     property string headerText: (contentType.indexOf("artist") === -1) ? headerTextInAlbumsView :
                                                                          headerTextInArtistsView
     property string headerTextInArtistsView: ""
@@ -116,10 +130,11 @@ Store {
             // Without reloading the model, Neptune 3 won't see any music during the first
             // run.
             if (progress > 0.2 && progress < 0.3 && !databaseReloaded) {
-                searchAndBrowseModel.reload();
+                root.searchAndBrowseModel.reload();
             } else if (progress === 1.0 && !databaseReloaded) {
-                searchAndBrowseModel.reload();
+                root.searchAndBrowseModel.reload();
                 databaseReloaded = true;
+                root.contentType = "track";
             }
         }
     }
@@ -156,6 +171,7 @@ Store {
                 }
                 if (object.spotifyInstalled) {
                     musicSourcesModel.append({"text" : "Spotify"});
+                    root.isSpotifyInstalled = true;
                 }
             }
         }
@@ -166,12 +182,14 @@ Store {
             onSpotifyInstalledChanged: {
                 if (musicApplicationRequestIPC.object.spotifyInstalled) {
                     musicSourcesModel.append({"text" : "Spotify"});
+                    root.isSpotifyInstalled = true;
                 } else {
                     for (var i = 0; i < musicSourcesModel.count; i++) {
                         if (musicSourcesModel.get(i).text === "Spotify") {
                             musicSourcesModel.remove(i, 1);
                         }
                     }
+                    root.isSpotifyInstalled = false;
                 }
             }
             onWebradioInstalledChanged: {

@@ -136,6 +136,7 @@ Item {
         parentStateMaximized: root.state === "Maximized"
         mediaReady: store.searchAndBrowseModel.count > 0
         musicPlaying: store.playing
+        musicPosition: store.currentTrackPosition
         onPlayClicked: store.playSong()
         onPreviousClicked: store.previousSong()
         onNextClicked: store.nextSong()
