@@ -31,68 +31,39 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import Qt.labs.calendar 1.0
+import shared.animations 1.0
+import shared.controls 1.0
 import shared.utils 1.0
+import "../stores" 1.0
+import "../controls" 1.0
+import "../panels" 1.0
 
-Store {
+import shared.Style 1.0
+import shared.Sizes 1.0
+
+Item {
     id: root
 
-    property date currentTime: new Date()
-    property Timer timer: Timer {
-        running: true
-        interval: 1000
-        repeat: true
-        onTriggered: root.currentTime = new Date()
+    property CalendarStore store
+    property bool bottomWidgetHide: false
+
+    CalendarWidgetPanel {
+        anchors.fill: parent
+        state: root.state
+        store: root.store
+        visible: root.state !== "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 
-    property ListModel eventModel: ListModel {
-
-        ListElement {
-            timeStart: "07:00"
-            timeEnd: "08:00"
-            event: "Breakfast with family"
-        }
-
-        ListElement {
-            timeStart: "08:00"
-            timeEnd: "09:00"
-            event: "Drive to the office"
-        }
-
-        ListElement {
-            timeStart: "09:00"
-            timeEnd: "10:00"
-            event: "Meeting with partners"
-        }
-
-        ListElement {
-            timeStart: "10:30"
-            timeEnd: "11:00"
-            event: "Daily meeting"
-        }
-
-        ListElement {
-            timeStart: "12:00"
-            timeEnd: "13:00"
-            event: "Lunch time"
-        }
-
-        ListElement {
-            timeStart: "12:00"
-            timeEnd: "13:00"
-            event: "Annual project meeting"
-        }
-
-        ListElement {
-            timeStart: "17:00"
-            timeEnd: "18:00"
-            event: "Pick up daughter from school"
-        }
-
-        ListElement {
-            timeStart: "19:00"
-            timeEnd: "22:00"
-            event: "Dinner with friends"
-        }
+    CalendarMaximizedPanel {
+        anchors.fill: parent
+        store: root.store
+        visible: root.state === "Maximized"
+        opacity: visible ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
-
 }

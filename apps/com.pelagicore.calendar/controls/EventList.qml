@@ -40,9 +40,11 @@ import shared.Sizes 1.0
 ListView {
     id: root
 
+    property int delegatedItemWidth: Sizes.dp(675)
+    property int delegatedItemHeight: Sizes.dp(80)
     delegate: EventListItem {
-        width: Sizes.dp(675)
-        height: Sizes.dp(80)
+        width: root.delegatedItemWidth
+        height: root.delegatedItemHeight
         eventTimeStart: timeStart
         eventTimeEnd: timeEnd
         eventLabel: event
