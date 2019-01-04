@@ -44,6 +44,9 @@ NeptuneWindow {
     height: Sizes.dp(240)
 
     property real currentSpeed: clusterSettings.speed
+    property real speedLimit: clusterSettings.speedLimit
+    property real cruiseSpeed: clusterSettings.speedCruise
+
     Behavior on currentSpeed {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
@@ -59,23 +62,70 @@ NeptuneWindow {
     Item {
         anchors.fill: parent
 
+        Rectangle {
+            anchors.centerIn: parent
+            anchors.horizontalCenterOffset: - Sizes.dp(80)
+            anchors.rightMargin: Sizes.dp(20)
+            width: Sizes.dp(50)
+            height: Sizes.dp(50)
+            radius: width / 2
+            border.color: (root.currentSpeed > root.speedLimit) ? "red" : "grey"
+            border.width: Sizes.dp(6)
+            opacity: (root.currentSpeed > root.speedLimit) ? 1.0 : 0.0
+            Behavior on opacity {
+                NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
+            }
+            Label {
+                anchors.centerIn: parent
+                text: Math.round(speedLimit)
+                opacity: Style.opacityHigh
+                font.pixelSize: Sizes.fontSizeXS
+                color: root.Style.theme === Style.Dark ? Style.mainColor : Style.contrastColor
+            }
+        }
+
+        Image {
+            id: cruiseIcon
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: -Sizes.dp(18)
+            anchors.bottom: speed.top
+            opacity: (root.cruiseSpeed >= 30) ? 1 : 0.0
+            width: Sizes.dp(35)
+            height: Sizes.dp(31)
+            source: "assets/ic-acc.png"
+            Behavior on opacity {
+                NumberAnimation { easing.type: Easing.OutCubic; duration: 270 }
+            }
+        }
+
         Label {
+            anchors.left: cruiseIcon.right
+            anchors.leftMargin: Sizes.dp(10)
+            anchors.verticalCenter: cruiseIcon.verticalCenter
+            text: Math.round(root.cruiseSpeed)
+            font.weight: Font.Light
+            font.pixelSize: Sizes.fontSizeS
+            opacity: cruiseIcon.opacity
+            color: "white"
+        }
+
+        Label {
+            id: speed
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: Sizes.dp(-30)
             text: Math.round(root.currentSpeed)
             verticalAlignment: Text.AlignTop
             horizontalAlignment: Text.AlignHCenter
             font.weight: Font.DemiBold
             color: Style.accentColor
             opacity: Style.opacityHigh
-            font.pixelSize: Sizes.fontSizeL
+            font.pixelSize: Sizes.fontSizeXXL
         }
 
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: Sizes.dp(30)
+            anchors.horizontalCenterOffset: Sizes.dp(88)
             text: qsTr("km/h")
             font.weight: Font.Light
             color: Style.accentColor
