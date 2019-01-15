@@ -41,6 +41,7 @@ OTHER_FILES += $$files($$PWD/*.qml, true)
 OTHER_FILES += $$files($$PWD/*.qmldir, true)
 OTHER_FILES += $$PWD/plugins.yaml.in
 OTHER_FILES += .qmake.conf
+OTHER_FILES += $$files($$PWD/squishtests/*, true)
 PLUGINS_DIR = $$OUT_PWD/qml
 QMAKE_SUBSTITUTES += $$PWD/plugins.yaml.in
 
