@@ -58,4 +58,64 @@ Store {
     property bool tyrePressureLow: false
     property bool brakeFailure: false
     property bool airbagFailure: false
+
+    /*!
+        \qmlproperty real ClusterStoreInterface::mileageKm
+        Full vehicle mileage in km
+    */
+    property real mileageKm: 0.0
+    /*!
+        \qmlproperty bool ClusterStoreInterface::twentyFourHourTimeFormat
+        24 hour vs am/pm
+    */
+    property bool twentyFourHourTimeFormat: true
+    /*!
+        \qmlproperty int ClusterStoreInterface::drivingMode
+        Driving mode id from 0..2:
+        \list
+        \li Normal
+        \li ECO
+        \li Sport
+        \endlist
+    */
+    property int  drivingMode: 0
+    /*!
+        \qmlproperty int ClusterStoreInterface::drivingModeRangeKm
+        Range in km for current driving mode
+    */
+    property int  drivingModeRangeKm: 0
+    /*!
+        \qmlproperty int ClusterStoreInterface::drivingModeECORangeKm
+        Range in km for ECO driving mode
+    */
+    property int  drivingModeECORangeKm: 0
+    /*!
+        \qmlproperty real ClusterStoreInterface::navigationProgressPercents
+        Navigation propgress 0..100
+    */
+    property real navigationProgressPercents
+
+    /*!
+        \qmlproperty QtObject ClusterStoreInterface::outsideTemp
+        Temperature object structure defined in ClusterStore
+    */
+    property QtObject outsideTemp
+
+    /*!
+        Convert distance from km to mi
+    */
+    function calculateDistanceValue(value) {
+        return Qt.locale().measurementSystem === Locale.MetricSystem ?
+                    value : value / 1.60934
+    }
+
+    /*!
+        Convert temperature from C to F
+    */
+    function calculateUnitValue(value) {
+        // Default value is the celsius
+        return Qt.locale().measurementSystem === Locale.MetricSystem ?
+                    value : Math.round(value * 1.8 + 32.0)
+    }
+
 }

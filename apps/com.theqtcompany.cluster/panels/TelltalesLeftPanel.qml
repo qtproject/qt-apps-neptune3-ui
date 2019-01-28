@@ -109,6 +109,7 @@ Item {
             opacity: blinker.lit ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-left-turn")
+            Layout.alignment: Qt.AlignRight
         }
     }
 

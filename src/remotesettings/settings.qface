@@ -69,6 +69,33 @@ interface InstrumentCluster {
   bool brakeFailure;
   bool airbagFailure;
 
+   /*
+   * outside tempterature in celsius degrees
+   */
+   real outsideTempCelsius;
+
+   /*
+   * Mileage in km
+   */
+   real mileageKm;
+
+   /*
+   * 0 - normal
+   * 1 - eco
+   * 2 - sport
+   */
+   int drivingMode;
+   int drivingModeRangeKm;
+   int drivingModeECORangeKm;
+
+   /*
+   * Navigation
+   * progress 0.0 - 1.0
+   * distance in km
+   */
+   real navigationProgressPercents;
+   real navigationRouteDistanceKm;
+
   /*
    * Whether the instrument cluster should be in navigation mode
    * in this mode its gauges etc will be reshaped to give more room

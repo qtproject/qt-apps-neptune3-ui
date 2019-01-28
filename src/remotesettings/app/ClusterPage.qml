@@ -165,6 +165,135 @@ Flickable {
                 onClicked: instrumentCluster.hideGauges = checked
             }
 
+            /*!
+                Outside Temperature
+            */
+            Label {
+                text: qsTr("Outside temperature: " +  outsideTemperature.value.toFixed(1).padStart(6) + " °C")
+            }
+            Slider {
+                id: outsideTemperature
+                value: instrumentCluster.outsideTempCelsius
+                from: -100
+                stepSize: 0.5
+                to: 100.0
+                onValueChanged: if (pressed) { instrumentCluster.outsideTempCelsius = value }
+            }
+
+            /*!
+                Mileage in km
+            */
+            Label {
+                text: qsTr("Mileage km")
+            }
+            Slider {
+                id: mileageKm
+                value: instrumentCluster.mileageKm
+                from: 0
+                stepSize: 0.5
+                to: 9E6
+                onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
+            }
+
+            /*!
+                DrivingMode field
+            */
+            Label {
+                text: qsTr("Driving mode:")
+            }
+
+            ComboBox {
+                id: driveingModeComboBox
+                model: [qsTr("Normal"), qsTr("ECO"), qsTr("Sport")]
+                currentIndex: instrumentCluster.drivingMode
+                onActivated: instrumentCluster.drivingMode = currentIndex
+            }
+
+            /*!
+                Driving mode range Field
+            */
+            Label {
+                text: qsTr("Driving mode range:")
+            }
+            Dial {
+                id: drivingModeRangeDial
+                from: 0
+                to: 1000
+                stepSize: 1.0
+                value: instrumentCluster.drivingModeRangeKm
+                onMoved: instrumentCluster.drivingModeRangeKm = value
+
+
+
+                Label {
+                    text: Math.round(parent.value)
+                    anchors.top: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+
+            /*!
+                ECO mode range Field
+            */
+            Label {
+                text: qsTr("ECO mode range:")
+            }
+            Dial {
+                id: ecoModeRangeDial
+                from: 0
+                to: 500
+                stepSize: 1.0
+                value: instrumentCluster.drivingModeECORangeKm
+                onMoved: instrumentCluster.drivingModeECORangeKm = value
+
+
+
+                Label {
+                    text: Math.round(parent.value)
+                    anchors.top: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+
+            /*!
+               Route progress
+            */
+            Label {
+                text: qsTr("Route progress, %:")
+            }
+
+            Dial {
+                id: routeProgressDial
+                from: 0
+                to: 1.0
+                stepSize: 0.01
+                value: instrumentCluster.navigationProgressPercents
+                onMoved: instrumentCluster.navigationProgressPercents = value
+
+
+
+                Label {
+                    text: Math.round(parent.value * 100.0)
+                    anchors.top: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+
+            /*!
+                Route distance
+            */
+            Label {
+                text: qsTr("Route distance, km")
+            }
+            Slider {
+                id: routeDistance
+                value: instrumentCluster.navigationRouteDistanceKm
+                from: 0
+                stepSize: 0.5
+                to: 25000
+                onValueChanged: if (pressed) { instrumentCluster.navigationRouteDistanceKm = value }
+            }
+
             Timer {
                 interval: 1000
                 running: root.simulationEnabled
@@ -186,6 +315,32 @@ Flickable {
                         instrumentCluster.speedCruise = instrumentCluster.speedCruise + 10;
                     } else {
                         instrumentCluster.speedCruise = 0;
+                    }
+
+                    if (instrumentCluster.mileageKm < 100000) {
+                        instrumentCluster.mileageKm = instrumentCluster.mileageKm + Math.random(100)
+                    } else {
+                        instrumentCluster.mileageKm = 0
+                    }
+
+                    if (instrumentCluster.drivingModeRangeKm < 1000) {
+                        instrumentCluster.drivingModeRangeKm = instrumentCluster.mileageKm + Math.random(20)
+                    } else {
+                        instrumentCluster.drivingModeRangeKm = 0
+                    }
+
+                    if (instrumentCluster.navigationProgressPercents < 1.0) {
+                        instrumentCluster.navigationProgressPercents = instrumentCluster.navigationProgressPercents
+                                + 0.01
+                    } else {
+                        instrumentCluster.navigationProgressPercents = 0.0
+                    }
+
+                    if (instrumentCluster.navigationRouteDistanceKm < 130.0) {
+                        instrumentCluster.navigationRouteDistanceKm = instrumentCluster.navigationRouteDistanceKm
+                                + Math.random(10)
+                    } else {
+                        instrumentCluster.navigationRouteDistanceKm = 0.0
                     }
                 }
             }

@@ -4,3 +4,8 @@ DialSpeedPanel 1.0 DialSpeedPanel.qml
 GaugesPanel 1.0 GaugesPanel.qml
 TelltalesLeftPanel 1.0 TelltalesLeftPanel.qml
 TelltalesRightPanel 1.0 TelltalesRightPanel.qml
+DonutGauge 1.0 DonutGauge.qml
+ClusterTemperatureLabel 1.0 ClusterTemperatureLabel.qml
+DrivingModeRange 1.0 DrivingModeRange.qml
+LuceeCircles 1.0 LuceeCircles.qml
+ClusterUnitsLabel 1.0 ClusterUnitsLabel.qml
