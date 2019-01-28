@@ -126,10 +126,18 @@ Item {
         // don't let the window get input events outside the slot area
         clip: true
 
-        Component.onCompleted: timer.start()
-
         ApplicationCCWindowItem {
             id: windowItem
+
+            property bool isRunning: root.appInfo ? root.appInfo.running : false
+            onIsRunningChanged: {
+                if (isRunning) {
+                    warningLabel.visible = false;
+                } else {
+                    warningLabel.visible = true;
+                }
+            }
+
             widgetHeight: root.widgetHeight
             currentWidth: windowSlot.width
             Behavior on currentWidth { DefaultNumberAnimation { } }
@@ -161,8 +169,8 @@ Item {
     }
 
     Timer {
-        id: timer
-        interval: 5000
+        running: busyIndicator.running
+        interval: 10000
         onTriggered: {
             if (!windowItem.window) {
                 busyIndicator.opacity = 0.0;
