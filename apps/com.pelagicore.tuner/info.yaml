@@ -9,5 +9,6 @@ name:
   en: 'Tuner'
   de: 'Tuner'
 
+applicationProperties: { private: { squishPort: 7731 } }
 categories: [ 'media' ]
 mimeTypes: [ 'x-scheme-handler/x-tuner' ]

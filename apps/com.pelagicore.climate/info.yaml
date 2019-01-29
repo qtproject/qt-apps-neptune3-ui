@@ -9,4 +9,5 @@ name:
   en: 'Climate'
   de: 'Klima'
 
+applicationProperties: { private: { squishPort: 7722 } }
 categories: [ 'bottombar' ]
