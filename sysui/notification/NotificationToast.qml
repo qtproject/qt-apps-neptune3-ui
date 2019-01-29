@@ -63,7 +63,6 @@ NotificationItem {
     }
 
     readonly property Timer notificationTimer: Timer {
-        interval: priv.defaultTimeout
         onTriggered: {
             root.notificationModel.closeNotification();
         }
@@ -88,7 +87,10 @@ NotificationItem {
                 }
                 if (currentNotification.timeout > priv.defaultTimeout) {
                     notificationTimer.interval = currentNotification.timeout;
+                } else {
+                    notificationTimer.interval = priv.defaultTimeout;
                 }
+
                 notificationTimer.start();
             } else {
                 priv.notificationId = -1;
