@@ -48,6 +48,9 @@ import "../3d/settings" 1.0
 Item {
     id: root
 
+    property real cameraPanAngleOutput: 0.0
+    property real cameraPanAngleInput: 0.0
+
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     property real roofOpenProgress: 0.0
     property bool leftDoorOpen: false
@@ -106,14 +109,16 @@ Item {
                         fieldOfView: 25
                         nearPlane: 0.1
                         farPlane: 100.0
-                        position: Qt.vector3d(0, 2, 15)
-                        viewCenter: Qt.vector3d(0, 1.6, 0)
-                        upVector: Qt.vector3d(0.0, 1.0, 0.0)
+                        position:   Qt.vector3d(0.0, 5.0, 18.0)
+                        viewCenter: Qt.vector3d(0.0, 1.6, 0.0)
+                        upVector:   Qt.vector3d(0.0, 1.0, 0.0)
                     }
 
                     CameraController {
                         camera: camera
                         enabled: !root.clusterView
+                        onCameraPanAngleInputChanged: root.cameraPanAngleInput = cameraPanAngleInput
+                        cameraPanAngleOutput: root.cameraPanAngleOutput
                     }
 
                     CookTorranceMaterial {

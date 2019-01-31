@@ -57,5 +57,7 @@ Item {
         trunkOpen: root.store.trunkOpened
         roofOpenProgress: root.store.roofOpenProgress
         clusterView: true
+
+        cameraPanAngleOutput: store.cameraAngleView
     }
 }

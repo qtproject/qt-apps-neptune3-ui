@@ -43,6 +43,7 @@ Item {
     id: root
 
     property VehicleStore store
+    Binding { target: store; property: "cameraAngleView"; value: car3dPanel.cameraPanAngleInput; }
 
     Vehicle3DPanel {
         id: car3dPanel
