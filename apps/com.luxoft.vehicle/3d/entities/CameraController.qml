@@ -36,62 +36,101 @@ import Qt3D.Input 2.0
 import Qt3D.Logic 2.0
 import QtQml 2.2
 
+
 Entity {
     id: root
     property Camera camera
-    property real lookSpeed: 180.0
+    property real cameraPanAngleOutput: 0.0
+    property real cameraPanAngleInput: 0.0
 
-    function clampInputs(input1, input2) {
-        var axisValue = input1 + input2;
-        return (axisValue < -1) ? -1 : (axisValue > 1) ? 1 : axisValue;
+    QtObject {
+        id: d
+        readonly property vector2d base2d : Qt.vector2d(0.0, -15.0)
+        property real pixelAndTimeMagicCoeff: 5.0
+        property var trajectory: []
+        property bool userInteraction: false
+
+        // represents counter for rotation, when it lower than 360  car will be rotated for delta (360 - demoRotation)
+        property int demoRotation: 360
+        property Timer demoTimer: Timer {
+            interval: 30000
+            repeat: true
+            running: root.enabled
+            onTriggered: {
+                d.demoRotation = 0
+            }
+        }
     }
+
+    function getCurrentAngle() {
+        var viewVec3d = root.camera.viewVector
+        var vec2d = Qt.vector2d(viewVec3d.x, viewVec3d.z);
+        var angle = 0.0;
+        if (!vec2d.fuzzyEquals(d.base2d)) {
+            var dot = vec2d.x*d.base2d.x + vec2d.y*d.base2d.y;
+            var det = vec2d.x*d.base2d.y - vec2d.y*d.base2d.x;
+            angle = Math.atan2(det, dot);
+        }
+
+        return angle * 180 / Math.PI;
+    }
+
+    onCameraPanAngleOutputChanged: {
+        // it is disabled for cluster
+        if (!enabled) {
+            var curAngle = getCurrentAngle();
+            root.camera.panAboutViewCenter(cameraPanAngleOutput - curAngle, Qt.vector3d(0, 1, 0));
+        }
+    }
+
 
     MouseDevice {
         id: mouseSourceDevice
         sensitivity: 0.1
     }
 
+    MouseHandler {
+        id: mouseHandler
+        sourceDevice: mouseSourceDevice
+        onPositionChanged: {
+            d.trajectory.push(mouse.x);
+        }
+
+        onPressed: {
+            d.trajectory = [];
+            d.userInteraction = true;
+            d.demoRotation = 360;
+            d.demoTimer.running = false;
+        }
+
+        onReleased: {
+            d.userInteraction = false;
+            d.demoTimer.running = true;
+        }
+    }
+
     components: [
-
-        LogicalDevice {
-            enabled: root.enabled
-            actions: [
-                Action {
-                    id: leftMouseButtonAction
-                    ActionInput {
-                        sourceDevice: mouseSourceDevice
-                        buttons: [MouseEvent.LeftButton]
-                    }
-                }
-            ]
-
-            axes: [
-                Axis {
-                    id: mouseXAxis
-                    AnalogAxisInput {
-                        sourceDevice: mouseSourceDevice
-                        axis: MouseDevice.X
-                    }
-                },
-                Axis {
-                    id: mouseYAxis
-                    AnalogAxisInput {
-                        sourceDevice: mouseSourceDevice
-                        axis: MouseDevice.Y
-                    }
-                },
-                Axis {
-                    id: keyboardXAxis
-                }
-            ]
-        },
-
         FrameAction {
             onTriggered: {
-                if (leftMouseButtonAction.active) {
-                    var orbitX = -clampInputs(mouseXAxis.value, keyboardXAxis.value) * lookSpeed
-                    root.camera.panAboutViewCenter(orbitX * dt, Qt.vector3d(0, 1, 0));
+                if (d.userInteraction && dt && d.trajectory.length > 2) {
+                    var dx = 0
+                    for (var i = 1; i < d.trajectory.length; ++i) {
+                        dx += d.trajectory[i] - d.trajectory[i - 1];
+                    }
+
+                    if (dx !== 0) {
+                        root.camera.panAboutViewCenter(-dx * dt * d.pixelAndTimeMagicCoeff
+                                                       , Qt.vector3d(0, 1, 0));
+                        cameraPanAngleInput = getCurrentAngle();
+                    }
+
+                    d.trajectory = []
+                } else if (!d.userInteraction && d.demoRotation < 360) {
+                    ++d.demoRotation;
+                    root.camera.panAboutViewCenter(-1.0, Qt.vector3d(0, 1, 0));
+                    cameraPanAngleInput = getCurrentAngle();
                 }
+
             }
         }
     ]
