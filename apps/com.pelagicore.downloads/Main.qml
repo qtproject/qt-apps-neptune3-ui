@@ -32,9 +32,8 @@
 
 import QtQuick 2.8
 import application.windows 1.0
-import shared.Style 1.0
 import shared.utils 1.0
-import shared.animations 1.0
+import shared.Sizes 1.0
 import QtQuick.Controls 2.2
 import "views" 1.0
 import "stores" 1.0
@@ -43,14 +42,13 @@ ApplicationCCWindow {
     id: root
 
     Image {
-        id: topImage
-
         x: root.exposedRect.x
         y: 0
         width: root.exposedRect.width
-        fillMode: Image.PreserveAspectFit
+        height: Sizes.dp(436) + exposedRect.y
+        fillMode: Image.Pad
 
-        source: Style.image("hero-appstore")
+        source: "assets/hero-appstore.png"
         asynchronous: true
     }
 
