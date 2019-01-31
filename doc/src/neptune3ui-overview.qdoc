@@ -144,7 +144,7 @@
 
    \image instrument-cluster.jpg
 
-   In the Instrument Cluster, the user can find driving related information like the speed,
+   In the Instrument Cluster, the user can find driving related information like speed,
    cruise control parameters, gear and energy use (for an electric car). Users can also
    have information from the selected application-windows (Music or Navigation
    ordered in views which you can navigate between. In order to switch between available
@@ -157,7 +157,7 @@
 
    \section2 Center Console Display
 
-   The Center Console display is designed to show the multiprocess capabilities;
+   The Center Console display is designed to show the multi-process capabilities;
    the fact that we can run several applications at the same time with quick response and
    smooth transitions. Even if we technically have different applications running on
    separate processes, the intention is to fade out the border between them, and between
@@ -168,14 +168,14 @@
    Center Console display also contains climate settings, system notifications and different
    vehicle information and settings.
 
-   Some applications, like Music Player, can go both as fullscreen and as widgets. The widgets
-   are the actual applications, just running in a smaller window and adapting their content to
-   fit in a widget slot. The widgets are used on the customizable Home view.
+   Some applications, e.g. Music Player, can be displayed in fullscreen or as widgets. Widgets
+   are actually applications, running in a smaller window and adapting their content to
+   fit in a widget slot. The widgets are used in the customizable home screen.
 
    \image center-stack.jpg
 
    When an application is shown in maximized state, it will take over the whole part of the
-   Center Console and show the full content of the application as illustrated in the following
+   center console and show the full content of the application as illustrated in the following
    image:
 
    \image center-stack-maximized-app.jpg
@@ -185,21 +185,21 @@
    The Application Launcher can be expanded by tapping on the grid icon on the upper
    end of the screen. Users can choose which application to be maximized by tapping on the
    application icon. Users can also define four top applications to be shown without expanding the
-   launcher by pressing-and-hold the selected application and drag it to the desired position as
+   launcher by press-and-hold the selected application and then dragging it to the desired position as
    illustrated in the following image:
 
    \image center-stack-app-launcher.jpg
 
    \section2 Application Widget
 
-   By default, the \l{center console display} shows three application widgets. User can choose which
+   By default, the \l{center console display} shows 3 application widgets. User can choose which
    application to be shown on the home screen as widget by tapping on the Add-Widget icon
-   below the lowest widget and choose the desired application. Only application that is specified to
+   below the lowest widget and choose the desired application. Only applications that are specified to
    have a widget-option will be listed there. The user can also remove a widget from the home screen
    by tapping on the X icon at the bottom left corner of the widget.
 
    \note removing an application widget does not mean that the application is killed. The application
-   will be still running on the background. See \l{Neptune 3 UI System Dialog} for more information
+   might still be running on the background. See \l{Neptune 3 UI System Dialog} for more information
    about killing an application.
 
    \image center-stack-add-widget.jpg
@@ -207,16 +207,16 @@
    \section2 Climate Bar
 
    Neptune 3 UI has a Climate Bar located at the bottom of the \l{Center Console Display}. When tapping
-   into it, a Climate Panel will be shown up with some simulation data interface to \l{Qt IVI}
+   into it, a climate panel will be displayed with some simulation data interface to \l{Qt IVI}
    as shown in the following image:
 
    \image center-stack-climate.jpg
 
    \section2 Notification Center
 
-   Neptune 3 UI has a Notification Center to store Notifications that are triggered in
-   Neptune 3 UI. When a notification is triggered, a Notification Toast will be shown first
-   and it will be stored in the Notification Center afterwards. The User can remove each
+   Neptune 3 UI has a Notification Center to store notifications that are triggered in
+   Neptune 3 UI. When a notification is triggered, a notification toast message will first be shown
+   and afterwards it will be stored in the Notification Center. The user can remove each
    notification in the Notification Center or clear the Notification Center.
 
    \image center-stack-notification-center.jpg

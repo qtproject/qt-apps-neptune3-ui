@@ -75,8 +75,8 @@
    can be tapped. Once the application is killed, it will also be removed from the application
    list.
 
-   \note By only removing the application widget in the home screen, does not mean that
-   the application is killed and that means, the application is still running on the background.
+   \note Only removing the application widget in the home screen, does not mean that
+   the application is killed, it could still be running in the background.
 
    \image system-dialog-runningapps.jpg
 
@@ -84,7 +84,7 @@
 
    The third tab of the system dialog contains two switch buttons to enable the performance
    overlay of the \l{center console display} and the \l{instrument cluster}. It forces the System UI
-   to constantly redraw itself to get the actual GPU/CPU consumptions.
+   to constantly re-draw itself to get the current GPU/CPU consumptions.
 
    \image system-dialog-performance.jpg
 
@@ -94,4 +94,3 @@
 
    \image system-dialog-diagnostics.jpg
 */
-

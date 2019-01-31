@@ -44,20 +44,20 @@
    and additional wishes typically include the following:
 
    \list
-   \li Mesh: a mesh is a collection of vertices and edges which are probably triangulated
+   \li Mesh: A mesh is a collection of vertices and edges which are probably triangulated
        and describes the shape of an object in 3D space
-   \li Material:  a material is a set of coefficients
+   \li Material: A material is a set of coefficients
        that define how the lighting should be applied to the model and interacts with the
        surface
-   \li Shader:  a shader is a programmable shading that is used to do
+   \li Shader: A shader is a programmable shading that is used to do
        shading, as the production of appropriate levels of color within an image, as well
        as to produce special effects or do video post-processing
    \li Texture: Textures are typically used for images to decorate 3D models, but for other
        purposes it can also be used to store many different kinds of data
    \li Camera: The first thing to do in the projection of the screen of a scene is to convert 3D
        coordinates into 2D coordinates. To specify the projection, the points in the 3D
-       scene is used on a virtual screen space. The parameters of a projection will not be
-       entered directly, instead, virtual camera is configured and placed.
+       scene are used on a virtual screen space. The parameters of a projection will not be
+       entered directly, instead, a virtual camera is configured and placed.
    \li Animation: Movements of objects are important and can be accomplished by altering the
        object positions
    \endlist
@@ -66,9 +66,9 @@
 
    The \l{Qt 3D} provides some functionalities for modern 3D rendering backed by
    the performance of OpenGL across the platforms supported by Qt. Qt3D allows developers
-   not only to visualize 3D contents but also to totally customize and control the
+   not only to visualize 3D contents but also to freely customize and control the
    appearance of each object by using built-in materials or by providing custom GLSL
-   shaders. These controls are also accessible through QML that literally extend the ability
+   shaders. These controls are also accessible through QML that extends the ability
    to create a 3D user interface. Integration of 2D and 3D contents is enabled by the
    Scene3D component through QML. Qt3D is an Entity Component System (ECS), an architectural
    pattern used mostly in game development.
@@ -78,7 +78,7 @@
    \list
    \li Entity: A container for any components that can be added, usually hierarchical.
        An entity represents an object of components but by itself is devoid of any
-       specific behavior or characteristics. (An entity can also have sub-Entities)
+       specific behavior or characteristics. (An entity can also have sub-entities)
    \li Component: Set of objects through which behaviors and data can be added
        to an entity
    \endlist
@@ -86,14 +86,14 @@
    \image 3d-integration-ecs.jpg
 
    An Entity with a Component attached will tell the system that it needs to be rendered
-   and how to render it. The components of each entity could be the material, mesh or
-   transformation. These components should be defined as the components of particular
+   and how to render it. The components of each entity could consist of a material, mesh or
+   transformation. These components should be defined as the components of a particular
    entity with a given identity of each component. A material component could have a
    material effect that contains the rendering technique. In addition, within the
    rendering technique, the shader programs can also be specified. These shader programs
    can be an external shader files or directly written in QML. The 3D model might has
    textures, and the connection between the 3D model and the textures can be binded
-   by using the shader and include the material component which has these material
+   by using the shader and include the material component which has this material
    effect to the same entity as the mesh component.
 
    \section1 3D Integration in Neptune 3 UI
@@ -103,16 +103,16 @@
    \image 3d-integration-vehicle-app.jpg
 
    As shown in the above image, each part of the vehicle has its own entity that contains
-   all the necessary parts, such as Mesh, Transform and Material. Those entities are tailored
+   all the necessary parts, such as Mesh, Transformation and Material. Those entities are tailored
    to the root entity of the whole Scene 3D.
 
    Neptune 3 UI has an own custom physical based material with Cook Torrance GGX distribution
    since Qt3D does not provide any for OpenGL ES 2.0. It is required, because it has microfacet
-   theory based lightning, which adds more realistic lightning to the car. Car is mostly covered
-   with a color, so its easy to integrate lightning calculations. Also most of models today are
-   modeled with PBR (Metal Roughness) materials in mind, which will make easier model import.
+   theory based lightning, which adds more realistic lightning to the car. A car model can be mostly
+   painted with a single color, so it is easy to integrate lightning calculations. Also most
+   models today are modeled with PBR (Metal Roughness) materials in mind, which makes model import easier.
 
-   Animations in vehicle applications are made mostly with matrices transformations. For example
-   door animation is: transform door to another origin, rotate it, transform back. So the door
-   will not rotate around own axis.
+   Animations in vehicle applications are made mostly with matrices transformations. E.g. a
+   door animation is done by: transform door to another origin, rotate it, transform back. So the door
+   will not rotate around its own axis.
 */

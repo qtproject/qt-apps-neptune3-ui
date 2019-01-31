@@ -70,7 +70,7 @@
 
    Neptune 3 defines five types of application windows, each of them being handled
    differently by System UI. Namely application center console windows, application
-   instrument cluster windows, hud windows, bottom bar windows and application pop-up
+   instrument cluster windows, HUD windows, bottom bar windows and application pop-up
    windows.
 
    \section1 Neptune 3 System UI Window Item vs Neptune 3 Application Window
@@ -94,7 +94,7 @@
    such as the states of application widget (widget 1 row, widget 2 rows and widget 3 rows)
    and one state for the maximized view. The application needs to receive the current
    state of the application widget being used by this application to apply some animations
-   as each state has its own view / look. Hence, the System UI need to set the window
+   as each state has its own view / look. Hence, the System UI needs to set the window
    property of the widget state to the application. There is also an exposed rectangle
    property that provides some properties, such as x, y, width and height of the visible
    rectangular window area of the application widget that can be used by the application
@@ -112,7 +112,7 @@
 
    \section2 Neptune 3 Application Window
 
-   Neptune 3 provides two main types of application window can be used by
+   Neptune 3 provides two main types of application window that can be used by
    the Neptune 3 application, \l{ApplicationCCWindow} and \l{ApplicationICWindow}.
 
    \section3 Application Center Console Window
@@ -128,7 +128,7 @@
 
    Similar to the ApplicationCCWindow, the ApplicationICWindow also inherits the NeptuneWindow
    with some additional window sizes properties. The ApplicationICWindow is an optional feature
-   to be used by the Neptune 3 application that want to show its content behind two gauges of
+   to be used by the Neptune 3 application that wants to show its content behind two gauges of
    the instrument cluster.
 
    \image applicationwindow.jpg
@@ -136,12 +136,12 @@
    \section2 Additional Windows
 
    There are several additional windows for some specific use-cases, such as Popup Window,
-   Bottom Bar Window and Top Bar Window. These windows will be taken care by the system UI
+   Bottom Bar Window and Top Bar Window. These windows will be taken care of by the system UI
    to be shown on their dedicated window item.
 
    \section3 Popup Window
 
-   The Popup Window can be imported and used by the application that need to show a popup in
+   The Popup Window can be imported and used by the application that needs to show a popup in
    Neptune 3. The system UI will compose the popup window of applications and show it on request.
 
    \section3 Bottom Bar Window
@@ -149,4 +149,3 @@
    The Bottom Bar Window is the window for special application/s to be shown at the bottom side
    of the Center Console. Neptune 3 currently has the climate application to be shown there.
 */
-

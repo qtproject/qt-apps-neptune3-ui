@@ -31,24 +31,24 @@
    \title Neptune 3 UI - Running
    \brief Running Neptune 3 UI
 
-   Typically, Neptune 3 UI works out-of-the-box after your have installed
+   Typically, Neptune 3 UI works out of the box after your have installed
    \l{Qt Automotive Suite} and launched Qt Creator. You can run your applications
-   with Neptune 3 UI on your desktop or a target device.
+   with Neptune 3 UI on your desktop or on a target device.
 
    The simplest way to experience Neptune 3 UI is using the \l{Qt Automotive Suite}.
    It is also possible to build and run the \l{Qt Automotive Suite} including Neptune 3 UI
-   from source code being able to modify any part of the code and experiment any changes.
+   from source code being able to modify any part of the code and experiment doing any changes.
 
    \section1 Running Neptune 3 UI using Qt Automotive Suite
 
    Neptune 3 UI is part of \l{Qt Automotive Suite}. See \l{Installing Qt Automotive Suite}
-   to install all components of \l{Qt Automotive Suite}. After \l{Qt Automotive Suite} have
-   been installed, Neptune 3 UI can be run either on your desktop or your embedded devices,
+   to install all components of \l{Qt Automotive Suite}. After \l{Qt Automotive Suite} has
+   been installed, Neptune 3 UI can be run either on your desktop or on your embedded devices,
    e.g. Intel NUC.
 
    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It provides support for
    a center console display and an instrument cluster and uses the Qt IVI plugins to access various
-   services. Neptune 3 UI offers a multiprocess application model using a central System UI
+   services. Neptune 3 UI offers a multi-process application model using a central System UI
    and various applications. The System UI provides an application launcher to start and stop
    applications. The Application Manager Plugin for Qt Creator allows a developer to develop
    and deploy applications using the Neptune 3 UI.
@@ -62,7 +62,7 @@
 
    \section1 Running Neptune 3 UI using the source code
 
-   If you are interested in exploring Neptune 3 UI by building all components from the source code,
+   If you are interested in exploring Neptune 3 UI by building all components from the source code yourself,
    follow these instructions to run Neptune 3 UI on your desktop:
 
    \section2 Platforms
@@ -75,7 +75,7 @@
    \li Linux desktop (multi-process)
    \endlist
 
-   \note Multi-process UI (preferred): When in multi process mode, application run as
+   \note Multi-process UI (preferred): When in multi-process mode, application run as
    independent processes, as wayland clients, and the System UI acts as a wayland server,
    compositing the application windows in its own QML scene, as regular QML items.
    While in single-process mode, all application code run in the same QML scene and
@@ -121,7 +121,7 @@
    \badcode
    ./neptune3-ui -r --start-session-dbus
    \endcode
-   \note --start-session-dbus is required when running Neptune 3 on Linux (Multi Process mode)
+   \note --start-session-dbus is required when running Neptune 3 on Linux (Multi-Process mode)
    \note By default, Neptune style is used and am-config-neptune.yaml is configured as the default
    configuration file. Hence, in order to load the LUCEE style for Neptune 3, -c am-config-lucee.yaml
    is needed when starting Neptune 3
@@ -131,8 +131,8 @@
    \section2 Development with Neptune 3 UI using Qt Creator
 
    Once the project is cloned, built and installed and all pre-requisites are configured,
-   you can use QtCreator as your development tool to open the project and do the
-   development there. Follow these instructions to work with Neptune 3 UI using QtCreator:
+   you can use QtCreator as your development tool to open the project and develop from
+   there. Follow these instructions to work with Neptune 3 UI using QtCreator:
 
    \list
 
@@ -150,14 +150,14 @@
        otherwise by default, it will be installed under \c opt/neptune3/
 
    \li Expand the build steps and insert an argument under make arguments:
-       -j8 (depending on how many jobs you want to use in your machine)
+       -j8 (depending on how many build jobs you want to use in your machine)
 
    \li Add another Build Step and choose "make" step. And insert the argument under make
-       arguments: install -j8 (depending on how many jobs you want to use in your machine)
+       arguments: install -j8 (depending on how many build jobs you want to use in your machine)
 
    \li Open your Run Settings and choose "neptune3-ui" from the install folder under Run
        configuration. You can also have some other application manager options to be added
-       into the Command line arguments, e.g. --recreate-database, etc. See this page for
+       into the command line arguments, e.g. --recreate-database, etc. See this page for
        more information: \l{Application Manager Configuration}. Make sure that you run
        "neptune3-ui" from your install folder and not build folder.
 
