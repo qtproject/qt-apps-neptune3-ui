@@ -64,6 +64,12 @@ Item {
                 musicSourcesPopup.originItemX = pos.x;
                 musicSourcesPopup.originItemY = pos.y;
                 musicSourcesPopup.visible = true;
+            } else if (currentText === "FM 1 band") {
+                root.store.freqPresets = 1;
+            } else if (currentText === "FM 2 band") {
+                root.store.freqPresets = 2;
+            } else if (currentText === "AM band") {
+                root.store.freqPresets = 0;
             }
         }
     }
