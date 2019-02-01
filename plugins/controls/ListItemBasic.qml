@@ -168,7 +168,6 @@ ItemDelegate {
             anchors.verticalCenter: subText ? undefined : parent.verticalCenter
 
             IconLabel {
-                height: root.icon ? root.height : 0
                 opacity: Style.opacityHigh
                 scale: Sizes.scale
                 spacing: root.spacing
@@ -179,10 +178,14 @@ ItemDelegate {
 
             ColumnLayout {
                 Layout.fillWidth: true
+                Layout.fillHeight: true
+                spacing: 0
+
                 Label {
                     id: listItemText
                     Layout.fillWidth: true
                     Layout.leftMargin: indicator ? indicator.width + root.spacing : 0
+                    Layout.preferredHeight: root.height / 2
                     text: root.text
                     font: root.font
                     elide: Text.ElideRight
@@ -198,6 +201,7 @@ ItemDelegate {
                     id: subtitle
                     Layout.fillWidth: true
                     Layout.leftMargin: indicator ? indicator.width + root.spacing : 0
+                    Layout.preferredHeight: root.height / 2
                     elide: Text.ElideRight
                     wrapMode: root.wrapText ? Text.WrapAtWordBoundaryOrAnywhere : Text.NoWrap
                     horizontalAlignment: Text.AlignLeft
@@ -226,6 +230,7 @@ ItemDelegate {
                 active: root.accessoryDelegateComponent2 !== null
                 sourceComponent: root.accessoryDelegateComponent2
             }
+
             Item {
                 id: spacerRight
                 Layout.minimumWidth: Sizes.dp(22)
