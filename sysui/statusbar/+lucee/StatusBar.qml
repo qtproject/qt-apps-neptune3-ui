@@ -41,55 +41,12 @@ import volume 1.0
 import shared.Sizes 1.0
 import system.controls 1.0
 
-RowLayout {
+Item {
     id: root
 
-    implicitHeight: Sizes.dp(Config.statusBarHeight)
-
-    spacing: Sizes.dp(5)
     property var uiSettings
     property var model
     property Item popupParent
-
-    signal screenshotRequested()
-
-    ToolButton {
-        Layout.preferredWidth: Sizes.dp(60)
-        Layout.fillHeight: true
-        id: volumeIcon
-        objectName: "volumePopupButton"
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(27)
-        icon.name: root.model.volumeStore.volumeIcon
-        onClicked: volumePopup.open()
-    }
-
-    Item {
-        Layout.fillWidth: true
-    }
-
-    IndicatorTray {
-        Layout.fillHeight: true
-        model: root.model.statusBarStore.indicators
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-    }
-
-    DateAndTime {
-        Layout.fillHeight: true
-        currentDate: root.model.statusBarStore.currentDate
-        uiSettings: root.uiSettings
-
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
-            }
-        }
-    }
-
     property var popupLoader: PopupItemLoader {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
@@ -100,4 +57,52 @@ RowLayout {
         originItem: volumeIcon
         Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
     }
+
+    signal screenshotRequested()
+
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: Sizes.dp(5)
+
+        ToolButton {
+            Layout.preferredWidth: Sizes.dp(60)
+            Layout.fillHeight: true
+            id: volumeIcon
+            objectName: "volumePopupButton"
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: Sizes.dp(27)
+            icon.name: root.model.volumeStore.volumeIcon
+            onClicked: volumePopup.open()
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        IndicatorTray {
+            Layout.fillHeight: true
+            model: root.model.statusBarStore.indicators
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+        }
+
+        DateAndTime {
+            Layout.fillHeight: true
+            currentDate: root.model.statusBarStore.currentDate
+            uiSettings: root.uiSettings
+
+            MouseArea {
+                anchors.fill: parent
+                onPressAndHold: {
+                    root.screenshotRequested();
+                    mouse.accepted = true;
+                }
+            }
+        }
+    }
+
+
 }

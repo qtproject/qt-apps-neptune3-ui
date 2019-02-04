@@ -39,10 +39,8 @@ import shared.controls 1.0
 
 import shared.Sizes 1.0
 
-RowLayout {
+Item {
     id: root
-
-    implicitHeight: Sizes.dp(Config.statusBarHeight)
 
     property var uiSettings
     property var model
@@ -50,25 +48,31 @@ RowLayout {
 
     signal screenshotRequested()
 
-    IndicatorTray {
-        Layout.alignment: Qt.AlignLeading
-        Layout.fillHeight: true
-        model: root.model.statusBarStore.indicators
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-    }
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
 
-    DateAndTime {
-        Layout.alignment: Qt.AlignTrailing
-        Layout.fillHeight: true
-        currentDate: root.model.statusBarStore.currentDate
-        uiSettings: root.uiSettings
+    RowLayout {
+        anchors.fill: parent
 
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
+        IndicatorTray {
+            Layout.alignment: Qt.AlignLeading
+            Layout.fillHeight: true
+            model: root.model.statusBarStore.indicators
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+        }
+
+        DateAndTime {
+            Layout.alignment: Qt.AlignTrailing
+            Layout.fillHeight: true
+            currentDate: root.model.statusBarStore.currentDate
+            uiSettings: root.uiSettings
+
+            MouseArea {
+                anchors.fill: parent
+                onPressAndHold: {
+                    root.screenshotRequested();
+                    mouse.accepted = true;
+                }
             }
         }
     }
