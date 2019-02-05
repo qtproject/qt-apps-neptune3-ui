@@ -1,0 +1,15 @@
+formatVersion: 1
+formatType: am-configuration
+---
+
+plugins:
+    startup: [ "PATH_TO_THE_HOOK_LIBRARY" ]
+systemProperties:
+    public:
+        squishPort: 7777
+
+runtimes:
+  qml:
+    plugins:
+        startup: [ "PATH_TO_THE_HOOK_LIBRARY" ]
+
