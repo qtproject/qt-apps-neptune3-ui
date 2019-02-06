@@ -106,7 +106,7 @@
        \li Media application that can play the music that is indexed by the
        \l{Qt IVI} using Qt Multimedia backend.
    \row
-       \li \l{Neptune 3 UI - Map Application}{Map Application} (\c mapapp)
+       \li \l{Neptune 3 UI - Map Application}{Maps Application} (\c mapapp)
        \li Map application is created using MapBoxGL plugin from Qt Location having
        some common navigation features, e.g. set destination, show current location,
        show direction to home or work from current location. The Map application also
@@ -125,11 +125,11 @@
        \li Media application that have pre-set of station list which are provided
        by the simulation backend from \l{Qt IVI}.
    \row
-       \li Application Store (\c appstore)
-       \li Allows the user to install applications from Neptune Deployment Store
-       to Neptune 3. There are few applications available, e.g. Spotify, Netflix,
-       Web Radio App, Same Game. User can also uninstall these external installed
-       apps using the Application Store.
+       \li Downloads Application (\c downloadsapp)
+       \li Allows the user to install applications from the Neptune Deployment Store
+       to Neptune 3. There are a few applications available, such as Spotify, Netflix,
+       Web Radio App, and Same Game. Users can also uninstall these external
+       apps using the Downloads Application.
    \row
        \li \l{Neptune 3 UI - General Settings Application}{General Settings} (\c settingsapp)
        \li General Settings provides a set of common UI settings, such as language
