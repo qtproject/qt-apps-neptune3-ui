@@ -59,12 +59,13 @@ Item {
             // need to set "to" and "from" before "value", as modifying them also causes
             // "value" to change
 
-            leftTempSlider.from = root.store.leftSeat.minValue
+            //keep init order not to have negative model size warning, Slider defaults 0.0 .. 1.0
             leftTempSlider.to = root.store.leftSeat.maxValue
+            leftTempSlider.from = root.store.leftSeat.minValue
             leftTempSlider.value = root.store.leftSeat.value
 
-            rightTempSlider.from = root.store.rightSeat.minValue
             rightTempSlider.to = root.store.rightSeat.maxValue
+            rightTempSlider.from = root.store.rightSeat.minValue
             rightTempSlider.value = root.store.rightSeat.value
         }
     }
