@@ -127,6 +127,7 @@ Item {
             Layout.preferredHeight: Sizes.dp(320)
             Layout.alignment: Qt.AlignTop
             model: root.store.categoryModel
+            serverUrl: root.store.appServerUrl
             onToolClicked: root.store.selectCategory(index)
         }
 

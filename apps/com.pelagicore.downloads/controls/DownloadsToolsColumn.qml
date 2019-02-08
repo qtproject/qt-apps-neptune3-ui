@@ -43,6 +43,7 @@ ColumnLayout {
 
     property alias model: toolsRepeater.model
     property string currentTool: "installed"
+    property string serverUrl
     signal toolClicked(var storeType, var index)
 
     ButtonGroup { id: buttonGroup }
@@ -57,7 +58,7 @@ ColumnLayout {
             baselineOffset: 0
             checkable: true
             checked: root.currentTool === model.name
-            icon.name: model.name ? (checked ? "ic-" + model.name.toLowerCase() + "_ON" : "ic-" + model.name.toLowerCase() + "_OFF") : ""
+            icon.source: root.serverUrl + "/category/icon?id=" + model.id
             display: AbstractButton.TextUnderIcon
             text: qsTr(model.name)
             font.pixelSize: Sizes.fontSizeXS
