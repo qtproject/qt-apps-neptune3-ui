@@ -43,11 +43,13 @@ class Translation : public QObject
 
     Q_PROPERTY(QString languageLocale READ languageLocale WRITE setLanguageLocale NOTIFY languageLocaleChanged)
     Q_PROPERTY(QStringList availableTranslations READ availableTranslations NOTIFY availableTranslationsChanged)
+    Q_PROPERTY(QUrl path READ path WRITE setPath NOTIFY pathChanged)
 
 public:
     explicit Translation(QObject *parent = nullptr);
 
-    Q_INVOKABLE void setPath(const QUrl &languageFilePath);
+    void setPath(const QUrl &languageFilePath);
+    QUrl path();
 
     void setLanguageLocale(const QString &languageLocale);
     QString languageLocale() const;
@@ -59,12 +61,13 @@ public:
 signals:
     void languageLocaleChanged();
     void availableTranslationsChanged();
+    void pathChanged();
 
 private:
     bool loadTranslationFile(const QString &langLocale);
 
     QString m_languageLocale;
-    QString m_languageFilePath;
+    QUrl m_languageFilePath;
 
     QTranslator m_translator;
 
