@@ -52,7 +52,7 @@ Item {
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent
         property var originPos: originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
-        popupX: (root.LayoutMirroring.enabled ? root.parent.width - item.width - Sizes.dp(5) : Sizes.dp(5))
+        popupX: (root.LayoutMirroring.enabled ? root.parent.width - width - Sizes.dp(5) : Sizes.dp(5))
         popupY: originPos.y
         originItem: volumeIcon
         Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
