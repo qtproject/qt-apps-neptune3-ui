@@ -57,8 +57,6 @@ Item {
             Layout.alignment: Qt.AlignLeading
             Layout.fillHeight: true
             model: root.model.statusBarStore.indicators
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
         }
 
         DateAndTime {

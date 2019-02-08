@@ -71,8 +71,6 @@ Item {
             Layout.fillHeight: true
             id: volumeIcon
             objectName: "volumePopupButton"
-            anchors.top: parent.top
-            anchors.left: parent.left
             anchors.leftMargin: Sizes.dp(27)
             icon.name: root.model.volumeStore.volumeIcon
             onClicked: volumePopup.open()
@@ -85,8 +83,6 @@ Item {
         IndicatorTray {
             Layout.fillHeight: true
             model: root.model.statusBarStore.indicators
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
         }
 
         DateAndTime {
