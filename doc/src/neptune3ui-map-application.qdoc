@@ -28,8 +28,8 @@
 
 /*!
    \page neptune3ui-map-application.html
-   \title Neptune 3 UI - Map Application
-   \brief The Map Application of Neptune 3 UI
+   \title Neptune 3 UI - Maps App
+   \brief The Maps App for Neptune 3 UI
 
    In Neptune 3, a built-in application called "com.pelagicore.map" is included
    as the navigation application that uses MapBox GL plugin as the backend.

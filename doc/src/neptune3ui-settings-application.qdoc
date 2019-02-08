@@ -28,8 +28,8 @@
 
 /*!
    \page neptune3ui-settings-application.html
-   \title Neptune 3 UI - General Settings Application
-   \brief The Settings Application of Neptune 3 UI
+   \title Neptune 3 UI - General Settings App
+   \brief The Settings App for Neptune 3 UI
 
    In Neptune 3, an application called "com.pelagicore.apps.settings" is pre-installed
    allowing the users to have their own preferences, such as languages, themes and colors.
