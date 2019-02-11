@@ -28,46 +28,49 @@
 
 /*!
    \page neptune3ui-build-run.html
-   \title Neptune 3 UI - Running
-   \brief Running Neptune 3 UI
+   \title Neptune 3 UI - Run
+   \brief Run Neptune 3 UI
 
-   Typically, Neptune 3 UI works out of the box after your have installed
-   \l{Qt Automotive Suite} and launched Qt Creator. You can run your applications
-   with Neptune 3 UI on your desktop or on a target device.
+   To install all components of \l{Qt Automotive Suite}, see
+   \l{Installing Qt Automotive Suite}. Once you have installed
+   Qt Automotive Suite and launched \l{Qt Creator Manual}{Qt Creator}, you can
+   run your apps with Neptune 3 UI - on your desktop or on a target device,
+   such as Intel NUC.
 
-   The simplest way to experience Neptune 3 UI is using the \l{Qt Automotive Suite}.
-   It is also possible to build and run the \l{Qt Automotive Suite} including Neptune 3 UI
-   from source code being able to modify any part of the code and experiment doing any changes.
+   Alternatively, you can also build and run \l{Qt Automotive Suite} including
+   Neptune 3 UI from the source code. This way you are able to modify any part
+   of the code and experiment.
 
-   \section1 Running Neptune 3 UI using Qt Automotive Suite
+   \section1 Run Neptune 3 UI using Qt Automotive Suite
 
-   Neptune 3 UI is part of \l{Qt Automotive Suite}. See \l{Installing Qt Automotive Suite}
-   to install all components of \l{Qt Automotive Suite}. After \l{Qt Automotive Suite} has
-   been installed, Neptune 3 UI can be run either on your desktop or on your embedded devices,
-   e.g. Intel NUC.
+   See \l{Installing Qt Automotive Suite} to install all components of
+   \l{Qt Automotive Suite}.
 
-   Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It provides support for
-   a center console display and an instrument cluster and uses the Qt IVI plugins to access various
-   services. Neptune 3 UI offers a multi-process application model using a central System UI
-   and various applications. The System UI provides an application launcher to start and stop
-   applications. The Application Manager Plugin for Qt Creator allows a developer to develop
-   and deploy applications using the Neptune 3 UI.
+   Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI}. It
+   provides support for both a Center Console display and an Instrument Cluster
+   and uses the Qt IVI plugins to access various services. Neptune 3 UI offers
+   a multi-process application model using a central System UI and various apps.
+   The System UI provides an application launcher to start and stop apps.
+   The Application Manager Plugin for Qt Creator allows a developer to develop
+   and deploy apps using the Neptune 3 UI.
 
-   Neptune 3 UI is distributed with the \l{Qt Automotive Suite}. Once the \e{Neptune 3 UI}
-   component is selected and installed, the user can run the binary under
-   \e{your-qt-installation-path/qt-version/your-available-platform/neptune3}, e.g.
-   \e{/home/qt/5.11.0/gcc-64/neptune3}. If you use Qt Automotive Suite on an embedded
-   device, the Neptune 3 UI binary will be located under \e{/opt/neptune3/}.
+   Once the Neptune 3 UI component is selected and installed, you can run the
+   binary under
+   \c{your-qt-installation-path/qt-version/your-available-platform/neptune3},
+   such as \c{/home/qt/5.11.0/gcc-64/neptune3}. If you use Qt Automotive Suite
+   on an embedded device, the Neptune 3 UI binary is then located under
+   \c{/opt/neptune3/}.
 
 
-   \section1 Running Neptune 3 UI using the source code
+   \section1 Run Neptune 3 UI using the Source Code
 
-   If you are interested in exploring Neptune 3 UI by building all components from the source code yourself,
-   follow these instructions to run Neptune 3 UI on your desktop:
+   To explore Neptune 3 UI by building all components from the source code
+   yourself, refer to the following instructions on how to run Neptune 3 UI
+   on your desktop.
 
    \section2 Platforms
 
-   Neptune 3 UI is tested regularly on these platforms:
+   Neptune 3 UI is regularly tested on these platforms:
 
    \list
    \li macOS (single-process)
@@ -75,20 +78,24 @@
    \li Linux desktop (multi-process)
    \endlist
 
-   \note Multi-process UI (preferred): When in multi-process mode, application run as
-   independent processes, as wayland clients, and the System UI acts as a wayland server,
-   compositing the application windows in its own QML scene, as regular QML items.
-   While in single-process mode, all application code run in the same QML scene and
-   process as the System UI itself.
+   \section3 Multi-process UI and Single-process UI
+
+   Multi-process UI is the preferred mode. When in multi-process mode, apps
+   run as independent processes, as Wayland clients. In this case, the System
+   UI acts as a Wayland server, compositing the app windows in its own QML
+   scene, as regular QML items.
+
+   In comparison with single-process mode, all app code run in the same QML
+   scene and process as the System UI itself.
 
    \section2 Prerequisites
 
    \list
    \li \b{Qt 5.12} or higher
+   \li To support multi-process mode, your Qt installation must include the
+       \c qtwayland submodule, and be built wiht Open GL ES
+       \c{(-opengl es2 -opengles3)}.
    \endlist
-
-   \note Qt installation need to include qtwayland submodule in order to support multi-process
-   mode and built with Open GL ES (-opengl es2 -opengles3)
 
    \section2 Dependencies
 
@@ -97,83 +104,88 @@
    \li \l{Qt IVI} 5.12
    \endlist
 
-   \section2 Build and run Neptune 3 UI
+   \section2 Build and Run Neptune 3 UI
 
-   \list
+   \list 1
 
    \li Clone the \l{Qt Application Manager Git Repository}{Qt Application Manager},
-   the \l{Qt IVI Git Repository}{Qt IVI} and \l{Neptune3-UI Git Repository}{Neptune3-UI}
-   Git repositories.
+       the \l{Qt IVI Git Repository}{Qt IVI} and the
+       \l{Neptune3-UI Git Repository}{Neptune3-UI} Git repositories.
 
    \li Build \l{Qt Application Manager} against Qt 5.12 or higher. See
-   \l{Qt Applicaton Manager Installation} for more detailed build instructions.
+       \l{Qt Applicaton Manager Installation} for more detailed build
+       instructions.
 
-   \li Build \l{Qt IVI}. against Qt 5.12 or higher. See \l{Qt IVI}{Qt
-   IVI documentation} for more detailed information.
+   \li Build \l{Qt IVI} against Qt 5.12 or higher. See
+       \l{Qt IVI}{Qt IVI documentation} for more detailed information.
 
-   \li Build Neptune 3 UI and install it by running the following command in a terminal:
+   \li Build Neptune 3 UI by running the following command in a terminal:
    \badcode
-   qmake -r INSTALL_PREFIX=<choose a loation> neptune3-ui.pro
-   make && make install
+   qmake neptune3-ui.pro
+   make
    \endcode
 
-   \li Run the following command in a terminal under the \e neptune3-ui installation directory:
+   \li Run the following command in a terminal under the \c neptune3-ui installation
+   directory:
    \badcode
    ./neptune3-ui -r --start-session-dbus
    \endcode
-   \note --start-session-dbus is required when running Neptune 3 on Linux (Multi-Process mode)
-   \note By default, Neptune style is used and am-config-neptune.yaml is configured as the default
-   configuration file. Hence, in order to load the LUCEE style for Neptune 3, -c am-config-lucee.yaml
-   is needed when starting Neptune 3
+
+   \note --start-session-dbus is required when you run Neptune 3 UI on Linux,
+   in multi-process mode.
 
    \endlist
 
-   \section2 Development with Neptune 3 UI using Qt Creator
+   By default, Neptune style is used and \c{am-config-neptune.yaml} is the
+   default configuration file. Hence, to load the LUCEE style for Neptune 3 UI,
+   you must specify \c{-c am-config-lucee.yaml} when you start Neptune 3 UI.
 
-   Once the project is cloned, built and installed and all pre-requisites are configured,
-   you can use QtCreator as your development tool to open the project and develop from
-   there. Follow these instructions to work with Neptune 3 UI using QtCreator:
+   \section2 Develop with Neptune 3 UI using Qt Creator
+
+   Once the project is cloned, built, installed, and all pre-requisites are
+   configured, you can use QtCreator as your development tool. The following
+   instructions describe how to build and run a project:
 
    \list
 
-   \li Start QtCreator and open the Neptune 3 project file.
+   \li Start QtCreator and open the Neptune 3 UI project file.
 
-   \li Configure the project to use your installed Qt (see \l{Create Project Qmake}{Adding Qt Versions})
+   \li Configure the project to use the Qt you have installed
+       (see \l{Adding Qt Versions}).
 
-   \li Open your project build steps configuration under Build Settings
-       (under Projects → Build Settings → Build Steps) (see \l{Build Steps}{Configuring Build Steps})
+   \li Open your project's build steps configuration in
+       \uicontrol{Build} > \uicontrol{Build Settings} > \uicontrol{Build Steps}
+       (see \l{Build Steps}{Configuring Build Steps}).
 
-   \li Expand the qmake steps and add an install prefix to the additional arguments:
-       e.g. \c INSTALL_PREFIX=/path/to/your/neptune/install/folder
+   \li Expand the \e{qmake} \uicontrol{Details} and add an additional argument:
+       \c INSTALL_PREFIX=/path/to/your/neptune/install/folder
 
-       \note this will install your Neptune 3 to the folder that you configured,
-       otherwise by default, it will be installed under \c opt/neptune3/
+       \note This argument ensures that Neptune 3 UI is installed to the
+       folder that you specify, instead of the default \c opt/neptune3/.
 
-   \li Expand the build steps and insert an argument under make arguments:
-       -j8 (depending on how many build jobs you want to use in your machine)
+   \li Expand the \e{Make} \uicontrol{Details} and add a make argument, such as
+       \c -j8, depending on how many build jobs you want to use on your machine.
 
-   \li Add another Build Step and choose "make" step. And insert the argument under make
-       arguments: install -j8 (depending on how many build jobs you want to use in your machine)
+   \li Open your project's run configuration in \uicontrol Run. In
+       \uicontrol{Run configuration}, choose "neptune3-ui". You can also add
+       other application manager options to the command line arguments, such as
+       \c{--recreate-database}. See \l{Application Manager Configuration} for
+       more information. Make sure that you run "neptune3-ui" from your install
+       folder instead of your build folder.
 
-   \li Open your Run Settings and choose "neptune3-ui" from the install folder under Run
-       configuration. You can also have some other application manager options to be added
-       into the command line arguments, e.g. --recreate-database, etc. See this page for
-       more information: \l{Application Manager Configuration}. Make sure that you run
-       "neptune3-ui" from your install folder and not build folder.
-
-   \li Finally you can build and run the project by pressing the Run button or press "Ctrl + R".
+   \li Finally, build and run the project by selecting the \uicontrol{Run}
+       button, or \uicontrol{Ctrl + R}.
 
    \endlist
 
-   \note On Windows, a wrapper is generated when Neptune 3 is built and installed to be able to
-   find required Qt libraries. Run the wrapper instead of the executable file to run Neptune 3.
-   (the wrapper is called: neptune3-ui_wrapper)
+   \note On Windows, when Neptune 3 UI is built and installed, a
+   \c neptune3-ui_wrapper is generated to be able to find the required Qt
+   libraries. Run this wrapper instead of the executable file.
 
-   \section2 Configuring Neptune 3 UI
+   \section2 Configure Neptune 3 UI
 
-   To improve the maintenance, the UI configuration is split into several
-   \c .yaml files. The UI configuration files are listed and described in the
-   following table:
+   For maintainability, the UI configuration is split into several YAML files,
+   as described in the following table:
 
    \table
    \header
@@ -181,21 +193,23 @@
       \li Description
    \row
        \li \c am-config-neptune.yaml
-       \li Defines the \l{center console display} and cluster-specific configurations. For example,
-       built-in applications and their runtime (native or QML), import paths,
-       UI-specific configurations such as a full-screen mode and a main QML file (if
-       runtime is QML). This yaml file will configure Neptune 3 to use "neptune" style.
+       \li Defines the \l{Center Console Display} and Cluster-specific
+           configurations. For example, built-in apps and their runtime
+           (native or QML), import paths, UI-specific configurations
+           (such as full-screen mode), and a main QML file (if it's a QML
+           runtime). This YAML file configures Neptune 3 UI to use "neptune"
+           style.
    \row
        \li \c am-config-lucee.yaml
-       \li Similar to the am-config-neptune.yaml but this yaml file will configure Neptune 3
-       to use "lucee" style.
+       \li Similar to \c am-config-neptune.yaml, but this YAML file configures
+           Neptune 3 UI to use "lucee" style.
     \row
        \li \c info.yaml
-       \li Defines an application-specific configuration. For example, a main QML
-       file and its imports.
+       \li Defines an app-specific configuration, such as a main QML file and
+           its imports.
    \endtable
 
-   The following code defines an example of the \c am-config-neptune.yaml file:
+   The following code is an example of a \c am-config-neptune.yaml file:
 
    \badcode
     formatVersion: 1
@@ -240,33 +254,35 @@
       noUiWatchdog: yes
    \endcode
 
-   There are options for system properties available in the yaml file to show other screens such as
-   Instrument Cluster and HUD than the center console. By default, these screens are enabled. Set
-   "showCluster" or "showHUD" to "no" to let Neptune 3 know that those screens are not intended to be
-   shown.
+   The YAML file contains options for system properties to show screens other
+   than the Center Console, such as the Instrument Cluster or the HUD. These
+   screens are enabled by default. Set \c showCluster or \c showHUD to \c no,
+   to let Neptune 3 UI know that these screens should not be shown.
 
-   There is also one option that can be set to "yes" or "no" called "devMode" to enable and disable
-   development mode in Neptune 3. If this option is enabled, the Sheets application will be included
-   in the application launcher and user can see all components that are supported by Neptune 3 which
-   can be used to develop an application.
+   You can also set the \c devMode option to \c yes or \c no, to enable or
+   disable Development Mode in Neptune 3 UI. When enabled, the Sheets app
+   is included in the Application Launcher and developers acn see all of the
+   components that Neptunen 3 UI supports, to develop an app.
 
-   All of these options are also configurable from the command line as a parameter to the
-   \e appman utility. See \l{Application Manager Configuration} for more information.
+   All of these options are also configurable from the command line as a
+   parameter to the \c appman utility. See
+   \l{Application Manager Configuration} for more information.
 
    \badcode
    appman --option 'ui: { fullscreen: no }'
    \endcode
 
-   \note You must regenerate the Yocto image for your target after you have
-   changed the \c yaml files. See \l{Building eLinux image} {Building Embedded Linux Image}.
+   \note After you have changed the YAML files, you must regenerate the Yocto
+   image for your target. See
+   \l{Building eLinux image} {Building Embedded Linux Image} for more details.
 
    \section1 Related Information
 
    \list
-    \li \l {http://doc.qt.io/QtApplicationManager/manifest.html}
-{Manifest Documentation}
-    \li \l{http://doc.qt.io/QtApplicationManager/configuration.html}
-    {Qt Application Manager configuration options}
+    \li \l{https://doc.qt.io/QtApplicationManager/manifest.html}
+           {Manifest Documentation}
+    \li \l{https://doc.qt.io/QtApplicationManager/configuration.html}
+          {Qt Application Manager Configuration Options}
     \li \l{Neptune 3 UI Application Development}
     \li \l{Building eLinux image} {Building Embedded Linux Image}
     \li \l{Qt Application Manager Git Repository}
