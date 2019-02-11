@@ -61,7 +61,7 @@ Item {
             Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             iconSource: Helper.localAsset("ic-home", Style.theme)
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
@@ -80,7 +80,7 @@ Item {
             Layout.fillHeight: true
             Layout.preferredWidth: root.width/2
             enabled: !root.offlineMapsEnabled
-            anchors.verticalCenter: parent.verticalCenter
+            Layout.alignment: Qt.AlignVCenter
             iconSource: Helper.localAsset("ic-work", Style.theme)
             primaryText: qsTr("Work")
             extendedText: workRouteTime
