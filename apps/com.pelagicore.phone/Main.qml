@@ -68,10 +68,14 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         height: Math.max(Sizes.dp(sourceSize.height), Sizes.dp(660 - 224) + root.exposedRect.y)
 
-        border.bottom: 0
-        border.top: height - Sizes.dp(1)
-        border.left: 0
-        border.right: 0
+        border{
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
+            bottom: 0
+            top: sourceSize.height - 1
+            left: 0
+            right: 0
+        }
 
         opacity: (root.neptuneState === "Maximized") ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation {} }

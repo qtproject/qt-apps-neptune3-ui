@@ -76,7 +76,11 @@ Item {
         anchors.rightMargin: root.widgetRightMargin
         anchors.topMargin: root.widgetTopMargin
         anchors.bottomMargin: root.widgetBottomMargin
-        border { left: 160; right: 160; top: 160; bottom: 160 }
+        border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
+            left: 160; right: 160; top: 160; bottom: 160
+        }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         source: Style.image("widget-dragged-bg")
