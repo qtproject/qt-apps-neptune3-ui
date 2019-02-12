@@ -133,7 +133,7 @@ Item {
         currentIndex: store.musicPlaylist.currentIndex
         currentSongTitle: store.currentEntry ? root.store.currentEntry.title : ""
         currentArtisName: store.currentEntry ? root.store.currentEntry.artist : ""
-        parentStateMaximized: state === "Maximized"
+        parentStateMaximized: root.state === "Maximized"
         mediaReady: store.searchAndBrowseModel.count > 0
         musicPlaying: store.playing
         onPlayClicked: store.playSong()

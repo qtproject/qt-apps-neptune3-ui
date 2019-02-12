@@ -160,21 +160,44 @@ Item {
             }
         }
 
-        Item {
+        Loader {
             id: searchingMedia
             width: Sizes.dp(180)
             height: width
-            opacity: root.mediaReady ? 0.0 : 1.0
-            Behavior on opacity { DefaultNumberAnimation {} }
-            visible: opacity > 0
             anchors.centerIn: coverslide
+            active: !root.mediaReady
+            sourceComponent: Item {
+                BusyIndicator {
+                    id: busyIndicator
+                    anchors.centerIn: parent
+                    Behavior on opacity { DefaultNumberAnimation {} }
+                    visible: opacity > 0.0
+                    running: visible
+                    width: Sizes.dp(60)
+                    height: Sizes.dp(60)
+                }
 
-            BusyIndicator {
-                anchors.centerIn: parent
-                visible: parent.visible
-                running: visible
-                width: Sizes.dp(60)
-                height: Sizes.dp(60)
+                Label {
+                    id: warningLabel
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: root.parentStateMaximized === "Maximized"? Sizes.dp(300) : 0
+                    Behavior on anchors.leftMargin { DefaultNumberAnimation {} }
+                    opacity: 0.0
+                    text: qsTr("There are no music available")
+                    Behavior on opacity { DefaultNumberAnimation {} }
+                }
+
+                Timer {
+                    running: busyIndicator.running
+                    interval: 5000
+                    onTriggered: {
+                        if (!root.mediaReady) {
+                            busyIndicator.opacity = 0.0;
+                            warningLabel.opacity = 1.0;
+                        }
+                    }
+                }
             }
         }
 
