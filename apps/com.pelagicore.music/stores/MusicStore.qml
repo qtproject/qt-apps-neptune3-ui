@@ -86,19 +86,11 @@ Store {
         onContentTypeChanged: console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
         serviceObject: root.player.serviceObject
 
-        property bool modelPopulated: false
-
         onCountChanged: {
-            if (count > 0 && !modelPopulated) {
-                if (musicCount === 0) {
-                    root.searchAndBrowseModel.contentType = "album";
-                    if (searchAndBrowseModel.get(0)) {
-                        player.playQueue.insert(0, searchAndBrowseModel.get(0));
-                    }
-                }
-                root.songModelPopulated();
-                modelPopulated = true;
+            if (count > 0) {
+                insertInitialTracks()
             }
+
             var artist = (get(0) && get(0).artist !== "") ? get(0).artist : qsTr("Unknown Artist");
             var album = (get(0) && get(0).album !== "") ? get(0).album : qsTr("Unknown Album");
             if (get(0) && get(0).type === "album") {
@@ -117,6 +109,7 @@ Store {
 
     readonly property MediaIndexerControl indexerControl: MediaIndexerControl {
         property bool databaseReloaded: false
+        property bool modelPopulated: false
         onProgressChanged: {
             // SearchAndBrowseModel need to be reloaded when indexing process reach 20 %
             // to get the music data and after indexing process is done.
@@ -235,6 +228,23 @@ Store {
     }
 
     signal songModelPopulated()
+
+    function insertInitialTracks() {
+        if (root.musicCount === 0) {
+            if (root.searchAndBrowseModel.count > 3) {
+                for (var x = 0; x < 3; ++x) {
+                    if (root.searchAndBrowseModel.get(x)) {
+                       root.musicPlaylist.insert(0, searchAndBrowseModel.get(x));
+                    }
+                }
+            } else {
+                root.musicPlaylist.insert(0, searchAndBrowseModel.get(0));
+            }
+            root.songModelPopulated();
+            root.indexerControl.modelPopulated = true;
+        }
+    }
+
 
     function playSong() {
         if (root.playing) {
