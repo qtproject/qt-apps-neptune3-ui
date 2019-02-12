@@ -42,41 +42,6 @@
 
    \section1 Topics
 
-   \section2 General
-
-   \list
-   \li \l {Neptune 3 UI - Overview}{Overview}
-   \li \l {Neptune 3 UI - Run}{Run}
-   \li \l {Neptune 3 UI - Configuring Screens on Embedded Linux}{Configuring Screens on Embedded Linux}
-   \endlist
-
-   \section2  UI Insights
-
-   \list
-       \li \l {Neptune 3 UI - System UI}{System UI}
-       \li \l {Neptune 3 UI - System Dialog}{System Dialog}
-       \li \l {Neptune 3 UI - Remote Settings Server}{Remote Settings Server}
-   \endlist
-
-   \section2 Application Insights
-
-   \list
-       \li \l {Neptune 3 UI - Application Architecture}{Application Architecture}
-       \li \l {Neptune 3 UI - Application Anatomy}{Application Anatomy}
-       \li \l {Neptune 3 UI - Application Development}{Application Development}
-       \li \l {Neptune 3 UI - Application Popups}{Application Popups}
-       \li \l {Neptune 3 UI - Application Requests}{Application Requests}
-       \li \l {Neptune 3 UI - 3D Integration}{3D Integration}
-       \li \l {Neptune 3 UI - Map Application}{Map Application}
-       \li \l {Neptune 3 UI - General Settings Application}{General Settings Application}
-   \endlist
-
-   \section1 Reference
-
-   \list
-       \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
-   \endlist
-
-
+   \include neptune3ui-topics.qdocinc content
 */
 
