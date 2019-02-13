@@ -252,6 +252,55 @@ Item {
         onToggled: mainMap.center = root.currentLocation;
     }
 
+    Column{
+        opacity: root.state === "Maximized" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+        anchors{
+            right: parent.right
+            rightMargin: Sizes.dp(27)
+            top: header.bottom
+            topMargin: Sizes.dp(500)
+        }
+
+        ToolButton {
+            id: zoomInButton
+            width: Sizes.dp(background.sourceSize.width)
+            height: Sizes.dp(background.sourceSize.height)
+            background: Image {
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
+                source: Helper.localAsset("floating-button-bg", Style.theme)
+
+                //Text used for correct centering inside Toolbutton
+                Text{
+                    text: "+"
+                    color: zoomInButton.pressed ? Style.accentColor : Style.contrastColor
+                    anchors.centerIn: parent
+                    font.pixelSize: parent.width * 0.3
+                }
+            }
+            onClicked: mainMap.zoomLevel = mainMap.zoomLevel * 1.1
+        }
+
+        ToolButton {
+            id: zoomOutButton
+            width: Sizes.dp(background.sourceSize.width)
+            height: Sizes.dp(background.sourceSize.height)
+            background: Image {
+                source: Helper.localAsset("floating-button-bg", Style.theme)
+
+                //Text used for correct centering inside Toolbutton
+                Text{
+                    text: "−"
+                    color: zoomOutButton.pressed ? Style.accentColor : Style.contrastColor
+                    anchors.centerIn: parent
+                    font.pixelSize: parent.width * 0.3
+                }
+            }
+            onClicked: mainMap.zoomLevel = mainMap.zoomLevel * 0.9
+        }
+    }
+
     MapCopyrightNotice {
         anchors.left: mainMap.left
         anchors.bottom: mainMap.bottom
