@@ -62,3 +62,6 @@ o_ClimateView = {"container": o_QtAM_ApplicationManagerWindow, "type": "ClimateV
 o_QtAM_ApplicationManagerWindow_2 = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": False}
 auto_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow_2, "id": "bigFatButton", "text": "Auto", "type": "Button", "unnamed": 1, "visible": True}
 neptune_3_UI_Center_Console_widgetGrid_homepage_WidgetGrid = {"container": neptune_UI_Center_Console, "objectName": "widgetGrid_homepage", "type": "WidgetGrid", "visible": True}
+events_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "eventsViewButton", "text": "events", "type": "ToolButton", "visible": True}
+year_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "yearViewButton", "text": "year", "type": "ToolButton", "visible": True}
+next_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "nextViewButton", "text": "next", "type": "ToolButton", "visible": True}

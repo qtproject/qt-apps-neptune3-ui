@@ -135,6 +135,7 @@ ColumnLayout {
             Layout.preferredWidth: Sizes.dp(135)
             Layout.preferredHeight: Sizes.dp(96)
             Layout.alignment: Qt.AlignHCenter
+            objectName: model.objectName ? model.objectName : ""
             baselineOffset: 0
             checkable: true
             checked: root.currentIndex === index

@@ -3,7 +3,6 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -32,8 +31,6 @@
 ##
 ############################################################################
 
-import common.qml_names as qml
-
 # squish dependent
 import names
 
@@ -41,3 +38,16 @@ import names
 @OnFeatureStart
 def hook(context):
     start_neptune_ui_app_w_focus("console")
+
+
+@Then("click '|word|' view")
+def step(context, view_name):
+    if view_name == "events":
+        view_object_name = names.events_ToolButton
+    elif view_name == "year":
+        view_object_name = names.year_ToolButton
+    else:
+        view_object_name = names.next_ToolButton
+
+    events_button = waitForObject(view_object_name)
+    tapObject(events_button)

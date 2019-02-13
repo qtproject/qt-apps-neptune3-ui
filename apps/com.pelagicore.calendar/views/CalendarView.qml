@@ -113,9 +113,9 @@ Item {
                 translationContext: "CalendarToolsColumn"
                 model: ListModel {
                     id: toolsColumnModel
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "year") }
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "next") }
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "events") }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "year"); objectName: "yearViewButton" }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "next"); objectName: "nextViewButton" }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "events"); objectName: "eventsViewButton" }
                 }
             }
         }
