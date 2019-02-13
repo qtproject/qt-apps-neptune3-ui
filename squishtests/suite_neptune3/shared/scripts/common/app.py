@@ -52,7 +52,6 @@ def register_main(app):
 def register_app(app):
     """Registers an app into settings.G_APP_HANDLE, if this app is known."""
     good = False
-    result = None
 
     app_url = os.path.basename(os.path.normpath(app.cwd))
     app_array = filter(lambda x, app_url=app_url: x[1] == app_url,
@@ -70,10 +69,9 @@ def register_app(app):
                      + "' to be usable in squish!")
         else:
             test.log("App '" + app_name + "' is already registered!")
-        result = app
     else:
         test.fail("The app with path '" + app.cwd + "' is not known!")
-    return good, result
+    return good
 
 
 def switch_to_main_app():
@@ -90,10 +88,19 @@ def switch_to_main_app():
 
 def switch_to_app(app_name):
     """Switch context to the given app, to act in its process."""
+
+    # do this always upfront, because an app
+    # might have been connected in the meanwhile
+    # and must be updated before trying to possibly
+    # change to it.
+    update_all_contexts()
+
     good = False
     if app_name in settings.G_APP_HANDLE.keys():
         switch_to_app = settings.G_APP_HANDLE[app_name]
         if switch_to_app is not None:
+            test.log("Trying to switch to registered app '"
+                     + app_name + "'!")
             squish.snooze(settings.G_WAIT_SWITCH_APP_CONTEXT)
             squish.setApplicationContext(switch_to_app)
             test.log("Switched to registered app '" + app_name + "'!")
@@ -113,19 +120,30 @@ def get_app_id(app_name):
     return False, ""
 
 
+def register(app):
+    """
+    Register an app or main app (input: by instance)
+    to known apps.
+    """
+    worked = True
+
+    app_name = str(app)
+    if app_name == settings.G_AUT_MAIN:
+        register_main(app)
+    elif app_name == settings.G_AUT_APPMAN:
+        register_app(app)
+    elif app_name == settings.G_AUT_REMOTE:
+        test.log("app '" + app_name + "' is found, all right!")
+    else:
+        test.warning("app '" + app_name + "' with path '"
+                     + a.cwd + "' is yet not known!")
+        worked = False
+    return worked
+
+
 def update_all_contexts():
     """Update application contexts, each possible app has to be registered
     before using!"""
     app_list = squish.applicationContextList()
     for a in app_list:
-        # distinguish apps
-        app_name = str(a)
-        if app_name == settings.G_AUT_MAIN:
-            register_main(a)
-        elif app_name == settings.G_AUT_APPMAN:
-            register_app(a)
-        elif app_name == settings.G_AUT_REMOTE:
-            test.log("app '" + app_name + "' is found, all right!")
-        else:
-            test.warning("app '" + app_name + "' with path '"
-                         + a.cwd + "' is yet not known!")
+        register(a)

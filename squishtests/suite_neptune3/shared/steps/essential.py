@@ -41,38 +41,6 @@ import common.qml_names as qml
 from math import sin, cos, floor
 
 
-def coord_up_px(in_pix):
-    up = QPoint(0, -in_pix)
-    transf = coord_transform2DReal(up)
-    return transf
-
-
-def coord_down_px(in_pix):
-    return coord_up_px(-in_pix)
-
-
-def coord_right_px(in_pix):
-    right = QPoint(in_pix, 0)
-    transf = coord_transform2DReal(right)
-    return transf
-
-
-def coord_left_px(in_pix):
-    return coord_right_px(-in_pix)
-
-
-def coord_addQPoints(a, b):
-    return QPoint(a.x + b.x, a.y + b.y)
-
-
-def coord_transform2DReal(src_point):
-    ti = QPoint(src_point.x, src_point.y)
-    if settings.SCREEN_LANDSCAPE:
-        ti.x = -src_point.x
-        ti.y = src_point.y
-    return ti
-
-
 def coord_transform2D(src_point):
     ti = QPoint(0, 0)
 
