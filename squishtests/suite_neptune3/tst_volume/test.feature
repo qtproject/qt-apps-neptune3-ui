@@ -1,7 +1,6 @@
 Feature: Test the popups
 
-    From main menu some popups are directly accessible.
-    Just test if they open
+    From the home screen the volume popup is directly accessible.
 
   Scenario: Open and close the volume popup
 

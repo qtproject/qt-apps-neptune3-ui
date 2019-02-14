@@ -1,7 +1,7 @@
-Feature: Main menu widget changes
+Feature: Home screen configuration
 
-    From main menu it is possible to change the widget,
-    they are positioned horizontally.
+    From home screen it is possible to change the widgets,
+    add, remove, and start apps which the widgets represent.
 
     Scenario: Open and close add new widget popup
 

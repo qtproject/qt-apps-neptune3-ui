@@ -1,6 +1,6 @@
-Feature: The launch bar is configurable
+Feature: The launcher bar is configurable
 
-    The launch bar is highly configurable.
+    The launcher bar is highly configurable.
     Sorted in a natural way the first items are
     visible.
 
