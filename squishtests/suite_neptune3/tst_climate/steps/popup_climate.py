@@ -52,6 +52,37 @@ def step(context):
     squish.tapObject(climateMouseArea)
 
 
+def map_button(button_name):
+    if button_name == 'rear defrost':
+        select_name = names.rear_defrost_Button
+    elif button_name == 'front defrost':
+        select_name = names.front_defrost_Button
+    elif button_name == 'recirculation':
+        select_name = names.recirculation_Button
+    elif button_name == 'seat heater driver':
+        select_name = names.seat_heater_driver_Button
+    elif button_name == 'steering wheel heat':
+        select_name = names.steering_wheel_heat_Button
+    else:
+        select_name = names.seat_heater_passenger_Button
+    selected_button = waitForObject(select_name)
+    return selected_button
+
+
+@Then("select climate button '|word|'")
+def step(context, button_name):
+    selected_button = map_button(button_name)
+    squish.tapObject(selected_button)
+
+
+@Then("climate button '|word|' shall be checked")
+def step(context, button_name):
+    selected_button = map_button(button_name)
+    test.compare(selected_button.checked, True, "some climate button")
+    squish.snooze(1)
+    app.switch_to_main_app()
+
+
 @When("the '|word|' climate slider is moved '|word|'")
 def step(context, leftRight, change):
     if not context.userData:

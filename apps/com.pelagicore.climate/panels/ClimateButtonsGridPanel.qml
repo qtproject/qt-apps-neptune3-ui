@@ -50,6 +50,7 @@ GridLayout {
     columns: 3
     ClimateButton {
         id: rear_defrost
+        objectName: "rear_defrost"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-rear-defrost_ON" : "ic-rear-defrost_OFF"
@@ -58,6 +59,7 @@ GridLayout {
     }
     ClimateButton {
         id: front_defrost
+        objectName: "front_defrost"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-front-defrost_ON" : "ic-front-defrost_OFF"
@@ -66,6 +68,7 @@ GridLayout {
     }
     ClimateButton {
         id: recirculation
+        objectName: "recirculation"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-recirculation_ON" : "ic-recirculation_OFF"
@@ -74,6 +77,7 @@ GridLayout {
     }
     ClimateButton {
         id: seat_heater_driver
+        objectName: "seat_heater_driver"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-seat-heat-driver_ON" : "ic-seat-heat-driver_OFF"
@@ -84,6 +88,7 @@ GridLayout {
     }
     ClimateButton {
         id: steering_wheel_heat
+        objectName: "steering_wheel_heat"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
@@ -92,6 +97,7 @@ GridLayout {
     }
     ClimateButton {
         id: seat_heater_passenger
+        objectName: "seat_heater_passenger"
         Layout.fillWidth: true
         Layout.fillHeight: true
         icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
