@@ -73,20 +73,6 @@ G_APP_HANDLE = {'vehicle': None,
               'climate': None,
               'sheets': None}
 
-# according to squisPorts in info.yaml of each app
-G_APP_PORTS = {'vehicle': 7778,
-              'map': 7784,
-              'tuner': 7787,
-              'settings': 7779,
-              'music': 7785,
-              'cluster': 7786,
-              'appstore': 7780,
-              'phone': 7786,
-              'calendar': 7781,
-              'climate': 7782,
-              'sheets': 7786}
-
-
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080
 

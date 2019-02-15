@@ -45,12 +45,12 @@ def hook(context):
     start_neptune_ui_app_w_focus("console")
 
 
-@Given("the launch bar is shown")
+@Given("the launcher bar is shown")
 def step(context):
     test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_launcherCenterConsole_Launcher).enabled
-                 , True, "launch bar exists")
+                 , True, "launcher bar exists")
     test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_launcherCenterConsole_Launcher).visible
-                 , True, "launch bar is visible")
+                 , True, "launcher bar is visible")
 
 
 @When("the grid icon is tapped")
@@ -65,6 +65,22 @@ def step(context, string_open):
     test.compare(waitForObjectExists(names.neptune_3_UI_Center_Console_editableLauncher_EditableGridView).gridOpen
                  , open_status
                  , "open status shall be open" if open_status else "open status shall be closed")
+
+
+@When("the launcher icon '|word|' is tapped")
+def step(context, app_name):
+    found, app_idname = app.get_app_id(app_name)
+
+    if found:
+        object_name = qml.grid_delegate + app_idname
+        grid_view = waitForObject(names.neptune_UI_Center_Console_grid_GridView)
+
+        object_pointer = find_object_name_recursively(grid_view, object_name, 3)
+
+        if object_pointer is not None:
+            if object_pointer.visible:
+                pass
+                squish.tapObject(object_pointer)
 
 
 @When("grid item '|word|' is tabbed and move index '|integer|' up and '|integer|' right")
