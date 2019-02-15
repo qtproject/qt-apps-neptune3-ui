@@ -155,6 +155,8 @@ def step(context, app_name):
                 test.fail("'" + app_name + "' is there but not visible.")
         else:
             test.fail("'" + app_name + "' could not be found!")
+    # wait another half second
+    squish.snooze(0.5)
 
 
 @Then("wait '|integer|' seconds and '|word|' app is active")
@@ -197,10 +199,16 @@ def step(context, wait_sec, app_name):
         test.fail("'" + app_name + "' app is not known!!")
 
 
-@Then("switch app to '|word|'")
+@Given("switch app to '|word|'")
 def step(context, app_name):
     """ Is just a thin wrapper to access directly from test """
     app.switch_to_app(app_name)
+
+
+@Then("switch to main app")
+def step(context):
+    """ Is just a thin wrapper to access directly from test """
+    app.switch_to_main_app()
 
 
 # -------------------------------------------------------

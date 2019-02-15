@@ -65,3 +65,4 @@ neptune_3_UI_Center_Console_widgetGrid_homepage_WidgetGrid = {"container": neptu
 events_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "eventsViewButton", "text": "events", "type": "ToolButton", "visible": True}
 year_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "yearViewButton", "text": "year", "type": "ToolButton", "visible": True}
 next_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "nextViewButton", "text": "next", "type": "ToolButton", "visible": True}
+calendarViewContent = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "calendarViewContent", "type": "StackLayout", "visible": True}

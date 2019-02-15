@@ -121,6 +121,7 @@ Item {
         }
 
         StackLayout {
+            objectName: "calendarViewContent"
             anchors.top: parent.top
             anchors.topMargin: Sizes.dp(53)
             anchors.right: parent.right
@@ -130,13 +131,17 @@ Item {
 
             currentIndex: toolsColumn.currentIndex
 
-            CalendarGridPanel { }
+            CalendarGridPanel {
+              objectName: "calendarGridPanel"
+            }
 
             NextCalendarPanel {
+                objectName: "nextCalendarPanel"
                 eventModel: root.store.eventModel
             }
 
             EventList {
+                objectName: "eventList"
                 model: root.store.eventModel
             }
         }

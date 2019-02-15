@@ -33,6 +33,7 @@
 
 # squish dependent
 import names
+import common.qml_names as qml
 
 
 @OnFeatureStart
@@ -40,7 +41,7 @@ def hook(context):
     start_neptune_ui_app_w_focus("console")
 
 
-@Then("click '|word|' view")
+@Given("tap '|word|' button")
 def step(context, view_name):
     if view_name == "events":
         view_object_name = names.events_ToolButton
@@ -51,3 +52,18 @@ def step(context, view_name):
 
     events_button = waitForObject(view_object_name)
     tapObject(events_button)
+
+
+@Then("calendar view '|word|' should be displayed")
+def step(context, view_name):
+    view_stack_layout = waitForObject(names.calendarViewContent)
+    current_index = view_stack_layout.currentIndex
+    if view_name == "events":
+        compare_name = qml.calendar_view['events']
+    elif view_name == "year":
+        compare_name = qml.calendar_view['year']
+    else:
+        compare_name = qml.calendar_view['next']
+    stack_layouts = object.children(view_stack_layout)
+    current_name = stack_layouts[current_index].objectName
+    test.compare(current_name, compare_name, "calendar views")

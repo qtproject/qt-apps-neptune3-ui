@@ -38,3 +38,6 @@ application_widget = "applicationWidget_"
 current_inFrame_Application = "currentInFrameApplication_"
 grid_delegate = "gridDelegate_"
 home_widget = "homeWidget_"
+calendar_view = {'events': 'eventList',
+                 'year': 'calendarGridPanel',
+                 'next': 'nextCalendarPanel'}
