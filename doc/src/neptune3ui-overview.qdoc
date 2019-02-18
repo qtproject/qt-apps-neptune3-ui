@@ -211,6 +211,8 @@
 
    \image center-stack-app-launcher.jpg
 
+   \section2 App Widget
+
    By default, the \l{Center Console Display} shows three app widgets. Users can
    choose which app to show on the home screen as a widget, by tapping on the
    Add Widget icon below the lowest widget and choose the desired app.
