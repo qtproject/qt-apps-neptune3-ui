@@ -28,27 +28,24 @@
 
 /*!
    \page neptune3ui-app-development.html
-   \title Neptune 3 UI - Application Development
-   \brief Introduction to application development and best practices for Neptune 3 UI
+   \title Neptune 3 UI - App Development
+   \brief Introduction and best practices to developing apps with Neptune 3 UI
 
-    When you are developing an application for Neptune 3 UI, you must follow these rules:
+    When you are developing an app for Neptune 3 UI, you must follow these rules to make sure that
+    your app is available in the system:
+
     \list
-      \li The info.yaml manifest file needs to be under the application root folder.
-      See \l{Manifest File}.
-      \li The name of the folder that contains \e info.yaml must be the same as
-      the value of the \c id property in the info.yaml file.
-      \li Depending on your application type, either use \l{ApplicationCCWindow} or also include
-      \l{ApplicationICWindow} to show content in the \l{instrument cluster}. See \l{Application
-      Root QML Element}.
+      \li The \c info.yaml \l{Manifest File}{manifest file} needs to be under the app's root folder.
+      \li The name of the folder that contains \c info.yaml must match the value of the \c id
+          property in the \c info.yaml file.
+      \li Depending on your app type, either use \l{ApplicationCCWindow} or also include
+          \l{ApplicationICWindow} to show content in the \l{instrument cluster}. For more details,
+          see \l{Application Root QML Element}.
     \endlist
-
-It is important to follow all the defined rules in order for the application to
-become available in the system.
 
 \section1 Manifest File
 
-The manifest file must have the name \e {info.yaml}. The manifest file's content
-should be as follows:
+The manifest file must be named: \e {info.yaml}, and contain the following:
 
 \badcode
 formatVersion: 1
@@ -64,7 +61,7 @@ name:
 categories: [ 'app' ]
 \endcode
 
-For any additional information about the manifest file, please refer to
+For any additional information about the manifest file, refer to
 \l{Qt Application Manager Manifest File}.
 
 \section1 Application Root QML Element
@@ -74,7 +71,7 @@ used when developing applications:
 
 \table
     \header
-        \li Root element
+        \li Root Element
         \li Description
     \row
         \li \l{ApplicationCCWindow}

@@ -28,51 +28,50 @@
 
 /*!
    \page neptune3ui-application-architecture.html
-   \title Neptune 3 UI - Application Architecture
-   \brief The architecture and common principles of Neptune 3 applications
+   \title Neptune 3 UI - App Architecture
+   \brief The architecture and common principles for Neptune 3 apps
 
-   Neptune 3 uses a common architecture and principles for all applications. The architecture
-   approach is called Core UI Architecture.
+   Neptune 3 UI uses a common architecture and principles for all of its apps: the Core UI
+   Architecture.
 
-   \section1 General Overview
+   \section1 Core UI Architecture
 
-   The Core UI architecture adapts the component-based architecture, in which it focuses
-   on the decomposition of the UI into individual UI components. The primary objective of
-   component-based architecture is to ensure component reusability. A component encapsulates
+   The Core UI Architecture adapts the component-based architecture, by breaking the UI down into
+   individual UI components, to ensure component reusability. A component encapsulates both the
    functionality and behavior of a software element into a reusable unit.
 
-   Component-oriented software design has many advantages over the traditional object-oriented
-   approaches such as:
+   Component-based software design has many advantages over the traditional object-oriented
+   software design, such as:
 
    \list
-   \li Reduced time in market and the development cost by reusing existing components.
-   \li Increased reliability with the reuse of the existing components.
+   \li Reduced time-to-market and development costs by reusing existing components.
+   \li Increased reliability by reusing existing components.
    \endlist
 
-   In general, Neptune 3 differentiates between UI primitives (e.g. rectangles and images)
-   and controls (e.g. buttons) as individual UI types. To combine several UI types, panels
-   or views are being used. These are specific container types to layout other containers
-   as child UI types or controls. UI primitives are only used inside controls, as the
-   controls have support for styling the UI. The difference between a panel and a view is
-   that the view interfaces with the stores (the business layer of the application).
+   In general, Neptune 3 differentiates between UI primitives, like rectangles and images, and
+   controls, like buttons. To combine several UI primitives and controls, you use \c panels or
+   \c views, which are specific container types used to layout other containers as child UI
+   types or controls. UI primitives are only used inside controls, because the controls can style
+   the UI. The difference between a \c panel and a \c view is that the view interfaces with the
+   stores, the app's business layer.
 
-   \section2 Application Architecture
+   \section2 Apps
 
-   An application is usually designed around a specific context, hence, it often uses a
-   particular area of the service API and it can also depend on common services to be aware
-   of the overall system state. The aim of the Core UI Architecture is to avoid having
-   such service dependencies end up directly into the UI but they should be wrapped as a
-   Store entity. The Store is the only entity that is allowed to talk to service instances.
-   Besides being the adapter to the service interfaces, it provides the necessary business
-   logic to achieve a clean UI. Finally, the UI should only contain visual logic and be free
-   of any business logic.
+   An app is usually designed around a specific context, often using a particular area of the
+   service API, and can also depend on common services to be aware of the overall system's state.
+   The aim of the Core UI Architecture is to avoid situations where the UI has dependencies on
+   these common services; instead, they should be wrapped as a \c store entity.
 
-   However, the UI itself is divided into several UI elements which are allowed to have a
-   reference to the store and those which are not allowed to. The purpose to strictly manage
-   the dependencies is to allow these components to stay testable in a later stage of the
-   project. Such an architecture also allows the developer to use a technique to isolate
-   a part of the UI and work in that small part independently without being tied by some
-   service dependencies.
+   The \c store is the only entity that is allowed to talk to service instances. Besides being the
+   adapter to the service interfaces, the \c store provides the necessary business logic to achieve
+   a clean UI. Consequently, the UI should only contain visual logic and exclude any business
+   logic.
+
+   In turn, the UI itself is divided into several UI elements, some of which are allowed to have a
+   reference to the \c store; but not others. Managing these dependencies in such a strict way allows
+   these components to stay testable in a later stage of the project. This type of architecture also
+   allows the developer to isolate a part of the UI and work solely in that part, independently,
+   without being tied to service dependencies.
 
    Example architecture:
 
@@ -96,70 +95,71 @@
 
    \image application-architecture.jpg
 
+   Based on the diagram above:
+
    \list
    \li Stores: Encapsulate the access to the service API and contain required business logic
    \li Views: Have a reference to a store which provides the necessary information to others
    \li Panels: Container for other controls and panels. A panel should not have any dependency
                to a store or a view
-   \li Controls: Re-usable visual element which has no external data dependencies, besides primitives
+   \li Controls: Re-usable visual element which has no external data dependencies, besides
+       primitives
    \li Helpers: Collection of some operations.
    \endlist
 
    \section3 Stores
 
-   A store encapsulates the business logic inside the application. It is a pure data driven
-   object. A store can have child stores which can be forwarded to sub-trees of the UI. A store
-   is the only portion of the UI layer which uses the service layer. Ideally, a store should
-   have an interface that defines the API to allow the store being tested. The views would only
-   see this interface so that they do not depend on a concrete store. The store that inherit
-   its interface then filled with values from the required service and feed the UI. On the other
-   hand, the store interface also allows the developer to use it and feed the UI by using some
-   static simulation data or automated simulation backend that runs required states to provide
-   the desired data.
+   A \c store is a data-driven object, that encapsulates the business logic in an app; it is the
+   only portion of the UI that uses the service layer. A \c store can have child stores which
+   can be further forwarded to sub-trees in the UI. Ideally, a \c store has an interface that
+   defines the API for the store to be tested. \c Views would only see this interface so that
+   they do not depend on a concrete \c store. The \c store that inherits the abstract interface
+   then fills it with values from the required service and feeds the UI. Alternatively, developers
+   can also use the store interface and feed the UI via static simulation data or an automated
+   simulation backend that runs the states required to provide the desired data.
 
    \section3 Views
 
-   A view is a container for UI panels which is the only one that depends on a store inside the
-   application. Other UI parts need to be clear that they do not have any dependencies to any
-   stores as views do: as mentioned before, in order to allow these components to stay testable.
+   A \c view is a container for UI panels; this is the only container that depends on a store
+   inside the app. Other UI parts need to be clear that they do not have any dependencies to any
+   stores like \c views do, to make sure these components are easy to test.
 
    \image music-widget-view.jpg
 
-   The above image is an example of a simple widget view in a music application. It is a container
-   of the music control panel and an album art panel. This view takes the information from the music
-   store that is interfaced with the music service which provides a collection of songs to the
-   application.
+   The image above is an example of a simple widget \c view in a Music App. It is a container that
+   holds the music control panel and an album art panel. This \c view takes the information from
+   the music store that is interfaced with the music service, which provides a collection of songs
+   to the app.
 
    \section3 Panels
 
-   A panel is a container for other panels and controls. Normally panel is a layout of controls
-   that have a set of functionalities to support the application, such as Music Control Panel as
+   A \c panel is a container for controls and other panels. Normally, a \c panel is a layout of
+   controls with a set of functionalities to support the app, such as the Music Control Panel
    shown below:
 
    \image music-control-panel.jpg
 
    \section3 Controls
 
-   A control in this context is an application specific control that is being used only by
-   the application itself. For example the play, previous and next button that are shown in the
-   previous image.
+   A \c control in this context is an app-specific control that is used only by the app itself.
+   For example, the play, previous, and next button in the image above.
 
    \section3 Helpers
 
-   A helper is an object which contains computing functions and not properties. A typical helper
-   is a set of JS functions, which (if required) could later be moved into C++ code depending on
-   the needs.
+   A helper is an object that contains computing functions, but no properties. A typical helper
+   is a set of JavaScript functions, which (if required) could later be moved into C++ code
+   depending on the app's requirements.
 
    \section2 UI Harnesses
 
-   The above architecture gives the developer, a capability to work independently without having
-   the dependencies to some services. Neptune 3 harnesses are located in the tests folder where
-   they are also being used by the unit tests.
+   The architecture described above gives the developer the capability to work independently
+   without depending on some services. Neptune 3 UI's harnesses are located in the tests folder
+   where they are also used by the unit tests.
 
-   In many large-scale UI projects, it is very common that UI developers are constraint to run
-   the whole UI just to see changes on a small UI component. The UI Harness enables developers
-   to do UI live-reloading (e.g. QML Live) during their development that can significantly boost
-   their productivity.
+   In many large-scale UI projects, it is very common that UI developers have to run the whole UI
+   just to see changes on a small UI component. In comparison, the UI Harness enables developers
+   to do UI live reloading, such as via QmlLive, during the development process, which can
+   significantly boost their productivity.
 
    Below is an example of the UI harness for the instrument cluster that uses some static data
    to simulate a particular state and can be run independently using qmlscene or qmllive without
