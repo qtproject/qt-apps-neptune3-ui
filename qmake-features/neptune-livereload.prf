@@ -1,0 +1,25 @@
+win32|cross_compile: {
+    TEMPLATE = aux
+    warning("Couldn't generate a neptune wrapper. Please start the example as mentioned in the documentation instead.")
+} else {
+    WRAPPER_EXT=.sh
+    ORIG_TARGET=$$TARGET
+    TARGET=$${TARGET}_wrapper$${WRAPPER_EXT}
+    CONFIG-=app_bundle
+
+    NEPTUNE_LIVERELOAD=$$[QT_INSTALL_BINS]/qmllivebench --importpath $$OUT_PWD/../../../imports_shared/ --importpath $$PWD/../apps/$$APPLICATION_NAME/ $$HARNESSES_WORKSPACE
+
+    extraplugins.name = QT_PLUGIN_PATH
+    extraplugins.CONFIG = append
+    extraplugins.value = $$OUT_PWD/../../../
+
+    stylepath.name = QT_QUICK_CONTROLS_STYLE_PATH
+    stylepath.value = $$OUT_PWD/../../../styles/
+
+    style.name = QT_QUICK_CONTROLS_STYLE
+    style.value = neptune
+
+    QT_TOOL_ENV = extraplugins stylepath style
+    QT_TOOL_NAME = $$ORIG_TARGET
+    qtAddTargetEnv(NEPTUNE_LIVERELOAD, QT)
+}

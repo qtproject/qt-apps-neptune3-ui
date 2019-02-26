@@ -35,14 +35,20 @@ import QtQuick.Window 2.2
 import shared.utils 1.0
 
 import shared.Style 1.0
+import shared.Sizes 1.0
 
-import views 1.0
-import stores 1.0
+import "../views" 1.0
+import "../stores" 1.0
 
 Item {
     id: root
-    width: 1920
-    height: 720
+    width: Sizes.dp(1920)
+    height: Sizes.dp(720)
+
+    readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 720)
+    onScaleRatioChanged: {
+        root.Sizes.scale = scaleRatio
+    }
 
     Image {
         anchors.fill: parent
@@ -53,28 +59,34 @@ Item {
     ClusterView {
         anchors.fill: parent
         rtlMode: root.LayoutMirroring.enabled
-        store: ClusterStoreInterface {
+        store: RootStoreInterface {
             id: dummystore
-            navigationMode: false
-            speed: 0.0
-            speedLimit: 120
-            speedCruise: 40.0
-            driveTrainState: 2
-            ePower: 50
 
-            lowBeamHeadlight: true
-            highBeamHeadlight: true
-            fogLight: true
-            stabilityControl: true
-            seatBeltFasten: true
-            leftTurn: true
+            vehicleInterface: VehicleInterface {
+                speed: 0.0
+                speedLimit: 120
+                speedCruise: 40.0
+                driveTrainState: 2
+                ePower: 50
 
-            rightTurn: true
-            absFailure: true
-            parkBrake: true
-            tyrePressureLow: true
-            brakeFailure: true
-            airbagFailure: true
+                lowBeamHeadlight: true
+                highBeamHeadlight: true
+                fogLight: true
+                stabilityControl: true
+                seatBeltFasten: true
+                leftTurn: true
+
+                rightTurn: true
+                absFailure: true
+                parkBrake: true
+                tyrePressureLow: true
+                brakeFailure: true
+                airbagFailure: true
+            }
+
+            behaviourInterface: BehaviourInterface {
+                navigationMode: false
+            }
         }
 
         Timer {
@@ -82,28 +94,28 @@ Item {
             running: true
             repeat: true
             onTriggered: {
-                if (dummystore.speed < 140) {
-                    dummystore.speed = dummystore.speed + 10;
+                if (dummystore.vehicleInterface.speed < 140) {
+                    dummystore.vehicleInterface.speed = dummystore.vehicleInterface.speed + 10;
                 } else {
-                    dummystore.speed = 0.0;
+                    dummystore.vehicleInterface.speed = 0.0;
                 }
 
-                if (dummystore.ePower < 80) {
-                    dummystore.ePower = dummystore.ePower + 2;
+                if (dummystore.vehicleInterface.ePower < 80) {
+                    dummystore.vehicleInterface.ePower = dummystore.vehicleInterface.ePower + 2;
                 } else {
-                    dummystore.ePower = 0.0;
+                    dummystore.vehicleInterface.ePower = 0.0;
                 }
 
-                if (dummystore.speedLimit < 100) {
-                    dummystore.speedLimit = dummystore.speedLimit + 10;
+                if (dummystore.vehicleInterface.speedLimit < 100) {
+                    dummystore.vehicleInterface.speedLimit = dummystore.vehicleInterface.speedLimit + 10;
                 } else {
-                    dummystore.speedLimit = 0;
+                    dummystore.vehicleInterface.speedLimit = 0;
                 }
 
-                if (dummystore.speedCruise < 100) {
-                    dummystore.speedCruise = dummystore.speedCruise + 10;
+                if (dummystore.vehicleInterface.speedCruise < 100) {
+                    dummystore.vehicleInterface.speedCruise = dummystore.vehicleInterface.speedCruise + 10;
                 } else {
-                    dummystore.speedCruise = 0;
+                    dummystore.vehicleInterface.speedCruise = 0;
                 }
             }
         }
