@@ -47,6 +47,8 @@ RootStoreInterface {
         Needed here to get twentyFourHourTimeFormat
     */
     readonly property UISettings uiSettings: UISettings {}
+    // true if QtSafeRenderer is enabled
+    readonly property bool qsrEnabled: ApplicationInterface.systemProperties["qsrEnabled"]
 
     vehicleInterface: VehicleInterface {
         speed: clusterDataSource.speed

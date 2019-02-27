@@ -57,3 +57,11 @@ android: {
                         $$[QT_INSTALL_LIBS]/libQt5Sql.so \
 
 }
+
+use_qsr{
+    #include Qt Safe Renderer part, generate file
+    CONFIG += qtsaferenderer
+    SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
+    SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
+    DEFINES += USE_QT_SAFE_RENDERER
+}

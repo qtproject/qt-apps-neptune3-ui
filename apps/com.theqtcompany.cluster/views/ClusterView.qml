@@ -44,12 +44,14 @@ import shared.animations 1.0
 import "../stores" 1.0
 import "../panels" 1.0
 import "../helpers" 1.0
+import "../controls" 1.0
 
 Item {
     id: root
 
     property RootStoreInterface store
     property bool rtlMode
+    readonly property alias blinker: blinker
 
     Image {
         // Overlay between the ivi content and tellatales, cluster content
@@ -103,8 +105,9 @@ Item {
     }
 
     TelltalesLeftPanel {
-        anchors.left: gaugesPanelLoader.left
-        anchors.leftMargin: Sizes.dp(111)
+        LayoutMirroring.enabled: false
+        anchors.right: parent.horizontalCenter
+        anchors.rightMargin: Sizes.dp(405)
         y: Sizes.dp(23)
         width: Sizes.dp(444)
         height: Sizes.dp(58)
@@ -115,11 +118,13 @@ Item {
         stabilityControlOn: store.vehicleInterface.stabilityControl
         seatBeltFastenOn: store.vehicleInterface.seatBeltFasten
         leftTurnOn: store.vehicleInterface.leftTurn
+        blinker: blinker.lit
     }
 
     TelltalesRightPanel {
-        anchors.right: gaugesPanelLoader.right
-        anchors.rightMargin: Sizes.dp(111)
+        LayoutMirroring.enabled: false
+        anchors.left: parent.horizontalCenter
+        anchors.leftMargin: Sizes.dp(405)
         y: Sizes.dp(23)
         width: Sizes.dp(444)
         height: Sizes.dp(58)
@@ -130,5 +135,12 @@ Item {
         lowTyrePressureOn: store.vehicleInterface.tyrePressureLow;
         brakeFailureOn: store.vehicleInterface.brakeFailure;
         airbagFailureOn: store.vehicleInterface.airbagFailure;
+        blinker: blinker.lit
+    }
+
+    //common switch for left and right turn and safe part
+    Blinker {
+        id: blinker
+        running: store.vehicleInterface.rightTurn || store.vehicleInterface.leftTurn
     }
 }

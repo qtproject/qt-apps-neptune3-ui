@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,24 +29,51 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtApplicationManager.SystemUI 2.0
-import shared.com.pelagicore.settings 1.0
+#ifndef TCPMSGHANDLER_H
+#define TCPMSGHANDLER_H
 
-QtObject {
-    id: root
+#include <QTimer>
+#include <QTcpServer>
 
-    readonly property InstrumentCluster clusterSettings: InstrumentCluster { id: clusterSettings }
-    readonly property string clusterTitle: "Neptune 3 UI - Instrument Cluster"
-    readonly property bool showCluster: ApplicationManager.systemProperties.showCluster
-    property bool clusterAvailable
-    property bool invertedCluster: false
-    readonly property bool qsrEnabled: ApplicationManager.systemProperties["qsrEnabled"]
-    readonly property var clusterScreen: Qt.application.screens.length > 1 ? Qt.application.screens[1] : Qt.application.screens[0]
-    readonly property var _clusterAvailableBinding: Binding {
-        target: clusterSettings
-        when: clusterSettings.isInitialized
-        property: "available"
-        value: root.clusterAvailable
+#include <QtSafeRenderer/statemanager.h>
+
+using namespace SafeRenderer;
+QT_USE_NAMESPACE
+
+class TcpMsgHandler : public QObject
+{
+    Q_OBJECT
+public:
+    explicit TcpMsgHandler(StateManager *manager, QObject *parent = nullptr);
+    ~TcpMsgHandler() {
     }
-}
+
+    static const quint16 defaultPort;
+
+    void onSpeedLabelsVisibilityChanged(bool visible);
+    void onPowerLabelsVisibilityChanged(bool visible);
+    void onErrorTextVisibilityChanged(bool visible);
+
+private slots:
+    void newConnection();
+    void readData();
+    void heartbeatTimeout();
+
+private:
+    void runServer(const quint16 port);
+
+signals:
+    void mainWindowPosGot(quint32 x, quint32 y);
+
+private:
+    StateManager *m_stateManager;
+    QTcpServer   *m_tcpServer;
+
+    quint32      m_timeout;
+    bool         m_heartbeatUpdated;
+    bool         m_mainUIFailed;
+
+    QTimer       m_heartbeatTimer;
+};
+
+#endif // MSGHANDLER_H

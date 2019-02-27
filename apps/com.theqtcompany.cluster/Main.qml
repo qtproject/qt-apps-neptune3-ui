@@ -50,8 +50,31 @@ NeptuneWindow {
     title: qsTr("Instrument Cluster")
 
     ClusterView {
+        id: clusterView
         anchors.fill: parent
         rtlMode: root.LayoutMirroring.enabled
         store: RootStore {}
+
+        Loader {
+            id: safeTelltalesLoader
+            anchors.fill: parent
+            active: clusterView.store.qsrEnabled
+            source: "panels/SafeTelltalesPanel.qml"
+            onLoaded: {
+                item.blinker = Qt.binding( function() {return clusterView.blinker.lit} )
+                item.lowBeamHeadLightOn = Qt.binding( function() {return clusterView.store.vehicleInterface.lowBeamHeadlight})
+                item.highBeamHeadLightOn = Qt.binding( function() {return clusterView.store.vehicleInterface.highBeamHeadlight})
+                item.fogLightOn = Qt.binding( function() {return clusterView.store.vehicleInterface.fogLight})
+                item.stabilityControlOn = Qt.binding( function() {return clusterView.store.vehicleInterface.stabilityControl})
+                item.seatBeltFastenOn = Qt.binding( function() {return clusterView.store.vehicleInterface.seatBeltFasten})
+                item.leftTurnOn = Qt.binding( function() {return clusterView.store.vehicleInterface.leftTurn})
+                item.rightTurnOn = Qt.binding( function() {return clusterView.store.vehicleInterface.rightTurn})
+                item.absFailureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.absFailure})
+                item.parkingBrakeOn = Qt.binding( function() {return clusterView.store.vehicleInterface.parkBrake})
+                item.lowTyrePressureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.tyrePressureLow})
+                item.brakeFailureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.brakeFailure})
+                item.airbagFailureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.airbagFailure})
+            }
+        }
     }
 }

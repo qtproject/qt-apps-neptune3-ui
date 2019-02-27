@@ -50,6 +50,19 @@ Window {
         applicationICWindows.next();
     }
 
+    //Demo case to stick QtSafeRendererWindow to Cluster on Desktop
+    //should be also enabled on "Safe" part
+    function sendWindowCoordsToSafeUI(x, y) {
+        var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                    QtObject {
+                        function sendClusterWindowPos(x,y) {
+                            SafeMessage.moveItem(\"mainWindow\", Qt.point(x, y))
+                        }
+                    }
+                ", root, "sendMessageObject")
+        sendMessageObject.sendClusterWindowPos(x, y);
+    }
+
     width: Config.instrumentClusterWidth
     height: Config.instrumentClusterHeight
     color: "black"
@@ -59,6 +72,9 @@ Window {
     onWidthChanged: {
         root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
     }
+    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
+    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
+
 
     Component.onCompleted: {
         // Would like to use a regular property binding instead. But it doesn't work and I don't know why

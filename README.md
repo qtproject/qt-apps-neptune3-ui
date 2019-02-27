@@ -86,4 +86,74 @@ In case QtIVI is not installed, 'dummyimports' folder contains QML dummy impleme
 
 The NeptuneControlApp may also be built and run on android. For building just the app for android, there is a separate project file, settings_app_android.pro, in the root directory. The project includes only the app and its dependencies. This requires the android build of qt 5.12 with the qtivi built for android.
 
+# QtSafeRenderer (QSR) support
 
+To have QSR support inside Neptune3 it should be build and installed into the system: https://doc.qt.io/QtSafeRenderer/qtsr-installation-guide.html
+Special tool (qtsafelayouttool) is required for compilation.
+
+To enable QSR support add `use_qsr` to CONFIG line in .qmake.conf file.
+
+Client to Neptunes's `Remote Settings Server` is used as values source (tell-tales states, speed,...) for Safe UI . Connection parameters are read from (`.config/Pelagicore/NeptuneControlApp.conf`). The first url in list is used for connection:
+
+```
+[lastUrls]
+ 1\url=tcp://127.0.0.1:9999
+size=1
+```
+
+As a communication channel between Safe UI (neptune3-ui-qsr-cluster) and Non-SafeIU (neptune3-ui) TCP channel is suggested with client on Non-Safe UI part and server on Safe UI side.
+Client is a part of QtSafeRenderer qml plugin. To set communication parameters manually, environment variables should be set for neptune3-ui:
+
+* QT_SAFERENDER_IPADDRESS=127.0.0.1
+* QT_SAFERENDER_PORT=1111
+
+It can be done inside neptune3-ui by setting parameters in `am-config-.yaml` file:
+```
+ systemProperties:
+  public:
+   .
+   qsrEnabled: yes
+   qsrServerAddress: '127.0.0.1'
+   qsrServerPort: '1111'
+   .
+```
+In `am-config-.yaml` file `qsrEnabled` parameter switches loading Safe tell-tales inside cluster application. By default it is disabled.
+
+`neptune3-ui-qsr-cluster` server listening port is set in settings file (`.config/Pelagicore/QSRCluster.conf`), default port is 1111.
+```
+ [connection]
+ listen_port=1111
+```
+## Switching demo
+
+On NUC target switching to Safe UI is possible via systemd service monitoring and adding start of neptune3-ui-qsr-cluster as an 'on failure' option.
+
+In Neptune UI service file (`/lib/systemd/system/neptune3-qsr.service`):
+```
+[Unit]
+...
+OnFailure=neptune3-ui-qsr-cluster.service
+```
+In QSR service file (`/lib/systemd/system/neptune3-qsr.service`):
+```
+[Service]
+...
+Type=oneshot
+ExecStart=/opt/neptune3/neptune3-ui-qsr-cluster -platform eglfs
+workingDirectory=/opt/neptune3
+Environment=QT_QPA_EGLFS_KMS_CONFIG=/opt/neptune3/neptune3-ui-qsr.json
+```
+EGLFS sttings json file (`/opt/neptune3/neptune3-ui-qsr.json`):
+```
+{
+    "device": "/dev/dri/card0",
+    "outputs": [
+        { "name": "DP1", "virtualIndex": 2, "mode": "1920x1080"},
+        { "name": "DP3", "virtualIndex": 0, "mode": "1920x1080"},
+        { "name": "DP4", "virtualIndex": 1, "mode": "1920x1080"}
+    ]
+}
+```
+## Desktop demo case
+
+To show layering, it is possible to set `gui/stick_to_cluster` key to true in settings file (`.config/Pelagicore/QSRCluster.conf`). Cluster window coordinates are sent to `safe-ui` and safe telltales window is moved to be on top of Cluster and match telltales positions. Enabled by default.

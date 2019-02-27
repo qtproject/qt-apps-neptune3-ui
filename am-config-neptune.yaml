@@ -40,6 +40,10 @@ systemProperties:
       showCluster: yes
       showHUD: yes
       devMode: yes
+      #Qt Safe Renderer settings
+      qsrEnabled: no
+      qsrServerAddress: '127.0.0.1'
+      qsrServerPort: '1111'
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
       orientation: 'Portrait'

@@ -34,7 +34,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Extras 1.4
-//import Qt.SafeRenderer 1.0
 import "../controls" 1.0
 import "../helpers" 1.0
 import shared.Sizes 1.0
@@ -51,70 +50,68 @@ Item {
     property bool stabilityControlOn: true
     property bool seatBeltFastenOn: true
     property bool leftTurnOn: true
+    property bool blinker: false
 
-    // Uncomment below to render BG when safe renderer is in use
-//    Image {
-//        id: bg
-//        anchors.fill: parent
-//        source: "./img/telltales/telltale-bg-left.png"
-//    }
+    Row {
+        //place row inside item and stick to the right [  xxxx<]
+        anchors.right: root.right
+        height: root.height
+        spacing: root.width * 0.05
+        LayoutMirroring.enabled: false
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: root.width * 0.07
 
         Image {
-            Layout.preferredWidth: Sizes.dp(42)
-            Layout.preferredHeight: Sizes.dp(32)
+            width: Sizes.dp(42)
+            height: Sizes.dp(32)
             opacity: root.lowBeamHeadLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-low-beam")
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
-            Layout.preferredWidth: Sizes.dp(42)
-            Layout.preferredHeight: Sizes.dp(27)
+            width: Sizes.dp(42)
+            height: Sizes.dp(27)
             opacity: root.highBeamHeadLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-high-beam")
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
-            Layout.preferredWidth: Sizes.dp(34)
-            Layout.preferredHeight: Sizes.dp(34)
+            width: Sizes.dp(34)
+            height: Sizes.dp(34)
             opacity: root.fogLightOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-fog-lights")
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
-            Layout.preferredWidth: Sizes.dp(30)
-            Layout.preferredHeight: Sizes.dp(33)
+            width: Sizes.dp(30)
+            height: Sizes.dp(33)
             opacity: root.stabilityControlOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-stability-control")
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
-            Layout.preferredWidth: Sizes.dp(25)
-            Layout.preferredHeight: Sizes.dp(35)
+            width: Sizes.dp(25)
+            height: Sizes.dp(35)
             opacity: root.seatBeltFastenOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-seat-belt")
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
-            Layout.preferredWidth: Sizes.dp(53)
-            Layout.preferredHeight: Sizes.dp(48)
-            opacity: blinker.lit ? 1 : 0
+            width: Sizes.dp(53)
+            height: Sizes.dp(48)
+            opacity: root.blinker && root.leftTurnOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-left-turn")
-            Layout.alignment: Qt.AlignRight
+            anchors.verticalCenter: parent.verticalCenter
         }
-    }
-
-    Blinker {
-        id: blinker
-        running: root.leftTurnOn
     }
 }

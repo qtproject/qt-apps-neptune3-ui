@@ -10,3 +10,4 @@ ClusterTemperatureLabel 1.0 ClusterTemperatureLabel.qml
 DrivingModeRange 1.0 DrivingModeRange.qml
 LuceeCircles 1.0 LuceeCircles.qml
 ClusterUnitsLabel 1.0 ClusterUnitsLabel.qml
+SafeTelltalesPanel 1.0 SafeTelltalesPanel.qml

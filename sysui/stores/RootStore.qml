@@ -66,7 +66,23 @@ Store {
         localeCode: Config.languageLocale
 
         // Store widget states when the UI is shutting down
-        onShuttingDown: settingsStore.widgetStates = applicationModel.serializeWidgetsState();
+        onShuttingDown: {
+            settingsStore.widgetStates = applicationModel.serializeWidgetsState();
+
+            if (clusterStore.qsrEnabled) {
+                //not to have direct dependency on QtSafeRenderer
+                var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                        QtObject {
+                            function sendShuttingDown() {
+                                SafeMessage.sendHeartBeat(1) //sends one message with 1 ms expire timeout
+                            }
+                        }
+                    ", root, "sendMessageObject")
+
+                sendMessageObject.sendShuttingDown();
+
+            }
+        }
         onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
     }
 

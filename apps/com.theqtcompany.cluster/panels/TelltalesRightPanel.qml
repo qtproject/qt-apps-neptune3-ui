@@ -33,7 +33,6 @@
 
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-//import Qt.SafeRenderer 1.0
 import "../controls" 1.0
 import "../helpers" 1.0
 import shared.Sizes 1.0
@@ -50,69 +49,59 @@ Item {
     property bool lowTyrePressureOn: true
     property bool brakeFailureOn: true
     property bool airbagFailureOn: true
+    property bool blinker: false
 
-    // Uncomment below to render BG when safe renderer is in use
-//    Image {
-//        id: bg
-//        anchors.fill: parent
-//        source: "./img/telltales/telltale-bg-right.png"
-//    }
-
-    Blinker {
-        id: blinker
-        running: root.rightTurnOn
-    }
-
-    RowLayout {
+    Row {
         anchors.fill: parent
-        spacing: root.width * 0.07
+        spacing: root.width * 0.05
+        LayoutMirroring.enabled: false
 
         Image {
-            opacity: blinker.lit ? 1 : 0
+            opacity: root.blinker && root.rightTurnOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-right-turn")
-            Layout.preferredWidth: Sizes.dp(53)
-            Layout.preferredHeight: Sizes.dp(48)
+            width: Sizes.dp(53)
+            height: Sizes.dp(48)
         }
 
         Image {
             opacity: root.absFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-abs-fault")
-            Layout.preferredWidth: Sizes.dp(40)
-            Layout.preferredHeight: Sizes.dp(30)
+            width: Sizes.dp(40)
+            height: Sizes.dp(30)
         }
 
         Image {
             opacity: root.parkingBrakeOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-parking-brake")
-            Layout.preferredWidth: Sizes.dp(40)
-            Layout.preferredHeight: Sizes.dp(30)
+            width: Sizes.dp(40)
+            height: Sizes.dp(30)
         }
 
         Image {
             opacity: root.lowTyrePressureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-tire-pressure")
-            Layout.preferredWidth: Sizes.dp(34)
-            Layout.preferredHeight: Sizes.dp(30)
+            width: Sizes.dp(34)
+            height: Sizes.dp(30)
         }
 
         Image {
             opacity: root.brakeFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("./telltales/ic-brake-fault")
-            Layout.preferredWidth: Sizes.dp(40)
-            Layout.preferredHeight: Sizes.dp(30)
+            width: Sizes.dp(40)
+            height: Sizes.dp(30)
         }
 
         Image {
             opacity: root.airbagFailureOn ? 1 : 0
             fillMode: Image.PreserveAspectFit
             source: Utils.localAsset("/telltales/ic-airbag")
-            Layout.preferredWidth: Sizes.dp(35)
-            Layout.preferredHeight: Sizes.dp(34)
+            width: Sizes.dp(35)
+            height: Sizes.dp(34)
         }
     }
 }

@@ -127,6 +127,23 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         cfg.parse();
         a.setup(&cfg, deploymentWarnings);
 
+#ifdef USE_QT_SAFE_RENDERER
+        //Set env variables for Qt Safe Renderer for sending heartbeats
+        //env variables are used to start TCP client to connect to "safe ui" part
+        //qsrEnabled also switches loading of Safe Telltales in Cluster View
+        bool    qsrEnabled = cfg.rawSystemProperties()["public"].toMap()["qsrEnabled"].toBool();
+        if (qsrEnabled)
+        {
+            QString qsrIp   = cfg.rawSystemProperties()["public"].toMap()["qsrServerAddress"].toString();
+            QString qsrPort = cfg.rawSystemProperties()["public"].toMap()["qsrServerPort"].toString();
+
+            if (!qsrPort.isEmpty() && !qsrIp.isEmpty()) {
+                qputenv("QT_SAFERENDER_IPADDRESS", qsrIp.toLocal8Bit());
+                qputenv("QT_SAFERENDER_PORT", qsrPort.toLocal8Bit());
+            }
+        }
+#endif
+
         // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
         if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty())
             TouchEmulation::createInstance();
