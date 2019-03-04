@@ -54,20 +54,27 @@ Item {
     QtObject {
         id: d
 
+        property var prevWindow
         property var window: root.appInfo ? root.appInfo.window : null
         onWindowChanged: {
-            if (currentMaxWindow) {
-                currentMaxWindow.removeAnimation.start();
-                currentMaxWindow = null;
-            }
+            if (window !== prevWindow) {
 
-            if (d.window) {
-                currentMaxWindow = maximizedWindowComponent.createObject(d, {
-                                                                             "parent":root,
-                                                                             "appInfo": root.appInfo,
-                                                                            });
-                d.window.parent = root;
-                currentMaxWindow.addAnimation.start();
+                // only apply the in and out animations when incoming window is different
+                // than the previous one.
+                if (currentMaxWindow) {
+                    currentMaxWindow.removeAnimation.start();
+                    currentMaxWindow = null;
+                }
+
+                if (d.window) {
+                    currentMaxWindow = maximizedWindowComponent.createObject(d, {
+                                                                                 "parent":root,
+                                                                                 "appInfo": root.appInfo,
+                                                                                });
+                    d.window.parent = root;
+                    currentMaxWindow.addAnimation.start();
+                }
+                prevWindow = window;
             }
         }
 

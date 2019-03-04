@@ -53,7 +53,6 @@ Control {
                 height: Sizes.dp(104)
                 text: model.stationName
                 subText: model.freq
-                rightToolSymbol: "ic-favorite-tuner"
                 onClicked: { root.itemClicked(model.index); }
             }
         }

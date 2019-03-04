@@ -82,6 +82,13 @@
     </message>
 </context>
 <context>
+    <name>AlbumArtPanel</name>
+    <message>
+        <source>There are no music available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>

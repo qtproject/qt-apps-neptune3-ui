@@ -100,7 +100,7 @@ AbstractCenterConsole {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent
-        popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -item.width + leftIcon.width: 0)
+        popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -width + leftIcon.width: 0)
         originItem: leftIcon
         Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
     }

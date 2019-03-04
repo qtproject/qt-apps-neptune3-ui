@@ -42,46 +42,25 @@ import "views" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-QtObject {
-    property var mainWindow: ApplicationCCWindow {
-        id: mainWindow
+ApplicationCCWindow {
+    id: root
 
-        MultiPointTouchArea {
-            id: multiPoint
-            anchors.fill: parent
-            anchors.margins: 30
-            touchPoints: [ TouchPoint { id: touchPoint1 } ]
+    Image {
+        x: root.exposedRect.x
+        y: root.exposedRect.y - Sizes.dp(224)
+        width: root.exposedRect.width
+        height: tunerAppContent.fullscreenTopHeight + root.exposedRect.y - y
+        source: Style.image("app-fullscreen-top-bg")
+        asynchronous: true
+    }
 
-            property int count: 0
-            onReleased: {
-                count += 1;
-                mainWindow.setWindowProperty("activationCount", count);
-            }
-        }
-
-        ScalableBorderImage {
-
-            x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y - Sizes.dp(224)
-            width: mainWindow.exposedRect.width
-            height: tunerAppContent.fullscreenTopHeight + mainWindow.exposedRect.y - y
-            border.top: sourceSize.height - Sizes.dp(1)
-
-            opacity: (mainWindow.neptuneState === "Maximized") ? 1.0 : 0.0
-            Behavior on opacity { DefaultNumberAnimation {} }
-            visible: opacity > 0
-
-            source: Style.image("app-fullscreen-top-bg")
-        }
-
-        TunerView {
-            id: tunerAppContent
-            x: mainWindow.exposedRect.x
-            y: mainWindow.exposedRect.y
-            width: mainWindow.exposedRect.width
-            height: mainWindow.exposedRect.height
-            rootItem: mainWindow.contentItem
-            store: TunerStore { }
-        }
+    TunerView {
+        id: tunerAppContent
+        x: root.exposedRect.x
+        y: root.exposedRect.y
+        width: root.exposedRect.width
+        height: root.exposedRect.height
+        rootItem: root.contentItem
+        store: TunerStore { }
     }
 }

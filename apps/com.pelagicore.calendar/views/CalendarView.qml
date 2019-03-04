@@ -113,14 +113,15 @@ Item {
                 translationContext: "CalendarToolsColumn"
                 model: ListModel {
                     id: toolsColumnModel
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "year") }
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "next") }
-                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "events") }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "year"); objectName: "yearViewButton" }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "next"); objectName: "nextViewButton" }
+                    ListElement { icon: "ic-calendar"; text: QT_TRANSLATE_NOOP("CalendarToolsColumn", "events"); objectName: "eventsViewButton" }
                 }
             }
         }
 
         StackLayout {
+            objectName: "calendarViewContent"
             anchors.top: parent.top
             anchors.topMargin: Sizes.dp(53)
             anchors.right: parent.right
@@ -130,13 +131,17 @@ Item {
 
             currentIndex: toolsColumn.currentIndex
 
-            CalendarGridPanel { }
+            CalendarGridPanel {
+              objectName: "calendarGridPanel"
+            }
 
             NextCalendarPanel {
+                objectName: "nextCalendarPanel"
                 eventModel: root.store.eventModel
             }
 
             EventList {
+                objectName: "eventList"
                 model: root.store.eventModel
             }
         }

@@ -60,7 +60,7 @@ ListView {
         cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
         value: root.store.currentInstallationProgress
         onValueChanged: {
-            if (installationProgress === 1.0) {
+            if (value === 1.0) {
                 root.currentIndex = -1;
             }
         }

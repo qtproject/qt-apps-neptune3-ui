@@ -76,7 +76,11 @@ Item {
         anchors.rightMargin: root.widgetRightMargin
         anchors.topMargin: root.widgetTopMargin
         anchors.bottomMargin: root.widgetBottomMargin
-        border { left: 160; right: 160; top: 160; bottom: 160 }
+        border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
+            left: 160; right: 160; top: 160; bottom: 160
+        }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
         source: Style.image("widget-dragged-bg")
@@ -126,10 +130,18 @@ Item {
         // don't let the window get input events outside the slot area
         clip: true
 
-        Component.onCompleted: timer.start()
-
         ApplicationCCWindowItem {
             id: windowItem
+
+            property bool isRunning: root.appInfo ? root.appInfo.running : false
+            onIsRunningChanged: {
+                if (isRunning) {
+                    warningLabel.visible = false;
+                } else {
+                    warningLabel.visible = true;
+                }
+            }
+
             widgetHeight: root.widgetHeight
             currentWidth: windowSlot.width
             Behavior on currentWidth { DefaultNumberAnimation { } }
@@ -161,8 +173,8 @@ Item {
     }
 
     Timer {
-        id: timer
-        interval: 5000
+        running: busyIndicator.running
+        interval: 10000
         onTriggered: {
             if (!windowItem.window) {
                 busyIndicator.opacity = 0.0;

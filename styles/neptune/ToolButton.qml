@@ -43,10 +43,10 @@ T.ToolButton {
     id: control
 
     implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem.implicitWidth + leftPadding + rightPadding)
+                            contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
     implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem.implicitHeight + topPadding + bottomPadding)
-    baselineOffset: contentItem.y + contentItem.baselineOffset
+                             contentItem ? contentItem.implicitHeight + topPadding + bottomPadding : 0)
+    baselineOffset: contentItem ? contentItem.y + contentItem.baselineOffset : 0
 
     padding: Sizes.dp(6)
     spacing: Sizes.dp(6)

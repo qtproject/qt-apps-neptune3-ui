@@ -44,16 +44,22 @@ Translation::Translation(QObject *parent)
 
 void Translation::setPath(const QUrl &languageFilePath)
 {
-    m_languageFilePath = languageFilePath.toLocalFile();
+    m_languageFilePath = languageFilePath;
 
     // find the available translations
     m_availableTranslations.clear();
-    QDirIterator it(m_languageFilePath, {QStringLiteral("*.qm")}, QDir::Files|QDir::Readable);
+    QDirIterator it(m_languageFilePath.toLocalFile(), {QStringLiteral("*.qm")}, QDir::Files|QDir::Readable);
     while (it.hasNext()) {
         it.next();
         m_availableTranslations.append(it.fileInfo().baseName());
     }
     emit availableTranslationsChanged();
+    emit pathChanged();
+}
+
+QUrl Translation::path()
+{
+    return m_languageFilePath;
 }
 
 void Translation::setLanguageLocale(const QString &languageLocale)
@@ -84,7 +90,7 @@ QString Translation::formatTime(const QDateTime &dt, bool twentyFourH) const
 
 bool Translation::loadTranslationFile(const QString &langLocale)
 {
-    QString fileToLoad(m_languageFilePath);
+    QString fileToLoad(m_languageFilePath.toLocalFile());
     fileToLoad += langLocale + ".qm";
 
     const bool loaded = m_translator.load(fileToLoad);

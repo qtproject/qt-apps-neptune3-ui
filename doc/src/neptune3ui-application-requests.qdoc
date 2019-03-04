@@ -73,7 +73,7 @@
    \endcode
 
    In addition, for the Map Application, the following lines should be added in the
-   application's Store so that the url is processed as shown below, instructing
+   application's store so that the url is processed as shown below, instructing
    the application to set the selected address and prepare for starting the navigation
    to it.
 
@@ -96,12 +96,12 @@
    the mime-type of the application that is intended to be opened, followed by the
    desired url indicating what the application should do when opening.
 
-   For that to be successful, the respective mime-Types should be added accordingly
+   For that to be successful, the respective mime-types should be added accordingly
    to the application's info.yaml files (e.g., mimeTypes: [ 'x-scheme-handler/x-radio' ]).
    The ApplicationManager will then consult its internal database of applications looking
-   for a match with x-scheme-handler/x-mimeType. If there is a successful match, then the
+   for a match with x-scheme-handler/x-mimeType. If there is a successful match, the
    openUrlRequested signal will be emitted and its receiver (\l{ApplicationRequestHandler}) can then
-   either acknowledge the request by calling acknowledgeOpenUrlRequest function or reject
+   either acknowledge the request by calling acknowledgeOpenUrlRequest function or reject it
    (rejectOpenUrlRequest). If then the application is started, the url is supplied to the
    application as a document through the signal openDocument(string documentUrl, string
    mimeType) via its ApplicationInterface.
@@ -123,13 +123,12 @@
    sources. Choosing any of those will direct you to the respective music application.
 
    \section2 Vehicle Settings
-   In the energy panel there is list with 'charging station' suggestions. If any of those is
-   pressed, then the maps application will directly open, loading the selected charging station's
+   In the energy panel is a list with 'charging station' suggestions. If any of those is
+   pressed, the maps application will directly open, loading the selected charging station's
    address and ready to navigate there.
 
    \section2 System Notifications
    A ctrl+n press simulates a "Battery Low" event by triggering a system notification containing
-   an action button. If the action button is pressed, the maps application will directly open,
+   an action button. If the action button is pressed, the map application will directly open,
    loading the suggested charging station's address and ready to navigate there.
 */
-

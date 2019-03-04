@@ -36,7 +36,7 @@
     which are composited in the aforementioned System UI counterparts. In this document we are referring only to the System UI
     top level windows.
 
-    On target hardware, where Neptune 3 UI would run on the EGLFS platform, each window will be displayed (fullscreen)
+    On target hardware, where Neptune 3 UI would run on the EGLFS platform, each window will be displayed (full-screen)
     on its own screen (QScreen). The Center Console window will shown on the screen of index 0 and the Instrument Cluster
     on the screen of index 1 (if the target has a second screen, that is) as defined in the Qt.application.screens list
     (or QGuiApplication::screens(), from the C++ side).
@@ -46,8 +46,8 @@
     you map a display name to its index in that screens' list.
 
     The first step is finding out what are the names of the displays in the system. This is fairly simple. Just run the Qt tool called
-    \c qtdiag in your target hardware and check the output. It will print a lot of information about the system and how Qt is configured
-    there, including information about the displays. Below is a snippet of a \c qtdiag output in a system that has two external displays
+    \c qtdiag in your target hardware and check the output. It will show information about the system and how Qt is configured
+    there, including information about the displays. Below is a snippet of a \c qtdiag output from a system that has two external displays
     connected to it:
 
     \code
@@ -78,10 +78,10 @@ Screens: 2, High DPI scaling: inactive
     \endcode
 
 
-    In this example, by default the screen \c "DP1" is assigned index 0 (hence will show the Center Console) and \c "DP2"
-    index 1 (hence will show the Instrument Cluster). So let's suppose that in this case we want the other way around: to have
-    the Center  Console on \c "DP2" and the Instrument Cluster on \c "DP1". For that we will write the following configuration
-    file, which is in JSON format:
+    In this example, the screen \c "DP1" is assigned index 0 (default behavior, hence will show Center Console) and \c "DP2"
+    index 1 (hence will show Instrument Cluster). If we want it the other way around: to have
+    the Center  Console on \c "DP2" and the Instrument Cluster on \c "DP1", we would have to write the following configuration
+    file (in JSON format):
 
 
     \code
@@ -99,7 +99,7 @@ Screens: 2, High DPI scaling: inactive
 }
     \endcode
 
-    Now you have to tell \c neptune3-ui to use this configuration file on start up. This is done via an environment variable named
+    In order to make it work, we have to make \c neptune3-ui to use this configuration file on start-up. This is done via an environment variable named
     \c QT_QPA_EGLFS_KMS_CONFIG. Its value is the filepath of the configuration file you want to use. Eg:
 
     \code

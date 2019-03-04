@@ -114,8 +114,8 @@ Item {
                 PropertyAnimation { targets: [graduation, graduationNumber]; property: "opacity"; duration: 130 }
                 PropertyAnimation { target: graduation; property: "maxDrawValue"; duration: 370 }
                 PropertyAction {
-                    target: [indicatorCruise, indicatorCruiseBg]
-                    property: "visible, x, y"
+                    targets: [indicatorCruise, indicatorCruiseBg]
+                    properties: "visible, x, y"
                 }
                 PropertyAnimation {
                     targets: [indicatorSpeed, signKMH, indicatorSpdLimit]

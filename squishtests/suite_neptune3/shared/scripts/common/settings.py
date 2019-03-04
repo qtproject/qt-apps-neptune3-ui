@@ -3,7 +3,7 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
+## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -72,20 +72,6 @@ G_APP_HANDLE = {'vehicle': None,
               'calendar': None,
               'climate': None,
               'sheets': None}
-
-# according to squisPorts in info.yaml of each app
-G_APP_PORTS = {'vehicle': 7778,
-              'map': 7784,
-              'tuner': 7787,
-              'settings': 7779,
-              'music': 7785,
-              'cluster': 7786,
-              'appstore': 7780,
-              'phone': 7786,
-              'calendar': 7781,
-              'climate': 7782,
-              'sheets': 7786}
-
 
 SCREEN_WIDTH = 1920
 SCREEN_HEIGHT = 1080

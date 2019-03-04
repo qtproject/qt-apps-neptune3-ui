@@ -161,10 +161,13 @@ Item {
     NeptuneControls.ScalableBorderImage {
         id: overlay
         anchors.fill: root
-        border.top: Sizes.dp(322)
-        border.bottom: Sizes.dp(323)
-        border.left: 0
-        border.right: 0
+        border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
+            top: 320
+            left: 0
+            right: 0
+        }
         source: Style.image("input-overlay")
         visible: root.store.searchViewEnabled
     }

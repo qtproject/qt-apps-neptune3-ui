@@ -3,7 +3,7 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
+## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -44,7 +44,7 @@ neptune_3_UI_Center_Console_volumePopupButton_ToolButton = {"container": neptune
 neptune_3_UI_Center_Console_volumePopupItem_VolumePopup = {"container": neptune_UI_Center_Console, "objectName": "volumePopupItem", "type": "VolumePopup", "visible": True}
 neptune_3_UI_Center_Console_popupClose_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "popupClose", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_volumeSlider_Slider = {"container": neptune_UI_Center_Console, "objectName": "volumeSlider", "type": "Slider", "visible": True}
-neptune_3_UI_Center_Console_centerConsole_CenterConsole = {"container": neptune_UI_Center_Console, "id": "centerConsole", "type": "CenterConsole", "visible": True}
+neptune_3_UI_Center_Console_centerConsole_CenterConsole = {"container": neptune_UI_Center_Console, "id": "centerConsole", "type": "AbstractCenterConsole", "visible": True}
 neptune_3_UI_Center_Console_addWidgetButton_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "addWidgetButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_addWidgetPopupItem_AddWidgetPopup = {"container": neptune_UI_Center_Console, "objectName": "addWidgetPopupItem", "type": "AddWidgetPopup", "visible": True}
 widgetList_AddWidgets_Maps = {"checkable": False, "container": neptune_UI_Center_Console_widgetListview_ListView, "objectName": "itemAddWidget_com.pelagicore.map", "text": "Maps", "type": "ListItem", "visible": True}
@@ -62,3 +62,13 @@ o_ClimateView = {"container": o_QtAM_ApplicationManagerWindow, "type": "ClimateV
 o_QtAM_ApplicationManagerWindow_2 = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": False}
 auto_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow_2, "id": "bigFatButton", "text": "Auto", "type": "Button", "unnamed": 1, "visible": True}
 neptune_3_UI_Center_Console_widgetGrid_homepage_WidgetGrid = {"container": neptune_UI_Center_Console, "objectName": "widgetGrid_homepage", "type": "WidgetGrid", "visible": True}
+events_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "eventsViewButton", "text": "events", "type": "ToolButton", "visible": True}
+year_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "yearViewButton", "text": "year", "type": "ToolButton", "visible": True}
+next_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "nextViewButton", "text": "next", "type": "ToolButton", "visible": True}
+calendarViewContent = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "calendarViewContent", "type": "StackLayout", "visible": True}
+rear_defrost_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "rear_defrost", "type": "Button", "visible": True}
+front_defrost_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "front_defrost", "type": "Button", "visible": True}
+recirculation_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "recirculation", "type": "Button", "visible": True}
+seat_heater_driver_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "seat_heater_driver", "type": "Button", "visible": True}
+steering_wheel_heat_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "steering_wheel_heat", "type": "Button", "visible": True}
+seat_heater_passenger_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "seat_heater_passenger", "type": "Button", "visible": True}

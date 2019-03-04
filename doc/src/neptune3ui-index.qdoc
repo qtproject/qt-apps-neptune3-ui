@@ -29,53 +29,19 @@
 /*!
    \page neptune3ui-index.html
    \title Neptune 3 UI
-   \brief A best practice UI for the OEMs to test Qt Automotive Suite.
+   \brief A reference UI for OEMs to test Qt Automotive Suite.
 
 
-   Neptune 3 UI provides a UI implementation for Qt in IVI (In-Vehichle Infotainment)
-   systems. It demonstrates best practices for developing an Automotive UI with
-   \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3 supports a set of
-   displays: \l{Instrument Cluster}, \l{Center Console Display}, Head Up Display and Passenger Screens.
-   At the moment the design documents only cover the first two: \l{Instrument Cluster} and
-   \l{Center Console Display}.
+   Neptune 3 UI provides a UI implementation for Qt in In-Vehicle Infotainment
+   (IVI) systems. It demonstrates best practices for developing an Automotive
+   UI with \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3
+   supports a set of displays: \l{Instrument Cluster},
+   \l{Center Console Display}, Head Up Display, and Passenger Screens.
+   Currently, the implementation only covers the first two:
+   \l{Instrument Cluster} and \l{Center Console Display}.
 
    \section1 Topics
 
-   \section2 General
-
-   \list
-   \li \l {Neptune 3 UI - Overview}{Overview}
-   \li \l {Neptune 3 UI - Running}{Running}
-   \li \l {Neptune 3 UI - Configuring Screens on Embedded Linux}{Configuring Screens on Embedded Linux}
-   \endlist
-
-   \section2  UI Insights
-
-   \list
-       \li \l {Neptune 3 UI - System UI}{System UI}
-       \li \l {Neptune 3 UI - System Dialog}{System Dialog}
-       \li \l {Neptune 3 UI - Remote Settings Server}{Remote Settings Server}
-   \endlist
-
-   \section2 Application Insights
-
-   \list
-       \li \l {Neptune 3 UI - Application Architecture}{Application Architecture}
-       \li \l {Neptune 3 UI - Application Anatomy}{Application Anatomy}
-       \li \l {Neptune 3 UI - Application Development}{Application Development}
-       \li \l {Neptune 3 UI - Application Popups}{Application Popups}
-       \li \l {Neptune 3 UI - Application Requests}{Application Requests}
-       \li \l {Neptune 3 UI - 3D Integration}{3D Integration}
-       \li \l {Neptune 3 UI - Map Application}{Map Application}
-       \li \l {Neptune 3 UI - General Settings Application}{General Settings Application}
-   \endlist
-
-   \section1 Reference
-
-   \list
-       \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
-   \endlist
-
-
+   \include neptune3ui-topics.qdocinc content
 */
 

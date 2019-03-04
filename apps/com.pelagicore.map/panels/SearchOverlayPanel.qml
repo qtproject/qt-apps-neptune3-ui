@@ -55,8 +55,9 @@ ColumnLayout {
     signal itemClicked(int index, string addressText, var coordinate, var boundingBox)
 
     ToolButton {
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(45)
+        Layout.alignment: Qt.AlignLeft
+        Layout.leftMargin: Sizes.dp(45)
+        Layout.rightMargin: Sizes.dp(45)
         icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
         text: qsTr("Back")
         onClicked: root.backButtonClicked()
@@ -64,10 +65,10 @@ ColumnLayout {
 
     MapSearchTextField {
         id: searchField
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(90)
-        anchors.right: parent.right
-        anchors.rightMargin: Sizes.dp(90)
+        Layout.leftMargin: Sizes.dp(90)
+        Layout.rightMargin: Sizes.dp(90)
+        Layout.fillWidth: true
+
         selectByMouse: true
         focus: root.visible
         busy: root.model.status === GeocodeModel.Loading
@@ -85,10 +86,9 @@ ColumnLayout {
     ListView {
         id: searchResultsList
         Layout.fillHeight: true
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(90)
-        anchors.right: parent.right
-        anchors.rightMargin: Sizes.dp(90)
+        Layout.fillWidth: true
+        Layout.leftMargin: Sizes.dp(90)
+        Layout.rightMargin: Sizes.dp(90)
         clip: true
         visible: root.visible
         model: root.model

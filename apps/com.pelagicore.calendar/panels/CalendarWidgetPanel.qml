@@ -56,9 +56,14 @@ Item {
     readonly property int _visibleEvents: {
         var n = Math.floor( (root.height - Sizes.dp(100)) / Sizes.dp(48) );
         var n_max = Math.min( (Sizes.dp(652) - weatherGraphPlaceholder.height) / Sizes.dp(48), eventModel.count );
+
         if (n < n_max) {
+            if (n < 0)
+                n = 0;
             return n;
         } else {
+            if (n_max < 0)
+                n_max = 0;
             return n_max;
         }
     }

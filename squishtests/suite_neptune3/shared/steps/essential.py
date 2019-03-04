@@ -3,7 +3,7 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
+## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -35,41 +35,10 @@
 import names
 import common.settings as settings  # some test setting vars
 import common.app as app
+import common.qml_names as qml
 
 # coordinate
 from math import sin, cos, floor
-
-
-def coord_up_px(in_pix):
-    up = QPoint(0, -in_pix)
-    transf = coord_transform2DReal(up)
-    return transf
-
-
-def coord_down_px(in_pix):
-    return coord_up_px(-in_pix)
-
-
-def coord_right_px(in_pix):
-    right = QPoint(in_pix, 0)
-    transf = coord_transform2DReal(right)
-    return transf
-
-
-def coord_left_px(in_pix):
-    return coord_right_px(-in_pix)
-
-
-def coord_addQPoints(a, b):
-    return QPoint(a.x + b.x, a.y + b.y)
-
-
-def coord_transform2DReal(src_point):
-    ti = QPoint(src_point.x, src_point.y)
-    if settings.SCREEN_LANDSCAPE:
-        ti.x = -src_point.x
-        ti.y = src_point.y
-    return ti
 
 
 def coord_transform2D(src_point):
@@ -163,5 +132,83 @@ def is_squish_object_there(object, seconds):
     except Exception:
         is_there = False
     return is_there
+
+
+@Given("'|word|' app from launcher tapped")
+def step(context, app_name):
+    if not context.userData:
+        context.userData = {}
+
+    found, app_idname = app.get_app_id(app_name)
+
+    if found:
+        object_name = qml.grid_delegate + app_idname
+        grid_view = waitForObject(
+                               names.neptune_UI_Center_Console_grid_GridView)
+
+        app_pointer = find_object_name_recursively(grid_view, object_name, 3)
+
+        if app_pointer:
+            if app_pointer.visible:
+                tapObject(app_pointer)
+            else:
+                test.fail("'" + app_name + "' is there but not visible.")
+        else:
+            test.fail("'" + app_name + "' could not be found!")
+    # wait another half second
+    squish.snooze(0.5)
+
+
+@Then("wait '|integer|' seconds and '|word|' app is active")
+def step(context, wait_sec, app_name):
+    if not context.userData:
+        context.userData = {}
+
+    # MUST switch to main app
+    app.switch_to_main_app()
+
+    # wait a small while to let it open
+    snooze(wait_sec)
+
+    found, app_idname = app.get_app_id(app_name)
+
+    if found:
+        object_name = qml.current_inFrame_Application + app_idname
+        active_app_slot = waitForObject(
+                names.neptune_3_UI_Center_Console_activeApplicationSlot_Item)
+
+        # 1st: look for "inFrameApplication"
+        app_pointer = find_object_name_recursively(active_app_slot,
+                                                   object_name, 3)
+        if app_pointer is not None:
+            my_numnber = app_pointer.children.count
+            test.log("-_" + str(my_numnber))
+            test.compare(True, app_pointer.visible, "should be visible!")
+        else:
+            #  2nd try: look for "application_widget"
+            test.log("'" + app_idname + "' as inFrameApp not found,"
+                     + " trying as applicationWidget")
+            object_name = qml.application_widget + app_idname
+            app_pointer = find_object_name_recursively(active_app_slot,
+                                                       object_name, 3)
+            if app_pointer is not None:
+                test.compare(True, app_pointer.visible, " should be visible!")
+            else:
+                test.fail("'" + app_name + "' app is not known!!")
+    else:
+        test.fail("'" + app_name + "' app is not known!!")
+
+
+@Given("switch app to '|word|'")
+def step(context, app_name):
+    """ Is just a thin wrapper to access directly from test """
+    app.switch_to_app(app_name)
+
+
+@Then("switch to main app")
+def step(context):
+    """ Is just a thin wrapper to access directly from test """
+    app.switch_to_main_app()
+
 
 # -------------------------------------------------------

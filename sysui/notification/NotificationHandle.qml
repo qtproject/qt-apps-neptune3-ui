@@ -41,10 +41,9 @@ MouseArea {
     id: root
 
     width: Sizes.dp(300)
-    height: Sizes.dp(30)
+    height: Sizes.dp(Config.statusBarHeight)
 
     drag.axis: Drag.YAxis
-    drag.filterChildren: true
 
     property var dragTarget: undefined
     property int prevDragY: 0
@@ -64,31 +63,33 @@ MouseArea {
         return String.fromCharCode(0x2460 + num - 1);
     }
 
-    Rectangle {
-        anchors.left: root.notificationCounterVisible ? parent.left : undefined
+    Row {
         anchors.verticalCenter: parent.verticalCenter
-        width: root.notificationCounterVisible ? Sizes.dp(100) : Sizes.dp(200)
-        height: Sizes.dp(2)
-        anchors.centerIn: root.notificationCounterVisible ? undefined : root
-        color: Style.contrastColor
-    }
+        anchors.horizontalCenter: parent.horizontalCenter
 
-    Label {
-        anchors.centerIn: root
-        font.pixelSize: Sizes.fontSizeS
-        text: circledNumber(root.notificationCount)
-        opacity: root.notificationCounterVisible ? 1 : 0
-        visible: opacity > 0
-    }
+        Rectangle {
+            anchors.verticalCenter: parent.verticalCenter
+            width: root.notificationCounterVisible ? Sizes.dp(100) : Sizes.dp(200)
+            height: Sizes.dp(4)
+            color: Style.contrastColor
+        }
 
-    Rectangle {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        width: Sizes.dp(100)
-        height: Sizes.dp(2)
-        opacity: root.notificationCounterVisible ? 1 : 0
-        visible: opacity > 0
-        color: Style.contrastColor
+        Label {
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: Sizes.fontSizeM
+            text: circledNumber(root.notificationCount)
+            opacity: root.notificationCounterVisible ? 1 : 0
+            visible: opacity > 0
+        }
+
+        Rectangle {
+            anchors.verticalCenter: parent.verticalCenter
+            width: Sizes.dp(100)
+            height: Sizes.dp(4)
+            opacity: root.notificationCounterVisible ? 1 : 0
+            visible: opacity > 0
+            color: Style.contrastColor
+        }
     }
 
     Timer {

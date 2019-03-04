@@ -108,6 +108,13 @@
     </message>
 </context>
 <context>
+    <name>AlbumArtPanel</name>
+    <message>
+        <source>There are no music available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ApplicationStoreContent</name>
     <message>
         <source>No apps found!</source>

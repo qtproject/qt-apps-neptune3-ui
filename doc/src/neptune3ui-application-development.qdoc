@@ -47,7 +47,7 @@ become available in the system.
 
 \section1 Manifest File
 
-The manifest file must have the name \e {info.yaml}. The manifest file content
+The manifest file must have the name \e {info.yaml}. The manifest file's content
 should be as follows:
 
 \badcode
@@ -78,10 +78,10 @@ used when developing applications:
         \li Description
     \row
         \li \l{ApplicationCCWindow}
-        \li Can be used in all kind of applications.
+        \li Can be used in all kinds of applications.
     \row
         \li \l{ApplicationICWindow}
-        \li Can be used in all kind of applications to show content in the \l{instrument cluster}.
+        \li Can be used in all kinds of applications to show content in the \l{instrument cluster}.
 \endtable
 
 The following QML code demonstrates how to use \l{ApplicationCCWindow} as a root element:

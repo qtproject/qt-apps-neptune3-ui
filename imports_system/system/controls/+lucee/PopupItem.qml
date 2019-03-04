@@ -46,6 +46,8 @@ AbstractPopupItem {
         visible: root.headerBackgroundVisible
         source: Style.image("floating-panel-top-bg")
         border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
             left: 56
             top: 55
             right: 56
@@ -59,10 +61,15 @@ AbstractPopupItem {
         anchors.rightMargin: Sizes.dp(-7)
         anchors.topMargin: Sizes.dp(-7)
         anchors.bottomMargin: Sizes.dp(-7)
-        border.left: 69
-        border.right: 69
-        border.top: 65
-        border.bottom: 67
+
+        border{
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
+            left: 69
+            right: 69
+            top: 65
+            bottom: 67
+        }
 
         // click eater
         MouseArea {

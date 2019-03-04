@@ -28,8 +28,8 @@
 
 /*!
    \page neptune3ui-map-application.html
-   \title Neptune 3 UI - Map Application
-   \brief The Map Application of Neptune 3 UI
+   \title Neptune 3 UI - Maps App
+   \brief The Maps App for Neptune 3 UI
 
    In Neptune 3, a built-in application called "com.pelagicore.map" is included
    as the navigation application that uses MapBox GL plugin as the backend.
@@ -38,7 +38,7 @@
 
    This geo services plugin allows applications to access Mapbox location-based
    services using the Qt Location API. The use of these services is governed by
-   the Mapbox terms of service. An access token is required to use these services.
+   the Mapbox Terms of Service. An access token is required to use these services.
    Data is provided by OpenStreetMap and others.
 
    See \l{MapBox GL Plugin Documentation} for more information.
@@ -63,7 +63,7 @@
 
    \section1 Application Parameters
 
-   There are parameters required by the mapbox plugin, e.g. access token, url
+   There are parameters required by the Mapbox plugin, e.g. access token, url
    styles, cache directory.
 
    \section2 Access Token
@@ -80,7 +80,7 @@
 
    \section2 Style URL
 
-   Additionally, comma separated, Mapbox style URLs to be added to the available
+   Additionally, comma separated, Mapbox style URLs can be added to the available
    style URLs. Additional styles will be prepended to the supportedMapTypes
    property of the Map item.
 
@@ -99,7 +99,7 @@
 
    \section2 Cache Directory
 
-   Absolute path to map tile cache directory is used as network disk cache.
+   An absolute path to map tile cache directory is used as network disk cache.
    The default place for the cache is the QtLocation/mapboxgl subdirectory
    in the location returned by QStandardPaths::writableLocation(), called
    with QStandardPaths::GenericCacheLocation as a parameter. On systems that
@@ -116,7 +116,7 @@
 
    \note The map tile cache file name must be "mapboxgl.db". When using the
    offline tool, the default output is "offline.db". For using the generated
-   output from the offline tool, you must move that to the proper directory,
+   output from the offline tool, you must move this database file to the proper directory,
    and rename it as "mapboxgl.db". The offline tool also provides the "--output"
    parameter for specifying the name of the generated output.
 

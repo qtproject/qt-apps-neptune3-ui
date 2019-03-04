@@ -215,7 +215,7 @@ Item {
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
-                            Binding { target: model.appInfo; property: "applicationICWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                            Binding { target: model.appInfo; property: "icWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
                         }
                     }
                     bottomPadding: Sizes.dp(20)

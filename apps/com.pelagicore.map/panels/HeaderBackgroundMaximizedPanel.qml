@@ -60,10 +60,12 @@ Item {
                                                           : Sizes.dp(sourceSize.height)
         source: Helper.localAsset("panel-shadow", Style.theme)
         border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
             left: 0
-            top: Sizes.dp(101)
-            right: Sizes.dp(101)
-            bottom: Sizes.dp(106)
+            top: 101
+            right: 101
+            bottom: 106
         }
     }
 
@@ -76,10 +78,12 @@ Item {
         source: Helper.localAsset("panel-more-contrast-background", Style.theme)
         visible: !root.navigationMode || root.guidanceMode
         border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
             left: 0
-            top: Sizes.dp(20)
-            right: Sizes.dp(32)
-            bottom: Sizes.dp(22)
+            top: 20
+            right: 20
+            bottom: 22
         }
     }
 
@@ -102,9 +106,11 @@ Item {
                                     Sizes.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
         source: Helper.localAsset("panel-background", Style.theme)
         border {
+            //don't change these values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
             left: 0
-            top: Sizes.dp(20)
-            right: Sizes.dp(22)
+            top: 20
+            right: 22
             bottom: 0
         }
     }

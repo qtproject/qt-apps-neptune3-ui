@@ -41,63 +41,64 @@ import volume 1.0
 import shared.Sizes 1.0
 import system.controls 1.0
 
-RowLayout {
+Item {
     id: root
 
     property var uiSettings
     property var model
     property Item popupParent
-
-    signal screenshotRequested()
-
-    implicitHeight: Sizes.dp(Config.statusBarHeight)
-    spacing: Sizes.dp(10)
-
-    ToolButton {
-        Layout.preferredWidth: Sizes.dp(60)
-        Layout.fillHeight: true
-        id: volumeIcon
-        objectName: "volumePopupButton"
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(27)
-        icon.name: root.model.volumeStore.volumeIcon
-        onClicked: volumePopup.open()
-    }
-
-    Item {
-        Layout.fillWidth: true
-    }
-
-    IndicatorTray {
-        Layout.fillHeight: true
-        store: root.model.statusBarStore
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-    }
-
-    DateAndTime {
-        Layout.fillHeight: true
-        currentDate: root.model.statusBarStore.currentDate
-        uiSettings: root.uiSettings
-
-        MouseArea {
-            anchors.fill: parent
-            onPressAndHold: {
-                root.screenshotRequested();
-                mouse.accepted = true;
-            }
-        }
-    }
-
     property var popupLoader: PopupItemLoader {
         id: volumePopup
         source: "../volume/VolumePopup.qml"
         popupParent: root.popupParent
         property var originPos: originItem.mapToItem(root.parent, originItem.width/2, originItem.height/2)
-        popupX: (root.LayoutMirroring.enabled ? root.parent.width - item.width - Sizes.dp(5) : Sizes.dp(5))
+        popupX: (root.LayoutMirroring.enabled ? root.parent.width - width - Sizes.dp(5) : Sizes.dp(5))
         popupY: originPos.y
         originItem: volumeIcon
         Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
     }
+
+    signal screenshotRequested()
+
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: Sizes.dp(5)
+
+        ToolButton {
+            Layout.preferredWidth: Sizes.dp(60)
+            Layout.fillHeight: true
+            id: volumeIcon
+            objectName: "volumePopupButton"
+            anchors.leftMargin: Sizes.dp(27)
+            icon.name: root.model.volumeStore.volumeIcon
+            onClicked: volumePopup.open()
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        IndicatorTray {
+            Layout.fillHeight: true
+            model: root.model.statusBarStore.indicators
+        }
+
+        DateAndTime {
+            Layout.fillHeight: true
+            currentDate: root.model.statusBarStore.currentDate
+            uiSettings: root.uiSettings
+
+            MouseArea {
+                anchors.fill: parent
+                onPressAndHold: {
+                    root.screenshotRequested();
+                    mouse.accepted = true;
+                }
+            }
+        }
+    }
+
+
 }

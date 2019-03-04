@@ -176,7 +176,7 @@ Item {
                             Layout.leftMargin: Sizes.dp(22)
                             Layout.fillWidth: true
                             text: model.firstName + " " + model.surname
-                            color: enabled ? Style.contrastColor : Style.disabledTextColor
+                            color: Style.contrastColor
                         }
                         ToolButton {
                             Layout.preferredWidth: Sizes.dp(100)

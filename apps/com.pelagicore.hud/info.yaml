@@ -8,4 +8,5 @@ runtime: 'qml'
 name:
   en: 'HUD'
 
+applicationProperties: { private: { squishPort: 7725 } }
 categories: [ 'hud' ]

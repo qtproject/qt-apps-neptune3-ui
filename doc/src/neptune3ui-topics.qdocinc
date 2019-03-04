@@ -1,0 +1,66 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Automotive Suite.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+//! [content]
+\section2 General
+
+\list
+\li \l {Neptune 3 UI - Overview}{Overview}
+\li \l {Neptune 3 UI - Run}{Run}
+\li \l {Neptune 3 UI - Configuring Screens on Embedded Linux}{Configuring Screens on Embedded Linux}
+\endlist
+
+\section2  UI Insights
+
+\list
+    \li \l {Neptune 3 UI - System UI}{System UI}
+    \li \l {Neptune 3 UI - System Dialog}{System Dialog}
+    \li \l {Neptune 3 UI - Remote Settings Server}{Remote Settings Server}
+    \li \l {Neptune 3 UI - Squish Automated UI testing}{Squish Automated UI testing}
+\endlist
+
+\section2 Application Insights
+
+\list
+    \li \l {Neptune 3 UI - Application Architecture}{Application Architecture}
+    \li \l {Neptune 3 UI - Application Anatomy}{Application Anatomy}
+    \li \l {Neptune 3 UI - Application Development}{Application Development}
+    \li \l {Neptune 3 UI - Application Popups}{Application Popups}
+    \li \l {Neptune 3 UI - Application Requests}{Application Requests}
+    \li \l {Neptune 3 UI - 3D Integration}{3D Integration}
+    \li \l {Neptune 3 UI - Maps App}{Map Application}
+    \li \l {Neptune 3 UI - General Settings App}{General Settings Application}
+\endlist
+
+\section1 Reference
+
+\list
+    \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
+\endlist
+//! [content]
+*/

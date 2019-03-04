@@ -45,19 +45,19 @@ import "stores" 1.0
 import "helpers" 1.0
 
 QtObject {
-    // used for copying the offline DB
-    readonly property var _mapsHelper: MapsHelper {
-        appPath: Qt.resolvedUrl("./")
-
-        onAppPathChanged: {
-            if (appPath !== "") {
-                initMap();
-            }
-        }
-    }
-
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
+
+        // used for copying the offline DB
+        readonly property var _mapsHelper: MapsHelper {
+            appPath: Qt.resolvedUrl("./")
+
+            onAppPathChanged: {
+                if (appPath !== "") {
+                    initMap();
+                }
+            }
+        }
 
         MultiPointTouchArea {
             id: multiPoint
@@ -74,14 +74,18 @@ QtObject {
 
         MapView {
             id: mainMap
-            x: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.x : mainWindow.exposedRect.x
-            y: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.y : mainWindow.exposedRect.y
-            width: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.width : mainWindow.exposedRect.width
-            height: state === "Maximized" && !mainMap.store.searchViewEnabled ? mainWindow.height : mainWindow.exposedRect.height
+            x: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
+                   mainWindow.x : mainWindow.exposedRect.x
+            y: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
+                   mainWindow.y : mainWindow.exposedRect.y
+            width: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
+                       mainWindow.width : mainWindow.exposedRect.width
+            height: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
+                        mainWindow.height : mainWindow.exposedRect.height
             state: mainWindow.neptuneState
             mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
-                offlineMapsEnabled: !sysinfo.online && Qt.platform.os === "linux"
+                offlineMapsEnabled: !sysinfo.online
                 currentLocationCoord: positionCoordinate
             }
 
@@ -95,20 +99,16 @@ QtObject {
                 multiPoint.count += 1
                 mainWindow.setWindowProperty("activationCount", multiPoint.count)
             }
-
-            SystemInfo { id: sysinfo }
         }
 
-        InstrumentCluster {
-            id: clusterSettings
-        }
+        SystemInfo { id: sysinfo }
+
+        InstrumentCluster { id: clusterSettings }
     }
 
     readonly property Loader applicationICWindowLoader: Loader {
         asynchronous: true
-        active: (clusterSettings.available
-                 || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
-                && mainMap.mapReady
+        active: clusterSettings.available && mainMap.mapReady
         sourceComponent: Component {
             ApplicationICWindow {
                 id: applicationICWindowComponent

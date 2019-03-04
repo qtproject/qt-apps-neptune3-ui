@@ -145,3 +145,23 @@
     \externalpage https://doc.qt.io/qt-5/qt3d-index.html
     \title Qt 3D
 */
+
+/*!
+    \externalpage https://www.yoctoproject.org/
+    \title Yocto
+*/
+
+/*!
+    \externalpage https://www.froglogic.com/
+    \title Froglogic
+*/
+
+/*!
+    \externalpage https://www.froglogic.com/squish/
+    \title Squish
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtQmlLive/index.html
+    \title Qt QmlLive
+*/

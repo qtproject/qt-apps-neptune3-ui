@@ -61,9 +61,11 @@ QtObject {
     property alias languageLocale: translation.languageLocale
     readonly property var translation: Translation {
         id: translation
+        path: root.assetPath + "translations/"
         Component.onCompleted: {
-            translation.setPath(root.assetPath + "translations/");
-            languageLocale = Qt.locale().name;
+            Qt.callLater( function() { //not to have binding loop warning "QML ApplicationModel: Binding loop detected for property "localeCode"
+                languageLocale = Qt.locale().name;
+            })
         }
     }
 }

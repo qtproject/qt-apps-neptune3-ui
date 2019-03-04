@@ -10,4 +10,5 @@ name:
   de: 'Downloads'
   cs: 'Downloads'
 
+applicationProperties: { private: { squishPort: 7724 } }
 categories: [ 'downloads' ]

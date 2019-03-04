@@ -14,5 +14,6 @@ name:
   ja: '音楽'
   ko: '음악'
 
+applicationProperties: { private: { squishPort: 7727 } }
 categories: [ 'media', 'widget' ]
 mimeTypes: [ 'x-scheme-handler/x-music' ]

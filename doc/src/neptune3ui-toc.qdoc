@@ -32,10 +32,10 @@
 
     \title Neptune 3 UI TOC
 
+    \omit
     This file is used only for generating the TOC for the help file to be
     displayed in the Qt Creator Help mode Contents view.
+    \endomit
 
-    \list
-        \li \l{Neptune 3 UI}
-    \endlist
+    \include neptune3ui-topics.qdocinc content
 */

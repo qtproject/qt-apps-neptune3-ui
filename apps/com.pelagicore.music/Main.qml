@@ -68,7 +68,9 @@ QtObject {
             y: mainWindow.exposedRect.y - Sizes.dp(224)
             width: mainWindow.exposedRect.width
             height: musicAppContent.fullscreenTopHeight + mainWindow.exposedRect.y - y
-            border.top: sourceSize.height - Sizes.dp(1)
+            //don't change this values without knowing the exact size of source image
+            //QTBUG-73768 if border exceeds source image size, app crashes
+            border.top: sourceSize.height - 1
 
             opacity: (mainWindow.neptuneState === "Maximized") ? 1.0 : 0.0
             Behavior on opacity { DefaultNumberAnimation {} }

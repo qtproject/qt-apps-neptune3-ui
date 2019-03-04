@@ -8,3 +8,7 @@ SUBDIRS = \
           style \
           systeminfo \
           com.pelagicore.map
+
+!isEmpty(SQUISH_PREFIX) {
+    SUBDIRS += squishhook
+}

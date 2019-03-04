@@ -1,0 +1,31 @@
+
+1. What is Appman Squish Hook plugin?
+================================
+
+It is a plugin for the Qt Application Manager (appman) and
+applications using the appman qml runtime. It simplifies usage of
+Squish with applications managed by appman.
+The Qt Application Manager keeps the sub-applications under tight
+control, which makes hooking it with Squish difficult. The Squish Hook
+Plugin turns the applicatons using appman runtime into attachable
+applications, using the TCP port specified in the appliation mainfest
+file.
+
+2. Usage
+================================
+
+Once the Appman Squish Plugin is installed, it can be used by passing
+the path to the squish-appman-hook.yaml configuration file:
+
+appman [...] -c squish-appman-hook.yaml
+
+Alternatively, the contents of the file can be manually merged with
+the main configuration file.
+The TCP port for each of the tested applications must be specified in
+the application manifest file by adding a squishPort parameter:
+
+applicationProperties: { private: { squishPort: 45678 } }
+
+The application needs to be registered with the squishserver under the
+specified port. Once the application is started using base appman GUI,
+it can be attached to with the attachToApplication() Squish test API.

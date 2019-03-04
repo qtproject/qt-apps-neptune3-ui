@@ -93,6 +93,9 @@ T.TabButton {
                 name: "left"
                 PropertyChanges {
                     target: borderImage
+
+                    //don't change these values without knowing the exact size of source image
+                    //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
                     border.left: 26
                     border.right: 0
                     border.top: 22
@@ -103,6 +106,9 @@ T.TabButton {
                 name: "right"
                 PropertyChanges {
                     target: borderImage
+
+                    //don't change these values without knowing the exact size of source image
+                    //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
                     border.left: 0
                     border.right: 30 - 5
                     border.top: 22
@@ -113,6 +119,9 @@ T.TabButton {
                 name: "middle"
                 PropertyChanges {
                     target: borderImage
+
+                    //don't change these values without knowing the exact size of source image
+                    //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
                     border.left: 0
                     border.right: 0
                     border.top: 0
