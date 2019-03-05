@@ -33,9 +33,49 @@
 #############################################################################
 
 from objectmaphelper import *
+import referencer
 
 o_QVariant = {"type": "QVariant"}
 neptune_UI_Center_Console = {"title": "Neptune 3 UI - Center Console", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
+o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": True}
+
+# we need a copy and not reference
+multi_process_container = o_QtAM_ApplicationManagerWindow.copy()
+climate_single_process_container = neptune_UI_Center_Console.copy()
+calendar_single_process_container = neptune_UI_Center_Console.copy()
+
+# define for each app an own starting-to-search container,
+# they all might look the same and could maybe be simplified
+# but we can leave this option open, if in case, one of the
+# apps cannot simply be replaced by the "center-console"-container
+container_climate = climate_single_process_container.copy()
+container_calendar = calendar_single_process_container.copy()
+
+# stores all containers
+apps_reference_container = {}
+
+
+def container_setter(val, identifier):
+    apps_reference_container[identifier].clear()
+    apps_reference_container[identifier].update(val)
+
+
+def container_getter(identifier):
+    return apps_reference_container[identifier]
+
+
+apps_reference_container = {'container_climate': container_climate,
+                            'container_calendar': container_calendar}
+
+change_ref_climate_app = referencer.Referencer('container_climate',
+                                               container_getter,
+                                               container_setter)
+change_ref_calendar_app = referencer.Referencer('container_calendar',
+                                               container_getter,
+                                               container_setter)
+
+
+
 neptune_UI_Center_Console_grid_GridView = {"container": neptune_UI_Center_Console, "id": "grid", "type": "GridView", "unnamed": 1, "visible": True}
 neptune_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True, "window": o_QVariant}
 grid_Item = {"container": neptune_UI_Center_Console_grid_GridView, "type": "Item", "unnamed": 1, "visible": True}
@@ -45,6 +85,7 @@ neptune_3_UI_Center_Console_volumePopupItem_VolumePopup = {"container": neptune_
 neptune_3_UI_Center_Console_popupClose_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "popupClose", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_volumeSlider_Slider = {"container": neptune_UI_Center_Console, "objectName": "volumeSlider", "type": "Slider", "visible": True}
 neptune_3_UI_Center_Console_centerConsole_CenterConsole = {"container": neptune_UI_Center_Console, "id": "centerConsole", "type": "AbstractCenterConsole", "visible": True}
+
 neptune_3_UI_Center_Console_addWidgetButton_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "addWidgetButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_addWidgetPopupItem_AddWidgetPopup = {"container": neptune_UI_Center_Console, "objectName": "addWidgetPopupItem", "type": "AddWidgetPopup", "visible": True}
 widgetList_AddWidgets_Maps = {"checkable": False, "container": neptune_UI_Center_Console_widgetListview_ListView, "objectName": "itemAddWidget_com.pelagicore.map", "text": "Maps", "type": "ListItem", "visible": True}
@@ -54,7 +95,6 @@ neptune_3_UI_Center_Console_editableLauncher_EditableGridView = {"container": ne
 neptune_3_UI_Center_Console_activeApplicationSlot_Item = {"container": neptune_UI_Center_Console, "objectName": "activeApplicationSlot", "type": "Item", "visible": True}
 
 neptune_3_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
-o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": True}
 climateAreaMouseArea_MouseArea = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "climateAreaMouseArea", "type": "MouseArea", "visible": True}
 leftTempSlider_TemperatureSlider = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "leftTempSlider", "type": "TemperatureSlider", "visible": True}
 rightTempSlider_TemperatureSlider = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "rightTempSlider", "type": "TemperatureSlider", "visible": True}
@@ -62,13 +102,13 @@ o_ClimateView = {"container": o_QtAM_ApplicationManagerWindow, "type": "ClimateV
 o_QtAM_ApplicationManagerWindow_2 = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": False}
 auto_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow_2, "id": "bigFatButton", "text": "Auto", "type": "Button", "unnamed": 1, "visible": True}
 neptune_3_UI_Center_Console_widgetGrid_homepage_WidgetGrid = {"container": neptune_UI_Center_Console, "objectName": "widgetGrid_homepage", "type": "WidgetGrid", "visible": True}
-events_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "eventsViewButton", "text": "events", "type": "ToolButton", "visible": True}
-year_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "yearViewButton", "text": "year", "type": "ToolButton", "visible": True}
-next_ToolButton = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "nextViewButton", "text": "next", "type": "ToolButton", "visible": True}
-calendarViewContent = {"container": o_QtAM_ApplicationManagerWindow, "objectName": "calendarViewContent", "type": "StackLayout", "visible": True}
-rear_defrost_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "rear_defrost", "type": "Button", "visible": True}
-front_defrost_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "front_defrost", "type": "Button", "visible": True}
-recirculation_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "recirculation", "type": "Button", "visible": True}
-seat_heater_driver_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "seat_heater_driver", "type": "Button", "visible": True}
-steering_wheel_heat_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "steering_wheel_heat", "type": "Button", "visible": True}
-seat_heater_passenger_Button = {"checkable": True, "container": o_QtAM_ApplicationManagerWindow, "objectName": "seat_heater_passenger", "type": "Button", "visible": True}
+events_ToolButton = {"checkable": True, "container": container_calendar, "objectName": "eventsViewButton", "text": "events", "type": "ToolButton", "visible": True}
+year_ToolButton = {"checkable": True, "container": container_calendar, "objectName": "yearViewButton", "text": "year", "type": "ToolButton", "visible": True}
+next_ToolButton = {"checkable": True, "container": container_calendar, "objectName": "nextViewButton", "text": "next", "type": "ToolButton", "visible": True}
+calendarViewContent = {"container": container_calendar, "objectName": "calendarViewContent", "type": "StackLayout", "visible": True}
+rear_defrost_Button = {"checkable": True, "container": container_climate, "objectName": "rear_defrost", "type": "Button", "visible": True}
+front_defrost_Button = {"checkable": True, "container": container_climate, "objectName": "front_defrost", "type": "Button", "visible": True}
+recirculation_Button = {"checkable": True, "container": container_climate, "objectName": "recirculation", "type": "Button", "visible": True}
+seat_heater_driver_Button = {"checkable": True, "container": container_climate, "objectName": "seat_heater_driver", "type": "Button", "visible": True}
+steering_wheel_heat_Button = {"checkable": True, "container": container_climate, "objectName": "steering_wheel_heat", "type": "Button", "visible": True}
+seat_heater_passenger_Button = {"checkable": True, "container": container_climate, "objectName": "seat_heater_passenger", "type": "Button", "visible": True}

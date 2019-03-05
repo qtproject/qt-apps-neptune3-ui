@@ -43,6 +43,8 @@ G_AUT_MAIN = "neptune3-ui"
 G_AUT_REMOTE = "RemoteSettingsServer"
 G_AUT_APPMAN = "appman-launcher-qml"
 
+G_MULTI_PROCESS = None
+
 G_HOST = "localhost"
 
 # ToDo: put all this into a class in app.py

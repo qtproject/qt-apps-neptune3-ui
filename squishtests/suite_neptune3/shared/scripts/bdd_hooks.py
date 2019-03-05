@@ -34,8 +34,6 @@
 
 
 import math
-import __builtin__
-
 import os          # needed for app identification path
 
 import common.settings as settings
@@ -79,10 +77,21 @@ def start_neptune_ui_app_w_focus(window):
     # DBUS MUST NOT be started from within neptune3ui otherwise
     # squish will not start correctly with the squish attach to subprocess
     # option.
+
+    # check forced single process:
+    # it can be used to start in single process though it would normally
+    # start in multi-process, this is just passing through of an option
+    # which is also defined in starting neptune3-ui executable
+    force_single_process = (os.environ.get('SINGLE_PROCESS') == '1')
+
+    # build up starting command line
     command_line_options = ("-r"
                           + " -c am-config-neptune.yaml"
-                          + " -c squish-appman-hook.yaml")
+                          + " -c squish-appman-hook.yaml"
+                          + (" --force-single-process" if
+                             force_single_process else ""))
 
+    # assemble the line
     command_line = settings.G_AUT_MAIN + " " + command_line_options
 
     test.log("command_line: " + command_line)
@@ -103,7 +112,21 @@ def start_neptune_ui_app_w_focus(window):
 
     # try to register all already connected AUTs
     # especially from appman
-    app.update_all_contexts()
+    nr_apps = app.update_all_contexts()
+
+    # setting multi process according to how many apps
+    # were found
+    settings.G_MULTI_PROCESS = (nr_apps > 1)
+    test.log("Using " + ("MULTI" if settings.G_MULTI_PROCESS
+                        else "SINGLE")
+                      + " PROCESS!!")
+
+    # if it is multi process, change search container for
+    # all according apps
+    if settings.G_MULTI_PROCESS:
+        # change search container
+        names.change_ref_climate_app(names.multi_process_container)
+        names.change_ref_calendar_app(names.multi_process_container)
 
     # to be able to focus window we need the neptune main app
     app.switch_to_main_app()

@@ -76,6 +76,10 @@ def register_app(app):
 
 def switch_to_main_app():
     """Switch context to main app, to act in its process."""
+    # in case of multi process not needed
+    if not settings.G_MULTI_PROCESS:
+        return True
+
     good = False
     if settings.G_APP_MAIN is not None:
         squish.snooze(settings.G_WAIT_SWITCH_APP_CONTEXT)
@@ -88,6 +92,9 @@ def switch_to_main_app():
 
 def switch_to_app(app_name):
     """Switch context to the given app, to act in its process."""
+    # in case of multi process not needed
+    if not settings.G_MULTI_PROCESS:
+        return True
 
     # do this always upfront, because an app
     # might have been connected in the meanwhile
@@ -147,3 +154,4 @@ def update_all_contexts():
     app_list = squish.applicationContextList()
     for a in app_list:
         register(a)
+    return len(app_list)
