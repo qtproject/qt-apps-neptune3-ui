@@ -73,7 +73,7 @@
 
     \section2 Application(s) Under Test (AUTs)
     Whether you use the Squish IDE or \e squishserver, you must define all
-    of the AUTs, which also includes all sub processes that are called from
+    of the AUTs, which also includes all sub-processes that are called from
     within the Neptune3 UI application. For multi-process each of the Neptune3
     apps (see \l{Neptune 3 UI - Application Development}) run as a
     \e{appman-launcher-qml} process (\l{Qt Application Manager}). To distinguish
@@ -121,25 +121,61 @@ attachableAUT/app_tuner = "localhost:7731"
 attachableAUT/app_vehicle = "localhost:7732"
     \endcode
 
+    \section2 Exclude Disruptive Sub-Processes
 
-    \note Different Qt versions
+    Squish tries to connect to all sub-processes, that are created from
+    an initial AUT. This behavior can lead to problems that Squish stops, does not
+    create these processes, or cause these processes to not behave accordingly.
+    Remember, that these processes can also be external programs or services,
+    which in our case are:
+    \list
+     \li D-Bus process
+     \li RemoteSettingsServer
+    \endlist
 
-    If the Qt version for Squish release differs from the Qt version
-    used in Neptune3 UI (currently 5.12), when the tests start, you may notice a warning
-    in the logs from \c squishserver indicating that: \br
-     "\c{Loaded Qt version 5.xx differs from Squish/Qt expected version 5.yy,
-    automating this AUT may not work.}"\br
-    In this case, you need to copy the following Qt libraries from your
-    installation folder to Squish's installation library folder:
-    \e{libQt5Widgets.so}, \e{libQt5QuickWidgets.so}
+    For Neptune 3 UI you have to force Squish to ignore these processes,
+    to run the tests, otherwise these tests might stop from the beginning - for
+    example because of a not running D-Bus session.
 
-    \section2 D-BUS
-    Neptune 3 UI needs a D-Bus session, on Linux this can be achieved by running
+    To
+    \l{https://doc.froglogic.com/squish/latest/rg-ini-files.html#ignoredauts.txt}{
+    ignore these processes} you have to add or edit the file in your Squish
+    installation directory - for macOS, and
+    Unix-like: \c{SQUISHDIR/etc/ignoredauts.txt}.
+
+    For Linux this is \c{SQUISHDIR/etc/ignoredauts.txt}:
     \badcode
-export $(dbus-launch)
+    # ignore the following processes
+    RemoteSettingsServer
+    dbus-daemon
     \endcode
-    before starting the IDE. In case of a target installation this should already be
-    included during the boot process.
+    and for other systems, you might need to adapt the D-Bus process name.
+
+    \note It might be a good idea to ignore all sub-processes, that are created,
+    and that are not relevant to test in the test suite.
+
+
+    \section2 Additional Libraries
+
+    Squish needs additional libraries to run Neptune 3 UI tests. One
+    solution is to copy the following Qt libraries from your
+    installation folder to Squish's installation library folder
+    \c{SQUISHDIR/etc/lib}:
+    \list
+     \li \c libQt5Widgets.so
+     \li \c libQt5QuickWidgets.so
+    \endlist
+
+    \note Different Qt versions:
+    If the Qt version for Squish release differs from the Qt version
+    used in Neptune 3 UI, when the tests start, you may notice a warning
+    in the logs from \c squishserver indicating that: \br
+     "\c{Loaded Qt version X.xx differs from Squish/Qt expected version X.yy,
+    automating this AUT may not work.}"\br
+    With 5.12 Neptune 3 UI and 5.11 based Squish there haven't been issues and
+    tests could run using the additional libraries, but this warning
+    cannot be ignored.
+
 
     \section1 Squish from Command Line or on Target
 
@@ -147,7 +183,7 @@ export $(dbus-launch)
     command line, or as a service such as a \c systemd service (recommended)
     for the target \l{Yocto} environment.
     Remember to use a D-Bus session beforehand, this is how Neptune 3 UI communicates
-    with its sub processes.
+    with its sub-processes.
 
     For simple cases, normally, you can use a server, \c squishserver, to run the
     tests and a client, \c squishrunner, that can request the server to run these
@@ -234,24 +270,16 @@ mkdir ../install
     \endcode
     \list
       \li \c squish.x.x.x-qt.yocto.tgz should be unpacked into \c /opt/squish-for-qt-x.x.x
-          Adapt version, this is \c $SQUISH_DIR .
-      \li edit \c $SQUISH_DIR/etc/squishserverrc to match your network arrangements.
-      \li put your license key into \c /home/root
-      \li transfer the \c $USER\.squish configuration files from your working, such as created from the IDE, and adapt the
+          Adapt version, this is \c{$SQUISH_DIR}.
+      \li Edit \c $SQUISH_DIR/etc/squishserverrc to match your network arrangements.
+      \li Edit \c $SQUISH_DIR/etc/ignoredauts.txt to exclude disruptive sub-processes.
+      \li Place your license key into \c{/home/root}.
+      \li Transfer the \c $USER\.squish configuration files from your working, such as created from the IDE, and adapt the
           paths to Neptune 3 UI installation (\c /opt/ ).
           Files covered are: \c server.ini and \c paths.ini in sub folder \c .squish/ver1/ , also look again at
           \l{https://doc.froglogic.com/squish/latest/rg-ini-files.html}{Squish initialization files}.
     \endlist
     \note Tests cannot be performed while Neptune 3 UI is running. You need to make
     sure that the \c neptune3-ui process is terminated, prior to running the tests.
-
-    Also note that before you start \c squishserver you
-    need to get a D-Bus session by running either
-    \badcode
-export $(dbus-launch)
-    \endcode
-    on the console, or for an automatic start-up to use a D-Bus enabled
-    \c systemd \c squishserver service.
-
 
 */
