@@ -144,6 +144,33 @@
     </message>
 </context>
 <context>
+    <name>ClusterStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>mph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°F</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CpuMonitor</name>
     <message>
         <source>CPU: </source>
@@ -281,6 +308,21 @@
     </message>
 </context>
 <context>
+    <name>DrivingModeRange</name>
+    <message>
+        <source>NORMAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ECO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SPORT</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditableGridView</name>
     <message>
         <source>Finish Editing</source>
@@ -392,6 +434,13 @@
     </message>
     <message>
         <source>BROWSE</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GreenomicsView</name>
+    <message>
+        <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

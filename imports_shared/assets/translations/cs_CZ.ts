@@ -392,6 +392,33 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>ClusterStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+    <message>
+        <source>mph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°F</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CpuMonitor</name>
     <message>
         <source>CPU: </source>
@@ -556,6 +583,21 @@ UX na cestu</translation>
     <message>
         <source>No apps found!</source>
         <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+    </message>
+</context>
+<context>
+    <name>DrivingModeRange</name>
+    <message>
+        <source>NORMAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ECO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SPORT</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -728,6 +770,13 @@ UX na cestu</translation>
     <message>
         <source>BROWSE</source>
         <translation>PROCHÁZET</translation>
+    </message>
+</context>
+<context>
+    <name>GreenomicsView</name>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished">Zpět</translation>
     </message>
 </context>
 <context>
