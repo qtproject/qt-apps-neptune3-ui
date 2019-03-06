@@ -82,7 +82,7 @@ Item {
 
         IndicatorTray {
             Layout.fillHeight: true
-            model: root.model.statusBarStore.indicators
+            store: root.model.statusBarStore
         }
 
         DateAndTime {
