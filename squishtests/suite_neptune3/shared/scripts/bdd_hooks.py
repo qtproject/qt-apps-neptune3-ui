@@ -66,26 +66,19 @@ def start_neptune_ui_app_w_focus(window):
     'dashboard' : dashboard view focused
     """
 
-    test.log("Found dbus environment")
-    test.log("DBUS_SESSION_BUS_ADDRESS with '"
-             + os.environ.get('DBUS_SESSION_BUS_ADDRESS')
-             + "'")
-    test.log("DBUS_SESSION_BUS_PID now is '"
-             + os.environ.get('DBUS_SESSION_BUS_PID')
-             + "'")
-
-    # DBUS MUST NOT be started from within neptune3ui otherwise
-    # squish will not start correctly with the squish attach to subprocess
-    # option.
-
     # check forced single process:
     # it can be used to start in single process though it would normally
     # start in multi-process, this is just passing through of an option
     # which is also defined in starting neptune3-ui executable
     force_single_process = (os.environ.get('SINGLE_PROCESS') == '1')
 
-    # build up starting command line
+    # !!! Remember to use ignoredauts.txt feature
+    # otherwise this will cause a lot of trouble,
+    # with dbus and RemoteSettingsServer !!!
+    # Read the documentation:
+    # https://doc.qt.io/Neptune3UI/neptune3ui-testing-squish.html#exclude-disruptive-sub-processes
     command_line_options = ("-r"
+                          + " --start-session-dbus"
                           + " -c am-config-neptune.yaml"
                           + " -c squish-appman-hook.yaml"
                           + (" --force-single-process" if
@@ -199,6 +192,7 @@ def get_focus_window(window):
     return found, obj
 
 
+# todo: move these to another file
 def get_middle_of_object(obj):
     try:
         posx = obj.x
