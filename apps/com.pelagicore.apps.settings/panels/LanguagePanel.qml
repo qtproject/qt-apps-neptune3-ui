@@ -64,6 +64,7 @@ Control {
             contentItem: Item {
                 RadioButton {
                     id: radio
+                    objectName: "language_" + model.language
                     anchors.left: parent.left
                     checked: model.language === root.currentLanguage
                     width: Sizes.dp(100)

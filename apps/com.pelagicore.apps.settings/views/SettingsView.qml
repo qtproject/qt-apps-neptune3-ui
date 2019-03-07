@@ -83,17 +83,17 @@ Control {
 
                 ListModel {
                     id: fullTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes' }
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color' }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes'; objectName: "themesViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
                 }
 
                 ListModel {
                     id: themelessTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'}
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time' }
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color' }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
                 }
             }
         }
@@ -107,6 +107,7 @@ Control {
             width: Sizes.dp(720)
 
             LanguagePanel {
+                objectName: "languagePanel"
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-languages'
                 model: store.languageModel
@@ -118,6 +119,7 @@ Control {
             }
 
             DateTimePanel {
+                objectName: "datePanel"
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-time'
                 twentyFourHourTimeFormat: store.twentyFourHourTimeFormat
@@ -128,6 +130,7 @@ Control {
                 anchors.fill: parent
                 active: Style.supportsMultipleThemes
                 ThemesPanel {
+                    objectName: "themesPanel"
                     anchors.fill: parent
                     visible: toolsColumn.currentIcon === 'ic-themes'
                     model: store.themeModel
@@ -137,6 +140,7 @@ Control {
             }
 
             ColorsPanel {
+                objectName: "colorsPanel"
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-color'
                 model: store.accentColorsModel

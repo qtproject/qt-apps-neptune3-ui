@@ -58,6 +58,7 @@ Control {
 
         delegate: ItemDelegate {
             id: delegate
+            objectName: "themeNr_" + index
             onClicked: root.themeRequested(index)
             width: ListView.view.width
 

@@ -60,6 +60,7 @@ Item {
         }
 
         DateAndTime {
+            objectName: "dateAndTime"
             Layout.alignment: Qt.AlignTrailing
             Layout.fillHeight: true
             currentDate: root.model.statusBarStore.currentDate

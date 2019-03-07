@@ -37,6 +37,7 @@ import "../controls"
 
 Control {
     id: root
+    objectName: "themeColor"
 
     property alias model: chart.chartData
 

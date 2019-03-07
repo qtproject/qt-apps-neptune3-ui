@@ -35,22 +35,6 @@
 from objectmaphelper import *
 import referencer
 
-o_QVariant = {"type": "QVariant"}
-neptune_UI_Center_Console = {"title": "Neptune 3 UI - Center Console", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
-o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": True}
-
-# we need a copy and not reference
-multi_process_container = o_QtAM_ApplicationManagerWindow.copy()
-climate_single_process_container = neptune_UI_Center_Console.copy()
-calendar_single_process_container = neptune_UI_Center_Console.copy()
-
-# define for each app an own starting-to-search container,
-# they all might look the same and could maybe be simplified
-# but we can leave this option open, if in case, one of the
-# apps cannot simply be replaced by the "center-console"-container
-container_climate = climate_single_process_container.copy()
-container_calendar = calendar_single_process_container.copy()
-
 # stores all containers
 apps_reference_container = {}
 
@@ -64,18 +48,48 @@ def container_getter(identifier):
     return apps_reference_container[identifier]
 
 
+o_QVariant = {"type": "QVariant"}
+neptune_UI_Center_Console = {"title": "Neptune 3 UI - Center Console", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True}
+o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "unnamed": 1, "visible": True}
+
+# Todo: there might be a rather simple and more effective
+# way of switching container as python's way of
+# using references, and (shallow/deep) copy should be
+# much simpler than the below strategy.
+
+# we need a copy and not reference
+# Use container for each, at this point they are
+# the same, but in the future an app container
+# in single process might be somewhere else in
+# the object tree of Neptune3 UI.
+multi_process_container = o_QtAM_ApplicationManagerWindow.copy()
+climate_single_process_container = neptune_UI_Center_Console.copy()
+calendar_single_process_container = neptune_UI_Center_Console.copy()
+settings_single_process_container = neptune_UI_Center_Console.copy()
+
+# define for each app an own starting-to-search container,
+# they all might look the same and could maybe be simplified
+# but we can leave this option open, if in case, one of the
+# apps cannot simply be replaced by the "center-console"-container
+container_climate = climate_single_process_container.copy()
+container_calendar = calendar_single_process_container.copy()
+container_settings = settings_single_process_container.copy()
+
+# contains the changer
 apps_reference_container = {'container_climate': container_climate,
-                            'container_calendar': container_calendar}
+                            'container_calendar': container_calendar,
+                            'container_settings': container_settings}
 
-change_ref_climate_app = referencer.Referencer('container_climate',
-                                               container_getter,
-                                               container_setter)
-change_ref_calendar_app = referencer.Referencer('container_calendar',
-                                               container_getter,
-                                               container_setter)
+# create an array of all changers, they will be used not singled out
+# but rather as the whole collection if mode is multi-process
+apps_change_collection = []
+for app_ref_str in apps_reference_container.keys():
+    app_referencer = referencer.Referencer(app_ref_str,
+                                           container_getter,
+                                           container_setter)
+    apps_change_collection.append(app_referencer)
 
-
-
+# ###########################################################################
 neptune_UI_Center_Console_grid_GridView = {"container": neptune_UI_Center_Console, "id": "grid", "type": "GridView", "unnamed": 1, "visible": True}
 neptune_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True, "window": o_QVariant}
 grid_Item = {"container": neptune_UI_Center_Console_grid_GridView, "type": "Item", "unnamed": 1, "visible": True}
@@ -112,3 +126,13 @@ recirculation_Button = {"checkable": True, "container": container_climate, "obje
 seat_heater_driver_Button = {"checkable": True, "container": container_climate, "objectName": "seat_heater_driver", "type": "Button", "visible": True}
 steering_wheel_heat_Button = {"checkable": True, "container": container_climate, "objectName": "steering_wheel_heat", "type": "Button", "visible": True}
 seat_heater_passenger_Button = {"checkable": True, "container": container_climate, "objectName": "seat_heater_passenger", "type": "Button", "visible": True}
+languageViewButton_ToolButton = {"container": container_settings, "objectName": "languageViewButton", "type": "ToolButton", "visible": True}
+dateViewButton_ToolButton = {"container": container_settings, "objectName": "dateViewButton", "type": "ToolButton", "visible": True}
+themesViewButton_ToolButton = {"container": container_settings, "objectName": "themesViewButton", "type": "ToolButton", "visible": True}
+colorsViewButton_ToolButton = {"container": container_settings, "objectName": "colorsViewButton", "type": "ToolButton", "visible": True}
+languagePanel_LanguagePanel = {"container": container_settings, "objectName": "languagePanel", "type": "LanguagePanel"}
+datePanel_DateTimePanel = {"container": container_settings, "objectName": "datePanel", "type": "DateTimePanel"}
+colorsPanel_ColorsPanel = {"container": container_settings, "objectName": "colorsPanel", "type": "ColorsPanel"}
+themesPanel_ThemesPanel = {"container": container_settings, "objectName": "themesPanel", "type": "ThemesPanel"}
+dateTimeSwitch_SwitchDelegate = {"container": container_settings, "objectName": "dateTimeSwitch", "type": "SwitchDelegate"}
+dateAndTime = {"container": neptune_UI_Center_Console, "type": "DateAndTime", "objectName": "dateAndTime", "visible": True}

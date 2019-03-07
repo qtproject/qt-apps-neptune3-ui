@@ -3,7 +3,6 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -30,16 +29,14 @@
 ##
 ## SPDX-License-Identifier: GPL-3.0
 ##
-#############################################################################
+############################################################################
+source(findFile('scripts', 'python/bdd.py'))
+source(findFile('scripts', '../shared/scripts/common/__init__.py'))
+
+setupHooks('../shared/scripts/bdd_hooks.py')
+collectStepDefinitions('./steps', '../shared/steps')
 
 
-app_widget_close = "appWidgetClose_"
-application_widget = "applicationWidget_"
-current_inFrame_Application = "currentInFrameApplication_"
-grid_delegate = "gridDelegate_"
-home_widget = "homeWidget_"
-calendar_view = {'events': 'eventList',
-                 'year': 'calendarGridPanel',
-                 'next': 'nextCalendarPanel'}
-prefix_language = "language_"
-prefix_themes = "themeNr_"
+def main():
+    testSettings.throwOnFailure = True
+    runFeatureFile('test.feature')

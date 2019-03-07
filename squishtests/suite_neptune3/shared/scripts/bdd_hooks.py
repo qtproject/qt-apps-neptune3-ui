@@ -117,9 +117,9 @@ def start_neptune_ui_app_w_focus(window):
     # if it is multi process, change search container for
     # all according apps
     if settings.G_MULTI_PROCESS:
-        # change search container
-        names.change_ref_climate_app(names.multi_process_container)
-        names.change_ref_calendar_app(names.multi_process_container)
+        # change for all known apps the search container
+        for change_app in names.apps_change_collection:
+            change_app(names.multi_process_container)
 
     # to be able to focus window we need the neptune main app
     app.switch_to_main_app()

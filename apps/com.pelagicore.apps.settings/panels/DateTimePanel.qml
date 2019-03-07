@@ -52,6 +52,7 @@ Control {
     contentItem: Column {
         SwitchDelegate {
             id: twentyFourHourTime
+            objectName: "dateTimeSwitch"
             height: Sizes.dp(95)
             width: parent.width
             text: qsTr("24h time")
