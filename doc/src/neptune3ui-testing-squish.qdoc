@@ -97,13 +97,9 @@
 
     \badcode
 [General]
-AUT/NeptuneControlApp = "/home/user/install/neptune3"
-AUT/RemoteSettingsServer = "/home/user/install/neptune3"
 AUT/appman = "/home/user/qt/bin"
 AUT/appman-launcher-qml = "/home/user/qt/bin"
 AUT/neptune3-ui = "/home/user/install/neptune3"
-ApplicationPaths = "/home/user/qt/bin,"
-attachableAUT/RemoteSettingsServer = "localhost:5985"
 attachableAUT/neptune3-ui = "localhost:3334"
 attachableAUT/appman = "localhost:7777"
 attachableAUT/app_appstore = "localhost:7720"
