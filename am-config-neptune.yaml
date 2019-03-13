@@ -50,6 +50,17 @@ flags:
   noSecurity: yes
   noUiWatchdog: yes
 
+# default logging
+
+logging:
+  rules:
+    - "*=false"
+    - "qt.*=false"
+    - "am.*=false"
+    - "qml*=true"
+    - "*.warning=true"
+    - "*.critical=true"
+
 # simulate an internal and a SD-card installation location
 
 installationLocations:
