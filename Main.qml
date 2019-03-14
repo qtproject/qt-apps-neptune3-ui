@@ -60,9 +60,16 @@ QtObject {
 
         onGrabImageRequested: {
             centerConsoleWindow.mainCenterConsole.grabToImage(function(result) {
-                var ret = result.saveToFile(screenshotUrl);
+                var ret = result.saveToFile(screenshotCCUrl);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
             });
+
+            if (instrumentClusterWindowLoader.item) {
+                instrumentClusterWindowLoader.item.contentItem.grabToImage(function(result) {
+                    var ret = result.saveToFile(screenshotICUrl);
+                    console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
+                });
+            }
         }
 
         onUpdateThemeRequested: {

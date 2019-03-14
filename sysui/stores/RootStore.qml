@@ -124,7 +124,7 @@ Store {
 
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
-    signal grabImageRequested(var screenshotUrl)
+    signal grabImageRequested(var screenshotCCUrl, var screenshotICUrl)
     signal applicationICWindowSwitchCountChanged()
 
     function saveFile(fileUrl, text) {
@@ -147,9 +147,10 @@ Store {
         var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
         tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
         const timestamp = new Date().toLocaleString(Qt.locale(),"yyyy-MM-dd-hh-mm-ss");
-        const screenshotUrl = tempDir + "/" + timestamp + "_neptune3_screenshot.png";
+        const screenshotCCUrl = tempDir + "/" + timestamp + "_neptune3_CC_screenshot.png";
+        const screenshotICUrl = tempDir + "/" + timestamp + "_neptune3_IC_screenshot.png";
 
-        root.grabImageRequested(screenshotUrl)
+        root.grabImageRequested(screenshotCCUrl, screenshotICUrl)
 
         const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
 
