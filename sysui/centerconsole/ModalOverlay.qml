@@ -34,6 +34,7 @@ import QtQuick 2.10
 import QtGraphicalEffects 1.0
 
 import shared.animations 1.0
+import shared.utils 1.0
 import shared.Sizes 1.0
 
 // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
@@ -56,6 +57,7 @@ Item {
     }
 
     signal overlayClicked()
+    signal overlayTopRightPressedAndHeld()
 
     // TODO: Load only when needed
     MouseArea {
@@ -74,6 +76,12 @@ Item {
         }
         z: -2
         onClicked: root.overlayClicked()
+        onPressAndHold: {
+            var border = Sizes.dp(Config.statusBarHeight)
+            if (mouseY < Sizes.dp(Config.statusBarHeight) && mouseX > root.width-2 * border ) {
+                root.overlayTopRightPressedAndHeld()
+            }
+        }
     }
 
     Rectangle {

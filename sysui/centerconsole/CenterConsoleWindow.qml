@@ -121,6 +121,7 @@ Window {
             id: popupParent
             anchors.fill: centerConsole
             target: centerConsole
+            onOverlayTopRightPressedAndHeld: root.store.generateScreenshotAndInfo()
         }
 
         StageLoader {
