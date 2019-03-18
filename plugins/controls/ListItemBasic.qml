@@ -166,6 +166,7 @@ ItemDelegate {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: subText ? undefined : parent.verticalCenter
+            spacing: Sizes.dp(22)
 
             IconLabel {
                 opacity: Style.opacityHigh

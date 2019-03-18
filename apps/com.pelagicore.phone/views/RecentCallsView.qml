@@ -43,6 +43,7 @@ import shared.Sizes 1.0
 import "../stores" 1.0
 
 ListView {
+    id: root
     clip: true
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
@@ -51,38 +52,13 @@ ListView {
 
     model: store.callsModel
 
-    delegate: ItemDelegate {
+    delegate: ListItem {
         id: delegate
         readonly property var person: store.findPerson(model.peerHandle)
-        width: ListView.view.width
-        bottomPadding: 0
-        contentItem: Column {
-            spacing: Sizes.dp(16)
-            RowLayout {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                spacing: Sizes.dp(45 * .5)
-                ToolButton {
-                    icon.name: model.type ? "ic-phone-%1".arg(model.type) : ""
-                }
-                Label {
-                    font.weight: Font.Light
-                    text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
-                }
-                Item { // spacer
-                    Layout.fillWidth: true
-                }
-                Label {
-                    text: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
-                    font.pixelSize: Sizes.fontSizeS
-                    font.weight: Font.Light
-                }
-            }
-            Image {
-                width: parent.width
-                height: Sizes.dp(2)
-                source: Style.image("list-divider")
-            }
-        }
+        implicitWidth: Sizes.dp(765)
+        implicitHeight: Sizes.dp(70)
+        icon.name: model.type ? "ic-phone-%1".arg(model.type) : ""
+        text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
+        secondaryText: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
     }
 }
