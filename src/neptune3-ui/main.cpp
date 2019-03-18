@@ -84,7 +84,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
     QCoreApplication::setApplicationName(qSL("Neptune UI"));
-    QCoreApplication::setOrganizationName(qSL("Luxsoft Sweden AB"));
+    QCoreApplication::setOrganizationName(qSL("Luxoft Sweden AB"));
     QCoreApplication::setOrganizationDomain(qSL("luxoft.com"));
     QCoreApplication::setApplicationVersion(STR(NEPTUNE_VERSION));
 
