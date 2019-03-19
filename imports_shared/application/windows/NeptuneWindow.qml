@@ -45,7 +45,7 @@ import shared.Sizes 1.0
 
     The Neptune Window provides the basic type of application window to be used by the application.
 
-    See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
+    See \l{Neptune 3 UI App Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 

@@ -46,7 +46,7 @@ import shared.Style 1.0
     the gauges. \l{ApplicationICWindow} is used by an application that wants to share content
     between the center console and the instrument cluster.
 
-    See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
+    See \l{Neptune 3 UI App Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 

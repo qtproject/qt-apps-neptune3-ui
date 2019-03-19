@@ -57,7 +57,7 @@
    Once the Neptune 3 UI component is selected and installed, you can run the
    binary under
    \c{your-qt-installation-path/qt-version/your-available-platform/neptune3},
-   such as \c{/home/qt/5.11.0/gcc-64/neptune3}. If you use Qt Automotive Suite
+   such as \c{/home/qt/5.12.1/gcc-64/neptune3}. If you use Qt Automotive Suite
    on an embedded device, the Neptune 3 UI binary is then located under
    \c{/opt/neptune3/}.
 
@@ -285,7 +285,7 @@
            {Manifest Documentation}
     \li \l{https://doc.qt.io/QtApplicationManager/configuration.html}
           {Qt Application Manager Configuration Options}
-    \li \l{Neptune 3 UI Application Development}
+    \li \l{Neptune 3 UI App Development}
     \li \l{Building eLinux image} {Building Embedded Linux Image}
     \li \l{Qt Application Manager Git Repository}
     \li \l{Neptune3-UI Git Repository}

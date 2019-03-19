@@ -47,7 +47,7 @@ import shared.Sizes 1.0
     This component also provides APIs for interacting with system UI and for positioning
     the application's visual elements.
 
-    See \l{Neptune 3 UI Application Development} for best practices on how to use the APIs.
+    See \l{Neptune 3 UI App Development} for best practices on how to use the APIs.
 
     \section2 Example Usage
 

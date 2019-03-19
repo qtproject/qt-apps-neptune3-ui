@@ -28,7 +28,7 @@
 
 /*!
    \page neptune3ui-popups.html
-   \title Neptune 3 UI - Application Popups
+   \title Neptune 3 UI - App Popups
 
    An application popup is used from applications to display information inside modal popups.
    As these popups should be shown in the very top layer of the UI, the rendering should be

@@ -75,7 +75,7 @@
     Whether you use the Squish IDE or \e squishserver, you must define all
     of the AUTs, which also includes all sub-processes that are called from
     within the Neptune3 UI application. For multi-process each of the Neptune3
-    apps (see \l{Neptune 3 UI - Application Development}) run as a
+    apps (see \l{Neptune 3 UI - App Development}) run as a
     \e{appman-launcher-qml} process (\l{Qt Application Manager}). To distinguish
     and attach to these processes you need to use the \e{Squish hook plugin}
     that extends Squish's attachable AUT feature. The \c server.ini file has

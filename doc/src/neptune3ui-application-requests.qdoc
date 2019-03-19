@@ -28,7 +28,7 @@
 
 /*!
    \page neptune3ui-requests.html
-   \title Neptune 3 UI - Application Requests
+   \title Neptune 3 UI - App Requests
 
    An application request is used to send a request to an application to just open
    or open in a certain state. That said, the action should be possible to be
