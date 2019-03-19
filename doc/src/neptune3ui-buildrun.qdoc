@@ -128,11 +128,13 @@
    \li Run the following command in a terminal under the \c neptune3-ui installation
    directory:
    \badcode
-   ./neptune3-ui -r --start-session-dbus
+   ./neptune3-ui -r
    \endcode
 
-   \note --start-session-dbus is required when you run Neptune 3 UI on Linux,
-   in multi-process mode.
+   \note Use \c -r to ignore any pre-existing database cache and create a new one by
+   (re)scanning all \c info.yaml files in the \c builtin-apps-manifest-dir and
+   \c installed-apps-manifest-dir. The default value is false. For more information,
+   see \l{Qt Application Manager Configuration}
 
    \endlist
 
@@ -169,7 +171,7 @@
    \li Open your project's run configuration in \uicontrol Run. In
        \uicontrol{Run configuration}, choose "neptune3-ui". You can also add
        other application manager options to the command line arguments, such as
-       \c{--recreate-database}. See \l{Application Manager Configuration} for
+       \c{--recreate-database}. See \l{Qt Application Manager Configuration} for
        more information. Make sure that you run "neptune3-ui" from your install
        folder instead of your build folder.
 
@@ -266,7 +268,7 @@
 
    All of these options are also configurable from the command line as a
    parameter to the \c appman utility. See
-   \l{Application Manager Configuration} for more information.
+   \l{Qt Application Manager Configuration} for more information.
 
    \badcode
    appman --option 'ui: { fullscreen: no }'
