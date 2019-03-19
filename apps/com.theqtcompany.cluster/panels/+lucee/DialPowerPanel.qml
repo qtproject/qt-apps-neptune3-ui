@@ -38,26 +38,22 @@ import "../helpers" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-/*!
-    \qmltype DialPowerPanel
+/*
     Holds lucee style Battery gauge, current gear indicator, outside temperature
 */
 
 Item {
     id: root
 
-    /*!
-        \qmlproperty var DialPowerPanel::store
+    /*
         Holds ClusterStoreInterface store
     */
     property var store
-    /*!
-        \qmlproperty var DialPowerPanel::rtlMode
+    /*
         Defines current state of right-to-left
     */
     property bool rtlMode: false
     /*
-        \qmlproperty color DialPowerPanel::textColor
         Defines labels text color inside speed panel
     */
     property color fontColor: "#545454"
@@ -69,13 +65,12 @@ Item {
     QtObject {
         id: d
         /*
-            \qmlproperty var DialPowerPanel::d::gears
             Defines list of gear labels according to int index from store
         */
         readonly property var gears: ["P", "N", "D", "R"]
     }
 
-    /*!
+    /*
         battery gauge
     */
     DonutGauge{
@@ -91,7 +86,7 @@ Item {
         icon: Utils.localAsset("ic-battery", Style.theme)
     }
 
-    /*!
+    /*
         current gear indicator
     */
     Label {
@@ -107,7 +102,7 @@ Item {
         color: root.fontColor
     }
 
-    /*!
+    /*
         outside temperature
     */
     ClusterTemperatureLabel {

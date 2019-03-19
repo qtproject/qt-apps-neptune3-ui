@@ -40,31 +40,26 @@ import shared.Sizes 1.0
 
 import shared.utils 1.0
 
-/*!
-    \qmltype DialSpeedPanel
+/*
     Holds lucee style Speed, Time, Mileage, Route progress
 */
 
 Item {
     id: root
 
-    /*!
-        \qmlproperty point DialSpeedPanel::screenCenter
+    /*
         Holds point where speed rect will be placed
     */
     property point screenCenter: Qt.point(0,0)
-    /*!
-        \qmlproperty var DialSpeedPanel::store
+    /*
         Holds ClusterStoreInterface store
     */
     property var store
-    /*!
-        \qmlproperty var DialSpeedPanel::rtlMode
+    /*
         Defines current state of right-to-left
     */
     property bool rtlMode: false
     /*
-        \qmlproperty color DialSpeedPanel::textColor
         Defines labels text color inside speed panel
     */
     property color textColor: "#545454"
@@ -72,7 +67,7 @@ Item {
     width: Sizes.dp(560)
     height: width
 
-    /*!
+    /*
         speed rect source for shadow
     */
     Rectangle{
@@ -86,7 +81,7 @@ Item {
         height: Sizes.dp(219)
     }
 
-    /*!
+    /*
         actual rect showing
     */
     DropShadow{
@@ -100,7 +95,7 @@ Item {
         opacity: 0.7
     }
 
-    /*!
+    /*
         speed label
     */
     Label {
@@ -114,7 +109,7 @@ Item {
         font.pixelSize: Sizes.dp(150)
     }
 
-    /*!
+    /*
         speed units label
     */
     Label {
@@ -128,7 +123,7 @@ Item {
         color: root.textColor
     }
 
-    /*!
+    /*
         top right corner time
     */
     Label {
@@ -144,7 +139,7 @@ Item {
         color: root.textColor
     }
 
-    /*!
+    /*
         lower right corner mileage label
     */
     ClusterUnitsLabel{
@@ -158,7 +153,7 @@ Item {
         fontColor: root.textColor
     }
 
-    /*!
+    /*
         route precent completed gauge
     */
     DonutGauge{

@@ -37,8 +37,7 @@ import "../helpers" 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-/*!
-    \qmltype ClusterTemperatureLabel
+/*
     A lucee component for showing temperature in Cluster
     Is mesuarement system aware (C,F)
 */
@@ -46,17 +45,14 @@ import shared.Sizes 1.0
 Item{
     id: root
     /*
-        \qmltype var ClusterTemperatureLabel::temperatureObject
         temperature according to ClusterStore::outsideTemp object
     */
     property var temperatureObject
     /*
-        \qmltype int ClusterTemperatureLabel::pixelSize
         Temperature number font size, F or C units size scaled down by 0.5
     */
     property int pixelSize
     /*
-        \qmltype int ClusterTemperatureLabel::fontColor
         Label font color
     */
     property color fontColor: "#5e5d5d"
@@ -69,14 +65,12 @@ Item{
 
         LayoutMirroring.enabled: false //disabled, no need C, F in front of number
         anchors.centerIn: parent
-        /*!
+        /*
             Numbers
         */
         Label {
             id: numberValue
-            /*!
-                \qmlproperty int ClusterTemperatureLabel::numberValue::integers
-                \qmlproperty int ClusterTemperatureLabel::numberValue::decimals
+            /*
                 Temperature value parts
             */
             readonly property int integers: root.temperatureObject ? Math.floor(root.temperatureObject.localizedValue) : 0
@@ -91,7 +85,7 @@ Item{
             font.weight: Font.Light
             color: root.fontColor
         }
-        /*!
+        /*
             Units
         */
         Label {

@@ -36,19 +36,17 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 /*
-  \qmltype GaugesPanel
+  GaugesPanel
 */
 
 Item {
     id: root
 
-    /*!
-        \qmlproperty var GaugesPanel::store
+    /*
         Holds ClusterStoreInterface store
     */
     property var store
-    /*!
-        \qmlproperty var GaugesPanel::rtlMode
+    /*
         Defines current state of right-to-left
     */
     property bool rtlMode: false
@@ -73,7 +71,7 @@ Item {
         onTriggered: d.start()
     }
 
-    /*!
+    /*
         left side overlay half-circles
     */
     LuceeCircles{
@@ -84,7 +82,7 @@ Item {
         state: root.state
     }
 
-    /*!
+    /*
         right side overlay half-circles
     */
     LuceeCircles{
@@ -107,7 +105,7 @@ Item {
         mode: root.store.drivingMode
     }
 
-    /*!
+    /*
         ECO alternative driving mode indicator
     */
     DrivingModeRange {

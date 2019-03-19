@@ -35,42 +35,36 @@ import shared.Sizes 1.0
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
-/*!
-  \qmltype LuceeCircles
+/*
   A component for left and right parts of circles inside GaugesPanel for lucee style
 */
 
 Item{
     id: root
 
-    /*!
-        \qmlproperty bool LuceeCircles::isLeft
+    /*
         Defines if circles are on the left or right side of panel
     */
     property bool isLeft: true
-    /*!
-        \qmlproperty bool LuceeCircles::color
+    /*
         Defines base color for the circles
     */
     property color color: "#545454"
 
     QtObject {
         id: d
-        /*!
-            \qmlproperty int LuceeCircles::d::x
-            \qmlproperty int LuceeCircles::d::y
+        /*
             Defines center point for circles
         */
         readonly property real cx: isLeft ? width : 0
         readonly property real cy: height / 2
-        /*!
-            \qmlproperty int LuceeCircles::d::samplesCount
+        /*
             Defines samples count for objects with shaders
         */
         readonly property int samplesCount: 4
     }
 
-    /*!
+    /*
         central semi-transparent part
         radius is affected by state transitions
     */
@@ -112,7 +106,7 @@ Item{
         }
     }
 
-    /*!
+    /*
         Non-transprent thin circle
     */
     Shape{
@@ -143,7 +137,7 @@ Item{
         }
     }
 
-    /*!
+    /*
       Inner circle
     */
     Shape{
@@ -199,7 +193,7 @@ Item{
         }
     }
 
-    /*!
+    /*
         Two-gradient source for outer circle
     */
     Rectangle{
@@ -229,7 +223,7 @@ Item{
         }
     }
 
-    /*!
+    /*
         Outer circle
     */
     Shape{

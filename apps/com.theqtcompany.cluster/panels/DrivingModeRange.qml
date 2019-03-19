@@ -36,7 +36,6 @@ import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 /*!
-    \qmltype DrivingModeRange
     A lucee component for selected mode and range it provides
 */
 
@@ -44,17 +43,14 @@ Item {
     id: root
 
     /*!
-        \qmlproperty string DrivingModeRange::range
         Range text value
     */
     property alias range: rangeLabel.value
     /*!
-        \qmlproperty string DrivingModeRange::units
         Units text value
     */
     property alias units: rangeLabel.units
     /*!
-        \qmlproperty int DrivingModeRange::mode
         Driving mode according to int index in ClusterStore store 0 .. 2
     */
     property int   mode: 0
@@ -72,7 +68,6 @@ Item {
     QtObject {
         id: d
         /*
-            \qmlproperty var DialPowerPanel::d::gears
             Defines list of modes according to int index from store
         */
         readonly property var modes: [qsTr("NORMAL"), qsTr("ECO"), qsTr("SPORT")]

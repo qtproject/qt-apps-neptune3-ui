@@ -41,8 +41,7 @@ import "../stores" 1.0
 import "../panels" 1.0
 import "../helpers" 1.0
 
-/*!
-    \qmltype ClusterView
+/*
     Lucee ClusterView
 */
 

@@ -37,55 +37,45 @@ import QtQuick.Shapes 1.12
 import shared.Sizes 1.0
 import shared.Style 1.0
 
-/*!
-    \qmltype DonutGauge
+/*
     A lucee component for rounded gauge
 */
 Item {
     id: root
-    /*!
-        \qmlproperty real DonutGauge::radius
+    /*
         Gauge radius
     */
     property real radius: Sizes.dp(1000)
-    /*!
-        \qmlproperty real DonutGauge::strokeWidth
+    /*
         Gauge width
     */
     property real strokeWidth: Sizes.dp(30)
 
-    /*!
-        \qmlproperty real DonutGauge::value
+    /*
         Gauge filled value. Range -1.0 .. 1.0
     */
     property real   value: 0.0
-    /*!
-        \qmlproperty real DonutGauge::valueText
+    /*
         Text value on top
     */
     property string valueText: ""
-    /*!
-        \qmlproperty real DonutGauge::valueUnits
+    /*
         Units for text value on top
     */
     property string valueUnits: ""
-    /*!
-        \qmlproperty var DonutGauge::isLeft
+    /*
         Defines the if shown left or right "(" vs ")"
     */
     property bool isLeft: true
     /*
-        \qmlproperty color DonutGauge::fontColor
         Defines labels text color
     */
     property color fontColor: "#454545"
     /*
-        \qmlproperty color DonutGauge::icon
         Url for icon under the gauge
     */
     property alias icon: gaugeIcon.source
     /*
-        \qmlproperty color DonutGauge::penColor
         Color for border lines
     */
     property color penColor: "#545454"
@@ -95,22 +85,19 @@ Item {
 
     QtObject {
         id: d
-        /*!
-            \qmlproperty int DonutGauge::d::x
-            \qmlproperty int DonutGauge::d::y
+        /*
             Defines center point for circular part
         */
         property real cx: root.isLeft ? root.radius + root.strokeWidth * 0.5 + darkCircle.strokeWidth :
                                - root.radius - root.strokeWidth * 0.5 - darkCircle.strokeWidth + root.width
         property real cy: root.height * 0.5
         /*!
-            \qmlproperty int DonutGauge::d::layerSamples
             Defines samples count for objects with shaders, increase for smoothness
         */
         readonly property int layerSamples: 4
     }
 
-    /*!
+    /*
         Top label for value + units
     */
     ClusterUnitsLabel{
@@ -122,7 +109,7 @@ Item {
         pixelSize: Sizes.dp(35)
     }
 
-    /*!
+    /*
         Rectangle used as container for shader
     */
     Rectangle {
@@ -136,13 +123,11 @@ Item {
 
         layer.samplerName: "rectSource"
         layer.effect: ShaderEffect {
-            /*!
-                \qmlproperty shapeSource
+            /*
                 Shader inside. Uses shape object as mask and applies percent value
             */
             property var  shapeSource: shape
-            /*!
-                \qmlproperty real value
+            /*
                 Progress value 0.0 .. 1.0
             */
             property real value: Math.abs(root.value)
@@ -170,7 +155,7 @@ Item {
         }
     }
 
-    /*!
+    /*
         Sets the circle shape mask, drawn into memory
     */
     Shape{
@@ -198,7 +183,7 @@ Item {
         }
     }
 
-    /*!
+    /*
         Outer dark circle stripe
     */
     Shape{
@@ -227,7 +212,7 @@ Item {
         }
     }
 
-    /*!
+    /*
         Horizontal top line
     */
     Rectangle {
@@ -239,7 +224,7 @@ Item {
         x: root.isLeft ? parent.width - width : 0
     }
 
-    /*!
+    /*
         Horizontal bottom line
     */
     Rectangle {
@@ -250,7 +235,7 @@ Item {
         x: topLine.x
     }
 
-    /*!
+    /*
         Bottom icon
     */
     Image {
