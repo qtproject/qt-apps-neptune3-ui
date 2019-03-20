@@ -173,11 +173,11 @@ Flickable {
             }
             Slider {
                 id: outsideTemperature
-                value: instrumentCluster.outsideTempCelsius
+                value: instrumentCluster.outsideTemperatureCelsius
                 from: -100
                 stepSize: 0.5
                 to: 100.0
-                onValueChanged: if (pressed) { instrumentCluster.outsideTempCelsius = value }
+                onValueChanged: if (pressed) { instrumentCluster.outsideTemperatureCelsius = value }
             }
 
             /*!

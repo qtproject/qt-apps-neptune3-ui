@@ -1,11 +1,9 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
-** Copyright (C) 2017 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 Cluster UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,27 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Window 2.2
-import shared.com.pelagicore.settings 1.0
-import application.windows 1.0
+import shared.utils 1.0
 
-import shared.Sizes 1.0
-import shared.Style 1.0
-
-import "views" 1.0
-import "stores" 1.0
-
-NeptuneWindow {
+Store {
     id: root
-    visible: true
-    width: Sizes.dp(1920)
-    height: Sizes.dp(720)
-    title: qsTr("Instrument Cluster")
 
-    ClusterView {
-        anchors.fill: parent
-        rtlMode: root.LayoutMirroring.enabled
-        store: RootStore {}
-    }
+    property bool hideGauges: false
+    property bool navigationMode: false
+    property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
 }

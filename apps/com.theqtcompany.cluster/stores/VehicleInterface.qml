@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,20 +29,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
 import shared.utils 1.0
-import shared.com.pelagicore.settings 1.0
 
 Store {
     id: root
-
-    property bool hideGauges
-    property bool navigationMode
-    property real speed
-    property real speedLimit
-    property real speedCruise
-    property int driveTrainState
-    property int ePower
 
     property bool lowBeamHeadlight: false
     property bool highBeamHeadlight: false
@@ -59,63 +48,18 @@ Store {
     property bool brakeFailure: false
     property bool airbagFailure: false
 
-    /*!
-        \qmlproperty real ClusterStoreInterface::mileageKm
-        Full vehicle mileage in km
-    */
-    property real mileageKm: 0.0
-    /*!
-        \qmlproperty bool ClusterStoreInterface::twentyFourHourTimeFormat
-        24 hour vs am/pm
-    */
-    property bool twentyFourHourTimeFormat: true
-    /*!
-        \qmlproperty int ClusterStoreInterface::drivingMode
-        Driving mode id from 0..2:
-        \list
-        \li Normal
-        \li ECO
-        \li Sport
-        \endlist
-    */
+    property real speed: 0.0
+    property real speedLimit: 0.0
+    property real speedCruise: 0.0
+    property int driveTrainState: 0
+    property int ePower: 0
+
+    // Vehicle mileage in km
+    property real mileage: 0.0
+    // Normal = 0, ECO = 1, Sport = 2
     property int  drivingMode: 0
-    /*!
-        \qmlproperty int ClusterStoreInterface::drivingModeRangeKm
-        Range in km for current driving mode
-    */
+    //Range in km for current driving mode
     property int  drivingModeRangeKm: 0
-    /*!
-        \qmlproperty int ClusterStoreInterface::drivingModeECORangeKm
-        Range in km for ECO driving mode
-    */
+    // Range in km for ECO driving mode
     property int  drivingModeECORangeKm: 0
-    /*!
-        \qmlproperty real ClusterStoreInterface::navigationProgressPercents
-        Navigation propgress 0..100
-    */
-    property real navigationProgressPercents
-
-    /*!
-        \qmlproperty QtObject ClusterStoreInterface::outsideTemp
-        Temperature object structure defined in ClusterStore
-    */
-    property QtObject outsideTemp
-
-    /*!
-        Convert distance from km to mi
-    */
-    function calculateDistanceValue(value) {
-        return Qt.locale().measurementSystem === Locale.MetricSystem ?
-                    value : value / 1.60934
-    }
-
-    /*!
-        Convert temperature from C to F
-    */
-    function calculateUnitValue(value) {
-        // Default value is the celsius
-        return Qt.locale().measurementSystem === Locale.MetricSystem ?
-                    value : Math.round(value * 1.8 + 32.0)
-    }
-
 }

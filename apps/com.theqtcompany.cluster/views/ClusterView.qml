@@ -48,7 +48,7 @@ import "../helpers" 1.0
 Item {
     id: root
 
-    property ClusterStoreInterface store
+    property RootStoreInterface store
     property alias rtlMode: mainContent.rtlMode
 
     Image {
@@ -63,13 +63,13 @@ Item {
     GaugesPanel {
         id: mainContent
         anchors.fill: parent
-        navigating: store.navigationMode
-        speed: store.speed
-        speedLimit: store.speedLimit
-        cruiseSpeed: store.speedCruise
-        ePower: store.ePower
-        drivetrain: store.driveTrainState
-        opacity: store.hideGauges ? 0.0 : 1.0
+        navigating: store.behaviourInterface.navigationMode
+        speed: store.vehicleInterface.speed
+        speedLimit: store.vehicleInterface.speedLimit
+        cruiseSpeed: store.vehicleInterface.speedCruise
+        ePower: store.vehicleInterface.ePower
+        drivetrain: store.vehicleInterface.driveTrainState
+        opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
         Behavior on opacity {
             DefaultNumberAnimation {}
         }
@@ -82,12 +82,12 @@ Item {
         width: Sizes.dp(444)
         height: Sizes.dp(58)
 
-        lowBeamHeadLightOn: store.lowBeamHeadlight
-        highBeamHeadLightOn: store.highBeamHeadlight
-        fogLightOn: store.fogLight
-        stabilityControlOn: store.stabilityControl
-        seatBeltFastenOn: store.seatBeltFasten
-        leftTurnOn: store.leftTurn
+        lowBeamHeadLightOn: store.vehicleInterface.lowBeamHeadlight
+        highBeamHeadLightOn: store.vehicleInterface.highBeamHeadlight
+        fogLightOn: store.vehicleInterface.fogLight
+        stabilityControlOn: store.vehicleInterface.stabilityControl
+        seatBeltFastenOn: store.vehicleInterface.seatBeltFasten
+        leftTurnOn: store.vehicleInterface.leftTurn
     }
 
     TelltalesRightPanel {
@@ -97,11 +97,11 @@ Item {
         width: Sizes.dp(444)
         height: Sizes.dp(58)
 
-        rightTurnOn: store.rightTurn
-        absFailureOn: store.absFailure;
-        parkingBrakeOn: store.parkBrake;
-        lowTyrePressureOn: store.tyrePressureLow;
-        brakeFailureOn: store.brakeFailure;
-        airbagFailureOn: store.airbagFailure;
+        rightTurnOn: store.vehicleInterface.rightTurn
+        absFailureOn: store.vehicleInterface.absFailure;
+        parkingBrakeOn: store.vehicleInterface.parkBrake;
+        lowTyrePressureOn: store.vehicleInterface.tyrePressureLow;
+        brakeFailureOn: store.vehicleInterface.brakeFailure;
+        airbagFailureOn: store.vehicleInterface.airbagFailure;
     }
 }

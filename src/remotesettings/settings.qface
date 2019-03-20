@@ -72,7 +72,7 @@ interface InstrumentCluster {
    /*
    * outside tempterature in celsius degrees
    */
-   real outsideTempCelsius;
+   real outsideTemperatureCelsius;
 
    /*
    * Mileage in km

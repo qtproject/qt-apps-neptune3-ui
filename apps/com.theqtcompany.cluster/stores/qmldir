@@ -1,2 +1,6 @@
-ClusterStore 1.0 ClusterStore.qml
-ClusterStoreInterface 1.0 ClusterStoreInterface.qml
+RootStoreInterface 1.0 RootStoreInterface.qml
+VehicleInterface 1.0 VehicleInterface.qml
+ExternalDataInterface 1.0 ExternalDataInterface.qml
+BehaviourInterface 1.0 BehaviourInterface.qml
+
+RootStore 1.0 RootStore.qml

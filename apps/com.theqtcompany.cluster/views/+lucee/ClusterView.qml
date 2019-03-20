@@ -33,6 +33,7 @@ import QtQuick 2.8
 import QtQuick.Window 2.2
 import shared.com.pelagicore.settings 1.0
 import application.windows 1.0
+import shared.animations 1.0
 
 import shared.Sizes 1.0
 import shared.Style 1.0
@@ -48,7 +49,7 @@ import "../helpers" 1.0
 Item {
     id: root
 
-    property ClusterStoreInterface store
+    property RootStoreInterface store
     property alias rtlMode: mainContent.rtlMode
 
     Image {
@@ -63,7 +64,29 @@ Item {
     GaugesPanel {
         id: mainContent
         anchors.fill: parent
-        store: root.store
+
+        navigating: store.behaviourInterface.navigationMode
+        speed: Math.round(root.store.localization.calculateDistanceValue(store.vehicleInterface.speed))
+        ePower: store.vehicleInterface.ePower
+        drivetrain: store.vehicleInterface.driveTrainState
+        opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+
+        //Lucee properties
+        outsideTemperature: store.externalDataInterface.outsideTemperature
+        currentDate: store.externalDataInterface.currentDate
+        twentyFourHourTimeFormat: store.localization.twentyFourHourTimeFormat
+        navigationProgressPercents: store.externalDataInterface.navigationProgressPercents
+        navigationRouteDistance: store.externalDataInterface.navigationRouteDistanceKm
+        drivingMode: store.vehicleInterface.drivingMode
+        drivingModeRangeDistance: Math.round(store.localization.calculateDistanceValue(store.vehicleInterface.drivingModeRangeKm))
+        drivingModeECORangeDistance: Math.round(store.localization.calculateDistanceValue(store.vehicleInterface.drivingModeECORangeKm))
+        mileage: store.vehicleInterface.mileage
+        mileageUnits: store.localization.mileageUnits
+        speedUnits: store.localization.speedUnits
+
+        Behavior on opacity {
+            DefaultNumberAnimation {}
+        }
     }
 
     TelltalesLeftPanel {
@@ -73,12 +96,12 @@ Item {
         width: Sizes.dp(444)
         height: Sizes.dp(58)
 
-        lowBeamHeadLightOn: store.lowBeamHeadlight
-        highBeamHeadLightOn: store.highBeamHeadlight
-        fogLightOn: store.fogLight
-        stabilityControlOn: store.stabilityControl
-        seatBeltFastenOn: store.seatBeltFasten
-        leftTurnOn: store.leftTurn
+        lowBeamHeadLightOn: store.vehicleInterface.lowBeamHeadlight
+        highBeamHeadLightOn: store.vehicleInterface.highBeamHeadlight
+        fogLightOn: store.vehicleInterface.fogLight
+        stabilityControlOn: store.vehicleInterface.stabilityControl
+        seatBeltFastenOn: store.vehicleInterface.seatBeltFasten
+        leftTurnOn: store.vehicleInterface.leftTurn
     }
 
     TelltalesRightPanel {
@@ -88,11 +111,11 @@ Item {
         width: Sizes.dp(444)
         height: Sizes.dp(58)
 
-        rightTurnOn: store.rightTurn
-        absFailureOn: store.absFailure;
-        parkingBrakeOn: store.parkBrake;
-        lowTyrePressureOn: store.tyrePressureLow;
-        brakeFailureOn: store.brakeFailure;
-        airbagFailureOn: store.airbagFailure;
+        rightTurnOn: store.vehicleInterface.rightTurn
+        absFailureOn: store.vehicleInterface.absFailure;
+        parkingBrakeOn: store.vehicleInterface.parkBrake;
+        lowTyrePressureOn: store.vehicleInterface.tyrePressureLow;
+        brakeFailureOn: store.vehicleInterface.brakeFailure;
+        airbagFailureOn: store.vehicleInterface.airbagFailure;
     }
 }

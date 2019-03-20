@@ -51,11 +51,17 @@ Item {
         Holds point where speed rect will be placed
     */
     property point screenCenter: Qt.point(0,0)
-    /*
-        Holds ClusterStoreInterface store
-    */
-    property var store
-    /*
+
+    property real navigationProgressPercents
+    property real navigationRouteDistance
+    property date currentDate
+    property bool twentyFourHourTimeFormat
+    property real speed
+    property string speedUnits
+    property real mileage
+    property string mileageUnits
+
+    /*!
         Defines current state of right-to-left
     */
     property bool rtlMode: false
@@ -102,7 +108,7 @@ Item {
         anchors.baseline: speedRectangle.baseline
         anchors.baselineOffset: Sizes.dp(150)
         anchors.horizontalCenter: speedRectangle.horizontalCenter
-        text: Math.round(root.store.calculateDistanceValue(root.store.speed))
+        text: root.speed
 
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
@@ -116,7 +122,7 @@ Item {
         anchors.horizontalCenter: speedRectangle.horizontalCenter
         anchors.bottom: speedRectangle.bottom
         anchors.bottomMargin: Sizes.dp(20)
-        text: root.store.speedUnits
+        text: root.speedUnits
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Sizes.dp(25)
@@ -131,7 +137,7 @@ Item {
         anchors.top: parent.top
         anchors.rightMargin: Sizes.dp(40)
         anchors.topMargin: Sizes.dp(20)
-        text: Config.translation.formatTime(root.store.currentDate, root.store.uiSettings.twentyFourHourTimeFormat)
+        text: Config.translation.formatTime(root.currentDate, root.twentyFourHourTimeFormat)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.Light
@@ -147,8 +153,8 @@ Item {
         anchors.bottom: parent.bottom
         anchors.rightMargin: Sizes.dp(40)
         anchors.bottomMargin: Sizes.dp(20)
-        value: root.store.mileage.toFixed(1)
-        units: root.store.mileageUnits
+        value: root.mileage.toFixed(1)
+        units: root.mileageUnits
         pixelSize: Sizes.dp(30)
         fontColor: root.textColor
     }
@@ -162,10 +168,10 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: Sizes.dp(124)
         anchors.right: parent.right
-        value: root.store.navigationProgressPercents
+        value: root.navigationProgressPercents
         isLeft: root.rtlMode
-        valueText: root.store.navigationRouteDistance.toFixed(1)
-        valueUnits: root.store.mileageUnits
+        valueText: root.navigationRouteDistance.toFixed(1)
+        valueUnits: root.mileageUnits
         icon: Utils.localAsset("ic-distance", Style.theme)
     }
 }

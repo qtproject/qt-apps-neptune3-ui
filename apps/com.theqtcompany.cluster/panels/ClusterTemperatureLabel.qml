@@ -44,6 +44,7 @@ import shared.Sizes 1.0
 
 Item{
     id: root
+
     /*
         temperature according to ClusterStore::outsideTemp object
     */

@@ -45,10 +45,10 @@ import shared.Sizes 1.0
 Item {
     id: root
 
-    /*
-        Holds ClusterStoreInterface store
-    */
-    property var store
+    property int ePower
+    property int driveTrainState
+    property var outsideTemperature
+
     /*
         Defines current state of right-to-left
     */
@@ -79,9 +79,9 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: Sizes.dp(124)
         anchors.left: parent.left
-        value: root.store.ePower * 0.01
+        value: root.ePower * 0.01
         isLeft: !root.rtlMode
-        valueText: root.store.ePower
+        valueText: root.ePower
         valueUnits: "%"
         icon: Utils.localAsset("ic-battery", Style.theme)
     }
@@ -94,7 +94,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.leftMargin: Sizes.dp(40)
         anchors.bottomMargin: Sizes.dp(40)
-        text: d.gears[root.store.driveTrainState]
+        text: d.gears[root.driveTrainState]
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
         font.weight: Font.Normal
@@ -111,7 +111,7 @@ Item {
         anchors.leftMargin: Sizes.dp(40)
         anchors.topMargin: Sizes.dp(20)
         pixelSize: Sizes.dp(30)
-        temperatureObject: root.store.outsideTemp
+        temperatureObject: root.outsideTemperature
         fontColor: root.fontColor
     }
 }

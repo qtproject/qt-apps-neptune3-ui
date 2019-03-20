@@ -42,11 +42,24 @@ import QtQuick.Controls 2.2
 Item {
     id: root
 
-    /*
-        Holds ClusterStoreInterface store
-    */
-    property var store
-    /*
+    property alias speed: dspeed.speed
+    property alias mileage: dspeed.mileage
+    property alias drivetrain: dpower.driveTrainState
+    property alias ePower: dpower.ePower
+    property alias outsideTemperature: dpower.outsideTemperature
+    property alias navigationRouteDistance: dspeed.navigationRouteDistance
+    property alias navigationProgressPercents: dspeed.navigationProgressPercents
+    property alias mileageUnits: dspeed.mileageUnits
+    property alias speedUnits: dspeed.speedUnits
+    property alias currentDate: dspeed.currentDate
+    property alias twentyFourHourTimeFormat: dspeed.twentyFourHourTimeFormat
+
+    property bool navigating
+    property int drivingModeRangeDistance
+    property int drivingModeECORangeDistance
+    property int drivingMode
+
+    /*!
         Defines current state of right-to-left
     */
     property bool rtlMode: false
@@ -100,9 +113,9 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: Sizes.dp(435)
-        range: Math.round(root.store.calculateDistanceValue(root.store.drivingModeRangeKm))
-        units:  root.store.mileageUnits
-        mode: root.store.drivingMode
+        range: root.drivingModeRangeDistance
+        units:  root.mileageUnits
+        mode: root.drivingMode
     }
 
     /*
@@ -112,8 +125,8 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: Sizes.dp(230)
-        range: "+" + Math.round(root.store.calculateDistanceValue(root.store.drivingModeECORangeKm))
-        units:  root.store.mileageUnits
+        range: "+" +  root.drivingModeECORangeDistance
+        units:  root.mileageUnits
         mode: 1 //eco
     }
 
@@ -126,9 +139,6 @@ Item {
         height: parent.height
         state: parent.state
         rtlMode: root.rtlMode
-        store: root.store
-
-
     }
 
     /*
@@ -141,7 +151,6 @@ Item {
         state: parent.state
         rtlMode: root.rtlMode
         screenCenter: Qt.point(parent.width / 2 - x, parent.height / 2 - y)
-        store: root.store
     }
 
     //states and transitions
