@@ -1055,7 +1055,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
-        <translation type="vanished">Qt Application Manager: %1</translation>
+        <translation>Qt Application Manager: %1</translation>
     </message>
     <message>
         <source>Qt IVI: %1</source>
@@ -1067,15 +1067,27 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Single-process mode</source>
-        <translation>Jednoprocesový režim</translation>
+        <translation type="vanished">Jednoprocesový režim</translation>
     </message>
     <message>
         <source>Multi-process mode</source>
-        <translation>Víceprocesový režim</translation>
+        <translation type="vanished">Víceprocesový režim</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1 %2</source>
-        <translation>Qt Application Manager: %1 %2</translation>
+        <translation type="vanished">Qt Application Manager: %1 %2</translation>
+    </message>
+    <message>
+        <source>Mode: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>multi-process</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1971,11 +1983,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>doors</source>
-        <translation>dveře</translation>
+        <translation type="vanished">dveře</translation>
     </message>
     <message>
         <source>tires</source>
         <translation>pneu</translation>
+    </message>
+    <message>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation type="unfinished">dveře &amp;&amp; &lt;br/&gt;střešní okno</translation>
     </message>
 </context>
 <context>

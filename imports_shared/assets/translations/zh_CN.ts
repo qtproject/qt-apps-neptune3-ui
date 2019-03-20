@@ -838,15 +838,19 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Single-process mode</source>
+        <source>Mode: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Multi-process mode</source>
+        <source>single-process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Qt Application Manager: %1 %2</source>
+        <source>multi-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Application Manager: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -512,23 +512,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Qt Application Manager: %1 %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Single-process mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Multi-process mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Qt IVI: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Platform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mode: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>single-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>multi-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt Application Manager: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
