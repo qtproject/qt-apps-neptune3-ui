@@ -61,19 +61,18 @@ QT_USE_NAMESPACE_AM
 #define QUOTE(name) #name
 #define STR(macro) QUOTE(macro)
 
-void startRemoteSettingsServer(const QString &argv) {
+void startExtraProcess(const QString &name) {
 #if QT_CONFIG(process)
-    QFileInfo fi(argv);
     QProcess *serverProcess = new QProcess(qApp);
-    QObject::connect(serverProcess, &QProcess::stateChanged, [serverProcess] (QProcess::ProcessState state) {
+    QObject::connect(serverProcess, &QProcess::stateChanged, [name, serverProcess] (QProcess::ProcessState state) {
         if (state == QProcess::Running) {
-            qCInfo(LogSystem) << "Attempted automatic start of RemoteSettingsServer, pid:" << serverProcess->processId();
+            qCInfo(LogSystem) << "Attempted automatic start of " << name << ", pid:" << serverProcess->processId();
         }
     });
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, [serverProcess] () {
         serverProcess->terminate();
     });
-    serverProcess->start(QStringLiteral("%1/RemoteSettingsServer").arg(fi.canonicalPath()), QProcess::ReadOnly);
+    serverProcess->start(name, QProcess::ReadOnly);
 #endif
 }
 
@@ -109,7 +108,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Main a(argc, argv);
 
         // start the server; the server itself will ensure one instance only
-        startRemoteSettingsServer(QFile::decodeName(argv[0]));
+        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/vehiclefunctions-simulation-server");
+        startExtraProcess(QCoreApplication::applicationDirPath() + "/RemoteSettingsServer");
 #endif
 
         // load the Qt translations
