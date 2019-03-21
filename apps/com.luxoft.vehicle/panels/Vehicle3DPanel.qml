@@ -71,13 +71,20 @@ Item {
             anchors.fill: parent
             Image {
                 anchors.fill: parent
-                source: Paths.getImagePath("back.png")
+                source: ! root.clusterView
+                        ? Paths.getImagePath("carPlaceholderCC.png")
+                        : Paths.getImagePath("carPlaceholderIC.png")
 
-                //ToDo: Replace later with an actual splash screen
                 BusyIndicator {
                     anchors.centerIn: parent
                     anchors.verticalCenterOffset: Sizes.dp(80)
                     running: !body.loaded
+
+                    onRunningChanged: {
+                        if (!running) {
+                            parent.source = Paths.getImagePath("sceneBackground.png")
+                        }
+                    }
                 }
             }
 

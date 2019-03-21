@@ -52,6 +52,9 @@ Item {
         anchors.left: root.left
         anchors.right: root.right
         height: Sizes.dp(652)
+        // at the application startup it doesn't receive full screen window,
+        // in that moment the car model is scaled awfully, so we wait till the app window is rescaled properly
+        visible: parent.height > 2 * Sizes.dp(652)
 
         leftDoorOpen: root.store.leftDoorOpened
         rightDoorOpen: root.store.rightDoorOpened
