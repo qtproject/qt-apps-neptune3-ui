@@ -34,13 +34,18 @@ import QtQuick 2.8
 import shared.utils 1.0
 
 import shared.Style 1.0
-
+import shared.Sizes 1.0
 import panels 1.0
 
 Item {
     id: root
-    width: 600
-    height: 600
+    width: Sizes.dp(560)
+    height: width
+
+    readonly property real scaleRatio: Math.min(root.width / 560, root.height / 560)
+    onScaleRatioChanged: {
+        root.Sizes.scale = scaleRatio
+    }
 
     Image {
         anchors.fill: parent
@@ -48,32 +53,32 @@ Item {
         fillMode: Image.Stretch
     }
 
-    DialSpeedPanel {
-        id: ds
+    DialPowerPanel {
+        id: dp
         anchors.fill: parent
-        state: ds.speed > 70 ? "normal" : "navi"
+        state: dp.ePower < 40 ? "normal" : "navi"
 
         Timer {
-            interval: 2000
+            interval: 500
             running: true
             repeat: true
             onTriggered: {
-                if (ds.speed < 140) {
-                    ds.speed = ds.speed + 10;
+                if (dp.ePower < 80) {
+                    dp.ePower = dp.ePower + 2;
                 } else {
-                    ds.speed = 0.0;
+                    dp.ePower = 0;
                 }
 
-                if (ds.speedLimit < 100) {
-                    ds.speedLimit = ds.speedLimit + 10;
+                if (dp.remainingKm < 200) {
+                    dp.remainingKm = dp.remainingKm + 10;
                 } else {
-                    ds.speedLimit = 0;
+                    dp.remainingKm = 0;
                 }
 
-                if (ds.cruiseSpeed < 100) {
-                    ds.cruiseSpeed = ds.cruiseSpeed + 10;
+                if (dp.remainingPower < 100) {
+                    dp.remainingPower = dp.remainingPower + 10;
                 } else {
-                    ds.cruiseSpeed = 0;
+                    dp.remainingPower = 0;
                 }
             }
         }

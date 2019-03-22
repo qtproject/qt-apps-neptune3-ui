@@ -21,7 +21,6 @@ copydata.depends += src
 copydata.depends += plugins
 
 SUBDIRS += copydata
-SUBDIRS += apps
 
 android: INSTALL_PATH = $$INSTALL_PREFIX
 else: INSTALL_PATH = $$INSTALL_PREFIX/neptune3

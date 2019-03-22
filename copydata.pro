@@ -3,7 +3,7 @@ TEMPLATE = aux
 # On a debug_and_release configuration, do the copying in the meta Makefile, not in the respective debug and release Makefiles
 if(!debug_and_release | !build_pass) {
     # Copy all QML files during the build time
-    DIRECTORIES = apps dev/apps imports_shared imports_system sysui styles
+    DIRECTORIES = apps dev/apps imports_shared imports_system sysui styles tests
     FILES = am-config-neptune.yaml am-config-lucee.yaml Main.qml server.conf
 
     for (d , DIRECTORIES) {
