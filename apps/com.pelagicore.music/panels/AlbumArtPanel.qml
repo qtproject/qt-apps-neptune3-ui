@@ -79,14 +79,6 @@ Item {
             property alias albumArtSource: albumArt.source
 
             Image {
-                id: albumArtShadow
-                anchors.centerIn: parent
-                width: Sizes.dp(sourceSize.width)
-                height: Sizes.dp(sourceSize.height)
-                source: Style.image("album-art-shadow")
-            }
-
-            Image {
                 id: albumArtUndefined
                 visible: opacity > 0
                 opacity: (mediaReady && model.item.coverArtUrl) ? 1.0 : 0.0
@@ -95,7 +87,6 @@ Item {
                 width: Sizes.dp(180)
                 height: width
                 source: Style.image("album-art-placeholder")
-
                 fillMode: Image.PreserveAspectCrop
             }
 
@@ -109,14 +100,12 @@ Item {
                 width: Sizes.dp(180)
                 height: width
                 source: model.item.coverArtUrl !== undefined ? model.item.coverArtUrl : ""
-
                 fillMode: Image.PreserveAspectCrop
             }
         }
     }
 
     Item {
-        id: coverArtTitleAndControlsWrapperItem
         anchors.fill: parent
 
         PathView {
@@ -131,7 +120,7 @@ Item {
             snapMode: PathView.SnapOneItem
             highlightRangeMode: PathView.StrictlyEnforceRange
             highlightMoveDuration: 200
-            model: 0
+            model: root.songModel
             delegate: albumArtDelegate
             pathItemCount: 1
             cacheItemCount:10
@@ -147,16 +136,13 @@ Item {
             }
 
             path: Path {
-                startX: -coverSlide.width-8; startY: coverslide.height/2
-                PathAttribute { name: "iconOpacity"; value: 0.0 }
-                PathLine { x: -coverSlide.width/4-4; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 0.0 }
-                PathLine { x: coverSlide.width/2; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 1.0 }
-                PathLine { x: coverslide.width*5/4+4; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 0.0 }
-                PathLine { x: coverslide.width*2+8; y: coverslide.height/2 }
-                PathAttribute { name: "iconOpacity"; value: 0.0 }
+                startX: 0; startY: coverslide.height/2
+
+                PathAttribute { name: "iconOpacity"; value: 0.02 }
+                PathLine { x: coverslide.width/2; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 1 }
+                PathLine { x: coverslide.width; y: coverslide.height/2 }
+                PathAttribute { name: "iconOpacity"; value: 0.02 }
             }
         }
 

@@ -129,19 +129,19 @@ Item {
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
         anchors.verticalCenterOffset: 0
-        songModel: store.musicPlaylist
-        currentIndex: store.musicPlaylist.currentIndex
-        currentSongTitle: store.currentEntry ? root.store.currentEntry.title : ""
-        currentArtisName: store.currentEntry ? root.store.currentEntry.artist : ""
+        songModel: root.store.musicPlaylist
+        currentIndex: root.store.musicPlaylist.currentIndex
+        currentSongTitle: root.store.currentEntry ? root.store.currentEntry.title : ""
+        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
         parentStateMaximized: root.state === "Maximized"
-        mediaReady: store.searchAndBrowseModel.count > 0
-        musicPlaying: store.playing
-        musicPosition: store.currentTrackPosition
-        onPlayClicked: store.playSong()
-        onPreviousClicked: store.previousSong()
-        onNextClicked: store.nextSong()
+        mediaReady: root.store.searchAndBrowseModel.count > 0
+        musicPlaying: root.store.playing
+        musicPosition: root.store.currentTrackPosition
+        onPlayClicked: root.store.playSong()
+        onPreviousClicked: root.store.previousSong()
+        onNextClicked: root.store.nextSong()
         Connections {
-            target: store
+            target: root.store
             onSongModelPopulated: { artAndTitlesBlock.populateModel(); }
         }
     }
