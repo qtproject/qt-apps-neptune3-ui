@@ -40,10 +40,12 @@ import QtQuick.Scene3D 2.0
 import "../../helpers" 1.0
 
 Entity {
+    id: root
+    property string quality
     components: [
         Mesh {
             id: seats
-            source: Paths.getModelPath("seats.obj")
+            source: Paths.getModelPath("seats", root.quality)
         },
         DiffuseMapMaterial {
             id: seatsMaterial

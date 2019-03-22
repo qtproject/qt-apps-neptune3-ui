@@ -60,6 +60,8 @@ Item {
         rightDoorOpen: root.store.rightDoorOpened
         trunkOpen: root.store.trunkOpened
         roofOpenProgress: root.store.roofOpenProgress
+
+        modelQuality: root.store.model3DQuality
     }
 
     Vehicle3DControlPanel {

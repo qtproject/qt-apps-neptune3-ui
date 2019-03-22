@@ -41,6 +41,7 @@ QtObject {
     property bool trunkOpened: false
     property real roofOpenProgress: 0.0
     property real cameraAngleView: 0.0
+    property string model3DQuality: "high"
 
     property ListModel controlModel : ListModel {
         ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }

@@ -41,6 +41,7 @@ import "../../helpers" 1.0
 
 Entity {
     id: root
+    property string quality
 
     function animate() {
         rotationAnimation.start()
@@ -66,7 +67,7 @@ Entity {
         id: chromeWheel
         Mesh {
             id: wheelMesh
-            source: Paths.getModelPath("front_wheel_chrome.obj")
+            source: Paths.getModelPath("front_wheel_chrome", root.quality)
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -74,7 +75,7 @@ Entity {
     Entity {
         components: [
             Mesh {
-                source: Paths.getModelPath("front_tires.obj")
+                source: Paths.getModelPath("front_tires", root.quality)
             },
             DiffuseMapMaterial {
                 id: frontTiresMaterial

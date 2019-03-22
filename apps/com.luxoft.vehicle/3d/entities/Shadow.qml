@@ -42,7 +42,7 @@ import "../../helpers" 1.0
 Entity {
     components: [
         Mesh {
-            source: Paths.getModelPath("shadow.obj")
+            source: Paths.getModelPath("shadow")
         },
         DiffuseMapMaterial {
             diffuse: Texture2D {

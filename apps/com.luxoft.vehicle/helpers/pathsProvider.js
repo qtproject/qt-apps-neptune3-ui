@@ -32,8 +32,36 @@
 
 .pragma library
 
-function getModelPath(name) {
-    return Qt.resolvedUrl("../assets/models/" + name)
+function doesFileExist(url) {
+    var req = new XMLHttpRequest();
+    req.open('HEAD', url, false);
+    req.send();
+    return req.status == 200;
+}
+
+
+// see vehicle app info.yaml for description
+function getModelPath(name, quality) {
+    quality = quality || "high";
+    var path = ""
+
+    if (quality === "high") {
+        return Qt.resolvedUrl("../assets/models/" + name + ".obj")
+    }
+
+    if (quality === "middle") {
+        path = Qt.resolvedUrl("../assets/models/" + name + "_middle.obj")
+        return doesFileExist(path) ? path : Qt.resolvedUrl("../assets/models/" + name + ".obj")
+    }
+
+    if (quality === "low") {
+        return Qt.resolvedUrl("../assets/models/" + name + ".stl")
+    }
+
+    if (quality === "lowest") {
+        path = Qt.resolvedUrl("../assets/models/" + name + "_middle.stl")
+        return doesFileExist(path) ? path : Qt.resolvedUrl("../assets/models/" + name + ".stl")
+    }
 }
 
 function getImagePath(name) {

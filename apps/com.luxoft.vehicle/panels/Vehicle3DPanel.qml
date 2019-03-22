@@ -50,6 +50,7 @@ Item {
 
     property real cameraPanAngleOutput: 0.0
     property real cameraPanAngleInput: 0.0
+    property string modelQuality
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     property real roofOpenProgress: 0.0
@@ -180,26 +181,39 @@ Item {
                     }
 
                     Shadow {}
-                    AxisFront {}
-                    AxisRear {}
-                    Seats {}
+                    AxisFront {
+                        quality: root.modelQuality
+                    }
+                    AxisRear {
+                        quality: root.modelQuality
+                    }
+                    Seats {
+                        quality: root.modelQuality
+                    }
                     RearDoor {
                         id: trunk
                         open: root.trunkOpen
+                        quality: root.modelQuality
                     }
                     LeftDoor {
                         id: leftDoor
                         open: root.leftDoorOpen
+                        quality: root.modelQuality
                     }
                     RightDoor {
                         id: rightDoor
                         open: root.rightDoorOpen
+                        quality: root.modelQuality
                     }
                     Roof {
                         id: roof
                         openProgress: root.roofOpenProgress
+                        quality: root.modelQuality
                     }
-                    Body { id: body }
+                    Body {
+                        id: body
+                        quality: root.modelQuality
+                    }
                 }
             }
         }

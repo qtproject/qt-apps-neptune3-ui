@@ -45,6 +45,7 @@ Entity {
     id: root
 
     property bool open: false
+    property string quality
 
     Transform {
         id: transform
@@ -63,7 +64,7 @@ Entity {
 
     Mesh {
         id: rearDoorMesh
-        source: Paths.getModelPath("back_window.obj")
+        source: Paths.getModelPath("back_window", root.quality)
     }
 
     components: [transform, rearDoorMesh, glassMaterial]

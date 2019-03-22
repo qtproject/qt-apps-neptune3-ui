@@ -41,6 +41,7 @@ import "../../helpers" 1.0
 
 Entity {
     id: root
+    property string quality
 
     function animate() {
         rotationAnimation.start()
@@ -65,7 +66,7 @@ Entity {
     Entity {
         Mesh {
             id: wheelMesh
-            source: Paths.getModelPath("rear_wheel_chrome.obj")
+            source: Paths.getModelPath("rear_wheel_chrome", root.quality)
         }
         components: [wheelMesh, chromeMaterial]
     }
@@ -74,7 +75,7 @@ Entity {
         components: [
             Mesh {
                 id: rear_tires
-                source: Paths.getModelPath("rear_tires.obj")
+                source: Paths.getModelPath("rear_tires", root.quality)
             },
             DiffuseMapMaterial {
                 diffuse: Texture2D {

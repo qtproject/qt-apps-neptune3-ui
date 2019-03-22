@@ -59,5 +59,6 @@ Item {
         clusterView: true
 
         cameraPanAngleOutput: store.cameraAngleView
+        modelQuality: root.store.model3DQuality
     }
 }

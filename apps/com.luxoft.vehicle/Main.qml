@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
+import QtApplicationManager.Application 2.0
 import application.windows 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.settings 1.0
@@ -49,7 +50,7 @@ QtObject {
         VehicleView {
             id: vehicleView
             anchors.fill: parent
-            store: VehicleStore {}
+            store: VehicleStore { model3DQuality: ApplicationInterface.applicationProperties["modelQuality"] }
         }
 
         InstrumentCluster {
@@ -59,7 +60,7 @@ QtObject {
 
     readonly property Loader applicationICWindowLoader: Loader {
         asynchronous: true
-        active: (clusterSettings.available
+        active: ApplicationInterface.applicationProperties["showOnCluster"] && (clusterSettings.available
                  || Qt.platform.os !== "linux") // FIXME and then remove; remote settings doesn't really work outside of Linux
         sourceComponent: Component {
             ApplicationICWindow {
