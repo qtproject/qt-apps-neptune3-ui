@@ -16,10 +16,19 @@ win32|cross_compile: {
     stylepath.name = QT_QUICK_CONTROLS_STYLE_PATH
     stylepath.value = $$OUT_PWD/../../../../styles/
 
+    conf.name = QT_QUICK_CONTROLS_CONF
+    conf.value = $$OUT_PWD/../../../../styles/neptune/style.conf
+
+    iconpath.name = QT_QUICK_CONTROLS_ICON_PATH
+    iconpath.value = $$OUT_PWD/../../../../imports_shared/assets/icons/
+
+    serverconf.name = SERVER_CONF_PATH
+    serverconf.value = $$OUT_PWD/../../../../server.conf
+
     style.name = QT_STYLE_OVERRIDE
     style.value = neptune
 
-    QT_TOOL_ENV = extraplugins stylepath style
+    QT_TOOL_ENV = extraplugins stylepath style conf iconpath serverconf
     QT_TOOL_NAME = $$ORIG_TARGET
     qtAddTargetEnv(NEPTUNE_LIVERELOAD, QT)
 }
