@@ -395,27 +395,11 @@ UX na cestu</translation>
     <name>ClusterStore</name>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
-    </message>
-    <message>
-        <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">km</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
-    </message>
-    <message>
-        <source>mph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°F</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">km/h</translation>
     </message>
 </context>
 <context>
@@ -1494,6 +1478,30 @@ UX na cestu</translation>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
         <translation>Snímek obrazovky a diagnostické informace uloženy v %1</translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+    <message>
+        <source>mph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°F</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

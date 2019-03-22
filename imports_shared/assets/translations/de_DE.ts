@@ -275,27 +275,11 @@
     <name>ClusterStore</name>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
-    </message>
-    <message>
-        <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Km</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">Km/h</translation>
-    </message>
-    <message>
-        <source>mph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°F</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Km/h</translation>
     </message>
 </context>
 <context>
@@ -1045,6 +1029,30 @@
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">Km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">Km/h</translation>
+    </message>
+    <message>
+        <source>mph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°F</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -268,27 +268,11 @@
     <name>ClusterStore</name>
     <message>
         <source>km</source>
-        <translation type="unfinished">km</translation>
-    </message>
-    <message>
-        <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">km</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
-    </message>
-    <message>
-        <source>mph</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>°F</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">km/h</translation>
     </message>
 </context>
 <context>
@@ -1233,6 +1217,30 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>mi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+    <message>
+        <source>mph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>°F</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
