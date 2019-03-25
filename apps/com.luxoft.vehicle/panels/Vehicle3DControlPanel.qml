@@ -79,7 +79,7 @@ Item {
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
             onTrunkClicked: root.trunkClicked()
-            onRoofOpenProgressChanged: root.roofOpenProgressChanged(value)
+            onRoofOpenProgressChanged: root.roofOpenProgressChanged(roofOpenProgress)
         }
         TiresPanel {}
     }

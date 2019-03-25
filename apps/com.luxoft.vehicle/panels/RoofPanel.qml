@@ -32,6 +32,7 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.3
+import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.3
 
 import shared.Sizes 1.0
@@ -44,44 +45,67 @@ import "../controls" 1.0
 Item {
     id: root
 
-    signal setRoofOpenProgress(var value)
+    property alias roofOpenProgress: vehicleTopView.roofOpenProgress
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property bool trunkOpened: false
 
-    Slider {
-        id: roofSlider
+    Behavior on roofOpenProgress { DefaultNumberAnimation { duration: 800 } }
+
+    Rectangle {
+        id: vehicleTopViewMask
+        anchors.fill: vehicleTopView
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#00000000" }
+            GradientStop { position: 0.28; color: "#ff000000" }
+            GradientStop { position: 0.45; color: "#ff000000" }
+            GradientStop { position: 1.0; color: "#00000000" }
+        }
+        visible: false
+    }
+
+    TopPanel {
+        id: vehicleTopView
+        visible: false
 
         anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(200)
-        anchors.left: parent.left
-        width: parent.width - anchors.leftMargin
-        onValueChanged: {
-            root.setRoofOpenProgress(value)
-        }
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        leftDoorOpen: root.leftDoorOpened
+        rightDoorOpen: root.rightDoorOpened
+        trunkOpen: root.trunkOpened
+    }
+
+    OpacityMask {
+        id: om
+        rotation: 90
+        transform: Translate {x: -width/10; y: -height/20}
+
+        anchors.fill: vehicleTopView
+        maskSource: vehicleTopViewMask
+        source: vehicleTopView
     }
 
     VehicleButton {
         id: roofOpenButton
 
-        anchors.top: roofSlider.bottom
-        anchors.topMargin: Sizes.dp(50)
+        anchors.top: om.verticalCenter
+        anchors.topMargin: -height
         anchors.right: parent.right
         state: "REGULAR"
-        text: qsTr("Open")
-        onClicked: {
-            roofSlider.value = 1.0
-        }
+        text: qsTr("Close")
+        onClicked: root.roofOpenProgress = 0.0
     }
 
     VehicleButton {
         id: roofCloseButton
 
-        anchors.top: roofSlider.bottom
-        anchors.topMargin: Sizes.dp(50)
+        anchors.top: om.verticalCenter
+        anchors.topMargin: -height
         anchors.left: parent.left
         state: "REGULAR"
-        text: qsTr("Close")
-        onClicked: {
-            roofSlider.value = 0.0
-        }
+        text: qsTr("Open")
+        onClicked: root.roofOpenProgress = 1.0
     }
 }
 

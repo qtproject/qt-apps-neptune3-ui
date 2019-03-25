@@ -47,6 +47,7 @@ Item {
     property bool trunkOpen: false
     property bool leftDoorOpen: false
     property bool rightDoorOpen: false
+    property real roofOpenProgress: 0.0
 
     Image {
         id: base
@@ -62,11 +63,11 @@ Item {
         id: sunroof
 
         anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(284)
+        anchors.topMargin: Sizes.dp(284 + sourceSize.height * root.roofOpenProgress)
         anchors.horizontalCenter: parent.horizontalCenter
         source: Paths.getImagePath("sunroof.png")
         width: Sizes.dp(sourceSize.width)
-        height: Sizes.dp(sourceSize.height)
+        height: Sizes.dp(sourceSize.height * (1.0 - root.roofOpenProgress))
     }
 
     Image {

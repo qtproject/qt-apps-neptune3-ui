@@ -45,11 +45,11 @@ Item {
     property alias leftDoorOpened: frontDoorsPanel.leftDoorOpened
     property alias rightDoorOpened: frontDoorsPanel.rightDoorOpened
     property alias trunkOpened: trunkPanel.trunkOpened
+    property alias roofOpenProgress: roofPanel.roofOpenProgress
 
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
-    signal roofOpenProgressChanged(var value)
 
     TabBar {
         id: tabBar
@@ -74,18 +74,31 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         currentIndex: tabBar.currentIndex
+
         RoofPanel {
             id: roofPanel
-            onSetRoofOpenProgress: root.roofOpenProgressChanged(value)
+
+            leftDoorOpened: root.leftDoorOpened
+            rightDoorOpened: root.rightDoorOpened
+            trunkOpened: root.trunkOpened
         }
+
         FrontDoorsPanel {
             id: frontDoorsPanel
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
+
+            trunkOpened: root.trunkOpened
+            roofOpenProgress: root.roofOpenProgress
         }
+
         TrunkPanel {
             id: trunkPanel
             onTrunkClicked: root.trunkClicked()
+
+            leftDoorOpened: root.leftDoorOpened
+            rightDoorOpened: root.rightDoorOpened
+            roofOpenProgress: root.roofOpenProgress
         }
     }
 }

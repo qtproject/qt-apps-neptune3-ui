@@ -48,6 +48,8 @@ Item {
 
     property bool leftDoorOpened: false
     property bool rightDoorOpened: false
+    property bool trunkOpened: false
+    property real roofOpenProgress: 0.0
 
     signal leftDoorClicked()
     signal rightDoorClicked()
@@ -97,7 +99,10 @@ Item {
         id: vehicleTopView
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
+
         leftDoorOpen: root.leftDoorOpened
         rightDoorOpen: root.rightDoorOpened
+        roofOpenProgress: root.roofOpenProgress
+        trunkOpen: root.trunkOpened
     }
 }

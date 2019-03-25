@@ -43,6 +43,10 @@ Item {
     id: root
 
     property bool trunkOpened: false
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property real roofOpenProgress: 0.0
+
     signal trunkClicked()
 
     Rectangle {
@@ -70,7 +74,11 @@ Item {
         anchors.topMargin: Sizes.dp(-160)
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
+
         trunkOpen: root.trunkOpened
+        leftDoorOpen: root.leftDoorOpened
+        rightDoorOpen: root.rightDoorOpened
+        roofOpenProgress: root.roofOpenProgress
     }
 
     VehicleButton {
