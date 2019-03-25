@@ -1,0 +1,8 @@
+#include "uisettings.h"
+#include "uisettingsbackendinterface.h"
+#include "systemui.h"
+#include "systemuibackendinterface.h"
+#include "connectionmonitoring.h"
+#include "connectionmonitoringbackendinterface.h"
+#include "instrumentcluster.h"
+#include "instrumentclusterbackendinterface.h"

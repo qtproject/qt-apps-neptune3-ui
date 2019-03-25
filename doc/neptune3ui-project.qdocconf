@@ -2,10 +2,15 @@ project = Neptune3UI
 version = $QT_VERSION
 url     = http://doc.qt.io/Neptune3UI
 
-sourcedirs += src ../
+moduleheader = Neptune3UIDoc
+
+headerdirs += $$BUILDDIR/../src/remotesettings/frontend
+
+sourcedirs += src ../ $$BUILDDIR/../src/remotesettings/frontend
+
 imagedirs += src/images
 
-depends += qtquick qtqml
+depends += qtcore qtquick qtqml
 
 qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp
