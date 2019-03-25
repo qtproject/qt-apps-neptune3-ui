@@ -87,6 +87,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(167)
         anchors.right: trunk.left
+        anchors.rightMargin: Sizes.dp(7)
         transformOrigin: Item.TopLeft
         rotation: root.leftDoorOpen ? 60 : 0
         Behavior on rotation { DefaultNumberAnimation { duration: 800 } }
@@ -101,6 +102,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(167)
         anchors.left: trunk.right
+        anchors.leftMargin: Sizes.dp(7)
         mirror: true
         transformOrigin: Item.TopRight
         rotation: root.rightDoorOpen ? -60 : 0

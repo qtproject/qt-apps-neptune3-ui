@@ -53,6 +53,7 @@ Item {
     signal rightDoorClicked()
 
     VehicleButton {
+        z: vehicleTopView.z + 1
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(320)
         anchors.left: parent.left
@@ -60,10 +61,11 @@ Item {
         state: "REGULAR"
         text: root.leftDoorOpened ? qsTr("Close") : qsTr("Open")
 
-        onClicked: root.leftDoorClicked();
+        onClicked: root.leftDoorClicked()
     }
 
     VehicleButton {
+        z: vehicleTopView.z + 1
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(320)
         anchors.right: parent.right
@@ -71,7 +73,7 @@ Item {
         state: "REGULAR"
         text: root.rightDoorOpened ? qsTr("Close") : qsTr("Open")
 
-        onClicked: root.rightDoorClicked()
+        onClicked: root.rightDoorClicked();
     }
 
     Rectangle {
@@ -95,5 +97,7 @@ Item {
         id: vehicleTopView
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
+        leftDoorOpen: root.leftDoorOpened
+        rightDoorOpen: root.rightDoorOpened
     }
 }

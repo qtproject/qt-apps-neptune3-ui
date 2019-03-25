@@ -70,6 +70,7 @@ Item {
         anchors.topMargin: Sizes.dp(-160)
         anchors.horizontalCenter: parent.horizontalCenter
         visible: false
+        trunkOpen: root.trunkOpened
     }
 
     VehicleButton {
