@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS = \
-    com.theqtcompany.cluster/harnesses \
-    com.luxoft.vehicle/harnesses \
+    com.theqtcompany.cluster/clusterharness \
+    com.luxoft.vehicle/vehicleharness \
