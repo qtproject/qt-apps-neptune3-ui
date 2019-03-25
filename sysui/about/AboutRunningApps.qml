@@ -169,7 +169,7 @@ Item {
                 }
                 Column {
                     width: parent.width
-                    visible: !!model.appInfo.window
+                    visible: model.appInfo ? !!model.appInfo.window : false
                     leftPadding: Sizes.dp(40)
                     Label {
                         text: qsTr("Primary Window, on Center Console")
@@ -196,7 +196,7 @@ Item {
                 Column {
                     id: applicationICWindowColumn
                     width: parent.width
-                    visible: !!model.appInfo.icWindow
+                    visible: model.appInfo ? !!model.appInfo.icWindow : false
                     leftPadding: Sizes.dp(40)
                     Label {
                         text: qsTr("Application IC Window, on Instrument Cluster")
