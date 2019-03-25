@@ -1817,8 +1817,8 @@ UX na cestu</translation>
         <translation type="vanished">energie</translation>
     </message>
     <message>
-        <source>doors</source>
-        <translation type="vanished">dveře</translation>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation type="vanished">dveře &amp;&amp; &lt;br/&gt;střešní okno</translation>
     </message>
     <message>
         <source>tires</source>

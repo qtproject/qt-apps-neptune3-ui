@@ -907,11 +907,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>doors</source>
+        <source>tires</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>tires</source>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

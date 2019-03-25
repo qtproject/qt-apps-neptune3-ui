@@ -1669,8 +1669,8 @@
         <translation>에너지</translation>
     </message>
     <message>
-        <source>doors</source>
-        <translation>도어</translation>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation>도어 &amp;&amp; &lt;br/&gt;선 루프</translation>
     </message>
     <message>
         <source>tires</source>

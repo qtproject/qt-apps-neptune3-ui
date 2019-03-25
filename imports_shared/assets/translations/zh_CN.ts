@@ -1742,8 +1742,8 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation>能源</translation>
     </message>
     <message>
-        <source>doors</source>
-        <translation>车门</translation>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation>车门 &amp;&amp; &lt;br/&gt;天窗</translation>
     </message>
     <message>
         <source>tires</source>

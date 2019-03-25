@@ -1650,8 +1650,8 @@
         <translation>燃料</translation>
     </message>
     <message>
-        <source>doors</source>
-        <translation>ドア</translation>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation>ドア &amp;&amp; &lt;br/&gt;サンルーフ</translation>
     </message>
     <message>
         <source>tires</source>

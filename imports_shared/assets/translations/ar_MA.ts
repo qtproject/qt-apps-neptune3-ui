@@ -865,7 +865,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>doors</source>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -1449,8 +1449,8 @@
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <source>doors</source>
-        <translation>Türen</translation>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation>Türen &amp;&amp; &lt;br/&gt;Schiebedach</translation>
     </message>
     <message>
         <source>tires</source>

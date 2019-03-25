@@ -959,10 +959,6 @@
 <context>
     <name>VehicleToolsColumn</name>
     <message>
-        <source>doors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>tires</source>
         <translation type="unfinished"></translation>
     </message>
@@ -972,6 +968,10 @@
     </message>
     <message>
         <source>energy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
