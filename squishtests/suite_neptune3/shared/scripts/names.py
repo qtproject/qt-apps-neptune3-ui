@@ -106,7 +106,7 @@ for app_ref_str in apps_reference_container.keys():
 neptune_UI_Center_Console_grid_GridView = {"container": neptune_UI_Center_Console, "id": "grid", "type": "GridView", "unnamed": 1, "visible": True}
 neptune_UI_Instrument_Cluster_QQuickWindowQmlImpl = {"title": "Neptune 3 UI - Instrument Cluster", "type": "QQuickWindowQmlImpl", "unnamed": 1, "visible": True, "window": o_QVariant}
 grid_Item = {"container": neptune_UI_Center_Console_grid_GridView, "type": "Item", "unnamed": 1, "visible": True}
-neptune_UI_Center_Console_widgetListview_ListView = {"container": neptune_UI_Center_Console, "id": "widgetListview", "type": "ListView", "unnamed": 1, "visible": True}
+neptune_UI_Center_Console_widgetListview_ListView = {"container": neptune_UI_Center_Console, "objectName": "widgetListview", "type": "ListView", "visible": True}
 neptune_3_UI_Center_Console_volumePopupButton_ToolButton = {"container": neptune_UI_Center_Console, "objectName": "volumePopupButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_volumePopupItem_VolumePopup = {"container": neptune_UI_Center_Console, "objectName": "volumePopupItem", "type": "VolumePopup", "visible": True}
 neptune_3_UI_Center_Console_popupClose_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "popupClose", "type": "ToolButton", "visible": True}
@@ -115,7 +115,7 @@ neptune_3_UI_Center_Console_centerConsole_CenterConsole = {"container": neptune_
 
 neptune_3_UI_Center_Console_addWidgetButton_ToolButton = {"checkable": False, "container": neptune_UI_Center_Console, "objectName": "addWidgetButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_addWidgetPopupItem_AddWidgetPopup = {"container": neptune_UI_Center_Console, "objectName": "addWidgetPopupItem", "type": "AddWidgetPopup", "visible": True}
-widgetList_AddWidgets_Maps = {"checkable": False, "container": neptune_UI_Center_Console_widgetListview_ListView, "objectName": "itemAddWidget_com.pelagicore.map", "type": "ListItem", "visible": True}
+widgetList_AddWidgets_Maps = {"container": neptune_UI_Center_Console_widgetListview_ListView, "objectName": "itemAddWidget_com.pelagicore.map", "type": "ListItem", "visible": True}
 neptune_3_UI_Center_Console_launcherCenterConsole_Launcher = {"container": neptune_UI_Center_Console, "objectName": "launcher", "type": "Launcher", "visible": True}
 neptune_3_UI_Center_Console_gridButton_ToolButton = {"checkable": True, "container": neptune_UI_Center_Console, "objectName": "gridButton", "type": "ToolButton", "visible": True}
 neptune_3_UI_Center_Console_editableLauncher_EditableGridView = {"container": neptune_UI_Center_Console, "objectName": "editableLauncher", "type": "EditableGridView", "visible": True}

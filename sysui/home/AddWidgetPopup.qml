@@ -146,6 +146,7 @@ PopupItem {
 
         ListView {
             id: widgetListview
+            objectName: "widgetListview"
             anchors {
                 top: shadow.bottom
                 topMargin: Sizes.dp(51)
@@ -171,5 +172,3 @@ PopupItem {
         }
     }
 }
-
-
