@@ -155,3 +155,26 @@ def update_all_contexts():
     for a in app_list:
         register(a)
     return len(app_list)
+
+
+def compare(condition1, condition2, text):
+    """ calls Squish's compare but switch back
+    to main app.
+    See "fail" in this class, since compare's
+    fail behavior is problematic and explained
+    there.
+    """
+    switch_to_main_app()
+    test.compare(condition1, condition2, text)
+
+
+def fail(text):
+    """ calls Squish's fail but switch back
+    to main app before.
+    The problem is when Squish fails, that if
+    not done manually before in the according fail
+    branch of the compare, any later switch_to_main_app()
+    will not happen. This is a thin wrapper, that does it.
+    """
+    switch_to_main_app()
+    test.fail(text)

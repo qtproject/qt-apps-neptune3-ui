@@ -75,6 +75,7 @@ Item {
 
     FavoritesWidgetView {
         id: favoritesWidget
+        objectName: "phonefavoritesView"
         anchors.horizontalCenter: parent.horizontalCenter
         width: Sizes.dp(960)
         anchors.top: parent.top
@@ -90,6 +91,7 @@ Item {
 
     CallWidgetView {
         id: callWidget
+        objectName: "phoneCallView"
         anchors.fill: root.state === "Widget1Row" ? parent : undefined
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.rightMargin: Sizes.dp(45 * 0.9)
@@ -133,33 +135,34 @@ Item {
 
             ToolsColumn {
                 id: toolsColumnComponent
+                objectName: "phoneViewChangeButtons"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: Sizes.dp(53)
 
                 translationContext: "PhoneToolsColumn"
                 model: ListModel {
-                    ListElement { icon: "ic-recents"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "recents"); greyedOut: false }
-                    ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "favorites"); greyedOut: false }
-                    ListElement { icon: "ic-keypad"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "keypad"); greyedOut: false }
-                    ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts"); greyedOut: false }
+                    ListElement { icon: "ic-recents"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "recents"); objectName: "viewPhoneButton_recents"; greyedOut: false }
+                    ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "favorites"); objectName: "viewPhoneButton_favorites"; greyedOut: false }
+                    ListElement { icon: "ic-keypad"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "keypad"); objectName: "viewPhoneButton_keypad"; greyedOut: false }
+                    ListElement { icon: "ic-contacts"; text: QT_TRANSLATE_NOOP("PhoneToolsColumn", "contacts"); objectName: "viewPhoneButton_contacts"; greyedOut: false }
                 }
                 onCurrentTextChanged: {
                     switch (currentText) {
                     case "recents":
-                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store});
+                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
                         break;
                     case "favorites":
-                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model": root.store.favoritesModel});
+                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model": root.store.favoritesModel, "objectName" : "favorites_phoneView"});
                         break;
                     case "contacts":
-                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model" : root.store.contactsModel});
+                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model" : root.store.contactsModel, "objectName" : "contacts_phoneView"});
                         break;
                     case "keypad":
-                        stackView.push(Qt.resolvedUrl("../panels/KeypadViewPanel.qml"));
+                        stackView.push(Qt.resolvedUrl("../panels/KeypadViewPanel.qml"), {"objectName" : "keypad_phoneView"});
                         break;
                     default:
-                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store});
+                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
                         break;
                     }
                 }
@@ -169,6 +172,7 @@ Item {
 
         StackView {
             id: stackView
+            objectName: "phoneMainStackView"
             anchors.left: toolsColumn.right
             anchors.top: parent.top
             anchors.topMargin: Sizes.dp(53)

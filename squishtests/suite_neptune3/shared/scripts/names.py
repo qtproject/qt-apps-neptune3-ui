@@ -63,9 +63,11 @@ o_QtAM_ApplicationManagerWindow = {"type": "QtAM::ApplicationManagerWindow", "un
 # in single process might be somewhere else in
 # the object tree of Neptune3 UI.
 multi_process_container = o_QtAM_ApplicationManagerWindow.copy()
+
 climate_single_process_container = neptune_UI_Center_Console.copy()
 calendar_single_process_container = neptune_UI_Center_Console.copy()
 settings_single_process_container = neptune_UI_Center_Console.copy()
+phone_single_process_container = neptune_UI_Center_Console.copy()
 
 # define for each app an own starting-to-search container,
 # they all might look the same and could maybe be simplified
@@ -74,11 +76,13 @@ settings_single_process_container = neptune_UI_Center_Console.copy()
 container_climate = climate_single_process_container.copy()
 container_calendar = calendar_single_process_container.copy()
 container_settings = settings_single_process_container.copy()
+container_phone = phone_single_process_container.copy()
 
 # contains the changer
 apps_reference_container = {'container_climate': container_climate,
                             'container_calendar': container_calendar,
-                            'container_settings': container_settings}
+                            'container_settings': container_settings,
+                            'container_phone': container_phone}
 
 # create an array of all changers, they will be used not singled out
 # but rather as the whole collection if mode is multi-process
@@ -136,3 +140,14 @@ colorsPanel_ColorsPanel = {"container": container_settings, "objectName": "color
 themesPanel_ThemesPanel = {"container": container_settings, "objectName": "themesPanel", "type": "ThemesPanel"}
 dateTimeSwitch_SwitchDelegate = {"container": container_settings, "objectName": "dateTimeSwitch", "type": "SwitchDelegate"}
 dateAndTime = {"container": neptune_UI_Center_Console, "type": "DateAndTime", "objectName": "dateAndTime", "visible": True}
+phoneViewChangeButtons_ToolsColumn = {"container": container_phone, "objectName": "phoneViewChangeButtons", "type": "ToolsColumn", "visible": True}
+phoneMainStackView_StackView = {"container": container_phone, "objectName": "phoneMainStackView", "type": "StackView", "visible": True}
+phonefavoritesView_FavoritesWidgetView = {"container": container_phone, "objectName": "phonefavoritesView", "type": "FavoritesWidgetView", "visible": True}
+phoneCallView_CallWidgetView =   {"container": container_phone, "objectName": "phoneCallView", "type": "CallWidgetView"}
+contacts_phoneView_ContactsView = {"container": container_phone, "objectName": "contacts_phoneView", "type": "ContactsView", "visible": True}
+recents_phoneView_RecentCallsView = {"container": container_phone, "objectName": "recents_phoneView", "type": "RecentCallsView", "visible": True}
+favorites_phoneView_ContactsView = {"container": container_phone, "objectName": "favorites_phoneView", "type": "ContactsView", "visible": True}
+keypad_phoneView_KeypadViewPanel = {"container": container_phone, "objectName": "keypad_phoneView", "type": "KeypadViewPanel", "visible": True}
+phoneCallerEndButton = {"container": container_phone, "objectName": "callerButtonEndCall", "type": "ToolButton", "visible": True}
+phoneCallerLabel = {"container": container_phone, "objectName": "callerLabelFullName", "type": "Label", "visible": True}
+

@@ -134,6 +134,12 @@ def is_squish_object_there(object, seconds):
     return is_there
 
 
+@When("the grid icon is tapped")
+def step(context):
+    grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
+    tapObject(grid_button)
+
+
 @Given("'|word|' app from launcher tapped")
 def step(context, app_name):
     if not context.userData:
@@ -152,7 +158,19 @@ def step(context, app_name):
             if app_pointer.visible:
                 tapObject(app_pointer)
             else:
-                test.fail("'" + app_name + "' is there but not visible.")
+                # if not visible then open the grid
+                # and tap the former hidden object
+                test.log("app '" + app_name + "' is not on the"
+                         + " task bar but it will be opened from the grid!")
+                grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
+                tapObject(grid_button)
+                # wait a little until grid is opened
+                squish.snooze(0.5)
+                if app_pointer.visible:
+                    tapObject(app_pointer)
+                else:
+                    test.fail("'" + app_name + "' is on the grid but"
+                             + " not visible.")
         else:
             test.fail("'" + app_name + "' could not be found!")
     # wait another half second

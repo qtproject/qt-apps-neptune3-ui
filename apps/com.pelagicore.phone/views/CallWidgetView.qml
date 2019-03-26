@@ -158,6 +158,7 @@ Item {
     ColumnLayout {
         id: textColumn
         Label {
+            objectName: "callerLabelFullName"
             Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
             text: priv.callerName
         }
@@ -174,11 +175,13 @@ Item {
         spacing: root.state === "Widget1Row" ? Sizes.dp(60) : Sizes.dp(5)
 
         ToolButton {
+            objectName: "callerButtonMute"
             Layout.rightMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
             icon.name: "ic-mute-ongoing"
         }
 
         ToolButton {
+            objectName: "callerButtonEndCall"
             Layout.preferredWidth: Sizes.dp(90)
             Layout.preferredHeight: Sizes.dp(90)
             background: Image {
@@ -193,6 +196,7 @@ Item {
         }
 
         ToolButton {
+            objectName: "callerButtonUseKeypad"
             Layout.leftMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
             icon.name: "ic-keypad-ongoing"
             //onClicked: root.keypadRequested() // TODO, disabled for now

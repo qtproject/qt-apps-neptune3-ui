@@ -52,6 +52,7 @@ ListView {
     property var store
 
     delegate: ItemDelegate { // FIXME right component?
+        objectName: "contactNr_"  + index
         width: ListView.view.width
         height: Sizes.dp(70)
         padding: 0
@@ -65,6 +66,7 @@ ListView {
                     source: "../assets/profile_photos/%1.png".arg(model.handle)
                 }
                 Label {
+                    objectName: "contactNameOfNr_"  + index
                     text: model.firstName + " " + model.surname
                     font.weight: Font.Light
                 }
@@ -75,6 +77,7 @@ ListView {
                     icon.name: "ic-message-contrast"
                 }
                 ToolButton {
+                    objectName: "callButtonContactNr_" + index
                     icon.name: "ic-call-contrast"
                     onClicked: root.store.startCall(model.handle)
                 }

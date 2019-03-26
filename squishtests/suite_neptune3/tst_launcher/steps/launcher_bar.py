@@ -53,12 +53,6 @@ def step(context):
                  , True, "launcher bar is visible")
 
 
-@When("the grid icon is tapped")
-def step(context):
-    grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
-    tapObject(grid_button)
-
-
 @Then("the grid should be '|word|'")
 def step(context, string_open):
     open_status = string_open == 'opened'
