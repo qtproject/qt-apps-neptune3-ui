@@ -38,4 +38,6 @@ Settings {
 
     property int measurementSystem: Qt.locale().measurementSystem
     property string widgetStates: "com.pelagicore.phone:2,com.pelagicore.music:2,com.pelagicore.calendar:1"
+    property string autostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
+    property string autorecoverApps: "com.theqtcompany.cluster:5000"
 }

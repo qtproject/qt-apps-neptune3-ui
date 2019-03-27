@@ -80,7 +80,9 @@ Window {
                         Others, which are more complex and thus take more time to load, will be
                         loaded afterwards, once this function is called.
                      */
-            root.store.applicationModel.populate(root.store.settingsStore.widgetStates);
+            root.store.applicationModel.populate(root.store.settingsStore.widgetStates,
+                                                 root.store.settingsStore.autostartApps,
+                                                 root.store.settingsStore.autorecoverApps);
             centerConsole.mainContentArea.active = true;
             notificationLoader.active = true;
             windowConns.enabled = false;

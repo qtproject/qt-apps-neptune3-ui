@@ -65,6 +65,8 @@ Store {
     readonly property var applicationModel: ApplicationModel {
         id: applicationModel
         localeCode: Config.languageLocale
+        autostartApps: settingsStore.autostartApps
+
 
         // Store widget states when the UI is shutting down
         onShuttingDown: {
@@ -84,6 +86,8 @@ Store {
 
             }
         }
+        onAutostartAppsListChanged: { settingsStore.autostartApps = applicationModel.serializeAutostart(); }
+        onAutorecoverAppsListChanged: { settingsStore.autorecoverApps = applicationModel.serializeAutorecover(); }
         onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
     }
 

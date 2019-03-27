@@ -143,7 +143,7 @@ Item {
         Item {
             id: delegateRoot
             width: parent.width
-            implicitHeight: Sizes.dp(220)
+            implicitHeight: Sizes.dp(240)
 
             function getWindowTypeName(window) {
 
@@ -197,6 +197,31 @@ Item {
                     text: model.appInfo.isSystemApp ? "* " + model.appInfo.name: model.appInfo.name
                 }
 
+                Row {
+                    Switch {
+                        id: autostartSwitch
+                        font.pixelSize: Sizes.fontSizeXS
+                        text: qsTr("Autostart")
+                        opacity: Style.opacityMedium
+                        Component.onCompleted: {
+                            checked = model.appInfo.autostart
+                        }
+                        onCheckedChanged: {
+                            root.applicationModel.updateAutostart(model.appInfo.id, checked)
+                        }
+                    }
+                    Switch {
+                        id: autorecoverSwitch
+                        font.pixelSize: Sizes.fontSizeXS
+                        text: qsTr("Autorecover")
+                        opacity: Style.opacityMedium
+                        checked: model.appInfo.autorecover
+                        onCheckedChanged: {
+                            root.applicationModel.updateAutorecover(model.appInfo.id, autorecoverSwitch.checked)
+                        }
+                    }
+                }
+
                 Label {
                     readonly property string memoryPSS: (processStatus.memoryPss.total / 1e6).toFixed(0)
                     readonly property string memoryRSS: (processStatus.memoryRss.total / 1e6).toFixed(0)
@@ -219,7 +244,9 @@ Item {
                         width: parent.width - parent.leftPadding
                         Label {
                             Layout.fillWidth: true
-                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame)
+                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame === -1
+                                                                           ? qsTr("N/A")
+                                                                           : model.appInfo.timeToFirstWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
                             opacity: Style.opacityMedium
                         }
@@ -248,7 +275,9 @@ Item {
                         width: parent.width - parent.leftPadding
                         Label {
                             Layout.fillWidth: true
-                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame)
+                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame === -1
+                                                                         ? qsTr("N/A")
+                                                                         : model.appInfo.timeToFirstICWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
                             opacity: Style.opacityMedium
                         }

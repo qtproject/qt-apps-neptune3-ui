@@ -61,14 +61,22 @@ ListModel {
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
+    // Holds list of autostart applications ids, only initialized on Neptune startup
+    // afterward values are taken from
+    property string autostartApps: ""
+
     signal shuttingDown()
     signal applicationPopupAdded(var window)
+    signal autostartAppsListChanged()
+    signal autorecoverAppsListChanged()
 
     // Populate the model
-    function populate(widgetStates) {
+    function populate(widgetStates, autostart, autorecover) {
         // Configures which applications should be shown as widgets,
         // which, in turn, will cause them to be started.
         d.deserializeWidgetsState(widgetStates);
+        d.deserializeAutostart(autostart);
+        d.deserializeAutorecover(autorecover);
         d.populating = false;
     }
 
@@ -115,6 +123,44 @@ ListModel {
         }
     }
 
+    function updateAutostart(appId, autostart) {
+        for (var i = 0; i < root.count; i++) {
+            var item = root.get(i);
+
+            if (item.appInfo.id === appId)
+                item.appInfo.autostart = autostart
+        }
+        root.autostartAppsListChanged()
+    }
+
+    function updateAutorecover(appId, autorecover) {
+        for (var i = 0; i < root.count; i++) {
+            var item = root.get(i);
+
+            if (item.appInfo.id === appId) {
+                item.appInfo.autorecover = autorecover
+                //set default restart time to 5000 ms
+                item.appInfo.restartTimer.interval = 5000
+                item.appInfo.restartTimer.failedAttemptsCount = 0
+            }
+        }
+        root.autorecoverAppsListChanged()
+    }
+
+    // Returns string list of autostart app's ids
+    function serializeAutostart() {
+        var appIds = [];
+
+        for (var i = 0; i < root.count; i++) {
+            var appInfo = root.get(i).appInfo;
+
+            if (appInfo.autostart) {
+                appIds.push(appInfo.id);
+            }
+        }
+        return appIds.toString();
+    }
+
     function serializeWidgetsState() {
         var appWidgetIds = [];
         var appWidgetHeights = [];
@@ -133,6 +179,18 @@ ListModel {
             widgetStates.push(appIdAndHeight);
         }
         return widgetStates.toString();
+    }
+
+    function serializeAutorecover() {
+        var result = [];
+
+        for (var i = 0; i < root.count; i++) {
+            var appInfo = root.get(i).appInfo;
+            if (appInfo.autorecover) {
+                result.push(appInfo.id + ":" + appInfo.restartTimer.interval);
+            }
+        }
+        return result.toString();
     }
 
     // Go back to the home screen.
@@ -218,36 +276,26 @@ ListModel {
             var appInfo = appInfoComponent.createObject(root, {"application":app});
             appInfo.localeCode = Qt.binding(function() { return root.localeCode; });
 
-            var autostart = false
             appInfo.isSystemApp = root.isSystemApp(app)
+            appInfo.autostart = (root.autostartApps.indexOf(appInfo.id) > -1)
 
             if (d.isInstrumentClusterApp(app)) {
                 d.instrumentClusterAppInfo = appInfo;
-                autostart = true
             } else if (d.isBottomBarApp(app)) {
                 d.bottomBarAppInfo = appInfo;
-                autostart = true
             } else if (d.isHUDApp(app)) {
                 d.hudAppInfo = appInfo;
-                autostart = true
             }
 
             root.append({"appInfo": appInfo})
 
-            if (autostart)
+            if (appInfo.autostart)
                 appInfo.start();
         }
 
         function deserializeWidgetsState(widgetStates)
         {
-            var apps;
-
-            // if there are no widgets stored in the settings, the default widget states is being used instead
-            if (widgetStates === "") {
-                apps = ["com.pelagicore.phone:2", "com.pelagicore.music:2", "com.pelagicore.calendar:1"]
-            } else {
-                apps = widgetStates.split(",")
-            }
+            var apps = widgetStates.split(",")
 
             var appIds = []
             var appHeights = []
@@ -266,6 +314,64 @@ ListModel {
                 }
             }
         }
+
+        function deserializeAutorecover(str)
+        {
+            var apps;
+
+            var result = []
+            apps = str.split(",")
+
+            for (var i = 0; i < apps.length; i++) {
+                var values = apps[i].split(":");
+                result.push( {"id":values[0], "interval":values[1]} );
+            }
+
+            //reset to defaults
+            for (i = 0; i < root.count; i++) {
+                root.get(i).appInfo.autorecover = false;
+                root.get(i).appInfo.restartTimer.interval = 0;
+                root.get(i).appInfo.restartTimer.failedAttemptsCount = 0
+            }
+
+            //fill current values
+            for (i = 0; i < result.length; i++) {
+                var appInfo = root.applicationFromId(result[i].id);
+                if (appInfo) {
+                    appInfo.autorecover = true
+                    appInfo.restartTimer.interval = result[i].interval
+                }
+            }
+        }
+        function deserializeAutostart(str)
+        {
+            //reset to defaults
+            for (var i = 0; i < root.count; i++) {
+                root.get(i).appInfo.autostart = false;
+            }
+
+            var apps;
+
+            var result = []
+            apps = str.split(",")
+
+            for (i = 0; i < apps.length; i++) {
+                var appInfo = root.applicationFromId(apps[i]);
+
+                if (appInfo)
+                    appInfo.autostart = true;
+            }
+        }
+
+        function sendNotification(summary, body, icon) {
+            var notification = Qt.createQmlObject("import QtApplicationManager 2.0; Notification {}", root, "notification")
+            notification.summary = summary;
+            notification.body = body;
+            notification.icon = icon;
+            notification.sticky = true;
+            notification.priority = 2;
+            notification.show();
+        }
     }
 
     Component.onCompleted: {
@@ -280,26 +386,46 @@ ListModel {
         target: ApplicationManager
         onApplicationWasActivated: d.reactOnAppActivation(id);
         onApplicationRunStateChanged: {
+
             var appInfo = root.applicationFromId(id);
             if (!appInfo) {
                 return;
             }
 
-            if (root.isSystemApp(appInfo)) {
-                return;
-            }
-
             if (runState === ApplicationObject.NotRunning) {
-                if (appInfo === d.activeAppInfo) {
-                    root.goHome();
-                }
-                if (appInfo.asWidget) {
-                    // otherwise the widget would get maximized once restarted.
-                    appInfo.canBeActive = false;
+                if (!root.isSystemApp(appInfo)) {
+                    if (appInfo === d.activeAppInfo) {
+                        root.goHome();
+                    }
+                    if (appInfo.asWidget) {
+                        // otherwise the widget would get maximized once restarted.
+                        appInfo.canBeActive = false;
 
-                    // Application was killed or crashed while being displayed as a widget.
-                    // Remove it from the widget list
-                    appInfo.asWidget = false;
+                        // Application was killed or crashed while being displayed as a widget.
+                        // Remove it from the widget list
+                        appInfo.asWidget = false;
+
+                    }
+                }
+
+                if (appInfo.autorecover) {
+
+                    if (appInfo.application) {
+                        //non-zero exit code or crash exit -> increase failed attempts
+                        if ( (appInfo.application.lastExitStatus === Am.NormalExit) && (appInfo.application.exitCode !== 0)
+                                || (appInfo.application.lastExitStatus === Am.CrashExit) ) {
+                            appInfo.restartTimer.failedAttemptsCount = appInfo.restartTimer.failedAttemptsCount + 1
+                        }
+
+                        if (appInfo.restartTimer.failedAttemptsCount < 3) {
+                            //start single-shot timer to restart app in timer interval time
+                            appInfo.restartTimer.start()
+                        } else {
+                            appInfo.autorecover = false
+                            var text = qsTr("Failed to start " + appInfo.name)
+                            d.sendNotification(text, text, appInfo.icon)
+                        }
+                    }
                 }
             }
         }

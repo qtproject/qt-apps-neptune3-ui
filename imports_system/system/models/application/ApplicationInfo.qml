@@ -101,6 +101,22 @@ QtObject {
     property bool isSystemApp: false
 
     /*
+        Whether application is started with Neptune UI
+    */
+    property bool autostart: false
+
+    /*
+        Whether application is re-started after stop in
+    */
+    property bool autorecover: false
+
+    /*
+        Single shot Timer to restart application if set by autorecovery
+        Default restart attempt in 5 seconds
+    */
+    property var restartTimer: Timer { property int failedAttemptsCount: 0; interval: 5000; onTriggered: { root.start(); } }
+
+    /*
         Time elapsed between start() was called and the moment sysui received its first
         frame from window
      */
