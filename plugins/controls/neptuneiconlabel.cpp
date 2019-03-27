@@ -1,41 +1,36 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
-** Contact: http://www.qt.io/licensing/
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
+** This file is part of the Neptune 3 IVI UI.
 **
-** $QT_BEGIN_LICENSE:LGPL3$
+** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see http://www.qt.io/terms-conditions. For further
-** information use the contact form at http://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPLv3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl.html.
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
 **
 ** GNU General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or later as published by the Free
-** Software Foundation and appearing in the file LICENSE.GPL included in
-** the packaging of this file. Please review the following information to
-** ensure the GNU General Public License version 2.0 requirements will be
-** met: http://www.gnu.org/licenses/gpl-2.0.html.
+** General Public License version 3 or (at your option) any later version
+** approved by the KDE Free Qt Foundation. The licenses are as published by
+** the Free Software Foundation and appearing in the file LICENSE.GPL3
+** included in the packaging of this file. Please review the following
+** information to ensure the GNU General Public License requirements will
+** be met: https://www.gnu.org/licenses/gpl-3.0.html.
 **
 ** $QT_END_LICENSE$
 **
+** SPDX-License-Identifier: GPL-3.0
+**
 ****************************************************************************/
 
-#include "qquickiconlabel_p.h"
-#include "qquickiconlabel_p_p.h"
+#include "neptuneiconlabel.h"
+#include "neptuneiconlabel_p.h"
 #include <QtQuickControls2/private/qquickiconimage_p.h> // #include "qquickiconimage_p.h"
 #include <QtQuickControls2/private/qquickmnemoniclabel_p.h> // #include "qquickmnemoniclabel_p.h"
 
@@ -59,9 +54,9 @@ static void completeComponent(QQuickItem *item)
         parserStatus->componentComplete();
 }
 
-QQuickIconLabelPrivate::QQuickIconLabelPrivate()
+NeptuneIconLabelPrivate::NeptuneIconLabelPrivate()
     : mirrored(false),
-      display(QQuickIconLabel::TextBesideIcon),
+      display(NeptuneIconLabel::TextBesideIcon),
       alignment(Qt::AlignCenter),
       spacing(0),
       topPadding(0),
@@ -73,19 +68,19 @@ QQuickIconLabelPrivate::QQuickIconLabelPrivate()
 {
 }
 
-bool QQuickIconLabelPrivate::hasIcon() const
+bool NeptuneIconLabelPrivate::hasIcon() const
 {
-    return display != QQuickIconLabel::TextOnly && !icon.isEmpty();
+    return display != NeptuneIconLabel::TextOnly && !icon.isEmpty();
 }
 
-bool QQuickIconLabelPrivate::hasText() const
+bool NeptuneIconLabelPrivate::hasText() const
 {
-    return display != QQuickIconLabel::IconOnly && !text.isEmpty();
+    return display != NeptuneIconLabel::IconOnly && !text.isEmpty();
 }
 
-bool QQuickIconLabelPrivate::createImage()
+bool NeptuneIconLabelPrivate::createImage()
 {
-    Q_Q(QQuickIconLabel);
+    Q_Q(NeptuneIconLabel);
     if (image)
         return false;
 
@@ -104,7 +99,7 @@ bool QQuickIconLabelPrivate::createImage()
     return true;
 }
 
-bool QQuickIconLabelPrivate::destroyImage()
+bool NeptuneIconLabelPrivate::destroyImage()
 {
     if (!image)
         return false;
@@ -115,14 +110,14 @@ bool QQuickIconLabelPrivate::destroyImage()
     return true;
 }
 
-bool QQuickIconLabelPrivate::updateImage()
+bool NeptuneIconLabelPrivate::updateImage()
 {
     if (!hasIcon())
         return destroyImage();
     return createImage();
 }
 
-void QQuickIconLabelPrivate::syncImage()
+void NeptuneIconLabelPrivate::syncImage()
 {
     if (!image || icon.isEmpty())
         return;
@@ -138,7 +133,7 @@ void QQuickIconLabelPrivate::syncImage()
     image->setHorizontalAlignment(static_cast<QQuickImage::HAlignment>(halign));
 }
 
-void QQuickIconLabelPrivate::updateOrSyncImage()
+void NeptuneIconLabelPrivate::updateOrSyncImage()
 {
     if (updateImage()) {
         if (componentComplete) {
@@ -150,9 +145,9 @@ void QQuickIconLabelPrivate::updateOrSyncImage()
     }
 }
 
-bool QQuickIconLabelPrivate::createLabel()
+bool NeptuneIconLabelPrivate::createLabel()
 {
-    Q_Q(QQuickIconLabel);
+    Q_Q(NeptuneIconLabel);
     if (label)
         return false;
 
@@ -173,7 +168,7 @@ bool QQuickIconLabelPrivate::createLabel()
     return true;
 }
 
-bool QQuickIconLabelPrivate::destroyLabel()
+bool NeptuneIconLabelPrivate::destroyLabel()
 {
     if (!label)
         return false;
@@ -184,14 +179,14 @@ bool QQuickIconLabelPrivate::destroyLabel()
     return true;
 }
 
-bool QQuickIconLabelPrivate::updateLabel()
+bool NeptuneIconLabelPrivate::updateLabel()
 {
     if (!hasText())
         return destroyLabel();
     return createLabel();
 }
 
-void QQuickIconLabelPrivate::syncLabel()
+void NeptuneIconLabelPrivate::syncLabel()
 {
     if (!label)
         return;
@@ -199,7 +194,7 @@ void QQuickIconLabelPrivate::syncLabel()
     label->setText(text);
 }
 
-void QQuickIconLabelPrivate::updateOrSyncLabel()
+void NeptuneIconLabelPrivate::updateOrSyncLabel()
 {
     if (updateLabel()) {
         if (componentComplete) {
@@ -211,9 +206,9 @@ void QQuickIconLabelPrivate::updateOrSyncLabel()
     }
 }
 
-void QQuickIconLabelPrivate::updateImplicitSize()
+void NeptuneIconLabelPrivate::updateImplicitSize()
 {
-    Q_Q(QQuickIconLabel);
+    Q_Q(NeptuneIconLabel);
     const bool showIcon = image && hasIcon();
     const bool showText = label && hasText();
     const qreal horizontalPadding = leftPadding + rightPadding;
@@ -223,9 +218,9 @@ void QQuickIconLabelPrivate::updateImplicitSize()
     const qreal textImplicitWidth = showText ? label->implicitWidth() : 0;
     const qreal textImplicitHeight = showText ? label->implicitHeight() : 0;
     const qreal effectiveSpacing = showText && showIcon && image->implicitWidth() > 0 ? spacing : 0;
-    const qreal implicitWidth = display == QQuickIconLabel::TextBesideIcon ? iconImplicitWidth + textImplicitWidth + effectiveSpacing
+    const qreal implicitWidth = display == NeptuneIconLabel::TextBesideIcon ? iconImplicitWidth + textImplicitWidth + effectiveSpacing
                                                                            : qMax(iconImplicitWidth, textImplicitWidth);
-    const qreal implicitHeight = display == QQuickIconLabel::TextUnderIcon ? iconImplicitHeight + textImplicitHeight + effectiveSpacing
+    const qreal implicitHeight = display == NeptuneIconLabel::TextUnderIcon ? iconImplicitHeight + textImplicitHeight + effectiveSpacing
                                                                            : qMax(iconImplicitHeight, textImplicitHeight);
     q->setImplicitSize(implicitWidth + horizontalPadding, implicitHeight + verticalPadding);
 }
@@ -249,7 +244,7 @@ static QRectF alignedRect(bool mirrored, Qt::Alignment alignment, const QSizeF &
     return QRectF(x, y, w, h);
 }
 
-void QQuickIconLabelPrivate::layout()
+void NeptuneIconLabelPrivate::layout()
 {
     if (!componentComplete)
         return;
@@ -258,7 +253,7 @@ void QQuickIconLabelPrivate::layout()
     const qreal availableHeight = height - topPadding - bottomPadding;
 
     switch (display) {
-    case QQuickIconLabel::IconOnly:
+    case NeptuneIconLabel::IconOnly:
         if (image) {
             const QRectF iconRect = alignedRect(mirrored, alignment,
                                                 QSizeF(qMin(image->implicitWidth() * iconScale, availableWidth),
@@ -268,7 +263,7 @@ void QQuickIconLabelPrivate::layout()
             image->setPosition(iconRect.topLeft());
         }
         break;
-    case QQuickIconLabel::TextOnly:
+    case NeptuneIconLabel::TextOnly:
         if (label) {
             const QRectF textRect = alignedRect(mirrored, alignment,
                                                 QSizeF(qMin(label->implicitWidth(), availableWidth),
@@ -279,7 +274,7 @@ void QQuickIconLabelPrivate::layout()
         }
         break;
 
-    case QQuickIconLabel::TextUnderIcon: {
+    case NeptuneIconLabel::TextUnderIcon: {
         // Work out the sizes first, as the positions depend on them.
         QSizeF iconSize;
         QSizeF textSize;
@@ -312,7 +307,7 @@ void QQuickIconLabelPrivate::layout()
         break;
     }
 
-    case QQuickIconLabel::TextBesideIcon:
+    case NeptuneIconLabel::TextBesideIcon:
     default:
         // Work out the sizes first, as the positions depend on them.
         QSizeF iconSize(0, 0);
@@ -352,31 +347,31 @@ static const QQuickItemPrivate::ChangeTypes itemChangeTypes =
     | QQuickItemPrivate::ImplicitHeight
     | QQuickItemPrivate::Destroyed;
 
-void QQuickIconLabelPrivate::watchChanges(QQuickItem *item)
+void NeptuneIconLabelPrivate::watchChanges(QQuickItem *item)
 {
     QQuickItemPrivate *itemPrivate = QQuickItemPrivate::get(item);
     itemPrivate->addItemChangeListener(this, itemChangeTypes);
 }
 
-void QQuickIconLabelPrivate::unwatchChanges(QQuickItem* item)
+void NeptuneIconLabelPrivate::unwatchChanges(QQuickItem* item)
 {
     QQuickItemPrivate *itemPrivate = QQuickItemPrivate::get(item);
     itemPrivate->removeItemChangeListener(this, itemChangeTypes);
 }
 
-void QQuickIconLabelPrivate::itemImplicitWidthChanged(QQuickItem *)
+void NeptuneIconLabelPrivate::itemImplicitWidthChanged(QQuickItem *)
 {
     updateImplicitSize();
     layout();
 }
 
-void QQuickIconLabelPrivate::itemImplicitHeightChanged(QQuickItem *)
+void NeptuneIconLabelPrivate::itemImplicitHeightChanged(QQuickItem *)
 {
     updateImplicitSize();
     layout();
 }
 
-void QQuickIconLabelPrivate::itemDestroyed(QQuickItem *item)
+void NeptuneIconLabelPrivate::itemDestroyed(QQuickItem *item)
 {
     unwatchChanges(item);
     if (item == image)
@@ -385,29 +380,29 @@ void QQuickIconLabelPrivate::itemDestroyed(QQuickItem *item)
         label = nullptr;
 }
 
-QQuickIconLabel::QQuickIconLabel(QQuickItem *parent)
-    : QQuickItem(*(new QQuickIconLabelPrivate), parent)
+NeptuneIconLabel::NeptuneIconLabel(QQuickItem *parent)
+    : QQuickItem(*(new NeptuneIconLabelPrivate), parent)
 {
 }
 
-QQuickIconLabel::~QQuickIconLabel()
+NeptuneIconLabel::~NeptuneIconLabel()
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->image)
         d->unwatchChanges(d->image);
     if (d->label)
         d->unwatchChanges(d->label);
 }
 
-QQuickIcon QQuickIconLabel::icon() const
+QQuickIcon NeptuneIconLabel::icon() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->icon;
 }
 
-void QQuickIconLabel::setIcon(const QQuickIcon &icon)
+void NeptuneIconLabel::setIcon(const QQuickIcon &icon)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->icon == icon)
         return;
 
@@ -415,24 +410,30 @@ void QQuickIconLabel::setIcon(const QQuickIcon &icon)
     d->updateOrSyncImage();
 }
 
-void QQuickIconLabel::setIconScale(qreal scale)
+qreal NeptuneIconLabel::iconScale() const
 {
-    Q_D(QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
+    return d->iconScale;
+}
+
+void NeptuneIconLabel::setIconScale(qreal scale)
+{
+    Q_D(NeptuneIconLabel);
     if (d->iconScale == scale)
         return;
 
     d->iconScale = scale;
 }
 
-QString QQuickIconLabel::text() const
+QString NeptuneIconLabel::text() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->text;
 }
 
-void QQuickIconLabel::setText(const QString text)
+void NeptuneIconLabel::setText(const QString text)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->text == text)
         return;
 
@@ -440,15 +441,15 @@ void QQuickIconLabel::setText(const QString text)
     d->updateOrSyncLabel();
 }
 
-QFont QQuickIconLabel::font() const
+QFont NeptuneIconLabel::font() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->font;
 }
 
-void QQuickIconLabel::setFont(const QFont &font)
+void NeptuneIconLabel::setFont(const QFont &font)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->font == font)
         return;
 
@@ -457,15 +458,15 @@ void QQuickIconLabel::setFont(const QFont &font)
         d->label->setFont(font);
 }
 
-QColor QQuickIconLabel::color() const
+QColor NeptuneIconLabel::color() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->color;
 }
 
-void QQuickIconLabel::setColor(const QColor &color)
+void NeptuneIconLabel::setColor(const QColor &color)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->color == color)
         return;
 
@@ -474,15 +475,15 @@ void QQuickIconLabel::setColor(const QColor &color)
         d->label->setColor(color);
 }
 
-QQuickIconLabel::Display QQuickIconLabel::display() const
+NeptuneIconLabel::Display NeptuneIconLabel::display() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->display;
 }
 
-void QQuickIconLabel::setDisplay(Display display)
+void NeptuneIconLabel::setDisplay(Display display)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->display == display)
         return;
 
@@ -493,15 +494,15 @@ void QQuickIconLabel::setDisplay(Display display)
     d->layout();
 }
 
-qreal QQuickIconLabel::spacing() const
+qreal NeptuneIconLabel::spacing() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->spacing;
 }
 
-void QQuickIconLabel::setSpacing(qreal spacing)
+void NeptuneIconLabel::setSpacing(qreal spacing)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (qFuzzyCompare(d->spacing, spacing))
         return;
 
@@ -512,15 +513,15 @@ void QQuickIconLabel::setSpacing(qreal spacing)
     }
 }
 
-bool QQuickIconLabel::isMirrored() const
+bool NeptuneIconLabel::isMirrored() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->mirrored;
 }
 
-void QQuickIconLabel::setMirrored(bool mirrored)
+void NeptuneIconLabel::setMirrored(bool mirrored)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->mirrored == mirrored)
         return;
 
@@ -528,15 +529,15 @@ void QQuickIconLabel::setMirrored(bool mirrored)
     d->layout();
 }
 
-Qt::Alignment QQuickIconLabel::alignment() const
+Qt::Alignment NeptuneIconLabel::alignment() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->alignment;
 }
 
-void QQuickIconLabel::setAlignment(Qt::Alignment alignment)
+void NeptuneIconLabel::setAlignment(Qt::Alignment alignment)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     const int valign = alignment & Qt::AlignVertical_Mask;
     const int halign = alignment & Qt::AlignHorizontal_Mask;
     const uint align = (valign ? valign : Qt::AlignVCenter) | (halign ? halign : Qt::AlignHCenter);
@@ -555,15 +556,15 @@ void QQuickIconLabel::setAlignment(Qt::Alignment alignment)
     d->layout();
 }
 
-qreal QQuickIconLabel::topPadding() const
+qreal NeptuneIconLabel::topPadding() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->topPadding;
 }
 
-void QQuickIconLabel::setTopPadding(qreal padding)
+void NeptuneIconLabel::setTopPadding(qreal padding)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (qFuzzyCompare(d->topPadding, padding))
         return;
 
@@ -572,20 +573,20 @@ void QQuickIconLabel::setTopPadding(qreal padding)
     d->layout();
 }
 
-void QQuickIconLabel::resetTopPadding()
+void NeptuneIconLabel::resetTopPadding()
 {
     setTopPadding(0);
 }
 
-qreal QQuickIconLabel::leftPadding() const
+qreal NeptuneIconLabel::leftPadding() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->leftPadding;
 }
 
-void QQuickIconLabel::setLeftPadding(qreal padding)
+void NeptuneIconLabel::setLeftPadding(qreal padding)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (qFuzzyCompare(d->leftPadding, padding))
         return;
 
@@ -594,20 +595,20 @@ void QQuickIconLabel::setLeftPadding(qreal padding)
     d->layout();
 }
 
-void QQuickIconLabel::resetLeftPadding()
+void NeptuneIconLabel::resetLeftPadding()
 {
     setLeftPadding(0);
 }
 
-qreal QQuickIconLabel::rightPadding() const
+qreal NeptuneIconLabel::rightPadding() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->rightPadding;
 }
 
-void QQuickIconLabel::setRightPadding(qreal padding)
+void NeptuneIconLabel::setRightPadding(qreal padding)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (qFuzzyCompare(d->rightPadding, padding))
         return;
 
@@ -616,20 +617,20 @@ void QQuickIconLabel::setRightPadding(qreal padding)
     d->layout();
 }
 
-void QQuickIconLabel::resetRightPadding()
+void NeptuneIconLabel::resetRightPadding()
 {
     setRightPadding(0);
 }
 
-qreal QQuickIconLabel::bottomPadding() const
+qreal NeptuneIconLabel::bottomPadding() const
 {
-    Q_D(const QQuickIconLabel);
+    Q_D(const NeptuneIconLabel);
     return d->bottomPadding;
 }
 
-void QQuickIconLabel::setBottomPadding(qreal padding)
+void NeptuneIconLabel::setBottomPadding(qreal padding)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (qFuzzyCompare(d->bottomPadding, padding))
         return;
 
@@ -638,14 +639,14 @@ void QQuickIconLabel::setBottomPadding(qreal padding)
     d->layout();
 }
 
-void QQuickIconLabel::resetBottomPadding()
+void NeptuneIconLabel::resetBottomPadding()
 {
     setBottomPadding(0);
 }
 
-void QQuickIconLabel::componentComplete()
+void NeptuneIconLabel::componentComplete()
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     if (d->image)
         completeComponent(d->image);
     if (d->label)
@@ -654,9 +655,9 @@ void QQuickIconLabel::componentComplete()
     d->layout();
 }
 
-void QQuickIconLabel::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
+void NeptuneIconLabel::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
-    Q_D(QQuickIconLabel);
+    Q_D(NeptuneIconLabel);
     QQuickItem::geometryChanged(newGeometry, oldGeometry);
     d->layout();
 }

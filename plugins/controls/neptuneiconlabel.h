@@ -1,66 +1,50 @@
 /****************************************************************************
 **
-** Copyright (C) 2017 The Qt Company Ltd.
-** Contact: http://www.qt.io/licensing/
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Qt Quick Controls 2 module of the Qt Toolkit.
+** This file is part of the Neptune 3 IVI UI.
 **
-** $QT_BEGIN_LICENSE:LGPL3$
+** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see http://www.qt.io/terms-conditions. For further
-** information use the contact form at http://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPLv3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl.html.
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
 **
 ** GNU General Public License Usage
 ** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or later as published by the Free
-** Software Foundation and appearing in the file LICENSE.GPL included in
-** the packaging of this file. Please review the following information to
-** ensure the GNU General Public License version 2.0 requirements will be
-** met: http://www.gnu.org/licenses/gpl-2.0.html.
+** General Public License version 3 or (at your option) any later version
+** approved by the KDE Free Qt Foundation. The licenses are as published by
+** the Free Software Foundation and appearing in the file LICENSE.GPL3
+** included in the packaging of this file. Please review the following
+** information to ensure the GNU General Public License requirements will
+** be met: https://www.gnu.org/licenses/gpl-3.0.html.
 **
 ** $QT_END_LICENSE$
 **
+** SPDX-License-Identifier: GPL-3.0
+**
 ****************************************************************************/
 
-#ifndef QQUICKICONLABEL_P_H
-#define QQUICKICONLABEL_P_H
-
-//
-//  W A R N I N G
-//  -------------
-//
-// This file is not part of the Qt API.  It exists purely as an
-// implementation detail.  This header file may change from version to
-// version without notice, or even be removed.
-//
-// We mean it.
-//
+#ifndef NEPTUNEICONLABEL_H
+#define NEPTUNEICONLABEL_H
 
 #include <QtQuick/qquickitem.h>
 #include <QtQuickControls2/private/qtquickcontrols2global_p.h>
-#include "qquickicon_p.h"
+#include <QtQuickTemplates2/private/qquickicon_p.h>
 
 QT_BEGIN_NAMESPACE
 
-class QQuickIconLabelPrivate;
+class NeptuneIconLabelPrivate;
 
-class QQuickIconLabel : public QQuickItem
+class NeptuneIconLabel : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(QQuickIcon icon READ icon WRITE setIcon FINAL)
-    Q_PROPERTY(qreal iconScale WRITE setIconScale FINAL)
+    Q_PROPERTY(qreal iconScale READ iconScale WRITE setIconScale FINAL)
     Q_PROPERTY(QString text READ text WRITE setText FINAL)
     Q_PROPERTY(QFont font READ font WRITE setFont FINAL)
     Q_PROPERTY(QColor color READ color WRITE setColor FINAL)
@@ -82,12 +66,13 @@ public:
     };
     Q_ENUM(Display)
 
-    explicit QQuickIconLabel(QQuickItem *parent = nullptr);
-    ~QQuickIconLabel();
+    explicit NeptuneIconLabel(QQuickItem *parent = nullptr);
+    ~NeptuneIconLabel();
 
     QQuickIcon icon() const;
     void setIcon(const QQuickIcon &icon);
 
+    qreal iconScale() const;
     void setIconScale(qreal scale);
 
     QString text() const;
@@ -132,12 +117,12 @@ protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
 
 private:
-    Q_DISABLE_COPY(QQuickIconLabel)
-    Q_DECLARE_PRIVATE(QQuickIconLabel)
+    Q_DISABLE_COPY(NeptuneIconLabel)
+    Q_DECLARE_PRIVATE(NeptuneIconLabel)
 };
 
 QT_END_NAMESPACE
 
-QML_DECLARE_TYPE(QQuickIconLabel)
+QML_DECLARE_TYPE(NeptuneIconLabel)
 
-#endif // QQUICKICONLABEL_P_H
+#endif // NEPTUNEICONLABEL_H

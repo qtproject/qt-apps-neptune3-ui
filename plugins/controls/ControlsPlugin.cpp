@@ -32,7 +32,7 @@
 #include <QQmlExtensionPlugin>
 #include <QQmlEngine>
 
-#include "qquickiconlabel_p.h"
+#include "neptuneiconlabel.h"
 #include "qquickdefaultprogressbar_p.h"
 
 class ControlsPlugin : public QQmlExtensionPlugin
@@ -44,7 +44,7 @@ public:
     void registerTypes(const char *uri) override
     {
         Q_ASSERT(uri == QLatin1String("shared.controls"));
-        qmlRegisterType<QQuickIconLabel>(uri, 1, 0, "NeptuneIconLabel");
+        qmlRegisterType<NeptuneIconLabel>(uri, 1, 0, "NeptuneIconLabel");
         qmlRegisterType<QQuickDefaultProgressBar>(uri, 1, 0, "NeptuneProgressBar");
     }
 };
