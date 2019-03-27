@@ -96,6 +96,11 @@ QtObject {
     property bool icWindowPerfMonitorEnabled: false
 
     /*
+        Whether application is System Application
+    */
+    property bool isSystemApp: false
+
+    /*
         Time elapsed between start() was called and the moment sysui received its first
         frame from window
      */

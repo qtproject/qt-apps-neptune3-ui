@@ -166,6 +166,7 @@ Item {
         anchors.right: parent.right
         applicationModel: root.applicationModel
         showDevApps: ApplicationManager.systemProperties.devMode
+        showSystemApps: ApplicationManager.systemProperties.showSystemAppsInLauncher
         z: 1
     }
 }

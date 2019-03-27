@@ -45,7 +45,7 @@ import "../procmon"
 PopupItem {
     id: root
     width: Sizes.dp(910)
-    height: Sizes.dp(1426)
+    height: Sizes.dp(1626)
 
     property var applicationModel
     property var systemModel
@@ -111,7 +111,7 @@ PopupItem {
             }
             TabButton {
                 Layout.preferredWidth: Sizes.dp(180)
-                text: qsTr("Running Apps")
+                text: qsTr("Apps")
                 property string name: "apps"
             }
             TabButton {
@@ -139,7 +139,7 @@ PopupItem {
                 systemModel: root.systemModel
                 singleProcess: root.applicationModel.singleProcess
             }
-            AboutRunningApps {
+            AboutApps {
                 applicationModel: root.applicationModel
             }
             AboutPerformance {

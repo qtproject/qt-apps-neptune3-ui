@@ -88,6 +88,23 @@ ListModel {
         return null;
     }
 
+    // Returns if item is system app
+    function isSystemApp(appId) {
+        var r = d.isBottomBarApp(appId);
+        if (r)
+            return true;
+
+        r = d.isHUDApp(appId)
+        if (r)
+            return true;
+
+        r = d.isInstrumentClusterApp(appId)
+        if (r)
+            return true;
+
+        return false;
+    }
+
     function goBack() {
         //if a request is sent
         if (d.applicationRequestHandler.history.length > 1) {
@@ -151,8 +168,24 @@ ListModel {
                 return;
 
             var appInfo = root.applicationFromId(appId);
+
             if (!appInfo || !appInfo.canBeActive)
                 return;
+
+            if (isInstrumentClusterApp(appInfo.application)) {
+                d.instrumentClusterAppInfo = appInfo;
+                return;
+            }
+
+            if (isHUDApp(appInfo.application)) {
+                d.hudAppInfo = appInfo;
+                return;
+            }
+
+            if (isBottomBarApp(appInfo.application)) {
+                d.bottomBarAppInfo = appInfo;
+                return;
+            }
 
             appInfo.priv.active = true;
 
@@ -178,23 +211,31 @@ ListModel {
         {
             return app.categories.indexOf("hud") >= 0;
         }
+
         property Component appInfoComponent: Component { ApplicationInfo{} }
+
         function appendApplication(app) {
             var appInfo = appInfoComponent.createObject(root, {"application":app});
             appInfo.localeCode = Qt.binding(function() { return root.localeCode; });
 
+            var autostart = false
+            appInfo.isSystemApp = root.isSystemApp(app)
+
             if (d.isInstrumentClusterApp(app)) {
                 d.instrumentClusterAppInfo = appInfo;
-                appInfo.start();
+                autostart = true
             } else if (d.isBottomBarApp(app)) {
                 d.bottomBarAppInfo = appInfo;
-                appInfo.start();
+                autostart = true
             } else if (d.isHUDApp(app)) {
                 d.hudAppInfo = appInfo;
-                appInfo.start();
-            } else {
-                root.append({"appInfo":appInfo});
+                autostart = true
             }
+
+            root.append({"appInfo": appInfo})
+
+            if (autostart)
+                appInfo.start();
         }
 
         function deserializeWidgetsState(widgetStates)
@@ -237,12 +278,14 @@ ListModel {
 
     property var appManConns: Connections {
         target: ApplicationManager
-
         onApplicationWasActivated: d.reactOnAppActivation(id);
-
         onApplicationRunStateChanged: {
             var appInfo = root.applicationFromId(id);
             if (!appInfo) {
+                return;
+            }
+
+            if (root.isSystemApp(appInfo)) {
                 return;
             }
 
@@ -287,6 +330,14 @@ ListModel {
                 appInfo.asWidget = false;
             }
 
+            if (d.instrumentClusterAppInfo === appInfo) {
+                d.instrumentClusterAppInfo = null;
+            } else if (d.hudAppInfo === appInfo) {
+                d.hudAppInfo = null;
+            } else if (d.bottomBarAppInfo === appInfo) {
+                d.bottomBarAppInfo = null;
+            }
+
             root.remove(index);
         }
 
@@ -303,7 +354,7 @@ ListModel {
         onWindowAdded: {
             var appInfo = applicationFromId(window.application.id);
 
-            var isRegularApp = !!appInfo;
+            var isRegularApp = !!appInfo && !root.isSystemApp(appInfo);
 
             var isPopupWindow = window.windowProperty("windowType") === "popup";
 
@@ -323,11 +374,17 @@ ListModel {
                 }
             // need to check if the window is not a popup, otherwise, a popup window that belongs to the bottom bar
             // application will be added to the bottom bar window as well
-            } else if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
+            }
+
+            if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
                 d.bottomBarAppInfo.priv.window = window;
-            } else if (d.isHUDApp(window.application)) {
+            }
+
+            if (d.isHUDApp(window.application)) {
                 d.hudAppInfo.priv.window = window;
-            } else if (d.isInstrumentClusterApp(window.application)) {
+            }
+
+            if (d.isInstrumentClusterApp(window.application)) {
                 d.instrumentClusterAppInfo.priv.window = window;
             }
         }

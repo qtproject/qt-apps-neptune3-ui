@@ -52,17 +52,9 @@ Item {
         delegate: QtObject {
             property var con: Connections {
                 target: model.appInfo
-                onRunningChanged: {
-                    if (model.appInfo.running) {
-                        runningAppsModel.appendAppInfo(model.appInfo);
-                    } else {
-                        runningAppsModel.removeAppInfo(model.appInfo);
-                    }
-                }
                 Component.onCompleted: {
-                    if (model.appInfo.running) {
-                        runningAppsModel.appendAppInfo(model.appInfo);
-                    }
+                    runningAppsModel.appendAppInfo(model.appInfo);
+                    runningAppsModel.sortApps()
                 }
             }
         }
@@ -77,7 +69,7 @@ Item {
                        "memoryPSS": "0",
                        "memoryRSS": "0",
                        "memoryVirtual": "0",
-                       "cpuLoad": "0.0"
+                       "cpuLoad": 0.0
                    });
         }
         function removeAppInfo(appInfo) {
@@ -99,6 +91,23 @@ Item {
             }
             return -1;
         }
+
+        function lessApp(left, right) {
+            return left.appInfo.name > right.appInfo.name;
+        }
+
+        function sortApps() {
+            var swapped;
+            do {
+                swapped = false;
+                for (var i = 0; i < count - 1; i++) {
+                    if (lessApp(get(i), get(i + 1))) {
+                        move(i, i+1, 1);
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+        }
     }
 
     Label {
@@ -112,42 +121,51 @@ Item {
         text: qsTr("Enabling performance monitoring forces the chosen application " +
                     " to constantly redraw itself, therefore having a constant," +
                     " unnecessary, GPU/CPU consumption.")
-        font.pixelSize: Sizes.fontSizeS
+        font.pixelSize: Sizes.fontSizeXS
     }
 
     ListView {
         id: listView
         clip: true
         model: runningAppsModel
-
         spacing: Sizes.dp(20)
-
         anchors.top: infoLabel.bottom
         anchors.topMargin: Sizes.dp(30)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        delegate: itemDelegate
+        ScrollIndicator.vertical: ScrollIndicator {}
+    }
 
-        delegate: Item {
-            width: parent.width - Sizes.dp(20)
-            implicitHeight: column.height
+    Component {
+        id: itemDelegate
+        Item {
+            id: delegateRoot
+            width: parent.width
+            implicitHeight: Sizes.dp(220)
 
             ProcessStatus {
                 id: processStatus
                 applicationId: model.appInfo.id
             }
+
             Timer {
                 interval: 1000
                 running: root.visible
                 repeat: true
-                onTriggered: processStatus.update()
+                onTriggered: {
+                    processStatus.update()
+                    model.cpuLoad = processStatus.cpuLoad
+                }
             }
 
             ToolButton {
-                anchors.top: parent.top
+                anchors.verticalCenter: delegateRoot.verticalCenter
                 anchors.right: parent.right
-                icon.name: "ic-close"
-                onClicked: model.appInfo.stop()
+                anchors.rightMargin:  Sizes.dp(20)
+                icon.name: appInfo.running ? "ic-close" : "ic-start"
+                onClicked: appInfo.running ? model.appInfo.stop() : model.appInfo.start()
             }
 
             Column {
@@ -155,24 +173,28 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(60)
+                anchors.verticalCenter: delegateRoot.verticalCenter
+
                 Label {
-                    text: model.appInfo.name
+                    text: model.appInfo.isSystemApp ? "* " + model.appInfo.name: model.appInfo.name
                 }
+
                 Label {
                     readonly property string memoryPSS: (processStatus.memoryPss.total / 1e6).toFixed(0)
                     readonly property string memoryRSS: (processStatus.memoryRss.total / 1e6).toFixed(0)
                     readonly property string cpuLoad: (processStatus.cpuLoad * 100).toFixed(1)
-                    text: qsTr("CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB").
-                            arg(cpuLoad).arg(memoryRSS).arg(memoryPSS)
+                    text: qsTr("CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB").arg(cpuLoad).arg(memoryRSS).arg(memoryPSS)
                     font.pixelSize: Sizes.fontSizeS
                     opacity: Style.opacityMedium
+                    visible: model.appInfo.running
                 }
+
                 Column {
                     width: parent.width
                     visible: model.appInfo ? !!model.appInfo.window : false
                     leftPadding: Sizes.dp(40)
                     Label {
-                        text: qsTr("Primary Window, on Center Console")
+                        text: qsTr("Primary Window, on Center Console: ")
                         font.pixelSize: Sizes.fontSizeS
                     }
                     RowLayout {
@@ -189,10 +211,12 @@ Item {
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
                             Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+                            visible: !model.appInfo.isSystemApp
                         }
                     }
                     bottomPadding: applicationICWindowColumn.visible ? 0 : Sizes.dp(20)
                 }
+
                 Column {
                     id: applicationICWindowColumn
                     width: parent.width
@@ -220,14 +244,15 @@ Item {
                     }
                     bottomPadding: Sizes.dp(20)
                 }
-                Image {
-                    visible: model.index !== listView.model.count - 1
-                    width: parent.width
-                    height: Sizes.dp(sourceSize.height)
-                    source: Style.image("list-divider")
-                }
+            }
+
+            Image {
+                visible: model.index !== listView.model.count - 1
+                width: parent.width
+                height: Sizes.dp(sourceSize.height)
+                source: Style.image("list-divider")
+                anchors.bottom: delegateRoot.bottom
             }
         }
-        ScrollIndicator.vertical: ScrollIndicator {}
     }
 }

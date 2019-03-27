@@ -45,17 +45,44 @@ Item {
     height: cellHeight * Math.ceil(grid.count/root.numIconsPerRow)
 
     property alias gridEditMode: grid.editMode
-    property alias model: visualModel.model
+    property var model
     readonly property int numIconsPerRow: 4
     property var exclusiveButtonGroup
     readonly property alias cellWidth: grid.cellWidth
     readonly property alias cellHeight: grid.cellHeight
 
     property bool showDevApps: false
+    property bool showSystemApps: false
     property bool gridOpen: false
     onGridOpenChanged: {
         if (!root.gridOpen) {
             grid.editMode = false
+        }
+    }
+    onModelChanged: {
+        if (root.model) {
+            visualModel.model = root.model;
+            var modelCount = root.model.count;
+
+            for (var i = 0; i < modelCount; i++) {
+                var item = root.model.get(i);
+                var groups = ["items"]
+                //not a system app
+                if (!item.appInfo.isSystemApp) {
+                    groups = ["items", "noSystem"]
+                }
+                //not system and not dev
+                if (!item.appInfo.isSystemApp && (item.appInfo.categories.indexOf("dev") < 0)) {
+                    groups = ["items", "noSystemNoDev", "noSystem"]
+                }
+                visualModel.items.setGroups(i, 1, groups)
+            }
+
+            if (!showSystemApps)
+                visualModel.filterOnGroup = "noSystem"
+
+            if (!showDevApps)
+                visualModel.filterOnGroup = "noSystemNoDev"
         }
     }
 
@@ -63,12 +90,15 @@ Item {
 
     DelegateModel {
         id: visualModel
+        groups: [
+            DelegateModelGroup { name: "noSystem"; includeByDefault: false },
+            DelegateModelGroup { name: "noSystemNoDev"; includeByDefault: false }
+        ]
         delegate: MouseArea {
             id: delegateRoot
             objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
             property int visualIndex: DelegateModel.itemsIndex
-            readonly property bool devApp: model.appInfo ? model.appInfo.categories.indexOf("dev") !== -1 : false
 
             width: grid.cellWidth
             height: grid.cellHeight
@@ -84,8 +114,6 @@ Item {
                 return 1.0
             }
             Behavior on opacity { DefaultNumberAnimation { } }
-
-            visible: root.showDevApps ? (opacity > 0.0) : (opacity > 0.0 && !devApp)
 
             AppButton {
                 id: appButton

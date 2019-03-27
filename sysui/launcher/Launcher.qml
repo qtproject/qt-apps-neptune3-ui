@@ -47,6 +47,7 @@ Item {
     readonly property real expandedHeight: Sizes.dp(800)
     readonly property bool open: gridButton.checked
     property bool showDevApps: false
+    property bool showSystemApps: false
     property var applicationModel
 
     readonly property bool _isThereActiveApp: applicationModel && applicationModel.activeAppInfo
@@ -120,6 +121,7 @@ Item {
         gridOpen: root.open
         model: root.applicationModel
         showDevApps: root.showDevApps
+        showSystemApps: root.showSystemApps
         exclusiveButtonGroup: buttonGroup
 
         onAppButtonClicked: {
