@@ -7,7 +7,8 @@ win32|cross_compile: {
     TARGET=$${TARGET}_wrapper$${WRAPPER_EXT}
     CONFIG-=app_bundle
 
-    NEPTUNE_LIVERELOAD=$$[QT_INSTALL_BINS]/qmllivebench --importpath $$OUT_PWD/../../../../imports_shared/ --importpath $$PWD/../apps/$$APPLICATION_NAME/ $$HARNESSES_WORKSPACE
+    exists($$[QT_INSTALL_BINS]/qmllivebench):NEPTUNE_LIVERELOAD=$$[QT_INSTALL_BINS]/qmllivebench --importpath $$OUT_PWD/../../../../imports_shared/ --importpath $$PWD/../apps/$$APPLICATION_NAME/ $$HARNESSES_WORKSPACE
+    else:NEPTUNE_LIVERELOAD=$$[QT_INSTALL_BINS]/qmlscene -I $$OUT_PWD/../../../../imports_shared/ -I $$PWD/../apps/$$APPLICATION_NAME/ $$HARNESSES_WORKSPACE
 
     extraplugins.name = QT_PLUGIN_PATH
     extraplugins.CONFIG = append
