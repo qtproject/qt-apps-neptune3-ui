@@ -63,10 +63,10 @@ Store {
 
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel
-        ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites"); greyedOut: false}
-        ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists"); greyedOut: false }
-        ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); greyedOut: false }
-        ListElement { icon: "ic-sources-bt"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "sources"); greyedOut: false }
+        ListElement { icon: "ic-favorites"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "favorites"); objectName: "musicView_favorites"; greyedOut: false}
+        ListElement { icon: "ic-artists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "artists"); objectName: "musicView_artists"; greyedOut: false }
+        ListElement { icon: "ic-albums"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "albums"); objectName: "musicView_albums"; greyedOut: false }
+        ListElement { icon: "ic-sources-bt"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "sources"); objectName: "musicView_sources"; greyedOut: false }
 
         // Neptune 3 doesn't support playlists yet. Temporarily commented until we have the final implementation.
         //ListElement { icon: "ic-playlists"; text: QT_TRANSLATE_NOOP("MusicToolsColumn", "playlists"); greyedOut: true }

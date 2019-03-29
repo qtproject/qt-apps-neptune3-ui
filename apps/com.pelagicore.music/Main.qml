@@ -81,6 +81,7 @@ QtObject {
 
         MusicView {
             id: musicAppContent
+            objectName: "musicAppContent"
             x: mainWindow.exposedRect.x
             y: mainWindow.exposedRect.y
             width: mainWindow.exposedRect.width

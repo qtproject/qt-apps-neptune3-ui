@@ -63,6 +63,7 @@ Control {
             id: delegatedItem
             ListItem {
                 id: delegatedSong
+                objectName: "playList_clickableItem_" + index
                 width: listView.width
                 height: Sizes.dp(104)
                 highlighted: false

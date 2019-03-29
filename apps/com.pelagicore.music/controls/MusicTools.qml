@@ -47,6 +47,7 @@ Row {
     signal repeatClicked()
 
     ToolButton {
+        objectName: "shuffleMusicButton"
         width: root.buttonWidth
         height: parent.height
         icon.name: "ic-shuffle"
@@ -54,6 +55,7 @@ Row {
     }
 
     ToolButton {
+        objectName: "repeatMusicButton"
         width: root.buttonWidth
         height: parent.height
         icon.name: "ic-repeat"

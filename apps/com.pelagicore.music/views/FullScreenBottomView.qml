@@ -61,6 +61,7 @@ Item {
 
     ToolsColumn {
         id: toolsColumn
+        objectName: "musicToolsColumn"
         width: Sizes.dp(264)
         anchors.left: parent.left
         anchors.top: parent.top

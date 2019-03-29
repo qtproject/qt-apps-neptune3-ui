@@ -66,8 +66,10 @@ multi_process_container = o_QtAM_ApplicationManagerWindow.copy()
 
 climate_single_process_container = neptune_UI_Center_Console.copy()
 calendar_single_process_container = neptune_UI_Center_Console.copy()
-settings_single_process_container = neptune_UI_Center_Console.copy()
+music_single_process_container = neptune_UI_Center_Console.copy()
 phone_single_process_container = neptune_UI_Center_Console.copy()
+settings_single_process_container = neptune_UI_Center_Console.copy()
+
 
 # define for each app an own starting-to-search container,
 # they all might look the same and could maybe be simplified
@@ -75,14 +77,18 @@ phone_single_process_container = neptune_UI_Center_Console.copy()
 # apps cannot simply be replaced by the "center-console"-container
 container_climate = climate_single_process_container.copy()
 container_calendar = calendar_single_process_container.copy()
+container_music = music_single_process_container.copy()
+container_phone = phone_single_process_container.copy()
 container_settings = settings_single_process_container.copy()
 container_phone = phone_single_process_container.copy()
+
 
 # contains the changer
 apps_reference_container = {'container_climate': container_climate,
                             'container_calendar': container_calendar,
-                            'container_settings': container_settings,
-                            'container_phone': container_phone}
+                            'container_music': container_music,
+                            'container_phone': container_phone,
+                            'container_settings': container_settings}
 
 # create an array of all changers, they will be used not singled out
 # but rather as the whole collection if mode is multi-process
@@ -150,4 +156,19 @@ favorites_phoneView_ContactsView = {"container": container_phone, "objectName": 
 keypad_phoneView_KeypadViewPanel = {"container": container_phone, "objectName": "keypad_phoneView", "type": "KeypadViewPanel", "visible": True}
 phoneCallerEndButton = {"container": container_phone, "objectName": "callerButtonEndCall", "type": "ToolButton", "visible": True}
 phoneCallerLabel = {"container": container_phone, "objectName": "callerLabelFullName", "type": "Label", "visible": True}
-
+musicPlayer = {"container": container_music, "objectName": "musicPlayer", "type": "AlbumArtPanel", "visible": True}
+musicAppContent_MusicView = {"container": container_music, "objectName": "musicAppContent", "type": "MusicView", "visible": True}
+musicProgressBar_MusicProgress = {"container": container_music, "objectName": "musicProgressBar", "type": "MusicProgress", "visible": True}
+musicSongNext_ToolButton = {"container": container_music, "objectName": "musicSongNext", "type": "ToolButton", "visible": True}
+musicSongPlayPause_ToolButton = {"container": container_music, "objectName": "musicSongPlayPause", "type": "ToolButton", "visible": True}
+musicSongPrevious_ToolButton = {"container": container_music, "objectName": "musicSongPrevious", "type": "ToolButton", "visible": True}
+shuffleMusicButton_ToolButton = {"container": container_music, "objectName": "shuffleMusicButton", "type": "ToolButton", "visible": True}
+repeatMusicButton_ToolButton = {"container": container_music, "objectName": "repeatMusicButton", "type": "ToolButton", "visible": True}
+musicView_sources_ToolButton = {"container": container_music, "objectName": "musicView_sources", "type": "ToolButton", "visible": True}
+musicView_albums_ToolButton = {"container": container_music, "objectName": "musicView_albums", "type": "ToolButton", "visible": True}
+musicView_artists_ToolButton = {"container": container_music, "objectName": "musicView_artists", "type": "ToolButton", "visible": True}
+musicView_favorites_ToolButton = {"container": container_music, "objectName": "musicView_favorites", "type": "ToolButton", "visible": True}
+musicPlayListList_ListView = {"container": container_music, "objectName": "musicPlayListList", "type": "ListView", "visible": True}
+musicListBackButton_ToolButton = {"container": container_music, "objectName": "musicListBackButton", "type": "ToolButton", "visible": False}
+musicListPlayAllButton_ToolButton = {"container": container_music, "objectName": "musicListPlayAllButton", "type": "ToolButton", "visible": False}
+musicToolsColumn = {"container": container_music, "objectName": "musicToolsColumn", "type": "ToolsColumn", "visible": True}

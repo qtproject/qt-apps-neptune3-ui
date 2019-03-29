@@ -79,6 +79,7 @@ Item {
 
                 MusicPlayQueuePanel { //playing queue
                     id: nextList
+                    objectName: "musicPlaySong"
                     width: nextListFlickable.width
                     height: (listView.count * Sizes.dp(104))
                     listView.model: store.musicPlaylist
@@ -125,6 +126,7 @@ Item {
 
     AlbumArtPanel {
         id: artAndTitlesBlock
+        objectName: "musicPlayer"
         height: Sizes.dp(180)
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
@@ -148,6 +150,7 @@ Item {
 
     MusicProgress {
         id: progressBarBlock
+        objectName: "musicProgressBar"
         width: Sizes.dp(880)
         height: Sizes.dp(50)
         anchors.horizontalCenter: parent.horizontalCenter

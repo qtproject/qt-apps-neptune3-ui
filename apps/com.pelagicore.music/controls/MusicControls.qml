@@ -51,6 +51,7 @@ Row {
     signal nextClicked()
 
     ToolButton {
+        objectName: "musicSongPrevious"
         width: root.buttonWidth
         height: parent.height
         icon.name: LayoutMirroring.enabled ? "ic_skipnext" : "ic_skipprevious"
@@ -58,6 +59,7 @@ Row {
     }
 
     ToolButton {
+        objectName: "musicSongPlayPause"
         width: root.buttonWidth
         height: parent.height
         icon.name: root.play ? "ic-pause" : "ic_play"
@@ -80,6 +82,7 @@ Row {
     }
 
     ToolButton {
+        objectName: "musicSongNext"
         width: root.buttonWidth
         height: parent.height
         icon.name: LayoutMirroring.enabled ? "ic_skipprevious" : "ic_skipnext"

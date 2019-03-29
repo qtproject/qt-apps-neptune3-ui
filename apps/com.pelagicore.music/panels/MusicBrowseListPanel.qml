@@ -64,6 +64,7 @@ Control {
             id: delegatedItem
             ListItem {
                 id: delegatedSong
+                objectName: "browseList_clickableItem_" + index
                 width: listView.width
                 height: Sizes.dp(104)
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
@@ -86,6 +87,7 @@ Control {
 
             ToolButton {
                 id: backButton
+                objectName: "musicListBackButton"
                 anchors.left: parent.left
                 anchors.leftMargin: Sizes.dp(13.5)
                 anchors.verticalCenter: parent.verticalCenter
@@ -104,6 +106,7 @@ Control {
             }
             ToolButton {
                 id: buttonPlayAll
+                objectName: "musicListPlayAllButton"
                 width: Sizes.dp(121.5)
                 height: Sizes.dp(48)
                 anchors.right: parent.right
@@ -134,6 +137,7 @@ Control {
 
         ListView {
             id: listView
+            objectName: "musicPlayListList"
             anchors.top:parent.top
             anchors.topMargin: Sizes.dp(53) + listHeader.height
             anchors.bottom: parent.bottom
@@ -152,5 +156,3 @@ Control {
         }
     }
 }
-
-
