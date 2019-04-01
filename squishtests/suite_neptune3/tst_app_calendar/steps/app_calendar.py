@@ -33,7 +33,20 @@
 
 # squish dependent
 import names
+import common.app as app
 import common.qml_names as qml
+
+
+# all variable ui elements in a single dict, though qml_names definitions
+# look a bit useless now
+variable_calendar_ui = {
+        'events': {'button': names.events_ToolButton,
+                   'view': qml.calendar_view['events']},
+        'year': {'button': names.year_ToolButton,
+                 'view': qml.calendar_view['year']},
+        'next': {'button': names.next_ToolButton,
+                 'view': qml.calendar_view['next']}
+}
 
 
 @OnFeatureStart
@@ -43,12 +56,15 @@ def hook(context):
 
 @Given("tap '|word|' button")
 def step(context, view_name):
-    if view_name == "events":
-        view_object_name = names.events_ToolButton
-    elif view_name == "year":
-        view_object_name = names.year_ToolButton
-    else:
-        view_object_name = names.next_ToolButton
+    if view_name not in variable_calendar_ui.keys():
+        app.fail("in calendar, this view button '"
+                 + view_name
+                 + "' is not known!")
+        return
+
+    view_object_name = variable_calendar_ui[view_name]['button']
+    app.switch_to_app('calendar')
+    squish.snooze(0.25)
 
     events_button = waitForObject(view_object_name)
     tapObject(events_button)
@@ -56,14 +72,19 @@ def step(context, view_name):
 
 @Then("calendar view '|word|' should be displayed")
 def step(context, view_name):
+    if view_name not in variable_calendar_ui.keys():
+        app.fail("in calendar, this view '"
+                 + view_name
+                 + "' is not known!")
+        return
+
+    compare_name = variable_calendar_ui[view_name]['view']
+
+    app.switch_to_app('calendar')
+    squish.snooze(0.25)
+
     view_stack_layout = waitForObject(names.calendarViewContent)
     current_index = view_stack_layout.currentIndex
-    if view_name == "events":
-        compare_name = qml.calendar_view['events']
-    elif view_name == "year":
-        compare_name = qml.calendar_view['year']
-    else:
-        compare_name = qml.calendar_view['next']
     stack_layouts = object.children(view_stack_layout)
     current_name = stack_layouts[current_index].objectName
     test.compare(current_name, compare_name, "calendar views")
