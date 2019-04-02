@@ -49,6 +49,7 @@ ListView {
     currentIndex: -1
     delegate: ListItemProgress {
         id: delegatedItem
+        objectName: "itemDownloadApp_" + model.id
         readonly property bool isInstalled: root.store.installedApps.indexOf(model.id) !== -1
 
         width: Sizes.dp(675)

@@ -82,6 +82,9 @@ container_phone = phone_single_process_container.copy()
 container_settings = settings_single_process_container.copy()
 container_phone = phone_single_process_container.copy()
 
+# the apps below do not belong to apps that have an own sub processes, yet!
+container_downloads = neptune_UI_Center_Console.copy()
+
 
 # contains the changer
 apps_reference_container = {'container_climate': container_climate,
@@ -172,3 +175,8 @@ musicPlayListList_ListView = {"container": container_music, "objectName": "music
 musicListBackButton_ToolButton = {"container": container_music, "objectName": "musicListBackButton", "type": "ToolButton", "visible": False}
 musicListPlayAllButton_ToolButton = {"container": container_music, "objectName": "musicListPlayAllButton", "type": "ToolButton", "visible": False}
 musicToolsColumn = {"container": container_music, "objectName": "musicToolsColumn", "type": "ToolsColumn", "visible": True}
+downloadAppList_DownloadAppList = {"container": container_downloads, "objectName": "downloadAppList", "type": "DownloadAppList", "visible": True}
+downloadAppViewButton_Games = {"container": container_downloads, "objectName": "downloadAppViewButton_Games", "type": "ToolButton", "visible": True}
+downloadAppViewButton_Business = {"container": container_downloads, "objectName": "downloadAppViewButton_Business", "type": "ToolButton", "visible": True}
+downloadAppViewButton_Entertainment = {"container": container_downloads, "objectName": "downloadAppViewButton_Entertainment", "type": "ToolButton", "visible": True}
+downloadsToolsColumn = {"container": container_downloads, "objectName": "downloadsAppColumn", "type": "DownloadsToolsColumn", "visible": True}

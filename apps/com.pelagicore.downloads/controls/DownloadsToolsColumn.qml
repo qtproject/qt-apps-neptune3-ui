@@ -52,6 +52,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
 
         ToolButton {
+            objectName: "downloadAppViewButton_" + (model.name ? model.name : "unknown")
             Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true

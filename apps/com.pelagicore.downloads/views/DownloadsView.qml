@@ -122,6 +122,7 @@ Item {
 
         DownloadsToolsColumn {
             id: toolsColumn
+            objectName: "downloadsAppColumn"
             Layout.preferredWidth: Sizes.dp(264)
             Layout.preferredHeight: Sizes.dp(320)
             Layout.alignment: Qt.AlignTop
@@ -131,6 +132,7 @@ Item {
 
         DownloadAppList {
             id: appList
+            objectName: "downloadAppList"
             Layout.preferredHeight: Sizes.dp(800)
             Layout.preferredWidth: Sizes.dp(675)
             Layout.alignment: Qt.AlignTop
