@@ -38,11 +38,18 @@ QtObject {
 
     property ClimateControl climateControl: ClimateControl {
         discoveryMode: ClimateControl.AutoDiscovery
+        onIsInitializedChanged: {
+            if (isInitialized) {
+                leftSeat.setValue(21.5)
+                rightSeat.setValue(21.5)
+            }
+        }
     }
 
     property int measurementSystem
 
     property QtObject leftSeat: QtObject {
+        id: leftSeat
         readonly property real minValue: 17
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
@@ -60,14 +67,10 @@ QtObject {
         function setHeat(newHeat) {
             climateControl.zoneAt.FrontLeft.seatHeater = newHeat
         }
-
-        // set some sane default value
-        Component.onCompleted: {
-            setValue(21);
-        }
     }
 
     property QtObject rightSeat: QtObject {
+        id: rightSeat
         readonly property real minValue: 17
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
@@ -84,11 +87,6 @@ QtObject {
 
         function setHeat(newHeat) {
             climateControl.zoneAt.FrontRight.seatHeater = newHeat
-        }
-
-        // set some sane default value
-        Component.onCompleted: {
-            setValue(22.5);
         }
     }
 
