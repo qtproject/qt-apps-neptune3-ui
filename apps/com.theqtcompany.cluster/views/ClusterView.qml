@@ -49,7 +49,7 @@ Item {
     id: root
 
     property RootStoreInterface store
-    property alias rtlMode: mainContent.rtlMode
+    property bool rtlMode
 
     Image {
         // Overlay between the ivi content and tellatales, cluster content
@@ -60,23 +60,50 @@ Item {
         source: Utils.localAsset("cluster-fullscreen-overlay", Style.theme)
     }
 
-    GaugesPanel {
-        id: mainContent
-        anchors.fill: parent
-        navigating: store.behaviourInterface.navigationMode
-        speed: store.vehicleInterface.speed
-        speedLimit: store.vehicleInterface.speedLimit
-        cruiseSpeed: store.vehicleInterface.speedCruise
-        ePower: store.vehicleInterface.ePower
-        drivetrain: store.vehicleInterface.driveTrainState
-        opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
-        Behavior on opacity {
-            DefaultNumberAnimation {}
+    Component {
+        id : flatGauges
+
+        GaugesPanel {
+            id: mainContent
+            anchors.fill: parent
+            rtlMode: root.rtlMode
+            navigating: store.behaviourInterface.navigationMode
+            speed: store.vehicleInterface.speed
+            speedLimit: store.vehicleInterface.speedLimit
+            cruiseSpeed: store.vehicleInterface.speedCruise
+            ePower: store.vehicleInterface.ePower
+            drivetrain: store.vehicleInterface.driveTrainState
+            opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+            Behavior on opacity {
+                DefaultNumberAnimation {}
+            }
         }
     }
 
+    Component {
+        id : _3DGauges
+        GaugesPanel3D {
+            rtlMode: root.rtlMode
+            navigating: store.behaviourInterface.navigationMode
+            speed: store.vehicleInterface.speed
+            speedLimit: store.vehicleInterface.speedLimit
+            cruiseSpeed: store.vehicleInterface.speedCruise
+            ePower: store.vehicleInterface.ePower
+            drivetrain: store.vehicleInterface.driveTrainState
+            opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+            Behavior on opacity {
+                DefaultNumberAnimation {}
+            }
+        }
+    }
+
+    Loader {
+        id: gaugesPanelLoader
+        sourceComponent: store.behaviourInterface.flatGauges ? flatGauges : _3DGauges
+    }
+
     TelltalesLeftPanel {
-        anchors.left: mainContent.left
+        anchors.left: gaugesPanelLoader.left
         anchors.leftMargin: Sizes.dp(111)
         y: Sizes.dp(23)
         width: Sizes.dp(444)
@@ -91,7 +118,7 @@ Item {
     }
 
     TelltalesRightPanel {
-        anchors.right: mainContent.right
+        anchors.right: gaugesPanelLoader.right
         anchors.rightMargin: Sizes.dp(111)
         y: Sizes.dp(23)
         width: Sizes.dp(444)

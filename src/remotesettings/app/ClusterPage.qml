@@ -165,6 +165,14 @@ Flickable {
                 onClicked: instrumentCluster.hideGauges = checked
             }
 
+            Label {
+                text: qsTr("Flat Gauges:")
+            }
+            CheckBox {
+                checked: instrumentCluster.flatGauges
+                onClicked: instrumentCluster.flatGauges = checked
+            }
+
             /*!
                 Outside Temperature
             */
@@ -298,12 +306,15 @@ Flickable {
                 interval: 1000
                 running: root.simulationEnabled
                 repeat: true
+                property int speedChange: 10
                 onTriggered: {
-                    if (instrumentCluster.speed < 140) {
-                        instrumentCluster.speed = instrumentCluster.speed + 10;
-                    } else {
-                        instrumentCluster.speed = 0.0;
+                    if (instrumentCluster.speed > 140) {
+                        speedChange = -10;
                     }
+                    if (instrumentCluster.speed < 20) {
+                        speedChange = 10;
+                    }
+                    instrumentCluster.speed += speedChange;
 
                     if (instrumentCluster.ePower < 80) {
                         instrumentCluster.ePower = instrumentCluster.ePower + 2;

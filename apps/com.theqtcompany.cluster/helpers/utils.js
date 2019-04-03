@@ -35,8 +35,12 @@
 function localAsset(asset, theme) {
     var themeStr = theme === Style.Style.Dark ? "-dark" : "";
     if (theme) {
-        return "../assets/" + asset + themeStr + '.png'
+        return "../assets/" + asset + themeStr + '.png';
     }
 
-    return "../assets/" + asset + '.png'
+    return "../assets/" + asset + '.png';
+}
+
+function localQt3DStudioPresentationAsset(relativePresentationPath) {
+    return "../assets/3dGauges/" + relativePresentationPath;
 }

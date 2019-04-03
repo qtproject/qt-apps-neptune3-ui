@@ -31,6 +31,7 @@
 
 import QtQuick 2.8
 import shared.com.pelagicore.settings 1.0
+import QtApplicationManager.Application 2.0
 
 /*!
     \qmltype ClusterStore
@@ -75,6 +76,7 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
+        flatGauges: !ApplicationInterface.applicationProperties["enable3DGauges"] || clusterDataSource.flatGauges
         hideGauges: clusterDataSource.hideGauges
         navigationMode: clusterDataSource.navigationMode
     }

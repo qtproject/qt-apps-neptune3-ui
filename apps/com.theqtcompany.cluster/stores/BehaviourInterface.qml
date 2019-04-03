@@ -35,6 +35,7 @@ Store {
     id: root
 
     property bool hideGauges: false
+    property bool flatGauges: true
     property bool navigationMode: false
     property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
 }

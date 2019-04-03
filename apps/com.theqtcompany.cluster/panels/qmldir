@@ -2,6 +2,7 @@ DialFramePanel 1.0 DialFramePanel.qml
 DialPowerPanel 1.0 DialPowerPanel.qml
 DialSpeedPanel 1.0 DialSpeedPanel.qml
 GaugesPanel 1.0 GaugesPanel.qml
+GaugesPanel3D 1.0 GaugesPanel3D.qml
 TelltalesLeftPanel 1.0 TelltalesLeftPanel.qml
 TelltalesRightPanel 1.0 TelltalesRightPanel.qml
 DonutGauge 1.0 DonutGauge.qml

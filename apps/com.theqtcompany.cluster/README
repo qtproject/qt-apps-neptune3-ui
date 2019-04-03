@@ -1,0 +1,5 @@
+Cluster app contains of gauges and telltales. By default, it shows the 2D gauges. It also supports 3D gauges that runs on Qt 3D Studio Runtime by enabling the properties in info.yaml.
+
+If the target platform is not so powerful it is preferable to use 2D.
+
+When property in info.yaml is set, Neptune control app allows switching between flat and 3d gauges on fly.

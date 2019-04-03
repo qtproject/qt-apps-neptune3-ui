@@ -125,6 +125,12 @@ Item {
                 //test the highLight (1080ms)
                 PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 0; to: 260; duration: 540 }
                 PropertyAnimation { target: root; properties: "speed, speedLimit, cruiseSpeed"; from: 260; to: 0; duration: 540 }
+                ParallelAnimation {
+                    //restore to actual values
+                    PropertyAction { target: root; property: "speed"; value: speed }
+                    PropertyAction { target: root; property: "speedLimit"; value: speedLimit }
+                    PropertyAction { target: root; property: "cruiseSpeed"; value: cruiseSpeed }
+                }
             }
         },
         Transition {

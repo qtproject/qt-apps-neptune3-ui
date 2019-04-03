@@ -108,6 +108,7 @@ interface InstrumentCluster {
 
   /** Whether both gaueges should be hidden or not */
   bool hideGauges;
+  bool flatGauges;
 }
 
 @config: {id: "SystemUI"}

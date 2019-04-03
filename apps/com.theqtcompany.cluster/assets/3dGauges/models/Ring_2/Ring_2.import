@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" >
+                <Model id="qt_gauge_ring_2" name="qt_gauge_ring_2" orientation="Right Handed" position="0 0 -0" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/qt_gauge_ring_2.mesh" >
+                    <Material id="Default_white" name="Default_white" blendmode="Normal" diffuse="1 1 1" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../../3D Models/Automotive/Cluster/Other/Ring_2.fbx" ImageDir="Images" MeshDir="Meshes" >
+            <Mesh >
+                <Source >qt_gauge_ring_2</Source>
+                <Dest >meshes/qt_gauge_ring_2.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>

@@ -16,5 +16,10 @@ name:
   ja: '計器クラスタ'
   ko: '계기판'
 
-applicationProperties: { private: { squishPort: 7723 } }
+applicationProperties:
+    private:
+        squishPort: 7723
+        # when it is true cluster can show 3D Gauges (Qt 3D Studio runtime required)
+        enable3DGauges: false
+
 categories: [ 'cluster' ]
