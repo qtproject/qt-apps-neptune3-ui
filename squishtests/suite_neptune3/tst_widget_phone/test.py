@@ -3,7 +3,6 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -30,29 +29,14 @@
 ##
 ## SPDX-License-Identifier: GPL-3.0
 ##
-#############################################################################
+############################################################################
+source(findFile('scripts', 'python/bdd.py'))
+source(findFile('scripts', '../shared/scripts/common/__init__.py'))
+
+setupHooks('../shared/scripts/bdd_hooks.py')
+collectStepDefinitions('./steps', '../shared/steps')
 
 
-app_widget_close = "appWidgetClose_"
-application_widget = "applicationWidget_"
-current_inFrame_Application = "currentInFrameApplication_"
-grid_delegate = "gridDelegate_"
-home_widget = "homeWidget_"
-calendar_view = {'events': 'eventList',
-                 'year': 'calendarGridPanel',
-                 'next': 'nextCalendarPanel'}
-prefix_language = "language_"
-prefix_themes = "themeNr_"
-viewPhoneButton_prefix = "viewPhoneButton_"
-# don't change the order here
-viewPhoneButtons = ['recents',
-                    'favorites',
-                    'keypad',
-                    'contacts']
-phone_contactView_prefix = "contactNr_"
-phone_contactView_button_prefix = "callButtonContactNr_"
-phone_contactView_caller_prefix = "contactNameOfNr_"
-phone_shortcall_prefix = "favoritesShortCall_"
-phone_shortcall_name = "shortCallName"
-phone_shortcall_button = "shortCallButton"
-app_downloads_prefix = "itemDownloadApp_"
+def main():
+    testSettings.throwOnFailure = True
+    runFeatureFile('test.feature')

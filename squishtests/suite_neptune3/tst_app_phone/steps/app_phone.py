@@ -164,31 +164,3 @@ def step(context, view_name, entry_number):
     # switch to main before new command
     app.switch_to_main_app()
     squish.snooze(0.2)
-
-
-@Then("number from entry '|word|' should be called")
-def step(context, views):
-    if not context.userData:
-        context.userData = {}
-    calling_name = context.userData['calling']
-
-    # use a natural numbering, so +1 since entry 0 is entry 1
-    squish.snooze(0.25)
-    # switch and wait a little
-    app.switch_to_app('phone')
-    squish.snooze(0.25)
-
-    caller_name_obj = squish.waitForObject(names.phoneCallerLabel)
-
-    caller_name = None
-    if caller_name_obj is not None:
-        caller_name = str(caller_name_obj.text)
-    # end call before comparing
-    end_call_button = squish.waitForObject(names.phoneCallerEndButton)
-    squish.tapObject(end_call_button)
-
-    app.compare(calling_name, caller_name, "calling the right name")
-
-    # switch to main before new command
-    app.switch_to_main_app()
-    squish.snooze(0.2)

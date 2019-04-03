@@ -3,7 +3,6 @@
 ############################################################################
 ##
 ## Copyright (C) 2019 Luxoft Sweden AB
-## Copyright (C) 2018 Pelagicore AG
 ## Contact: https://www.qt.io/licensing/
 ##
 ## This file is part of the Neptune 3 IVI UI.
@@ -30,29 +29,37 @@
 ##
 ## SPDX-License-Identifier: GPL-3.0
 ##
-#############################################################################
+############################################################################
+
+import squish
+import names
+
+import common.app as app
 
 
-app_widget_close = "appWidgetClose_"
-application_widget = "applicationWidget_"
-current_inFrame_Application = "currentInFrameApplication_"
-grid_delegate = "gridDelegate_"
-home_widget = "homeWidget_"
-calendar_view = {'events': 'eventList',
-                 'year': 'calendarGridPanel',
-                 'next': 'nextCalendarPanel'}
-prefix_language = "language_"
-prefix_themes = "themeNr_"
-viewPhoneButton_prefix = "viewPhoneButton_"
-# don't change the order here
-viewPhoneButtons = ['recents',
-                    'favorites',
-                    'keypad',
-                    'contacts']
-phone_contactView_prefix = "contactNr_"
-phone_contactView_button_prefix = "callButtonContactNr_"
-phone_contactView_caller_prefix = "contactNameOfNr_"
-phone_shortcall_prefix = "favoritesShortCall_"
-phone_shortcall_name = "shortCallName"
-phone_shortcall_button = "shortCallButton"
-app_downloads_prefix = "itemDownloadApp_"
+@Then("number from entry '|word|' should be called")
+def step(context, views):
+    if not context.userData:
+        context.userData = {}
+    calling_name = context.userData['calling']
+
+    # use a natural numbering, so +1 since entry 0 is entry 1
+    squish.snooze(0.25)
+    # switch and wait a little
+    app.switch_to_app('phone')
+    squish.snooze(0.25)
+
+    caller_name_obj = squish.waitForObject(names.phoneCallerLabel)
+
+    caller_name = None
+    if caller_name_obj is not None:
+        caller_name = str(caller_name_obj.text)
+    # end call before comparing
+    end_call_button = squish.waitForObject(names.phoneCallerEndButton)
+    squish.tapObject(end_call_button)
+
+    app.compare(calling_name, caller_name, "calling the right name")
+
+    # switch to main before new command
+    app.switch_to_main_app()
+    squish.snooze(0.2)

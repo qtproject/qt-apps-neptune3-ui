@@ -35,6 +35,7 @@
 
 import math
 import os          # needed for app identification path
+import __builtin__ as builtins  # python types (not squish)
 
 import common.settings as settings
 import common.app as app
@@ -247,6 +248,49 @@ def find_object_name_recursively(obj, obj_name, max_depth):
                 return children_search
     else:
         return None
+
+
+def find_same_prefix_list(obj, list_prefix, max_depth):
+    """Find a (child) listlist of object with same prefix,
+    which are in same level (siblings)
+    to max depth levels of the starting object.
+    The staring child 0 has to exist, and also we assume
+    that digits for low number don't have 001 or 01."""
+    return_obj_list = None
+    if max_depth > 0:
+        zero_element_name = list_prefix + "0"
+        zero_element = find_object_name_recursively(obj, zero_element_name,
+                                                    max_depth)
+        if zero_element is not None:
+            parent = object.parent(zero_element)
+            if parent is not None:
+                # now check all children for same prefix and add
+                chdl = object.children(parent)
+                for chd in chdl:
+                    if not hasattr(chd, "objectName"):
+                        continue
+                    full_obj_name = str(chd.objectName)
+                    suffix = full_obj_name.replace(list_prefix, "")
+                    # test that removing prefix doesn't
+                    # do anything
+                    if suffix == full_obj_name:
+                        continue
+                    _try_number = 0
+                    try:
+                        _try_number = builtins.int(suffix)
+                    except ValueError:
+                        continue
+                    # here it should be ok
+                    # one could check, if it is a counting up
+                    # number (to before) or if it is +1 always
+                    # ... this will be a first cheap version,
+                    # taking anything that fits
+                    if return_obj_list is None:
+                        # first entry
+                        return_obj_list = [chd]
+                    else:
+                        return_obj_list.append(chd)
+    return return_obj_list
 
 
 def get_position_item(itemObjectOrName):

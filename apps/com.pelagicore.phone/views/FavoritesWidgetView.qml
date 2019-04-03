@@ -159,6 +159,7 @@ Item {
 
             delegate: ItemDelegate { // FIXME replace with ListItem when it supports components (for RoundImage and 2 tools on the right)
                 id: itemDelegate
+                objectName: "favoritesShortCall_" + index
                 padding: 0
                 width: ListView.view.width
                 height: Sizes.dp(70)
@@ -173,6 +174,7 @@ Item {
                             source: "../assets/profile_photos/%1.png".arg(model.handle)
                         }
                         Label {
+                            objectName: "shortCallName"
                             Layout.leftMargin: Sizes.dp(22)
                             Layout.fillWidth: true
                             text: model.firstName + " " + model.surname
@@ -185,6 +187,7 @@ Item {
                             icon.name: "ic-message-contrast"
                         }
                         ToolButton {
+                            objectName: "shortCallButton"
                             Layout.preferredWidth: Sizes.dp(100)
                             Layout.alignment: Qt.AlignVCenter
                             height: parent.height
