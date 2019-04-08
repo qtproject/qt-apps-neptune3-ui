@@ -62,6 +62,7 @@ Item {
             source: Utils.localAsset("/telltales/ic-right-turn")
             width: Sizes.dp(53)
             height: Sizes.dp(48)
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
@@ -70,6 +71,7 @@ Item {
             source: Utils.localAsset("/telltales/ic-abs-fault")
             width: Sizes.dp(40)
             height: Sizes.dp(30)
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
@@ -78,6 +80,7 @@ Item {
             source: Utils.localAsset("/telltales/ic-parking-brake")
             width: Sizes.dp(40)
             height: Sizes.dp(30)
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
@@ -86,6 +89,7 @@ Item {
             source: Utils.localAsset("/telltales/ic-tire-pressure")
             width: Sizes.dp(34)
             height: Sizes.dp(30)
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
@@ -94,6 +98,7 @@ Item {
             source: Utils.localAsset("./telltales/ic-brake-fault")
             width: Sizes.dp(40)
             height: Sizes.dp(30)
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Image {
@@ -102,6 +107,7 @@ Item {
             source: Utils.localAsset("/telltales/ic-airbag")
             width: Sizes.dp(35)
             height: Sizes.dp(34)
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
 }
