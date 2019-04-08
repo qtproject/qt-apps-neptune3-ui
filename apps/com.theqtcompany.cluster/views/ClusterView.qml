@@ -62,46 +62,42 @@ Item {
         source: Utils.localAsset("cluster-fullscreen-overlay", Style.theme)
     }
 
-    Component {
-        id : flatGauges
-
-        GaugesPanel {
-            id: mainContent
-            anchors.fill: parent
-            rtlMode: root.rtlMode
-            navigating: store.behaviourInterface.navigationMode
-            speed: store.vehicleInterface.speed
-            speedLimit: store.vehicleInterface.speedLimit
-            cruiseSpeed: store.vehicleInterface.speedCruise
-            ePower: store.vehicleInterface.ePower
-            drivetrain: store.vehicleInterface.driveTrainState
-            opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
-            Behavior on opacity {
-                DefaultNumberAnimation {}
-            }
+    Loader {
+        id: gaugesPanelLoader
+        active: store.behaviourInterface.flatGauges
+        source: "../panels/GaugesPanel.qml"
+        opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+        Behavior on opacity {
+            DefaultNumberAnimation {}
         }
-    }
-
-    Component {
-        id : _3DGauges
-        GaugesPanel3D {
-            rtlMode: root.rtlMode
-            navigating: store.behaviourInterface.navigationMode
-            speed: store.vehicleInterface.speed
-            speedLimit: store.vehicleInterface.speedLimit
-            cruiseSpeed: store.vehicleInterface.speedCruise
-            ePower: store.vehicleInterface.ePower
-            drivetrain: store.vehicleInterface.driveTrainState
-            opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
-            Behavior on opacity {
-                DefaultNumberAnimation {}
-            }
+        onLoaded: {
+            item.rtlMode = Qt.binding( function() {return root.rtlMode} )
+            item.navigating = Qt.binding( function() {return store.behaviourInterface.navigationMode})
+            item.speed = Qt.binding( function() {return store.vehicleInterface.speed})
+            item.speedLimit = Qt.binding( function() {return store.vehicleInterface.speedLimit})
+            item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
+            item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
+            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.drivetrain})
         }
     }
 
     Loader {
-        id: gaugesPanelLoader
-        sourceComponent: store.behaviourInterface.flatGauges ? flatGauges : _3DGauges
+        id: _3dgaugesPanelLoader
+        active: !store.behaviourInterface.flatGauges
+        source: "../panels/GaugesPanel3D.qml"
+        opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+        Behavior on opacity {
+            DefaultNumberAnimation {}
+        }
+        onLoaded: {
+            item.rtlMode = Qt.binding( function() {return root.rtlMode} )
+            item.navigating = Qt.binding( function() {return store.behaviourInterface.navigationMode})
+            item.speed = Qt.binding( function() {return store.vehicleInterface.speed})
+            item.speedLimit = Qt.binding( function() {return store.vehicleInterface.speedLimit})
+            item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
+            item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
+            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.drivetrain})
+        }
     }
 
     TelltalesLeftPanel {
