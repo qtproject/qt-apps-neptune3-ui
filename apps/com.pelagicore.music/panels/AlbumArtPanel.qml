@@ -170,7 +170,7 @@ Item {
                     anchors.leftMargin: root.parentStateMaximized === "Maximized"? Sizes.dp(300) : 0
                     Behavior on anchors.leftMargin { DefaultNumberAnimation {} }
                     opacity: 0.0
-                    text: qsTr("There are no music available")
+                    text: qsTr("There is no music available")
                     Behavior on opacity { DefaultNumberAnimation {} }
                 }
 
