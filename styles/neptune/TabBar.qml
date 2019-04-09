@@ -46,6 +46,7 @@ T.TabBar {
     spacing: 0
 
     contentItem: ListView {
+        objectName: "tabBarListViewFor_" + ((control.objectName !== "") ? control.objectName : "unknown")
         model: control.contentModel
         currentIndex: control.currentIndex
 

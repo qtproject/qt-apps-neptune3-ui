@@ -83,6 +83,7 @@ Item {
 
     VehicleButton {
         id: trunkCloseButton
+        objectName: "trunk_OpenCloseButton"
 
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(540)

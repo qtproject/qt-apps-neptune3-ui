@@ -46,6 +46,7 @@ ListView {
 
     spacing: Sizes.dp(20)
     delegate: ListItemSwitch {
+        objectName: "vehicleSupportListEntry_" + index
         width: parent.width
         icon.source: Paths.getImagePath(model.icon + (Style.theme === Style.Dark ? "-dark.png" : ".png"))
         text: qsTranslate("VehicleStore", model.name)

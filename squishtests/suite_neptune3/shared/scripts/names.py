@@ -69,6 +69,7 @@ calendar_single_process_container = neptune_UI_Center_Console.copy()
 music_single_process_container = neptune_UI_Center_Console.copy()
 phone_single_process_container = neptune_UI_Center_Console.copy()
 settings_single_process_container = neptune_UI_Center_Console.copy()
+vehicle_single_process_container = neptune_UI_Center_Console.copy()
 
 
 # define for each app an own starting-to-search container,
@@ -81,6 +82,7 @@ container_music = music_single_process_container.copy()
 container_phone = phone_single_process_container.copy()
 container_settings = settings_single_process_container.copy()
 container_phone = phone_single_process_container.copy()
+container_vehicle = vehicle_single_process_container.copy()
 
 # the apps below do not belong to apps that have an own sub processes, yet!
 container_downloads = neptune_UI_Center_Console.copy()
@@ -91,7 +93,8 @@ apps_reference_container = {'container_climate': container_climate,
                             'container_calendar': container_calendar,
                             'container_music': container_music,
                             'container_phone': container_phone,
-                            'container_settings': container_settings}
+                            'container_settings': container_settings,
+                            'container_vehicle': container_vehicle}
 
 # create an array of all changers, they will be used not singled out
 # but rather as the whole collection if mode is multi-process
@@ -180,3 +183,17 @@ downloadAppViewButton_Games = {"container": container_downloads, "objectName": "
 downloadAppViewButton_Business = {"container": container_downloads, "objectName": "downloadAppViewButton_Business", "type": "ToolButton", "visible": True}
 downloadAppViewButton_Entertainment = {"container": container_downloads, "objectName": "downloadAppViewButton_Entertainment", "type": "ToolButton", "visible": True}
 downloadsToolsColumn = {"container": container_downloads, "objectName": "downloadsAppColumn", "type": "DownloadsToolsColumn", "visible": True}
+vehicleViewToolsColumn = {"container": container_vehicle, "objectName": "vehicleViewToolsColumn", "type": "ToolsColumn", "visible": True}
+tabBarListViewFor_viewDoorsPanel = {"container": container_vehicle, "objectName": "tabBarListViewFor_viewDoorsPanel", "type": "ListView", "visible": True}
+vehicleSupportPanel_ListView = {"container": container_vehicle, "objectName": "vehicleSupportPanel", "type": "ListView", "visible": True}
+vehicleEnergyPanel_Item = {"container": container_vehicle, "objectName": "vehicleEnergyPanel", "type": "Item", "visible": True}
+vehicleDoorsPanel_DoorsPanel = {"container": container_vehicle, "objectName": "vehicleDoorsPanel", "type": "DoorsPanel", "visible": True}
+vehicleTiresPanel_Item = {"container": container_vehicle, "objectName": "vehicleTiresPanel", "type": "Item", "visible": True}
+subViewButton_doors_TabButton = {"container": tabBarListViewFor_viewDoorsPanel, "objectName": "subViewButton_doors", "type": "TabButton", "visible": True}
+subViewButton_roof_TabButton = {"container": tabBarListViewFor_viewDoorsPanel, "objectName": "subViewButton_roof", "type": "TabButton", "visible": True}
+subViewButton_trunk_TabButton = {"container": tabBarListViewFor_viewDoorsPanel, "objectName": "subViewButton_trunk", "type": "TabButton", "visible": True}
+roofCloseButton_ToolButton = {"container": container_vehicle, "objectName": "roofCloseButton", "type": "ToolButton", "visible": True}
+roofOpenButton_ToolButton = {"container": container_vehicle, "objectName": "roofOpenButton", "type": "ToolButton", "visible": True}
+vehicleDoorLeft_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "vehicleDoorLeft_OpenCloseButton", "type": "ToolButton", "visible": True}
+vehicleDoorRight_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "vehicleDoorRight_OpenCloseButton", "type": "ToolButton", "visible": True}
+trunk_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "trunk_OpenCloseButton", "type": "ToolButton", "visible": True}

@@ -55,6 +55,7 @@ Item {
     signal rightDoorClicked()
 
     VehicleButton {
+        objectName: "vehicleDoorLeft_OpenCloseButton"
         z: vehicleTopView.z + 1
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(320)
@@ -67,6 +68,7 @@ Item {
     }
 
     VehicleButton {
+        objectName: "vehicleDoorRight_OpenCloseButton"
         z: vehicleTopView.z + 1
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(320)

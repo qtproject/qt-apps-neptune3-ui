@@ -56,6 +56,7 @@ Item {
 
     ToolsColumn {
         id: toolsColumn
+        objectName: "vehicleViewToolsColumn"
         anchors.top: parent.top
         anchors.left: parent.left
         width: Sizes.dp(264)
@@ -64,6 +65,7 @@ Item {
     }
 
     StackLayout {
+        objectName: "vehicleStackLayout"
         anchors.left: toolsColumn.right
         anchors.right: parent.right
         anchors.top: parent.top
@@ -72,15 +74,16 @@ Item {
 
         currentIndex: toolsColumn.currentIndex
 
-        SupportPanel { id: supportPanel }
-        EnergyPanel {}
+        SupportPanel { id: supportPanel; objectName: "vehicleSupportPanel" }
+        EnergyPanel { objectName: "vehicleEnergyPanel"}
         DoorsPanel {
             id: doorsPanel
+            objectName: "vehicleDoorsPanel"
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
             onTrunkClicked: root.trunkClicked()
             onRoofOpenProgressChanged: root.roofOpenProgressChanged(roofOpenProgress)
         }
-        TiresPanel {}
+        TiresPanel { objectName: "vehicleTiresPanel" }
     }
 }

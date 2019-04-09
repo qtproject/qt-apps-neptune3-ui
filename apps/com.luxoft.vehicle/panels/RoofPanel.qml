@@ -88,6 +88,7 @@ Item {
 
     VehicleButton {
         id: roofOpenButton
+        objectName: "roofOpenButton"
 
         anchors.top: om.verticalCenter
         anchors.topMargin: -height
@@ -99,6 +100,7 @@ Item {
 
     VehicleButton {
         id: roofCloseButton
+        objectName: "roofCloseButton"
 
         anchors.top: om.verticalCenter
         anchors.topMargin: -height
@@ -108,4 +110,3 @@ Item {
         onClicked: root.roofOpenProgress = 1.0
     }
 }
-

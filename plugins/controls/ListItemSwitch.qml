@@ -111,6 +111,7 @@ ListItemBasic {
 
     accessoryDelegateComponent1: Switch {
         id: switchDelegate
+        objectName: "listItemSwitch"
         checked: root.switchOn
         onPositionChanged: root.position = position
         onToggled: {

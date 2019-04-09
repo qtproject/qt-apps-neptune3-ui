@@ -53,17 +53,22 @@ Item {
 
     TabBar {
         id: tabBar
+        objectName: "viewDoorsPanel"
+
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
 
         TabButton {
+            objectName: "subViewButton_roof"
             text: qsTr("Sun roof")
         }
         TabButton {
+            objectName: "subViewButton_doors"
             text: qsTr("Doors")
         }
         TabButton {
+            objectName: "subViewButton_trunk"
             text: qsTr("Trunk")
         }
     }
@@ -77,6 +82,7 @@ Item {
 
         RoofPanel {
             id: roofPanel
+            objectName: "subView_roof"
 
             leftDoorOpened: root.leftDoorOpened
             rightDoorOpened: root.rightDoorOpened
@@ -85,6 +91,7 @@ Item {
 
         FrontDoorsPanel {
             id: frontDoorsPanel
+            objectName: "subView_doors"
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
 
@@ -94,6 +101,7 @@ Item {
 
         TrunkPanel {
             id: trunkPanel
+            objectName: "subView_trunk"
             onTrunkClicked: root.trunkClicked()
 
             leftDoorOpened: root.leftDoorOpened
@@ -102,4 +110,3 @@ Item {
         }
     }
 }
-
