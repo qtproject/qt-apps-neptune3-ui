@@ -53,6 +53,7 @@
     \li \l {Neptune 3 UI - App Popups}{Application Popups}
     \li \l {Neptune 3 UI - App Requests}{Application Requests}
     \li \l {Neptune 3 UI - 3D Integration}{3D Integration}
+    \li \l {Neptune 3 UI - Qt Safe Renderer Integration}{Qt Safe Renderer Integration}
     \li \l {Neptune 3 UI - Maps App}{Map Application}
     \li \l {Neptune 3 UI - General Settings App}{General Settings Application}
 \endlist

@@ -10,7 +10,9 @@ sourcedirs += src ../ $$BUILDDIR/../src/remotesettings/frontend
 
 imagedirs += src/images
 
-depends += qtcore qtquick qtqml
+depends += qtcore qtquick qtqml qtgui
+
+indexes = $$QT_INSTALL_DOCS/../QtSafeRenderer-1.0.0/SafetyManual/qtsaferenderer.index
 
 qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp

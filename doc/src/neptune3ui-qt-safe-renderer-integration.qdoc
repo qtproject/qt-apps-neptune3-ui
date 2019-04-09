@@ -1,0 +1,223 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-qt-safe-renderer-integration.html
+   \title Neptune 3 UI - Qt Safe Renderer Integration
+   \brief The Qt Safe Renderer Integration in Neptune 3 UI
+
+    In Neptune 3 UI, Qt Safe Renderer is included in both:
+    \list
+      \li the regular UI part as QML components
+      \li the safety-critical UI part as a sample app, neptune3-ui-qsr-cluster
+    \endlist
+    The diagram below illustrates how these two integrations are done.
+
+   \image qt-safe-renderer-integration.png
+
+   \section1 Enable Qt Safe Renderer Support
+
+    To use Qt Safe Renderer on these \l [QtSafeRenderer] {Supported Qt Versions and Host Platforms}
+    {development environments}, build and install Qt Safe Renderer based on the steps described
+    in the \l [QtSafeRenderer] {Installing Qt Safe Renderer} {Installation guide}.
+
+    To enable support for Qt Safe Renderer in the Neptune 3 UI \c .qmake.conf file, add \c use_qsr
+    to the \c CONFIG line. This property does the following:
+
+    \list
+    \li include \c neptune3-ui-qsr-cluster to the build tree
+    \li enable in \c neptune3-ui.pro \l [QtSafeRenderer] {Enabling Qt Safe Layout Tool}
+    {Qt Safe Layout Tool}, which generates layout files into \c {BUILD_FOLDER/qsr-safelayout},
+    including a \c {SafeTelltalesPanel.srl} file, that \c neptune3-ui-qsr-cluster uses
+    \endlist
+
+    The Client to Neptune's \l {Neptune 3 UI - Remote Settings Server} {Remote Settings Server}
+    provides the value sources: telltales state, speed, and so on, for Safe UI. Connection
+    parameters are read from the \c {.config/Pelagicore/NeptuneControlApp.conf} file. The first
+    \c url property from the \c [lastUrls] group is used for connection:
+
+    \badcode
+    [lastUrls]
+    1\url=tcp://127.0.0.1:9999
+    2\url=tcp://192.168.0.1:1111
+    size=2
+    \endcode
+
+    For the \c neptune3-ui-qsr-cluster and the \c neptune3-ui apps to communicate, we use a TCP
+    connection. TCP client is on non-safe partition and server is on Safe UI part. TCP client is a
+    part of \l [QtSafeRenderer] {Qt Safe Renderer QML Types} {Qt Safe Renderer QML plugin}.
+    Qt Safe Renderer requires following environment variables to be set for communication:
+
+    \badcode
+    QT_SAFERENDER_IPADDRESS=127.0.0.1
+    QT_SAFERENDER_PORT=1111
+    \endcode
+
+    They are set inside \c neptune3-ui using public system properties in the
+    \c {am-config-...} related files described in the following table:
+
+    \table
+    \header
+        \li Parameter Name
+        \li Type
+        \li Description
+    \row
+        \li qsrEnabled
+        \li bool
+        \li if set to \c yes, enables loading Safe telltales inside Cluster app (\c {SafeTellatales.qml}).
+        By default it is disabled.
+    \row
+        \li qsrServerAddress
+        \li string
+        \li The \c neptune3-ui-qsr-cluster server address
+    \row
+        \li qsrServerPort
+        \li string
+        \li The \c neptune3-ui-qsr-cluster server port
+    \endtable
+
+    The following is an example of Qt Safe Renderer settings in the {am-config-...} related files:
+
+    \badcode
+    systemProperties:
+        public:
+            qsrEnabled: yes
+            qsrServerAddress: '127.0.0.1'
+            qsrServerPort: '1111'
+    \endcode
+
+    For the \c neptune3-ui-qsr-cluster app, the TCP server's listening port is set in the
+    \c {.config/Pelagicore/QSRCluster.conf} settings file. The default port is \c {1111}.
+    \badcode
+    [connection]
+    listen_port=1111
+    \endcode
+
+    \section1 Non-safe to Safe UI Switching on the NUC Target
+
+    On the NUC target you can switch between Non-Safe and Safe UI via systemd service monitoring
+    using \c OnFailure property. When \c neptune3-ui stops, the \c neptune3-ui-qsr-cluster app is
+    started by systemd.
+
+    The following code shows the "OnFailure" part of the \c {Neptune 3 UI with Safe Renderer}
+    service file (\c {/lib/systemd/system/neptune3-qsr.service}):
+
+    \badcode
+    [Unit]
+    OnFailure=neptune3-ui-qsr-cluster.service
+    \endcode
+
+    The \c {Safe UI} service file (\c {/lib/systemd/system/neptune3-qsr.service}) contains:
+    \badcode
+    [Service]
+    Type=oneshot
+    ExecStart=/opt/neptune3/neptune3-ui-qsr-cluster -platform eglfs
+    workingDirectory=/opt/neptune3
+    Environment=QT_QPA_EGLFS_KMS_CONFIG=/opt/neptune3/neptune3-ui-qsr.json
+    \endcode
+
+    The corresponding EGLFS settings JSON file (\c {/opt/neptune3/neptune3-ui-qsr.json}) contains:
+    \badcode
+    {
+        "device": "/dev/dri/card0",
+        "outputs": [
+            { "name": "DP1", "virtualIndex": 2, "mode": "1920x1080"},
+            { "name": "DP3", "virtualIndex": 0, "mode": "1920x1080"},
+            { "name": "DP4", "virtualIndex": 1, "mode": "1920x1080"}
+        ]
+    }
+    \endcode
+
+    \section1 Safe UI App
+
+    \c neptune3-ui-qsr-cluster is a sample "Safe UI part" implementation of Qt Safe Renderer inside
+    Neptune 3 UI project. It is based on the desktop part of Qt Safe Renderer Example
+    \l [QtSafeRenderer] {Telltales: Rendering Safety-Critical UI}, that illustrates how to develop
+    with Qt Safe Renderer in a desktop environment.
+    \note This sample is not implemented according to
+    \l [QtSafeRenderer] {MISRA C++ Rules and Exception Handling}
+    {Misra C++ 2008 nor ISO26262 functional safety standards}
+    as the sample depends on Qt classes.
+
+    In this sample main aspects of work with Qt Safe Renderer are presented:
+
+    \list
+    \li Loading layout generated from QML file inside Neptune 3 UI, which contains telltales images,
+    speed, power and warning texts
+    \li Interacting with Qt Safe Renderer library for rendering into buffer via SafeWindow class
+    inherited from Qt Safe Renderer \l [QtSafeRenderer] {SafeRenderer::AbstractWindow}
+    {AbstractWindow} and basic \l [QtGui] {QWindow}
+    \li Using \l [QtSafeRenderer] {SafeRenderer::StateManager} {StateManager} for controlling UI
+    elements states
+    \li Communicating with \c {non-safe partition} via \l [QtSafeRenderer] {SafeMessage}
+        {heartbeat messages} and receiving notification that \c {Main UI} is about to shutdown.
+        Simple Qt TCP Sever (\c TcpMsgHandler) is used for this.
+    \li Communicating with Neptune's \l {Neptune 3 UI - Remote Settings Server}
+        {Remote Settings Server} to get values of Safe UI elements states. Same \l{Qt IVI} auto
+        generated client is used as in Neptune's \l {Neptune 3 UI - Remote Settings Server}
+        {Remote Control App}
+    \endlist
+
+
+    \image qt-safe-renderer-error-cluster.png
+
+
+    The app's workflow is as follows:
+
+    \list
+    \li load generated layout from \c {BUILD_FOLDER/qsr-safelayout/SafeTelltalesPanel.srl}
+    \li create window and connect it to Qt Safe Renderer \l [QtSafeRenderer]
+    {SafeRenderer::StateManager} {StateManager}
+    \li start TCP server for processing heartbeats from non-safe partition and show warning if timeout or
+    shutdown signal happens, hide them on new heartbeats \li start
+    \l {Neptune 3 UI - Remote Settings Server} {Remote Settings Server} Client to receive values for
+    Safe UI elements visibility states and text values
+    \endlist
+
+    \section1 Desktop Scenario
+
+    \image qt-safe-renderer-overlay.png
+
+    On the desktop, it's possible to place a Qt Safe Renderer window directly over Neptune 3 UI's
+    Cluster window to demonstrate that telltales are positioned and scaled the same on Safe and
+    Non-Safe parts. From non-safe partition Cluster window positions are sent to the Safe part if
+    Qt Safe Renderer support is enabled. For \c neptune3-ui-qsr-cluster overlaying of Neptune's 3 UI
+    Cluster window is enabled by default and can be switched off in settings file
+    (\c {.config/Pelagicore/QSRCluster.conf}) by modifying the boolean key:
+
+    \badcode
+        [gui]
+        stick_to_cluster=false
+    \endcode
+
+    This key is used to demonstrate how the whole cluster looks: Neptune 3 UI at the bottom and safe
+    elements on top as if the cluster was rendered on an actual target with \l [QtSafeRenderer]
+    {Rendering Safety-Critical and Non-Safe UI} {hardware layering}. On desktop, however, there's no
+    hardware layering, so we place one window on top of another manually. We also make one window
+    "follow" coordinates of another to make their positions on the screen synchronized.
+
+*/
