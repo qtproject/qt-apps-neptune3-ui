@@ -42,7 +42,7 @@
    The following lines are added in the requested applications info.yaml files so
    that the ApplicationManager can identify those.
 
-   Music Player app, info.yaml:
+   Music app, info.yaml:
 
    \badcode
    mimeTypes: [ 'x-scheme-handler/x-radio' ]
@@ -117,8 +117,8 @@
    \section1 Current Use-Cases in Neptune 3 UI
 
    \section2 Media Application
-   All media applications (Radio, Web Radio, Music Player) are connected to each other using
-   requests. To try it, navigating to either Music Player, Radio and/or WebRadio app and press
+   All media applications (Radio, Web Radio, Music are connected to each other using
+   requests. To try it, navigating to either Music, Radio and/or WebRadio app and press
    "sources" in the toolbar menu on the right side. A popup will open with all available music
    sources. Choosing any of those will direct you to the respective music application.
 

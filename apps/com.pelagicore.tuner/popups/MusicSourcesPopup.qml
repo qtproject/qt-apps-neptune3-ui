@@ -93,7 +93,7 @@ PopupWindow {
                 text: model.text
                 spacing: Sizes.dp(20)
                 onClicked: {
-                    if (text === "Music Player") {
+                    if (text === "Music") {
                         Qt.openUrlExternally("x-music://");
                     } else if (text === "Web radio") {
                         Qt.openUrlExternally("x-webradio://");

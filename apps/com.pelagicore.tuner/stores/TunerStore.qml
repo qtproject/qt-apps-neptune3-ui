@@ -80,7 +80,7 @@ Store {
 
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
-        ListElement { text: "Music Player"}
+        ListElement { text: "Music"}
     }
 
     property var ipc: QtObject {
