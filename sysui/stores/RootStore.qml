@@ -51,6 +51,7 @@ Store {
     readonly property ClusterStore clusterStore: ClusterStore { id: clusterStore }
     readonly property HUDStore hudStore: HUDStore {}
     readonly property CenterConsoleStore centerConsole: CenterConsoleStore {}
+    readonly property string hardwareVariant: ApplicationManager.systemProperties.hardwareVariant
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property StatusBarStore statusBarStore: StatusBarStore {

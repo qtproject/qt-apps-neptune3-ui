@@ -246,6 +246,7 @@
         showCluster: yes
         showHUD: yes
         devMode: yes
+        hardwareVariant: 'high'
       private:
         appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
 
@@ -265,6 +266,12 @@
    disable Development Mode in Neptune 3 UI. When enabled, the Sheets app
    is included in the Application Launcher and developers acn see all of the
    components that Neptunen 3 UI supports, to develop an app.
+
+   The \c hardwareVariant parameter can be used to specify the hardware used.
+   According to the variant, features are enabled or disabled because they
+   aren't supported on the hardware. Currently, there is high and low.
+   If set to low some performance intense graphical effects, which lead to
+   bad frame rates on low-end devices like Raspberry Pi, are disabled.
 
    All of these options are also configurable from the command line as a
    parameter to the \c appman utility. See

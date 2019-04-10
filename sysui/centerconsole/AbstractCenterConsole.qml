@@ -92,6 +92,13 @@ Item {
         source: Style.image("bg-home")
         opacity: mainContentArea.item && mainContentArea.item.launcherOpen && Style.theme === Style.Light ? 0.7 : 1
         Behavior on opacity { DefaultNumberAnimation {} }
+        visible: root.store.hardwareVariant !== 'low'
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: Style.backgroundColor
+        visible: root.store.hardwareVariant === 'low'
     }
 
     // Content Elements
@@ -105,6 +112,7 @@ Item {
         Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: bottomBar.height }
         Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
         Binding { target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard.item }
+        Binding { target: mainContentArea.item; property: "enableOpacityMask"; value: root.store.hardwareVariant !== 'low' }
     }
 
     StatusBar {

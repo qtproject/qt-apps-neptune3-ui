@@ -42,6 +42,7 @@ systemProperties:
       showCluster: yes
       showHUD: yes
       devMode: yes
+      hardwareVariant: 'high'
       #Qt Safe Renderer settings
       qsrEnabled: no
       qsrServerAddress: '127.0.0.1'

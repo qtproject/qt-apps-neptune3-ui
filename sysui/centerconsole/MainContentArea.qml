@@ -49,6 +49,7 @@ Item {
     property real homeBottomMargin
     property Item popupParent
     property Item virtualKeyboard
+    property bool enableOpacityMask
 
     readonly property real activeAppBottomMargin: {
         var margin = root.homeBottomMargin;
@@ -157,6 +158,7 @@ Item {
         anchors.fill: mainContentArea
         source: mainContentArea
         maskSource: mainContentMask
+        visible: enableOpacityMask
     }
 
     Launcher {
