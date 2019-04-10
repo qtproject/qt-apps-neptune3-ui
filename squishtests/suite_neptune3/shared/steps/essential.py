@@ -155,22 +155,17 @@ def step(context, app_name):
         app_pointer = find_object_name_recursively(grid_view, object_name, 3)
 
         if app_pointer:
+            # open grid always, looking at visible is not as
+            # robust as doing this always
+            grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
+            tapObject(grid_button)
+            # wait a little until grid is opened
+            squish.snooze(0.5)
             if app_pointer.visible:
                 tapObject(app_pointer)
             else:
-                # if not visible then open the grid
-                # and tap the former hidden object
-                test.log("app '" + app_name + "' is not on the"
-                         + " task bar but it will be opened from the grid!")
-                grid_button = waitForObject(names.neptune_3_UI_Center_Console_gridButton_ToolButton)
-                tapObject(grid_button)
-                # wait a little until grid is opened
-                squish.snooze(0.5)
-                if app_pointer.visible:
-                    tapObject(app_pointer)
-                else:
-                    test.fail("'" + app_name + "' is on the grid but"
-                             + " not visible.")
+                test.fail("'" + app_name + "' is on the grid but"
+                         + " not visible, this should not happen at all.")
         else:
             test.fail("'" + app_name + "' could not be found!")
     # wait another half second
