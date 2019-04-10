@@ -145,6 +145,24 @@ Item {
             width: parent.width
             implicitHeight: Sizes.dp(220)
 
+            function getWindowTypeName(window) {
+
+                if (window) {
+                    switch (window.windowProperty("windowType")) {
+                    case undefined:
+                        return qsTr("Center Console Window")
+                    case "bottombar":
+                        return qsTr("Bottom Bar Window");
+                    case "hud":
+                        return qsTr("HUD Window");
+                    case "instrumentcluster":
+                        return qsTr("Instrument Cluster Window");
+                    }
+                }
+
+                return qsTr("No Window");
+            }
+
             ProcessStatus {
                 id: processStatus
                 applicationId: model.appInfo.id
@@ -194,7 +212,7 @@ Item {
                     visible: model.appInfo ? !!model.appInfo.window : false
                     leftPadding: Sizes.dp(40)
                     Label {
-                        text: qsTr("Primary Window, on Center Console: ")
+                        text: delegateRoot.getWindowTypeName(model.appInfo.window)
                         font.pixelSize: Sizes.fontSizeS
                     }
                     RowLayout {
@@ -223,7 +241,7 @@ Item {
                     visible: model.appInfo ? !!model.appInfo.icWindow : false
                     leftPadding: Sizes.dp(40)
                     Label {
-                        text: qsTr("Application IC Window, on Instrument Cluster")
+                        text: delegateRoot.getWindowTypeName(model.appInfo.icWindow)
                         font.pixelSize: Sizes.fontSizeS
                     }
                     RowLayout {

@@ -49,6 +49,10 @@ NeptuneWindow {
     height: Sizes.dp(720)
     title: qsTr("Instrument Cluster")
 
+    Component.onCompleted: {
+        setWindowProperty("windowType", "instrumentcluster");
+    }
+
     ClusterView {
         id: clusterView
         anchors.fill: parent
