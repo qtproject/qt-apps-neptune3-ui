@@ -77,7 +77,7 @@ Item {
             item.speedLimit = Qt.binding( function() {return store.vehicleInterface.speedLimit})
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
-            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.drivetrain})
+            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
         }
     }
 
@@ -96,7 +96,7 @@ Item {
             item.speedLimit = Qt.binding( function() {return store.vehicleInterface.speedLimit})
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
-            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.drivetrain})
+            item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
         }
     }
 
