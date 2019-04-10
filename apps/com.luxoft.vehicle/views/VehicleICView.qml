@@ -44,10 +44,9 @@ Item {
 
     property VehicleStore store
 
-    Vehicle3DPanel {
-        id: car3dPanel
-
+    Vehicle2DPanel {
         anchors.top: root.top
+        anchors.topMargin: Sizes.dp(720 - 652)
         anchors.left: root.left
         anchors.right: root.right
         height: Sizes.dp(652)
@@ -55,10 +54,7 @@ Item {
         leftDoorOpen: root.store.leftDoorOpened
         rightDoorOpen: root.store.rightDoorOpened
         trunkOpen: root.store.trunkOpened
-        roofOpenProgress: root.store.roofOpenProgress
-        clusterView: true
-
-        cameraPanAngleOutput: store.cameraAngleView
-        modelQuality: root.store.model3DQuality
+        roofOpen: root.store.roofOpenProgress == 1.0
+        speed: store.speed
     }
 }

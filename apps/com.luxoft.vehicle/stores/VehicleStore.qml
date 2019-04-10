@@ -43,6 +43,8 @@ QtObject {
     property real cameraAngleView: 0.0
     property string model3DQuality: "high"
 
+    property real speed: cluster.speed
+
     property ListModel controlModel : ListModel {
         ListElement { name: QT_TR_NOOP("Fees"); active: false; icon: "fees" }
         ListElement { name: QT_TR_NOOP("Hill Descent Control"); active: true; icon: "hill-descent-control" }
@@ -68,6 +70,8 @@ QtObject {
             root.rightDoorOpened = uiSettings.door2Open
         }
     }
+
+    property InstrumentCluster cluster: InstrumentCluster { id: cluster }
 
     function setTrunk() {
         if (root.trunkOpened) {

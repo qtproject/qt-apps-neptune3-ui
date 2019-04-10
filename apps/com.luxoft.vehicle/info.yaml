@@ -17,7 +17,6 @@ name:
 applicationProperties:
     private:
         squishPort: 7732
-        showOnCluster: true
         # options: high, middle, low, lowest
         # first two load model from obj format (slow start with high memory usage, but good quality)
         # high -- high quality model (there are many polygons in each model part)
