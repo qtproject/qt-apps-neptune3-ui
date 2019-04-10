@@ -49,6 +49,7 @@ Item {
         }
     }
 
+    visible: root.y > -root.height
     height: {
         var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
         if (totalHeight > Sizes.dp(1720)) {
