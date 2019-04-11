@@ -54,14 +54,34 @@ Item {
     property bool showDevApps: false
     property bool showSystemApps: false
     property bool gridOpen: false
+
     onGridOpenChanged: {
         if (!root.gridOpen) {
             grid.editMode = false
         }
     }
+
     onModelChanged: {
         if (root.model) {
             visualModel.model = root.model;
+            visualModel.refreshItems()
+            visualModel.modelItemsCount = Qt.binding( function() { return root.model.count; } )
+        }
+    }
+
+    signal appButtonClicked(var applicationId)
+
+    DelegateModel {
+        id: visualModel
+
+        //binded property for model root.model
+        property int modelItemsCount
+
+        onModelItemsCountChanged: {
+            visualModel.refreshItems()
+        }
+
+        function refreshItems() {
             var modelCount = root.model.count;
 
             for (var i = 0; i < modelCount; i++) {
@@ -84,12 +104,7 @@ Item {
             if (!showDevApps)
                 visualModel.filterOnGroup = "noSystemNoDev"
         }
-    }
 
-    signal appButtonClicked(var applicationId)
-
-    DelegateModel {
-        id: visualModel
         groups: [
             DelegateModelGroup { name: "noSystem"; includeByDefault: false },
             DelegateModelGroup { name: "noSystemNoDev"; includeByDefault: false }
