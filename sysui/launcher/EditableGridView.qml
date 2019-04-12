@@ -118,6 +118,8 @@ Item {
             width: grid.cellWidth
             height: grid.cellHeight
 
+            //disable mouse interaction for invisible items when only top row is shown
+            enabled: opacity > 0.0
             opacity: {
                 if (delegateRoot.visualIndex > (root.numIconsPerRow - 1)) {
                     if (root.gridOpen) {
