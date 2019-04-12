@@ -50,7 +50,7 @@ QtObject {
         VehicleView {
             id: vehicleView
             anchors.fill: parent
-            store: VehicleStore { model3DQuality: ApplicationInterface.applicationProperties["modelQuality"] }
+            store: VehicleStore { model3DVersion: ApplicationInterface.applicationProperties["modelVersion"] }
         }
 
         InstrumentCluster {

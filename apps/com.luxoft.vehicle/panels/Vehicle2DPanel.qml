@@ -51,7 +51,7 @@ Item {
     property real speed: 0.0
 
     SequentialAnimation {
-        running: speed > 0.0
+        running: speed > 0.0 && (trunkOpened || leftDoorOpened || roofOpen || rightDoorOpened)
         loops: Animation.Infinite
         PropertyAnimation {
             targets: [sunroofAlarm, trunkAlarm, leftDooralarm, rightDooralarm]

@@ -41,26 +41,17 @@ function doesFileExist(url) {
 
 
 // see vehicle app info.yaml for description
-function getModelPath(name, quality) {
-    quality = quality || "high";
-    var path = ""
+function getModelPath(name, version) {
+    version = version || "original";
 
-    if (quality === "high") {
-        return Qt.resolvedUrl("../assets/models/" + name + ".obj")
+    if (version === "original" || version === "optimized") {
+        return Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
     }
 
-    if (quality === "middle") {
-        path = Qt.resolvedUrl("../assets/models/" + name + "_middle.obj")
-        return doesFileExist(path) ? path : Qt.resolvedUrl("../assets/models/" + name + ".obj")
-    }
-
-    if (quality === "low") {
-        return Qt.resolvedUrl("../assets/models/" + name + ".stl")
-    }
-
-    if (quality === "lowest") {
-        path = Qt.resolvedUrl("../assets/models/" + name + "_middle.stl")
-        return doesFileExist(path) ? path : Qt.resolvedUrl("../assets/models/" + name + ".stl")
+    if (version === "mixedFormats") {
+        var pathObj = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
+        var pathStl = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".stl")
+        return doesFileExist(pathObj) ? pathObj : pathStl
     }
 }
 

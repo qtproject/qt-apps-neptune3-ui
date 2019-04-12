@@ -53,7 +53,7 @@ Entity {
         // represents counter for rotation, when it lower than 360  car will be rotated for delta (360 - demoRotation)
         property int demoRotation: 360
         property Timer demoTimer: Timer {
-            interval: 30000
+            interval: 60000
             repeat: true
             running: root.enabled
             onTriggered: {

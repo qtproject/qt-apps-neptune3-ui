@@ -61,14 +61,14 @@ Entity {
     }
 
     property bool open: false
-    property string quality
+    property string version
 
     components: [transform]
 
     Entity {
         Mesh {
             id: mesh
-            source: Paths.getModelPath("silver_paint_2", root.quality)
+            source: Paths.getModelPath("silver_paint_2", root.version)
         }
         components: [mesh, whiteHood]
     }
@@ -76,7 +76,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: Paths.getModelPath("glass_2", root.quality)
+            source: Paths.getModelPath("glass_2", root.version)
         }
         components: [glass, glassMaterial]
     }
@@ -84,7 +84,7 @@ Entity {
     Entity {
         Mesh {
             id: chrome
-            source: Paths.getModelPath("chrome_3", root.quality)
+            source: Paths.getModelPath("chrome_3", root.version)
         }
         components: [chrome, chromeMaterial]
     }
@@ -92,7 +92,7 @@ Entity {
     Entity {
         Mesh {
             id: black
-            source: Paths.getModelPath("black_right", root.quality)
+            source: Paths.getModelPath("black_right", root.version)
         }
         components: [black, blackMaterial]
     }
@@ -100,7 +100,7 @@ Entity {
     Entity {
         Mesh {
             id: black1
-            source: Paths.getModelPath("black_3", root.quality)
+            source: Paths.getModelPath("black_3", root.version)
         }
         components: [black1, blackMaterial]
     }

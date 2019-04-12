@@ -52,6 +52,10 @@ Item {
         anchors.left: root.left
         anchors.right: root.right
         height: Sizes.dp(652)
+
+        scene3DHeight: Sizes.dp(380)
+        scene3DWidth: Sizes.dp(960)
+
         // at the application startup it doesn't receive full screen window,
         // in that moment the car model is scaled awfully, so we wait till the app window is rescaled properly
         visible: parent.height > 2 * Sizes.dp(652)
@@ -61,7 +65,7 @@ Item {
         trunkOpen: root.store.trunkOpened
         roofOpenProgress: root.store.roofOpenProgress
 
-        modelQuality: root.store.model3DQuality
+        modelVersion: root.store.model3DVersion
     }
 
     Vehicle3DControlPanel {

@@ -41,7 +41,7 @@ QtObject {
     property bool trunkOpened: false
     property real roofOpenProgress: 0.0
     property real cameraAngleView: 0.0
-    property string model3DQuality: "high"
+    property string model3DVersion: "original"
 
     property real speed: cluster.speed
 

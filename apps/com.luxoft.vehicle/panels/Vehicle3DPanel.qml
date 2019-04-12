@@ -50,7 +50,10 @@ Item {
 
     property real cameraPanAngleOutput: 0.0
     property real cameraPanAngleInput: 0.0
-    property string modelQuality
+    property string modelVersion
+
+    property int scene3DHeight
+    property int scene3DWidth
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     property real roofOpenProgress: 0.0
@@ -90,7 +93,10 @@ Item {
             }
 
             Scene3D {
-                anchors.fill: parent
+                height: root.scene3DHeight
+                width: root.scene3DWidth
+                anchors.verticalCenterOffset: Sizes.dp(80)
+                anchors.centerIn: parent
                 aspects: ["input", "logic"]
                 focus: false
 
@@ -114,11 +120,11 @@ Item {
                     Camera {
                         id: camera
                         projectionType: CameraLens.PerspectiveProjection
-                        fieldOfView: 25
+                        fieldOfView: 15
                         nearPlane: 0.1
                         farPlane: 100.0
                         position:   Qt.vector3d(0.0, 5.0, 18.0)
-                        viewCenter: Qt.vector3d(0.0, 1.6, 0.0)
+                        viewCenter: Qt.vector3d(0.0, 0.6, 0.0)
                         upVector:   Qt.vector3d(0.0, 1.0, 0.0)
                     }
 
@@ -182,37 +188,37 @@ Item {
 
                     Shadow {}
                     AxisFront {
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     AxisRear {
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     Seats {
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     RearDoor {
                         id: trunk
                         open: root.trunkOpen
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     LeftDoor {
                         id: leftDoor
                         open: root.leftDoorOpen
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     RightDoor {
                         id: rightDoor
                         open: root.rightDoorOpen
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     Roof {
                         id: roof
                         openProgress: root.roofOpenProgress
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                     Body {
                         id: body
-                        quality: root.modelQuality
+                        version: root.modelVersion
                     }
                 }
             }

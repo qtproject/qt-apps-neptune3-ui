@@ -46,7 +46,7 @@ Entity {
 
     // 0.0 fully closed, 1.0 fully open
     property real openProgress: 0.0
-    property string quality
+    property string version
 
     Transform {
         id: transform
@@ -61,7 +61,7 @@ Entity {
 
     Mesh {
         id: mesh
-        source: Paths.getModelPath("sun_roof", root.quality)
+        source: Paths.getModelPath("sun_roof", root.version)
     }
 
     components: [transform, mesh, whiteHood]

@@ -17,14 +17,13 @@ name:
 applicationProperties:
     private:
         squishPort: 7732
-        # options: high, middle, low, lowest
-        # first two load model from obj format (slow start with high memory usage, but good quality)
-        # high -- high quality model (there are many polygons in each model part)
-        # middle -- ~60% of polygons in each model part (compared to the previous)
-        # others two load model from stl format (fast start with lower memory usage then previous, but with lower quality)
-        # low -- the amount of polygons the same as in high but the textures have some artifacts
-        # lowest -- the amount of polygons the same as in middle but the textures have some artifacts
+        # versions description: original, optimized, mixedFormats
+        # original -- the same model as in 5.11 version: objects are stored in *.obj format (high-poly model)
+        # optimized -- objects are stored in *.obj format (the polygons amount was reduced)
+        # mixedFormats -- almost all objects are stored in *stl binary format
         # REMEMBER, that it is required to relaunch neptune3 for changes
-        modelQuality: 'high'
+        #modelVersion: 'original'
+        modelVersion: 'optimized'
+        #modelVersion: 'mixedFormats'
 
 categories: [ 'navigation', 'vehicle' ]

@@ -41,11 +41,11 @@ import "../../helpers" 1.0
 
 Entity {
     id: root
-    property string quality
+    property string version
     components: [
         Mesh {
             id: seats
-            source: Paths.getModelPath("seats", root.quality)
+            source: Paths.getModelPath("seats", root.version)
         },
         DiffuseMapMaterial {
             id: seatsMaterial

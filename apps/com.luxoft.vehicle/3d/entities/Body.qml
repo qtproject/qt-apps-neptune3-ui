@@ -43,7 +43,7 @@ Entity {
     id: root
 
     property bool loaded: false
-    property string quality
+    property string version
 
     Transform {
         id: transform
@@ -55,7 +55,7 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: Paths.getModelPath("chrome", root.quality)
+            source: Paths.getModelPath("chrome", root.version)
             //ToDo: this has to be replaced with an actual loading signal or something more clear
             onGeometryChanged: root.loaded = true
         }
@@ -65,7 +65,7 @@ Entity {
     Entity {
         Mesh {
             id: shell
-            source: Paths.getModelPath("shell", root.quality)
+            source: Paths.getModelPath("shell", root.version)
         }
         components: [shell, whiteHood]
     }
@@ -73,7 +73,7 @@ Entity {
     Entity {
         Mesh {
             id: matt_black
-            source: Paths.getModelPath("matt_black", root.quality)
+            source: Paths.getModelPath("matt_black", root.version)
         }
         components: [matt_black, blackMaterial]
     }
@@ -81,7 +81,7 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: Paths.getModelPath("glass_4", root.quality)
+            source: Paths.getModelPath("glass_4", root.version)
         }
         components: [glass, glassMaterial]
     }
@@ -89,7 +89,7 @@ Entity {
     Entity {
         Mesh {
             id: license_plates
-            source: Paths.getModelPath("licence_plates", root.quality)
+            source: Paths.getModelPath("licence_plates", root.version)
         }
         components: [license_plates, whiteMaterial]
     }
@@ -97,7 +97,7 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: Paths.getModelPath("front_ights", root.quality)
+            source: Paths.getModelPath("front_ights", root.version)
         }
         CookTorranceMaterial {
             id: frontLightsMaterial
@@ -112,7 +112,7 @@ Entity {
     Entity {
         Mesh {
             id: taillights
-            source: Paths.getModelPath("taillights", root.quality)
+            source: Paths.getModelPath("taillights", root.version)
         }
         components: [taillights, taillightsMaterial]
     }
@@ -120,7 +120,7 @@ Entity {
     Entity {
         Mesh {
             id: interior
-            source: Paths.getModelPath("interior", root.quality)
+            source: Paths.getModelPath("interior", root.version)
         }
         components: [interior, interiorMaterial]
     }
