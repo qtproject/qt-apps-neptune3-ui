@@ -1,5 +1,8 @@
 requires(linux|android|macos|win32:!winrt)
 
+QT_FOR_CONFIG += ivicore
+!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+
 TEMPLATE = subdirs
 
 include(config.pri)

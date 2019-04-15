@@ -5,7 +5,7 @@ macos: CONFIG -= app_bundle
 CONFIG += ivigenerator
 
 QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available")
+!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
 
 include($$SOURCE_DIR/config.pri)
 

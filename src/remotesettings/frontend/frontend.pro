@@ -4,7 +4,7 @@ CONFIG += ivigenerator
 DESTDIR = $$LIB_DESTDIR
 
 QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available")
+!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
 
 macos: QMAKE_SONAME_PREFIX = @rpath
 
