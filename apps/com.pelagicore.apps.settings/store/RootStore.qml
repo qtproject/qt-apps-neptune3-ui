@@ -45,7 +45,10 @@ QtObject {
     readonly property UISettings uiSettings: UISettings {
         onAccentColorChanged: {
             accentColorsModel.forEach(function(element) {
-                element.selected = Qt.colorEqual(element.color, accentColor);
+                var c1 = Qt.lighter(element.color, 1.0)
+                var c2 = Qt.lighter(accentColor, 1.0)
+                element.selected = Qt.colorEqual(element.color, accentColor)
+                    ||  Math.abs(c1.r - c2.r) + Math.abs(c1.g - c2.g) + Math.abs(c1.b - c2.b) < 0.01;
             });
         }
     }
@@ -112,17 +115,25 @@ QtObject {
     // (Accent) Colors segment
     readonly property color currentAccentColor: !!uiSettings.accentColor ? uiSettings.accentColor : Style.accentColor
 
-    property var accentColorsModel: [
-        { color: "#D25555", value: 5, selected: false },
-        { color: Style.accentColor, value: 5, selected: true }, // default accent color
-        { color: "#9EAE83", value: 5, selected: false },
-        { color: "#78887B", value: 5, selected: false },
-        { color: "#7BA2A5", value: 5, selected: false },
-        { color: "#51A7F4", value: 5, selected: false },
-        { color: "#535258", value: 5, selected: false },
-        { color: "#DB3B9F", value: 5, selected: false }
-    ]
+    function _initColors() {
+        var arr = [{ color: Style.accentColor, value: 5, selected: true }]
+        var c = Style.accentColor
+        for (var i = 1; i < 10; ++i) {
+            if (c.hslHue - i * 0.1 >= 0) {
+                arr.push({ color: Qt.hsla(c.hslHue - i * 0.1, 0.7, c.hslLightness, c.a)
+                            , value: 5, selected: false })
+            }
 
+            if (c.hslHue + i * 0.1 <= 1) {
+                arr.push({ color: Qt.hsla(c.hslHue + i * 0.1, 0.7, c.hslLightness, c.a)
+                            , value: 5, selected: false })
+            }
+        }
+
+        return arr;
+    }
+
+    property var accentColorsModel: _initColors()
     function updateAccentColor(value) {
         console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
