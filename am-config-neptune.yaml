@@ -46,6 +46,7 @@ systemProperties:
       qsrServerAddress: '127.0.0.1'
       qsrServerPort: '1111'
       showSystemAppsInLauncher: no
+      qt3DStudioRuntimeExist: no
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
       orientation: 'Portrait'

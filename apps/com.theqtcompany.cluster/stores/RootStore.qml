@@ -78,7 +78,8 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
-        flatGauges: !ApplicationInterface.applicationProperties["enable3DGauges"] || clusterDataSource.flatGauges
+        flatGauges: !ApplicationInterface.systemProperties["qt3DStudioRuntimeExist"]
+                        || clusterDataSource.flatGauges
         hideGauges: clusterDataSource.hideGauges
         navigationMode: clusterDataSource.navigationMode
     }
