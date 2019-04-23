@@ -34,7 +34,8 @@ import QtQuick 2.9
 import application.windows 1.0
 import shared.utils 1.0
 
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.drivedata 1.0
 import shared.com.pelagicore.systeminfo 1.0
 import shared.Style 1.0
 import shared.com.pelagicore.map 1.0

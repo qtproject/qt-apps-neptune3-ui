@@ -1,0 +1,57 @@
+module DataProvider 1.0
+
+@config: {id: "UISettings"}
+interface UISettings {
+    string language;
+    list<string> languages;
+
+    bool twentyFourHourTimeFormat;
+
+    /**
+     * 0 is muted and 1.0 is max
+     */
+    real volume;
+    bool muted;
+    /*
+     * -1.0 left and +1.0 right and 0 is centered
+     */
+    real balance;
+
+    int theme;
+    string accentColor;
+
+    bool rtlMode;
+
+    bool door1Open;
+    bool door2Open;
+
+    /*
+     * Whether the instrument cluster should be in navigation mode
+     * in this mode its gauges etc will be reshaped to give more room
+     * for the maps navigation content being displayed behind it
+     */
+    bool navigationMode;
+
+    /** Whether both gauges should be hidden or not */
+    bool hideGauges;
+    bool flatGauges;
+}
+
+@config: {id: "SystemUI"}
+interface SystemUI {
+  /*
+   * Incrementing this value will make sysui switch to display the next
+   * available application instrument cluster window.
+   *
+   * This is a hack. What we really need here is just a plain signal that
+   * could be emitted on demand. So that's not really storing a setting
+   * but serving as plain RPC.
+   */
+  int applicationICWindowSwitchCount
+}
+
+@config: {id: "ConnectionMonitoring"}
+interface ConnectionMonitoring {
+    int intervalMS;
+    int counter;
+}

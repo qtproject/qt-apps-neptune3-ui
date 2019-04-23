@@ -1,7 +1,7 @@
 CONFIG += force_qt
 QT *= quick ivicore
 
-INCLUDEPATH += $$OUT_PWD/../src/remotesettings/frontend
+INCLUDEPATH += $$OUT_PWD/../src/dataprovider/frontend
 
 build_online_docs: {
     QMAKE_DOCS = $$PWD/online/neptune3ui.qdocconf

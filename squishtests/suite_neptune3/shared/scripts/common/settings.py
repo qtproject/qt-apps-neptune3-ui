@@ -40,7 +40,7 @@ G_WAIT_SOME_STEPS_SEC = 1
 G_WAIT_SWITCH_APP_CONTEXT = 1
 
 G_AUT_MAIN = "neptune3-ui"
-G_AUT_REMOTE = "RemoteSettingsServer"
+G_AUT_REMOTE = "dataprovider-server"
 G_AUT_APPMAN = "appman-launcher-qml"
 
 G_MULTI_PROCESS = None

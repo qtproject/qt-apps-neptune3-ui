@@ -102,6 +102,7 @@ QtObject {
             InstrumentClusterWindow {
                 applicationModel: root.store.applicationModel
                 clusterStore: root.store.clusterStore
+                uiSettings: root.store.uiSettings
                 performanceOverlayVisible: root.store.systemStore.instrumentClusterPerfOverlayEnabled
             }
         }

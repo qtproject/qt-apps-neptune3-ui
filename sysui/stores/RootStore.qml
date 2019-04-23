@@ -39,7 +39,7 @@ import shared.utils 1.0
 
 import system.models.application 1.0
 
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.dataprovider 1.0
 import shared.com.pelagicore.systeminfo 1.0
 
 Store {

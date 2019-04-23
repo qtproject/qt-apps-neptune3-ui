@@ -30,7 +30,8 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.drivedata 1.0
 import QtApplicationManager.Application 2.0
 
 /*!
@@ -41,7 +42,9 @@ import QtApplicationManager.Application 2.0
 RootStoreInterface {
     id: root
 
-    readonly property InstrumentCluster clusterDataSource: InstrumentCluster {}
+    readonly property InstrumentCluster clusterDataSource: InstrumentCluster {
+        discoveryMode: InstrumentCluster.LoadOnlySimulationBackends
+    }
     /*!
         \qmlproperty UISettings ClusterStore::uiSettings
         Needed here to get twentyFourHourTimeFormat
@@ -79,9 +82,9 @@ RootStoreInterface {
 
     behaviourInterface: BehaviourInterface {
         flatGauges: !ApplicationInterface.systemProperties["qt3DStudioRuntimeExist"]
-                        || clusterDataSource.flatGauges
-        hideGauges: clusterDataSource.hideGauges
-        navigationMode: clusterDataSource.navigationMode
+                        || uiSettings.flatGauges
+        hideGauges: uiSettings.hideGauges
+        navigationMode: uiSettings.navigationMode
     }
 
     externalDataInterface: ExternalDataInterface {

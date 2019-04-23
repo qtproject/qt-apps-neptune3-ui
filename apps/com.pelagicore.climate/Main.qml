@@ -34,7 +34,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import application.windows 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.dataprovider 1.0
 import shared.Style 1.0
 
 import "stores" 1.0

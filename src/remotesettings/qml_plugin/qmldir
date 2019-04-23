@@ -1,3 +1,0 @@
-module shared.com.pelagicore.settings
-plugin remotesettingsplugin
-classname RemoteSettingsPlugin

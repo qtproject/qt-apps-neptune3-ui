@@ -5,7 +5,7 @@ SOURCES += testrunner.cpp
 include(../../config.pri)
 
 # This will add the install directory to the PATH variable of the target_wrapper.bat for the autotest
-# This is needed as the libRemoteSettings.dll will be installed there
+# This is needed as the libdataprovider.dll will be installed there
 win32 {
     extra_path.name = PATH
     extra_path.CONFIG = prepend

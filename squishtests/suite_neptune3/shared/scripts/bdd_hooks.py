@@ -75,7 +75,7 @@ def start_neptune_ui_app_w_focus(window):
 
     # !!! Remember to use ignoredauts.txt feature
     # otherwise this will cause a lot of trouble,
-    # with dbus and RemoteSettingsServer !!!
+    # with dbus and dataprovider-server !!!
     # Read the documentation:
     # https://doc.qt.io/Neptune3UI/neptune3ui-testing-squish.html#exclude-disruptive-sub-processes
     command_line_options = ("-r"

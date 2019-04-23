@@ -31,7 +31,7 @@
 
 import QtQuick 2.8
 import QtQuick.Window 2.2
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.dataprovider 1.0
 import application.windows 1.0
 import shared.animations 1.0
 

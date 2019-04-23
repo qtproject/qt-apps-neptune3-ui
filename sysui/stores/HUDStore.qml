@@ -32,7 +32,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager.SystemUI 2.0
-import shared.com.pelagicore.settings 1.0
+import shared.com.pelagicore.drivedata 1.0
 
 QtObject {
     id: root

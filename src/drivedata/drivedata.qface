@@ -1,0 +1,75 @@
+module DriveData 1.0;
+
+@config: {id: "DriveData"}
+interface InstrumentCluster {
+    /*
+     * In Km/H
+     */
+    real speed;
+
+    /*
+     * In Km/H
+     */
+    real speedLimit;
+
+    /*
+     * In Km/H
+     */
+    real speedCruise;
+
+    /*
+     * Between 0 (inclusive) and 100 (inclusive)
+     */
+    real ePower;
+
+    /*
+     * 0 -> Park
+     * 1 -> Neutral
+     * 2 -> Drive
+     * 3 -> Reverse
+     */
+    int driveTrainState;
+
+    bool lowBeamHeadlight;
+    bool highBeamHeadlight;
+    bool fogLight;
+    bool stabilityControl;
+    bool seatBeltNotFastened;
+    bool leftTurn;
+    bool rightTurn;
+    bool ABSFailure;
+    bool parkBrake;
+    bool tyrePressureLow;
+    bool brakeFailure;
+    bool airbagFailure;
+
+    /*
+    * outside tempterature in celsius degrees
+    */
+    real outsideTemperatureCelsius;
+
+    /*
+    * Mileage in km
+    */
+    real mileageKm;
+
+    /*
+    * 0 - normal
+    * 1 - eco
+    * 2 - sport
+    */
+    int drivingMode;
+    int drivingModeRangeKm;
+    int drivingModeECORangeKm;
+
+    /*
+    * Navigation
+    * progress 0.0 - 1.0
+    * distance in km
+    */
+    real navigationProgressPercents;
+    real navigationRouteDistanceKm;
+
+    /** Whether a secondary (cluster) screen is available */
+    bool available;
+}

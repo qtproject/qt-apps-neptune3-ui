@@ -43,6 +43,7 @@ Window {
     property var clusterStore
     property var applicationModel
     property var instrumentClusterSettings: root.clusterStore.clusterSettings
+    property var uiSettings
     property bool invertedOrientation: root.clusterStore.invertedCluster
     property bool performanceOverlayVisible: false
 
@@ -111,7 +112,7 @@ Window {
                 }
                 return false;
             }
-            Binding { target: instrumentClusterSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
+            Binding { target: uiSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
         }
 
         ApplicationICWindowItem {

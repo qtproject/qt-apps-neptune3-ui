@@ -1,0 +1,15 @@
+DriveData:
+    config_simulator:
+        simulationFile: "qrc:/plugin_resource/simulation.qml"
+
+DriveData.InstrumentCluster#speedLimit:
+    config_simulator:
+        default: 80
+
+DriveData.InstrumentCluster#speedCruise:
+    config_simulator:
+        default: 120
+
+DriveData.InstrumentCluster#driveTrainState:
+    config_simulator:
+        default: 2
