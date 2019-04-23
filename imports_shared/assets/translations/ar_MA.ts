@@ -2,6 +2,45 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>AboutApps</name>
+    <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished">يعمل تمكين مراقبة الأداء على فرض واجهة مستخدم النظام لإعادة رسم نفسه باستمرار ، وبالتالي وجود استهلاك GPU / CPU ثابت وغير ضروري</translation>
+    </message>
+    <message>
+        <source>Center Console Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom Bar Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HUD Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time to first frame: %1 ms</source>
+        <translation type="unfinished">الوقت للإطار الأول %1 ms</translation>
+    </message>
+    <message>
+        <source>Performance monitor</source>
+        <translation type="unfinished">مراقبة الأداء</translation>
+    </message>
+</context>
+<context>
     <name>AboutPerformance</name>
     <message>
         <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
@@ -24,7 +63,7 @@
     </message>
     <message>
         <source>Running Apps</source>
-        <translation>لتطبيقات المشغلة</translation>
+        <translation type="vanished">لتطبيقات المشغلة</translation>
     </message>
     <message>
         <source>Performance</source>
@@ -34,32 +73,28 @@
         <source>Diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Apps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutRunningApps</name>
     <message>
         <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation>يعمل تمكين مراقبة الأداء على فرض واجهة مستخدم النظام لإعادة رسم نفسه باستمرار ، وبالتالي وجود استهلاك GPU / CPU ثابت وغير ضروري</translation>
+        <translation type="vanished">يعمل تمكين مراقبة الأداء على فرض واجهة مستخدم النظام لإعادة رسم نفسه باستمرار ، وبالتالي وجود استهلاك GPU / CPU ثابت وغير ضروري</translation>
     </message>
     <message>
         <source>Primary Window, on Center Console</source>
-        <translation>النافذة الأساسية ، على وحدة التحكم المركزية</translation>
+        <translation type="vanished">النافذة الأساسية ، على وحدة التحكم المركزية</translation>
     </message>
     <message>
         <source>Time to first frame: %1 ms</source>
-        <translation>الوقت للإطار الأول %1 ms</translation>
+        <translation type="vanished">الوقت للإطار الأول %1 ms</translation>
     </message>
     <message>
         <source>Performance monitor</source>
-        <translation>مراقبة الأداء</translation>
-    </message>
-    <message>
-        <source>Application IC Window, on Instrument Cluster</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">مراقبة الأداء</translation>
     </message>
 </context>
 <context>
@@ -84,7 +119,7 @@
 <context>
     <name>AlbumArtPanel</name>
     <message>
-        <source>There are no music available</source>
+        <source>There is no music available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

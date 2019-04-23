@@ -27,6 +27,45 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>AboutApps</name>
+    <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished">Povolením sledování výkonu vnutíte aplikaci neustálé překreslování, tudíž i konstantní a zbytečné zatížení CPU/GPU.</translation>
+    </message>
+    <message>
+        <source>Center Console Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom Bar Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HUD Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time to first frame: %1 ms</source>
+        <translation type="unfinished">Čas do prvního snímku: %1 ms</translation>
+    </message>
+    <message>
+        <source>Performance monitor</source>
+        <translation type="unfinished">Monitor výkonu</translation>
+    </message>
+</context>
+<context>
     <name>AboutDiagnostics</name>
     <message>
         <source>Below is an output of the &lt;i&gt;qtdiag&lt;/i&gt; diagnostics tool:</source>
@@ -56,7 +95,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Running Apps</source>
-        <translation>Spuštěné aplikace</translation>
+        <translation type="vanished">Spuštěné aplikace</translation>
     </message>
     <message>
         <source>Performance</source>
@@ -65,6 +104,10 @@ UX na cestu</translation>
     <message>
         <source>Diagnostics</source>
         <translation>Diagnostika</translation>
+    </message>
+    <message>
+        <source>Apps</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -75,7 +118,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation>Povolením sledování výkonu vnutíte aplikaci neustálé překreslování, tudíž i konstantní a zbytečné zatížení CPU/GPU.</translation>
+        <translation type="vanished">Povolením sledování výkonu vnutíte aplikaci neustálé překreslování, tudíž i konstantní a zbytečné zatížení CPU/GPU.</translation>
     </message>
     <message>
         <source>CPU: %L1 %; Virtual: %L2 MB; RSS: %L3 MB; PSS: %L4 MB</source>
@@ -83,23 +126,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Time to first frame: %1 ms</source>
-        <translation>Čas do prvního snímku: %1 ms</translation>
+        <translation type="vanished">Čas do prvního snímku: %1 ms</translation>
     </message>
     <message>
         <source>Performance monitor</source>
-        <translation>Monitor výkonu</translation>
+        <translation type="vanished">Monitor výkonu</translation>
     </message>
     <message>
         <source>Primary Window, on Center Console</source>
-        <translation>Primární okno, na středové konzoli</translation>
-    </message>
-    <message>
-        <source>Application IC Window, on Instrument Cluster</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Primární okno, na středové konzoli</translation>
     </message>
 </context>
 <context>
@@ -124,7 +159,7 @@ UX na cestu</translation>
 <context>
     <name>AlbumArtPanel</name>
     <message>
-        <source>There are no music available</source>
+        <source>There is no music available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

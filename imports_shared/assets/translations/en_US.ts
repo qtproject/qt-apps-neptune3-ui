@@ -2,6 +2,45 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US" sourcelanguage="en_US">
 <context>
+    <name>AboutApps</name>
+    <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Console Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom Bar Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HUD Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time to first frame: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Performance monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutPerformance</name>
     <message>
         <source>Center Console Performance Overlay</source>
@@ -23,10 +62,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Running Apps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Performance</source>
         <translation type="unfinished"></translation>
     </message>
@@ -34,31 +69,8 @@
         <source>Diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>AboutRunningApps</name>
     <message>
-        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Time to first frame: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Primary Window, on Center Console</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Application IC Window, on Instrument Cluster</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
+        <source>Apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -84,7 +96,7 @@
 <context>
     <name>AlbumArtPanel</name>
     <message>
-        <source>There are no music available</source>
+        <source>There is no music available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

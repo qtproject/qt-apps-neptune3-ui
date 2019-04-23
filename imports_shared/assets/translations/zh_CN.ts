@@ -17,6 +17,45 @@
     </message>
 </context>
 <context>
+    <name>AboutApps</name>
+    <message>
+        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center Console Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bottom Bar Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HUD Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instrument Cluster Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time to first frame: %1 ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Performance monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AboutMarketing</name>
     <message>
         <source>We put Stunning User Experience on the road</source>
@@ -46,7 +85,7 @@
     </message>
     <message>
         <source>Running Apps</source>
-        <translation type="unfinished">运行中的App</translation>
+        <translation type="obsolete">运行中的App</translation>
     </message>
     <message>
         <source>Performance</source>
@@ -56,36 +95,16 @@
         <source>Diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Apps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutRunningApps</name>
     <message>
         <source>Running applications:</source>
         <translation type="vanished">运行中的App:</translation>
-    </message>
-    <message>
-        <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Time to first frame: %1 ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Primary Window, on Center Console</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Application IC Window, on Instrument Cluster</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -110,7 +129,7 @@
 <context>
     <name>AlbumArtPanel</name>
     <message>
-        <source>There are no music available</source>
+        <source>There is no music available</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
