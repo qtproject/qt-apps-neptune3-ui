@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-* Contact: https://www.qt.io/licensing/
+** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 Cluster UI.
 **
