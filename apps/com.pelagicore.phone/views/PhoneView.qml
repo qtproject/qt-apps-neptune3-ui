@@ -150,19 +150,19 @@ Item {
                 onCurrentTextChanged: {
                     switch (currentText) {
                     case "recents":
-                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
+                        stackView.replace(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
                         break;
                     case "favorites":
-                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model": root.store.favoritesModel, "objectName" : "favorites_phoneView"});
+                        stackView.replace(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model": root.store.favoritesModel, "objectName" : "favorites_phoneView"});
                         break;
                     case "contacts":
-                        stackView.push(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model" : root.store.contactsModel, "objectName" : "contacts_phoneView"});
+                        stackView.replace(Qt.resolvedUrl("ContactsView.qml"), {"store" : root.store, "model" : root.store.contactsModel, "objectName" : "contacts_phoneView"});
                         break;
                     case "keypad":
-                        stackView.push(Qt.resolvedUrl("../panels/KeypadViewPanel.qml"), {"objectName" : "keypad_phoneView"});
+                        stackView.replace(Qt.resolvedUrl("../panels/KeypadViewPanel.qml"), {"objectName" : "keypad_phoneView"});
                         break;
                     default:
-                        stackView.push(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
+                        stackView.replace(Qt.resolvedUrl("RecentCallsView.qml"), {"store" : root.store, "objectName" : "recents_phoneView"});
                         break;
                     }
                 }
@@ -203,6 +203,22 @@ Item {
                 }
             }
             popExit: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 1
+                    to:0
+                    duration: 100
+                }
+            }
+            replaceEnter: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 100
+                }
+            }
+            replaceExit: Transition {
                 PropertyAnimation {
                     property: "opacity"
                     from: 1
