@@ -29,18 +29,20 @@
 /*!
    \page neptune3ui-index.html
    \title Neptune 3 UI
-   \brief A reference UI for OEMs to test Qt Automotive Suite.
+   \brief A reference UI for you to test Qt Automotive Suite.
 
 
-   Neptune 3 UI provides a UI implementation for Qt in In-Vehicle Infotainment
-   (IVI) systems. It demonstrates best practices for developing an Automotive
-   UI with \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3
-   supports a set of displays: \l{Instrument Cluster},
-   \l{Center Console Display}, Head Up Display, and Passenger Screens.
-   Currently, the implementation only covers the first two:
-   \l{Instrument Cluster} and \l{Center Console Display}.
+   Neptune 3 UI provides a UI implementation for Qt in In-Vehicle Infotainment (IVI) systems.
+   It demonstrates best practices for developing an Automotive UI with \l{Qt Automotive Suite Product} {Qt Automotive Suite}. Neptune 3 UI supports the following displays:
+   \list
+      \li \l{Instrument Cluster}
+      \li \l{Center Console Display}
+      \li Head Up Display
+      \li Passenger Screens
+   \endlist
 
-   \section1 Topics
+   Currently, the implementation only covers the first three: \l{Instrument Cluster},
+   \l{Center Console Display}, and Head Up Display.
 
    \include neptune3ui-topics.qdocinc content
 */

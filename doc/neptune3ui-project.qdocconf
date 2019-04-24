@@ -10,7 +10,13 @@ sourcedirs += src ../ $$BUILDDIR/../src/remotesettings/frontend
 
 imagedirs += src/images
 
-depends += qtcore qtquick qtqml qtgui
+depends += qtcore \
+           qtquick \
+           qtqml \
+           qtgui \
+           qtivi \
+           qtapplicationmanager \
+           qtapplicationmanagerintegration
 
 indexes = $$QT_INSTALL_DOCS/../QtSafeRenderer-1.0.0/SafetyManual/qtsaferenderer.index
 

@@ -1,0 +1,151 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page neptune3ui-install.html
+    \title Neptune 3 UI - Install
+    \brief Describes the steps necessary to install and run Neptune 3 UI.
+
+    Before you start, first, you must install all of the components in the Qt Automotive Suite, as
+    described in \l{Install Qt Automotive Suite}. Once you have installed Qt Automotive Suite, you
+    can run Neptune 3 UI on your desktop or on a target device, like Intel NUC, by starting it on
+    the command line.
+
+    Alternatively, you can also build and run Qt Automotive Suite including Neptune 3 UI from the
+    source code. The corresponding steps are described
+    \l{Run Neptune 3 UI from Source}{below}. Then, you can modify any part of the code to
+    experiment.
+
+    \section1 Run Neptune 3 UI from a Qt Automotive Suite Installation
+
+    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI} to provide support for both a
+    Center Console display and an Instrument Cluster. It also uses the Qt IVI plugins and its
+    \c ivigenerator to generate and access various services. Neptune 3 UI offers a multi-process
+    application model using a central System UI and various apps. The System UI provides an
+    application launcher to start and stop apps. Additionally, the
+    \l{Qt Creator Plugin for Qt Application Manager} lets you develop and deploy apps using
+    Neptune 3 UI.
+
+    To run the binary in your Qt installation, locate it in your folder, typically in
+    \c{/home/Qt/<qt-version>/gcc_64/neptune3}. If you use Qt Automotive Suite on an embedded
+    device, then your Neptune 3 UI binary is in \c{/opt/neptune3/}. Launch Neptune 3 UI with the
+    following command in your terminal:
+
+    \badcode
+    ./neptune3-ui -r
+    \endcode
+
+
+    \section1 Run Neptune 3 UI from Source
+
+    To explore Neptune 3 UI by building all components from the source code yourself, refer to the
+    following instructions.
+
+    \section2 Platforms
+
+    Neptune 3 UI supports the following platforms:
+
+    \list
+        \li macOS (single-process)
+        \li Linux desktop (single-process)
+        \li Linux desktop (multi-process)
+        \li Windows (single-process)
+    \endlist
+
+    \section3 Multi-process UI or Single-process UI
+
+    Multi-process UI is the preferred mode. When in multi-process mode, apps run independently in
+    separate processes, as Wayland clients. In this case, the System UI acts as a Wayland server,
+    compositing the app windows in its own QML scene, as regular QML items.
+
+    In comparison with single-process mode, all app code run in the same QML scene and process as
+    the System UI itself. For more details, see \l{Single-Process vs. Multi-Process Mode}.
+
+    \section2 Prerequisites
+
+    \list
+        \li \b{Qt 5.12} or higher
+        \li To support multi-process mode, your Qt installation must include the \c qtwayland
+            submodule, and be built with Open GL ES \c{(-opengl es2 -opengles3)}.
+    \endlist
+
+    \section2 Dependencies
+
+    \list
+        \li \l{Qt Application Manager} 5.12
+        \li \l{Qt IVI} 5.12
+    \endlist
+
+   \section2 Build and Run
+
+   \list 1
+        \li Clone the repositories mentioned in \l{build-from-source}{Install Qt Automotive Suite}.
+        \li Build \l{Qt Application Manager} against Qt 5.12 or higher. For more detailed build
+            instructions, see \l{Qt Applicaton Manager Installation}.
+        \li Build \l{Qt IVI} against Qt 5.12 or higher. For more detailed build instructions, see
+            \l{Qt IVI}{Qt IVI documentation}.
+        \li Run the following command in a terminal, to build Neptune 3 UI:
+            \badcode
+            qmake neptune3-ui.pro
+            make
+            \endcode
+        \li Locate your \c neptune3-ui build directory, typically
+            \c{/home/Qt/<qt-version>/gcc_64/neptune3}, then run the following command:
+            \badcode
+            ./neptune3-ui -r
+            \endcode
+
+        \note Use \c -r to ignore any pre-existing database cache and create a new one by
+              (re)scanning all \c info.yaml files in the \c builtin-apps-manifest-dir and
+              \c installed-apps-manifest-dir. The default value is false. For more information, see
+              \l{Qt Application Manager Configuration}.
+    \endlist
+
+    By default, the Neptune style is used and \c{am-config-neptune.yaml} is the default
+    configuration file. To load the LUCEE style for Neptune 3 UI, you must specify
+    \c{-c am-config-lucee.yaml} when you start Neptune 3 UI.
+
+    \section2 Develop with Neptune 3 UI using Qt Creator
+
+    When you have cloned, built, installed the project, and configured all of its prerequisites,
+    you can use QtCreator as your development tool. The following instructions describe how to
+    build and run a project:
+
+    \list
+        \li Start QtCreator and open the Neptune 3 UI project file, \c{neptune3-ui.pro}.
+        \li Open your project's run configuration in \uicontrol Run. In
+            \uicontrol{Run configuration}, choose "neptune3-ui".
+        \li Finally, select the \uicontrol{Run} button or click \uicontrol{Ctrl + R} to build and
+            run the project.
+    \endlist
+
+   \note On Windows, when Neptune 3 UI is built and installed, a \c neptune3-ui_wrapper is
+   generated to be able to find the required Qt libraries. Run this wrapper instead of the
+   executable file.
+
+*/
