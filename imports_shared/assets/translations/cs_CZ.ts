@@ -795,7 +795,7 @@ UX na cestu</translation>
     <name>GreenomicsView</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished">Zpět</translation>
+        <translation type="obsolete">Zpět</translation>
     </message>
 </context>
 <context>
