@@ -123,7 +123,7 @@ Item {
             model: root.songModel
             delegate: albumArtDelegate
             pathItemCount: 1
-            cacheItemCount:10
+            cacheItemCount: Math.max(Math.min(model.count - 1, 10), 0)
 
             interactive: false
 
