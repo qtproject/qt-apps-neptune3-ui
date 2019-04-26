@@ -32,6 +32,7 @@
 
 import QtQuick 2.6
 import QtQuick.Controls 2.2
+import QtApplicationManager 2.0
 import shared.utils 1.0
 import application.windows 1.0
 
@@ -48,6 +49,7 @@ PopupWindow {
     */
 
     property alias model: listView.model
+    signal switchSourceClicked(string source)
 
     Item {
         id: popupContent
@@ -93,13 +95,7 @@ PopupWindow {
                 text: model.text
                 spacing: Sizes.dp(20)
                 onClicked: {
-                    if (text === "Music") {
-                        Qt.openUrlExternally("x-music://");
-                    } else if (text === "Web radio") {
-                        Qt.openUrlExternally("x-webradio://");
-                    } else if (text === "Spotify") {
-                        Qt.openUrlExternally("x-spotify://");
-                    }
+                    root.switchSourceClicked(appId)
                     root.close();
                 }
             }

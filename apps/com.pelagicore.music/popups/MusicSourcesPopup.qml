@@ -46,6 +46,7 @@ PopupWindow {
         The alias property of the list view's model.
     */
     property alias model: listView.model
+    signal switchSourceClicked(string source)
 
     Item {
         id: popupContent
@@ -91,13 +92,7 @@ PopupWindow {
                 text: model.text
                 spacing: Sizes.dp(20)
                 onClicked: {
-                    if (text === "AM/FM Radio") {
-                        Qt.openUrlExternally("x-tuner://");
-                    } else if (text === "Web radio") {
-                        Qt.openUrlExternally("x-webradio://");
-                    } else if (text === "Spotify") {
-                        Qt.openUrlExternally("x-spotify://");
-                    }
+                    root.switchSourceClicked(appId)
                     root.close();
                 }
             }

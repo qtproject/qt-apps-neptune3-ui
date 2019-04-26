@@ -11,4 +11,5 @@ name:
 
 applicationProperties: { private: { squishPort: 7731 } }
 categories: [ 'media' ]
-mimeTypes: [ 'x-scheme-handler/x-tuner' ]
+intents:
+- id: activate-app

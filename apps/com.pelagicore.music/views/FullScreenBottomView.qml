@@ -108,6 +108,10 @@ Item {
         height: model ? root.Sizes.dp(200 + (model.count * 96)) : root.Sizes.dp(296)
 
         popupY: root.Sizes.dp(Config.centerConsoleHeight / 4)
+
+        onSwitchSourceClicked: {
+            store.switchSource(source)
+        }
     }
 
     Binding {

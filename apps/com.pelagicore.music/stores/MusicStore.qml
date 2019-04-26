@@ -32,6 +32,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager.Application 2.0
+import QtApplicationManager 2.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
 import shared.utils 1.0
@@ -149,7 +150,10 @@ Store {
     property real currentTrackPosition : player.position / player.duration
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
-        ListElement { text: "AM/FM Radio"}
+        ListElement {
+            text: "AM/FM Radio"
+            appId: "com.pelagicore.tuner"
+        }
     }
 
     property Connections con: Connections {
@@ -167,10 +171,12 @@ Store {
             name: "neptune.musicapprequests.interface"
             Component.onCompleted: {
                 if (object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio"});
+                    musicSourcesModel.append({"text" : "Web radio",
+                                             "appId": "com.pelagicore.webradio"});
                 }
                 if (object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify"});
+                    musicSourcesModel.append({"text" : "Spotify",
+                                             "appId": "com.pelagicore.spotify"});
                     root.isSpotifyInstalled = true;
                 }
             }
@@ -181,7 +187,8 @@ Store {
 
             onSpotifyInstalledChanged: {
                 if (musicApplicationRequestIPC.object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify"});
+                    musicSourcesModel.append({"text" : "Spotify",
+                                             "appId": "com.pelagicore.spotify"});
                     root.isSpotifyInstalled = true;
                 } else {
                     for (var i = 0; i < musicSourcesModel.count; i++) {
@@ -194,7 +201,8 @@ Store {
             }
             onWebradioInstalledChanged: {
                 if (musicApplicationRequestIPC.object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio"});
+                    musicSourcesModel.append({"text" : "Web radio",
+                                             "appId": "com.pelagicore.webradio"});
                 } else {
                     for (var i = 0; i < musicSourcesModel.count; i++) {
                         if (musicSourcesModel.get(i).text === "Web radio") {
@@ -245,6 +253,15 @@ Store {
         }
     }
 
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "activate-app"
+        onRequestReceived: {
+            root.requestToRise()
+            request.sendReply({ "done": true })
+        }
+    }
+
+    signal requestToRise()
     signal songModelPopulated()
 
     function insertInitialTracks() {
@@ -308,6 +325,26 @@ Store {
             player.playMode = MediaPlayer.Normal;
         } else {
             player.playMode = MediaPlayer.RepeatTrack;
+        }
+    }
+
+    function switchSource(source) {
+        player.pause()
+        if (source === "com.pelagicore.tuner") {
+            var request = IntentClient.sendIntentRequest("activate-app", source, null)
+
+            request.onReplyReceived.connect(function() {
+                if (request.succeeded) {
+                    var result = request.result
+                    console.log(Logging.apps, "Intent result: " + result.done)
+                } else {
+                    console.log(Logging.apps, "Intent request failed: " + request.errorMessage)
+                }
+            })
+        } else if (source === "com.pelagicore.webradio") {
+            Qt.openUrlExternally("x-webradio://");
+        } else if (source === "com.pelagicore.spotify") {
+            Qt.openUrlExternally("x-spotify://");
         }
     }
 }

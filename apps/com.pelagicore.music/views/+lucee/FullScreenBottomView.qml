@@ -70,9 +70,9 @@ Item {
 
         onClicked: {
             if (currentText === "radio") {
-                Qt.openUrlExternally("x-tuner://");
+                store.switchSource("com.pelagicore.tuner")
             } else if (currentText === "spotify") {
-                Qt.openUrlExternally("x-spotify://");
+                store.switchSource("com.pelagicore.spotify")
             }
         }
     }

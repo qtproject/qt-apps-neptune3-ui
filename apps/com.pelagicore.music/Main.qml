@@ -88,7 +88,7 @@ QtObject {
             rootItem: mainWindow.contentItem
 
             state: mainWindow.neptuneState
-            store: MusicStore { }
+            store: MusicStore { onRequestToRise: mainWindow.riseWindow() }
             onFlickableAreaClicked: {
                 mainWindow.riseWindow()
             }

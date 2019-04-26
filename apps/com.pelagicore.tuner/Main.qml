@@ -61,6 +61,6 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         height: root.exposedRect.height
         rootItem: root.contentItem
-        store: TunerStore { }
+        store: TunerStore { onRequestToRise: root.riseWindow() }
     }
 }
