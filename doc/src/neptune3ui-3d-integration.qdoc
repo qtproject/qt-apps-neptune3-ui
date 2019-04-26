@@ -31,11 +31,19 @@
    \title Neptune 3 UI - 3D Integration
    \brief The 3D Integration in Neptune 3 UI
 
-   In Neptune 3, a built-in application called "com.luxoft.vehicle" is included
-   as the vehicle settings application and contains a car 3D scene on top of
-   its content. The 3D scene is renderred by \l{Qt 3D} that provides
-   functionality for near-realtime simulation systems with support for 2D and 3D
-   rendering in both Qt C++ and Qt Quick applications.
+   There are two apps built with 3D elements:
+   \list
+     \li "com.theqtcompany.cluster" - the Instrument Cluster app, that manages gauges and telltales;
+        This app can display plain or 3D gauges. The 3D gauges entity is created with
+        \l{Qt 3D Studio}.
+        Qt 3D Studio provides a compositing tool for scene creation and runtime with QML APIs
+        to integrate scenes into Qt applications.
+     \li "com.luxoft.vehicle" - a built-in app. It contains two different 3D sub-parts.
+        First one is a vehicle settings app with a 3D scene
+        renderred by \l{Qt 3D}. Qt 3D provides functionality for near-realtime simulation
+        systems, with support for 2D and 3D rendering in both Qt C++ and Qt Quick applications.
+        The second one is based on \l{Qt 3D Studio}.
+   \endlist
 
    \section1 3D Modeling
 
@@ -98,7 +106,26 @@
 
    \section1 3D Integration in Neptune 3 UI
 
-   The current structure of the vehicle application:
+
+   \section2 3D Gauges Integration
+   The diagram below illustrates the Instrument Cluster's structure;
+   colored elements demonstrate the main points of integration:
+
+   \image 3d-gauges-integration-instrument-cluster.jpg
+
+   All 3D entities, shown in red, were provided by designers or created with any 3D editor,
+   like Blender; some of these entities are reused from Qt 3D Studio's examples.
+   The Qt 3D Studio project, shown in green, is maintained with the Qt 3D Studio tool;
+   it is stored as asset, like the images and so on. The whole 3D scene is imported into a
+   \c .qml file via a \e presentation \c .uip file; the presentation is the part of
+   the Qt 3D Studio project and describes the composition of layers on the scene.
+   All of the transformations, such as rotation, movement, and scaling are made via data inputs.
+   For more details, see \l{Qt 3D Studio Manual}.
+
+
+   \section2 Vehicle Integration
+   The diagram below shows the current structure of the vehicle application sub-part
+   built with Qt3D:
 
    \image 3d-integration-vehicle-app.jpg
 
@@ -106,13 +133,21 @@
    all the necessary parts, such as Mesh, Transformation and Material. Those entities are tailored
    to the root entity of the whole Scene 3D.
 
-   Neptune 3 UI has an own custom physical based material with Cook Torrance GGX distribution
+   Neptune 3 UI has its own custom physical based material with Cook Torrance GGX distribution
    since Qt3D does not provide any for OpenGL ES 2.0. It is required, because it has microfacet
-   theory based lightning, which adds more realistic lightning to the car. A car model can be mostly
-   painted with a single color, so it is easy to integrate lightning calculations. Also most
-   models today are modeled with PBR (Metal Roughness) materials in mind, which makes model import easier.
+   theory based lighting, which adds more realistic lighting to the car.
+   The car model is mostly painted with a single color, that simplifies integration
+   of the lighting calculations.
+   Also most models today are modeled with \e {Physically based rendering (PBR)} materials in mind,
+   which makes model import easier.
 
-   Animations in vehicle applications are made mostly with matrices transformations. E.g. a
-   door animation is done by: transform door to another origin, rotate it, transform back. So the door
-   will not rotate around its own axis.
+   Animations in vehicle applications are made mostly with matrices transformations, such as a
+   door animation is done by: transform door to another origin, rotate it, transform back.
+   So the door will not rotate around its own axis.
+
+   The integration scheme of sub-part built with Qt 3D Studio
+   is similar to \l{3D Gauges Integration}, as presented below:
+
+   \image 3d-integration-vehicle-app-2.jpg
+
 */

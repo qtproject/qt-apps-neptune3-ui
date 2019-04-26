@@ -173,6 +173,13 @@
    flexible to make space for views, like Maps that can take up more space
    (as shown above).
 
+   The gauges appearance is flexible too, it can be changed from
+   the flat version (as shown above) to the 3D version (see below).
+   \image instrument-cluster-3d.jpg
+   \image instrument-cluster-3d-navi.jpg
+   To enable 3D appearance, one should change \c qt3DStudioRuntimeExist property
+   from "no" to "yes" inside \c am-config-neptune.yaml (file is stored in root folder).
+
    \section2 Center Console Display
 
    The Center Console display shows the multi-process capabilities; the fact
