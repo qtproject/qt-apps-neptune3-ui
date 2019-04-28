@@ -11,7 +11,7 @@ macos: QMAKE_SONAME_PREFIX = @rpath
 include($$SOURCE_DIR/config.pri)
 
 DEFINES += QT_BUILD_SETTINGS_LIB
-QT += ivicore ivicore-private qml quick
+QT += ivicore ivicore-private qml
 
 QFACE_SOURCES = ../settings.qface
 
