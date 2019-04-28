@@ -1,7 +1,12 @@
 requires(linux|android|macos|win32:!winrt)
 
 QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+
+!qtHaveModule(ivicore)|!qtConfig(ivigenerator) {
+    log("$$escape_expand(\\n\\n) *** No ivigenerator available: Make sure QtIvi is installed and configured correctly ***$$escape_expand(\\n\\n)")
+    CONFIG += no_ivigenerator_available
+}
+requires(!no_ivigenerator_available)
 
 TEMPLATE = subdirs
 
