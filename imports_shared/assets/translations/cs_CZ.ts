@@ -64,6 +64,18 @@ UX na cestu</translation>
         <source>Performance monitor</source>
         <translation type="unfinished">Monitor výkonu</translation>
     </message>
+    <message>
+        <source>Autostart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Autorecover</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AboutDiagnostics</name>
