@@ -541,6 +541,12 @@ ListModel {
                 window.application.activated();
                 d.reactOnAppActivation(window.application.id);
                 break;
+            case "rise":
+                //rises running app on property change, can be used to show-up window of
+                //already running app from intent
+                window.application.activated();
+                d.reactOnAppActivation(window.application.id);
+                break;
             }
         }
     }

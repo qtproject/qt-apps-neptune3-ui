@@ -124,6 +124,11 @@ NeptuneWindow {
         property int widgetHeight: 0
         property int currentWidth: 0
         property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin - exposedRectTopMargin);
+        property int rise: 0
+    }
+
+    function rise() {
+        root.setWindowProperty("rise", d.rise++)
     }
 
     onWindowPropertyChanged: {
