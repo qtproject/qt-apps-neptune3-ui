@@ -113,7 +113,9 @@ Item {
             id: delegateRoot
             objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
-            property int visualIndex: DelegateModel.itemsIndex
+            property int visualIndex: visualModel.filterOnGroup === ""
+                            ? model.index
+                            : visualModel.items.get(model.index)[visualModel.filterOnGroup + "Index"]
 
             width: grid.cellWidth
             height: grid.cellHeight
