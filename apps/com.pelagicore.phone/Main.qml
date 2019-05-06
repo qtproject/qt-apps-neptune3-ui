@@ -53,10 +53,8 @@ ApplicationCCWindow {
         anchors.margins: Sizes.dp(30)
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
-        property int count: 0
         onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+            root.riseWindow()
         }
     }
 
@@ -99,7 +97,7 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         height: root.exposedRect.height
         state: root.neptuneState
-        onActivateApp: root.setWindowProperty("activationCount", ++multiPoint.count);
+        onActivateApp: root.riseWindow()
         store: PhoneStore {}
     }
 }

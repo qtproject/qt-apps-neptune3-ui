@@ -54,10 +54,8 @@ QtObject {
             anchors.margins: Sizes.dp(30)
             touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
-            property int count: 0
             onReleased: {
-                count += 1;
-                mainWindow.setWindowProperty("activationCount", count);
+                mainWindow.riseWindow()
             }
         }
 
@@ -91,8 +89,7 @@ QtObject {
             state: mainWindow.neptuneState
             store: MusicStore { }
             onFlickableAreaClicked: {
-                multiPoint.count += 1;
-                mainWindow.setWindowProperty("activationCount", multiPoint.count);
+                mainWindow.riseWindow()
             }
         }
 

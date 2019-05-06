@@ -44,10 +44,8 @@ ApplicationCCWindow {
         anchors.margins: 30
         touchPoints: [ TouchPoint { id: touchPoint1 } ]
 
-        property int count: 0
         onReleased: {
-            count += 1;
-            root.setWindowProperty("activationCount", count);
+            root.riseWindow()
         }
     }
 

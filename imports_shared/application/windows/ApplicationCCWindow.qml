@@ -124,11 +124,11 @@ NeptuneWindow {
         property int widgetHeight: 0
         property int currentWidth: 0
         property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin - exposedRectTopMargin);
-        property int rise: 0
+        property int activationCount: 0
     }
 
-    function rise() {
-        root.setWindowProperty("rise", d.rise++)
+    function riseWindow() {
+        root.setWindowProperty("activationCount", d.activationCount++)
     }
 
     onWindowPropertyChanged: {

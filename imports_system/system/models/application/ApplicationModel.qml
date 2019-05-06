@@ -538,12 +538,8 @@ ListModel {
             var appInfo = applicationFromId(window.application.id);
             switch (name) {
             case "activationCount":
-                window.application.activated();
-                d.reactOnAppActivation(window.application.id);
-                break;
-            case "rise":
                 //rises running app on property change, can be used to show-up window of
-                //already running app from intent
+                //already running app e.g. from intent
                 window.application.activated();
                 d.reactOnAppActivation(window.application.id);
                 break;
