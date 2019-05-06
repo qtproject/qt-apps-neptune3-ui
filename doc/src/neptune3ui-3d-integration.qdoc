@@ -29,124 +29,116 @@
 /*!
    \page neptune3ui-3d-integration.html
    \title Neptune 3 UI - 3D Integration
-   \brief The 3D Integration in Neptune 3 UI
+   \brief Describes 3D Integration in Neptune 3 UI.
 
-   There are two apps built with 3D elements:
+   In Neptune 3 UI, there are two apps built with 3D elements:
+
    \list
      \li "com.theqtcompany.cluster" - the Instrument Cluster app, that manages gauges and telltales;
         This app can display plain or 3D gauges. The 3D gauges entity is created with
-        \l{Qt 3D Studio}.
-        Qt 3D Studio provides a compositing tool for scene creation and runtime with QML APIs
-        to integrate scenes into Qt applications.
-     \li "com.luxoft.vehicle" - a built-in app. It contains two different 3D sub-parts.
-        First one is a vehicle settings app with a 3D scene
-        renderred by \l{Qt 3D}. Qt 3D provides functionality for near-realtime simulation
-        systems, with support for 2D and 3D rendering in both Qt C++ and Qt Quick applications.
-        The second one is based on \l{Qt 3D Studio}.
+        \l{Qt 3D Studio}, that provides a compositing tool for scene creation. The Qt 3D Studio
+        runtime provides QML APIs to integrate scenes into Qt applications.
+     \li "com.luxoft.vehicle" - a built-in app, that contains two different 3D sub-parts. The first
+        part is a Vehicle settings app with a 3D scene rendered by \l{Qt 3D}. Qt 3D provides
+        functionality for near-realtime simulation systems, with support for 2D and 3D rendering in both
+        Qt C++ and Qt Quick applications. The second part is based on \l{Qt 3D Studio}.
    \endlist
 
    \section1 3D Modeling
 
-   A general question about a 3D framework is to provide ways to draw 3D shapes,
-   move them around and move the camera. This is, of course, a sensible baseline,
-   and additional wishes typically include the following:
+   Generally, a 3D framework provides ways to draw 3D shapes, move them around, and move the camera.
+   This is a baseline; additional features typically include:
 
    \list
-   \li Mesh: A mesh is a collection of vertices and edges which are probably triangulated
-       and describes the shape of an object in 3D space
-   \li Material: A material is a set of coefficients
-       that define how the lighting should be applied to the model and interacts with the
-       surface
-   \li Shader: A shader is a programmable shading that is used to do
-       shading, as the production of appropriate levels of color within an image, as well
-       as to produce special effects or do video post-processing
-   \li Texture: Textures are typically used for images to decorate 3D models, but for other
-       purposes it can also be used to store many different kinds of data
-   \li Camera: The first thing to do in the projection of the screen of a scene is to convert 3D
-       coordinates into 2D coordinates. To specify the projection, the points in the 3D
-       scene are used on a virtual screen space. The parameters of a projection will not be
-       entered directly, instead, a virtual camera is configured and placed.
-   \li Animation: Movements of objects are important and can be accomplished by altering the
-       object positions
+        \li Mesh: a collection of vertices and edges which are probably triangulated; describes the
+            shape of an object in 3D space.
+        \li Material: a set of coefficients that define how the lighting should be applied to the
+            model, and how it interacts with the surface.
+        \li Shader: a programmable shading that is used to apply various levels of darkness, to
+            produce appropriate levels of color within an image, to produce special effects, or to
+            post-process videos.
+        \li Texture: typically used for images to decorate 3D models, but it can also be used to
+            store many different kinds of data.
+        \li Camera: shows the current scene as seen from the view point of the camera that is
+            currently active. To project the screen of a scene, we need to convert 3D coordinates
+            into 2D coordinates. Then, to specify the projection, the points in the 3D scene are
+            used on a virtual screen space. However, the parameters of a projection aren't entered
+            directly; a virtual camera is configured and placed instead.
+        \li Animation: illustrate movement of objects by altering their position.
    \endlist
 
    \section1 Qt 3D
 
-   The \l{Qt 3D} provides some functionalities for modern 3D rendering backed by
-   the performance of OpenGL across the platforms supported by Qt. Qt3D allows developers
-   not only to visualize 3D contents but also to freely customize and control the
-   appearance of each object by using built-in materials or by providing custom GLSL
-   shaders. These controls are also accessible through QML that extends the ability
-   to create a 3D user interface. Integration of 2D and 3D contents is enabled by the
-   Scene3D component through QML. Qt3D is an Entity Component System (ECS), an architectural
-   pattern used mostly in game development.
+   The \l{Qt 3D} provides some functionalities for modern 3D rendering backed by the performance of
+   OpenGL across the platforms that Qt supports. Qt 3D allows developers to not only visualize 3D
+   contents but to also freely customize and control the appearance of each object by using
+   built-in materials or by providing custom OpenGL Shading Language (GLSL) shaders. These controls
+   are also accessible through QML, to extend the ability to create a 3D user interface.
+   Additionally, QML's Scene3D component enables integration of 2D and 3D contents.
 
-   An application that uses the ECS pattern involves the following:
+   Qt 3D is an Entity Component System (ECS), an architectural pattern used mostly in game
+   development. Applications based on the ECS pattern comprise of:
 
    \list
-   \li Entity: A container for any components that can be added, usually hierarchical.
-       An entity represents an object of components but by itself is devoid of any
-       specific behavior or characteristics. (An entity can also have sub-entities)
-   \li Component: Set of objects through which behaviors and data can be added
-       to an entity
+        \li Entity: a container for any component that can be added, usually hierarchical.
+            An entity represents an object of components, but by itself is devoid of any
+            specific behavior or characteristics. An entity can also have sub-entities.
+        \li Component: a set of objects through which behaviors and data can be added to an
+            entity. Each component is a vertical slice of bvehavior of an object type.
    \endlist
 
    \image 3d-integration-ecs.jpg
 
-   An Entity with a Component attached will tell the system that it needs to be rendered
-   and how to render it. The components of each entity could consist of a material, mesh or
-   transformation. These components should be defined as the components of a particular
-   entity with a given identity of each component. A material component could have a
-   material effect that contains the rendering technique. In addition, within the
-   rendering technique, the shader programs can also be specified. These shader programs
-   can be an external shader files or directly written in QML. The 3D model might has
-   textures, and the connection between the 3D model and the textures can be binded
-   by using the shader and include the material component which has this material
-   effect to the same entity as the mesh component.
-
-   \section1 3D Integration in Neptune 3 UI
+   An Entity with a Component attached tells the system that it needs to be rendered and how to do
+   it. The components of each entity can consist of a material, mesh, or transformation. These
+   components should be defined as part of a particular entity, with a given identity for each
+   component. A material component could have an effect that contains the rendering technique. In
+   turn, within the rendering technique, the shader programs can be specified. These shader
+   programs can be external shader files or written directly in QML. The 3D model might have
+   textures - the connection between the 3D model and the textures can be binded with the shader
+   and include the material component which has this material effect to the same entity as the
+   mesh component. For more information on ECS, see \l{Qt 3D Overview}.
 
 
-   \section2 3D Gauges Integration
-   The diagram below illustrates the Instrument Cluster's structure;
-   colored elements demonstrate the main points of integration:
+   \section1 3D Gauges Integration
+
+   The diagram below illustrates the Instrument Cluster's structure; colored elements demonstrate
+   the main points of integration:
 
    \image 3d-gauges-integration-instrument-cluster.jpg
 
-   All 3D entities, shown in red, were provided by designers or created with any 3D editor,
-   like Blender; some of these entities are reused from Qt 3D Studio's examples.
-   The Qt 3D Studio project, shown in green, is maintained with the Qt 3D Studio tool;
-   it is stored as asset, like the images and so on. The whole 3D scene is imported into a
-   \c .qml file via a \e presentation \c .uip file; the presentation is the part of
-   the Qt 3D Studio project and describes the composition of layers on the scene.
-   All of the transformations, such as rotation, movement, and scaling are made via data inputs.
-   For more details, see \l{Qt 3D Studio Manual}.
+   All 3D entities, shown in red, were provided by designers or created with any 3D editor, like
+   Blender; some of these entities are reused from Qt 3D Studio's examples. The Qt 3D Studio
+   project, shown in green, is maintained with the Qt 3D Studio tool. This project is stored as an
+   asset, like the images. The whole 3D scene is imported into a \c .qml file via a \e presentation
+   \c .uip file; the presentation is part of the Qt 3D Studio project and describes the composition
+   of layers on the scene. All of the transformations, such as rotation, movement, and scaling are
+   made via data inputs. For more details, see \l{Qt 3D Studio Manual}.
 
 
-   \section2 Vehicle Integration
-   The diagram below shows the current structure of the vehicle application sub-part
-   built with Qt3D:
+   \section1 Vehicle Integration
+
+   The diagram below shows the current structure of the Vehicle app sub-part built with Qt 3D:
 
    \image 3d-integration-vehicle-app.jpg
 
-   As shown in the above image, each part of the vehicle has its own entity that contains
-   all the necessary parts, such as Mesh, Transformation and Material. Those entities are tailored
-   to the root entity of the whole Scene 3D.
+   Each part of the Vehicle has its own entity that contains all the necessary parts, such as Mesh,
+   Transformation, and Material. These entities are tailored to the root entity of the whole Scene
+   3D.
 
-   Neptune 3 UI has its own custom physical based material with Cook Torrance GGX distribution
-   since Qt3D does not provide any for OpenGL ES 2.0. It is required, because it has microfacet
-   theory based lighting, which adds more realistic lighting to the car.
-   The car model is mostly painted with a single color, that simplifies integration
-   of the lighting calculations.
-   Also most models today are modeled with \e {Physically based rendering (PBR)} materials in mind,
-   which makes model import easier.
+   Neptune 3 UI has its own custom physical based material with Cook Torrance GGX distribution,
+   since Qt 3D does not provide any material for OpenGL ES 2.0. This material is required because
+   the app has microfacet theory-based lighting, which adds more realistic lighting to the car.
+   The car model is mostly painted with a single color, to simplify lighting calculations.
+   Additionally, most models today are modeled with Physically Based Rendering (PBR) materials in
+   mind, which makes it easier to import models.
 
-   Animations in vehicle applications are made mostly with matrices transformations, such as a
-   door animation is done by: transform door to another origin, rotate it, transform back.
-   So the door will not rotate around its own axis.
+   Animations in the Vehicle app comprise of matrices transformations, mostly. For example, a door
+   animation is done with: transform the door to another origin, rotate it, then transform it back.
+   As a result, the door doesn't rotate around its own axis.
 
-   The integration scheme of sub-part built with Qt 3D Studio
-   is similar to \l{3D Gauges Integration}, as presented below:
+   The integration scheme for the other sub-part, built with Qt 3D Studio, is similar to
+   \l{3D Gauges Integration}. The diagram below further illustrates this:
 
    \image 3d-integration-vehicle-app-2.jpg
 
