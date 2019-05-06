@@ -75,13 +75,11 @@ QtObject {
         MapView {
             id: mainMap
             x: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
-                   mainWindow.x : mainWindow.exposedRect.x
+                   0 : mainWindow.exposedRect.x
             y: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
-                   mainWindow.y : mainWindow.exposedRect.y
-            width: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
-                       mainWindow.width : mainWindow.exposedRect.width
-            height: mainWindow.neptuneState === "Maximized" && !mainMap.store.searchViewEnabled ?
-                        mainWindow.height : mainWindow.exposedRect.height
+                   0 : mainWindow.exposedRect.y
+            width: mainWindow.exposedRect.width
+            height: mainWindow.exposedRect.height + Sizes.dp(180)
             state: mainWindow.neptuneState
             mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
