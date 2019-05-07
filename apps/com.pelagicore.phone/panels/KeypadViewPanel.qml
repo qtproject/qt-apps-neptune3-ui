@@ -69,6 +69,7 @@ Item {
     // TODO: Use a TextField instead so that it follows the current style automatically
     TextEdit {
         id: textedit
+        objectName: "callNumber"
         anchors.left: gridlayout.left
         anchors.right: gridlayout.right
         anchors.top: parent.top
@@ -86,6 +87,7 @@ Item {
     }
 
     ToolButton {
+        objectName: "delLastCallDigitButton"
         anchors.right: parent.right
         anchors.verticalCenter: textedit.verticalCenter
         width: Sizes.dp(90)
@@ -108,60 +110,72 @@ Item {
         columnSpacing: Sizes.dp(10)
         rowSpacing: Sizes.dp(10)
         KeypadButton {
+            objectName: "padButton_1"
             primaryText: "1"
             secondaryText: " " // to keep the "1" above
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_2"
             primaryText: "2"
             secondaryText: "ABC"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_3"
             primaryText: "3"
             secondaryText: "DEF"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_4"
             primaryText: "4"
             secondaryText: "GHI"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_5"
             primaryText: "5"
             secondaryText: "JKL"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_6"
             primaryText: "6"
             secondaryText: "MNO"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_7"
             primaryText: "7"
             secondaryText: "PQRS"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_8"
             primaryText: "8"
             secondaryText: "TUV"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_9"
             primaryText: "9"
             secondaryText: "WXYZ"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_asterisk"
             primaryText: "*"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_0"
             primaryText: "0"
             secondaryText: "+"
             onClicked: textedit.text += primaryText
         }
         KeypadButton {
+            objectName: "padButton_hash"
             primaryText: "#"
             onClicked: textedit.text += primaryText
         }

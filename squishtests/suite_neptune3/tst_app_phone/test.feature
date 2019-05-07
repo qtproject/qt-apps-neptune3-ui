@@ -36,3 +36,19 @@ Scenario Outline: Call people from different views directly
        | contacts  |     3    |
        | contacts  |     6    |
        | favorites |     4    |
+
+
+Scenario Outline: Call a number from numpad
+
+    Given main menu is open
+    And 'phone' app from launcher tapped
+    And switch app to 'phone'
+    Then tap phone 'keypad' button
+    When tapping the buttons in order '<number>'
+    Then number '<number>' should be displayed
+     And clear number display
+
+  Examples:
+    | number     |
+    | 023456789  |
+    | 028891123  |

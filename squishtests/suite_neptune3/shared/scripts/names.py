@@ -200,3 +200,5 @@ trunk_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName"
 topCalendarMonthlyViewPreviousButton = {"container": container_calendar, "objectName": "topCalendarMonthlyViewPreviousButton", "type": "ToolButton", "visible": True}
 topCalendarGrid = {"container": container_calendar, "objectName": "topCalendarGrid", "type": "MonthGrid", "visible": True}
 topCalendarMonthlyViewNextButton = {"container": container_calendar, "objectName": "topCalendarMonthlyViewNextButton", "type": "ToolButton", "visible": True}
+callNumber_TextEdit = {"container": container_phone, "objectName": "callNumber", "type": "TextEdit", "visible": True}
+delLastCallDigitButton = {"container": container_phone, "objectName": "delLastCallDigitButton", "type": "ToolButton", "visible": True}

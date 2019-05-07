@@ -164,3 +164,61 @@ def step(context, view_name, entry_number):
     # switch to main before new command
     app.switch_to_main_app()
     squish.snooze(0.2)
+
+
+@When("tapping the buttons in order '|word|'")
+def step(context, number_sequence):
+    button_sequence = []
+
+    for i in range(len(number_sequence)):
+        my_char = number_sequence[i]
+        resolved_name = my_char if my_char >= '0' and my_char <= '9' else(
+                    "asterisk" if my_char == "*" else (
+                    "hash" if my_char == "#" else "error"))
+        if resolved_name != "error":
+            keypad_name = qml.phone_numpad_prefix + resolved_name
+            button_sequence.append(keypad_name)
+        else:
+            app.fail("The character '" + my_char + "' cannot be dialed")
+            return
+
+    # switch to app
+    app.switch_to_app('phone')
+    squish.snooze(0.25)
+
+    for elem in button_sequence:
+        button_obj = {"container": names.container_phone, "objectName": elem,
+                      "type": "KeypadButton", "visible": True}
+        squish.waitForObject(button_obj)
+        squish.snooze(0.1)
+        squish.tapObject(button_obj)
+
+    app.switch_to_main_app()
+
+
+@Then("number '|word|' should be displayed")
+def step(context, number_sequence):
+    # switch to app
+    app.switch_to_app('phone')
+    squish.snooze(0.25)
+
+    number_textobj = squish.waitForObject(names.callNumber_TextEdit)
+    found_number = str(number_textobj.text)
+    app.compare(number_sequence, found_number, "numbers should be equal")
+
+
+@Then("clear number display")
+def step(context):
+    # switch to app
+    app.switch_to_app('phone')
+    squish.snooze(0.25)
+
+    number_textobj = squish.waitForObject(names.callNumber_TextEdit)
+    found_number = str(number_textobj.text)
+
+    # clear field by tapping del length(text) times
+    for _i in range(len(found_number)):
+        del_button = squish.waitForObject(names.delLastCallDigitButton)
+        squish.snooze(0.05)
+        squish.tapObject(del_button)
+    app.switch_to_main_app()
