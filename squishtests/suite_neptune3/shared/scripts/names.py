@@ -197,3 +197,6 @@ roofOpenButton_ToolButton = {"container": container_vehicle, "objectName": "roof
 vehicleDoorLeft_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "vehicleDoorLeft_OpenCloseButton", "type": "ToolButton", "visible": True}
 vehicleDoorRight_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "vehicleDoorRight_OpenCloseButton", "type": "ToolButton", "visible": True}
 trunk_OpenCloseButton_ToolButton = {"container": container_vehicle, "objectName": "trunk_OpenCloseButton", "type": "ToolButton", "visible": True}
+topCalendarMonthlyViewPreviousButton = {"container": container_calendar, "objectName": "topCalendarMonthlyViewPreviousButton", "type": "ToolButton", "visible": True}
+topCalendarGrid = {"container": container_calendar, "objectName": "topCalendarGrid", "type": "MonthGrid", "visible": True}
+topCalendarMonthlyViewNextButton = {"container": container_calendar, "objectName": "topCalendarMonthlyViewNextButton", "type": "ToolButton", "visible": True}

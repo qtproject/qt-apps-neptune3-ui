@@ -24,3 +24,25 @@ Feature: Test calendar app functionality
            | events |
            | year   |
            | next   |
+
+
+  Scenario Outline: Switch through the month view on top
+  Given main menu is open
+  And 'calendar' app from launcher tapped
+  And switch app to 'calendar'
+ When store current month viewed
+ Then tap on '<change>' button in monthly view
+
+  Examples:
+           | change   |
+           | previous |
+           | previous |
+           | previous |
+           | previous |
+           | previous |
+           | previous |
+           | next     |
+           | next     |
+           | next     |
+           | next     |
+

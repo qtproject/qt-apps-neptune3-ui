@@ -35,6 +35,7 @@
 import names
 import common.app as app
 import common.qml_names as qml
+import __builtin__
 
 
 # all variable ui elements in a single dict, though qml_names definitions
@@ -46,6 +47,11 @@ variable_calendar_ui = {
                  'view': qml.calendar_view['year']},
         'next': {'button': names.next_ToolButton,
                  'view': qml.calendar_view['next']}
+}
+
+top_buttons_calendar_ui = {
+        'previous': names.topCalendarMonthlyViewPreviousButton,
+        'next':  names.topCalendarMonthlyViewNextButton
 }
 
 
@@ -83,8 +89,50 @@ def step(context, view_name):
     app.switch_to_app('calendar')
     squish.snooze(0.25)
 
-    view_stack_layout = waitForObject(names.calendarViewContent)
+    view_stack_layout = squish.waitForObject(names.calendarViewContent)
     current_index = view_stack_layout.currentIndex
     stack_layouts = object.children(view_stack_layout)
     current_name = stack_layouts[current_index].objectName
     test.compare(current_name, compare_name, "calendar views")
+
+
+@When("store current month viewed")
+def step(context):
+    if not context.userData:
+        context.userData = {}
+
+    app.switch_to_app('calendar')
+    squish.snooze(0.25)
+
+    grid_for_info = squish.waitForObject(names.topCalendarGrid)
+    current_month = __builtin__.int(str(grid_for_info.month))
+    context.userData['month'] = current_month
+
+
+@Then("tap on '|word|' button in monthly view")
+def step(context, button_name):
+    if not context.userData:
+        context.userData = {}
+
+    if button_name not in top_buttons_calendar_ui.keys():
+        app.fail("in calendar, the button '"
+                 + button_name
+                 + "' is not known!")
+        return
+    button = top_buttons_calendar_ui[button_name]
+    month_delta = 1 if (top_buttons_calendar_ui.keys()[0]
+                     == button_name) else -1
+
+    app.switch_to_app('calendar')
+    squish.snooze(0.25)
+
+    squish.tapObject(button)
+
+    squish.snooze(0.5)
+    grid_for_info = squish.waitForObject(names.topCalendarGrid)
+
+    month_now = __builtin__.int(str(grid_for_info.month))
+    month_before = context.userData['month']
+
+    month_change = (month_before + month_delta) % 12
+    app.compare(str(month_change + 1), str(month_now + 1), " month changes")

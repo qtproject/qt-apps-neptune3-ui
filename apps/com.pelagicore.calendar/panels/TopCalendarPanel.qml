@@ -63,6 +63,7 @@ RowLayout {
         }
         MonthGrid {
             id: grid
+            objectName: "topCalendarGrid"
 
             locale: Qt.locale(Config.languageLocale)
             Layout.preferredWidth: shadow.width
@@ -93,6 +94,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter
         Layout.bottomMargin: Sizes.dp(45)
         ToolButton {
+            objectName: "topCalendarMonthlyViewPreviousButton"
             Layout.alignment: Qt.AlignVCenter
             icon.name: LayoutMirroring.enabled ? "ic_skipnext" : "ic_skipprevious"
             onClicked: {
@@ -112,6 +114,7 @@ RowLayout {
             font.weight: Font.Light
         }
         ToolButton {
+            objectName: "topCalendarMonthlyViewNextButton"
             Layout.alignment: Qt.AlignVCenter
             icon.name: LayoutMirroring.enabled ? "ic_skipprevious" : "ic_skipnext"
             onClicked: {
