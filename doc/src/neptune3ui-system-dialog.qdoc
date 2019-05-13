@@ -57,28 +57,39 @@
 
    \image system-dialog-system2.jpg
 
-   \section1 List of Running Applications
+   \section1 List of Apps
 
-   The second tab of the system dialog shows a list of current running applications in
-   Neptune 3 UI. Each application item contains the following information:
+   The second tab of the system dialog shows a list of all apps installed in Neptune 3 UI
+   and their states. When an app is running, the corresponding section contains the following
+   information:
 
    \list
-   \li CPU and Memory consumptions
-   \li Time spent until first frame of the application to be drawn
+   \li Whether \c Autostart and \c Autorecover options are enabled
+   \li Current CPU and Memory consumptions
+   \li Window(s), in which the app is shown
+   \li Time spent until the app's first frame is drawn
    \endlist
 
-   Each application item also has a switch button to enable the performance overlay on top
-   of the application window. For an application that has two windows, \l{ApplicationCCWindow} and
+   Each app item also has a switch button to enable the performance information overlay on top of
+   the app window. For an app that has two windows, \l{ApplicationCCWindow} and
    \l{ApplicationICWindow}, two switch buttons can be seen and selected depending on the need.
 
-   In order to kill the application, an X icon on the right side of the application item
-   can be tapped. Once the application is killed, it will also be removed from the application
-   list.
+   Tap the X icon on the right of the app, to terminate the app. Once the app is terminated, only
+   the app's name and the start button remain in the app's section. Tap the ▷ button to start the
+   application again.
 
-   \note Only removing the application widget in the home screen, does not mean that
-   the application is killed, it could still be running in the background.
+   \note Only removing the app widget from the home screen, does not terminate the app, it may
+   still be running in the background.
 
-   \image system-dialog-runningapps.jpg
+   The \c Autostart switch button enables apps to run automatically on Neptune 3 UI, upon startup.
+
+   The \c Autorecover switch button enables apps to recover after crashing or being forced to close;
+   they are restarted automatically. After three unsuccessful recovery attempts \c Autostart option
+   is switched off.
+
+   System apps (HUD, Climate and Instrument Cluster) are marked with asterisks\c *.
+
+   \image system-dialog-apps.jpg
 
    \section1 Performance Tab
 
