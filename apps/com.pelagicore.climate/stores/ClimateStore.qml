@@ -53,12 +53,12 @@ QtObject {
         readonly property real minValue: 17
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
-        readonly property real value: climateControl.zoneAt.FrontLeft.targetTemperature
+        readonly property real value: climateControl.zoneAt.FrontLeft ? climateControl.zoneAt.FrontLeft.targetTemperature : 0.0
         readonly property real localizedValue: root.calculateUnitValue(value)
         readonly property string valueString: Number(localizedValue).toLocaleString(Qt.locale(), 'f', 1)
         readonly property int measurementSystem: root.measurementSystem
 
-        readonly property bool heat: climateControl.zoneAt.FrontLeft.seatHeater > 0
+        readonly property bool heat: climateControl.zoneAt.FrontLeft ? climateControl.zoneAt.FrontLeft.seatHeater > 0 : false
 
         function setValue(newValue) {
             climateControl.zoneAt.FrontLeft.targetTemperature = newValue
@@ -74,12 +74,12 @@ QtObject {
         readonly property real minValue: 17
         readonly property real maxValue: 25
         readonly property real stepValue: 0.5
-        readonly property real value: climateControl.zoneAt.FrontRight.targetTemperature
+        readonly property real value: climateControl.zoneAt.FrontRight ? climateControl.zoneAt.FrontRight.targetTemperature : 0.0
         readonly property real localizedValue: root.calculateUnitValue(value)
         readonly property string valueString: Number(localizedValue).toLocaleString(Qt.locale(), 'f', 1)
         readonly property int measurementSystem: root.measurementSystem
 
-        readonly property bool heat: climateControl.zoneAt.FrontRight.seatHeater > 0
+        readonly property bool heat: climateControl.zoneAt.FrontRight ? climateControl.zoneAt.FrontRight.seatHeater > 0 : false
 
         function setValue(newValue) {
             climateControl.zoneAt.FrontRight.targetTemperature = newValue
