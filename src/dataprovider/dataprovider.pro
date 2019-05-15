@@ -7,7 +7,7 @@ SUBDIRS += \
 
 # Don't build the production backend on android and ios, only use the simulation backend
 !android:!ios:SUBDIRS += \
-    server \
+    dataprovider-server \
     app \
     backend \
 
