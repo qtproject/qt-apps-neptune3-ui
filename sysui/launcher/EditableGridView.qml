@@ -82,9 +82,7 @@ Item {
         }
 
         function refreshItems() {
-            var modelCount = root.model.count;
-
-            for (var i = 0; i < modelCount; i++) {
+            for (var i = 0; i < root.model.count; i++) {
                 var item = root.model.get(i);
                 var groups = ["items"]
                 //not a system app
@@ -113,9 +111,7 @@ Item {
             id: delegateRoot
             objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
-            property int visualIndex: visualModel.filterOnGroup === ""
-                            ? model.index
-                            : visualModel.items.get(model.index)[visualModel.filterOnGroup + "Index"]
+            property int modelIndex: model.index
 
             width: grid.cellWidth
             height: grid.cellHeight
@@ -123,7 +119,11 @@ Item {
             //disable mouse interaction for invisible items when only top row is shown
             enabled: opacity > 0.0
             opacity: {
-                if (delegateRoot.visualIndex > (root.numIconsPerRow - 1)) {
+                //get item index in source model or in filtered if filter applied
+                var index = visualModel.filterOnGroup === ""
+                        ? model.index
+                        : visualModel.items.get(model.index)[visualModel.filterOnGroup + "Index"]
+                if (index > (root.numIconsPerRow - 1)) {
                     if (root.gridOpen) {
                         return 1.0
                     } else {
@@ -185,7 +185,7 @@ Item {
 
             DropArea {
                 anchors { fill: parent; }
-                onEntered: visualModel.items.move(drag.source.visualIndex, delegateRoot.visualIndex)
+                onEntered: root.model.move(drag.source.modelIndex, delegateRoot.modelIndex, 1)
             }
 
             onClicked: {
