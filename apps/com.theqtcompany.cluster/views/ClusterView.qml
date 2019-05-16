@@ -64,7 +64,7 @@ Item {
 
     Loader {
         id: gaugesPanelLoader
-        active: store.behaviourInterface.flatGauges
+        active: !store.behaviourInterface.threeDGauges
         source: "../panels/GaugesPanel.qml"
         opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
         Behavior on opacity {
@@ -83,7 +83,7 @@ Item {
 
     Loader {
         id: _3dgaugesPanelLoader
-        active: !store.behaviourInterface.flatGauges
+        active: store.behaviourInterface.threeDGauges
         source: "../panels/GaugesPanel3D.qml"
         opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
         Behavior on opacity {

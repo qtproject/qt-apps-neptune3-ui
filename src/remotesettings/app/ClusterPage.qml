@@ -166,11 +166,11 @@ Flickable {
             }
 
             Label {
-                text: qsTr("Flat Gauges:")
+                text: qsTr("3D Gauges:")
             }
             CheckBox {
-                checked: uiSettings.flatGauges
-                onClicked: uiSettings.flatGauges = checked
+                checked: uiSettings.threeDGauges
+                onClicked: uiSettings.threeDGauges = checked
             }
 
             /*!

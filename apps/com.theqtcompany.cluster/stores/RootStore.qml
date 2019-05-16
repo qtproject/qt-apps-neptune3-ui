@@ -81,8 +81,17 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
-        flatGauges: !ApplicationInterface.systemProperties["qt3DStudioRuntimeExist"]
-                        || uiSettings.flatGauges
+        property bool qt3DStudioRuntimeExist: false
+        Loader {
+            visible: false
+            source: "../helpers/TestQt3DStudioExist.qml"
+            onLoaded: {
+                root.behaviourInterface.qt3DStudioRuntimeExist = true
+                source = ""
+            }
+        }
+
+        threeDGauges: qt3DStudioRuntimeExist && uiSettings.threeDGauges
         hideGauges: uiSettings.hideGauges
         navigationMode: uiSettings.navigationMode
     }

@@ -33,7 +33,7 @@ interface UISettings {
 
     /** Whether both gauges should be hidden or not */
     bool hideGauges;
-    bool flatGauges;
+    bool threeDGauges;
 }
 
 interface SystemUI {

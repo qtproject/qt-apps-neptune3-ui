@@ -28,14 +28,7 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+import QtStudio3D 2.1
+import QtQuick 2.8
 
-import shared.utils 1.0
-
-Store {
-    id: root
-
-    property bool hideGauges: false
-    property bool threeDGauges: false
-    property bool navigationMode: false
-    property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
-}
+Item {}
