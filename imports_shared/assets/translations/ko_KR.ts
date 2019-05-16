@@ -1237,6 +1237,13 @@
     </message>
 </context>
 <context>
+    <name>Settings3DPanel</name>
+    <message>
+        <source>Qt 3D Model Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsModel</name>
     <message>
         <source>Driver 1</source>
@@ -1685,6 +1692,18 @@
         <source>Intelligent speed adaptation</source>
         <translation type="unfinished">지능형 속도 제어</translation>
     </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VehicleToolsColumn</name>
@@ -1703,6 +1722,10 @@
     <message>
         <source>tires</source>
         <translation>타이어</translation>
+    </message>
+    <message>
+        <source>options</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

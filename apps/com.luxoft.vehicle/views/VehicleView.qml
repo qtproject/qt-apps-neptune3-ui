@@ -35,6 +35,7 @@ import QtQuick 2.2
 import shared.utils 1.0
 
 import shared.Sizes 1.0
+import shared.animations 1.0
 
 import "../panels" 1.0
 import "../stores" 1.0
@@ -43,29 +44,54 @@ Item {
     id: root
 
     property VehicleStore store
-    Binding { target: store; property: "cameraAngleView"; value: car3dPanel.cameraPanAngleInput; }
 
-    Vehicle3DPanel {
+    Item {
         id: car3dPanel
-
         anchors.top: root.top
         anchors.left: root.left
         anchors.right: root.right
         height: Sizes.dp(652)
 
-        scene3DHeight: Sizes.dp(380)
-        scene3DWidth: Sizes.dp(960)
-
         // at the application startup it doesn't receive full screen window,
         // in that moment the car model is scaled awfully, so we wait till the app window is rescaled properly
         visible: parent.height > 2 * Sizes.dp(652)
 
-        leftDoorOpen: root.store.leftDoorOpened
-        rightDoorOpen: root.store.rightDoorOpened
-        trunkOpen: root.store.trunkOpened
-        roofOpenProgress: root.store.roofOpenProgress
+        Connections {
+            id: delayedConns
+            target: null
+            onLastCameraAngleChanged: root.store.cameraAngleView = target.lastCameraAngle
+            onReadyToChanges: {
+                controlPanel.allowToChange3DSettings = true
+                vehicleProxyPanel.showBusyIndicator = false
+                vehicleProxyPanel.z = vehicleProxyPanel.parent.z;
+            }
+        }
 
-        modelVersion: root.store.model3DVersion
+        VehicleProxyPanel {
+            id: vehicleProxyPanel
+            showBusyIndicator: true
+        }
+
+        Loader {
+            id: car3dPanelLoader
+            anchors.fill: parent
+            active: !root.store.qt3DStudioRuntimeExist || root.currentRuntimeQt3D
+            source: "../panels/Vehicle3DPanel.qml"
+            opacity: active ? 1.0 : 0.0
+            Behavior on opacity {
+                DefaultNumberAnimation {}
+            }
+
+            onLoaded: {
+                item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} )
+                item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
+                item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
+                item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
+                item.modelVersion = Qt.binding( function() {return root.store.model3DVersion})
+                item.lastCameraAngle = root.store.cameraAngleView
+                delayedConns.target = item
+            }
+        }
     }
 
     Vehicle3DControlPanel {
@@ -78,6 +104,7 @@ Item {
         anchors.right: root.right
         anchors.bottom: parent.bottom
         menuModel: store.menuModel
+        qualityModel: store.qualityModel
         controlModel: store.controlModel
         leftDoorOpened: root.store.leftDoorOpened
         rightDoorOpened: root.store.rightDoorOpened
@@ -87,5 +114,19 @@ Item {
         onRightDoorClicked: root.store.setRightDoor()
         onTrunkClicked: root.store.setTrunk()
         onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
+
+        onQualityChanged: {
+            // check is needed to prevent segfault when signal is emitted during initialization
+            if (root.store.model3DVersion !== quality) {
+                var src = car3dPanelLoader.source
+                vehicleProxyPanel.z = vehicleProxyPanel.parent.z + 1;
+                vehicleProxyPanel.showBusyIndicator = true;
+                car3dPanelLoader.setSource("")
+                root.store.model3DVersion = quality;
+                car3dPanelLoader.setSource(src)
+            } else {
+                allowToChange3DSettings = true;
+            }
+        }
     }
 }

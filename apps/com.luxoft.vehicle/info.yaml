@@ -17,13 +17,5 @@ name:
 applicationProperties:
     private:
         squishPort: 7732
-        # versions description: original, optimized, mixedFormats
-        # original -- the same model as in 5.11 version: objects are stored in *.obj format (high-poly model)
-        # optimized -- objects are stored in *.obj format (the polygons amount was reduced)
-        # mixedFormats -- almost all objects are stored in *stl binary format
-        # REMEMBER, that it is required to relaunch neptune3 for changes
-        #modelVersion: 'original'
-        modelVersion: 'optimized'
-        #modelVersion: 'mixedFormats'
 
 categories: [ 'navigation', 'vehicle' ]

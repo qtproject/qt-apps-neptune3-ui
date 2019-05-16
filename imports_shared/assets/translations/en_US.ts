@@ -792,6 +792,13 @@
     </message>
 </context>
 <context>
+    <name>Settings3DPanel</name>
+    <message>
+        <source>Qt 3D Model Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsToolsColumn</name>
     <message>
         <source>languages</source>
@@ -916,6 +923,18 @@
         <source>Intelligent speed adaptation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VehicleToolsColumn</name>
@@ -933,6 +952,10 @@
     </message>
     <message>
         <source>doors &amp;&amp; &lt;br/&gt;sunroof</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>options</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

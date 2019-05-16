@@ -40,13 +40,12 @@ import QtQml 2.2
 Entity {
     id: root
     property Camera camera
-    property real cameraPanAngleOutput: 0.0
-    property real cameraPanAngleInput: 0.0
+    property real cameraPanAngle: 0.0
 
     QtObject {
         id: d
         readonly property vector2d base2d : Qt.vector2d(0.0, -15.0)
-        property real pixelAndTimeMagicCoeff: 5.0
+        property real pixelAndTimeMagicCoeff: 7.0
         property var trajectory: []
         property bool userInteraction: false
 
@@ -74,15 +73,6 @@ Entity {
 
         return angle * 180 / Math.PI;
     }
-
-    onCameraPanAngleOutputChanged: {
-        // it is disabled for cluster
-        if (!enabled) {
-            var curAngle = getCurrentAngle();
-            root.camera.panAboutViewCenter(cameraPanAngleOutput - curAngle, Qt.vector3d(0, 1, 0));
-        }
-    }
-
 
     MouseDevice {
         id: mouseSourceDevice
@@ -121,14 +111,14 @@ Entity {
                     if (dx !== 0) {
                         root.camera.panAboutViewCenter(-dx * dt * d.pixelAndTimeMagicCoeff
                                                        , Qt.vector3d(0, 1, 0));
-                        cameraPanAngleInput = getCurrentAngle();
+                        cameraPanAngle = getCurrentAngle();
                     }
 
                     d.trajectory = []
                 } else if (!d.userInteraction && d.demoRotation < 360) {
                     ++d.demoRotation;
                     root.camera.panAboutViewCenter(-1.0, Qt.vector3d(0, 1, 0));
-                    cameraPanAngleInput = getCurrentAngle();
+                    cameraPanAngle = getCurrentAngle();
                 }
 
             }

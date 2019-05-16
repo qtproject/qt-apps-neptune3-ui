@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -30,45 +29,33 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtApplicationManager.Application 2.0
-import application.windows 1.0
-import shared.utils 1.0
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
-import shared.com.pelagicore.systeminfo 1.0
-import shared.Style 1.0
+import QtQuick 2.0
+import QtQuick.Controls 2.3
 
-import "views" 1.0
-import "stores" 1.0
+import shared.Sizes 1.0
 
-QtObject {
+import "../helpers"  1.0
+
+Item {
     id: root
+    anchors.fill: parent
 
-    property var mainWindow: ApplicationCCWindow {
-        id: mainWindow
+    property alias showBusyIndicator: busyIndicator.running
 
-        VehicleView {
-            id: vehicleView
-            anchors.fill: parent
-            store: VehicleStore {}
-        }
+    Image {
+        id: proxyImage
+        anchors.fill: parent
+        source: Paths.getImagePath("carPlaceholderCC.png")
 
-        InstrumentCluster {
-            id: clusterSettings
-        }
-    }
-
-    readonly property Loader applicationICWindowLoader: Loader {
-        asynchronous: true
-        active: clusterSettings.available
-                 || Qt.platform.os !== "linux" // FIXME and then remove; remote settings doesn't really work outside of Linux
-        sourceComponent: Component {
-            ApplicationICWindow {
-                id: applicationICWindowComponent
-                VehicleICView {
-                    anchors.fill: parent
-                    store: vehicleView.store
+        BusyIndicator {
+            id: busyIndicator
+            anchors.centerIn: parent
+            anchors.verticalCenterOffset: Sizes.dp(80)
+            onRunningChanged: {
+                if (running) {
+                    proxyImage.source = Paths.getImagePath("carPlaceholderCC.png")
+                } else {
+                    proxyImage.source = Paths.getImagePath("sceneBackground.png")
                 }
             }
         }

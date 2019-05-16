@@ -48,11 +48,14 @@ Item {
     property alias trunkOpened: doorsPanel.trunkOpened
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
+    property alias allowToChange3DSettings: vehicle3DSettingsPanel.allowToChange3DSettings
+    property alias qualityModel: vehicle3DSettingsPanel.qualityModel
 
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
     signal roofOpenProgressChanged(var value)
+    signal qualityChanged(var quality)
 
     ToolsColumn {
         id: toolsColumn
@@ -85,5 +88,10 @@ Item {
             onRoofOpenProgressChanged: root.roofOpenProgressChanged(roofOpenProgress)
         }
         TiresPanel { objectName: "vehicleTiresPanel" }
+        Settings3DPanel {
+            id: vehicle3DSettingsPanel
+            objectName: "vehicleSettigns3DPanel"
+            onQualityChanged: root.qualityChanged(quality)
+        }
     }
 }

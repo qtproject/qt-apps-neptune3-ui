@@ -42,7 +42,7 @@ QtObject {
     property bool trunkOpened: false
     property real roofOpenProgress: 0.0
     property real cameraAngleView: 0.0
-    property string model3DVersion: "original"
+    property string model3DVersion: "optimized"
 
     property real speed: cluster.speed
 
@@ -61,7 +61,15 @@ QtObject {
         ListElement { icon: "ic-energy"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "energy"); objectName: "vehicleViewToolButton_energy" }
         ListElement { icon: "ic-doors"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "doors && <br/>sunroof"); objectName: "vehicleViewToolButton_doors" }
         ListElement { icon: "ic-tires"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "tires"); objectName: "vehicleViewToolButton_tires" }
+        ListElement { icon: "ic-3d-settings"; text: QT_TRANSLATE_NOOP("VehicleToolsColumn", "options"); objectName: "vehicleViewToolButton_options" }
     }
+
+    property ListModel qualityModel : ListModel {
+        ListElement { name: QT_TR_NOOP("High"); quality: "original" }
+        ListElement { name: QT_TR_NOOP("Medium"); quality: "optimized" }
+        ListElement { name: QT_TR_NOOP("Low"); quality: "mixedFormats" }
+    }
+
 
     property UISettings uiSettings: UISettings {
         onDoor1OpenChanged: {

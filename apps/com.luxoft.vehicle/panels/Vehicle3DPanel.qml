@@ -48,19 +48,16 @@ import "../3d/settings" 1.0
 Item {
     id: root
 
-    property real cameraPanAngleOutput: 0.0
-    property real cameraPanAngleInput: 0.0
+    property real lastCameraAngle: 0.0
     property string modelVersion
-
-    property int scene3DHeight
-    property int scene3DWidth
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     property real roofOpenProgress: 0.0
     property bool leftDoorOpen: false
     property bool rightDoorOpen: false
     property bool trunkOpen: false
-    property bool clusterView: false
+
+    signal readyToChanges
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
     Loader {
@@ -73,28 +70,10 @@ Item {
         id: sceneComponent
         Item {
             anchors.fill: parent
-            Image {
-                anchors.fill: parent
-                source: ! root.clusterView
-                        ? Paths.getImagePath("carPlaceholderCC.png")
-                        : Paths.getImagePath("carPlaceholderIC.png")
-
-                BusyIndicator {
-                    anchors.centerIn: parent
-                    anchors.verticalCenterOffset: Sizes.dp(80)
-                    running: !body.loaded
-
-                    onRunningChanged: {
-                        if (!running) {
-                            parent.source = Paths.getImagePath("sceneBackground.png")
-                        }
-                    }
-                }
-            }
 
             Scene3D {
-                height: root.scene3DHeight
-                width: root.scene3DWidth
+                height: Sizes.dp(380)
+                width: Sizes.dp(960)
                 anchors.verticalCenterOffset: Sizes.dp(80)
                 anchors.centerIn: parent
                 aspects: ["input", "logic"]
@@ -130,9 +109,8 @@ Item {
 
                     CameraController {
                         camera: camera
-                        enabled: !root.clusterView
-                        onCameraPanAngleInputChanged: root.cameraPanAngleInput = cameraPanAngleInput
-                        cameraPanAngleOutput: root.cameraPanAngleOutput
+                        enabled: true
+                        onCameraPanAngleChanged: root.lastCameraAngle = cameraPanAngle
                     }
 
                     CookTorranceMaterial {
@@ -219,6 +197,12 @@ Item {
                     Body {
                         id: body
                         version: root.modelVersion
+                        onLoadedChanged: {
+                            if (loaded) {
+                                camera.panAboutViewCenter(lastCameraAngle, Qt.vector3d(0, 1, 0))
+                                Qt.callLater( function() {root.readyToChanges()} )
+                            }
+                        }
                     }
                 }
             }
