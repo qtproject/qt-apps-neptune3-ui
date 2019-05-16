@@ -47,7 +47,7 @@ Item {
 
     Item {
         id: titleAndSubtitle
-        height: root.subtitle !== "" ? Sizes.dp(96) + subTitle.lineCount * Sizes.dp(16) : Sizes.dp(96)
+        height: root.subtitle !== "" ? Sizes.dp(100) + subTitle.lineCount * Sizes.dp(24) : Sizes.dp(100)
         visible: title !== "" || subtitle !== ""
         width: root.width
 
