@@ -29,44 +29,26 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#ifndef SERVER_H
-#define SERVER_H
+#include <QtQml/qqmlextensionplugin.h>
+#include <qqml.h>
 
-#include <QObject>
-#include <QSettings>
-#include <QTimer>
+#include "remotesettingsmodule.h"
 
-#include "core.h"
-#include "rep_uisettings_source.h"
-#include "rep_systemui_source.h"
-#include "rep_connectionmonitoring_source.h"
+QT_BEGIN_NAMESPACE
 
-Q_DECLARE_LOGGING_CATEGORY(dataProviderServer)
-
-class Server : public QObject
+class RemoteSettingsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 public:
-    explicit Server(QObject *parent = nullptr);
+    virtual void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.remotesettings"));
 
-    void start();
-
-public slots:
-    void onROError(QRemoteObjectNode::ErrorCode code);
-    void onAboutToQuit();
-
-protected slots:
-    void onTimeout();
-
-protected:
-    QScopedPointer<UISettingsSimpleSource> m_UISettingsService;
-    QScopedPointer<SystemUISimpleSource> m_systemUIService;
-    QScopedPointer<ConnectionMonitoringSimpleSource> m_connectionMonitoringService;
-
-    void initConnectionMonitoring();
-
-private:
-    QTimer m_heartBeatTimer;
+        RemoteSettingsModule::registerQmlTypes(uri, 1, 0);
+    }
 };
 
-#endif // SERVER_H
+QT_END_NAMESPACE
+
+#include "plugin.moc"

@@ -40,7 +40,7 @@ import QtQuick.Layouts 1.2
 import "stores" 1.0
 import "views" 1.0
 
-import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0

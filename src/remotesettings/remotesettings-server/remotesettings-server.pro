@@ -10,7 +10,7 @@ QT_FOR_CONFIG += ivicore
 include($$SOURCE_DIR/config.pri)
 
 QFACE_FORMAT = server_qtro
-QFACE_SOURCES = ../dataprovider.qface
+QFACE_SOURCES = ../remotesettings.qface
 
 SOURCES += \
     main.cpp\
@@ -21,7 +21,7 @@ HEADERS += \
 
 DEPENDPATH += $$OUT_PWD/../server
 
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(dataprovider)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 
@@ -29,7 +29,7 @@ QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptun
 
 DISTFILES +=
 
-TARGET = dataprovider-server
+TARGET = remotesettings-server
 DESTDIR = $$BUILD_DIR
 
 target.path = $$INSTALL_PREFIX/neptune3

@@ -1,4 +1,4 @@
-TARGET = $$qtLibraryTarget(dataprovider)
+TARGET = $$qtLibraryTarget(remotesettings)
 TEMPLATE = lib
 CONFIG += ivigenerator
 DESTDIR = $$LIB_DESTDIR
@@ -10,10 +10,10 @@ macos: QMAKE_SONAME_PREFIX = @rpath
 
 include($$SOURCE_DIR/config.pri)
 
-DEFINES += QT_BUILD_DATAPROVIDER_LIB
+DEFINES += QT_BUILD_REMOTESETTINGS_LIB
 QT += ivicore ivicore-private qml
 
-QFACE_SOURCES = ../dataprovider.qface
+QFACE_SOURCES = ../remotesettings.qface
 
 DEPENDPATH += $$OUT_PWD/../frontend
 

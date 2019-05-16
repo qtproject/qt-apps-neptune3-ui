@@ -35,7 +35,7 @@ import QtApplicationManager.Application 2.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.remotesettings 1.0
 
 Store {
     id: root

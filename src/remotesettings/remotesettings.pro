@@ -7,7 +7,7 @@ SUBDIRS += \
 
 # Don't build the production backend on android and ios, only use the simulation backend
 !android:!ios:SUBDIRS += \
-    dataprovider-server \
+    remotesettings-server \
     app \
     backend \
 
@@ -17,4 +17,4 @@ server.depends = frontend
 app.depends = frontend
 qml_plugin.depends = frontend
 
-OTHER_FILES += dataprovider.qface
+OTHER_FILES += remotesettings.qface

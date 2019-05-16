@@ -29,26 +29,25 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include <QtQml/qqmlextensionplugin.h>
-#include <qqml.h>
+#include <QCoreApplication>
+#include <QDir>
+#include <QLockFile>
 
-#include "dataprovidermodule.h"
+#include "server.h"
 
-QT_BEGIN_NAMESPACE
-
-class DataProviderPlugin : public QQmlExtensionPlugin
+int main(int argc, char *argv[])
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
-public:
-    virtual void registerTypes(const char *uri) override
-    {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.dataprovider"));
+    QCoreApplication a(argc, argv);
 
-        DataProviderModule::registerQmlTypes(uri, 1, 0);
+    // single instance guard
+    QLockFile lockFile(QStringLiteral("%1/NeptuneRemoteSettingsServer.lock").arg(QDir::tempPath()));
+    if (!lockFile.tryLock(100)) {
+        qCritical("Neptune RemoteSettingsServer already running, aborting...");
+        return EXIT_FAILURE;
     }
-};
 
-QT_END_NAMESPACE
+    Server s;
+    s.start();
 
-#include "plugin.moc"
+    return a.exec();
+}

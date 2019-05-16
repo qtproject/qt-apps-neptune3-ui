@@ -32,7 +32,7 @@
 
 import QtQuick 2.8
 import QtApplicationManager.SystemUI 2.0
-import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 
 QtObject {

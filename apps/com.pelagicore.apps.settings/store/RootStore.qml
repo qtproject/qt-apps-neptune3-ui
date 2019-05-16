@@ -33,7 +33,7 @@
 import QtQml 2.2
 import QtQml.Models 2.3
 import shared.utils 1.0
-import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.remotesettings 1.0
 import shared.Style 1.0
 
 import "../helper"

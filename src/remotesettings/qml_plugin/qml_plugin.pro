@@ -1,8 +1,8 @@
 TEMPLATE = lib
 CONFIG += plugin
-TARGET  = dataproviderplugin
+TARGET  = remotesettingsplugin
 QT += qml
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(dataprovider)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 INCLUDEPATH += $$OUT_PWD/../frontend
 
 include($$SOURCE_DIR/config.pri)
@@ -10,7 +10,7 @@ include($$SOURCE_DIR/config.pri)
 SOURCES += \
     plugin.cpp
 
-uri = com.pelagicore.dataprovider
+uri = com.pelagicore.remotesettings
 load(qmlplugin)
 
 QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$installPath)

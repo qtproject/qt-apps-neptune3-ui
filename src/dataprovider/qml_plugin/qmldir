@@ -1,3 +1,0 @@
-module shared.com.pelagicore.dataprovider
-plugin dataproviderplugin
-classname DataProviderPlugin

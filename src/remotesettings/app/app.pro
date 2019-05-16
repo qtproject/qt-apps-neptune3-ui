@@ -6,7 +6,7 @@ CONFIG -= app_bundle
 
 include($$SOURCE_DIR/config.pri)
 
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(dataprovider)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 
 INCLUDEPATH += $$OUT_PWD/../frontend
 

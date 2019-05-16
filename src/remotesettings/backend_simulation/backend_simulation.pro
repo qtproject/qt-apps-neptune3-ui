@@ -1,5 +1,5 @@
 TEMPLATE=lib
-TARGET = $$qtLibraryTarget(dataprovider_backend_qtro)
+TARGET = $$qtLibraryTarget(remotesettings_backend_simulation)
 CONFIG += ivigenerator plugin
 
 QT_FOR_CONFIG += ivicore
@@ -7,7 +7,7 @@ QT_FOR_CONFIG += ivicore
 
 include($$SOURCE_DIR/config.pri)
 
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(dataprovider)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 DESTDIR = $$BUILD_DIR/qtivi
 
 #needed for the android deployment to work
@@ -21,8 +21,8 @@ PLUGIN_CLASS_NAME = IviSettingsBackendInterface
 
 QT += core ivicore
 
-QFACE_FORMAT = backend_qtro
-QFACE_SOURCES = ../dataprovider.qface
+QFACE_FORMAT = backend_simulator
+QFACE_SOURCES = ../remotesettings.qface
 
 DEPENDPATH += $$OUT_PWD/../backend
 

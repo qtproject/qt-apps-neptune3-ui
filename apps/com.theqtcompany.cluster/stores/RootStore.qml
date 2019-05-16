@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import shared.com.pelagicore.dataprovider 1.0
+import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 import QtApplicationManager.Application 2.0
 

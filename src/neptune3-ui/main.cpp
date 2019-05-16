@@ -110,7 +110,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         // start the server; the server itself will ensure one instance only
         startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/vehiclefunctions-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-server");
-        startExtraProcess(QCoreApplication::applicationDirPath() + "/dataprovider-server");
+        startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
 
         // load the Qt translations

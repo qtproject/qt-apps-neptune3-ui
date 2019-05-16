@@ -32,7 +32,7 @@
 #include "server.h"
 #include <QCoreApplication>
 
-Q_LOGGING_CATEGORY(dataProviderServer, "dataProvider.server")
+Q_LOGGING_CATEGORY(remoteSettingsServer, "remoteSettings.server")
 
 Server::Server(QObject *parent) : QObject(parent)
 {
@@ -44,23 +44,23 @@ Server::Server(QObject *parent) : QObject(parent)
 void Server::start()
 {
     m_UISettingsService.reset(new UISettingsSimpleSource());
-    Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "DataProvider.UISettings");
-    qCDebug(dataProviderServer) << "register service at: DataProvider.UISettings";
+    Core::instance()->host()->enableRemoting(m_UISettingsService.data(), "RemoteSettings.UISettings");
+    qCDebug(remoteSettingsServer) << "register service at: RemoteSettings.UISettings";
 
     m_systemUIService.reset(new SystemUISimpleSource());
-    Core::instance()->host()->enableRemoting(m_systemUIService.data(), "DataProvider.SystemUI");
-    qCDebug(dataProviderServer) << "register service at: DataProvider.SystemUI";
+    Core::instance()->host()->enableRemoting(m_systemUIService.data(), "RemoteSettings.SystemUI");
+    qCDebug(remoteSettingsServer) << "register service at: RemoteSettings.SystemUI";
 
     m_connectionMonitoringService.reset(new ConnectionMonitoringSimpleSource());
-    Core::instance()->host()->enableRemoting(m_connectionMonitoringService.data(), "DataProvider.ConnectionMonitoring");
-    qCDebug(dataProviderServer) << "register service at: DataProvider.ConnectionMonitoring";
+    Core::instance()->host()->enableRemoting(m_connectionMonitoringService.data(), "RemoteSettings.ConnectionMonitoring");
+    qCDebug(remoteSettingsServer) << "register service at: RemoteSettings.ConnectionMonitoring";
 
     initConnectionMonitoring();
 }
 
 void Server::onROError(QRemoteObjectNode::ErrorCode code)
 {
-    qCWarning(dataProviderServer) << "Remote objects error, code:" << code;
+    qCWarning(remoteSettingsServer) << "Remote objects error, code:" << code;
 }
 
 void Server::onAboutToQuit()

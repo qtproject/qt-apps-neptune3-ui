@@ -1,11 +1,11 @@
 TEMPLATE = subdirs
 
 SUBDIRS += neptune3-ui
-SUBDIRS += dataprovider \
+SUBDIRS += remotesettings \
            drivedata
 
 use_qsr{
     #build Qt Safe Renderer Cluster
     SUBDIRS += neptune3-ui-qsr-cluster
-    neptune3-ui-qsr-cluster.depends = dataprovider-server
+    neptune3-ui-qsr-cluster.depends = remotesettings-server
 }

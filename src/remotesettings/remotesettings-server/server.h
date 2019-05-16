@@ -29,25 +29,44 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include <QCoreApplication>
-#include <QDir>
-#include <QLockFile>
+#ifndef SERVER_H
+#define SERVER_H
 
-#include "server.h"
+#include <QObject>
+#include <QSettings>
+#include <QTimer>
 
-int main(int argc, char *argv[])
+#include "core.h"
+#include "rep_uisettings_source.h"
+#include "rep_systemui_source.h"
+#include "rep_connectionmonitoring_source.h"
+
+Q_DECLARE_LOGGING_CATEGORY(remoteSettingsServer)
+
+class Server : public QObject
 {
-    QCoreApplication a(argc, argv);
+    Q_OBJECT
+public:
+    explicit Server(QObject *parent = nullptr);
 
-    // single instance guard
-    QLockFile lockFile(QStringLiteral("%1/NeptuneDataProviderServer.lock").arg(QDir::tempPath()));
-    if (!lockFile.tryLock(100)) {
-        qCritical("Neptune DataProviderServer already running, aborting...");
-        return EXIT_FAILURE;
-    }
+    void start();
 
-    Server s;
-    s.start();
+public slots:
+    void onROError(QRemoteObjectNode::ErrorCode code);
+    void onAboutToQuit();
 
-    return a.exec();
-}
+protected slots:
+    void onTimeout();
+
+protected:
+    QScopedPointer<UISettingsSimpleSource> m_UISettingsService;
+    QScopedPointer<SystemUISimpleSource> m_systemUIService;
+    QScopedPointer<ConnectionMonitoringSimpleSource> m_connectionMonitoringService;
+
+    void initConnectionMonitoring();
+
+private:
+    QTimer m_heartBeatTimer;
+};
+
+#endif // SERVER_H

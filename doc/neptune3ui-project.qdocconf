@@ -4,9 +4,9 @@ url     = http://doc.qt.io/Neptune3UI
 
 moduleheader = Neptune3UIDoc
 
-headerdirs += $$BUILDDIR/../src/dataprovider/frontend
+headerdirs += $$BUILDDIR/../src/remotesettings/frontend
 
-sourcedirs += src ../ $$BUILDDIR/../src/dataprovider/frontend
+sourcedirs += src ../ $$BUILDDIR/../src/remotesettings/frontend
 
 imagedirs += src/images
 

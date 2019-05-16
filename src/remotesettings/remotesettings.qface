@@ -1,6 +1,5 @@
-module DataProvider 1.0
+module RemoteSettings 1.0
 
-@config: {id: "UISettings"}
 interface UISettings {
     string language;
     list<string> languages;
@@ -37,7 +36,6 @@ interface UISettings {
     bool flatGauges;
 }
 
-@config: {id: "SystemUI"}
 interface SystemUI {
   /*
    * Incrementing this value will make sysui switch to display the next
@@ -50,7 +48,6 @@ interface SystemUI {
   int applicationICWindowSwitchCount
 }
 
-@config: {id: "ConnectionMonitoring"}
 interface ConnectionMonitoring {
     int intervalMS;
     int counter;

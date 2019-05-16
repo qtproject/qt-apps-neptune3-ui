@@ -49,7 +49,7 @@
    settings service would not need to be remote, but could be running in-process instead.
 
    By default the remote settings server is started automatically by Neptune 3 UI. It may also be
-   started by running the dataprovider-server executable. The executable is installed or
+   started by running the remotesettings-server executable. The executable is installed or
    built during the build of Neptune 3 UI. The server needs a settings file "server.conf" for
    setting up the connection. This settings file is shipped with Neptune 3 UI and is located in the
    root directory. The same settings file is also read by the backend plugin instances loaded by

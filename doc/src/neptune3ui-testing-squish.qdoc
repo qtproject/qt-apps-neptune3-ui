@@ -127,7 +127,7 @@ attachableAUT/app_vehicle = "localhost:7732"
     are:
     \list
      \li D-Bus process
-     \li dataprovider-server
+     \li remotesettings-server
     \endlist
 
     Consequently, for Neptune 3 UI you have to force Squish to ignore these processes to run the
@@ -142,7 +142,7 @@ attachableAUT/app_vehicle = "localhost:7732"
 
     \badcode
     # ignore the following processes
-    dataprovider-server
+    remotesettings-server
     dbus-daemon
     \endcode
 
