@@ -5,10 +5,10 @@ TEMPLATE = subdirs
 include(config.pri)
 
 SUBDIRS += \
-    src/dataprovider/frontend/frontend.pro \
-    src/dataprovider/backend/backend.pro \
-    src/dataprovider/qml_plugin/qml_plugin.pro \
-    src/dataprovider/app/app.pro
+    src/remotesettings/frontend/frontend.pro \
+    src/remotesettings/backend/backend.pro \
+    src/remotesettings/qml_plugin/qml_plugin.pro \
+    src/remotesettings/app/app.pro
 
 CONFIG += ordered
 
