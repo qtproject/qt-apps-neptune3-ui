@@ -13,7 +13,7 @@ SUBDIRS += \
 
 backend_simulation.depends = frontend
 backend.depends = frontend
-server.depends = frontend
+remotesettings-server.depends = frontend
 app.depends = frontend
 qml_plugin.depends = frontend
 

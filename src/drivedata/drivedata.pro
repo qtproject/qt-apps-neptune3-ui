@@ -10,7 +10,7 @@ SUBDIRS = frontend \
     backend \
 
 backend.depends = frontend
-server.depends = frontend
+drivedata-server.depends = frontend
 backend_simulation.depends = frontend
 qml_plugin.depends = frontend
 
