@@ -105,9 +105,6 @@ void Client::connectToServer(const QString &serverUrl)
     settings.setValue(QStringLiteral("Registry"), serverUrl);
     settings.sync();
 
-    m_connectionMonitoring.setServiceObject(nullptr);
-    m_connectionMonitoring.startAutoDiscovery();
-
     setStatus(tr("Connecting to %1...").arg(url.toString()));
     updateLastUrls(url.toString());
 
@@ -116,6 +113,9 @@ void Client::connectToServer(const QString &serverUrl)
         emit serverUrlChanged(m_serverUrl);
         m_reconnectionTimer.stop();
     }
+
+    m_connectionMonitoring.setServiceObject(nullptr);
+    m_connectionMonitoring.startAutoDiscovery();
 }
 
 void Client::updateConnectionStatus()
