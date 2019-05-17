@@ -39,7 +39,7 @@
 #include <QUrl>
 #include "connectionmonitoring.h"
 
-Q_DECLARE_LOGGING_CATEGORY(dataProviderApp)
+Q_DECLARE_LOGGING_CATEGORY(NeptuneCompanionApp)
 
 class Client : public QObject
 {

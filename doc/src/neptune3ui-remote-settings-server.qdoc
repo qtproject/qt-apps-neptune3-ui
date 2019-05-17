@@ -59,20 +59,20 @@
    detailed explanation on QtIVI remote backends.
 
 
-   \section1 Remote Settings App
+   \section1 Neptune Companion App
 
-   The Neptune 3 UI comes with a remote control app called NeptuneControlApp, that connects to the
-   remote settings server and may be used to change the common settings and \l{instrument cluster}
-   values. The app is not an end user application but merely meant for changing common values for
-   demonstration purposes. Nevertheless the technical principles behind the remote server and the
-   control app apply to possible end user applications as well.
+   The Neptune 3 UI comes with a remote control app called neptune-companion-app, that connects to
+   the remote settings server and may be used to change the common settings and
+   \l{instrument cluster} values. The app is not an end user application but merely meant for
+   changing common values for demonstration purposes. Nevertheless the technical principles behind
+   the remote server and the control app apply to possible end user applications as well.
 
-   The remote control app can be started by running the executable NeptuneControlApp, located in the
-   Neptune 3 UI install directory. The app has a connection dialog for setting the ip-address and
-   port of the server. You can find this address in the About Box of the Neptune 3 UI which is shown
-   on a tap or a click on the "Qt" logo on the System UI. The default port is 9999.
+   The remote control app can be started by running the executable neptune-companion-app, located
+   in the Neptune 3 UI install directory. The app has a connection dialog for setting the ip-address
+   and port of the server. You can find this address in the About Box of the Neptune 3 UI which is
+   shown on a tap or a click on the "Qt" logo on the System UI. The default port is 9999.
 
-   \image remote-settings-app.jpg
+   \image neptune-companion-app.jpg
 
    The app has three views for different value sets: General Settings, Instrument Cluster and System
    UI. The general settings are values which apps commonly need to access or observe, such as the

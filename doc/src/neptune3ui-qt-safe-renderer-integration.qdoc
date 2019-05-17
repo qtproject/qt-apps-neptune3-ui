@@ -57,7 +57,7 @@
 
     The Client to Neptune's \l {Neptune 3 UI - Remote Settings Server} {Remote Settings Server}
     provides the value sources: telltales state, speed, and so on, for Safe UI. Connection
-    parameters are read from the \c {.config/Pelagicore/NeptuneControlApp.conf} file. The first
+    parameters are read from the \c {.config/Pelagicore/NeptuneCompanionApp.conf} file. The first
     \c url property from the \c [lastUrls] group is used for connection:
 
     \badcode

@@ -31,7 +31,7 @@
 ****************************************************************************/
 #include "client.h"
 
-Q_LOGGING_CATEGORY(dataProviderApp, "dataProvider.App")
+Q_LOGGING_CATEGORY(NeptuneCompanionApp, "NeptuneCompanion.App")
 
 const QString Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
 const QString Client::settingsLastUrlsItem = QStringLiteral("url");
@@ -43,7 +43,7 @@ const QString Client::defaultUrl = QStringLiteral("tcp://127.0.0.1:9999");
 Client::Client(QObject *parent) : QObject(parent),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneControlApp"))
+    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneCompanionApp"))
 {
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);

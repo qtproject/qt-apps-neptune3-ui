@@ -43,7 +43,7 @@ const QString RemoteSettings_Client::defaultUrl = QStringLiteral("tcp://127.0.0.
 RemoteSettings_Client::RemoteSettings_Client(QObject *parent) : QObject(parent),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneControlApp"))
+    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneCompanionApp"))
 {
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &RemoteSettings_Client::onCMTimeout);
