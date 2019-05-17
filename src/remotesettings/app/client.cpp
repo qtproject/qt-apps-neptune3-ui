@@ -133,7 +133,7 @@ void Client::updateConnectionStatus()
     } else {
         setStatus(tr("Disconnected"));
         if (m_timedOut) {
-            qCWarning(dataProviderApp) << "Server heartbeat timed out.";
+            qCWarning(NeptuneCompanionApp) << "Server heartbeat timed out.";
             m_reconnectionTimer.start(reconnectionIntervalMS);
         }
     }
@@ -165,7 +165,7 @@ void Client::setStatus(const QString &status)
     if (status==m_status)
         return;
     m_status=status;
-    qCWarning(dataProviderApp) << "Client status: " << status;
+    qCWarning(NeptuneCompanionApp) << "Client status: " << status;
     emit statusChanged(m_status);
 }
 
