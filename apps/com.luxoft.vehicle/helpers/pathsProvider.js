@@ -62,3 +62,7 @@ function getImagePath(name) {
 function getMaterialPath(name) {
     return Qt.resolvedUrl("../assets/shaders/" + name)
 }
+
+function localQt3DStudioPresentationAsset(relativePresentationPath) {
+    return "../assets/3dCar/" + relativePresentationPath;
+}

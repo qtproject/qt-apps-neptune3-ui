@@ -43,9 +43,11 @@ import "../controls" 1.0
 
 Item {
     id: root
+    signal runtimeChanged(var qt3d)
     signal qualityChanged(var quality)
 
     property bool allowToChange3DSettings
+    property bool qt3DStudioAvailable
     property alias qualityModel: lv.model
 
     Layout.fillHeight: true
@@ -61,7 +63,97 @@ Item {
         spacing:  Sizes.dp(50)
 
         ColumnLayout {
-            id: section
+            id: section1
+            visible: qt3DStudioAvailable
+            Layout.fillWidth: true
+            ButtonGroup { id: buttonGroupRuntimes }
+
+            Label {
+                Layout.alignment: Qt.AlignLeft
+                font.weight: Font.Normal
+                text: qsTr("3D Runtime")
+            }
+
+            Image {
+                height: Sizes.dp(2)
+                Layout.fillWidth: true
+                source: Style.image("list-divider")
+            }
+
+            RowLayout {
+                Label {
+                    font.weight: Font.Light
+                    Layout.alignment: Qt.AlignLeft
+                    text: qsTr("Qt 3D")
+                }
+
+                Rectangle {
+                    color: "transparent"
+                    Layout.fillWidth: true
+                }
+
+                RadioButton {
+                    id: qt3DButton
+                    checked: true
+                    enabled: root.allowToChange3DSettings
+                    ButtonGroup.group: buttonGroupRuntimes
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: Sizes.dp(22)
+
+                    onCheckedChanged: {
+                        if (checked) {
+                            root.allowToChange3DSettings = false
+                            root.runtimeChanged(true)
+                        }
+                    }
+                }
+            }
+
+            Image {
+                height: Sizes.dp(2)
+                Layout.fillWidth: true
+                source: Style.image("list-divider")
+            }
+
+            RowLayout {
+                Label {
+                    font.weight: Font.Light
+                    Layout.alignment: Qt.AlignLeft
+                    text: qsTr("Qt 3D Studio")
+                }
+
+                Rectangle {
+                    color: "transparent"
+                    Layout.fillWidth: true
+                }
+
+                RadioButton {
+                    id: qt3DStudioButton
+                    checked: false
+                    enabled: root.allowToChange3DSettings
+                    ButtonGroup.group: buttonGroupRuntimes
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: Sizes.dp(22)
+
+                    onCheckedChanged: {
+                        if (checked) {
+                            root.allowToChange3DSettings = false
+                            root.runtimeChanged(false)
+                        }
+                    }
+                }
+            }
+
+            Image {
+                height: Sizes.dp(2)
+                Layout.fillWidth: true
+                source: Style.image("list-divider")
+            }
+        }
+
+        ColumnLayout {
+            id: section2
+            visible: ! qt3DStudioButton.checked
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -133,4 +225,3 @@ Item {
         }
     }
 }
-

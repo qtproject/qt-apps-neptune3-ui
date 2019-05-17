@@ -44,6 +44,7 @@ Item {
     id: root
 
     property VehicleStore store
+    property bool currentRuntimeQt3D: true
 
     Item {
         id: car3dPanel
@@ -75,7 +76,7 @@ Item {
         Loader {
             id: car3dPanelLoader
             anchors.fill: parent
-            active: !root.store.qt3DStudioRuntimeExist || root.currentRuntimeQt3D
+            active: !root.store.qt3DStudioAvailable || root.currentRuntimeQt3D
             source: "../panels/Vehicle3DPanel.qml"
             opacity: active ? 1.0 : 0.0
             Behavior on opacity {
@@ -83,13 +84,33 @@ Item {
             }
 
             onLoaded: {
+                delayedConns.target = item
                 item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} )
                 item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
                 item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
                 item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
                 item.modelVersion = Qt.binding( function() {return root.store.model3DVersion})
                 item.lastCameraAngle = root.store.cameraAngleView
+            }
+        }
+
+        Loader {
+            id: car3dStudioPanellLoader
+            anchors.fill: parent
+            active: root.store.qt3DStudioAvailable && !root.currentRuntimeQt3D
+            source: "../panels/Vehicle3DStudioPanel.qml"
+            opacity: active ? 1.0 : 0.0
+            Behavior on opacity {
+                DefaultNumberAnimation {}
+            }
+
+            onLoaded: {
                 delayedConns.target = item
+                item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} )
+                item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
+                item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
+                item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
+                item.lastCameraAngle = root.store.cameraAngleView
             }
         }
     }
@@ -109,11 +130,19 @@ Item {
         leftDoorOpened: root.store.leftDoorOpened
         rightDoorOpened: root.store.rightDoorOpened
         trunkOpened: root.store.trunkOpened
+        qt3DStudioAvailable: root.store.qt3DStudioAvailable
+
 
         onLeftDoorClicked: root.store.setLeftDoor()
         onRightDoorClicked: root.store.setRightDoor()
         onTrunkClicked: root.store.setTrunk()
         onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
+
+        onRuntimeChanged: {
+            vehicleProxyPanel.z = vehicleProxyPanel.parent.z + 1;
+            vehicleProxyPanel.showBusyIndicator = true;
+            root.currentRuntimeQt3D = qt3d;
+        }
 
         onQualityChanged: {
             // check is needed to prevent segfault when signal is emitted during initialization
@@ -128,5 +157,6 @@ Item {
                 allowToChange3DSettings = true;
             }
         }
+
     }
 }

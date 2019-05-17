@@ -1282,7 +1282,19 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
 <context>
     <name>Settings3DPanel</name>
     <message>
+        <source>Qt 3D Studio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Qt 3D Model Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt 3D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3D Runtime</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -43,6 +43,17 @@ QtObject {
     property real roofOpenProgress: 0.0
     property real cameraAngleView: 0.0
     property string model3DVersion: "optimized"
+    property bool qt3DStudioAvailable: false
+
+    // here we use loader to prevent build failures in case when Qt3DStudio is not available in the libs
+    property Loader qt3DStudioAvailableChecker: Loader {
+        visible: false
+        source: "../helpers/Qt3DStudioAvailable.qml"
+        onLoaded: {
+            root.qt3DStudioAvailable = true
+            source = ""
+        }
+    }
 
     property real speed: cluster.speed
 

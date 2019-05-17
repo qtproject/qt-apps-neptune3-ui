@@ -49,12 +49,14 @@ Item {
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
     property alias allowToChange3DSettings: vehicle3DSettingsPanel.allowToChange3DSettings
+    property alias qt3DStudioAvailable: vehicle3DSettingsPanel.qt3DStudioAvailable
     property alias qualityModel: vehicle3DSettingsPanel.qualityModel
 
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
     signal roofOpenProgressChanged(var value)
+    signal runtimeChanged(var qt3d)
     signal qualityChanged(var quality)
 
     ToolsColumn {
@@ -91,6 +93,7 @@ Item {
         Settings3DPanel {
             id: vehicle3DSettingsPanel
             objectName: "vehicleSettigns3DPanel"
+            onRuntimeChanged: root.runtimeChanged(qt3d)
             onQualityChanged: root.qualityChanged(quality)
         }
     }

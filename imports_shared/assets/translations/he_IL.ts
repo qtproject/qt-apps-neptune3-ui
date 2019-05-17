@@ -798,5 +798,9 @@
         <source>tires</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
