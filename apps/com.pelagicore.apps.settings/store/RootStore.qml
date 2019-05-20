@@ -137,7 +137,7 @@ QtObject {
     function updateAccentColor(value) {
         console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
-        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(uiSettings.accentColor));
+        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(value));
     }
 
     // Initialization
