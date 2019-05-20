@@ -43,6 +43,8 @@ Control {
 
     property color currentAccentColor
 
+    onCurrentAccentColorChanged: chart.requestPaint();
+
     signal accentColorRequested(color accentColor)
 
     contentItem: ColorSelector {
