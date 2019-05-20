@@ -81,17 +81,17 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
-        property bool qt3DStudioRuntimeExist: false
+        property bool qt3DStudioAvailable: false
         Loader {
             visible: false
-            source: "../helpers/TestQt3DStudioExist.qml"
+            source: "../helpers/Qt3DStudioAvailable.qml"
             onLoaded: {
-                root.behaviourInterface.qt3DStudioRuntimeExist = true
+                root.behaviourInterface.qt3DStudioAvailable = true
                 source = ""
             }
         }
 
-        threeDGauges: qt3DStudioRuntimeExist && uiSettings.threeDGauges
+        threeDGauges: qt3DStudioAvailable && uiSettings.threeDGauges
         hideGauges: uiSettings.hideGauges
         navigationMode: uiSettings.navigationMode
     }
