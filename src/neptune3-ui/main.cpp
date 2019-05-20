@@ -108,7 +108,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Main a(argc, argv);
 
         // start the server; the server itself will ensure one instance only
-        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/vehiclefunctions-simulation-server");
+        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivivehiclefunctions-simulation-server");
+        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivimedia-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
