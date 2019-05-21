@@ -57,9 +57,20 @@ PopupItem {
     }
 
     Component.onCompleted: {
-        root.originItemX = root.window.windowProperty("originItemX");
-        root.originItemY = root.window.windowProperty("originItemY");
-        root.popupY = root.window.windowProperty("popupY");
-        root.open();
+        var nativePopup = !!window.popup
+        if (nativePopup) {
+            var pos = window.requestedPopupPosition
+            root.originItemX = pos.x
+            root.originItemY = pos.y
+            root.popupX = pos.x
+            root.popupY = pos.y
+        } else {
+            root.originItemX = root.window.windowProperty("originItemX")
+            root.originItemY = root.window.windowProperty("originItemY")
+            root.popupY = root.window.windowProperty("popupY")
+        }
+        closeToolButton.visible = !nativePopup
+        popupBg.visible = !nativePopup
+        root.open()
     }
 }

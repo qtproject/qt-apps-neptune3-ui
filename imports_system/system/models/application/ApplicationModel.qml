@@ -552,13 +552,13 @@ ListModel {
 
             var isRegularApp = !!appInfo && !root.isSystemApp(appInfo);
 
-            var isPopupWindow = window.windowProperty("windowType") === "popup";
+            var isPopupWindow = window.windowProperty("windowType") === "popup" || !!window.popup;
 
             if (isPopupWindow) {
                 root.applicationPopupAdded(window)
             }
 
-            if (isRegularApp) {
+            if (isRegularApp && !isPopupWindow) {
                 var isApplicationICWindow = window.windowProperty("windowType") === "instrumentcluster";
                 var isApplicationCCWindow = !window.windowProperty("windowType");
 
@@ -572,7 +572,7 @@ ListModel {
             // application will be added to the bottom bar window as well
             }
 
-            if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
+            if (d.isBottomBarApp(window.application) && !isPopupWindow) {
                 d.bottomBarAppInfo.priv.window = window;
             }
 
