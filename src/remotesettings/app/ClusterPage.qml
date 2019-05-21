@@ -39,8 +39,6 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
     contentHeight: baseLayout.height
 
-    property bool simulationEnabled: false
-
     ScrollIndicator.vertical: ScrollIndicator { }
 
     ColumnLayout {
@@ -84,6 +82,7 @@ Flickable {
                 stepSize: 1.0
                 value: instrumentCluster.ePower
                 onMoved: instrumentCluster.ePower = value
+                enabled: false
 
                 Label {
                     text: qsTr("ePower:")
@@ -147,14 +146,6 @@ Flickable {
             CheckBox {
                 checked: uiSettings.navigationMode
                 onClicked: uiSettings.navigationMode = checked
-            }
-
-            Label {
-                text: qsTr("Simulation Mode:")
-            }
-            CheckBox {
-                checked: root.simulationEnabled
-                onClicked: root.simulationEnabled = !root.simulationEnabled
             }
 
             Label {
@@ -300,60 +291,6 @@ Flickable {
                 stepSize: 0.5
                 to: 25000
                 onValueChanged: if (pressed) { instrumentCluster.navigationRouteDistanceKm = value }
-            }
-
-            Timer {
-                interval: 1000
-                running: root.simulationEnabled
-                repeat: true
-                property int speedChange: 10
-                onTriggered: {
-                    if (instrumentCluster.speed > 140) {
-                        speedChange = -10;
-                    }
-                    if (instrumentCluster.speed < 20) {
-                        speedChange = 10;
-                    }
-                    instrumentCluster.speed += speedChange;
-
-                    if (instrumentCluster.ePower < 80) {
-                        instrumentCluster.ePower = instrumentCluster.ePower + 2;
-                    } else {
-                        instrumentCluster.ePower = 0.0;
-                    }
-
-                    if (instrumentCluster.speedCruise < 100) {
-                        instrumentCluster.speedCruise = instrumentCluster.speedCruise + 10;
-                    } else {
-                        instrumentCluster.speedCruise = 0;
-                    }
-
-                    if (instrumentCluster.mileageKm < 100000) {
-                        instrumentCluster.mileageKm = instrumentCluster.mileageKm + Math.random(100)
-                    } else {
-                        instrumentCluster.mileageKm = 0
-                    }
-
-                    if (instrumentCluster.drivingModeRangeKm < 1000) {
-                        instrumentCluster.drivingModeRangeKm = instrumentCluster.mileageKm + Math.random(20)
-                    } else {
-                        instrumentCluster.drivingModeRangeKm = 0
-                    }
-
-                    if (instrumentCluster.navigationProgressPercents < 1.0) {
-                        instrumentCluster.navigationProgressPercents = instrumentCluster.navigationProgressPercents
-                                + 0.01
-                    } else {
-                        instrumentCluster.navigationProgressPercents = 0.0
-                    }
-
-                    if (instrumentCluster.navigationRouteDistanceKm < 130.0) {
-                        instrumentCluster.navigationRouteDistanceKm = instrumentCluster.navigationRouteDistanceKm
-                                + Math.random(10)
-                    } else {
-                        instrumentCluster.navigationRouteDistanceKm = 0.0
-                    }
-                }
             }
         }
 

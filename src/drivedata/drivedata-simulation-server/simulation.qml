@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -29,34 +28,37 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include "server.h"
-#include <QCoreApplication>
 
-Q_LOGGING_CATEGORY(driveDataServer, "driveData.server")
+import QtQuick 2.0
+import DriveData.simulation 1.0
 
-Server::Server(QObject *parent) : QObject(parent)
-{
-    connect(QCoreApplication::instance(),&QCoreApplication::aboutToQuit,
-            this,&Server::onAboutToQuit);
+Item {
+    InstrumentClusterBackend {
+        id: backend
+        property var settings : IviSimulator.findData(IviSimulator.simulationData, "InstrumentCluster")
 
-}
+        function initialize() {
+            IviSimulator.initializeDefault(settings, backend)
+            Base.initialize()
+        }
 
-void Server::start()
-{
-    m_instrumentClusterService.reset(new InstrumentClusterSimpleSource());
-    Core::instance()->host()->enableRemoting(m_instrumentClusterService.data(), "DriveData.InstrumentCluster");
-    qCDebug(driveDataServer) << "register service at: DriveData.InstrumentCluster";
-}
+        property Timer timer: Timer {
+            interval: 2000
+            onTriggered: {
+                if (backend.speed < 130) {
+                    backend.speed = backend.speed + 10;
+                } else {
+                    backend.speed = 0;
+                }
 
-void Server::onROError(QRemoteObjectNode::ErrorCode code)
-{
-    qCWarning(driveDataServer) << "Remote objects error, code:" << code;
-}
-
-void Server::onAboutToQuit()
-{
-}
-
-void Server::onTimeout()
-{
+                if (backend.ePower < 100) {
+                    backend.ePower = backend.ePower + 10;
+                } else {
+                    backend.ePower = 0;
+                }
+            }
+            repeat: true
+            running: true
+        }
+    }
 }

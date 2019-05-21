@@ -58,7 +58,6 @@ NeptuneWindow {
 
     InstrumentCluster {
         id: clusterSettings
-        discoveryMode: InstrumentCluster.LoadOnlySimulationBackends
     }
 
     Item {

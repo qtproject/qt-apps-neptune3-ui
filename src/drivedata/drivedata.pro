@@ -6,13 +6,14 @@ SUBDIRS = frontend \
 
 # Don't build the production backend on android and ios, only use the simulation backend
 !android:!ios:SUBDIRS += \
-    drivedata-server \
+    drivedata-simulation-server \
     backend \
 
 backend.depends = frontend
-drivedata-server.depends = frontend
 backend_simulation.depends = frontend
 qml_plugin.depends = frontend
+drivedata-simulation-server.depends = frontend
+
 
 OTHER_FILES +=
 

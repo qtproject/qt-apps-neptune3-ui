@@ -42,9 +42,7 @@ import QtApplicationManager.Application 2.0
 RootStoreInterface {
     id: root
 
-    readonly property InstrumentCluster clusterDataSource: InstrumentCluster {
-        discoveryMode: InstrumentCluster.LoadOnlySimulationBackends
-    }
+    readonly property InstrumentCluster clusterDataSource: InstrumentCluster {}
     /*!
         \qmlproperty UISettings ClusterStore::uiSettings
         Needed here to get twentyFourHourTimeFormat
