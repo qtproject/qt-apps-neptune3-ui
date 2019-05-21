@@ -115,6 +115,11 @@
    of layers on the scene. All of the transformations, such as rotation, movement, and scaling are
    made via data inputs. For more details, see \l{Qt 3D Studio Manual}.
 
+   \note You must have \l{Qt 3D Studio} installed. If it is installed, but your 3D content
+   is not shown, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
+   and macOS. Consequently, these platforms would only show the 3D content in single-process mode
+   with opengl ES 3.0 requirements set by \c{.yaml} config file.
+   For more details, see \l{Qt Application Manager}.
 
    \section1 Vehicle Integration
 
