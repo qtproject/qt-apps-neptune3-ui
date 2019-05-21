@@ -7,26 +7,25 @@ TARGET = $$qtLibraryTarget($$TARGET)
 android: DESTDIR = $$BUILD_DIR/imports_shared_cpp/shared/$$replace(uri, \\., /)
 else: DESTDIR = $$BUILD_DIR/imports_shared/shared/$$replace(uri, \\., /)
 
-OTHER_FILES = qmldir
-
-!equals(_PRO_FILE_PWD_, $$OUT_PWD) {
-    copy_qmldir.target = $$replace(DESTDIR, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}qmldir
-    copy_qmldir.depends = $$replace(_PRO_FILE_PWD_, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}qmldir
-    copy_qmldir.commands = $(COPY_FILE) \"$$copy_qmldir.depends\" \"$$copy_qmldir.target\"
-    QMAKE_EXTRA_TARGETS += copy_qmldir
-    PRE_TARGETDEPS += $$copy_qmldir.target
+# if a qmldir exists automatically add it to the EXTRA_FILES
+exists($$_PRO_FILE_PWD_/qmldir) {
+    EXTRA_FILES += $$_PRO_FILE_PWD_/qmldir
 }
 
-!equals(_PRO_FILE_PWD_, $$OUT_PWD) {
-    for(extra_file, EXTRA_FILES) {
-        file = $$replace(_PRO_FILE_PWD_, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}$${extra_file}
-        target = $$replace(DESTDIR, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}$${extra_file}
-        copy_$${extra_file}.target = $$target
-        copy_$${extra_file}.depends = $$file
-        copy_$${extra_file}.commands = $(COPY_FILE) \"$$file\" \"$$target\"
-        QMAKE_EXTRA_TARGETS += copy_$${extra_file}
-        PRE_TARGETDEPS += $$target
+# Always copy all EXTRA_FILES to the plugin destination
+for(extra_file, EXTRA_FILES) {
+    exists($$extra_file) {
+        file = $$extra_file
+    } else {
+        file = $$_PRO_FILE_PWD_/$${extra_file}
     }
+    file = $$replace(file, /, $$QMAKE_DIR_SEP)
+    target = $$replace(DESTDIR, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}$$basename(file)
+    copy_$${extra_file}.target = $$target
+    copy_$${extra_file}.depends = $$file
+    copy_$${extra_file}.commands = $(COPY_FILE) \"$$file\" \"$$target\"
+    QMAKE_EXTRA_TARGETS += copy_$${extra_file}
+    PRE_TARGETDEPS += $$target
 }
 
 for(extra_file, EXTRA_FILES) {
@@ -36,10 +35,8 @@ for(extra_file, EXTRA_FILES) {
 
 include(../config.pri)
 
-qmldir.files = qmldir
 android: installPath = $$INSTALL_PREFIX/imports_shared_cpp/shared/$$replace(uri, \\., /)
 else: installPath = $$INSTALL_PREFIX/neptune3/imports_shared/shared/$$replace(uri, \\., /)
-qmldir.path = $$installPath
 target.path = $$installPath
 extra_files_install.path = $$installPath
-INSTALLS += target qmldir extra_files_install
+INSTALLS += target extra_files_install
