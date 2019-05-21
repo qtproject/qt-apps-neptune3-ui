@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import DriveData.simulation 1.0
+import shared.com.pelagicore.drivedata.simulation 1.0
 
 Item {
     InstrumentClusterBackend {

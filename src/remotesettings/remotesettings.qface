@@ -1,3 +1,4 @@
+@config: { qml_type: "shared.com.pelagicore.remotesettings" }
 module RemoteSettings 1.0
 
 interface UISettings {
