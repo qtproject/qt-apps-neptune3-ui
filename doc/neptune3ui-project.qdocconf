@@ -23,7 +23,13 @@ depends += qtcore \
            qtqml \
            qtgui \
            qtivi \
-           applicationmanager
+           applicationmanager \
+           qt3d \
+           qt3dstudio \
+           qtdoc \
+           qtwayland
+
+indexes = $$QT_INSTALL_DOCS/../QtSafeRenderer-1.0.0/SafetyManual/qtsaferenderer.index
 
 qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp

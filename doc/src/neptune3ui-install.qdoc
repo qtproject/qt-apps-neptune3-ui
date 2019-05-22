@@ -114,11 +114,11 @@
    \section2 Build and Run
 
    \list 1
-        \li Clone the repositories mentioned in \l{build-from-source}{Install Qt Automotive Suite}.
+        \li Clone the repositories mentioned in \l{Install Qt Automotive Suite}.
         \li Build \l{Qt Application Manager} against Qt 5.13. For more detailed build
             instructions, see \l{Qt Applicaton Manager Installation}.
         \li Build \l{Qt IVI} against Qt 5.13. For more detailed build instructions, see
-            \l[QtIvi]{Installation}{Qt IVI Installation}.
+            \l[QtIvi]{Installation}.
         \li Run the following command in a terminal, to build Neptune 3 UI:
             \badcode
             qmake neptune3-ui.pro

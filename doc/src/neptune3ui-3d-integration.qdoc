@@ -161,7 +161,7 @@
    \section1 Vehicle Integration with Qt 3D Studio
 
    The integration scheme for the other sub-part, built with Qt 3D Studio, is similar to
-   \l{3D Gauges Integration}. The diagram below further illustrates this:
+   \l{3D Gauges Integration with Qt 3D Studio}. The diagram below further illustrates this:
 
    \image 3d-integration-vehicle-app-2.jpg
 

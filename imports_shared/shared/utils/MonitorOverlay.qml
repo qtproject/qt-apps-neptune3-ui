@@ -47,7 +47,7 @@ import QtApplicationManager 2.0
     \image control-monitoroverlay.jpg
 
     The MonitorOverlay provides an item on top of \l{NeptuneWindow} to display frame-rate
-    information obtained from \l {QtApplicationManager::}{FrameTimer}.
+    information obtained from \l{QtApplicationManager::}{FrameTimer}.
 
     The following code snippet uses \l{MonitorOverlay}:
 
