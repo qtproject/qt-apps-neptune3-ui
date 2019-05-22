@@ -23,6 +23,8 @@ interface UISettings {
 
     bool door1Open;
     bool door2Open;
+    real roofOpenProgress;
+    bool trunkOpen;
 
     /*
      * Whether the instrument cluster should be in navigation mode

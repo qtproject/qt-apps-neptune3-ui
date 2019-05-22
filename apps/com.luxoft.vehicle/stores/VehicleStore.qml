@@ -89,6 +89,12 @@ QtObject {
         onDoor2OpenChanged: {
             root.rightDoorOpened = uiSettings.door2Open
         }
+        onTrunkOpenChanged: {
+            root.trunkOpened = uiSettings.trunkOpen
+        }
+        onRoofOpenProgressChanged: {
+            root.roofOpenProgress = uiSettings.roofOpenProgress
+        }
     }
 
     property InstrumentCluster cluster: InstrumentCluster { id: cluster }
@@ -96,8 +102,10 @@ QtObject {
     function setTrunk() {
         if (root.trunkOpened) {
             root.trunkOpened = false;
+            uiSettings.trunkOpen = false;
         } else {
             root.trunkOpened = true;
+            uiSettings.trunkOpen = true;
         }
     }
 
@@ -123,5 +131,6 @@ QtObject {
 
     function setRoofOpenProgress(value) {
         root.roofOpenProgress = value;
+        uiSettings.roofOpenProgress = value;
     }
 }
