@@ -31,7 +31,7 @@
 #include "remotesettings_client.h"
 
 
-Q_LOGGING_CATEGORY(RemoteSettings_ClientApp, "RemoteSettings_Client.App")
+Q_LOGGING_CATEGORY(QSRClientApp, "QSRClient.App")
 
 const QString RemoteSettings_Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
 const QString RemoteSettings_Client::settingsLastUrlsItem = QStringLiteral("url");
@@ -134,7 +134,7 @@ void RemoteSettings_Client::updateConnectionStatus()
     } else {
         setStatus(tr("Disconnected"));
         if (m_timedOut) {
-            qCWarning(RemoteSettings_ClientApp) << "Server heartbeat timed out.";
+            qCWarning(QSRClientApp) << "Server heartbeat timed out.";
             m_reconnectionTimer.start(reconnectionIntervalMS);
         }
     }
@@ -166,7 +166,7 @@ void RemoteSettings_Client::setStatus(const QString &status)
     if (status==m_status)
         return;
     m_status=status;
-    qCWarning(RemoteSettings_ClientApp) << "RemoteSettings_Client status: " << status;
+    qCWarning(QSRClientApp) << "RemoteSettings_Client status: " << status;
     emit statusChanged(m_status);
 }
 

@@ -39,7 +39,7 @@
 
 #include "connectionmonitoring.h"
 
-Q_DECLARE_LOGGING_CATEGORY(QSR_ClientApp)
+Q_DECLARE_LOGGING_CATEGORY(QSRClientApp)
 
 class RemoteSettings_Client : public QObject
 {

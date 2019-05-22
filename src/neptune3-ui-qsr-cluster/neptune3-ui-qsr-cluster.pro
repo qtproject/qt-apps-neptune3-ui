@@ -6,10 +6,9 @@ CONFIG += exceptions c++11
 
 QT = core gui qtsaferenderer network ivicore
 
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
 
-message("OUT_PWD" + $$OUT_PWD)
-
+INCLUDEPATH += $$OUT_PWD/../drivedata/frontend
 INCLUDEPATH += $$OUT_PWD/../remotesettings/frontend
 
 SOURCES = main.cpp \

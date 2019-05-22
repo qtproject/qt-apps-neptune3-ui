@@ -34,7 +34,7 @@
 
 #include <QtSafeRenderer/statemanager.h>
 
-#include "../remotesettings/frontend/instrumentcluster.h"
+#include "../drivedata/frontend/instrumentcluster.h"
 #include "remotesettings_client.h"
 
 using namespace SafeRenderer;
