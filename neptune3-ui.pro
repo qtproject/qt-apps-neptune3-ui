@@ -8,6 +8,12 @@ QT_FOR_CONFIG += ivicore
 }
 requires(!no_ivigenerator_available)
 
+use_qsr{
+    !qtHaveModule(qtsaferenderer){
+        log("$$escape_expand(\\n\\n) *** No qtsaferenderer available: Make sure QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
+    }
+}
+
 TEMPLATE = subdirs
 
 include(config.pri)
