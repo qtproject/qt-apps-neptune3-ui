@@ -50,7 +50,14 @@ NeptuneWindow {
     ClimateView {
         anchors.fill: parent
         store: ClimateStore {
+            id: climateStore
             measurementSystem: Qt.locale().measurementSystem
+        }
+    }
+
+    onWindowPropertyChanged: {
+        if (name === "neptuneLanguageLocale") {
+            climateStore.measurementSystem = Qt.locale().measurementSystem
         }
     }
 }
