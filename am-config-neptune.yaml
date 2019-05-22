@@ -48,6 +48,9 @@ systemProperties:
       showSystemAppsInLauncher: no
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+      userName: 't'
+      userPassword: 't'
+      imei: '112163001487801'
       orientation: 'Portrait'
 
 # development setup: no security

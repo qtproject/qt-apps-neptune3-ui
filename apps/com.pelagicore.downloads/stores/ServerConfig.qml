@@ -43,6 +43,9 @@ QtObject {
     property string serverReason
     property string cpuArch
     property string serverUrl: ApplicationManager.systemProperties.appStoreServerUrl
+    property string userName: ApplicationManager.systemProperties.userName
+    property string userPassword: ApplicationManager.systemProperties.userPassword
+    readonly property string imei: ApplicationManager.systemProperties.imei
 
     signal loginSuccessful()
 
@@ -75,7 +78,7 @@ QtObject {
 
     function login() {
         var url = serverUrl + "/login"
-        var data = { "username" : "t", "password" : "t", "imei" : "112163001487801" }
+        var data = { "username" : userName, "password" : userPassword, "imei" : imei }
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
                 if (data.status === "ok") {
