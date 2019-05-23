@@ -4,9 +4,17 @@ url     = http://doc.qt.io/Neptune3UI
 
 moduleheader = Neptune3UIDoc
 
-headerdirs += $$BUILDDIR/../src/remotesettings/frontend
+#These are set implictly by qdoc as well, but only with these the module header can be found
+includepaths = -I . \
+               -I ..
 
-sourcedirs += src ../ $$BUILDDIR/../src/remotesettings/frontend
+headerdirs += $$BUILDDIR/../src/remotesettings/frontend \
+              $$BUILDDIR/../src/drivedata/frontend
+
+sourcedirs += src \
+              .. \
+              $$BUILDDIR/../src/remotesettings/frontend \
+              $$BUILDDIR/../src/drivedata/frontend \
 
 imagedirs += src/images
 
