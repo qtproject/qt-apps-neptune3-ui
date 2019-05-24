@@ -30,7 +30,8 @@
    \title Neptune 3 UI - Qt Safe Renderer Integration
    \brief The Qt Safe Renderer Integration in Neptune 3 UI
 
-    In Neptune 3 UI, Qt Safe Renderer is included in both:
+    In Neptune 3 UI, \l{https://doc.qt.io/QtSafeRenderer/qtsr-overview.html}{Qt Safe Renderer} is
+    included in both:
     \list
       \li the regular UI part as QML components
       \li the safety-critical UI part as a sample app, neptune3-ui-qsr-cluster
@@ -41,21 +42,22 @@
 
    \section1 Enable Qt Safe Renderer Support
 
-    To use Qt Safe Renderer on these \l [QtSafeRenderer] {Supported Qt Versions and Host Platforms}
+    To use Qt Safe Renderer on these \l{https://doc.qt.io/QtSafeRenderer/qtsr-supported-environment.html#supported-qt-versions-and-host-platforms}
     {development environments}, build and install Qt Safe Renderer based on the steps described
-    in the \l [QtSafeRenderer] {Installing Qt Safe Renderer} {Installation guide}.
+    in \l{https://doc.qt.io/QtSafeRenderer/qtsr-installation-guide.html}{Installing Qt Safe Renderer}.
 
     To enable support for Qt Safe Renderer in the Neptune 3 UI \c .qmake.conf file, add \c use_qsr
     to the \c CONFIG line. This property does the following:
 
     \list
-    \li include \c neptune3-ui-qsr-cluster to the build tree
-    \li enable in \c neptune3-ui.pro \l [QtSafeRenderer] {Enabling Qt Safe Layout Tool}
-    {Qt Safe Layout Tool}, which generates layout files into \c {BUILD_FOLDER/qsr-safelayout},
-    including a \c {SafeTelltalesPanel.srl} file, that \c neptune3-ui-qsr-cluster uses
+        \li include \c neptune3-ui-qsr-cluster to the build tree
+        \li enable the \l{https://doc.qt.io/QtSafeRenderer/qtsr-functionalities.html#qt-safe-layout-tool}
+            {Qt Safe Layout Tool} in the \c neptune3-ui.pro file, which generates layout files into
+            \c {BUILD_FOLDER/qsr-safelayout}, including a \c {SafeTelltalesPanel.srl} file, that
+            \c neptune3-ui-qsr-cluster uses
     \endlist
 
-    The Client to Neptune's \l {Neptune 3 UI - Remote Settings Server} {Remote Settings Server}
+    The Client to Neptune's \l{Neptune 3 UI - Remote Settings Server}{Remote Settings Server}
     provides the value sources: telltales state, speed, and so on, for Safe UI. Connection
     parameters are read from the \c {.config/Pelagicore/NeptuneCompanionApp.conf} file. The first
     \c url property from the \c [lastUrls] group is used for connection:
@@ -69,7 +71,7 @@
 
     For the \c neptune3-ui-qsr-cluster and the \c neptune3-ui apps to communicate, we use a TCP
     connection. TCP client is on non-safe partition and server is on Safe UI part. TCP client is a
-    part of \l [QtSafeRenderer] {Qt Safe Renderer QML Types} {Qt Safe Renderer QML plugin}.
+    part of the \l{https://doc.qt.io/QtSafeRenderer/qtsaferenderer-qmlmodule.html}{Qt Safe Renderer QML plugin}.
     Qt Safe Renderer requires following environment variables to be set for communication:
 
     \badcode
@@ -156,30 +158,31 @@
 
     \c neptune3-ui-qsr-cluster is a sample "Safe UI part" implementation of Qt Safe Renderer inside
     Neptune 3 UI project. It is based on the desktop part of Qt Safe Renderer Example
-    \l [QtSafeRenderer] {Telltales: Rendering Safety-Critical UI}, that illustrates how to develop
-    with Qt Safe Renderer in a desktop environment.
-    \note This sample is not implemented according to
-    \l [QtSafeRenderer] {MISRA C++ Rules and Exception Handling}
-    {Misra C++ 2008 nor ISO26262 functional safety standards}
-    as the sample depends on Qt classes.
+    \l {https://doc.qt.io/QtSafeRenderer/qtsaferenderer-telltales-example.html}
+    {Telltales: Rendering Safety-Critical UI}, that illustrates how to develop with Qt Safe Renderer
+    in a desktop environment.
+
+    \note This sample is not implemented according to \l{https://doc.qt.io/QtSafeRenderer/qtsr-integrating.html#misra-c-rules-and-exception-handling}
+    {Misra C++ 2008 nor ISO26262 functional safety standards} as the sample depends on Qt classes.
 
     In this sample main aspects of work with Qt Safe Renderer are presented:
 
     \list
     \li Loading layout generated from QML file inside Neptune 3 UI, which contains telltales images,
     speed, power and warning texts
-    \li Interacting with Qt Safe Renderer library for rendering into buffer via SafeWindow class
-    inherited from Qt Safe Renderer \l [QtSafeRenderer] {SafeRenderer::AbstractWindow}
-    {AbstractWindow} and basic \l [QtGui] {QWindow}
-    \li Using \l [QtSafeRenderer] {SafeRenderer::StateManager} {StateManager} for controlling UI
-    elements states
-    \li Communicating with \c {non-safe partition} via \l [QtSafeRenderer] {SafeMessage}
-        {heartbeat messages} and receiving notification that \c {Main UI} is about to shutdown.
-        Simple Qt TCP Sever (\c TcpMsgHandler) is used for this.
+    \li Interacting with Qt Safe Renderer library to render into buffer via the SafeWindow class
+    inherited from Qt Safe Renderer \l{https://doc.qt.io/QtSafeRenderer/saferenderer-abstractwindow.html}
+    {AbstractWindow} and basic \l[QtGui]{QWindow}
+    \li Using the \l{https://doc.qt.io/QtSafeRenderer/saferenderer-statemanager.html}{StateManager} to
+        control UI elements' states
+    \li Communicating with \c {non-safe partition} via
+        \l{https://doc.qt.io/QtSafeRenderer/qml-qtsaferenderer-safemessage.html}{heartbeat messages}
+        and receiving notification that \c {Main UI} is about to shutdown. We use the simple Qt TCP Server
+        (\c TcpMsgHandler) for this.
     \li Communicating with Neptune's \l {Neptune 3 UI - Remote Settings Server}
-        {Remote Settings Server} to get values of Safe UI elements states. Same \l{Qt IVI} auto
-        generated client is used as in Neptune's \l {Neptune 3 UI - Remote Settings Server}
-        {Remote Control App}
+        {Remote Settings Server} to get values of Safe UI elements states. The same \l{Qt IVI} auto
+        generated client is used as with Neptune's \l {Neptune 3 UI - Remote Settings Server}
+        {Remote Control App}.
     \endlist
 
 
@@ -190,12 +193,12 @@
 
     \list
     \li load generated layout from \c {BUILD_FOLDER/qsr-safelayout/SafeTelltalesPanel.srl}
-    \li create window and connect it to Qt Safe Renderer \l [QtSafeRenderer]
-    {SafeRenderer::StateManager} {StateManager}
-    \li start TCP server for processing heartbeats from non-safe partition and show warning if timeout or
-    shutdown signal happens, hide them on new heartbeats \li start
-    \l {Neptune 3 UI - Remote Settings Server} {Remote Settings Server} Client to receive values for
-    Safe UI elements visibility states and text values
+    \li create window and connect it to Qt Safe Renderer
+        \l{https://doc.qt.io/QtSafeRenderer/saferenderer-statemanager.html}{StateManager}
+    \li start the TCP server to processing heartbeats from non-safe partition and show a warning if a timeout or
+        shutdown signal is emitted; hide them on new heartbeats
+    \li start the \l{Neptune 3 UI - Remote Settings Server}{Remote Settings Server} Client to
+        receive values for Safe UI elements visibility states and text values
     \endlist
 
     \section1 Desktop Scenario
@@ -215,9 +218,9 @@
     \endcode
 
     This key is used to demonstrate how the whole cluster looks: Neptune 3 UI at the bottom and safe
-    elements on top as if the cluster was rendered on an actual target with \l [QtSafeRenderer]
-    {Rendering Safety-Critical and Non-Safe UI} {hardware layering}. On desktop, however, there's no
-    hardware layering, so we place one window on top of another manually. We also make one window
-    "follow" coordinates of another to make their positions on the screen synchronized.
+    elements on top as if the cluster was rendered on an actual target with \l{https://doc.qt.io/QtSafeRenderer/qtsr-functionalities.html#rendering-safety-critical-and-non-safe-ui}
+    {hardware layering}. On desktop, however, there's no hardware layering, so we manually place
+    one window on top of another. We also make that window "follow" the coordinates of the other to
+    synchronize their positions on the screen.
 
 */

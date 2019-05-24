@@ -26,8 +26,6 @@ depends += qtcore \
            qtapplicationmanager \
            qtapplicationmanagerintegration
 
-indexes = $$QT_INSTALL_DOCS/../QtSafeRenderer-1.0.0/SafetyManual/qtsaferenderer.index
-
 qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp
 qhp.Neptune3UI.namespace           = io.qt.neptune3ui.$QT_VERSION_TAG
