@@ -129,8 +129,8 @@ Item {
             font.family: "Open Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
-            x: 180
-            y: 348
+            x: 185
+            y: 373
         }
 
         SafeText {
@@ -249,7 +249,7 @@ Item {
             font.family: "Open Sans"
             visible: false
             x: 570
-            y: 336
+            y: 362
             horizontalAlignment: Text.AlignHCenter
         }
 
