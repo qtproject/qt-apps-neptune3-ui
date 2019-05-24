@@ -147,4 +147,25 @@
 
    \image 3d-integration-vehicle-app-2.jpg
 
+   \section1 Build and Install Qt 3D Studio Runtime
+
+   If you installed Qt Automotive Suite via the
+   \l{https://www.qt.io/download-open-source/#section-2}{Online Installer}, it is likely that your
+   Qt 3D Studio installation does not include support for OpenGL ES 2, as it's not enabled by
+   default. In this case, the recommended solution is to build and install the required components
+   from source.
+
+   To build and install Qt 3D Studio Runtime, do the following:
+   \list
+        \li Clone the following git repositories from \l{https://code.qt.io}: qtapplicationmanager,
+            qtivi, neptune3-ui, and qt3d-runtime.
+        \li Build and install qtapplicationmanager with the following commands:
+            \code
+            qmake
+            make
+            make install
+            \endcode
+        \li Next, build and install qt3d-runtime, branch 2.1 using the commands above.
+        \li Finally, build and install qtivi and neptune3-ui with the commands above.
+   \endlist
 */
