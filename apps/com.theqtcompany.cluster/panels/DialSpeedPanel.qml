@@ -244,14 +244,6 @@ Item {
         }
     ]
 
-    Behavior on speed {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
-    }
-
-    Behavior on speedLimit {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
-    }
-
     Behavior on cruiseSpeed {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }

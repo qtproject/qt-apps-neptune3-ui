@@ -48,10 +48,6 @@ NeptuneWindow {
     property real speedLimit: clusterSettings.speedLimit
     property real cruiseSpeed: clusterSettings.speedCruise
 
-    Behavior on currentSpeed {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
-    }
-
     Component.onCompleted: {
         setWindowProperty("windowType", "hud");
     }

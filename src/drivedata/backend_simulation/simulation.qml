@@ -43,18 +43,25 @@ Item {
         }
 
         property Timer timer: Timer {
-            interval: 2000
+            interval: 200
             onTriggered: {
                 if (backend.speed < 130) {
-                    backend.speed = backend.speed + 10;
+                    backend.speed = backend.speed + 1;
                 } else {
                     backend.speed = 0;
                 }
+            }
+            repeat: true
+            running: true
+        }
 
+        property Timer powerTimer: Timer {
+            interval: 2000
+            onTriggered: {
                 if (backend.ePower < 100) {
-                    backend.ePower = backend.ePower + 10;
+                    backend.ePower = 100;
                 } else {
-                    backend.ePower = 0;
+                    backend.ePower = backend.ePower - 5;
                 }
             }
             repeat: true
