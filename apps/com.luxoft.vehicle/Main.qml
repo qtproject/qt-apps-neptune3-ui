@@ -51,7 +51,15 @@ QtObject {
         VehicleView {
             id: vehicleView
             anchors.fill: parent
-            store: VehicleStore {}
+            store: VehicleStore {
+                vehicle3DstudioColor: Style.accentColor
+            }
+        }
+
+        onWindowPropertyChanged: {
+            if (vehicleView.store.vehicle3DstudioColor !== Style.accentColor) {
+                vehicleView.store.vehicle3DstudioColor = Style.accentColor
+            }
         }
 
         InstrumentCluster {

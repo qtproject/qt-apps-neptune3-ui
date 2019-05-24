@@ -44,6 +44,7 @@ QtObject {
     property real cameraAngleView: 0.0
     property string model3DVersion: "optimized"
     property bool qt3DStudioAvailable: false
+    property color vehicle3DstudioColor
 
     // here we use loader to prevent build failures in case when Qt3DStudio is not available in the libs
     property Loader qt3DStudioAvailableChecker: Loader {

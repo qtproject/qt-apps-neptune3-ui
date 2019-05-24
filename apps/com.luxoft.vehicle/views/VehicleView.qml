@@ -110,6 +110,7 @@ Item {
                 item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
                 item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
                 item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
+                item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor})
                 item.lastCameraAngle = root.store.cameraAngleView
             }
         }
