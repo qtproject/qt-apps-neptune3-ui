@@ -46,7 +46,8 @@ class SystemInfo : public QObject, public QQmlParserStatus
     Q_INTERFACES(QQmlParserStatus)
 
     Q_PROPERTY(QStringList addressList READ addressList NOTIFY addressListChanged)
-    Q_PROPERTY(bool online READ online NOTIFY onlineChanged)
+    Q_PROPERTY(bool connected READ connected NOTIFY connectedChanged)
+    Q_PROPERTY(bool internetAccess READ internetAccess NOTIFY internetAccessChanged)
     Q_PROPERTY(QString productName READ productName CONSTANT)
     Q_PROPERTY(QString cpu READ cpu CONSTANT)
     Q_PROPERTY(QString kernel READ kernel CONSTANT)
@@ -58,7 +59,8 @@ public:
     explicit SystemInfo(QObject *parent = nullptr);
     ~SystemInfo() override;
     QStringList addressList() const;
-    bool online() const;
+    bool internetAccess() const;
+    bool connected() const;
     QString qtVersion() const;
     QString productName() const;
     QString cpu() const;
@@ -71,7 +73,8 @@ public slots:
 
 signals:
     void addressListChanged();
-    void onlineChanged();
+    void internetAccessChanged();
+    void connectedChanged();
     void qtDiagChanged();
 
 protected:
@@ -80,7 +83,8 @@ protected:
     void timerEvent(QTimerEvent *event) override;
 
 private slots:
-    void updateOnlineStatus(bool status);
+    void updateConnectedStatus(bool status);
+    void updateInternetAccessStatus(bool status);
     void replyFinished(QNetworkReply *reply);
 
 private:
@@ -88,7 +92,8 @@ private:
     void getQtDiagInfo();
     QStringList m_addressList;
     int m_timerId;
-    bool m_online{false};
+    bool m_connected{false};
+    bool m_internetAccess{false};
     QString m_qtDiagContents;
     QNetworkAccessManager *m_networkManager = nullptr;
 #if QT_CONFIG(process)

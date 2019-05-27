@@ -117,7 +117,9 @@ ColumnLayout {
             }
 
             MonitorListItem {
-                title: qsTr("Network: %1").arg(sysinfo.online ? qsTr("online") : qsTr("offline"))
+                title: qsTr("Network: %1%2")
+                                .arg(sysinfo.connected ? qsTr("connected") : qsTr("disconnected"))
+                                .arg(sysinfo.connected && !sysinfo.internetAccess ? qsTr(", no internet") : "");
                 subtitle: sysinfo.addressList.join("\n")
             }
 

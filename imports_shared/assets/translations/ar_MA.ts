@@ -552,18 +552,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
@@ -593,6 +581,22 @@
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

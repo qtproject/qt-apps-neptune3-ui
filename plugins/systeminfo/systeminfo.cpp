@@ -38,11 +38,11 @@
 
 #include "systeminfo.h"
 
+
 SystemInfo::SystemInfo(QObject *parent)
-    : QObject(parent),
-      m_online(true)
+    : QObject(parent)
+    , m_networkManager(new QNetworkAccessManager(this))
 {
-    m_networkManager = new QNetworkAccessManager(this);
     connect(
         m_networkManager, &QNetworkAccessManager::finished,
         this, &SystemInfo::replyFinished
@@ -69,11 +69,13 @@ void SystemInfo::init()
 void SystemInfo::getAddress()
 {
     m_addressList.clear();
-    for (const QNetworkInterface &interface : QNetworkInterface::allInterfaces())
-    {
-        if (interface.flags().testFlag(QNetworkInterface::IsUp) && !interface.flags().testFlag(QNetworkInterface::IsLoopBack)) {
-            for (const QNetworkAddressEntry &entry : interface.addressEntries())
-            {
+    for (const QNetworkInterface &interface : QNetworkInterface::allInterfaces()) {
+        if (interface.flags().testFlag(QNetworkInterface::IsUp)
+                && !interface.flags().testFlag(QNetworkInterface::IsLoopBack)
+                && interface.type() != QNetworkInterface::InterfaceType::Unknown
+                && interface.type() != QNetworkInterface::InterfaceType::Loopback
+                && interface.type() != QNetworkInterface::InterfaceType::Virtual) {
+            for (const QNetworkAddressEntry &entry : interface.addressEntries()) {
                 if (interface.hardwareAddress() != QLatin1String("00:00:00:00:00:00")) {
                     m_addressList.append(interface.name() + QLatin1String(" ") + entry.ip().toString() + QLatin1String(" ") + interface.hardwareAddress());
                     emit addressListChanged();
@@ -81,10 +83,15 @@ void SystemInfo::getAddress()
             }
         }
     }
-    if (m_addressList.removeDuplicates() > 0) {
+
+    if (m_addressList.removeDuplicates() > 0 || m_addressList.isEmpty()) {
         emit addressListChanged();
     }
 
+    // WARNING: there is a dirty hack here...
+    // such tests should be made by system calls
+    // Here we suppose that if there is any physical connection, then device is connected
+    updateConnectedStatus(!m_addressList.isEmpty());
 }
 
 void SystemInfo::getQtDiagInfo()
@@ -125,30 +132,41 @@ void SystemInfo::timerEvent(QTimerEvent *event)
     getAddress();
     auto reply = m_networkManager->get(QNetworkRequest(QUrl("https://www.google.com")));
     connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
-        [=](){ updateOnlineStatus(false);
-    });
+        [=](QNetworkReply::NetworkError code) {
+            updateInternetAccessStatus(code != QNetworkReply::NetworkError::NoError);
+        }
+    );
+}
+
+void SystemInfo::updateConnectedStatus(bool status)
+{
+    if (m_connected != status) {
+        m_connected = status;
+        emit connectedChanged();
+    }
 }
 
 void SystemInfo::replyFinished(QNetworkReply *reply)
 {
     if (reply->error()) {
         qDebug() << reply->errorString();
-        updateOnlineStatus(false);
+        updateInternetAccessStatus(false);
     } else {
         if (reply->bytesAvailable()) {
-            updateOnlineStatus(true);
+            updateInternetAccessStatus(true);
         } else {
-            updateOnlineStatus(false);
+            updateInternetAccessStatus(false);
         }
     }
+
     reply->deleteLater();
 }
 
-void SystemInfo::updateOnlineStatus(bool status)
+void SystemInfo::updateInternetAccessStatus(bool status)
 {
-    if (status != m_online) {
-        m_online = status;
-        emit onlineChanged();
+    if (status != m_internetAccess) {
+        m_internetAccess = status;
+        emit internetAccessChanged();
     }
 }
 
@@ -157,9 +175,14 @@ QStringList SystemInfo::addressList() const
     return m_addressList;
 }
 
-bool SystemInfo::online() const
+bool SystemInfo::connected() const
 {
-    return m_online;
+    return m_connected;
+}
+
+bool SystemInfo::internetAccess() const
+{
+    return m_internetAccess;
 }
 
 QString SystemInfo::qtVersion() const

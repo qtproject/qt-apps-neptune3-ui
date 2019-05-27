@@ -1086,15 +1086,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Network: %1</source>
-        <translation>Síť: %1</translation>
+        <translation type="vanished">Síť: %1</translation>
     </message>
     <message>
         <source>online</source>
-        <translation>online</translation>
+        <translation type="vanished">online</translation>
     </message>
     <message>
         <source>offline</source>
-        <translation>offline</translation>
+        <translation type="vanished">offline</translation>
     </message>
     <message>
         <source>Platform</source>
@@ -1134,6 +1134,26 @@ UX na cestu</translation>
     </message>
     <message>
         <source>multi-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1 %2</source>
+        <translation type="obsolete">Síť: %1 %2</translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished">Síť: %1%2</translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -838,18 +838,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
@@ -875,6 +863,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
