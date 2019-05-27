@@ -16,9 +16,9 @@ and the System UI acts as a wayland server, compositing the application windows 
 QML scene, as regular QML items.
 
 * Linux (e.g. Ubuntu 16.04)
-* Qt5 (branch 5.12) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
-* QtIvi (git://code.qt.io/qt/qtivi.git, branch dev)
-* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
+* Qt5 (branch 5.13) with qtwayland submodule and built with Open GL ES (-opengl es2 -opengles3)
+* QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.13)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.13)
 
 ### Single-process UI (fallback option)
 
@@ -26,9 +26,9 @@ When in single process mode, all application code run in the same QML scene and
 process as the System UI itself.
 
 * Linux (e.g. Ubuntu 16.04) or macOS
-* Qt5 (branch 5.12)
-* QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.11)
-* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch dev)
+* Qt5 (branch 5.13)
+* QtIvi (git://code.qt.io/qt/qtivi.git, branch 5.13)
+* Qt Application Manager (git://code.qt.io/qt/qtapplicationmanager.git, branch 5.13)
 
 ## Clone Repository
 
