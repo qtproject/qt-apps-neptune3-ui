@@ -79,7 +79,6 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
-        property bool qt3DStudioAvailable: false
         Loader {
             visible: false
             source: "../helpers/Qt3DStudioAvailable.qml"

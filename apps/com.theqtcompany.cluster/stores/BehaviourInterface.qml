@@ -38,4 +38,5 @@ Store {
     property bool threeDGauges: false
     property bool navigationMode: false
     property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
+    property bool qt3DStudioAvailable: false
 }
