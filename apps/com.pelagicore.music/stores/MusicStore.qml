@@ -165,94 +165,6 @@ Store {
         }
     }
 
-    property Item ipc: Item {
-        ApplicationInterfaceExtension {
-            id: musicApplicationRequestIPC
-            name: "neptune.musicapprequests.interface"
-            Component.onCompleted: {
-                if (object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                             "appId": "com.pelagicore.webradio"});
-                }
-                if (object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                             "appId": "com.pelagicore.spotify"});
-                    root.isSpotifyInstalled = true;
-                }
-            }
-        }
-
-        Connections {
-            target: musicApplicationRequestIPC.object
-
-            onSpotifyInstalledChanged: {
-                if (musicApplicationRequestIPC.object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                             "appId": "com.pelagicore.spotify"});
-                    root.isSpotifyInstalled = true;
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Spotify") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                    root.isSpotifyInstalled = false;
-                }
-            }
-            onWebradioInstalledChanged: {
-                if (musicApplicationRequestIPC.object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                             "appId": "com.pelagicore.webradio"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Web radio") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
-        }
-
-        ApplicationInterfaceExtension {
-            id: musicRemoteControl
-
-            name: "com.pelagicore.music.control"
-        }
-
-        Binding { target: musicRemoteControl.object; property: "currentTime"; value: root.elapsedTime }
-        Binding { target: musicRemoteControl.object; property: "durationTime"; value: root.totalTime }
-        Binding { target: musicRemoteControl.object; property: "playing"; value: root.playing }
-
-        Connections {
-            target: musicRemoteControl.object
-
-            onPlay: {
-                player.play();
-            }
-
-            onPause: {
-                player.pause();
-            }
-
-            onPrevious: {
-                if (player.playQueue.currentIndex === 0) {
-                    player.playQueue.currentIndex = root.musicCount - 1;
-                } else {
-                    player.previous();
-                }
-
-            }
-
-            onNext: {
-                if (player.playQueue.currentIndex === root.musicCount - 1) {
-                    player.playQueue.currentIndex = 0;
-                } else {
-                    player.next();
-                }
-            }
-        }
-    }
-
     readonly property IntentHandler intentHandler: IntentHandler {
         intentIds: "activate-app"
         onRequestReceived: {
@@ -341,10 +253,6 @@ Store {
                     console.log(Logging.apps, "Intent request failed: " + request.errorMessage)
                 }
             })
-        } else if (source === "com.pelagicore.webradio") {
-            Qt.openUrlExternally("x-webradio://");
-        } else if (source === "com.pelagicore.spotify") {
-            Qt.openUrlExternally("x-spotify://");
         }
     }
 }

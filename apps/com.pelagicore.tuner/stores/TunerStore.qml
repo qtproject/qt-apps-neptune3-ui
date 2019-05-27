@@ -87,52 +87,6 @@ Store {
         }
     }
 
-    property var ipc: QtObject {
-        property var musicApplicationRequestIPC: ApplicationInterfaceExtension {
-            id: musicApplicationRequestIPC
-            name: "neptune.musicapprequests.interface"
-            Component.onCompleted: {
-                if (object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                              "appId": "com.pelagicore.webradio"});
-                }
-                if (object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                              "appId": "com.pelagicore.spotify"});
-                }
-            }
-        }
-
-        property var ipcConx: Connections {
-            target: musicApplicationRequestIPC.object
-
-            onSpotifyInstalledChanged: {
-                if (musicApplicationRequestIPC.object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                              "appId": "com.pelagicore.spotify"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Spotify") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
-            onWebradioInstalledChanged: {
-                if (musicApplicationRequestIPC.object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                              "appId": "com.pelagicore.webradio"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Web radio") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel
         ListElement { icon: "ic-favorite-tuner"; text: QT_TRANSLATE_NOOP("TunerToolsColumn", "favorites"); greyedOut: true }
