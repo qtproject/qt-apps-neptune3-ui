@@ -120,9 +120,16 @@ Item {
             enabled: opacity > 0.0
             opacity: {
                 //get item index in source model or in filtered if filter applied
-                var index = visualModel.filterOnGroup === ""
-                        ? model.index
-                        : visualModel.items.get(model.index)[visualModel.filterOnGroup + "Index"]
+                var index = model.index;
+
+                if (visualModel.filterOnGroup !== ""
+                        && index < visualModel.items.count
+                        && index > -1) {
+                    var item = visualModel.items.get(index);
+                    if (item)
+                        index = item[visualModel.filterOnGroup + "Index"];
+                }
+
                 if (index > (root.numIconsPerRow - 1)) {
                     if (root.gridOpen) {
                         return 1.0
