@@ -33,7 +33,6 @@
 \li \l {Neptune 3 UI - Overview}{Overview}
 \li \l {Neptune 3 UI - Install}{Install}
 \li \l {Neptune 3 UI - Configure}{Configure}
-\li \l {Neptune 3 UI - Configuring Screens on Embedded Linux}{Configuring Screens on Embedded Linux}
 \endlist
 
 \section2  UI Insights
@@ -41,8 +40,9 @@
 \list
     \li \l {Neptune 3 UI - System UI}{System UI}
     \li \l {Neptune 3 UI - System Dialog}{System Dialog}
-    \li \l {Neptune 3 UI - Remote Settings Server}{Remote Settings Server}
-    \li \l {Neptune 3 UI - Squish Automated UI testing}{Squish Automated UI testing}
+    \li \l {Neptune 3 UI - Middleware}{Middleware}
+    \li \l {Neptune 3 UI - Configure Screens on Embedded Linux}{Configure Screens on Embedded Linux}
+    \li \l {Neptune 3 UI - Squish Automated UI Testing}{Squish Automated UI Testing}
 \endlist
 
 \section2 Application Insights

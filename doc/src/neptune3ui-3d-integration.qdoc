@@ -132,7 +132,7 @@
    asset, like the images. The whole 3D scene is imported into a \c .qml file via a \e presentation
    \c .uip file; the presentation is part of the Qt 3D Studio project and describes the composition
    of layers on the scene. All of the transformations, such as rotation, movement, and scaling are
-   made via data inputs. For more details, see \l{Qt 3D Studio Manual}.
+   made via data inputs. For more details, see \l{Qt 3D Studio}.
 
    \note You must have \l{Qt 3D Studio} installed and your Qt installation must support
    OpenGL ES. For more details, see \l{Use the Qt 3D Studio Runtime}.

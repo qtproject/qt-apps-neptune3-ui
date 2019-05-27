@@ -27,7 +27,7 @@
 
 /*!
    \page neptune3ui-testing-squish.html
-   \title Neptune 3 UI - Squish Automated UI testing
+   \title Neptune 3 UI - Squish Automated UI Testing
    \brief How to use Squish within Neptune 3 UI.
 
     \l{Squish} is a commercial product from \l{Froglogic} which is used for automated GUI testing.
@@ -35,7 +35,7 @@
     The goals of these tests and their setup are so that we can:
 
     \list
-     \li Provide a basic set of scripts for \l{Neptune 3 UI}, \l{Qt QmlLive}, and
+     \li Provide a basic set of scripts for \l{Neptune 3 UI}, \l{QmlLive}, and
          \l{Qt Application Manager} for smoke testing on a CI.
      \li Document any specifics in Qt Automotive Suite, especially the multi-processing aspect,
          which users should pay attention to for automated UI testing with Squish.

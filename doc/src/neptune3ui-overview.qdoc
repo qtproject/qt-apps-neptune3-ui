@@ -179,7 +179,8 @@
    \image instrument-cluster-3d-navi.jpg
 
    To enable 3D appearance, one should set \c{3D Gauges} property via Neptune 3 UI's
-   remote settings server or via \l{Neptune Companion App}.
+   remote settings server or via \l{Neptune 3 UI - Companion App}{Companion App}.
+
    \note You must have \l{Qt 3D Studio} installed. If it is installed, but your 3D content
    is not shown, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
    and macOS. Consequently, these platforms would only show the 3D content in single-process mode
