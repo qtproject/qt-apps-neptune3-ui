@@ -1,0 +1,59 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 IVI UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-companion-app.html
+   \title Neptune 3 UI - Companion App
+   \brief Describes Neptune 3 UI's companion app implementation.
+
+   The Neptune 3 UI comes with a remote control app called \c neptune-companion-app, that connects
+   to the middleware services, where you see the \l{instrument cluster} values that Neptune 3 uses.
+   To change these values, navigate to the \uicontrol Dev tab. The middleware services is used to
+   provide UI settings, such as themes, languages, and so on, so that they can be modified from the
+   companion app.
+
+   The app is not meant for an end user to use, but it's meant to demonstrate how to change common
+   values. Nevertheless the technical principles behind the middleware service and the companion app
+   apply to possible end user applications as well.
+
+   To start the companion app, run the \c neptune-companion-app executable, located in the
+   Neptune 3 UI install directory. The app has a connection dialog to set the IP address and server
+   port. You can find this address in the Neptune 3 UI's \uicontrol About dialog, that is displayed
+   when you tap on the app, or click on the \uicontrol Qt logo, in the System UI. The default port
+   is \c 9999.
+
+   \image neptune-companion-app.jpg
+
+   The app has three views for different value sets: General Settings, Instrument Cluster and System
+   UI. The general settings are values which apps commonly need to access or observe, such as the
+   language and the theme, or other values that are useful to be changed when demonstrating
+   Neptune 3 UI's features. Instrument cluster view allows the changing of gauge and telltale
+   values. Finally, the System UI view has only one value for cycling between the application IC windows
+   of different apps. application IC window is an app's alternative view that is displayed on the
+   \l{instrument cluster}.
+
+*/
