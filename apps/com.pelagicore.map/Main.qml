@@ -82,7 +82,7 @@ QtObject {
             state: mainWindow.neptuneState
             mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
-                offlineMapsEnabled: !sysinfo.online
+                offlineMapsEnabled: !sysinfo.internetAccess
                 currentLocationCoord: positionCoordinate
             }
 

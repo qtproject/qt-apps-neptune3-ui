@@ -55,7 +55,7 @@ Store {
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property StatusBarStore statusBarStore: StatusBarStore {
-        isOnline: sysInfo.online
+        isOnline: sysInfo.internetAccess
     }
 
     readonly property VolumeStore volumeStore: VolumeStore {
