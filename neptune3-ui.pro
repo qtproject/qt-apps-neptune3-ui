@@ -14,6 +14,10 @@ use_qsr{
     }
 }
 
+!qtHaveModule(3dstudioruntime2){
+    log("$$escape_expand(\\n\\n) *** No 3dstudioruntime2 available: Make sure Qt3DStudio (or only runtime) is installed ***$$escape_expand(\\n\\n)")
+}
+
 TEMPLATE = subdirs
 
 include(config.pri)
