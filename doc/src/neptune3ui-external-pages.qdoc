@@ -230,3 +230,12 @@
     \title StateManager
 */
 
+/*!
+    \externalpage https://doc.qt.io/qt-5/qsettings.html#platform-specific-notes
+    \title QSettings' Platform-Specific Notes
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/android-getting-started.html
+    \title Getting Started with Qt for Android
+*/
