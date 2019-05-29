@@ -48,54 +48,67 @@ Item {
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
 
-    Rectangle {
-        id: cursor
-        visible: textedit.text !== ""
-        anchors.right: textedit.right
-        anchors.rightMargin: Sizes.dp(18)
-        anchors.verticalCenter: textedit.verticalCenter
-        width: Sizes.dp(2)
-        height: Sizes.dp(60)
-        color: Style.contrastColor
-        opacity: 0
-        SequentialAnimation {
-            running: true
-            loops: Animation.Infinite
-            NumberAnimation { target: cursor; property: "opacity"; to: 0.2; duration: 500 }
-            NumberAnimation { target: cursor; property: "opacity"; to: 0; duration: 500 }
-        }
-    }
+    Flickable {
+        id: flick
 
-    // TODO: Use a TextField instead so that it follows the current style automatically
-    TextEdit {
-        id: textedit
-        objectName: "callNumber"
+        width: Sizes.dp(500)
+        height: Sizes.dp(45)
+        contentWidth: textedit.paintedWidth
+        contentHeight: textedit.paintedHeight
+        clip: true
+        interactive: false
+
         anchors.left: gridlayout.left
         anchors.right: gridlayout.right
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(40)
-        leftPadding: Sizes.dp(45 * 0.5)
-        rightPadding: Sizes.dp(45 * 0.5)
-        readOnly: true
-        color: Style.contrastColor
-        inputMethodHints: Qt.ImhDialableCharactersOnly
-        font.pixelSize: Sizes.fontSizeXL
-        font.weight: Font.Light
-        wrapMode: TextEdit.Wrap
-        horizontalAlignment: TextEdit.AlignRight
-        Keys.onEscapePressed: clear()
+
+        function ensureVisible(cw) {
+            var printableWidth = width - Sizes.dp(45);
+            if (cw > printableWidth) {
+                textedit.x = printableWidth - cw;
+            } else {
+                textedit.x = 0;
+            }
+        }
+
+        // TODO: Use a TextField instead so that it follows the current style automatically
+        TextEdit {
+            id: textedit
+            objectName: "callNumber"
+            width: flick.width
+            height: flick.height
+
+            leftPadding: Sizes.dp(45 * 0.5)
+            rightPadding: Sizes.dp(45 * 0.5)
+
+            readOnly: true
+            color: Style.contrastColor
+            inputMethodHints: Qt.ImhDialableCharactersOnly
+            font.pixelSize: Sizes.fontSizeXL
+            font.weight: Font.Light
+            horizontalAlignment: TextEdit.AlignHCenter
+            Keys.onEscapePressed: clear()
+
+            onCursorRectangleChanged: flick.ensureVisible(contentWidth)
+        }
     }
+
+
 
     ToolButton {
         objectName: "delLastCallDigitButton"
         anchors.right: parent.right
-        anchors.verticalCenter: textedit.verticalCenter
+        anchors.verticalCenter: flick.verticalCenter
         width: Sizes.dp(90)
         icon.name: "ic-erase"
         opacity: textedit.text ? 1.0 : 0.0
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation {} }
-        onClicked: textedit.remove(textedit.length - 1, textedit.length);
+        onClicked: {
+            textedit.remove(textedit.length - 1, textedit.length);
+            flick.ensureVisible(textedit.contentWidth)
+        }
     }
 
     GridLayout {
@@ -104,7 +117,7 @@ Item {
         width: Sizes.dp(500)
         height: Sizes.dp(540)
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: textedit.bottom
+        anchors.top: flick.bottom
         anchors.topMargin: Sizes.dp(80)
         columns: 3
         columnSpacing: Sizes.dp(10)
@@ -182,7 +195,7 @@ Item {
         KeypadButton {
             Layout.row: 4
             Layout.column: 1
-            enabled: textedit.text
+            enabled: textedit.text.length > 0
             backgroundColor: "#68C97D" // app specific color
             backgroundOpacity: 1.0
             iconSource: Style.image("ic-call")
