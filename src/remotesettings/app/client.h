@@ -39,6 +39,7 @@
 #include <QUrl>
 #include "connectionmonitoring.h"
 
+
 Q_DECLARE_LOGGING_CATEGORY(NeptuneCompanionApp)
 
 class Client : public QObject
@@ -51,12 +52,17 @@ class Client : public QObject
 
     static const QString settingsLastUrlsPrefix;
     static const QString settingsLastUrlsItem;
+    static const QString settingsRemoteSettingsPortItem;
+    static const QString settingsDriveDataPortItem;
     static const int numOfUrlsStored;
     static const int timeoutToleranceMS;
     static const int reconnectionIntervalMS;
 
 public:
     static const QString defaultUrl;
+    static const int defaultRemoteSettingsPort;
+    static const int defaultDriveDataPort;
+
 
     explicit Client(QObject *parent = nullptr);
     ~Client();
@@ -87,6 +93,8 @@ private:
     void writeSettings();
     void updateLastUrls(const QString &url);
 
+    int m_remoteSettingsPort;
+    int m_driveDataPort;
     QUrl m_serverUrl;
     QStringList m_lastUrls;
     bool m_connected;
