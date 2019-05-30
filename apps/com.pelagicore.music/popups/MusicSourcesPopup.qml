@@ -84,6 +84,7 @@ PopupWindow {
             }
             interactive: false
             delegate: RadioButton {
+                checked: appId == "com.pelagicore.music"
                 width: parent.width
                 height: Sizes.dp(96)
                 font.pixelSize: Sizes.fontSizeS
@@ -95,6 +96,8 @@ PopupWindow {
                     root.switchSourceClicked(appId)
                     root.close();
                 }
+
+                checkable: false
             }
         }
     }

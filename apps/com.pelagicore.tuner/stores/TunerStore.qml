@@ -82,6 +82,10 @@ Store {
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
         ListElement {
+            text: "AM/FM Radio"
+            appId: "com.pelagicore.tuner"
+        }
+        ListElement {
             text: "Music"
             appId: "com.pelagicore.music"
         }
