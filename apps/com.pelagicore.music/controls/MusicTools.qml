@@ -42,6 +42,9 @@ Row {
     width: 2 * buttonWidth
     height: Sizes.dp(72)
 
+    property bool shuffleOn
+    property bool repeatOn
+
     property real buttonWidth: Sizes.dp(100)
     signal shuffleClicked()
     signal repeatClicked()
@@ -52,6 +55,7 @@ Row {
         height: parent.height
         icon.name: "ic-shuffle"
         onClicked: root.shuffleClicked()
+        checked: shuffleOn
     }
 
     ToolButton {
@@ -60,5 +64,6 @@ Row {
         height: parent.height
         icon.name: "ic-repeat"
         onClicked: root.repeatClicked()
+        checked: repeatOn
     }
 }

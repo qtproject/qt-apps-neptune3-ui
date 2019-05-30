@@ -169,6 +169,9 @@ Item {
         anchors.right: progressBarBlock.right
         onShuffleClicked: store.shuffleSong()
         onRepeatClicked: store.repeatSong()
+
+        shuffleOn: store.shuffleOn
+        repeatOn: store.repeatOn
     }
 
     states: [
