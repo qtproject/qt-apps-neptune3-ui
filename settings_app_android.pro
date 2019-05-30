@@ -5,7 +5,9 @@ TEMPLATE = subdirs
 include(config.pri)
 
 SUBDIRS += \
-    src/drivedata/drivedata.pro \
+    src/drivedata/frontend/frontend.pro \
+    src/drivedata/backend/backend.pro \
+    src/drivedata/qml_plugin/qml_plugin.pro \
     src/remotesettings/frontend/frontend.pro \
     src/remotesettings/backend/backend.pro \
     src/remotesettings/qml_plugin/qml_plugin.pro \
