@@ -14,12 +14,7 @@ exists($$_PRO_FILE_PWD_/qmldir) {
 
 # Always copy all EXTRA_FILES to the plugin destination
 for(extra_file, EXTRA_FILES) {
-    exists($$extra_file) {
-        file = $$extra_file
-    } else {
-        file = $$_PRO_FILE_PWD_/$${extra_file}
-    }
-    file = $$replace(file, /, $$QMAKE_DIR_SEP)
+    file = $$replace(extra_file, /, $$QMAKE_DIR_SEP)
     target = $$replace(DESTDIR, /, $$QMAKE_DIR_SEP)$${QMAKE_DIR_SEP}$$basename(file)
     copy_$${extra_file}.target = $$target
     copy_$${extra_file}.depends = $$file
