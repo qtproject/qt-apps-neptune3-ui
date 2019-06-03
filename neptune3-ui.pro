@@ -15,7 +15,7 @@ use_qsr{
 }
 
 !qtHaveModule(3dstudioruntime2){
-    log("$$escape_expand(\\n\\n) *** No 3dstudioruntime2 available: Make sure Qt3DStudio (or only runtime) is installed ***$$escape_expand(\\n\\n)")
+    log("$$escape_expand(\\n\\n)[Warning] The 3dstudioruntime2 optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install Qt 3D Studio or the runtime.$$escape_expand(\\n\\n)")
 }
 
 TEMPLATE = subdirs
