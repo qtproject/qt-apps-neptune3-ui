@@ -65,5 +65,10 @@
        \li \l{DefaultNumberAnimation}
        \li \l{DefaultSmoothedAnimation}
    \endlist
+
+   Neptune UI QML types:
+   \list
+       \li \l{SystemInfo}
+   \endlist
 */
 

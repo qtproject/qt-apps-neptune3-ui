@@ -38,7 +38,19 @@
 
 #include "systeminfo.h"
 
+/*!
+  \qmltype SystemInfo
+  \instantiates QObject
+  \inqmlmodule shared.com.pelagicore.systeminfo
+  \since 5.11
+  \brief Provides information about Qt configuration, network state, operating system and hardware.
 
+  A SystemInfo type provides information about the system, in this case the device and the
+  Operating System, which the app runs on. It provides Network availability related properties and
+  a subset of the C++ \l{QSysInfo} API. All of these properties are read-only.
+
+  \sa QSysInfo
+*/
 SystemInfo::SystemInfo(QObject *parent)
     : QObject(parent)
     , m_networkManager(new QNetworkAccessManager(this))
@@ -64,7 +76,7 @@ void SystemInfo::init()
 }
 
 /*
- * This function will return all available Addresses of your device in list.
+ * This function fills all available Addresses of your device in a list.
 */
 void SystemInfo::getAddress()
 {
@@ -170,45 +182,119 @@ void SystemInfo::updateInternetAccessStatus(bool status)
     }
 }
 
+/*!
+  \qmlproperty var SystemInfo::addressList
+
+   Returns addresses for all available network interfaces of the device in the following format:
+
+   \c {<interface name> <ip address> <hardware address>}
+
+   \code
+   SystemInfo {
+        id: sysinfo
+   }
+   Text {
+        text: sysinfo.addressList.join("\n")
+   }
+   \endcode
+
+   \sa {QNetworkInterface::allInterfaces()}
+*/
+
 QStringList SystemInfo::addressList() const
 {
     return m_addressList;
 }
 
+/*!
+    \qmlproperty bool SystemInfo::connected
+
+    Specifies whether the device is connected to the network.
+*/
 bool SystemInfo::connected() const
 {
     return m_connected;
 }
 
+/*!
+    \qmlproperty bool SystemInfo::internetAccess
+
+    Specifies whether the device has connection to the Internet.
+*/
 bool SystemInfo::internetAccess() const
 {
     return m_internetAccess;
 }
 
+/*!
+    \qmlproperty string SystemInfo::qtVersion
+
+    Returns the Qt version.
+
+    \sa {QtCore}{qVersion}
+*/
 QString SystemInfo::qtVersion() const
 {
     return QString::fromLatin1(qVersion());
 }
 
+/*!
+    \qmlproperty string SystemInfo::productName
+
+    Returns a product type, version, as well as tokens like the Operating System type, codenames,
+    and more. The result of this function is suitable to display to the user, but not for
+    long-term storage, as the string may change in future versions of Qt.
+
+    \sa {QSysInfo::prettyProductName()}
+*/
 QString SystemInfo::productName() const
 {
     return QSysInfo::prettyProductName();
 }
 
+/*!
+    \qmlproperty string SystemInfo::cpu
+
+    Returns the full architecture string that Qt was compiled for: CPU Architecture, endianness,
+    word size and ABI (optional).
+
+    \sa {QSysInfo::buildAbi()}
+*/
 QString SystemInfo::cpu() const
 {
     return QSysInfo::buildAbi();
 }
 
+/*!
+    \qmlproperty string SystemInfo::kernel
+
+    Returns the Operating System kernel type, for which Qt was compiled.
+
+    \sa {QSysInfo::kernelType()}
+*/
 QString SystemInfo::kernel() const
 {
     return QSysInfo::kernelType();
 }
 
+/*!
+    \qmlproperty string SystemInfo::kernelVersion
+
+    Returns the Operating System's kernel version.
+
+    \sa {QSysInfo::kernelVersion()}
+*/
 QString SystemInfo::kernelVersion() const
 {
     return QSysInfo::kernelVersion();
 }
+
+/*!
+    \qmlproperty string SystemInfo::qtDiag
+
+    Returns the output from a \c qtdiag run, which contains information on the current Qt
+    installation.
+*/
 
 QString SystemInfo::qtDiag() const
 {
