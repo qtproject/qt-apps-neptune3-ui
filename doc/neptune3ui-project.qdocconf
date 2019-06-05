@@ -23,7 +23,7 @@ depends += qtcore \
            qtqml \
            qtgui \
            qtivi \
-           qtapplicationmanager
+           applicationmanager
 
 qhp.projects                       = Neptune3UI
 qhp.Neptune3UI.file                = neptune3ui.qhp

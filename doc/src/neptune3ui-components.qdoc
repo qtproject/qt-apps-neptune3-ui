@@ -48,6 +48,7 @@
        \li \l{ListItemProgress}
        \li \l{ListItemSwitch}
        \li \l{ListItemTwoButtons}
+       \li \l{MonitorOverlay}
        \li \l{ScalableBorderImage}
        \li \l{ToolsColumn}
        \li \l{Tracer}
