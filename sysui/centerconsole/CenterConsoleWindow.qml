@@ -81,8 +81,8 @@ Window {
                         loaded afterwards, once this function is called.
                      */
             root.store.applicationModel.populate(root.store.settingsStore.widgetStates,
-                                                 root.store.settingsStore.autostartApps,
-                                                 root.store.settingsStore.autorecoverApps);
+                root.store.settingsStore.value("autostartApps", root.store.settingsStore.defaultAutostartApps),
+                root.store.settingsStore.value("autorecoverApps", root.store.settingsStore.defaultAutorecoverApps));
             centerConsole.mainContentArea.active = true;
             notificationLoader.active = true;
             windowConns.enabled = false;

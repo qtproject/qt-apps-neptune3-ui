@@ -36,8 +36,9 @@ import Qt.labs.settings 1.0
 Settings {
     id: root
 
+    readonly property string defaultAutostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
+    readonly property string defaultAutorecoverApps: "com.theqtcompany.cluster:5000"
+
     property int measurementSystem: Qt.locale().measurementSystem
     property string widgetStates: "com.pelagicore.phone:2,com.pelagicore.music:2,com.pelagicore.calendar:1"
-    property string autostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
-    property string autorecoverApps: "com.theqtcompany.cluster:5000"
 }
