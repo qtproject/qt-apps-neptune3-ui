@@ -29,29 +29,39 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-import QtQuick 2.8
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
 
-Flickable {
-    id: root
-    flickableDirection: Flickable.VerticalFlick
-    contentHeight: baseLayout.height
+import QtQuick 2.6
 
-    ScrollIndicator.vertical: ScrollIndicator { }
+/*!
+    \qmltype DefaultNumberAnimation
+    \inqmlmodule animations
+    \inherits NumberAnimation
+    \since 5.11
+    \brief The default number animation of a Neptune 3 application.
 
-    ColumnLayout {
-        id: baseLayout
-        enabled: systemUI.isInitialized && client.connected
-        anchors.centerIn: parent
 
-        Button {
-            text: qsTr("Show Next Application IC Window");
-            onClicked: {
-                // This is a hack. See the documentation of this property for details
-                systemUI.applicationICWindowSwitchCount = systemUI.applicationICWindowSwitchCount + 1
-            }
-        }
+    The DefaultNumberAnimation describes the default number animation being
+    used in Neptune 3.
+
+    \section2 Example Usage
+
+    The following example shows how to use \l{DefaultNumberAnimation}:
+
+    \qml
+    import QtQuick 2.10
+    import shared.animations 1.0
+
+    Rectangle {
+        id: root
+
+        width: 80
+        height: 80
+
+        Behavior on width { DefaultNumberAnimation {} }
     }
+    \endqml
+*/
+NumberAnimation {
+    easing.type: Easing.InOutQuad
+    duration: 270
 }
-

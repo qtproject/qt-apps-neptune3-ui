@@ -73,7 +73,7 @@ Dialog {
 
 
             RowLayout {
-                spacing: sc(10)
+                spacing: neptuneScale(10)
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 

@@ -2,9 +2,34 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>ClusterPage.qml</file>
         <file>ConnectionDialog.qml</file>
         <file>SettingsPage.qml</file>
-        <file>SystemUIPage.qml</file>
+        <file>DevelopmentPage.qml</file>
+        <file>MediaPage.qml</file>
+        <file>VehiclePage.qml</file>
+        <file>NaviPage.qml</file>
+        <file>assets/vehicle.png</file>
+        <file>assets/media.png</file>
+        <file>assets/settings.png</file>
+        <file>assets/navi.png</file>
+        <file>assets/development.png</file>
+        <file>Vehicle2DPanel.qml</file>
+        <file>assets/ic_background.png</file>
+        <file>assets/ic_bodyVehicle.png</file>
+        <file>assets/ic_leftDoorAlarmVehicle.png</file>
+        <file>assets/ic_leftDoorClosedVehicle.png</file>
+        <file>assets/ic_leftDoorOpenedVehicle.png</file>
+        <file>assets/ic_leftDoorOpenedVehicleCarPart.png</file>
+        <file>assets/ic_rightDoorAlarmVehicle.png</file>
+        <file>assets/ic_rightDoorClosedVehicle.png</file>
+        <file>assets/ic_rightDoorOpenedVehicle.png</file>
+        <file>assets/ic_rightDoorOpenedVehicleCarPart.png</file>
+        <file>assets/ic_roofAlarmVehicle.png</file>
+        <file>assets/ic_roofClosedVehicle.png</file>
+        <file>assets/ic_roofOpenedVehicle.png</file>
+        <file>assets/ic_trunkAlarmVehicle.png</file>
+        <file>assets/ic_trunkClosedVehicle.png</file>
+        <file>assets/ic_trunkOpenedVehicle.png</file>
+        <file>DefaultNumberAnimation.qml</file>
     </qresource>
 </RCC>

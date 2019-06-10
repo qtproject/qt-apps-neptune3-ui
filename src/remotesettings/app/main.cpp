@@ -33,11 +33,17 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDir>
+#include <QtIviCore/QtIviCoreVersion>
 #include "client.h"
+
+// code to transform a macro into a string literal
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationVersion(STR(NEPTUNE_COMPANION_APP_VERSION));
     QGuiApplication app(argc, argv);
 
     Client client;
@@ -45,6 +51,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports_shared/"));
     engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
+    engine.rootContext()->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
+    engine.rootContext()->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

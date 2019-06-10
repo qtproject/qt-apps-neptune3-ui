@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 IVI UI.
@@ -42,67 +41,54 @@ Flickable {
     ScrollIndicator.vertical: ScrollIndicator { }
 
     ColumnLayout {
-        id: baseLayout
-        enabled: uiSettings.isInitialized && client.connected
-        spacing: 20
         anchors.horizontalCenter: parent.horizontalCenter
-
         Label {
-            text: qsTr("UI Settings:")
+            text: qsTr("Music controls:")
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
         }
 
         GridLayout {
+            id: baseLayout
+            enabled: uiSettings.isInitialized && client.connected
             columns: 2
 
-            // Language Field
+            // Volume Field
             Label {
-                text: qsTr("Language:")
+                text: qsTr("Volume:")
             }
-            ComboBox {
-                id: languageComboBox
-                model: uiSettings.languages
-                currentIndex: uiSettings.languages.indexOf(uiSettings.language)
-                onActivated: uiSettings.language = currentText
+            Slider {
+                id: volumeSlider
+                value: uiSettings.volume
+                from: 0.0
+                to: 1.0
+                onMoved: uiSettings.volume = value
             }
 
-            // 24h format Field
+            // Balance Field
             Label {
-                text: qsTr("24h time format:")
+                text: qsTr("Balance:")
+            }
+            Slider {
+                id: balanceSlider
+                value: uiSettings.balance
+                from: 1.0
+                to: -1.0
+                onValueChanged: {
+                    if (pressed) {
+                        uiSettings.balance = value
+                    }
+                }
+            }
+
+            // Mute Field
+            Label {
+                text: qsTr("Mute:")
             }
             CheckBox {
-                checked: uiSettings.twentyFourHourTimeFormat
-                onToggled: uiSettings.twentyFourHourTimeFormat = checked
-            }
-
-            // right hand drive mode
-            Label {
-                text: qsTr("Right-to-left mode:")
-            }
-            CheckBox {
-                checked: uiSettings.rtlMode
-                onToggled: uiSettings.rtlMode = checked
-            }
-
-            // Theme Field
-            Label {
-                text: qsTr("Theme:")
-            }
-
-            ComboBox {
-                id: themeComboBox
-                model: [qsTr("Light"), qsTr("Dark")]
-                currentIndex: uiSettings.theme
-                onActivated: uiSettings.theme = currentIndex
-            }
-
-            Label {
-                text: qsTr("3D Gauges:")
-            }
-            CheckBox {
-                checked: uiSettings.threeDGauges
-                onClicked: uiSettings.threeDGauges = checked
+                id: muteCheckbox
+                checked: uiSettings.muted
+                onClicked: uiSettings.muted = checked
             }
         }
     }
