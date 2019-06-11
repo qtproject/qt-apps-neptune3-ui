@@ -64,6 +64,7 @@ QT_USE_NAMESPACE_AM
 void startExtraProcess(const QString &name) {
 #if QT_CONFIG(process)
     QProcess *serverProcess = new QProcess(qApp);
+    serverProcess->setProcessEnvironment(QProcessEnvironment::systemEnvironment());
     QObject::connect(serverProcess, &QProcess::stateChanged, [name, serverProcess] (QProcess::ProcessState state) {
         if (state == QProcess::Running) {
             qCInfo(LogSystem) << "Attempted automatic start of " << name << ", pid:" << serverProcess->processId();
