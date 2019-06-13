@@ -116,8 +116,13 @@ Store {
             });
         }
         onIsInitializedChanged: {
-            if (isInitialized)
+            if (isInitialized) {
                 theme = root.initialTheme;
+
+                if (!language) {
+                    uiSettings.setLanguage(Config.languageLocale)
+                }
+            }
         }
     }
     property int initialTheme
