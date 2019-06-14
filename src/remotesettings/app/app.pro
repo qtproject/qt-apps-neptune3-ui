@@ -32,6 +32,12 @@ RESOURCES += qml.qrc \
 target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
 
+win32 {
+    wrapper.files = neptune-companion-app_wrapper.bat
+    wrapper.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += wrapper
+}
+
 QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/)
 
 #needed for the android deployment to include additional qml plugins
