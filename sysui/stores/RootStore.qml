@@ -120,7 +120,11 @@ Store {
                 theme = root.initialTheme;
 
                 if (!language) {
-                    uiSettings.setLanguage(Config.languageLocale)
+                    if (uiSettings.languages.includes(Config.languageLocale)) {
+                        uiSettings.setLanguage(Config.languageLocale);
+                    } else {
+                        uiSettings.setLanguage("en_US");
+                    }
                 }
             }
         }
