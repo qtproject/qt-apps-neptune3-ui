@@ -44,8 +44,6 @@ Window {
     property var hudAppInfo
     property var hudStore
 
-    width: Config.hudWidth
-    height: Config.hudHeight
     color: "black"
     title: "Neptune 3 UI - HUD"
     screen: root.hudStore.hudScreen
@@ -57,6 +55,13 @@ Window {
     Component.onCompleted: {
         // Would be better to use a regular property binding instead. But somehow, it doesn't work.
         visible = true;
+
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        // It happens because QQmlEngine::retranslate() refreshes all the engine's bindings
+        width = Config.hudWidth
+        height = Config.hudHeight
     }
 
     Item {

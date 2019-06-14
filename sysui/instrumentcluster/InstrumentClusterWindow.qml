@@ -50,8 +50,6 @@ Window {
         applicationICWindows.next();
     }
 
-    width: Config.instrumentClusterWidth
-    height: Config.instrumentClusterHeight
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
@@ -63,6 +61,13 @@ Window {
     Component.onCompleted: {
         // Would like to use a regular property binding instead. But it doesn't work and I don't know why
         visible = true;
+
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        // It happens because QQmlEngine::retranslate() refreshes all the engine's bindings
+        width = Config.instrumentClusterWidth
+        height = Config.instrumentClusterHeight
     }
 
     Item {
