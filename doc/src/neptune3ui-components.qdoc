@@ -66,6 +66,11 @@
        \li \l{DefaultSmoothedAnimation}
    \endlist
 
+   Neptune UI effects:
+   \list
+       \li \l{ScalableColorOverlay}
+   \endlist
+
    Neptune UI QML types:
    \list
        \li \l{SystemInfo}

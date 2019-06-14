@@ -37,6 +37,7 @@ import shared.utils 1.0
 import shared.animations 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
+import shared.effects 1.0
 
 import "../controls" 1.0
 
@@ -316,8 +317,9 @@ Item {
             height: Sizes.dp(sourceSize.height)
             source: Style.image("ic_button-bg")
             fillMode: Image.PreserveAspectFit
-            layer.enabled: true
-            layer.effect: ColorOverlay {
+
+            ScalableColorOverlay {
+                anchors.fill: parent
                 source: playButtonBackground
                 color: Style.accentColor
             }
