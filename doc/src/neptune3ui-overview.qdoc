@@ -165,7 +165,7 @@
    can also have information from the selected app windows, such as Music or
    Maps, ordered in views which they can navigate between. To switch
    between the app windows available, the user can use Neptune 3 UI's remote
-   settings server or press \e{CTRL + c} in a physical keyboard.
+   settings server or press \uicontrol{Ctrl+C} in a physical keyboard.
 
    \image instrument-cluster-nav.jpg
 
@@ -180,7 +180,7 @@
    \image instrument-cluster-vehicle.png
 
    To enable 3D appearance, set the \c{3D Gauges} property via Neptune 3 UI's middleware or via
-   \l{Neptune Companion App} or press \e{CTRL + 3} in a physical keyboard.
+   \l{Neptune Companion App} or press \uicontrol{Ctrl+3} in a physical keyboard.
 
    \note You must have \l{Qt 3D Studio} installed. If it is installed, but your 3D content
    is not shown, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
@@ -261,5 +261,31 @@
    message is shown, and then it is stored in the Notification Center. The user
    can remove individual notifications in the Notification Center, or clear the
    Notification Center completely.
+
+   \section2 Keyboard Shortcuts
+
+   The following keyboard shortcuts are supported:
+
+   \table
+        \header
+            \li Shortcut
+            \li Description
+        \row
+            \li Ctrl+3
+            \li Enable 3D appearance for gauges.
+        \row
+            \li Ctrl+C
+            \li Switch between the app windows available.
+        \row
+            \li Ctrl+P
+            \li Take a screenshot of the current screen along with diagnostics details
+                using \c qtdiag. This is equivalent to a press and hold on the Clock.
+        \row
+            \li Ctrl+R
+            \li Rotate the content in the Center Console.
+        \row
+            \li Ctrl+Shift+R
+            \li Rotate the content in the Instrument Cluster.
+   \endtable
 
 */
