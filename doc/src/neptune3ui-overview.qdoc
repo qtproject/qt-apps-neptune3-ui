@@ -180,7 +180,7 @@
    \image instrument-cluster-vehicle.png
 
    To enable 3D appearance, set the \c{3D Gauges} property via Neptune 3 UI's middleware or via
-   \l{Neptune Companion App}.
+   \l{Neptune Companion App} or press \e{CTRL + 3} in a physical keyboard.
 
    \note You must have \l{Qt 3D Studio} installed. If it is installed, but your 3D content
    is not shown, this means that \l{Qt} was built without \c{-opengl es2} option for Linux

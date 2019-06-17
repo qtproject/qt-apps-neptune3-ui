@@ -44,6 +44,7 @@ Item {
     signal ctrlTPressed()
     signal ctrlLPressed()
     signal ctrlBPressed()
+    signal ctrl3Pressed()
     signal ctrlPPressed()
 
     Shortcut {
@@ -70,6 +71,11 @@ Item {
         sequence: "Ctrl+b"
         context: Qt.ApplicationShortcut
         onActivated: root.ctrlBPressed()
+    }
+    Shortcut {
+        sequence: "Ctrl+3"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrl3Pressed()
     }
     Shortcut {
         id: screenshot

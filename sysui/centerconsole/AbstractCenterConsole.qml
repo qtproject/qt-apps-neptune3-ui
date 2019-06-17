@@ -175,6 +175,9 @@ Item {
         onCtrlBPressed: {
             root.store.applicationModel.goBack();
         }
+        onCtrl3Pressed: {
+            root.store.uiSettings.threeDGauges = !root.store.uiSettings.threeDGauges
+        }
         onCtrlPPressed: {
             root.store.generateScreenshotAndInfo();
         }
