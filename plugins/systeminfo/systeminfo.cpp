@@ -100,8 +100,6 @@ void SystemInfo::getAddress()
         emit addressListChanged();
     }
 
-    // WARNING: there is a dirty hack here...
-    // such tests should be made by system calls
     // Here we suppose that if there is any physical connection, then device is connected
     updateConnectedStatus(!m_addressList.isEmpty());
 }

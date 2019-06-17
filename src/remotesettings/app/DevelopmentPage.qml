@@ -58,7 +58,6 @@ Flickable {
                 Layout.alignment: Qt.AlignHCenter
                 text: qsTr("Show Next Application IC Window");
                 onClicked: {
-                    // This is a hack. See the documentation of this property for details
                     systemUI.applicationICWindowSwitchCount =
                                                     systemUI.applicationICWindowSwitchCount + 1
                 }
