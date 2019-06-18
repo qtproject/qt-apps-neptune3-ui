@@ -43,6 +43,9 @@ import "views" 1.0
 NeptuneWindow {
     id: root
 
+    height: Config.centerConsoleHeight
+    width: Config.centerConsoleWidth
+
     Component.onCompleted: {
         setWindowProperty("windowType", "bottombar");
     }

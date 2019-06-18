@@ -49,6 +49,9 @@ QtObject {
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
+        height: Config.centerConsoleHeight
+        width: Config.centerConsoleWidth
+
         MultiPointTouchArea {
             id: multiPoint
             anchors.fill: parent
