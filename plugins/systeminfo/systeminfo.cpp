@@ -143,7 +143,7 @@ void SystemInfo::timerEvent(QTimerEvent *event)
     auto reply = m_networkManager->get(QNetworkRequest(QUrl("https://www.google.com")));
     connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
         [=](QNetworkReply::NetworkError code) {
-            updateInternetAccessStatus(code != QNetworkReply::NetworkError::NoError);
+            updateInternetAccessStatus(code == QNetworkReply::NetworkError::NoError);
         }
     );
 }
