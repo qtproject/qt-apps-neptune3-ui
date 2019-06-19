@@ -69,6 +69,10 @@
     \endcode
 
 
+    \note Some functionality in Neptune 3 UI as well as additional apps can use SSL, particularly
+    to access web services via HTTPS. If you're developing on Qt for Windows, then you need to have
+    OpenSSL installed. For more information, see \l{Qt for Windows - Requirements}.
+
     \section1 Run Neptune 3 UI from Source
 
     To explore Neptune 3 UI by building all components from the source code yourself, refer to the
