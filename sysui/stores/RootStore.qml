@@ -153,7 +153,7 @@ Store {
 
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
-    signal grabImageRequested(var screenshotCCUrl, var screenshotICUrl)
+    signal grabImageRequested(var screenshotCCPath, var screenshotICPath)
     signal applicationICWindowSwitchCountChanged()
 
     function saveFile(fileUrl, text) {
@@ -173,17 +173,24 @@ Store {
     }
 
     function generateScreenshotAndInfo() {
-        var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
-        tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
+        var tempDirUrl = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
+        var tempDirPath = tempDirUrl
+        // since url type doesnt provide all c++ functions we have to handle url ourself
+        if (sysInfo.productName.includes("Win") || sysInfo.productName.includes("win")) {
+            tempDirPath = tempDirPath.substring(tempDirPath.indexOf('://')+4); // skip :///
+        } else {
+            tempDirPath = tempDirPath.substring(tempDirPath.indexOf('://')+3); // skip ://
+        }
+
         const timestamp = new Date().toLocaleString(Qt.locale(),"yyyy-MM-dd-hh-mm-ss");
-        const screenshotCCUrl = tempDir + "/" + timestamp + "_neptune3_CC_screenshot.png";
-        const screenshotICUrl = tempDir + "/" + timestamp + "_neptune3_IC_screenshot.png";
+        const screenshotCCPath = tempDirPath + "/" + timestamp + "_neptune3_CC_screenshot.png";
+        const screenshotICPath = tempDirPath + "/" + timestamp + "_neptune3_IC_screenshot.png";
 
-        root.grabImageRequested(screenshotCCUrl, screenshotICUrl)
+        root.grabImageRequested(screenshotCCPath, screenshotICPath)
 
-        const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
+        const diagFile = tempDirUrl + "/" + timestamp + "_neptune3_versions.txt";
 
         root.saveFile(diagFile, root.sysInfo.qtDiag);
-        root.triggerNotificationInfo(tempDir);
+        root.triggerNotificationInfo(tempDirPath);
     }
 }
