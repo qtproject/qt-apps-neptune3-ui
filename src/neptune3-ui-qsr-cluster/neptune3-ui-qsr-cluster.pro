@@ -3,6 +3,7 @@ TARGET   = neptune3-ui-qsr-cluster
 DESTDIR = $$BUILD_DIR
 
 CONFIG += exceptions c++11
+macos: CONFIG -= app_bundle
 
 QT = core gui qtsaferenderer network ivicore
 
