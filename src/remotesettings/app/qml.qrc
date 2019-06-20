@@ -7,11 +7,11 @@
         <file>DevelopmentPage.qml</file>
         <file>MediaPage.qml</file>
         <file>VehiclePage.qml</file>
-        <file>NaviPage.qml</file>
+        <file>MapsPage.qml</file>
         <file>assets/vehicle.png</file>
         <file>assets/media.png</file>
         <file>assets/settings.png</file>
-        <file>assets/navi.png</file>
+        <file>assets/maps.png</file>
         <file>assets/development.png</file>
         <file>Vehicle2DPanel.qml</file>
         <file>assets/ic_background.png</file>

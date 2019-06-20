@@ -51,7 +51,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports_shared/"));
     engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
-    engine.rootContext()->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
+    engine.rootContext()->setContextProperty("neptuneGitRevision", STR(NEPTUNE_GIT_REVISION));
+    engine.rootContext()->setContextProperty("neptuneGitCommiterDate", STR(NEPTUNE_REVISION_DATE));
     engine.rootContext()->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())

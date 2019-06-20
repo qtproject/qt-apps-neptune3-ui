@@ -38,7 +38,11 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
     contentHeight: baseLayout.height
 
-    ScrollIndicator.vertical: ScrollIndicator { }
+    ScrollIndicator.vertical: ScrollIndicator {
+        active: true
+        // we want always see it if the content doesnt fit view
+        onActiveChanged: active = true
+    }
 
     ColumnLayout {
         id: baseLayout

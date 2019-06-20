@@ -44,6 +44,9 @@ ApplicationWindow {
     visible: true
     width: 1280
     height: 800
+    minimumHeight: 720
+    minimumWidth: 400
+
     title: qsTr("Neptune Companion App")
 
     readonly property color accentColor: "#FA9E54"
@@ -69,6 +72,7 @@ ApplicationWindow {
         onIsInitializedChanged: {
             isConnected = isInitialized;
         }
+
         onErrorChanged: {
             if (error > 0) {
                 //Any other state then NoError=0
@@ -156,7 +160,7 @@ ApplicationWindow {
 
         VehiclePage {}
         MediaPage {}
-        NaviPage {}
+        MapsPage {}
         SettingsPage {}
         DevelopmentPage {}
     }
@@ -179,8 +183,8 @@ ApplicationWindow {
             onClicked: stack.currentIndex = 1
         }
         TabButton {
-            icon.source: "qrc:/assets/navi.png"
-            text: qsTr("Navi")
+            icon.source: "qrc:/assets/maps.png"
+            text: qsTr("Maps")
             icon.color: instrumentCluster.isConnected ? root.accentColor : root.disconnectedColor
             display: AbstractButton.TextUnderIcon
             font.capitalization: Font.MixedCase

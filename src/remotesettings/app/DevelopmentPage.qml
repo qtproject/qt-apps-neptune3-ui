@@ -37,12 +37,17 @@ Flickable {
     id: root
     flickableDirection: Flickable.VerticalFlick
     contentHeight: baseLayout.height
-    ScrollIndicator.vertical: ScrollIndicator { }
+    ScrollIndicator.vertical: ScrollIndicator {
+        active: true
+        // we want always see it if the content doesnt fit view
+        onActiveChanged: active = true
+    }
 
     ColumnLayout {
         id: baseLayout
 
         anchors.centerIn: parent
+        spacing: 20
 
         ColumnLayout {
             enabled: systemUI.isInitialized && client.connected
@@ -59,7 +64,7 @@ Flickable {
                 text: qsTr("Show Next Application IC Window");
                 onClicked: {
                     systemUI.applicationICWindowSwitchCount =
-                                                    systemUI.applicationICWindowSwitchCount + 1
+                            systemUI.applicationICWindowSwitchCount + 1
                 }
             }
 
@@ -88,15 +93,25 @@ Flickable {
         }
 
 
+        Label {
+            text: "Vehicle state"
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
+        }
+
         GridLayout {
             enabled: instrumentCluster.isConnected
             Layout.alignment: Qt.AlignHCenter
-            columns: root.width < neptuneScale(100) ? 2 : 4
+            columns: root.width > 2 * (outsideTemperatureLabel.width + outsideTemperature.width + columnSpacing)
+                     ? 4 : 2
+
+            columnSpacing: 15
+            rowSpacing: 20
 
             //Outside Temperature
             Label {
-                text: qsTr("Outside \n temperature: "
-                           + outsideTemperature.value.toFixed(1).padStart(6) + " °C")
+                id: outsideTemperatureLabel
+                text: qsTr("Outside \n temperature, °C")
             }
             Slider {
                 id: outsideTemperature
@@ -108,6 +123,12 @@ Flickable {
                     if (pressed) {
                         instrumentCluster.outsideTemperatureCelsius = value
                     }
+                }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value.toFixed(1).padStart(6)
                 }
             }
 
@@ -122,13 +143,18 @@ Flickable {
                 stepSize: 0.5
                 to: 9E6
                 onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value
+                }
             }
 
             // Route progress
             Label {
-                text: qsTr("Route \n progress, %:")
+                text: qsTr("Route \n progress, %")
             }
-
             Slider {
                 id: routeProgressSlider
                 from: 0
@@ -141,6 +167,11 @@ Flickable {
                     }
                 }
 
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value.toFixed(2)
+                }
             }
 
             // Route distance
@@ -158,8 +189,15 @@ Flickable {
                         instrumentCluster.navigationRouteDistanceKm = value
                     }
                 }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value
+                }
             }
         }//grid
+
 
         RowLayout {
             enabled: instrumentCluster.isConnected
@@ -177,104 +215,35 @@ Flickable {
             }
         }
 
+        // readonly state
         GridLayout {
             Layout.alignment: Qt.AlignHCenter
-            columns: root.width < neptuneScale(100) ? 2 : 4
-            enabled: false
+            columns: 2
+            columnSpacing: 50
+            rowSpacing: 25
 
             // speedLimit Field
-            Dial {
-                id: speedLimitDial
-                from: 0
-                to: 260
-                stepSize: 1.0
-                value: instrumentCluster.speedLimit
-
-
-                Label {
-                    text: qsTr("Speed limit:")
-                    anchors.bottom: speedLimitDial.verticalCenter
-                    anchors.horizontalCenter: speedLimitDial.horizontalCenter
-                }
-
-                Label {
-                    id: speedLimitLabel
-                    text: Math.round(speedLimitDial.value)
-                    anchors.top: speedLimitDial.verticalCenter
-                    anchors.horizontalCenter: speedLimitDial.horizontalCenter
-                }
+            Label {
+                text: qsTr("Speed limit: ") + instrumentCluster.speedLimit
             }
 
-            // speedCruise Field
-            Dial {
-                id: speedCruiseDial
-                from: 0
-                to: 260
-                stepSize: 1.0
-                value: instrumentCluster.speedCruise
-
-                Label {
-                    text: qsTr("Cruise speed:")
-                    anchors.bottom: speedCruiseDial.verticalCenter
-                    anchors.horizontalCenter: speedCruiseDial.horizontalCenter
-                }
-
-                Label {
-                    id: speedCruiseLabel
-                    text: Math.round(speedCruiseDial.value)
-                    anchors.top: speedCruiseDial.verticalCenter
-                    anchors.horizontalCenter: speedCruiseDial.horizontalCenter
-                }
+            Label {
+                text: qsTr("Cruise speed: ") + instrumentCluster.speedCruise
             }
 
-            // speed Field
-            Dial {
-                id: speedDial
-                from: 0
-                to: 260
-                stepSize: 1.0
-                value: instrumentCluster.speed
-
-                Label {
-                    text: qsTr("Speed:")
-                    anchors.bottom: speedDial.verticalCenter
-                    anchors.horizontalCenter: speedDial.horizontalCenter
-                }
-
-                Label {
-                    id: speedLabel
-                    text: Math.round(speedDial.value)
-                    anchors.top: speedDial.verticalCenter
-                    anchors.horizontalCenter: speedDial.horizontalCenter
-                }
+            Label {
+                text: qsTr("Speed: ") + instrumentCluster.speed
             }
 
-            // ePower Field
-            Dial {
-                id: ePowerDial
-                from: -25
-                to: 100
-                stepSize: 1.0
-                value: instrumentCluster.ePower
-
-                Label {
-                    text: qsTr("ePower:")
-                    anchors.bottom: ePowerDial.verticalCenter
-                    anchors.horizontalCenter: ePowerDial.horizontalCenter
-                }
-
-                Label {
-                    id: ePowerLabel
-                    text: Math.round(ePowerDial.value)
-                    anchors.top: ePowerDial.verticalCenter
-                    anchors.horizontalCenter: ePowerDial.horizontalCenter
-                }
+            Label {
+                text: qsTr("ePower: ") + instrumentCluster.ePower
             }
         }
 
         RowLayout {
             enabled: instrumentCluster.isConnected
             Layout.alignment: Qt.AlignHCenter
+            spacing: 50
 
             //Driving mode range Field
             Dial {
@@ -469,7 +438,12 @@ Flickable {
             }
 
             Label {
-                text: qsTr("Neptune Revision: ") + neptuneInfo
+                text: qsTr("Neptune Revision: ") + neptuneGitRevision
+                Layout.alignment: Qt.AlignHCenter
+            }
+
+            Label {
+                text: qsTr("Neptune Revision Date: ") + neptuneGitCommiterDate
                 Layout.alignment: Qt.AlignHCenter
             }
 

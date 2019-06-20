@@ -199,8 +199,13 @@ void Client::readSettings()
     int size=m_settings.beginReadArray(settingsLastUrlsPrefix);
     for (int i=0; i<size; i++) {
         m_settings.setArrayIndex(i);
-        m_lastUrls.append(m_settings.value(settingsLastUrlsItem).toString());
+        auto url = QUrl(m_settings.value(settingsLastUrlsItem).toString());
+        if (url.isValid() && !url.scheme().isEmpty()) {
+            url.setPort(-1);
+            m_lastUrls.append(url.toString(QUrl::None));
+        }
     }
+
     m_settings.endArray();
     emit lastUrlsChanged(m_lastUrls);
 }
