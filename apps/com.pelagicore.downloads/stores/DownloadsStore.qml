@@ -49,7 +49,10 @@ Item {
     property string filter: ""
     property real currentInstallationProgress: 0.0
     property var installedApps: []
-    readonly property bool isOnline: sysinfo.internetAccess
+    readonly property bool isOnline: appStoreConfig.serverOnline
+    readonly property bool isReconnecting: appStoreConfig.isReconnecting
+
+
 
     function formatBytes(bytes) {
         if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);
@@ -177,9 +180,10 @@ Item {
         id: sysinfo
 
         onInternetAccessChanged: {
-            if (sysinfo.internetAccess) {
-                appStoreConfig.checkServer();
-            }
+            appStoreConfig.checkServer();
+        }
+        onConnectedChanged: {
+            appStoreConfig.checkServer();
         }
     }
 
