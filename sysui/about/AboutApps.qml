@@ -194,7 +194,7 @@ Item {
                 anchors.verticalCenter: delegateRoot.verticalCenter
 
                 Label {
-                    text: model.appInfo.isSystemApp ? "* " + model.appInfo.name: model.appInfo.name
+                    text: model.appInfo.name
                 }
 
                 Row {

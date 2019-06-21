@@ -87,7 +87,12 @@
    they are restarted automatically. After three unsuccessful recovery attempts \c Autostart option
    is switched off.
 
-   System apps (HUD, Climate and Instrument Cluster) are marked with asterisks\c *.
+   \warning It's possible to disable \c Autostart option for all the apps, including system apps,
+    like Instrument Cluster, HUD, and Climate. If \c Autostart is disabled, these apps won't
+    start when Neptune 3 UI restarts. For the Instrument Cluster and HUD, this leads to empty
+    windows on system start-up; the Climate app won't be shown in the Center Console. For apps with
+    widgets, if the app is stopped or the widget is closed, and \c Autostart is disabled, then the
+    app doesn't start and the widget isn't shown on the Home screen upon system restart.
 
    \image system-dialog-apps.jpg
 
