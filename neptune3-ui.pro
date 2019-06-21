@@ -10,7 +10,7 @@ requires(!no_ivigenerator_available)
 
 use_qsr{
     !qtHaveModule(qtsaferenderer){
-        log("$$escape_expand(\\n\\n) *** No qtsaferenderer available: Make sure QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
+        log("$$escape_expand(\\n\\n) *** The qtsaferenderer module is not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
     }
 }
 
