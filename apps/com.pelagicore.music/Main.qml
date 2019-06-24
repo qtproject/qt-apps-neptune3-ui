@@ -114,6 +114,8 @@ QtObject {
         sourceComponent: Component {
             ApplicationICWindow {
                 property alias icMusicView: icMusicView
+                height: Sizes.dp(720)
+                width:  Sizes.dp(1920)
 
                 ICMusicView {
                     id: icMusicView
