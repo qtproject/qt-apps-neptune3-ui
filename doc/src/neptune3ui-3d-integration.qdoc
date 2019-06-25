@@ -173,16 +173,16 @@
    \section1 Use the Qt 3D Studio Runtime
 
    The implementation based on the \l{Qt 3D Studio} runtime requires that it is installed on the
-   desktop or on the embedded target. If it is installed, but your 3D content is not shown, this
-   means that \l{Qt} was built without \c{-opengl es2} option for Linux and macOS. Consequently,
-   these platforms would only show the 3D content in single-process mode with OpenGL ES 3.0
-   requirements set by \c{.yaml} config file. For more details, see \l{Qt Application Manager}.
+   desktop or on the embedded target. If it is installed, but your 3D content is not shown
+   by Neptune 3 UI, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
+   and macOS. In this case, Neptune 3 UI only shows the 3D Content on these platforms in
+   single-process mode, provided that you set OpenGL ES 3.0 requirements in
+   the \c{.yaml} config file. For more details, see \l{Qt Application Manager}.
 
    If you installed Qt Automotive Suite via the
-   \l{https://www.qt.io/download-open-source/#section-2}{Online Installer}, it is likely that your
-   Qt 3D Studio installation does not include support for OpenGL ES, as it's not enabled in Qt by
-   default. In this case, the recommended solution is to build and install the required components
-   from source.
+   \l{https://www.qt.io/download-open-source/#section-2}{Online Installer}, it's likely that your
+   installation doesn't contain Qt 3D Studio. In this case, to make sure everything works,
+   build and install the required components from the source.
 
    To build a custom Neptune 3 UI which uses the Qt 3D Studio runtime, do the following:
    \list
@@ -194,4 +194,7 @@
         \li Finally, build and install \l{Qt Application Manager}, \l{Qt IVI} and then
         \l{Neptune 3 UI} as explained in the Installation sections of those components.
    \endlist
+
+   \note Due to an issue with configuring Qt 5.13.0 with \c{-opengl es2"}, currently it's not
+   possible to use Neptune 3 UI with Qt 3D Studio Runtime for macOs Mojave.
 */
