@@ -36,8 +36,8 @@
 
    Neptune 3 UI connects to their corresponding remote services: \c remotesettings-server and the
    \c drivedata-simulation-server. In this case, a remote service refers to an independent process,
-   possibly running on a different host. For an introduction to QtIvi's remote services, see
-   \l {QtIvi Remote Backends}.
+   possibly running on a different host. For an introduction to QtIvi's middleware services, see
+   \l {Qt IVI Inter-Process Communication Integration}.
 
    \section1 Why use Middleware
 
@@ -126,8 +126,9 @@
 
    \section2 Related Information
    \list
-      \li See \l{QtIvi Remote Backends} and \l {Qt IVI Generator Remote Objects Example} for a more
-          detailed explanation and a walkthrough on QtIVI remote backends.
+      \li See \l{Qt IVI Inter-Process Communication Integration} and
+         \l {Generate QtRemoteObjects based backends with the Qt IVI Generator} for a more
+         detailed explanation and a walkthrough on generating middleware services.
       \li See \l{Qt IVI Simulation System} for more info about simulations.
    \endlist
 

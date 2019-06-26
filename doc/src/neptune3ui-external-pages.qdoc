@@ -142,8 +142,8 @@
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtIVI/remotebackends.html
-    \title QtIvi Remote Backends
+    \externalpage http://doc.qt.io/QtIVI/ipc-integration.html
+    \title Qt IVI Inter-Process Communication Integration
 */
 
 /*!
