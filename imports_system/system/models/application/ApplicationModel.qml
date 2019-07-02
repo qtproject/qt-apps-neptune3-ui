@@ -290,8 +290,10 @@ ListModel {
 
             root.append({"appInfo": appInfo})
 
-            if (appInfo.autostart)
+            if (appInfo.autostart) {
                 appInfo.start();
+                goHome();
+            }
         }
 
         function deserializeWidgetsState(widgetStates)
