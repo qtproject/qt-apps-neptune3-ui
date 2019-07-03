@@ -65,5 +65,9 @@ use_qsr{
         SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
         SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
         DEFINES += USE_QT_SAFE_RENDERER
+
+        qsr-safelayout.files = $$DESTDIR/qsr-safelayout
+        qsr-safelayout.path = $$INSTALL_PREFIX/neptune3
+        INSTALLS += qsr-safelayout
     }
 }
