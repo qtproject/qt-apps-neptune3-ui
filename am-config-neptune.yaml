@@ -35,6 +35,7 @@ ui:
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
   windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
+  enableTouchEmulation: yes
 
 systemProperties:
     public:

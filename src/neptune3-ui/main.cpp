@@ -147,10 +147,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }
 #endif
 
-        // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
-        if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty())
-            TouchEmulation::createInstance();
-
 #ifdef Q_OS_ANDROID
         a.qmlEngine()->setUrlInterceptor(new UrlInterceptor);
 #endif
