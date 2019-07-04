@@ -132,7 +132,7 @@ Item {
      NeptuneWindowItem {
         id: bottomBar
         width: root.width
-        height: Sizes.dp(120)
+        height: Sizes.dp(Config.bottomBarHeight)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         window: root.store.applicationModel.bottomBarAppInfo.window

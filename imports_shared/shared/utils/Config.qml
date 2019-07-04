@@ -43,6 +43,7 @@ QtObject {
     readonly property int instrumentClusterHeight: 1080
     readonly property real instrumentClusterUIAspectRatio: 1920 / 720
 
+    readonly property int bottomBarHeight: 120
     readonly property int centerConsoleWidth: 1080
     readonly property int centerConsoleHeight: 1920
     readonly property real centerConsoleAspectRatio: centerConsoleWidth / centerConsoleHeight
