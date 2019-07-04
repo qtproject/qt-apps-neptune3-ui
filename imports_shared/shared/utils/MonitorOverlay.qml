@@ -149,7 +149,7 @@ Item {
             color: Style.contrastColor
             visible: root.fpsVisible
             // Have something constantly moving on the screen to force constant rendering
-            RotationAnimator {
+            RotationAnimation {
                 target: rotatingRect
                 from: 0;
                 to: 360;
