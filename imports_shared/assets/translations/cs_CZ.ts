@@ -76,6 +76,10 @@ UX na cestu</translation>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>Neznámá aplikace</translation>
+    </message>
 </context>
 <context>
     <name>AboutDiagnostics</name>
@@ -609,11 +613,23 @@ UX na cestu</translation>
     </message>
     <message>
         <source>An Internet connection is required</source>
-        <translation type="unfinished">Je vyžadováno připojení k internetu</translation>
+        <translation type="obsolete">Je vyžadováno připojení k internetu</translation>
     </message>
     <message>
         <source>No apps found!</source>
         <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

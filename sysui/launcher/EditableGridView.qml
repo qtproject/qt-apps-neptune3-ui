@@ -164,7 +164,7 @@ Item {
                 editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
                 editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
 
-                iconSource: model.appInfo ? model.appInfo.icon : null
+                iconSource: model.appInfo ? model.appInfo.icon : ""
                 labelText: model.appInfo ? model.appInfo.name : null
                 gridOpen: root.gridOpen
 

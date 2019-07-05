@@ -66,6 +66,10 @@
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>未知的应用程序</translation>
+    </message>
 </context>
 <context>
     <name>AboutMarketing</name>
@@ -465,12 +469,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An Internet connection is required</source>
+        <source>No apps found!</source>
+        <translation type="unfinished">未找到app!</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No apps found!</source>
-        <translation type="unfinished">未找到app!</translation>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

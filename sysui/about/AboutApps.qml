@@ -60,6 +60,14 @@ Item {
         }
     }
 
+    Connections {
+        target: applicationModel
+        ignoreUnknownSignals: true
+        onAppRemoved: {
+            runningAppsModel.removeAppInfo(appInfo)
+        }
+    }
+
     ListModel {
         id: runningAppsModel
 
@@ -165,7 +173,7 @@ Item {
 
             ProcessStatus {
                 id: processStatus
-                applicationId: model.appInfo.id
+                applicationId: model.appInfo ? model.appInfo.id : ""
             }
 
             Timer {
@@ -194,7 +202,7 @@ Item {
                 anchors.verticalCenter: delegateRoot.verticalCenter
 
                 Label {
-                    text: model.appInfo.name
+                    text: model.appInfo ? model.appInfo.name : qsTr("Unknown app")
                 }
 
                 Row {

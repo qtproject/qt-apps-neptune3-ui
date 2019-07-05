@@ -69,6 +69,7 @@ ListModel {
     signal applicationPopupAdded(var window)
     signal autostartAppsListChanged()
     signal autorecoverAppsListChanged()
+    signal appRemoved(var appInfo);
 
     // Populate the model
     function populate(widgetStates, autostart, autorecover) {
@@ -465,6 +466,7 @@ ListModel {
             }
 
             root.remove(index);
+            root.appRemoved(appInfo);
         }
 
         onShuttingDownChanged: {

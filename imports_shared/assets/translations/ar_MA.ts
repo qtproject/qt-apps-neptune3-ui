@@ -51,6 +51,10 @@
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>تطبيق غير معروف</translation>
+    </message>
 </context>
 <context>
     <name>AboutPerformance</name>
@@ -320,11 +324,23 @@
     </message>
     <message>
         <source>An Internet connection is required</source>
-        <translation>الإتصال بالانترنيت مطلوب</translation>
+        <translation type="vanished">الإتصال بالانترنيت مطلوب</translation>
     </message>
     <message>
         <source>No apps found!</source>
         <translation>لا وجود لتطبيقات!</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
