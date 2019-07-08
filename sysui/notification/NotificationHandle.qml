@@ -59,10 +59,6 @@ MouseArea {
 
     drag.target: root.dragTarget
 
-    function circledNumber(num) {
-        return String.fromCharCode(0x2460 + num - 1);
-    }
-
     Row {
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -74,12 +70,23 @@ MouseArea {
             color: Style.contrastColor
         }
 
-        Label {
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: Sizes.fontSizeM
-            text: circledNumber(root.notificationCount)
+        Rectangle {
+            width: Sizes.dp(45)
+            height: Sizes.dp(30)
+            radius: height / 2
+
             opacity: root.notificationCounterVisible ? 1 : 0
             visible: opacity > 0
+            color: "transparent"
+            border.color: Style.contrastColor
+
+            Label {
+                id: countLabel
+                anchors.centerIn: parent
+                font.pixelSize: Sizes.fontSizeXS
+                text: root.notificationCount
+                color: Style.contrastColor
+            }
         }
 
         Rectangle {
