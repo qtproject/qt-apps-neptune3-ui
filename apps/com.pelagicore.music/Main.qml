@@ -49,8 +49,8 @@ QtObject {
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
-        height: Config.centerConsoleHeight
-        width: Config.centerConsoleWidth
+        height: Sizes.dp(Config.centerConsoleHeight)
+        width: Sizes.dp(Config.centerConsoleWidth)
 
         MultiPointTouchArea {
             id: multiPoint
