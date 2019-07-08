@@ -48,8 +48,7 @@ QtObject {
     property bool searchViewEnabled: false
     property bool offlineMapsEnabled: false
 
-    property var positionCoordinate: root.offlineMapsEnabled ? QtPositioning.coordinate(48.135771, 11.574052) // Munich
-                                                        : QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc
+    property var positionCoordinate: QtPositioning.coordinate(48.135771, 11.574052) // Munich
     property var originalPosition: positionCoordinate
     readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
     readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
