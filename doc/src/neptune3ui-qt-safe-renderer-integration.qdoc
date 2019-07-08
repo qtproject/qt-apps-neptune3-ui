@@ -81,7 +81,7 @@
     driveDataPort=9998
     \endcode
 
-    These settings are based on \l{QSettings} with "Pelagicore" as the company name and
+    These settings are based on \l{QSettings} with "Luxoft Sweden AB" as the company name and
     "NeptuneCompanionApp" as the application name; to locate the file,
     see \l{QSettings' Platform-Specific Notes}.
 
@@ -129,7 +129,7 @@
     \endcode
 
     For the \c neptune3-ui-qsr-cluster app, the TCP server's listening port is set in the
-    settings file based on \l{QSettings} with "Pelagicore" as the company name and "QSRCluster"
+    settings file based on \l{QSettings} with "Luxoft Sweden AB" as the company name and "QSRCluster"
     as the application name; to locate the file, see \l{QSettings' Platform-Specific Notes}.
     The default port is \c {1111}.
     \badcode
@@ -226,7 +226,7 @@
     positions are sent from the non-safe partition to the Safe part if Qt Safe Renderer support is
     enabled. For \c neptune3-ui-qsr-cluster overlaying of Neptune's 3 UI Cluster window is enabled
     by default and can be switched off by modifying the Boolean key in the settings file based on
-    \l{QSettings' Platform-Specific Notes}{QSettings} with "Pelagicore" as the company name and
+    \l{QSettings' Platform-Specific Notes}{QSettings} with "Luxoft Sweden AB" as the company name and
     "QSRCluster" as the application name:
 
     \badcode

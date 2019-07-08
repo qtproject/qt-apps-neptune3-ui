@@ -38,7 +38,7 @@ SafeWindow::SafeWindow(const QSafeSize &size, const QSafeSize &frameSize, QWindo
 {
     resize(size.width(), size.height());
 
-    QSettings settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"));
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     m_transparent = settings.value(QStringLiteral("gui/transparent"), true).toBool();
     //to run on EGLFS on NUC set transparent to false
     //otherwise nothing will be shown

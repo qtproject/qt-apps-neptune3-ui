@@ -49,7 +49,7 @@ Client::Client(QObject *parent) : QObject(parent),
     m_driveDataPort(defaultDriveDataPort),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneCompanionApp"))
+    m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("NeptuneCompanionApp"))
 {
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);

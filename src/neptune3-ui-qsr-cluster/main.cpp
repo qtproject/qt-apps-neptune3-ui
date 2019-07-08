@@ -80,7 +80,7 @@ int main(int argc, char **argv)
     msgHandler.onSpeedLabelsVisibilityChanged(false);
 
     //Demo case, update window position on Cluster window move
-    QSettings settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"));
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     if (settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool()) {
         QObject::connect(&msgHandler, &TcpMsgHandler::mainWindowPosGot, &telltaleWindow, &SafeWindow::moveWindow);
     }

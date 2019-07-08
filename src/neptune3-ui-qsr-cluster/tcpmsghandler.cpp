@@ -49,7 +49,7 @@ TcpMsgHandler::TcpMsgHandler(StateManager *manager, QObject *parent)
 {
     QObject::connect(&m_heartbeatTimer, &QTimer::timeout, this, &TcpMsgHandler::heartbeatTimeout);
 
-    QSettings settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"));
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     quint16 port = settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt();
 
     runServer(port);

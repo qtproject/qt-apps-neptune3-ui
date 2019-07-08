@@ -49,7 +49,7 @@ RemoteSettings_Client::RemoteSettings_Client(QObject *parent) : QObject(parent),
     m_driveDataPort(defaultDriveDataPort),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"))
+    m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"))
 {
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &RemoteSettings_Client::onCMTimeout);
