@@ -48,6 +48,9 @@ QtObject {
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
+        height: Sizes.dp(Config.centerConsoleHeight)
+        width: Sizes.dp(Config.centerConsoleWidth)
+
         // used for copying the offline DB
         readonly property var _mapsHelper: MapsHelper {
             appPath: Qt.resolvedUrl("./")
