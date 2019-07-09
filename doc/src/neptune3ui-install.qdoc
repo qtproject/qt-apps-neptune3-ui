@@ -55,7 +55,7 @@
     \list
         \li On Linux, it's in \c{/home/<your-user-name>/Qt/<qt-version>/gcc_64/neptune3}
         \li On macOS, it's in \c{/Users/<your-user-name>/Qt/<qt-version>/clang_64/neptune3}
-        \li On Windows, it's in \c{C:/Qt/\<qt-version>/\msvc2017_64/\neptune3}
+        \li On Windows, it's in \c{C:/Qt/<qt-version>/msvc2017_64/neptune3}
     \endlist
 
     In case you chose a different folder during installation, locate the binaries in
