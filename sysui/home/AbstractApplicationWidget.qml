@@ -108,6 +108,7 @@ Item {
         id: mask
         visible: false
         anchors.fill: parent
+        mirror: LayoutMirroring.enabled
         border { left: 0; right: 17; top: 17; bottom: 17 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch
