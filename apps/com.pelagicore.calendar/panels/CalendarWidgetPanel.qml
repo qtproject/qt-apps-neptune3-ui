@@ -92,6 +92,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: Sizes.dp(40)
             anchors.right: parent.right
+            anchors.rightMargin: Sizes.dp(40)
 
             Label {
                 id: firstRowOfText
