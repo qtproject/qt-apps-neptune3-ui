@@ -51,6 +51,9 @@ Client::Client(QObject *parent) : QObject(parent),
     m_timedOut(false),
     m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("NeptuneCompanionApp"))
 {
+    m_configPath = m_tmpDir.filePath(QStringLiteral("server.conf"));
+    qputenv("SERVER_CONF_PATH", m_configPath.toLocal8Bit());
+
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);
     connect(&m_connectionMonitoring, &ConnectionMonitoring::counterChanged,
@@ -113,11 +116,7 @@ void Client::connectToServer(const QString &serverUrl)
     remoteSettingsUrl.setPort(m_remoteSettingsPort);
     driveDataUrl.setPort(m_driveDataPort);
 
-    QString configPath(QStringLiteral("./server.conf"));
-    if (qEnvironmentVariableIsSet("SERVER_CONF_PATH"))
-        configPath = QString::fromLocal8Bit(qgetenv("SERVER_CONF_PATH"));
-
-    QSettings settings(configPath, QSettings::IniFormat);
+    QSettings settings(m_configPath, QSettings::IniFormat);
     settings.beginGroup(QStringLiteral("remotesettings"));
     settings.setValue(QStringLiteral("Registry"), remoteSettingsUrl.toString());
     settings.endGroup();
