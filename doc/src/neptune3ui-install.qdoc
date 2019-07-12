@@ -65,7 +65,7 @@
     \c{/opt/neptune3/}. Launch Neptune 3 UI with the following command in your terminal:
 
     \badcode
-    ./neptune3-ui -r
+    ./neptune3-ui
     \endcode
 
 
