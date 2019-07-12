@@ -97,7 +97,7 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: Paths.getModelPath("front_ights", root.version)
+            source: Paths.getModelPath("front_lights", root.version)
         }
         CookTorranceMaterial {
             id: frontLightsMaterial

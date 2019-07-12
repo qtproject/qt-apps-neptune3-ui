@@ -90,14 +90,6 @@ Entity {
 
     Entity {
         Mesh {
-            id: black
-            source: Paths.getModelPath("black_left", root.version)
-        }
-        components: [black, blackMaterial]
-    }
-
-    Entity {
-        Mesh {
             id: black1
             source: Paths.getModelPath("black_1", root.version)
         }
