@@ -42,18 +42,11 @@ import "../../helpers" 1.0
 Entity {
     id: root
     property string version
-    components: [
+    Entity {
         Mesh {
-            id: seats
+            id: tiresMesh
             source: Paths.getModelPath("seats", root.version)
-        },
-        DiffuseMapMaterial {
-            id: seatsMaterial
-            diffuse: Texture2D {
-                TextureImage {
-                    source: Paths.getImagePath("seats.png")
-                }
-            }
         }
-    ]
+        components: [tiresMesh, rubberMaterial]
+    }
 }
