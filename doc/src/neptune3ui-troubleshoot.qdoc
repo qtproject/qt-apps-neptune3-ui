@@ -37,7 +37,7 @@
 
     \note On embedded systems, Neptune 3 UI is started with systemd. Here, you can control the
     categories using environment variables or custom command-line arguments, via the
-    \c neptune3.service file.
+    \c neptune.service file.
 
     \section1 Recreate the Application Database
 
@@ -60,11 +60,13 @@
     collected and can be retrieved using \c journalctl:
 
     \badcode
-    journalctl | grep neptune3-ui
+    journalctl -u neptune
     \endcode
 
     The Neptune 3 UI binary is a custom built QtApplicationManager, and as such, supports all of
     QtApplicationManager's command-line and configuration options, as described in
-    \l{https://doc.qt.io/QtApplicationManager/configuration.html#}{Configuration}.
+    \l{https://doc.qt.io/QtApplicationManager/configuration.html#}{Configuration}. For more details
+    on how to troubleshoot QtApplicationManager issues,
+    see \l{https://doc.qt.io/QtApplicationManager/troubleshoot.html}{Troubleshoot}.
 
 */
