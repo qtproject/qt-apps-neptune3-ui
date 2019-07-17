@@ -32,6 +32,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
+import QtIvi.Media 1.0
 
 Flickable {
     id: root
@@ -89,6 +90,44 @@ Flickable {
                 id: muteCheckbox
                 checked: uiSettings.muted
                 onClicked: uiSettings.muted = checked
+            }
+        }
+
+        GridLayout {
+            Row {
+                spacing: 30
+
+                Button {
+                    width: 70
+                    height: 70
+                    icon.source: "qrc:/assets/ic_skipprevious.png"
+                    onClicked:  {
+                        mediaPlayer.previous()
+                    }
+                }
+
+                Button {
+                    width: 70
+                    height: 70
+                    icon.source: mediaPlayer.playState === MediaPlayer.Playing
+                                 ? "qrc:/assets/ic_pause.png" : "qrc:/assets/ic_play.png"
+                    onClicked: {
+                        if (mediaPlayer.playState === MediaPlayer.Playing) {
+                            mediaPlayer.pause()
+                        } else {
+                            mediaPlayer.play()
+                        }
+                    }
+                }
+
+                Button {
+                    width: 70
+                    height: 70
+                    icon.source: "qrc:/assets/ic_skipnext.png"
+                    onClicked:  {
+                        mediaPlayer.next()
+                    }
+                }
             }
         }
     }

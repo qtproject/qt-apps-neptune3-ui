@@ -1,7 +1,7 @@
 VERSION  = 5.13.0
 TARGET = neptune-companion-app
 DESTDIR = $$BUILD_DIR
-QT += quick ivicore
+QT += quick ivicore ivimedia
 CONFIG += c++11
 macos: CONFIG -= app_bundle
 
@@ -36,6 +36,12 @@ QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptun
 QML_IMPORT_PATH += $$BUILD_DIR/imports_shared_cpp
 
 android {
+    copydata.commands = $(COPY_DIR) $$[QT_INSTALL_PLUGINS]/qtivi $$BUILD_DIR/plugins
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
+    QMAKE_EXTRA_TARGETS += first copydata
+
 #This is used to tell the deployment tool to include these additional
 #libs to the apk. This library (libQt5RemoteObjects) is not directly used by the
 #app itself, but by the backend plugin.

@@ -31,5 +31,9 @@
         <file>assets/ic_trunkClosedVehicle.png</file>
         <file>assets/ic_trunkOpenedVehicle.png</file>
         <file>DefaultNumberAnimation.qml</file>
+        <file>assets/ic_pause.png</file>
+        <file>assets/ic_play.png</file>
+        <file>assets/ic_skipnext.png</file>
+        <file>assets/ic_skipprevious.png</file>
     </qresource>
 </RCC>
