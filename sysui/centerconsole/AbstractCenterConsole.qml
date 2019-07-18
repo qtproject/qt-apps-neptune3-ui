@@ -97,7 +97,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Style.backgroundColor
+        color: Style.theme === Style.Dark ? "#404040" : "#C7C7C7"
         visible: root.store.hardwareVariant === 'low'
     }
 
