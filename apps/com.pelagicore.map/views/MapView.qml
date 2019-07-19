@@ -71,7 +71,12 @@ Item {
         root.store.workCoord = mapBoxPanel.mapHeader.workAddressData;
     }
 
-    onStateChanged: root.store.searchViewEnabled = false;
+    onStateChanged: {
+        if (root.state !== "Maximized") {
+            root.store.searchViewEnabled = false;
+        }
+    }
+
     Connections {
         target: root.store
         onRequestNavigationReceived: {
@@ -148,7 +153,10 @@ Item {
             fillMode: Image.PreserveAspectFit
             source: Helper.localAsset("floating-button-bg", Style.theme)
         }
-        onClicked: root.maximizeMap()
+        onClicked: {
+            root.maximizeMap();
+            root.store.searchViewEnabled = true;
+        }
     }
 
     FastBlur {
