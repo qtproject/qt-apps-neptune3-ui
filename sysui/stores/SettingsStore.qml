@@ -37,7 +37,7 @@ Settings {
     id: root
 
     readonly property string defaultAutostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
-    readonly property string defaultAutorecoverApps: "com.theqtcompany.cluster:5000"
+    readonly property string defaultAutorecoverApps: "com.theqtcompany.cluster:5000,com.pelagicore.music:5000"
 
     property int measurementSystem: Qt.locale().measurementSystem
     property string widgetStates: "com.pelagicore.phone:2,com.pelagicore.music:2,com.pelagicore.calendar:1"
