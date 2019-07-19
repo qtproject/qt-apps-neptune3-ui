@@ -29,10 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Controls 2.3
+import QtQuick 2.9
+import QtQuick.Controls 2.5
+import QtGraphicalEffects 1.12
 
 import shared.Sizes 1.0
+import shared.Style 1.0
 
 import "../helpers"  1.0
 
@@ -40,24 +42,33 @@ Item {
     id: root
     anchors.fill: parent
 
-    property alias showBusyIndicator: busyIndicator.running
-
     Image {
         id: proxyImage
         anchors.fill: parent
-        source: Paths.getImagePath("carPlaceholderCC.png")
+        source: Style.theme === Style.Dark
+                ? Paths.getImagePath("carPlaceholderCC-dark.png")
+                : Paths.getImagePath("carPlaceholderCC-light.png")
+    }
 
-        BusyIndicator {
-            id: busyIndicator
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: Sizes.dp(80)
-            onRunningChanged: {
-                if (running) {
-                    proxyImage.source = Paths.getImagePath("carPlaceholderCC.png")
-                } else {
-                    proxyImage.source = Paths.getImagePath("sceneBackground.png")
-                }
-            }
+    FastBlur {
+        anchors.fill: proxyImage
+        source: proxyImage
+        radius: 32
+    }
+
+    ProgressBar {
+        anchors.bottom: parent.bottom
+        implicitWidth: parent.width
+        implicitHeight: Sizes.dp(8)
+        from: 0
+        to: 1
+        value: 0
+        indeterminate: true
+        backgroundVisible: false
+        SequentialAnimation on value {
+            loops: Animation.Infinite
+            PropertyAnimation { to: 0; duration: 1000 }
+            PropertyAnimation { to: 1; duration: 1000 }
         }
     }
 }

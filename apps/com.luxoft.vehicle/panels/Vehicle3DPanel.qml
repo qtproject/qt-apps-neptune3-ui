@@ -35,6 +35,7 @@ import Qt3D.Core 2.0
 import Qt3D.Render 2.9
 import Qt3D.Extras 2.9
 import Qt3D.Input 2.0
+import Qt3D.Logic 2.0
 import QtQuick.Scene3D 2.0
 import QtQuick.Controls 2.3
 
@@ -47,6 +48,7 @@ import "../3d/settings" 1.0
 
 Item {
     id: root
+    anchors.fill: parent
 
     property real lastCameraAngle: 0.0
     property string modelVersion
@@ -57,166 +59,181 @@ Item {
     property bool rightDoorOpen: false
     property bool trunkOpen: false
 
-    signal readyToChanges
+    property bool readyToChanges: false
 
-    //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
-    Loader {
-        anchors.fill: parent
-        active: root.visible
-        sourceComponent: sceneComponent
-    }
+    // in some cases Scene3D doesn't create anything, such cases are really hard to reproduce
+    // but we need to have some flag to verify
+    property bool renderStarted: false
 
-    Component {
-        id: sceneComponent
-        Item {
-            anchors.fill: parent
 
-            Scene3D {
-                height: Sizes.dp(380)
-                width: Sizes.dp(960)
-                anchors.verticalCenterOffset: Sizes.dp(80)
-                anchors.centerIn: parent
-                aspects: ["input", "logic"]
-                focus: false
+    Scene3D {
+        height: Sizes.dp(380)
+        width: Sizes.dp(960)
+        anchors.verticalCenterOffset: Sizes.dp(80)
+        anchors.centerIn: parent
+        aspects: ["input", "logic"]
+        focus: false
 
-                Entity {
-                    RenderSettings {
-                        id: renderSettings
-                        activeFrameGraph: FrameGraph {
-                            clearColor: "transparent"
-                            camera: camera
+        Entity {
+            RenderSettings {
+                id: renderSettings
+                activeFrameGraph: FrameGraph {
+                    clearColor: "transparent"
+                    camera: camera
+                }
+                // NB: this should work once https://codereview.qt-project.org/#/c/208218/ is merged
+                renderPolicy: RenderSettings.OnDemand
+            }
+
+            InputSettings {
+                id: inputSettings
+            }
+
+            FrameAction {
+                id: frameCounter
+            }
+
+            components: [inputSettings, renderSettings, frameCounter]
+
+
+            Connections {
+                id: readyToChangeConnection
+                target: frameCounter
+                property int fc: 0
+                onTriggered: {
+                    if (!root.renderStarted) {
+                        root.renderStarted = true;
+                    }
+
+                    if (body.bodyLoaded) {
+                        fc += 1;
+                        // skip first 5 frames to be sure that all content is ready
+                        if (fc > 5) {
+                            readyToChangeConnection.target = null;
+                            root.readyToChanges = true;
                         }
-                        // NB: this should work once https://codereview.qt-project.org/#/c/208218/ is merged
-                        renderPolicy: RenderSettings.OnDemand
                     }
+                }
+            }
 
-                    InputSettings {
-                        id: inputSettings
-                    }
+            Camera {
+                id: camera
+                projectionType: CameraLens.PerspectiveProjection
+                fieldOfView: 15
+                nearPlane: 0.1
+                farPlane: 100.0
+                position:   Qt.vector3d(0.0, 5.0, 18.0)
+                viewCenter: Qt.vector3d(0.0, 0.6, 0.0)
+                upVector:   Qt.vector3d(0.0, 1.0, 0.0)
+            }
 
-                    components: [inputSettings, renderSettings]
+            CameraController {
+                camera: camera
+                enabled: true
+                onCameraPanAngleChanged: root.lastCameraAngle = cameraPanAngle
+            }
 
-                    Camera {
-                        id: camera
-                        projectionType: CameraLens.PerspectiveProjection
-                        fieldOfView: 15
-                        nearPlane: 0.1
-                        farPlane: 100.0
-                        position:   Qt.vector3d(0.0, 5.0, 18.0)
-                        viewCenter: Qt.vector3d(0.0, 0.6, 0.0)
-                        upVector:   Qt.vector3d(0.0, 1.0, 0.0)
-                    }
+            CookTorranceMaterial {
+                id: rubberMaterial
+                albedo: "black"
+                metalness: 0.9
+                roughness: 0.5
+            }
 
-                    CameraController {
-                        camera: camera
-                        enabled: true
-                        onCameraPanAngleChanged: root.lastCameraAngle = cameraPanAngle
-                    }
+            CookTorranceMaterial {
+                id: wheelChromeMaterial
+                albedo: "black"
+                metalness: 0.1
+                roughness: 0.7
+            }
 
-                    CookTorranceMaterial {
-                        id: blackMaterial
-                        albedo: "black"
-                        metalness: 0.5
-                        roughness: 0.8
-                    }
+            CookTorranceMaterial {
+                id: taillightsMaterial
+                albedo: "red"
+                metalness: 0.1
+                roughness: 0.2
+                alpha: 0.5
+            }
 
-                    CookTorranceMaterial {
-                        id: rubberMaterial
-                        albedo: "black"
-                        metalness: 0.9
-                        roughness: 0.5
-                    }
+            CookTorranceMaterial {
+                id: blackMaterial
+                albedo: "black"
+                metalness: 0.5
+                roughness: 0.8
+            }
 
-                    CookTorranceMaterial {
-                        id: whiteHood
-                        albedo: "white"
-                        metalness: 0.1
-                        roughness: 0.35
-                    }
+            CookTorranceMaterial {
+                id: whiteHood
+                albedo: "white"
+                metalness: 0.1
+                roughness: 0.35
+            }
 
-                    CookTorranceMaterial {
-                        id: chromeMaterial
-                        albedo: "black"
-                        metalness: 0.1
-                        roughness: 0.2
-                    }
+            CookTorranceMaterial {
+                id: chromeMaterial
+                albedo: "black"
+                metalness: 0.1
+                roughness: 0.2
+            }
 
-                    CookTorranceMaterial {
-                        id: wheelChromeMaterial
-                        albedo: "black"
-                        metalness: 0.1
-                        roughness: 0.7
-                    }
+            CookTorranceMaterial {
+                id: interiorMaterial
+                albedo: "gray"
+                metalness: 1.0
+                roughness: 0.1
+            }
 
-                    CookTorranceMaterial {
-                        id: taillightsMaterial
-                        albedo: "red"
-                        metalness: 0.1
-                        roughness: 0.2
-                        alpha: 0.5
-                    }
+            CookTorranceMaterial {
+                id: whiteMaterial
+                albedo: "white"
+                metalness: 0.5
+                roughness: 0.5
+            }
 
-                    CookTorranceMaterial {
-                        id: interiorMaterial
-                        albedo: "gray"
-                        metalness: 1.0
-                        roughness: 0.1
-                    }
+            CookTorranceMaterial {
+                id: glassMaterial
+                albedo: "black"
+                metalness: 0.1
+                roughness: 0.1
+                alpha: 0.8
+            }
 
-                    CookTorranceMaterial {
-                        id: whiteMaterial
-                        albedo: "white"
-                        metalness: 0.5
-                        roughness: 0.5
-                    }
-
-                    CookTorranceMaterial {
-                        id: glassMaterial
-                        albedo: "black"
-                        metalness: 0.1
-                        roughness: 0.1
-                        alpha: 0.8
-                    }
-
-                    Shadow {}
-                    AxisFront {
-                        version: root.modelVersion
-                    }
-                    AxisRear {
-                        version: root.modelVersion
-                    }
-                    Seats {
-                        version: root.modelVersion
-                    }
-                    RearDoor {
-                        id: trunk
-                        open: root.trunkOpen
-                        version: root.modelVersion
-                    }
-                    LeftDoor {
-                        id: leftDoor
-                        open: root.leftDoorOpen
-                        version: root.modelVersion
-                    }
-                    RightDoor {
-                        id: rightDoor
-                        open: root.rightDoorOpen
-                        version: root.modelVersion
-                    }
-                    Roof {
-                        id: roof
-                        openProgress: root.roofOpenProgress
-                        version: root.modelVersion
-                    }
-                    Body {
-                        id: body
-                        version: root.modelVersion
-                        onLoadedChanged: {
-                            if (loaded) {
-                                camera.panAboutViewCenter(lastCameraAngle, Qt.vector3d(0, 1, 0))
-                                Qt.callLater( function() {root.readyToChanges()} )
-                            }
-                        }
+            Shadow {}
+            AxisFront {
+                version: root.modelVersion
+            }
+            AxisRear {
+                version: root.modelVersion
+            }
+            Seats {
+                version: root.modelVersion
+            }
+            RearDoor {
+                id: trunk
+                open: root.trunkOpen
+                version: root.modelVersion
+            }
+            LeftDoor {
+                id: leftDoor
+                open: root.leftDoorOpen
+                version: root.modelVersion
+            }
+            RightDoor {
+                id: rightDoor
+                open: root.rightDoorOpen
+                version: root.modelVersion
+            }
+            Roof {
+                id: roof
+                openProgress: root.roofOpenProgress
+                version: root.modelVersion
+            }
+            Body {
+                id: body
+                version: root.modelVersion
+                onBodyLoadedChanged: {
+                    if (bodyLoaded) {
+                        camera.panAboutViewCenter(lastCameraAngle, Qt.vector3d(0, 1, 0));
                     }
                 }
             }

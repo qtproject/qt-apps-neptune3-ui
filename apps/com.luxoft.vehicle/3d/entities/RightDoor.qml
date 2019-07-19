@@ -68,7 +68,8 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: Paths.getModelPath("silver_paint_2", root.version)
+            source: Paths.getModelPath("silver_paint_2"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [mesh, whiteHood]
     }
@@ -76,7 +77,8 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: Paths.getModelPath("glass_2", root.version)
+            source: Paths.getModelPath("glass_2"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [glass, glassMaterial]
     }
@@ -84,7 +86,8 @@ Entity {
     Entity {
         Mesh {
             id: chrome
-            source: Paths.getModelPath("chrome_3", root.version)
+            source: Paths.getModelPath("chrome_3"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [chrome, chromeMaterial]
     }
@@ -92,7 +95,8 @@ Entity {
     Entity {
         Mesh {
             id: black1
-            source: Paths.getModelPath("black_3", root.version)
+            source: Paths.getModelPath("black_3"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [black1, blackMaterial]
     }

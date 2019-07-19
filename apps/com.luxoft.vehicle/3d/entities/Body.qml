@@ -42,7 +42,19 @@ import "../materials" 1.0
 Entity {
     id: root
 
-    property bool loaded: false
+    property bool bodyLoaded: chromeReady && shellReady && matt_blackReady && glassReady
+            && license_platesReady && frontLightsReady && taillightsReady && interiorReady
+
+    property bool chromeReady: mesh.status === Mesh.Ready
+    property bool shellReady: mesh.status === Mesh.Ready
+    property bool matt_blackReady: mesh.status === Mesh.Ready
+    property bool glassReady: mesh.status === Mesh.Ready
+    property bool license_platesReady: mesh.status === Mesh.Ready
+    property bool frontLightsReady: mesh.status === Mesh.Ready
+    property bool taillightsReady: mesh.status === Mesh.Ready
+    property bool interiorReady: mesh.status === Mesh.Ready
+
+
     property string version
 
     Transform {
@@ -55,9 +67,8 @@ Entity {
     Entity {
         Mesh {
             id: mesh
-            source: Paths.getModelPath("chrome", root.version)
-            //ToDo: this has to be replaced with an actual loading signal or something more clear
-            onGeometryChanged: root.loaded = true
+            source: Paths.getModelPath("chrome"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [mesh, chromeMaterial]
     }
@@ -65,7 +76,8 @@ Entity {
     Entity {
         Mesh {
             id: shell
-            source: Paths.getModelPath("shell", root.version)
+            source: Paths.getModelPath("shell"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [shell, whiteHood]
     }
@@ -73,7 +85,8 @@ Entity {
     Entity {
         Mesh {
             id: matt_black
-            source: Paths.getModelPath("matt_black", root.version)
+            source: Paths.getModelPath("matt_black"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [matt_black, blackMaterial]
     }
@@ -81,7 +94,8 @@ Entity {
     Entity {
         Mesh {
             id: glass
-            source: Paths.getModelPath("glass_4", root.version)
+            source: Paths.getModelPath("glass_4"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [glass, glassMaterial]
     }
@@ -89,7 +103,8 @@ Entity {
     Entity {
         Mesh {
             id: license_plates
-            source: Paths.getModelPath("licence_plates", root.version)
+            source: Paths.getModelPath("licence_plates"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [license_plates, whiteMaterial]
     }
@@ -97,7 +112,8 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: Paths.getModelPath("front_lights", root.version)
+            source: Paths.getModelPath("front_lights"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         CookTorranceMaterial {
             id: frontLightsMaterial
@@ -112,7 +128,8 @@ Entity {
     Entity {
         Mesh {
             id: taillights
-            source: Paths.getModelPath("taillights", root.version)
+            source: Paths.getModelPath("taillights"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [taillights, taillightsMaterial]
     }
@@ -120,7 +137,8 @@ Entity {
     Entity {
         Mesh {
             id: interior
-            source: Paths.getModelPath("interior", root.version)
+            source: Paths.getModelPath("interior"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [interior, interiorMaterial]
     }

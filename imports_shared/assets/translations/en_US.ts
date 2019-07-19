@@ -849,6 +849,14 @@
         <source>3D Runtime</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This change will be applied after Vehicle application restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsToolsColumn</name>

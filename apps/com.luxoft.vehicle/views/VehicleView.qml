@@ -39,12 +39,37 @@ import shared.animations 1.0
 
 import "../panels" 1.0
 import "../stores" 1.0
+import "../helpers"  1.0
 
 Item {
     id: root
 
     property VehicleStore store
-    property bool currentRuntimeQt3D: true
+    Timer {
+        interval: 1
+        running: true
+        onTriggered: {
+            store.read3DSettings();
+            loadVehiclePanel();
+        }
+    }
+
+    function loadVehiclePanel() {
+        vehicle3DPanelLoader.active = false;
+        vehicle3DPanelLoader.setSource(
+                store.runtime3D === "qt3d" || store.runtime3D === ""
+                        ? "../panels/Vehicle3DPanel.qml" : "../panels/Vehicle3DStudioPanel.qml"
+                , {
+                        "leftDoorOpen": root.store.leftDoorOpened
+                        , "rightDoorOpen": root.store.rightDoorOpen
+                        , "trunkOpen": root.store.trunkOpen
+                        , "roofOpenProgress": root.store.roofOpenProgress
+                        , "lastCameraAngle": root.store.lastCameraAngle
+                        , "modelVersion": root.store.modelVersion
+                        , "vehicleColor": root.store.vehicle3DstudioColor
+                });
+        vehicle3DPanelLoader.active = true;
+    }
 
     Item {
         id: car3dPanel
@@ -57,61 +82,67 @@ Item {
         // in that moment the car model is scaled awfully, so we wait till the app window is rescaled properly
         visible: parent.height > 2 * Sizes.dp(652)
 
+        Image {
+            anchors.fill: parent
+            source: Paths.getImagePath("sceneBackground.png")
+        }
+
         Connections {
-            id: delayedConns
-            target: null
+            target: vehicle3DPanelLoader.item
             onLastCameraAngleChanged: root.store.cameraAngleView = target.lastCameraAngle
-            onReadyToChanges: {
-                controlPanel.allowToChange3DSettings = true
-                vehicleProxyPanel.showBusyIndicator = false
-                vehicleProxyPanel.z = vehicleProxyPanel.parent.z;
-            }
         }
 
         VehicleProxyPanel {
             id: vehicleProxyPanel
-            showBusyIndicator: true
+            z: 9999
         }
 
-        Loader {
-            id: car3dPanelLoader
-            anchors.fill: parent
-            active: !root.store.qt3DStudioAvailable || root.currentRuntimeQt3D
-            source: "../panels/Vehicle3DPanel.qml"
-            opacity: active ? 1.0 : 0.0
-            Behavior on opacity {
-                DefaultNumberAnimation {}
-            }
-
-            onLoaded: {
-                delayedConns.target = item
-                item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} )
-                item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
-                item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
-                item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
-                item.modelVersion = Qt.binding( function() {return root.store.model3DVersion})
-                item.lastCameraAngle = root.store.cameraAngleView
+        // In some cases Scene3D doesn't create anything, such cases are really hard to reproduce,
+        // in these situations UI is frozen, timer is used to check that rendering is started
+        Timer {
+            id: reloadTimer
+            interval: 30000
+            onTriggered: {
+                // if after 30s qt3d scene doesn't respond even with first frame we try to reload it
+                if (root.currentRuntimeQt3D && !vehicle3DPanelLoader.item.renderStarted) {
+                    car3dPanelLoader.active = false;
+                    car3dPanelLoader.setSource("");
+                    car3dPanelLoader.active = true;
+                    loadVehiclePanel();
+                }
             }
         }
 
         Loader {
-            id: car3dStudioPanellLoader
+            id: vehicle3DPanelLoader
             anchors.fill: parent
-            active: root.store.qt3DStudioAvailable && !root.currentRuntimeQt3D
-            source: "../panels/Vehicle3DStudioPanel.qml"
+            active: false
             opacity: active ? 1.0 : 0.0
+            asynchronous: true
             Behavior on opacity {
                 DefaultNumberAnimation {}
             }
 
-            onLoaded: {
-                delayedConns.target = item
-                item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} )
-                item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened})
-                item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened})
-                item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress})
-                item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor})
-                item.lastCameraAngle = root.store.cameraAngleView
+            onItemChanged: {
+                if (item) {
+                    var currentRuntimeQt3D = store.runtime3D === "qt3d";
+                    reloadTimer.running = currentRuntimeQt3D;
+                    if (currentRuntimeQt3D) {
+                        item.modelVersion = Qt.binding( function() {return root.store.model3DVersion});
+                        reloadTimer.running = Qt.binding( function() {return item ? !item.renderStarted : false} );
+                    } else {
+                        item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor});
+                        reloadTimer.stop();
+                    }
+
+                    vehicleProxyPanel.visible = Qt.binding( function() {return !item.readyToChanges} );
+
+                    item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} );
+                    item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened});
+                    item.trunkOpen = Qt.binding( function() {return  root.store.trunkOpened});
+                    item.roofOpenProgress = Qt.binding( function() {return root.store.roofOpenProgress});
+                    item.lastCameraAngle = root.store.cameraAngleView;
+                }
             }
         }
     }
@@ -125,9 +156,11 @@ Item {
         anchors.left: root.left
         anchors.right: root.right
         anchors.bottom: parent.bottom
-        menuModel: store.menuModel
-        qualityModel: store.qualityModel
-        controlModel: store.controlModel
+        menuModel: root.store.menuModel
+        qualityModel: root.store.qualityModel
+        quality: root.store.model3DVersion
+        controlModel: root.store.controlModel
+        runtime: root.store.runtime3D
         leftDoorOpened: root.store.leftDoorOpened
         rightDoorOpened: root.store.rightDoorOpened
         trunkOpened: root.store.trunkOpened
@@ -140,24 +173,19 @@ Item {
         onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
 
         onRuntimeChanged: {
-            vehicleProxyPanel.z = vehicleProxyPanel.parent.z + 1;
-            vehicleProxyPanel.showBusyIndicator = true;
-            root.currentRuntimeQt3D = qt3d;
+            if (root.store.runtime3D === runtime) {
+                return;
+            }
+
+            root.store.setRuntime(runtime);
+            // todo: show splash widget with info, and change settings + fix settings that shown to user
         }
 
         onQualityChanged: {
-            // check is needed to prevent segfault when signal is emitted during initialization
             if (root.store.model3DVersion !== quality) {
-                var src = car3dPanelLoader.source
-                vehicleProxyPanel.z = vehicleProxyPanel.parent.z + 1;
-                vehicleProxyPanel.showBusyIndicator = true;
-                car3dPanelLoader.setSource("")
                 root.store.model3DVersion = quality;
-                car3dPanelLoader.setSource(src)
-            } else {
-                allowToChange3DSettings = true;
+                root.store.setModelQuality(quality);
             }
         }
-
     }
 }

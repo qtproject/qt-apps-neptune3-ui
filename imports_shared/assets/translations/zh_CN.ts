@@ -1337,6 +1337,14 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>3D Runtime</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This change will be applied after Vehicle application restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsModel</name>

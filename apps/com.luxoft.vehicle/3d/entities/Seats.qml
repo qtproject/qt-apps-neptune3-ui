@@ -45,7 +45,8 @@ Entity {
     Entity {
         Mesh {
             id: tiresMesh
-            source: Paths.getModelPath("seats", root.version)
+            source: Paths.getModelPath("seats"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [tiresMesh, rubberMaterial]
     }
