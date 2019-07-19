@@ -33,6 +33,9 @@
 import QtQuick 2.8
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
+import QtApplicationManager.Application 2.0
+
+
 
 QtObject {
     id: root
@@ -92,6 +95,44 @@ QtObject {
     }
 
     property InstrumentCluster cluster: InstrumentCluster { id: cluster }
+
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "vehicle-control"
+        onRequestReceived: {
+            var action  = request.parameters["action"];
+            var side    = request.parameters["side"];
+            var part    = request.parameters["part"];
+
+            switch (part) {
+                case "trunk":
+                    if (action === "open")
+                        uiSettings.trunkOpen = true;
+                    if (action === "close")
+                        uiSettings.trunkOpen = false;
+                break; //trunk
+                case "sunroof":
+                    if (action === "open")
+                        uiSettings.roofOpenProgress = 1.0;
+                    if (action === "close")
+                        uiSettings.roofOpenProgress = 0.0;
+                break; //sunroof
+                case "door":
+                    if (side === "left") {
+                        if (action === "open")
+                            uiSettings.door1Open = true;
+                        if (action === "close")
+                            uiSettings.door1Open  = false;
+                    }
+                    if (side === "right") {
+                        if (action === "open")
+                            uiSettings.door2Open  = true;
+                        if (action === "close")
+                            uiSettings.door2Open  = false;
+                    }
+                break; //door
+            }//switch
+        }
+    }
 
     function setTrunk() {
         if (root.trunkOpened) {

@@ -19,3 +19,5 @@ applicationProperties:
         squishPort: 7732
 
 categories: [ 'navigation', 'vehicle' ]
+intents:
+- id: vehicle-control
