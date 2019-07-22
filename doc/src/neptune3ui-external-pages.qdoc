@@ -239,3 +239,18 @@
     \externalpage https://doc.qt.io/qt-5/android-getting-started.html
     \title Getting Started with Qt for Android
 */
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qml-qtquick-row.html
+    \title Row
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qml-qtquick-column.html
+    \title Column
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtApplicationManager/manifest.html#
+    \title Manifest Definition
+*/
