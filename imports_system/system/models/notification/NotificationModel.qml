@@ -39,38 +39,24 @@ QtObject {
     property var model: NotificationManager
     readonly property int count: root.model.count
 
-    property bool notificationCenterVisible: false
-    property bool notificationToastVisible: false
+    signal notificationAdded()
+    signal notificationRemoved()
+    signal notificationClosed()
 
     readonly property Connections notificationManagerConnection: Connections {
         target: root.model
         onNotificationAdded: {
-            closeNotification();
-            showNotification();
-        }
-
-        onNotificationChanged: {
-            if (!root.notificationToastVisible) {
-                showNotification();
-            }
+            root.notificationAdded();
         }
 
         onNotificationAboutToBeRemoved: {
-            closeNotification();
+            root.notificationRemoved();
         }
-    }
-
-    function showNotification() {
-        root.notificationToastVisible = true;
-    }
-
-    function closeNotification() {
-        root.notificationToastVisible = false;
     }
 
     function buttonClicked(id) {
         NotificationManager.triggerNotificationAction(id, "");
-        root.closeNotification();
+        root.notificationClosed();
     }
 
     function removeNotification(id) {

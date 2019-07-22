@@ -697,11 +697,11 @@
 <context>
     <name>NotificationCenter</name>
     <message>
-        <source>Clear list</source>
+        <source>No Notifications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No Notifications</source>
+        <source>Clear list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

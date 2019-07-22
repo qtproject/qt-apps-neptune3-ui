@@ -41,103 +41,192 @@ import shared.Style 1.0
 
 Item {
     id: root
-
-    y: root.notificationModel.notificationCenterVisible ? 0 : -root.height
-    onYChanged: {
-        if (root.y === -root.height) {
-            root.animationEnabled = false;
+    states: [
+        State {
+            when: root.incomingNoti
+            PropertyChanges {
+                target: root
+                height: (Sizes.dp(150) + notificationToast.height)
+                y: 0
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 1.0
+                visible: true
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 0.0
+                visible: false
+            }
+        },
+        State {
+            when: root.openNotificationCenter
+            PropertyChanges {
+                target: root
+                height: (root.totalContentHeight + notificationDefaultMargin + notificationBottomMargin)
+                y: 0
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 1.0
+                visible: true
+            }
+        },
+        State {
+            when: (!root.incomingNoti && !root.openNotificationCenter)
+            PropertyChanges {
+                target: root
+                height:  (root.totalContentHeight + notificationDefaultMargin + notificationBottomMargin)
+                y: -root.height
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 0.0
+                visible: false
+            }
         }
+    ]
+
+    transitions: Transition {
+        PropertyAnimation { properties: "y, height"; easing.type: Easing.InOutQuad }
+        PropertyAnimation { properties: "opacity"; duration: 400 }
     }
 
-    visible: root.y > -root.height
-    height: {
-        var totalHeight = notificationList.height + root.notificationBottomMargin + root.notificationTopMargin;
-        if (totalHeight > Sizes.dp(1720)) {
-            return Sizes.dp(1720);
-        }
-        return totalHeight;
-    }
+    readonly property int totalMaxContentHeight: (parent.height - Config.statusBarHeight - root.notificationDefaultMargin - root.notificationBottomMargin)
+    readonly property int totalContentHeight: (notificationList.contentHeight > root.totalMaxContentHeight) ? root.totalMaxContentHeight : notificationList.contentHeight
+    readonly property int listviewHeight: Math.min((root.notificationModel.count * Sizes.dp(120)), root.totalContentHeight)
+
+    readonly property int notificationDefaultMargin: Sizes.dp(40)
+    readonly property int notificationBottomMargin: Sizes.dp(110)
+    readonly property int defaultTimeout: 2000
 
     property NotificationModel notificationModel
-    readonly property int notificationCenterMaxHeight: notificationList.height + root.notificationTopMargin + root.notificationBottomMargin
-    readonly property int listviewMaxHeight: Sizes.dp(1720) - root.notificationTopMargin - root.notificationBottomMargin
-    readonly property int notificationTopMargin: Sizes.dp(80)
-    readonly property int notificationBottomMargin: Sizes.dp(144)
-    property bool animationEnabled: false
+    property bool incomingNoti: false
+    property bool openNotificationCenter: false
 
-    Behavior on y {
-        enabled: !root.notificationModel.notificationToastVisible && root.animationEnabled
-        DefaultNumberAnimation { }
-    }
-    Behavior on height {
-        enabled: !root.notificationModel.notificationToastVisible && root.animationEnabled
-        DefaultNumberAnimation { }
+    function closeNotificationCenter() {
+        // reset helper properties&timer
+        root.incomingNoti = false;
+        root.openNotificationCenter = false;
+        notificationShowTimer.stop();
+        notificationShowTimer.interval = root.defaultTimeout;
     }
 
     Rectangle {
         id: notificationCenterBg
         anchors.fill: parent
-        Behavior on opacity { DefaultNumberAnimation { } }
         color: Style.offMainColor
     }
 
-    Column {
+    Timer {
+        id: notificationShowTimer
+        onTriggered: {
+            root.incomingNoti = false;
+        }
+    }
+
+    Connections {
+        target: root.notificationModel
+        onCountChanged: {
+            if (root.incomingNoti && (root.notificationModel.count === 0)) {
+                root.incomingNoti = false;
+            }
+        }
+
+        onNotificationAdded: {
+            root.incomingNoti = true;
+            notificationShowTimer.stop();
+            var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
+            if (currentNotification.timeout > root.defaultTimeout) {
+                notificationShowTimer.interval = currentNotification.timeout;
+            } else {
+                notificationShowTimer.interval = root.defaultTimeout;
+            }
+            notificationShowTimer.start();
+        }
+
+        onNotificationClosed: {
+            root.incomingNoti = false;
+        }
+    }
+
+    Item {
+        id: notificationListItem
         anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(80)
+        anchors.topMargin: root.notificationDefaultMargin
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: root.notificationBottomMargin
         anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(40)
+        anchors.leftMargin: root.notificationDefaultMargin
         anchors.right: parent.right
-        anchors.rightMargin: Sizes.dp(40)
-
-        opacity: notificationCenterBg.opacity
-        spacing: Sizes.dp(72)
-
+        anchors.rightMargin: root.notificationDefaultMargin
+        clip: true
         ListView {
             id: notificationList
-            width: parent.width
-            height: Math.min(contentHeight, root.listviewMaxHeight)
-            interactive: contentHeight > root.listviewMaxHeight
-            opacity: notificationCenterBg.opacity
+            anchors.fill: parent
+            interactive: (contentHeight > root.listviewHeight)
             model: root.notificationModel.model
-            clip: true
-            ScrollIndicator.vertical: ScrollIndicator {}
+            ScrollIndicator.vertical: ScrollIndicator { }
             delegate: NotificationItem {
-                id: delegatedItem
                 width: notificationList.width
                 notificationIcon: model.icon
                 notificationText: model.summary
                 notificationSubtext: model.body
                 notificationImage: model.image
-                notificationActionText: model.actions.length > 0 ? model.actions[0].actionText : ""
-                onCloseClicked: root.notificationModel.removeNotification(model.id)
-                onButtonClicked: root.notificationModel.buttonClicked(model.id)
+                notificationActionText: (model.actions.length > 0) ? model.actions[0].actionText : ""
+                onCloseClicked: {
+                    root.notificationModel.removeNotification(model.id);
+                }
+                onButtonClicked: {
+                    root.notificationModel.buttonClicked(model.id);
+                    root.openNotificationCenter = false;
+                }
             }
         }
+    }
 
-        Item {
-            implicitHeight: Sizes.dp(40)
-            implicitWidth: Sizes.dp(140)
-            anchors.horizontalCenter: parent.horizontalCenter
+    Label {
+        anchors.centerIn: parent
+        visible: opacity > 0.0
+        opacity: (root.notificationModel.count === 0) ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+        text: qsTr("No Notifications")
+    }
 
-            Label {
-                anchors.centerIn: parent
-                opacity: root.notificationModel.count < 1
-                visible: opacity > 0
-                Behavior on opacity { DefaultNumberAnimation { } }
-                text: qsTr("No Notifications")
-            }
+    NotificationToast {
+        id: notificationToast
+        anchors.top: parent.top
+        anchors.topMargin: root.notificationDefaultMargin
+        anchors.left: parent.left
+        anchors.leftMargin: root.notificationDefaultMargin
+        anchors.right: parent.right
+        anchors.rightMargin: root.notificationDefaultMargin
+        notificationModel: root.notificationModel
+    }
 
-            Button {
-                anchors.fill: parent
-                anchors.centerIn: parent
-                opacity: root.notificationModel.count > 0
-                visible: opacity > 0
-                Behavior on opacity { DefaultNumberAnimation { } }
-                font.pixelSize: Sizes.fontSizeS
-                text: qsTr("Clear list")
-
-                onClicked: root.notificationModel.clearNotifications();
-            }
-        }
+    Button {
+        id: clearListButton
+        implicitWidth: Sizes.dp(140)
+        implicitHeight: Sizes.dp(40)
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Sizes.dp(40)
+        visible: (opacity > 0.50)
+        opacity: (root.notificationModel.count > 0) ? 1.0 : 0.0
+        Behavior on opacity { DefaultNumberAnimation { } }
+        font.pixelSize: Sizes.fontSizeS
+        text: qsTr("Clear list")
+        onClicked: { root.notificationModel.clearNotifications(); }
     }
 }

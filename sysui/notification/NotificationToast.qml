@@ -42,61 +42,37 @@ NotificationItem {
 
     property NotificationModel notificationModel
 
-    y: root.notificationModel.notificationToastVisible
-       && !root.notificationModel.notificationCenterVisible ? 0 : -root.height
-    Behavior on y { DefaultNumberAnimation { } }
-
-    opacity: root.notificationModel.notificationToastVisible ? 1.0 : 0.0
-    Behavior on opacity { DefaultNumberAnimation { } }
-
     onButtonClicked: { root.notificationModel.buttonClicked(priv.notificationId); }
 
     onCloseClicked: {
         root.notificationModel.removeNotification(priv.notificationId);
-        root.notificationModel.closeNotification();
     }
 
     QtObject {
         id: priv
-        readonly property int defaultTimeout: 2000
         property int notificationId: -1
-    }
-
-    readonly property Timer notificationTimer: Timer {
-        onTriggered: {
-            root.notificationModel.closeNotification();
-        }
     }
 
     Connections {
         target: root.notificationModel
-        onNotificationToastVisibleChanged: {
-            if (root.notificationModel.notificationToastVisible) {
-                var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
-                priv.notificationId = currentNotification.id;
-                root.notificationIcon = currentNotification.icon;
-                root.notificationText = currentNotification.summary;
-                root.notificationSubtext = currentNotification.body;
-                root.notificationImage = currentNotification.image;
-                if (currentNotification.actions.length > 0) {
-                    // TODO improve actions assignment to support more than 1,
-                    // for now there is only one specified
-                    root.notificationActionText = currentNotification.actions[0].actionText;
-                } else {
-                    root.notificationActionText = "";
-                }
-                if (currentNotification.timeout > priv.defaultTimeout) {
-                    notificationTimer.interval = currentNotification.timeout;
-                } else {
-                    notificationTimer.interval = priv.defaultTimeout;
-                }
-
-                notificationTimer.start();
+        onNotificationAdded: {
+            var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
+            priv.notificationId = currentNotification.id;
+            root.notificationIcon = currentNotification.icon;
+            root.notificationText = currentNotification.summary;
+            root.notificationSubtext = currentNotification.body;
+            root.notificationImage = currentNotification.image;
+            if (currentNotification.actions.length > 0) {
+                // TODO improve actions assignment to support more than 1,
+                // for now there is only one specified
+                root.notificationActionText = currentNotification.actions[0].actionText;
             } else {
-                priv.notificationId = -1;
-                notificationTimer.stop();
-                notificationTimer.interval = priv.defaultTimeout;
+                root.notificationActionText = "";
             }
+        }
+
+        onNotificationClosed: {
+            priv.notificationId = -1;
         }
     }
 }

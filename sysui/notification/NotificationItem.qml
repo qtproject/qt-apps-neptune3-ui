@@ -45,6 +45,7 @@ Control {
     property string notificationActionText
     property url notificationImage
     property bool dividerVisible: false
+    property bool backgroundVisible: false
 
     signal buttonClicked()
     signal closeClicked()
@@ -55,6 +56,7 @@ Control {
 
     background: Rectangle {
         color: Style.offMainColor
+        visible: root.backgroundVisible
     }
 
     contentItem: ListItemFlatButton {
