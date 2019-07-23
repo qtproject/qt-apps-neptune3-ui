@@ -128,6 +128,14 @@ Store {
                 }
             }
         }
+
+        onVolumeChanged: {
+            volumeStore.player.volume = volume * 100;
+        }
+
+        onMutedChanged: {
+            volumeStore.player.muted = muted;
+        }
     }
     property int initialTheme
 

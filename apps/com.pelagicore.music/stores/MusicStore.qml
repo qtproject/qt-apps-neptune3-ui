@@ -36,7 +36,6 @@ import QtApplicationManager 2.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.remotesettings 1.0
 
 Store {
     id: root
@@ -44,23 +43,6 @@ Store {
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
     property alias contentType: searchBrowseModel.contentType
-
-    readonly property UISettings uiSettings: UISettings {
-        onVolumeChanged: player.volume = volume * 100;
-        onMutedChanged: player.muted = muted;
-    }
-
-    // N.B. need to use a Timer here to "push" the initial volume to settings server
-    // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
-    Timer {
-        interval: 1
-        running: true
-        triggeredOnStart: true
-        onTriggered: {
-            uiSettings.volume = player.volume / 100;
-            uiSettings.muted = player.muted;
-        }
-    }
 
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel

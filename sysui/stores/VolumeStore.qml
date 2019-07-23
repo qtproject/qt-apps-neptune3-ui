@@ -31,9 +31,13 @@
 ****************************************************************************/
 
 import QtQuick 2.0
+import QtIvi.Media 1.0
 
 QtObject {
     id: root
+
+    readonly property MediaPlayer player: MediaPlayer { id: player }
+
 
     property var uiSettings
     property string volumeIcon: {
