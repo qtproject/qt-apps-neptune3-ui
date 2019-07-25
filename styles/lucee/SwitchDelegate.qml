@@ -35,6 +35,7 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
+import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.Style 1.0
@@ -59,6 +60,8 @@ T.SwitchDelegate {
     font.pixelSize: Sizes.fontSizeM
     font.family: Style.fontFamily
     font.weight: Font.Light
+
+    Cursor { }
 
     indicator: PaddedRectangle {
         implicitWidth: Sizes.dp(56)

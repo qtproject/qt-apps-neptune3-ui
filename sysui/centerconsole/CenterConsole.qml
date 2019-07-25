@@ -107,6 +107,7 @@ AbstractCenterConsole {
         popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -width + leftIcon.width: 0)
         originItem: leftIcon
         Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
+        onClosed: { leftIcon.forceActiveFocus(); }
     }
 
     About {
@@ -116,5 +117,6 @@ AbstractCenterConsole {
         applicationModel: root.store.applicationModel
         systemModel: root.store.systemStore
         sysInfo: root.store.sysInfo
+        onClosed: { rightIcon.forceActiveFocus(); }
     }
 }

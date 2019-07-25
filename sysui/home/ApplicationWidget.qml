@@ -104,7 +104,7 @@ AbstractApplicationWidget {
     }
 
     // Close button
-    MouseArea {
+    ToolButton {
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.bottom: parent.bottom
 
@@ -112,64 +112,52 @@ AbstractApplicationWidget {
                                             (root.appInfo.id ? root.appInfo.id : "none")
                                             : "nothing"
                                             )
-        width: widgetStripe.width + Sizes.dp(18)
-        height: width
+        implicitWidth: widgetStripe.width + Sizes.dp(18)
+        implicitHeight: width
         visible: root.buttonsVisible
 
         onClicked: root.closeClicked()
 
-        Image {
+        contentItem: NeptuneIconLabel {
             anchors.centerIn: parent
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic-widget-close")
+            width: Sizes.dp(25)
+            height: Sizes.dp(25)
+            icon.color: "white"
+            icon.source: Style.image("ic-widget-close")
         }
     }
 
     // Maximize button
-    Image {
-        id: cornerImage
+    ToolButton {
+        id: maximizeToolButton
+        width: Sizes.dp(cornerImage.sourceSize.width)
+        height: Sizes.dp(cornerImage.sourceSize.height)
         anchors.right: parent.right
         anchors.top: parent.top
-        width: Sizes.dp(sourceSize.width)
-        height: Sizes.dp(sourceSize.height)
-        source: Style.image("widget-corner")
-        opacity: root.active ? 0 : 1
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation {} }
-
-        mirror: LayoutMirroring.enabled
-
-        function isInRoundCorner(point) {
-            var rx2 = Math.pow((cornerImage.width-point.x),2)
-            var ry2 = Math.pow(point.y,2)
-            var r = Math.sqrt(rx2 + ry2)
-            return r < (cornerImage.width+cornerImage.height)/2
-        }
-
-        Image {
-            anchors.right: parent.right
-            anchors.rightMargin: Sizes.dp(23)
-            anchors.top: parent.top
-            anchors.topMargin: Sizes.dp(24)
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic-expand-to-fullscreen")
-            scale: maCorner.containsPress && cornerImage.isInRoundCorner(maCorner.clickedPoint) ? 1.2 : 1.0
-            Behavior on scale { DefaultNumberAnimation{} }
-        }
-
-        MouseArea {
-            id: maCorner
-            property var clickedPoint
+        contentItem: Image {
+            id: cornerImage
+            mirror: LayoutMirroring.enabled
             anchors.fill: parent
-            onClicked: {
-                var p = Qt.point(mouse.x, mouse.y)
-                if (cornerImage.isInRoundCorner(p)) {
-                    root.appInfo.start()
-                }
+            source: Style.image("widget-corner")
+            opacity: root.active ? 0 : 1
+            visible: opacity > 0
+            Behavior on opacity { DefaultNumberAnimation {} }
+
+            Image {
+                anchors.right: parent.right
+                anchors.rightMargin: Sizes.dp(23)
+                anchors.top: parent.top
+                anchors.topMargin: Sizes.dp(24)
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
+                source: Style.image("ic-expand-to-fullscreen")
+                scale: maximizeToolButton.containsPress && cornerImage.isInRoundCorner(maximizeToolButton.clickedPoint) ? 1.2 : 1.0
+                Behavior on scale { DefaultNumberAnimation{} }
             }
-            onPressed: maCorner.clickedPoint = Qt.point(mouse.x, mouse.y)
+        }
+
+        onClicked: {
+            root.appInfo.start();
         }
     }
 }

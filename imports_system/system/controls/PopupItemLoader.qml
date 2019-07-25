@@ -59,6 +59,15 @@ Loader {
         }
     }
 
+    signal closed()
+
+    Connections {
+        target: item
+        onClosed: {
+            root.closed();
+        }
+    }
+
     onStatusChanged: {
         if (status === Loader.Ready) {
             root.item.open();

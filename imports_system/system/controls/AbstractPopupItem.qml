@@ -35,6 +35,7 @@ import QtQuick.Controls 2.2
 
 import shared.Style 1.0
 import shared.Sizes 1.0
+import shared.utils 1.0
 import shared.animations 1.0
 
 // NB: We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene
@@ -42,13 +43,15 @@ Control {
     id: root
 
     width: Sizes.dp(800)
-    focus: visible
+
+    Keys.onEscapePressed: { root.closeHandler(); }
 
     // X and Y potition of the popup when open.
     // By default you have it horizontally centered and vertically aligned to the bottom
     property real popupX: Math.round((root.parent.width - root.width) / 2)
     property real popupY: root.parent.height - root.height - Sizes.dp(90)
 
+    Cursor { trapsCursor: true }
 
     property bool headerBackgroundVisible: false
     property int headerBackgroundHeight: 0
@@ -70,8 +73,6 @@ Control {
         Emitted after the close animation has finished.
      */
     signal closed();
-
-    Keys.onEscapePressed: root.closeHandler()
 
     function updateOpenFromPosition() {
         if (originItem) {

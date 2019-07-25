@@ -42,6 +42,7 @@ QtObject {
     signal notificationAdded()
     signal notificationRemoved()
     signal notificationClosed()
+    signal notificationsCleared()
 
     readonly property Connections notificationManagerConnection: Connections {
         target: root.model
@@ -52,6 +53,15 @@ QtObject {
         onNotificationAboutToBeRemoved: {
             root.notificationRemoved();
         }
+    }
+
+    function showNotification() {
+        root.notificationToastVisible = true;
+    }
+
+    function closeNotification() {
+        root.notificationToastVisible = false;
+        root.notificationClosed();
     }
 
     function buttonClicked(id) {
@@ -67,5 +77,6 @@ QtObject {
         while (root.count > 0) {
             removeNotification(NotificationManager.get(0).id);
         }
+        root.notificationsCleared();
     }
 }

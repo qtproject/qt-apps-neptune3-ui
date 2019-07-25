@@ -46,6 +46,12 @@ ModalOverlay {
 
     NotificationModel {
         id: notificationModel
+        onNotificationsCleared: {
+            notificationHandle.forceActiveFocus();
+        }
+        onNotificationClosed: {
+            notificationHandle.forceActiveFocus();
+        }
     }
 
     NotificationCenter {
@@ -62,14 +68,36 @@ ModalOverlay {
         notificationCount: notificationModel.count
         notificationCounterVisible: ((notificationCount > 0) && !notificationCenter.openNotificationCenter)
         dragTarget: notificationCenter
-        drag.minimumY: -notificationCenter.height
-        drag.maximumY: 0
-        drag.onActiveChanged: {
-            notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+        minimumY: -notificationCenter.height
+        maximumY: 0
+        onActiveChanged: {
+            if (active) {
+                notificationHandle.prevDragY = notificationHandle.dragTarget.y;
+            } else {
+                if (!notificationHandle.dragActive && notificationHandle.swipe) {
+                    if (notificationCenter.openNotificationCenter && notificationHandle.dragDelta > 0) {
+                        notificationCenter.openNotificationCenter = true;
+                    } else if (notificationCenter.openNotificationCenter && notificationHandle.dragDelta < 0) {
+                        notificationCenter.openNotificationCenter = false;
+                    } else {
+                        notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
+                    }
+                } else {
+                    notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
+                }
+
+                // stop drag filter timer
+                notificationHandle.dragFilterTimer.running = false;
+                notificationHandle.dragDelta = (notificationCenter.y - notificationHandle.dragOrigin + Sizes.dp(130));
+            }
+        }
+
+        onClicked: {
+            //open notificationCenter
+            notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
         }
 
         onPressed: {
-            notificationCenter.openNotificationCenter = true;
             // reset values
             notificationHandle.dragDelta = 0;
             notificationHandle.dragOrigin = notificationHandle.dragTarget.y;
@@ -77,16 +105,6 @@ ModalOverlay {
 
             // start drag filter timer
             notificationHandle.dragFilterTimer.running = true;
-        }
-
-        onReleased: {
-            notificationHandle.dragDelta = notificationHandle.dragTarget.y - notificationHandle.dragOrigin + Sizes.dp(130);
-            if (notificationHandle.dragDelta <= 0) {
-                notificationCenter.closeNotificationCenter();
-            }
-
-            // stop drag filter timer
-            notificationHandle.dragFilterTimer.running = false;
         }
     }
 }

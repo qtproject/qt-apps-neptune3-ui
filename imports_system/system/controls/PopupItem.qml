@@ -35,10 +35,18 @@ import QtQuick.Controls 2.2
 
 import shared.Style 1.0
 import shared.Sizes 1.0
+import shared.utils 1.0
 import shared.controls 1.0
 
 AbstractPopupItem {
     id: root
+
+    onVisibleChanged: {
+        if (visible) {
+            //put cursor on close button as default
+            closeToolButton.forceActiveFocus();
+        }
+    }
 
     ScalableBorderImage {
         anchors.top: parent.top
@@ -80,6 +88,7 @@ AbstractPopupItem {
     }
 
     ToolButton {
+        id: closeToolButton
         objectName: "popupClose"
         anchors.verticalCenter: parent.top
         anchors.horizontalCenter: parent.right

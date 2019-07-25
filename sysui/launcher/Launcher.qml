@@ -34,6 +34,7 @@ import QtQuick 2.6
 import QtQuick.Controls 2.2
 import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
+
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.utils 1.0
@@ -90,6 +91,7 @@ Item {
             source: Style.image("ic-app-active-bg")
         }
         onClicked: root.applicationModel.goHome()
+        Component.onCompleted: { forceActiveFocus(); }
     }
 
     ToolButton {
@@ -124,7 +126,6 @@ Item {
     EditableGridView {
         id: editableLauncher
         objectName: "editableLauncher"
-
         anchors.top: parent.top
         anchors.right: parent.right
 
@@ -133,7 +134,6 @@ Item {
         showDevApps: root.showDevApps
         showSystemApps: root.showSystemApps
         exclusiveButtonGroup: buttonGroup
-
         onAppButtonClicked: {
             gridButton.checked = false;
         }

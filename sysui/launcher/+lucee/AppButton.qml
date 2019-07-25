@@ -38,54 +38,56 @@ import shared.animations 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-Item {
+ToolButton {
     id: root
 
-    property bool checked: false
     property bool gridOpen: false
     property alias editModeBgOpacity: editModeBg.opacity
     property alias editModeBgColor: editModeBg.color
-    property alias iconSource: icon.icon.source
-    property alias labelText: appLabel.text
 
-    Rectangle {
+    background: Rectangle {
         id: editModeBg
         anchors.fill: parent
         Behavior on opacity { DefaultNumberAnimation { } }
     }
 
-    Image {
-        width: Sizes.dp(68)
-        anchors.centerIn: icon
-        fillMode: Image.PreserveAspectFit
-        visible: root.checked && !root.gridOpen
-        source: Style.image("ic-app-active-bg")
-    }
+    contentItem: Item {
+        anchors.fill: parent
+        Image {
+            width: Sizes.dp(68)
+            anchors.centerIn: icon
+            fillMode: Image.PreserveAspectFit
+            visible: root.checked && !root.gridOpen
+            source: Style.image("ic-app-active-bg")
+        }
 
-    AppIcon {
-        id: icon
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
-        width: Sizes.dp(50)
-        height: Sizes.dp(50)
-        checked: root.checked && !root.gridOpen
-    }
+        AppIcon {
+            id: icon
+            anchors.centerIn: parent
+            anchors.verticalCenterOffset: -appLabel.font.pixelSize/2
+            width: Sizes.dp(50)
+            height: Sizes.dp(50)
+            checked: root.checked && !root.gridOpen
+            source: root.icon.name
+        }
 
-    Label {
-        id: appLabel
-        anchors.top: icon.bottom
-        anchors.topMargin: Sizes.dp(10)
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: root.width*0.8
-        font.pixelSize: Sizes.fontSizeS
-        opacity: root.gridOpen ? 1.0 : 0.0
-        Behavior on opacity { DefaultNumberAnimation { } }
-        color: "white"
-        visible: opacity > 0
-        elide: Text.ElideRight
-        maximumLineCount: 2
-        wrapMode: Text.WordWrap
-        horizontalAlignment: Text.AlignHCenter
-        lineHeight: 0.9
+        Label {
+            id: appLabel
+            anchors.top: icon.bottom
+            anchors.topMargin: Sizes.dp(10)
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: root.width*0.8
+            font.pixelSize: Sizes.fontSizeS
+            opacity: root.gridOpen ? 1.0 : 0.0
+            Behavior on opacity { DefaultNumberAnimation { } }
+            color: "white"
+            visible: opacity > 0
+            elide: Text.ElideRight
+            maximumLineCount: 2
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            lineHeight: 0.9
+            text: root.text
+        }
     }
 }

@@ -35,5 +35,6 @@ import QtQuick.Controls 2.2
 import shared.Style 1.0
 
 ToolButton {
+    checkable: false
     icon.color: (checked || highlighted) ? Style.accentColor : "white"
 }

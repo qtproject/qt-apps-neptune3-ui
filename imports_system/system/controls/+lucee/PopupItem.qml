@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.6
+import QtQuick.Controls 2.2
 
 import shared.Style 1.0
 import shared.Sizes 1.0
@@ -38,6 +39,13 @@ import shared.controls 1.0
 
 AbstractPopupItem {
     id: root
+
+    onVisibleChanged: {
+        if (visible) {
+            //put cursor on close button as default
+            closeToolButton.forceActiveFocus();
+        }
+    }
 
     ScalableBorderImage {
         anchors.top: parent.top
@@ -79,21 +87,22 @@ AbstractPopupItem {
         }
     }
 
-    MouseArea {
+    ToolButton {
+        id: closeToolButton
         objectName: "popupClose"
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.margins: Sizes.dp(17)
-        onClicked: root.closeHandler()
         width: Sizes.dp(50)
         height: Sizes.dp(50)
 
-        NeptuneIconLabel {
+        contentItem: NeptuneIconLabel {
             anchors.centerIn: parent
             icon.color: Style.accentColor
             icon.name: "ic-close"
             iconScale: Sizes.scale
         }
-        z: 999 // lazy way of having it in front of all content
+
+        onClicked: { root.closeHandler(); }
     }
 }

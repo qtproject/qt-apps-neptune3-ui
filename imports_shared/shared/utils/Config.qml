@@ -58,6 +58,31 @@ QtObject {
     readonly property string assetPath: Qt.resolvedUrl("../../assets/")
 
     property bool rtlMode: false
+    property bool showCursorIndicator: false
+    property bool showCursorSpots: false
+
+    //The Cursor loader source
+    property string cursorLoaderSource: ""
+    //"Guinea pig" loader.This is to prevent the endless warnings for
+    //CursorNavigation plugin not installed when this is not available. Here is
+    //loaded once on start up and the "healthy" files' source is saved and
+    //maintained during the complete session in the cursorLoaderSource property.
+    property Loader cursorLoader: Loader {
+        source: Qt.resolvedUrl("./CursorManagement.qml")
+        onStatusChanged: {
+        //fallback if cursor plugin is not available
+            if (status === Loader.Error) {
+                source = Qt.resolvedUrl("./CursorManagementDummy.qml");
+                console.warn("The cursor management plugin is not installed,
+                thus no cursor support will be available on this instance.");
+                console.warn("For more details and installation visit:
+                https://codereview.qt-project.org/admin/repos/qt-labs/cursormanagement");
+            }
+        }
+        Component.onCompleted: {
+            root.cursorLoaderSource = cursorLoader.source;
+        }
+    }
 
     property alias languageLocale: translation.languageLocale
     readonly property var translation: Translation {

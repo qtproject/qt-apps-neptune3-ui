@@ -39,7 +39,7 @@ ToolButton {
     id: root
     icon.color: "white"
     contentItem: null
-
+    checkable: false
     // content item of ToolButton is not scaled correctly in some screen resolutions
     // need to revert this changes once: QTBUG-72569 is fixed.
     NeptuneIconLabel {

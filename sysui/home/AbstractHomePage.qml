@@ -94,5 +94,8 @@ Item {
         popupParent: root.popupParent
         originItem: addWidgetButton
         model: root.applicationModel
+        onClosed: {
+            addWidgetButton.forceActiveFocus();
+        }
     }
 }

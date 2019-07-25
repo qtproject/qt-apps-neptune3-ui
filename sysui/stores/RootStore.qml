@@ -55,6 +55,7 @@ Store {
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property bool devMode: ApplicationManager.systemProperties.devMode
+    onDevModeChanged: { Config.showCursorIndicator = root.devMode; }
 
     readonly property bool showSystemAppsInLauncher: ApplicationManager.systemProperties.showSystemAppsInLauncher
 

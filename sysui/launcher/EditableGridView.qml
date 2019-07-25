@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick 2.13
 import QtQuick.Controls 2.2
 import QtQml.Models 2.1
 import QtQuick.Layouts 1.0
@@ -42,30 +42,30 @@ import shared.Sizes 1.0
 Item {
     id: root
 
-    height: cellHeight * Math.ceil(grid.count/root.numIconsPerRow)
+    height: (cellHeight * Math.ceil(grid.count/root.numIconsPerRow))
 
-    property alias gridEditMode: grid.editMode
     property var model
-    readonly property int numIconsPerRow: 4
     property var exclusiveButtonGroup
+    readonly property int numIconsPerRow: 4
+    property alias gridEditMode: grid.editMode
     readonly property alias cellWidth: grid.cellWidth
     readonly property alias cellHeight: grid.cellHeight
 
+    property bool gridOpen: false
     property bool showDevApps: false
     property bool showSystemApps: false
-    property bool gridOpen: false
 
     onGridOpenChanged: {
         if (!root.gridOpen) {
-            grid.editMode = false
+            grid.editMode = false;
         }
     }
 
     onModelChanged: {
         if (root.model) {
             visualModel.model = root.model;
-            visualModel.refreshItems()
-            visualModel.modelItemsCount = Qt.binding( function() { return root.model.count; } )
+            visualModel.refreshItems();
+            visualModel.modelItemsCount = Qt.binding( function() { return root.model.count; } );
         }
     }
 
@@ -78,7 +78,7 @@ Item {
         property int modelItemsCount
 
         onModelItemsCountChanged: {
-            visualModel.refreshItems()
+            visualModel.refreshItems();
         }
 
         function refreshItems() {
@@ -107,7 +107,8 @@ Item {
             DelegateModelGroup { name: "noSystem"; includeByDefault: false },
             DelegateModelGroup { name: "noSystemNoDev"; includeByDefault: false }
         ]
-        delegate: MouseArea {
+
+        delegate: Item {
             id: delegateRoot
             objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
@@ -141,6 +142,21 @@ Item {
             }
             Behavior on opacity { DefaultNumberAnimation { } }
 
+            DragHandler {
+                id: handler
+                enabled: root.gridEditMode
+                onActiveChanged: {
+                    if (!active) {
+                        //when it's dragged, it stops being the item that
+                        //currently has the cursor and so the item's release
+                        //signal is not emitted. 'Release' here instead.
+                        appButton.scale = 1.0;
+                        handler.target = null;
+                        appButton.dragIndex = -1;
+                    }
+                }
+            }
+
             AppButton {
                 id: appButton
 
@@ -149,6 +165,8 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: -Sizes.dp(10)
+
+                property int dragIndex: -1
 
                 Connections {
                     target: model.appInfo
@@ -161,21 +179,20 @@ Item {
                     }
                 }
 
-                editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
-                editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
-
-                iconSource: model.appInfo ? model.appInfo.icon : ""
-                labelText: model.appInfo ? model.appInfo.name : null
+                editModeBgOpacity: handler.active ? 0.8 : grid.editMode ? 0.2 : 0.0
+                editModeBgColor: handler.active ? "#404142" : "#F1EFED"
+                icon.name: model.appInfo ? model.appInfo.icon : ""
+                text: model.appInfo ? model.appInfo.name : null
                 gridOpen: root.gridOpen
 
-                Drag.active: delegateRoot.drag.active
-                Drag.source: delegateRoot
+                Drag.active: handler.active
+                Drag.source: handler
                 Drag.hotSpot.x: width / 2
                 Drag.hotSpot.y: height / 2
 
                 states: [
                     State {
-                        when: appButton.Drag.active
+                        when: handler.active
                         ParentChange {
                             target: appButton
                             parent: grid
@@ -188,34 +205,35 @@ Item {
                         }
                     }
                 ]
+
+                onClicked: {
+                    if (!grid.editMode) {
+                        root.appButtonClicked(model.applicationId);
+                        model.appInfo.start();
+                    }
+                }
+
+                onPressed: {
+                    if (grid.editMode) {
+                        handler.target = appButton;
+                        dragIndex = model.index;
+                    }
+                }
+
+                onPressAndHold: {
+                    if (root.gridOpen) {
+                        grid.editMode = true;
+                        handler.target = appButton;
+                        dragIndex = model.index;
+                    }
+                }
             }
 
             DropArea {
                 anchors { fill: parent; }
-                onEntered: root.model.move(drag.source.modelIndex, delegateRoot.modelIndex, 1)
-            }
-
-            onClicked: {
-                if (!grid.editMode) {
-                    root.appButtonClicked(model.applicationId);
-                    model.appInfo.start();
+                onEntered: {
+                    root.model.move(appButton.modelIndex, appButton.dragIndex, 1);
                 }
-            }
-
-            onPressed: {
-                if (grid.editMode) {
-                    drag.target = appButton;
-                }
-            }
-
-            onPressAndHold: {
-                if (root.gridOpen) {
-                    grid.editMode = true;
-                    drag.target = appButton;
-                }
-            }
-            onReleased: {
-                drag.target = undefined;
             }
 
             state: grid.editMode ? "editing" : "normal"
@@ -247,14 +265,12 @@ Item {
         id: grid
         property bool editMode: false
         LayoutMirroring.enabled: false
-
         Layout.alignment: Qt.AlignTop
         anchors.fill: parent
         interactive: false
         model: visualModel
         cellWidth: width / root.numIconsPerRow
         cellHeight: cellWidth
-
         displaced: Transition {
             DefaultNumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
         }

@@ -58,6 +58,12 @@ T.TabButton {
 
     font.weight: selected ? Font.Normal : Font.Light
 
+    Cursor {
+        onPressAndHold: {
+            control.pressAndHold();
+        }
+    }
+
     contentItem: IconLabel {
         spacing: control.spacing
         mirrored: control.mirrored

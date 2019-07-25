@@ -35,6 +35,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 import QtQuick.Templates 2.3 as T
 
+import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.controls 1.0
@@ -57,6 +58,12 @@ T.TabButton {
     baselineOffset: contentItem.y + contentItem.baselineOffset
 
     font.weight: selected ? Font.Normal : Font.Light
+
+    Cursor {
+        onPressAndHold: {
+            control.pressAndHold();
+        }
+    }
 
     contentItem: IconLabel {
         spacing: control.spacing

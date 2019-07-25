@@ -4,3 +4,4 @@ StageLoader 1.0 StageLoader.qml
 Store 1.0 Store.qml
 singleton Config 1.0 Config.qml
 Tracer 1.0 Tracer.qml
+Cursor 1.0 Cursor.qml

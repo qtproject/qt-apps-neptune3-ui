@@ -186,5 +186,8 @@ Item {
         onCtrlPPressed: {
             root.store.generateScreenshotAndInfo();
         }
+        onCtrlXPressed: {
+            Config.showCursorSpots = !Config.showCursorSpots;
+        }
     }
 }

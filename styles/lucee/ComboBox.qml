@@ -35,6 +35,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.2
 import QtQuick.Controls.impl 2.2
 import QtQuick.Templates 2.2 as T
+import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
@@ -52,6 +53,8 @@ T.ComboBox {
 
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
+
+    Cursor { }
 
     delegate: ItemDelegate {
         width: parent.width

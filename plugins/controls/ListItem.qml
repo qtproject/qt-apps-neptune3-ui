@@ -96,6 +96,10 @@ ListItemBasic {
     */
     signal rightToolClicked()
 
+    Cursor {
+        acceptsCursor: (root.rightToolSymbol === "")
+    }
+
     accessoryDelegateComponent1: Label {
         font.pixelSize: Sizes.fontSizeS
         elide: Text.ElideRight

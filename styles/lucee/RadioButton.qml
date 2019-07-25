@@ -34,6 +34,7 @@
 import QtQuick 2.10
 import QtQuick.Templates 2.3 as T
 
+import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
@@ -49,6 +50,12 @@ T.RadioButton {
 
     padding: Sizes.dp(6)
     spacing: Sizes.dp(8)
+
+    Cursor {
+        onPressAndHold: {
+            control.pressAndHold();
+        }
+    }
 
     indicator: Rectangle {
         x: text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2

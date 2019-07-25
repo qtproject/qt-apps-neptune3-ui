@@ -30,25 +30,26 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick 2.13
 import QtQuick.Controls 2.2
 
 import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.Style 1.0
 
-MouseArea {
+ToolButton {
     id: root
 
-    width: Sizes.dp(300)
-    height: Sizes.dp(Config.statusBarHeight)
+    implicitWidth: root.notificationCounterVisible ? Sizes.dp(255) : Sizes.dp(205)
+    implicitHeight: Sizes.dp(Config.statusBarHeight)
 
-    drag.axis: Drag.YAxis
-
-    property var dragTarget: undefined
+    property alias dragActive: handler.active
+    property alias dragTarget: handler.target
     property int prevDragY: 0
     property int dragDelta: 0
     property int dragOrigin: 0
+    property int minimumY: 0
+    property int maximumY: 0
 
     property bool swipe: Math.abs(root.prevDragY - root.dragTarget.y) > 0
 
@@ -57,9 +58,21 @@ MouseArea {
     property int notificationCount
     property bool notificationCounterVisible
 
-    drag.target: root.dragTarget
+    signal activeChanged(var active)
 
-    Row {
+    DragHandler {
+        id: handler
+        target: root.dragTarget
+        yAxis.minimum: root.minimumY
+        yAxis.maximum: root.maximumY
+        onActiveChanged: {
+            root.activeChanged(active);
+        }
+    }
+
+    contentItem: Item {
+        width: parent.width
+        height: Sizes.dp(30)
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -74,7 +87,7 @@ MouseArea {
             width: Sizes.dp(45)
             height: Sizes.dp(30)
             radius: height / 2
-
+            anchors.centerIn: parent
             opacity: root.notificationCounterVisible ? 1 : 0
             visible: opacity > 0
             color: "transparent"
@@ -90,9 +103,10 @@ MouseArea {
         }
 
         Rectangle {
-            anchors.verticalCenter: parent.verticalCenter
             width: Sizes.dp(100)
             height: Sizes.dp(4)
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
             opacity: root.notificationCounterVisible ? 1 : 0
             visible: opacity > 0
             color: Style.contrastColor

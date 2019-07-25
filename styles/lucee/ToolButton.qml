@@ -35,6 +35,7 @@ import QtQuick.Templates 2.3 as T
 import QtQuick.Controls 2.3
 import QtQuick.Controls.impl 2.3
 
+import shared.utils 1.0
 import shared.controls 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
@@ -58,6 +59,12 @@ T.ToolButton {
 
     scale: pressed ? 1.1 : 1.0
     Behavior on scale { NumberAnimation { duration: 50 } }
+
+    Cursor {
+        onPressAndHold: {
+            control.pressAndHold();
+        }
+    }
 
     contentItem: NeptuneIconLabel {
         readonly property real textOpacity: !enabled ? Style.defaultDisabledOpacity
