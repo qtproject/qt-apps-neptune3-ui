@@ -57,9 +57,18 @@ int main(int argc, char **argv)
 
     QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
 
+    //Demo case, update window position on Cluster window move
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
+    bool stickToCluster = settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool();
+
     QSafeSize screenSize;
-    screenSize.setWidth(qApp->primaryScreen()->size().width());
-    screenSize.setHeight(qApp->primaryScreen()->size().height());
+    if (stickToCluster) {
+        screenSize.setWidth(layout.size().width());
+        screenSize.setHeight(layout.size().height());
+    } else {
+        screenSize.setWidth(static_cast<quint32>(qApp->primaryScreen()->size().width()));
+        screenSize.setHeight(static_cast<quint32>(qApp->primaryScreen()->size().height()));
+    }
 
     SafeWindow telltaleWindow(screenSize, layout.size());
     StateManager stateManager(telltaleWindow, layout);
@@ -79,9 +88,8 @@ int main(int argc, char **argv)
     msgHandler.onPowerLabelsVisibilityChanged(false);
     msgHandler.onSpeedLabelsVisibilityChanged(false);
 
-    //Demo case, update window position on Cluster window move
-    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
-    if (settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool()) {
+
+    if (stickToCluster) {
         QObject::connect(&msgHandler, &TcpMsgHandler::mainWindowPosGot, &telltaleWindow, &SafeWindow::moveWindow);
     }
 

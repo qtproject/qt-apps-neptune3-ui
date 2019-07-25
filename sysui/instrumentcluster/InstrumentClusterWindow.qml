@@ -71,8 +71,11 @@ Window {
     onWidthChanged: {
         root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
     }
-    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
-    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
+
+    //send (if enabled) cluster window positions to QSR Safe UI, 180 is cluster item top margin
+    //QSR Safe UI window then moves to cluster item 0,0 position
+    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
+    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
 
 
     Component.onCompleted: {

@@ -115,7 +115,7 @@ void SafeWindow::render(QPainter *painter)
 void SafeWindow::moveWindow(quint32 x, quint32 y)
 {
     setWindowState(Qt::WindowNoState);
-    setPosition(x, y);
+    setPosition(static_cast<int>(x), static_cast<int>(y));
     raise();
     requestActivate();
 }
