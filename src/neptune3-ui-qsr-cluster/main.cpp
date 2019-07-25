@@ -71,6 +71,8 @@ int main(int argc, char **argv)
     }
 
     SafeWindow telltaleWindow(screenSize, layout.size());
+    telltaleWindow.setFlag(Qt::WindowDoesNotAcceptFocus, true);
+
     StateManager stateManager(telltaleWindow, layout);
 
     //light up all telltales and texts
