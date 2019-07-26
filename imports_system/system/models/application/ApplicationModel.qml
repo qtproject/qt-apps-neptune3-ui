@@ -208,6 +208,7 @@ ListModel {
 
     property var priv: QtObject {
         id: d
+        property var widgetsStatesBeforeClose: ({})
         property var activeAppInfo: null
         property var instrumentClusterAppInfo: null
         property var bottomBarAppInfo: null
@@ -386,7 +387,6 @@ ListModel {
         target: ApplicationManager
         onApplicationWasActivated: d.reactOnAppActivation(id);
         onApplicationRunStateChanged: {
-
             var appInfo = root.applicationFromId(id);
             if (!appInfo) {
                 return;
@@ -397,6 +397,8 @@ ListModel {
                     if (appInfo === d.activeAppInfo) {
                         root.goHome();
                     }
+
+                    d.widgetsStatesBeforeClose[appInfo.name] = appInfo.asWidget;
                     if (appInfo.asWidget) {
                         // otherwise the widget would get maximized once restarted.
                         appInfo.canBeActive = false;
@@ -404,7 +406,6 @@ ListModel {
                         // Application was killed or crashed while being displayed as a widget.
                         // Remove it from the widget list
                         appInfo.asWidget = false;
-
                     }
                 }
 
@@ -427,6 +428,12 @@ ListModel {
                         }
                     }
                 }
+            }
+
+            if (runState === ApplicationObject.Running && appInfo.autorecover
+                    && appInfo.name in d.widgetsStatesBeforeClose)
+            {
+                appInfo.asWidget = d.widgetsStatesBeforeClose[appInfo.name]
             }
         }
 
