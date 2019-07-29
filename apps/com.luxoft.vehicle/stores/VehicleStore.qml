@@ -105,29 +105,45 @@ QtObject {
 
             switch (part) {
                 case "trunk":
-                    if (action === "open")
+                    if (action === "open") {
+                        root.trunkOpened = true;
                         uiSettings.trunkOpen = true;
-                    if (action === "close")
+                    }
+                    if (action === "close") {
+                        root.trunkOpened = false;
                         uiSettings.trunkOpen = false;
+                    }
                 break; //trunk
                 case "sunroof":
-                    if (action === "open")
+                    if (action === "open") {
+                        root.roofOpenProgress = 1.0;
                         uiSettings.roofOpenProgress = 1.0;
-                    if (action === "close")
+                    }
+                    if (action === "close") {
+                        root.roofOpenProgress = 0.0;
                         uiSettings.roofOpenProgress = 0.0;
+                    }
                 break; //sunroof
                 case "door":
                     if (side === "left") {
-                        if (action === "open")
+                        if (action === "open") {
+                            root.leftDoorOpened = true;
                             uiSettings.door1Open = true;
-                        if (action === "close")
+                        }
+                        if (action === "close") {
+                            root.leftDoorOpened = false;
                             uiSettings.door1Open  = false;
+                        }
                     }
                     if (side === "right") {
-                        if (action === "open")
+                        if (action === "open") {
+                            root.rightDoorOpened = true;
                             uiSettings.door2Open  = true;
-                        if (action === "close")
+                        }
+                        if (action === "close") {
+                            root.rightDoorOpened = false;
                             uiSettings.door2Open  = false;
+                        }
                     }
                 break; //door
             }//switch
