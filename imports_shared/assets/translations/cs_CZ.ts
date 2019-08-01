@@ -1020,6 +1020,34 @@ UX na cestu</translation>
             <numerusform>%n minut</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished">Offline režim</translation>
+    </message>
+    <message>
+        <source>Search and navigation not available in offline mode.</source>
+        <translation type="obsolete">Hledání a navigace nedostupné v offline režimu.</translation>
+    </message>
+    <message>
+        <source>Search and navigation are not available in offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline Map only available in Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapView</name>

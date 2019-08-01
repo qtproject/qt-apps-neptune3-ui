@@ -31,13 +31,6 @@
 ****************************************************************************/
 .import QtApplicationManager.Application 2.0 as ApplicationManager
 .import shared.Style 1.0 as Style
-function showOfflineNotification() {
-    var notification = ApplicationManager.ApplicationInterface.createNotification();
-    notification.summary = qsTr("Offline mode");
-    notification.body = qsTr("Search and navigation not available in offline mode.");
-    notification.sticky = true;
-    notification.show();
-}
 
 function localAsset(asset, theme) {
     var themeStr = theme === Style.Style.Dark ? "-dark" : "";

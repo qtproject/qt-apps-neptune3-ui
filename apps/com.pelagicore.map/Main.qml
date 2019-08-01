@@ -89,18 +89,34 @@ QtObject {
                 currentLocationCoord: positionCoordinate
             }
 
-            onMapReadyChanged: {
-                if (mapReady && store.offlineMapsEnabled) {
-                    Helper.showOfflineNotification();
-                }
-            }
-
             onMaximizeMap: {
                 mainWindow.riseWindow()
             }
         }
 
-        SystemInfo { id: sysinfo }
+        // need a bit delay to give it a time to fetch the real internet status
+        Timer {
+            id: notificationDelay
+            running: false
+            interval: 5000
+            onTriggered: {
+                if (!sysinfo.internetAccess) {
+                    mainMap.store.showOfflineNotification();
+                }
+            }
+        }
+
+        SystemInfo {
+            id: sysinfo
+            onInternetAccessChanged: {
+                if (!sysinfo.internetAccess) {
+                    mainMap.store.showOfflineNotification();
+                } else {
+                    mainMap.store.showOnlineNotification();
+                }
+            }
+            Component.onCompleted: notificationDelay.start();
+        }
 
         InstrumentCluster { id: clusterSettings }
     }

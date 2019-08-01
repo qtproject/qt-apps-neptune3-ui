@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtApplicationManager.Application 2.0
 import QtPositioning 5.9
 import QtLocation 5.9
 import Qt.labs.platform 1.0
@@ -267,5 +268,37 @@ QtObject {
                 }
             }
         }
+    }
+
+    property Timer notificationTimer: Timer {
+        id: notificationTimer
+        interval: 3000
+        running: false
+        onTriggered: showOfflineMapInfo()
+    }
+
+    function showOfflineNotification() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Offline mode");
+        notification.body = qsTr("Search and navigation are not available in offline mode");
+        notification.sticky = true;
+        notification.show();
+        notificationTimer.start();
+    }
+
+    function showOfflineMapInfo() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Offline map");
+        notification.body = qsTr("Offline Map only available in Light Theme");
+        notification.sticky = true;
+        notification.show();
+    }
+
+    function showOnlineNotification() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Online map");
+        notification.body = qsTr("You are now using online map from Mapbox server");
+        notification.sticky = true;
+        notification.show();
     }
 }

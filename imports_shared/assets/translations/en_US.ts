@@ -525,6 +525,30 @@
             <numerusform>%n minutes</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search and navigation are not available in offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline Map only available in Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitorOverlay</name>
