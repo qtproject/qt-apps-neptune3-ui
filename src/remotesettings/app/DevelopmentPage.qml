@@ -443,11 +443,6 @@ Flickable {
             }
 
             Label {
-                text: qsTr("Neptune Revision Date: ") + neptuneGitCommiterDate
-                Layout.alignment: Qt.AlignHCenter
-            }
-
-            Label {
                 text: qsTr("Qt IVI Version: ") + qtiviVersion
                 Layout.alignment: Qt.AlignHCenter
             }

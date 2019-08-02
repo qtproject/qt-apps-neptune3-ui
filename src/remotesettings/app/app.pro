@@ -7,19 +7,9 @@ macos: CONFIG -= app_bundle
 
 include($$SOURCE_DIR/config.pri)
 
-unix:exists($$SOURCE_DIR/.git):GIT_REVISION=$$system(cd "$$SOURCE_DIR" && git describe --tags --always 2>/dev/null)
-
-isEmpty(GIT_REVISION) {
-    GIT_REVISION="unknown revision"
-    GIT_COMMITTER_DATE="no date"
-} else {
-    GIT_COMMITTER_DATE=$$system(cd "$$SOURCE_DIR" && git show "$$GIT_REVISION" --pretty=format:"%ci" --no-patch 2>/dev/null)
-}
-
+load(gitUtils.prf)
 DEFINES *= "NEPTUNE_COMPANION_APP_VERSION=$$VERSION"
-DEFINES *= NEPTUNE_GIT_REVISION=\""\\\"$$GIT_REVISION\\\""\"
-DEFINES *= NEPTUNE_REVISION_DATE=\""\\\"$$GIT_COMMITTER_DATE\\\""\"
-DEFINES *= NEPTUNE_INFO=\""\\\"$$GIT_REVISION, $$GIT_COMMITTER_DATE\\\""\"
+DEFINES *= NEPTUNE_GIT_REVISION=\""\\\"$$currentGitRevision()\\\""\"
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 
