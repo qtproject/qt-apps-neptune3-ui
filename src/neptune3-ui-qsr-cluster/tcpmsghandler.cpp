@@ -42,7 +42,7 @@ Q_LOGGING_CATEGORY(qsrClusterApp, "qsrcluster.App")
 
 const quint16 TcpMsgHandler::defaultPort = 1111U;
 
-TcpMsgHandler::TcpMsgHandler(StateManager *manager, QObject *parent)
+TcpMsgHandler::TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent)
     : QObject(parent), m_stateManager(manager), m_timeout(0U),
       m_heartbeatUpdated(false), m_mainUIFailed(false)
 
@@ -173,32 +173,46 @@ void TcpMsgHandler::readData()
 
 void TcpMsgHandler::onSpeedLabelsVisibilityChanged(bool visible)
 {
+    m_stateManager->setIsSpeedVisible(visible);
+
     QSafeEventVisibility event;
 
     const char* item0 = "speedTextLabel";
     const char* item1 = "speedUnitsText";
+    const char* item2 = "speedText";
 
     event.setId(qsafe_hash(item0, safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
     event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setValue(visible);
+    m_stateManager->handleEvent(event);
+
+    event.setId(qsafe_hash(item2, safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }
 
 void TcpMsgHandler::onPowerLabelsVisibilityChanged(bool visible)
 {
+    m_stateManager->setIsPowerVisible(visible);
+
     QSafeEventVisibility event;
 
     const char* item0 = "powerTextLabel";
     const char* item1 = "powerUnitsText";
+    const char* item2 = "powerText";
 
     event.setId(qsafe_hash(item0, safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
     event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setValue(visible);
+    m_stateManager->handleEvent(event);
+
+    event.setId(qsafe_hash(item2, safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }

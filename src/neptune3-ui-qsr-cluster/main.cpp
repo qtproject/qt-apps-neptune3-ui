@@ -39,9 +39,9 @@ You should not use this example in production environment.
 #include <QtGui>
 
 #include <QtSafeRenderer/qsafelayout.h>
-#include <QtSafeRenderer/statemanager.h>
 #include <QtSafeRenderer/qsafechecksum.h>
 
+#include "neptunesafestatemanager.h"
 #include "safewindow.h"
 #include "tcpmsghandler.h"
 #include "icsettingshandler.h"
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
     SafeWindow telltaleWindow(screenSize, layout.size());
     telltaleWindow.setFlag(Qt::WindowDoesNotAcceptFocus, true);
 
-    StateManager stateManager(telltaleWindow, layout);
+    NeptuneSafeStateManager stateManager(telltaleWindow, layout);
 
     //light up all telltales and texts
     for (quint32 i=0U; i<layout.count(); i++) {

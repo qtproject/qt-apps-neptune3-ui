@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,51 +29,25 @@
 **
 ****************************************************************************/
 
-#ifndef TCPMSGHANDLER_H
-#define TCPMSGHANDLER_H
-
-#include <QTimer>
-#include <QTcpServer>
-
 #include "neptunesafestatemanager.h"
 
-using namespace SafeRenderer;
-QT_USE_NAMESPACE
 
-class TcpMsgHandler : public QObject
+void NeptuneSafeStateManager::setIsPowerVisible(bool isPowerVisible)
 {
-    Q_OBJECT
-public:
-    explicit TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent = nullptr);
-    ~TcpMsgHandler() {
-    }
+    m_isPowerVisible = isPowerVisible;
+}
 
-    static const quint16 defaultPort;
+void NeptuneSafeStateManager::setIsSpeedVisible(bool isSpeedVisible)
+{
+    m_isSpeedVisible = isSpeedVisible;
+}
 
-    void onSpeedLabelsVisibilityChanged(bool visible);
-    void onPowerLabelsVisibilityChanged(bool visible);
-    void onErrorTextVisibilityChanged(bool visible);
+bool NeptuneSafeStateManager::isPowerVisible() const
+{
+    return m_isPowerVisible;
+}
 
-private slots:
-    void newConnection();
-    void readData();
-    void heartbeatTimeout();
-
-private:
-    void runServer(const quint16 port);
-
-signals:
-    void mainWindowPosGot(quint32 x, quint32 y);
-
-private:
-    NeptuneSafeStateManager *m_stateManager;
-    QTcpServer   *m_tcpServer;
-
-    quint32      m_timeout;
-    bool         m_heartbeatUpdated;
-    bool         m_mainUIFailed;
-
-    QTimer       m_heartbeatTimer;
-};
-
-#endif // MSGHANDLER_H
+bool NeptuneSafeStateManager::isSpeedVisible() const
+{
+    return m_isSpeedVisible;
+}

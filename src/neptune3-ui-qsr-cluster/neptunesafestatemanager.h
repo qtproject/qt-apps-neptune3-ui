@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 UI.
+** This file is part of the Neptune 3 IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,51 +29,29 @@
 **
 ****************************************************************************/
 
-#ifndef TCPMSGHANDLER_H
-#define TCPMSGHANDLER_H
+#ifndef NEPTUNESAFESTATEMANAGER_H
+#define NEPTUNESAFESTATEMANAGER_H
 
-#include <QTimer>
-#include <QTcpServer>
-
-#include "neptunesafestatemanager.h"
+#include <QtSafeRenderer/statemanager.h>
 
 using namespace SafeRenderer;
-QT_USE_NAMESPACE
 
-class TcpMsgHandler : public QObject
+class NeptuneSafeStateManager : public StateManager
 {
-    Q_OBJECT
 public:
-    explicit TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent = nullptr);
-    ~TcpMsgHandler() {
+    NeptuneSafeStateManager(AbstractWindow &window, QSafeLayout &layout, const ARGB clearColorArg = ARGB())
+        : StateManager(window, layout, clearColorArg),
+          m_isPowerVisible(false), m_isSpeedVisible(false) {
     }
 
-    static const quint16 defaultPort;
-
-    void onSpeedLabelsVisibilityChanged(bool visible);
-    void onPowerLabelsVisibilityChanged(bool visible);
-    void onErrorTextVisibilityChanged(bool visible);
-
-private slots:
-    void newConnection();
-    void readData();
-    void heartbeatTimeout();
+    bool isPowerVisible() const;
+    void setIsPowerVisible(bool isPowerVisible);
+    bool isSpeedVisible() const;
+    void setIsSpeedVisible(bool isSpeedVisible);
 
 private:
-    void runServer(const quint16 port);
-
-signals:
-    void mainWindowPosGot(quint32 x, quint32 y);
-
-private:
-    NeptuneSafeStateManager *m_stateManager;
-    QTcpServer   *m_tcpServer;
-
-    quint32      m_timeout;
-    bool         m_heartbeatUpdated;
-    bool         m_mainUIFailed;
-
-    QTimer       m_heartbeatTimer;
+    bool m_isPowerVisible;
+    bool m_isSpeedVisible;
 };
 
-#endif // MSGHANDLER_H
+#endif // NEPTUNESAFESTATEMANAGER_H

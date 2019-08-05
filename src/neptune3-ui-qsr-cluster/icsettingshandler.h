@@ -32,8 +32,7 @@
 #ifndef ICSETTINGSHANDLER_H
 #define ICSETTINGSHANDLER_H
 
-#include <QtSafeRenderer/statemanager.h>
-
+#include "neptunesafestatemanager.h"
 #include "../drivedata/frontend/instrumentcluster.h"
 #include "remotesettings_client.h"
 
@@ -44,7 +43,7 @@ class ICSettingsHandler : public QObject
 {
     Q_OBJECT
 public:
-    explicit ICSettingsHandler(StateManager *manager, QObject *parent = nullptr);
+    explicit ICSettingsHandler(NeptuneSafeStateManager *manager, QObject *parent = nullptr);
     ~ICSettingsHandler() {
     }
 
@@ -70,7 +69,7 @@ public slots:
     void onClientConnectedChanged(bool connected);
 
 private:
-    StateManager          *m_stateManager;
+    NeptuneSafeStateManager *m_stateManager;
     RemoteSettings_Client *m_client;
     InstrumentCluster      m_ic;
 

@@ -34,7 +34,7 @@
 
 #include "icsettingshandler.h"
 
-ICSettingsHandler::ICSettingsHandler(StateManager *manager, QObject *parent)
+ICSettingsHandler::ICSettingsHandler(NeptuneSafeStateManager *manager, QObject *parent)
     : QObject(parent), m_stateManager(manager),
       m_rightTurnState(false), m_rightTurnEnabled(false),
       m_leftTurnState(false), m_leftTurnEnabled(false)
@@ -90,6 +90,10 @@ void ICSettingsHandler::init()
 
 void ICSettingsHandler::onSpeedChanged(qreal value)
 {
+    // required due to QSR-471, changing text for invisible item makes it visible
+    if (!m_stateManager->isSpeedVisible())
+        return;
+
     QSafeEventSetText event;
     const char* item = "speedText";
     event.setId(qsafe_hash(item, safe_strlen(item)));
@@ -101,6 +105,10 @@ void ICSettingsHandler::onSpeedChanged(qreal value)
 
 void ICSettingsHandler::onPowerChanged(qreal value)
 {
+    // required due to QSR-471, changing text for invisible item makes it visible
+    if (!m_stateManager->isPowerVisible())
+        return;
+
     QSafeEventSetText event;
     const char* item = "powerText";
     event.setId(qsafe_hash(item, safe_strlen(item)));
