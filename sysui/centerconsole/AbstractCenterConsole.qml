@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -97,7 +97,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: Style.backgroundColor
+        color: Style.theme === Style.Dark ? "#404040" : "#C7C7C7"
         visible: root.store.hardwareVariant === 'low'
     }
 
@@ -132,7 +132,7 @@ Item {
      NeptuneWindowItem {
         id: bottomBar
         width: root.width
-        height: Sizes.dp(120)
+        height: Sizes.dp(Config.bottomBarHeight)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         window: root.store.applicationModel.bottomBarAppInfo.window
@@ -174,6 +174,9 @@ Item {
         }
         onCtrlBPressed: {
             root.store.applicationModel.goBack();
+        }
+        onCtrl3Pressed: {
+            root.store.uiSettings.threeDGauges = !root.store.uiSettings.threeDGauges
         }
         onCtrlPPressed: {
             root.store.generateScreenshotAndInfo();

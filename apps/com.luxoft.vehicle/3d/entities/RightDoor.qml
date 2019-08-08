@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -87,14 +87,6 @@ Entity {
             source: Paths.getModelPath("chrome_3", root.version)
         }
         components: [chrome, chromeMaterial]
-    }
-
-    Entity {
-        Mesh {
-            id: black
-            source: Paths.getModelPath("black_right", root.version)
-        }
-        components: [black, blackMaterial]
     }
 
     Entity {

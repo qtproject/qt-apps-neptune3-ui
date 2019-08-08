@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,16 +35,25 @@ Q_LOGGING_CATEGORY(NeptuneCompanionApp, "NeptuneCompanion.App")
 
 const QString Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
 const QString Client::settingsLastUrlsItem = QStringLiteral("url");
+const QString Client::settingsRemoteSettingsPortItem = QStringLiteral("ports/remoteSettingsPort");
+const QString Client::settingsDriveDataPortItem = QStringLiteral("ports/driveDataPort");
 const int Client::numOfUrlsStored = 5;
 const int Client::timeoutToleranceMS = 1000;
 const int Client::reconnectionIntervalMS = 3000;
-const QString Client::defaultUrl = QStringLiteral("tcp://127.0.0.1:9999");
+const QString Client::defaultUrl = QStringLiteral("tcp://127.0.0.1");
+const int Client::defaultRemoteSettingsPort = 9999;
+const int Client::defaultDriveDataPort = 9998;
 
 Client::Client(QObject *parent) : QObject(parent),
+    m_remoteSettingsPort(defaultRemoteSettingsPort),
+    m_driveDataPort(defaultDriveDataPort),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneCompanionApp"))
+    m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("NeptuneCompanionApp"))
 {
+    m_configPath = m_tmpDir.filePath(QStringLiteral("server.conf"));
+    qputenv("SERVER_CONF_PATH", m_configPath.toLocal8Bit());
+
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);
     connect(&m_connectionMonitoring, &ConnectionMonitoring::counterChanged,
@@ -93,16 +102,28 @@ void Client::connectToServer(const QString &serverUrl)
         return;
     }
 
+    if (url.port() > -1) {
+        setStatus(tr("Invalid URL: %1. No port should be defined").arg(url.toString()));
+        return;
+    }
+
     if (url==m_serverUrl && connected())
         return;
 
-    QString configPath(QStringLiteral("./server.conf"));
-    if (qEnvironmentVariableIsSet("SERVER_CONF_PATH"))
-        configPath = QString::fromLocal8Bit(qgetenv("SERVER_CONF_PATH"));
+    QUrl remoteSettingsUrl(url);
+    QUrl driveDataUrl(url);
 
-    QSettings settings(configPath, QSettings::IniFormat);
-    settings.beginGroup(QStringLiteral("settings"));
-    settings.setValue(QStringLiteral("Registry"), serverUrl);
+    remoteSettingsUrl.setPort(m_remoteSettingsPort);
+    driveDataUrl.setPort(m_driveDataPort);
+
+    QSettings settings(m_configPath, QSettings::IniFormat);
+    settings.beginGroup(QStringLiteral("remotesettings"));
+    settings.setValue(QStringLiteral("Registry"), remoteSettingsUrl.toString());
+    settings.endGroup();
+    settings.sync();
+    settings.beginGroup(QStringLiteral("drivedata"));
+    settings.setValue(QStringLiteral("Registry"), driveDataUrl.toString());
+    settings.endGroup();
     settings.sync();
 
     setStatus(tr("Connecting to %1...").arg(url.toString()));
@@ -171,11 +192,19 @@ void Client::setStatus(const QString &status)
 
 void Client::readSettings()
 {
+    m_remoteSettingsPort = m_settings.value(settingsRemoteSettingsPortItem, defaultRemoteSettingsPort).toInt();
+    m_driveDataPort = m_settings.value(settingsDriveDataPortItem, defaultDriveDataPort).toInt();
+
     int size=m_settings.beginReadArray(settingsLastUrlsPrefix);
     for (int i=0; i<size; i++) {
         m_settings.setArrayIndex(i);
-        m_lastUrls.append(m_settings.value(settingsLastUrlsItem).toString());
+        auto url = QUrl(m_settings.value(settingsLastUrlsItem).toString());
+        if (url.isValid() && !url.scheme().isEmpty()) {
+            url.setPort(-1);
+            m_lastUrls.append(url.toString(QUrl::None));
+        }
     }
+
     m_settings.endArray();
     emit lastUrlsChanged(m_lastUrls);
 }

@@ -2,14 +2,20 @@ TEMPLATE = app
 TARGET   = neptune3-ui-qsr-cluster
 DESTDIR = $$BUILD_DIR
 
+include(../../config.pri)
+
+android: target.path = $$INSTALL_PREFIX
+else: target.path = $$INSTALL_PREFIX/neptune3
+INSTALLS += target
+
 CONFIG += exceptions c++11
+macos: CONFIG -= app_bundle
 
 QT = core gui qtsaferenderer network ivicore
 
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(RemoteSettings)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
 
-message("OUT_PWD" + $$OUT_PWD)
-
+INCLUDEPATH += $$OUT_PWD/../drivedata/frontend
 INCLUDEPATH += $$OUT_PWD/../remotesettings/frontend
 
 SOURCES = main.cpp \

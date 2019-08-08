@@ -6,6 +6,8 @@ SUBDIRS += remotesettings \
 
 use_qsr{
     #build Qt Safe Renderer Cluster
-    SUBDIRS += neptune3-ui-qsr-cluster
-    neptune3-ui-qsr-cluster.depends = remotesettings-server
+    qtHaveModule(qtsaferenderer){
+        SUBDIRS += neptune3-ui-qsr-cluster
+        neptune3-ui-qsr-cluster.depends = drivedata remotesettings
+    }
 }

@@ -5,7 +5,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -139,6 +139,10 @@
 
    The \c showSystemAppsInLauncher parameter lets you display or hide system apps such as the
    Cluster, HUD, or Climate apps in the Launcher.
+
+   If you'd like to use the \l{Qt Automotive Suite Deployment Server}, set the \c appStoreServerUrl
+   parameter to contain your server's base URL together with its port. Currently, the default value
+   is \c{http://chaos.pelagicore.net:9090}.
 
    All of these options are also configurable from the command line as a parameter to the \c appman
    utility. For more information, see \l{Qt Application Manager Configuration}.

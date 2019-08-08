@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -38,11 +38,26 @@
         This app can display plain or 3D gauges. The 3D gauges entity is created with
         \l{Qt 3D Studio}, that provides a compositing tool for scene creation. The Qt 3D Studio
         runtime provides QML APIs to integrate scenes into Qt applications.
-     \li "com.luxoft.vehicle" - a built-in app, that contains two different 3D sub-parts. The first
-        part is a Vehicle settings app with a 3D scene rendered by \l{Qt 3D}. Qt 3D provides
-        functionality for near-realtime simulation systems, with support for 2D and 3D rendering in both
-        Qt C++ and Qt Quick applications. The second part is based on \l{Qt 3D Studio}.
+     \li "com.luxoft.vehicle" - a built-in app, that contains two different 3D sub-parts. Both
+        parts implement a similar 3D entity: the vehicle. The first part contains a 3D scene
+        rendered by \l{Qt 3D}. Qt 3D provides functionality for near-realtime simulation systems,
+        with support for 2D and 3D rendering in both Qt C++ and Qt Quick applications. The second
+        part is based on \l{Qt 3D Studio}.
    \endlist
+
+  These apps support a popular use case: to use 3D visualization to improve the users' experience
+  when they interact with features related to physical objects. Each app uses 3D in Qt, in a
+  different way:
+
+  \list
+    \li One is to use \l{Qt 3D} directly, which requires additional code to construct the entire
+    rendering pipeline correctly.
+    \li The other is to use \l{Qt 3D Studio}'s runtime that simplifies the app's code
+    significantly, but also limits the 3D features to only those that \l{Qt 3D Studio} supports.
+  \endlist
+
+  The sections below highlight some topics related to integrating 3D support in Qt, for the apps
+  above.
 
    \section1 3D Modeling
 
@@ -100,10 +115,14 @@
    mesh component. For more information on ECS, see \l{Qt 3D Overview}.
 
 
-   \section1 3D Gauges Integration
+   \section1 3D Gauges Integration with Qt 3D Studio
 
-   The diagram below illustrates the Instrument Cluster's structure; colored elements demonstrate
-   the main points of integration:
+   Previously, gauges in the Instrument Cluster app were implemented with 2D graphical
+   assets. Starting from version 5.13, the Instrument Cluster app can use \l{Qt 3D Studio} runtime
+   to show 3D gauges and it also includes new gauges created with \l{Qt 3D Studio}. The old
+   implementation is still supported and can be enabled from the Companion App at runtime. The
+   diagram below illustrates the Instrument Cluster's structure; colored elements demonstrate the
+   main points of integration:
 
    \image 3d-gauges-integration-instrument-cluster.jpg
 
@@ -113,15 +132,12 @@
    asset, like the images. The whole 3D scene is imported into a \c .qml file via a \e presentation
    \c .uip file; the presentation is part of the Qt 3D Studio project and describes the composition
    of layers on the scene. All of the transformations, such as rotation, movement, and scaling are
-   made via data inputs. For more details, see \l{Qt 3D Studio Manual}.
+   made via data inputs. For more details, see \l{Qt 3D Studio}.
 
-   \note You must have \l{Qt 3D Studio} installed. If it is installed, but your 3D content
-   is not shown, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
-   and macOS. Consequently, these platforms would only show the 3D content in single-process mode
-   with opengl ES 3.0 requirements set by \c{.yaml} config file.
-   For more details, see \l{Qt Application Manager}.
+   \note You must have \l{Qt 3D Studio} installed and your Qt installation must support
+   OpenGL ES. For more details, see \l{Use the Qt 3D Studio Runtime}.
 
-   \section1 Vehicle Integration
+   \section1 Vehicle Integration with Qt 3D
 
    The diagram below shows the current structure of the Vehicle app sub-part built with Qt 3D:
 
@@ -142,9 +158,43 @@
    animation is done with: transform the door to another origin, rotate it, then transform it back.
    As a result, the door doesn't rotate around its own axis.
 
+   \section1 Vehicle Integration with Qt 3D Studio
+
    The integration scheme for the other sub-part, built with Qt 3D Studio, is similar to
-   \l{3D Gauges Integration}. The diagram below further illustrates this:
+   \l{3D Gauges Integration with Qt 3D Studio}. The diagram below further illustrates this:
 
    \image 3d-integration-vehicle-app-2.jpg
 
+   \section1 Modify the Settings to Use 3D in the Vehicle App
+
+   The Vehicle app has a settings section where you can change the complexity of the model used
+   and switch between the implementation based on \l{Qt 3D} and \l{Qt 3D Studio}.
+
+   \section1 Use the Qt 3D Studio Runtime
+
+   The implementation based on the \l{Qt 3D Studio} runtime requires that it is installed on the
+   desktop or on the embedded target. If it is installed, but your 3D content is not shown
+   by Neptune 3 UI, this means that \l{Qt} was built without \c{-opengl es2} option for Linux
+   and macOS. In this case, Neptune 3 UI only shows the 3D Content on these platforms in
+   single-process mode, provided that you set OpenGL ES 3.0 requirements in
+   the \c{.yaml} config file. For more details, see \l{Qt Application Manager}.
+
+   If you installed Qt Automotive Suite via the
+   \l{https://www.qt.io/download-open-source/#section-2}{Online Installer}, it's likely that your
+   installation doesn't contain Qt 3D Studio. In this case, to make sure everything works,
+   build and install the required components from the source.
+
+   To build a custom Neptune 3 UI which uses the Qt 3D Studio runtime, do the following:
+   \list
+        \li Configure Qt with \c{-opengl es2}, build and install it. Use this Qt instance to build
+        all the components mentioned below.
+        \li Clone the Qt 3D Studio runtime git repository from
+        \l{https://code.qt.io/cgit/qt3dstudio/qt3d-runtime.git/}
+        \li Next, build and install the Qt 3D Studio runtime from the branch 2.1.
+        \li Finally, build and install \l{Qt Application Manager}, \l{Qt IVI} and then
+        \l{Neptune 3 UI} as explained in the Installation sections of those components.
+   \endlist
+
+   \note Due to an issue with configuring Qt 5.13.0 with \c{-opengl es2"}, currently it's not
+   possible to use Neptune 3 UI with Qt 3D Studio Runtime for macOs Mojave.
 */

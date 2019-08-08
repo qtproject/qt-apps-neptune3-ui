@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,9 +31,13 @@
 ****************************************************************************/
 
 import QtQuick 2.0
+import QtIvi.Media 1.0
 
 QtObject {
     id: root
+
+    readonly property MediaPlayer player: MediaPlayer { id: player }
+
 
     property var uiSettings
     property string volumeIcon: {

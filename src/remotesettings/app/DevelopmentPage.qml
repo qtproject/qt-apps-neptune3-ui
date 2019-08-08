@@ -1,10 +1,9 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,97 +37,171 @@ Flickable {
     id: root
     flickableDirection: Flickable.VerticalFlick
     contentHeight: baseLayout.height
-
-    ScrollIndicator.vertical: ScrollIndicator { }
+    ScrollIndicator.vertical: ScrollIndicator {
+        active: true
+        // we want always see it if the content doesnt fit view
+        onActiveChanged: active = true
+    }
 
     ColumnLayout {
         id: baseLayout
-        enabled: instrumentCluster.isInitialized && client.connected
-        spacing: 20
-        anchors.centerIn: parent
 
-        RowLayout {
-            spacing: sc(10)
+        anchors.centerIn: parent
+        spacing: 20
+
+        ColumnLayout {
+            enabled: systemUI.isInitialized && client.connected
             Layout.alignment: Qt.AlignHCenter
 
-            // speed Field
-            Dial {
-                id: speedDial
-                from: 0
-                to: 260
-                stepSize: 1.0
-                value: instrumentCluster.speed
-                onMoved: instrumentCluster.speed = value
+            Label {
+                text: "System UI"
+                Layout.alignment: Qt.AlignHCenter
+                font.bold: true
+            }
 
-                Label {
-                    text: qsTr("Speed:")
-                    anchors.bottom: speedDial.verticalCenter
-                    anchors.horizontalCenter: speedDial.horizontalCenter
-                }
-
-                Label {
-                    id: speedLabel
-                    text: Math.round(speedDial.value)
-                    anchors.top: speedDial.verticalCenter
-                    anchors.horizontalCenter: speedDial.horizontalCenter
+            Button {
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Show Next Application IC Window");
+                onClicked: {
+                    systemUI.applicationICWindowSwitchCount =
+                            systemUI.applicationICWindowSwitchCount + 1
                 }
             }
 
-            // ePower Field
-            Dial {
-                id: ePowerDial
-                from: -25
-                to: 100
-                stepSize: 1.0
-                value: instrumentCluster.ePower
-                onMoved: instrumentCluster.ePower = value
-                enabled: false
+            Label {
+                text: "Cluster"
+                Layout.alignment: Qt.AlignHCenter
+                font.bold: true
+            }
 
-                Label {
-                    text: qsTr("ePower:")
-                    anchors.bottom: ePowerDial.verticalCenter
-                    anchors.horizontalCenter: ePowerDial.horizontalCenter
+            GridLayout {
+                Layout.alignment: Qt.AlignHCenter
+                columns: root.width < neptuneScale(100) ? 2 : 4
+
+                CheckBox {
+                    text: qsTr("Hide Gauges")
+                    checked: uiSettings.hideGauges
+                    onClicked: uiSettings.hideGauges = checked
                 }
 
-                Label {
-                    id: ePowerLabel
-                    text: Math.round(ePowerDial.value)
-                    anchors.top: ePowerDial.verticalCenter
-                    anchors.horizontalCenter: ePowerDial.horizontalCenter
+                CheckBox {
+                    text: qsTr("Navigation Mode")
+                    checked: uiSettings.navigationMode
+                    onClicked: uiSettings.navigationMode = checked
                 }
             }
         }
 
-        GridLayout {
+
+        Label {
+            text: "Vehicle state"
             Layout.alignment: Qt.AlignHCenter
-            columns: root.width < sc(100) ? 2 : 4
+            font.bold: true
+        }
 
-            // speedLimit Field
+        GridLayout {
+            enabled: instrumentCluster.isConnected
+            Layout.alignment: Qt.AlignHCenter
+            columns: root.width > 2 * (outsideTemperatureLabel.width + outsideTemperature.width + columnSpacing)
+                     ? 4 : 2
+
+            columnSpacing: 15
+            rowSpacing: 20
+
+            //Outside Temperature
             Label {
-                text: qsTr("Speed limit:")
+                id: outsideTemperatureLabel
+                text: qsTr("Outside \n temperature, °C")
             }
             Slider {
-                id: speedLimitSlider
-                value: instrumentCluster.speedLimit
-                from: 0.0
-                stepSize: 1.0
-                to: 120.0
-                onValueChanged: if (pressed) { instrumentCluster.speedLimit = value }
+                id: outsideTemperature
+                value: instrumentCluster.outsideTemperatureCelsius
+                from: -100
+                stepSize: 0.5
+                to: 100.0
+                onValueChanged: {
+                    if (pressed) {
+                        instrumentCluster.outsideTemperatureCelsius = value
+                    }
+                }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value.toFixed(1).padStart(6)
+                }
             }
 
-            // speedCruise Field
+            // Mileage in km
             Label {
-                text: qsTr("Cruise speed:")
+                text: qsTr("Mileage, km")
             }
             Slider {
-                id: speedCruiseSlider
-                value: instrumentCluster.speedCruise
-                from: 0.0
-                stepSize: 1.0
-                to: 120.0
-                onValueChanged: if (pressed) { instrumentCluster.speedCruise = value }
+                id: mileageKm
+                value: instrumentCluster.mileageKm
+                from: 0
+                stepSize: 0.5
+                to: 9E6
+                onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value
+                }
             }
 
+            // Route progress
+            Label {
+                text: qsTr("Route \n progress, %")
+            }
+            Slider {
+                id: routeProgressSlider
+                from: 0
+                to: 1.0
+                stepSize: 0.01
+                value: instrumentCluster.navigationProgressPercents
+                onValueChanged: {
+                    if (pressed) {
+                        instrumentCluster.navigationProgressPercents = value
+                    }
+                }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value.toFixed(2)
+                }
+            }
+
+            // Route distance
+            Label {
+                text: qsTr("Route \n distance, km")
+            }
+            Slider {
+                id: routeDistance
+                value: instrumentCluster.navigationRouteDistanceKm
+                from: 0
+                stepSize: 0.5
+                to: 25000
+                onValueChanged: {
+                    if (pressed) {
+                        instrumentCluster.navigationRouteDistanceKm = value
+                    }
+                }
+
+                Label {
+                    anchors.centerIn: parent.handle
+                    anchors.verticalCenterOffset: - parent.handle.height * 2
+                    text: parent.value
+                }
+            }
+        }//grid
+
+
+        RowLayout {
+            enabled: instrumentCluster.isConnected
+            Layout.alignment: Qt.AlignHCenter
             // driveTrainState field
             Label {
                 text: qsTr("Gear:")
@@ -140,80 +213,39 @@ Flickable {
                 currentIndex: instrumentCluster.driveTrainState
                 onActivated: instrumentCluster.driveTrainState = currentIndex
             }
+        }
+
+        // readonly state
+        GridLayout {
+            Layout.alignment: Qt.AlignHCenter
+            columns: 2
+            columnSpacing: 50
+            rowSpacing: 25
+
+            // speedLimit Field
             Label {
-                text: qsTr("Navigation Mode:")
-            }
-            CheckBox {
-                checked: uiSettings.navigationMode
-                onClicked: uiSettings.navigationMode = checked
+                text: qsTr("Speed limit: ") + instrumentCluster.speedLimit
             }
 
             Label {
-                text: qsTr("Hide Gauges:")
-            }
-            CheckBox {
-                checked: uiSettings.hideGauges
-                onClicked: uiSettings.hideGauges = checked
+                text: qsTr("Cruise speed: ") + instrumentCluster.speedCruise
             }
 
             Label {
-                text: qsTr("3D Gauges:")
-            }
-            CheckBox {
-                checked: uiSettings.threeDGauges
-                onClicked: uiSettings.threeDGauges = checked
+                text: qsTr("Speed: ") + instrumentCluster.speed
             }
 
-            /*!
-                Outside Temperature
-            */
             Label {
-                text: qsTr("Outside temperature: " +  outsideTemperature.value.toFixed(1).padStart(6) + " °C")
+                text: qsTr("ePower: ") + instrumentCluster.ePower
             }
-            Slider {
-                id: outsideTemperature
-                value: instrumentCluster.outsideTemperatureCelsius
-                from: -100
-                stepSize: 0.5
-                to: 100.0
-                onValueChanged: if (pressed) { instrumentCluster.outsideTemperatureCelsius = value }
-            }
+        }
 
-            /*!
-                Mileage in km
-            */
-            Label {
-                text: qsTr("Mileage km")
-            }
-            Slider {
-                id: mileageKm
-                value: instrumentCluster.mileageKm
-                from: 0
-                stepSize: 0.5
-                to: 9E6
-                onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
-            }
+        RowLayout {
+            enabled: instrumentCluster.isConnected
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 50
 
-            /*!
-                DrivingMode field
-            */
-            Label {
-                text: qsTr("Driving mode:")
-            }
-
-            ComboBox {
-                id: driveingModeComboBox
-                model: [qsTr("Normal"), qsTr("ECO"), qsTr("Sport")]
-                currentIndex: instrumentCluster.drivingMode
-                onActivated: instrumentCluster.drivingMode = currentIndex
-            }
-
-            /*!
-                Driving mode range Field
-            */
-            Label {
-                text: qsTr("Driving mode range:")
-            }
+            //Driving mode range Field
             Dial {
                 id: drivingModeRangeDial
                 from: 0
@@ -222,7 +254,11 @@ Flickable {
                 value: instrumentCluster.drivingModeRangeKm
                 onMoved: instrumentCluster.drivingModeRangeKm = value
 
-
+                Label {
+                    text: qsTr("Range:")
+                    anchors.bottom: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
 
                 Label {
                     text: Math.round(parent.value)
@@ -231,12 +267,7 @@ Flickable {
                 }
             }
 
-            /*!
-                ECO mode range Field
-            */
-            Label {
-                text: qsTr("ECO mode range:")
-            }
+            // ECO mode range Field
             Dial {
                 id: ecoModeRangeDial
                 from: 0
@@ -245,6 +276,11 @@ Flickable {
                 value: instrumentCluster.drivingModeECORangeKm
                 onMoved: instrumentCluster.drivingModeECORangeKm = value
 
+                Label {
+                    text: qsTr("ECO Range:")
+                    anchors.bottom: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
 
 
                 Label {
@@ -253,50 +289,18 @@ Flickable {
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
             }
+        }
 
-            /*!
-               Route progress
-            */
-            Label {
-                text: qsTr("Route progress, %:")
-            }
-
-            Dial {
-                id: routeProgressDial
-                from: 0
-                to: 1.0
-                stepSize: 0.01
-                value: instrumentCluster.navigationProgressPercents
-                onMoved: instrumentCluster.navigationProgressPercents = value
-
-
-
-                Label {
-                    text: Math.round(parent.value * 100.0)
-                    anchors.top: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-            }
-
-            /*!
-                Route distance
-            */
-            Label {
-                text: qsTr("Route distance, km")
-            }
-            Slider {
-                id: routeDistance
-                value: instrumentCluster.navigationRouteDistanceKm
-                from: 0
-                stepSize: 0.5
-                to: 25000
-                onValueChanged: if (pressed) { instrumentCluster.navigationRouteDistanceKm = value }
-            }
+        Label {
+            text: "Telltales"
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
         }
 
         GridLayout {
+            enabled: instrumentCluster.isConnected
             Layout.alignment: Qt.AlignHCenter
-            columns: root.width < sc(100) ? 2 : 4
+            columns: root.width < neptuneScale(100) ? 2 : 4
 
             // lowBeamHeadlight Field
             Label {
@@ -416,6 +420,36 @@ Flickable {
                 id: airbagFailureCheckBox
                 checked: instrumentCluster.airbagFailure
                 onClicked: instrumentCluster.airbagFailure = checked
+            }
+        }
+
+        ColumnLayout {
+            Layout.alignment: Qt.AlignHCenter
+
+            Label {
+                text: qsTr("Application Info")
+                Layout.alignment: Qt.AlignHCenter
+                font.bold: true
+            }
+
+            Label {
+                text: qsTr("Neptune Companion App Version: ") + Qt.application.version
+                Layout.alignment: Qt.AlignHCenter
+            }
+
+            Label {
+                text: qsTr("Neptune Revision: ") + neptuneGitRevision
+                Layout.alignment: Qt.AlignHCenter
+            }
+
+            Label {
+                text: qsTr("Neptune Revision Date: ") + neptuneGitCommiterDate
+                Layout.alignment: Qt.AlignHCenter
+            }
+
+            Label {
+                text: qsTr("Qt IVI Version: ") + qtiviVersion
+                Layout.alignment: Qt.AlignHCenter
             }
         }
     }

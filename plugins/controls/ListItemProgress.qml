@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -43,7 +43,7 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief The list item with progress bar component of Neptune 3.
+    \brief Provides a list item with a progress bar component, for Neptune 3 UI.
 
     The ListItemProgress provides a type of a list item with an integrated progress bar.
 
@@ -52,7 +52,7 @@ import shared.Sizes 1.0
 
     \section2 Example Usage
 
-    The following example uses \l{ListItemProgress}:
+    The code snippet below shows how to use \c ListItemProgress:
 
     \qml
     import QtQuick 2.10

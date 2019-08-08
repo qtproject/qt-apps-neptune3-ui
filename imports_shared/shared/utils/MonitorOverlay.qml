@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,11 +38,78 @@ import shared.Sizes 1.0
 
 import QtApplicationManager 2.0
 
+/*!
+    \qmltype MonitorOverlay
+    \inherits Item
+    \since 5.12
+    \brief A component to display frame-rate information for a given window.
+
+    \image control-monitoroverlay.jpg
+
+    The MonitorOverlay provides an item on top of \l{NeptuneWindow} to display frame-rate
+    information obtained from \l{QtApplicationManager::}{FrameTimer}.
+
+    The following code snippet uses \l{MonitorOverlay}:
+
+    \qml
+    NeptuneWindow {
+        id: root
+
+        MonitorOverlay {
+            id: monitorOverlay
+
+            x: root.exposedRect.x
+            y: root.exposedRect.y
+            title: "System"
+            width: root.exposedRect.width - 100
+            height: root.exposedRect.height - 50
+            fpsVisible: true
+            window: root
+            z: 9999
+
+            Text {
+                text: "Info 1"
+            }
+            Text {
+                text: "Info 2"
+            }
+            Rectangle {
+                color: "green"
+                width: 100
+                height: 20
+            }
+        }
+    }
+    \endqml
+
+    \sa {QtApplicationManager::}{FrameTimer}
+*/
 Item {
     id: root
+
+    /*!
+      \qmlproperty Object MonitorOverlay::window
+
+      The \l{NeptuneWindow} to be monitored, from which frame-rate information is gathered.
+
+      \sa {QtApplicationManager::FrameTimer::}{window}
+    */
     property alias window: frameTimer.window
+
+    /*!
+      \qmlproperty bool MonitorOverlay::fpsVisible
+
+      If \c true, MonitorOverlay is shown and the frame-rate information is updated automatically.
+    */
     property bool fpsVisible
+
+    /*!
+      \qmlproperty string MonitorOverlay::title
+
+      This property holds the title of the MonitorOverlay item.
+    */
     property string title
+
     default property alias rowData: row.data
 
     implicitWidth: row.width
@@ -52,7 +119,6 @@ Item {
 
     FrameTimer {
         id: frameTimer
-        window: root
         running: root.fpsVisible
     }
 
@@ -63,6 +129,7 @@ Item {
 
     Row {
         id: row
+
         anchors.top: parent.top
         anchors.right: parent.right
         spacing: Sizes.dp(10)
@@ -82,7 +149,7 @@ Item {
             color: Style.contrastColor
             visible: root.fpsVisible
             // Have something constantly moving on the screen to force constant rendering
-            RotationAnimator {
+            RotationAnimation {
                 target: rotatingRect
                 from: 0;
                 to: 360;

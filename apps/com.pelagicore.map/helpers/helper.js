@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,13 +31,6 @@
 ****************************************************************************/
 .import QtApplicationManager.Application 2.0 as ApplicationManager
 .import shared.Style 1.0 as Style
-function showOfflineNotification() {
-    var notification = ApplicationManager.ApplicationInterface.createNotification();
-    notification.summary = qsTr("Offline mode");
-    notification.body = qsTr("Search and navigation not available in offline mode.");
-    notification.sticky = true;
-    notification.show();
-}
 
 function localAsset(asset, theme) {
     var themeStr = theme === Style.Style.Dark ? "-dark" : "";

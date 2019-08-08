@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,7 +36,6 @@ import QtApplicationManager 2.0
 import QtIvi 1.0
 import QtIvi.Media 1.0
 import shared.utils 1.0
-import shared.com.pelagicore.remotesettings 1.0
 
 Store {
     id: root
@@ -44,23 +43,6 @@ Store {
     property alias musicPlaylist: player.playQueue
     property int musicCount: player.playQueue.count
     property alias contentType: searchBrowseModel.contentType
-
-    readonly property UISettings uiSettings: UISettings {
-        onVolumeChanged: player.volume = volume * 100;
-        onMutedChanged: player.muted = muted;
-    }
-
-    // N.B. need to use a Timer here to "push" the initial volume to settings server
-    // since it uses QMetaObject::invokeMethod(), possibly running in a different thread
-    Timer {
-        interval: 1
-        running: true
-        triggeredOnStart: true
-        onTriggered: {
-            uiSettings.volume = player.volume / 100;
-            uiSettings.muted = player.muted;
-        }
-    }
 
     property ListModel toolsColumnModel: ListModel {
         id: toolsColumnModel
@@ -151,6 +133,10 @@ Store {
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
         ListElement {
+            text: "Music"
+            appId: "com.pelagicore.music"
+        }
+        ListElement {
             text: "AM/FM Radio"
             appId: "com.pelagicore.tuner"
         }
@@ -162,94 +148,6 @@ Store {
         onRowsInserted: {
             console.log(Logging.apps, "Music Queue / Playlist Row Inserted: ", first);
             player.playQueue.currentIndex = first;
-        }
-    }
-
-    property Item ipc: Item {
-        ApplicationInterfaceExtension {
-            id: musicApplicationRequestIPC
-            name: "neptune.musicapprequests.interface"
-            Component.onCompleted: {
-                if (object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                             "appId": "com.pelagicore.webradio"});
-                }
-                if (object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                             "appId": "com.pelagicore.spotify"});
-                    root.isSpotifyInstalled = true;
-                }
-            }
-        }
-
-        Connections {
-            target: musicApplicationRequestIPC.object
-
-            onSpotifyInstalledChanged: {
-                if (musicApplicationRequestIPC.object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                             "appId": "com.pelagicore.spotify"});
-                    root.isSpotifyInstalled = true;
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Spotify") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                    root.isSpotifyInstalled = false;
-                }
-            }
-            onWebradioInstalledChanged: {
-                if (musicApplicationRequestIPC.object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                             "appId": "com.pelagicore.webradio"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Web radio") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
-        }
-
-        ApplicationInterfaceExtension {
-            id: musicRemoteControl
-
-            name: "com.pelagicore.music.control"
-        }
-
-        Binding { target: musicRemoteControl.object; property: "currentTime"; value: root.elapsedTime }
-        Binding { target: musicRemoteControl.object; property: "durationTime"; value: root.totalTime }
-        Binding { target: musicRemoteControl.object; property: "playing"; value: root.playing }
-
-        Connections {
-            target: musicRemoteControl.object
-
-            onPlay: {
-                player.play();
-            }
-
-            onPause: {
-                player.pause();
-            }
-
-            onPrevious: {
-                if (player.playQueue.currentIndex === 0) {
-                    player.playQueue.currentIndex = root.musicCount - 1;
-                } else {
-                    player.previous();
-                }
-
-            }
-
-            onNext: {
-                if (player.playQueue.currentIndex === root.musicCount - 1) {
-                    player.playQueue.currentIndex = 0;
-                } else {
-                    player.next();
-                }
-            }
         }
     }
 
@@ -341,10 +239,6 @@ Store {
                     console.log(Logging.apps, "Intent request failed: " + request.errorMessage)
                 }
             })
-        } else if (source === "com.pelagicore.webradio") {
-            Qt.openUrlExternally("x-webradio://");
-        } else if (source === "com.pelagicore.spotify") {
-            Qt.openUrlExternally("x-spotify://");
         }
     }
 }

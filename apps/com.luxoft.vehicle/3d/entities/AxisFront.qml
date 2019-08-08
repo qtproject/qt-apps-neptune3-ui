@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -69,23 +69,15 @@ Entity {
             id: wheelMesh
             source: Paths.getModelPath("front_wheel_chrome", root.version)
         }
-        components: [wheelMesh, chromeMaterial]
+        components: [wheelMesh, wheelChromeMaterial]
     }
 
     Entity {
-        components: [
-            Mesh {
-                source: Paths.getModelPath("front_tires", root.version)
-            },
-            DiffuseMapMaterial {
-                id: frontTiresMaterial
-                diffuse: Texture2D {
-                    TextureImage {
-                        source: Paths.getImagePath("front_tires.png")
-                    }
-                }
-            }
-        ]
+        Mesh {
+            id: tiresMesh
+            source: Paths.getModelPath("front_tires", root.version)
+        }
+        components: [tiresMesh, rubberMaterial]
     }
 
     NumberAnimation {

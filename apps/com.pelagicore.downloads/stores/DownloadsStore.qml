@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -49,7 +49,10 @@ Item {
     property string filter: ""
     property real currentInstallationProgress: 0.0
     property var installedApps: []
-    readonly property bool isOnline: sysinfo.online
+    readonly property bool isOnline: appStoreConfig.serverOnline
+    readonly property bool isReconnecting: appStoreConfig.isReconnecting
+
+
 
     function formatBytes(bytes) {
         if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);
@@ -176,10 +179,11 @@ Item {
     SystemInfo {
         id: sysinfo
 
-        onOnlineChanged: {
-            if (sysinfo.online) {
-                appStoreConfig.checkServer();
-            }
+        onInternetAccessChanged: {
+            appStoreConfig.checkServer();
+        }
+        onConnectedChanged: {
+            appStoreConfig.checkServer();
         }
     }
 

@@ -1,10 +1,25 @@
+VERSION  = 5.13.0
 TARGET = neptune-companion-app
 DESTDIR = $$BUILD_DIR
 QT += quick ivicore
 CONFIG += c++11
-CONFIG -= app_bundle
+macos: CONFIG -= app_bundle
 
 include($$SOURCE_DIR/config.pri)
+
+unix:exists($$SOURCE_DIR/.git):GIT_REVISION=$$system(cd "$$SOURCE_DIR" && git describe --tags --always 2>/dev/null)
+
+isEmpty(GIT_REVISION) {
+    GIT_REVISION="unknown revision"
+    GIT_COMMITTER_DATE="no date"
+} else {
+    GIT_COMMITTER_DATE=$$system(cd "$$SOURCE_DIR" && git show "$$GIT_REVISION" --pretty=format:"%ci" --no-patch 2>/dev/null)
+}
+
+DEFINES *= "NEPTUNE_COMPANION_APP_VERSION=$$VERSION"
+DEFINES *= NEPTUNE_GIT_REVISION=\""\\\"$$GIT_REVISION\\\""\"
+DEFINES *= NEPTUNE_REVISION_DATE=\""\\\"$$GIT_COMMITTER_DATE\\\""\"
+DEFINES *= NEPTUNE_INFO=\""\\\"$$GIT_REVISION, $$GIT_COMMITTER_DATE\\\""\"
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
 
@@ -18,6 +33,12 @@ RESOURCES += qml.qrc \
 
 target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
+
+win32 {
+    wrapper.files = neptune-companion-app_wrapper.bat
+    wrapper.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += wrapper
+}
 
 QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/)
 

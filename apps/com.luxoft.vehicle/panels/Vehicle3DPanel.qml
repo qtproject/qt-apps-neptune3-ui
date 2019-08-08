@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -121,6 +121,13 @@ Item {
                     }
 
                     CookTorranceMaterial {
+                        id: rubberMaterial
+                        albedo: "black"
+                        metalness: 0.9
+                        roughness: 0.5
+                    }
+
+                    CookTorranceMaterial {
                         id: whiteHood
                         albedo: "white"
                         metalness: 0.1
@@ -132,6 +139,13 @@ Item {
                         albedo: "black"
                         metalness: 0.1
                         roughness: 0.2
+                    }
+
+                    CookTorranceMaterial {
+                        id: wheelChromeMaterial
+                        albedo: "black"
+                        metalness: 0.1
+                        roughness: 0.7
                     }
 
                     CookTorranceMaterial {

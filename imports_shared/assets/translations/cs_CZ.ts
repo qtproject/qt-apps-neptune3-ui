@@ -76,6 +76,10 @@ UX na cestu</translation>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>Neznámá aplikace</translation>
+    </message>
 </context>
 <context>
     <name>AboutDiagnostics</name>
@@ -609,11 +613,23 @@ UX na cestu</translation>
     </message>
     <message>
         <source>An Internet connection is required</source>
-        <translation type="unfinished">Je vyžadováno připojení k internetu</translation>
+        <translation type="obsolete">Je vyžadováno připojení k internetu</translation>
     </message>
     <message>
         <source>No apps found!</source>
         <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1004,6 +1020,34 @@ UX na cestu</translation>
             <numerusform>%n minut</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished">Offline režim</translation>
+    </message>
+    <message>
+        <source>Search and navigation not available in offline mode.</source>
+        <translation type="obsolete">Hledání a navigace nedostupné v offline režimu.</translation>
+    </message>
+    <message>
+        <source>Search and navigation are not available in offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline Map only available in Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapView</name>
@@ -1086,15 +1130,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Network: %1</source>
-        <translation>Síť: %1</translation>
+        <translation type="vanished">Síť: %1</translation>
     </message>
     <message>
         <source>online</source>
-        <translation>online</translation>
+        <translation type="vanished">online</translation>
     </message>
     <message>
         <source>offline</source>
-        <translation>offline</translation>
+        <translation type="vanished">offline</translation>
     </message>
     <message>
         <source>Platform</source>
@@ -1134,6 +1178,26 @@ UX na cestu</translation>
     </message>
     <message>
         <source>multi-process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1 %2</source>
+        <translation type="obsolete">Síť: %1 %2</translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished">Síť: %1%2</translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

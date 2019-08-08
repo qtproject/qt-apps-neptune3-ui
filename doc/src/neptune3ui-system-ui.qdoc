@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -30,132 +30,138 @@
    \page neptune3ui-system-ui.html
    \title Neptune 3 UI - System UI
 
-   Neptune 3's System UI is a Qt QML application comprised of one or more top-level
+   The System UI in Neptune 3 UI is a QML application that consists of one or more top-level
    QWindows: a \l{center console display}{Center Console} window, an optional
-   \l{Instrument Cluster} window and an optional HUD window. It is a special Qt
-   QML application as it uses a Wayland server Qt platform backend, which turns
-   it into a fully fledged compositing window manager.
+   \l{Instrument Cluster} window, and an optional HUD window. The System UI is a special QML
+   application as it uses the QtApplicationManager that turns it into a fully-fledged compositing
+   manager.
 
-   Regular applications (which are called as Neptune 3 applications or simply
-   applications) then show up on System UI as plain QML Items that it positions
-   on its QML scene as it sees fit. Applications use a \l{Qt Wayland}{Wayland client Qt
-   platform backend} instead.
+   Regular applications, known as Neptune 3 apps, then show up on the System UI as plain QML Items
+   which the System UI positions on its QML scene accordingly.
 
-   On target hardware, each of the System UI windows will drive an entire display
-   or screen (ie, be fullscreen, controlling all that is rendered on them). But on a
-   development environment, each System UI window will be seen as a plain desktop
-   window.
+   On target hardware, each of the System UI windows drive an entire display or screen, typically
+   fullscreen, controlling all that is rendered on them. This rendering is usually done with the
+   \l{Qt for Embedded Linux}{\c eglfs} backend. However, on a desktop development environment, each
+   System UI window is seen as a plain desktop window.
 
-   System UI is able to tell them apart by checking their "windowType" window
-   property. Application code doesn't have to worry about this implementation
-   detail though, this is taken care of by the specialized QML components
-   \l{ApplicationCCWindow}, \l{ApplicationICWindow} and \l{PopupWindow}.
+   The System UI lets you take screenshots of Neptune 3 UI's current state and export it.
+   At the same time, it also exports the Qt diagnostic tool's output. The exported files are
+   stored in the \e {/tmp} folder. To take a screenshot in the
+   \l{center console display}{Center Console}, press and hold the clock at the top right
+   corner; or press \uicontrol{CTRL + P}.
 
-   System UI also provides a way to take a screenshot of the current state of
-   Neptune 3 UI and export it. At the same time, it also exports the output of
-   Qt diagnostic tool. The exported files will be stored under \e {/tmp} folder.
-   In order to do this, the user can press and hold the clock at the top right
-   corner of the \l{center console display}{Center Console} or press CTRL + p.
+   \section1 Settings and UI Persistence
 
-   \section1 Settings and UI Persistency
-
-   Neptune 3's System UI stores the state of applications that the user has chosen
-   to display as widgets. This behavior, implemented using the
-   \l{Settings}{Settings QML Type}, are stored on the user's local machine
-   as a settings file. When the UI stops, and restarts later, Neptune 3 UI reloads
-   applications that were shown as a widget before. However, if there were no widgets
-   selected prior to Neptune 3 UI stopping, then when Neptune 3 UI restarts, it loads
-   the default set of applications, such as the calendar app, music app, and phone app.
+   The System UI stores the state of applications that the user has chosen to display as widgets.
+   This behavior, implemented using the \l{Settings}{Settings QML Type}, is stored on the user's
+   local machine as a settings file. When the UI stops, and restarts later, Neptune 3 UI reloads
+   applications that were shown as a widget before. However, if no widgets were selected before
+   Neptune 3 UI stopped, then when Neptune 3 UI restarts, it loads the default set of applications,
+   such as the Calendar app, Music app, and Phone app.
 
    \section1 Wayland Compositor
 
    \image wayland-compositor.jpg
 
-   The above diagram shows the flow on how applications are composited by a system
-   UI that uses Qt Wayland.
+   The diagram above shows the flow of how applications are composited by a system UI that uses
+   Qt Wayland. For more information, see \l{Qt Wayland} and \l{Wayland and Qt}.
 
-   \section1 Neptune 3 Wireframe
+   \section1 Wireframe
 
    \image wireframe.jpg
 
-   Neptune 3 defines five types of application windows, each of them being handled
-   differently by System UI. Namely application center console windows, application
-   instrument cluster windows, HUD windows, bottom bar windows and application pop-up
-   windows.
+   Neptune 3 UI defines five types of application windows; the System UI handles each of them
+   differently. These five windows are:
 
-   \section1 Neptune 3 System UI Window Item vs Neptune 3 Application Window
+   \list 1
+      \li application center console window
+      \li application instrument cluster window
+      \li HUD window
+      \li bottom bar window
+      \li application pop-up window
+   \endlist
+
+   The System UI differentiates between multiple types of windows using the \c windowType property.
+   Application code doesn't have to worry about this implementation detail, as it's taken care of
+   by the specialized \l{ApplicationCCWindow}, \l{ApplicationICWindow}, and \l{PopupWindow} QML
+   components.
+
+   \section1 System UI Window Item vs. Application Window
+
+   The System UI Window Item is on the compositor-side and is used to position surfaces from the
+   applications. In contrast, the Application Window is used on the client-side to show its content
+   which is on the compositor-side, within the System UI Window Item.
 
    \image applicationwindows.jpg
 
-   \section2 Neptune 3 System UI Window Item
+   \section2 System UI Window Item
 
-   The System UI contains several window items, such as application center console
-   window item, application instrument cluster window item, popup window item, bottom
-   bar window item and top bar window item. They inherit NeptuneWindowItem that carries
-   basic properties to be used by the applications, such as scale factor, accent color
-   and current theme. Each window item component has its own specific window
-   properties for different purposes
+   The System UI contains several window items, such as application center console window item,
+   application instrument cluster window item, popup window item, bottom bar window item and
+   top bar window item. They inherit NeptuneWindowItem that carries basic properties to be used
+   by the applications, such as scale factor, accent color, and current theme. Each window item
+   component has its own specific window properties for different purposes.
 
    \section3 Application Center Console Window Item
 
-   ApplicationCCWindowItem component is used by System UI to display application
-   windows of type ApplicationCCWindow, where "CC" stands for "Center Console".
-   The ApplicationCCWindowItem carries some properties needed by the application,
-   such as the states of application widget (widget 1 row, widget 2 rows and widget 3 rows)
-   and one state for the maximized view. The application needs to receive the current
-   state of the application widget being used by this application to apply some animations
-   as each state has its own view / look. Hence, the System UI needs to set the window
-   property of the widget state to the application. There is also an exposed rectangle
-   property that provides some properties, such as x, y, width and height of the visible
-   rectangular window area of the application widget that can be used by the application
-   to adapt correctly with the window that is clipped by the System UI when the widget
-   area is composited.
+   The System UI uses the ApplicationCCWindowItem component to display application windows of type
+   ApplicationCCWindow, where "CC" stands for "Center Console". The ApplicationCCWindowItem carries
+   some properties the application needs, such as the states of application widget (widget 1 row,
+   widget 2 rows, and widget 3 rows) and one state for the maximized view. The application needs to
+   receive the current state of the application widget being used by this application to apply
+   some animations; as each state has its own appearance. Hence, the System UI needs to set the
+   window property of the widget state for the application. Additionally, an exposed rectangle
+   property provides x, y, width, and height of the visible rectangular window area in the
+   application widget. The application can use these properties to correctly adapt to the window
+   that's clipped by the System UI when the widget area is composited.
 
    \section3 Application Instrument Cluster Window Item
 
-   The ApplicationICWindowItem component is used by System UI to display application windows
-   of type ApplicationICWindow, where "IC" stands for "Instrument Cluster".
-   The system UI will orchestrate and assign the window to the responsible window item
-   and in this case, it will be shown behind the two gauges of the Instrument Cluster.
-
    \image windowitem.jpg
 
-   \section2 Neptune 3 Application Window
+   The System UI uses the ApplicationICWindowItem component to display application windows of type
+   ApplicationICWindow, where "IC" stands for "Instrument Cluster". The System UI orchestrates and
+   assigns the window to the responsible window item. In this case, it's shown behind the
+   Instrument Cluster's gauges.
 
-   Neptune 3 provides two main types of application window that can be used by
-   the Neptune 3 application, \l{ApplicationCCWindow} and \l{ApplicationICWindow}.
+   \section2 Application Window
+
+   Neptune 3 UI provides two main types of application windows for apps to use:
+   \l{ApplicationCCWindow} and \l{ApplicationICWindow}.
 
    \section3 Application Center Console Window
 
-   The ApplicationCCWindow is the one to be used by the application that has to
-   be shown in the center console. It inherits the NeptuneWindow and some additional
-   properties that receives the "on window properties changes" that is sent by the System UI
-   (see the component documentation for further details). Additionally, for debugging purpose,
-   the ApplicationCCWindow provides the Monitor Overlay to show the consumption of particular
-   application. This can be enabled through the System UI performance monitor tool.
+   The ApplicationCCWindow is the one to use for an application that needs to be shown in the
+   Center Console. It inherits from NeptuneWindow and some additional properties that receive the
+   \l{QtApplicationManager.SystemUI::WindowManager::}{windowPropertyChanged} signal that the
+   System UI emits. Additionally, for debugging purposes, the \l{MonitorOverlay} can be used to
+   show the performance consumption of a particular application. This can be enabled through the
+   System UI's \c performanceOverlayVisible property.
 
    \section3 Application Instrument Cluster Window
 
-   Similar to the ApplicationCCWindow, the ApplicationICWindow also inherits the NeptuneWindow
-   with some additional window sizes properties. The ApplicationICWindow is an optional feature
-   to be used by the Neptune 3 application that wants to show its content behind two gauges of
-   the instrument cluster.
+   Similar to the \l{ApplicationCCWindow}, the \l{ApplicationICWindow} also inherits from
+   \l{NeptuneWindow} and adds some additional window size properties. The ApplicationICWindow is an
+   optional feature that a Neptune 3 UI application can use to show content behind the Instrument
+   Cluster's gauges.
 
    \image applicationwindow.jpg
 
    \section2 Additional Windows
 
-   There are several additional windows for some specific use-cases, such as Popup Window,
-   Bottom Bar Window and Top Bar Window. These windows will be taken care of by the system UI
-   to be shown on their dedicated window item.
+   There are several additional windows for some specific use cases, such as Popup Window,
+   Bottom Bar Window, and Top Bar Window. The System UI takes care of showing these windows
+   on their dedicated window item.
 
    \section3 Popup Window
 
-   The Popup Window can be imported and used by the application that needs to show a popup in
-   Neptune 3. The system UI will compose the popup window of applications and show it on request.
+   Any application that needs to show a popup in Neptune 3 UI can use the Popup Window. The
+   System UI composes the popup window for applications and shows it on request.
 
    \section3 Bottom Bar Window
 
-   The Bottom Bar Window is the window for special application/s to be shown at the bottom side
-   of the Center Console. Neptune 3 currently has the climate application to be shown there.
+   The Bottom Bar Window is the window to use if you need to show a special application at the
+   bottom of the Center Console. Currently, in Neptune 3 UI, this is where the Climate app is
+   shown.
+
 */

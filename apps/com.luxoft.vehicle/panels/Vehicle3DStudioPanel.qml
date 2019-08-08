@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,6 +34,7 @@ import QtQuick.Controls 2.3
 import QtStudio3D 2.1
 
 import shared.utils 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "../helpers" 1.0
@@ -48,6 +49,7 @@ Item {
     property bool leftDoorOpen: false
     property bool rightDoorOpen: false
     property bool trunkOpen: false
+    property color vehicleColor
 
     signal readyToChanges
 
@@ -197,6 +199,11 @@ Item {
             DataInput {
                 name: "trunkRotation"
                 value: Qt.vector3d(presentation.trunkAngle, -89.991, 0)
+            }
+
+            DataInput {
+                name: "diffuseColor"
+                value: Qt.vector3d(root.vehicleColor.r, root.vehicleColor.g, root.vehicleColor.b)
             }
         }
     }

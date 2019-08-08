@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -64,6 +64,7 @@ QT_USE_NAMESPACE_AM
 void startExtraProcess(const QString &name) {
 #if QT_CONFIG(process)
     QProcess *serverProcess = new QProcess(qApp);
+    serverProcess->setProcessEnvironment(QProcessEnvironment::systemEnvironment());
     QObject::connect(serverProcess, &QProcess::stateChanged, [name, serverProcess] (QProcess::ProcessState state) {
         if (state == QProcess::Running) {
             qCInfo(LogSystem) << "Attempted automatic start of " << name << ", pid:" << serverProcess->processId();
@@ -108,7 +109,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Main a(argc, argv);
 
         // start the server; the server itself will ensure one instance only
-        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/vehiclefunctions-simulation-server");
+        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivivehiclefunctions-simulation-server");
+        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivimedia-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
@@ -144,10 +146,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
             }
         }
 #endif
-
-        // setup touch emulation manually at runtime, if it's available _and_ there are no native touch devices
-        if (TouchEmulation::isSupported() && QTouchDevice::devices().isEmpty())
-            TouchEmulation::createInstance();
 
 #ifdef Q_OS_ANDROID
         a.qmlEngine()->setUrlInterceptor(new UrlInterceptor);

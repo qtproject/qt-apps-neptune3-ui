@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -64,8 +64,6 @@ Window {
         sendMessageObject.sendClusterWindowPos(x, y);
     }
 
-    width: Config.instrumentClusterWidth
-    height: Config.instrumentClusterHeight
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
@@ -73,13 +71,23 @@ Window {
     onWidthChanged: {
         root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
     }
-    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
-    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y);
+
+    //send (if enabled) cluster window positions to QSR Safe UI, 180 is cluster item top margin
+    //QSR Safe UI window then moves to cluster item 0,0 position
+    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
+    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
 
 
     Component.onCompleted: {
         // Would like to use a regular property binding instead. But it doesn't work and I don't know why
         visible = true;
+
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        // It happens because QQmlEngine::retranslate() refreshes all the engine's bindings
+        width = Config.instrumentClusterWidth
+        height = Config.instrumentClusterHeight
     }
 
     Item {

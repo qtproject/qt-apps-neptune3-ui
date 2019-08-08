@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -84,6 +84,7 @@ PopupWindow {
             }
             interactive: false
             delegate: RadioButton {
+                checked: appId == "com.pelagicore.music"
                 width: parent.width
                 height: Sizes.dp(96)
                 font.pixelSize: Sizes.fontSizeS
@@ -95,6 +96,8 @@ PopupWindow {
                     root.switchSourceClicked(appId)
                     root.close();
                 }
+
+                checkable: false
             }
         }
     }

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,8 +36,9 @@ import Qt.labs.settings 1.0
 Settings {
     id: root
 
+    readonly property string defaultAutostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
+    readonly property string defaultAutorecoverApps: "com.theqtcompany.cluster:5000,com.pelagicore.music:5000"
+
     property int measurementSystem: Qt.locale().measurementSystem
     property string widgetStates: "com.pelagicore.phone:2,com.pelagicore.music:2,com.pelagicore.calendar:1"
-    property string autostartApps: "com.theqtcompany.cluster,com.pelagicore.hud,com.pelagicore.climate"
-    property string autorecoverApps: "com.theqtcompany.cluster:5000"
 }

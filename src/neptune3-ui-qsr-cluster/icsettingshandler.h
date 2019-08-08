@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -34,7 +34,7 @@
 
 #include <QtSafeRenderer/statemanager.h>
 
-#include "../remotesettings/frontend/instrumentcluster.h"
+#include "../drivedata/frontend/instrumentcluster.h"
 #include "remotesettings_client.h"
 
 using namespace SafeRenderer;

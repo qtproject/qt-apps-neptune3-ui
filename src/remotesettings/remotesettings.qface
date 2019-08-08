@@ -1,3 +1,4 @@
+@config: { qml_type: "shared.com.pelagicore.remotesettings" }
 module RemoteSettings 1.0
 
 interface UISettings {
@@ -23,6 +24,8 @@ interface UISettings {
 
     bool door1Open;
     bool door2Open;
+    real roofOpenProgress;
+    bool trunkOpen;
 
     /*
      * Whether the instrument cluster should be in navigation mode
@@ -41,7 +44,7 @@ interface SystemUI {
    * Incrementing this value will make sysui switch to display the next
    * available application instrument cluster window.
    *
-   * This is a hack. What we really need here is just a plain signal that
+   * This is a temporary solution. What we really need here is just a plain signal that
    * could be emitted on demand. So that's not really storing a setting
    * but serving as plain RPC.
    */

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -64,6 +64,7 @@ Control {
             ListItem {
                 id: delegatedSong
                 objectName: "playList_clickableItem_" + index
+                icon.name: model.index === listView.model.currentIndex ? "ic-play_ON" : "ic-play_OFF"
                 width: listView.width
                 height: Sizes.dp(104)
                 highlighted: false

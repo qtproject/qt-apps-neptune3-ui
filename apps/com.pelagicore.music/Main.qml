@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -48,6 +48,9 @@ import shared.Sizes 1.0
 QtObject {
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
+
+        height: Sizes.dp(Config.centerConsoleHeight)
+        width: Sizes.dp(Config.centerConsoleWidth)
 
         MultiPointTouchArea {
             id: multiPoint
@@ -111,6 +114,8 @@ QtObject {
         sourceComponent: Component {
             ApplicationICWindow {
                 property alias icMusicView: icMusicView
+                height: Sizes.dp(720)
+                width:  Sizes.dp(1920)
 
                 ICMusicView {
                     id: icMusicView

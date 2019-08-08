@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -118,14 +118,19 @@ QtObject {
     function _initColors() {
         var arr = [{ color: Style.accentColor, value: 5, selected: true }]
         var c = Style.accentColor
+
+        var hue = isNaN(c.hslHue) ? 0.075 : c.hslHue
+        var lightness = isNaN(c.hslLightness) ? 0.65 : c.hslLightness
+        var a = isNaN(c.a) ? 1.0 : c.a
+
         for (var i = 1; i < 10; ++i) {
-            if (c.hslHue - i * 0.1 >= 0) {
-                arr.push({ color: Qt.hsla(c.hslHue - i * 0.1, 0.7, c.hslLightness, c.a)
+            if (hue - i * 0.1 >= 0) {
+                arr.push({ color: Qt.hsla(hue - i * 0.1, 0.7, lightness, a)
                             , value: 5, selected: false })
             }
 
-            if (c.hslHue + i * 0.1 <= 1) {
-                arr.push({ color: Qt.hsla(c.hslHue + i * 0.1, 0.7, c.hslLightness, c.a)
+            if (hue + i * 0.1 <= 1) {
+                arr.push({ color: Qt.hsla(hue + i * 0.1, 0.7, lightness, a)
                             , value: 5, selected: false })
             }
         }
@@ -133,7 +138,7 @@ QtObject {
         return arr;
     }
 
-    property var accentColorsModel: _initColors()
+    property var accentColorsModel: []
     function updateAccentColor(value) {
         console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
@@ -143,5 +148,6 @@ QtObject {
     // Initialization
     Component.onCompleted: {
         populateLanguages();
+        accentColorsModel = _initColors();
     }
 }

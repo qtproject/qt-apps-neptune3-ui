@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -164,7 +164,7 @@ Item {
                 editModeBgOpacity: Drag.active ? 0.8 : grid.editMode ? 0.2 : 0.0
                 editModeBgColor: Drag.active ? "#404142" : "#F1EFED"
 
-                iconSource: model.appInfo ? model.appInfo.icon : null
+                iconSource: model.appInfo ? model.appInfo.icon : ""
                 labelText: model.appInfo ? model.appInfo.name : null
                 gridOpen: root.gridOpen
 

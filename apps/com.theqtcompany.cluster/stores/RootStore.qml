@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -79,7 +79,6 @@ RootStoreInterface {
     }
 
     behaviourInterface: BehaviourInterface {
-        property bool qt3DStudioAvailable: false
         Loader {
             visible: false
             source: "../helpers/Qt3DStudioAvailable.qml"

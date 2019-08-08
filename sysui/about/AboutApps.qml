@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -57,6 +57,14 @@ Item {
                     runningAppsModel.sortApps()
                 }
             }
+        }
+    }
+
+    Connections {
+        target: applicationModel
+        ignoreUnknownSignals: true
+        onAppRemoved: {
+            runningAppsModel.removeAppInfo(appInfo)
         }
     }
 
@@ -165,7 +173,7 @@ Item {
 
             ProcessStatus {
                 id: processStatus
-                applicationId: model.appInfo.id
+                applicationId: model.appInfo ? model.appInfo.id : ""
             }
 
             Timer {
@@ -194,7 +202,7 @@ Item {
                 anchors.verticalCenter: delegateRoot.verticalCenter
 
                 Label {
-                    text: model.appInfo.isSystemApp ? "* " + model.appInfo.name: model.appInfo.name
+                    text: model.appInfo ? model.appInfo.name : qsTr("Unknown app")
                 }
 
                 Row {

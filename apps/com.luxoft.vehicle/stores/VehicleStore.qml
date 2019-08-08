@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -47,6 +47,7 @@ QtObject {
     property real cameraAngleView: 0.0
     property string model3DVersion: "optimized"
     property bool qt3DStudioAvailable: false
+    property color vehicle3DstudioColor
 
     // here we use loader to prevent build failures in case when Qt3DStudio is not available in the libs
     property Loader qt3DStudioAvailableChecker: Loader {
@@ -91,6 +92,12 @@ QtObject {
         }
         onDoor2OpenChanged: {
             root.rightDoorOpened = uiSettings.door2Open
+        }
+        onTrunkOpenChanged: {
+            root.trunkOpened = uiSettings.trunkOpen
+        }
+        onRoofOpenProgressChanged: {
+            root.roofOpenProgress = uiSettings.roofOpenProgress
         }
     }
 
@@ -153,8 +160,10 @@ QtObject {
     function setTrunk() {
         if (root.trunkOpened) {
             root.trunkOpened = false;
+            uiSettings.trunkOpen = false;
         } else {
             root.trunkOpened = true;
+            uiSettings.trunkOpen = true;
         }
     }
 
@@ -180,5 +189,6 @@ QtObject {
 
     function setRoofOpenProgress(value) {
         root.roofOpenProgress = value;
+        uiSettings.roofOpenProgress = value;
     }
 }

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -35,108 +35,114 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import shared.Sizes 1.0
-import QtApplicationManager 2.0
+import QtApplicationManager.Application 2.0
 
 Item {
     id: root
-
-    Notification {
-        id: notification1
-        summary: "Summary text: simple notification"
-        body: "Body text: simple notification"
-        showActionsAsIcons: true
-        actions: [{"actionText": "Action Text"}]
-        onActionTriggered: {
-            console.log("Simple notification has been triggered")
-        }
-    }
-
-    Notification {
-        id: notification2
-        summary: "Summary text: timeout notification"
-        body: "Body text: timeout 8 seconds"
-        timeout: 8000
-    }
-
-    Notification {
-        id: notification3
-        summary: "Summary text: sticky notification"
-        body: "Sticky notification has an implicit timeout of 0, it will persist in the notification center"
-        sticky: true
-    }
-
-    Notification {
-        id: notification4
-        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri."
-        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri."
-    }
-
-    // simulates battery low event if accessory button is pressed, the UI
-    // jumps directly to navigation app, setting the route to the proposed charging station
-    // if not, a warning notification will be shown and stored in the notification center
-    Notification {
-        id: notification5
-        property bool actionAccepted: false
-        summary: qsTr("Battery level is low")
-        body: qsTr("Start route to nearest charging station?")
-        timeout: 4000
-        actions: [{"actionText": qsTr("Show on Map")}]
-        onActionTriggered: {
-            //jump to navigation app
-            Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
-            actionAccepted = true;
-        }
-        onVisibleChanged: {
-            if (!visible && !actionAccepted) {
-                //if action is not accepted, show warning
-                notification6.hide(); // it's sticky, so first hide it to be able to show it again
-                notification6.show();
-            }
-            actionAccepted = false;
-        }
-    }
-
-    Notification {
-        id: notification6
-        summary: qsTr("Warning: Battery level is low")
-        body: qsTr("Please consider charging it in the next available station")
-        sticky: true
-    }
 
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(100)
         spacing: Sizes.dp(50)
+
         Button {
+            id: simpleNotiButton
             width: Sizes.dp(500)
             height: Sizes.dp(64)
             text: "Simple notification"
-            onClicked: notification1.show()
+            property var notification1: ApplicationInterface.createNotification();
+            onClicked: {
+                notification1.summary = "Summary text: simple notification";
+                notification1.body = "Body text: simple notification";
+                notification1.showActionsAsIcons = true;
+                notification1.actions = [{"actionText": "Action Text"}];
+                notification1.show();
+
+            }
+            Connections {
+                target: simpleNotiButton.notification1
+                onActionTriggered: {
+                    console.log("Simple notification has been triggered")
+                }
+            }
         }
+
         Button {
             width: Sizes.dp(500)
             height: Sizes.dp(64)
             text: "Timeout notification 8 secs"
-            onClicked: notification2.show()
+            onClicked: {
+                var notification2 = ApplicationInterface.createNotification();
+                notification2.summary = "Summary text: timeout notification";
+                notification2.body = "Body text: timeout 8 seconds";
+                notification2.timeout = 8000;
+                notification2.show();
+            }
         }
+
         Button {
             width: Sizes.dp(500)
             height: Sizes.dp(64)
             text: "Sticky notification"
-            onClicked: notification3.show()
+            onClicked: {
+                var notification3 = ApplicationInterface.createNotification();
+                notification3.summary = "Summary text: sticky notification";
+                notification3.body = "Sticky notification has an implicit timeout of 0, it will persist in the notification center";
+                notification3.sticky = true;
+                notification3.show();
+            }
         }
+
         Button {
             width: Sizes.dp(500)
             height: Sizes.dp(64)
             text: "Long text notification"
-            onClicked: notification4.show()
+            onClicked: {
+                var notification4 = ApplicationInterface.createNotification();
+                notification4.summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
+                notification4.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
+                notification4.show();
+            }
         }
+
+        // simulates battery low event if accessory button is pressed, the UI
+        // jumps directly to navigation app, setting the route to the proposed charging station
+        // if not, a warning notification will be shown and stored in the notification center
         Button {
+            id: appRequestNotiButton
             width: Sizes.dp(500)
             height: Sizes.dp(64)
             text: "Notification w/ App Request"
-            onClicked: notification5.show()
+            property var notification5: ApplicationInterface.createNotification();
+            onClicked: {
+                notification5.summary = qsTr("Battery level is low");
+                notification5.body = qsTr("Start route to nearest charging station?");
+                notification5.timeout = 4000;
+                notification5.actions = [{"actionText": qsTr("Show on Map")}];
+                notification5.show();
+
+            }
+            Connections {
+                target: appRequestNotiButton.notification5
+                onActionTriggered: {
+                    //jump to navigation app
+                    Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
+                    appRequestNotiButton.notification5.actionAccepted = true;
+                }
+                onVisibleChanged: {
+                    if (!appRequestNotiButton.notification5.visible && !appRequestNotiButton.notification5.actionAccepted) {
+                        //if action is not accepted, show warning
+                        // it's sticky, so first hide it to be able to show it again
+                        var notification6 = ApplicationInterface.createNotification();
+                        notification6.summary = qsTr("Warning: Battery level is low");
+                        notification6.body = qsTr("Please consider charging it in the next available station");
+                        notification6.sticky = true;
+                        notification6.show();
+                    }
+                    appRequestNotiButton.notification5.actionAccepted = false;
+                }
+            }
         }
     }
 }

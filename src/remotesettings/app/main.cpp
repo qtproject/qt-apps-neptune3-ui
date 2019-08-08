@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -33,11 +33,17 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDir>
+#include <QtIviCore/QtIviCoreVersion>
 #include "client.h"
+
+// code to transform a macro into a string literal
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationVersion(STR(NEPTUNE_COMPANION_APP_VERSION));
     QGuiApplication app(argc, argv);
 
     Client client;
@@ -45,6 +51,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports_shared/"));
     engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
+    engine.rootContext()->setContextProperty("neptuneGitRevision", STR(NEPTUNE_GIT_REVISION));
+    engine.rootContext()->setContextProperty("neptuneGitCommiterDate", STR(NEPTUNE_REVISION_DATE));
+    engine.rootContext()->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

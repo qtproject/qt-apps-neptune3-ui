@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,7 +38,7 @@ SafeWindow::SafeWindow(const QSafeSize &size, const QSafeSize &frameSize, QWindo
 {
     resize(size.width(), size.height());
 
-    QSettings settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"));
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     m_transparent = settings.value(QStringLiteral("gui/transparent"), true).toBool();
     //to run on EGLFS on NUC set transparent to false
     //otherwise nothing will be shown
@@ -115,7 +115,7 @@ void SafeWindow::render(QPainter *painter)
 void SafeWindow::moveWindow(quint32 x, quint32 y)
 {
     setWindowState(Qt::WindowNoState);
-    setPosition(x, y);
+    setPosition(static_cast<int>(x), static_cast<int>(y));
     raise();
     requestActivate();
 }

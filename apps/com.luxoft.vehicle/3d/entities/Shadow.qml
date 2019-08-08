@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,18 +38,67 @@ import Qt3D.Input 2.0
 import QtQuick.Scene3D 2.0
 
 import "../../helpers" 1.0
+import "../../3d/materials" 1.0
 
 Entity {
-    components: [
+    CookTorranceMaterial {
+        id: shadowMaterial
+        albedo: "black"
+        metalness: 0.0
+        roughness: 1
+        alpha: 0.1
+    }
+
+    CookTorranceMaterial {
+        id: shadowMaterial2
+        albedo: "black"
+        metalness: 0.0
+        roughness: 1
+        alpha: 0.2
+    }
+
+    CookTorranceMaterial {
+        id: shadowMaterial3
+        albedo: "black"
+        metalness: 0.0
+        roughness: 1
+        alpha: 0.3
+    }
+
+    Mesh {
+        id: shadowMesh
+        source: Paths.getModelPath("shadow")
+    }
+
+    components: [shadowMesh, shadowMaterial ]
+
+    Entity {
         Mesh {
+            id: shadowMesh2
             source: Paths.getModelPath("shadow")
-        },
-        DiffuseMapMaterial {
-            diffuse: Texture2D {
-                TextureImage {
-                    source: Paths.getImagePath("shadow.png")
-                }
-            }
         }
-    ]
+
+        Transform {
+            id: transform
+            scale: 0.97
+            translation: Qt.vector3d(0, 0.01, 0)
+        }
+
+        components: [shadowMesh2, shadowMaterial2, transform]
+
+        Entity {
+            Mesh {
+                id: shadowMesh3
+                source: Paths.getModelPath("shadow")
+            }
+
+            Transform {
+                id: transform2
+                scale: 0.97
+                translation: Qt.vector3d(0, 0.01, 0)
+            }
+
+            components: [shadowMesh3, shadowMaterial3, transform2]
+        }
+    }
 }

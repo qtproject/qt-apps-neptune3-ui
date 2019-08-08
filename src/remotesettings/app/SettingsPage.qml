@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -41,105 +41,69 @@ Flickable {
 
     ScrollIndicator.vertical: ScrollIndicator { }
 
-    GridLayout {
+    ColumnLayout {
         id: baseLayout
-        columns: 2
         enabled: uiSettings.isInitialized && client.connected
-        anchors.centerIn: parent
+        spacing: 20
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        // Language Field
         Label {
-            text: qsTr("Language:")
-        }
-        ComboBox {
-            id: languageComboBox
-            model: uiSettings.languages
-            currentIndex: uiSettings.languages.indexOf(uiSettings.language)
-            onActivated: uiSettings.language = currentText
+            text: qsTr("UI Settings:")
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
         }
 
-        // 24h format Field
-        Label {
-            text: qsTr("24h time format:")
-        }
-        CheckBox {
-            checked: uiSettings.twentyFourHourTimeFormat
-            onToggled: uiSettings.twentyFourHourTimeFormat = checked
-        }
+        GridLayout {
+            columns: 2
 
-        // right hand drive mode
-        Label {
-            text: qsTr("Right-to-left mode:")
-        }
-        CheckBox {
-            checked: uiSettings.rtlMode
-            onToggled: uiSettings.rtlMode = checked
-        }
+            // Language Field
+            Label {
+                text: qsTr("Language:")
+            }
+            ComboBox {
+                id: languageComboBox
+                model: uiSettings.languages
+                currentIndex: uiSettings.languages.indexOf(uiSettings.language)
+                onActivated: uiSettings.language = currentText
+            }
 
-        // Volume Field
-        Label {
-            text: qsTr("Volume:")
-        }
-        Slider {
-            id: volumeSlider
-            value: uiSettings.volume
-            from: 0.0
-            to: 1.0
-            onMoved: uiSettings.volume = value
-        }
+            // 24h format Field
+            Label {
+                text: qsTr("24h time format:")
+            }
+            CheckBox {
+                checked: uiSettings.twentyFourHourTimeFormat
+                onToggled: uiSettings.twentyFourHourTimeFormat = checked
+            }
 
-        // Balance Field
-        Label {
-            text: qsTr("Balance:")
-        }
-        Slider {
-            id: balanceSlider
-            value: uiSettings.balance
-            from: 1.0
-            to: -1.0
-            onValueChanged: if (pressed) { uiSettings.balance = value }
-        }
+            // right hand drive mode
+            Label {
+                text: qsTr("Right-to-left mode:")
+            }
+            CheckBox {
+                checked: uiSettings.rtlMode
+                onToggled: uiSettings.rtlMode = checked
+            }
 
-        // Mute Field
-        Label {
-            text: qsTr("Mute:")
-        }
-        CheckBox {
-            id: muteCheckbox
-            checked: uiSettings.muted
-            onClicked: uiSettings.muted = checked
-        }
+            // Theme Field
+            Label {
+                text: qsTr("Theme:")
+            }
 
-        // Theme Field
-        Label {
-            text: qsTr("Theme:")
-        }
+            ComboBox {
+                id: themeComboBox
+                model: [qsTr("Light"), qsTr("Dark")]
+                currentIndex: uiSettings.theme
+                onActivated: uiSettings.theme = currentIndex
+            }
 
-        ComboBox {
-            id: themeComboBox
-            model: [qsTr("Light"), qsTr("Dark")]
-            currentIndex: uiSettings.theme
-            onActivated: uiSettings.theme = currentIndex
-        }
-
-        // Door 1 Field
-        Label {
-            text: qsTr("Door 1:")
-        }
-        CheckBox {
-            id: door1OpenCheckbox
-            checked: uiSettings.door1Open
-            onClicked: uiSettings.door1Open = checked
-        }
-
-        // Door 2 Field
-        Label {
-            text: qsTr("Door 2:")
-        }
-        CheckBox {
-            id: door2OpenCheckbox
-            checked: uiSettings.door2Open
-            onClicked: uiSettings.door2Open = checked
+            Label {
+                text: qsTr("3D Gauges:")
+            }
+            CheckBox {
+                checked: uiSettings.threeDGauges
+                onClicked: uiSettings.threeDGauges = checked
+            }
         }
     }
 }

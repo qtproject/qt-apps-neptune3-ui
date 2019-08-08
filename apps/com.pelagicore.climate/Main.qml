@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -36,12 +36,16 @@ import application.windows 1.0
 import shared.utils 1.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.Style 1.0
+import shared.Sizes 1.0
 
 import "stores" 1.0
 import "views" 1.0
 
 NeptuneWindow {
     id: root
+
+    height: Sizes.dp(Config.bottomBarHeight)
+    width: Sizes.dp(Config.centerConsoleWidth)
 
     Component.onCompleted: {
         setWindowProperty("windowType", "bottombar");
@@ -50,7 +54,14 @@ NeptuneWindow {
     ClimateView {
         anchors.fill: parent
         store: ClimateStore {
+            id: climateStore
             measurementSystem: Qt.locale().measurementSystem
+        }
+    }
+
+    onWindowPropertyChanged: {
+        if (name === "neptuneLanguageLocale") {
+            climateStore.measurementSystem = Qt.locale().measurementSystem
         }
     }
 }

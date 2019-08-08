@@ -1,0 +1,135 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-middleware.html
+   \title Neptune 3 UI - Middleware
+   \brief Describes Neptune 3 UI's middleware implementation.
+
+   Neptune 3 UI uses QtIvi, its autogenerator tools, QtIviVehicleFunctions, and QtIviMedia to
+   implement Middleware APIs in an automotive UI context. There are two such APIs that Neptune 3 UI
+   implements and utilizes: \c RemoteSettings and \c DriveData.
+
+   Neptune 3 UI connects to their corresponding remote services: \c remotesettings-server and the
+   \c drivedata-simulation-server. In this case, a remote service refers to an independent process,
+   possibly running on a different host. For an introduction to QtIvi's middleware services, see
+   \l {Qt IVI Inter-Process Communication Integration}.
+
+   \section1 Why use Middleware
+
+   The apps running within Neptune 3 UI and the System UI share common settings, such as language
+   and night/day mode. The \c remotesettings-server maintains this interface.
+
+   The drivedata-simulation-server provides an interface to the instrument cluster's gauge and
+   telltale values, as well as a simulator. Having these backends as separate networked processes,
+   makes it possible to access common information and functionality in a uniform manner from all of
+   the frontend points: be it built-in apps, the System UI, or a separate application.
+
+   These separate networked processes also make it possible to run the \l{instrument cluster} and
+   the \l{center console display} on separate hosts, while still having smooth and synchronous
+   changes to the language, theme, or UI modes.
+
+   Both of these APIs are further utilized by the \l {Neptune 3 UI Companion App}, that
+   lets the passenger change settings and view vehicle data on a mobile device.
+
+   \section1 Start the Middleware Services
+
+   By default, Neptune 3 UI starts the middleware services automatically. You can also run the
+   \c remotesettings-server or \c drivedata-simulation-server executables respectively, if
+   necessary. The executables are built and installed along with Neptune 3 UI. The servers require
+   a \c server.conf file, which is a shared settings file to set up the connection. This settings
+   file is shipped with Neptune 3 UI and is located in the root directory. The same settings
+   file is also read by the backend plugin instances loaded by built-in apps.
+
+   \section1 Implementation
+
+   The middleware architecture is based on QtIVI and its \l {Qt IVI Autogenerator}{ivigenerator}
+   tool. Neptune 3 UI's built-in apps, the companion app, and System UI all connect to the remote
+   services through auto-generated components. Communication between the middleware services and
+   frontends is achieved with QtRemoteObjects. This is done transparently; you can replace this
+   communication with other messaging mechanisms, without changing the APIs.
+
+   QtIvi-based middleware is described in \c{.qface} files; for each file, the QtIVI autogenerator
+   generates these distinct components: frontend, backend plugin, and a separate service
+   executable.
+
+   In the case of the \c drivedata-simulation-server, the server also contains generated simulation
+   code. These generated components are divided into separate projects.
+
+   Let's take the \c settings-service as an example. The server itself and all the necessary
+   components are located in \c src/remotesettings, where we find the following files or projects:
+
+   \list
+   \li app
+   \li backend
+   \li backend_simulation
+   \li frontend
+   \li qml_plugin
+   \li remotesettings_server
+   \li other files/remotesettings.qface
+   \endlist
+
+   As discussed above, the \b remotesettings.qface file is the interface description that the
+   \c ivigenerator takes as input. The \b frontend is a shared library containing a C++
+   implementation of our middleware and the interface to implement a backend for it. Whether the
+   middleware service is remote or not, is hidden from the code that uses the frontend (opaque).
+   For example, all methods in the frontend's interface are asynchronous. For convenience, the
+   frontend is further wrapped into a \b qml_plugin, so that we can use the functionality straight
+   from the QML code.
+
+   To connect to the actual middleware service, the frontend loads one of the backend plugins,
+   produced by the \b backend and \b backend_simulation projects. The \b plugin compiled by the
+   \b backend project is the one that connects to the remote service, implemented in the
+   \b remotesettings_server project and is considered a production backend.
+
+   The \b remotesettings_server project produces the actual server executable and contains some
+   generated code as well as the manually written business logic for the service.
+
+   The \b backend_simulation project produces an alternative backend plugin that provides a
+   generated simulator.
+
+   The \b app project contains the implementation of the \l {Neptune 3 UI Companion App}.
+
+   Because of the opaque frontend and the interchangeable backend plugins, the service could also
+   be implemented in an entirely different manner. For example, if Neptune 3 UI is run in
+   single-process mode, the remotesettings-server wouldn't have to be remote, but could run
+   in-process instead.
+
+   To modify the simulation values and default data in Neptune 3 UI, you can update the
+   \c simulation.qml and the \c drive-data.yaml files. These files are located in the
+   \c drivedata folder. When you have made the changes you would like, you need to rebuild
+   Neptune 3 UI for these changes to take effect.
+
+   \section2 Related Information
+   \list
+      \li See \l{Qt IVI Inter-Process Communication Integration} and
+         \l {Generate QtRemoteObjects based backends with the Qt IVI Generator} for a more
+         detailed explanation and a walkthrough on generating middleware services.
+      \li See \l{Qt IVI Simulation System} for more info about simulations.
+   \endlist
+
+*/

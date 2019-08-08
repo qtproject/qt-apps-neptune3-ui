@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -38,4 +38,5 @@ Store {
     property bool threeDGauges: false
     property bool navigationMode: false
     property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
+    property bool qt3DStudioAvailable: false
 }

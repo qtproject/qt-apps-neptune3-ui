@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -55,7 +55,7 @@ Store {
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property StatusBarStore statusBarStore: StatusBarStore {
-        isOnline: sysInfo.online
+        isOnline: sysInfo.internetAccess
     }
 
     readonly property VolumeStore volumeStore: VolumeStore {
@@ -65,8 +65,7 @@ Store {
     readonly property var applicationModel: ApplicationModel {
         id: applicationModel
         localeCode: Config.languageLocale
-        autostartApps: settingsStore.autostartApps
-
+        autostartApps: settingsStore.value("autostartApps", settingsStore.defaultAutostartApps)
 
         // Store widget states when the UI is shutting down
         onShuttingDown: {
@@ -86,8 +85,8 @@ Store {
 
             }
         }
-        onAutostartAppsListChanged: { settingsStore.autostartApps = applicationModel.serializeAutostart(); }
-        onAutorecoverAppsListChanged: { settingsStore.autorecoverApps = applicationModel.serializeAutorecover(); }
+        onAutostartAppsListChanged: { settingsStore.setValue("autostartApps", applicationModel.serializeAutostart()); }
+        onAutorecoverAppsListChanged: { settingsStore.setValue("autorecoverApps", applicationModel.serializeAutorecover()); }
         onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
     }
 
@@ -117,8 +116,25 @@ Store {
             });
         }
         onIsInitializedChanged: {
-            if (isInitialized)
+            if (isInitialized) {
                 theme = root.initialTheme;
+
+                if (!language) {
+                    if (uiSettings.languages.includes(Config.languageLocale)) {
+                        uiSettings.setLanguage(Config.languageLocale);
+                    } else {
+                        uiSettings.setLanguage("en_US");
+                    }
+                }
+            }
+        }
+
+        onVolumeChanged: {
+            volumeStore.player.volume = volume * 100;
+        }
+
+        onMutedChanged: {
+            volumeStore.player.muted = muted;
         }
     }
     property int initialTheme
@@ -145,7 +161,7 @@ Store {
 
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
-    signal grabImageRequested(var screenshotCCUrl, var screenshotICUrl)
+    signal grabImageRequested(var screenshotCCPath, var screenshotICPath)
     signal applicationICWindowSwitchCountChanged()
 
     function saveFile(fileUrl, text) {
@@ -165,17 +181,24 @@ Store {
     }
 
     function generateScreenshotAndInfo() {
-        var tempDir = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
-        tempDir = tempDir.substring(tempDir.indexOf('://')+3); // convert from url to filepath
+        var tempDirUrl = StandardPaths.writableLocation(StandardPaths.TempLocation).toString();
+        var tempDirPath = tempDirUrl
+        // since url type doesnt provide all c++ functions we have to handle url ourself
+        if (sysInfo.productName.includes("Win") || sysInfo.productName.includes("win")) {
+            tempDirPath = tempDirPath.substring(tempDirPath.indexOf('://')+4); // skip :///
+        } else {
+            tempDirPath = tempDirPath.substring(tempDirPath.indexOf('://')+3); // skip ://
+        }
+
         const timestamp = new Date().toLocaleString(Qt.locale(),"yyyy-MM-dd-hh-mm-ss");
-        const screenshotCCUrl = tempDir + "/" + timestamp + "_neptune3_CC_screenshot.png";
-        const screenshotICUrl = tempDir + "/" + timestamp + "_neptune3_IC_screenshot.png";
+        const screenshotCCPath = tempDirPath + "/" + timestamp + "_neptune3_CC_screenshot.png";
+        const screenshotICPath = tempDirPath + "/" + timestamp + "_neptune3_IC_screenshot.png";
 
-        root.grabImageRequested(screenshotCCUrl, screenshotICUrl)
+        root.grabImageRequested(screenshotCCPath, screenshotICPath)
 
-        const diagFile = tempDir + "/" + timestamp + "_neptune3_versions.txt";
+        const diagFile = tempDirUrl + "/" + timestamp + "_neptune3_versions.txt";
 
         root.saveFile(diagFile, root.sysInfo.qtDiag);
-        root.triggerNotificationInfo(tempDir);
+        root.triggerNotificationInfo(tempDirPath);
     }
 }

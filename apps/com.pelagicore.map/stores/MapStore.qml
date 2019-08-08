@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtApplicationManager.Application 2.0
 import QtPositioning 5.9
 import QtLocation 5.9
 import Qt.labs.platform 1.0
@@ -48,8 +49,7 @@ QtObject {
     property bool searchViewEnabled: false
     property bool offlineMapsEnabled: false
 
-    property var positionCoordinate: root.offlineMapsEnabled ? QtPositioning.coordinate(48.135771, 11.574052) // Munich
-                                                        : QtPositioning.coordinate(49.5938686, 17.2508706) // Olomouc
+    property var positionCoordinate: QtPositioning.coordinate(48.135771, 11.574052) // Munich
     property var originalPosition: positionCoordinate
     readonly property string defaultLightThemeId: "mapbox://styles/qtauto/cjcm1by3q12dk2sqnquu0gju9"
     readonly property string defaultDarkThemeId: "mapbox://styles/qtauto/cjcm1czb812co2sno1ypmp1r8"
@@ -268,5 +268,37 @@ QtObject {
                 }
             }
         }
+    }
+
+    property Timer notificationTimer: Timer {
+        id: notificationTimer
+        interval: 3000
+        running: false
+        onTriggered: showOfflineMapInfo()
+    }
+
+    function showOfflineNotification() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Offline mode");
+        notification.body = qsTr("Search and navigation are not available in offline mode");
+        notification.sticky = true;
+        notification.show();
+        notificationTimer.start();
+    }
+
+    function showOfflineMapInfo() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Offline map");
+        notification.body = qsTr("Offline Map only available in Light Theme");
+        notification.sticky = true;
+        notification.show();
+    }
+
+    function showOnlineNotification() {
+        var notification = ApplicationInterface.createNotification();
+        notification.summary = qsTr("Online map");
+        notification.body = qsTr("You are now using online map from Mapbox server");
+        notification.sticky = true;
+        notification.show();
     }
 }

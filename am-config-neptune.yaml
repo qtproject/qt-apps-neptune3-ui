@@ -2,13 +2,14 @@ formatVersion: 1
 formatType: am-configuration
 ---
 # basic AM functionality - the builtin apps are in 'apps'.
-# installations will go into the standard /tmp/am hierarchy
+# installations will go into the standard QStandardPath AppLocalDataLocation
+# (e.g. ~/.local/share/Luxoft Sweden AB/Neptune UI) /am hierarchy
 
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
-  installedAppsManifestDir: "/tmp/neptune3-ui/manifests"
-  appImageMountDir: "/tmp/neptune3-ui/image-mounts"
-  database: "/tmp/neptune3-ui/apps.db"
+  installedAppsManifestDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/manifests"
+  appImageMountDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/image-mounts"
+  database: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps.db"
 
 # QML apps will be able to import from modules...
 
@@ -34,6 +35,7 @@ ui:
   mainQml: "${CONFIG_PWD}/Main.qml"
   importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
   windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
+  enableTouchEmulation: yes
 
 systemProperties:
     public:
@@ -48,6 +50,9 @@ systemProperties:
       showSystemAppsInLauncher: no
     private:
       appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+      userName: 't'
+      userPassword: 't'
+      imei: '112163001487801'
       orientation: 'Portrait'
 
 # development setup: no security
@@ -71,7 +76,7 @@ logging:
 
 installationLocations:
 - id: "internal-0"
-  installationPath: "/tmp/neptune3-ui/apps"
-  documentPath: "/tmp/neptune3-ui/docs"
-  mountPoint: "/tmp"
+  installationPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
+  documentPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
+  mountPoint: "${stdpath:AppLocalDataLocation}"
   isDefault: true

@@ -66,6 +66,10 @@
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>不明なアプリ</translation>
+    </message>
 </context>
 <context>
     <name>AboutPerformance</name>
@@ -458,12 +462,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An Internet connection is required</source>
+        <source>No apps found!</source>
+        <translation type="unfinished">アプリが見つかりません！</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No apps found!</source>
-        <translation type="unfinished">アプリが見つかりません！</translation>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -749,6 +761,30 @@
             <numerusform>%n分</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search and navigation are not available in offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline Map only available in Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapView</name>
@@ -810,18 +846,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
@@ -847,6 +871,22 @@
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

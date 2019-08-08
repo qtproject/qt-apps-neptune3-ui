@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -49,7 +49,7 @@ TcpMsgHandler::TcpMsgHandler(StateManager *manager, QObject *parent)
 {
     QObject::connect(&m_heartbeatTimer, &QTimer::timeout, this, &TcpMsgHandler::heartbeatTimeout);
 
-    QSettings settings(QStringLiteral("Pelagicore"), QStringLiteral("QSRCluster"));
+    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     quint16 port = settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt();
 
     runServer(port);

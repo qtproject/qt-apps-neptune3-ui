@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -69,6 +69,7 @@ ListModel {
     signal applicationPopupAdded(var window)
     signal autostartAppsListChanged()
     signal autorecoverAppsListChanged()
+    signal appRemoved(var appInfo);
 
     // Populate the model
     function populate(widgetStates, autostart, autorecover) {
@@ -290,8 +291,10 @@ ListModel {
 
             root.append({"appInfo": appInfo})
 
-            if (appInfo.autostart)
+            if (appInfo.autostart) {
                 appInfo.start();
+                goHome();
+            }
         }
 
         function deserializeWidgetsState(widgetStates)
@@ -472,6 +475,7 @@ ListModel {
             }
 
             root.remove(index);
+            root.appRemoved(appInfo);
         }
 
         onShuttingDownChanged: {

@@ -1,10 +1,9 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -29,26 +28,37 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-#include <QtQml/qqmlextensionplugin.h>
-#include <qqml.h>
+import QtQuick 2.8
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 
-#include "drivedatamodule.h"
 
-QT_BEGIN_NAMESPACE
+Flickable {
+    id: root
+    flickableDirection: Flickable.VerticalFlick
+    contentHeight: baseLayout.height
 
-class DriveDataPlugin : public QQmlExtensionPlugin
-{
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
-public:
-    virtual void registerTypes(const char *uri) override
-    {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("shared.com.pelagicore.drivedata"));
+    ScrollIndicator.vertical: ScrollIndicator { }
 
-        DriveDataModule::registerQmlTypes(uri, 1, 0);
+    ColumnLayout {
+        id: baseLayout
+        enabled: instrumentCluster.isConnected
+        spacing: 20
+        anchors.centerIn: parent
+
+        Label {
+            text: qsTr("Route info:")
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
+        }
+
+        Label {
+            text: qsTr("Route progress: ")
+                  + Math.round(instrumentCluster.navigationProgressPercents * 100.0) + " %"
+        }
+
+        Label {
+            text: qsTr("Route distance: ") + instrumentCluster.navigationRouteDistanceKm + " km"
+        }
     }
-};
-
-QT_END_NAMESPACE
-
-#include "plugin.moc"
+}

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -97,7 +97,7 @@ Entity {
     Entity {
         Mesh {
             id: frontLights
-            source: Paths.getModelPath("front_ights", root.version)
+            source: Paths.getModelPath("front_lights", root.version)
         }
         CookTorranceMaterial {
             id: frontLightsMaterial

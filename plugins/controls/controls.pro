@@ -4,7 +4,7 @@ QT += qml quick
 QT += core-private gui-private qml-private quick-private quickcontrols2-private quicktemplates2-private
 
 uri = controls
-EXTRA_FILES += $$files(*.qml, true)
+EXTRA_FILES += $$files($$PWD/*.qml, true)
 
 load(qmlplugin)
 

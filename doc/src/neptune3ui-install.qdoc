@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -47,19 +47,31 @@
     Center Console display and an Instrument Cluster. It also uses the Qt IVI plugins and its
     \c ivigenerator to generate and access various services. Neptune 3 UI offers a multi-process
     application model using a central System UI and various apps. The System UI provides an
-    application launcher to start and stop apps. Additionally, the
-    \l{Qt Creator Plugin for Qt Application Manager} lets you develop and deploy apps using
-    Neptune 3 UI.
+    application launcher to start and stop apps; it also acts as a full-fledged compositor.
+    Additionally, the \l{Qt Creator Plugin for Qt Application Manager} lets you develop and deploy
+    apps using Neptune 3 UI.
 
-    To run the binary in your Qt installation, locate it in your folder, typically in
-    \c{/home/Qt/<qt-version>/gcc_64/neptune3}. If you use Qt Automotive Suite on an embedded
-    device, then your Neptune 3 UI binary is in \c{/opt/neptune3/}. Launch Neptune 3 UI with the
-    following command in your terminal:
+    To run the binary in your Qt installation, locate it in the default installation folder:
+    \list
+        \li On Linux, it's in \c{/home/<your-user-name>/Qt/<qt-version>/gcc_64/neptune3}
+        \li On macOS, it's in \c{/Users/<your-user-name>/Qt/<qt-version>/clang_64/neptune3}
+        \li On Windows, it's in \c{C:/Qt/<qt-version>/msvc2017_64/neptune3}
+    \endlist
+
+    In case you chose a different folder during installation, locate the binaries in
+    \c{<installation-folder>/Qt/<qt-version>/<compiler>/neptune3>}.
+
+    If you use Qt Automotive Suite on an embedded device, then your Neptune 3 UI binary is in
+    \c{/opt/neptune3/}. Launch Neptune 3 UI with the following command in your terminal:
 
     \badcode
-    ./neptune3-ui -r
+    ./neptune3-ui
     \endcode
 
+
+    \note Some functionality in Neptune 3 UI as well as additional apps can use SSL, particularly
+    to access web services via HTTPS. If you're developing on Qt for Windows, then you need to have
+    OpenSSL installed. For more information, see \l{Qt for Windows - Requirements}.
 
     \section1 Run Neptune 3 UI from Source
 
@@ -97,25 +109,26 @@
     \section2 Dependencies
 
     \list
-        \li \l{Qt Application Manager} 5.12
-        \li \l{Qt IVI} 5.12
+        \li \l{Qt Application Manager} 5.13
+        \li \l{Qt IVI} 5.13
+        \li \l{Qt Safe Renderer} 1.1 (optional)
+        \li \l{Qt 3D Studio} (optional)
     \endlist
 
    \section2 Build and Run
 
    \list 1
-        \li Clone the repositories mentioned in \l{build-from-source}{Install Qt Automotive Suite}.
-        \li Build \l{Qt Application Manager} against Qt 5.12 or higher. For more detailed build
+        \li Clone the repositories mentioned in \l{Install Qt Automotive Suite}.
+        \li Build \l{Qt Application Manager} against Qt 5.13. For more detailed build
             instructions, see \l{Qt Applicaton Manager Installation}.
-        \li Build \l{Qt IVI} against Qt 5.12 or higher. For more detailed build instructions, see
-            \l{Qt IVI}{Qt IVI documentation}.
+        \li Build \l{Qt IVI} against Qt 5.13. For more detailed build instructions, see
+            \l[QtIvi]{Installation}.
         \li Run the following command in a terminal, to build Neptune 3 UI:
             \badcode
             qmake neptune3-ui.pro
             make
             \endcode
-        \li Locate your \c neptune3-ui build directory, typically
-            \c{/home/Qt/<qt-version>/gcc_64/neptune3}, then run the following command:
+        \li Locate your \c neptune3-ui build directory, then run the following command:
             \badcode
             ./neptune3-ui -r
             \endcode
@@ -144,7 +157,7 @@
             run the project.
     \endlist
 
-   \note On Windows, when Neptune 3 UI is built and installed, a \c neptune3-ui_wrapper is
+   \note On Windows, when Neptune 3 UI is built and installed, a \c{neptune3-ui_wrapper.bat} is
    generated to be able to find the required Qt libraries. Run this wrapper instead of the
    executable file.
 

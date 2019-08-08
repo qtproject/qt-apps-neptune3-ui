@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -44,8 +44,6 @@ Window {
     property var hudAppInfo
     property var hudStore
 
-    width: Config.hudWidth
-    height: Config.hudHeight
     color: "black"
     title: "Neptune 3 UI - HUD"
     screen: root.hudStore.hudScreen
@@ -57,6 +55,13 @@ Window {
     Component.onCompleted: {
         // Would be better to use a regular property binding instead. But somehow, it doesn't work.
         visible = true;
+
+        // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
+        // on every language change, which results in resetting the window size to it's initial state
+        // and might overwrite the size given by the OS or the user using the WindowManager
+        // It happens because QQmlEngine::retranslate() refreshes all the engine's bindings
+        width = Config.hudWidth
+        height = Config.hudHeight
     }
 
     Item {

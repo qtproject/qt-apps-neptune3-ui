@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -60,14 +60,14 @@ QtObject {
 
         onGrabImageRequested: {
             centerConsoleWindow.mainCenterConsole.grabToImage(function(result) {
-                var ret = result.saveToFile(screenshotCCUrl);
-                console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
+                var ret = result.saveToFile(screenshotCCPath);
+                console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotCCPath);
             });
 
             if (instrumentClusterWindowLoader.item) {
                 instrumentClusterWindowLoader.item.contentItem.grabToImage(function(result) {
-                    var ret = result.saveToFile(screenshotICUrl);
-                    console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotUrl);
+                    var ret = result.saveToFile(screenshotICPath);
+                    console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotICPath);
                 });
             }
         }

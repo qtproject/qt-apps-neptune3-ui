@@ -66,6 +66,10 @@
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Unknown app</source>
+        <translation>未知的应用程序</translation>
+    </message>
 </context>
 <context>
     <name>AboutMarketing</name>
@@ -465,12 +469,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An Internet connection is required</source>
+        <source>No apps found!</source>
+        <translation type="unfinished">未找到app!</translation>
+    </message>
+    <message>
+        <source>A Network connection is required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No apps found!</source>
-        <translation type="unfinished">未找到app!</translation>
+        <source>Reconnecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -777,6 +789,30 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
             <numerusform>%n分钟</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search and navigation are not available in offline mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Offline Map only available in Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapView</name>
@@ -838,18 +874,6 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>online</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>offline</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Platform</source>
         <translation type="unfinished"></translation>
     </message>
@@ -875,6 +899,22 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, no internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network: %1%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>disconnected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

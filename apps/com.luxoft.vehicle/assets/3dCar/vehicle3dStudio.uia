@@ -2,6 +2,7 @@
 <application xmlns="http://qt.io/qt3dstudio/uia">
     <assets initial="vehicle3dStudio">
         <presentation src="presentations/vehicle3dStudio.uip" id="vehicle3dStudio"/>
+        <dataInput type="Vector3" name="diffuseColor"/>
         <dataInput type="Vector3" name="leftDoorRotation"/>
         <dataInput type="Vector3" name="rightDoorRotation"/>
         <dataInput type="Vector3" name="sunRoofPosition"/>
@@ -13,7 +14,7 @@
         <visual-states>
             <state ref="Initial">
                 <enter>
-                    <goto-slide element="main:Scene" rel="next"/>
+                    <goto-slide rel="next" element="main:Scene"/>
                 </enter>
             </state>
         </visual-states>

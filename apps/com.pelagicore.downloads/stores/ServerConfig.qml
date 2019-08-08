@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -43,39 +43,76 @@ QtObject {
     property string serverReason
     property string cpuArch
     property string serverUrl: ApplicationManager.systemProperties.appStoreServerUrl
+    property string userName: ApplicationManager.systemProperties.userName
+    property string userPassword: ApplicationManager.systemProperties.userPassword
+    readonly property string imei: ApplicationManager.systemProperties.imei
+    property  bool isReconnecting: false
 
     signal loginSuccessful()
 
-    function checkServer() {
-        console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
-        var url = serverUrl + "/hello";
-        var data = {"platform" : "NEPTUNE3", "version" : "1", "architecture": root.cpuArch};
-        JSONBackend.setErrorFunction(function () {
-            serverOnline = false;
-            serverReason = "unknown";
-        })
-        JSONBackend.serverCall(url, data, function(data) {
-            if (data !== 0) {
-                if (data.status === "ok") {
-                    serverOnline = true;
-                    root.login();
-                } else if (data.status === "maintenance") {
-                    serverOnline = false;
-                    serverReason = "maintenance";
-                } else {
-                    console.log(Logging.apps, "Server Call Err: " + data.error);
-                    serverOnline = false;
-                }
-            } else {
-                serverOnline = false;
-                serverReason = "unknown";
+    property var d: QtObject {
+
+        property int attempt: 0
+        property Timer retryTimer: Timer {
+            interval: 2000
+            onTriggered: {
+                d.checkServerPrivate()
             }
-        })
+        }
+
+        function retry() {
+            console.log(Logging.apps, "Neptune-UI::Application Store - Retry Connection");
+            if (attempt < 5) {
+                attempt += 1;
+                retryTimer.start();
+            } else {
+                root.isReconnecting = false;
+            }
+        }
+
+        function checkServerPrivate() {
+            root.isReconnecting = true;
+            console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
+            var url = root.serverUrl + "/hello";
+            var data = {"platform" : "NEPTUNE3", "version" : "1", "architecture": root.cpuArch};
+            JSONBackend.setErrorFunction(function () {
+                root.serverOnline = false;
+                root.serverReason = "unknown";
+                root.d.retry()
+            })
+            JSONBackend.serverCall(url, data, function(data) {
+                if (data !== 0) {
+                    if (data.status === "ok") {
+                        root.d.attempt = 0
+                        root.serverOnline = true;
+                        root.isReconnecting = false;
+                        root.login();
+                    } else if (data.status === "maintenance") {
+                        console.log(Logging.apps, "Server Call: maintenance");
+                        root.serverOnline = false;
+                        root.serverReason = "maintenance";
+                    } else {
+                        console.log(Logging.apps, "Server Call Err: " + data.error);
+                        root.serverOnline = false;
+                        root.d.retry()
+                    }
+                } else {
+                    root.serverOnline = false;
+                    root.serverReason = "unknown";
+                    root.d.retry();
+                }
+            })
+        }
+    }
+
+    function checkServer() {
+        root.d.attempt = 0
+        root.d.checkServerPrivate()
     }
 
     function login() {
         var url = serverUrl + "/login"
-        var data = { "username" : "t", "password" : "t", "imei" : "112163001487801" }
+        var data = { "username" : userName, "password" : userPassword, "imei" : imei }
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
                 if (data.status === "ok") {
@@ -87,6 +124,7 @@ QtObject {
             }
         })
     }
+
     Component.onCompleted: root.checkServer();
 }
 

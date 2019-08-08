@@ -8,6 +8,16 @@ QT_FOR_CONFIG += ivicore
 }
 requires(!no_ivigenerator_available)
 
+use_qsr{
+    !qtHaveModule(qtsaferenderer){
+        log("$$escape_expand(\\n\\n) *** The qtsaferenderer module is not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
+    }
+}
+
+!qtHaveModule(3dstudioruntime2){
+    log("$$escape_expand(\\n\\n)[Warning] The 3dstudioruntime2 optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install Qt 3D Studio or the runtime.$$escape_expand(\\n\\n)")
+}
+
 TEMPLATE = subdirs
 
 include(config.pri)
@@ -50,6 +60,7 @@ OTHER_FILES += $$files($$PWD/*.qmldir, true)
 OTHER_FILES += $$PWD/plugins.yaml.in
 OTHER_FILES += .qmake.conf
 OTHER_FILES += $$files($$PWD/squishtests/*, true)
+OTHER_FILES += $$files($$PWD/qmake-features/*, true)
 PLUGINS_DIR = $$OUT_PWD/qml
 QMAKE_SUBSTITUTES += $$PWD/plugins.yaml.in
 

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -37,7 +37,9 @@
 #include <QTimer>
 #include <QLoggingCategory>
 #include <QUrl>
+#include <QTemporaryDir>
 #include "connectionmonitoring.h"
+
 
 Q_DECLARE_LOGGING_CATEGORY(NeptuneCompanionApp)
 
@@ -51,12 +53,17 @@ class Client : public QObject
 
     static const QString settingsLastUrlsPrefix;
     static const QString settingsLastUrlsItem;
+    static const QString settingsRemoteSettingsPortItem;
+    static const QString settingsDriveDataPortItem;
     static const int numOfUrlsStored;
     static const int timeoutToleranceMS;
     static const int reconnectionIntervalMS;
 
 public:
     static const QString defaultUrl;
+    static const int defaultRemoteSettingsPort;
+    static const int defaultDriveDataPort;
+
 
     explicit Client(QObject *parent = nullptr);
     ~Client();
@@ -87,6 +94,8 @@ private:
     void writeSettings();
     void updateLastUrls(const QString &url);
 
+    int m_remoteSettingsPort;
+    int m_driveDataPort;
     QUrl m_serverUrl;
     QStringList m_lastUrls;
     bool m_connected;
@@ -98,6 +107,8 @@ private:
 
     QTimer m_connectionMonitoringTimer;
     QTimer m_reconnectionTimer;
+    QTemporaryDir m_tmpDir;
+    QString m_configPath;
 };
 
 #endif // CLIENT_H

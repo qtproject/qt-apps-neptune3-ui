@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -46,17 +46,12 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ItemDelegate
     \since 5.11
-    \brief The basic list item component of Neptune 3.
+    \brief The basic list item component in Neptune 3 UI.
 
-    The ListItemBasic provides a basic type of a list item with an indicator as an icon
+    The \c ListItemBasic provides a basic type of list item with an indicator as an icon
     or an image and text with subtext followed by the indicator.
 
-    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
-    Neptune 3 UI.
-
-    \section2 Example Usage
-
-    The following example uses \l{ListItemBasic}:
+    The code snippet below shows how to use \c ListItemBasic:
 
     \qml
     import QtQuick 2.10
@@ -74,6 +69,9 @@ import shared.Sizes 1.0
     }
     \endqml
 
+    For a list of components available in Neptune 3 UI, see
+    \l{Neptune 3 UI Components and Interfaces}.
+
 */
 
 ItemDelegate {
@@ -82,46 +80,44 @@ ItemDelegate {
     /*!
         \qmlproperty string ListItemBasic::subText
 
-        This property holds text in the second line on a list item.
+        This property holds text in the second line of a ListItem.
     */
     property alias subText: subtitle.text
 
     /*!
         \qmlproperty bool ListItemBasic::dividerVisible
 
-        This property defines if there is a divider on a list item. Default value is true.
+        This property specifies if there's a divider on a ListItem. The default value is true.
     */
     property alias dividerVisible: dividerImage.visible
 
     /*!
         \qmlproperty Component ListItemBasic::accessoryDelegateComponent1
 
-        This property holds a component at the right side of list item.
+        This property holds a component on the right side of a ListItem.
     */
     property Component accessoryDelegateComponent1: null
 
     /*!
         \qmlproperty Component ListItemBasic::accessoryDelegateComponent2
 
-        This property holds a component at the right side of list item next to
-        accessoryDelegateComponent2 if it is defined.
+        This property holds a component on the right side of a ListItem, next to
+        accessoryDelegateComponent2, if it's defined.
     */
     property Component accessoryDelegateComponent2: null
 
     /*!
         \qmlproperty Component ListItemBasic::accessoryBottomDelegateComponent
 
-        This property holds an element at the bottom of the list item.
+        This property holds an element at the bottom of a ListItem.
     */
     property Component accessoryBottomDelegateComponent: null
 
     /*!
         \qmlproperty bool ListItemBasic::rightSpacerUsed
 
-        This property specifies a margin between the right side of list item and the
-        last element at the right side.
-
-        This property's default is false.
+        This property specifies a margin between the right side of a ListItem and the
+        last element on the right side. The default value is false.
     */
     property bool rightSpacerUsed: false
 
@@ -129,19 +125,17 @@ ItemDelegate {
         \qmlproperty bool ListItemBasic::middleSpacerUsed
 
         This property specifies a margin between the left and the right parts of a ListItem.
-
-        This property's default is false.
+        The default value is false.
     */
     property bool middleSpacerUsed: false
 
     /*!
         \qmlproperty bool ListItemBasic::wrapText
 
-        The property defines if the text and subtext are wrapped. In notifications
-        long text is shown on several lines and this property has to be set true.
-        In normal lists the property value is remained false.
+        The property specifies whether the text and subtext are wrapped. In notifications,
+        to display long text on several lines, set this property to \c true. In normal lists,
+        this property can remain at \c false. The default value is \c false.
 
-        This property's default is false.
     */
     property bool wrapText: false
 

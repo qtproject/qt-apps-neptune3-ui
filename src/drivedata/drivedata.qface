@@ -1,6 +1,6 @@
+@config: { qml_type: "shared.com.pelagicore.drivedata" }
 module DriveData 1.0;
 
-@config: {id: "DriveData"}
 interface InstrumentCluster {
     /*
      * In Km/H

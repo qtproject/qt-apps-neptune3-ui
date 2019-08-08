@@ -129,8 +129,8 @@ Item {
             font.family: "Open Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
-            x: 180
-            y: 348
+            x: 185
+            y: 373
         }
 
         SafeText {
@@ -249,7 +249,7 @@ Item {
             font.family: "Open Sans"
             visible: false
             x: 570
-            y: 336
+            y: 362
             horizontalAlignment: Text.AlignHCenter
         }
 
@@ -284,6 +284,7 @@ Item {
                 objectName: "telltalesRightTurn"
                 opacity: blinker && root.rightTurnOn ? 1 : 0
                 source: "../assets/telltales/ic-right-turn.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             SafeImage {
@@ -292,6 +293,7 @@ Item {
                 objectName: "telltalesAbsFault"
                 opacity: root.absFailureOn ? 1 : 0
                 source: "../assets/telltales/ic-abs-fault.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             SafeImage {
@@ -300,6 +302,7 @@ Item {
                 objectName: "telltalesParkingBrake"
                 opacity: root.parkingBrakeOn ? 1 : 0
                 source: "../assets/telltales/ic-parking-brake.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             SafeImage {
@@ -308,6 +311,7 @@ Item {
                 objectName: "telltalesTyrePressure"
                 opacity: root.lowTyrePressureOn ? 1 : 0
                 source: "../assets/telltales/ic-tire-pressure.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             SafeImage {
@@ -316,6 +320,7 @@ Item {
                 objectName: "telltalesBrakeFault"
                 opacity: root.brakeFailureOn ? 1 : 0
                 source: "../assets/telltales/ic-brake-fault.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             SafeImage {
@@ -324,6 +329,7 @@ Item {
                 objectName: "telltalesAirbag"
                 opacity: root.airbagFailureOn ? 1 : 0
                 source: "../assets/telltales/ic-airbag.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     }

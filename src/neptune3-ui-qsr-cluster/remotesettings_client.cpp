@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -31,19 +31,25 @@
 #include "remotesettings_client.h"
 
 
-Q_LOGGING_CATEGORY(RemoteSettings_ClientApp, "RemoteSettings_Client.App")
+Q_LOGGING_CATEGORY(QSRClientApp, "QSRClient.App")
 
 const QString RemoteSettings_Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
 const QString RemoteSettings_Client::settingsLastUrlsItem = QStringLiteral("url");
+const QString RemoteSettings_Client::settingsRemoteSettingsPortItem = QStringLiteral("ports/remoteSettingsPort");
+const QString RemoteSettings_Client::settingsDriveDataPortItem = QStringLiteral("ports/driveDataPort");
 const int RemoteSettings_Client::numOfUrlsStored = 5;
 const int RemoteSettings_Client::timeoutToleranceMS = 1000;
 const int RemoteSettings_Client::reconnectionIntervalMS = 3000;
-const QString RemoteSettings_Client::defaultUrl = QStringLiteral("tcp://127.0.0.1:9999");
+const QString RemoteSettings_Client::defaultUrl = QStringLiteral("tcp://127.0.0.1");
+const int RemoteSettings_Client::defaultRemoteSettingsPort = 9999;
+const int RemoteSettings_Client::defaultDriveDataPort = 9998;
 
 RemoteSettings_Client::RemoteSettings_Client(QObject *parent) : QObject(parent),
+    m_remoteSettingsPort(defaultRemoteSettingsPort),
+    m_driveDataPort(defaultDriveDataPort),
     m_connected(false),
     m_timedOut(false),
-    m_settings(QStringLiteral("Pelagicore"), QStringLiteral("NeptuneCompanionApp"))
+    m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"))
 {
     setStatus(tr("Not connected"));
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &RemoteSettings_Client::onCMTimeout);
@@ -93,8 +99,19 @@ void RemoteSettings_Client::connectToServer(const QString &serverUrl)
         return;
     }
 
+    if (url.port() > -1) {
+        setStatus(tr("Invalid URL: %1. No port should be defined").arg(url.toString()));
+        return;
+    }
+
     if (url==m_serverUrl && connected())
         return;
+
+    QUrl remoteSettingsUrl(url);
+    QUrl driveDataUrl(url);
+
+    remoteSettingsUrl.setPort(m_remoteSettingsPort);
+    driveDataUrl.setPort(m_driveDataPort);
 
     QString configPath(QStringLiteral("./server.conf"));
     if (qEnvironmentVariableIsSet("SERVER_CONF_PATH")) {
@@ -102,12 +119,14 @@ void RemoteSettings_Client::connectToServer(const QString &serverUrl)
     }
 
     QSettings settings(configPath, QSettings::IniFormat);
-    settings.beginGroup(QStringLiteral("settings"));
-    settings.setValue(QStringLiteral("Registry"), serverUrl);
+    settings.beginGroup(QStringLiteral("remotesettings"));
+    settings.setValue(QStringLiteral("Registry"), remoteSettingsUrl.toString());
+    settings.endGroup();
     settings.sync();
-
-    m_connectionMonitoring.setServiceObject(nullptr);
-    m_connectionMonitoring.startAutoDiscovery();
+    settings.beginGroup(QStringLiteral("drivedata"));
+    settings.setValue(QStringLiteral("Registry"), driveDataUrl.toString());
+    settings.endGroup();
+    settings.sync();
 
     setStatus(tr("Connecting to %1...").arg(url.toString()));
     updateLastUrls(url.toString());
@@ -117,6 +136,9 @@ void RemoteSettings_Client::connectToServer(const QString &serverUrl)
         emit serverUrlChanged(m_serverUrl);
         m_reconnectionTimer.stop();
     }
+
+    m_connectionMonitoring.setServiceObject(nullptr);
+    m_connectionMonitoring.startAutoDiscovery();
 }
 
 void RemoteSettings_Client::updateConnectionStatus()
@@ -134,7 +156,7 @@ void RemoteSettings_Client::updateConnectionStatus()
     } else {
         setStatus(tr("Disconnected"));
         if (m_timedOut) {
-            qCWarning(RemoteSettings_ClientApp) << "Server heartbeat timed out.";
+            qCWarning(QSRClientApp) << "Server heartbeat timed out.";
             m_reconnectionTimer.start(reconnectionIntervalMS);
         }
     }
@@ -166,12 +188,15 @@ void RemoteSettings_Client::setStatus(const QString &status)
     if (status==m_status)
         return;
     m_status=status;
-    qCWarning(RemoteSettings_ClientApp) << "RemoteSettings_Client status: " << status;
+    qCWarning(QSRClientApp) << "RemoteSettings_Client status: " << status;
     emit statusChanged(m_status);
 }
 
 void RemoteSettings_Client::readSettings()
 {
+    m_remoteSettingsPort = m_settings.value(settingsRemoteSettingsPortItem, defaultRemoteSettingsPort).toInt();
+    m_driveDataPort = m_settings.value(settingsDriveDataPortItem, defaultDriveDataPort).toInt();
+
     int size=m_settings.beginReadArray(settingsLastUrlsPrefix);
     for (int i=0; i<size; i++) {
         m_settings.setArrayIndex(i);

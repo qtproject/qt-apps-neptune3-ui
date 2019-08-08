@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -42,18 +42,11 @@ import "../../helpers" 1.0
 Entity {
     id: root
     property string version
-    components: [
+    Entity {
         Mesh {
-            id: seats
+            id: tiresMesh
             source: Paths.getModelPath("seats", root.version)
-        },
-        DiffuseMapMaterial {
-            id: seatsMaterial
-            diffuse: Texture2D {
-                TextureImage {
-                    source: Paths.getImagePath("seats.png")
-                }
-            }
         }
-    ]
+        components: [tiresMesh, rubberMaterial]
+    }
 }

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -117,7 +117,9 @@ ColumnLayout {
             }
 
             MonitorListItem {
-                title: qsTr("Network: %1").arg(sysinfo.online ? qsTr("online") : qsTr("offline"))
+                title: qsTr("Network: %1%2")
+                                .arg(sysinfo.connected ? qsTr("connected") : qsTr("disconnected"))
+                                .arg(sysinfo.connected && !sysinfo.internetAccess ? qsTr(", no internet") : "");
                 subtitle: sysinfo.addressList.join("\n")
             }
 

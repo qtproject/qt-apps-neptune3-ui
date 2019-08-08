@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -38,16 +38,16 @@
 
 /*!
    \externalpage https://doc.qt.io/QtAutomotiveSuite/qtas-install.html
-   \title Installing Qt Automotive Suite
+   \title Install Qt Automotive Suite
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtApplicationManager/
+    \externalpage https://doc.qt.io/QtApplicationManager/
     \title Qt Application Manager
 */
 
 /*!
-   \externalpage http://doc.qt.io/QtApplicationManager/installation.html
+   \externalpage https://doc.qt.io/QtApplicationManager/installation.html
    \title Qt Applicaton Manager Installation
 */
 
@@ -62,9 +62,14 @@
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtIVI/index.html
+    \externalpage https://doc.qt.io/QtIVI/index.html
     \title Qt IVI
 */
+
+/*!
+    \externalpage https://doc.qt.io/QtAutoDeploymentServer/index.html
+    \title Qt Automotive Suite Deployment Server
+ */
 
 /*!
     \externalpage http://doc.qt.io/QtForDeviceCreation/qtee-custom-embedded-linux-image.html
@@ -122,13 +127,23 @@
 */
 
 /*!
+    \externalpage https://doc.qt.io/QtApplicationManager/singlevsmultiprocess.html
+    \title Single-Process vs. Multi-Process Mode
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qtcreator/creator-overview-qtasam.html
+    \title Qt Creator Plugin for Qt Application Manager
+*/
+
+/*!
     \externalpage https://doc.qt.io/qt-5.10/location-plugin-mapboxgl.html
     \title MapBox GL Plugin Documentation
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtIVI/remotebackends.html
-    \title QtIvi Remote Backends
+    \externalpage http://doc.qt.io/QtIVI/ipc-integration.html
+    \title Qt IVI Inter-Process Communication Integration
 */
 
 /*!
@@ -137,13 +152,22 @@
 */
 
 /*!
-    \externalpage https://wiki.qt.io/QtWayland
+    \externalpage https://doc.qt.io/qt-5/qtwaylandcompositor-index.html
     \title Qt Wayland
 */
 
 /*!
     \externalpage https://doc.qt.io/qt-5/qt3d-index.html
     \title Qt 3D
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qt3d-overview.html
+    \title Qt 3D Overview
+*/
+
+/*! \externalpage https://doc.qt.io/qt3dstudio/index.html
+    \title Qt 3D Studio
 */
 
 /*!
@@ -163,5 +187,70 @@
 
 /*!
     \externalpage https://doc.qt.io/QtQmlLive/index.html
-    \title Qt QmlLive
+    \title QmlLive
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/index.html
+    \title Qt Safe Renderer
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/qtsr-installation-guide.html
+    \title Installing Qt Safe Renderer
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/qtsr-functionalities.html#qt-safe-layout-tool
+    \title Qt Safe Layout Tool
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/qtsaferenderer-qmlmodule.html
+    \title Qt Safe Renderer QML plugin
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/qtsaferenderer-telltales-example.html
+    \title Telltales: Rendering Safety-Critical UI
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/qtsr-integrating.html#misra-c-rules-and-exception-handling
+    \title Misra C++ 2008 nor ISO26262 functional safety standards
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/saferenderer-abstractwindow.html
+    \title AbstractWindow
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtSafeRenderer/saferenderer-statemanager.html
+    \title StateManager
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qsettings.html#platform-specific-notes
+    \title QSettings' Platform-Specific Notes
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/android-getting-started.html
+    \title Getting Started with Qt for Android
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qml-qtquick-row.html
+    \title Row
+*/
+
+/*!
+    \externalpage https://doc.qt.io/qt-5/qml-qtquick-column.html
+    \title Column
+*/
+
+/*!
+    \externalpage https://doc.qt.io/QtApplicationManager/manifest.html#
+    \title Manifest Definition
 */

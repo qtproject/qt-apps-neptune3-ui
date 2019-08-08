@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -55,9 +55,9 @@ RowLayout {
         font.weight: Font.Light
         color: "#5e5d5d"
     }
-    // Ideally the suffix should be part of the text of the Label above, but I couldn't make
-    // Qt RichtText parser accept to <font> tags in the same string. Also tried <span style=""> to no avail.
-    // Hence the topMargin hack below
+
+    // Ideally the suffix should be part of the text of the Label above
+    // Qt RichtText parser doesn't handle <font> tags in the same string. Hence, we use additiomal Label
     Label {
         Layout.topMargin: Sizes.dp(15)
         text: {

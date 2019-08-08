@@ -244,14 +244,6 @@ Item {
         }
     ]
 
-    Behavior on speed {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
-    }
-
-    Behavior on speedLimit {
-        NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
-    }
-
     Behavior on cruiseSpeed {
         NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
     }
@@ -300,6 +292,7 @@ Item {
         y: Sizes.dp(342)
         width: Sizes.dp(140)
         height: Sizes.dp(140)
+        visible: root.speedLimit !== 0
         source: Utils.localAsset(root.speed > root.speedLimit ? "speed-limit-badge-red" : "speed-limit-badge")
         Label {
             anchors.centerIn: parent

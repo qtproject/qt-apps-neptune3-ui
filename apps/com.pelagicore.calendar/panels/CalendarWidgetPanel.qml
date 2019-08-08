@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -92,6 +92,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: Sizes.dp(40)
             anchors.right: parent.right
+            anchors.rightMargin: Sizes.dp(40)
 
             Label {
                 id: firstRowOfText

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -44,9 +44,15 @@ ApplicationWindow {
     visible: true
     width: 1280
     height: 800
-    title: qsTr("Settings app")
+    minimumHeight: 720
+    minimumWidth: 400
 
-    function sc(value) {
+    title: qsTr("Neptune Companion App")
+
+    readonly property color accentColor: "#FA9E54"
+    readonly property color disconnectedColor: "red"
+
+    function neptuneScale(value) {
         return value * Screen.pixelDensity;
     }
 
@@ -60,6 +66,21 @@ ApplicationWindow {
 
     InstrumentCluster {
         id: instrumentCluster
+
+        property bool isConnected: false
+
+        onIsInitializedChanged: {
+            isConnected = isInitialized;
+        }
+
+        onErrorChanged: {
+            if (error > 0) {
+                //Any other state then NoError=0
+                isConnected = false;
+            } else {
+                isConnected = isInitialized;
+            }
+        }
     }
 
     ConnectionMonitoring {
@@ -72,9 +93,9 @@ ApplicationWindow {
 
     ConnectionDialog {
         id: connectionDialog
+
         statusText: client.status
         lastUrls: client.lastUrls
-
         x: (parent.width-width) /2
         y: (parent.height-height) /2
 
@@ -108,17 +129,19 @@ ApplicationWindow {
                     connectionDialog.close();
             }
         }
-
     }
 
     header: ToolBar {
         leftPadding: 8
         rightPadding: 8
+
         RowLayout {
             anchors.fill: parent
+
             Label {
                 text: client.status
             }
+
             Item {
                 Layout.fillWidth: true
             }
@@ -130,30 +153,58 @@ ApplicationWindow {
         }
     }
 
-   StackLayout {
-       id: stack
-       anchors.fill: parent
-       anchors.margins: 16
-       SettingsPage {}
-       ClusterPage {}
-       SystemUIPage {}
-   }
+    StackLayout {
+        id: stack
+        anchors.fill: parent
+        anchors.margins: 16
 
-   footer: TabBar {
-       TabButton {
-           text: uiSettings.isInitialized && client.connected ?
-                     qsTr("Settings") : qsTr("Settings (Offline)")
-           onClicked: stack.currentIndex = 0
-       }
-       TabButton {
-           text: instrumentCluster.isInitialized && client.connected ?
-                     qsTr("Cluster") : qsTr("Cluster (Offline)")
-           onClicked: stack.currentIndex = 1
-       }
-       TabButton {
-           text: systemUI.isInitialized && client.connected ?
-                     qsTr("System UI") : qsTr("System UI (Offline)")
-           onClicked: stack.currentIndex = 2
-       }
-   }
+        VehiclePage {}
+        MediaPage {}
+        MapsPage {}
+        SettingsPage {}
+        DevelopmentPage {}
+    }
+
+    footer: TabBar {
+        TabButton {
+            icon.source: "qrc:/assets/vehicle.png"
+            text: qsTr("Vehicle")
+            icon.color: uiSettings.isInitialized && client.connected ? root.accentColor : root.disconnectedColor
+            display: AbstractButton.TextUnderIcon
+            font.capitalization: Font.MixedCase
+            onClicked: stack.currentIndex = 0
+        }
+        TabButton {
+            icon.source: "qrc:/assets/media.png"
+            text: qsTr("Media")
+            icon.color: uiSettings.isInitialized && client.connected ? root.accentColor : root.disconnectedColor
+            display: AbstractButton.TextUnderIcon
+            font.capitalization: Font.MixedCase
+            onClicked: stack.currentIndex = 1
+        }
+        TabButton {
+            icon.source: "qrc:/assets/maps.png"
+            text: qsTr("Maps")
+            icon.color: instrumentCluster.isConnected ? root.accentColor : root.disconnectedColor
+            display: AbstractButton.TextUnderIcon
+            font.capitalization: Font.MixedCase
+            onClicked: stack.currentIndex = 2
+        }
+        TabButton {
+            icon.source: "qrc:/assets/settings.png"
+            text: qsTr("Settings")
+            icon.color: systemUI.isInitialized && client.connected ? root.accentColor : root.disconnectedColor
+            display: AbstractButton.TextUnderIcon
+            font.capitalization: Font.MixedCase
+            onClicked: stack.currentIndex = 3
+        }
+        TabButton {
+            icon.source: "qrc:/assets/development.png"
+            text: qsTr("Dev")
+            icon.color: systemUI.isInitialized && client.connected ? "green" : root.disconnectedColor
+            display: AbstractButton.TextUnderIcon
+            font.capitalization: Font.MixedCase
+            onClicked: stack.currentIndex = 4
+        }
+    }
 }

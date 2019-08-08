@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -108,6 +108,7 @@ Item {
         id: mask
         visible: false
         anchors.fill: parent
+        mirror: LayoutMirroring.enabled
         border { left: 0; right: 17; top: 17; bottom: 17 }
         horizontalTileMode: BorderImage.Stretch
         verticalTileMode: BorderImage.Stretch

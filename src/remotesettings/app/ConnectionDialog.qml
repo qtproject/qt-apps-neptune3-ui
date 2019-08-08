@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -73,7 +73,7 @@ Dialog {
 
 
             RowLayout {
-                spacing: sc(10)
+                spacing: neptuneScale(10)
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 

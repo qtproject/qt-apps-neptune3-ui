@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -51,7 +51,15 @@ QtObject {
         VehicleView {
             id: vehicleView
             anchors.fill: parent
-            store: VehicleStore {}
+            store: VehicleStore {
+                vehicle3DstudioColor: Style.accentColor
+            }
+        }
+
+        onWindowPropertyChanged: {
+            if (vehicleView.store.vehicle3DstudioColor !== Style.accentColor) {
+                vehicleView.store.vehicle3DstudioColor = Style.accentColor
+            }
         }
 
         InstrumentCluster {

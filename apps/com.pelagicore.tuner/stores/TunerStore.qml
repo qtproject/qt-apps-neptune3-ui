@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -82,54 +82,12 @@ Store {
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
         ListElement {
+            text: "AM/FM Radio"
+            appId: "com.pelagicore.tuner"
+        }
+        ListElement {
             text: "Music"
             appId: "com.pelagicore.music"
-        }
-    }
-
-    property var ipc: QtObject {
-        property var musicApplicationRequestIPC: ApplicationInterfaceExtension {
-            id: musicApplicationRequestIPC
-            name: "neptune.musicapprequests.interface"
-            Component.onCompleted: {
-                if (object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                              "appId": "com.pelagicore.webradio"});
-                }
-                if (object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                              "appId": "com.pelagicore.spotify"});
-                }
-            }
-        }
-
-        property var ipcConx: Connections {
-            target: musicApplicationRequestIPC.object
-
-            onSpotifyInstalledChanged: {
-                if (musicApplicationRequestIPC.object.spotifyInstalled) {
-                    musicSourcesModel.append({"text" : "Spotify",
-                                              "appId": "com.pelagicore.spotify"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Spotify") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
-            onWebradioInstalledChanged: {
-                if (musicApplicationRequestIPC.object.webradioInstalled) {
-                    musicSourcesModel.append({"text" : "Web radio",
-                                              "appId": "com.pelagicore.webradio"});
-                } else {
-                    for (var i = 0; i < musicSourcesModel.count; i++) {
-                        if (musicSourcesModel.get(i).text === "Web radio") {
-                            musicSourcesModel.remove(i, 1);
-                        }
-                    }
-                }
-            }
         }
     }
 

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -69,7 +69,8 @@ Item {
     }
 
     Loader {
-        anchors.top: busyIndicator.bottom
+        anchors.top: busyIndicator.visible ? busyIndicator.bottom : undefined
+        anchors.centerIn: busyIndicator.visible ? undefined : root
         anchors.topMargin: Sizes.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
         sourceComponent: root.store.isOnline ? fetchingLabel : noInternetLabel
@@ -91,12 +92,36 @@ Item {
     Component {
         id: noInternetLabel
 
-        Label {
-            color: Style.contrastColor
-            font.pixelSize: Sizes.fontSizeM
-            horizontalAlignment: Text.AlignHCenter
-            text: qsTr("Cannot Connect to the Server") + "\n" +
-                  qsTr("An Internet connection is required")
+        Column {
+            id: column
+            anchors.centerIn: parent
+            spacing: Sizes.dp(50)
+            Label {
+                color: Style.contrastColor
+                font.pixelSize: Sizes.fontSizeM
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("Cannot Connect to the Server") + "\n" +
+                      qsTr("A Network connection is required")
+            }
+            Label {
+                color: Style.contrastColor
+                font.pixelSize: Sizes.fontSizeM
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("Reconnecting...")
+                visible: store.isReconnecting
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Button {
+                text: qsTr("Retry")
+                implicitHeight: Sizes.dp(70)
+                implicitWidth: Sizes.dp(315)
+                font.pixelSize: Sizes.fontSizeS
+                anchors.horizontalCenter: column.horizontalCenter
+                visible: !store.isReconnecting
+                onClicked: {
+                    store.appStoreConfig.checkServer()
+                }
+            }
         }
     }
 
@@ -149,6 +174,4 @@ Item {
             }
         }
     }
-
-    Component.onCompleted: root.store.appStoreConfig.checkServer();
 }

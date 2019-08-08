@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:FDL-QTAS$
 ** Commercial License Usage
@@ -48,6 +48,7 @@
        \li \l{ListItemProgress}
        \li \l{ListItemSwitch}
        \li \l{ListItemTwoButtons}
+       \li \l{MonitorOverlay}
        \li \l{ScalableBorderImage}
        \li \l{ToolsColumn}
        \li \l{Tracer}
@@ -63,6 +64,16 @@
    \list
        \li \l{DefaultNumberAnimation}
        \li \l{DefaultSmoothedAnimation}
+   \endlist
+
+   Neptune UI effects:
+   \list
+       \li \l{ScalableColorOverlay}
+   \endlist
+
+   Neptune UI QML types:
+   \list
+       \li \l{SystemInfo}
    \endlist
 */
 

@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -43,16 +43,11 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief The list item component of Neptune 3.
+    \brief The list item component in Neptune 3 UI.
 
-    The ListItem provides a type of a list item with one button or text at the right side
+    The \c ListItem provides a type of list item with one button or text on the right side.
 
-    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
-    Neptune 3 UI.
-
-    \section2 Example Usage
-
-    The following example uses \l{ListItem}:
+    The code snippet below shows how to use \c ListItem:
 
     \qml
     import QtQuick 2.10
@@ -72,6 +67,9 @@ import shared.Sizes 1.0
     }
     \endqml
 
+    For a list of components available in Neptune 3 UI, see
+    \l{Neptune 3 UI Components and Interfaces}.
+
 */
 
 ListItemBasic {
@@ -80,21 +78,21 @@ ListItemBasic {
     /*!
         \qmlproperty string ListItem::secondaryText
 
-        This property holds a textual component that is aligned to the right side of ListItem.
+        This property holds a textual component that is aligned to the right of ListItem.
     */
     property string secondaryText: ""
 
     /*!
         \qmlproperty string ListItem::rightToolSymbol
 
-        This property holds the tool icon source that is aligned to the right side of ListItem.
+        This property holds the tool icon source that is aligned to the right of ListItem.
     */
     property string rightToolSymbol: ""
 
     /*!
         \qmlsignal ListItem::rightToolClicked()
 
-        This signal is emitted when right tool is clicked.
+        This signal is emitted when right tool symbol is clicked.
     */
     signal rightToolClicked()
 

@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -30,7 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import DriveData.simulation 1.0
+import shared.com.pelagicore.drivedata.simulation 1.0
 
 Item {
     InstrumentClusterBackend {
@@ -43,18 +43,25 @@ Item {
         }
 
         property Timer timer: Timer {
-            interval: 2000
+            interval: 200
             onTriggered: {
                 if (backend.speed < 130) {
-                    backend.speed = backend.speed + 10;
+                    backend.speed = backend.speed + 1;
                 } else {
                     backend.speed = 0;
                 }
+            }
+            repeat: true
+            running: true
+        }
 
+        property Timer powerTimer: Timer {
+            interval: 2000
+            onTriggered: {
                 if (backend.ePower < 100) {
-                    backend.ePower = backend.ePower + 10;
+                    backend.ePower = 100;
                 } else {
-                    backend.ePower = 0;
+                    backend.ePower = backend.ePower - 5;
                 }
             }
             repeat: true

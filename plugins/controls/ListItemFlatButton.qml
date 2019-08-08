@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -41,18 +41,14 @@ import shared.Sizes 1.0
     \inqmlmodule controls
     \inherits ListItemBasic
     \since 5.11
-    \brief Flat button for list items and lists and notifications.
+    \brief Provides a flat button for list items, lists, and notifications, in Neptune 3 UI.
 
-    ListItemFlatButton provides a type of a list item with a flat button and close button
-    on the right side. The flat button supports text on one line and its width is aligned with
-    text width. The visibility of close button can be defined with closeButtonVisible property.
+    The \c ListItemFlatButton provides a type of list item with both, a FlatButton and a
+    CloseButton on the right side. The FlatButton supports text on one line; its width is
+    aligned with the text width. The CloseButton's visibility can be specified with the
+    \c closeButtonVisible property.
 
-    See \l{Neptune 3 UI Components and Interfaces} to see more available components in
-    Neptune 3 UI.
-
-    \section2 Example Usage
-
-    The following example uses \l{ListItemBasic }:
+    The code snippet below shows how to use \c ListItemFlatButton:
 
     \qml
     import QtQuick 2.10
@@ -77,6 +73,9 @@ import shared.Sizes 1.0
 
     \endqml
 
+    For a list of components available in Neptune 3 UI, see
+    \l{Neptune 3 UI Components and Interfaces}.
+
  */
 
 ListItemBasic {
@@ -85,35 +84,36 @@ ListItemBasic {
     /*!
         \qmlproperty string ListItemBasic::textFlatButton
 
-        This property holds a flat button text.
+        This property holds the text to display on a FlatButton.
     */
     property string textFlatButton: ""
 
     /*!
         \qmlproperty string ListItemBasic::symbolFlatButton
 
-        This property holds a flat button icon path.
+        This property holds the path to a FlatButton's icon.
     */
     property string symbolFlatButton: ""
 
     /*!
         \qmlproperty string ListItemBasic::closeButtonVisible
 
-        This property holds a visibility of close button. The default value is false.
+        This property specifies whether a CloseButton is visible or not.
+        The default value is false.
     */
     property bool closeButtonVisible: false
 
     /*!
         \qmlsignal ListItemBasic::flatButtonClicked()
 
-        The signal is emitted when flat button is clicked
+        This signal is emitted when the FlatButton is clicked.
     */
     signal flatButtonClicked()
 
     /*!
         \qmlsignal ListItemBasic::closeButtonClicked()
 
-        The signal is emitted when close button is clicked
+        This signal is emitted when the CloseButton is clicked.
     */
     signal closeButtonClicked()
 

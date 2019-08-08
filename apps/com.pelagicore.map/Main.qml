@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -49,6 +49,9 @@ QtObject {
     property var mainWindow: ApplicationCCWindow {
         id: mainWindow
 
+        height: Sizes.dp(Config.centerConsoleHeight)
+        width: Sizes.dp(Config.centerConsoleWidth)
+
         // used for copying the offline DB
         readonly property var _mapsHelper: MapsHelper {
             appPath: Qt.resolvedUrl("./")
@@ -82,14 +85,8 @@ QtObject {
             state: mainWindow.neptuneState
             mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
-                offlineMapsEnabled: !sysinfo.online
+                offlineMapsEnabled: !sysinfo.internetAccess
                 currentLocationCoord: positionCoordinate
-            }
-
-            onMapReadyChanged: {
-                if (mapReady && store.offlineMapsEnabled) {
-                    Helper.showOfflineNotification();
-                }
             }
 
             onMaximizeMap: {
@@ -97,7 +94,29 @@ QtObject {
             }
         }
 
-        SystemInfo { id: sysinfo }
+        // need a bit delay to give it a time to fetch the real internet status
+        Timer {
+            id: notificationDelay
+            running: false
+            interval: 5000
+            onTriggered: {
+                if (!sysinfo.internetAccess) {
+                    mainMap.store.showOfflineNotification();
+                }
+            }
+        }
+
+        SystemInfo {
+            id: sysinfo
+            onInternetAccessChanged: {
+                if (!sysinfo.internetAccess) {
+                    mainMap.store.showOfflineNotification();
+                } else {
+                    mainMap.store.showOnlineNotification();
+                }
+            }
+            Component.onCompleted: notificationDelay.start();
+        }
 
         InstrumentCluster { id: clusterSettings }
     }
