@@ -112,8 +112,9 @@ Item {
             font.pixelSize: 40
             font.family: "Open Sans"
             visible: false
-            anchors.horizontalCenter: safeSpeedText.horizontalCenter
-            anchors.bottom: safeSpeedText.top
+            horizontalAlignment: Text.AlignHCenter
+            x: 221
+            y: 288
         }
 
         SafeText {
@@ -129,8 +130,8 @@ Item {
             font.family: "Open Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
-            x: 185
-            y: 373
+            x: 191
+            y: 347
         }
 
         SafeText {
@@ -143,9 +144,9 @@ Item {
             font.family: "Open Sans"
             text: "km/h"
             visible: false
-            anchors.top: safeSpeedText.bottom
-            anchors.horizontalCenter: safeSpeedText.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
+            x: 248
+            y: 446
         }
 
         Row{
@@ -231,8 +232,9 @@ Item {
             font.pixelSize: 40
             font.family: "Open Sans"
             visible: false
-            anchors.bottom: safePowerText.top
-            anchors.horizontalCenter: safePowerText.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            x: 609
+            y: 277
 
         }
 
@@ -248,13 +250,15 @@ Item {
             font.pixelSize: 80
             font.family: "Open Sans"
             visible: false
-            x: 570
-            y: 362
             horizontalAlignment: Text.AlignHCenter
+            x: 576
+            y: 336
+
         }
 
         SafeText {
             objectName: "powerUnitsText"
+            id: powerUnitsText
             width: 100
             height: 45
             color: "white"
@@ -263,9 +267,9 @@ Item {
             font.family: "Open Sans"
             text: "%"
             visible: false
-            anchors.top: safePowerText.bottom
-            anchors.horizontalCenter: safePowerText.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
+            x: 629
+            y: 435
         }
 
         Row {
