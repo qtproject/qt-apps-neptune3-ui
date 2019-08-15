@@ -36,6 +36,7 @@ import QtQuick.Window 2.2
 import shared.com.pelagicore.remotesettings 1.0
 import application.windows 1.0
 
+import shared.utils 1.0
 import shared.Sizes 1.0
 import shared.Style 1.0
 
@@ -45,8 +46,6 @@ import "stores" 1.0
 NeptuneWindow {
     id: root
     visible: true
-    width: Sizes.dp(1920)
-    height: Sizes.dp(720)
     title: qsTr("Instrument Cluster")
 
     Component.onCompleted: {

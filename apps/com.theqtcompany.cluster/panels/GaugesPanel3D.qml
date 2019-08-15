@@ -32,13 +32,13 @@
 import QtQuick 2.9
 import shared.Sizes 1.0
 import shared.Style 1.0
+import shared.utils 1.0
 import QtQuick.Shapes 1.12
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtStudio3D 2.1
 
 import "../helpers" 1.0
-import shared.utils 1.0
 
 
 
@@ -48,6 +48,9 @@ import shared.utils 1.0
 
 Item {
     id: root
+
+    width: Sizes.dp(Config.instrumentClusterWidth)
+    height: width / Config.instrumentClusterUIAspectRatio
 
     //public
     property bool navigating
@@ -63,10 +66,6 @@ Item {
 
     property bool lightThemeVisible: Style.theme === Style.Light
     property bool darkThemeVisible: Style.theme === Style.Dark
-
-
-    width: Sizes.dp(1920)
-    height: Sizes.dp(720)
 
     Component.onCompleted: startDelay.start();
 
