@@ -49,8 +49,18 @@ Item {
     property bool showDevApps: false
     property bool showSystemApps: false
     property var applicationModel
+    property alias backgroundWidth: backgroundArea.width
+    property alias backgroundHeight: backgroundArea.height
 
     readonly property bool _isThereActiveApp: applicationModel && applicationModel.activeAppInfo
+
+    MouseArea {
+        id: backgroundArea
+        width: root.parentWidth
+        height: root.parentHeight
+        onClicked: gridButton.checked = false;
+        enabled: root.open
+    }
 
     ButtonGroup {
         id: buttonGroup
@@ -236,5 +246,4 @@ Item {
     transitions: Transition {
         DefaultNumberAnimation { properties: "anchors.topMargin, anchors.rightMargin, width, opacity, height" }
     }
-
 }

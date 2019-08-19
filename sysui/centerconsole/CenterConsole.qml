@@ -61,6 +61,8 @@ AbstractCenterConsole {
         anchors.leftMargin: Sizes.dp(27)
         icon.name: root.store.volumeStore.volumeIcon
         onClicked: volumePopup.open()
+        enabled: !mainContentArea.item.launcherOpen
+        opacity: enabled ? 1.0 : 0.6
 
         // content item of ToolButton is not scaled correctly in some screen resolutions
         // need to revert this changes once: QTBUG-72569 is fixed.
@@ -83,6 +85,8 @@ AbstractCenterConsole {
         anchors.rightMargin: Sizes.dp(27)
         icon.name: "qt-badge"
         onClicked: about.open()
+        enabled: !mainContentArea.item.launcherOpen
+        opacity: enabled ? 1.0 : 0.6
 
         // content item of ToolButton is not scaled correctly in some screen resolutions
         // need to revert this changes once: QTBUG-72569 is fixed.

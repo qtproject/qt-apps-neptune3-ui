@@ -166,6 +166,8 @@ Item {
         objectName: "launcher"
         anchors.left: parent.left
         anchors.right: parent.right
+        backgroundHeight: root.height
+        backgroundWidth: root.width
         applicationModel: root.applicationModel
         showDevApps: ApplicationManager.systemProperties.devMode
         showSystemApps: ApplicationManager.systemProperties.showSystemAppsInLauncher
