@@ -1,0 +1,97 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Neptune module of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\example neptune3ui/extend-parking-app
+\brief Explains how to extend the Parking App for Neptune 3 UI.
+\ingroup neptune3ui-examples
+\title Extend the Parking App with Intent and Notification
+
+\section1 Introduction
+
+This page explains how to extend the Parking App and integrate it with Intent and Notification.
+Currently, this app shows static data only, and lets you start and stop the parking session
+with minimal animation.
+
+\section1 Integrate Intent from Qt Application Manager
+
+Qt Application Manager provides a possibility for an app to talk to another
+app or to the System UI by sending a signal and expect a return value or any information.
+Let's add a button for emergency call to call the parking authority. Remember that
+in Neptune 3 UI, there is a built-in phone app. Our mission is to send a command to the phone
+app and make the call.
+
+Let's start by adding a new call button:
+
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml call for support button
+
+Once the button is clicked, it will send a "call-support" request to phone app and call
+Neptune Support. As you expect to get a reply message, phone app will send a reply telling
+that the command is received successfully or not.
+
+On the phone app side, in order to receive the intent request, it needs to have an intent handler
+available. Also the "call-support" intent has to be registered in the info.yaml file.
+
+\quotefile ../apps/com.pelagicore.phone/info.yaml
+
+As shown in the above info.yaml file of phone app, the "call-support" is registered. Then you
+need to add the Intent Handler in its Store.
+
+\snippet ../apps/com.pelagicore.phone/stores/PhoneStore.qml parking intent handler
+
+The code above will execute "startCall()" function and call Neptune Support when it receives the
+intent from our parking app. And it will also send a reply telling that the requested action is
+executed. Also put in mind to import QtApplicationManager.Application 2.0 in order to use
+IntentHandler.
+
+\section1 Create a notification
+
+Qt Application Manager provides a way for an app to create a notification that will be sent and
+shown in the System UI. Usually, System UI has a notification center that stores all notifications
+that are created. In Neptune 3 UI, there are two kind of notifications, sticky and non-sticky.
+When a notification is created, it will be shown for few seconds on top of the UI and if that
+notification is sticky, it will be stored in the notification center afterwards. User can then
+decide to keep the notifications or remove each of them.
+
+\image center-stack-notification-center.jpg
+
+In order to create a notification, you need to import QtApplicationManager 2.0. Then you can create
+a Notification object as part of the parking app. Let's imagine that you want to inform the user
+that the parking period will be over after 5 minutes. Hence, you can start to create the Notification
+object with some information as written below:
+
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml create notification
+
+Once the notification object is created, you need to add a condition when the parking period reach a
+situation that it will be expired after 5 minutes. Since currently there are only static data, you
+can create a Timer to simulate the actual behavior.
+
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml add timer
+
+This timer simulates the actual parking behavior when the user press start button. After 10 seconds,
+the timer will be triggered and show the notification. It will also reset the parkingStarted property.
+*/

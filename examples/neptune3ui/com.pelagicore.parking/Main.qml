@@ -54,6 +54,7 @@ import QtQuick 2.8
 import shared.utils 1.0
 import shared.animations 1.0
 import QtQuick.Controls 2.2
+import QtApplicationManager 2.0
 
 //! [implement app 1]
 import application.windows 1.0
@@ -173,6 +174,26 @@ ApplicationCCWindow {
             }
         }
 //! [top content]
+
+//! [add timer]
+        Timer {
+            interval: 10000; running: root.parkingStarted;
+            onTriggered: {
+                   root.parkingStarted = false;
+                   parkingNotification.show();
+            }
+        }
+//! [add timer]
+
+//! [create notification]
+        Notification {
+            id: parkingNotification
+            summary: qsTr("Your parking period is about to end")
+            body: qsTr("Your parking period will be ended in 5 minutes.
+                         Please extend your parking ticket or move your car.")
+            sticky: true
+        }
+//! [create notification]
 
 //! [bottom content]
         Item {
@@ -294,6 +315,35 @@ ApplicationCCWindow {
                     }
                 }
             }
+//! [call for support button]
+            Button {
+                implicitWidth: Sizes.dp(250)
+                implicitHeight: Sizes.dp(70)
+
+                anchors.left: parent.left
+                anchors.leftMargin: Sizes.dp(100)
+                anchors.top: parent.top
+                anchors.topMargin: Sizes.dp(340)
+
+                font.pixelSize: Sizes.fontSizeM
+                text: "Call for support"
+
+                onClicked: sendIntent();
+
+                function sendIntent() {
+                    var appId = "com.pelagicore.phone";
+                    var request = IntentClient.sendIntentRequest("call-support", appId, null);
+                    request.onReplyReceived.connect(function() {
+                        if (request.succeeded) {
+                            var result = request.result
+                            console.log(Logging.apps, "Intent result: " + result.done)
+                        } else {
+                            console.log(Logging.apps, "Intent request failed: " + request.errorMessage)
+                        }
+                    });
+                }
+            }
+//! [call for support button]
         }
 //! [bottom content]
     }
