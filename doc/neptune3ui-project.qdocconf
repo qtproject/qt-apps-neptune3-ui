@@ -1,6 +1,6 @@
 project = Neptune3UI
 version = $QT_VERSION
-url     = http://doc.qt.io/Neptune3UI
+url     = https://doc.qt.io/Neptune3UI
 
 moduleheader = Neptune3UIDoc
 
@@ -17,6 +17,8 @@ sourcedirs += src \
               $$BUILDDIR/../src/drivedata/frontend \
 
 imagedirs += src/images
+exampledirs += ../examples
+examples.fileextensions += *.yaml
 
 depends += qtcore \
            qtquick \

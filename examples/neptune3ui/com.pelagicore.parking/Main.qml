@@ -72,12 +72,10 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         height: root.exposedRect.height
 //! [implement app 1]
+
 //! [top content]
         Image {
             id: topContent
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
             width: parent.width
             height: Sizes.dp(500)
             source: Style.image("app-fullscreen-top-bg", Style.theme)
@@ -297,6 +295,6 @@ ApplicationCCWindow {
                 }
             }
         }
-    //! [bottom content]
+//! [bottom content]
     }
 }

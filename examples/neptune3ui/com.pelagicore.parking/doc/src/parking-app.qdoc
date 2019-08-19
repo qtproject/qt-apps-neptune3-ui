@@ -26,11 +26,11 @@
 ****************************************************************************/
 
 /*!
-\example neptune3ui/parking-app
+\example neptune3ui/com.pelagicore.parking
 \brief Provides step-by-step instructions on how to develop a parking app for Neptune 3 UI.
 \ingroup neptune3ui-examples
 \title Develop a Parking App Step-by-Step
-\image parking-app.jpg
+\image parking-app.png
 
 \section1 Introduction
 
@@ -48,7 +48,7 @@ there are some mandatory imports that we require.
     \li \c{shared.animations} - is necessary for some animations in Neptune 3 UI
 \endlist
 
-\snippet ../../Main.qml implement app 1
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml implement app 1
 
 As its root element, we use \l{ApplicationCCWindow}, because the Parking app is shown in the Center
 Console. On top of the ApplicationCCWindow, there's an Item that holds the content. When the app is
@@ -103,7 +103,7 @@ To return the correct image source, we use \c{Style.image("app-fullscreen-top-bg
 Neptune 3 UI, we support two themes: dark (the default) and light. For each asset we use, we have
 to provide two files to be able to support themes.
 
-\snippet ../../Main.qml top content
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml top content
 
 Then, we add some details when there's no active parking ticket purchased. If there's an active
 ticket available, we display that ticket asset. Based on Neptune 3 UI's design, we need to animate
@@ -125,7 +125,8 @@ The bottom content displays details on the parking ticket, such as parking zones
 as well as the start button to start the parking ticket. We use \l{Row} and \l{Column} component to
 place all the required labels.
 
-\snippet ../../Main.qml bottom content
+
+\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml bottom content
 
 In the code snippet above, the \c{start button} is an interesting part. Since Neptune 3 UI mostly
 uses QtQuickControls 2, we can predefine a default style for all of the buttons. However, in this
@@ -138,9 +139,7 @@ Parking App, we customize our button and use a background that has different col
 When we're ready to run the app, we need to add an \c{info.yaml} manifest file that contains the
 lines below:
 
-\quotefromfile ../../info.yaml
-
-// What does this file do? I can't find one sentence that describes why developers need this file.
+\quotefile ../examples/neptune3ui/com.pelagicore.parking/info.yaml
 
 We need to specify an icon for the Parking App, to display in the App Launcher, together with
 the other apps, once it's installed in the System UI. For more information on \c {info.yaml}, see
@@ -151,16 +150,16 @@ the other apps, once it's installed in the System UI. For more information on \c
 Next, we also need to create a project file, \c{.pro}, that speciifies the Parking App project as
 follows:
 
-\quotefromfile ../../com.pelagicore.parking.pro
+\quotefile ../examples/neptune3ui/com.pelagicore.parking/com.pelagicore.parking.pro
 
-If you use Qt Creator and have the Qt Application Manager plugin installed, your app can be
+If you use Qt Creator and have the \l{Qt Creator Plugin for Qt Application Manager} installed, your app can be
 deployed and run directly in Neptune 3 UI's System UI. To do that, follow these steps:
 
 \list
     \li Open your \c{.pro} file in Qt Creator.
     \li In the \uicontrol Projects view, under \uicontrol Build & Run, select \uicontrol Run.
         Verify that your configuration values match the values shown below:
-        \image images/run-settings.png
+        \image run-settings.png
 \endlist
 
 When the project is prepared, press \uicontrol{Ctrl+R} to run the Parking App in Neptune 3 UI.
