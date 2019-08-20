@@ -127,6 +127,7 @@ Item {
         z: 1
         model: root.store
         onScreenshotRequested: root.store.generateScreenshotAndInfo()
+        voiceAssitantWindow: root.store.applicationModel.voiceAssistantWindow
     }
 
      NeptuneWindowItem {

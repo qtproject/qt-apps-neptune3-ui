@@ -38,6 +38,7 @@ import shared.utils 1.0
 import shared.controls 1.0
 
 import shared.Sizes 1.0
+import system.controls 1.0
 
 Item {
     id: root
@@ -45,6 +46,7 @@ Item {
     property var uiSettings
     property var model
     property Item popupParent
+    property var voiceAssitantWindow
 
     signal screenshotRequested()
 
@@ -52,16 +54,24 @@ Item {
 
     RowLayout {
         anchors.fill: parent
-
         IndicatorTray {
-            Layout.alignment: Qt.AlignLeading
+            Layout.alignment: Qt.AlignLeft
             Layout.fillHeight: true
             model: root.model.statusBarStore.indicators
         }
 
+        Item{
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+
+        NeptuneWindowItem {
+            window: voiceAssitantWindow
+        }
+
         DateAndTime {
             objectName: "dateAndTime"
-            Layout.alignment: Qt.AlignTrailing
+            Layout.alignment: Qt.AlignRight
             Layout.fillHeight: true
             currentDate: root.model.statusBarStore.currentDate
             uiSettings: root.uiSettings

@@ -49,6 +49,9 @@ ListModel {
     // The bottom bar application.
     readonly property var bottomBarAppInfo: d.bottomBarAppInfo
 
+    // The Voice Assistant System UI Window (app window)
+    readonly property var voiceAssistantWindow: d.voiceAssistantWindow
+
     // The HUD application.
     readonly property var hudAppInfo: d.hudAppInfo
 
@@ -214,6 +217,7 @@ ListModel {
         property var instrumentClusterAppInfo: null
         property var bottomBarAppInfo: null
         property var hudAppInfo: null
+        property var voiceAssistantWindow: null
         property bool populating: true
         property ApplicationRequestHandler applicationRequestHandler: ApplicationRequestHandler {
             id: applicationRequestHandler
@@ -260,6 +264,11 @@ ListModel {
         function isInstrumentClusterApp(app)
         {
             return app.categories.indexOf("cluster") >= 0;
+        }
+
+        function isVoiceAssistantApp(app)
+        {
+            return app.id === "com.luxoft.alexa"
         }
 
         function isBottomBarApp(app)
@@ -524,6 +533,11 @@ ListModel {
             if (d.isInstrumentClusterApp(window.application)) {
                 d.instrumentClusterAppInfo.priv.window = window;
             }
+
+            if (d.isVoiceAssistantApp(window.application)
+                    && window.windowProperty("windowType") === "statusbar") {
+                d.voiceAssistantWindow = window;
+            }
         }
 
         onWindowAboutToBeRemoved: {
@@ -542,6 +556,10 @@ ListModel {
                 appInfo.priv.window = null;
             } else if (appInfo.priv.icWindow === window) {
                 appInfo.priv.icWindow = null;
+            }
+
+            if (d.isVoiceAssistantApp(appInfo)) {
+                d.voiceAssistantWindow = null
             }
         }
 

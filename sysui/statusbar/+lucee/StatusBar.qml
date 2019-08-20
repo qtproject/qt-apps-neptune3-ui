@@ -57,6 +57,7 @@ Item {
         originItem: volumeIcon
         Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
     }
+    property var voiceAssitantWindow
 
     signal screenshotRequested()
 
@@ -74,6 +75,10 @@ Item {
             anchors.leftMargin: Sizes.dp(27)
             icon.name: root.model.volumeStore.volumeIcon
             onClicked: volumePopup.open()
+        }
+
+        NeptuneWindowItem {
+            window: voiceAssitantWindow
         }
 
         Item {
