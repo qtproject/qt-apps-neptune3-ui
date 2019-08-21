@@ -32,7 +32,6 @@
 
 import QtQuick 2.10
 import QtGraphicalEffects 1.0
-import QtApplicationManager.SystemUI 2.0
 import shared.animations 1.0
 import home 1.0
 import launcher 1.0
@@ -50,6 +49,8 @@ Item {
     property Item popupParent
     property Item virtualKeyboard
     property bool enableOpacityMask
+    property bool devMode
+    property bool showSystemAppsInLauncher
 
     readonly property real activeAppBottomMargin: {
         var margin = root.homeBottomMargin;
@@ -169,8 +170,8 @@ Item {
         backgroundHeight: root.height
         backgroundWidth: root.width
         applicationModel: root.applicationModel
-        showDevApps: ApplicationManager.systemProperties.devMode
-        showSystemApps: ApplicationManager.systemProperties.showSystemAppsInLauncher
+        showDevApps: root.devMode
+        showSystemApps: root.showSystemAppsInLauncher
         z: 1
     }
 }

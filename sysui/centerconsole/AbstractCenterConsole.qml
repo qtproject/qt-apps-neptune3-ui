@@ -113,6 +113,8 @@ Item {
         Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
         Binding { target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard.item }
         Binding { target: mainContentArea.item; property: "enableOpacityMask"; value: root.store.hardwareVariant !== 'low' }
+        Binding { target: mainContentArea.item; property: "devMode"; value: root.store.devMode }
+        Binding { target: mainContentArea.item; property: "showSystemAppsInLauncher"; value: root.store.showSystemAppsInLauncher }
     }
 
     StatusBar {

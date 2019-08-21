@@ -54,6 +54,10 @@ Store {
     readonly property string hardwareVariant: ApplicationManager.systemProperties.hardwareVariant
     property alias clusterAvailable: clusterStore.clusterAvailable
 
+    readonly property bool devMode: ApplicationManager.systemProperties.devMode
+
+    readonly property bool showSystemAppsInLauncher: ApplicationManager.systemProperties.showSystemAppsInLauncher
+
     readonly property StatusBarStore statusBarStore: StatusBarStore {
         isOnline: sysInfo.internetAccess
     }
