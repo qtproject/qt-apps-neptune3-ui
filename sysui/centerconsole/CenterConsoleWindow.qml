@@ -51,15 +51,20 @@ Window {
     color: "black"
     LayoutMirroring.enabled: root.store.layoutMirroringEnabled
     LayoutMirroring.childrenInherit: root.store.layoutMirroringChildreninherit
-    screen: Qt.application.screens[0]
+    screen: store.centerConsole.centerConsoleScreen
     visible: true
 
     Component.onCompleted: {
         // Don't use bindings for setting up the initial size. Otherwise the binding is revaluated
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
-        root.width = Config.centerConsoleWidth
-        root.height = Config.centerConsoleHeight
+        if (!root.store.centerConsole.runningOnDesktop) {
+            root.width = Config.centerConsoleWidth;
+            root.height = Config.centerConsoleHeight;
+        } else {
+            root.height = root.store.centerConsole.desktopHeight;
+            root.width = root.store.centerConsole.desktopWidth;
+        }
     }
 
     // Load the full UI once a first frame has been drawn with the ligth UI version

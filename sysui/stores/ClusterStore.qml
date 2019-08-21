@@ -34,6 +34,7 @@ import QtQuick 2.8
 import QtApplicationManager.SystemUI 2.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
+import shared.utils 1.0
 
 QtObject {
     id: root
@@ -44,11 +45,31 @@ QtObject {
     property bool clusterAvailable
     property bool invertedCluster: false
     readonly property bool qsrEnabled: ApplicationManager.systemProperties["qsrEnabled"]
-    readonly property var clusterScreen: Qt.application.screens.length > 1 ? Qt.application.screens[1] : Qt.application.screens[0]
+    readonly property var clusterScreen: Qt.application.screens.length > 1
+            ? Qt.application.screens[1] : Qt.application.screens[0]
     readonly property var _clusterAvailableBinding: Binding {
         target: clusterSettings
         when: clusterSettings.isInitialized
         property: "available"
         value: root.clusterAvailable
+    }
+    readonly property bool runningOnDesktop: WindowManager.runningOnDesktop
+    readonly property bool adjustSizesForScreen: {
+        ApplicationManager.systemProperties.adjustSizesForScreen
+    }
+    property int desktopWidth
+    property int desktopHeight
+
+    onClusterScreenChanged: {
+        if (qsrEnabled || !adjustSizesForScreen) {
+            desktopWidth = Config.instrumentClusterWidth;
+            desktopHeight = Config.instrumentClusterHeight;
+        } else {
+            var tempWidth = Math.ceil(clusterScreen.width * 0.9);
+            desktopWidth = tempWidth > Config.instrumentClusterWidth
+                    ? Config.instrumentClusterWidth
+                    : tempWidth;
+            desktopHeight = Math.ceil(desktopWidth / Config.instrumentClusterUIAspectRatio);
+        }
     }
 }

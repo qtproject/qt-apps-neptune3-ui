@@ -54,6 +54,7 @@ systemProperties:
       userPassword: 't'
       imei: '112163001487801'
       orientation: 'Portrait'
+      adjustSizesForScreen: yes
 
 # development setup: no security
 

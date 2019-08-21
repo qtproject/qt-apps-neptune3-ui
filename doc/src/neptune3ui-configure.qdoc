@@ -110,6 +110,7 @@
         private:
         appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
         orientation: 'Portrait'
+        adjustSizesForScreen: yes
 
     # development setup: no security
 
@@ -139,6 +140,10 @@
 
    The \c showSystemAppsInLauncher parameter lets you display or hide system apps such as the
    Cluster, HUD, or Climate apps in the Launcher.
+
+   The \c adjustSizesForScreen parameter is used to modify the size of the Center Console Window
+   and the Instrument Cluster Window. This adjustment is usually necessary when the target platform
+   is a desktop and the fullscreen mode is not in use.
 
    If you'd like to use the \l{Qt Automotive Suite Deployment Server}, set the \c appStoreServerUrl
    parameter to contain your server's base URL together with its port. Currently, the default value
