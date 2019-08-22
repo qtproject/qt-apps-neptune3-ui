@@ -50,6 +50,8 @@ NeptuneWindow {
 
     Component.onCompleted: {
         setWindowProperty("windowType", "instrumentcluster");
+        root.width = Sizes.dp(Config.instrumentClusterWidth)
+        root.height = root.width / Config.instrumentClusterUIAspectRatio
     }
 
     ClusterView {
