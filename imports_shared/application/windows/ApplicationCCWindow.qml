@@ -157,6 +157,11 @@ NeptuneWindow {
         }
     }
 
+    Component.onCompleted: {
+        root.width = Sizes.dp(Config.centerConsoleWidth)
+        root.height = Sizes.dp(Config.centerConsoleHeight)
+    }
+
     MonitorOverlay {
         id: monitorOverlay
         x: root.exposedRect.x
