@@ -36,6 +36,7 @@
 #include <QTimer>
 #include <QLoggingCategory>
 #include <QUrl>
+#include <QTemporaryDir>
 
 #include "connectionmonitoring.h"
 
@@ -104,6 +105,8 @@ private:
 
     QTimer m_connectionMonitoringTimer;
     QTimer m_reconnectionTimer;
+    QTemporaryDir m_tmpDir;
+    QString m_configPath;
 };
 
 #endif // CLIENT_H
