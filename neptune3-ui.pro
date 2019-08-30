@@ -8,10 +8,8 @@ QT_FOR_CONFIG += ivicore
 }
 requires(!no_ivigenerator_available)
 
-use_qsr{
-    !qtHaveModule(qtsaferenderer){
-        log("$$escape_expand(\\n\\n) *** The qtsaferenderer module is not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
-    }
+!qtHaveModule(qtsaferenderer) {
+    log("$$escape_expand(\\n\\n) *** The qtsaferenderer module is not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
 }
 
 !qtHaveModule(3dstudioruntime2){

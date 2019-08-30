@@ -49,17 +49,15 @@ android: {
 
 }
 
-use_qsr{
-    qtHaveModule(qtsaferenderer){
-        #include Qt Safe Renderer part, generate file
-        CONFIG += qtsaferenderer
-        SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
-        SAFE_LAYOUT_FONTS = $$PWD/../../imports_shared/assets/fonts/
-        SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
-        DEFINES += USE_QT_SAFE_RENDERER
+qtHaveModule(qtsaferenderer){
+    #include Qt Safe Renderer part, generate file
+    CONFIG += qtsaferenderer
+    SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
+    SAFE_LAYOUT_FONTS = $$PWD/../../imports_shared/assets/fonts/
+    SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
+    DEFINES += USE_QT_SAFE_RENDERER
 
-        qsr-safelayout.files = $$DESTDIR/qsr-safelayout
-        qsr-safelayout.path = $$INSTALL_PREFIX/neptune3
-        INSTALLS += qsr-safelayout
-    }
+    qsr-safelayout.files = $$DESTDIR/qsr-safelayout
+    qsr-safelayout.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += qsr-safelayout
 }
