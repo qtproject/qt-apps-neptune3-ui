@@ -46,7 +46,7 @@
     {development environments}, build and install Qt Safe Renderer based on the steps described in
     \l{Installing Qt Safe Renderer}.
 
-    Building Neptune 3 UI with Qt Safe Renderer available will do the following:
+    Building Neptune 3 UI with Qt Safe Renderer available does the following:
 
     \list
         \li includes \c neptune3-ui-qsr-cluster to the build tree
