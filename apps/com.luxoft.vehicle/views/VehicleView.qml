@@ -172,14 +172,7 @@ Item {
         onTrunkClicked: root.store.setTrunk()
         onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
 
-        onRuntimeChanged: {
-            if (root.store.runtime3D === runtime) {
-                return;
-            }
-
-            root.store.setRuntime(runtime);
-            // todo: show splash widget with info, and change settings + fix settings that shown to user
-        }
+        onRuntimeChanged: { root.store.setRuntime(runtime); }
 
         onQualityChanged: {
             if (root.store.model3DVersion !== quality) {
@@ -187,5 +180,7 @@ Item {
                 root.store.setModelQuality(quality);
             }
         }
+
+        onShowNotificationAboutChange: store.showNotificationAboutChange()
     }
 }

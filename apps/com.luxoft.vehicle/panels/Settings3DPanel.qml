@@ -37,7 +37,6 @@ import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.utils 1.0
 import shared.animations 1.0
-import application.windows 1.0
 
 import "../helpers" 1.0
 import "../controls" 1.0
@@ -49,13 +48,14 @@ Item {
     property alias qualityModel: lv.model
     property string quality
     property string runtime
+    signal showNotificationAboutChange
     QtObject {
         id: d
         property string currentActiveRuntime
     }
     onRuntimeChanged: {
         if (d.currentActiveRuntime.length == 0 && runtime.length != 0) {
-            d.currentActiveRuntime = runtime
+            d.currentActiveRuntime = runtime;
             if (d.currentActiveRuntime === "qt3d") {
                 qt3DButton.checked = true;
             } else {
@@ -79,7 +79,10 @@ Item {
         SequentialAnimation {
             id: buttonAnimation
             loops: Animation.Infinite
-            onStopped: na1.target.opacity = 1.0
+            onStopped: {
+                na1.targets[0].opacity = 1.0;
+                na1.targets[1].opacity = 1.0;
+            }
 
             NumberAnimation {
                 id: na1
@@ -99,54 +102,13 @@ Item {
             }
         }
 
-        PopupWindow {
-            id: warningPopup
-            width: parent.width * 0.9
-            height: width * 0.7
-
-            Item {
-                anchors.fill: parent
-
-                Label {
-                    anchors.top: parent.top
-                    anchors.topMargin: Sizes.dp(16)
-                    anchors.left: parent.left
-                    anchors.leftMargin: Sizes.dp(40)
-                    text: qsTr("Information")
-                    font.pixelSize: Sizes.fontSizeXXL
-                }
-
-                Image {
-                    id: shadow
-                    anchors.top: parent.top
-                    anchors.topMargin: Sizes.dp(120)
-                    width: parent.width
-                    height: Sizes.dp(sourceSize.height)
-                    source: Style.image("popup-title-shadow")
-                }
-
-                Label {
-                    id: warningText
-                    width: parent.width * 0.9
-                    anchors {
-                        horizontalCenter: parent.horizontalCenter
-                        verticalCenter: parent.verticalCenter
-                        verticalCenterOffset: Sizes.dp(40)
-                    }
-                    text: qsTr("This change will be applied after Vehicle application restart")
-                    font.pixelSize: Sizes.fontSizeL
-                    wrapMode: Label.WordWrap
-                }
-            }
-        }
-
         ColumnLayout {
             id: section1
             visible: qt3DStudioAvailable
             Layout.fillWidth: true
             ButtonGroup {
                 id: buttonGroupRuntimes
-                exclusive: false
+                exclusive: true
                 onClicked: {
                     // send change outside panel
                     if (button.checked) {
@@ -158,26 +120,16 @@ Item {
                     // handle next runtime button
                     if (root.runtime === d.currentActiveRuntime) {
                         buttonAnimation.stop();
-                        qt3DButton.checked = false;
-                        qt3DStudioButton.checked = false;
+                        qt3DButtonText.visible = false;
+                        qt3DStudioButtonText.visible = false;
                     } else {
-                        var target = root.runtime === "qt3d" ? qt3DButton : qt3DStudioButton;
-                        na1.target = target;
-                        na2.target = target;
+                        var targetB = root.runtime === "qt3d" ? qt3DButton : qt3DStudioButton;
+                        var targetT = root.runtime === "qt3d" ? qt3DButtonText : qt3DStudioButtonText;
+                        targetT.visible = true;
+                        na1.targets = [ targetB, targetT ];
+                        na2.targets = [ targetB, targetT ];
                         buttonAnimation.start();
-
-                        var pos = root.mapToItem(root.parent, root.width/2, root.height/2);
-                        warningPopup.originItemX = pos.x;
-                        warningPopup.originItemY = pos.y;
-                        warningPopup.popupY = Math.round(Config.centerConsoleHeight / 4)
-                        warningPopup.visible = true;
-                    }
-
-                    // current runtime should be enabled always
-                    if (d.currentActiveRuntime === "qt3d") {
-                        qt3DButton.checked = true;
-                    } else {
-                        qt3DStudioButton.checked = true;
+                        root.showNotificationAboutChange();
                     }
                 }
             }
@@ -206,6 +158,14 @@ Item {
                     Layout.fillWidth: true
                 }
 
+                Label {
+                    id: qt3DButtonText
+                    visible: false
+                    Layout.alignment: Qt.AlignLeft
+                    font.weight: Font.ExtraLight
+                    text: qsTr("Vehicle App needs to be restarted")
+                }
+
                 RadioButton {
                     id: qt3DButton
                     ButtonGroup.group: buttonGroupRuntimes
@@ -230,6 +190,14 @@ Item {
                 Rectangle {
                     color: "transparent"
                     Layout.fillWidth: true
+                }
+
+                Label {
+                    id: qt3DStudioButtonText
+                    visible: false
+                    Layout.alignment: Qt.AlignLeft
+                    font.weight: Font.ExtraLight
+                    text: qsTr("Vehicle App needs to be restarted")
                 }
 
                 RadioButton {

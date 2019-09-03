@@ -1662,11 +1662,7 @@ UX na cestu</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This change will be applied after Vehicle application restart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Information</source>
+        <source>Vehicle App needs to be restarted</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2127,6 +2123,18 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt3D Runtime is requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt 3D Studio Runtime is requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the Vehicle App to use selected runtime</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

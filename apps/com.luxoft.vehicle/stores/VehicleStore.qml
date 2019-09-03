@@ -34,6 +34,7 @@ import QtQuick 2.8
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 import Qt.labs.settings 1.0
+import QtApplicationManager.Application 2.0
 
 QtObject {
     id: root
@@ -76,6 +77,15 @@ QtObject {
         } else {
             root.runtime3D = runtime;
         }
+    }
+    function showNotificationAboutChange() {
+        var notification = ApplicationInterface.createNotification();
+        notification.body = qsTr("Please restart the Vehicle App to use selected runtime");
+        notification.summary = settings3D.value("runtime3D", "qt3d") === "qt3d"
+                ? qsTr("Qt3D Runtime is requested")
+                : qsTr("Qt 3D Studio Runtime is requested");
+        notification.sticky = true;
+        notification.show();
     }
 
     property real speed: cluster.speed

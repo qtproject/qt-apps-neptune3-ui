@@ -57,6 +57,7 @@ Item {
     signal rightDoorClicked()
     signal trunkClicked()
     signal roofOpenProgressChanged(var value)
+    signal showNotificationAboutChange()
 
     ToolsColumn {
         id: toolsColumn
@@ -92,6 +93,7 @@ Item {
         Settings3DPanel {
             id: vehicle3DSettingsPanel
             objectName: "vehicleSettigns3DPanel"
+            onShowNotificationAboutChange: root.showNotificationAboutChange();
         }
     }
 }
