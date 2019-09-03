@@ -104,10 +104,10 @@ Item {
             interval: 30000
             onTriggered: {
                 // if after 30s qt3d scene doesn't respond even with first frame we try to reload it
-                if (root.currentRuntimeQt3D && !vehicle3DPanelLoader.item.renderStarted) {
-                    car3dPanelLoader.active = false;
-                    car3dPanelLoader.setSource("");
-                    car3dPanelLoader.active = true;
+                if (store.runtime3D === "qt3d" && !vehicle3DPanelLoader.item.renderStarted) {
+                    vehicle3DPanelLoader.active = false;
+                    vehicle3DPanelLoader.setSource("");
+                    vehicle3DPanelLoader.active = true;
                     loadVehiclePanel();
                 }
             }
