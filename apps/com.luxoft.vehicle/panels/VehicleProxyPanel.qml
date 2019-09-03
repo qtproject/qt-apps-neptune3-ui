@@ -50,12 +50,6 @@ Item {
                 : Paths.getImagePath("carPlaceholderCC-light.png")
     }
 
-    FastBlur {
-        anchors.fill: proxyImage
-        source: proxyImage
-        radius: 32
-    }
-
     ProgressBar {
         anchors.bottom: parent.bottom
         implicitWidth: parent.width
