@@ -69,8 +69,7 @@ Store {
 
         // Store widget states when the UI is shutting down
         onShuttingDown: {
-            settingsStore.widgetStates = applicationModel.serializeWidgetsState();
-
+            settingsStore.setValue("widgetStates", applicationModel.serializeWidgetStates());
             if (clusterStore.qsrEnabled) {
                 //not to have direct dependency on QtSafeRenderer
                 var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
@@ -82,7 +81,6 @@ Store {
                     ", root, "sendMessageObject")
 
                 sendMessageObject.sendShuttingDown();
-
             }
         }
         onAutostartAppsListChanged: { settingsStore.setValue("autostartApps", applicationModel.serializeAutostart()); }

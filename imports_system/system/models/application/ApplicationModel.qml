@@ -75,7 +75,7 @@ ListModel {
     function populate(widgetStates, autostart, autorecover) {
         // Configures which applications should be shown as widgets,
         // which, in turn, will cause them to be started.
-        d.deserializeWidgetsState(widgetStates);
+        d.deserializeWidgetStates(widgetStates);
         d.deserializeAutostart(autostart);
         d.deserializeAutorecover(autorecover);
         d.populating = false;
@@ -162,7 +162,7 @@ ListModel {
         return appIds.toString();
     }
 
-    function serializeWidgetsState() {
+    function serializeWidgetStates() {
         var appWidgetIds = [];
         var appWidgetHeights = [];
         var widgetStates = [];
@@ -296,7 +296,7 @@ ListModel {
             }
         }
 
-        function deserializeWidgetsState(widgetStates)
+        function deserializeWidgetStates(widgetStates)
         {
             var apps = widgetStates.split(",")
 

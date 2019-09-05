@@ -80,7 +80,7 @@ Window {
                         Others, which are more complex and thus take more time to load, will be
                         loaded afterwards, once this function is called.
                      */
-            root.store.applicationModel.populate(root.store.settingsStore.widgetStates,
+            root.store.applicationModel.populate(root.store.settingsStore.value("widgetStates", root.store.settingsStore.defaultWidgetStates),
                 root.store.settingsStore.value("autostartApps", root.store.settingsStore.defaultAutostartApps),
                 root.store.settingsStore.value("autorecoverApps", root.store.settingsStore.defaultAutorecoverApps));
             centerConsole.mainContentArea.active = true;
