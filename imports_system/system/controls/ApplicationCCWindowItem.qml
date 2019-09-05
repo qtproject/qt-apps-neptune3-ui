@@ -50,7 +50,7 @@ NeptuneWindowItem {
     property int currentWidth: 0
 
     // State if the main window in the neptune system UI
-    // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows" and "Maximized"
+    // Valid values are: "Widget1Row", "Widget2Rows", "Widget3Rows", "Maximized" and "Minimized"
     // See also: window, widgetHeight
     property string windowState
 

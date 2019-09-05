@@ -46,11 +46,21 @@ Item {
 
     property VehicleStore store
     Timer {
+        id: delayTimer
         interval: 1
         running: true
         onTriggered: {
             store.read3DSettings();
             loadVehiclePanel();
+        }
+    }
+
+    onVisibleChanged: {
+        if (!visible) {
+            vehicle3DPanelLoader.active = false;
+        } else {
+            if (!delayTimer.running && !vehicle3DPanelLoader.active)
+                loadVehiclePanel();
         }
     }
 

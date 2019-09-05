@@ -51,6 +51,7 @@ QtObject {
         VehicleView {
             id: vehicleView
             anchors.fill: parent
+            visible: mainWindow.neptuneState === "Maximized"
             store: VehicleStore {
                 vehicle3DstudioColor: Style.accentColor
             }

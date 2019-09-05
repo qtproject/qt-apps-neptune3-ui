@@ -110,7 +110,7 @@ NeptuneWindow {
     /*!
         \qmlproperty string ApplicationCCWindow::neptuneState
         This property holds the current state of the application. The valid values for neptuneState are
-        (Maximized, Widget1Row, Widget2Rows or Widget3Rows)
+        (Maximized, Minimized, Widget1Row, Widget2Rows or Widget3Rows)
     */
 
     property string neptuneState
@@ -125,6 +125,7 @@ NeptuneWindow {
         property int currentWidth: 0
         property int exposedRectHeight: Math.min(root.currentHeight, root.height - exposedRectBottomMargin - exposedRectTopMargin);
         property int activationCount: 0
+        property var validNeptuneStates: ["Maximized", "Minimized", "Widget1Row", "Widget2Rows", "Widget3Rows"]
     }
 
     function riseWindow() {
@@ -149,7 +150,9 @@ NeptuneWindow {
             root.currentHeight = value;
             break;
         case "neptuneState":
-            root.neptuneState = value;
+            if (d.validNeptuneStates.includes(value)) {
+                root.neptuneState = value;
+            }
             break;
         case "performanceMonitorEnabled":
             monitorOverlay.fpsVisible = value;
