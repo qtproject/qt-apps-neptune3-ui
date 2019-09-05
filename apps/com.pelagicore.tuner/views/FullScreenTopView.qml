@@ -51,6 +51,7 @@ Item {
     property bool topExpanded: false
 
     ToolButton {
+        id: showManualViewButton
         width: contentItem.childrenRect.width + Sizes.dp(45)
         height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.top
@@ -104,6 +105,7 @@ Item {
     }
 
     ToolButton {
+        id: showBrowseViewButton
         width: contentItem.childrenRect.width + Sizes.dp(45)
         height: Sizes.dp(22.5)
         anchors.verticalCenter: parent.bottom
@@ -117,7 +119,15 @@ Item {
             }
         }
         visible: opacity > 0
-
+        onVisibleChanged: {
+            if (visible) {
+                //focus 'browse' button
+                showBrowseViewButton.forceActiveFocus();
+            } else {
+                //focus back to 'manual' button
+                showManualViewButton.forceActiveFocus();
+            }
+        }
         onClicked: { root.topExpanded = false; }
 
         contentItem: Row {

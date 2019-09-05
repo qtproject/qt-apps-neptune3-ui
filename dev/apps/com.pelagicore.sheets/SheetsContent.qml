@@ -53,6 +53,7 @@ Item {
         spacing: Sizes.dp(9)
 
         ToolButton {
+            id: backButton
             anchors.verticalCenter: parent.verticalCenter
             baselineOffset: 0
             icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
@@ -74,28 +75,26 @@ Item {
                 nameFilters: [ "*Panel.qml" ]
             }
 
-            delegate: Item {
+            delegate: ItemDelegate {
                 width: componentListView.width
                 height: Sizes.dp(120)
-
-                Label {
-                    anchors.left: parent.left
-                    anchors.leftMargin: Sizes.dp(90)
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: fileName.substring(0, fileName.length - 9);
-                }
-
-                Image {
-                    width: parent.width
-                    height: 5
-                    anchors.bottom: parent.bottom
-                    source: Style.image("divider")
-                }
-
-                MouseArea{
+                contentItem: Item {
                     anchors.fill: parent
-                    onClicked: stack.push(Qt.resolvedUrl("./components/" + fileName), StackView.PushTransition)
+                    Label {
+                        anchors.left: parent.left
+                        anchors.leftMargin: Sizes.dp(90)
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: fileName.substring(0, fileName.length - 9);
+                    }
+
+                    Image {
+                        width: parent.width
+                        height: 5
+                        anchors.bottom: parent.bottom
+                        source: Style.image("divider")
+                    }
                 }
+                onClicked: { stack.push(Qt.resolvedUrl("./components/" + fileName), StackView.PushTransition); }
             }
         }
     }
@@ -107,6 +106,9 @@ Item {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         initialItem: componentInitialItem
+        onCurrentItemChanged: {
+            backButton.forceActiveFocus();
+        }
     }
 }
 

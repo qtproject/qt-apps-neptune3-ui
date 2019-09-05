@@ -40,20 +40,20 @@ import shared.animations 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-Item {
+ToolButton {
     id: root
-    width: Sizes.dp(160)
-    height: Sizes.dp(100)
+    implicitWidth: Sizes.dp(160)
+    implicitHeight: Sizes.dp(100)
 
-    property alias primaryText: primaryLabel.text
+    transformOrigin: Item.Top
+    scale: pressed ? 0.95 : 1.0
+    Behavior on scale { DefaultSmoothedAnimation {} }
+
     property alias secondaryText: secondaryLabel.text
-    property alias iconSource: img.source
     property alias backgroundColor: background.color
     property alias backgroundOpacity: background.opacity
 
-    signal clicked()
-
-    Rectangle {
+    background: Rectangle {
         id: background
         anchors.fill: parent
         radius: height/2
@@ -61,40 +61,34 @@ Item {
         opacity: 0.06
     }
 
-    MouseArea {
-        id: mouseArea
-        enabled: root.enabled
+    contentItem: Item {
         anchors.fill: parent
-        onReleased: root.clicked()
-    }
+        ColumnLayout {
+            id: column
+            anchors.centerIn: parent
+            visible: root.primaryText
 
-    ColumnLayout {
-        id: column
-        anchors.centerIn: parent
-        visible: root.primaryText
+            Label {
+                id: primaryLabel
+                Layout.alignment: Qt.AlignHCenter
+                font.pixelSize: Sizes.fontSizeL
+                font.weight: Font.Light
+                text: root.text
+            }
 
-        Label {
-            id: primaryLabel
-            Layout.alignment: Qt.AlignHCenter
-            font.pixelSize: Sizes.fontSizeL
-            font.weight: Font.Light
+            Label {
+                id: secondaryLabel
+                Layout.alignment: Qt.AlignHCenter
+                font.pixelSize: Sizes.fontSizeS
+                visible: text
+            }
         }
 
-        Label {
-            id: secondaryLabel
-            Layout.alignment: Qt.AlignHCenter
-            font.pixelSize: Sizes.fontSizeS
-            visible: text
+        Image {
+            id: img
+            anchors.centerIn: parent
+            visible: root.icon.name
+            source: root.icon.name
         }
     }
-
-    Image {
-        id: img
-        anchors.centerIn: parent
-        visible: root.iconSource
-    }
-
-    transformOrigin: Item.Top
-    scale: mouseArea.containsPress ? 0.95 : 1.0
-    Behavior on scale { DefaultSmoothedAnimation {} }
 }

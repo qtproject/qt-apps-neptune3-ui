@@ -36,22 +36,20 @@ import QtGraphicalEffects 1.0
 
 import shared.Sizes 1.0
 
-Item {
+ToolButton {
     id: root
     implicitWidth: Sizes.dp(img.sourceSize.width)
     implicitHeight: Sizes.dp(img.sourceSize.height)
 
     property alias source: img.source
 
-    signal clicked()
-
-    Rectangle {
+    background: Rectangle {
         id: mask
         anchors.fill: parent
         radius: width/2
         visible: false
     }
-    Image {
+    contentItem: Image {
         id: img
         anchors.fill: mask
         fillMode: Image.PreserveAspectCrop
@@ -59,10 +57,5 @@ Item {
         layer.effect: OpacityMask {
             maskSource: mask
         }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: root.clicked()
     }
 }

@@ -113,7 +113,6 @@ Item {
 
         opacity: 1.0
         visible: opacity > 0
-
         orientation: ListView.Horizontal
         interactive: false
         clip: true
@@ -164,6 +163,7 @@ Item {
                 width: ListView.view.width
                 height: Sizes.dp(70)
                 contentItem: Item {
+                    anchors.fill: parent
                     RowLayout {
                         anchors.fill: parent
                         spacing: 0

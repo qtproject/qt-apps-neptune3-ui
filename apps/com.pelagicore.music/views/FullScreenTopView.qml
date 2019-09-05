@@ -105,7 +105,15 @@ Item {
             }
         }
         visible: opacity > 0
-
+        onVisibleChanged: {
+            if (visible) {
+                //focus 'browse' button
+                showNormalBrowseViewButton.forceActiveFocus();
+            } else {
+                //focus back to 'next' button
+                showPlayingQueueButton.forceActiveFocus();
+            }
+        }
         onClicked: { root.topExpanded = false; }
 
         contentItem: Row {

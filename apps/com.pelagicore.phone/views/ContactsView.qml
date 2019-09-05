@@ -57,6 +57,7 @@ ListView {
         height: Sizes.dp(70)
         padding: 0
         contentItem: Item {
+            anchors.fill: parent
             RowLayout {
                 anchors.fill: parent
                 spacing: Sizes.dp(45 * .5)

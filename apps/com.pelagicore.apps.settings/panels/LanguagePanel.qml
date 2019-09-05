@@ -54,49 +54,61 @@ Control {
 
         model: root.model
 
-        delegate: AbstractButton {
+        delegate: RadioDelegate {
             id: languageDelegate
-
             width: ListView.view.width
             height: Sizes.dp(110)
-            onClicked: root.languageRequested(model.language, model.title)
+            checked: (model.language === root.currentLanguage)
 
-            contentItem: Item {
-                RadioButton {
-                    id: radio
-                    objectName: "language_" + model.language
-                    anchors.left: parent.left
-                    checked: model.language === root.currentLanguage
-                    width: Sizes.dp(100)
-                    height: parent.height
+            Cursor { }
 
-                    onToggled: languageDelegate.clicked()
+            onClicked: { root.languageRequested(model.language, model.title); }
+            onToggled: { languageDelegate.clicked(); }
+
+            indicator: Rectangle {
+                implicitWidth: Sizes.dp(30)
+                implicitHeight: Sizes.dp(30)
+                anchors.left: parent.left
+                anchors.leftMargin: Sizes.dp(20)
+                anchors.verticalCenter: parent.verticalCenter
+                radius: width / 2
+                border.width: Sizes.dp(2)
+                border.color: (languageDelegate.checked || languageDelegate.down) ? Style.accentColor : Style.buttonColor
+                color: "transparent"
+
+                Rectangle {
+                    width: Sizes.dp(15)
+                    height: Sizes.dp(15)
+                    x: (parent.width - width) / 2
+                    y: (parent.height - height) / 2
+                    radius: width / 2
+                    color: parent.border.color
+                    visible: languageDelegate.checked || languageDelegate.down
                 }
+            }
 
-                Item {
-                    anchors.left: radio.right
-                    anchors.right: parent.right
-                    height: parent.height
+            contentItem: Column {
+                objectName: "language_" + model.language
+                anchors.left: languageDelegate.indicator.right
+                anchors.leftMargin: languageDelegate.indicator.implicitWidth
+                anchors.right: parent.right
+                anchors.rightMargin: Sizes.dp(20)
+                anchors.verticalCenter: parent.verticalCenter
+                Label {
+                    text: model.title
+                }
+                Label {
+                    text: model.subtitle
+                    font.pixelSize: Sizes.fontSizeS
+                }
+            }
 
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: Sizes.dp(-20)
-                        text: model.title
-                    }
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.verticalCenterOffset: Sizes.dp(20)
-                        text: model.subtitle
-                        font.pixelSize: Sizes.fontSizeS
-                    }
-                }
-                Image {
-                    anchors.bottom: parent.bottom
-                    width: parent.width
-                    source: Style.image("list-divider")
-                    visible: index !== view.count - 1
-                    mirror: root.mirrored
-                }
+            Image {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                source: Style.image("list-divider")
+                visible: index !== view.count - 1
+                mirror: root.mirrored
             }
         }
     }

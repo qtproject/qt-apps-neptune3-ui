@@ -48,20 +48,21 @@ Item {
 
     property ClimateStore store
 
-    MouseArea {
-        id: mouseArea
+    ToolButton {
+        id: climateToolButton
         objectName: "climateAreaMouseArea"
-        anchors.fill: parent
+        implicitWidth: (contentItem.childrenRect.width + Sizes.dp(40))
+        implicitHeight: parent.height
+        anchors.centerIn: parent
+        contentItem: ClimateIndicatorPanel {
+            store: root.store
+        }
         onClicked: {
             climatePopup.store = root.store;
             climatePopup.visible = true;
         }
     }
 
-    ClimateIndicatorPanel {
-        anchors.centerIn: parent
-        store: root.store
-    }
 
     ClimatePopup {
         id: climatePopup

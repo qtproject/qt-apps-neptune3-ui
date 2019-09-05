@@ -42,9 +42,6 @@ import shared.controls 1.0
 import "../controls" 1.0
 
 Item {
-
-    Component.onCompleted: textedit.forceActiveFocus()
-
     opacity: visible ? 1 : 0
     Behavior on opacity { DefaultNumberAnimation { } }
 
@@ -124,73 +121,73 @@ Item {
         rowSpacing: Sizes.dp(10)
         KeypadButton {
             objectName: "padButton_1"
-            primaryText: "1"
+            text: "1"
             secondaryText: " " // to keep the "1" above
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_2"
-            primaryText: "2"
+            text: "2"
             secondaryText: "ABC"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_3"
-            primaryText: "3"
+            text: "3"
             secondaryText: "DEF"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_4"
-            primaryText: "4"
+            text: "4"
             secondaryText: "GHI"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_5"
-            primaryText: "5"
+            text: "5"
             secondaryText: "JKL"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_6"
-            primaryText: "6"
+            text: "6"
             secondaryText: "MNO"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_7"
-            primaryText: "7"
+            text: "7"
             secondaryText: "PQRS"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_8"
-            primaryText: "8"
+            text: "8"
             secondaryText: "TUV"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_9"
-            primaryText: "9"
+            text: "9"
             secondaryText: "WXYZ"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_asterisk"
-            primaryText: "*"
-            onClicked: textedit.text += primaryText
+            text: "*"
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_0"
-            primaryText: "0"
+            text: "0"
             secondaryText: "+"
-            onClicked: textedit.text += primaryText
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             objectName: "padButton_hash"
-            primaryText: "#"
-            onClicked: textedit.text += primaryText
+            text: "#"
+            onClicked: { textedit.text += text; }
         }
         KeypadButton {
             Layout.row: 4
@@ -198,7 +195,7 @@ Item {
             enabled: textedit.text.length > 0
             backgroundColor: "#68C97D" // app specific color
             backgroundOpacity: 1.0
-            iconSource: Style.image("ic-call")
+            icon.name: Style.image("ic-call")
         }
     }
 }
