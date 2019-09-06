@@ -1,0 +1,13 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'com.pelagicore.parking'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Parking'
+  de: 'Parking'
+  cs: 'Parking'
+
+categories: [ 'other' ]
