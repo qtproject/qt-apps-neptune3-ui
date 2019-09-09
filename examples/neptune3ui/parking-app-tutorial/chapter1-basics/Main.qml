@@ -96,8 +96,11 @@ ApplicationCCWindow {
                 source: "assets/ticket_bg.png"
                 anchors.top: parent.top
                 anchors.right: parent.right
+
+                //! [ticket animation]
                 anchors.rightMargin: root.parkingStarted ? 0 : - width * 0.85
                 Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
+                //! [ticket animation]
 
                 Column {
                     anchors.left: parent.left
@@ -174,26 +177,6 @@ ApplicationCCWindow {
             }
         }
 //! [top content]
-
-//! [add timer]
-        Timer {
-            interval: 10000; running: root.parkingStarted;
-            onTriggered: {
-                   root.parkingStarted = false;
-                   parkingNotification.show();
-            }
-        }
-//! [add timer]
-
-//! [create notification]
-        Notification {
-            id: parkingNotification
-            summary: qsTr("Your parking period is about to end")
-            body: qsTr("Your parking period will be ended in 5 minutes.
-                         Please extend your parking ticket or move your car.")
-            sticky: true
-        }
-//! [create notification]
 
 //! [bottom content]
         Item {
@@ -315,35 +298,6 @@ ApplicationCCWindow {
                     }
                 }
             }
-//! [call for support button]
-            Button {
-                implicitWidth: Sizes.dp(250)
-                implicitHeight: Sizes.dp(70)
-
-                anchors.left: parent.left
-                anchors.leftMargin: Sizes.dp(100)
-                anchors.top: parent.top
-                anchors.topMargin: Sizes.dp(340)
-
-                font.pixelSize: Sizes.fontSizeM
-                text: "Call for support"
-
-                onClicked: sendIntent();
-
-                function sendIntent() {
-                    var appId = "com.pelagicore.phone";
-                    var request = IntentClient.sendIntentRequest("call-support", appId, null);
-                    request.onReplyReceived.connect(function() {
-                        if (request.succeeded) {
-                            var result = request.result
-                            console.log(Logging.apps, "Intent result: " + result.done)
-                        } else {
-                            console.log(Logging.apps, "Intent request failed: " + request.errorMessage)
-                        }
-                    });
-                }
-            }
-//! [call for support button]
         }
 //! [bottom content]
     }

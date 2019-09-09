@@ -26,7 +26,7 @@
 ****************************************************************************/
 
 /*!
-\example neptune3ui/extend-parking-app
+\example neptune3ui/parking-app-tutorial/chapter2-extend
 \brief Explains how to extend the Parking App for Neptune 3 UI.
 \ingroup neptune3ui-examples
 \title Extend the Parking App with Intent and Notification
@@ -47,7 +47,7 @@ app and make the call.
 
 Let's start by adding a new call button:
 
-\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml call for support button
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml call for support button
 
 Once the button is clicked, it will send a "call-support" request to phone app and call
 Neptune Support. As you expect to get a reply message, phone app will send a reply telling
@@ -84,13 +84,13 @@ a Notification object as part of the parking app. Let's imagine that you want to
 that the parking period will be over after 5 minutes. Hence, you can start to create the Notification
 object with some information as written below:
 
-\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml create notification
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml create notification
 
 Once the notification object is created, you need to add a condition when the parking period reach a
 situation that it will be expired after 5 minutes. Since currently there are only static data, you
 can create a Timer to simulate the actual behavior.
 
-\snippet ../examples/neptune3ui/com.pelagicore.parking/Main.qml add timer
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml add timer
 
 This timer simulates the actual parking behavior when the user press start button. After 10 seconds,
 the timer will be triggered and show the notification. It will also reset the parkingStarted property.

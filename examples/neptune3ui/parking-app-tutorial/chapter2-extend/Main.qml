@@ -56,7 +56,6 @@ import shared.animations 1.0
 import QtQuick.Controls 2.2
 import QtApplicationManager 2.0
 
-//! [implement app 1]
 import application.windows 1.0
 import shared.Sizes 1.0
 import shared.Style 1.0
@@ -72,15 +71,12 @@ ApplicationCCWindow {
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-//! [implement app 1]
 
-//! [top content]
         Image {
             id: topContent
             width: parent.width
             height: Sizes.dp(500)
             source: Style.image("app-fullscreen-top-bg", Style.theme)
-
 
             Label {
                 text: "No active parking tickets"
@@ -173,7 +169,6 @@ ApplicationCCWindow {
                 }
             }
         }
-//! [top content]
 
 //! [add timer]
         Timer {
@@ -195,7 +190,6 @@ ApplicationCCWindow {
         }
 //! [create notification]
 
-//! [bottom content]
         Item {
             width: parent.width
             height: parent.height - topContent.height
@@ -315,6 +309,7 @@ ApplicationCCWindow {
                     }
                 }
             }
+
 //! [call for support button]
             Button {
                 implicitWidth: Sizes.dp(250)
@@ -344,7 +339,7 @@ ApplicationCCWindow {
                 }
             }
 //! [call for support button]
+
         }
-//! [bottom content]
     }
 }
