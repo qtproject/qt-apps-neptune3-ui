@@ -46,6 +46,11 @@ Item {
     signal clicked()
 
     Rectangle {
+        anchors.fill: parent
+        radius: width / 2
+    }
+
+    Rectangle {
         id: mask
         anchors.fill: parent
         radius: width/2

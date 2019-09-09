@@ -327,7 +327,7 @@ ApplicationCCWindow {
 
                 function sendIntent() {
                     var appId = "com.pelagicore.phone";
-                    var request = IntentClient.sendIntentRequest("call-support", appId, null);
+                    var request = IntentClient.sendIntentRequest("call-support", appId, {});
                     request.onReplyReceived.connect(function() {
                         if (request.succeeded) {
                             var result = request.result

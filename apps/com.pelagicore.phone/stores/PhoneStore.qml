@@ -148,6 +148,10 @@ Store {
                 ListElement { name: "company"; number: "(669) 189-3693" }
             ]
         }
+        ListElement { handle: "neptunesupport"; firstName: "Neptune"; surname: "Support"; favorite: false; phoneNumbers: [
+                ListElement { name: "company"; number: "(0809) 898989" }
+            ]
+        }
     }
 
     property ListModel favoritesModel: ListModel { // faking a "filtered" model ;)
