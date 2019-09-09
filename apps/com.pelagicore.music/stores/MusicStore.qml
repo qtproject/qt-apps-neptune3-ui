@@ -229,7 +229,7 @@ Store {
     function switchSource(source) {
         player.pause()
         if (source === "com.pelagicore.tuner") {
-            var request = IntentClient.sendIntentRequest("activate-app", source, null)
+            var request = IntentClient.sendIntentRequest("activate-app", source, {})
 
             request.onReplyReceived.connect(function() {
                 if (request.succeeded) {

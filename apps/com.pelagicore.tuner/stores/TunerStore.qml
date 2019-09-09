@@ -482,7 +482,7 @@ Store {
     function switchSource(source) {
         root.player.pause()
         if (source === "com.pelagicore.music") {
-            var request = IntentClient.sendIntentRequest("activate-app", source, null)
+            var request = IntentClient.sendIntentRequest("activate-app", source, {})
             request.onReplyReceived.connect(function() {
                 if (request.succeeded) {
                     var result = request.result
