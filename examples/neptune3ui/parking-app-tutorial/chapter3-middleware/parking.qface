@@ -1,0 +1,7 @@
+@config_simulator: { simulationFile: "qrc:/simulation.qml" }
+module Example.Parking 1.0;
+
+interface ParkingInfo {
+    @config_simulator: { default: 42 }
+    readonly int freeLots
+}

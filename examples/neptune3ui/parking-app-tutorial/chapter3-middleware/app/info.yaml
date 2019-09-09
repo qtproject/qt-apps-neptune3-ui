@@ -1,0 +1,16 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'chapter3-middleware'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+runtimeParameters:
+    importPaths: [ 'imports' ]
+    pluginPaths: [ '.' ]
+name:
+  en: 'Parking'
+  de: 'Parking'
+  cs: 'Parking'
+
+categories: [ 'other' ]
