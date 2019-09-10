@@ -1,0 +1,494 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Neptune module of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\example neptune3ui/parking-app-tutorial
+\brief Provides step-by-step instructions on how to develop a parking app for Neptune 3 UI.
+\ingroup neptune3ui-examples
+\title Develop a Parking App
+\image parking-app.png
+
+\section1 Introduction
+
+This tutorial shows you how to build a Parking App step-by-step with some static data to display
+the number of parking lots available in a particular area.
+
+The tutorial is split into a few chapters:
+\list 1
+    \li \l{chapter-1}{Design and implement the basic app}
+    \li \l{chapter-2}{Extend the app and integrate it with Qt Application Manager's intent and notification
+        features}
+    \li \l{chapter-3}{Extend the app with a Middleware API and provide some simulation}
+\endlist
+
+\target chapter-1
+\section1 Chapter1: Design and Implement the App
+
+We start with our \c{Main.qml} file, where we import the modules that we need. Apart from Qt Quick,
+we require some mandatory imports:
+
+\list
+    \li \c{application.windows} - is necessary for the ApplicationCCWindow
+    \li \c{shared.Sizes} - is an attached property that holds some size values for Neptune 3 UI
+    \li \c{shared.animations} - is necessary for some animations in Neptune 3 UI
+\endlist
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter1-basics/Main.qml implement app 1
+
+We use \l{ApplicationCCWindow} as the Parking app's root element, because the app is shown in the
+Center Console. On top of the ApplicationCCWindow, there's an Item that holds the content. When the
+app is launched, we use some dedicated APIs to a reserve a rectangular area in the Center Console.
+
+The \c{exposedRect} property holds the area of the window that is exposed to the user. This is the
+area that is not occupied by other UI elements.
+
+Once the application has reserved this area, let's start working on the UI.
+
+\section2 Set up the UI
+
+There are some properties that you can use from the existing ones attached, as well as Neptune 3 UI
+animations. Among them are:
+
+\table
+    \header
+        \li Property
+        \li Description
+    \row
+        \li Sizes
+        \li \c{Sizes.dp()} is a function to retain the UI pixel density when Neptune 3 UI's windows
+            are being resized. This function converts pixel values from the reference pixel density
+            to the current density. Additionally, \c{Sizes.dp()} applies the current scale factor
+            to the given pixel value, effectively converting it into device pixels (dp). Sometimes,
+            this function can also round up the pixels to the nearest integer, to minimize aliasing
+            artifacts.
+            \note Some font sizes, such as \c fontSizeXXS, \c fontSizeXS, \c fontSizeS,
+            \c fontSizeM, \c fontSizeL, and \c fontSizeXXL, have predefined values based on
+            Neptune 3 UI's design.
+    \row
+        \li Style
+        \li \c{Style} is an attached property that provides values related to the UI style, such as
+            the currently selected theme, colors, and opacity levels.
+    \row
+        \li Animations
+        \li There are a few default animations and smoothed animations that you can use when you
+            need to apply this behavior to the UI. They hold predefined values to keep a uniform
+            animation for any moving objects in Neptune 3 UI.
+\endtable
+
+Typically, Neptune 3 UI applications are divided into two parts: top content and bottom content.
+This is the same design philosophy we use for the Music App and Calendar App. Now, for the
+Parking App:
+\list
+    \li the top content is for the parking ticket
+    \li the bottom content is to display details
+\endlist
+
+\section2 Fill in the Top Content
+
+Since the top content has a background, we use \c Image as its root and set the background source.
+To return the correct image source, we use \c{Style.image("app-fullscreen-top-bg", Style.theme)}.
+\c{Style.image()} is a function that requires an image file name and current selected theme. In
+Neptune 3 UI, we support two themes: dark (the default) and light. For each asset we use, we have
+to provide two files; one for each theme.
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter1-basics/Main.qml top content
+
+Then, we add some details to indicate when there's no active parking ticket purchased. If there's
+an active ticket available, we display that ticket asset. Based on Neptune 3 UI's design, we need
+to animate the ticket, when it becomes active, by moving it from right to left. This is achieved
+via the following lines:
+
+\code
+                anchors.rightMargin: root.parkingStarted ? 0 : - width * 0.85
+                Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
+\endcode
+
+We use the DefaultNumberAnimation{}, which is a predefined animation to support our requirement.
+The \c parkingStarted property is enabled when the parking ticket is active. This property applies the
+ticket margins to the ticket and its behavior, that we also define in that component.
+
+\section2 Fill in the Bottom Content
+
+The bottom content displays details on the parking ticket, such as parking zone, price, location,
+as well as the start button to start the parking ticket. We use \l{Row} and \l{Column} component to
+place all the required labels.
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter1-basics/Main.qml bottom content
+
+In the code snippet above, the \c{start button} is an interesting part. Since Neptune 3 UI mostly
+uses QtQuickControls 2, we can predefine a default style for all of the buttons. However, in this
+Parking App, we customize our button and use a background that has different colors and behavior.
+
+\note To view the types of buttons available, run Neptune 3 UI and start the \b{Sheets App}.
+
+\section2 Add a Manifest File
+
+When we're ready to run the app, we need to add an \c{info.yaml} manifest file that contains the
+lines below:
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter1-basics/info.yaml
+
+We need to specify an icon for the Parking App, to display in the App Launcher, together with the
+other apps, once it's installed in the System UI. For more information on \c {info.yaml}, see
+\l{Neptune 3 UI - App Development} and \l{Manifest Definition}.
+
+\section2 Add a Project File
+
+Next, we also need to create a project file, \c{.pro}, that speciifies the Parking App project as
+follows:
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter1-basics/chapter1-basics.pro
+
+If you use Qt Creator and have the \l{Qt Creator Plugin for Qt Application Manager} installed, you
+can deploy and run your app directly in Neptune 3 UI's System UI. To do that, follow these steps:
+
+\list
+    \li Open your \c{.pro} file in Qt Creator.
+    \li In the \uicontrol Projects view, under \uicontrol{Build & Run}, select \uicontrol Run.
+        Verify that your configuration values match the values shown below:
+        \image run-settings.png
+\endlist
+
+When the project is prepared, press \uicontrol{Ctrl+R} to run the Parking App in Neptune 3 UI.
+
+\note Before you can deploy and run the Parking App, make sure that Neptune 3 UI is running.
+
+\target chapter-2
+\section1 Chapter 2: Extend the Parking App and Integrate with Intent and Notification
+
+In this chapter, we learn how to extend our Parking App and integrate it with Intent and
+Notification. Currently, this app shows static data only, and lets you start and stop the
+parking session with minimal animation.
+
+\section2 Integrate Intent from Qt Application Manager
+
+\l{Qt Application Manager} makes it possible for an app to talk to another app or to the System UI
+by sending a signal and then expecting a return value (information) in response.
+
+Suppose we need to be able to make a call to a fictitious Neptune Support Team that manages the
+Parking Ticket Service. We can add button to make such a call. Remember that in Neptune 3 UI, there
+is a built-in Phone App. We can send a command to the Phone App and make this call.
+
+Let's start by adding a new \uicontrol Call button:
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml call for support button
+
+When this button is clicked, it sends a \c call-support request to the Phone App and calls the
+Neptune Support Team. Since we expect to get a reply message,  Phone App sends a reply indicating
+whether the command was received successfully.
+
+For the Phone App to receive the intent request, it needs to have an intent handler available.
+
+Additionally, this "call-support" intent must be registered in the \c{info.yaml} file.
+
+\quotefile ../apps/com.pelagicore.phone/info.yaml
+
+As shown in the above info.yaml file of phone app, the "call-support" is registered. Then you
+need to add the Intent Handler in its Store.
+
+\snippet ../apps/com.pelagicore.phone/stores/PhoneStore.qml parking intent handler
+
+The code above runs the \c startCall() function and calls the Neptune Support Team when it receives
+the intent from our Parking App. This function also sends a reply indicating whether the requested
+action is done. Also, make sure you import QtApplicationManager.Application 2.0 to use the
+IntentHandler.
+
+\section2 Create a Notification
+
+Qt Application Manager lets apps create notifications to be sent and shown in the System UI.
+Usually, System UI has a notification center that stores all notifications that are created. In
+Neptune 3 UI, there are two kinds of notifications: sticky and non-sticky. When a notification is
+created, it's shown for a few seconds on top of the UI. If that notification is sticky, it's
+stored in the notification center afterwards. The user can then decide to keep these notifications
+or remove each of them.
+
+\image center-stack-notification-center.jpg
+
+To create a notification, first, you need to import QtApplicationManager 2.0. Then, you can create
+a Notification object as part of the Parking App. Suppose you want to inform the user that the
+parking duration ends in 5 minutes. You can create the Notification object with some information,
+as follows:
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml create notification
+
+Once this notification object is created, you need to add a condition for when the parking duration
+expires after 5 minutes. Since we only have static data for now, you can create a Timer to simulate
+this behavior.
+
+\snippet ../examples/neptune3ui/parking-app-tutorial/chapter2-extend/Main.qml add timer
+
+When the user presses the \uicontrol Start button, this timer simulates the parking ticket duration.
+After 10 seconds, the timer is triggered and the notification is shown. It will also reset the
+\c parkingStarted property.
+
+\target chapter-3
+\section1 Chapter 3: Extend the Parking App with Middleware API and Simulation
+
+In the previous chapters we've already gone through the UI and the components that are necessary
+to integrate well with Neptune 3 UI.
+
+In this chapter, we learn how to extend the Parking App with a Middleware API and provide a
+simulation which shows the number of parking lots currently available.
+
+While this chapter does introduce the Middleware integration, how it works, and what needs to be
+done to package it correctly, a full deep dvice is out of scope. For more in-depth details on
+how to develop Middleware APIs, refer to the \l{Qt IVI Generator Tutorial}.
+
+\note This application requires a multi-process environment.
+
+\section2 Define the Middleware API
+
+To define our Middleware API, we use the IVI Generator from the QtIvi module. This generator uses
+an Interface Definition Language (IDL) to generate code, significantly reducing the amount of code
+we need to write.
+
+\section3 QFace
+
+QtIvi uses the QFace IDL to describe what needs to be generated. For this example, we define a
+simple interface, \c ParkingInfo, that provides a \c readonly property called \c freeLots, inside
+a \c Parking module.
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/parking.qface
+
+\section2 Autogeneration
+
+Now that the first version of our IDL file is ready, it's time to autogenerate API from it with
+the \l{IVI Generator} tool. Similar to \l moc, this autogeneration process is integrated into the
+\l qmake Build System and is done at compile time.
+
+In the following \c{.pro} file, we build a C++ library based on our IDL file:
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/frontend/frontend.pro
+
+By adding \c ivigenerator to the \c CONFIG variable, qmake's IVI Generator integration is loaded
+and it expects a QFace IDL file in the \C QFACE_SOURCES variable. The set \c DEFINE makes sure
+that the library exports its symbols, which is necessary for Windows systems.
+
+\section2 Which Files are Autogenerated
+
+The IVI Generator works based on generation templates -- these define what content should be
+generated from a QFace file. If no \c QFACE_FORMAT is defined, then the default template,
+\c frontend is used. For more details on these templates, see \l{Use the Generator}.
+
+This \c frontend template generates:
+
+\list
+    \li a C++ class derived from QIviAbstractFeature for every interface in the QFace file
+    \li one module class that helps to register all interfaces to QML and stores global types
+        and functions
+\endlist
+
+These files are available in your library's build folder, should you wish to inspect the C++ code.
+
+\section2 QML Plugin
+
+In addition to the library that contains our Middleware API, we also need a QML plugin to be able
+to use the API from within QML.
+
+The IVI Generator can help us generate such a plugin with a different generation template. The
+following \c{.pro} file generates a QML plugin that exports the API to QML:
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/imports/imports.pro
+
+We use \c CONFIG to build a plugin, then define the settings for the linker to link against our
+frontend library. Next, we use \c QFACE_FORMAT to choose \c qmlplugin as the generation template.
+Instead of adding \c ivigenerator to the \c CONFIG, this time we use \l{https://doc.qt.io/qt-5/qmake-test-function-reference.html#load-feature} {qmake's load() function} to explicitly load the
+feature. This way, we can use the \c URI variable, that's part of the \c qmlplugin generation
+template. This variable can define a \c DESTDIR by repliacing all dots with slashes.
+
+In addition to the folder structure, the QmlEngine also needs a \c qmldir file which indicates
+what files are part of the plugin, and under which \c URI. For more information, see
+\l{https://doc.qt.io/qt-5/qtqml-modules-qmldir.html}{Module Definition qmldir Files}.
+
+Both -- the \c qmldir file and the \c plugins.qmltypes file -- are autogenerated by the IVI
+Generator and provide information about code-completion; but they need to be placed next to
+the library. To do so, we add these files to a scope similar to an \c INSTALL target, but add it
+to the \c COPIES variable instead. This makes sure that the files are copied when the plugin is
+built.
+
+\section2 QML Integration
+
+After we've generated our Middleware API and the accompanying QML plugin, it's time to integrate
+our new API into the Parking App.
+
+For the QML plugin, the module name in our IDL file is used as the import URI; the default import
+version is \c 1.0. The import statement for our \c main.qml file looks like this:
+
+\quotefromfile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/app/Main.qml
+\skipto import Example
+\printuntil import Example
+
+The QML API, by default, uses the same name as the interface in our IDL file. For more information
+on how to use a custom name or import \c URI, see \l{Use the Generator}.
+
+Our interface can now be instantiated and we set an ID, like with any other QML element:
+
+\quotefromfile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/app/Main.qml
+\skipto ParkingInfo
+\printuntil }
+
+To show the parking lots currently available, we need to create a QML binding using the
+\c freeLots property in our newly added \c ParkingInfo QML element:
+
+\quotefromfile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/app/Main.qml
+\skipto text: parkingInfo
+\printuntil "
+
+\section2 Necessary Adaptations for Packaging
+
+With a normal Qt QML application, these steps would be enough to start the application now and see
+that the number of free lots is \c 0, because it's initialized to the default value. But, because
+we're developing an app for Neptune 3 UI and intend to package it and install it while Neptune 3 UI
+is running, some additional steps are necessary.
+
+\section3 Don't Create Library Symbolic Links
+
+Usually when we build a library, two symbolic links are created to allow for version upgrades
+without the need to recompile other applications. But in an ApplicationManager package, symbolic
+links aren't allowed for security reasons. Consequently, the following qmake \c CONFIG needs to be
+set to not create those symbolic links; and not sure them when linking to the library:
+
+\badcode
+    CONFIG += unversioned_libname unversioned_soname
+\endcode
+
+\section3 Define Import Paths and Related Settings in the Manifest File
+
+For our QML plugin to work correctly, we need to set one additional import path to the
+\c qmlengine. Usually, this is done using the \c QML2_IMPORT_PATH environment variable, passing it
+to the \c qmlscene or using the QQmlEngine::addImportPath() in your \c{main.cpp}. But, because the
+ApplicationManager starts the app after the installation, and we don't package our own \c{main.cpp}
+file, we need to define those settings in the package manifest, \c{info.yaml}. For the import path,
+we add the following line:
+
+\code
+    runtimeParameters:
+        importPaths: [ 'imports' ]
+\endcode
+
+With those settings in place, the app can be deployed. It should show \c 0 free parking lots:
+
+\image first-integration.png
+
+\section2 Define a Simulation Behavior
+
+To simulate some values for our Middleware API, first we need to understand QtIvi's architecture a
+little bit better. As we learned when generating the library, the IVI Generator used a template
+called \c frontend. To define some simulation values or to connect to a real API, we also need
+corresponding \c backend. This \c backend is provided in the form of a plugin, and QtIvi takes care
+to load and connect the \c frontend to the \c backend. For more information on this concept, see
+\l{Dynamic Backend Architecture}.
+
+\section2 Backend Plugin with Static Values
+
+The next step is to generate such a backend using the IVI Generator and use \l{Annotations} to
+define what the simulation should do.
+
+Let's start with the \c{.pro} to generate and build our backend:
+
+\quotefile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/backend_simulator/backend_simulator.pro
+
+To build a plugin, we need to add \c plugin to the \c CONFIG variable as well as change the
+\c QFACE_FORMAT to use the \c backend_simulator generation template. Similar to the QML plugin,
+the backend also needs to link to our frontend library, since it uses the types defined there.
+
+TO ensure that QtIvi can find the backend, it needs to be placed in a \c qtivi folder. In turn,
+this folder needs to be part of the Qt plugin search path.
+
+Just like with the import path, the additional plugin path needs to be setup in the package
+manifest:
+
+\code
+    runtimeParameters:
+        pluginPaths: [ '.' ]
+\endcode
+
+Now, we have created a simulation backend, but without additional information, the IVI Generator
+can't create something really useful.
+
+First, we define a static default value which the simulation backend should provide. The easiest
+way to is to use an annotation in our QFace IDL file. An annotation is a special type of comment
+which gives the generation template additional information on what should be generated. To define
+a default value we change the IDL file like this:
+
+\quotefromfile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/parking.qface
+\skipuntil @config_simulator
+\printuntil }
+\printuntil }
+
+Because of the change to the IDL file, the IVI Generator now recreates the backend plugin. Now,
+when we run the updated application, we should see \c 42 free parking lots.
+
+\section2 Simulation QML
+
+While it's useful to have the annotation define a default value and provide a static simulation,
+having a generated simulation backend can do more. It would also allow you to define a simulation
+behavior that's more dynamic.
+
+To achieve this, we add another annotation to our QFace IDL file and define a \c simulationFile.
+This file contains our simulation behavior and QIviSimulationEngine loads it. Similar to other QML
+files, the best way to serve this file is to embed it inside a Qt resource.
+
+Our \c simulation.qml looks like this:
+
+\quotefromfile ../examples/neptune3ui/parking-app-tutorial/chapter3-middleware/backend_simulator/simulation.qml
+\skipto import QtQuick 2.10
+\printuntil } } } }
+
+First, there's a \c settings property, that's initialized with the return value from the
+\l{IviSimulator::findData}{IviSimulator.findData} method, which takes the
+\l{IviSimulator::simulationData}{IviSimulator.simulationData} and a string as input. The
+\c simulationData is the JSON file represented as a JavaScript object.
+
+The \c findData method helps us to extract only data that is of interest for this interface,
+\c InstrumentCluster. The properties that follow help the interface to know whether the default
+values are set. The \c LoggingCategory is used to identify the log output from this simulation
+file.
+
+Afterwards, the actual behavior is defined by instantiating an \c InstrumentClusterBackend Item
+and extending it with more functions. The \c InstrumentClusterBackend is the interface towards
+our \c InstrumentCluster QML frontend class. But, apart from the frontend, these properties are
+also writable to make it possible to change them to provide a useful simulation.
+
+Each time a frontend instance connects to a backend, the \c initialize() function is called.
+The same applies to the QML simulation: as the \c initialize() C++ function forwards this to the
+QML insitance. This behavior also applies to all other functions, like getters and setters.
+For more details, see \l{QIviSimulationEngine}.
+
+Inside the QML \c initialize() function, we call \c{IviSimulator.initializeDefault()}, to read
+the default values from the \c simulationData object and iniitialize all properties. This is done
+only \b once, as we don't want the properties to be reset to default when the next frontend
+instance connects to the backend. Lastly, the base implementation is called to make sure that the
+\c initializeationDone signal is sent to the frontend.
+
+Next, we define the actual simulation behavior by creating a Timer element that triggers every
+5 seconds. In the binding to the trigger signal, we use the \c{Math.random()} function to get a
+random value between -5 and 5 and add this to the parking lots available, using the \c freeLots
+property in our backend. The change in this value gets automatically populated to the frontend
+and simulates a real car park.
+
+*/
