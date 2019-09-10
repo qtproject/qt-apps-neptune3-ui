@@ -66,6 +66,8 @@ Store {
         id: applicationModel
         localeCode: Config.languageLocale
         autostartApps: settingsStore.value("autostartApps", settingsStore.defaultAutostartApps)
+        showCluster: (WindowManager.runningOnDesktop || Qt.application.screens.length > 1) && root.clusterStore.showCluster
+        showHUD: root.hudStore.showHUD
 
         // Store widget states when the UI is shutting down
         onShuttingDown: {

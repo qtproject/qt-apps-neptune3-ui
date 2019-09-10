@@ -58,6 +58,9 @@ ListModel {
     // Whether the model is still being populated. It's true during start up.
     readonly property alias populating: d.populating
 
+    property bool showCluster: false
+    property bool showHUD: false
+
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
@@ -290,9 +293,23 @@ ListModel {
 
             root.append({"appInfo": appInfo})
 
-            if (appInfo.autostart) {
+            if (appInfo.autostart && !d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
                 appInfo.start();
                 goHome();
+            }
+
+            // check if additional screen is attached and cluster is expected to be shown
+            if (root.showCluster) {
+                if (appInfo.autostart && d.isInstrumentClusterApp(app)) {
+                    appInfo.start();
+                }
+            }
+
+            // check if additional screen is attached and hud is expected to be shown
+            if (root.showHUD) {
+                if (appInfo.autostart && d.isHUDApp(app)) {
+                    appInfo.start();
+                }
             }
         }
 
