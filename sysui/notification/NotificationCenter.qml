@@ -46,6 +46,8 @@ Item {
     onYChanged: {
         if (root.y === -root.height) {
             root.animationEnabled = false;
+        } else if (root.y === 0) {
+            notificationList.positionViewAtEnd();
         }
     }
 
