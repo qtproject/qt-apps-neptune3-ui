@@ -63,13 +63,13 @@ private:
     void runServer(const quint16 port);
 
 signals:
-    void mainWindowPosGot(quint32 x, quint32 y);
+    void mainWindowPosGot(int x, int y);
 
 private:
     NeptuneSafeStateManager *m_stateManager;
     QTcpServer   *m_tcpServer;
 
-    quint32      m_timeout;
+    unsigned int m_timeout;
     bool         m_heartbeatUpdated;
     bool         m_mainUIFailed;
 

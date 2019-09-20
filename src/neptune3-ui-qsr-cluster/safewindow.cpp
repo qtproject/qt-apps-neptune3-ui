@@ -112,10 +112,10 @@ void SafeWindow::render(QPainter *painter)
     painter->drawImage(rect,  m_buffer.image());
 }
 
-void SafeWindow::moveWindow(quint32 x, quint32 y)
+void SafeWindow::moveWindow(int x, int y)
 {
     setWindowState(Qt::WindowNoState);
-    setPosition(static_cast<int>(x), static_cast<int>(y));
+    setPosition(x, y);
     raise();
     requestActivate();
 }

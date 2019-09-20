@@ -55,9 +55,9 @@ public:
         return m_image.bits();
     }
 
-    quint32 bytesPerLine()
+    SafeRenderer::quint32 bytesPerLine()
     {
-        return m_image.bytesPerLine();
+        return static_cast<SafeRenderer::quint32>(m_image.bytesPerLine());
     }
 
     QImage image()
@@ -96,7 +96,7 @@ public:
 public slots:
     void renderLater();
     void renderNow();
-    void moveWindow(quint32 x, quint32 y);
+    void moveWindow(int x, int y);
 
 protected:
     bool event(QEvent *event) override;

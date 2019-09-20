@@ -40,7 +40,7 @@
 
 Q_LOGGING_CATEGORY(qsrClusterApp, "qsrcluster.App")
 
-const quint16 TcpMsgHandler::defaultPort = 1111U;
+const SafeRenderer::quint16 TcpMsgHandler::defaultPort = 1111U;
 
 TcpMsgHandler::TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent)
     : QObject(parent), m_stateManager(manager), m_timeout(0U),
@@ -50,7 +50,7 @@ TcpMsgHandler::TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent)
     QObject::connect(&m_heartbeatTimer, &QTimer::timeout, this, &TcpMsgHandler::heartbeatTimeout);
 
     QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
-    quint16 port = settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt();
+    SafeRenderer::quint16 port = static_cast<SafeRenderer::quint16>(settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt());
 
     runServer(port);
 }
@@ -130,7 +130,7 @@ void TcpMsgHandler::readData()
     QTcpSocket *clientConnection = qobject_cast<QTcpSocket *>(QObject::sender());
     if (clientConnection) {
         unsigned char dataBuffer[SafeRenderer::QSafeEvent::messageLength];
-        quint32 datalength = 0U;
+        unsigned int datalength = 0U;
         do {
             QByteArray data = clientConnection->read(SafeRenderer::QSafeEvent::messageLength);
             datalength = data.length();
@@ -158,7 +158,7 @@ void TcpMsgHandler::readData()
                     //Demo case, move telltales over Cluster window
                     if (movePos.id() == qsafe_hash(item, safe_strlen(item))) {
                         //skip handling, just apply position
-                        emit mainWindowPosGot(movePos.x(), movePos.y());
+                        emit mainWindowPosGot(static_cast<int>(movePos.x()), static_cast<int>(movePos.y()));
                         continue;
                     }
                 }

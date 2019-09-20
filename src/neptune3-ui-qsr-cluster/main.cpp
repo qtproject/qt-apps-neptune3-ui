@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     NeptuneSafeStateManager stateManager(telltaleWindow, layout);
 
     //light up all telltales and texts
-    for (quint32 i=0U; i<layout.count(); i++) {
+    for (unsigned int i=0U; i<layout.count(); i++) {
         QSafeEventVisibility visible;
         visible.setId(layout.item(i).id());
         visible.setValue(1U);
