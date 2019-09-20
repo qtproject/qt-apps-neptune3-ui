@@ -48,7 +48,7 @@ public:
     ~TcpMsgHandler() {
     }
 
-    static const quint16 defaultPort;
+    static const SafeRenderer::quint16 defaultPort;
 
     void onSpeedLabelsVisibilityChanged(bool visible);
     void onPowerLabelsVisibilityChanged(bool visible);
@@ -60,7 +60,7 @@ private slots:
     void heartbeatTimeout();
 
 private:
-    void runServer(const quint16 port);
+    void runServer(const SafeRenderer::quint16 port);
 
 signals:
     void mainWindowPosGot(int x, int y);

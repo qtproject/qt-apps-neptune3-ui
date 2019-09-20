@@ -66,8 +66,8 @@ int main(int argc, char **argv)
         screenSize.setWidth(layout.size().width());
         screenSize.setHeight(layout.size().height());
     } else {
-        screenSize.setWidth(static_cast<quint32>(qApp->primaryScreen()->size().width()));
-        screenSize.setHeight(static_cast<quint32>(qApp->primaryScreen()->size().height()));
+        screenSize.setWidth(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().width()));
+        screenSize.setHeight(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().height()));
     }
 
     SafeWindow telltaleWindow(screenSize, layout.size());

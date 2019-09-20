@@ -55,7 +55,7 @@ TcpMsgHandler::TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent)
     runServer(port);
 }
 
-void TcpMsgHandler::runServer(const quint16 port)
+void TcpMsgHandler::runServer(const SafeRenderer::quint16 port)
 {
     m_tcpServer = new QTcpServer(this);
     if (!m_tcpServer->listen(QHostAddress::Any, port)) {
