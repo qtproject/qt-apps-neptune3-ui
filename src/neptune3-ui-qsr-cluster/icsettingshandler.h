@@ -36,7 +36,6 @@
 #include "../drivedata/frontend/instrumentcluster.h"
 #include "remotesettings_client.h"
 
-using namespace SafeRenderer;
 QT_USE_NAMESPACE
 
 class ICSettingsHandler : public QObject

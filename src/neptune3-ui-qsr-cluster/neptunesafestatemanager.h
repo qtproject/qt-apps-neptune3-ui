@@ -34,12 +34,11 @@
 
 #include <QtSafeRenderer/statemanager.h>
 
-using namespace SafeRenderer;
-
-class NeptuneSafeStateManager : public StateManager
+class NeptuneSafeStateManager : public SafeRenderer::StateManager
 {
 public:
-    NeptuneSafeStateManager(AbstractWindow &window, QSafeLayout &layout, const ARGB clearColorArg = ARGB())
+    NeptuneSafeStateManager(SafeRenderer::AbstractWindow &window, SafeRenderer::QSafeLayout &layout,
+                            const SafeRenderer::ARGB clearColorArg = SafeRenderer::ARGB())
         : StateManager(window, layout, clearColorArg),
           m_isPowerVisible(false), m_isSpeedVisible(false) {
     }

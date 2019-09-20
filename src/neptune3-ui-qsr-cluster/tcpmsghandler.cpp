@@ -139,7 +139,7 @@ void TcpMsgHandler::readData()
                 SafeRenderer::QSafeEvent event(dataBuffer);
 
                 if (event.type() == SafeRenderer::EventHeartbeatUpdate) {
-                    const QSafeEventHeartbeat &heartbeat = static_cast<const QSafeEventHeartbeat &>(event);
+                    const SafeRenderer::QSafeEventHeartbeat &heartbeat = static_cast<const SafeRenderer::QSafeEventHeartbeat &>(event);
 
                     if (m_timeout == 0U) { //first message -> start timer
                         m_heartbeatUpdated = true; //reset updated flag
@@ -153,10 +153,10 @@ void TcpMsgHandler::readData()
                 }
 
                 if (event.type() == SafeRenderer::EventSetPosition) {
-                    const QSafeEventPosition &movePos = static_cast<const QSafeEventPosition &>(event);
+                    const SafeRenderer::QSafeEventPosition &movePos = static_cast<const SafeRenderer::QSafeEventPosition &>(event);
                     const char* item = "mainWindow";
                     //Demo case, move telltales over Cluster window
-                    if (movePos.id() == qsafe_hash(item, safe_strlen(item))) {
+                    if (movePos.id() == SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item))) {
                         //skip handling, just apply position
                         emit mainWindowPosGot(static_cast<int>(movePos.x()), static_cast<int>(movePos.y()));
                         continue;
@@ -175,21 +175,21 @@ void TcpMsgHandler::onSpeedLabelsVisibilityChanged(bool visible)
 {
     m_stateManager->setIsSpeedVisible(visible);
 
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
 
     const char* item0 = "speedTextLabel";
     const char* item1 = "speedUnitsText";
     const char* item2 = "speedText";
 
-    event.setId(qsafe_hash(item0, safe_strlen(item0)));
+    event.setId(SafeRenderer::qsafe_hash(item0, SafeRenderer::safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setId(SafeRenderer::qsafe_hash(item1, SafeRenderer::safe_strlen(item1)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item2, safe_strlen(item2)));
+    event.setId(SafeRenderer::qsafe_hash(item2, SafeRenderer::safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }
@@ -198,30 +198,30 @@ void TcpMsgHandler::onPowerLabelsVisibilityChanged(bool visible)
 {
     m_stateManager->setIsPowerVisible(visible);
 
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
 
     const char* item0 = "powerTextLabel";
     const char* item1 = "powerUnitsText";
     const char* item2 = "powerText";
 
-    event.setId(qsafe_hash(item0, safe_strlen(item0)));
+    event.setId(SafeRenderer::qsafe_hash(item0, SafeRenderer::safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setId(SafeRenderer::qsafe_hash(item1, SafeRenderer::safe_strlen(item1)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item2, safe_strlen(item2)));
+    event.setId(SafeRenderer::qsafe_hash(item2, SafeRenderer::safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }
 
 void TcpMsgHandler::onErrorTextVisibilityChanged(bool visible)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "errorText";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }

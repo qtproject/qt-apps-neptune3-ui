@@ -47,21 +47,19 @@ You should not use this example in production environment.
 #include "icsettingshandler.h"
 
 
-using namespace SafeRenderer;
-
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
 
     QDir::setCurrent(qApp->applicationDirPath());
 
-    QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
+    SafeRenderer::QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
 
     //Demo case, update window position on Cluster window move
     QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     bool stickToCluster = settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool();
 
-    QSafeSize screenSize;
+    SafeRenderer::QSafeSize screenSize;
     if (stickToCluster) {
         screenSize.setWidth(layout.size().width());
         screenSize.setHeight(layout.size().height());
@@ -77,7 +75,7 @@ int main(int argc, char **argv)
 
     //light up all telltales and texts
     for (unsigned int i=0U; i<layout.count(); i++) {
-        QSafeEventVisibility visible;
+        SafeRenderer::QSafeEventVisibility visible;
         visible.setId(layout.item(i).id());
         visible.setValue(1U);
         stateManager.handleEvent(visible);

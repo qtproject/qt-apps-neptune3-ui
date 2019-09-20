@@ -37,7 +37,6 @@
 
 #include "neptunesafestatemanager.h"
 
-using namespace SafeRenderer;
 QT_USE_NAMESPACE
 
 class TcpMsgHandler : public QObject
