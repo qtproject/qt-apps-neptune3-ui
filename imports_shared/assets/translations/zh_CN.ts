@@ -1472,6 +1472,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <source>colors</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>connectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StatusBar</name>

@@ -31,38 +31,51 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import application.windows 1.0
+import QtQuick.Controls 2.3
+
+import shared.controls 1.0
 import shared.utils 1.0
 
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-import "views"
-import "store"
-import "assets"
+import "../controls"
 
-ApplicationCCWindow {
+Control {
     id: root
 
-    Image {
-        id: topImage
+    property bool wifiAvailable: true
+    property alias bluetoothAvailable: bluetoothItem.enabled
 
-        x: root.exposedRect.x
-        y: 0
-        width: root.exposedRect.width
-        height: Sizes.dp(436) + exposedRect.y
-        fillMode: Image.Pad
+    signal wifiClicked()
+    signal hotspotClicked()
 
-        source: Assets.gfx("hero-settings")
-        asynchronous: true
-    }
+    contentItem: Column {
 
-    SettingsView {
-        x: root.exposedRect.x
-        y: root.exposedRect.y
-        width: root.exposedRect.width
-        height: root.exposedRect.height
-        store: RootStore {}
-        wifi: store.wifi
-        rootItem: root.contentItem
+        ListItem {
+            id: wifiItem
+            width: root.width
+            text: "WiFi"
+            rightToolSymbol: "ic-next-level"
+            enabled: root.wifiAvailable
+            onClicked: root.wifiClicked()
+        }
+
+        ListItem {
+            id: hotspotItem
+            width: root.width
+            text: "Hotspot"
+            rightToolSymbol: "ic-next-level"
+            enabled: root.wifiAvailable
+            onClicked: root.hotspotClicked()
+        }
+
+        ListItem {
+            id: bluetoothItem
+            width: root.width
+            text: "Bluetooth"
+            rightToolSymbol: "ic-next-level"
+            dividerVisible: false
+        }
     }
 }

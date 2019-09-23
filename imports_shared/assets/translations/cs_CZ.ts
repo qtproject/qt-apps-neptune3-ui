@@ -1742,6 +1742,10 @@ UX na cestu</translation>
         <source>colors</source>
         <translation>barvy</translation>
     </message>
+    <message>
+        <source>connectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StatusBar</name>

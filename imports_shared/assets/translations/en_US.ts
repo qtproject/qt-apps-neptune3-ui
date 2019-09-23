@@ -881,6 +881,10 @@
         <source>colors</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>connectivity</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TiresPanel</name>

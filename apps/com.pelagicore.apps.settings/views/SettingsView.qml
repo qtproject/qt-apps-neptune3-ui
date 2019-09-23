@@ -42,6 +42,7 @@ import shared.Sizes 1.0
 import "../assets"
 import "../store"
 import "../panels"
+import "../popups"
 
 Control {
     id: root
@@ -49,6 +50,21 @@ Control {
     implicitHeight: Sizes.dp(540)
 
     property RootStore store
+    property Item rootItem
+    property QtObject wifi
+
+    WiFiPopup {
+        id: wifiPopup
+        manual: false
+        readonly property point pos: mapToItem(root, width/2, height/2)
+        width: Sizes.dp(910)
+        height: Sizes.dp(820)
+        originItemX: pos.x
+        originItemY: pos.y
+        popupY: Sizes.dp(Math.round(Config.centerConsoleHeight/2 - 410))
+        onConnectClicked: wifi.sendCredentials(ssid, password)
+        onCancelClicked: wifi.disconnectFromAccessPoint(wifi.activeAccessPoint.ssid)
+    }
 
     ButtonGroup {
         id: toolGroup
@@ -61,7 +77,6 @@ Control {
         anchors.topMargin: Sizes.dp(436)
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Sizes.dp(20)
-
         clip: true
 
         Item {
@@ -83,6 +98,7 @@ Control {
 
                 ListModel {
                     id: fullTabsModel
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "connectivity"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes'; objectName: "themesViewButton" }
@@ -91,6 +107,7 @@ Control {
 
                 ListModel {
                     id: themelessTabsModel
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "connectivity"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
@@ -105,6 +122,76 @@ Control {
             anchors.rightMargin: Sizes.dp(96)
             anchors.bottom: parent.bottom
             width: Sizes.dp(720)
+
+            ConnectivityPanel {
+                objectName: "connectivityPanel"
+                id: connectivityPanel
+
+                property int view: 0 //0=menu, 1=wifi, 2=hotspot
+
+                anchors.fill: parent
+                visible: toolsColumn.currentIcon === 'ic-connectivity' && connectivityPanel.view === 0
+
+                wifiAvailable: wifi.available
+                bluetoothAvailable: false
+
+                onWifiClicked: view = 1
+                onHotspotClicked: view = 2
+            }
+
+            WiFiPanel {
+                id: wifiPanel
+                objectName: "wifiPanel"
+                anchors.fill: parent
+                visible: toolsColumn.currentIcon === 'ic-connectivity' && connectivityPanel.view === 1
+
+                wifiEnabled: wifi.enabled
+                wifiAccessPointsList: wifi.accessPoints
+                rootItem: root.rootItem
+                selectedWiFiStatus: {
+                    if (wifi.connectionStatus == store.connectivityStatusConnecting) {
+                        return "Connecting";
+                    } else if (wifi.connectionStatus == store.connectivityStatusConnected) {
+                        return "Connected";
+                    } else if (wifi.connectionStatus == store.connectivityStatusDisconnecting) {
+                        return "Disconnecting";
+                    } else  {
+                        return "Disconnected";
+                    }
+                }
+                selectedWiFiSSID: wifi.activeAccessPoint.ssid
+
+                onBackButtonClicked: connectivityPanel.view = 0
+                onWifiEnabledChanged: wifi.enabled = wifiEnabled
+                onConnectToWiFiClicked: wifi.connectToAccessPoint(ssid)
+                onDisconnectFromWiFiClicked: wifi.disconnectFromAccessPoint(ssid)
+            }
+
+            Connections {
+                target: wifi
+                onCredentialsRequested: {
+                    wifiPopup.ssid = ssid;
+                    wifiPopup.visible = true;
+                }
+            }
+
+            HotspotPanel {
+                objectName: "hotspotPanel"
+                anchors.fill: parent
+                visible: toolsColumn.currentIcon === 'ic-connectivity' && connectivityPanel.view === 2
+                hotspotEnabled: wifi.hotspotEnabled
+                ssid: wifi.hotspotSSID
+                password: wifi.hotspotPassword
+
+                onHotspotEnabledChanged: {
+                    if (hotspotEnabled) {
+                        wifi.hotspotSSID = ssid;
+                        wifi.hotspotPassword = password;
+                    }
+                    wifi.hotspotEnabled = hotspotEnabled
+                }
+                onBackButtonClicked: connectivityPanel.view = 0
+            }
 
             LanguagePanel {
                 objectName: "languagePanel"
@@ -150,3 +237,4 @@ Control {
         }
     }
 }
+

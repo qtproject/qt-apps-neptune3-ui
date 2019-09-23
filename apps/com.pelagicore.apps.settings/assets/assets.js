@@ -33,7 +33,7 @@
 .pragma library
 
 var gfx_dir = Qt.resolvedUrl('gfx');
-var icon_dir = Qt.resolvedUrl('icon');
+var icon_dir = Qt.resolvedUrl('icons');
 
 function gfx(name) {
     return gfx_dir + '/' + name + '.png';

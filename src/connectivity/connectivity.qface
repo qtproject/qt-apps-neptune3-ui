@@ -1,0 +1,45 @@
+@config: { qml_type: "shared.Connectivity" }
+module Connectivity 1.0;
+
+enum ConnectionStatus {
+    Connecting, Connected, Disconnecting, Disconnected
+}
+
+enum SecurityType {
+    NoSecurity,
+    WEP,
+    WPA_PSK,
+    WPA_EAP
+}
+
+struct AccessPoint {
+    string ssid;
+    bool connected;
+    int strength;
+    SecurityType security;
+}
+
+interface WiFi {
+    readonly bool available;                            // Whether wifi is available on the device
+    bool enabled;                                       // Enables/Disables the wifi module
+
+    bool hotspotEnabled;                                // Enables/Disables a hotspot on the device
+    string hotspotSSID;                                 // Holds a name of the configured wifi hotspot
+    string hotspotPassword;                             // Holds a password of the configured wifi hotspot
+
+    readonly list<AccessPoint> accessPoints;            // List of available access points to connect
+
+    readonly ConnectionStatus connectionStatus;         // Current status connection
+    readonly AccessPoint activeAccessPoint;             // Holds an active access point
+
+    void connectToAccessPoint(string ssid);             // Initiates connection to the given wifi access point
+    void disconnectFromAccessPoint(string ssid);        // Initiates disconnect from the active access point
+    void sendCredentials(string ssid, string password); // Sends credentials if a chosen access point requires it
+
+    signal credentialsRequested(string ssid);           // Gets emitted when the chosen access point requires a password
+
+    readonly string errorString;                        // Holds a description of occurred error
+}
+
+
+

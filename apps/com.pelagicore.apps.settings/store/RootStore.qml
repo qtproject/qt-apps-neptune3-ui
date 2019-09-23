@@ -35,11 +35,18 @@ import QtQml.Models 2.3
 import shared.utils 1.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.Style 1.0
+import shared.Connectivity 1.0
 
 import "../helper"
 
 QtObject {
     id: root
+
+    readonly property WiFi wifi: WiFi {}
+    readonly property int connectivityStatusConnecting: WiFi.Connecting
+    readonly property int connectivityStatusConnected: WiFi.Connected
+    readonly property int connectivityStatusDisconnecting: WiFi.Disconnecting
+    readonly property int connectivityStatusDisconnected: WiFi.Disconnected
 
     readonly property Helper helper: Helper {}
     readonly property UISettings uiSettings: UISettings {

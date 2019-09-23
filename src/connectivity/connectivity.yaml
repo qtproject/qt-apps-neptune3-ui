@@ -1,0 +1,27 @@
+Connectivity:
+    config_simulator:
+        simulationFile: "qrc:/plugin_resource/simulation.qml"
+
+Connectivity.WiFi#available:
+    config_simulator:
+        default: true
+
+Connectivity.WiFi#enabled:
+    config_simulator:
+        default: false
+
+Connectivity.WiFi#connectionStatus:
+    config_simulator:
+        default: ConnectionStatus.Disconnected
+
+Connectivity.WiFi#hotspotEnabled:
+    config_simulator:
+        default: false
+
+Connectivity.WiFi#hotspotSSID:
+    config_simulator:
+        default: ""
+
+Connectivity.WiFi#hotspotPassword:
+    config_simulator:
+        default: ""
