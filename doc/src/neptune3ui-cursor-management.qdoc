@@ -1,0 +1,85 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \page neptune3ui-cursor-management.html
+   \title Neptune 3 UI Cursor Management Support
+   \brief Describes how Neptune 3 UI supports cursor management.
+
+   Neptune 3 UI comes with cursor support to enable navigating the UI
+   via other input methods, besides touch, such as a keyboard or gamepad.
+
+   \section1 Use the Cursor
+
+   Neptune 3 UI integrates the experimental Cursor Management plugin from Qt Labs.
+   For more details, see the
+   \l{https://codereview.qt-project.org/admin/repos/qt-labs/cursormanagement}
+   {Cursor Management Plugin} source code.
+
+   Once the plugin is installed, you can import it in QML as follows:
+   \code
+   import CursorNavigation 1.0
+   \endcode
+
+   Two QML types have been created in Neptune3UI for cursor implementation:
+   CursorManagement and CursorManagementDummy. Each time the UI starts, a Loader
+   loads the correct file,
+    \list
+        \li CursorManagement -- if the Cursor Management Plugin is available
+        \li CursorManagementDummy -- if the Cursor Management Plugin isn't available
+    \endlist
+   This is done for stability without depending on the plugin's availability on the system.
+   The process above is done inside \c Cursor.qml, a file that also contains all necessary
+   bindings and API for the Cursor interface. It's this type that is instantiated in the
+   element in which we want to have cursor support.
+
+    \code
+    T.Button {
+        id: control
+
+        Cursor { }
+    }
+    \endcode
+
+   \section1 List of Members
+
+    Besides the properties, functions and signals that come with the cursor management plugin,
+    Neptune 3 UI adds and additional signal, \c pressAndHold, to simulate a long press event.
+
+    \code
+
+    T.Button {
+        id: control
+
+        Cursor {
+            onPressAndHold: {
+                control.pressAndHold();
+            }
+        }
+    }
+    \endcode
+*/

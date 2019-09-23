@@ -59,6 +59,9 @@
    \li Utilizes the \l{Qt IVI} module, that provides C++ classes and QML types
        to access vehicle features, as well as a core API to implement new IVI
        features.
+   \li Supports \l{Neptune 3 UI Cursor Management Support}{cursor management}
+       enabling UI navigation via other means, such as a keyboard or gamepad.
+   via other input methods.
    \endlist
 
    \section1 Structure
