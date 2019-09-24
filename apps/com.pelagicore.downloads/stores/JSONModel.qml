@@ -38,7 +38,7 @@ ListModel {
 
     property int itemCount: 10;
     property string url: ""
-    property variant data
+    property var data
     property string status: "empty"
 
     function refresh() {

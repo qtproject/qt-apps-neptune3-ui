@@ -48,10 +48,10 @@ Item {
     property int categoryid: 0
     property string filter: ""
     property real currentInstallationProgress: 0.0
-    property var installedApps: []
+    readonly property var installedApps: ApplicationManager.applicationIds()
     readonly property bool isOnline: appStoreConfig.serverOnline
     readonly property bool isReconnecting: appStoreConfig.isReconnecting
-
+    property bool isBusy: false// appModel.count == 0 && isOnline
 
 
     function formatBytes(bytes) {
@@ -61,6 +61,8 @@ Item {
     }
 
     function download(id, name) {
+        if (isAppBusy(id)) { return }
+
         var url = appStoreConfig.serverUrl + "/app/purchase"
         var data = {"id": id, "device_id" : "00-11-22-33-44-55" }
 
@@ -82,11 +84,19 @@ Item {
         })
     }
 
+    function isAppBusy(appId) {
+        var taskIds = ApplicationInstaller.activeTaskIds()
+        if (taskIds.includes(appId)) {
+            return true
+        }
+    }
+
     function isInstalled(appId) {
-        return root.installedApps.indexOf(appId) !== -1;
+        return getInstalledApps().includes(appId);
     }
 
     function uninstallApplication(id, name) {
+        if (isAppBusy(id)) { return }
         var icon = root.appServerUrl + "/app/icon?id=" + id
         ApplicationInstaller.removePackage(id, false /*keepDocuments*/, true /*force*/);
     }
@@ -124,8 +134,8 @@ Item {
         return appName;
     }
 
-    Component.onCompleted: {
-        root.installedApps = ApplicationManager.applicationIds()
+    function getInstalledApps() {
+        return ApplicationManager.applicationIds();
     }
 
     Connections {
@@ -162,17 +172,14 @@ Item {
 
             if (application !== null) {
                 if (application.state === ApplicationObject.Installed) {
-                    root.installedApps.push(appId);
-                    root.installedAppsChanged(root.installedApps);
                     showNotification(qsTr("%1 Successfully Installed").arg(applicationName),
                                      qsTr("%1 successfully installed").arg(applicationName), icon);
                 }
             } else {
-                root.installedApps.splice(root.installedApps.indexOf(appId), 1);
-                root.installedAppsChanged(root.installedApps);
                 showNotification(qsTr("%1 Successfully Uninstalled").arg(applicationName),
                                  qsTr("%1 successfully uninstalled").arg(applicationName), icon);
             }
+            root.installedAppsChanged()
         }
     }
 
@@ -191,7 +198,14 @@ Item {
     ServerConfig {
         id: appStoreConfig
         cpuArch: sysinfo.cpu + "-" + sysinfo.kernel
-        onLoginSuccessful: categoryModel.refresh()
+        property bool initialized: false
+        onLoginSuccessful: {
+            console.log("server login successful")
+            if (!initialized) {
+                catModel.refresh()
+                initialized = true
+            }
+        }
     }
 
     JSONModel {
