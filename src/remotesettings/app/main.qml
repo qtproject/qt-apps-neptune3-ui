@@ -43,8 +43,6 @@ ApplicationWindow {
     id: root
 
     visible: true
-    width: 1280
-    height: 800
     minimumHeight: 720
     minimumWidth: 400
 
@@ -58,7 +56,25 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        connectionDialog.open()
+        var screens = Qt.application.screens;
+        var minH = 1080;
+        var minW = 1920;
+        for (var scr in screens) {
+            console.info(scr)
+            minH = Math.min(minH, screens[scr].height);
+            minW = Math.min(minW, screens[scr].width);
+        }
+
+        // if FHD shrink to min
+        if (minH <= 1080 || minW <= 1920) {
+            root.width = minimumWidth;
+            root.height = minimumHeight;
+        } else {
+            root.width = 1280;
+            root.height = 800;
+        }
+
+        connectionDialog.open();
     }
 
     UISettings {
