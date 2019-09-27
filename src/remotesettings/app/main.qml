@@ -60,7 +60,6 @@ ApplicationWindow {
         var minH = 1080;
         var minW = 1920;
         for (var scr in screens) {
-            console.info(scr)
             minH = Math.min(minH, screens[scr].height);
             minW = Math.min(minW, screens[scr].width);
         }
