@@ -1,0 +1,9 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'chapter1-basics'
+icon:    'icon.png'
+code:    'Main.qml'
+runtime: 'qml'
+name:
+  en: 'Parking'

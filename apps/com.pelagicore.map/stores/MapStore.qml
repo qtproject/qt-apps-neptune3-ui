@@ -48,6 +48,13 @@ QtObject {
     property string workRouteTime
     property bool searchViewEnabled: false
     property bool offlineMapsEnabled: false
+    onOfflineMapsEnabledChanged: {
+        //Fetch again here as this usually changes to false after
+        //the getAvailableMapsAndLocation() function is executed.
+        if (!root.offlineMapsEnabled) {
+            fetchCurrentLocation();
+        }
+    }
 
     property var positionCoordinate: QtPositioning.coordinate(48.135771, 11.574052) // Munich
     property var originalPosition: positionCoordinate

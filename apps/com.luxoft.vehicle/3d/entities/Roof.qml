@@ -61,7 +61,8 @@ Entity {
 
     Mesh {
         id: mesh
-        source: Paths.getModelPath("sun_roof", root.version)
+        source: Paths.getModelPath("sun_roof"
+                , root.version.length == 0 ? "optimized" : root.version)
     }
 
     components: [transform, mesh, whiteHood]

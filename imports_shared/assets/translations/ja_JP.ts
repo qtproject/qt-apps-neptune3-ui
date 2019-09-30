@@ -700,6 +700,15 @@
         <source>km/h</source>
         <translation type="unfinished">km/h</translation>
     </message>
+    <message>
+        <source>Your parking period is about to end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your parking period will be ended in 5 minutes.
+                         Please extend your parking ticket or move your car.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MapHeader</name>
@@ -1287,6 +1296,10 @@
         <source>3D Runtime</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Vehicle App needs to be restarted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsModel</name>
@@ -1735,6 +1748,18 @@
     </message>
     <message>
         <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt3D Runtime is requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Qt 3D Studio Runtime is requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the Vehicle App to use selected runtime</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

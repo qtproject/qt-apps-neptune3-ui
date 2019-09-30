@@ -35,6 +35,7 @@
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QLibraryInfo>
+#include <QtQml/qqmlinfo.h>
 
 #include "systeminfo.h"
 
@@ -72,7 +73,14 @@ SystemInfo::~SystemInfo()
 void SystemInfo::init()
 {
     getAddress();
-    m_timerId = startTimer(1000, Qt::VeryCoarseTimer);
+    if (QSslSocket::supportsSsl()) {
+        m_timerId = startTimer(1000, Qt::VeryCoarseTimer);
+    } else {
+        updateInternetAccessStatus(false);
+        qmlWarning(this) << "SSL/TLS is not supported in this installation. HTTPS connections can't be established";
+        qmlWarning(this) << "Please verify, SSL library is installed and/or updated";
+        qmlWarning(this) << "This installation was build with: " << QSslSocket::sslLibraryBuildVersionString();
+    }
 }
 
 /*

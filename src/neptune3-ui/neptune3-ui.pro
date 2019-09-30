@@ -1,4 +1,4 @@
-VERSION  = 5.13.0
+VERSION  = 5.13.1
 TEMPLATE = app
 TARGET   = neptune3-ui
 
@@ -9,18 +9,9 @@ CONFIG *= no_private_qt_headers_warning link_pkgconfig
 
 QT *= appman_main-private testlib gui-private
 
-unix:exists($$SOURCE_DIR/.git):GIT_REVISION=$$system(cd "$$SOURCE_DIR" && git describe --tags --always 2>/dev/null)
-
-isEmpty(GIT_REVISION) {
-    GIT_REVISION="unknown revision"
-    GIT_COMMITTER_DATE="no date"
-} else {
-    GIT_COMMITTER_DATE=$$system(cd "$$SOURCE_DIR" && git show "$$GIT_REVISION" --pretty=format:"%ci" --no-patch 2>/dev/null)
-}
-
+load(gitUtils.prf)
+DEFINES *= NEPTUNE_INFO=\""\\\"$$currentGitRevision()\\\""\"
 DEFINES *= "NEPTUNE_VERSION=$$VERSION"
-
-DEFINES *= NEPTUNE_INFO=\""\\\"$$GIT_REVISION, $$GIT_COMMITTER_DATE\\\""\"
 
 SOURCES = main.cpp
 
@@ -58,16 +49,15 @@ android: {
 
 }
 
-use_qsr{
-    qtHaveModule(qtsaferenderer){
-        #include Qt Safe Renderer part, generate file
-        CONFIG += qtsaferenderer
-        SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
-        SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
-        DEFINES += USE_QT_SAFE_RENDERER
+qtHaveModule(qtsaferenderer):load(qtsaferenderer-tools):qtsaferenderer-tools-available {
+    #include Qt Safe Renderer part, generate file
+    CONFIG += qtsaferenderer
+    SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
+    SAFE_LAYOUT_FONTS = $$PWD/../../imports_shared/assets/fonts/
+    SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
+    DEFINES += USE_QT_SAFE_RENDERER
 
-        qsr-safelayout.files = $$DESTDIR/qsr-safelayout
-        qsr-safelayout.path = $$INSTALL_PREFIX/neptune3
-        INSTALLS += qsr-safelayout
-    }
+    qsr-safelayout.files = $$DESTDIR/qsr-safelayout
+    qsr-safelayout.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += qsr-safelayout
 }

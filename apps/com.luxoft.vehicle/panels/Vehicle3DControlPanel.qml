@@ -48,16 +48,16 @@ Item {
     property alias trunkOpened: doorsPanel.trunkOpened
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
-    property alias allowToChange3DSettings: vehicle3DSettingsPanel.allowToChange3DSettings
     property alias qt3DStudioAvailable: vehicle3DSettingsPanel.qt3DStudioAvailable
     property alias qualityModel: vehicle3DSettingsPanel.qualityModel
+    property alias quality: vehicle3DSettingsPanel.quality
+    property alias runtime: vehicle3DSettingsPanel.runtime
 
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
     signal roofOpenProgressChanged(var value)
-    signal runtimeChanged(var qt3d)
-    signal qualityChanged(var quality)
+    signal showNotificationAboutChange()
 
     ToolsColumn {
         id: toolsColumn
@@ -93,8 +93,7 @@ Item {
         Settings3DPanel {
             id: vehicle3DSettingsPanel
             objectName: "vehicleSettigns3DPanel"
-            onRuntimeChanged: root.runtimeChanged(qt3d)
-            onQualityChanged: root.qualityChanged(quality)
+            onShowNotificationAboutChange: root.showNotificationAboutChange();
         }
     }
 }

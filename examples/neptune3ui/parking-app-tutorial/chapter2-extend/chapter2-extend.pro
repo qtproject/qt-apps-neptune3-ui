@@ -4,9 +4,13 @@ FILES += info.yaml \
          icon.png \
          Main.qml
 
+assets.files += assets/*
+assets.path = /apps/chapter2-extend/assets
+
 app.files = $$FILES
-app.path = /apps/com.pelagicore.parking
-INSTALLS += app
+app.path = /apps/chapter2-extend
+
+INSTALLS += app assets
 
 AM_MANIFEST = info.yaml
 AM_PACKAGE_DIR = $$app.path

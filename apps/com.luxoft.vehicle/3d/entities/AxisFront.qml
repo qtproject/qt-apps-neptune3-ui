@@ -64,10 +64,10 @@ Entity {
     components: [transform]
 
     Entity {
-        id: chromeWheel
         Mesh {
             id: wheelMesh
-            source: Paths.getModelPath("front_wheel_chrome", root.version)
+            source: Paths.getModelPath("front_wheel_chrome"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [wheelMesh, wheelChromeMaterial]
     }

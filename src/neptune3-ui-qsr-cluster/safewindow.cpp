@@ -31,7 +31,8 @@
 
 #include "safewindow.h"
 
-SafeWindow::SafeWindow(const QSafeSize &size, const QSafeSize &frameSize, QWindow *parent)
+SafeWindow::SafeWindow(const SafeRenderer::QSafeSize &size, const SafeRenderer::QSafeSize &frameSize,
+                       QWindow *parent)
     :QWindow(parent)
     ,AbstractWindow(size)
     ,m_buffer(frameSize)
@@ -77,7 +78,7 @@ void SafeWindow::exposeEvent(QExposeEvent *)
     renderNow();
 }
 
-void SafeWindow::render(const Rect &dirtyArea)
+void SafeWindow::render(const SafeRenderer::Rect &dirtyArea)
 {
     (void)dirtyArea;
     renderNow();
@@ -112,10 +113,10 @@ void SafeWindow::render(QPainter *painter)
     painter->drawImage(rect,  m_buffer.image());
 }
 
-void SafeWindow::moveWindow(quint32 x, quint32 y)
+void SafeWindow::moveWindow(int x, int y)
 {
     setWindowState(Qt::WindowNoState);
-    setPosition(static_cast<int>(x), static_cast<int>(y));
+    setPosition(x, y);
     raise();
     requestActivate();
 }

@@ -43,12 +43,26 @@ import "../controls" 1.0
 
 Item {
     id: root
-    signal runtimeChanged(var qt3d)
-    signal qualityChanged(var quality)
 
-    property bool allowToChange3DSettings
     property bool qt3DStudioAvailable
     property alias qualityModel: lv.model
+    property string quality
+    property string runtime
+    signal showNotificationAboutChange
+    QtObject {
+        id: d
+        property string currentActiveRuntime
+    }
+    onRuntimeChanged: {
+        if (d.currentActiveRuntime.length == 0 && runtime.length != 0) {
+            d.currentActiveRuntime = runtime;
+            if (d.currentActiveRuntime === "qt3d") {
+                qt3DButton.checked = true;
+            } else {
+                qt3DStudioButton.checked = true;
+            }
+        }
+    }
 
     Layout.fillHeight: true
     Layout.fillWidth: true
@@ -62,11 +76,63 @@ Item {
 
         spacing:  Sizes.dp(50)
 
+        SequentialAnimation {
+            id: buttonAnimation
+            loops: Animation.Infinite
+            onStopped: {
+                na1.targets[0].opacity = 1.0;
+                na1.targets[1].opacity = 1.0;
+            }
+
+            NumberAnimation {
+                id: na1
+                property: "opacity"
+                duration: 750
+                from: 1.0
+                to: 0.0
+                easing.type: Easing.Linear
+            }
+            NumberAnimation {
+                id: na2
+                property: "opacity"
+                duration: 750
+                from: 0.0
+                to: 1.0
+                easing.type: Easing.Linear
+            }
+        }
+
         ColumnLayout {
             id: section1
             visible: qt3DStudioAvailable
             Layout.fillWidth: true
-            ButtonGroup { id: buttonGroupRuntimes }
+            ButtonGroup {
+                id: buttonGroupRuntimes
+                exclusive: true
+                onClicked: {
+                    // send change outside panel
+                    if (button.checked) {
+                        root.runtime = button === qt3DButton ? "qt3d" : "3DStudio";
+                    } else {
+                        root.runtime = d.currentActiveRuntime;
+                    }
+
+                    // handle next runtime button
+                    if (root.runtime === d.currentActiveRuntime) {
+                        buttonAnimation.stop();
+                        qt3DButtonText.visible = false;
+                        qt3DStudioButtonText.visible = false;
+                    } else {
+                        var targetB = root.runtime === "qt3d" ? qt3DButton : qt3DStudioButton;
+                        var targetT = root.runtime === "qt3d" ? qt3DButtonText : qt3DStudioButtonText;
+                        targetT.visible = true;
+                        na1.targets = [ targetB, targetT ];
+                        na2.targets = [ targetB, targetT ];
+                        buttonAnimation.start();
+                        root.showNotificationAboutChange();
+                    }
+                }
+            }
 
             Label {
                 Layout.alignment: Qt.AlignLeft
@@ -92,20 +158,19 @@ Item {
                     Layout.fillWidth: true
                 }
 
+                Label {
+                    id: qt3DButtonText
+                    visible: false
+                    Layout.alignment: Qt.AlignLeft
+                    font.weight: Font.ExtraLight
+                    text: qsTr("Vehicle App needs to be restarted")
+                }
+
                 RadioButton {
                     id: qt3DButton
-                    checked: true
-                    enabled: root.allowToChange3DSettings
                     ButtonGroup.group: buttonGroupRuntimes
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: Sizes.dp(22)
-
-                    onCheckedChanged: {
-                        if (checked) {
-                            root.allowToChange3DSettings = false
-                            root.runtimeChanged(true)
-                        }
-                    }
                 }
             }
 
@@ -127,20 +192,19 @@ Item {
                     Layout.fillWidth: true
                 }
 
+                Label {
+                    id: qt3DStudioButtonText
+                    visible: false
+                    Layout.alignment: Qt.AlignLeft
+                    font.weight: Font.ExtraLight
+                    text: qsTr("Vehicle App needs to be restarted")
+                }
+
                 RadioButton {
                     id: qt3DStudioButton
-                    checked: false
-                    enabled: root.allowToChange3DSettings
                     ButtonGroup.group: buttonGroupRuntimes
                     Layout.alignment: Qt.AlignRight
                     Layout.rightMargin: Sizes.dp(22)
-
-                    onCheckedChanged: {
-                        if (checked) {
-                            root.allowToChange3DSettings = false
-                            root.runtimeChanged(false)
-                        }
-                    }
                 }
             }
 
@@ -153,7 +217,7 @@ Item {
 
         ColumnLayout {
             id: section2
-            visible: ! qt3DStudioButton.checked
+            visible: d.currentActiveRuntime === "qt3d"
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -193,15 +257,13 @@ Item {
 
                         RadioButton {
                             id: switcher
-                            checked: quality === "optimized"
+                            checked: quality === root.quality
                             Layout.alignment: Qt.AlignRight
                             Layout.rightMargin: Sizes.dp(22)
                             ButtonGroup.group: buttonGroup
-                            enabled: allowToChange3DSettings
                             onCheckedChanged: {
-                                if (root.allowToChange3DSettings && checked) {
-                                    root.allowToChange3DSettings = false
-                                    root.qualityChanged(quality)
+                                if (checked) {
+                                    root.quality = quality;
                                 }
                             }
                         }

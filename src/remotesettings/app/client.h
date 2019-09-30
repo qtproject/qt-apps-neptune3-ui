@@ -55,6 +55,8 @@ class Client : public QObject
     static const QString settingsLastUrlsItem;
     static const QString settingsRemoteSettingsPortItem;
     static const QString settingsDriveDataPortItem;
+    static const QString settingsIviMediaPortItem;
+
     static const int numOfUrlsStored;
     static const int timeoutToleranceMS;
     static const int reconnectionIntervalMS;
@@ -63,6 +65,7 @@ public:
     static const QString defaultUrl;
     static const int defaultRemoteSettingsPort;
     static const int defaultDriveDataPort;
+    static const int defaultIviMediaPort;
 
 
     explicit Client(QObject *parent = nullptr);
@@ -96,6 +99,7 @@ private:
 
     int m_remoteSettingsPort;
     int m_driveDataPort;
+    int m_iviMediaPort;
     QUrl m_serverUrl;
     QStringList m_lastUrls;
     bool m_connected;

@@ -55,30 +55,26 @@ Item {
         id: d
 
         property var prevWindow
+        property var currentMaxWindowItem: null
         property var window: root.appInfo ? root.appInfo.window : null
         onWindowChanged: {
-            if (window !== prevWindow) {
-
-                // only apply the in and out animations when incoming window is different
-                // than the previous one.
-                if (currentMaxWindow) {
-                    currentMaxWindow.removeAnimation.start();
-                    currentMaxWindow = null;
+            // only apply the in and out animations when incoming window is different
+            // than the previous one.
+            if (d.window !== d.prevWindow) {
+                d.prevWindow = d.window;
+                if (d.currentMaxWindowItem) {
+                    d.currentMaxWindowItem.removeAnimation.start();
+                    d.currentMaxWindowItem = null;
                 }
 
                 if (d.window) {
-                    currentMaxWindow = maximizedWindowComponent.createObject(d, {
-                                                                                 "parent":root,
-                                                                                 "appInfo": root.appInfo,
-                                                                                });
+                    d.currentMaxWindowItem = maximizedWindowComponent.createObject(
+                                d, {"parent":root, "appInfo": root.appInfo});
                     d.window.parent = root;
-                    currentMaxWindow.addAnimation.start();
+                    d.currentMaxWindowItem.addAnimation.start();
                 }
-                prevWindow = window;
             }
         }
-
-        property var currentMaxWindow: null
     }
 
     // TODO: Implement better in and out animations. The current ones are just placeholders
@@ -97,22 +93,13 @@ Item {
             windowState: "Maximized"
 
             property var addAnimation: SequentialAnimation {
-                ScriptAction { script: {
-                    maxWindowObj.visible = true;
-                }}
+                ScriptAction { script: { maxWindowObj.windowState = "Maximized"; }}
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 0; to: 1 }
             }
             property var removeAnimation: SequentialAnimation {
+                ScriptAction { script: { maxWindowObj.windowState = "Minimized"; }}
                 DefaultNumberAnimation { target: maxWindowObj; property: "opacity"; from: 1; to: 0 }
-
-                ScriptAction { script: {
-                    if (maxWindowObj) {
-                        maxWindowObj.visible = false;
-                    }
-
-                    // self destruct
-                    maxWindowObj.destroy();
-                }}
+                ScriptAction { script: { maxWindowObj.destroy(); }}
             }
         }
     }

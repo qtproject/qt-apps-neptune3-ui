@@ -50,7 +50,7 @@ ListView {
     delegate: ListItemProgress {
         id: delegatedItem
         objectName: "itemDownloadApp_" + model.id
-        readonly property bool isInstalled: root.store.installedApps.indexOf(model.id) !== -1
+        property bool isInstalled: root.store.isInstalled(model.id)
 
         width: Sizes.dp(675)
         height: Sizes.dp(80)
@@ -72,5 +72,12 @@ ListView {
             }
             root.toolClicked(model.id, model.name);
         }
+        Connections {
+            target: root.store
+            onInstalledAppsChanged: {
+                isInstalled = root.store.isInstalled(model.id)
+            }
+        }
+
     }
 }

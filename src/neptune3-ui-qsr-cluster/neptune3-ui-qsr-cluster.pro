@@ -20,6 +20,7 @@ INCLUDEPATH += $$OUT_PWD/../remotesettings/frontend
 
 SOURCES = main.cpp \
     icsettingshandler.cpp \
+    neptunesafestatemanager.cpp \
     safewindow.cpp \
     remotesettings_client.cpp \
     tcpmsghandler.cpp
@@ -28,6 +29,7 @@ DESTDIR = $$OUT_PWD/../../
 
 HEADERS += \
     icsettingshandler.h \
+    neptunesafestatemanager.h \
     safewindow.h \
     remotesettings_client.h \
     tcpmsghandler.h

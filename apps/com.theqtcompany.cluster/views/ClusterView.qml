@@ -67,6 +67,7 @@ Item {
         active: !store.behaviourInterface.threeDGauges
         source: "../panels/GaugesPanel.qml"
         opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+        anchors.fill: parent
         Behavior on opacity {
             DefaultNumberAnimation {}
         }
@@ -86,6 +87,7 @@ Item {
         active: store.behaviourInterface.threeDGauges
         source: "../panels/GaugesPanel3D.qml"
         opacity: store.behaviourInterface.hideGauges ? 0.0 : 1.0
+        anchors.fill: parent
         Behavior on opacity {
             DefaultNumberAnimation {}
         }

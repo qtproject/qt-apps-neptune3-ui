@@ -33,11 +33,13 @@
 
 import QtQuick 2.9
 import shared.Sizes 1.0
+import shared.utils 1.0
 
 Item {
     id: root
-    width: Sizes.dp(1920)
-    height: Sizes.dp(720)
+
+    width: Sizes.dp(Config.instrumentClusterWidth)
+    height: width / Config.instrumentClusterUIAspectRatio
 
     //public
     property bool navigating

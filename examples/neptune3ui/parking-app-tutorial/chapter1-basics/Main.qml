@@ -54,6 +54,7 @@ import QtQuick 2.8
 import shared.utils 1.0
 import shared.animations 1.0
 import QtQuick.Controls 2.2
+import QtApplicationManager 2.0
 
 //! [implement app 1]
 import application.windows 1.0
@@ -72,12 +73,10 @@ ApplicationCCWindow {
         width: root.exposedRect.width
         height: root.exposedRect.height
 //! [implement app 1]
+
 //! [top content]
         Image {
             id: topContent
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
             width: parent.width
             height: Sizes.dp(500)
             source: Style.image("app-fullscreen-top-bg", Style.theme)
@@ -97,8 +96,11 @@ ApplicationCCWindow {
                 source: "assets/ticket_bg.png"
                 anchors.top: parent.top
                 anchors.right: parent.right
+
+                //! [ticket animation]
                 anchors.rightMargin: root.parkingStarted ? 0 : - width * 0.85
                 Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
+                //! [ticket animation]
 
                 Column {
                     anchors.left: parent.left
@@ -297,6 +299,6 @@ ApplicationCCWindow {
                 }
             }
         }
-    //! [bottom content]
+//! [bottom content]
     }
 }

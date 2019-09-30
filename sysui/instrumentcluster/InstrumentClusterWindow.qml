@@ -86,8 +86,13 @@ Window {
         // on every language change, which results in resetting the window size to it's initial state
         // and might overwrite the size given by the OS or the user using the WindowManager
         // It happens because QQmlEngine::retranslate() refreshes all the engine's bindings
-        width = Config.instrumentClusterWidth
-        height = Config.instrumentClusterHeight
+        if (!clusterStore.runningOnDesktop) {
+            root.width = Config.instrumentClusterWidth;
+            root.height = Config.instrumentClusterHeight;
+        } else {
+            root.width = clusterStore.desktopWidth;
+            root.height = clusterStore.desktopHeight;
+        }
     }
 
     Item {

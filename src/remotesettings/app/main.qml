@@ -33,6 +33,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtIvi 1.0
+import QtIvi.Media 1.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 
@@ -42,8 +43,6 @@ ApplicationWindow {
     id: root
 
     visible: true
-    width: 1280
-    height: 800
     minimumHeight: 720
     minimumWidth: 400
 
@@ -57,7 +56,24 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        connectionDialog.open()
+        var screens = Qt.application.screens;
+        var minH = 1080;
+        var minW = 1920;
+        for (var scr in screens) {
+            minH = Math.min(minH, screens[scr].height);
+            minW = Math.min(minW, screens[scr].width);
+        }
+
+        // if FHD shrink to min
+        if (minH <= 1080 || minW <= 1920) {
+            root.width = minimumWidth;
+            root.height = minimumHeight;
+        } else {
+            root.width = 1280;
+            root.height = 800;
+        }
+
+        connectionDialog.open();
     }
 
     UISettings {
@@ -91,6 +107,10 @@ ApplicationWindow {
         id: systemUI
     }
 
+    MediaPlayer {
+        id: mediaPlayer
+    }
+
     ConnectionDialog {
         id: connectionDialog
 
@@ -105,9 +125,11 @@ ApplicationWindow {
                 uiSettings.setServiceObject(null);
                 instrumentCluster.setServiceObject(null);
                 systemUI.setServiceObject(null);
+                mediaPlayer.setServiceObject(null);
                 uiSettings.startAutoDiscovery();
                 instrumentCluster.startAutoDiscovery();
                 systemUI.startAutoDiscovery();
+                mediaPlayer.startAutoDiscovery();
             }
             connectionDialog.close();
         }

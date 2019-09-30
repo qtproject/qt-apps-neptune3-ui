@@ -35,20 +35,19 @@
 #include <QTimer>
 #include <QTcpServer>
 
-#include <QtSafeRenderer/statemanager.h>
+#include "neptunesafestatemanager.h"
 
-using namespace SafeRenderer;
 QT_USE_NAMESPACE
 
 class TcpMsgHandler : public QObject
 {
     Q_OBJECT
 public:
-    explicit TcpMsgHandler(StateManager *manager, QObject *parent = nullptr);
+    explicit TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent = nullptr);
     ~TcpMsgHandler() {
     }
 
-    static const quint16 defaultPort;
+    static const SafeRenderer::quint16 defaultPort;
 
     void onSpeedLabelsVisibilityChanged(bool visible);
     void onPowerLabelsVisibilityChanged(bool visible);
@@ -60,16 +59,16 @@ private slots:
     void heartbeatTimeout();
 
 private:
-    void runServer(const quint16 port);
+    void runServer(const SafeRenderer::quint16 port);
 
 signals:
-    void mainWindowPosGot(quint32 x, quint32 y);
+    void mainWindowPosGot(int x, int y);
 
 private:
-    StateManager *m_stateManager;
+    NeptuneSafeStateManager *m_stateManager;
     QTcpServer   *m_tcpServer;
 
-    quint32      m_timeout;
+    unsigned int m_timeout;
     bool         m_heartbeatUpdated;
     bool         m_mainUIFailed;
 

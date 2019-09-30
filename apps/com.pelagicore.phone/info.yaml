@@ -14,5 +14,8 @@ name:
   ja: '電話'
   ko: '전화'
 
+intents:
+- id: call-support
+
 applicationProperties: { private: { squishPort: 7728 } }
 categories: [ 'phone', 'widget' ]

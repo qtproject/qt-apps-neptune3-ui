@@ -91,7 +91,7 @@ private:
     void getAddress();
     void getQtDiagInfo();
     QStringList m_addressList;
-    int m_timerId;
+    int m_timerId{0};
     bool m_connected{false};
     bool m_internetAccess{false};
     QString m_qtDiagContents;

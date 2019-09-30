@@ -138,7 +138,7 @@ void Sizes::init()
 
 void Sizes::attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent)
 {
-    Q_UNUSED(oldParent);
+    Q_UNUSED(oldParent)
     Sizes* neptune = qobject_cast<Sizes *>(newParent);
     if (neptune) {
         inheritStyle(*neptune->m_data);
@@ -170,7 +170,7 @@ qreal Sizes::scale() const
 
 void Sizes::setScale(qreal value)
 {
-    if (value == m_data->scale)
+    if (qFuzzyCompare(value, m_data->scale))
         return;
 
     m_data->scale = value;
@@ -183,7 +183,7 @@ void Sizes::propagateScale()
 {
     for (QQuickAttachedObject *child : attachedChildren()) {
         Sizes* neptune = qobject_cast<Sizes *>(child);
-        if (neptune)
+        if (neptune && !qFuzzyCompare(neptune->scale(), m_data->scale))
             neptune->setScale(m_data->scale);
     }
 }

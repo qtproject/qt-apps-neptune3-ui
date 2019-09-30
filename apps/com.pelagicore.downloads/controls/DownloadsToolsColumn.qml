@@ -42,9 +42,9 @@ ColumnLayout {
     id: root
 
     property alias model: toolsRepeater.model
-    property string currentTool: "installed"
+    property int currentIndex: 0
     property string serverUrl
-    signal toolClicked(var storeType, var index)
+    signal toolClicked(int index)
 
     ButtonGroup { id: buttonGroup }
 
@@ -57,14 +57,13 @@ ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
             baselineOffset: 0
             checkable: true
-            checked: root.currentTool === model.name
+            checked: root.currentIndex === index
             icon.source: root.serverUrl + "/category/icon?id=" + model.id
             display: AbstractButton.TextUnderIcon
             text: qsTr(model.name)
             font.pixelSize: Sizes.fontSizeXS
             onClicked: {
-                root.toolClicked(model.name, index);
-                root.currentTool = model.name;
+                root.toolClicked(index);
             }
             ButtonGroup.group: buttonGroup
         }

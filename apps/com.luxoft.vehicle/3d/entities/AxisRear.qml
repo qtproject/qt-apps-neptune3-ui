@@ -66,7 +66,8 @@ Entity {
     Entity {
         Mesh {
             id: wheelMesh
-            source: Paths.getModelPath("rear_wheel_chrome", root.version)
+            source: Paths.getModelPath("rear_wheel_chrome"
+                    , root.version.length == 0 ? "optimized" : root.version)
         }
         components: [wheelMesh, wheelChromeMaterial]
     }

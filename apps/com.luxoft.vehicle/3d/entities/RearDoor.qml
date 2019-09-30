@@ -64,7 +64,8 @@ Entity {
 
     Mesh {
         id: rearDoorMesh
-        source: Paths.getModelPath("back_window", root.version)
+        source: Paths.getModelPath("back_window"
+                                   , root.version.length == 0 ? "optimized" : root.version)
     }
 
     components: [transform, rearDoorMesh, glassMaterial]

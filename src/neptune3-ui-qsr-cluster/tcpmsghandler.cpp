@@ -40,9 +40,9 @@
 
 Q_LOGGING_CATEGORY(qsrClusterApp, "qsrcluster.App")
 
-const quint16 TcpMsgHandler::defaultPort = 1111U;
+const SafeRenderer::quint16 TcpMsgHandler::defaultPort = 1111U;
 
-TcpMsgHandler::TcpMsgHandler(StateManager *manager, QObject *parent)
+TcpMsgHandler::TcpMsgHandler(NeptuneSafeStateManager *manager, QObject *parent)
     : QObject(parent), m_stateManager(manager), m_timeout(0U),
       m_heartbeatUpdated(false), m_mainUIFailed(false)
 
@@ -50,12 +50,12 @@ TcpMsgHandler::TcpMsgHandler(StateManager *manager, QObject *parent)
     QObject::connect(&m_heartbeatTimer, &QTimer::timeout, this, &TcpMsgHandler::heartbeatTimeout);
 
     QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
-    quint16 port = settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt();
+    SafeRenderer::quint16 port = static_cast<SafeRenderer::quint16>(settings.value(QStringLiteral("connection/listen_port"), defaultPort).toInt());
 
     runServer(port);
 }
 
-void TcpMsgHandler::runServer(const quint16 port)
+void TcpMsgHandler::runServer(const SafeRenderer::quint16 port)
 {
     m_tcpServer = new QTcpServer(this);
     if (!m_tcpServer->listen(QHostAddress::Any, port)) {
@@ -130,7 +130,7 @@ void TcpMsgHandler::readData()
     QTcpSocket *clientConnection = qobject_cast<QTcpSocket *>(QObject::sender());
     if (clientConnection) {
         unsigned char dataBuffer[SafeRenderer::QSafeEvent::messageLength];
-        quint32 datalength = 0U;
+        unsigned int datalength = 0U;
         do {
             QByteArray data = clientConnection->read(SafeRenderer::QSafeEvent::messageLength);
             datalength = data.length();
@@ -139,7 +139,7 @@ void TcpMsgHandler::readData()
                 SafeRenderer::QSafeEvent event(dataBuffer);
 
                 if (event.type() == SafeRenderer::EventHeartbeatUpdate) {
-                    const QSafeEventHeartbeat &heartbeat = static_cast<const QSafeEventHeartbeat &>(event);
+                    const SafeRenderer::QSafeEventHeartbeat &heartbeat = static_cast<const SafeRenderer::QSafeEventHeartbeat &>(event);
 
                     if (m_timeout == 0U) { //first message -> start timer
                         m_heartbeatUpdated = true; //reset updated flag
@@ -153,12 +153,12 @@ void TcpMsgHandler::readData()
                 }
 
                 if (event.type() == SafeRenderer::EventSetPosition) {
-                    const QSafeEventPosition &movePos = static_cast<const QSafeEventPosition &>(event);
+                    const SafeRenderer::QSafeEventPosition &movePos = static_cast<const SafeRenderer::QSafeEventPosition &>(event);
                     const char* item = "mainWindow";
                     //Demo case, move telltales over Cluster window
-                    if (movePos.id() == qsafe_hash(item, safe_strlen(item))) {
+                    if (movePos.id() == SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item))) {
                         //skip handling, just apply position
-                        emit mainWindowPosGot(movePos.x(), movePos.y());
+                        emit mainWindowPosGot(static_cast<int>(movePos.x()), static_cast<int>(movePos.y()));
                         continue;
                     }
                 }
@@ -173,41 +173,55 @@ void TcpMsgHandler::readData()
 
 void TcpMsgHandler::onSpeedLabelsVisibilityChanged(bool visible)
 {
-    QSafeEventVisibility event;
+    m_stateManager->setIsSpeedVisible(visible);
+
+    SafeRenderer::QSafeEventVisibility event;
 
     const char* item0 = "speedTextLabel";
     const char* item1 = "speedUnitsText";
+    const char* item2 = "speedText";
 
-    event.setId(qsafe_hash(item0, safe_strlen(item0)));
+    event.setId(SafeRenderer::qsafe_hash(item0, SafeRenderer::safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setId(SafeRenderer::qsafe_hash(item1, SafeRenderer::safe_strlen(item1)));
+    event.setValue(visible);
+    m_stateManager->handleEvent(event);
+
+    event.setId(SafeRenderer::qsafe_hash(item2, SafeRenderer::safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }
 
 void TcpMsgHandler::onPowerLabelsVisibilityChanged(bool visible)
 {
-    QSafeEventVisibility event;
+    m_stateManager->setIsPowerVisible(visible);
+
+    SafeRenderer::QSafeEventVisibility event;
 
     const char* item0 = "powerTextLabel";
     const char* item1 = "powerUnitsText";
+    const char* item2 = "powerText";
 
-    event.setId(qsafe_hash(item0, safe_strlen(item0)));
+    event.setId(SafeRenderer::qsafe_hash(item0, SafeRenderer::safe_strlen(item0)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 
-    event.setId(qsafe_hash(item1, safe_strlen(item1)));
+    event.setId(SafeRenderer::qsafe_hash(item1, SafeRenderer::safe_strlen(item1)));
+    event.setValue(visible);
+    m_stateManager->handleEvent(event);
+
+    event.setId(SafeRenderer::qsafe_hash(item2, SafeRenderer::safe_strlen(item2)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }
 
 void TcpMsgHandler::onErrorTextVisibilityChanged(bool visible)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "errorText";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(visible);
     m_stateManager->handleEvent(event);
 }

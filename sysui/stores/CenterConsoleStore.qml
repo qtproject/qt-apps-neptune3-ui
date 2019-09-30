@@ -62,4 +62,26 @@ Store {
     readonly property real availableHeight: orientationIsSomePortrait ? largerDimension : smallerDimension
     readonly property bool orientationIsSomePortrait: orientation === Qt.PortraitOrientation
                                                    || orientation === Qt.InvertedPortraitOrientation
+
+    readonly property var centerConsoleScreen: Qt.application.screens[0]
+
+    readonly property bool runningOnDesktop: WindowManager.runningOnDesktop
+    readonly property bool adjustSizesForScreen: {
+        ApplicationManager.systemProperties.adjustSizesForScreen
+    }
+    property int desktopWidth
+    property int desktopHeight
+
+    onCenterConsoleScreenChanged: {
+        if (!adjustSizesForScreen) {
+            desktopWidth = Config.centerConsoleWidth;
+            desktopHeight = Config.centerConsoleHeight;
+        } else {
+            var tempHeight = Math.ceil(centerConsoleScreen.height * 0.9);
+            desktopHeight = tempHeight > Config.centerConsoleHeight
+                    ? Config.centerConsoleHeight
+                    : tempHeight;
+            desktopWidth = Math.ceil(desktopHeight * Config.centerConsoleAspectRatio);
+        }
+    }
 }

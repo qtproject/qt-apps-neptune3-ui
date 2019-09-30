@@ -39,15 +39,13 @@ You should not use this example in production environment.
 #include <QtGui>
 
 #include <QtSafeRenderer/qsafelayout.h>
-#include <QtSafeRenderer/statemanager.h>
 #include <QtSafeRenderer/qsafechecksum.h>
 
+#include "neptunesafestatemanager.h"
 #include "safewindow.h"
 #include "tcpmsghandler.h"
 #include "icsettingshandler.h"
 
-
-using namespace SafeRenderer;
 
 int main(int argc, char **argv)
 {
@@ -55,29 +53,29 @@ int main(int argc, char **argv)
 
     QDir::setCurrent(qApp->applicationDirPath());
 
-    QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
+    SafeRenderer::QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
 
     //Demo case, update window position on Cluster window move
     QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
     bool stickToCluster = settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool();
 
-    QSafeSize screenSize;
+    SafeRenderer::QSafeSize screenSize;
     if (stickToCluster) {
         screenSize.setWidth(layout.size().width());
         screenSize.setHeight(layout.size().height());
     } else {
-        screenSize.setWidth(static_cast<quint32>(qApp->primaryScreen()->size().width()));
-        screenSize.setHeight(static_cast<quint32>(qApp->primaryScreen()->size().height()));
+        screenSize.setWidth(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().width()));
+        screenSize.setHeight(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().height()));
     }
 
     SafeWindow telltaleWindow(screenSize, layout.size());
     telltaleWindow.setFlag(Qt::WindowDoesNotAcceptFocus, true);
 
-    StateManager stateManager(telltaleWindow, layout);
+    NeptuneSafeStateManager stateManager(telltaleWindow, layout);
 
     //light up all telltales and texts
-    for (quint32 i=0U; i<layout.count(); i++) {
-        QSafeEventVisibility visible;
+    for (unsigned int i=0U; i<layout.count(); i++) {
+        SafeRenderer::QSafeEventVisibility visible;
         visible.setId(layout.item(i).id());
         visible.setValue(1U);
         stateManager.handleEvent(visible);

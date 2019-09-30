@@ -33,7 +33,7 @@
 \li \l {Neptune 3 UI - Overview}{Overview}
 \li \l {Neptune 3 UI - Install}{Install}
 \li \l {Neptune 3 UI - Configure}{Configure}
-\li \l {Neptune 3 UI - Debugging}{Debugging}
+\li \l {Neptune 3 UI - Troubleshoot}{Troubleshoot}
 \endlist
 
 \section2  UI Insights
@@ -65,6 +65,7 @@
 
 \list
     \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
+    \li \l {Develop a Parking App}
 \endlist
 //! [content]
 */

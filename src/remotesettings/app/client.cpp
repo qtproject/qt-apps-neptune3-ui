@@ -37,16 +37,19 @@ const QString Client::settingsLastUrlsPrefix = QStringLiteral("lastUrls");
 const QString Client::settingsLastUrlsItem = QStringLiteral("url");
 const QString Client::settingsRemoteSettingsPortItem = QStringLiteral("ports/remoteSettingsPort");
 const QString Client::settingsDriveDataPortItem = QStringLiteral("ports/driveDataPort");
+const QString Client::settingsIviMediaPortItem = QStringLiteral("ports/iviMediaPort");
 const int Client::numOfUrlsStored = 5;
 const int Client::timeoutToleranceMS = 1000;
 const int Client::reconnectionIntervalMS = 3000;
 const QString Client::defaultUrl = QStringLiteral("tcp://127.0.0.1");
 const int Client::defaultRemoteSettingsPort = 9999;
 const int Client::defaultDriveDataPort = 9998;
+const int Client::defaultIviMediaPort = 9997;
 
 Client::Client(QObject *parent) : QObject(parent),
     m_remoteSettingsPort(defaultRemoteSettingsPort),
     m_driveDataPort(defaultDriveDataPort),
+    m_iviMediaPort(defaultIviMediaPort),
     m_connected(false),
     m_timedOut(false),
     m_settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("NeptuneCompanionApp"))
@@ -112,9 +115,11 @@ void Client::connectToServer(const QString &serverUrl)
 
     QUrl remoteSettingsUrl(url);
     QUrl driveDataUrl(url);
+    QUrl iviMediaUrl(url);
 
     remoteSettingsUrl.setPort(m_remoteSettingsPort);
     driveDataUrl.setPort(m_driveDataPort);
+    iviMediaUrl.setPort(m_iviMediaPort);
 
     QSettings settings(m_configPath, QSettings::IniFormat);
     settings.beginGroup(QStringLiteral("remotesettings"));
@@ -123,6 +128,10 @@ void Client::connectToServer(const QString &serverUrl)
     settings.sync();
     settings.beginGroup(QStringLiteral("drivedata"));
     settings.setValue(QStringLiteral("Registry"), driveDataUrl.toString());
+    settings.endGroup();
+    settings.sync();
+    settings.beginGroup(QStringLiteral("qtivimedia"));
+    settings.setValue(QStringLiteral("Registry"), iviMediaUrl.toString());
     settings.endGroup();
     settings.sync();
 
@@ -194,6 +203,7 @@ void Client::readSettings()
 {
     m_remoteSettingsPort = m_settings.value(settingsRemoteSettingsPortItem, defaultRemoteSettingsPort).toInt();
     m_driveDataPort = m_settings.value(settingsDriveDataPortItem, defaultDriveDataPort).toInt();
+    m_iviMediaPort = m_settings.value(settingsIviMediaPortItem, defaultIviMediaPort).toInt();
 
     int size=m_settings.beginReadArray(settingsLastUrlsPrefix);
     for (int i=0; i<size; i++) {

@@ -61,6 +61,9 @@ ListModel {
     // Whether the model is still being populated. It's true during start up.
     readonly property alias populating: d.populating
 
+    property bool showCluster: false
+    property bool showHUD: false
+
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
@@ -78,7 +81,7 @@ ListModel {
     function populate(widgetStates, autostart, autorecover) {
         // Configures which applications should be shown as widgets,
         // which, in turn, will cause them to be started.
-        d.deserializeWidgetsState(widgetStates);
+        d.deserializeWidgetStates(widgetStates);
         d.deserializeAutostart(autostart);
         d.deserializeAutorecover(autorecover);
         d.populating = false;
@@ -165,7 +168,7 @@ ListModel {
         return appIds.toString();
     }
 
-    function serializeWidgetsState() {
+    function serializeWidgetStates() {
         var appWidgetIds = [];
         var appWidgetHeights = [];
         var widgetStates = [];
@@ -300,13 +303,27 @@ ListModel {
 
             root.append({"appInfo": appInfo})
 
-            if (appInfo.autostart) {
+            if (appInfo.autostart && !d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
                 appInfo.start();
                 goHome();
             }
+
+            // check if additional screen is attached and cluster is expected to be shown
+            if (root.showCluster) {
+                if (appInfo.autostart && d.isInstrumentClusterApp(app)) {
+                    appInfo.start();
+                }
+            }
+
+            // check if additional screen is attached and hud is expected to be shown
+            if (root.showHUD) {
+                if (appInfo.autostart && d.isHUDApp(app)) {
+                    appInfo.start();
+                }
+            }
         }
 
-        function deserializeWidgetsState(widgetStates)
+        function deserializeWidgetStates(widgetStates)
         {
             var apps = widgetStates.split(",")
 

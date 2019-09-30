@@ -32,6 +32,7 @@
 
 
 import QtQuick 2.8
+import QtApplicationManager.Application 2.0
 import shared.utils 1.0
 
 Store {
@@ -40,6 +41,16 @@ Store {
     property bool ongoingCall: false
     property string callerHandle: ""
     property alias callDuration: callTimer.duration
+
+//! [parking intent handler]
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "call-support"
+        onRequestReceived: {
+            root.startCall("neptunesupport");
+            request.sendReply({ "done": true });
+        }
+    }
+//! [parking intent handler]
 
     function findPerson(handle) {
         for (var i = 0; i < contactsModel.count; i++) {
@@ -135,6 +146,10 @@ Store {
         }
         ListElement { handle: "bhummels"; firstName: "Berndt"; surname: "Hummels"; favorite: false; phoneNumbers: [
                 ListElement { name: "company"; number: "(669) 189-3693" }
+            ]
+        }
+        ListElement { handle: "neptunesupport"; firstName: "Neptune"; surname: "Support"; favorite: false; phoneNumbers: [
+                ListElement { name: "company"; number: "(0809) 898989" }
             ]
         }
     }

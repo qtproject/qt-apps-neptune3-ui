@@ -1,0 +1,24 @@
+defineReplace(currentGitRevision) {
+    revision = "unknown revision"
+    unix:exists($$SOURCE_DIR/.git):{
+        GIT_TAG=$$system(cd "$$SOURCE_DIR" && git describe --exact-match 2> /dev/null)
+        isEmpty(GIT_TAG) {
+            GIT_CUR_REF=$$system(cd "$$SOURCE_DIR" && git symbolic-ref HEAD 2> /dev/null)
+            GIT_CUR_BRANCH=$$basename(GIT_CUR_REF)
+            GIT_LAST_COMMIT=$$system(cd "$$SOURCE_DIR" && git log --pretty=format:\"%h\" -1)
+            isEmpty(GIT_CUR_BRANCH) {
+                revision=$$GIT_LAST_COMMIT
+            } else {
+                revision=$${GIT_CUR_BRANCH}-$${GIT_LAST_COMMIT}
+            }
+        } else {
+            revision=$$GIT_TAG
+        }
+    }
+
+    isEmpty(revision) {
+        revision="unknown revision"
+    }
+
+    return($$revision)
+}

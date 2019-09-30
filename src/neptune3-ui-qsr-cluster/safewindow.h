@@ -39,13 +39,12 @@
 #include <QtSafeRenderer/qsafelayout.h>
 #include <QtSafeRenderer/qsafewindow.h>
 
-using namespace SafeRenderer;
 QT_USE_NAMESPACE
 
-class ScreenBuffer : public AbstractFrameBuffer
+class ScreenBuffer : public SafeRenderer::AbstractFrameBuffer
 {
 public:
-    ScreenBuffer(const QSafeSize& size) :
+    ScreenBuffer(const SafeRenderer::QSafeSize& size) :
         m_image(size.width(), size.height(), QImage::Format_RGBA8888) {
 
     }
@@ -55,9 +54,9 @@ public:
         return m_image.bits();
     }
 
-    quint32 bytesPerLine()
+    SafeRenderer::quint32 bytesPerLine()
     {
-        return m_image.bytesPerLine();
+        return static_cast<SafeRenderer::quint32>(m_image.bytesPerLine());
     }
 
     QImage image()
@@ -79,24 +78,25 @@ private:
     QImage m_image;
 };
 
-class SafeWindow : public QWindow, public AbstractWindow
+class SafeWindow : public QWindow, public SafeRenderer::AbstractWindow
 {
     Q_OBJECT
 public:
-    explicit SafeWindow(const QSafeSize &size, const QSafeSize &frameSize, QWindow *parent = 0);
+    explicit SafeWindow(const SafeRenderer::QSafeSize &size,
+                        const SafeRenderer::QSafeSize &frameSize, QWindow *parent = 0);
 
     virtual void render(QPainter *painter);
 
     //Window
-    virtual void render(const Rect &dirtyArea);
-    virtual AbstractFrameBuffer *buffer() {
+    virtual void render(const SafeRenderer::Rect &dirtyArea);
+    virtual SafeRenderer::AbstractFrameBuffer *buffer() {
         return &m_buffer;
     }
 
 public slots:
     void renderLater();
     void renderNow();
-    void moveWindow(quint32 x, quint32 y);
+    void moveWindow(int x, int y);
 
 protected:
     bool event(QEvent *event) override;

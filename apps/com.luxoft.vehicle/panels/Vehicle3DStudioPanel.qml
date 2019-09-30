@@ -51,7 +51,7 @@ Item {
     property bool trunkOpen: false
     property color vehicleColor
 
-    signal readyToChanges
+    property bool readyToChanges: false
 
     QtObject {
         id: d
@@ -62,25 +62,25 @@ Item {
 
     onLeftDoorOpenChanged: {
         if (leftDoorOpen) {
-            presentation.leftDoorAngle = 60
+            presentation.leftDoorAngle = 60;
         } else {
-            presentation.leftDoorAngle = 0
+            presentation.leftDoorAngle = 0;
         }
     }
 
     onRightDoorOpenChanged: {
         if (rightDoorOpen) {
-            presentation.rightDoorAngle = -60
+            presentation.rightDoorAngle = -60;
         } else {
-            presentation.rightDoorAngle = 0
+            presentation.rightDoorAngle = 0;
         }
     }
 
     onTrunkOpenChanged: {
         if (trunkOpen) {
-            presentation.trunkAngle = 30
+            presentation.trunkAngle = 30;
         } else {
-            presentation.trunkAngle = 0
+            presentation.trunkAngle = 0;
         }
     }
 
@@ -108,7 +108,7 @@ Item {
 
                     if (dx != 0) {
                         presentation.angleHorizontal -= dx * coef;
-                        root.lastCameraAngle = presentation.angleHorizontal - 270
+                        root.lastCameraAngle = presentation.angleHorizontal - 270;
                     }
 
                     d.trajectory = [];
@@ -117,7 +117,24 @@ Item {
         }
     }
 
+    Connections {
+        id: readyToChangeConnection
+        target: studio3D
+        property int fc: 0
+        onFrameUpdate: {
+            fc += 1;
+            // skip first 10 frames to be sure that all content is ready
+            if (fc > 10) {
+                studio3D.opacity = 1.0;
+                readyToChangeConnection.target = null;
+                root.readyToChanges = true;
+            }
+        }
+    }
+
     Studio3D {
+        id: studio3D
+        opacity: 0
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(200)
         anchors.left: parent.left
@@ -125,13 +142,9 @@ Item {
         height: Sizes.dp(380)
         width: Sizes.dp(960)
 
-        onPresentationReady: {
-            Qt.callLater( function() {root.readyToChanges()} )
-        }
-
         Presentation {
             id: presentation
-            source: Paths.localQt3DStudioPresentationAsset("presentations/vehicle3dStudio.uip")
+            source: Paths.localQt3DStudioPresentationAsset("vehicle3dStudio.uia")
 
             property real angleHorizontal: (270.0 + root.lastCameraAngle) % 360
             property real angleVertical: 2.0

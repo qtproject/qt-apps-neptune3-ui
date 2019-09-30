@@ -34,7 +34,7 @@
 
 #include "icsettingshandler.h"
 
-ICSettingsHandler::ICSettingsHandler(StateManager *manager, QObject *parent)
+ICSettingsHandler::ICSettingsHandler(NeptuneSafeStateManager *manager, QObject *parent)
     : QObject(parent), m_stateManager(manager),
       m_rightTurnState(false), m_rightTurnEnabled(false),
       m_leftTurnState(false), m_leftTurnEnabled(false)
@@ -90,112 +90,120 @@ void ICSettingsHandler::init()
 
 void ICSettingsHandler::onSpeedChanged(qreal value)
 {
-    QSafeEventSetText event;
+    // required due to QSR-471, changing text for invisible item makes it visible
+    if (!m_stateManager->isSpeedVisible())
+        return;
+
+    SafeRenderer::QSafeEventSetText event;
     const char* item = "speedText";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
 
     QByteArray valueBa = QString::number(value, 'f', 0).toLocal8Bit();
-    event.setValue(valueBa.data(), safe_strlen(valueBa.data()));
+    event.setValue(valueBa.data(), SafeRenderer::safe_strlen(valueBa.data()));
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onPowerChanged(qreal value)
 {
-    QSafeEventSetText event;
+    // required due to QSR-471, changing text for invisible item makes it visible
+    if (!m_stateManager->isPowerVisible())
+        return;
+
+    SafeRenderer::QSafeEventSetText event;
     const char* item = "powerText";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
 
     QByteArray valueBa = QString::number(value, 'f', 0).toLocal8Bit();
-    event.setValue(valueBa.data(), safe_strlen(valueBa.data()));
+    event.setValue(valueBa.data(), SafeRenderer::safe_strlen(valueBa.data()));
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onHighBeamHeadlightChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesHighBeam";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onLowBeamHeadlightChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesLowBeam";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onFogLightChangedChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesFogLights";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onStabilityControlChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesStabilityControl";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onSeatBeltNotFastenedChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesSeatBelt";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onABSFailureChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesAbsFault";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onParkBrakeChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesParkingBrake";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onTyrePressureLowChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesTyrePressure";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onAirbagFailureChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesAirbag";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
 
 void ICSettingsHandler::onBrakeFailureChanged(bool state)
 {
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* item = "telltalesBrakeFault";
-    event.setId(qsafe_hash(item, safe_strlen(item)));
+    event.setId(SafeRenderer::qsafe_hash(item,SafeRenderer:: safe_strlen(item)));
     event.setValue(state);
     m_stateManager->handleEvent(event);
 }
@@ -229,9 +237,9 @@ void ICSettingsHandler::onLeftRightTurnTimer()
         m_leftTurnState = false;
     }
 
-    QSafeEventVisibility event;
+    SafeRenderer::QSafeEventVisibility event;
     const char* itemLeft = "telltalesLeftTurn";
-    event.setId(qsafe_hash(itemLeft, safe_strlen(itemLeft)));
+    event.setId(SafeRenderer::qsafe_hash(itemLeft, SafeRenderer::safe_strlen(itemLeft)));
     event.setValue(m_leftTurnState);
     m_stateManager->handleEvent(event);
 
@@ -243,7 +251,7 @@ void ICSettingsHandler::onLeftRightTurnTimer()
     }
 
     const char* itemRight = "telltalesRightTurn";
-    event.setId(qsafe_hash(itemRight, safe_strlen(itemRight)));
+    event.setId(SafeRenderer::qsafe_hash(itemRight, SafeRenderer::safe_strlen(itemRight)));
     event.setValue(m_rightTurnState);
     m_stateManager->handleEvent(event);
 

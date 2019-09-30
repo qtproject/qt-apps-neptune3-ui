@@ -46,9 +46,6 @@ Item {
 
     property DownloadsStore store
 
-    property int categoryid: 1
-    property string filter: ""
-
     BusyIndicator {
         id: busyIndicator
 
@@ -56,20 +53,22 @@ Item {
         height: Sizes.dp(440)
         anchors.centerIn: parent
         running: visible
-        opacity: root.store.categoryModel.count < 1 && root.store.isOnline ? 1.0 : 0.0
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { } }
+        opacity: root.store.isBusy ? 1.0 : 0.0
+        visible: opacity > 0.0
+        Behavior on opacity {
+            PauseAnimation { duration: 1000 }
+            DefaultNumberAnimation { }
+        }
 
         onRunningChanged: {
             if (!running) { // preselect non-empty category
-                toolsColumn.currentTool = "Entertainment";
-                toolsColumn.toolClicked("Entertainment", 2);
+                toolsColumn.toolClicked(0);
             }
         }
     }
 
     Loader {
-        anchors.top: busyIndicator.visible ? busyIndicator.bottom : undefined
+        anchors.top: root.store.isBusy ? busyIndicator.bottom : undefined
         anchors.centerIn: busyIndicator.visible ? undefined : root
         anchors.topMargin: Sizes.dp(8)
         anchors.horizontalCenter: parent.horizontalCenter
@@ -131,7 +130,7 @@ Item {
         font.pixelSize: Sizes.fontSizeM
         text: qsTr("No apps found!")
         opacity: 1.0 - busyIndicator.opacity
-        visible: appList.model.count < 1 && root.store.isOnline
+        visible: root.store.isBusy
     }
 
     RowLayout {
@@ -166,6 +165,9 @@ Item {
             store: root.store
 
             onToolClicked: {
+                if (root.store.isAppBusy(appId)) {
+                    return
+                }
                 if (root.store.isInstalled(appId)) {
                     root.store.uninstallApplication(appId, appName)
                 } else {
