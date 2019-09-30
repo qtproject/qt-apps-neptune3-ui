@@ -33,6 +33,6 @@
 
 SetLocal EnableDelayedExpansion
 set WRAPPER_PWD=%~dp0
-set PATH=%WRAPPER_PWD%\..\bin;%PATH%
+set PATH=%WRAPPER_PWD%\..\bin;%WRAPPER_PWD%\..\..\..\Tools\OpenSSL\Win_x64\bin;%PATH%
 %WRAPPER_PWD%\neptune3-ui %*
 EndLocal
