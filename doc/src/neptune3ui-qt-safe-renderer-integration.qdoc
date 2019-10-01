@@ -142,31 +142,36 @@
     using \c OnFailure property. When \c neptune3-ui stops, the \c neptune3-ui-qsr-cluster app is
     started by systemd.
 
-    The following code shows the "OnFailure" part of the \c {Neptune 3 UI with Safe Renderer}
+    The following code shows the "OnFailure" part of the \c {Neptune 3 UI}
     service file, located in \c {/lib/systemd/system/neptune.service}:
 
     \badcode
     [Unit]
-    OnFailure=neptune3-ui-qsr-cluster.service
+    Conflicts=neptune-qsr.service
+    Before=neptune-qsr.service
+    OnFailure=neptune-qsr.service
     \endcode
 
-    The \c {Safe UI} service file in \c {/lib/systemd/system/neptune3-qsr-cluster.service} contains:
+    The \c {Safe UI} service file in \c {/lib/systemd/system/neptune-qsr.service} contains:
     \badcode
     [Service]
-    Type=oneshot
-    ExecStart=/opt/neptune3/neptune3-ui-qsr-cluster -platform eglfs
+    ExecStart=/opt/neptune3/neptune3-ui-qsr-cluster
     workingDirectory=/opt/neptune3
-    Environment=QT_QPA_EGLFS_KMS_CONFIG=/opt/neptune3/neptune3-ui-qsr.json
+    Environment=QT_QPA_EGLFS_KMS_CONFIG=/etc/kms-qsr.conf
+    Environment=QSR_SHOW_TEXT_ON_STARTUP=1
+    Environment=QSR_FILL_BLACK_BACKGROUND=1
     \endcode
 
-    The corresponding EGLFS settings JSON file (\c {/opt/neptune3/neptune3-ui-qsr.json}) contains:
+    The corresponding EGLFS settings JSON file (\c {/etc/kms-qsr.conf}) contains:
     \badcode
     {
-        "device": "/dev/dri/card0",
+        "hwcursor": false,
         "outputs": [
-            { "name": "DP1", "virtualIndex": 2, "mode": "1920x1080"},
-            { "name": "DP3", "virtualIndex": 0, "mode": "1920x1080"},
-            { "name": "DP4", "virtualIndex": 1, "mode": "1920x1080"}
+            {
+                "name": "DP3",
+                "virtualIndex": 0,
+                "primary": true
+            }
         ]
     }
     \endcode
