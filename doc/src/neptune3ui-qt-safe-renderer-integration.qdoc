@@ -240,4 +240,14 @@
     one window on top of another. We also make that window "follow" the coordinates of the other to
     synchronize their positions on the screen.
 
+    \section1 Specific Options for Target Device
+
+    Running the \c neptune3-ui-qsr-cluster app on a target device, such as an Intel NUC, may require
+    the application window to have an opaque background. To enable the app to fill this background
+    automatically, set the \c QSR_FILL_BLACK_BACKGROUND environment variable to \c 1.
+
+    When the \c neptune3-ui-qsr-cluster app can't access the keep-alive messages, and it started
+    after the \c{Main UI} application was stopped or crashed, you may need to display the warning
+    message, speed values and power, on startup. To enable this, set the
+    \c QSR_SHOW_TEXT_ON_STARTUP environment variable to \c 1.
 */

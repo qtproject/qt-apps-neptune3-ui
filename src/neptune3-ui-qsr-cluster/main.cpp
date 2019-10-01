@@ -83,10 +83,17 @@ int main(int argc, char **argv)
 
     //TCP server
     TcpMsgHandler msgHandler(&stateManager);
-    //hide "safe" label replacements for "non-safe" UI
-    msgHandler.onErrorTextVisibilityChanged(false);
-    msgHandler.onPowerLabelsVisibilityChanged(false);
-    msgHandler.onSpeedLabelsVisibilityChanged(false);
+
+    if (qgetenv("QSR_SHOW_TEXT_ON_STARTUP").isNull()) {
+        //hide "safe" label replacements for "non-safe" UI and prevent from text update
+        msgHandler.onErrorTextVisibilityChanged(false);
+        msgHandler.onPowerLabelsVisibilityChanged(false);
+        msgHandler.onSpeedLabelsVisibilityChanged(false);
+    } else {
+        msgHandler.onErrorTextVisibilityChanged(true);
+        msgHandler.onPowerLabelsVisibilityChanged(true);
+        msgHandler.onSpeedLabelsVisibilityChanged(true);
+    }
 
 
     if (stickToCluster) {
