@@ -44,7 +44,9 @@ ApplicationWindow {
 
     visible: true
     minimumHeight: 720
-    minimumWidth: 400
+    minimumWidth: 450
+    width: 1280
+    height: 800
 
     title: qsTr("Neptune Companion App")
 
@@ -68,9 +70,6 @@ ApplicationWindow {
         if (minH <= 1080 || minW <= 1920) {
             root.width = minimumWidth;
             root.height = minimumHeight;
-        } else {
-            root.width = 1280;
-            root.height = 800;
         }
 
         connectionDialog.open();
@@ -116,8 +115,7 @@ ApplicationWindow {
 
         statusText: client.status
         lastUrls: client.lastUrls
-        x: (parent.width-width) /2
-        y: (parent.height-height) /2
+        anchors.centerIn: parent
 
         onAccepted: {
             if (accepted) {
