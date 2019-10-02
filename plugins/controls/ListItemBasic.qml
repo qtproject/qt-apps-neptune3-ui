@@ -143,7 +143,7 @@ ItemDelegate {
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
-    opacity: enabled ? root.opacity : Style.defaultDisabledOpacity
+    opacity: enabled ? 1.0 : Style.defaultDisabledOpacity
     icon.color: Style.contrastColor
 
     implicitHeight: Math.max(
