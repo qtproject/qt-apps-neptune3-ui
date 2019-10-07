@@ -59,6 +59,10 @@ Item {
     focus: parent.activeFocus
 
     property bool trapsCursor: false
+    onTrapsCursorChanged: {
+        parent.CursorNavigation.trapsCursor = root.trapsCursor;
+    }
+
     property bool acceptsCursor: true
     property bool hasCursor: parent.CursorNavigation.hasCursor
     property bool pressed: false
@@ -73,7 +77,7 @@ Item {
     }
 
     Connections {
-        target: parent
+        target: (parent.pressed !== undefined) ? parent : null
         onPressed: {
             pressAndHoldSim.start();
         }
