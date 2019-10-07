@@ -33,9 +33,9 @@
 import QtQml 2.2
 import QtQml.Models 2.3
 import shared.utils 1.0
-import shared.com.pelagicore.remotesettings 1.0
 import shared.Style 1.0
 import shared.Connectivity 1.0
+import shared.com.pelagicore.remotesettings 1.0
 
 import "../helper"
 
@@ -49,16 +49,6 @@ QtObject {
     readonly property int connectivityStatusDisconnected: WiFi.Disconnected
 
     readonly property Helper helper: Helper {}
-    readonly property UISettings uiSettings: UISettings {
-        onAccentColorChanged: {
-            accentColorsModel.forEach(function(element) {
-                var c1 = Qt.lighter(element.color, 1.0)
-                var c2 = Qt.lighter(accentColor, 1.0)
-                element.selected = Qt.colorEqual(element.color, accentColor)
-                    ||  Math.abs(c1.r - c2.r) + Math.abs(c1.g - c2.g) + Math.abs(c1.b - c2.b) < 0.01;
-            });
-        }
-    }
 
     // Time And Date Segment
     readonly property bool twentyFourHourTimeFormat: uiSettings.twentyFourHourTimeFormat !== undefined ?
@@ -66,7 +56,6 @@ QtObject {
                                                          // "ap" here indicates the presence of AM/PM suffix;
                                                          // Locale has no other way of telling whether it uses 12 or 24h time format
                                                        : Qt.locale().timeFormat(Locale.ShortFormat).indexOf("AP") === -1
-
 
     // Language Segment
     readonly property string currentLanguage: uiSettings.language ? uiSettings.language : Config.languageLocale
@@ -96,8 +85,11 @@ QtObject {
         uiSettings.setTwentyFourHourTimeFormat(value);
     }
 
-    // Theme Segment
-    readonly property int currentTheme: uiSettings.theme !== undefined ? uiSettings.theme : 1 // dark
+    // Accent Colors & themes segment
+    property bool startupAccentColor: true
+    property var accentColorsModel: Config._initAccentColors(uiSettings.theme)
+    property string lighThemeLastAccColor: "#d35756"
+    property string darkThemeLastAccColor: "#b75034"
 
     readonly property ListModel themeModel: ListModel {
         // TODO: This data will be populated from settings server later
@@ -106,55 +98,53 @@ QtObject {
         ListElement { title: QT_TR_NOOP('Dark'); theme: 'dark' }
     }
 
-    function updateTheme(value) {
-        console.log(helper.category, 'updateTheme: ', value)
-        uiSettings.setTheme(value);
+    readonly property UISettings uiSettings: UISettings {
+        onAccentColorChanged: {
+            root.accentColorsModel.forEach(function(element) {
+                var c1 = Qt.lighter(element.color, 1.0)
+                var c2 = Qt.lighter(accentColor, 1.0)
+                element.selected = Qt.colorEqual(element.color, accentColor)
+                        ||  Math.abs(c1.r - c2.r) + Math.abs(c1.g - c2.g) + Math.abs(c1.b - c2.b) < 0.01;
 
-        if (value === 0) {
-            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Light Theme"));
-        } else if (value === 1) {
-            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Dark Theme"));
-        }
-
-
-    }
-
-    // (Accent) Colors segment
-    readonly property color currentAccentColor: !!uiSettings.accentColor ? uiSettings.accentColor : Style.accentColor
-
-    function _initColors() {
-        var arr = [{ color: Style.accentColor, value: 5, selected: true }]
-        var c = Style.accentColor
-
-        var hue = isNaN(c.hslHue) ? 0.075 : c.hslHue
-        var lightness = isNaN(c.hslLightness) ? 0.65 : c.hslLightness
-        var a = isNaN(c.a) ? 1.0 : c.a
-
-        for (var i = 1; i < 10; ++i) {
-            if (hue - i * 0.1 >= 0) {
-                arr.push({ color: Qt.hsla(hue - i * 0.1, 0.7, lightness, a)
-                            , value: 5, selected: false })
-            }
-
-            if (hue + i * 0.1 <= 1) {
-                arr.push({ color: Qt.hsla(hue + i * 0.1, 0.7, lightness, a)
-                            , value: 5, selected: false })
+            });
+            if (startupAccentColor) {
+                //Prevent setting back light theme's last accent color in cases when the UI
+                //was closed with light theme set. If this is the case, reset dark theme's
+                //default accent color.
+                var accColorInPalette = root.accentColorsModel.find(function(color) {
+                    return (color.color === accentColor);
+                });
+                if (accColorInPalette === undefined) {
+                    uiSettings.accentColor = accentColorsModel[0].color;
+                }
+                startupAccentColor = false;
             }
         }
-
-        return arr;
     }
 
-    property var accentColorsModel: []
     function updateAccentColor(value) {
-        console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
-        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(value));
+    }
+
+    function updateTheme(value) {
+        if (value === 1 && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
+            root.lighThemeLastAccColor = uiSettings.accentColor;
+        } else if (value === 0 && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
+            root.darkThemeLastAccColor = uiSettings.accentColor;
+        }
+        uiSettings.setTheme(value);
+        //set previous to theme accentColor
+        if (lighThemeLastAccColor !== "" && value === 0) {
+            updateAccentColor(root.lighThemeLastAccColor);
+        } else if (darkThemeLastAccColor !== "" && value === 1) {
+            updateAccentColor(root.darkThemeLastAccColor);
+        } else {
+            updateAccentColor(root.accentColorsModel[0].color);
+        }
     }
 
     // Initialization
     Component.onCompleted: {
         populateLanguages();
-        accentColorsModel = _initColors();
     }
 }

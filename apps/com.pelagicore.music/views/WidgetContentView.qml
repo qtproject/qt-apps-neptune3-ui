@@ -55,7 +55,7 @@ Item {
     Item {
         id: nextListFlickableItem
         width: parent.width
-        height: (parent.height - artAndTitleBackground.height - progressBarBlock.height)
+        height: (parent.height - Sizes.dp(260) - progressBarBlock.height)
         anchors.bottom: parent.bottom
         opacity: 0
         visible: opacity > 0
@@ -98,32 +98,6 @@ Item {
         }
     }
 
-    Rectangle {
-        id: artAndTitleBackground
-        height: Sizes.dp(260)
-        width: parent.width
-        color: Style.offMainColor
-        MouseArea {
-            //prevent clicking on list items when the list
-            //is scrolled under the header component
-            //should go to maximized state instead
-            anchors.fill: parent
-            enabled: (nextListFlickable.contentY > 0)
-            onClicked: {
-                root.flickableAreaClicked();
-            }
-        }
-    }
-
-    Image {
-        id: nextListShadow
-        opacity: 0
-        width: parent.width
-        height: sourceSize.height
-        anchors.top: artAndTitleBackground.bottom
-        source: Style.image("panel-inner-shadow")
-    }
-
     AlbumArtPanel {
         id: artAndTitlesBlock
         objectName: "musicPlayer"
@@ -146,6 +120,16 @@ Item {
             target: root.store
             onSongModelPopulated: { artAndTitlesBlock.populateModel(); }
         }
+    }
+
+    Image {
+        id: nextListShadow
+        width: parent.width
+        height: sourceSize.height
+        anchors.top: parent.top
+        anchors.topMargin: Sizes.dp(260)
+        opacity: 0
+        source: Style.image("panel-inner-shadow")
     }
 
     MusicProgress {
@@ -199,7 +183,6 @@ Item {
         State {
             name: "Maximized"
             PropertyChanges { target: root; height: Sizes.dp(660) - Sizes.dp(224) }
-            PropertyChanges { target: artAndTitleBackground; opacity: 0 }   //todo: do something else here because it is blocking the gray background.
             PropertyChanges { target: artAndTitlesBlock; anchors.verticalCenterOffset: Sizes.dp(-110) }
             PropertyChanges { target: progressBarBlock; anchors.verticalCenterOffset: Sizes.dp(90) }
             PropertyChanges { target: progressBarBlock; opacity: 1 }
@@ -211,10 +194,7 @@ Item {
         Transition {
             from: "Maximized"
             DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, nextListFlickableItem, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }
-            SequentialAnimation {
-                PauseAnimation { duration: 200 }
-                DefaultNumberAnimation { target: artAndTitleBackground ; property: "opacity" }
-            }
+            PauseAnimation { duration: 200 }
         },
         Transition {
             DefaultNumberAnimation { targets: [progressBarBlock, musicTools, nextListFlickable, nextListFlickableItem, artAndTitlesBlock, root]; properties: "width, height, opacity, anchors.verticalCenterOffset" }

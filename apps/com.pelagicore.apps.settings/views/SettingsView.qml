@@ -221,7 +221,6 @@ Control {
                     anchors.fill: parent
                     visible: toolsColumn.currentIcon === 'ic-themes'
                     model: store.themeModel
-                    currentTheme: store.currentTheme
                     onThemeRequested: store.updateTheme(theme);
                 }
             }
@@ -231,7 +230,6 @@ Control {
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-color'
                 model: store.accentColorsModel
-                currentAccentColor: store.currentAccentColor
                 onAccentColorRequested: store.updateAccentColor(accentColor)
             }
         }

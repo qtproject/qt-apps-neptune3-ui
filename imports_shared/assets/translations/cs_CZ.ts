@@ -454,6 +454,29 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>Config</name>
+    <message>
+        <source>UI Accent Color changed</source>
+        <translation type="obsolete">Barva zvýraznění UI změněna</translation>
+    </message>
+    <message>
+        <source>UI Accent Color changed into %1</source>
+        <translation type="obsolete">Barva zvýraznění UI změněna na %1</translation>
+    </message>
+    <message>
+        <source>UI Theme changed</source>
+        <translation type="obsolete">Motiv UI změněn</translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Light Theme</source>
+        <translation type="obsolete">Motiv UI změněn na světlý</translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Dark Theme</source>
+        <translation type="obsolete">Motiv UI změněn na tmavý</translation>
+    </message>
+</context>
+<context>
     <name>CpuMonitor</name>
     <message>
         <source>CPU: </source>
@@ -1589,11 +1612,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Accent Color changed</source>
-        <translation>Barva zvýraznění UI změněna</translation>
+        <translation type="vanished">Barva zvýraznění UI změněna</translation>
     </message>
     <message>
         <source>UI Accent Color changed into %1</source>
-        <translation>Barva zvýraznění UI změněna na %1</translation>
+        <translation type="vanished">Barva zvýraznění UI změněna na %1</translation>
     </message>
     <message>
         <source>UI Language changed</source>
@@ -1601,15 +1624,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Theme changed</source>
-        <translation>Motiv UI změněn</translation>
+        <translation type="vanished">Motiv UI změněn</translation>
     </message>
     <message>
         <source>UI Theme changed into Light Theme</source>
-        <translation>Motiv UI změněn na světlý</translation>
+        <translation type="vanished">Motiv UI změněn na světlý</translation>
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
-        <translation>Motiv UI změněn na tmavý</translation>
+        <translation type="vanished">Motiv UI změněn na tmavý</translation>
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>

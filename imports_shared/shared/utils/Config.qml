@@ -78,9 +78,9 @@ QtObject {
     property Loader cursorLoader: Loader {
         //if cursor support in center console is enabled, try loading CursorManagement.qml
         source: root.enableCursorManagement ? Qt.resolvedUrl("./CursorManagement.qml")
-                : Qt.resolvedUrl("./CursorManagementDummy.qml")
+                                            : Qt.resolvedUrl("./CursorManagementDummy.qml")
         onStatusChanged: {
-        //if cursor plugin is not available load CursorManagementDummy.qml
+            //if cursor plugin is not available load CursorManagementDummy.qml
             if (status === Loader.Error) {
                 source = Qt.resolvedUrl("./CursorManagementDummy.qml");
                 console.warn("The cursor management plugin is not installed,
@@ -103,5 +103,29 @@ QtObject {
                 languageLocale = Qt.locale().name;
             })
         }
+    }
+
+    function _initAccentColors(value) {
+        var arrDark = [{ color: "#b75034", value: 5, selected: false },
+                       { color: "#916755", value: 5, selected: false },
+                       { color: "#977b35", value: 5, selected: false },
+                       { color: "#698563", value: 5, selected: false },
+                       { color: "#087559", value: 5, selected: false },
+                       { color: "#4c878b", value: 5, selected: false },
+                       { color: "#417eb6", value: 5, selected: false },
+                       { color: "#4f4c4a", value: 5, selected: false }
+                ]
+
+        var arrLight = [{ color: "#d35756", value: 5, selected: false },
+                        { color: "#fba054", value: 5, selected: false },
+                        { color: "#9eae83", value: 5, selected: false },
+                        { color: "#78887b", value: 5, selected: false },
+                        { color: "#7ba2a5", value: 5, selected: false },
+                        { color: "#51a7f4", value: 5, selected: false },
+                        { color: "#535258", value: 5, selected: false },
+                        { color: "#db3b9f", value: 5, selected: false }
+                ]
+
+        return (value === 1) ? arrDark : arrLight;
     }
 }

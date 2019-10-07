@@ -145,7 +145,6 @@ Item {
 
             widgetHeight: root.widgetHeight
             currentWidth: windowSlot.width
-            Behavior on currentWidth { DefaultNumberAnimation { } }
             currentHeight: windowSlot.height
             windowState: root.active ? "Maximized" : root.widgetState
             appInfo: root.appInfo ? root.appInfo : null

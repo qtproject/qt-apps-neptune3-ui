@@ -36,6 +36,7 @@ import QtApplicationManager 2.0
 import QtApplicationManager.Application 2.0
 import QtApplicationManager.SystemUI 2.0
 import shared.utils 1.0
+import shared.Style 1.0
 
 import system.models.application 1.0
 
@@ -99,13 +100,18 @@ Store {
 
     readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}
 
+    property bool startupAccentColor: true
     readonly property SystemUI systemUISettings: SystemUI {
         id: systemUISettings
         onApplicationICWindowSwitchCountChanged: {
             root.applicationICWindowSwitchCountChanged()
         }
     }
+
     readonly property SystemInfo sysInfo: SystemInfo { id: sysInfo }
+    property var accentColorsModel
+    property string lighThemeLastAccColor: "#d35756"
+    property string darkThemeLastAccColor: "#b75034"
     readonly property UISettings uiSettings: UISettings {
         onLanguageChanged: {
             if (language !== Config.languageLocale) {
@@ -113,7 +119,21 @@ Store {
             }
         }
         onThemeChanged: root.updateThemeRequested(uiSettings.theme)
-        onAccentColorChanged: root.accentColorChanged(accentColor)
+        onAccentColorChanged: {
+            root.accentColorChanged(accentColor);
+            if (startupAccentColor) {
+                //Prevent setting back light theme's last accent color in cases when the UI
+                //was closed with light theme set. If this is the case, reset dark theme's
+                //default accent color.
+                var accColorInPalette = root.accentColorsModel.find(function(color) {
+                    return (color.color === accentColor);
+                });
+                if (accColorInPalette === undefined) {
+                    uiSettings.accentColor = root.accentColorsModel[0].color;
+                }
+                startupAccentColor = false;
+            }
+        }
         onRtlModeChanged: Config.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
@@ -165,7 +185,6 @@ Store {
     readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
                                                    && (Qt.application.screens.length === 1)
 
-
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
     signal grabImageRequested(var screenshotCCPath, var screenshotICPath)
@@ -207,5 +226,27 @@ Store {
 
         root.saveFile(diagFile, root.sysInfo.qtDiag);
         root.triggerNotificationInfo(tempDirPath);
+    }
+
+    function updateTheme(value) {
+        if ((value === 1) && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
+            root.lighThemeLastAccColor = uiSettings.accentColor;
+        } else if ((value === 0) && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
+            root.darkThemeLastAccColor = uiSettings.accentColor;
+        }
+        uiSettings.setTheme(value);
+        root.accentColorsModel = Config._initAccentColors(value);
+        //set previous to theme accentColor
+        if ((lighThemeLastAccColor !== "") && (value === 0)) {
+            uiSettings.accentColor = root.lighThemeLastAccColor;
+        } else if ((darkThemeLastAccColor !== "") && (value === 1)) {
+            uiSettings.accentColor = root.darkThemeLastAccColor;
+        } else {
+            uiSettings.accentColor = root.accentColorsModel[0].color;
+        }
+    }
+
+    Component.onCompleted: {
+        root.accentColorsModel = Config._initAccentColors(Style.theme);
     }
 }
