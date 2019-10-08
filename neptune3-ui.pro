@@ -35,6 +35,9 @@ SUBDIRS += src
 copydata.depends += src
 copydata.depends += plugins
 
+SUBDIRS += examples
+examples.depends += src
+
 SUBDIRS += copydata
 
 android: INSTALL_PATH = $$INSTALL_PREFIX
