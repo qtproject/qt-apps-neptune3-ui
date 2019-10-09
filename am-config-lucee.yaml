@@ -44,6 +44,7 @@ systemProperties:
       showCluster: yes
       showHUD: yes
       devMode: yes
+      enableCursorManagement: no
       hardwareVariant: 'high'
       #Qt Safe Renderer settings
       qsrEnabled: no

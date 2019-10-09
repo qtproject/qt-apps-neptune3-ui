@@ -54,6 +54,11 @@ Store {
     readonly property string hardwareVariant: ApplicationManager.systemProperties.hardwareVariant
     property alias clusterAvailable: clusterStore.clusterAvailable
 
+    readonly property bool enableCursorManagement: ApplicationManager.systemProperties.enableCursorManagement
+    onEnableCursorManagementChanged: {
+        Config.enableCursorManagement = root.enableCursorManagement;
+    }
+
     readonly property bool devMode: ApplicationManager.systemProperties.devMode
     onDevModeChanged: { Config.showCursorIndicator = root.devMode; }
 

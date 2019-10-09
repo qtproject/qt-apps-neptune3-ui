@@ -62,15 +62,18 @@ QtObject {
     property bool showCursorSpots: false
 
     //The Cursor loader source
+    property bool enableCursorManagement: false
     property string cursorLoaderSource: ""
     //"Guinea pig" loader.This is to prevent the endless warnings for
     //CursorNavigation plugin not installed when this is not available. Here is
     //loaded once on start up and the "healthy" files' source is saved and
     //maintained during the complete session in the cursorLoaderSource property.
     property Loader cursorLoader: Loader {
-        source: Qt.resolvedUrl("./CursorManagement.qml")
+        //if cursor support in center console is enabled, try loading CursorManagement.qml
+        source: root.enableCursorManagement ? Qt.resolvedUrl("./CursorManagement.qml")
+                : Qt.resolvedUrl("./CursorManagementDummy.qml")
         onStatusChanged: {
-        //fallback if cursor plugin is not available
+        //if cursor plugin is not available load CursorManagementDummy.qml
             if (status === Loader.Error) {
                 source = Qt.resolvedUrl("./CursorManagementDummy.qml");
                 console.warn("The cursor management plugin is not installed,
