@@ -62,9 +62,9 @@ ApplicationCCWindow {
         id: fullscreenTopPartBackground
 
         x: root.exposedRect.x
-        y: root.exposedRect.y - Sizes.dp(224)
+        y: 0
         width: root.exposedRect.width
-        height: Math.max(Sizes.dp(sourceSize.height), Sizes.dp(660 - 224) + root.exposedRect.y)
+        height: Sizes.dp(660)
 
         border{
             //don't change these values without knowing the exact size of source image
@@ -93,9 +93,9 @@ ApplicationCCWindow {
     PhoneView {
         id: phone
         x: root.exposedRect.x
-        y: root.exposedRect.y
+        y: 0//root.exposedRect.y
         width: root.exposedRect.width
-        height: root.exposedRect.height
+        height: (root.exposedRect.height + root.exposedRect.y)
         state: root.neptuneState
         onActivateApp: root.riseWindow()
         store: PhoneStore {}

@@ -51,6 +51,8 @@ Item {
         State {
             name: "Widget1Row"
             PropertyChanges { target: root; height: Sizes.dp(260) }
+            PropertyChanges { target: favorites1Row; opacity: 1 }
+            PropertyChanges { target: favoritesMoreRows; opacity: 0 }
         },
         State {
             name: "Widget2Rows"
@@ -65,9 +67,8 @@ Item {
         },
         State {
             name: "Maximized"
-            PropertyChanges { target: root; height: Sizes.dp(436) }
+            PropertyChanges { target: root; height: Sizes.dp(660) } // - Config.statusBarHeight
         }
-
     ]
 
     transitions: [
@@ -104,26 +105,42 @@ Item {
         anchors {
             top: parent.top
             left: parent.left
-            right: parent.right
-            leftMargin: Sizes.dp(50)
-            rightMargin: Sizes.dp(50)
         }
 
-        height: Math.min(Sizes.dp(436), root.exposedRectHeight)
+        height: Math.min(Sizes.dp(660), root.exposedRectHeight) //436
+        width: Sizes.dp(890)
 
         opacity: 1.0
         visible: opacity > 0
         orientation: ListView.Horizontal
-        interactive: false
-        clip: true
-        spacing: Sizes.dp(50)
+        displayMarginEnd: 100
+        displayMarginBeginning: 100
+        snapMode: ListView.SnapOneItem
         model: root.store.favoritesModel
-        delegate: RoundImage {
-            width: Sizes.dp(130)
-            height: width
-            anchors.verticalCenter: parent.verticalCenter
+        highlightRangeMode: ListView.StrictlyEnforceRange
+        delegate: WidgetContact {
+            width: Sizes.dp(890)
+            height: parent.height
             source: "../assets/profile_photos/%1.png".arg(model.handle)
-            onClicked: root.store.startCall(model.handle)
+            lastItem: (index === (favorites1Row.model.count - 1))
+            maximized: (root.state === "Maximized")
+            onCallWidgetClicked: { root.store.startCall(handle); }
+        }
+        PageIndicator {
+            anchors.verticalCenter: parent.bottom
+            anchors.verticalCenterOffset: root.state === "Maximized" ? Sizes.dp(-80) : Sizes.dp(-38)
+            Behavior on anchors.verticalCenterOffset { DefaultNumberAnimation{} }
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenterOffset: Sizes.dp(20)
+            spacing: Sizes.dp(8)
+            count: favorites1Row.count
+            delegate: Rectangle {
+                width: Sizes.dp(10)
+                height: width
+                radius: width/2
+                color: Style.contrastColor
+                opacity: (index === favorites1Row.currentIndex) ? 0.6 : 0.1
+            }
         }
     }
 
@@ -161,7 +178,7 @@ Item {
                 objectName: "favoritesShortCall_" + index
                 padding: 0
                 width: ListView.view.width
-                height: Sizes.dp(70)
+                height: Sizes.dp(96)
                 contentItem: Item {
                     anchors.fill: parent
                     RowLayout {
@@ -185,6 +202,7 @@ Item {
                             Layout.alignment: Qt.AlignVCenter
                             height: parent.height
                             icon.name: "ic-message-contrast"
+                            opacity: 0.6
                         }
                         ToolButton {
                             objectName: "shortCallButton"
@@ -193,6 +211,7 @@ Item {
                             height: parent.height
                             icon.name: "ic-call-contrast"
                             onClicked: root.store.startCall(model.handle)
+                            opacity: 0.6
                         }
                     }
                     Image {

@@ -44,7 +44,7 @@ Control {
     property bool labelOnTop: true
     property string progressText: "0:0 / 0:0"
     property real value // 0 <= value <=1
-    property int progressBarLabelLeftMargin: Sizes.dp(10)
+    property int progressBarLabelLeftMargin: Sizes.dp(24)
     readonly property int progressBarWidth: root.width - (root.labelOnTop
                                                 ? Sizes.dp(6) : Sizes.dp(5))
 

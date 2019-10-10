@@ -31,9 +31,11 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtGraphicalEffects 1.13
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.Sizes 1.0
+import shared.Style 1.0
 import QtQuick.Controls 2.2
 import "../helpers" 1.0
 
@@ -44,6 +46,7 @@ Control {
     property string albumName: ""
     property string artistName: ""
     property alias listView: listView
+    property bool musicPlaying: false
 
     // Since contentType might have some unique id's when we browse a music by going
     // from one level to another level, a content type slicing is needed to get the
@@ -71,12 +74,26 @@ Control {
                 text: MetaData.getTitleName(model.item.title, model.name, root.actualContentType)
                 subText: MetaData.getArtistName(model.item.artist, root.actualContentType)
                 onClicked: root.itemClicked(model.index, model.item, delegatedSong.text)
+                dividerVisible: (index < (listView.count - 1))
+                //TODO use a Lottie object instead
+                accessoryDelegateComponent2: AnimatedImage {
+                    width: Sizes.dp(sourceSize.width)
+                    height: Sizes.dp(sourceSize.height)
+                    //FIXME it doesn't pause even though set to true
+                    //paused: !root.musicPlaying
+                    source: {
+                        var path = Style.image("playing");
+                        path = path.substring(0, path.length - 4);
+                        path = path + ((Style.theme === Style.Dark) ? "-dark.gif" : ".gif");
+                        return (model.index === listView.model.currentIndex) ? path : "";
+                    }
+                }
             }
         }
 
         ListView {
             id: listView
-            implicitWidth: Sizes.dp(765)
+            implicitWidth: Sizes.dp(880)
             implicitHeight: root.height
             anchors.top: parent.top
             anchors.left: parent.left

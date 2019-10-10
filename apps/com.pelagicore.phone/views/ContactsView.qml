@@ -54,39 +54,55 @@ ListView {
     delegate: ItemDelegate { // FIXME right component?
         objectName: "contactNr_"  + index
         width: ListView.view.width
-        height: Sizes.dp(70)
-        padding: 0
+        height: Sizes.dp(96)
         contentItem: Item {
             anchors.fill: parent
+
             RowLayout {
                 anchors.fill: parent
-                spacing: Sizes.dp(45 * .5)
+
                 RoundImage {
                     Layout.preferredHeight: Sizes.dp(64)
                     Layout.preferredWidth: Sizes.dp(64)
                     source: "../assets/profile_photos/%1.png".arg(model.handle)
+                    leftPadding: Sizes.dp(16)
+                    rightPadding: Sizes.dp(16)
                 }
+
                 Label {
                     objectName: "contactNameOfNr_"  + index
-                    text: model.firstName + " " + model.surname
+
+                    leftPadding: Sizes.dp(16)
                     font.weight: Font.Light
+                    opacity: Style.opacityHigh
+                    color: Style.contrastColor
+                    text: model.firstName + " " + model.surname
                 }
+
                 Item { // spacer
                     Layout.fillWidth: true
                 }
+
                 ToolButton {
                     icon.name: "ic-message-contrast"
+                    Layout.preferredWidth: Sizes.dp(96)
+                    opacity: 0.6
                 }
+
                 ToolButton {
                     objectName: "callButtonContactNr_" + index
                     icon.name: "ic-call-contrast"
-                    onClicked: root.store.startCall(model.handle)
+                    Layout.preferredWidth: Sizes.dp(96)
+                    opacity: 0.6
+                    onClicked: { root.store.startCall(model.handle); }
                 }
             }
+
             Image {
                 anchors.bottom: parent.bottom
                 width: parent.width
                 source: Style.image("list-divider")
+                visible: (index < (root.count - 1))
             }
         }
     }

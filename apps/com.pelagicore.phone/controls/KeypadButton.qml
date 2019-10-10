@@ -66,7 +66,7 @@ ToolButton {
         ColumnLayout {
             id: column
             anchors.centerIn: parent
-            visible: root.primaryText
+            visible: root.text
 
             Label {
                 id: primaryLabel

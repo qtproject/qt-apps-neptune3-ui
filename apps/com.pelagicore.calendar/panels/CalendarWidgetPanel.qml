@@ -222,6 +222,7 @@ Item {
         visible: opacity > 0
         Behavior on opacity { DefaultNumberAnimation { duration: 600 } }
         Behavior on anchors.topMargin { DefaultNumberAnimation { duration: 600 } }
-        source: Qt.resolvedUrl("../assets/weather-graph.png")
+        source: Qt.resolvedUrl("../assets/weather-graph" +
+                              ((Style.theme === Style.Dark) ? "-dark.png" : ".png"))
     }
 }
