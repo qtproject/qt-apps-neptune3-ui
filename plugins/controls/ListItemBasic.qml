@@ -160,7 +160,13 @@ ItemDelegate {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.verticalCenter: subText ? undefined : parent.verticalCenter
-            spacing: Sizes.dp(22)
+            spacing: Sizes.dp(24)
+
+            Item {
+                //spacer, to trigger 24px margin to the left of first element
+                width: Sizes.dp(1)
+                height: parent.height
+            }
 
             IconLabel {
                 opacity: Style.opacityHigh
@@ -208,11 +214,12 @@ ItemDelegate {
             }
             Item {
                 id: spacer
-                Layout.minimumWidth: Sizes.dp(22)
-                Layout.maximumWidth: Sizes.dp(22)
-                Layout.maximumHeight: Sizes.dp(22)
+                Layout.minimumWidth: Sizes.dp(0.5)
+                Layout.maximumWidth: Sizes.dp(0.5)
+                Layout.maximumHeight: Sizes.dp(24)
                 visible: middleSpacerUsed
             }
+
             Loader {
                 id: accessoryItem1
                 visible: root.accessoryDelegateComponent1 !== null
@@ -232,6 +239,11 @@ ItemDelegate {
                 Layout.maximumWidth: Sizes.dp(22)
                 Layout.maximumHeight:Sizes.dp(22)
                 visible: rightSpacerUsed
+            }
+            Item {
+                //spacer, to trigger 24px margin to the right of the last element
+                width: Sizes.dp(1)
+                height: parent.height
             }
         }
         Loader {

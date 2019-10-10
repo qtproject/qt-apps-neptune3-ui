@@ -76,11 +76,10 @@ Item {
     FavoritesWidgetView {
         id: favoritesWidget
         objectName: "phonefavoritesView"
-        anchors.horizontalCenter: parent.horizontalCenter
         width: Sizes.dp(960)
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         state: root.state
-
         exposedRectHeight: root.height
         store: root.store
 
@@ -92,9 +91,9 @@ Item {
     CallWidgetView {
         id: callWidget
         objectName: "phoneCallView"
-        anchors.fill: root.state === "Widget1Row" ? parent : undefined
+        width: Sizes.dp(960)
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.rightMargin: Sizes.dp(45 * 0.9)
+        anchors.top: parent.top
         state: root.state
         store: root.store
         ongoingCall: root.store.ongoingCall
@@ -117,7 +116,7 @@ Item {
         anchors.leftMargin: root.state === "Maximized" ? 0 : Sizes.dp(-80)
         Behavior on anchors.leftMargin { DefaultSmoothedAnimation {} }
         anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(660 - 224)
+        anchors.topMargin: Sizes.dp(660)
         anchors.bottom: parent.bottom
 
 

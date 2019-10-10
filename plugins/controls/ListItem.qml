@@ -118,11 +118,11 @@ ListItemBasic {
     dividerVisible: true
 
     accessoryDelegateComponent2: ToolButton {
-        implicitWidth: rightToolSymbol ? Sizes.dp(100) : 0
-        implicitHeight: rightToolSymbol ? root.height : 0
+        implicitWidth: Sizes.dp(40)
+        implicitHeight: Sizes.dp(40)
         baselineOffset: 0
         icon.name: root.rightToolSymbol
         visible: root.rightToolSymbol !== ""
-        onClicked: root.rightToolClicked()
+        onClicked: { root.rightToolClicked(); }
     }
 }

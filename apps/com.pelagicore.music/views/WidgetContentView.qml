@@ -84,6 +84,7 @@ Item {
                     height: (listView.count * Sizes.dp(104))
                     listView.model: store.musicPlaylist
                     listView.interactive: false
+                    musicPlaying: root.store.playing
                     onItemClicked: {
                         store.musicPlaylist.currentIndex = index;
                         store.player.play();

@@ -136,70 +136,80 @@ Item {
         }
     ]
 
-    Image {
-        id: imgBackground
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        source: Style.image("widget-left-section-bg")
-        width: Sizes.dp(sourceSize.width)
-        height: Sizes.dp(sourceSize.height)
+    Item {
+         id: widgetContent
+         width: parent.width
+         height: Math.min( Sizes.dp(660), parent.height )
+         anchors.top: parent.top
+         anchors.topMargin: root.state === "Maximized" ? Sizes.dp(200) : 0
+         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
 
-        opacity: root.state === "Widget1Row" ? 1.0 : 0.0
-        visible: opacity > 0
-        Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
-    }
+         Image {
+             id: imgBackground
+             anchors.left: parent.left
+             anchors.top: parent.top
+             anchors.bottom: parent.bottom
+             source: Style.image("widget-left-section-bg")
+             width: Sizes.dp(sourceSize.width)
+             height: Sizes.dp(sourceSize.height)
 
-    RoundImage {
-        id: contactImage
-        source: root.callerHandle ? "../assets/profile_photos/%1.png".arg(root.callerHandle) : ""
-    }
+             opacity: root.state === "Widget1Row" ? 1.0 : 0.0
+             visible: opacity > 0
+             Behavior on opacity { DefaultNumberAnimation { duration: 50 } }
+         }
 
-    ColumnLayout {
-        id: textColumn
-        Label {
-            objectName: "callerLabelFullName"
-            Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
-            text: priv.callerName
-        }
-        Label {
-            Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignCenter
-            font.pixelSize: Sizes.fontSizeS
-            opacity: Style.opacityMedium
-            text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
-        }
-    }
+         RoundImage {
+             id: contactImage
+             source: root.callerHandle ? "../assets/profile_photos/%1.png".arg(root.callerHandle) : ""
+         }
 
-    RowLayout {
-        id: buttonRow
-        spacing: root.state === "Widget1Row" ? Sizes.dp(60) : Sizes.dp(5)
+         ColumnLayout {
+             id: textColumn
+             Label {
+                 objectName: "callerLabelFullName"
+                 Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignHCenter
+                 text: priv.callerName
+             }
+             Label {
+                 Layout.alignment: root.state === "Widget1Row" ? Qt.AlignLeft : Qt.AlignCenter
+                 font.pixelSize: Sizes.fontSizeS
+                 opacity: Style.opacityMedium
+                 text: Qt.formatTime(new Date(store.callDuration * 1000), "m:ss")
+             }
+         }
 
-        ToolButton {
-            objectName: "callerButtonMute"
-            Layout.rightMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
-            icon.name: "ic-mute-ongoing"
-        }
+         RowLayout {
+             id: buttonRow
+             spacing: root.state === "Widget1Row" ? Sizes.dp(60) : Sizes.dp(5)
+             anchors.rightMargin: root.state === "Widget1Row" ? Sizes.dp(64) : undefined
 
-        ToolButton {
-            objectName: "callerButtonEndCall"
-            Layout.preferredWidth: Sizes.dp(90)
-            Layout.preferredHeight: Sizes.dp(90)
-            background: Image {
-                anchors.centerIn: parent
-                width: Sizes.dp(sourceSize.width)
-                height: Sizes.dp(sourceSize.height)
-                source: Style.image("ic_button-bg-red")
-            }
-            icon.name: "ic-end-call"
-            icon.color: "white"
-            onClicked: root.callEndRequested(root.callerHandle)
-        }
+             ToolButton {
+                 objectName: "callerButtonMute"
+                 Layout.rightMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
+                 icon.name: "ic-mute-ongoing"
+             }
 
-        ToolButton {
-            objectName: "callerButtonUseKeypad"
-            Layout.leftMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
-            icon.name: "ic-keypad-ongoing"
-            //onClicked: root.keypadRequested() // TODO, disabled for now
-        }
+             ToolButton {
+                 objectName: "callerButtonEndCall"
+                 Layout.preferredWidth: Sizes.dp(90)
+                 Layout.preferredHeight: Sizes.dp(90)
+                 background: Image {
+                     anchors.centerIn: parent
+                     width: Sizes.dp(sourceSize.width)
+                     height: Sizes.dp(sourceSize.height)
+                     source: Style.image("ic_button-bg-red")
+                 }
+                 icon.name: "ic-end-call"
+                 icon.color: "white"
+                 onClicked: root.callEndRequested(root.callerHandle)
+             }
+
+             ToolButton {
+                 objectName: "callerButtonUseKeypad"
+                 Layout.leftMargin: root.state !== "Widget1Row" ? Sizes.dp(90) : 0
+                 icon.name: "ic-keypad-ongoing"
+                 //onClicked: root.keypadRequested() // TODO, disabled for now
+             }
+         }
     }
 }

@@ -41,6 +41,7 @@ import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "../stores" 1.0
+import "../controls" 1.0
 
 ListView {
     id: root
@@ -52,13 +53,64 @@ ListView {
 
     model: store.callsModel
 
-    delegate: ListItem {
+    delegate: ItemDelegate {
         id: delegate
+        width: ListView.view.width
+        height: Sizes.dp(96)
         readonly property var person: store.findPerson(model.peerHandle)
-        implicitWidth: Sizes.dp(765)
-        implicitHeight: Sizes.dp(70)
-        icon.name: model.type ? "ic-phone-%1".arg(model.type) : ""
-        text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
-        secondaryText: delegate.person ? delegate.person.phoneNumbers.get(0).name : ""
+        contentItem: Item {
+            anchors.fill: parent
+
+            RowLayout {
+                anchors.fill: parent
+
+                ToolButton {
+                    icon.name: model.type ? "ic-callstate-%1".arg(model.type) : ""
+                    Layout.preferredWidth: Sizes.dp(96)
+                    rightPadding: Sizes.dp(16)
+                    opacity: 0.6
+                }
+
+                RoundImage {
+                    Layout.preferredHeight: Sizes.dp(64)
+                    Layout.preferredWidth: Sizes.dp(64)
+                    source: "../assets/profile_photos/%1.png".arg(model.peerHandle)
+                    leftPadding: Sizes.dp(16)
+                    rightPadding: Sizes.dp(16)
+                }
+
+                Label {
+                    Layout.fillWidth: true
+                    leftPadding: Sizes.dp(16)
+
+                    font.weight: Font.Light
+                    opacity: Style.opacityHigh
+                    color: Style.contrastColor
+
+                    text: delegate.person ? delegate.person.firstName + " " + delegate.person.surname : ""
+                }
+
+                ToolButton {
+                    icon.name: "ic-message-contrast"
+                    Layout.preferredWidth: Sizes.dp(96)
+                    opacity: 0.6
+                }
+
+                ToolButton {
+                    objectName: "callButtonContactNr_" + index
+                    icon.name: "ic-call-contrast"
+                    Layout.preferredWidth: Sizes.dp(96)
+                    opacity: 0.6
+                    onClicked: { root.store.startCall(model.peerHandle); }
+                }
+            }
+
+            Image {
+                anchors.bottom: parent.bottom
+                width: parent.width
+                source: Style.image("list-divider")
+                visible: index < root.count - 1
+            }
+        }
     }
 }
