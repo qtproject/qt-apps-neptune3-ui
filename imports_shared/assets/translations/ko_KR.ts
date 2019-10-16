@@ -1063,7 +1063,15 @@
     <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
-        <translation type="unfinished">내비게이션 시작</translation>
+        <translation type="obsolete">내비게이션 시작</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

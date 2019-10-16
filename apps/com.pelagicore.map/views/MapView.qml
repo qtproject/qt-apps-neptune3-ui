@@ -55,6 +55,7 @@ Item {
     id: root
 
     property MapStore store
+    property string neptuneWindowState
 
     // props for application IC window
     property alias mapInteractive: mapBoxPanel.mapInteractive
@@ -72,23 +73,26 @@ Item {
     }
 
     onStateChanged: {
-        if (root.state !== "Maximized") {
+        if (root.neptuneWindowState !== "Maximized") {
             root.store.searchViewEnabled = false;
         }
     }
 
     Connections {
         target: root.store
+
         onRequestNavigationReceived: {
+            root.store.navigationDemoActive = false;
+            mapBoxPanel.state = "initial";
             mapBoxPanel.center = coord;
+            mapBoxPanel.currentLocation = root.store.positionCoordinate;
             root.store.startCoord = root.store.positionCoordinate;
             root.store.destCoord = coord;
             root.store.destination = address;
             if (boundingBox.isValid) {
                 mapBoxPanel.visibleRegion = boundingBox;
             }
-            mapBoxPanel.navigationMode = true;
-            mapBoxPanel.guidanceMode = true;
+            mapBoxPanel.state = "destination_selection";
         }
     }
 
@@ -97,53 +101,72 @@ Item {
         anchors.fill: parent
         plugin: root.store.mapPlugin
         center: root.store.positionCoordinate
-        state: root.state
+        neptuneWindowState: root.neptuneWindowState
         currentLocation: root.store.positionCoordinate
         offlineMapsEnabled: root.store.offlineMapsEnabled
         destination: root.store.destination
         model: root.store.model
         routeDistance: root.store.routeDistance
         routeTime: root.store.routeTime
-        routeSegments: root.store.routeSegments
         homeRouteTime: root.store.homeRouteTime
         workRouteTime: root.store.workRouteTime
         destCoord: root.store.destCoord
+
+        directionFromNavigator: root.store.navigationStore.angle
+        locationFromNavigator: root.store.navigationStore.location
 
         activeMapType: {
             if (!mapReady || plugin.name !== "mapboxgl") {
                 return supportedMapTypes[0];
             }
-            return Style.theme === Style.Light ? root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultLightThemeId)
-                                                             : root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultDarkThemeId);
+            return Style.theme === Style.Light
+                    ? root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultLightThemeId)
+                    : root.store.getMapType(mapBoxPanel.mapReady, root.store.defaultDarkThemeId);
         }
         onOpenSearchTextInput: {
             root.maximizeMap();
             root.store.searchViewEnabled = true;
         }
         onStartNavigationRequested: {
-            root.store.originalPosition = root.store.positionCoordinate;
+            root.store.navigationDemoActive = true;
+            mapBoxPanel.state = "demo_driving";
         }
         onShowRouteRequested: {
+            root.store.navigationDemoActive = false;
+            mapBoxPanel.state = "route_selection";
+        }
+        onShowDestinationPointRequested: {
+            root.store.navigationDemoActive = false;
             root.store.originalPosition = root.store.positionCoordinate;
             root.store.destCoord = destCoord;
             root.store.destination = description;
             root.store.startCoord = mapBoxPanel.currentLocation;
+            mapBoxPanel.state = "destination_selection";
         }
         onStopNavigationRequested: {
+            root.store.navigationDemoActive = false;
             root.store.positionCoordinate = root.store.originalPosition;
+            mapBoxPanel.state = "initial";
+            mapBoxPanel.zoomLevel = 10;
+            mapBoxPanel.currentLocation = root.store.positionCoordinate;
             mapBoxPanel.center = root.store.positionCoordinate;
         }
 
-        onMapReadyChanged: root.store.getAvailableMapsAndLocation(mapBoxPanel.mapReady, mapBoxPanel.supportedMapTypes);
+        onMapReadyChanged: {
+            root.store.getAvailableMapsAndLocation(mapBoxPanel.mapReady
+                    , mapBoxPanel.supportedMapTypes);
+        }
+
         onMaximizeMap: root.maximizeMap();
     }
 
+// todo: move it to mapbox.... why it's placed here????
     ToolButton {
         anchors.left: parent.left
         anchors.leftMargin: Sizes.dp(27)
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(48)
-        opacity: root.state === "Widget1Row" ? 1 : 0
+        opacity: root.neptuneWindowState === "Widget1Row" && mapBoxPanel.state === "initial" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         icon.source: Qt.resolvedUrl("../assets/ic-search.png")
@@ -213,7 +236,8 @@ Item {
             if (boundingBox.isValid) {
                 mapBoxPanel.visibleRegion = boundingBox;
             }
-            mapBoxPanel.navigationMode = true;
+
+            mapBoxPanel.state = "destination_selection";
         }
     }
 }

@@ -43,7 +43,6 @@ QtObject {
     readonly property alias model: routeModel
     property string routeDistance
     property string routeTime
-    property var routeSegments
     property string homeRouteTime
     property string workRouteTime
     property bool searchViewEnabled: false
@@ -68,6 +67,12 @@ QtObject {
     property var startCoord: QtPositioning.coordinate()
     property var destCoord: QtPositioning.coordinate()
     property string destination
+
+    property alias navigationDemoActive: navigationStore.active
+    readonly property var navigationStore: NavigationStore {
+        id: navigationStore
+        model: root.routeModel
+    }
 
     property var appInterface: Connections {
         target: ApplicationInterface
@@ -232,9 +237,9 @@ QtObject {
                 if (count > 0) {
                     root.routeDistance = formatMeters(get(0).distance);
                     root.routeTime = formatSeconds(get(0).travelTime);
-                    root.routeSegments = get(0).segments;
-                    console.info("Route distance (km):", root.routeDistance, ", time:", root.routeTime);
-                    console.info("First coord:", root.routeSegments[0].path[0])
+                    console.info("Route distance (km):", root.routeDistance
+                                 , ", time:", root.routeTime);
+                    console.info("First coord:", get(0).segments[0].path[0])
                 }
             } else if (status === RouteModel.Loading) {
                 console.info("Route model busy");

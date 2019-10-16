@@ -1386,7 +1386,15 @@ UX na cestu</translation>
     <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
-        <translation>Spustit navigaci</translation>
+        <translation type="vanished">Spustit navigaci</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

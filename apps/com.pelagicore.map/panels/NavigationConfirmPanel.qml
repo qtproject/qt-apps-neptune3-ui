@@ -42,11 +42,11 @@ import "../helpers" 1.0
 Row {
     id: root
 
-    property bool guidanceMode: false
     property string destination: ""
     property string routeDistance: ""
     property string routeTime: ""
 
+    signal showRoute()
     signal startNavigation()
     signal stopNavigation()
 
@@ -55,13 +55,14 @@ Row {
     ToolButton {
         width: Sizes.dp(45 * .9)
         height: width
-        visible: root.guidanceMode
+        visible: root.state === "demo_driving"
         icon.source: Qt.resolvedUrl("../assets/ic-end-route.png")
         onClicked: root.stopNavigation()
     }
 
     RowLayout {
-        width: root.guidanceMode ? parent.width : parent.width / 2
+        width: root.state === "demo_driving"
+               ? parent.width : parent.width / 2
         anchors.verticalCenter: parent.verticalCenter
         spacing: Sizes.dp(45 * .7)
 
@@ -70,7 +71,7 @@ Row {
             width: Sizes.dp(45)
             height: width
             enabled: visible
-            visible: !root.guidanceMode
+            visible: root.state === "route_selection" || root.state === "destination_selection"
             icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
             onClicked: root.stopNavigation()
         }
@@ -98,8 +99,9 @@ Row {
         height: Sizes.dp(80)
         anchors.verticalCenter: parent.verticalCenter
         scale: pressed ? 1.1 : 1.0
-        visible: !root.guidanceMode
+        visible: root.state === "destination_selection" || root.state === "route_selection"
         Behavior on scale { NumberAnimation { duration: 50 } }
+        Behavior on opacity { NumberAnimation { duration: 150 } }
 
         contentItem: Item {
             Row {
@@ -109,17 +111,41 @@ Row {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: Helper.localAsset("ic-start-navigation", Style.theme)
-                    opacity: startNavigationButton.enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
+                    opacity: startNavigationButton.enabled
+                             ? Style.opacityHigh
+                             : Style.defaultDisabledOpacity
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Start Navigation")
+                    text: root.state === "destination_selection"
+                          ? qsTr("Directions")
+                          : qsTr("Start")
                     font.pixelSize: Sizes.fontSizeS
                 }
             }
         }
-        onClicked: root.startNavigation()
+
+        onClicked: {
+            if (root.state === "destination_selection") {
+                startNavigationButton.enabled = false;
+                startNavigationButton.opacity = 0.0
+                root.showRoute();
+                mDirtyHackTemporaryTimer.start();
+            } else if (root.state === "route_selection") {
+                root.startNavigation();
+            }
+        }
+
+    }
+
+    Timer {
+        id:mDirtyHackTemporaryTimer
+        interval: 2500
+        onTriggered: {
+            startNavigationButton.opacity = 1.0
+            startNavigationButton.enabled = true;
+        }
     }
 }

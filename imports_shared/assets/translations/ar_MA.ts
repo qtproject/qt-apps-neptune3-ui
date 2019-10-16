@@ -696,7 +696,11 @@
 <context>
     <name>NavigationConfirmPanel</name>
     <message>
-        <source>Start Navigation</source>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

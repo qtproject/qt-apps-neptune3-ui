@@ -46,9 +46,11 @@ Item {
     implicitHeight: headerBackgroundFullscreen.height
 
     property bool offlineMapsEnabled
-    property bool navigationMode
-    property bool guidanceMode
     property var currentLocation
+
+    property string neptuneWindowState
+    // state is inherited from MapBoxPanel
+    // state: ..
 
     property string destination: ""
     property string routeDistance: ""
@@ -62,33 +64,23 @@ Item {
 
     readonly property int destinationButtonrowHeight: Sizes.dp(150)
 
-    signal showRoute(var destCoord, string description)
+    signal showDestinationPoint(var destCoord, string description)
+    signal showRoute()
     signal startNavigation()
     signal stopNavigation()
     signal openSearchTextInput()
 
+    // Neptune Window is Maximized. Not a widget:
     Loader {
         id: headerBackgroundFullscreen
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(210)
-        active: root.state === "Maximized"
+        active: root.neptuneWindowState === "Maximized"
         sourceComponent: HeaderBackgroundMaximizedPanel {
-            navigationMode: root.navigationMode
-            guidanceMode: root.guidanceMode
-            destinationButtonrowHeight: root.destinationButtonrowHeight
-        }
-    }
-
-    Loader {
-        id: headerBackgroundWidget
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        active: root.state === "Widget2Rows" || root.state === "Widget3Rows"
-        sourceComponent: HeaderBackgroundWidgetPanel {
             state: root.state
+            destinationButtonrowHeight: root.destinationButtonrowHeight
         }
     }
 
@@ -96,7 +88,7 @@ Item {
         id: navigationSearchButtonsFullscreen
         width: headerBackgroundFullscreen.width - Sizes.dp(90)
         height: headerBackgroundFullscreen.height
-        active: headerBackgroundFullscreen.active && !root.navigationMode
+        active: root.neptuneWindowState === "Maximized" && root.state === "initial"
         anchors.top: headerBackgroundFullscreen.top
         anchors.topMargin: Sizes.dp(112)
         anchors.horizontalCenter: headerBackgroundFullscreen.horizontalCenter
@@ -107,32 +99,22 @@ Item {
     }
 
     Loader {
-        id: navigationSearchButtonsWidget
-        width: headerBackgroundWidget.width - Sizes.dp(184) // compensate for the "expand" button in the widget corner
-        active: headerBackgroundWidget.active
-        anchors.top: headerBackgroundWidget.top
-        anchors.topMargin: Sizes.dp(48)
-        anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
-        sourceComponent: NavigationSearchPanel {
-            offlineMapsEnabled: root.offlineMapsEnabled
-            onOpenSearchTextInput: root.openSearchTextInput()
-        }
-    }
-
-    Loader {
         id: navigationConfirmButtons
         anchors.fill: headerBackgroundFullscreen
         anchors.rightMargin: Sizes.dp(45 * .5)
-        active: headerBackgroundFullscreen.active && root.navigationMode
+        active: root.neptuneWindowState === "Maximized"
+                && (root.state === "route_selection"
+                        || root.state === "destination_selection"
+                        || root.state === "demo_driving")
         sourceComponent: NavigationConfirmPanel {
-            guidanceMode: root.guidanceMode
+            state: root.state
             destination: root.destination
             routeDistance: root.routeDistance
             routeTime: root.routeTime
             onStartNavigation: root.startNavigation()
+            onShowRoute: root.showRoute()
             onStopNavigation: root.stopNavigation()
         }
-
     }
 
     Loader {
@@ -144,14 +126,43 @@ Item {
         anchors.right: headerBackgroundFullscreen.right
         anchors.rightMargin: Sizes.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
-        active: headerBackgroundFullscreen.active && !root.navigationMode
+        active: root.neptuneWindowState === "Maximized" && root.state === "initial"
         sourceComponent: FavDestinationButtonsPanel {
             offlineMapsEnabled: root.offlineMapsEnabled
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime
             workRouteTime: root.workRouteTime
-            onShowRoute: root.showRoute(destCoord, description);
+            onShowDestinationPoint: root.showDestinationPoint(destCoord, description);
+        }
+    }
+
+    // Neptune Window is shown as the widget:
+    Loader {
+        id: headerBackgroundWidget
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        active: (root.neptuneWindowState === "Widget2Rows"
+                    || root.neptuneWindowState === "Widget3Rows")
+                && (root.state === "initial" || root.state === "destination_selection")
+        sourceComponent: HeaderBackgroundWidgetPanel {
+            neptuneWindowState: root.neptuneWindowState
+        }
+    }
+
+    Loader {
+        id: navigationSearchButtonsWidget
+        width: headerBackgroundWidget.width - Sizes.dp(184) // compensate for the "expand" button in the widget corner
+        active: (root.neptuneWindowState === "Widget2Rows"
+                    || root.neptuneWindowState === "Widget3Rows")
+                && (root.state === "initial" || root.state === "destination_selection")
+        anchors.top: headerBackgroundWidget.top
+        anchors.topMargin: Sizes.dp(48)
+        anchors.horizontalCenter: headerBackgroundWidget.horizontalCenter
+        sourceComponent: NavigationSearchPanel {
+            offlineMapsEnabled: root.offlineMapsEnabled
+            onOpenSearchTextInput: root.openSearchTextInput()
         }
     }
 
@@ -164,14 +175,14 @@ Item {
         anchors.right: headerBackgroundWidget.right
         anchors.rightMargin: Sizes.dp(45 * 1.5)
         height: root.destinationButtonrowHeight
-        active: headerBackgroundWidget.active && root.state === "Widget3Rows"
+        active: root.neptuneWindowState === "Widget3Rows" && root.state === "initial"
         sourceComponent: FavDestinationButtonsPanel {
             offlineMapsEnabled: root.offlineMapsEnabled
             homeAddressData: root.homeAddressData
             workAddressData: root.workAddressData
             homeRouteTime: root.homeRouteTime
             workRouteTime: root.workRouteTime
-            onShowRoute: root.showRoute(destCoord, description);
+            onShowDestinationPoint: root.showDestinationPoint(destCoord, description);
         }
     }
 }

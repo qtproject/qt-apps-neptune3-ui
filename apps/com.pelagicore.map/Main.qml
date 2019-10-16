@@ -82,7 +82,7 @@ QtObject {
                    0 : mainWindow.exposedRect.y
             width: mainWindow.exposedRect.width
             height: mainWindow.exposedRect.height + Sizes.dp(180)
-            state: mainWindow.neptuneState
+            neptuneWindowState: mainWindow.neptuneState
             mapInteractive: !mainMap.store.searchViewEnabled
             store: MapStore {
                 offlineMapsEnabled: !sysinfo.internetAccess
