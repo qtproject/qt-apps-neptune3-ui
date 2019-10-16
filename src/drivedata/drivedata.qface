@@ -73,3 +73,10 @@ interface InstrumentCluster {
     /** Whether a secondary (cluster) screen is available */
     bool available;
 }
+
+interface NavigationState {
+    var mapCenter;
+    real mapZoomLevel;
+    real mapTilt;
+    real mapBearing;
+}
