@@ -53,9 +53,10 @@ ListView {
         property bool isInstalled: root.store.isInstalled(model.id)
 
         width: Sizes.dp(675)
-        height: Sizes.dp(80)
+        height: Sizes.dp(100)
         icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
+        subText: model.id
         secondaryText: delegatedItem.isInstalled ? root.store.getInstalledApplicationSize(model.id)
                                                  : ""
         cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
