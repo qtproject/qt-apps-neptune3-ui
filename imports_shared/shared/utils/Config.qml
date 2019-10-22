@@ -58,11 +58,18 @@ QtObject {
     readonly property string assetPath: Qt.resolvedUrl("../../assets/")
 
     property bool rtlMode: false
-    property bool showCursorIndicator: false
     property bool showCursorSpots: false
 
     //The Cursor loader source
     property bool enableCursorManagement: false
+    onEnableCursorManagementChanged: {
+        if (enableCursorManagement) {
+            cursorLoader.source = Qt.resolvedUrl("./CursorManagement.qml");
+        } else {
+            cursorLoader.source = Qt.resolvedUrl("./CursorManagementDummy.qml");
+        }
+        root.cursorLoaderSource = cursorLoader.source;
+    }
     property string cursorLoaderSource: ""
     //"Guinea pig" loader.This is to prevent the endless warnings for
     //CursorNavigation plugin not installed when this is not available. Here is

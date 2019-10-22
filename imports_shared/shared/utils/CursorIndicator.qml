@@ -57,7 +57,7 @@ Rectangle {
     id: root
     anchors.fill: parent
     property bool hasCursor: false
-    visible: (root.hasCursor && Config.showCursorIndicator)
+    visible: (root.hasCursor && Config.enableCursorManagement)
     color: "transparent"
     border.width: Sizes.dp(2)
     border.color: Style.accentColor
