@@ -88,7 +88,8 @@ Item {
             PropertyChanges { target: outBg; opacity: 1; width: Sizes.dp(520) }
             PropertyChanges { target: outSmallBg; opacity: 0; width: Sizes.dp(560) }
             PropertyChanges { target: outEdge; opacity: 1; width: Sizes.dp(520) }
-            PropertyChanges { target: outShadow; opacity: 1; width: Sizes.dp(560) }
+            //TODO breaks dark graphic size, either replace asset or delete this
+            //PropertyChanges { target: outShadow; opacity: 1; width: Sizes.dp(580) }
         },
         State {
             name: "navi"
@@ -203,7 +204,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: Utils.localAsset("dial-outer-circle-bg")
+        source: Utils.localAsset("dial-outer-circle-bg", Style.theme)
     }
 
     Image {
@@ -213,17 +214,17 @@ Item {
         anchors.centerIn: parent
         z: 1
         visible: true
-        source: Utils.localAsset("dial-outer-circle-edge")
+        source: Utils.localAsset("dial-outer-circle-edge", Style.theme)
     }
 
     Image {
         id: outShadow
-        width: Sizes.dp(560)
+        width: Sizes.dp(sourceSize.width)
         height: width
         anchors.centerIn: parent
         z: 1
         visible: true
-        source: Utils.localAsset("dial-outer-circle-shadow")
+        source: Utils.localAsset("dial-outer-circle-shadow", Style.theme)
     }
 
     Shape {
@@ -334,7 +335,7 @@ Item {
         height: width
         anchors.centerIn: parent
         visible: true
-        source: Utils.localAsset("dial-inner-circle")
+        source: Utils.localAsset("dial-inner-circle", Style.theme)
     }
 
     Image {

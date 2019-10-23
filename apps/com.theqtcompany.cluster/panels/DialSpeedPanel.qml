@@ -322,7 +322,7 @@ Item {
             width: Sizes.dp(330)
             height: width
             anchors.centerIn: parent
-            source: Utils.localAsset("dial-cruise-circle")
+            source: Utils.localAsset("dial-cruise-circle", Style.theme)
         }
     }
 
