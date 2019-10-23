@@ -52,7 +52,7 @@ android: {
 qtHaveModule(qtsaferenderer):load(qtsaferenderer-tools):qtsaferenderer-tools-available {
     #include Qt Safe Renderer part, generate file
     CONFIG += qtsaferenderer
-    SAFE_QML = $$DESTDIR/apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
+    SAFE_QML = $$PWD/../../apps/com.theqtcompany.cluster/panels/SafeTelltalesPanel.qml
     SAFE_LAYOUT_FONTS = $$PWD/../../imports_shared/assets/fonts/
     SAFE_LAYOUT_PATH = $$DESTDIR/qsr-safelayout
     DEFINES += USE_QT_SAFE_RENDERER
