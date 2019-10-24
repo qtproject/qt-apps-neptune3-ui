@@ -160,28 +160,6 @@ Item {
         onMaximizeMap: root.maximizeMap();
     }
 
-// todo: move it to mapbox.... why it's placed here????
-    ToolButton {
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(27)
-        anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(48)
-        opacity: root.neptuneWindowState === "Widget1Row" && mapBoxPanel.state === "initial" ? 1 : 0
-        Behavior on opacity { DefaultNumberAnimation {} }
-        visible: opacity > 0
-        icon.source: Qt.resolvedUrl("../assets/ic-search.png")
-        width: Sizes.dp(background.sourceSize.width)
-        height: width
-        background: Image {
-            fillMode: Image.PreserveAspectFit
-            source: Helper.localAsset("floating-button-bg", Style.theme)
-        }
-        onClicked: {
-            root.maximizeMap();
-            root.store.searchViewEnabled = true;
-        }
-    }
-
     FastBlur {
         anchors.fill: mapBoxPanel
         source: mapBoxPanel

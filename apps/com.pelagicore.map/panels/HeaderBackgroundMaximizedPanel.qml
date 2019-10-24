@@ -56,8 +56,8 @@ Item {
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Sizes.dp(45 * .5)
         height: root.state === "initial"
-                ? Sizes.dp(sourceSize.height)
-                : Sizes.dp(sourceSize.height) - root.destinationButtonrowHeight
+                ? Sizes.dp(sourceSize.height) * 0.7
+                : Sizes.dp(sourceSize.height) * 0.7 - root.destinationButtonrowHeight
         source: Helper.localAsset("panel-shadow", Style.theme)
         border {
             //don't change these values without knowing the exact size of source image
@@ -77,6 +77,7 @@ Item {
         anchors.rightMargin: -Sizes.dp(45)
         source: Helper.localAsset("panel-more-contrast-background", Style.theme)
         visible: root.state === "initial"
+        height: Sizes.dp(sourceSize.height) * 0.7
         border {
             //don't change these values without knowing the exact size of source image
             //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
@@ -102,7 +103,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Sizes.dp(45)
-        height: Sizes.dp(destinationButtonsPanel.sourceSize.height)
+        height: Sizes.dp(destinationButtonsPanel.sourceSize.height) * 0.7
                     - root.destinationButtonrowHeight
         source: Helper.localAsset("panel-background", Style.theme)
         border {

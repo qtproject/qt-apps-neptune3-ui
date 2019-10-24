@@ -229,7 +229,8 @@ Item {
     Map {
         id: mainMap
         anchors.fill: parent
-        anchors.topMargin: (root.neptuneWindowState === "Widget3Rows") ? header.height/2 : 0
+        anchors.topMargin: root.neptuneWindowState === "Widget3Rows"
+                && root.state !== "demo_driving" ? header.height/3 : 0
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
         Behavior on center {
             enabled: root.mapInteractive;
@@ -305,7 +306,6 @@ Item {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: root.state === "demo_driving" ? Sizes.dp(600) : 0
         anchors.top: parent.top
         Behavior on opacity { DefaultNumberAnimation {} }
         Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
@@ -323,7 +323,6 @@ Item {
 
         onOpenSearchTextInput: root.openSearchTextInput()
         onShowRoute: {
-            root.maximizeMap();
             root.showRouteRequested();
         }
         onStartNavigation: {
@@ -335,7 +334,6 @@ Item {
         onShowDestinationPoint: {
             root.showDestinationPointRequested(destCoord, description);
             root.center = destCoord;
-            root.maximizeMap();
         }
     }
 

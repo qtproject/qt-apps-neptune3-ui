@@ -49,14 +49,12 @@ Row {
 
     Item {
         width: parent.width/2
-        height: parent.height
+        height: Sizes.dp(72)
         Label {
-            width: parent.width/2
-            wrapMode: Text.WordWrap
-            maximumLineCount: 2
-            elide: Label.ElideRight
-            font.pixelSize: Sizes.fontSizeS
-            text: qsTr("Where do you wanna go today?")
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: Sizes.dp(26)
+            text: qsTr("Where do you want to go?")
         }
     }
 

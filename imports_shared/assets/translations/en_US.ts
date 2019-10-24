@@ -695,15 +695,15 @@
 <context>
     <name>NavigationSearchPanel</name>
     <message>
-        <source>Where do you wanna go today?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search not available offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

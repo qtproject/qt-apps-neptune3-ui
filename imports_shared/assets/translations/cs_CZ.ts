@@ -1412,7 +1412,7 @@ UX na cestu</translation>
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation>Kam se chcete vydat dnes?</translation>
+        <translation type="vanished">Kam se chcete vydat dnes?</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1421,6 +1421,10 @@ UX na cestu</translation>
     <message>
         <source>Search not available offline</source>
         <translation>Hledání nedostupné offline</translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
+        <translation>Kam se chcete vydat?</translation>
     </message>
 </context>
 <context>

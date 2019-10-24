@@ -1089,7 +1089,7 @@
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">힌트 힌지를 해결 하시겠습니까?</translation>
+        <translation type="obsolete">힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1098,6 +1098,10 @@
     <message>
         <source>Search not available offline</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
+        <translation>힌트 힌지를 해결 하시겠습니까?</translation>
     </message>
 </context>
 <context>

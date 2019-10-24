@@ -1082,7 +1082,7 @@
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">あなたはヒンジを握っていますか？</translation>
+        <translation type="obsolete">あなたはヒンジを握っていますか？</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1091,6 +1091,10 @@
     <message>
         <source>Search not available offline</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
+        <translation>あなたはヒンジを握っていますか？</translation>
     </message>
 </context>
 <context>
