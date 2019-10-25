@@ -42,17 +42,26 @@ import shared.utils 1.0
     \inqmlmodule controls
     \inherits ColumnLayout
     \since 5.11
-    \brief The tools column component for Neptune 3 applications.
+    \brief The tools column component for Neptune 3 UI applications.
 
-    The ToolsColumn provides a custom column of tool buttons for Neptune 3 Applications
+    The ToolsColumn provides a custom column of tool buttons for Neptune 3 UI Applications
     to follow the specification where only one of them can be selected at any given time.
+
+    \image tools-column.jpg
 
     See \l{Neptune 3 UI Components and Interfaces} to see more available components in
     Neptune 3 UI.
 
+    The ToolsColumn inherits its API from \l{AbstractButton::icon}{AbstractButton} to display icons
+    for the items. To use icons from theme (\c {icon.name} property of a button) add \c icon
+    role to the model items. To define icon by source URL (\c {icon.source} property of a
+    button) add \c sourceOn and \c sourceOff roles to the model items for the selected and
+    deselected states. Please refer to \l{Icons in Qt Quick Controls 2} for how to use icon
+    themes and icon URLs.
+
     \section2 Example Usage
 
-    The following example uses \l{ToolsColumn}:
+    The following example uses \l{ToolsColumn} with icons defined by theme:
 
     \qml
     import QtQuick 2.10
@@ -66,6 +75,26 @@ import shared.utils 1.0
             model: ListModel {
                 ListElement { icon: "ic-foo"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "foo") }
                 ListElement { icon: "ic-bar"; text: QT_TRANSLATE_NOOP("MyToolsColumn", "bar") }
+            }
+        }
+    }
+    \endqml
+
+    The following example uses \l{ToolsColumn} with icons defined by source URL:
+
+    \qml
+    import QtQuick 2.10
+    import shared.controls 1.0
+
+    Item {
+        id: root
+        ToolsColumn {
+            translationContext: "MyToolsColumn"
+            model: ListModel {
+                ListElement {
+                    sourceOn: "ic-logo_ON.png"; sourceOff: "ic-logo_OFF.png";
+                    text: QT_TRANSLATE_NOOP("MyToolsColumn", "foo")
+                }
             }
         }
     }
@@ -140,6 +169,9 @@ ColumnLayout {
             checkable: true
             checked: root.currentIndex === index
             icon.name: model.icon ? (checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
+            icon.source: (model.sourceOn && model.sourceOff)
+                           ? checked ? model.sourceOn : model.sourceOff
+                           : ""
             text: qsTranslate(root.translationContext, model.text)
             font.pixelSize: Sizes.fontSizeS
             enabled: !model.greyedOut
@@ -150,5 +182,9 @@ ColumnLayout {
             }
             ButtonGroup.group: buttonGroup
         }
+    }
+
+    Item {
+        Layout.fillHeight: true
     }
 }

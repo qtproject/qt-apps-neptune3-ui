@@ -29,7 +29,8 @@ depends += qtcore \
            qt3d \
            qt3dstudio \
            qtdoc \
-           qtwayland
+           qtwayland \
+           qtquickcontrols2
 
 indexes = $$QT_INSTALL_DOCS/../QtSafeRenderer-1.0.0/SafetyManual/qtsaferenderer.index
 
