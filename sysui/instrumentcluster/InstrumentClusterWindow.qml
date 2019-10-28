@@ -46,6 +46,7 @@ Window {
     property var uiSettings
     property bool invertedOrientation: root.clusterStore.invertedCluster
     property bool performanceOverlayVisible: false
+    property int clusterPosition: root.clusterStore.clusterPosition // 0: top 1: center 2: bottom
 
     function nextApplicationICWindow() {
         applicationICWindows.next();
@@ -97,7 +98,40 @@ Window {
 
     Item {
         id: uiSlot
-        anchors.centerIn: parent
+
+        states: [
+            State {
+                name: "top"
+                when: root.clusterPosition === 0
+                AnchorChanges {
+                    target: uiSlot
+                    anchors.top: parent.top
+                    anchors.bottom: undefined
+                    anchors.verticalCenter: undefined
+                }
+            },
+            State {
+                name: "center"
+                when: root.clusterPosition === 1
+                AnchorChanges {
+                    target: uiSlot
+                    anchors.top: undefined
+                    anchors.bottom: undefined
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            },
+            State {
+                name: "bottom"
+                when: root.clusterPosition === 2
+                AnchorChanges {
+                    target: uiSlot
+                    anchors.top: undefined
+                    anchors.bottom: parent.bottom
+                    anchors.verticalCenter: undefined
+                }
+            }
+        ]
+
         width: parent.width
         height: width / Config.instrumentClusterUIAspectRatio
         rotation: root.invertedOrientation ? 180 : 0

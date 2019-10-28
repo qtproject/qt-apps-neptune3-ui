@@ -189,5 +189,12 @@ Item {
         onCtrlXPressed: {
             Config.showCursorSpots = !Config.showCursorSpots;
         }
+        onCtrlAPressed: {
+            if (root.store.clusterStore.clusterPosition > 1) {
+                root.store.clusterStore.clusterPosition = 0
+            } else {
+                root.store.clusterStore.clusterPosition = root.store.clusterStore.clusterPosition + 1;
+            }
+        }
     }
 }

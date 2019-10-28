@@ -60,6 +60,8 @@ QtObject {
     property int desktopWidth
     property int desktopHeight
 
+    property int clusterPosition: 1 // 0: top 1: center 2: bottom
+
     onClusterScreenChanged: {
         if (qsrEnabled || !adjustSizesForScreen) {
             desktopWidth = Config.instrumentClusterWidth;

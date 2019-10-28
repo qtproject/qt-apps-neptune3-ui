@@ -47,6 +47,7 @@ Item {
     signal ctrl3Pressed()
     signal ctrlPPressed()
     signal ctrlXPressed()
+    signal ctrlAPressed()
 
     Shortcut {
         sequence: "Ctrl+r"
@@ -88,5 +89,10 @@ Item {
         sequence: "Ctrl+x"
         context: Qt.ApplicationShortcut
         onActivated: root.ctrlXPressed()
+    }
+    Shortcut {
+        sequence: "Ctrl+a"
+        context: Qt.ApplicationShortcut
+        onActivated: root.ctrlAPressed()
     }
 }
