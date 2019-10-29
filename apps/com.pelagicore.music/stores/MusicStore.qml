@@ -127,8 +127,8 @@ Store {
     property bool playing: player.playState === MediaPlayer.Playing
     property bool shuffleOn: player.playMode === MediaPlayer.Shuffle
     property bool repeatOn: player.playMode === MediaPlayer.RepeatTrack
-    property string elapsedTime: Qt.formatTime(new Date(player.position), 'mm:ss')
-    property string totalTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
+    property string elapsedTime: (player.position > -1) ? Qt.formatTime(new Date(player.position), 'mm:ss') : "00:00"
+    property string totalTime: (player.duration > -1) ? Qt.formatTime(new Date(player.duration), 'mm:ss') : "00:00"
     property real currentTrackPosition : player.position / player.duration
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel

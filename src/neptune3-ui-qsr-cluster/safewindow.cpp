@@ -39,9 +39,9 @@ SafeWindow::SafeWindow(const SafeRenderer::QSafeSize &size, const SafeRenderer::
 {
     resize(size.width(), size.height());
 
-    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
-    m_transparent = settings.value(QStringLiteral("gui/transparent"), true).toBool();
-    //to run on EGLFS on NUC set transparent to false
+    m_transparent = qgetenv("QSR_FILL_BLACK_BACKGROUND").isNull();
+
+    //to run on KMS/DRM on NUC set transparent to false
     //otherwise nothing will be shown
     if (m_transparent) {
         QSurfaceFormat fmt = format();

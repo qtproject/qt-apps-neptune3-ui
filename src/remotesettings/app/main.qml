@@ -37,14 +37,16 @@ import QtIvi.Media 1.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 
-import QtQuick.Window 2.3
+import QtQuick.Window 2.13
 
 ApplicationWindow {
     id: root
 
     visible: true
     minimumHeight: 720
-    minimumWidth: 400
+    minimumWidth: 450
+    width: 1280
+    height: 800
 
     title: qsTr("Neptune Companion App")
 
@@ -56,22 +58,28 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        var screens = Qt.application.screens;
-        var minH = 1080;
-        var minW = 1920;
-        for (var scr in screens) {
-            minH = Math.min(minH, screens[scr].height);
-            minW = Math.min(minW, screens[scr].width);
+        // android launches app in maximized mode
+        // desktop launches in windowed mode
+        if (visibility === 2 /*Qt.Windowed*/) {
+            var screens = Qt.application.screens;
+            var minH = 1080;
+            var minW = 1920;
+            for (var scr in screens) {
+                minH = Math.min(minH, screens[scr].height);
+                minW = Math.min(minW, screens[scr].width);
+            }
+
+            // if FHD shrink to min
+            if (minH <= 1080 || minW <= 1920) {
+                root.width = minimumWidth;
+                root.height = minimumHeight;
+            }
+        } else if (visibility === 4 /*Qt.Maximized*/&& Qt.application.screens.length === 1
+                   || visibility === 5 /*Qt.FullScreen */&& Qt.application.screens.length === 1) {
+            root.width = Screen.desktopAvailableWidth;
+            root.height = Screen.desktopAvailableHeight;
         }
 
-        // if FHD shrink to min
-        if (minH <= 1080 || minW <= 1920) {
-            root.width = minimumWidth;
-            root.height = minimumHeight;
-        } else {
-            root.width = 1280;
-            root.height = 800;
-        }
 
         connectionDialog.open();
     }
@@ -116,8 +124,7 @@ ApplicationWindow {
 
         statusText: client.status
         lastUrls: client.lastUrls
-        x: (parent.width-width) /2
-        y: (parent.height-height) /2
+        anchors.centerIn: parent
 
         onAccepted: {
             if (accepted) {

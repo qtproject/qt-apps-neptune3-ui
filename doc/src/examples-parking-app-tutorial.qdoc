@@ -255,7 +255,7 @@ In this chapter, we learn how to extend the Parking App with a Middleware API an
 simulation which shows the number of parking lots currently available.
 
 While this chapter does introduce the Middleware integration, how it works, and what needs to be
-done to package it correctly, a full deep dvice is out of scope. For more in-depth details on
+done to package it correctly, a full deep dive is out of scope. For more in-depth details on
 how to develop Middleware APIs, refer to the \l{Qt IVI Generator Tutorial}.
 
 \note This application requires a multi-process environment.
