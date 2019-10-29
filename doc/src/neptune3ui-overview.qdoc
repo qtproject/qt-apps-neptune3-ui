@@ -280,6 +280,9 @@
             \li Ctrl+C
             \li Switch between the app windows available.
         \row
+            \li Ctrl+Shift+C
+            \li Move the Cluster UI up and down within cluster window.
+        \row
             \li Ctrl+P
             \li Take a screenshot of the current screen along with diagnostics details
                 using \c qtdiag. This is equivalent to a press and hold on the Clock.

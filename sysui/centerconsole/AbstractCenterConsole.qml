@@ -189,7 +189,7 @@ Item {
         onCtrlXPressed: {
             Config.showCursorSpots = !Config.showCursorSpots;
         }
-        onCtrlAPressed: {
+        onCtrlShiftCPressed: {
             if (root.store.clusterStore.clusterPosition > 1) {
                 root.store.clusterStore.clusterPosition = 0
             } else {
