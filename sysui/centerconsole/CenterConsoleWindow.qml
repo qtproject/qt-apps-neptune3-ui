@@ -112,6 +112,13 @@ Window {
         id: mainCenterConsole
         anchors.fill: parent
 
+        Loader {
+            sourceComponent: Component {
+                GamePadController {}
+            }
+            active: root.store.enableCursorManagement
+        }
+
         CenterConsole {
             id: centerConsole
             anchors.centerIn: parent
