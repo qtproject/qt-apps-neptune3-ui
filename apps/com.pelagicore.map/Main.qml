@@ -138,6 +138,18 @@ QtObject {
                     activeMapType: Style.theme === Style.Light ?
                                    mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
                                    : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
+
+                    Connections {
+                        target: mainMap.store
+                        onNavigationDemoActiveChanged: {
+                            if (mainMap.store.navigationDemoActive) {
+                                icMapView.path = mainMap.store.routeModel.get(0).path;
+                                icMapView.state = "demo_driving";
+                            } else {
+                                icMapView.state = "initial";
+                            }
+                        }
+                    }
                 }
             }
         }
