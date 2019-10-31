@@ -910,7 +910,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>connectivity</source>
+        <source>network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

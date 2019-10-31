@@ -161,7 +161,7 @@ ColumnLayout {
         id: repeater
 
         ToolButton {
-            Layout.preferredWidth: Sizes.dp(135)
+            Layout.preferredWidth: root.width
             Layout.preferredHeight: Sizes.dp(140)
             Layout.alignment: Qt.AlignHCenter
             objectName: model.objectName ? model.objectName : ""

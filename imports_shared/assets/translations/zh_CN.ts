@@ -1508,7 +1508,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>connectivity</source>
+        <source>network</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
