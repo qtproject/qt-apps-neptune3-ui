@@ -20,7 +20,7 @@ exists($$OUT_PWD/qmldir) {
     cpqmldir.CONFIG = no_check_exist
     COPIES += cpqmldir
 
-    installPath = /apps/chapter3-middleware/imports/$$replace(URI, \\., /)
+    installPath = $$[QT_INSTALL_EXAMPLES]/neptune3-ui/chapter3-middleware/imports/$$replace(URI, \\., /)
     qmldir.files = $$OUT_PWD/qmldir \
                    $$OUT_PWD/plugins.qmltypes
     qmldir.path = $$installPath
