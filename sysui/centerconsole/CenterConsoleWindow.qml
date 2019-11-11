@@ -118,6 +118,8 @@ Window {
             sourceComponent: Component {
                 GamePadController {
                     onButtonBPressed: root.nextICAppIsRequested();
+                    onButtonR1Pressed: root.store.musicStore.sendIntent("next");
+                    onButtonL1Pressed: root.store.musicStore.sendIntent("prev");
                 }
             }
             active: root.store.enableCursorManagement

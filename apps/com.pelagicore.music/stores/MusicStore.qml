@@ -159,6 +159,20 @@ Store {
         }
     }
 
+    property IntentHandler intentHandler2: IntentHandler {
+            intentIds: "music-command"
+            onRequestReceived: {
+                var receivedCommand = request.parameters["musiccommand"];
+                request.sendReply({ "done": true })
+
+                if (receivedCommand === "next") {
+                    root.nextSong();
+                } else if (receivedCommand === "prev") {
+                    root.previousSong();
+                }
+            }
+        }
+
     signal requestToRise()
     signal songModelPopulated()
 

@@ -18,3 +18,4 @@ applicationProperties: { private: { squishPort: 7727 } }
 categories: [ 'media', 'widget' ]
 intents:
 - id: activate-app
+- id: music-command
