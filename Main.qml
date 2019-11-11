@@ -123,6 +123,11 @@ QtObject {
 
     readonly property CenterConsoleWindow centerConsoleWindow: CenterConsoleWindow {
         store: root.store
+        onNextICAppIsRequested: {
+            if (instrumentClusterWindowLoader.active && !!instrumentClusterWindowLoader.item) {
+                instrumentClusterWindowLoader.item.nextApplicationICWindow();
+            }
+        }
     }
 
 }

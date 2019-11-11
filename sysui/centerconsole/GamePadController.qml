@@ -33,9 +33,44 @@ import QtQuick 2.2
 import QtGamepad 1.0
 
 Item {
+    id: root
+
+    signal buttonAPressed()
+    signal buttonBPressed()
+    signal buttonXPressed()
+    signal buttonR1Pressed()
+    signal buttonL1Pressed()
+
     Gamepad {
         id: gamepad1
-        deviceId: GamepadManager.connectedGamepads.length > 0 ? GamepadManager.connectedGamepads[0] : -1
+        deviceId: GamepadManager.connectedGamepads.length > 0 ?
+                      GamepadManager.connectedGamepads[0] : -1
+
+        onButtonAChanged: {
+            if (buttonA) {
+                root.buttonAPressed()
+            }
+        }
+        onButtonBChanged: {
+            if (buttonB) {
+                root.buttonBPressed()
+            }
+        }
+        onButtonXChanged: {
+            if (buttonX) {
+                root.buttonXPressed()
+            }
+        }
+        onButtonL1Changed: {
+            if (buttonL1) {
+                root.buttonL1Pressed()
+            }
+        }
+        onButtonR1Changed: {
+            if (buttonR1) {
+                root.buttonR1Pressed()
+            }
+        }
     }
 
     Connections {

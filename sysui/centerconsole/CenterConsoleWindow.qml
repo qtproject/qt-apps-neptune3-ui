@@ -44,6 +44,8 @@ Window {
     property alias mainCenterConsole: mainCenterConsole
     property RootStore store
 
+    signal nextICAppIsRequested()
+
     Binding {target: root.store.centerConsole; property: "windowWidth"; value: root.width }
     Binding {target: root.store.centerConsole; property: "windowHeight"; value: root.height }
 
@@ -114,7 +116,9 @@ Window {
 
         Loader {
             sourceComponent: Component {
-                GamePadController {}
+                GamePadController {
+                    onButtonBPressed: root.nextICAppIsRequested();
+                }
             }
             active: root.store.enableCursorManagement
         }
