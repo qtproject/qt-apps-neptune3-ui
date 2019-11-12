@@ -1,4 +1,4 @@
-VERSION  = 5.13.1
+VERSION  = 5.13.2
 TARGET = neptune-companion-app
 DESTDIR = $$BUILD_DIR
 QT += quick ivicore ivimedia
