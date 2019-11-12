@@ -58,6 +58,7 @@ Item {
     signal trunkClicked()
     signal roofOpenProgressChanged(var value)
     signal showNotificationAboutChange()
+    signal intentToMapRequested(var intentId, var params)
 
     ToolsColumn {
         id: toolsColumn
@@ -80,7 +81,10 @@ Item {
         currentIndex: toolsColumn.currentIndex
 
         SupportPanel { id: supportPanel; objectName: "vehicleSupportPanel" }
-        EnergyPanel { objectName: "vehicleEnergyPanel"}
+        EnergyPanel {
+            objectName: "vehicleEnergyPanel"
+            onIntentToMapRequested: root.intentToMapRequested(intentId, params)
+        }
         DoorsPanel {
             id: doorsPanel
             objectName: "vehicleDoorsPanel"

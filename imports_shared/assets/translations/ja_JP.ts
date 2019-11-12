@@ -536,7 +536,7 @@
     </message>
     <message>
         <source>Show on map</source>
-        <translation>地図上に表示する</translation>
+        <translation type="vanished">地図上に表示する</translation>
     </message>
     <message>
         <source>21</source>
@@ -557,6 +557,10 @@
     <message>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
+    </message>
+    <message>
+        <source>Open map</source>
+        <translation>マップを開く</translation>
     </message>
 </context>
 <context>

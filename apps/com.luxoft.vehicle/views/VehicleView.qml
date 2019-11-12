@@ -192,5 +192,6 @@ Item {
         }
 
         onShowNotificationAboutChange: store.showNotificationAboutChange()
+        onIntentToMapRequested: { root.store.createIntentToMap(intentId, params) }
     }
 }

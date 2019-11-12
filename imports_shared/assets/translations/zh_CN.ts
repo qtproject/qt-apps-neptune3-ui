@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Show on map</source>
-        <translation>在地图上显示</translation>
+        <translation type="vanished">在地图上显示</translation>
     </message>
     <message>
         <source>21</source>
@@ -564,6 +564,10 @@
     <message>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, 拉斯维加斯</translation>
+    </message>
+    <message>
+        <source>Open map</source>
+        <translation>打开地图</translation>
     </message>
 </context>
 <context>

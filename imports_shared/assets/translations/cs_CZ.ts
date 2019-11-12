@@ -690,7 +690,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Show on map</source>
-        <translation>Zobrazit na mapě</translation>
+        <translation type="vanished">Zobrazit na mapě</translation>
     </message>
     <message>
         <source>21</source>
@@ -711,6 +711,10 @@ UX na cestu</translation>
     <message>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
+    </message>
+    <message>
+        <source>Open map</source>
+        <translation>Otevřít mapu</translation>
     </message>
 </context>
 <context>

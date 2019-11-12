@@ -543,7 +543,7 @@
     </message>
     <message>
         <source>Show on map</source>
-        <translation>지도에 표시</translation>
+        <translation type="vanished">지도에 표시</translation>
     </message>
     <message>
         <source>21</source>
@@ -564,6 +564,10 @@
     <message>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
+    </message>
+    <message>
+        <source>Open map</source>
+        <translation>지도 열기</translation>
     </message>
 </context>
 <context>

@@ -36,6 +36,7 @@ import QtQuick.Layouts 1.3
 
 import shared.Sizes 1.0
 import QtApplicationManager.Application 2.0
+import QtApplicationManager 2.0
 
 Item {
     id: root
@@ -126,8 +127,8 @@ Item {
             Connections {
                 target: appRequestNotiButton.notification5
                 onActionTriggered: {
-                    //jump to navigation app
-                    Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
+                    IntentClient.sendIntentRequest("show-destination", "com.pelagicore.map"
+                            , {"destination": "Polis Park Kaningos Athens"});
                     appRequestNotiButton.notification5.actionAccepted = true;
                 }
                 onVisibleChanged: {

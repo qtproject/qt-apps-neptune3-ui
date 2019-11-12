@@ -74,17 +74,25 @@ QtObject {
         model: root.routeModel
     }
 
-    property var appInterface: Connections {
-        target: ApplicationInterface
-        onOpenDocument: {
-            var request = documentUrl.slice(8, documentUrl.length);
-            var dest = "";
-            if (request.indexOf("getmeto/") >= 0) {
-                dest = request.slice(8, request.length);
-                root.destination = dest;
-                requestGeoCodeModel.reset();
-                requestGeoCodeModel.query = dest;
-                requestGeoCodeModel.update();
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: ["show-destination", "activate-app"]
+        onRequestReceived: {
+            switch (request.intentId) {
+            case "show-destination":
+                var destinationName  = request.parameters["destination"];
+                if (!!destinationName && destinationName.length > 0) {
+                    root.destination = destinationName;
+                    requestGeoCodeModel.reset();
+                    requestGeoCodeModel.query = destinationName;
+                    requestGeoCodeModel.update();
+                }
+                break;
+
+            case "activate-app":
+                root.requestRaiseAppReceived();
+                break;
+            default:
+                break;
             }
         }
     }
@@ -107,6 +115,7 @@ QtObject {
     }
 
     signal requestNavigationReceived(string address, var coord, var boundingBox)
+    signal requestRaiseAppReceived()
 
     function fetchCurrentLocation() { // PositionSource doesn't work on Linux
         var req = new XMLHttpRequest;

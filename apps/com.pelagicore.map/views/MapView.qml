@@ -82,6 +82,7 @@ Item {
         target: root.store
 
         onRequestNavigationReceived: {
+            root.maximizeMap();
             root.store.navigationDemoActive = false;
             mapBoxPanel.state = "initial";
             mapBoxPanel.center = coord;
@@ -94,6 +95,8 @@ Item {
             }
             mapBoxPanel.state = "destination_selection";
         }
+
+        onRequestRaiseAppReceived: { root.maximizeMap(); }
     }
 
     MapBoxPanel {

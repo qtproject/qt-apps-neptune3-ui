@@ -43,6 +43,9 @@ import "../helpers" 1.0
 import "../controls" 1.0
 
 Item {
+    id: root
+    signal intentToMapRequested(var intentId, var params)
+
     TabBar {
         id: energyControls
         anchors.top: parent.top
@@ -133,7 +136,8 @@ Item {
             anchors.right: parent.right
             anchors.rightMargin: Sizes.dp(22)
             state: "SMALL"
-            text: qsTr("Show on map")
+            text: qsTr("Open map")
+            onClicked:  root.intentToMapRequested("activate-app", {});
         }
 
         Image {
@@ -192,8 +196,8 @@ Item {
                 state: "SMALL"
                 text: qsTr("Route")
                 onClicked: {
-                    var pathToRoute = "x-map://getMeTo/" + firstStationAddressLabel.text;
-                    Qt.openUrlExternally(pathToRoute);
+                    root.intentToMapRequested("show-destination",
+                            {"destination": firstStationAddressLabel.text});
                 }
             }
         }
@@ -247,8 +251,8 @@ Item {
                 state: "SMALL"
                 text: qsTr("Route")
                 onClicked: {
-                    var pathToRoute = "x-map://getMeTo/" + secondStationAddressLabel.text;
-                    Qt.openUrlExternally(pathToRoute);
+                    root.intentToMapRequested("show-destination",
+                            {"destination": secondStationAddressLabel.text});
                 }
             }
         }

@@ -400,10 +400,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show on map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>21</source>
         <translation type="unfinished"></translation>
     </message>
@@ -421,6 +417,10 @@
     </message>
     <message>
         <source>Faiss Dr, Las Vegas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open map</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

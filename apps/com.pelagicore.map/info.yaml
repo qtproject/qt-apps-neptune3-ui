@@ -16,4 +16,7 @@ name:
 
 applicationProperties: { private: { squishPort: 7726 } }
 categories: [ 'navigation', 'widget' ]
-mimeTypes: [ 'x-scheme-handler/x-map' ]
+intents:
+- id: show-destination
+- id: activate-app
+

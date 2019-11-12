@@ -550,7 +550,7 @@
     </message>
     <message>
         <source>Show on map</source>
-        <translation type="unfinished">Zeige auf Karte</translation>
+        <translation type="obsolete">Zeige auf Karte</translation>
     </message>
     <message>
         <source>21</source>
@@ -571,6 +571,10 @@
     <message>
         <source>Faiss Dr, Las Vegas</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open map</source>
+        <translation>Karte öffnen</translation>
     </message>
 </context>
 <context>

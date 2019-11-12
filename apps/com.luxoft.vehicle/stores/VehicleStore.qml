@@ -34,6 +34,7 @@ import QtQuick 2.8
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 import QtApplicationManager.Application 2.0
+import QtApplicationManager 2.0
 import Qt.labs.settings 1.0
 
 QtObject {
@@ -219,5 +220,9 @@ QtObject {
     function setRoofOpenProgress(value) {
         root.roofOpenProgress = value;
         uiSettings.roofOpenProgress = value;
+    }
+
+    function createIntentToMap(intentId, params) {
+        IntentClient.sendIntentRequest(intentId, "com.pelagicore.map", params);
     }
 }
