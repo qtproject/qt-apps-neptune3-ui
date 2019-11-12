@@ -57,6 +57,10 @@ T.Button {
     icon.color: Style.contrastColor
 
     Cursor {
+        onActivated: {
+            control.clicked();
+        }
+
         onPressAndHold: {
             control.pressAndHold();
         }

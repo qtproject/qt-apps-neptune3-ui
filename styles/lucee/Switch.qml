@@ -63,6 +63,9 @@ T.Switch {
     spacing: Sizes.dp(8)
 
     Cursor {
+        onActivated: {
+            control.toggle();
+        }
         onPressAndHold: {
             control.pressAndHold();
         }

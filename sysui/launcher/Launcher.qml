@@ -121,6 +121,7 @@ Item {
             icon: gridButton.icon
             color: gridButton.icon.color
         }
+        onClicked: gridButton.checked = !gridButton.checked
     }
 
     EditableGridView {

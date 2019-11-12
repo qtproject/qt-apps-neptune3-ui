@@ -59,6 +59,9 @@ T.TabButton {
     font.weight: selected ? Font.Normal : Font.Light
 
     Cursor {
+        onActivated: {
+            control.clicked();
+        }
         onPressAndHold: {
             control.pressAndHold();
         }

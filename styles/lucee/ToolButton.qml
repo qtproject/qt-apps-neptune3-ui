@@ -61,6 +61,10 @@ T.ToolButton {
     Behavior on scale { NumberAnimation { duration: 50 } }
 
     Cursor {
+        onActivated: {
+            control.clicked();
+        }
+
         onPressAndHold: {
             control.pressAndHold();
         }
