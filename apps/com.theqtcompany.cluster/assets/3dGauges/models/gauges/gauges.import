@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" orientation="Right Handed" position="0 0 -0" rotation="-90 -0 0" rotationorder="XYZr" scale="1 1 1" >
+                <Model id="Automotive_Gauges" name="Automotive_Gauges" orientation="Right Handed" position="2.13057 0.118131 -0.124425" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/Automotive_Gauges.mesh" >
+                    <Material id="white" name="white" blendmode="Normal" diffuse="0.150936 0.156254 0.32875" emissivepower="0" opacity="100" specularamount="0" specularroughness="50" />
+                </Model>
+                <Model id="glass1" name="glass1" orientation="Right Handed" position="0.632279 0.11815 -0.124416" rotation="0 -0 0" rotationorder="XYZr" scale="1.02503 1.02503 1.02503" sourcepath="meshes/glass1.mesh" >
+                    <Material id="Material_001" name="Material_001" blendmode="Normal" diffuse="0.181266 0.176071 0.176071" emissivepower="0" opacity="20" specularamount="0" specularroughness="50" />
+                </Model>
+                <Light id="Sun" name="Sun" brightness="100" castshadow="False" lightdiffuse="1 1 1" lighttype="Directional" orientation="Right Handed" position="-10.4436 0 -0.165135" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" />
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../../../../../../../sandbox/gauges.dae" ImageDir="Images" MeshDir="Meshes" >
+            <Mesh >
+                <Source >glass1</Source>
+                <Dest >meshes/glass1.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >Automotive_Gauges</Source>
+                <Dest >meshes/Automotive_Gauges.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>

@@ -1,0 +1,37 @@
+[Icon Theme]
+Name=neptune
+Comment=Neptune Icon Theme
+
+Directories=calendar,car,climate,music,phone,store,sysui,tuner
+
+[calendar]
+Size=32
+Type=Fixed
+
+[car]
+Size=32
+Type=Fixed
+
+[climate]
+Size=32
+Type=Fixed
+
+[music]
+Size=32
+Type=Fixed
+
+[phone]
+Size=32
+Type=Fixed
+
+[store]
+Size=32
+Type=Fixed
+
+[sysui]
+Size=32
+Type=Fixed
+
+[tuner]
+Size=32
+Type=Fixed

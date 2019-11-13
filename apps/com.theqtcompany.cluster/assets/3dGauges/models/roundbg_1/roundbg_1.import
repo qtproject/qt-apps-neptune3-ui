@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" >
+                <Model id="qt_gauge_background_round_1" name="qt_gauge_background_round_1" orientation="Right Handed" position="0 0 -0" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/qt_gauge_background_round_1.mesh" >
+                    <Material id="background_1" name="background_1" blendmode="Normal" diffuse="1 1 1" diffusemap="background_1_diffusemap" emissivepower="0" opacity="100" specularamount="0" >
+                        <Image id="background_1_diffusemap" name="background_1_diffusemap" sourcepath="maps/gradient.png" />
+                    </Material>
+                </Model>
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../../3D Models/Automotive/Cluster/GaugeBackgrounds/roundbg_1.fbx" ImageDir="Images" MeshDir="Meshes" >
+            <Image >
+                <Source >roundbg_1.fbm/gradient.png</Source>
+                <Dest >maps/gradient.png</Dest>
+            </Image>
+            <Mesh >
+                <Source >qt_gauge_background_round_1</Source>
+                <Dest >meshes/qt_gauge_background_round_1.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>

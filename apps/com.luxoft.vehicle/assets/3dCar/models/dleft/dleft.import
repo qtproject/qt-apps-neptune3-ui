@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" >
+                <Model id="silver_paint_1" name="silver_paint_1" orientation="Right Handed" position="0 0 -0" rotation="2.50448e-06 -89.849 1.22136e-11" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/silver_paint_1.mesh" >
+                    <Material id="silver_paint_1_Diffuse_Default" name="silver_paint_1_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="glass" name="glass" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/glass.mesh" >
+                    <Material id="glass_Diffuse_Default" name="glass_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="chrome_2" name="chrome_2" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/chrome_2.mesh" >
+                    <Material id="chrome_2_Diffuse_Default" name="chrome_2_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="black_1" name="black_1" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="meshes/black_1.mesh" >
+                    <Material id="black_1_Diffuse_Default" name="black_1_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../../../../../../sandbox/blenderWork/dleft.fbx" ImageDir="Images" MeshDir="Meshes" >
+            <Mesh >
+                <Source >glass</Source>
+                <Dest >meshes/glass.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >chrome_2</Source>
+                <Dest >meshes/chrome_2.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >silver_paint_1</Source>
+                <Dest >meshes/silver_paint_1.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >black_1</Source>
+                <Dest >meshes/black_1.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>
