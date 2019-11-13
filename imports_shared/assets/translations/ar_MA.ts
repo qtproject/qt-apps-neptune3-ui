@@ -474,6 +474,21 @@
     </message>
 </context>
 <context>
+    <name>ICMapView</name>
+    <message>
+        <source> km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next turn: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ICMusicView</name>
     <message>
         <source>Track unavailable</source>

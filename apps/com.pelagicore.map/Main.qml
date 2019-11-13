@@ -136,8 +136,13 @@ QtObject {
                     mapTilt: mainMap.mapTilt
                     mapBearing: mainMap.mapBearing
                     activeMapType: Style.theme === Style.Light ?
-                                   mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
-                                   : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
+                                   mainMap.store.getMapType(icMapView.mapReady
+                                                            , mainMap.store.defaultLightThemeId)
+                                   : mainMap.store.getMapType(icMapView.mapReady
+                                                              , mainMap.store.defaultDarkThemeId);
+
+                    naviGuideDistance: Math.trunc(mainMap.store.navigationStore.naviGuideDistance)
+                    naviGuideDirection: mainMap.store.navigationStore.naviGuideDirection
 
                     Connections {
                         target: mainMap.store

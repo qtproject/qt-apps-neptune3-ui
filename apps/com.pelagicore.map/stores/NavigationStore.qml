@@ -48,6 +48,14 @@ QtObject {
     // output properties
     property var location: QtPositioning.coordinate()
     property real angle: 0.0
+    property string naviGuideDirection: ""
+    // in meters
+    property real naviGuideDistance: 0.0
+    property real remainingDistance: 0.0
+    // in seconds
+    property int  remainingTime: 0.0
+
+    property var maneuverPoint: QtPositioning.coordinate()
 
     // inner properties
     property var segmentsList
@@ -58,6 +66,10 @@ QtObject {
 
     property var currentSegment
     property int currentSegment_PathCurrentPointIdx: 0
+
+    property var maneuversPointsList
+    property var maneuversDirectionList
+    property int maneuverIdx
 
     // m/s ~ 75km/h
     readonly property real speed: 20.8
@@ -70,6 +82,8 @@ QtObject {
             }
 
             var route = root.model.get(0);
+            remainingDistance = route.distance;
+            remainingTime = route.travelTime;
             pathCurrentPointIdx = 0;
             currentSegment_PathCurrentPointIdx = 0;
             segmentsListCurrentIdx = 0;
@@ -80,10 +94,84 @@ QtObject {
             root.location = currentSegment.path[0];
             root.angle = path[0].azimuthTo(path[1]);
 
+            maneuverIdx = 1;
+            maneuversPointsList = [];
+            maneuversDirectionList = [];
+            for (var i = 0; i < segmentsList.length; ++i) {
+                maneuversPointsList.push(segmentsList[i].maneuver.position)
+                maneuversDirectionList.push(segmentsList[i].maneuver.direction)
+            }
+
+            maneuverPoint = maneuversPointsList[maneuverIdx];
+            naviGuideDistance = calculateDistanceToNext(0, maneuverPoint);
+            setNaviGuideDirectionFromManeuverDiredection(maneuversDirectionList[maneuverIdx]);
+
             setNextAnimation();
         } else if (movementAnimation.running) {
             movementAnimation.stop()
         }
+    }
+
+    function calculateDistanceToNext(curPathIdx, maneuverPoint) {
+        var j = curPathIdx;
+        var calculatedDistance = 0.0;
+        while (path[j] !== maneuverPoint && j+1 < path.length) {
+            calculatedDistance += path[j].distanceTo(path[j+1]);
+            ++j;
+        }
+
+        return calculatedDistance;
+    }
+
+    function setNaviGuideDirectionFromManeuverDiredection(direction) {
+        switch (direction) {
+        case RouteManeuver.NoDirection:
+            naviGuideDirection = "nav_nodir";
+            break;
+        case RouteManeuver.DirectionForward:
+            naviGuideDirection = "nav_straight";
+            break;
+        case RouteManeuver.DirectionBearRight:
+            naviGuideDirection = "nav_bear_r";
+            break;
+        case RouteManeuver.DirectionLightRight:
+            naviGuideDirection = "nav_light_right";
+            break;
+        case RouteManeuver.DirectionRight:
+            naviGuideDirection = "nav_right";
+            break;
+        case RouteManeuver.DirectionHardRight:
+            naviGuideDirection = "nav_hard_r";
+            break;
+        case RouteManeuver.DirectionUTurnRight:
+            naviGuideDirection = "nav_uturn_r";
+            break;
+        case RouteManeuver.DirectionUTurnLeft:
+            naviGuideDirection = "nav_uturn_l";
+            break;
+        case RouteManeuver.DirectionHardLeft:
+            naviGuideDirection = "nav_hard_l";
+            break;
+        case RouteManeuver.DirectionLeft:
+            naviGuideDirection = "nav_left";
+            break;
+        case RouteManeuver.DirectionLightLeft:
+            naviGuideDirection = "nav_light_left";
+            break;
+        case RouteManeuver.DirectionBearLeft:
+            naviGuideDirection = "nav_bear_l";
+            break;
+        default:
+            naviGuideDirection = "";
+            break;
+        }
+    }
+
+    function updateNaviGuide() {
+        if (maneuverIdx + 1 >= maneuversPointsList.length) return;
+        maneuverPoint = maneuversPointsList[++maneuverIdx];
+        naviGuideDistance = calculateDistanceToNext(pathCurrentPointIdx-1, maneuverPoint);
+        setNaviGuideDirectionFromManeuverDiredection(maneuversDirectionList[maneuverIdx]);
     }
 
     function setNextAnimation() {
@@ -97,13 +185,21 @@ QtObject {
 
         if (!endPos) {
             // arrived;
+            naviGuideDistance  = 0.0;
+            naviGuideDirection = "";
             return;
+        }
+
+        if (maneuverPoint === startPos) {
+            updateNaviGuide();
         }
 
         // segment, path inside it
         if (++currentSegment_PathCurrentPointIdx >= currentSegment.path.length) {
-            currentSegment_PathCurrentPointIdx = 0
-            currentSegment = segmentsList[++segmentsListCurrentIdx];
+            currentSegment_PathCurrentPointIdx = 0;
+            remainingTime     -= currentSegment.travelTime;
+            remainingDistance -= currentSegment.distance;
+            currentSegment     = segmentsList[++segmentsListCurrentIdx];
         }
 
         // Calculate new direction
@@ -132,6 +228,10 @@ QtObject {
         movementAnimation.coordinateDuration = pathDistance / speed * 1000;
         movementAnimation.rotationDirection = newDir;
         movementAnimation.targetCoordinate = endPos;
+        movementAnimation.distanceForNextManeuver = root.naviGuideDistance - pathDistance;
+        movementAnimation.distanceForNextManeuver = movementAnimation.distanceForNextManeuver > 0
+                ? movementAnimation.distanceForNextManeuver
+                : 0.0;
         movementAnimation.start();
     }
 
@@ -140,6 +240,7 @@ QtObject {
         property real rotationDuration: 0
         property real rotationDirection: 0
         property real coordinateDuration: 0
+        property real distanceForNextManeuver: 0
         property var targetCoordinate
         property real azimuthDt: 0
         readonly property real angleThreshold: 25.0
@@ -178,6 +279,13 @@ QtObject {
                     property: "location"
                     duration: movementAnimation.coordinateDuration
                     to: movementAnimation.targetCoordinate
+                }
+
+                NumberAnimation {
+                    target: root
+                    property: "naviGuideDistance"
+                    duration: movementAnimation.coordinateDuration
+                    to: movementAnimation.distanceForNextManeuver
                 }
             }
         }
