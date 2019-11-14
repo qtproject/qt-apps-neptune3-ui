@@ -13,14 +13,12 @@ You can run Neptune 3 UI in one of two ways:
 Both these options are described in: https://doc.qt.io/Neptune3UI/neptune3ui-install.html
 
 #### Note
-> Neptune 3 UI contains many garphic assets that are updated regularly. This requires the use of
-> git-lfs. Make sure to install [https://git-lfs.github.com/](git-lfs) first. Neptune 3 UI's
-> repository configuration has been extended to host some type of assets on
-> https://git-lfs.qt.io/, in GitLab. The Qt Company runs this server and provides anonymous read
-> access so that developers can clone the code without an account. However, submitting code
-> requires both, an account and membership in the `Gerrit` group. Use the git credentials cache to
-> avoid having to enter your credentials each time you push a commit. The GitLab server uses a
-> self-signed certification, so you need to override the SSL verification with the following
+> Neptune 3 UI contains many graphic assets that are updated regularly. This requires the use of
+> git-lfs. Make sure to install [https://git-lfs.github.com/](git-lfs) first. The Qt Company runs
+> the git-lfs server and provides anonymous read access so that developers can clone the code without
+> an account. Use the git credentials cache to avoid having to enter your credentials each time
+> you push a commit. The GitLab server uses a self-signed certification, so you need to override
+> the SSL verification with the following
 > commands:
 >   $ git lfs install
 >   $ git clone git://code.qt.io/qt-apps/neptune3-ui.git
