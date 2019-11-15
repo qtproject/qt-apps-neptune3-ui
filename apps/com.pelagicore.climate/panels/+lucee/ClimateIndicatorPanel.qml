@@ -36,27 +36,27 @@ import QtQuick.Layouts 1.3
 
 import "../controls" 1.0
 import "../helpers" 1.0
+import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
 
-Item {
+RowLayout {
     id: root
 
     property var store
-    width: parent.width
+    width:  Sizes.dp(Config.centerConsoleWidth)
     height: Sizes.dp(80)
+    LayoutMirroring.enabled: false
 
     TemperatureLabel {
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: Sizes.dp(44)
+        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        Layout.leftMargin: Sizes.dp(44)
         seat: root.store ? root.store.leftSeat : null
     }
 
     TemperatureLabel {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: Sizes.dp(44)
+        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+        Layout.rightMargin: Sizes.dp(44)
         seat: root.store ? root.store.rightSeat : null
     }
 }

@@ -48,15 +48,15 @@ Item {
 
     property ClimateStore store
 
-    ToolButton {
-        id: climateToolButton
-        objectName: "climateAreaMouseArea"
-        implicitWidth: (contentItem.childrenRect.width + Sizes.dp(40))
-        implicitHeight: parent.height
+    ClimateIndicatorPanel {
+        id: indicatorPanel
+        store: root.store
         anchors.centerIn: parent
-        contentItem: ClimateIndicatorPanel {
-            store: root.store
-        }
+    }
+
+    ToolButton {
+        objectName: "climateAreaMouseArea"
+        anchors.fill: indicatorPanel
         onClicked: {
             climatePopup.store = root.store;
             climatePopup.visible = true;
