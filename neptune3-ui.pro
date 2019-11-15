@@ -13,7 +13,11 @@ requires(!no_ivigenerator_available)
 }
 
 !qtHaveModule(3dstudioruntime2){
-    log("$$escape_expand(\\n\\n)[Warning] The 3dstudioruntime2 optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install Qt 3D Studio or the runtime.$$escape_expand(\\n\\n)")
+    log("$$escape_expand(\\n\\n)[Warning] The 3dstudioruntime2 optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show some 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install the qt3d-runtime.$$escape_expand(\\n\\n)")
+}
+
+!qtHaveModule(studio3d){
+    log("$$escape_expand(\\n\\n)[Warning] The studio3d optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show some 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install the ogl-runtime.$$escape_expand(\\n\\n)")
 }
 
 TEMPLATE = subdirs

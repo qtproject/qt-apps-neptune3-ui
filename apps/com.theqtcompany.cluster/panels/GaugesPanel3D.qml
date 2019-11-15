@@ -36,11 +36,9 @@ import shared.utils 1.0
 import QtQuick.Shapes 1.12
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
-import QtStudio3D 2.1
+import QtStudio3D.OpenGL 2.5
 
 import "../helpers" 1.0
-
-
 
 /*
   \qmltype GaugesPanel
@@ -85,10 +83,14 @@ Item {
 
     Studio3D {
         anchors.fill: parent
+        ViewerSettings {
+            scaleMode: ViewerSettings.ScaleModeFit
+//            showRenderStats: true
+        }
+
         Presentation {
             id: presentation
-            source: Utils.localQt3DStudioPresentationAsset("presentations/gauges.uip")
-
+            source: Utils.localQt3DStudioPresentationAsset("gauges.uia")
             property int speedLimit: 70
             property int speed: 59
             property int rpm: 0
@@ -203,14 +205,6 @@ Item {
                 }
             }
 
-            Behavior on rpm {
-                NumberAnimation { easing.type: Easing.OutExpo; duration: 400 }
-            }
-
-            Behavior on speed {
-                NumberAnimation { easing.type: Easing.OutCubic; duration: 3000 }
-            }
-
             Behavior on speedLimit {
                 NumberAnimation { easing.type: Easing.OutCubic; duration: 5000 }
             }
@@ -254,7 +248,9 @@ Item {
 
             DataInput {
                 name: "gaugesScale"
-                value: Qt.vector3d(presentation.gaugesScale, presentation.gaugesScale, presentation.gaugesScale)
+                value: Qt.vector3d(presentation.gaugesScale
+                                   , presentation.gaugesScale
+                                   , presentation.gaugesScale)
             }
 
             DataInput {
@@ -279,7 +275,8 @@ Item {
 
             DataInput {
                 name: "mainLightColor"
-                value: root.gaugesMainColor
+                value: Qt.vector4d(root.gaugesMainColor.r, root.gaugesMainColor.g
+                                   ,root.gaugesMainColor.b, 1.0)
             }
 
             DataInput {
