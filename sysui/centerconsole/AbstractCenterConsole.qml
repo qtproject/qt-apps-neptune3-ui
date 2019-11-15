@@ -136,7 +136,7 @@ Item {
         id: bottomBar
         width: root.width
         height: Sizes.dp(Config.bottomBarHeight)
-        enabled: !mainContentArea.item.launcherOpen
+        enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
