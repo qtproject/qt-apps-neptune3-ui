@@ -52,6 +52,7 @@
        \li \l{ScalableBorderImage}
        \li \l{ToolsColumn}
        \li \l{Tracer}
+       \li \l{TouchPointsTracer}
    \endlist
 
    Neptune UI interfaces:

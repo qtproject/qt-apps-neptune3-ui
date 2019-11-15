@@ -7,7 +7,8 @@ SUBDIRS = \
           widgetgrid \
           style \
           systeminfo \
-          com.pelagicore.map
+          eventslisteners \
+          com.pelagicore.map \
 
 !isEmpty(SQUISH_PREFIX) {
     SUBDIRS += squishhook

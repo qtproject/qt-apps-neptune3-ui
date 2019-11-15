@@ -40,6 +40,7 @@ import instrumentcluster 1.0
 import hud 1.0
 import stores 1.0
 
+import shared.utils 1.0
 import shared.Style 1.0
 
 QtObject {
@@ -128,6 +129,9 @@ QtObject {
                 instrumentClusterWindowLoader.item.nextApplicationICWindow();
             }
         }
-    }
 
+        TouchPointsTracer {
+            target: centerConsoleWindow
+        }
+    }
 }
