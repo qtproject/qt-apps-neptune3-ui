@@ -147,31 +147,16 @@ Flickable {
                 Label {
                     anchors.centerIn: parent.handle
                     anchors.verticalCenterOffset: - parent.handle.height * 2
-                    text: parent.value
+                    text: parent.value.toFixed(2)
                 }
             }
 
             // Route progress
             Label {
-                text: qsTr("Route \n progress, %")
+                text: qsTr("Route \n progress, % ")
             }
-            Slider {
-                id: routeProgressSlider
-                from: 0
-                to: 1.0
-                stepSize: 0.01
-                value: instrumentCluster.navigationProgressPercents
-                onValueChanged: {
-                    if (pressed) {
-                        instrumentCluster.navigationProgressPercents = value
-                    }
-                }
-
-                Label {
-                    anchors.centerIn: parent.handle
-                    anchors.verticalCenterOffset: - parent.handle.height * 2
-                    text: parent.value.toFixed(2)
-                }
+            Label {
+                text: (100.0 * instrumentCluster.navigationProgressPercents).toFixed(0)
             }
 
             // Route distance
@@ -245,49 +230,12 @@ Flickable {
             Layout.alignment: Qt.AlignHCenter
             spacing: 50
 
-            //Driving mode range Field
-            Dial {
-                id: drivingModeRangeDial
-                from: 0
-                to: 1000
-                stepSize: 1.0
-                value: instrumentCluster.drivingModeRangeKm
-                onMoved: instrumentCluster.drivingModeRangeKm = value
-
-                Label {
-                    text: qsTr("Range:")
-                    anchors.bottom: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-                Label {
-                    text: Math.round(parent.value)
-                    anchors.top: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+            Label {
+                text: qsTr("Range: ") + instrumentCluster.drivingModeRangeKm
             }
 
-            // ECO mode range Field
-            Dial {
-                id: ecoModeRangeDial
-                from: 0
-                to: 500
-                stepSize: 1.0
-                value: instrumentCluster.drivingModeECORangeKm
-                onMoved: instrumentCluster.drivingModeECORangeKm = value
-
-                Label {
-                    text: qsTr("ECO Range:")
-                    anchors.bottom: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-
-                Label {
-                    text: Math.round(parent.value)
-                    anchors.top: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+            Label {
+                text: qsTr("ECO Range: ") + instrumentCluster.drivingModeECORangeKm
             }
         }
 
@@ -339,7 +287,7 @@ Flickable {
             CheckBox {
                 id: stabilityControlCheckbox
                 checked: instrumentCluster.stabilityControl
-                onClicked: instrumentCluster.stabilityControl = checked
+                enabled: false
             }
 
             // leftTurn Field
@@ -369,7 +317,7 @@ Flickable {
             CheckBox {
                 id: seatBeltNotFastenedCheckbox
                 checked: instrumentCluster.seatBeltNotFastened
-                onClicked: instrumentCluster.seatBeltNotFastened = checked
+                enabled: false
             }
 
             // ABSFailure Field
@@ -379,7 +327,7 @@ Flickable {
             CheckBox {
                 id: absFailureCheckbox
                 checked: instrumentCluster.ABSFailure
-                onClicked: instrumentCluster.ABSFailure = checked
+                enabled: false
             }
 
             // parkBrake Field
@@ -389,7 +337,7 @@ Flickable {
             CheckBox {
                 id: parkBrakeCheckbox
                 checked: instrumentCluster.parkBrake
-                onClicked: instrumentCluster.parkBrake = checked
+                enabled: false
             }
 
             // tyrePressureLow Field
@@ -399,7 +347,7 @@ Flickable {
             CheckBox {
                 id: tyrePressureLowCheckbox
                 checked: instrumentCluster.tyrePressureLow
-                onClicked: instrumentCluster.tyrePressureLow = checked
+                enabled: false
             }
 
             // brakeFailure Field
@@ -409,7 +357,7 @@ Flickable {
             CheckBox {
                 id: brakeFailureCheckBox
                 checked: instrumentCluster.brakeFailure
-                onClicked: instrumentCluster.brakeFailure = checked
+                enabled: false
             }
 
             // airbagFailure Field
@@ -419,7 +367,7 @@ Flickable {
             CheckBox {
                 id: airbagFailureCheckBox
                 checked: instrumentCluster.airbagFailure
-                onClicked: instrumentCluster.airbagFailure = checked
+                enabled: false
             }
         }
 
