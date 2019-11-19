@@ -8,8 +8,6 @@ formatType: am-configuration
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
   installedAppsManifestDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/manifests"
-  appImageMountDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/image-mounts"
-  database: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps.db"
 
 # QML apps will be able to import from modules...
 

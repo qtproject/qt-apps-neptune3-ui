@@ -36,8 +36,8 @@
 #include <QtIviCore/QtIviCoreVersion>
 #include <QtAppManMain/main.h>
 #include <QtAppManMain/defaultconfiguration.h>
-#include <QtAppManPackage/package.h>
-#include <QtAppManInstaller/sudo.h>
+#include <QtAppManPackage/packageutilities.h>
+#include <QtAppManManager/sudo.h>
 #include <QtAppManWindow/touchemulation.h>
 #include <QGuiApplication>
 #include <QTranslator>
@@ -90,7 +90,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     Logging::initialize();
 
-    Package::ensureCorrectLocale();
+    PackageUtilities::ensureCorrectLocale();
 
     try {
         QStringList deploymentWarnings;

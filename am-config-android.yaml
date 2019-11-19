@@ -6,7 +6,5 @@ formatType: am-configuration
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
   installedAppsManifestDir: ~
-  appImageMountDir: ~
-  database: "am/apps.db"
 
 installationLocations: ~
