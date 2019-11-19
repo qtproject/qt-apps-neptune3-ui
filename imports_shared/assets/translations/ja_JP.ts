@@ -734,6 +734,13 @@
     </message>
 </context>
 <context>
+    <name>MainView</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
+    </message>
+</context>
+<context>
     <name>MapHeader</name>
     <message>
         <source>Where do you wanna go today?</source>

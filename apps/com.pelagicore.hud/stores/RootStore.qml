@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 Cluster UI.
@@ -29,26 +28,19 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+import shared.com.pelagicore.remotesettings 1.0
+import shared.com.pelagicore.drivedata 1.0
+import shared.utils 1.0
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
-import application.windows 1.0
-import shared.Sizes 1.0
-import "stores"
-import "views"
 
-NeptuneWindow {
+AbstractStore {
     id: root
 
-    width: Sizes.dp(480)
-    height: Sizes.dp(240)
+    readonly property InstrumentCluster clusterSettings:
+        InstrumentCluster { id: clusterSettings }
 
-    Component.onCompleted: {
-        setWindowProperty("windowType", "hud");
-    }
-
-    MainView {
-        anchors.fill: parent
-        rootStore: RootStore {}
-    }
+    speed: clusterSettings.speed
+    speedLimit: clusterSettings.speedLimit
+    speedCruise: clusterSettings.speedCruise
 }
+

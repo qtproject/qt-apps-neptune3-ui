@@ -1,7 +1,6 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 Cluster UI.
@@ -30,25 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
-import application.windows 1.0
-import shared.Sizes 1.0
-import "stores"
-import "views"
+import shared.utils 1.0
 
-NeptuneWindow {
+Store {
     id: root
 
-    width: Sizes.dp(480)
-    height: Sizes.dp(240)
-
-    Component.onCompleted: {
-        setWindowProperty("windowType", "hud");
-    }
-
-    MainView {
-        anchors.fill: parent
-        rootStore: RootStore {}
-    }
+    property real speed: 0.0
+    property real speedLimit: 0.0
+    property real speedCruise: 0.0
 }
+

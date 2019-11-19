@@ -516,6 +516,13 @@
     </message>
 </context>
 <context>
+    <name>MainView</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MapStore</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
