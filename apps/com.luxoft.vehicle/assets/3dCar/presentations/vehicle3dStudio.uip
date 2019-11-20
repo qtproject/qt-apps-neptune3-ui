@@ -142,7 +142,7 @@
 		</Graph>
 		<Logic >
 			<State name="Master Slide" component="#Scene_u47912" >
-				<Add ref="#Layer_u2391" aodither="True" aosamplerate="2" aostrength="0" disabledepthprepass="True" disabledepthtest="False" multisampleaa="SSAA" probefov="180" probehorizon="-1" progressiveaa="4x" temporalaa="True" />
+				<Add ref="#Layer_u2391" aodither="False" aosamplerate="2" aostrength="0" blendtype="Normal" disabledepthprepass="False" disabledepthtest="False" multisampleaa="None" probefov="180" probehorizon="-1" progressiveaa="None" temporalaa="False" />
 				<Add ref="#Camera_u12795" clipfar="35" clipnear="1" fov="10" fovhorizontal="False" orthographic="False" position="0 3 -35.318" rotation="9 0 0" scalemode="Fit" />
 				<Add ref="#__u18257" name="__Container" />
 				<Add ref="#materials/leicht_metalic_u58269" name="materials/leicht_metalic_110" controlledproperty="$diffuseColor diffuse" diffuse="0.670588 0.341176 1 1" diffuselightwrap="0" emissivecolor="1 1 1 1" emissivepower="0" importfile="../models/VA_v3/VA_v3.import" importid="leicht_metalic_1" ior="5" specularamount="0" specularmodel="Default" specularreflection="#materials/leicht_metalic_110_u43245" specularroughness="1" speculartint="0.662745 0.662745 0.662745 1" translucentfalloff="1" />

@@ -28,7 +28,8 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-import QtStudio3D 2.1
+
+import QtStudio3D.OpenGL 2.5
 import QtQuick 2.8
 
 Item {}
