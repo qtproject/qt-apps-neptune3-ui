@@ -29,36 +29,53 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick 2.10
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 import shared.Style 1.0
 import shared.Sizes 1.0
-import shared.utils 1.0
-import "../stores"
-import "../panels"
+import shared.animations 1.0
+import "../helpers" 1.0
 
 Item {
     id: root
 
-    property RootStore rootStore
+    property string nextTurn
+    property string nextTurnDistanceMeasuredIn
+    property real nextTurnDistance
 
-    SpeedPanel {
-        id: speedPanel
-        width: Sizes.dp(150)
-        height: parent.height
-        anchors.centerIn: parent
-        currentSpeed: rootStore.speed
-        speedLimit: rootStore.speedLimit
-        cruiseSpeed: rootStore.speedCruise
+    Image {
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        source: Helper.localAsset(root.nextTurn, Style.theme)
     }
 
-    NaviPanel {
-        width: Sizes.dp(120)
-        height: parent.height
-        anchors.top: speedPanel.top
-        anchors.right: speedPanel.left
-        nextTurn: rootStore.nextTurn
-        nextTurnDistance: rootStore.nextTurnDistance
-        nextTurnDistanceMeasuredIn: rootStore.nextTurnDistanceMeasuredIn
+    ProgressBar {
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        height: Sizes.dp(120)
+        width: Sizes.dp(20)
+        orientation: Qt.Vertical
+        visible: opacity > 0.0
+        opacity: root.nextTurnDistance <= 300 && root.nextTurnDistanceMeasuredIn === "m" ? 1 : 0
+        Behavior on opacity { DefaultNumberAnimation {} }
+
+        value: root.nextTurnDistance <= 300 && root.nextTurnDistanceMeasuredIn === "m"
+               ? root.nextTurnDistance / 300 : 0.0
+
+        style: ProgressBarStyle {
+            background: Rectangle {
+                radius: 2
+                color: "transparent"
+                border.color: "gray"
+                border.width: Sizes.dp(1)
+                implicitHeight: Sizes.dp(200)
+                implicitWidth: Sizes.dp(20)
+            }
+            progress: Rectangle {
+                color: "lightsteelblue"
+                border.color: "steelblue"
+            }
+        }
     }
 }

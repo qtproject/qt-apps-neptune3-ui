@@ -37,5 +37,8 @@ Store {
     property real speed: 0.0
     property real speedLimit: 0.0
     property real speedCruise: 0.0
+    property string nextTurn: ""
+    property string nextTurnDistanceMeasuredIn: ""
+    property real nextTurnDistance: 0.0
 }
 

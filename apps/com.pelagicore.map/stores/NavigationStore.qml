@@ -35,12 +35,16 @@ import QtQuick.Layouts 1.3
 import QtLocation 5.9
 import QtPositioning 5.9
 import shared.animations 1.0
-
+import shared.com.pelagicore.drivedata 1.0
 
 /// class that takes route segments, prepares demo from it, and produces
 /// points and vehicle(arrow marker / map bearing) angle
 QtObject {
     id: root
+
+    readonly property NavigationState naviState:
+        NavigationState { id: naviState }
+
     // input properties
     property var model
     property bool active
@@ -49,6 +53,10 @@ QtObject {
     property var location: QtPositioning.coordinate()
     property real angle: 0.0
     property string naviGuideDirection: ""
+    onNaviGuideDirectionChanged: {
+        naviState.nextTurn = naviGuideDirection;
+    }
+
     // in meters
     property real naviGuideDistance: 0.0
     onNaviGuideDistanceChanged: {
@@ -70,7 +78,14 @@ QtObject {
     }
 
     property string nextTurnDistanceMeasuredIn: ""
+    onNextTurnDistanceMeasuredInChanged: {
+        naviState.nextTurnDistanceMeasuredIn = root.nextTurnDistanceMeasuredIn;
+    }
     property real nextTurnDistance: 0
+    onNextTurnDistanceChanged: {
+        naviState.nextTurnDistance = root.nextTurnDistance;
+    }
+
     property real remainingDistance: 0.0
 
     // in seconds
@@ -130,6 +145,10 @@ QtObject {
             setNextAnimation();
         } else if (movementAnimation.running) {
             movementAnimation.stop()
+            // reset the states
+            naviGuideDirection = "";
+            nextTurnDistanceMeasuredIn = "";
+            nextTurnDistance = 0;
         }
     }
 
@@ -208,6 +227,7 @@ QtObject {
             // arrived;
             naviGuideDistance  = 0.0;
             naviGuideDirection = "";
+            nextTurnDistanceMeasuredIn = "";
             return;
         }
 

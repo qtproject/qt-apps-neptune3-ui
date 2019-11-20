@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 Cluster UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -28,24 +28,9 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
-import shared.utils 1.0
+.import shared.Style 1.0 as Style
 
-AbstractStore {
-    id: root
-
-    readonly property InstrumentCluster clusterSettings:
-        InstrumentCluster { id: clusterSettings }
-
-    readonly property NavigationState naviState:
-        NavigationState { id: naviState }
-
-    speed: clusterSettings.speed
-    speedLimit: clusterSettings.speedLimit
-    speedCruise: clusterSettings.speedCruise
-    nextTurn: naviState.nextTurn
-    nextTurnDistanceMeasuredIn: naviState.nextTurnDistanceMeasuredIn
-    nextTurnDistance: naviState.nextTurnDistance
+function localAsset(asset, theme) {
+    var themeStr = theme === Style.Style.Dark ? "-dark" : "";
+    return "../assets/" + asset + themeStr + '.png'
 }
-

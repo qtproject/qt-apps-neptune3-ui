@@ -43,7 +43,7 @@ Item {
 
     Rectangle {
         anchors.centerIn: parent
-        anchors.horizontalCenterOffset: - Sizes.dp(80)
+        anchors.verticalCenterOffset: Sizes.dp(60)
         anchors.rightMargin: Sizes.dp(20)
         width: Sizes.dp(50)
         height: Sizes.dp(50)
@@ -90,8 +90,7 @@ Item {
 
     Label {
         id: speed
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         text: Math.round(root.currentSpeed)
         verticalAlignment: Text.AlignTop
         horizontalAlignment: Text.AlignHCenter
@@ -102,8 +101,7 @@ Item {
     }
 
     Label {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         anchors.horizontalCenterOffset: Sizes.dp(88)
         text: qsTr("km/h")
         font.weight: Font.Light
