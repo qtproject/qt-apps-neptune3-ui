@@ -141,7 +141,9 @@ QtObject {
                                    : mainMap.store.getMapType(icMapView.mapReady
                                                               , mainMap.store.defaultDarkThemeId);
 
-                    naviGuideDistance: Math.trunc(mainMap.store.navigationStore.naviGuideDistance)
+                    nextTurnDistanceMeasuredIn:
+                        mainMap.store.navigationStore.nextTurnDistanceMeasuredIn
+                    nextTurnDistance: mainMap.store.navigationStore.nextTurnDistance
                     naviGuideDirection: mainMap.store.navigationStore.naviGuideDirection
 
                     Connections {

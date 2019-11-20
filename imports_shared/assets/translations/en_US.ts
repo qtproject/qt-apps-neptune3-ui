@@ -449,14 +449,6 @@
 <context>
     <name>ICMapView</name>
     <message>
-        <source> km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> m</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -475,23 +467,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>km/h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your parking period is about to end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Your parking period will be ended in 5 minutes.
                          Please extend your parking ticket or move your car.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MainView</name>
-    <message>
-        <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -730,6 +711,17 @@
     </message>
 </context>
 <context>
+    <name>NavigationStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>m</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NotificationCenter</name>
     <message>
         <source>No Notifications</source>
@@ -909,6 +901,13 @@
     </message>
     <message>
         <source>network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpeedPanel</name>
+    <message>
+        <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

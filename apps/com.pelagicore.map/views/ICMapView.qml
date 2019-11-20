@@ -52,7 +52,9 @@ Item {
     property var path
     property var mapPlugin
 
-    property int naviGuideDistance
+
+    property string nextTurnDistanceMeasuredIn
+    property real nextTurnDistance
     property string naviGuideDirection
 
     state: "initial"
@@ -156,21 +158,8 @@ Item {
                 font.pixelSize: Sizes.fontSizeXL
                 font.bold: true
                 verticalAlignment: Text.AlignVCenter
-                text: {
-                    var d = naviGuideDistance;
-                    if (d >= 1000) {
-                        d = d / 1000 + 0.1;
-                        return qsTr("Next turn: ") + d.toFixed(1) + qsTr(" km");
-                    } else {
-                        if (d < 100) {
-                            d = d - d % 10 + 10;
-                        } else {
-                            d = d - d % 50 + 50;
-                        }
-
-                        return qsTr("Next turn: ") + d + qsTr(" m");
-                    }
-                }
+                text: qsTr("Next turn: ") + root.nextTurnDistance
+                      + " " + root.nextTurnDistanceMeasuredIn
             }
 
             Image {

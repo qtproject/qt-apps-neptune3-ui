@@ -51,7 +51,28 @@ QtObject {
     property string naviGuideDirection: ""
     // in meters
     property real naviGuideDistance: 0.0
+    onNaviGuideDistanceChanged: {
+        var d = naviGuideDistance;
+        if (d >= 1000) {
+            d = d / 1000 + 0.1;
+            root.nextTurnDistanceMeasuredIn = qsTr("km");
+            root.nextTurnDistance = d.toFixed(1);
+        } else {
+            if (d < 100) {
+                d = d - d % 10 + 10;
+            } else {
+                d = d - d % 50 + 50;
+            }
+
+            root.nextTurnDistanceMeasuredIn = qsTr("m");
+            root.nextTurnDistance = d;
+        }
+    }
+
+    property string nextTurnDistanceMeasuredIn: ""
+    property real nextTurnDistance: 0
     property real remainingDistance: 0.0
+
     // in seconds
     property int  remainingTime: 0.0
 

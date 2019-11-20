@@ -653,14 +653,6 @@
         <translation type="obsolete">km</translation>
     </message>
     <message>
-        <source> km</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> m</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -721,7 +713,7 @@
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation type="obsolete">km/h</translation>
     </message>
     <message>
         <source>Your parking period is about to end</source>
@@ -737,7 +729,7 @@
     <name>MainView</name>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation type="obsolete">km/h</translation>
     </message>
 </context>
 <context>
@@ -1076,6 +1068,13 @@
     </message>
 </context>
 <context>
+    <name>NaviPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="obsolete">km/h</translation>
+    </message>
+</context>
+<context>
     <name>NavigationConfirm</name>
     <message>
         <source>Start Navigation</source>
@@ -1125,6 +1124,17 @@
     <message>
         <source>Where do you want to go?</source>
         <translation>あなたはヒンジを握っていますか？</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>m</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1454,6 +1464,13 @@
     <message>
         <source>network</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpeedPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
     </message>
 </context>
 <context>
