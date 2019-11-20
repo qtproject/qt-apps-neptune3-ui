@@ -36,6 +36,7 @@
 #include <QSysInfo>
 #include <QLibraryInfo>
 #include <QtQml/qqmlinfo.h>
+#include <QtGui/QOpenGLContext>
 
 #include "systeminfo.h"
 
@@ -142,6 +143,19 @@ void SystemInfo::getQtDiagInfo()
     });
     m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
 #endif
+}
+
+bool SystemInfo::allow3dStudioPresentations()
+{
+    QOpenGLContext *globalShareContext = QOpenGLContext::globalShareContext();
+    if (globalShareContext && globalShareContext->isValid()) {
+        return (globalShareContext->isOpenGLES()
+                        && globalShareContext->format().version() >= qMakePair(3,0))
+                || (!globalShareContext->isOpenGLES()
+                        && globalShareContext->format().version() >= qMakePair(4,3));
+    }
+
+    return false;
 }
 
 void SystemInfo::timerEvent(QTimerEvent *event)
