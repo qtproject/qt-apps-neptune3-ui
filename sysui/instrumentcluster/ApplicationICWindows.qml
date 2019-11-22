@@ -42,7 +42,9 @@ Item {
     property var applicationModel
 
     function next() {
-        if ( selectedIndex + 1 < applicationICWindowList.count) {
+        // go to the next app. If last, set index out of list to make
+        // selectedApplicationId change to "" -> show "no app" in cluster
+        if ( selectedIndex + 1 <= applicationICWindowList.count) {
             selectedIndex++;
         } else {
             selectedIndex = 0;

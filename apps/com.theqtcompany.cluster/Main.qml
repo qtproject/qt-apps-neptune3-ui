@@ -82,4 +82,11 @@ NeptuneWindow {
             }
         }
     }
+
+    onWindowPropertyChanged: {
+        if (name === "clusterUIMode") {
+            //set UI mode for cluster: no app or some app running under cluster view
+            clusterView.store.behaviourInterface.clusterUIMode = value
+        }
+    }
 }

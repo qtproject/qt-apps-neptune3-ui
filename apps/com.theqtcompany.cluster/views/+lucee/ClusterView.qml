@@ -85,6 +85,7 @@ Item {
         mileage: store.vehicleInterface.mileage
         mileageUnits: store.localization.mileageUnits
         speedUnits: store.localization.speedUnits
+        clusterUIMode: store.behaviourInterface.clusterUIMode
 
         Behavior on opacity {
             DefaultNumberAnimation {}

@@ -64,6 +64,7 @@ Item {
 
     property bool lightThemeVisible: Style.theme === Style.Light
     property bool darkThemeVisible: Style.theme === Style.Dark
+    property int clusterUIMode // unused here
 
     Component.onCompleted: startDelay.start();
 

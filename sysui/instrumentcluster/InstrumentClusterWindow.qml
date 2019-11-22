@@ -148,7 +148,7 @@ Window {
             anchors.fill: parent
             applicationModel: root.applicationModel
 
-            visible: !empty
+            visible: !empty && (selectedApplicationId !== "")
 
             readonly property bool selectedNavigation: {
                 if (root.applicationModel) {
@@ -158,6 +158,29 @@ Window {
                     }
                 }
                 return false;
+            }
+
+            onSelectedApplicationIdChanged: {
+                /*
+                    change UI mode of cluster according to app behind gauges
+                */
+                var clusterUIMode = 0; //no app running default
+
+                if (selectedApplicationId !== "") {
+                    var app = root.applicationModel.applicationFromId(selectedApplicationId)
+                    if (app) {
+                        if (app.categories.indexOf("navigation") !== -1) {
+                            clusterUIMode = 2; //navi app
+                        } else {
+                            clusterUIMode = 1; //some app
+                        }
+                    }
+                }
+
+                if ( root.applicationModel.instrumentClusterAppInfo &&
+                        root.applicationModel.instrumentClusterAppInfo.window ) {
+                    root.applicationModel.instrumentClusterAppInfo.window.setWindowProperty("clusterUIMode", clusterUIMode)
+                }
             }
             Binding { target: uiSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
         }

@@ -79,6 +79,7 @@ Item {
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
             item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
+            item.clusterUIMode = Qt.binding( function() {return store.behaviourInterface.clusterUIMode})
         }
     }
 
@@ -99,6 +100,7 @@ Item {
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
             item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
+            item.clusterUIMode = Qt.binding( function() {return store.behaviourInterface.clusterUIMode})
         }
     }
 

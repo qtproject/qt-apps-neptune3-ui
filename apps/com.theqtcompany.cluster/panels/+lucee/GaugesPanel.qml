@@ -58,6 +58,7 @@ Item {
     property int drivingModeRangeDistance
     property int drivingModeECORangeDistance
     property int drivingMode
+    property int clusterUIMode
 
     /*!
         Defines current state of right-to-left
@@ -69,6 +70,15 @@ Item {
 
     onRtlModeChanged: d.restart()
     Component.onCompleted: startDelay.start();
+    onClusterUIModeChanged: {
+        if (root.clusterUIMode === 0) {
+            //no app shown
+            dspeed.state = "speed_center"
+        } else {
+            //app (map, music, ...) in cluster -> move speed label right
+            dspeed.state = "speed_right"
+        }
+    }
 
     //private
     QtObject {
@@ -148,7 +158,6 @@ Item {
         id: dspeed
         width: parent.width / 2
         height: parent.height
-        state: parent.state
         rtlMode: root.rtlMode
         screenCenter: Qt.point(parent.width / 2 - x, parent.height / 2 - y)
     }
