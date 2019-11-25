@@ -136,7 +136,7 @@ Item {
             anchors.top: posMarker.bottom
             anchors.topMargin: Sizes.dp(100)
             anchors.horizontalCenter: posMarker.horizontalCenter
-            width: Sizes.dp(700)
+            width: Sizes.dp(660)
             height: Sizes.dp(100)
 
             Rectangle {
