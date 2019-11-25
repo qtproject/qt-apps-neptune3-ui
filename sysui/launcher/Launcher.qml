@@ -46,7 +46,7 @@ Item {
     id: root
 
     readonly property real expandedHeight: Sizes.dp(800)
-    readonly property bool open: gridButton.checked
+    readonly property bool open: gridButton.gridOpen
     property bool showDevApps: false
     property bool showSystemApps: false
     property var applicationModel
@@ -59,7 +59,7 @@ Item {
         id: backgroundArea
         width: root.parentWidth
         height: root.parentHeight
-        onClicked: gridButton.checked = false;
+        onClicked: gridButton.gridOpen = false;
         enabled: root.open
     }
 
@@ -99,7 +99,8 @@ Item {
         objectName: "gridButton"
         width: Sizes.dp(90)
         height: Sizes.dp(90)
-
+        //holds the state of apps grid (opened/closed)
+        property bool gridOpen: false
         readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
 
         anchors.top: parent.top
@@ -121,7 +122,7 @@ Item {
             icon: gridButton.icon
             color: gridButton.icon.color
         }
-        onClicked: gridButton.checked = !gridButton.checked
+        onClicked: gridButton.gridOpen = !gridButton.gridOpen
     }
 
     EditableGridView {
@@ -136,7 +137,7 @@ Item {
         showSystemApps: root.showSystemApps
         exclusiveButtonGroup: buttonGroup
         onAppButtonClicked: {
-            gridButton.checked = false;
+            gridButton.gridOpen = false;
         }
     }
     state: _isThereActiveApp ? (root.open ? "open_active_app" : "closed_active_app") : (root.open ? "open_no_app" : "closed_no_app")
