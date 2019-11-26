@@ -127,7 +127,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         DefaultConfiguration cfg(QStringList(QCoreApplication::applicationDirPath() + qSL("/am-config-neptune.yaml")), QString());
 #endif
 
-        cfg.parse();
+        cfg.parse(&deploymentWarnings);
         a.setup(&cfg, deploymentWarnings);
 
 #ifdef USE_QT_SAFE_RENDERER
