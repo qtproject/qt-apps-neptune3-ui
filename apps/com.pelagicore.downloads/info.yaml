@@ -12,3 +12,5 @@ name:
 
 applicationProperties: { private: { squishPort: 7724 } }
 categories: [ 'downloads' ]
+intents:
+- id: activate-app

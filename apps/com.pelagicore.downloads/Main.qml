@@ -57,6 +57,6 @@ ApplicationCCWindow {
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-        store: DownloadsStore { }
+        store: DownloadsStore { onRequestRaiseAppReceived: root.riseWindow(); }
     }
 }

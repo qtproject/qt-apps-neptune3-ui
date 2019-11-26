@@ -20,4 +20,5 @@ applicationProperties:
 
 categories: [ 'navigation', 'vehicle' ]
 intents:
+- id: activate-app
 - id: vehicle-control

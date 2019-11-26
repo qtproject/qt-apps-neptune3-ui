@@ -36,6 +36,7 @@ import shared.utils 1.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.Style 1.0
 import shared.Connectivity 1.0
+import QtApplicationManager.Application 2.0
 
 import "../helper"
 
@@ -151,6 +152,15 @@ QtObject {
         uiSettings.accentColor = value;
         helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(value));
     }
+
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "activate-app"
+        onRequestReceived: {
+            root.requestRaiseAppReceived()
+            request.sendReply({ "done": true })
+        }
+    }
+    signal requestRaiseAppReceived()
 
     // Initialization
     Component.onCompleted: {

@@ -61,7 +61,7 @@ ApplicationCCWindow {
         y: root.exposedRect.y
         width: root.exposedRect.width
         height: root.exposedRect.height
-        store: RootStore {}
+        store: RootStore { onRequestRaiseAppReceived: root.riseWindow() }
         wifi: store.wifi
         rootItem: root.contentItem
     }

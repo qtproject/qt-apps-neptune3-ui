@@ -44,13 +44,23 @@ Store {
 
 //! [parking intent handler]
     readonly property IntentHandler intentHandler: IntentHandler {
-        intentIds: "call-support"
+        intentIds: ["call-support", "activate-app"]
         onRequestReceived: {
-            root.startCall("neptunesupport");
-            request.sendReply({ "done": true });
+            switch (request.intentId) {
+            case "call-support":
+                root.startCall("neptunesupport");
+                request.sendReply({ "done": true });
+                break;
+            case "activate-app":
+                root.requestRaiseAppReceived()
+                request.sendReply({ "done": true })
+                break;
+            }
         }
     }
 //! [parking intent handler]
+
+    signal requestRaiseAppReceived()
 
     function findPerson(handle) {
         for (var i = 0; i < contactsModel.count; i++) {

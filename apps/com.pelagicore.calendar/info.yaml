@@ -16,3 +16,5 @@ name:
 
 applicationProperties: { private: { squishPort: 7721 } }
 categories: [ 'productivity', 'widget' ]
+intents:
+- id: activate-app

@@ -52,7 +52,15 @@ Item {
     readonly property bool isOnline: appStoreConfig.serverOnline
     readonly property bool isReconnecting: appStoreConfig.isReconnecting
     property bool isBusy: false// appModel.count == 0 && isOnline
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "activate-app"
+        onRequestReceived: {
+            root.requestRaiseAppReceived()
+            request.sendReply({ "done": true })
+        }
+    }
 
+    signal requestRaiseAppReceived()
 
     function formatBytes(bytes) {
         if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);

@@ -98,6 +98,6 @@ ApplicationCCWindow {
         height: root.exposedRect.height
         state: root.neptuneState
         onActivateApp: root.riseWindow()
-        store: PhoneStore {}
+        store: PhoneStore { onRequestRaiseAppReceived: root.riseWindow(); }
     }
 }

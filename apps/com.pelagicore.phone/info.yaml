@@ -16,6 +16,7 @@ name:
 
 intents:
 - id: call-support
+- id: activate-app
 
 applicationProperties: { private: { squishPort: 7728 } }
 categories: [ 'phone', 'widget' ]
