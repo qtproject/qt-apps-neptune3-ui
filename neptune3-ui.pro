@@ -13,10 +13,6 @@ requires(qtHaveModule(appman_main-private))
     log("$$escape_expand(\\n\\n) *** The qtsaferenderer module or tools are not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
 }
 
-!qtHaveModule(3dstudioruntime2){
-    log("$$escape_expand(\\n\\n)[Warning] The 3dstudioruntime2 optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show some 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install the qt3d-runtime.$$escape_expand(\\n\\n)")
-}
-
 !qtHaveModule(studio3d){
     log("$$escape_expand(\\n\\n)[Warning] The studio3d optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show some 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install the ogl-runtime.$$escape_expand(\\n\\n)")
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" >
+                <Model id="shell.inside" name="shell.inside" orientation="Right Handed" position="0 0 0" rotation="2.50448e-06 0 0" rotationorder="XYZr" scale="99 99 99" sourcepath="meshes/shell.inside.mesh" >
+                    <Material id="shell.inside_Diffuse_Default" name="shell.inside_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8 1" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../../blenderWork/shell inside.fbx" ImageDir="maps" MeshDir="meshes" >
+            <Mesh >
+                <Source >shell.inside</Source>
+                <Dest >meshes/shell.inside.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>

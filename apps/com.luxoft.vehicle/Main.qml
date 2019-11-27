@@ -69,7 +69,7 @@ QtObject {
     }
 
     readonly property Loader applicationICWindowLoader: Loader {
-        asynchronous: true
+        asynchronous: false
         active: clusterSettings.available
                  || Qt.platform.os !== "linux" // FIXME and then remove; remote settings doesn't really work outside of Linux
         sourceComponent: Component {

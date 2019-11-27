@@ -33,8 +33,9 @@
 import QtQuick 2.8
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
-import Qt.labs.settings 1.0
+import shared.com.pelagicore.systeminfo 1.0
 import QtApplicationManager.Application 2.0
+import Qt.labs.settings 1.0
 
 QtObject {
     id: root
@@ -49,12 +50,14 @@ QtObject {
     property bool qt3DStudioAvailable: false
     property color vehicle3DstudioColor
 
-    // here we use loader to prevent build failures in case when Qt3DStudio is not available in the libs
+    readonly property SystemInfo systemInfo: SystemInfo {}
+    // here we use loader to prevent build failures in case
+    // when Qt3DStudio is not available in the libs
     property Loader qt3DStudioAvailableChecker: Loader {
         visible: false
         source: "../helpers/Qt3DStudioAvailable.qml"
         onLoaded: {
-            root.qt3DStudioAvailable = true
+            root.qt3DStudioAvailable = systemInfo.allow3dStudioPresentations
             source = ""
         }
     }
