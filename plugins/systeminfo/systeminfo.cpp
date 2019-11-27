@@ -37,6 +37,7 @@
 #include <QLibraryInfo>
 #include <QtQml/qqmlinfo.h>
 #include <QtGui/QOpenGLContext>
+#include <QtGlobal>
 
 #include "systeminfo.h"
 
@@ -319,6 +320,21 @@ QString SystemInfo::kernelVersion() const
 QString SystemInfo::qtDiag() const
 {
     return m_qtDiagContents;
+}
+
+QVariant SystemInfo::readEnvironmentVariable(const QString &name) const
+{
+    return qgetenv(name.toLocal8Bit());
+}
+
+bool SystemInfo::isEnvironmentVariableSet(const QString &name) const
+{
+    return !qgetenv(name.toLocal8Bit()).isNull();
+}
+
+bool SystemInfo::isEnvironmentVariableEmpty(const QString &name) const
+{
+    return qgetenv(name.toLocal8Bit()).isEmpty();
 }
 
 void SystemInfo::classBegin()

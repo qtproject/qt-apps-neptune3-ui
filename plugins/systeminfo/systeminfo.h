@@ -69,6 +69,10 @@ public:
     QString kernelVersion() const;
     QString qtDiag() const;
 
+    Q_INVOKABLE QVariant readEnvironmentVariable(const QString &name) const;
+    Q_INVOKABLE bool isEnvironmentVariableSet(const QString &name) const;
+    Q_INVOKABLE bool isEnvironmentVariableEmpty(const QString &name) const;
+
 public slots:
     void init();
 
