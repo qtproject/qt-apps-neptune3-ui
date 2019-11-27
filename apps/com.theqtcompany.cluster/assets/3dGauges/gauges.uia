@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<application>
+    <assets initial="gauges">
+        <presentation src="presentations/gauges.uip" id="gauges"/>
+        <dataInput name="darkThemeVisible" type="Boolean"/>
+        <dataInput name="gaugesScale" type="Vector3"/>
+        <dataInput name="lightThemeVisible" type="Boolean"/>
+        <dataInput name="mainLightColor" type="Variant"/>
+        <dataInput name="mainPanelOpacity" type="Float"/>
+        <dataInput name="rpmGaugePosition" type="Vector3"/>
+        <dataInput name="rpmGaugeRotation" type="Vector3"/>
+        <dataInput name="rpmVectorQml" type="Vector3"/>
+        <dataInput name="speedGaugePosition" type="Vector3"/>
+        <dataInput name="speedGaugeRotation" type="Vector3"/>
+        <dataInput name="speedLimitObjectVisible" type="Boolean"/>
+        <dataInput name="speedLimitText" type="Float"/>
+        <dataInput name="speedVectorQml" type="Vector3"/>
+    </assets>
+    <statemachine ref="#logic">
+        <visual-states>
+            <state ref="Initial">
+                <enter>
+                    <goto-slide element="main:Scene" rel="next"/>
+                </enter>
+            </state>
+        </visual-states>
+    </statemachine>
+</application>

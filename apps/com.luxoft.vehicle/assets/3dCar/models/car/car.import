@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP Version="1" >
+    <Project Revision="1" >
+        <Graph >
+            <Group id="__import__root__" >
+                <Model id="silver_paint_1" name="silver_paint_1" orientation="Right Handed" position="-164.491 125.31 -154.81" rotation="2.50448e-06 -89.849 1.22136e-11" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/silver_paint_1.mesh" >
+                    <Material id="silver_paint_1_Diffuse_Default" name="silver_paint_1_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="Cylinder" name="Cylinder" orientation="Right Handed" position="-443.833 103.371 12.7547" rotation="-6.1912 -89.9914 -1.38078e-05" rotationorder="XYZr" scale="29.7288 23.8204 29.7288" sourcepath="meshes/Cylinder.mesh" >
+                    <Material id="Cylinder_Diffuse_Default" name="Cylinder_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="Logo" name="Logo" orientation="Right Handed" position="-652.742 99.9634 6.72341" rotation="-89.9794 -89.9914 2.52699e-18" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/Logo.mesh" >
+                    <Material id="Logo_Diffuse_Default" name="Logo_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="chrome" name="chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/chrome.mesh" >
+                    <Material id="None" name="None" blendmode="Normal" diffuse="0.64 0.64 0.64" emissivepower="0" opacity="100" specularamount="0" specularroughness="9.60784" />
+                </Model>
+                <Model id="front_wheel_chrome" name="front_wheel_chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/front_wheel_chrome.mesh" >
+                    <Material id="front_wheel_chrome_Diffuse_Default" name="front_wheel_chrome_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="matt_black" name="matt_black" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/matt_black.mesh" >
+                    <Material id="matt_black_Diffuse_Default" name="matt_black_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="shell" name="shell" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/shell.mesh" >
+                    <Material id="shell_Diffuse_Default" name="shell_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="taillights" name="taillights" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/taillights.mesh" >
+                    <Material id="taillights_Diffuse_Default" name="taillights_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="sun_roof" name="sun_roof" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/sun_roof.mesh" >
+                    <Material id="sun_roof_Diffuse_Default" name="sun_roof_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="silver_paint_2" name="silver_paint_2" orientation="Right Handed" position="-166.193 143.386 178.391" rotation="-180 -89.9977 180" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/silver_paint_2.mesh" >
+                    <Material id="silver_paint_2_Diffuse_Default" name="silver_paint_2_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="shadow" name="shadow" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/shadow.mesh" >
+                    <Material id="shadow_Diffuse_Default" name="shadow_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="seats" name="seats" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/seats.mesh" >
+                    <Material id="seats_Diffuse_Default" name="seats_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="rear_wheel_chrome" name="rear_wheel_chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/rear_wheel_chrome.mesh" >
+                    <Material id="rear_wheel_chrome_Diffuse_Default" name="rear_wheel_chrome_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="rear_tires" name="rear_tires" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/rear_tires.mesh" >
+                    <Material id="rear_tires_Diffuse_Default" name="rear_tires_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="licence_plates" name="licence_plates" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/licence_plates.mesh" >
+                    <Material id="licence_plates_Diffuse_Default" name="licence_plates_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="interior" name="interior" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/interior.mesh" >
+                    <Material id="interior_Diffuse_Default" name="interior_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="glass_4" name="glass_4" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/glass_4.mesh" >
+                    <Material id="glass_4_Diffuse_Default" name="glass_4_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="glass_2" name="glass_2" orientation="Right Handed" position="-166.193 143.386 178.391" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/glass_2.mesh" >
+                    <Material id="glass_2_Diffuse_Default" name="glass_2_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="glass" name="glass" orientation="Right Handed" position="-164.204 124.915 -154.107" rotation="-87.7099 -88.7097 87.7362" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/glass.mesh" >
+                    <Material id="glass_Diffuse_Default" name="glass_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="front_tires" name="front_tires" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/front_tires.mesh" >
+                    <Material id="front_tires_Diffuse_Default" name="front_tires_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="front_lights_front_ights" name="front_lights_front_ights" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/front_lights_front_ights.mesh" >
+                    <Material id="front_lights_front_ights_Diffuse_Default" name="front_lights_front_ights_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="chrome_3" name="chrome_3" orientation="Right Handed" position="-166.193 143.386 178.391" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/chrome_3.mesh" >
+                    <Material id="chrome_3_Diffuse_Default" name="chrome_3_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="chrome_2" name="chrome_2" orientation="Right Handed" position="-164.204 124.915 -154.107" rotation="-87.7099 -88.7097 87.7362" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/chrome_2.mesh" >
+                    <Material id="chrome_2_Diffuse_Default" name="chrome_2_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="black_3" name="black_3" orientation="Right Handed" position="-166.193 143.386 178.391" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/black_3.mesh" >
+                    <Material id="black_3_Diffuse_Default" name="black_3_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="black_1" name="black_1" orientation="Right Handed" position="-164.204 124.915 -154.107" rotation="-87.7099 -88.7097 87.7362" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/black_1.mesh" >
+                    <Material id="black_1_Diffuse_Default" name="black_1_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+                <Model id="back_window" name="back_window" orientation="Right Handed" position="182.659 235.819 12.7668" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="meshes/back_window.mesh" >
+                    <Material id="back_window_Diffuse_Default" name="back_window_Diffuse_Default" blendmode="Normal" diffuse="0.8 0.8 0.8" emissivepower="0" opacity="100" specularamount="0" />
+                </Model>
+            </Group>
+        </Graph>
+        <Import SrcFile="../../../blenderWork/originalVehicleNeptune_10_forqt3ds2.fbx" ImageDir="Images" MeshDir="Meshes" >
+            <Mesh >
+                <Source >Cylinder</Source>
+                <Dest >meshes/Cylinder.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >rear_wheel_chrome</Source>
+                <Dest >meshes/rear_wheel_chrome.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >glass_4</Source>
+                <Dest >meshes/glass_4.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >rear_tires</Source>
+                <Dest >meshes/rear_tires.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >glass_2</Source>
+                <Dest >meshes/glass_2.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >front_lights_front_ights</Source>
+                <Dest >meshes/front_lights_front_ights.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >chrome_2</Source>
+                <Dest >meshes/chrome_2.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >chrome_3</Source>
+                <Dest >meshes/chrome_3.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >back_window</Source>
+                <Dest >meshes/back_window.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >silver_paint_2</Source>
+                <Dest >meshes/silver_paint_2.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >front_wheel_chrome</Source>
+                <Dest >meshes/front_wheel_chrome.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >licence_plates</Source>
+                <Dest >meshes/licence_plates.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >front_tires</Source>
+                <Dest >meshes/front_tires.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >silver_paint_1</Source>
+                <Dest >meshes/silver_paint_1.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >shell</Source>
+                <Dest >meshes/shell.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >sun_roof</Source>
+                <Dest >meshes/sun_roof.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >shadow</Source>
+                <Dest >meshes/shadow.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >black_3</Source>
+                <Dest >meshes/black_3.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >seats</Source>
+                <Dest >meshes/seats.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >Logo</Source>
+                <Dest >meshes/Logo.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >black_1</Source>
+                <Dest >meshes/black_1.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >interior</Source>
+                <Dest >meshes/interior.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >matt_black</Source>
+                <Dest >meshes/matt_black.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >glass</Source>
+                <Dest >meshes/glass.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >chrome</Source>
+                <Dest >meshes/chrome.mesh</Dest>
+            </Mesh>
+            <Mesh >
+                <Source >taillights</Source>
+                <Dest >meshes/taillights.mesh</Dest>
+            </Mesh>
+        </Import>
+    </Project>
+</UIP>

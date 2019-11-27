@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIP version="3" >
+	<Project >
+		<ProjectSettings author="" company="" presentationWidth="960" presentationHeight="380" maintainAspect="False" preferKtx="False" >
+			<CustomColors count="16" >#ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff</CustomColors>
+		</ProjectSettings>
+		<BufferData >
+			<ImageBuffer sourcepath="../assets/back.png" hasTransparency="True" />
+			<ImageBuffer sourcepath="../assets/shadow.png" hasTransparency="True" />
+		</BufferData>
+		<Graph >
+			<Scene id="Scene" backgroundcolor="1 1 1" bgcolorenable="False" >
+				<Layer id="Layer" >
+					<Group id="car" importid="__import__root__" >
+						<Light id="Sun2" name="Sun" brightness="100" castshadow="False" importid="Sun" lightdiffuse="1 1 1" lighttype="Directional" orientation="Right Handed" position="0 0 -0" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" />
+					</Group>
+					<Group id="car_001" importid="__import__root__" >
+						<Group id="dleft" importid="__import__root__" >
+							<Model id="silver_paint_1" name="silver_paint_1" importid="silver_paint_1" orientation="Right Handed" position="0 0 -0" rotation="2.50448e-06 -89.849 1.22136e-11" rotationorder="XYZr" scale="1 1 1" sourcepath="../models/dleft/meshes/silver_paint_1.mesh" >
+								<ReferencedMaterial id="leicht_metalic_005" />
+							</Model>
+							<Model id="glass" name="glass" importid="glass" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="../models/dleft/meshes/glass.mesh" >
+								<ReferencedMaterial id="Simple_Glass_005" />
+							</Model>
+							<Model id="chrome_2" name="chrome_2" importid="chrome_2" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="../models/dleft/meshes/chrome_2.mesh" >
+								<ReferencedMaterial id="Brushed_Chrome_006" />
+							</Model>
+							<Model id="black_1" name="black_1" importid="black_1" orientation="Right Handed" position="0 0 -0" rotation="0.0257134 -89.949 1.65707e-06" rotationorder="XYZr" scale="1 1 1" sourcepath="../models/dleft/meshes/black_1.mesh" >
+								<ReferencedMaterial id="Int_panel_plastic_matte_003" />
+							</Model>
+						</Group>
+						<Group id="dr_001" importid="__import__root__" >
+							<Model id="silver_paint_2" name="silver_paint_2" importid="silver_paint_2" orientation="Right Handed" position="0 0 -0" rotation="-180 -89.9977 180" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/dr/meshes/silver_paint_2.mesh" >
+								<ReferencedMaterial id="leicht_metalic_006" />
+							</Model>
+							<Model id="glass_2" name="glass_2" importid="glass_2" orientation="Right Handed" position="0 0 -0" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/dr/meshes/glass_2.mesh" >
+								<ReferencedMaterial id="Simple_Glass_006" />
+							</Model>
+							<Model id="chrome_3" name="chrome_3" importid="chrome_3" orientation="Right Handed" position="0 0 -0" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/dr/meshes/chrome_3.mesh" >
+								<ReferencedMaterial id="Brushed_Chrome_007" />
+							</Model>
+							<Model id="black_3" name="black_3" importid="black_3" orientation="Right Handed" position="0 0 -0" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/dr/meshes/black_3.mesh" >
+								<ReferencedMaterial id="Int_panel_plastic_matte_004" />
+							</Model>
+						</Group>
+						<Group id="tires" >
+							<Model id="rear_tires" name="rear_tires" importid="rear_tires" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/rear_tires.mesh" >
+								<ReferencedMaterial id="rear_tires11_002" />
+							</Model>
+							<Model id="front_tires" name="front_tires" importid="front_tires" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/front_tires.mesh" >
+								<ReferencedMaterial id="rear_tires11_003" />
+							</Model>
+						</Group>
+						<Group id="glasses" >
+							<Model id="glass_4" name="glass_4" importid="glass_4" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/glass_4.mesh" >
+								<ReferencedMaterial id="Simple_Glass_007" />
+							</Model>
+							<Model id="back_window" name="back_window" importid="back_window" orientation="Right Handed" position="182.659 235.819 12.7668" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/back_window.mesh" >
+								<ReferencedMaterial id="Simple_Glass_008" />
+							</Model>
+							<Model id="front_lights_front_ights" name="front_lights_front_ights" importid="front_lights_front_ights" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/front_lights_front_ights.mesh" >
+								<ReferencedMaterial id="Simple_Glass_009" />
+							</Model>
+						</Group>
+						<Group id="wheelDisks" >
+							<Model id="front_wheel_chrome" name="front_wheel_chrome" importid="front_wheel_chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/front_wheel_chrome.mesh" >
+								<Material id="chrome" >
+									<Image id="chrome_specularreflection" />
+								</Material>
+							</Model>
+							<Model id="rear_wheel_chrome" name="rear_wheel_chrome" importid="rear_wheel_chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/rear_wheel_chrome.mesh" >
+								<ReferencedMaterial id="rear_wheel_chrome_Diffuse_Default" />
+							</Model>
+						</Group>
+						<Group id="mainShell" >
+							<Model id="shell" name="shell" importid="shell" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/shell.mesh" >
+								<ReferencedMaterial id="leicht_metalic_007" />
+							</Model>
+							<Model id="sun_roof" name="sun_roof" importid="sun_roof" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/sun_roof.mesh" >
+								<ReferencedMaterial id="leicht_metalic_008" />
+							</Model>
+						</Group>
+						<Model id="Cylinder" name="Cylinder" importid="Cylinder" orientation="Right Handed" position="-443.833 103.371 12.7547" rotation="-6.1912 -89.9914 -1.38078e-05" rotationorder="XYZr" scale="29.7288 23.8204 29.7288" sourcepath="../models/car/meshes/Cylinder.mesh" >
+							<ReferencedMaterial id="Brushed_Chrome_008" />
+						</Model>
+						<Model id="Logo" name="Logo" importid="Logo" orientation="Right Handed" position="-652.742 99.9634 6.72341" rotation="-89.9794 -89.9914 2.52699e-18" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/Logo.mesh" >
+							<ReferencedMaterial id="Brushed_Chrome_001" />
+						</Model>
+						<Model id="chrome_001" name="chrome" importid="chrome" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/chrome.mesh" >
+							<ReferencedMaterial id="Brushed_Chrome_009" />
+						</Model>
+						<Model id="matt_black" name="matt_black" importid="matt_black" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/matt_black.mesh" >
+							<ReferencedMaterial id="Brushed_Chrome_0002" />
+						</Model>
+						<Model id="taillights" name="taillights" importid="taillights" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/taillights.mesh" >
+							<ReferencedMaterial id="Coloured_Glass11_001" />
+						</Model>
+						<Model id="shadow" name="shadow" importid="shadow" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/shadow.mesh" >
+							<Material id="Default_animatable" >
+								<Image id="Default_animatable_diffusemap" />
+							</Material>
+						</Model>
+						<Model id="seats" name="seats" importid="seats" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/seats.mesh" >
+							<ReferencedMaterial id="seats_001" />
+						</Model>
+						<Model id="licence_plates" name="licence_plates" importid="licence_plates" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/licence_plates.mesh" >
+							<ReferencedMaterial id="Int_panel_plastic_matte_111" />
+						</Model>
+						<Model id="interior" name="interior" importid="interior" orientation="Right Handed" position="-25.3146 5.96046e-06 12.8175" rotation="2.50646e-06 -89.9914 3.57796e-10" rotationorder="XYZr" scale="100 100 100" sourcepath="../models/car/meshes/interior.mesh" >
+							<ReferencedMaterial id="Rubber_-_Black_002" />
+						</Model>
+					</Group>
+					<Model id="back" >
+						<Material id="Material_001" >
+							<Image id="Material_001_diffusemap" />
+						</Material>
+						<Light id="Light3" />
+						<Light id="Light2" />
+					</Model>
+					<Light id="Sun" name="Sun" brightness="100" castshadow="False" importid="Sun" lightdiffuse="1 1 1" lighttype="Directional" orientation="Right Handed" position="0 0 -0" rotation="0 -0 0" rotationorder="XYZr" scale="1 1 1" />
+					<Camera id="Camera" />
+				</Layer>
+				<Material id="__Container" >
+					<Material id="materials/leicht_metalic_110" >
+						<Image id="materials/leicht_metalic_110_specularreflection" />
+					</Material>
+					<Material id="materials/Simple_Glass_111" name="Simple_Glass_1" blendmode="Normal" diffuse="0.00575411 0.00566999 0.00372564" emissivepower="0" importfile="../models/VA_v6/VA_v6.import" importid="Simple_Glass_1" opacity="60" specularamount="0" specularroughness="50" />
+					<Material id="materials/rear_tires11" name="rear_tires" blendmode="Normal" diffuse="0 0 0" emissivepower="0" importfile="../models/VA_v6/VA_v6.import" importid="rear_tires_0001" opacity="100" specularamount="0" specularroughness="50" />
+					<Material id="materials/Int_panel_plastic_matte_111" name="Int_panel_plastic_matte_1" blendmode="Normal" diffuse="0.64 0.64 0.64" emissivepower="0" importfile="../models/VA_v6/VA_v6.import" importid="Int_panel_plastic_matte_1" opacity="100" specularamount="0" specularroughness="50" />
+					<Material id="materials/Rubber_-_Black_001" name="Rubber_-_Black_001" blendmode="Normal" diffuse="0.64 0.64 0.64" emissivepower="0" importfile="../models/VA_v6/VA_v6.import" importid="Rubber_-_Black_001" opacity="100" specularamount="0" specularroughness="50" />
+					<Material id="materials/Brushed_Chrome_0002" />
+					<Material id="materials/seats_111" />
+					<Material id="materials/Coloured_Glass11" />
+				</Material>
+			</Scene>
+		</Graph>
+		<Logic >
+			<State name="Master Slide" component="#Scene" >
+				<Add ref="#Layer" aodither="True" aosamplerate="2" aostrength="0" disabledepthprepass="True" disabledepthtest="False" multisampleaa="SSAA" probefov="180" probehorizon="-1" progressiveaa="4x" temporalaa="True" />
+				<Add ref="#Camera" clipfar="35" clipnear="1" fov="10" fovhorizontal="False" orthographic="False" position="0 3 -35.318" rotation="9 0 0" scalemode="Same Size" />
+				<Add ref="#__Container" name="__Container" />
+				<Add ref="#materials/leicht_metalic_110" name="materials/leicht_metalic_110" controlledproperty="$diffuseColor diffuse" diffuse="0.670588 0.341176 1" diffuselightwrap="0" emissivecolor="1 1 1" emissivepower="0" importfile="../models/VA_v3/VA_v3.import" importid="leicht_metalic_1" ior="5" specularamount="0" specularmodel="Default" specularreflection="#materials/leicht_metalic_110_specularreflection" specularroughness="1" speculartint="0.662745 0.662745 0.662745" translucentfalloff="1" />
+				<Add ref="#materials/leicht_metalic_110_specularreflection" importid="" mappingmode="Environmental Mapping" sourcepath="../maps/Specular-ceiling_lights-1.png" subpresentation="" />
+				<Add ref="#materials/Simple_Glass_111" name="materials/Simple_Glass_111" opacity="75" />
+				<Add ref="#materials/rear_tires11" name="materials/rear_tires11" />
+				<Add ref="#materials/Int_panel_plastic_matte_111" name="materials/Int_panel_plastic_matte_111" />
+				<Add ref="#materials/Rubber_-_Black_001" name="materials/Rubber_-_Black_001" />
+				<Add ref="#materials/Brushed_Chrome_0002" name="materials/Brushed_Chrome_0002" diffuse="0.64 0.64 0.64" importfile="../models/VA_v6/VA_v6.import" importid="Brushed_Chrome_000" specularroughness="50" />
+				<Add ref="#materials/seats_111" name="materials/seats_111" diffuse="0.64 0.64 0.64" importfile="../models/VA_v6/VA_v6.import" importid="seats_1" specularroughness="50" />
+				<Add ref="#materials/Coloured_Glass11" name="materials/Coloured_Glass11" diffuse="0.64 0.0308856 0.0278321" importfile="../models/VA_v6/VA_v6.import" importid="Coloured_Glass" opacity="47.541" specularroughness="50" />
+				<State id="Scene-Slide1" name="Slide1" playmode="PingPong" >
+					<Add ref="#Sun2" name="Sun2" brightness="50" importfile="../models/VA_v6/VA_v6.import" lighttype="Point" position="0 957.001 5" />
+					<Add ref="#car_001" name="car" controlledproperty="$vehicleRotation rotation" importfile="../models/car/car.import" position="0.1 -1.8 -10" rotation="0.985 270 -2.148" scale="0.01 0.01 0.01" sourcepath="../models/car/car.import" />
+					<Add ref="#dleft" name="dleft" controlledproperty="$leftDoorRotation rotation" importfile="../models/dleft/dleft.import" position="-164.2 124.9 -154.1" scale="100 100 100" sourcepath="../models/dleft/dleft.import" />
+					<Add ref="#silver_paint_1" importfile="../models/dleft/dleft.import" />
+					<Add ref="#leicht_metalic_005" name="leicht_metalic_110" referencedmaterial="#materials/leicht_metalic_110" sourcepath="../materials/leicht_metalic_110.materialdef" />
+					<Add ref="#glass" importfile="../models/dleft/dleft.import" />
+					<Add ref="#Simple_Glass_005" name="Simple_Glass_111" referencedmaterial="#materials/Simple_Glass_111" sourcepath="../materials/Simple_Glass_111.materialdef" />
+					<Add ref="#chrome_2" importfile="../models/dleft/dleft.import" />
+					<Add ref="#Brushed_Chrome_006" name="Brushed_Chrome_0002" sourcepath="../materials/Brushed_Chrome_0002.materialdef" />
+					<Add ref="#black_1" importfile="../models/dleft/dleft.import" />
+					<Add ref="#Int_panel_plastic_matte_003" name="Int_panel_plastic_matte_111" referencedmaterial="#materials/Int_panel_plastic_matte_111" sourcepath="../materials/Int_panel_plastic_matte_111.materialdef" />
+					<Add ref="#dr_001" name="dr" controlledproperty="$rightDoorRotation rotation" importfile="../models/dr/dr.import" position="-166.1 143.3 178.3" sourcepath="../models/dr/dr.import" />
+					<Add ref="#silver_paint_2" importfile="../models/dr/dr.import" />
+					<Add ref="#leicht_metalic_006" name="leicht_metalic_110" referencedmaterial="#materials/leicht_metalic_110" sourcepath="../materials/leicht_metalic_110.materialdef" />
+					<Add ref="#glass_2" importfile="../models/dr/dr.import" />
+					<Add ref="#Simple_Glass_006" name="Simple_Glass_111" referencedmaterial="#materials/Simple_Glass_111" sourcepath="../materials/Simple_Glass_111.materialdef" />
+					<Add ref="#chrome_3" importfile="../models/dr/dr.import" />
+					<Add ref="#Brushed_Chrome_007" name="Brushed_Chrome_0002" sourcepath="../materials/Brushed_Chrome_0002.materialdef" />
+					<Add ref="#black_3" importfile="../models/dr/dr.import" />
+					<Add ref="#Int_panel_plastic_matte_004" name="Int_panel_plastic_matte_111" referencedmaterial="#materials/Int_panel_plastic_matte_111" sourcepath="../materials/Int_panel_plastic_matte_111.materialdef" />
+					<Add ref="#tires" name="tires" />
+					<Add ref="#rear_tires" importfile="../models/car/car.import" />
+					<Add ref="#rear_tires11_002" name="rear_tires11" referencedmaterial="#materials/rear_tires11" sourcepath="../materials/rear_tires11.materialdef" />
+					<Add ref="#front_tires" importfile="../models/car/car.import" />
+					<Add ref="#rear_tires11_003" name="rear_tires11" referencedmaterial="#materials/rear_tires11" sourcepath="../materials/rear_tires11.materialdef" />
+					<Add ref="#glasses" name="glasses" />
+					<Add ref="#glass_4" importfile="../models/car/car.import" />
+					<Add ref="#Simple_Glass_007" name="Simple_Glass_111" referencedmaterial="#materials/Simple_Glass_111" sourcepath="../materials/Simple_Glass_111.materialdef" />
+					<Add ref="#back_window" controlledproperty="$trunkRotation rotation" importfile="../models/car/car.import" rotation="35 -89.991 0" />
+					<Add ref="#Simple_Glass_008" name="Simple_Glass_111" referencedmaterial="#materials/Simple_Glass_111" sourcepath="../materials/Simple_Glass_111.materialdef" />
+					<Add ref="#front_lights_front_ights" importfile="../models/car/car.import" />
+					<Add ref="#Simple_Glass_009" name="Simple_Glass_111" referencedmaterial="#materials/Simple_Glass_111" sourcepath="../materials/Simple_Glass_111.materialdef" />
+					<Add ref="#wheelDisks" name="wheelDisks" />
+					<Add ref="#front_wheel_chrome" importfile="../models/car/car.import" />
+					<Add ref="#chrome" name="chrome" blendmode="Normal" bumpamount="0.5" diffuse="0 0 0" diffuselightwrap="0" displaceamount="20" emissivecolor="1 1 1" emissivepower="0" fresnelPower="0" importfile="../models/car/car.import" importid="front_wheel_chrome_Diffuse_Default" ior="1.5" opacity="100" shaderlighting="None" sourcepath="" specularamount="0" specularmodel="Default" specularreflection="#chrome_specularreflection" specularroughness="0" speculartint="1 1 1" translucentfalloff="1" type="Material" vertexcolors="False" />
+					<Add ref="#chrome_specularreflection" mappingmode="Environmental Mapping" sourcepath="../maps/chromeMap.jpg" subpresentation="" />
+					<Add ref="#rear_wheel_chrome" importfile="../models/car/car.import" />
+					<Add ref="#rear_wheel_chrome_Diffuse_Default" name="rear_wheel_chrome_Diffuse_Default" referencedmaterial="#chrome" />
+					<Add ref="#mainShell" name="mainShell" />
+					<Add ref="#shell" importfile="../models/car/car.import" />
+					<Add ref="#leicht_metalic_007" name="leicht_metalic_110" referencedmaterial="#materials/leicht_metalic_110" sourcepath="../materials/leicht_metalic_110.materialdef" />
+					<Add ref="#sun_roof" controlledproperty="$sunRoofRotation rotation $sunRoofPosition position" importfile="../models/car/car.import" position="37 0 12.818" rotation="-6 -90 0" />
+					<Add ref="#leicht_metalic_008" name="leicht_metalic_110" referencedmaterial="#materials/leicht_metalic_110" sourcepath="../materials/leicht_metalic_110.materialdef" />
+					<Add ref="#Cylinder" importfile="../models/car/car.import" />
+					<Add ref="#Brushed_Chrome_008" name="Brushed_Chrome_0002" referencedmaterial="#materials/Brushed_Chrome_0002" sourcepath="../materials/Brushed_Chrome_0002.materialdef" />
+					<Add ref="#Logo" importfile="../models/car/car.import" />
+					<Add ref="#Brushed_Chrome_001" name="Brushed_Chrome_0002" referencedmaterial="#chrome" />
+					<Add ref="#chrome_001" importfile="../models/car/car.import" />
+					<Add ref="#Brushed_Chrome_009" name="Brushed_Chrome_0002" referencedmaterial="#materials/Brushed_Chrome_0002" sourcepath="../materials/Brushed_Chrome_0002.materialdef" />
+					<Add ref="#matt_black" importfile="../models/car/car.import" scale="100 100 100" />
+					<Add ref="#Brushed_Chrome_0002" name="Brushed_Chrome_0002" referencedmaterial="#materials/Brushed_Chrome_0002" sourcepath="../materials/Brushed_Chrome_0002.materialdef" />
+					<Add ref="#taillights" importfile="../models/car/car.import" />
+					<Add ref="#Coloured_Glass11_001" name="Coloured_Glass11" referencedmaterial="#materials/Coloured_Glass11" sourcepath="../materials/Coloured_Glass11.materialdef" />
+					<Add ref="#shadow" importfile="../models/car/car.import" />
+					<Add ref="#Default_animatable" name="Default_animatable" blendmode="Normal" bumpamount="0.5" diffuse="1 1 1" diffuselightwrap="0" diffusemap="#Default_animatable_diffusemap" displaceamount="20" emissivecolor="1 1 1" emissivepower="0" fresnelPower="0" importfile="" importid="" ior="1.5" opacity="100" shaderlighting="Pixel" sourcepath="" specularamount="0" specularmodel="Default" specularroughness="0" speculartint="1 1 1" translucentfalloff="1" type="Material" vertexcolors="False" />
+					<Add ref="#Default_animatable_diffusemap" sourcepath="../assets/shadow.png" subpresentation="" />
+					<Add ref="#seats" importfile="../models/car/car.import" />
+					<Add ref="#seats_001" name="seats_111" referencedmaterial="#materials/seats_111" sourcepath="../materials/seats_111.materialdef" />
+					<Add ref="#licence_plates" importfile="../models/car/car.import" />
+					<Add ref="#Int_panel_plastic_matte_111" name="Int_panel_plastic_matte_111" referencedmaterial="#materials/Int_panel_plastic_matte_111" sourcepath="../materials/Int_panel_plastic_matte_111.materialdef" />
+					<Add ref="#interior" importfile="../models/car/car.import" />
+					<Add ref="#Rubber_-_Black_002" name="Rubber_-_Black_001" referencedmaterial="#materials/Rubber_-_Black_001" sourcepath="../materials/Rubber_-_Black_001.materialdef" />
+					<Add ref="#back" name="back" position="1.88961 -0.107365 27.0972" rotation="0 0 0" scale="0.5 0.53748 1" sourcepath="#Rectangle" />
+					<Add ref="#Material_001" diffusemap="#Material_001_diffusemap" />
+					<Add ref="#Material_001_diffusemap" sourcepath="../assets/back.png" subpresentation="" />
+					<Add ref="#Light3" name="Light3" lighttype="Point" position="446.401 394.144 -277.394" scope="#back" />
+					<Add ref="#Light2" name="Light2" lighttype="Point" position="-491.75 394.144 -493.488" scope="#back" />
+					<Add ref="#Sun" brightness="80" importfile="../models/VehicleAppScene/VehicleAppScene.import" lighttype="Point" position="0 -50 -145" scale="0.1 0.1 0.1" />
+				</State>
+			</State>
+		</Logic>
+	</Project>
+</UIP>
