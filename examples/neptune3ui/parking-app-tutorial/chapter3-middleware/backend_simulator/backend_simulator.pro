@@ -16,7 +16,7 @@ PLUGIN_TYPE = qtivi
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$OUT_PWD/../frontend/qml
 
-target.path = /apps/chapter3-middleware/qtivi
+target.path = $$[QT_INSTALL_EXAMPLES]/neptune3-ui/chapter3-middleware/qtivi
 INSTALLS += target
 
 RESOURCES += \
