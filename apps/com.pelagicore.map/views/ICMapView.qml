@@ -32,6 +32,7 @@
 
 import QtQuick 2.10
 import QtLocation 5.9
+import QtPositioning 5.14
 import QtQuick.Controls 2.13
 
 import shared.animations 1.0
@@ -166,7 +167,9 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: Sizes.dp(30)
-                source: Helper.localAsset(root.naviGuideDirection, Style.theme)
+                source: root.naviGuideDirection !== ""
+                    ? Helper.localAsset(root.naviGuideDirection, Style.theme)
+                    : ""
             }
         }
 

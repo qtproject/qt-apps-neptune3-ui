@@ -47,7 +47,9 @@ Item {
     Image {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        source: Helper.localAsset(root.nextTurn, Style.theme)
+        source: root.nextTurn !== ""
+            ? Helper.localAsset(root.nextTurn, Style.theme)
+            : ""
     }
 
     ProgressBar {

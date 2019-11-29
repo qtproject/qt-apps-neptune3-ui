@@ -234,7 +234,9 @@ QtObject {
         id: routeModel
         autoUpdate: !!root.startCoord && !!root.destCoord
         query: RouteQuery {
-            waypoints: [root.startCoord, root.destCoord]
+            waypoints: root.startCoord.isValid && root.destCoord.isValid
+                       ? [root.startCoord, root.destCoord]
+                       : []
         }
         plugin: herePlugin
 
@@ -261,7 +263,9 @@ QtObject {
     readonly property RouteModel homeRouteModel: RouteModel {
         autoUpdate: !!root.currentLocationCoord && !!root.homeCoord
         query: RouteQuery {
-            waypoints: [root.currentLocationCoord, root.homeCoord]
+            waypoints: root.currentLocationCoord.isValid && root.homeCoord.isValid
+                       ? [root.currentLocationCoord, root.homeCoord]
+                       : []
         }
         plugin: herePlugin
 
@@ -278,7 +282,9 @@ QtObject {
     readonly property RouteModel workRouteModel: RouteModel {
         autoUpdate: !!root.currentLocationCoord && !!root.workCoord
         query: RouteQuery {
-            waypoints: [root.currentLocationCoord, root.workCoord]
+            waypoints: root.currentLocationCoord.isValid && root.workCoord.isValid
+                       ? [root.currentLocationCoord, root.workCoord]
+                       : []
         }
         plugin: herePlugin
         onStatusChanged: {
