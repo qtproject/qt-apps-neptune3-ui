@@ -39,31 +39,15 @@ Control {
     id: root
     objectName: "themeColor"
 
-    property alias model: chart.chartData
-
-    property color currentAccentColor
-
-    onCurrentAccentColorChanged: chart.requestPaint();
-
+    property alias model: colorsChart.chartData
     signal accentColorRequested(color accentColor)
 
     contentItem: ColorSelector {
-        id: chart
+        id: colorsChart
         width: root.availableWidth
         height: root.availableHeight
-        chartOptions: ({ segmentStrokeWidth: 15 })
-
-        MouseArea {
-            anchors.fill: parent
-            onPressed: {
-                var ctx = chart.context;
-                const pixel = ctx.getImageData(mouse.x, mouse.y, 1, 1).data;
-                const color = Qt.rgba(pixel[0]/255, pixel[1]/255, pixel[2]/255, pixel[3]);
-                if (color.a > 0) { // prevent misclicks outside of the colored areas
-                    root.accentColorRequested(color);
-                    chart.requestPaint();
-                }
-            }
+        onAccentColorRequested: {
+            root.accentColorRequested(accentColor);
         }
     }
 }

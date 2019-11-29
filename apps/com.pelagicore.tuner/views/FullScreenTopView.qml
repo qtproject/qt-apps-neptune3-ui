@@ -72,7 +72,7 @@ Item {
             Image {
                 opacity: root.topExpanded ? 0.0 : 1.0
                 Behavior on opacity { DefaultNumberAnimation {} }
-                source: root.topExpanded ? "" : Style.image("ic-expand")
+                source: root.topExpanded ? "" : Style.image("ic-expand-down")
                 anchors.verticalCenter: parent.verticalCenter
             }
         }

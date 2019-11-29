@@ -31,40 +31,73 @@
 ****************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.Controls 2.12
 
-import "QChart.js" as Charts
+import shared.Style 1.0
+import shared.Sizes 1.0
 
-Canvas {
-    id: canvas;
+Control {
+    id: root
+    height: background.width
+    width: background.height
 
-    property var chart;
-    property var chartData;
-    property var chartOptions: ({})
+    property var chartData
+    signal accentColorRequested(color accentColor)
 
-    // /////////////////////////////////////////////////////////////////
-    // Callbacks
-    // /////////////////////////////////////////////////////////////////
+    background: Image {
+        height: Sizes.dp(sourceSize.width)
+        width: Sizes.dp(sourceSize.width)
+        source: Style.image("colorSelector/color-wheel")
 
-    onPaint: {
-        var ctx = canvas.getContext("2d");
-        /* Reset the canvas context to allow resize events to properly redraw
-         the surface with an updated window size */
-        ctx.reset();
+        Image {
+            //selected color overlay
+            height: Sizes.dp(sourceSize.width)
+            width: Sizes.dp(sourceSize.height)
+            source: Style.image("colorSelector/"+Style.accentColor)
+        }
 
-        chart = new Charts.Chart(canvas, ctx).Doughnut(chartData, chartOptions);
-        chart.init();
-        chart.draw();
-    }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                // find out which area is clicked
 
-    onHeightChanged: {
-        requestPaint();
-    }
+                if (mouseX > width / 2) {
+                    //left
+                    if (mouseY < height / 2) {
+                        //top left
+                        if (mouseX < height - mouseY) {
+                            root.accentColorRequested(chartData[0].color);
+                        } else {
+                            root.accentColorRequested(chartData[1].color);
+                        }
+                    } else {
+                        //bottom left
+                        if (mouseX > mouseY) {
+                            root.accentColorRequested(chartData[2].color);
+                        } else {
+                            root.accentColorRequested(chartData[3].color);
+                        }
+                    }
 
-    onWidthChanged: {
-        requestPaint();
-    }
-
-    onChartDataChanged: {
-        requestPaint();
+                } else {
+                    //right
+                    if (mouseY < height / 2) {
+                        //top right
+                        if (mouseX < mouseY) {
+                            root.accentColorRequested(chartData[6].color);
+                        } else {
+                            root.accentColorRequested(chartData[7].color);
+                        }
+                    } else {
+                        //bottom right
+                        if (mouseX > height - mouseY) {
+                            root.accentColorRequested(chartData[4].color);
+                        } else {
+                            root.accentColorRequested(chartData[5].color);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

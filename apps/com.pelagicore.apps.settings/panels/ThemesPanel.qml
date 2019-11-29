@@ -45,8 +45,6 @@ Control {
 
     property ListModel model
 
-    property int currentTheme
-
     signal themeRequested(int theme)
 
     contentItem: ListView {
@@ -59,7 +57,11 @@ Control {
         delegate: ItemDelegate {
             id: delegate
             objectName: "themeNr_" + index
-            onClicked: root.themeRequested(index)
+            onClicked: {
+                if (index !== Style.theme) {
+                    root.themeRequested(index);
+                }
+            }
             width: ListView.view.width
 
             contentItem: ColumnLayout {
@@ -68,8 +70,8 @@ Control {
 
                 RowLayout {
                     RadioButton {
-                        checked: index === root.currentTheme
-                        onToggled: delegate.clicked()
+                        checked: (index === Style.theme)
+                        onToggled: { delegate.clicked(); }
                     }
                     Label {
                         text: qsTranslate("RootStore", model.title)

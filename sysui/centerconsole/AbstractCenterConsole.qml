@@ -168,7 +168,7 @@ Item {
         }
         onCtrlTPressed: {
             if (root.Style.supportsMultipleThemes)
-                root.store.uiSettings.theme = root.store.uiSettings.theme === 0 ? 1 : 0;
+                root.store.updateTheme((root.store.uiSettings.theme === 0) ? 1 : 0);
         }
         onCtrlLPressed: {
             const locales = Config.translation.availableTranslations;
