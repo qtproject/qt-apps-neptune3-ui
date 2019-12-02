@@ -104,11 +104,7 @@ QtObject {
     readonly property UISettings uiSettings: UISettings {
         onAccentColorChanged: {
             root.accentColorsModel.forEach(function(element) {
-                var c1 = Qt.lighter(element.color, 1.0)
-                var c2 = Qt.lighter(accentColor, 1.0)
-                element.selected = Qt.colorEqual(element.color, accentColor)
-                        ||  Math.abs(c1.r - c2.r) + Math.abs(c1.g - c2.g) + Math.abs(c1.b - c2.b) < 0.01;
-
+                element.selected = Qt.colorEqual(element.color, accentColor);
             });
             if (startupAccentColor) {
                 //Prevent setting back light theme's last accent color in cases when the UI
