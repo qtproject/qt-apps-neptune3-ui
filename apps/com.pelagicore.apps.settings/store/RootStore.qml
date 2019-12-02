@@ -121,6 +121,23 @@ QtObject {
         }
     }
 
+    function selectNextAccentColor() {
+        var selected = -1;
+        for (var i = 0; i < root.accentColorsModel.length; ++i) {
+            if (root.accentColorsModel[i].selected === true) {
+                selected = i;
+                break;
+            }
+        }
+
+        if (selected >= 0) {
+            root.accentColorsModel[selected].selected = false;
+            selected = selected === root.accentColorsModel.length - 1 ? 0 : selected + 1;
+            root.accentColorsModel[selected].selected = true;
+            updateAccentColor(root.accentColorsModel[selected].color);
+        }
+    }
+
     function updateAccentColor(value) {
         uiSettings.accentColor = value;
     }
@@ -143,10 +160,21 @@ QtObject {
     }
 
     readonly property IntentHandler intentHandler: IntentHandler {
-        intentIds: "activate-app"
+        intentIds: ["activate-app", "set-next-accent-color"]
         onRequestReceived: {
-            root.requestRaiseAppReceived()
-            request.sendReply({ "done": true })
+            switch (request.intentId) {
+            case "activate-app":
+                root.requestRaiseAppReceived()
+                request.sendReply({ "done": true })
+                break;
+            case "set-next-accent-color":
+                selectNextAccentColor();
+                request.sendReply({ "done": true })
+                break;
+            default:
+                request.sendReply({ "done": true })
+                break;
+            }
         }
     }
     signal requestRaiseAppReceived()

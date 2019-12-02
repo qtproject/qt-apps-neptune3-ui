@@ -18,3 +18,4 @@ applicationProperties: { private: { squishPort: 7729 } }
 categories: [ 'app' ]
 intents:
 - id: activate-app
+- id: set-next-accent-color
