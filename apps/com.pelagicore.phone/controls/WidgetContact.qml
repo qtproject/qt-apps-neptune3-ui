@@ -105,6 +105,10 @@ Control {
             }
         }
 
+        MouseArea {
+            anchors.fill: parent
+        }
+
         ToolButton {
             anchors.right: parent.right
             anchors.rightMargin: Sizes.dp(69)
