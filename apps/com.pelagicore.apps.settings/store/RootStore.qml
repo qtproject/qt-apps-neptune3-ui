@@ -92,7 +92,7 @@ QtObject {
     property bool startupAccentColor: true
     property var accentColorsModel: Config._initAccentColors(uiSettings.theme)
     property string lighThemeLastAccColor: "#d35756"
-    property string darkThemeLastAccColor: "#b75034"
+    property string darkThemeLastAccColor: "#087559"
 
     readonly property ListModel themeModel: ListModel {
         // TODO: This data will be populated from settings server later
