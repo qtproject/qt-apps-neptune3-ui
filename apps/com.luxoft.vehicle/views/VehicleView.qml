@@ -107,22 +107,6 @@ Item {
             z: 9999
         }
 
-        // In some cases Scene3D doesn't create anything, such cases are really hard to reproduce,
-        // in these situations UI is frozen, timer is used to check that rendering is started
-        Timer {
-            id: reloadTimer
-            interval: 30000
-            onTriggered: {
-                // if after 30s qt3d scene doesn't respond even with first frame we try to reload it
-                if (store.runtime3D === "qt3d" && !vehicle3DPanelLoader.item.renderStarted) {
-                    vehicle3DPanelLoader.active = false;
-                    vehicle3DPanelLoader.setSource("");
-                    vehicle3DPanelLoader.active = true;
-                    loadVehiclePanel();
-                }
-            }
-        }
-
         Loader {
             id: vehicle3DPanelLoader
             anchors.fill: parent
@@ -136,13 +120,10 @@ Item {
             onItemChanged: {
                 if (item) {
                     var currentRuntimeQt3D = store.runtime3D === "qt3d";
-                    reloadTimer.running = currentRuntimeQt3D;
                     if (currentRuntimeQt3D) {
                         item.modelVersion = Qt.binding( function() {return root.store.model3DVersion});
-                        reloadTimer.running = Qt.binding( function() {return item ? !item.renderStarted : false} );
                     } else {
                         item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor});
-                        reloadTimer.stop();
                     }
 
                     vehicleProxyPanel.visible = Qt.binding( function() {return !item.readyToChanges} );
@@ -174,13 +155,14 @@ Item {
         leftDoorOpened: root.store.leftDoorOpened
         rightDoorOpened: root.store.rightDoorOpened
         trunkOpened: root.store.trunkOpened
+        roofOpenProgress: root.store.roofOpenProgress
         qt3DStudioAvailable: root.store.qt3DStudioAvailable
 
 
         onLeftDoorClicked: root.store.setLeftDoor()
         onRightDoorClicked: root.store.setRightDoor()
         onTrunkClicked: root.store.setTrunk()
-        onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
+        onNewRoofOpenProgressRequested: root.store.setRoofOpenProgress(progress)
 
         onRuntimeChanged: { root.store.setRuntime(runtime); }
 

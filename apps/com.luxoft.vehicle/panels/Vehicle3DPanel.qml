@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import Qt3D.Core 2.0
-import Qt3D.Render 2.9
-import Qt3D.Extras 2.9
-import Qt3D.Input 2.0
-import Qt3D.Logic 2.0
-import QtQuick.Scene3D 2.0
-import QtQuick.Controls 2.3
+import QtQuick 2.14
+import Qt3D.Core 2.14
+import Qt3D.Render 2.14
+import Qt3D.Extras 2.14
+import Qt3D.Input 2.14
+import Qt3D.Logic 2.14
+import QtQuick.Scene3D 2.14
+import QtQuick.Controls 2.14
 
 import shared.Sizes 1.0
 
@@ -54,16 +54,63 @@ Item {
     property string modelVersion
 
     //ToDo: This is a part of a work around for the Scene3D windows&macOS bug
-    property real roofOpenProgress: 0.0
+    property alias roofOpenProgress: roof.openProgress
     property bool leftDoorOpen: false
     property bool rightDoorOpen: false
     property bool trunkOpen: false
 
     property bool readyToChanges: false
 
-    // in some cases Scene3D doesn't create anything, such cases are really hard to reproduce
-    // but we need to have some flag to verify
-    property bool renderStarted: false
+    QtObject {
+        id: d
+        readonly property vector2d base2d : Qt.vector2d(0.0, -15.0)
+        property real pixelAndTimeMagicCoeff: 0.5
+        property var trajectory: []
+        property var trajectoryV: []
+    }
+
+    function getCurrentAngle() {
+        var cameraPos = camera.position;
+        var vec2d = Qt.vector2d(-cameraPos.x, cameraPos.z);
+        var angle = 0.0;
+        angle = -Math.atan2(vec2d.x, vec2d.y);
+        angle = angle < 0 ? angle + 2*Math.PI : angle;
+        return angle * 180 / Math.PI;
+    }
+
+    MouseArea {
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: Sizes.dp(652)
+        z: 40
+
+        onReleased: {
+            d.trajectory = []
+        }
+
+
+        onPositionChanged: {
+            if (pressed) {
+                d.trajectory.push(mouseX);
+                d.trajectoryV.push(mouseY);
+                if (d.trajectory.length > 2) {
+                    var dx = 0
+                    for (var i = 1; i < d.trajectory.length; ++i) {
+                        dx += d.trajectory[i] - d.trajectory[i - 1];
+                    }
+
+                    if (dx !== 0) {
+                        camera.panAboutViewCenter(-dx * d.pixelAndTimeMagicCoeff
+                                                       , Qt.vector3d(0, 1, 0));
+                        root.lastCameraAngle = getCurrentAngle();
+                    }
+
+                    d.trajectory = []
+                }
+            }
+        }
+    }
 
 
     Scene3D {
@@ -89,32 +136,7 @@ Item {
                 id: inputSettings
             }
 
-            FrameAction {
-                id: frameCounter
-            }
-
-            components: [inputSettings, renderSettings, frameCounter]
-
-
-            Connections {
-                id: readyToChangeConnection
-                target: frameCounter
-                property int fc: 0
-                onTriggered: {
-                    if (!root.renderStarted) {
-                        root.renderStarted = true;
-                    }
-
-                    if (body.bodyLoaded) {
-                        fc += 1;
-                        // skip first 5 frames to be sure that all content is ready
-                        if (fc > 5) {
-                            readyToChangeConnection.target = null;
-                            root.readyToChanges = true;
-                        }
-                    }
-                }
-            }
+            components: [inputSettings, renderSettings]
 
             Camera {
                 id: camera
@@ -125,12 +147,6 @@ Item {
                 position:   Qt.vector3d(0.0, 5.0, 18.0)
                 viewCenter: Qt.vector3d(0.0, 0.6, 0.0)
                 upVector:   Qt.vector3d(0.0, 1.0, 0.0)
-            }
-
-            CameraController {
-                camera: camera
-                enabled: true
-                onCameraPanAngleChanged: root.lastCameraAngle = cameraPanAngle
             }
 
             CookTorranceMaterial {
@@ -225,7 +241,6 @@ Item {
             }
             Roof {
                 id: roof
-                openProgress: root.roofOpenProgress
                 version: root.modelVersion
             }
             Body {
@@ -233,7 +248,11 @@ Item {
                 version: root.modelVersion
                 onBodyLoadedChanged: {
                     if (bodyLoaded) {
-                        camera.panAboutViewCenter(lastCameraAngle, Qt.vector3d(0, 1, 0));
+                        root.readyToChanges = true;
+                        var angle = getCurrentAngle()
+                        if (angle !== lastCameraAngle) {
+                            camera.panAboutViewCenter(angle - lastCameraAngle, Qt.vector3d(0, 1, 0));
+                        }
                     }
                 }
             }

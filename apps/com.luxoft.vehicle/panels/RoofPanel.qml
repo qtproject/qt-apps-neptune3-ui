@@ -45,10 +45,12 @@ import "../controls" 1.0
 Item {
     id: root
 
-    property alias roofOpenProgress: vehicleTopView.roofOpenProgress
+    property real roofOpenProgress: 0.0
     property bool leftDoorOpened: false
     property bool rightDoorOpened: false
     property bool trunkOpened: false
+
+    signal newRoofOpenProgressRequested(var progress)
 
     Behavior on roofOpenProgress { DefaultNumberAnimation { duration: 800 } }
 
@@ -74,6 +76,7 @@ Item {
         leftDoorOpen: root.leftDoorOpened
         rightDoorOpen: root.rightDoorOpened
         trunkOpen: root.trunkOpened
+        roofOpenProgress: root.roofOpenProgress
     }
 
     OpacityMask {
@@ -95,7 +98,7 @@ Item {
         anchors.right: parent.right
         state: "REGULAR"
         text: qsTr("Close")
-        onClicked: root.roofOpenProgress = 0.0
+        onClicked: root.newRoofOpenProgressRequested(0.0)
     }
 
     VehicleButton {
@@ -107,6 +110,6 @@ Item {
         anchors.left: parent.left
         state: "REGULAR"
         text: qsTr("Open")
-        onClicked: root.roofOpenProgress = 1.0
+        onClicked: root.newRoofOpenProgressRequested(1.0)
     }
 }

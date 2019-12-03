@@ -47,16 +47,13 @@ Entity {
     // 0.0 fully closed, 1.0 fully open
     property real openProgress: 0.0
     property string version
+    Behavior on openProgress { DefaultNumberAnimation { duration: 1000 } }
 
     Transform {
         id: transform
         readonly property real translationZ: -1.15
-        matrix: {
-            var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0, 0, translationZ * openProgress));
-            m.scale(Qt.vector3d(1, 1, 1 - openProgress));
-            return m;
-        }
+        translation: Qt.vector3d(0, 0, translationZ * openProgress)
+        scale3D: Qt.vector3d(1, 1, 1 - openProgress)
     }
 
     Mesh {

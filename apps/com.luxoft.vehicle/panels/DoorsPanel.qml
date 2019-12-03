@@ -50,6 +50,7 @@ Item {
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
+    signal newRoofOpenProgressRequested(var progress)
 
     TabBar {
         id: tabBar
@@ -87,6 +88,8 @@ Item {
             leftDoorOpened: root.leftDoorOpened
             rightDoorOpened: root.rightDoorOpened
             trunkOpened: root.trunkOpened
+
+            onNewRoofOpenProgressRequested: root.newRoofOpenProgressRequested(progress)
         }
 
         FrontDoorsPanel {

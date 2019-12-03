@@ -46,6 +46,7 @@ Item {
     property alias leftDoorOpened: doorsPanel.leftDoorOpened
     property alias rightDoorOpened: doorsPanel.rightDoorOpened
     property alias trunkOpened: doorsPanel.trunkOpened
+    property alias roofOpenProgress: doorsPanel.roofOpenProgress
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
     property alias qt3DStudioAvailable: vehicle3DSettingsPanel.qt3DStudioAvailable
@@ -56,7 +57,7 @@ Item {
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
-    signal roofOpenProgressChanged(var value)
+    signal newRoofOpenProgressRequested(var progress)
     signal showNotificationAboutChange()
     signal intentToMapRequested(var intentId, var params)
 
@@ -91,7 +92,7 @@ Item {
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
             onTrunkClicked: root.trunkClicked()
-            onRoofOpenProgressChanged: root.roofOpenProgressChanged(roofOpenProgress)
+            onNewRoofOpenProgressRequested: root.newRoofOpenProgressRequested(progress)
         }
         TiresPanel { objectName: "vehicleTiresPanel" }
         Settings3DPanel {

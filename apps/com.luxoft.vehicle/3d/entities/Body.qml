@@ -46,13 +46,13 @@ Entity {
             && license_platesReady && frontLightsReady && taillightsReady && interiorReady
 
     property bool chromeReady: mesh.status === Mesh.Ready
-    property bool shellReady: mesh.status === Mesh.Ready
-    property bool matt_blackReady: mesh.status === Mesh.Ready
-    property bool glassReady: mesh.status === Mesh.Ready
-    property bool license_platesReady: mesh.status === Mesh.Ready
-    property bool frontLightsReady: mesh.status === Mesh.Ready
-    property bool taillightsReady: mesh.status === Mesh.Ready
-    property bool interiorReady: mesh.status === Mesh.Ready
+    property bool shellReady: shell.status === Mesh.Ready
+    property bool matt_blackReady: matt_black.status === Mesh.Ready
+    property bool glassReady: glass.status === Mesh.Ready
+    property bool license_platesReady: license_plates.status === Mesh.Ready
+    property bool frontLightsReady: interior.status === Mesh.Ready
+    property bool taillightsReady: taillights.status === Mesh.Ready
+    property bool interiorReady: interior.status === Mesh.Ready
 
 
     property string version
