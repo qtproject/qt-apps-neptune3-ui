@@ -79,8 +79,8 @@ Item {
                 if (data.status === "ok") {
                     console.log(Logging.apps, "start downloading")
                     var icon = root.appServerUrl + "/app/icon?id=" + id
-                    var installID = ApplicationInstaller.startPackageInstallation("internal-0", data.url);
-                    ApplicationInstaller.acknowledgePackageInstallation(installID);
+                    var installID = PackageManager.startPackageInstallation(data.url);
+                    PackageManager.acknowledgePackageInstallation(installID);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
                     console.log(Logging.apps, ":::AppStoreServer::: not logged in")
                     showNotification(qsTr("System is not logged in"), qsTr("System is not logged in"), icon);
@@ -93,7 +93,7 @@ Item {
     }
 
     function isAppBusy(appId) {
-        var taskIds = ApplicationInstaller.activeTaskIds()
+        var taskIds = PackageManager.activeTaskIds()
         if (taskIds.includes(appId)) {
             return true
         }
@@ -106,7 +106,7 @@ Item {
     function uninstallApplication(id, name) {
         if (isAppBusy(id)) { return }
         var icon = root.appServerUrl + "/app/icon?id=" + id
-        ApplicationInstaller.removePackage(id, false /*keepDocuments*/, true /*force*/);
+        PackageManager.removePackage(id, false /*keepDocuments*/, true /*force*/);
     }
 
     function selectCategory(index) {
@@ -129,7 +129,7 @@ Item {
     }
 
     function getInstalledApplicationSize(id) {
-        return formatBytes(ApplicationInstaller.installedApplicationSize(id));
+        return formatBytes(PackageManager.installedApplicationSize(id));
     }
 
     function deviseApplicationId(id) {
@@ -147,15 +147,21 @@ Item {
     }
 
     Connections {
-        target: ApplicationInstaller
+        target: PackageManager
 
         onTaskProgressChanged: root.currentInstallationProgress = progress
 
         onTaskFailed: {
-            var appId = ApplicationInstaller.taskApplicationId(taskId);
-            var icon = root.appServerUrl + "/app/icon?id=" + appId
-            var application = ApplicationManager.application(appId)
-            var applicationName = root.deviseApplicationId(appId);
+            var appId = PackageManager.taskPackageId(taskId);
+            var icon = ApplicationManager.application("com.pelagicore.downloads").icon
+            var application = null;
+            var applicationName = "";
+
+            if (appId !== "") {
+                icon = root.appServerUrl + "/app/icon?id=" + appId
+                application = ApplicationManager.application(appId)
+                applicationName = root.deviseApplicationId(appId);
+            }
 
             if (application !== null) {
                 if (application.state === ApplicationObject.Installed) {
@@ -166,17 +172,26 @@ Item {
                 showNotification(qsTr("%1 Installation Failed").arg(applicationName),
                                  qsTr("%1 installation failed").arg(applicationName), icon);
             }
+
+            currentInstallationProgress = 0.0;
         }
 
         onTaskFinished: {
-            var appId = ApplicationInstaller.taskApplicationId(taskId);
-            var icon = root.appServerUrl + "/app/icon?id=" + appId;
-            var application = ApplicationManager.application(appId);
+            var appId = PackageManager.taskPackageId(taskId);
+            var icon = ApplicationManager.application("com.pelagicore.downloads").icon
+            var application = null;
+            var applicationName = "";
 
-            // cannot use name module from the application manager, because it won't work when the application
-            // is uninstalled as it will return null. hence, the application name need to be generated from the
-            // application id to be shown in the notification.
-            var applicationName = root.deviseApplicationId(appId);
+            if (appId !== "") {
+                icon = root.appServerUrl + "/app/icon?id=" + appId;
+                application = ApplicationManager.application(appId);
+
+                // cannot use name module from the application manager, because it won't work when
+                // the application is uninstalled as it will return null. hence, the application
+                // name need to be generated from the application id to be shown in the
+                // notification.
+                applicationName = root.deviseApplicationId(appId);
+            }
 
             if (application !== null) {
                 if (application.state === ApplicationObject.Installed) {
