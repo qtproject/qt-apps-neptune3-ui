@@ -1,4 +1,4 @@
-VERSION  = 5.12.4
+VERSION  = 5.12.6
 TEMPLATE = app
 TARGET   = neptune3-ui
 
