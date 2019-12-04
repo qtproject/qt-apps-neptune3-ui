@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import shared.utils 1.0
 import QtQuick.Window 2.3
 import system.controls 1.0
@@ -182,7 +183,11 @@ Window {
                     root.applicationModel.instrumentClusterAppInfo.window.setWindowProperty("clusterUIMode", clusterUIMode)
                 }
             }
-            Binding { target: uiSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
+            Binding {
+                restoreMode: Binding.RestoreBinding;
+                target: uiSettings; property: "navigationMode";
+                value: applicationICWindows.selectedNavigation;
+            }
         }
 
         ApplicationICWindowItem {

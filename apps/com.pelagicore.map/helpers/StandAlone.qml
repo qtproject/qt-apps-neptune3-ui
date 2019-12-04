@@ -32,6 +32,7 @@
 
 import QtQuick 2.9
 import QtQuick.Window 2.3
+import QtQml 2.14
 
 import shared.utils 1.0
 import shared.Style 1.0
@@ -46,7 +47,11 @@ Window {
 
     color: root.contentItem.Style.theme === Style.Dark ? "black" : "white"
 
-    Binding { target: Style; property: "assetPath"; value: Qt.resolvedUrl("/opt/neptune3/imports/assets/") }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: Style; property: "assetPath";
+        value: Qt.resolvedUrl("/opt/neptune3/imports/assets/");
+    }
 
     Shortcut {
         sequence: "Ctrl+t"

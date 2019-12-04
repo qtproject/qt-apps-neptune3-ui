@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import QtApplicationManager.SystemUI 2.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
@@ -48,6 +49,7 @@ QtObject {
     readonly property var clusterScreen: Qt.application.screens.length > 1
             ? Qt.application.screens[1] : Qt.application.screens[0]
     readonly property var _clusterAvailableBinding: Binding {
+        restoreMode: Binding.RestoreBinding
         target: clusterSettings
         when: clusterSettings.isInitialized
         property: "available"

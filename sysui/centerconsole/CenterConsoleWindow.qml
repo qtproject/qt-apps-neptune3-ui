@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import shared.utils 1.0
 import stores 1.0
 import QtQuick.Window 2.3
@@ -46,8 +47,14 @@ Window {
 
     signal nextICAppIsRequested()
 
-    Binding {target: root.store.centerConsole; property: "windowWidth"; value: root.width }
-    Binding {target: root.store.centerConsole; property: "windowHeight"; value: root.height }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.centerConsole; property: "windowWidth"; value: root.width;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.centerConsole; property: "windowHeight"; value: root.height;
+    }
 
     title: store.centerConsole.title
     color: "black"
@@ -149,8 +156,11 @@ Window {
             anchors.fill: centerConsole
             source: "../notification/NotificationContent.qml"
 
-            Binding { target: notificationLoader.item; property: "target";
-                value: popupParent.showModalOverlay ? popupParent : centerConsole }
+            Binding {
+                restoreMode: Binding.RestoreBinding;
+                target: notificationLoader.item; property: "target";
+                value: popupParent.showModalOverlay ? popupParent : centerConsole;
+            }
         }
 
         CenterConsoleMonitorOverlay {

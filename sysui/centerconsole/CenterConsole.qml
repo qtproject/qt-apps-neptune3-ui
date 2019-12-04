@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -106,7 +107,10 @@ AbstractCenterConsole {
         popupParent: root.popupParent
         popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -width + leftIcon.width: 0)
         originItem: leftIcon
-        Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: volumePopup.item; property: "model"; value: root.store.volumeStore;
+        }
         onClosed: { leftIcon.forceActiveFocus(); }
     }
 

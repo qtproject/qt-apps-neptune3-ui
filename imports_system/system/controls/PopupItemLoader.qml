@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtQml 2.14
 
 /*
     Loads a PopupItem on demand
@@ -74,10 +75,28 @@ Loader {
         }
     }
 
-    Binding { target: root.item; property: "parent"; value: root.popupParent }
-    Binding { target: root.item; property: "originItem"; value: root.originItem }
-    Binding { target: root.item; property: "originItemX"; value: root.originItemX }
-    Binding { target: root.item; property: "originItemY"; value: root.originItemY }
-    Binding { target: root.item; when: root.popupX !== null; property: "popupX"; value: root.popupX }
-    Binding { target: root.item; when: root.popupY !== null; property: "popupY"; value: root.popupY }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "parent"; value: root.popupParent;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "originItem"; value: root.originItem;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "originItemX"; value: root.originItemX;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "originItemY"; value: root.originItemY;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; when: root.popupX !== null; property: "popupX"; value: root.popupX;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; when: root.popupY !== null; property: "popupY"; value: root.popupY;
+    }
 }

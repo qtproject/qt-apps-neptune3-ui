@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
@@ -78,6 +79,7 @@ Item {
     }
 
     Binding {
+        restoreMode: Binding.RestoreBinding;
         target: root.store; property: "contentType";
         value: {
             switch (rowViewOptions.currentText) {

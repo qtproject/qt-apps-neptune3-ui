@@ -49,6 +49,7 @@
 ****************************************************************************/
 
 import QtQuick 2.13
+import QtQml 2.14
 import shared.utils 1.0
 
 Loader {
@@ -63,10 +64,22 @@ Loader {
     signal activated()
     signal pressAndHold()
 
-    Binding { target: item; property:"parent"; value: root.parent; when: item }
-    Binding { target: item; property:"trapsCursor"; value: root.trapsCursor; when: item }
-    Binding { target: item; property:"acceptsCursor"; value: root.acceptsCursor; when: item }
-    Binding { target: root; property:"hasCursor"; value: item.hasCursor; when: item}
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"parent"; value: root.parent; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"trapsCursor"; value: root.trapsCursor; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"acceptsCursor"; value: root.acceptsCursor; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root; property:"hasCursor"; value: item.hasCursor; when: item;
+    }
 
     Connections {
         target: item

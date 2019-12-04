@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtApplicationManager.SystemUI 2.0
@@ -263,7 +264,11 @@ Item {
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
-                            Binding { target: model.appInfo; property: "windowPerfMonitorEnabled"; value: primarySwitch.checked }
+                            Binding {
+                                restoreMode: Binding.RestoreBinding;
+                                target: model.appInfo; property: "windowPerfMonitorEnabled";
+                                value: primarySwitch.checked;
+                            }
                             visible: !model.appInfo.isSystemApp
                         }
                     }
@@ -294,7 +299,11 @@ Item {
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
-                            Binding { target: model.appInfo; property: "icWindowPerfMonitorEnabled"; value: secondarySwitch.checked }
+                            Binding {
+                                restoreMode: Binding.RestoreBinding;
+                                target: model.appInfo; property: "icWindowPerfMonitorEnabled";
+                                value: secondarySwitch.checked;
+                            }
                         }
                     }
                     bottomPadding: Sizes.dp(20)
