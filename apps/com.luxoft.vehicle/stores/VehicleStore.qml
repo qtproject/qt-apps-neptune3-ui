@@ -88,6 +88,8 @@ QtObject {
         notification.summary = settings3D.value("runtime3D", "qt3d") === "qt3d"
                 ? qsTr("Qt3D Runtime is requested")
                 : qsTr("Qt 3D Studio Runtime is requested");
+        // line below should be removed when AUTOSUITE-1366 will be fixed
+        notification.icon = Qt.resolvedUrl("../icon.png");
         notification.sticky = true;
         notification.show();
     }

@@ -44,6 +44,8 @@ QtObject {
         var notification = ApplicationInterface.createNotification();
         notification.summary = summary;
         notification.body = body;
+        // line below should be removed when AUTOSUITE-1366 will be fixed
+        notification.icon = Qt.resolvedUrl("../icon.png");
         notification.sticky = true;
         notification.show();
     }
