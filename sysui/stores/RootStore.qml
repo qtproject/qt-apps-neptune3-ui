@@ -186,6 +186,39 @@ Store {
     readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
                                                    && (Qt.application.screens.length === 1)
 
+    readonly property Connections instentServerConnection: Connections {
+        target: IntentServer
+        onDisambiguationRequest: {
+            //process "activate-app" intent sent with part of app name (guess-app) as parameter
+            if (potentialIntents.length > 0 && potentialIntents[0].intentId === "activate-app") {
+                if (parameters["guess-app"] && parameters["guess-app"] !== "") {
+                    var appId = "";
+
+                    for (var i = 0; i < potentialIntents.length; i++) {
+                        if (potentialIntents[i].applicationId.includes(parameters["guess-app"])) {
+                            appId = potentialIntents[i].applicationId;
+                            break;
+                        }
+                    }
+
+                    //found app with "guess-app" part, send intent to this app
+                    if (appId !== "") {
+                        request = IntentClient.sendIntentRequest("activate-app", appId, { });
+                        request.onReplyReceived.connect(function() {
+                            if (request.succeeded) {
+                                var result = request.result;
+                                console.log(Logging.apps, "Intent result: " + result.done);
+                            } else {
+                                console.log(Logging.apps, "Intent request failed: ",
+                                            request.errorMessage);
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    }
+
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
     signal grabImageRequested(var screenshotCCPath, var screenshotICPath)
