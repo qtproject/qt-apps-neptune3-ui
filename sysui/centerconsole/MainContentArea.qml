@@ -123,7 +123,7 @@ Item {
                 height: homePage.rowHeight
                 anchors.bottom: homePage.bottom
 
-                dragEnabled: !showingHomePage
+                dragEnabled: false
                 visible: !showingHomePage && !widgetDrawerSlot.empty
 
                 Item {
