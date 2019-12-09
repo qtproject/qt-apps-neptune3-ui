@@ -29,17 +29,29 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQuick.Controls 2.2
+import QtQuick 2.2
 
-import "views" 1.0
-import "stores" 1.0
+import shared.Sizes 1.0
+
+import "../panels" 1.0
+import "../stores" 1.0
 
 Item {
     id: root
-    VehicleICView {
-        id: vehicleView
-        anchors.fill: parent
-        store: VehicleStore {}
+
+    property VehicleStore store
+
+    Vehicle2DPanel {
+        anchors.top: root.top
+        anchors.topMargin: Sizes.dp(720 - 652)
+        anchors.left: root.left
+        anchors.right: root.right
+        height: Sizes.dp(652)
+
+        leftDoorOpen: root.store.leftDoorOpened
+        rightDoorOpen: root.store.rightDoorOpened
+        trunkOpen: root.store.trunkOpened
+        roofOpen: root.store.roofOpenProgress == 1.0
+        speed: store.speed
     }
 }

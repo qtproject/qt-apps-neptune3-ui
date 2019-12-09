@@ -29,17 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQuick.Controls 2.2
+.pragma library
 
-import "views" 1.0
-import "stores" 1.0
-
-Item {
-    id: root
-    VehicleICView {
-        id: vehicleView
-        anchors.fill: parent
-        store: VehicleStore {}
-    }
+function getImagePath(name) {
+    return Qt.resolvedUrl("../assets/images/" + name)
 }

@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -29,17 +30,34 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQuick.Controls 2.2
+import QtQuick 2.8
+import shared.com.pelagicore.remotesettings 1.0
+import shared.com.pelagicore.drivedata 1.0
 
-import "views" 1.0
-import "stores" 1.0
 
-Item {
+QtObject {
     id: root
-    VehicleICView {
-        id: vehicleView
-        anchors.fill: parent
-        store: VehicleStore {}
+
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property bool trunkOpened: false
+    property real roofOpenProgress: 0.0
+    property real speed: clusterSettings.speed
+
+    readonly property UISettings uiSettings: UISettings {
+        onDoor1OpenChanged: {
+            root.leftDoorOpened = uiSettings.door1Open
+        }
+        onDoor2OpenChanged: {
+            root.rightDoorOpened = uiSettings.door2Open
+        }
+        onTrunkOpenChanged: {
+            root.trunkOpened = uiSettings.trunkOpen
+        }
+        onRoofOpenProgressChanged: {
+            root.roofOpenProgress = uiSettings.roofOpenProgress
+        }
     }
+
+    readonly property InstrumentCluster clusterSettings: InstrumentCluster {}
 }

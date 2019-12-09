@@ -67,6 +67,7 @@ Window {
     }
 
     MockedWindows {
+        clip: true
         id: mockedWindows
         width: height * (1920 / 720)
         height: Sizes.dp(720)
