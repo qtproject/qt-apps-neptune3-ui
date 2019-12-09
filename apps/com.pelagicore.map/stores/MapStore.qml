@@ -68,6 +68,10 @@ QtObject {
     property var destCoord: QtPositioning.coordinate()
     property string destination
 
+    property alias mainMapCenter: navigationStore.mapCenter
+    property alias mainMapZoomLevel: navigationStore.mapZoomLevel
+    property alias mainMapTilt: navigationStore.mapTilt
+    property alias mainMapBearing: navigationStore.mapBearing
     property alias navigationDemoActive: navigationStore.active
     readonly property var navigationStore: NavigationStore {
         id: navigationStore

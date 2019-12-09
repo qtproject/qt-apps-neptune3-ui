@@ -82,4 +82,12 @@ interface NavigationState {
     string nextTurn;
     string nextTurnDistanceMeasuredIn;
     real nextTurnDistance;
+
+    /**
+     * Contains route points to show a path on the map
+     * Points are stored as a list of coordinates: e.g.
+     * [pos1::QtPositioning.coordinate, pos2::QtPositioning.coordinate] is stored as
+     * [(pos1.x, pos1.y), (pos1.y , pos1.y)]
+    **/
+    var routePoints;
 }

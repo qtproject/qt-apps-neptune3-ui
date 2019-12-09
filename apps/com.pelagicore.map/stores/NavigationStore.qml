@@ -42,12 +42,22 @@ import shared.com.pelagicore.drivedata 1.0
 QtObject {
     id: root
 
-    readonly property NavigationState naviState:
-        NavigationState { id: naviState }
+    readonly property NavigationState naviState: NavigationState {
+        id: naviState
+        mapBearing: root.mapBearing
+        mapZoomLevel: root.mapZoomLevel
+        mapTilt: root.mapTilt
+        mapCenter: root.mapCenter
+    }
 
     // input properties
     property var model
     property bool active
+
+    property var mapCenter
+    property real mapZoomLevel
+    property real mapTilt
+    property real mapBearing
 
     // output properties
     property var location: QtPositioning.coordinate()
@@ -134,7 +144,7 @@ QtObject {
             maneuversPointsList = [];
             maneuversDirectionList = [];
             for (var i = 0; i < segmentsList.length; ++i) {
-                maneuversPointsList.push(segmentsList[i].maneuver.position)
+                maneuversPointsList.push(segmentsList[i].maneuver.position);
                 maneuversDirectionList.push(segmentsList[i].maneuver.direction)
             }
 
@@ -142,10 +152,19 @@ QtObject {
             naviGuideDistance = calculateDistanceToNext(0, maneuverPoint);
             setNaviGuideDirectionFromManeuverDiredection(maneuversDirectionList[maneuverIdx]);
 
+
+            var rawPoints = [];
+            for (var i = 0; i < path.length; ++i) {
+                rawPoints.push([path[i].latitude, path[i].longitude]);
+            }
+
+            naviState.routePoints = rawPoints;
+
             setNextAnimation();
         } else if (movementAnimation.running) {
             movementAnimation.stop()
             // reset the states
+            naviState.routePoints = [];
             naviGuideDirection = "";
             nextTurnDistanceMeasuredIn = "";
             nextTurnDistance = 0;
@@ -226,6 +245,7 @@ QtObject {
         if (!endPos) {
             // arrived;
             naviGuideDistance  = 0.0;
+            naviState.routePoints = [];
             naviGuideDirection = "";
             nextTurnDistanceMeasuredIn = "";
             return;

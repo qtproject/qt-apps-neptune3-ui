@@ -92,6 +92,24 @@ QtObject {
             onMaximizeMap: {
                 mainWindow.riseWindow()
             }
+
+            onMapCenterChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapCenter = [mainMap.mapCenter.latitude
+                                             , mainMap.mapCenter.longitude ];
+            }
+            onMapZoomLevelChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapZoomLevel = mainMap.mapZoomLevel;
+            }
+            onMapTiltChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapTilt = mainMap.mapTilt;
+            }
+            onMapBearingChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapBearing = mainMap.mapBearing;
+            }
         }
 
         // need a bit delay to give it a time to fetch the real internet status
