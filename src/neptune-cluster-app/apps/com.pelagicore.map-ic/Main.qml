@@ -29,14 +29,65 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
 import QtQuick.Controls 2.2
 
+import QtQuick 2.9
+import QtPositioning 5.9
+
+import shared.com.pelagicore.map 1.0
+import shared.utils 1.0
+import shared.Style 1.0
+import shared.Sizes 1.0
+
+import "views" 1.0
+import "stores" 1.0
+
 Item {
-    id: root
-    Rectangle {
+    MapStore {
+        id: store
+    }
+
+    // used for copying the offline DB
+    readonly property var _mapsHelper: MapsHelper {
+        appPath: Qt.resolvedUrl("./")
+
+        onAppPathChanged: {
+            if (appPath !== "") {
+                initMap("ic");
+            }
+        }
+    }
+
+    ICMapView {
+        id: icMapView
         anchors.fill: parent
-        color: "#000080"
+        mapPlugin: store.mapPlugin
+        mapCenter: store.mapCenter
+        mapZoomLevel: store.mapZoomLevel
+        mapTilt: store.mapTilt
+        mapBearing: store.mapBearing
+        activeMapType: Style.theme === Style.Light ?
+                       store.getMapType(icMapView.mapReady, store.defaultLightThemeId)
+                       : store.getMapType(icMapView.mapReady, store.defaultDarkThemeId);
+
+        nextTurnDistanceMeasuredIn: store.nextTurnDistanceMeasuredIn
+        nextTurnDistance: store.nextTurnDistance
+        naviGuideDirection: store.naviGuideDirection
+
+        onMapReadyChanged: {
+            store.getAvailableMapsAndLocation(icMapView.mapReady, icMapView.supportedMapTypes);
+        }
+
+        Connections {
+            target: store
+            onNavigationDemoActiveChanged: {
+                if (store.navigationDemoActive) {
+                    icMapView.path = store.routePoints;
+                    icMapView.state = "demo_driving";
+                } else {
+                    icMapView.state = "initial";
+                }
+            }
+        }
     }
 }
-
