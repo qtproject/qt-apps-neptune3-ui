@@ -67,6 +67,7 @@ logging:
   rules:
     - "*=false"
     - "qt.*=false"
+    - "qt.gamepad*=true"
     - "am.*=false"
     - "qml*=true"
     - "*.warning=true"
