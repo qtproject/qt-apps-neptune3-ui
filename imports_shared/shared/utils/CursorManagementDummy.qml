@@ -57,6 +57,7 @@ Item {
     property bool hasCursor: false
     property bool trapsCursor: false
     property bool acceptsCursor: true
+    property int angleOffset: 0
 
     signal activated()
     signal pressAndHold()

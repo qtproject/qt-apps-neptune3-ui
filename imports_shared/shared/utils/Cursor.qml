@@ -54,6 +54,7 @@ import shared.utils 1.0
 
 Loader {
     id: root
+
     anchors.fill: parent
     source: Config.cursorLoaderSource
 
@@ -75,6 +76,10 @@ Loader {
     Binding {
         restoreMode: Binding.RestoreBinding;
         target: item; property:"acceptsCursor"; value: root.acceptsCursor; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"angleOffset"; value: Config.cursorAngleOffset; when: item;
     }
     Binding {
         restoreMode: Binding.RestoreBinding;

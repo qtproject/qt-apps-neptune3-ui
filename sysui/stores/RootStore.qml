@@ -57,7 +57,10 @@ Store {
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property bool enableCursorManagement: ApplicationManager.systemProperties.enableCursorManagement
-    onEnableCursorManagementChanged: { Config.enableCursorManagement = root.enableCursorManagement; }
+    onEnableCursorManagementChanged: {
+        Config.cursorAngleOffset =Qt.binding(function(){return centerConsole.isLandscape ? 90 : 0});
+        Config.enableCursorManagement = root.enableCursorManagement;
+    }
 
     readonly property bool devMode: ApplicationManager.systemProperties.devMode
 
