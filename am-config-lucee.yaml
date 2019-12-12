@@ -74,6 +74,7 @@ logging:
     - "qml*=true"
     - "*.warning=true"
     - "*.critical=true"
+    - "cursor.navigation=false"
 
 # simulate an internal and a SD-card installation location
 
