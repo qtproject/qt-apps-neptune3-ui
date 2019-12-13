@@ -165,13 +165,14 @@ Item {
             store: root.store
 
             onToolClicked: {
-                if (root.store.isAppBusy(appId)) {
-                    return
+                if (root.store.isPackageBusy(appId)) {
+                    console.warn("Package busy... Aborting", appId)
+                    return;
                 }
-                if (root.store.isInstalled(appId)) {
-                    root.store.uninstallApplication(appId, appName)
+                if (root.store.isPackageInstalledByPackageController(appId)) {
+                    root.store.uninstallPackage(appId, appName);
                 } else {
-                    root.store.download(appId, appName)
+                    root.store.download(appId, appName);
                 }
             }
         }

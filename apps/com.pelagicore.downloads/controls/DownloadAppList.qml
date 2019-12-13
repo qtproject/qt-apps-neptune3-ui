@@ -50,15 +50,16 @@ ListView {
     delegate: ListItemProgress {
         id: delegatedItem
         objectName: "itemDownloadApp_" + model.id
-        property bool isInstalled: root.store.isInstalled(model.id)
+        property bool isInstalled: root.store.isPackageInstalledByPackageController(model.id)
 
         width: Sizes.dp(720)
         height: Sizes.dp(100)
         icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
         subText: model.id
-        secondaryText: delegatedItem.isInstalled ? root.store.getInstalledApplicationSize(model.id)
-                                                 : ""
+        secondaryText: delegatedItem.isInstalled ? root.store.getInstalledPackageSizeText(model.id)
+                                                 : ( root.store.isPackageBuiltIn(model.id) ?
+                                                        qsTr("update") : "" )
         cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
         value: root.store.currentInstallationProgress
         onValueChanged: {
@@ -75,8 +76,8 @@ ListView {
         }
         Connections {
             target: root.store
-            onInstalledAppsChanged: {
-                isInstalled = root.store.isInstalled(model.id)
+            onInstalledPackagesChanged: {
+                isInstalled = root.store.isPackageInstalledByPackageController(model.id)
             }
         }
 

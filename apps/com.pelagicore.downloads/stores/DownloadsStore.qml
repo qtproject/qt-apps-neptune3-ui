@@ -48,7 +48,7 @@ Item {
     property int categoryid: 0
     property string filter: ""
     property real currentInstallationProgress: 0.0
-    readonly property var installedApps: ApplicationManager.applicationIds()
+    readonly property var installedPackages: PackageManager.packageIds()
     readonly property bool isOnline: appStoreConfig.serverOnline
     readonly property bool isReconnecting: appStoreConfig.isReconnecting
     property bool isBusy: false// appModel.count == 0 && isOnline
@@ -68,45 +68,64 @@ Item {
         else return qsTr("%1 GB").arg((bytes / 1073741824).toFixed(2));
     }
 
-    function download(id, name) {
-        if (isAppBusy(id)) { return }
+    function download(packageId, name) {
+        if (isPackageBusy(packageId)) {
+            console.warn("Package busy... Abort download");
+            return;
+        }
 
-        var url = appStoreConfig.serverUrl + "/app/purchase"
-        var data = {"id": id, "device_id" : "00-11-22-33-44-55" }
+        var url = appStoreConfig.serverUrl + "/app/purchase";
+        var data = {"id": packageId, "device_id" : "00-11-22-33-44-55" };
 
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
                 if (data.status === "ok") {
-                    console.log(Logging.apps, "start downloading")
-                    var icon = root.appServerUrl + "/app/icon?id=" + id
+                    console.log(Logging.apps, "start downloading");
+                    var icon = root.appServerUrl + "/app/icon?id=" + packageId;
                     var installID = PackageManager.startPackageInstallation(data.url);
                     PackageManager.acknowledgePackageInstallation(installID);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
-                    console.log(Logging.apps, ":::AppStoreServer::: not logged in")
+                    console.log(Logging.apps, ":::AppStoreServer::: not logged in");
                     showNotification(qsTr("System is not logged in"), qsTr("System is not logged in"), icon);
                 } else {
-                    console.log(Logging.apps, ":::AppStoreServer::: download failed: " + data.error)
+                    console.log(Logging.apps, ":::AppStoreServer::: download failed: " + data.error);
                     showNotification(qsTr("%1 Download Failed").arg(name), qsTr("%1 download failed").arg(name), icon);
                 }
             }
         })
     }
 
-    function isAppBusy(appId) {
+    function isPackageBuiltIn(packageId) {
+        var pkg = PackageManager.package(packageId);
+        return pkg && pkg.builtIn;
+    }
+
+    function isPackageBusy(packageId) {
         var taskIds = PackageManager.activeTaskIds()
-        if (taskIds.includes(appId)) {
-            return true
+        if (taskIds.includes(packageId)) {
+            return true;
         }
+
+        return false;
     }
 
-    function isInstalled(appId) {
-        return getInstalledApps().includes(appId);
+    function isPackageInstalledByPackageController(packageId) {
+        var pkg = PackageManager.package(packageId);
+        if (pkg && pkg.builtIn) {
+            //only built-in part or have something to remove
+            return pkg.builtInHasRemovableUpdate;
+        }
+
+        return getInstalledPackages().includes(packageId);
     }
 
-    function uninstallApplication(id, name) {
-        if (isAppBusy(id)) { return }
-        var icon = root.appServerUrl + "/app/icon?id=" + id
-        PackageManager.removePackage(id, false /*keepDocuments*/, true /*force*/);
+    function uninstallPackage(packageId, name) {
+        if (isPackageBusy(packageId)) {
+            console.warn("Package busy... Abort uninstall");
+            return;
+        }
+
+        PackageManager.removePackage(packageId, false /*keepDocuments*/, true /*force*/);
     }
 
     function selectCategory(index) {
@@ -116,6 +135,7 @@ Item {
         } else {
             root.categoryid = 1;
         }
+
         appModel.refresh();
     }
 
@@ -128,81 +148,117 @@ Item {
         notification.show();
     }
 
-    function getInstalledApplicationSize(id) {
-        return formatBytes(PackageManager.installedApplicationSize(id));
+    function getInstalledPackageSizeText(packageId) {
+        if (PackageManager.installedPackageSize(packageId) < 0) {
+            if (isPackageBuiltIn(packageId)) {
+                return qsTr("built-in");
+            } else {
+                console.warn("Uknown app package size: -1", id);
+                return qsTr("Unknown size");
+            }
+        }
+
+        return formatBytes(PackageManager.installedPackageSize(packageId));
     }
 
-    function deviseApplicationId(id) {
+    function getPackageName(packageId) {
         // The application name defined in a specific format for Neptune 3. It has a foo.bar.name format
         // for the application name. This function will only comply with such format.
-        var strArr = id.split('.')
-        var firstUpperCaseLetter = strArr[2].charAt(0).toUpperCase();
-        var restLetters = strArr[2].substr(1).toLowerCase();
-        var appName = firstUpperCaseLetter + restLetters;
+        // Sometimes "name" from the application manager can't be used, because it won't work when
+        // the application is uninstalled as it will return null. hence, the application
+        // name need to be generated from the application id to be shown in the
+        // notification.
+        var appName = packageId;
+        var pkg = PackageManager.package(packageId);
+        if (pkg) {
+            appName = pkg.name;
+        } else {
+            var lastNamePart = packageId.split('.').pop();
+            if (lastNamePart.length > 1) {
+                appName = lastNamePart.charAt(0).toUpperCase() +
+                        lastNamePart.slice(1).toLowerCase();
+            }
+        }
+
         return appName;
     }
 
-    function getInstalledApps() {
-        return ApplicationManager.applicationIds();
+    function getInstalledPackages() {
+        return PackageManager.packageIds();
     }
 
     Connections {
         target: PackageManager
 
         onTaskProgressChanged: root.currentInstallationProgress = progress
-
         onTaskFailed: {
-            var appId = PackageManager.taskPackageId(taskId);
-            var icon = ApplicationManager.application("com.pelagicore.downloads").icon
-            var application = null;
-            var applicationName = "";
+            var packageId = PackageManager.taskPackageId(taskId);
+            var icon = PackageManager.package("com.pelagicore.downloads").icon;
+            var pkg = null;
+            var packageName = "";
 
-            if (appId !== "") {
-                icon = root.appServerUrl + "/app/icon?id=" + appId
-                application = ApplicationManager.application(appId)
-                applicationName = root.deviseApplicationId(appId);
+            if (packageId !== "") {
+                icon = root.appServerUrl + "/app/icon?id=" + packageId;
+                pkg = PackageManager.package(packageId);
+                packageName = root.getPackageName(packageId);
             }
 
-            if (application !== null) {
-                if (application.state === ApplicationObject.Installed) {
-                    showNotification(qsTr("%1 Uninstallation Failed").arg(applicationName),
-                                     qsTr("%1 uninstallation failed").arg(applicationName), icon);
+            if (pkg !== null) {
+                if (pkg.state === ApplicationObject.Installed) {
+                    showNotification(qsTr("%1 Uninstallation Failed").arg(packageName),
+                                     qsTr("%1 uninstallation failed").arg(packageName), icon);
                 }
             } else {
-                showNotification(qsTr("%1 Installation Failed").arg(applicationName),
-                                 qsTr("%1 installation failed").arg(applicationName), icon);
+                showNotification(qsTr("%1 Installation Failed").arg(packageName),
+                                 qsTr("%1 installation failed").arg(packageName), icon);
             }
 
             currentInstallationProgress = 0.0;
         }
-
         onTaskFinished: {
-            var appId = PackageManager.taskPackageId(taskId);
-            var icon = ApplicationManager.application("com.pelagicore.downloads").icon
-            var application = null;
-            var applicationName = "";
+            var packageId = PackageManager.taskPackageId(taskId);
+            var icon = PackageManager.package("com.pelagicore.downloads").icon;
+            var pkg = null;
+            var packageName = "";
 
-            if (appId !== "") {
-                icon = root.appServerUrl + "/app/icon?id=" + appId;
-                application = ApplicationManager.application(appId);
+            if (packageId !== "") {
+                icon = root.appServerUrl + "/app/icon?id=" + packageId;
+                pkg = PackageManager.package(packageId);
 
                 // cannot use name module from the application manager, because it won't work when
                 // the application is uninstalled as it will return null. hence, the application
                 // name need to be generated from the application id to be shown in the
                 // notification.
-                applicationName = root.deviseApplicationId(appId);
+                packageName = root.getPackageName(packageId);
             }
 
-            if (application !== null) {
-                if (application.state === ApplicationObject.Installed) {
-                    showNotification(qsTr("%1 Successfully Installed").arg(applicationName),
-                                     qsTr("%1 successfully installed").arg(applicationName), icon);
+            if (pkg !== null) {
+                if (pkg.builtIn) {
+                    // Always installed (updated or not)
+                    if (pkg.builtInHasRemovableUpdate) {
+                        showNotification(qsTr("%1 Successfully updated").arg(packageName),
+                                     qsTr("%1 successfully updated").arg(packageName), icon);
+                    } else {
+                        showNotification(qsTr("%1 Updates successfully Uninstalled")
+                                         .arg(packageName),
+                                         qsTr("%1 updates successfully uninstalled")
+                                         .arg(packageName), icon);
+                    }
+                } else {
+                    if (pkg.state === ApplicationObject.Installed) {
+                        showNotification(qsTr("%1 Successfully Installed").arg(packageName),
+                                     qsTr("%1 successfully installed").arg(packageName), icon);
+                    } else {
+                        showNotification(qsTr("%1 Successfully Uninstalled").arg(packageName),
+                                         qsTr("%1 successfully uninstalled").arg(packageName),
+                                         icon);
+                    }
                 }
             } else {
-                showNotification(qsTr("%1 Successfully Uninstalled").arg(applicationName),
-                                 qsTr("%1 successfully uninstalled").arg(applicationName), icon);
+                showNotification(qsTr("%1 Successfully Uninstalled").arg(packageName),
+                                 qsTr("%1 successfully uninstalled").arg(packageName), icon);
             }
-            root.installedAppsChanged()
+            root.installedPackagesChanged()
         }
     }
 
@@ -225,8 +281,8 @@ Item {
         onLoginSuccessful: {
             console.log("server login successful")
             if (!initialized) {
-                catModel.refresh()
-                initialized = true
+                catModel.refresh();
+                initialized = true;
             }
         }
     }

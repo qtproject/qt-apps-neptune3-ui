@@ -566,6 +566,13 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>DownloadAppList</name>
+    <message>
+        <source>update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadsStore</name>
     <message>
         <source>%1 Successfully Installed</source>
@@ -621,6 +628,30 @@ UX na cestu</translation>
     </message>
     <message>
         <source>%1 GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>built-in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Updates successfully Uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 updates successfully uninstalled</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
