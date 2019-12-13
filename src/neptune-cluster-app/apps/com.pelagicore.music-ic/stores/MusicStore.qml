@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -30,18 +31,23 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtIvi 1.0
+import QtIvi.Media 1.0
 
-import shared.Sizes 1.0
+import shared.utils 1.0
 
-import "stores" 1.0
-import "views" 1.0
-
-Item {
+Store {
     id: root
-    ICMusicView {
-        id: icMusicView
-        anchors.fill: parent
-        store: MusicStore {}
-    }
+
+    property alias musicPlaylist: player.playQueue
+    property int musicCount: player.playQueue.count
+
+    property MediaPlayer player: MediaPlayer { id: player }
+    property var currentEntry: player.currentTrack;
+    property bool playing: player.playState === MediaPlayer.Playing
+    property bool shuffleOn: player.playMode === MediaPlayer.Shuffle
+    property bool repeatOn: player.playMode === MediaPlayer.RepeatTrack
+    property string elapsedTime: Qt.formatTime(new Date(player.position), 'mm:ss')
+    property string totalTime: Qt.formatTime(new Date(player.duration), 'mm:ss')
+    property real currentTrackPosition : player.position / player.duration
 }

@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -31,17 +32,38 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
+import shared.utils 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-import "stores" 1.0
-import "views" 1.0
-
-Item {
+ColumnLayout {
     id: root
-    ICMusicView {
-        id: icMusicView
-        anchors.fill: parent
-        store: MusicStore {}
+    spacing: Sizes.dp(15)
+
+    property int preferredWidth: Sizes.dp(240)
+    property alias currentSongTitle: songTitle.text
+    property alias currentArtisName: artistName.text
+
+    Label {
+        id: songTitle
+        Layout.preferredWidth: root.width
+        wrapMode: Text.WordWrap
+        font.weight: Font.Light
+        maximumLineCount: 2
+        elide: Text.ElideRight
+    }
+
+    Label {
+        id: artistName
+        Layout.preferredWidth: root.width
+        wrapMode: Text.WordWrap
+        font.pixelSize: Sizes.fontSizeS
+        visible: text !== ""
+        opacity: Style.opacityMedium
+        maximumLineCount: 1
+        elide: Text.ElideRight
     }
 }
+

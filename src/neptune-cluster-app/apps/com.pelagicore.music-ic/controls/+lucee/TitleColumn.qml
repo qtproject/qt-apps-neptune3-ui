@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -31,17 +32,57 @@
 
 import QtQuick 2.8
 import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.2
 
+import shared.utils 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-import "stores" 1.0
-import "views" 1.0
-
-Item {
+ColumnLayout {
     id: root
-    ICMusicView {
-        id: icMusicView
-        anchors.fill: parent
-        store: MusicStore {}
+    spacing: Sizes.dp(15)
+
+    property int preferredWidth: Sizes.dp(240)
+    property alias currentSongTitle: songTitle.text
+    property alias currentArtisName: artistName.text
+    property alias currentAlbumName: albumName.text
+
+    property bool alignHorizontal: false
+
+    Label {
+        id: songTitle
+        Layout.preferredWidth: root.width
+        wrapMode: Text.WordWrap
+        font.weight: Font.Normal
+        font.pixelSize: Sizes.dp(40)
+        maximumLineCount: 2
+        horizontalAlignment: alignHorizontal ? Text.AlignHCenter : Text.AlignLeft
+        elide: Text.ElideRight
+    }
+
+    Label {
+        id: artistName
+        Layout.preferredWidth: root.width
+        wrapMode: Text.WordWrap
+        font.pixelSize: Sizes.dp(26)
+        font.weight: Font.Normal
+        visible: text !== ""
+        maximumLineCount: 1
+        horizontalAlignment: alignHorizontal ? Text.AlignHCenter : Text.AlignLeft
+        elide: Text.ElideRight
+    }
+
+    Label {
+        id: albumName
+        Layout.preferredWidth: root.width
+        wrapMode: Text.WordWrap
+        font.pixelSize: Sizes.dp(20)
+        visible: text !== ""
+        opacity: Style.opacityMedium
+        maximumLineCount: 1
+        horizontalAlignment: alignHorizontal ? Text.AlignHCenter : Text.AlignLeft
+        elide: Text.ElideRight
+
     }
 }
+

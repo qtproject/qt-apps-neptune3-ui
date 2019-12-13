@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -30,18 +31,40 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.2
 
+import shared.utils 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-import "stores" 1.0
-import "views" 1.0
+import "../controls" 1.0
 
 Item {
     id: root
-    ICMusicView {
-        id: icMusicView
-        anchors.fill: parent
-        store: MusicStore {}
+
+    property bool musicPlaying: false
+    property real musicPosition: 0.0
+    property alias currentSongTitle: titleColumn.currentSongTitle
+    property alias currentArtisName: titleColumn.currentArtisName
+    property alias currentProgressLabel: musicProgress.progressText
+
+    TitleColumn {
+        id: titleColumn
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: Sizes.dp(140)
+    }
+
+    MusicProgress {
+        id: musicProgress
+        width: root.width
+        height: Sizes.dp(100)
+        anchors.top: titleColumn.bottom
+        anchors.topMargin: Sizes.dp(10)
+        anchors.leftMargin: Sizes.dp(40)
+        anchors.rightMargin: Sizes.dp(40)
+        value: root.musicPosition
+        progressBarLabelLeftMargin: 3
+        clusterView: true
     }
 }

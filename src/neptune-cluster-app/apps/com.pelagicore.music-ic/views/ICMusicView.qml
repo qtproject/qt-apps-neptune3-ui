@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -30,18 +31,37 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.2
 
+import shared.utils 1.0
+import shared.Style 1.0
 import shared.Sizes 1.0
 
-import "stores" 1.0
-import "views" 1.0
+import "../stores" 1.0
+import "../panels" 1.0
 
 Item {
     id: root
-    ICMusicView {
-        id: icMusicView
+
+    property MusicStore store
+
+    Image {
         anchors.fill: parent
-        store: MusicStore {}
+        source: Style.image("instrument-cluster-bg")
+        fillMode: Image.Stretch
+    }
+
+    ICAlbumArtPanel {
+        id: albumArt
+        width: Sizes.dp(540)
+        height: Sizes.dp(464)
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: Sizes.dp(50)
+        musicPlaying: root.store.playing
+        musicPosition: root.store.currentTrackPosition
+        currentSongTitle: root.store.currentEntry
+                  ? root.store.currentEntry.title
+                  : qsTr("Track unavailable")
+        currentArtisName: root.store.currentEntry ? root.store.currentEntry.artist : ""
+        currentProgressLabel: root.store.elapsedTime + " / " + root.store.totalTime
     }
 }
