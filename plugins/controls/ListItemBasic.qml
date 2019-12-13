@@ -164,17 +164,23 @@ ItemDelegate {
 
             Item {
                 //spacer, to trigger 24px margin to the left of first element
-                width: Sizes.dp(1)
-                height: parent.height
+                implicitWidth: Sizes.dp(1)
+                Layout.fillHeight: true
             }
 
-            IconLabel {
-                opacity: Style.opacityHigh
-                scale: Sizes.scale
-                spacing: root.spacing
-                mirrored: root.mirrored
-                display: root.display
-                icon: root.icon
+            Item {
+                Layout.fillHeight: true
+                implicitWidth: root.implicitHeight
+                visible: root.icon.source.toString() !== "" || root.icon.name !== ""
+                IconLabel {
+                    opacity: Style.opacityHigh
+                    scale: Sizes.scale
+                    spacing: root.spacing
+                    mirrored: root.mirrored
+                    display: root.display
+                    icon: root.icon
+                    anchors.centerIn: parent
+                }
             }
 
             ColumnLayout {

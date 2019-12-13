@@ -52,7 +52,7 @@ ListView {
         objectName: "itemDownloadApp_" + model.id
         property bool isInstalled: root.store.isInstalled(model.id)
 
-        width: Sizes.dp(675)
+        width: Sizes.dp(720)
         height: Sizes.dp(100)
         icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
         text: model.name
