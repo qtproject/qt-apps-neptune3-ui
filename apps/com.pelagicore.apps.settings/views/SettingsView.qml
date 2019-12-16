@@ -99,19 +99,19 @@ Control {
 
                 ListModel {
                     id: fullTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes'; objectName: "themesViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                 }
 
                 ListModel {
                     id: themelessTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                 }
             }
         }
