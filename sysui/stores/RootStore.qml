@@ -100,6 +100,9 @@ Store {
         onAutostartAppsListChanged: { settingsStore.setValue("autostartApps", applicationModel.serializeAutostart()); }
         onAutorecoverAppsListChanged: { settingsStore.setValue("autorecoverApps", applicationModel.serializeAutorecover()); }
         onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
+        onWidgetStatesChanged: {
+            settingsStore.setValue("widgetStates", applicationModel.serializeWidgetStates());
+        }
     }
 
     readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}

@@ -75,6 +75,7 @@ ListModel {
     signal applicationPopupAdded(var window)
     signal autostartAppsListChanged()
     signal autorecoverAppsListChanged()
+    signal widgetStatesChanged()
     signal appRemoved(var appInfo);
 
     // Populate the model
@@ -588,6 +589,10 @@ ListModel {
                 //already running app e.g. from intent
                 window.application.activated();
                 d.reactOnAppActivation(window.application.id);
+                break;
+            case "neptuneState":
+                if (window.windowProperty(name).startsWith("Widget") && root.activeAppInfo === null)
+                    root.widgetStatesChanged()
                 break;
             }
         }
