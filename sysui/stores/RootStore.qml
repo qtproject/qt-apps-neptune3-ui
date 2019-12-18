@@ -286,6 +286,16 @@ Store {
         }
     }
 
+    function triggerVoiceAssitant() {
+        var request = IntentClient.sendIntentRequest("trigger-voiceassistant", { });
+        request.onReplyReceived.connect(function() {
+            if (request.succeeded)
+                var result = request.result;
+            else
+                console.log("Intent request failed: " + request.errorMessage);
+        })
+    }
+
     Component.onCompleted: {
         root.accentColorsModel = Config._initAccentColors(Style.theme);
     }

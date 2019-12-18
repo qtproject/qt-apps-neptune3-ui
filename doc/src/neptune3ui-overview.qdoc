@@ -292,6 +292,9 @@
         \row
             \li Ctrl+Shift+R
             \li Rotate the content in the Instrument Cluster.
+        \row
+            \li Ctrl+V
+            \li Activate or stop Voice Assistant.
    \endtable
 
 */

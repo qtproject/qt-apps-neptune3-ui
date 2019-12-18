@@ -233,5 +233,8 @@ Item {
                 root.store.clusterStore.clusterPosition = root.store.clusterStore.clusterPosition + 1;
             }
         }
+        onCtrlVPressed: {
+            root.store.triggerVoiceAssitant();
+        }
     }
 }
