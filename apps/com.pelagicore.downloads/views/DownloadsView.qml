@@ -46,6 +46,15 @@ Item {
 
     property DownloadsStore store
 
+    Connections {
+        target: store
+        onCategoryListReady: {
+            if (toolsColumn.model && toolsColumn.model.count > 0) {
+                toolsColumn.toolClicked(0);
+            }
+        }
+    }
+
     BusyIndicator {
         id: busyIndicator
 
@@ -58,12 +67,6 @@ Item {
         Behavior on opacity {
             PauseAnimation { duration: 1000 }
             DefaultNumberAnimation { }
-        }
-
-        onRunningChanged: {
-            if (!running) { // preselect non-empty category
-                toolsColumn.toolClicked(0);
-            }
         }
     }
 

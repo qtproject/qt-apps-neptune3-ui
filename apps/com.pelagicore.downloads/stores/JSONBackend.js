@@ -33,7 +33,6 @@
 .pragma library
 .import shared.utils 1.0 as Utils
 
-var request = new XMLHttpRequest()
 var errorCounter = 0
 var errorFunc = 0
 
@@ -42,7 +41,7 @@ function setErrorFunction(func) {
     errorFunc = func
 }
 
-function serverCall(url, data, dataReadyFunction, xhr) {
+function serverCall(url, data, dataReadyFunction) {
     var i = 0
     for (var key in data)
     {
@@ -54,19 +53,11 @@ function serverCall(url, data, dataReadyFunction, xhr) {
         i++
     }
 
-    // when no xhr is defined use the global one and reuse it
-    if (xhr === undefined) {
-        xhr = new XMLHttpRequest()
-    }
-
+    var xhr = new XMLHttpRequest();
     console.log(Utils.Logging.sysui, "HTTP GET to " + url);
-    if (xhr.readyState !== 0) {
-        xhr.abort();
-    }
     xhr.open("GET", url);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-
             if (xhr.responseText !== "") {
                 errorCounter = 0
                 var data = JSON.parse(xhr.responseText);
@@ -83,8 +74,4 @@ function serverCall(url, data, dataReadyFunction, xhr) {
         }
     }
     xhr.send();
-}
-
-function abortableServerCall(url, data, dataReadyFunction) {
-    serverCall(url,data,dataReadyFunction,request)
 }

@@ -61,6 +61,7 @@ Item {
     }
 
     signal requestRaiseAppReceived()
+    signal categoryListReady()
 
     function formatBytes(bytes) {
         if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);
@@ -295,6 +296,11 @@ Item {
     JSONModel {
         id: catModel
         url: appStoreConfig.serverUrl + "/category/list"
+        onStatusChanged: {
+            if (status === "ready") {
+                root.categoryListReady();
+            }
+        }
     }
 
     JSONModel {
