@@ -91,15 +91,15 @@ void SystemInfo::init()
 void SystemInfo::getAddress()
 {
     m_addressList.clear();
-    for (const QNetworkInterface &interface : QNetworkInterface::allInterfaces()) {
-        if (interface.flags().testFlag(QNetworkInterface::IsUp)
-                && !interface.flags().testFlag(QNetworkInterface::IsLoopBack)
-                && interface.type() != QNetworkInterface::InterfaceType::Unknown
-                && interface.type() != QNetworkInterface::InterfaceType::Loopback
-                && interface.type() != QNetworkInterface::InterfaceType::Virtual) {
-            for (const QNetworkAddressEntry &entry : interface.addressEntries()) {
-                if (interface.hardwareAddress() != QLatin1String("00:00:00:00:00:00")) {
-                    m_addressList.append(interface.name() + QLatin1String(" ") + entry.ip().toString() + QLatin1String(" ") + interface.hardwareAddress());
+    for (const QNetworkInterface &_interface : QNetworkInterface::allInterfaces()) {
+        if (_interface.flags().testFlag(QNetworkInterface::IsUp)
+                && !_interface.flags().testFlag(QNetworkInterface::IsLoopBack)
+                && _interface.type() != QNetworkInterface::InterfaceType::Unknown
+                && _interface.type() != QNetworkInterface::InterfaceType::Loopback
+                && _interface.type() != QNetworkInterface::InterfaceType::Virtual) {
+            for (const QNetworkAddressEntry &entry : _interface.addressEntries()) {
+                if (_interface.hardwareAddress() != QLatin1String("00:00:00:00:00:00")) {
+                    m_addressList.append(_interface.name() + QLatin1String(" ") + entry.ip().toString() + QLatin1String(" ") + _interface.hardwareAddress());
                     emit addressListChanged();
                 }
             }

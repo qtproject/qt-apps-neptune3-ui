@@ -9,6 +9,7 @@ QT_FOR_CONFIG += ivicore
 QFACE_SOURCES = ../connectivity.qface
 
 DESTDIR = $$LIB_DESTDIR
+DEFINES += QT_BUILD_CONNECTIVITY_LIB
 
 include($$SOURCE_DIR/config.pri)
 
