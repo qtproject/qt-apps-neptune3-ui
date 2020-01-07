@@ -245,7 +245,7 @@
         showHUD: yes
         devMode: yes
       private:
-        appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+        appStoreServerUrl: 'http://demoappsdeploy.qt.io:8512'
 
     # development setup: no security
 
