@@ -77,7 +77,6 @@ Store {
     readonly property var applicationModel: ApplicationModel {
         id: applicationModel
         localeCode: Config.languageLocale
-        autostartApps: settingsStore.value("autostartApps", settingsStore.defaultAutostartApps)
         showCluster: (WindowManager.runningOnDesktop || Qt.application.screens.length > 1) && root.clusterStore.showCluster
         showHUD: root.hudStore.showHUD
 

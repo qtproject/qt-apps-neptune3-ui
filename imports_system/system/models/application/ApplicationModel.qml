@@ -67,10 +67,6 @@ ListModel {
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
-    // Holds list of autostart applications ids, only initialized on Neptune startup
-    // afterward values are taken from
-    property string autostartApps: ""
-
     signal shuttingDown()
     signal applicationPopupAdded(var window)
     signal autostartAppsListChanged()
@@ -292,7 +288,6 @@ ListModel {
             appInfo.localeCode = Qt.binding(function() { return root.localeCode; });
 
             appInfo.isSystemApp = root.isSystemApp(app)
-            appInfo.autostart = (root.autostartApps.indexOf(appInfo.id) > -1)
 
             if (d.isInstrumentClusterApp(app)) {
                 d.instrumentClusterAppInfo = appInfo;
@@ -303,25 +298,6 @@ ListModel {
             }
 
             root.append({"appInfo": appInfo})
-
-            if (appInfo.autostart && !d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
-                appInfo.start();
-                goHome();
-            }
-
-            // check if additional screen is attached and cluster is expected to be shown
-            if (root.showCluster) {
-                if (appInfo.autostart && d.isInstrumentClusterApp(app)) {
-                    appInfo.start();
-                }
-            }
-
-            // check if additional screen is attached and hud is expected to be shown
-            if (root.showHUD) {
-                if (appInfo.autostart && d.isHUDApp(app)) {
-                    appInfo.start();
-                }
-            }
         }
 
         function deserializeWidgetStates(widgetStates)
@@ -374,6 +350,7 @@ ListModel {
                 }
             }
         }
+
         function deserializeAutostart(str)
         {
             //reset to defaults
@@ -391,6 +368,23 @@ ListModel {
 
                 if (appInfo)
                     appInfo.autostart = true;
+                else continue;
+
+                var app = appInfo.application;
+                if (!d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
+                    appInfo.start();
+                    goHome(); // TODO: whether it always necessary?
+                }
+
+                // check if additional screen is attached and cluster is expected to be shown
+                if (root.showCluster && d.isInstrumentClusterApp(app)) {
+                    appInfo.start();
+                }
+
+                // check if additional screen is attached and hud is expected to be shown
+                if (root.showHUD && d.isHUDApp(app)) {
+                    appInfo.start();
+                }
             }
         }
 
