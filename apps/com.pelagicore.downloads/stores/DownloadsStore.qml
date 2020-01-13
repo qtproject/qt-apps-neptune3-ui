@@ -95,6 +95,11 @@ Item {
         })
     }
 
+    function tryStartApp(appId) {
+        var app = ApplicationManager.application(appId);
+        return app && app.start();
+    }
+
     function isPackageBuiltIn(packageId) {
         var pkg = PackageManager.package(packageId);
         return pkg && pkg.builtIn;
