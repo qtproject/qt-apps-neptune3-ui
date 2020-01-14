@@ -148,6 +148,7 @@ void SystemInfo::getQtDiagInfo()
 
 bool SystemInfo::allow3dStudioPresentations()
 {
+#ifndef QT_NO_OPENGL
     QOpenGLContext *globalShareContext = QOpenGLContext::globalShareContext();
     if (globalShareContext && globalShareContext->isValid()) {
         return (globalShareContext->isOpenGLES()
@@ -155,6 +156,7 @@ bool SystemInfo::allow3dStudioPresentations()
                 || (!globalShareContext->isOpenGLES()
                         && globalShareContext->format().version() >= qMakePair(4,3));
     }
+#endif
 
     return false;
 }
