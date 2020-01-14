@@ -125,5 +125,5 @@
    \section2 Vehicle Settings
    In the energy panel is a list with 'charging station' suggestions. If any of those is
    pressed, the maps application will directly open, loading the selected charging station's
-   address and ready to navigate there.
+   address.
 */
