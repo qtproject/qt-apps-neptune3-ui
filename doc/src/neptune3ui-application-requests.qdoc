@@ -126,9 +126,4 @@
    In the energy panel is a list with 'charging station' suggestions. If any of those is
    pressed, the maps application will directly open, loading the selected charging station's
    address and ready to navigate there.
-
-   \section2 System Notifications
-   A ctrl+n press simulates a "Battery Low" event by triggering a system notification containing
-   an action button. If the action button is pressed, the map application will directly open,
-   loading the suggested charging station's address and ready to navigate there.
 */
