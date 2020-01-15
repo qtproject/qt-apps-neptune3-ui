@@ -36,16 +36,11 @@ QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptun
 QML_IMPORT_PATH += $$BUILD_DIR/imports_shared_cpp
 
 android {
+    QT += remoteobjects
+
     copydata.commands = $(COPY_DIR) $$[QT_INSTALL_PLUGINS]/qtivi $$BUILD_DIR/plugins
     first.depends = $(first) copydata
-    export(first.depends)
-    export(copydata.commands)
     QMAKE_EXTRA_TARGETS += first copydata
-
-#This is used to tell the deployment tool to include these additional
-#libs to the apk. This library (libQt5RemoteObjects) is not directly used by the
-#app itself, but by the backend plugin.
-    ANDROID_EXTRA_LIBS = $$[QT_INSTALL_LIBS]/libQt5RemoteObjects.so
 
 #In case we have some other than QML plugins to include to the apk, this is the
 #variable to use. In this case we use it to include the Qtivi backend plugin,
