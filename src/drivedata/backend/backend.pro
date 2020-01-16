@@ -1,5 +1,5 @@
 TEMPLATE=lib
-TARGET = $$qtLibraryTarget(drivedata_backend_qtro)
+TARGET = $$qt5LibraryTarget(drivedata_backend_qtro, "plugins/qtivi/")
 CONFIG += ivigenerator plugin
 
 QT_FOR_CONFIG += ivicore
