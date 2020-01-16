@@ -302,7 +302,7 @@ QtObject {
         property real rotationDirection: 0
         property real coordinateDuration: 0
         property real distanceForNextManeuver: 0
-        property var targetCoordinate
+        property var targetCoordinate: QtPositioning.coordinate()
         property real azimuthDt: 0
         readonly property real angleThreshold: 25.0
 
