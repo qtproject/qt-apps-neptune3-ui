@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.luxoft.vehicle'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Vehicle'
   ru: 'Auto'
@@ -14,11 +12,27 @@ name:
   ja: '車両'
   ko: '차량'
 
-applicationProperties:
-    private:
+applications:
+  - id:      'com.luxoft.vehicle'
+    code:    'Main.qml'
+    runtime: 'qml'
+    applicationProperties:
+      protected:
+        runBefore: ['com.luxoft.vehicle-ic']
+        runAfter: []
+      private:
         squishPort: 7732
+  - id:      'com.luxoft.vehicle-ic'
+    code:    'MainIC.qml'
+    runtime: 'qml'
+    applicationProperties:
+      protected:
+        showInLauncher: no
 
 categories: [ 'navigation', 'vehicle' ]
+
 intents:
 - id: activate-app
+  handlingApplicationId: 'com.luxoft.vehicle'
 - id: vehicle-control
+  handlingApplicationId: 'com.luxoft.vehicle'

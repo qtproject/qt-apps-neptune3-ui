@@ -63,24 +63,5 @@ QtObject {
                 vehicleView.store.vehicle3DstudioColor = Style.accentColor
             }
         }
-
-        InstrumentCluster {
-            id: clusterSettings
-        }
-    }
-
-    readonly property Loader applicationICWindowLoader: Loader {
-        asynchronous: false
-        active: clusterSettings.available
-                 || Qt.platform.os !== "linux" // FIXME and then remove; remote settings doesn't really work outside of Linux
-        sourceComponent: Component {
-            ApplicationICWindow {
-                id: applicationICWindowComponent
-                VehicleICView {
-                    anchors.fill: parent
-                    store: vehicleView.store
-                }
-            }
-        }
     }
 }

@@ -30,29 +30,34 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.8
+import shared.com.pelagicore.remotesettings 1.0
+import shared.com.pelagicore.drivedata 1.0
 
-import shared.Sizes 1.0
 
-import "../panels" 1.0
-import "../stores" 1.0
-
-Item {
+QtObject {
     id: root
 
-    property VehicleStoreIC store
+    property bool leftDoorOpened: false
+    property bool rightDoorOpened: false
+    property bool trunkOpened: false
+    property real roofOpenProgress: 0.0
+    property real speed: clusterSettings.speed
 
-    Vehicle2DPanel {
-        anchors.top: root.top
-        anchors.topMargin: Sizes.dp(720 - 652)
-        anchors.left: root.left
-        anchors.right: root.right
-        height: Sizes.dp(652)
-
-        leftDoorOpen: root.store.leftDoorOpened
-        rightDoorOpen: root.store.rightDoorOpened
-        trunkOpen: root.store.trunkOpened
-        roofOpen: root.store.roofOpenProgress == 1.0
-        speed: store.speed
+    readonly property UISettings uiSettings: UISettings {
+        onDoor1OpenChanged: {
+            root.leftDoorOpened = uiSettings.door1Open
+        }
+        onDoor2OpenChanged: {
+            root.rightDoorOpened = uiSettings.door2Open
+        }
+        onTrunkOpenChanged: {
+            root.trunkOpened = uiSettings.trunkOpen
+        }
+        onRoofOpenProgressChanged: {
+            root.roofOpenProgress = uiSettings.roofOpenProgress
+        }
     }
+
+    readonly property InstrumentCluster clusterSettings: InstrumentCluster {}
 }
