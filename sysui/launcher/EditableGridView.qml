@@ -83,29 +83,32 @@ Item {
 
         function refreshItems() {
             for (var i = 0; i < root.model.count; i++) {
-                var item = root.model.get(i);
-                var groups = ["items"]
-                //not a system app
-                if (!item.appInfo.isSystemApp) {
-                    groups = ["items", "noSystem"]
+                var appInfo = root.model.get(i).appInfo;
+
+                var systemApp = appInfo.isSystemApp;
+                var devApp = appInfo.categories.indexOf("dev") >= 0;
+                var hideForced = "showInLauncher" in appInfo.application.applicationProperties
+                        ? !appInfo.application.applicationProperties["showInLauncher"]
+                        : false;
+
+
+                if (!hideForced) {
+                    if (systemApp && showSystemApps && devApp && showDevApps
+                            || systemApp && showSystemApps && !devApp
+                            || devApp && showDevApps && !systemApp
+                            || !devApp && !systemApp)
+                    {
+                        visualModel.items.removeGroups(i, 1, ["show"])
+                        visualModel.items.addGroups(i, 1, ["show"])
+                    }
                 }
-                //not system and not dev
-                if (!item.appInfo.isSystemApp && (item.appInfo.categories.indexOf("dev") < 0)) {
-                    groups = ["items", "noSystemNoDev", "noSystem"]
-                }
-                visualModel.items.setGroups(i, 1, groups)
             }
 
-            if (!showSystemApps)
-                visualModel.filterOnGroup = "noSystem"
-
-            if (!showDevApps)
-                visualModel.filterOnGroup = "noSystemNoDev"
+            visualModel.filterOnGroup = "show";
         }
 
         groups: [
-            DelegateModelGroup { name: "noSystem"; includeByDefault: false },
-            DelegateModelGroup { name: "noSystemNoDev"; includeByDefault: false }
+            DelegateModelGroup { name: "show"; includeByDefault: false }
         ]
 
         delegate: Item {
