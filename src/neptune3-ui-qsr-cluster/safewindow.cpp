@@ -30,6 +30,9 @@
 ****************************************************************************/
 
 #include "safewindow.h"
+#ifdef Q_OS_MACOS
+    #include "safewindow_mac.h"
+#endif
 
 SafeWindow::SafeWindow(const SafeRenderer::QSafeSize &size, const SafeRenderer::QSafeSize &frameSize,
                        QWindow *parent)
@@ -44,6 +47,11 @@ SafeWindow::SafeWindow(const SafeRenderer::QSafeSize &size, const SafeRenderer::
     //to run on KMS/DRM on NUC set transparent to false
     //otherwise nothing will be shown
     if (m_transparent) {
+        #ifdef Q_OS_MACOS
+            // Need to call native Obj-C method to make window
+            // transparent om Mac QTBUG-77637
+            SafeWindowMac::setWindowTransparent(reinterpret_cast<void*>(this->winId()));
+        #endif
         QSurfaceFormat fmt = format();
         fmt.setAlphaBufferSize(8);
         setFormat(fmt);

@@ -9,7 +9,11 @@ else: target.path = $$INSTALL_PREFIX/neptune3
 INSTALLS += target
 
 CONFIG += exceptions c++11
-macos: CONFIG -= app_bundle
+macos: {
+    CONFIG -= app_bundle
+    SOURCES += safewindow_mac.mm
+    HEADERS += safewindow_mac.h
+}
 
 QT = core gui qtsaferenderer network ivicore
 
@@ -18,7 +22,7 @@ LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(
 INCLUDEPATH += $$OUT_PWD/../drivedata/frontend
 INCLUDEPATH += $$OUT_PWD/../remotesettings/frontend
 
-SOURCES = main.cpp \
+SOURCES += main.cpp \
     icsettingshandler.cpp \
     neptunesafestatemanager.cpp \
     safewindow.cpp \
