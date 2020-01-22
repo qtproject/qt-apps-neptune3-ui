@@ -284,7 +284,7 @@ ListModel {
         property Component appInfoComponent: Component { ApplicationInfo{} }
 
         function appendApplication(app) {
-            var appInfo = appInfoComponent.createObject(root, {"application":app});
+            var appInfo = appInfoComponent.createObject(root, {"application": app});
             appInfo.localeCode = Qt.binding(function() { return root.localeCode; });
 
             appInfo.isSystemApp = root.isSystemApp(app)
@@ -399,12 +399,48 @@ ListModel {
         }
     }
 
+    // this function iterates through current model and tries to fill 'runBefore' and 'runAfter' for
+    // each appInfo inside it with available in current model appInfo-s
+    function fillStartListsForCurrentModel() {
+        // this loop works with AppInfo objects
+        for (var i = 0; i < count; ++i) {
+            var appInfo = get(i).appInfo;
+            var runBefore = appInfo.application.applicationProperties["runBefore"];
+            if (!!runBefore) {
+                for (var rbi in runBefore) {
+                    var rb_app = root.applicationFromId(runBefore[rbi]);
+                    if (!!rb_app)
+                        appInfo.runBefore.push(rb_app);
+                }
+            }
+
+            var runAfter = appInfo.application.applicationProperties["runAfter"];
+            if (!!runAfter) {
+                for (var ra in runAfter) {
+                    var ra_app = root.applicationFromId(ra);
+                    if (!!ra_app)
+                        appInfo.runAfter.push(ra_app);
+                }
+            }
+        }
+
+        for (i = 0; i < count; ++i) {
+            appInfo = get(i).appInfo;
+            appInfo.runBefore = [...new Set(appInfo.runBefore)];
+            appInfo.runAfter = [...new Set(appInfo.runAfter)];
+        }
+    }
+
     Component.onCompleted: {
+        // details: the loop below fills the application model from 'raw' QtAM::application
+        // with AppInfo objects
         var i;
         for (i = 0; i < ApplicationManager.count; i++) {
             var app = ApplicationManager.application(i);
             d.appendApplication(app);
         }
+
+        fillStartListsForCurrentModel();
     }
 
     property var appManConns: Connections {
@@ -464,6 +500,8 @@ ListModel {
         onApplicationAdded: {
             var app = ApplicationManager.application(id);
             d.appendApplication(app);
+
+            fillStartListsForCurrentModel();
         }
 
         onApplicationAboutToBeRemoved: {

@@ -131,12 +131,36 @@ QtObject {
     readonly property int timeToFirstICWindowFrame:
         d.startCallTime !== null && d.icWindowFirstFrameTime !== null ? d.icWindowFirstFrameTime - d.startCallTime
                                                                     : -1
+
+    /* List of apps to be launched before this app, if \s start is requested */
+    property var runBefore: []
+
+    /* List of apps to be launched after this app, if \s start is requested */
+    property var runAfter: []
+
     function start() {
-        if (application) {
+        if (!!application) {
+            if (!!root.runBefore) {
+                for (var appinfo_i in root.runBefore) {
+                    var rb_app = root.runBefore[appinfo_i];
+                    if (!!rb_app)
+                        rb_app.start();
+                }
+            }
+
             if (application.runState === ApplicationObject.NotRunning && d.startCallTime === null) {
                 d.startCallTime = Date.now();
             }
+
             application.start();
+
+            if (!!root.runAfter) {
+                for (appinfo_i in root.runAfter) {
+                    var ra_app = root.runBefore[appinfo_i];
+                    if (!!ra_app)
+                        ra_app.start();
+                }
+            }
         }
     }
 
