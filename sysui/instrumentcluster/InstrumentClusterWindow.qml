@@ -70,10 +70,6 @@ Window {
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
 
-    onWidthChanged: {
-        root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
-    }
-
     //send (if enabled) cluster window positions to QSR Safe UI, 180 is cluster item top margin
     //QSR Safe UI window then moves to cluster item 0,0 position
     onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
@@ -133,9 +129,16 @@ Window {
             }
         ]
 
-        width: parent.width
-        height: width / Config.instrumentClusterUIAspectRatio
+        anchors.horizontalCenter: parent.horizontalCenter
         rotation: root.invertedOrientation ? 180 : 0
+        height: Math.floor(root.width / Config.instrumentClusterUIAspectRatio) <= root.height
+                ? root.width / Config.instrumentClusterUIAspectRatio
+                : root.height;
+        width: height * Config.instrumentClusterUIAspectRatio
+
+        onWidthChanged: {
+            root.contentItem.Sizes.scale = uiSlot.width / Config.instrumentClusterWidth;
+        }
 
         Image {
             anchors.fill: parent
