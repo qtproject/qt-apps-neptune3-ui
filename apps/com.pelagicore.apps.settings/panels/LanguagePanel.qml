@@ -64,8 +64,7 @@ Control {
                 onActivated:  { root.languageRequested(model.language, model.title); }
             }
 
-            onClicked: { root.languageRequested(model.language, model.title); }
-            onToggled: { languageDelegate.clicked(); }
+            onToggled: { root.languageRequested(model.language, model.title); }
 
             indicator: Rectangle {
                 implicitWidth: Sizes.dp(30)
