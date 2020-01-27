@@ -82,21 +82,31 @@ class SafeWindow : public QWindow, public SafeRenderer::AbstractWindow
 {
     Q_OBJECT
 public:
-    explicit SafeWindow(const SafeRenderer::QSafeSize &size,
-                        const SafeRenderer::QSafeSize &frameSize, QWindow *parent = 0);
+    SafeWindow(const SafeRenderer::QSafeSize &size,
+                        const SafeRenderer::QSafeSize &frameSize,
+                        bool stickToCluster, QWindow *parent = 0);
 
     virtual void render(QPainter *painter);
 
     //Window
-    virtual void render(const SafeRenderer::Rect &dirtyArea);
-    virtual SafeRenderer::AbstractFrameBuffer *buffer() {
-        return &m_buffer;
-    }
+    virtual void render(const SafeRenderer::Rect &dirtyArea) override;
+    virtual SafeRenderer::AbstractFrameBuffer *buffer() override;
+
+    // Copies behavior of QtApplicationManager to decide if we are running on Desktop
+    static bool isRunningOnDesktop();
 
 public slots:
     void renderLater();
     void renderNow();
+    // Apply cluster widow position
+    // Used when running on Desktop
     void moveWindow(int x, int y);
+    // Apply cluster panel width and height to window size
+    // Used when running on Desktop
+    void resizeWindow(int width, int weight);
+    // Apply cluster panel position inside cluster window
+    // Used when running on desktop
+    void applyPanelOrigin(int dx, int dy);
 
 protected:
     bool event(QEvent *event) override;
@@ -108,6 +118,10 @@ private:
     QBackingStore *m_backingStore;
     ScreenBuffer   m_buffer;
     bool           m_transparent;
+    int            m_rootWindowX{0};
+    int            m_rootWindowY{0};
+    int            m_panelOriginX{0};
+    int            m_panelOriginY{0};
+    bool           m_stickToCluster;
 };
-
-#endif // RASTERWINDOW_H
+#endif // SAFEWINDOW_H

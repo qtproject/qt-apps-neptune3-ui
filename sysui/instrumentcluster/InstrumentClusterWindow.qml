@@ -53,28 +53,29 @@ Window {
         applicationICWindows.next();
     }
 
-    //Demo case to stick QtSafeRendererWindow to Cluster on Desktop
-    //should be also enabled on "Safe" part
-    function sendWindowCoordsToSafeUI(x, y) {
-        var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
-                    QtObject {
-                        function sendClusterWindowPos(x,y) {
-                            SafeMessage.moveItem(\"mainWindow\", Qt.point(x, y))
-                        }
-                    }
-                ", root, "sendMessageObject")
-        sendMessageObject.sendClusterWindowPos(x, y);
+    // Demo case to stick QtSafeRendererWindow to Cluster on Desktop
+    // should be also enabled on "Safe" part
+    // send x,y of window, x,y of uiSlot (contains cluster view item) inside window,
+    // width and height of uiSlot item
+    function sendWindowStateToSafeUI() {
+        if (root.clusterStore.runningOnDesktop) {
+            var sendMessageObject = Qt.createQmlObject(
+                    "import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                     QtObject {
+                         function sendClusterWindowState(x,y, dx, dy, width, height) {
+                             SafeMessage.moveItem(\"mainWindowPos\", Qt.point(x, y))
+                             SafeMessage.moveItem(\"mainWindowPanelOrigin\", Qt.point(dx, dy))
+                             SafeMessage.moveItem(\"mainWindowPanelSize\", Qt.point(width, height))
+                         }
+                     }", root, "sendMessageObject");
+            sendMessageObject.sendClusterWindowState(root.x, root.y, uiSlot.x, uiSlot.y,
+                                                   uiSlot.width, uiSlot.height);
+        }
     }
 
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
-
-    //send (if enabled) cluster window positions to QSR Safe UI, 180 is cluster item top margin
-    //QSR Safe UI window then moves to cluster item 0,0 position
-    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
-    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
-
 
     Component.onCompleted: {
         // Would like to use a regular property binding instead. But it doesn't work and I don't know why
@@ -91,6 +92,26 @@ Window {
             root.width = clusterStore.desktopWidth;
             root.height = clusterStore.desktopHeight;
         }
+    }
+
+    // Use these two Connections to send (if qsr enabled) cluster window positions to QSR Safe UI
+    // QSR Safe UI window then moves to cluster item 0,0 position
+    // panel properties for scale are sent from SafeTelltalesPanel
+    // Desktop-specific demo case
+    Connections {
+        target: root
+        enabled: root.clusterStore.qsrEnabled
+        onXChanged: sendWindowStateToSafeUI();
+        onYChanged: sendWindowStateToSafeUI();
+        onActiveChanged: sendWindowStateToSafeUI();
+    }
+    Connections {
+        target: uiSlot
+        enabled: root.clusterStore.qsrEnabled
+        onWidthChanged: sendWindowStateToSafeUI();
+        onHeightChanged: sendWindowStateToSafeUI();
+        onYChanged: sendWindowStateToSafeUI();
+        onXChanged: sendWindowStateToSafeUI();
     }
 
     Item {
