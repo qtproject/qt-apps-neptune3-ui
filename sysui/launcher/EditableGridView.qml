@@ -47,7 +47,7 @@ Item {
     property var model
     property var exclusiveButtonGroup
     readonly property int numIconsPerRow: 4
-    property alias gridEditMode: grid.editMode
+    property bool editMode: false
     readonly property alias cellWidth: grid.cellWidth
     readonly property alias cellHeight: grid.cellHeight
 
@@ -57,7 +57,7 @@ Item {
 
     onGridOpenChanged: {
         if (!root.gridOpen) {
-            grid.editMode = false;
+            root.editMode = false;
         }
     }
 
@@ -82,7 +82,7 @@ Item {
         }
 
         function refreshItems() {
-            for (var i = 0; i < root.model.count; i++) {
+            for (var i = 0; i < root.model.count; ++i) {
                 var appInfo = root.model.get(i).appInfo;
 
                 var systemApp = appInfo.isSystemApp;
@@ -91,15 +91,14 @@ Item {
                         ? !appInfo.application.applicationProperties["showInLauncher"]
                         : false;
 
-
+                visualModel.items.removeGroups(i, 1, ["show"]);
                 if (!hideForced) {
                     if (systemApp && showSystemApps && devApp && showDevApps
                             || systemApp && showSystemApps && !devApp
                             || devApp && showDevApps && !systemApp
                             || !devApp && !systemApp)
                     {
-                        visualModel.items.removeGroups(i, 1, ["show"])
-                        visualModel.items.addGroups(i, 1, ["show"])
+                        visualModel.items.addGroups(i, 1, ["show"]);
                     }
                 }
             }
@@ -115,7 +114,7 @@ Item {
             id: delegateRoot
             objectName: "gridDelegate_" + (model.appInfo ? model.appInfo.id : "none")
 
-            property int modelIndex: model.index
+            property int visualIndex: DelegateModel.itemsIndex
 
             width: grid.cellWidth
             height: grid.cellHeight
@@ -123,39 +122,23 @@ Item {
             //disable mouse interaction for invisible items when only top row is shown
             enabled: opacity > 0.0
             opacity: {
-                //get item index in source model or in filtered if filter applied
-                var index = model.index;
+                if (!root.gridOpen && DelegateModel.showIndex >= root.numIconsPerRow)
+                    return 0.0
 
-                if (visualModel.filterOnGroup !== ""
-                        && index < visualModel.items.count
-                        && index > -1) {
-                    var item = visualModel.items.get(index);
-                    if (item)
-                        index = item[visualModel.filterOnGroup + "Index"];
-                }
-
-                if (index > (root.numIconsPerRow - 1)) {
-                    if (root.gridOpen) {
-                        return 1.0
-                    } else {
-                        return 0.0
-                    }
-                }
                 return 1.0
             }
             Behavior on opacity { DefaultNumberAnimation { } }
 
             DragHandler {
                 id: handler
-                enabled: root.gridEditMode
+                enabled: root.editMode
                 onActiveChanged: {
                     if (!active) {
                         //when it's dragged, it stops being the item that
                         //currently has the cursor and so the item's release
                         //signal is not emitted. 'Release' here instead.
-                        appButton.scale = 1.0;
                         handler.target = null;
-                        appButton.dragIndex = -1;
+                        appButton.released();
                     }
                 }
             }
@@ -169,7 +152,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.verticalCenterOffset: -Sizes.dp(10)
 
-                property int dragIndex: -1
+                property int dragIndex: delegateRoot.visualIndex
 
                 Connections {
                     target: model.appInfo
@@ -182,7 +165,7 @@ Item {
                     }
                 }
 
-                editModeBgOpacity: handler.active ? 0.8 : grid.editMode ? 0.2 : 0.0
+                editModeBgOpacity: handler.active ? 0.8 : root.editMode ? 0.2 : 0.0
                 editModeBgColor: handler.active ? "#404142" : "#F1EFED"
                 icon.name: model.appInfo ? model.appInfo.icon : ""
                 text: model.appInfo ? model.appInfo.name : null
@@ -210,36 +193,38 @@ Item {
                 ]
 
                 onClicked: {
-                    if (!grid.editMode) {
+                    if (!root.editMode) {
                         root.appButtonClicked(model.applicationId);
                         model.appInfo.start();
                     }
                 }
 
                 onPressed: {
-                    if (grid.editMode) {
+                    if (root.editMode) {
                         handler.target = appButton;
-                        dragIndex = model.index;
                     }
                 }
 
                 onPressAndHold: {
                     if (root.gridOpen) {
-                        grid.editMode = true;
+                        root.editMode = true;
                         handler.target = appButton;
-                        dragIndex = model.index;
                     }
                 }
             }
 
             DropArea {
-                anchors { fill: parent; }
+                anchors { centerIn: parent; }
+                width: parent.width * 0.9
+                height: parent.height * 0.9
                 onEntered: {
-                    root.model.move(appButton.modelIndex, appButton.dragIndex, 1);
+                    if (drag.source.target.dragIndex !== delegateRoot.visualIndex)
+                        grid.model.items.move(drag.source.target.dragIndex
+                                , delegateRoot.visualIndex);
                 }
             }
 
-            state: grid.editMode ? "editing" : "normal"
+            state: root.editMode ? "editing" : "normal"
             states: [
                 State {
                     name: "normal"
@@ -266,7 +251,6 @@ Item {
 
     GridView {
         id: grid
-        property bool editMode: false
         LayoutMirroring.enabled: false
         Layout.alignment: Qt.AlignTop
         anchors.fill: parent
@@ -286,11 +270,11 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.width/2
         height: Sizes.dp(80)
-        opacity: grid.editMode ? 1.0 : 0.0
+        opacity: root.editMode ? 1.0 : 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
         visible: opacity > 0
 
         text: qsTr("Finish Editing")
-        onClicked: grid.editMode = false
+        onClicked: root.editMode = false
     }
 }

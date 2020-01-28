@@ -101,7 +101,7 @@ Item {
         height: Sizes.dp(90)
         //holds the state of apps grid (opened/closed)
         property bool gridOpen: false
-        readonly property bool useCloseIcon: editableLauncher.gridEditMode || root.open
+        readonly property bool useCloseIcon: editableLauncher.editMode || root.open
 
         anchors.top: parent.top
         anchors.right: parent.right
