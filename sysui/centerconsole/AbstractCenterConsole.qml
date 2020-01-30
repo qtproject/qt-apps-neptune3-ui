@@ -58,6 +58,11 @@ Item {
 
     rotation: store.centerConsole.rotation
 
+    // Default binding, acts like "constrainHeight" to avoid zero sizes when switching
+    // between root states through default state
+    width: root.store.centerConsole.availableWidth
+    height: Math.round(root.width / Config.centerConsoleAspectRatio)
+
     // If the Window aspect ratio differs from Config.centerConsoleAspectRatio the Center Console item will be
     // letterboxed so that a Config.centerConsoleAspectRatio is preserved.
     states: [
