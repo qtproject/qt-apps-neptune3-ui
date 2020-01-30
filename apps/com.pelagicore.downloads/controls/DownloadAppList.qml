@@ -76,8 +76,7 @@ ListView {
             }
             root.toolClicked(model.id, model.name);
         }
-        onIconClicked: root.store.tryStartApp(model.id)
-        onLabelClicked: root.store.tryStartApp(model.id)
+        onClicked: root.store.tryStartApp(model.id)
 
         Connections {
             target: root.store

@@ -139,20 +139,6 @@ ItemDelegate {
     */
     property bool wrapText: false
 
-    /*!
-        \qmlsignal ListItemBasic::iconClicked(mouse)
-        This signal is emitted when there is a click on a ListItem's icon. The mouse parameter is
-        \l{MouseEvent} type and provides information about the click.
-    */
-    signal iconClicked(var mouse)
-
-    /*!
-        \qmlsignal ListItemBasic::labelClicked(mouse)
-        This signal is emitted when there is a click on a ListItem's label. The mouse parameter is
-        \l{MouseEvent} type and provides information about the click.
-    */
-    signal labelClicked(var mouse)
-
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
@@ -197,7 +183,7 @@ ItemDelegate {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: root.iconClicked(mouse)
+                        onClicked: root.clicked()
                     }
                 }
             }
@@ -224,7 +210,7 @@ ItemDelegate {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: root.labelClicked(mouse)
+                        onClicked: root.clicked()
                     }
                 }
 
