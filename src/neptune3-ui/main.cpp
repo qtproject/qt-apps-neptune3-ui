@@ -93,8 +93,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     PackageUtilities::ensureCorrectLocale();
 
     try {
-        QStringList deploymentWarnings;
-        Sudo::forkServer(Sudo::DropPrivilegesPermanently, &deploymentWarnings);
+        Sudo::forkServer(Sudo::DropPrivilegesPermanently);
 
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
@@ -127,8 +126,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         DefaultConfiguration cfg(QStringList(QCoreApplication::applicationDirPath() + qSL("/am-config-neptune.yaml")), QString());
 #endif
 
-        cfg.parse(&deploymentWarnings);
-        a.setup(&cfg, deploymentWarnings);
+        cfg.parse();
+        a.setup(&cfg);
 
 #ifdef USE_QT_SAFE_RENDERER
         //Set env variables for Qt Safe Renderer for sending heartbeats
