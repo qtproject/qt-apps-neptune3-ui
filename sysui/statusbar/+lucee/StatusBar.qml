@@ -72,7 +72,8 @@ Item {
         spacing: Sizes.dp(5)
 
         ToolButton {
-            Layout.preferredWidth: Sizes.dp(60)
+            padding: 0
+            Layout.preferredWidth: Sizes.dp(64)
             Layout.fillHeight: true
             id: volumeIcon
             objectName: "volumePopupButton"

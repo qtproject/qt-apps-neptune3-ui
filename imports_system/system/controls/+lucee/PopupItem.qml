@@ -99,14 +99,8 @@ AbstractPopupItem {
         anchors.margins: Sizes.dp(17)
         width: Sizes.dp(50)
         height: Sizes.dp(50)
-
-        contentItem: NeptuneIconLabel {
-            anchors.centerIn: parent
-            icon.color: Style.accentColor
-            icon.name: "ic-close"
-            iconScale: Sizes.scale
-        }
-
+        icon.color: Style.accentColor
+        icon.name: "ic-close"
         onClicked: { root.closeHandler(); }
     }
 }

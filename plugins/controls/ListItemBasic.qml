@@ -40,6 +40,7 @@ import QtGraphicalEffects 1.0
 import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
+import shared.controls 1.0
 
 /*!
     \qmltype ListItemBasic
@@ -172,9 +173,9 @@ ItemDelegate {
                 Layout.fillHeight: true
                 implicitWidth: root.implicitHeight
                 visible: root.icon.source.toString() !== "" || root.icon.name !== ""
-                IconLabel {
+                NeptuneIconLabel {
                     opacity: Style.opacityHigh
-                    scale: Sizes.scale
+                    iconScale: Sizes.scale
                     spacing: root.spacing
                     mirrored: root.mirrored
                     display: root.display

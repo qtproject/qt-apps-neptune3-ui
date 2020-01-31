@@ -67,7 +67,7 @@ Item {
         id: buttonGroup
     }
 
-    HomeButton {
+    ToolButton {
         id: homeButton
 
         anchors.top: parent.top
@@ -75,8 +75,9 @@ Item {
         anchors.leftMargin: Sizes.dp(134) - width/2
         width: Sizes.dp(90)
         height: Sizes.dp(90)
-
+        icon.color: Style.contrastColor
         icon.name: "ic-menu-home"
+        display: NeptuneIconLabel.IconOnly
         ButtonGroup.group: buttonGroup
         checkable: true
         checked: !_isThereActiveApp
@@ -111,17 +112,6 @@ Item {
         icon.name: useCloseIcon ? "ic-close" : "ic-menu-allapps"
         icon.color: "white"
         checkable: true
-
-        // content item of ToolButton is not scaled correctly in some screen resolutions
-        // need to revert this changes once: QTBUG-72569 is fixed.
-        contentItem: null
-        NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(35)
-            height: Sizes.dp(35)
-            icon: gridButton.icon
-            color: gridButton.icon.color
-        }
         onClicked: gridButton.gridOpen = !gridButton.gridOpen
     }
 

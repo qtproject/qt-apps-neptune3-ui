@@ -64,17 +64,6 @@ AbstractCenterConsole {
         onClicked: volumePopup.open()
         enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
-
-        // content item of ToolButton is not scaled correctly in some screen resolutions
-        // need to revert this changes once: QTBUG-72569 is fixed.
-        contentItem: null
-        NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(50)
-            height: Sizes.dp(50)
-            icon: leftIcon.icon
-            color: leftIcon.icon.color
-        }
     }
 
     ToolButton {
@@ -88,17 +77,6 @@ AbstractCenterConsole {
         onClicked: about.open()
         enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
-
-        // content item of ToolButton is not scaled correctly in some screen resolutions
-        // need to revert this changes once: QTBUG-72569 is fixed.
-        contentItem: null
-        NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(50)
-            height: Sizes.dp(50)
-            icon: rightIcon.icon
-            color: rightIcon.icon.color
-        }
     }
 
     PopupItemLoader {

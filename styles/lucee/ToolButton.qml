@@ -31,9 +31,9 @@
 ****************************************************************************/
 
 import QtQuick 2.10
-import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
-import QtQuick.Controls.impl 2.3
+import QtQuick.Templates 2.5 as T
+import QtQuick.Controls 2.5
+import QtQuick.Controls.impl 2.5
 
 import shared.utils 1.0
 import shared.controls 1.0
@@ -43,10 +43,10 @@ import shared.Sizes 1.0
 T.ToolButton {
     id: control
 
-    implicitWidth: Math.max(background ? background.implicitWidth : 0,
-                            contentItem ? contentItem.implicitWidth + leftPadding + rightPadding : 0)
-    implicitHeight: Math.max(background ? background.implicitHeight : 0,
-                             contentItem ? contentItem.implicitHeight + topPadding + bottomPadding : 0)
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding)
     baselineOffset: contentItem ? contentItem.y + contentItem.baselineOffset : 0
 
     padding: Sizes.dp(6)
@@ -58,6 +58,11 @@ T.ToolButton {
     icon.color: (checked || highlighted) ? Style.accentColor : Style.contrastColor
 
     scale: pressed ? 1.1 : 1.0
+
+    property alias iconFillMode: iconLabel.iconFillMode
+    property alias iconRectWidth: iconLabel.iconRectWidth
+    property alias iconRectHeight: iconLabel.iconRectHeight
+
     Behavior on scale { NumberAnimation { duration: 50 } }
 
     Cursor {
@@ -71,6 +76,8 @@ T.ToolButton {
     }
 
     contentItem: NeptuneIconLabel {
+        id: iconLabel
+
         readonly property real textOpacity: !enabled ? Style.defaultDisabledOpacity
                                                      : control.checkable && !control.checked && control.display === AbstractButton.TextUnderIcon // ToolsColumn
                                                        ? Style.opacityLow : Style.opacityHigh

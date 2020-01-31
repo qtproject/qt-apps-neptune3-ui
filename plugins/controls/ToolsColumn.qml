@@ -108,6 +108,32 @@ ColumnLayout {
     spacing: Sizes.dp(24)
 
     /*!
+        \qmlproperty enumeration ToolsColumn::iconFillMode
+
+        Set this property to define what happens when the item's icon image has a different size
+        than the item. Please refer to \l{Image::fillMode} for possible values.
+        For values other than Image.Pad \l{ToolsColumn::iconRectWidth} and
+        \l {ToolsColumn::iconRectHeight} should be defined.
+    */
+    property int iconFillMode: Image.Pad
+
+    /*!
+        \qmlpropery real ToolsColumn::iconRectWidth
+
+        Set this property to define width of rectangle area for icon when
+        \l{ToolsColumn::iconfillMode} has other value than Image.Pad.
+    */
+    property real iconRectWidth: 0
+
+    /*!
+        \qmlpropery real ToolsColumn::iconRectHeight
+
+        Set this property to define height of rectangle area for icon when
+        \l{ToolsColumn::iconfillMode} has other value than Image.Pad.
+    */
+    property real iconRectHeight: 0
+
+    /*!
         \qmlproperty int ToolsColumn::currentIndex
 
         This property holds the current selected index of the tools column.
@@ -122,8 +148,9 @@ ColumnLayout {
 
         This property holds the current selected text of the tools column.
     */
-    readonly property string currentText: model ? model.get(currentIndex).text : ""
-
+    readonly property string currentText: model && model.count > currentIndex
+                                                ?  model.get(currentIndex).text
+                                                : ""
     /*!
         \qmlproperty string ToolsColumn::currentItem
 
@@ -166,6 +193,9 @@ ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
             objectName: model.objectName ? model.objectName : ""
             baselineOffset: 0
+            iconFillMode: root.iconFillMode
+            iconRectWidth: root.iconRectWidth
+            iconRectHeight: root.iconRectHeight
             checkable: true
             checked: root.currentIndex === index
             icon.name: model.icon ? (checked ? model.icon + "_ON" : model.icon + "_OFF") : ""

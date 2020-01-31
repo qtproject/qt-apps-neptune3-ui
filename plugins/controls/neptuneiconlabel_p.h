@@ -35,6 +35,8 @@
 #include <QtQuick/private/qquickitem_p.h>
 #include <QtQuickControls2/private/qtquickcontrols2global_p.h>
 #include <QtQuickTemplates2/private/qquickicon_p.h>
+#include <QtQuick/private/qquickimage_p.h>
+#include <QtQuick/private/qquickrectangle_p.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -91,6 +93,14 @@ public:
     QQuickIcon icon;
     QQuickIconImage *image;
     QQuickMnemonicLabel *label;
+    QQuickImage::FillMode iconFillMode{QQuickImage::FillMode::Pad};
+    qreal iconRectWidth{0.0};
+    qreal iconRectHeight{0.0};
+
+private:
+    void applyIconScaleForPadMode();
+    void applyIconRect();
+    void applyIconSizeAndPosition(const QRectF &iconRect);
 };
 
 QT_END_NAMESPACE
