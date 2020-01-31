@@ -73,24 +73,31 @@ Window {
     Connections {
         id: windowConns
         target: root
+        readonly property string widgetStates: root.store.settingsStore.value("widgetStates"
+                , root.store.settingsStore.defaultWidgetStates)
+        readonly property string autostartApps: root.store.settingsStore.value("autostartApps"
+                , root.store.settingsStore.defaultAutostartApps)
+        readonly property string autorecoverApps: root.store.settingsStore.value("autorecoverApps"
+                , root.store.settingsStore.defaultAutorecoverApps)
         onFrameSwapped: {
             /*
-                        The UI is loaded in two steps
-                        This is done in order to ensure that something is rendered on the screen as
-                        soon as possible during start up.
+                The UI is loaded in two steps
+                This is done in order to ensure that something is rendered on the screen as
+                soon as possible during start up.
 
-                        Only the lightest elements are present upon creation of this component.
-                        They are the ones that will be present on the very first rendered frame.
+                Only the lightest elements are present upon creation of this component.
+                They are the ones that will be present on the very first rendered frame.
 
-                        Others, which are more complex and thus take more time to load, will be
-                        loaded afterwards, once this function is called.
-                     */
-            root.store.applicationModel.populate(root.store.settingsStore.value("widgetStates", root.store.settingsStore.defaultWidgetStates),
-                root.store.settingsStore.value("autostartApps", root.store.settingsStore.defaultAutostartApps),
-                root.store.settingsStore.value("autorecoverApps", root.store.settingsStore.defaultAutorecoverApps));
-            centerConsole.mainContentArea.active = true;
-            notificationLoader.active = true;
-            windowConns.enabled = false;
+                Others, which are more complex and thus take more time to load, will be
+                loaded afterwards, once this function is called.
+             */
+            if (root.store.applicationModel.count > 0) {
+                root.store.applicationModel.populate(
+                            widgetStates, autostartApps, autorecoverApps);
+                centerConsole.mainContentArea.active = true;
+                notificationLoader.active = true;
+                windowConns.enabled = false;
+            }
         }
     }
 
