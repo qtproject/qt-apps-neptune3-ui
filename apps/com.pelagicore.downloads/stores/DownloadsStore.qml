@@ -45,6 +45,7 @@ Item {
     property alias categoryModel: catModel
     property alias appStoreConfig: appStoreConfig
     property string appServerUrl: appStoreConfig.serverUrl
+    property alias cpuArch: appStoreConfig.cpuArch
     property int categoryid: 0
     property string filter: ""
     property real currentInstallationProgress: 0.0
@@ -82,7 +83,9 @@ Item {
             if (data !== 0) {
                 if (data.status === "ok") {
                     console.log(Logging.apps, "start downloading");
-                    var icon = root.appServerUrl + "/app/icon?id=" + packageId;
+                    var icon = root.appServerUrl
+                            + "/app/icon?id=" + packageId
+                            + "&architecture=" + root.cpuArch;
                     var installID = PackageManager.startPackageInstallation(data.url);
                     PackageManager.acknowledgePackageInstallation(installID);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
@@ -204,7 +207,9 @@ Item {
             var packageName = "";
 
             if (packageId !== "") {
-                icon = root.appServerUrl + "/app/icon?id=" + packageId;
+                icon = root.appServerUrl
+                        + "/app/icon?id=" + packageId
+                        + "&architecture=" + root.cpuArch;
                 pkg = PackageManager.package(packageId);
                 packageName = root.getPackageName(packageId);
             }
@@ -228,7 +233,9 @@ Item {
             var packageName = "";
 
             if (packageId !== "") {
-                icon = root.appServerUrl + "/app/icon?id=" + packageId;
+                icon = root.appServerUrl
+                        + "/app/icon?id=" + packageId
+                        + "&architecture=" + root.cpuArch;
                 pkg = PackageManager.package(packageId);
 
                 // cannot use name module from the application manager, because it won't work when

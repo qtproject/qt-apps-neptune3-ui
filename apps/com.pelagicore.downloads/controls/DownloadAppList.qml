@@ -54,7 +54,9 @@ ListView {
 
         width: Sizes.dp(720)
         height: Sizes.dp(100)
-        icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
+        icon.source: root.store.appServerUrl
+                     + "/app/icon?id=" + model.id
+                     + "&architecture=" + store.cpuArch
         text: model.name
         subText: model.id
         secondaryText: delegatedItem.isInstalled ? root.store.getInstalledPackageSizeText(model.id)
