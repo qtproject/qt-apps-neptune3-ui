@@ -63,13 +63,14 @@
     formatType: am-configuration
     ---
     # basic AM functionality - the builtin apps are in 'apps'.
-    # installations will go into the standard /tmp/am hierarchy
+    # installations will go into the standard QStandardPath AppLocalDataLocation
+    # (e.g. ~/.local/share/Luxoft Sweden AB/Neptune UI) /am hierarchy
 
     applications:
-    builtinAppsManifestDir: "${CONFIG_PWD}/apps"
-    installedAppsManifestDir: "/tmp/neptune3-ui/manifests"
-    appImageMountDir: "/tmp/neptune3-ui/image-mounts"
-    database: "/tmp/neptune3-ui/apps.db"
+      builtinAppsManifestDir: "${CONFIG_PWD}/apps"
+      installedAppsManifestDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/manifests"
+      installationDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
+      documentDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
 
     # QML apps will be able to import from modules...
 
@@ -88,35 +89,34 @@
     # ... as well as the SystemUI
 
     ui:
-    fullscreen: no
-    style: "${CONFIG_PWD}/styles/neptune"
-    iconThemeName: "neptune"
-    iconThemeSearchPaths: [ "${CONFIG_PWD}/imports_shared/assets/icons" ]
-    mainQml: "${CONFIG_PWD}/Main.qml"
-    importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
-    windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
+        fullscreen: no
+        style: "${CONFIG_PWD}/styles/neptune"
+        iconThemeName: "neptune"
+        iconThemeSearchPaths: [ "${CONFIG_PWD}/imports_shared/assets/icons" ]
+        mainQml: "${CONFIG_PWD}/Main.qml"
+        importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
+        windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/neptune/sysui/ic-menu-home.png"
 
     systemProperties:
         public:
-        showCluster: yes
-        showHUD: yes
-        devMode: yes
-        hardwareVariant: 'high'
-        #Qt Safe Renderer settings
-        qsrEnabled: no
-        qsrServerAddress: '127.0.0.1'
-        qsrServerPort: '1111'
-        showSystemAppsInLauncher: no
+            showCluster: yes
+            showHUD: yes
+            devMode: yes
+            hardwareVariant: 'high'
+            #Qt Safe Renderer settings
+            qsrEnabled: no
+            qsrServerAddress: '127.0.0.1'
+            qsrServerPort: '1111'
+            showSystemAppsInLauncher: no
         private:
-        appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
-        orientation: 'Portrait'
-        adjustSizesForScreen: yes
+            appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+            orientation: 'Portrait'
+            adjustSizesForScreen: yes
 
     # development setup: no security
-
     flags:
-    noSecurity: yes
-    noUiWatchdog: yes
+        noSecurity: yes
+        noUiWatchdog: yes
     \endcode
 
    The YAML file contains options for system properties to show screens other than the Center

@@ -8,6 +8,8 @@ formatType: am-configuration
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
   installedAppsManifestDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/manifests"
+  installationDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
+  documentDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
 
 # QML apps will be able to import from modules...
 
@@ -73,12 +75,3 @@ logging:
     - "*.warning=true"
     - "*.critical=true"
     - "cursor.navigation=false"
-
-# simulate an internal and a SD-card installation location
-
-installationLocations:
-- id: "internal-0"
-  installationPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
-  documentPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
-  mountPoint: "${stdpath:AppLocalDataLocation}"
-  isDefault: true
