@@ -37,6 +37,7 @@ functional safety standards and it depends on Qt classes.
 You should not use this example in production environment.
 */
 #include <QtGui>
+#include <QtGui/QFontDatabase>
 
 #include <QtSafeRenderer/qsafelayout.h>
 #include <QtSafeRenderer/qsafechecksum.h>
@@ -50,6 +51,8 @@ You should not use this example in production environment.
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
+
+    QFontDatabase::addApplicationFont("imports_shared/assets/fonts/DejaVuSans.ttf");
 
     QDir::setCurrent(qApp->applicationDirPath());
 

@@ -89,7 +89,7 @@ Item {
         runtimeEditable: true
         font.bold: true
         font.pixelSize: 40
-        font.family: "Open Sans"
+        font.family: "DejaVu Sans"
         visible: false
         anchors.centerIn: root
         horizontalAlignment: Text.AlignHCenter
@@ -110,7 +110,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             anchors.horizontalCenter: safeSpeedText.horizontalCenter
             anchors.bottom: safeSpeedText.top
@@ -126,7 +126,7 @@ Item {
             runtimeEditable: true
             font.bold: true
             font.pixelSize: 80
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
             x: 185
@@ -140,7 +140,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             text: "km/h"
             visible: false
             anchors.top: safeSpeedText.bottom
@@ -229,7 +229,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             anchors.bottom: safePowerText.top
             anchors.horizontalCenter: safePowerText.horizontalCenter
@@ -246,7 +246,7 @@ Item {
             runtimeEditable: true
             font.bold: true
             font.pixelSize: 80
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             x: 570
             y: 362
@@ -260,7 +260,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             text: "%"
             visible: false
             anchors.top: safePowerText.bottom

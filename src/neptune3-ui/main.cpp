@@ -39,6 +39,7 @@
 #include <QtAppManPackage/package.h>
 #include <QtAppManInstaller/sudo.h>
 #include <QtAppManWindow/touchemulation.h>
+#include <QtGui/QFontDatabase>
 #include <QGuiApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
@@ -153,6 +154,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
+
+        QFontDatabase::addApplicationFont(QCoreApplication::applicationDirPath() + "/imports_shared/assets/fonts/DejaVuSans.ttf");
 
         auto ctx = a.qmlEngine()->rootContext();
         ctx->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
