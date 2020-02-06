@@ -147,6 +147,7 @@ Item {
 
     Loader {
         id: virtualKeyboard
+        asynchronous: true
         source: "VirtualKeyboard.qml"
         anchors.left: parent.left
         anchors.right: parent.right
