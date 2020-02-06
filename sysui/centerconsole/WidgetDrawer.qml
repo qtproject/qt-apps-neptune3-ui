@@ -54,10 +54,10 @@ MouseArea {
     drag.target: root
     drag.axis: Drag.XAxis
     drag.filterChildren: dragEnabled
-    drag.minimumX: 0
-    drag.maximumX: root.width - stickOutWidth
+    drag.minimumX: d.layoutMirroringEnabled ? - d.widthWithoutStick : 0
+    drag.maximumX: d.layoutMirroringEnabled ? 0 : d.widthWithoutStick
 
-    opacity: 0.5 + 0.5*(1 - (root.x - drag.minimumX)/(drag.maximumX - drag.minimumX))
+    opacity: 0.5 + 0.5 * (1 - Math.abs(root.x) / d.widthWithoutStick)
 
     // Whether the drag behavior is enabled.
     property bool dragEnabled: true
@@ -102,12 +102,19 @@ MouseArea {
         property int direction
         property bool dragging: false
         readonly property real minimumDrag: Sizes.dp(90)
+        readonly property real widthWithoutStick: root.width - stickOutWidth
+        readonly property bool layoutMirroringEnabled: root.LayoutMirroring.enabled
+
+        onLayoutMirroringEnabledChanged: {
+            d.dragging = true
+            d.applyOpenState()
+        }
 
         function applyOpenState() {
             if (root.open) {
-                root.x = root.drag.minimumX;
+                root.x = 0;
             } else {
-                root.x = root.drag.maximumX;
+                root.x = d.layoutMirroringEnabled ? - d.widthWithoutStick : d.widthWithoutStick;
             }
         }
     }
@@ -115,7 +122,8 @@ MouseArea {
         if (!d.dragging) {
             return;
         }
-        if (x > d.lastX) {
+        let isDirectionForOpening = d.layoutMirroringEnabled ? (x < d.lastX) : (x > d.lastX)
+        if (isDirectionForOpening) {
             if (d.direction !== 1) {
                 d.direction = 1;
                 d.startX = x;
