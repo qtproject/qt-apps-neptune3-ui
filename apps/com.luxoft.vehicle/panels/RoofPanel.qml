@@ -90,26 +90,15 @@ Item {
     }
 
     VehicleButton {
-        id: roofOpenButton
-        objectName: "roofOpenButton"
+        id: roofButton
+        objectName: "roofButton"
 
-        anchors.top: om.verticalCenter
-        anchors.topMargin: -height
-        anchors.right: parent.right
+        anchors.bottom: om.bottom
+        anchors.bottomMargin: Sizes.dp(135)
+        anchors.horizontalCenter: parent.horizontalCenter
         state: "REGULAR"
-        text: qsTr("Close")
-        onClicked: root.newRoofOpenProgressRequested(0.0)
-    }
-
-    VehicleButton {
-        id: roofCloseButton
-        objectName: "roofCloseButton"
-
-        anchors.top: om.verticalCenter
-        anchors.topMargin: -height
-        anchors.left: parent.left
-        state: "REGULAR"
-        text: qsTr("Open")
-        onClicked: root.newRoofOpenProgressRequested(1.0)
+        text: root.roofOpenProgress > 0.0 ? qsTr("Close") : qsTr("Open")
+        onClicked: root.roofOpenProgress < 1.0 ? root.newRoofOpenProgressRequested(1.0) :
+                                                 root.newRoofOpenProgressRequested(0.0)
     }
 }
