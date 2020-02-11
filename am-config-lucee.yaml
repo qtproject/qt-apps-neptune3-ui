@@ -51,7 +51,7 @@ systemProperties:
       qsrServerPort: '1111'
       showSystemAppsInLauncher: no
     private:
-      appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+      appStoreServerUrl: 'http://demoappsdeploy.qt.io:8513'
       userName: 't'
       userPassword: 't'
       imei: '112163001487801'
