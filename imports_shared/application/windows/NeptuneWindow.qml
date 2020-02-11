@@ -70,7 +70,7 @@ import shared.Sizes 1.0
 ApplicationManagerWindow {
     id: root
 
-    LayoutMirroring.enabled: isRightToLeft || Config.rtlMode
+    LayoutMirroring.enabled: Config.rtlMode
     LayoutMirroring.childrenInherit: true
 
     color: "transparent"
@@ -80,7 +80,7 @@ ApplicationManagerWindow {
         This property holds whether the current locale uses the right-to-left
         text direction (RTL)
     */
-    readonly property bool isRightToLeft: Qt.locale().textDirection === Qt.RightToLeft
+    readonly property bool isRightToLeft: Config.rtlMode
 
     onWindowPropertyChanged: {
         switch (name) {

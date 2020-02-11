@@ -122,6 +122,7 @@ Store {
         onLanguageChanged: {
             if (language !== Config.languageLocale) {
                 Config.languageLocale = language;
+                uiSettings.setRtlMode(Qt.locale(language).textDirection === Qt.RightToLeft)
             }
         }
         onThemeChanged: root.updateThemeRequested(uiSettings.theme)

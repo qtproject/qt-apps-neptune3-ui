@@ -80,6 +80,7 @@ QtObject {
     function updateLanguage(languageCode, language) {
         console.log(helper.category, 'updateLanguage: ' + languageCode)
         uiSettings.setLanguage(languageCode);
+        uiSettings.setRtlMode(Qt.locale(languageCode).textDirection === Qt.RightToLeft);
         helper.showNotification(qsTr("UI Language changed"), qsTr("UI Language changed into %1 (%2)").arg(language).arg(languageCode));
     }
 
