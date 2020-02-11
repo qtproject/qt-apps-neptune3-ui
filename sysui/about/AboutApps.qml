@@ -48,6 +48,28 @@ Item {
 
     property var applicationModel
 
+    function isPackageBuiltIn(appId) {
+        var app = ApplicationManager.application(appId)
+        return app && app.builtIn;
+    }
+
+    function isApplicationBusy(appId) {
+        var taskIds = ApplicationInstaller.activeTaskIds()
+        if (taskIds.includes(appId)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function uninstallApplication(appId) {
+        if (isApplicationBusy(appId)) {
+            console.warn("Application busy... Abort uninstall", appId);
+            return;
+        }
+        ApplicationInstaller.removePackage(appId, false /*keepDocuments*/, true /*force*/);
+    }
+
     Instantiator {
         model: root.applicationModel
         delegate: QtObject {
@@ -137,7 +159,7 @@ Item {
         id: listView
         clip: true
         model: runningAppsModel
-        spacing: Sizes.dp(20)
+        spacing: Sizes.dp(10)
         anchors.top: infoLabel.bottom
         anchors.topMargin: Sizes.dp(30)
         anchors.left: parent.left
@@ -151,8 +173,9 @@ Item {
         id: itemDelegate
         Item {
             id: delegateRoot
+
             width: parent.width
-            implicitHeight: Sizes.dp(240)
+            implicitHeight: Sizes.dp(265)
 
             function getWindowTypeName(window) {
 
@@ -187,80 +210,124 @@ Item {
                 }
             }
 
-            ToolButton {
-                anchors.verticalCenter: delegateRoot.verticalCenter
-                anchors.right: parent.right
-                anchors.rightMargin:  Sizes.dp(20)
-                icon.name: appInfo.running ? "ic-close" : "ic-start"
-                onClicked: appInfo.running ? model.appInfo.stop() : model.appInfo.start()
-            }
+            ColumnLayout {
+                anchors.fill: parent; spacing: 0.0
 
-            Column {
-                id: column
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.rightMargin: Sizes.dp(60)
-                anchors.verticalCenter: delegateRoot.verticalCenter
-
-                Label {
-                    text: model.appInfo ? model.appInfo.name : qsTr("Unknown app")
-                }
-
-                Row {
-                    Switch {
-                        id: autostartSwitch
-                        font.pixelSize: Sizes.fontSizeXS
-                        text: qsTr("Autostart")
-                        opacity: Style.opacityMedium
-                        Component.onCompleted: {
-                            checked = model.appInfo.autostart
-                        }
-                        onCheckedChanged: {
-                            root.applicationModel.updateAutostart(model.appInfo.id, checked)
-                        }
+                RowLayout{
+                    Label {
+                        text: model.appInfo ? model.appInfo.name : qsTr("Unknown app")
+                        Layout.alignment: Qt.AlignVCenter
                     }
-                    Switch {
-                        id: autorecoverSwitch
+
+                    Item { Layout.fillWidth: true }
+
+                    ToolButton {
+                        icon.name: "ic-remove"
+                        visible: appInfo? !root.isPackageBuiltIn(appInfo.id) : false
+                        display: NeptuneIconLabel.IconOnly
+                        spacing: 0.0; padding: 0.0
+                        Layout.alignment: Qt.AlignVCenter; Layout.leftMargin: Sizes.dp(10)
+                        onClicked: root.uninstallApplication(appInfo.id)
+                    }
+
+                    Label {
+                        text: model.appInfo ? model.appInfo.id : ""
                         font.pixelSize: Sizes.fontSizeXS
-                        text: qsTr("Autorecover")
                         opacity: Style.opacityMedium
-                        checked: model.appInfo.autorecover
-                        onCheckedChanged: {
-                            root.applicationModel.updateAutorecover(model.appInfo.id, autorecoverSwitch.checked)
-                        }
+                        Layout.alignment: Qt.AlignVCenter; Layout.rightMargin: Sizes.dp(20)
                     }
                 }
 
-                Label {
-                    readonly property string memoryPSS: (processStatus.memoryPss.total / 1e6).toFixed(0)
-                    readonly property string memoryRSS: (processStatus.memoryRss.total / 1e6).toFixed(0)
-                    readonly property string cpuLoad: (processStatus.cpuLoad * 100).toFixed(1)
-                    text: qsTr("CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB").arg(cpuLoad).arg(memoryRSS).arg(memoryPSS)
-                    font.pixelSize: Sizes.fontSizeS
-                    opacity: Style.opacityMedium
-                    visible: model.appInfo.running
+                RowLayout {
+                    ColumnLayout {
+                        spacing: 0.0
+
+                        Label {
+                            readonly property string memoryPSS: (processStatus.memoryPss.total
+                                                                 / 1e6).toFixed(0)
+                            readonly property string memoryRSS: (processStatus.memoryRss.total
+                                                                 / 1e6).toFixed(0)
+                            readonly property string cpuLoad: (processStatus.cpuLoad
+                                                               * 100).toFixed(1)
+
+                            text: qsTr("CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB")
+                                            .arg(cpuLoad)
+                                            .arg(memoryRSS)
+                                            .arg(memoryPSS)
+                            font.pixelSize: Sizes.fontSizeS
+                            opacity: model.appInfo.running ? Style.opacityMedium : 0.0
+                            Layout.leftMargin: Sizes.dp(40)
+                        }
+
+                        RowLayout {
+
+                            Switch {
+                                font.pixelSize: Sizes.fontSizeXS
+                                text: qsTr("Autostart")
+                                Component.onCompleted: {
+                                    checked = model.appInfo.autostart
+                                }
+                                onCheckedChanged: {
+                                    root.applicationModel.updateAutostart(model.appInfo.id, checked)
+                                }
+                            }
+
+                            Switch {
+                                id: autorecoverSwitch
+
+                                font.pixelSize: Sizes.fontSizeXS
+                                text: qsTr("Autorecover")
+                                checked: model.appInfo.autorecover
+                                onCheckedChanged: {
+                                    root.applicationModel.updateAutorecover(model.appInfo.id,
+                                                                        autorecoverSwitch.checked)
+                                }
+                            }
+
+                            Item { Layout.fillWidth: true }
+
+                            ToolButton {
+                                icon.name: appInfo.running ? "ic-close" : "ic-start"
+                                display: NeptuneIconLabel.IconOnly
+                                font.pixelSize: Sizes.fontSizeXS
+                                spacing: 0.0; padding: 0.0
+                                Layout.alignment: Qt.AlignVCenter; Layout.rightMargin: Sizes.dp(10)
+                                onClicked: {
+                                    appInfo.running ? model.appInfo.stop() : model.appInfo.start()
+                                }
+                            }
+                        }
+                    }
+
+
                 }
 
-                Column {
-                    width: parent.width
+                ColumnLayout {
                     visible: model.appInfo ? !!model.appInfo.window : false
-                    leftPadding: Sizes.dp(40)
+                    spacing: 0.0
+                    Layout.fillWidth: true; Layout.leftMargin: Sizes.dp(40)
+
                     Label {
                         text: delegateRoot.getWindowTypeName(model.appInfo.window)
                         font.pixelSize: Sizes.fontSizeS
                     }
+
                     RowLayout {
                         width: parent.width - parent.leftPadding
+
                         Label {
-                            Layout.fillWidth: true
-                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstWindowFrame === -1
-                                                                           ? qsTr("N/A")
-                                                                           : model.appInfo.timeToFirstWindowFrame)
+                            text: qsTr("Time to first frame: %1 ms")
+                                        .arg(model.appInfo.timeToFirstWindowFrame === -1
+                                                            ? qsTr("N/A")
+                                                            : model.appInfo.timeToFirstWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
                             opacity: Style.opacityMedium
+                            Layout.fillWidth: true
                         }
+
                         Switch {
                             id: primarySwitch
+
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
@@ -272,30 +339,32 @@ Item {
                             visible: !model.appInfo.isSystemApp
                         }
                     }
-                    bottomPadding: applicationICWindowColumn.visible ? 0 : Sizes.dp(20)
                 }
 
-                Column {
-                    id: applicationICWindowColumn
-                    width: parent.width
+                ColumnLayout {
                     visible: model.appInfo ? !!model.appInfo.icWindow : false
-                    leftPadding: Sizes.dp(40)
+                    spacing: 0.0
+                    Layout.fillWidth: true; Layout.leftMargin: Sizes.dp(40)
+
                     Label {
                         text: delegateRoot.getWindowTypeName(model.appInfo.icWindow)
                         font.pixelSize: Sizes.fontSizeS
                     }
+
                     RowLayout {
-                        width: parent.width - parent.leftPadding
                         Label {
-                            Layout.fillWidth: true
-                            text: qsTr("Time to first frame: %1 ms").arg(model.appInfo.timeToFirstICWindowFrame === -1
-                                                                         ? qsTr("N/A")
-                                                                         : model.appInfo.timeToFirstICWindowFrame)
+                            text: qsTr("Time to first frame: %1 ms")
+                                            .arg(model.appInfo.timeToFirstICWindowFrame === -1
+                                                           ? qsTr("N/A")
+                                                           : model.appInfo.timeToFirstICWindowFrame)
                             font.pixelSize: Sizes.fontSizeXS
                             opacity: Style.opacityMedium
+                            Layout.fillWidth: true
                         }
+
                         Switch {
                             id: secondarySwitch
+
                             font.pixelSize: Sizes.fontSizeXS
                             text: qsTr("Performance monitor")
                             opacity: Style.opacityMedium
@@ -306,8 +375,9 @@ Item {
                             }
                         }
                     }
-                    bottomPadding: Sizes.dp(20)
                 }
+
+                Item { Layout.fillHeight: true }
             }
 
             Image {
