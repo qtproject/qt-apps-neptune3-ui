@@ -43,6 +43,8 @@
    implementing this kind of app, without requiring separate APIs and a dedicated architecture to
    access vehicle function data.
 
+   \image companion-app.png
+
    \section1 Using the app
 
    The app is built and installed along with Neptune 3 UI. To start the app, run the

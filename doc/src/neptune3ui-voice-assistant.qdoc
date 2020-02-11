@@ -1,0 +1,61 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the Neptune 3 UI.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+ \page neptune3ui-voice-assistant.html
+   \title Neptune 3 UI - Voice Assistant
+   \brief Neptune 3 UI Voice Assistant description
+
+   The Neptune 3 UI provides optional support for a voice assistant,
+   that allows user to operate UI features by voice commands.
+   Amazon's Alexa (c) is currently used as a voice assistant.
+
+   The voice assistant app can be installed via the Downloads App.
+   Please note, that the app might not be available for all platforms and
+   CPU architectures.
+
+   A dedicated button for the activation of Alexa is available in the
+   Neptune 3 UI status bar after a successful installation:
+
+   \image alexa-status-bar-button.png
+
+   In order to appear in Neptune 3 UI status bar, the window inside the voice
+   assistant app should have window property "windowType", that is
+   equal to "statusbar":
+   \code
+   setWindowProperty("windowType", "statusbar")
+   \endcode
+   It is possible to get available space inside status bar by using:
+   \code
+   Config.statusBarHeight
+   \endcode
+   The Alexa app sources can be downloaded from Qt Voice Assistant repository at:
+   \l {https://code.qt.io/cgit/qt/qtvoiceassistant.git/}{Qt Voice Assistant}
+
+
+*/

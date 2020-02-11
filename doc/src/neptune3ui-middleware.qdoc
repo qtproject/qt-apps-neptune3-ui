@@ -130,6 +130,7 @@
          \l {Generate QtRemoteObjects based backends with the Qt IVI Generator} for a more
          detailed explanation and a walkthrough on generating middleware services.
       \li See \l{Qt IVI Simulation System} for more info about simulations.
+      \li See \l{Develop a Parking App}
    \endlist
 
 */

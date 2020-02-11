@@ -38,7 +38,7 @@
 
    \section1 Full-Screen
 
-   \image center-stack-maximized-app.jpg
+   \image center-stack-maximized-app.png
 
    When applications are in full-screen they typically have two main
    content areas: top and bottom. The top area is for the most important
@@ -54,12 +54,12 @@
 
    \section2 Breaking the rules
 
-   Not every application should look the same. The best explaining cases are
-   probably Navigation and Camera apps since they include complex graphics.
-   Both applications need to look different from the default one,
+   Not every application should look the same. The best explaining case is
+   probably a Navigation app since it includes complex graphics.
+   The application needs to look different from the default one,
    but should give the same impression.
 
-   \image center-stack-nav.jpg
+   \image center-stack-nav.png
 
    Some applications might not need to display the ToolBar, neither the top area.
    Use a layout that fits the content of your application.

@@ -130,12 +130,12 @@ attachableAUT/app_vehicle = "localhost:7732"
      \li remotesettings-server
     \endlist
 
-    Consequently, for Neptune 3 UI you have to force Squish to ignore these processes to run the
+    Consequently, for Neptune 3 UI you need to force Squish to ignore these processes to run the
     tests. Otherwise these tests might not succeed from the beginning - for example because of a
     stopped D-Bus session.
 
     To \l{https://doc.froglogic.com/squish/latest/rg-ini-files.html#ignoredauts.txt}{ignore these processes}
-    you have to add or edit the \c ignoredauts.txt file in your Squish installation directory.
+    you need to add or edit the \c ignoredauts.txt file in your Squish installation directory.
     For macOS and other Unix-like Operating Systems, the file is in \c{SQUISHDIR/etc/}.
 
     For Linux, make the following change:

@@ -75,8 +75,8 @@
        \li Description
    \row
        \li \l{Neptune 3 UI - System UI}{System UI} (\c sysui)
-       \li Displays system information and provides a way to discover as well
-           as launch apps. Examples such as apps are the climate panel,
+       \li Displays system information and provides a way to discover and
+           launch apps. Examples of apps are the climate panel,
            notification center, app launcher, status bar, and so on.
    \row
        \li Apps (\c apps)
@@ -122,7 +122,7 @@
        \li Calendar App (\c calendarapp)
        \li An organizer app with some dummy data showing a set of
            appointments, the current year calendar and dummy weather forecast
-           with mockup data. Currently, there is no real backend implemented.
+           with mockup data. Currently, there is no real backend implemented
            for this app.
    \row
        \li Phone App (\c phoneapp)
@@ -140,7 +140,7 @@
            these external apps using the Downloads app.
    \row
        \li \l{Neptune 3 UI - General Settings App}{General Settings}
-           \c settingsapp)
+           (\c settingsapp)
        \li General Settings provides a set of common UI settings, such as
            language settings, theme settings, date and time settings, as well
            as color settings.
@@ -155,22 +155,32 @@
     \li \l{Center Console Display}
     \li \l{App Launcher}
     \li \l{App Widget}
+    \li \l{Volume Control}
+    \li \l{Sheets App}
     \li \l{Climate Bar}
     \li \l{Notification Center}
    \endlist
 
    \section2 Instrument Cluster
 
-   \image instrument-cluster.jpg
+   \image instrument-cluster.png
 
    The Instrument Cluster displays driving related information such as speed,
    cruise control parameters, gear and energy use (for an electric car). Users
    can also have information from the selected app windows, such as Music or
    Maps, ordered in views which they can navigate between. To switch
-   between the app windows available, the user can use Neptune 3 UI's remote
-   settings server or press \uicontrol{Ctrl+C} in a physical keyboard.
+   between the available app windows, the user can use \l{Neptune 3 UI Companion App}
+   or press \uicontrol{Ctrl+C} on a physical keyboard.
+   The tell-tales (for example, the icons of headlights, engine and oil check, or other)
+   in the upper part of the instrument cluster (see image below) are not shown by default
+   on start-up. Instead, they are shown by a simulation after a certain time and can
+   be controlled only by using the \l{Neptune 3 UI Companion App}. After UI-startup,
+   the default backend simulation is started. More information about the backend
+   simulation can be found in section \l{Neptune 3 UI - Middleware}.
 
-   \image instrument-cluster-nav.jpg
+   \image instrument-cluster-tt.png
+
+   \image instrument-cluster-nav.png
 
    The size and position of gauges and other driving related information are
    flexible to make space for views, like Maps that can take up more space
@@ -191,17 +201,59 @@
    with opengl ES 3.0 requirements set by \c{.yaml} config file.
    For more details, see \l{Qt Application Manager}.
 
+   \section3 Cluster App
+
+   \image cluster-app-main.png
+
+   A Cluster App has its own life cycle and can run independently from Neptune
+   3 UI, allowing user to see the whole scope of necessary information, like maps, music,
+   and vehicle view on the \l{Instrument Cluster} screen.
+
+   As a stand-alone app, Cluster App can be run on a separate board or in a dedicated hypervisor
+   domain. It connects to the same backends, as Neptune 3 UI, using a network connection.
+
+   Cluster App shares the design and generic components of Neptune 3 UI. For example, if the user
+   has changed the theme in Neptune 3 UI, the same one will be applied to Cluster App.
+
+   There are three types of views available for user to switch between:
+
+   \list
+    \li \l{Vehicle View}
+    \li \l{Music View}
+    \li \l{Maps View}
+   \endlist
+
+   \section4 Vehicle View
+
+  This view reflects the same state, which is shown (or would be shown if the cluster app is active)
+  in the cluster app displayed on the cluster window.
+
+   \image cluster-app-car.png
+
+   \section4 Music View
+
+  Music view is almost the same as the part of the music app (which is displayed in cluster window) except
+  for the track covers, that are not displayed.
+
+   \image cluster-app-music.png
+
+   \section4 Maps View
+
+   Maps View displays the map in the same way, as it's displayed in Neptune 3 UI \l{Maps App},
+   allowing user to see vehicle's location, destination and route right on the \l{Instrument Cluster}.
+
+   \image cluster-app-map.png
+
+   \note The Cluster App is a plain Qt/Qml app, it is not based on \l{Qt Application Manager}.
 
    \section2 Center Console Display
 
-   The Center Console display shows the multi-process capabilities; the fact
-   that we can run several apps simultaneously, with quick response and
-   smooth transitions. Even if, technically, we have different apps that run on
-   separate processes, the border between these apps is faded out. In turn, the
-   border between these apps and the System UI is also faded out, giving the
-   user an experience that this is one unified system.
+   The Center Console display demonstrates the multi-process capabilities. This means,
+   that several apps can be run simultaneously, using separate processes, providing
+   quick response and smooth transitions, and giving the user an experience of operating
+   one unified system.
 
-   \image center-stack.jpg
+   \image center-stack.png
 
    In addition to traditional apps, like Music, Phone, and Maps, the
    Center Console display also contains climate settings, system notifications,
@@ -209,12 +261,12 @@
 
    Some apps, such as Music, can be displayed in fullscreen or as widgets.
    Widgets are apps that run in a smaller window and adapt their content to fit
-   into a widget window. These widgets are used in the customizable home screen.
+   into a widget window. These \l{App Widget}s are used in the customizable home screen.
 
    When an app is maximized, it takes over the whole Center Console and shows
    the app's full content, as illustrated below.
 
-   \image center-stack-maximized-app.jpg
+   \image center-stack-maximized-app.png
 
    \section2 App Launcher
 
@@ -223,12 +275,25 @@
 
    \image grid-icon.jpg
 
-   Users can choose which app to maximize by tapping on the app icon. Users
-   can also define four top apps to show without expanding the launcher by
-   pressing and holding the selected app, and then dragging it to the desired
-   position as illustrated in the following image:
+   Users can choose which app to maximize by tapping on the app icon.
+   To go back to the home screen after maximizing the desired app,
+   user can tap on "Home" button as illustrated below:
 
-   \image center-stack-app-launcher.jpg
+   \image center-stack-maximized-app-home.png
+
+   Users can also define four top apps to show without expanding
+   the launcher by pressing and holding the selected app, and then
+   dragging it to the desired position as illustrated in the following image:
+
+   \image center-stack-app-launcher.png
+
+   The App Launcher displays pre-installed apps, such as Music, Maps, or Phone,
+   that are already there when Neptune 3 UI is started up for the first time,
+   but the user can also download and install other apps by tapping on Downloads App
+   as illustrated below:
+
+   \image app-launcher-downloads.png
+   \image app-launcher-downloads2.png
 
    \section2 App Widget
 
@@ -236,34 +301,122 @@
    choose which app to show on the home screen as a widget, by tapping on the
    Add Widget icon below the lowest widget and choose the desired app.
 
-   \image center-stack-add-widget.jpg
+   \image center-stack-add-widget.png
 
    Only apps that have a widget option are listed there. The user can also remove
    a widget from the home screen by tapping on the X icon at the widget's
    bottom left corner.
 
+   After an app is started and shows up full-screen, the bottom widget still remains
+   visible. This allows a quick access to the functionality provided by the widget even
+   if an app is in foreground. It is possible to swipe the widget to the side:
+
+   \image widget-bottom.png
+
+   \note Users can remove any widget from the Home screen, except the bottom one.
    \note Removing an app widget does not mean that the app is terminated. The
-   app might still be running in the background. See
-   \l{Neptune 3 UI System Dialog} for more information about terminating an
-   app.
+         app is still running in the background. See \l{Neptune 3 UI System Dialog}
+         for more information about terminating an app.
+
+   Users can maximize the desired app by tapping on "Maximize" icon in the upper right corner of a widget:
+
+   \image center-stack-max-app-from-widget.png
+
+   The widgets can also be resized by tapping and holding a line between two consequent widgets:
+
+   \image center-stack-resize-widget.png
+
+   \section2 Volume Control
+
+   To modify the volume, users can simply tap on a speaker icon in the bottom
+   left corner of the display and modify the volume using a stepper slider, as illustrated below:
+
+   \image volume-control.png
+
+   Users can also mute the sounds by tapping on the corresponding icon, as illustrated below:
+
+   \image volume-control-mute.png
+
+   \note The volume can be changed in any menu, except for \l{App Launcher}
+
+   \section2 Sheets App
+
+   \image sheets-app.png
+
+   The Sheets App provides information about UI controls used in the Neptune 3 UI and can be
+   used as a UI component gallery for development purposes. All available UI controls are listed
+   in the following categories:
+
+   \list
+        \li Button
+        \li ListItem
+        \li Notifications
+        \li Popups
+        \li ProgressBar
+        \li Slider
+        \li ToolButton
+
+   \endlist
+
+   \section3 Button
+
+   \image sheets-app-button.png
+
+   \section3 ListItem
+
+   \image sheet-app-listitem.png
+
+   \section3 Notifications
+
+   \image sheets-app-notification.png
+
+   \section3 Popups
+
+   \image sheets-app-popups.png
+   \image sheets-app-popupcolor.png
+
+   \section3 ProgressBar
+
+   \image sheets-app-progress-bar.png
+
+   \section3 Slider
+
+   \image sheets-app-slider
+
+   \section3 ToolButton
+
+   \image sheets-app-toolbutton.png
 
    \section2 Climate Bar
-
-   \image center-stack-climate.jpg
 
    The Climate Bar is located at the bottom of the \l{Center Console Display}.
    Tapping on it displays a climate panel with some simulation data interface
    to \l{Qt IVI} as shown in the following image:
 
+   \image center-stack-climate.png
+
    \section2 Notification Center
 
-   \image center-stack-notification-center.jpg
+   \image center-stack-notification-center.png
 
    The Notification Center stores notifications that are triggered in
    Neptune 3 UI. When a notification is triggered, first, a notification toast
    message is shown, and then it is stored in the Notification Center. The user
    can remove individual notifications in the Notification Center, or clear the
    Notification Center completely.
+
+   \section2 Starting the Neptune 3 UI on a desktop
+
+   Neptune 3 UI can also be started up on a desktop. The following picture
+   demonstrates the three windows (\l{Instrument Cluster}, \l{Center Console Display}
+   and HUD), that are started up on a desktop PC:
+
+   \image desktop_startup.png
+
+   The users can resize desktop windows, and the content will be scaled according
+   to the standard aspect ratio.
+   Moreover, the users can close the windows separately in the desktop mode,
+   and Neptune 3 UI shuts down only after the last window is closed.
 
    \section2 Keyboard Shortcuts
 
@@ -296,5 +449,29 @@
             \li Ctrl+V
             \li Activate or stop Voice Assistant.
    \endtable
+
+   \section2 Gamepad Shortcuts
+
+   Neptune 3 UI can be controlled by some buttons from Gamepad QML Type. If you'd
+   like to get more information on Gamepad QML Type, go to the corresponding section
+   of Qt Documentation.
+
+   The following buttons are currently used:
+
+   \table
+        \header
+            \li Shortcut
+            \li Description
+        \row
+            \li Button B
+            \li Moves the user to the next window in cluster
+        \row
+            \li Button R1
+            \li Switch to the next music track
+        \row
+            \li Button L1
+            \li Switch to the previous music track
+   \endtable
+
 
 */

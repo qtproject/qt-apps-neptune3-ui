@@ -42,7 +42,9 @@
    \li Startup Timings: provides the time spent from booting until the process starting
        point of the System UI and from the starting point of the System UI until the first
        frame to be drawn
-   \li CPU consumptions and memory consumptions
+   \li CPU consumptions and memory consumptions (CPU, GPU and Memory consumption values
+   should be taken as absolute values, because visualization of these values takes performance
+   resources as well)
    \li Network (Internet Connection) Status
    \li Connected Network Devices with all their address information
    \li Version: shows which Neptune 3 UI, Application Manager and Qt IVI versions are being
@@ -53,9 +55,9 @@
    On top of the list, there is also a switch button that is used to show the system monitor
    overlay on top of the UI to show the performance monitor numbers while operating the UI.
 
-   \image system-dialog-system.jpg
+   \image system-dialog-system.png
 
-   \image system-dialog-system2.jpg
+   \image system-dialog-system2.png
 
    \section1 List of Apps
 
@@ -99,7 +101,7 @@
    \l{Neptune 3 UI Apps}{Downloads app}). To remove the installed app, tap on the recyle bin icon
     near the app id.
 
-   \image system-dialog-apps.jpg
+   \image system-dialog-apps.png
 
    \section1 Performance Tab
 
@@ -107,11 +109,11 @@
    overlay of the \l{center console display} and the \l{instrument cluster}. It forces the System UI
    to constantly re-draw itself to get the current GPU/CPU consumptions.
 
-   \image system-dialog-performance.jpg
+   \image system-dialog-performance.png
 
    \section1 Diagnostics Tab
 
-   The last tab of the system dialog shows the output of the QtDiag diagnostic tool.
+   The last tab of the system dialog shows the output of the qtdiag diagnostic tool.
 
-   \image system-dialog-diagnostics.jpg
+   \image system-dialog-diagnostics.png
 */

@@ -137,7 +137,7 @@
    \note You must have \l{Qt 3D Studio} installed and your Qt installation must support
    OpenGL ES. For more details, see \l{Use the Qt 3D Studio Runtime}.
 
-   \section1 Vehicle Integration with Qt 3D
+   \section1 Vehicle 3D Model Integration with Qt 3D
 
    The diagram below shows the current structure of the Vehicle app sub-part built with Qt 3D:
 
@@ -158,7 +158,7 @@
    animation is done with: transform the door to another origin, rotate it, then transform it back.
    As a result, the door doesn't rotate around its own axis.
 
-   \section1 Vehicle Integration with Qt 3D Studio
+   \section1 Vehicle 3D Model Integration with Qt 3D Studio
 
    The integration scheme for the other sub-part, built with Qt 3D Studio, is similar to
    \l{3D Gauges Integration with Qt 3D Studio}. The diagram below further illustrates this:
