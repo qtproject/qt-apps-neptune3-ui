@@ -160,6 +160,11 @@ Store {
                         uiSettings.setLanguage("en_US");
                     }
                 }
+                // first connection of SystemUI to UISettings backend, got all variables
+                // from it, init available translations if languages list is empty
+                if (languages.length === 0) {
+                    languages = Config.translation.availableTranslations;
+                }
             }
         }
 
