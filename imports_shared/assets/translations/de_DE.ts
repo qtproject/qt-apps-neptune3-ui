@@ -20,51 +20,51 @@
     <name>AboutApps</name>
     <message>
         <source>Enabling performance monitoring forces the chosen application  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivierung der Leistungsüberwachung zwingt die gewählte App zum konstanten Neuzeichnen. Dies führt zum konstanten, nicht notwendigen GPU/CPU-Verbrauch.</translation>
     </message>
     <message>
         <source>Center Console Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Mittelkonsolenfenster</translation>
     </message>
     <message>
         <source>Bottom Bar Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Unteres Funktionsleistenfenster</translation>
     </message>
     <message>
         <source>HUD Window</source>
-        <translation type="unfinished"></translation>
+        <translation>HUD-Fenster</translation>
     </message>
     <message>
         <source>Instrument Cluster Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Kombiinstrumentfenster</translation>
     </message>
     <message>
         <source>No Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Kein Fenster</translation>
     </message>
     <message>
         <source>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: %L1 %; RSS: %L3 MB; PSS: %L4 MB</translation>
     </message>
     <message>
         <source>Time to first frame: %1 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit zum ersten Frame: %1 ms</translation>
     </message>
     <message>
         <source>Performance monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>Leistungsüberwachung</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation type="unfinished"></translation>
+        <translation>Autostart</translation>
     </message>
     <message>
         <source>Autorecover</source>
-        <translation type="unfinished"></translation>
+        <translation>automatische Wiederherstellung</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>n.z</translation>
     </message>
     <message>
         <source>Unknown app</source>
@@ -75,22 +75,22 @@
     <name>AboutPerformance</name>
     <message>
         <source>Center Console Performance Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>Leistungsüberlagerung der Mittelkonsole</translation>
     </message>
     <message>
         <source>Instrument Cluster Performance Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>Leistungsüberlagerung des Kombiinstruments</translation>
     </message>
     <message>
         <source>Enabling performance monitoring forces System UI  to constantly redraw itself, therefore having a constant, unnecessary, GPU/CPU consumption.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivierung der Leistunsmonitoring zwingt das System UI zum konstanten Neuzeichnen. Dies führt zum konstanten, nicht nötigen GPU/CPU-Verbrauch.</translation>
     </message>
 </context>
 <context>
     <name>AboutPopup</name>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <source>Running Apps</source>
@@ -98,15 +98,15 @@
     </message>
     <message>
         <source>Performance</source>
-        <translation type="unfinished"></translation>
+        <translation>Leistung</translation>
     </message>
     <message>
         <source>Diagnostics</source>
-        <translation type="unfinished"></translation>
+        <translation>Diagnose</translation>
     </message>
     <message>
         <source>Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Apps</translation>
     </message>
 </context>
 <context>
@@ -121,7 +121,7 @@
     <message>
         <source>Application window of %1 is not available.
                     Please remove the widget and try to restart the application</source>
-        <translation type="unfinished"></translation>
+        <translation>App-Fenster für %1 ist nicht verfügbar. Bitte entfernen Sie das Widget und versuchen Sie die App neu zu starten</translation>
     </message>
 </context>
 <context>
@@ -132,14 +132,14 @@
     </message>
     <message>
         <source>No more widgets available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es sind keine Widgets mehr verfügbar.</translation>
     </message>
 </context>
 <context>
     <name>AlbumArtPanel</name>
     <message>
         <source>There is no music available</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Musik ist verfügbar</translation>
     </message>
 </context>
 <context>
@@ -210,7 +210,7 @@
     </message>
     <message>
         <source>Partly cloudy</source>
-        <translation type="unfinished"></translation>
+        <translation>Teilweise bewölkt</translation>
     </message>
 </context>
 <context>
@@ -236,15 +236,15 @@
     <name>CenterConsoleMonitorOverlay</name>
     <message>
         <source>CPU: %1 %</source>
-        <translation type="unfinished">CPU: %1 %</translation>
+        <translation>CPU: %1 %</translation>
     </message>
     <message>
         <source>RAM: %1 MB (%2 %)</source>
-        <translation type="unfinished">RAM: %1 MB (%2 %)</translation>
+        <translation>RAM: %1 MB (%2 %)</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
 </context>
 <context>
@@ -270,18 +270,18 @@
     <name>ClimateButtonsGridPanel</name>
     <message>
         <source>DRIVER</source>
-        <translation type="unfinished"></translation>
+        <translation>FAHRER</translation>
     </message>
     <message>
         <source>PASSENGER</source>
-        <translation type="unfinished"></translation>
+        <translation>FAHRGAST</translation>
     </message>
 </context>
 <context>
     <name>ClimateContentPanel</name>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
 </context>
 <context>
@@ -321,11 +321,11 @@
     <name>CpuMonitor</name>
     <message>
         <source>CPU: </source>
-        <translation type="unfinished"></translation>
+        <translation>CPU: </translation>
     </message>
     <message>
         <source>50%</source>
-        <translation type="unfinished">50%</translation>
+        <translation>50%</translation>
     </message>
 </context>
 <context>
@@ -362,11 +362,11 @@
     <name>DialPowerPanel</name>
     <message>
         <source>% power</source>
-        <translation type="unfinished">% energy</translation>
+        <translation>% Energie</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
 </context>
 <context>
@@ -380,22 +380,22 @@
     <name>DialSpeedPanel</name>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">Km/h</translation>
+        <translation>Km/h</translation>
     </message>
 </context>
 <context>
     <name>DoorsPanel</name>
     <message>
         <source>Sun roof</source>
-        <translation type="unfinished">Sonnendach</translation>
+        <translation>Sonnendach</translation>
     </message>
     <message>
         <source>Doors</source>
-        <translation type="unfinished">Türen</translation>
+        <translation>Türen</translation>
     </message>
     <message>
         <source>Trunk</source>
-        <translation type="unfinished">Gepäckraum</translation>
+        <translation>Kofferraum</translation>
     </message>
     <message>
         <source>Close</source>
@@ -410,132 +410,132 @@
     <name>DownloadAppList</name>
     <message>
         <source>update</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisierung</translation>
     </message>
 </context>
 <context>
     <name>DownloadsStore</name>
     <message>
         <source>%1 Successfully Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 erfolgreich installiert</translation>
     </message>
     <message>
         <source>%1 successfully installed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 erfolgreich installiert</translation>
     </message>
     <message>
         <source>%1 Successfully Uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 erfolgreich deinstalliert</translation>
     </message>
     <message>
         <source>%1 successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 erfolgreich deinstalliert</translation>
     </message>
     <message>
         <source>System is not logged in</source>
-        <translation type="unfinished"></translation>
+        <translation>Das System ist nicht angemeldet</translation>
     </message>
     <message>
         <source>%1 Download Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Herunterladen ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 download failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Herunterladen ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 Uninstallation Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Deinstallation ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 uninstallation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Deinstallation ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 Installation Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Installation ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 installation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Installation ist fehlgeschlagen</translation>
     </message>
     <message>
         <source>%1 Bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Bytes</translation>
     </message>
     <message>
         <source>%1 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 MB</translation>
     </message>
     <message>
         <source>%1 GB</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 GB</translation>
     </message>
     <message>
         <source>built-in</source>
-        <translation type="unfinished"></translation>
+        <translation>integriert</translation>
     </message>
     <message>
         <source>Unknown size</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannte Größe</translation>
     </message>
     <message>
         <source>%1 Successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Aktuakisuerung erfolgreich</translation>
     </message>
     <message>
         <source>%1 successfully updated</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Aktualisierung erfolgreich</translation>
     </message>
     <message>
         <source>%1 Updates successfully Uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Die Updates wurden erfolgreich deinstalliert</translation>
     </message>
     <message>
         <source>%1 updates successfully uninstalled</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 die Updates wurden erfolgreich deinstalliert</translation>
     </message>
 </context>
 <context>
     <name>DownloadsView</name>
     <message>
         <source>Fetching data from Neptune Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Abruf der Daten vom Neptune-Server</translation>
     </message>
     <message>
         <source>Cannot Connect to the Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Verbindung mit dem Server</translation>
     </message>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished">Keine Programme gefunden!</translation>
+        <translation>Keine Apps gefunden!</translation>
     </message>
     <message>
         <source>A Network connection is required</source>
-        <translation type="unfinished"></translation>
+        <translation>Netzwerkverbindung erforderlich</translation>
     </message>
     <message>
         <source>Reconnecting...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederverbindung...</translation>
     </message>
     <message>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholung</translation>
     </message>
 </context>
 <context>
     <name>DrivingModeRange</name>
     <message>
         <source>NORMAL</source>
-        <translation type="unfinished"></translation>
+        <translation>NORMAL</translation>
     </message>
     <message>
         <source>ECO</source>
-        <translation type="unfinished"></translation>
+        <translation>ECO</translation>
     </message>
     <message>
         <source>SPORT</source>
-        <translation type="unfinished"></translation>
+        <translation>SPORT</translation>
     </message>
 </context>
 <context>
@@ -549,35 +549,35 @@
     <name>EnergyPanel</name>
     <message>
         <source>Present</source>
-        <translation type="unfinished">Jetzt</translation>
+        <translation>Jetzt</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished">1 Tag</translation>
+        <translation>1 Tag</translation>
     </message>
     <message>
         <source>1 week</source>
-        <translation type="unfinished">1 Woche</translation>
+        <translation>1 Woche</translation>
     </message>
     <message>
         <source>1 month</source>
-        <translation type="unfinished">1 Monat</translation>
+        <translation>1 Monat</translation>
     </message>
     <message>
         <source>Projected distance to empty</source>
-        <translation type="unfinished">Kalkulierte Distanz bis leer</translation>
+        <translation>Kalkulierte Distanz bis &quot;&quot;leer&quot;&quot;</translation>
     </message>
     <message>
         <source>184</source>
-        <translation type="unfinished">184</translation>
+        <translation>184</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>Charging stations</source>
-        <translation type="unfinished">Ladestationen</translation>
+        <translation>Ladestationen</translation>
     </message>
     <message>
         <source>Show on map</source>
@@ -585,23 +585,23 @@
     </message>
     <message>
         <source>21</source>
-        <translation type="unfinished">21</translation>
+        <translation>21</translation>
     </message>
     <message>
         <source>Donald Weese Ct, Las Vegas</source>
-        <translation type="unfinished">Donald Weese Ct, Las Vegas</translation>
+        <translation>Donald Weese Ct, Las Vegas</translation>
     </message>
     <message>
         <source>Route</source>
-        <translation type="unfinished">Route</translation>
+        <translation>Route</translation>
     </message>
     <message>
         <source>27</source>
-        <translation type="unfinished">27</translation>
+        <translation>27</translation>
     </message>
     <message>
         <source>Faiss Dr, Las Vegas</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Open map</source>
@@ -612,11 +612,11 @@
     <name>FavDestinationButtonsPanel</name>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuhause</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeit</translation>
     </message>
 </context>
 <context>
@@ -636,18 +636,19 @@
     <message>
         <source>more</source>
         <comment>more contacts</comment>
-        <translation type="unfinished">mehr</translation>
+        <translatorcomment>andere Kontakte</translatorcomment>
+        <translation>mehr</translation>
     </message>
 </context>
 <context>
     <name>FrontDoorsPanel</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Öffnen</translation>
+        <translation>Öffnen</translation>
     </message>
 </context>
 <context>
@@ -665,19 +666,19 @@
     <name>FullScreenTopView</name>
     <message>
         <source>Next</source>
-        <translation type="unfinished">Nächster</translation>
+        <translation>Nächster</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished">Liste</translation>
+        <translation>Liste</translation>
     </message>
     <message>
         <source>MANUAL</source>
-        <translation type="unfinished"></translation>
+        <translation>MANUELL</translation>
     </message>
     <message>
         <source>BROWSE</source>
-        <translation type="unfinished"></translation>
+        <translation>DURCHSUCHEN</translation>
     </message>
 </context>
 <context>
@@ -688,14 +689,14 @@
     </message>
     <message>
         <source>Next turn: </source>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Kurve: </translation>
     </message>
 </context>
 <context>
     <name>ICMusicView</name>
     <message>
         <source>Track unavailable</source>
-        <translation type="unfinished">Track nicht verfügbar</translation>
+        <translation>Musikstück nicht verfügbar</translation>
     </message>
 </context>
 <context>
@@ -728,12 +729,12 @@
     </message>
     <message>
         <source>Your parking period is about to end</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Parkzeit ist fast abgelaufen</translation>
     </message>
     <message>
         <source>Your parking period will be ended in 5 minutes.
                          Please extend your parking ticket or move your car.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Parkzeit läuft in 5 Minuten ab. Verlängern Sie das Parkticket oder fahren Sie das Auto weg.</translation>
     </message>
 </context>
 <context>
@@ -754,55 +755,55 @@
     <name>MapStore</name>
     <message numerus="yes">
         <source>%n kilometer(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Kilometer(n)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Tag(e)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Stunde(n)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Minute (n)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>Offline mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline-Modus</translation>
     </message>
     <message>
         <source>Search and navigation are not available in offline mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche und Navigation im Offline-Modus nicht verfügbar</translation>
     </message>
     <message>
         <source>Offline map</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline-Karte</translation>
     </message>
     <message>
         <source>Offline Map only available in Light Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Offline-Karte ist nur im hellen Design aufrufbar</translation>
     </message>
     <message>
         <source>Online map</source>
-        <translation type="unfinished"></translation>
+        <translation>Online-Karte</translation>
     </message>
     <message>
         <source>You are now using online map from Mapbox server</source>
-        <translation type="unfinished"></translation>
+        <translation>Jetzt benutzen Sie die Online-Karte vom Mapbox-Server</translation>
     </message>
 </context>
 <context>
@@ -831,7 +832,7 @@
     </message>
     <message>
         <source>FPS: %1</source>
-        <translation type="unfinished">FPS: %1</translation>
+        <translation>FPS: %1</translation>
     </message>
 </context>
 <context>
@@ -842,71 +843,71 @@
     </message>
     <message>
         <source>System Monitor Overlay</source>
-        <translation type="unfinished"></translation>
+        <translation>Überlagerung des Leistungsmonitors</translation>
     </message>
     <message>
         <source>Startup timings</source>
-        <translation type="unfinished"></translation>
+        <translation>Starttimings</translation>
     </message>
     <message>
         <source>From boot to System UI process start: %1 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>Vom Systemstart zum Start der System UI: %1 ms</translation>
     </message>
     <message>
         <source>From System UI process start to first frame drawn: %1 ms</source>
-        <translation type="unfinished"></translation>
+        <translation>Vom Start der System UI bis zum ersten Einzelbild: %1 ms</translation>
     </message>
     <message>
         <source>Startup timings not available. Make sure the environment variable AM_STARTUP_TIMER was set</source>
-        <translation type="unfinished"></translation>
+        <translation>Starttimings sind nicht verfügbar. Stellen Sie sicher, dass die Umgebungsvariable AM_STARTUP_TIMER gesetzt wurde</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <source>Platform</source>
-        <translation type="unfinished"></translation>
+        <translation>Plattform</translation>
     </message>
     <message>
         <source>Qt IVI: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt IVI: %1</translation>
     </message>
     <message>
         <source>Neptune 3: %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neptune 3: %1 %2</translation>
     </message>
     <message>
         <source>Mode: </source>
-        <translation type="unfinished"></translation>
+        <translation>Modus: </translation>
     </message>
     <message>
         <source>single-process</source>
-        <translation type="unfinished"></translation>
+        <translation>Einzelprozess</translation>
     </message>
     <message>
         <source>multi-process</source>
-        <translation type="unfinished"></translation>
+        <translation>Multiprozess</translation>
     </message>
     <message>
         <source>Qt Application Manager: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt Application Manager: %1</translation>
     </message>
     <message>
         <source>, no internet</source>
-        <translation type="unfinished"></translation>
+        <translation>, keine Internetverbindung</translation>
     </message>
     <message>
         <source>Network: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Netzwerk: %1%2</translation>
     </message>
     <message>
         <source>connected</source>
-        <translation type="unfinished"></translation>
+        <translation>verbunden</translation>
     </message>
     <message>
         <source>disconnected</source>
-        <translation type="unfinished"></translation>
+        <translation>unterbrochen</translation>
     </message>
 </context>
 <context>
@@ -935,7 +936,7 @@
     <name>MusicBrowseListPanel</name>
     <message>
         <source>Play All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles abspielen</translation>
     </message>
 </context>
 <context>
@@ -961,18 +962,18 @@
     <name>MusicSourcesPopup</name>
     <message>
         <source>Choose Source</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelle wählen</translation>
     </message>
 </context>
 <context>
     <name>MusicStore</name>
     <message>
         <source>Unknown Artist</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannter Artist</translation>
     </message>
     <message>
         <source>Unknown Album</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekanntes Album</translation>
     </message>
 </context>
 <context>
@@ -999,7 +1000,7 @@
     </message>
     <message>
         <source>sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellen</translation>
     </message>
 </context>
 <context>
@@ -1024,11 +1025,11 @@
     <name>NavigationConfirmPanel</name>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Start</translation>
     </message>
     <message>
         <source>Directions</source>
-        <translation type="unfinished"></translation>
+        <translation>Richtungen</translation>
     </message>
 </context>
 <context>
@@ -1046,11 +1047,11 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <source>Search not available offline</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche ist im Offline-Modus nicht verfügbar</translation>
     </message>
     <message>
         <source>Where do you want to go?</source>
@@ -1061,11 +1062,11 @@
     <name>NavigationStore</name>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="unfinished"></translation>
+        <translation>m</translation>
     </message>
 </context>
 <context>
@@ -1079,11 +1080,11 @@
     <name>NotificationCenter</name>
     <message>
         <source>No Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Mitteilungen</translation>
     </message>
     <message>
         <source>Clear list</source>
-        <translation type="unfinished"></translation>
+        <translation>Leere Liste</translation>
     </message>
 </context>
 <context>
@@ -1123,103 +1124,103 @@
     <name>RamMonitor</name>
     <message>
         <source>50%</source>
-        <translation type="unfinished">50%</translation>
+        <translation>50%</translation>
     </message>
     <message>
         <source>RAM: </source>
-        <translation type="unfinished"></translation>
+        <translation>RAM: </translation>
     </message>
 </context>
 <context>
     <name>RoofPanel</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Öffnen</translation>
+        <translation>Öffnen</translation>
     </message>
 </context>
 <context>
     <name>RootStore</name>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Hell</translation>
+        <translation>Hell</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Dunkel</translation>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <source>UI screenshot has been taken successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Der UI-Screenshot wurde erfolgreich erstellt</translation>
     </message>
     <message>
         <source>UI screenshot and diagnostics information are stored in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Der UI-Screenshot und Diagnoseninformation sind in %1 gespeichert</translation>
     </message>
     <message>
         <source>km</source>
-        <translation type="unfinished">Km</translation>
+        <translation>Km</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="unfinished"></translation>
+        <translation>mi</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">Km/h</translation>
+        <translation>Km/h</translation>
     </message>
     <message>
         <source>mph</source>
-        <translation type="unfinished"></translation>
+        <translation>mph</translation>
     </message>
     <message>
         <source>°C</source>
-        <translation type="unfinished"></translation>
+        <translation>°C</translation>
     </message>
     <message>
         <source>°F</source>
-        <translation type="unfinished"></translation>
+        <translation>°F</translation>
     </message>
     <message>
         <source>UI Language changed</source>
-        <translation type="unfinished"></translation>
+        <translation>UI-Sprache wurde geändert</translation>
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>UI-Sprache wurde auf %1 (%2) geändert</translation>
     </message>
 </context>
 <context>
     <name>SearchOverlayPanel</name>
     <message>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurück</translation>
     </message>
 </context>
 <context>
     <name>Settings3DPanel</name>
     <message>
         <source>Qt 3D Studio</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt 3D Studio</translation>
     </message>
     <message>
         <source>Qt 3D Model Quality</source>
-        <translation type="unfinished"></translation>
+        <translation>Qualität des Qt 3D Models</translation>
     </message>
     <message>
         <source>Qt 3D</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt 3D</translation>
     </message>
     <message>
         <source>3D Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>3D-Laufzeitumgebung</translation>
     </message>
     <message>
         <source>Vehicle App needs to be restarted</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Vehicle App muss neu gestartet werden</translation>
     </message>
 </context>
 <context>
@@ -1328,18 +1329,18 @@
     </message>
     <message>
         <source>colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben</translation>
     </message>
     <message>
         <source>network</source>
-        <translation type="unfinished"></translation>
+        <translation>Netzwerk</translation>
     </message>
 </context>
 <context>
     <name>SpeedPanel</name>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">Km/h</translation>
+        <translation>Km/h</translation>
     </message>
 </context>
 <context>
@@ -1388,88 +1389,88 @@
     <name>TiresPanel</name>
     <message>
         <source>240</source>
-        <translation type="unfinished">240</translation>
+        <translation>240</translation>
     </message>
     <message>
         <source>kPa</source>
-        <translation type="unfinished">kPa</translation>
+        <translation>kPa</translation>
     </message>
     <message>
         <source>Normal load</source>
-        <translation type="unfinished">Normale Ladung</translation>
+        <translation>Normale Ladung</translation>
     </message>
     <message>
         <source>Target: 240 kPa</source>
-        <translation type="unfinished">Ziel: 240 kPa</translation>
+        <translation>Ziel: 240 kPa</translation>
     </message>
     <message>
         <source>Max load</source>
-        <translation type="unfinished">Max. Ladung</translation>
+        <translation>Max. Ladung</translation>
     </message>
     <message>
         <source>Target: 270 kPa</source>
-        <translation type="unfinished">Ziel: 270 kPa</translation>
+        <translation>Ziel: 270 kPa</translation>
     </message>
     <message>
         <source>Calibrate</source>
-        <translation type="unfinished">Einstellen</translation>
+        <translation>Kalibrieren</translation>
     </message>
 </context>
 <context>
     <name>TrunkPanel</name>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Schliessen</translation>
+        <translation>Schliessen</translation>
     </message>
     <message>
         <source>Open</source>
-        <translation type="unfinished">Öffnen</translation>
+        <translation>Öffnen</translation>
     </message>
 </context>
 <context>
     <name>TunerStore</name>
     <message>
         <source>FM1</source>
-        <translation type="unfinished"></translation>
+        <translation>FM1</translation>
     </message>
     <message>
         <source>FM2</source>
-        <translation type="unfinished"></translation>
+        <translation>FM2</translation>
     </message>
     <message>
         <source>AM</source>
-        <translation type="unfinished"></translation>
+        <translation>AM</translation>
     </message>
     <message>
         <source>KHz</source>
-        <translation type="unfinished"></translation>
+        <translation>KHz</translation>
     </message>
     <message>
         <source>MHz</source>
-        <translation type="unfinished"></translation>
+        <translation>MHz</translation>
     </message>
 </context>
 <context>
     <name>TunerToolsColumn</name>
     <message>
         <source>favorites</source>
-        <translation type="unfinished">Favouriten</translation>
+        <translation>Favouriten</translation>
     </message>
     <message>
         <source>AM band</source>
-        <translation type="unfinished"></translation>
+        <translation>AM Band</translation>
     </message>
     <message>
         <source>FM 1 band</source>
-        <translation type="unfinished"></translation>
+        <translation>FM1 Band</translation>
     </message>
     <message>
         <source>FM 2 band</source>
-        <translation type="unfinished"></translation>
+        <translation>FM 2 Band</translation>
     </message>
     <message>
         <source>sources</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellen</translation>
     </message>
 </context>
 <context>
@@ -1601,43 +1602,43 @@
     <name>VehicleStore</name>
     <message>
         <source>Fees</source>
-        <translation type="unfinished">Gebühren</translation>
+        <translation>Gebühren</translation>
     </message>
     <message>
         <source>Hill Descent Control</source>
-        <translation type="unfinished">Bergabfahrhilfe</translation>
+        <translation>Bergabfahrhilfe</translation>
     </message>
     <message>
         <source>Traffic Jam Assist</source>
-        <translation type="unfinished">Stau-Assistent</translation>
+        <translation>Stau-Assistent</translation>
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation type="unfinished"></translation>
+        <translation>Intelligente Geschwindigkeitsanpassung</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoch</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Medium</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Niedrig</translation>
     </message>
     <message>
         <source>Qt3D Runtime is requested</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt3D-Laufzeitumgebung wird geladen</translation>
     </message>
     <message>
         <source>Qt 3D Studio Runtime is requested</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt3D Studio-Laufzeitumgebung wird geladen</translation>
     </message>
     <message>
         <source>Please restart the Vehicle App to use selected runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte starten Sie die Vehicle-App neu, um gewählte Laufzeitumgebung zu verwenden</translation>
     </message>
 </context>
 <context>
@@ -1660,7 +1661,7 @@
     </message>
     <message>
         <source>options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen</translation>
     </message>
 </context>
 <context>
