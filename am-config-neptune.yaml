@@ -75,3 +75,4 @@ logging:
     - "*.warning=true"
     - "*.critical=true"
     - "cursor.navigation=false"
+    - "qt3ds.*=false"
