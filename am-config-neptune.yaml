@@ -71,7 +71,8 @@ logging:
     - "am.*=false"
     - "qml*=true"
     - "qt3ds.*=false"
-    - "*.warning=true"
+    - "*.debug=false"
+    - "*.warning=false"
     - "*.critical=true"
 
 # simulate an internal and a SD-card installation location
