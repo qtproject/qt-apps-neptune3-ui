@@ -70,6 +70,7 @@ logging:
     - "qt.*=false"
     - "am.*=false"
     - "qml*=true"
+    - "qt3ds.*=false"
     - "*.warning=true"
     - "*.critical=true"
 
