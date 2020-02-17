@@ -115,9 +115,6 @@ Store {
     }
 
     readonly property SystemInfo sysInfo: SystemInfo { id: sysInfo }
-    property var accentColorsModel
-    property string lighThemeLastAccColor: "#d35756"
-    property string darkThemeLastAccColor: "#b75034"
     readonly property UISettings uiSettings: UISettings {
         onLanguageChanged: {
             if (language !== Config.languageLocale) {
@@ -125,22 +122,18 @@ Store {
                 uiSettings.setRtlMode(Qt.locale(language).textDirection === Qt.RightToLeft)
             }
         }
-        onThemeChanged: root.updateThemeRequested(uiSettings.theme)
-        onAccentColorChanged: {
-            root.accentColorChanged(accentColor);
-            if (startupAccentColor) {
-                //Prevent setting back light theme's last accent color in cases when the UI
-                //was closed with light theme set. If this is the case, reset dark theme's
-                //default accent color.
-                var accColorInPalette = root.accentColorsModel.find(function(color) {
-                    return (color.color === accentColor);
-                });
-                if (accColorInPalette === undefined) {
-                    uiSettings.accentColor = root.accentColorsModel[0].color;
-                }
-                startupAccentColor = false;
+        onThemeChanged: {
+            // since different themes have different color pallets we update colors on theme change
+            if (uiSettings.theme === 0 /*light*/) {
+                uiSettings.accentColor = (Config._initAccentColors(0))[1].color;
+            } else { /*dark*/
+                uiSettings.accentColor = (Config._initAccentColors(1))[4].color;
             }
+
+            root.updateThemeRequested(uiSettings.theme);
         }
+
+        onAccentColorChanged: { root.accentColorChanged(accentColor); }
         onRtlModeChanged: Config.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
@@ -273,21 +266,10 @@ Store {
         root.triggerNotificationInfo(tempDirPath);
     }
 
+    //value: 1 -- dark, 0 -- light
     function updateTheme(value) {
-        if ((value === 1) && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
-            root.lighThemeLastAccColor = uiSettings.accentColor;
-        } else if ((value === 0) && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
-            root.darkThemeLastAccColor = uiSettings.accentColor;
-        }
-        uiSettings.setTheme(value);
-        root.accentColorsModel = Config._initAccentColors(value);
-        //set previous to theme accentColor
-        if ((lighThemeLastAccColor !== "") && (value === 0)) {
-            uiSettings.accentColor = root.lighThemeLastAccColor;
-        } else if ((darkThemeLastAccColor !== "") && (value === 1)) {
-            uiSettings.accentColor = root.darkThemeLastAccColor;
-        } else {
-            uiSettings.accentColor = root.accentColorsModel[0].color;
+        if (value !== uiSettings.theme) {
+            uiSettings.setTheme(value);
         }
     }
 
@@ -299,9 +281,5 @@ Store {
             else
                 console.log("Intent request failed: " + request.errorMessage);
         })
-    }
-
-    Component.onCompleted: {
-        root.accentColorsModel = Config._initAccentColors(Style.theme);
     }
 }

@@ -90,11 +90,7 @@ QtObject {
     }
 
     // Accent Colors & themes segment
-    property bool startupAccentColor: true
     property var accentColorsModel: Config._initAccentColors(uiSettings.theme)
-    property string lighThemeLastAccColor: "#d35756"
-    property string darkThemeLastAccColor: "#087559"
-
     readonly property ListModel themeModel: ListModel {
         // TODO: This data will be populated from settings server later
         // the server stores the "theme" as an integer
@@ -107,18 +103,6 @@ QtObject {
             root.accentColorsModel.forEach(function(element) {
                 element.selected = Qt.colorEqual(element.color, accentColor);
             });
-            if (startupAccentColor) {
-                //Prevent setting back light theme's last accent color in cases when the UI
-                //was closed with light theme set. If this is the case, reset dark theme's
-                //default accent color.
-                var accColorInPalette = root.accentColorsModel.find(function(color) {
-                    return (color.color === accentColor);
-                });
-                if (accColorInPalette === undefined) {
-                    uiSettings.accentColor = accentColorsModel[0].color;
-                }
-                startupAccentColor = false;
-            }
         }
     }
 
@@ -143,21 +127,9 @@ QtObject {
         uiSettings.accentColor = value;
     }
 
+    //value: 1 -- dark, 0 -- light
     function updateTheme(value) {
-        if (value === 1 && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
-            root.lighThemeLastAccColor = uiSettings.accentColor;
-        } else if (value === 0 && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
-            root.darkThemeLastAccColor = uiSettings.accentColor;
-        }
         uiSettings.setTheme(value);
-        //set previous to theme accentColor
-        if (lighThemeLastAccColor !== "" && value === 0) {
-            updateAccentColor(root.lighThemeLastAccColor);
-        } else if (darkThemeLastAccColor !== "" && value === 1) {
-            updateAccentColor(root.darkThemeLastAccColor);
-        } else {
-            updateAccentColor(root.accentColorsModel[0].color);
-        }
     }
 
     readonly property IntentHandler intentHandler: IntentHandler {
