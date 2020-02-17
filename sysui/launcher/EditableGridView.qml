@@ -131,13 +131,21 @@ Item {
 
             DragHandler {
                 id: handler
+                target: appButton
                 enabled: root.editMode
+                xAxis.minimum: 0
+                xAxis.maximum: grid.width - grid.cellWidth
+                xAxis.enabled: true
+
+                yAxis.minimum: 0
+                yAxis.maximum: grid.height - grid.cellHeight
+                yAxis.enabled: true
+
                 onActiveChanged: {
                     if (!active) {
                         //when it's dragged, it stops being the item that
                         //currently has the cursor and so the item's release
                         //signal is not emitted. 'Release' here instead.
-                        handler.target = null;
                         appButton.released();
                     }
                 }
@@ -199,16 +207,11 @@ Item {
                     }
                 }
 
-                onPressed: {
-                    if (root.editMode) {
-                        handler.target = appButton;
-                    }
-                }
-
                 onPressAndHold: {
-                    if (root.gridOpen) {
+                    // pressed and held -> start user arrange
+                    // don't update if it's already in editMode
+                    if (root.gridOpen && !root.editMode) {
                         root.editMode = true;
-                        handler.target = appButton;
                     }
                 }
             }
@@ -218,9 +221,7 @@ Item {
                 width: parent.width * 0.9
                 height: parent.height * 0.9
                 onEntered: {
-                    if (drag.source.target.dragIndex !== delegateRoot.visualIndex)
-                        grid.model.items.move(drag.source.target.dragIndex
-                                , delegateRoot.visualIndex);
+                    grid.model.items.move(drag.source.target.dragIndex, delegateRoot.visualIndex);
                 }
             }
 
