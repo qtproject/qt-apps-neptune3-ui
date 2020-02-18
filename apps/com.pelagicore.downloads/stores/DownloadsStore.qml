@@ -292,7 +292,6 @@ Item {
         cpuArch: sysinfo.cpu + "-" + sysinfo.kernel
         property bool initialized: false
         onLoginSuccessful: {
-            console.log("server login successful")
             if (!initialized) {
                 catModel.refresh();
                 initialized = true;
