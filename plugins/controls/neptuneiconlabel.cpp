@@ -210,21 +210,34 @@ void NeptuneIconLabelPrivate::updateOrSyncLabel()
 void NeptuneIconLabelPrivate::updateImplicitSize()
 {
     Q_Q(NeptuneIconLabel);
+
     const bool showIcon = image && hasIcon();
     const bool showText = label && hasText();
     const qreal horizontalPadding = leftPadding + rightPadding;
     const qreal verticalPadding = topPadding + bottomPadding;
-    const qreal iconImplicitWidth = showIcon ? image->implicitWidth() : 0;
-    const qreal iconImplicitHeight = showIcon ? image->implicitHeight() : 0;
+    qreal iconImplicitWidth = showIcon ? image->implicitWidth() : 0;
+    qreal iconImplicitHeight = showIcon ? image->implicitHeight() : 0;
     const qreal textImplicitWidth = showText ? label->implicitWidth() : 0;
     const qreal textImplicitHeight = showText ? label->implicitHeight() : 0;
     const qreal effectiveSpacing = showText && showIcon && image->implicitWidth() > 0 ? spacing : 0;
+
+    // for Pad we apply scaling to image object, so it will be *iconScale size in result
+    // implicitWidth of image is equal to 1.0 scaled image
+    if (iconFillMode == QQuickImage::Pad) {
+        iconImplicitWidth *= iconScale;
+        iconImplicitHeight *= iconScale;
+    } else {
+        iconImplicitWidth = iconRectWidth;
+        iconImplicitHeight = iconRectHeight;
+    }
+
     const qreal implicitWidth = display == NeptuneIconLabel::TextBesideIcon
             ? iconImplicitWidth + textImplicitWidth + effectiveSpacing
             : qMax(iconImplicitWidth, textImplicitWidth);
     const qreal implicitHeight = display == NeptuneIconLabel::TextUnderIcon
             ? iconImplicitHeight + textImplicitHeight + effectiveSpacing
             : qMax(iconImplicitHeight, textImplicitHeight);
+
     q->setImplicitSize(implicitWidth + horizontalPadding, implicitHeight + verticalPadding);
 }
 
@@ -294,10 +307,10 @@ void NeptuneIconLabelPrivate::layout()
     qreal iconHeight{iconRectHeight};
 
     if (image && image->status() == QQuickImageBase::Ready && iconFillMode == QQuickImage::Pad) {
-        // if Pad mode, use implicit size, which is: iconScale x image pixel size
-        // implicit size is set after image is loaded or setSourceSize is called
-        iconWidth = image->implicitWidth();
-        iconHeight = image->implicitHeight();
+        // if Pad mode, use implicit size * iconScale
+        // implicit size is set after image is loaded
+        iconWidth = image->implicitWidth() * iconScale;
+        iconHeight = image->implicitHeight() * iconScale;
     }
 
     switch (display) {
@@ -438,10 +451,8 @@ void NeptuneIconLabelPrivate::applyIconScaleForPadMode() {
     if (iconFillMode != QQuickImage::Pad)
         return;
 
-    if (qFuzzyCompare(iconScale, image->scale()))
-        return;
-
     image->setScale(iconScale);
+    updateImplicitSize();
     layout();
 }
 
@@ -457,6 +468,7 @@ void NeptuneIconLabelPrivate::applyIconRect() {
     }
 
     image->setFillMode(iconFillMode);
+    updateImplicitSize();
     layout();
 }
 
