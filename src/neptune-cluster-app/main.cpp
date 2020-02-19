@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -34,7 +34,10 @@
 #include <QtGui/QIcon>
 #include <QtGui/QOpenGLContext>
 #include <QtQml/QQmlApplicationEngine>
+#include <QtCore/QLoggingCategory>
 #include <QtCore/QDir>
+#include <QtCore/QString>
+#include <QtCore/QCommandLineParser>
 
 #ifdef STUDIO3D_RUNTIME_INSTALLED
     #include <qstudio3dglobal.h>
@@ -43,9 +46,22 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationName(QStringLiteral("Neptune Cluster"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Luxoft Sweden AB"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("luxoft.com"));
+    QCoreApplication::setApplicationVersion("0.1");
     QGuiApplication app(argc, argv);
 
-    // @todo: add am.config or smth
+    // @todo: add -c config file option and config file for it (json, xml, etc)
+    QCommandLineParser cmdParser;
+    cmdParser.setApplicationDescription(
+            "Neptune Cluster\n\n"
+            "Logging is turned off by default, use QT_LOGGING_RULES to change this\n");
+    cmdParser.addHelpOption();
+    cmdParser.process(app);
+
+    QLoggingCategory::setFilterRules("*=false");
+
     if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE_PATH")) {
         qputenv("QT_QUICK_CONTROLS_STYLE_PATH"
                 , (QCoreApplication::applicationDirPath() + QStringLiteral("/styles")).toLocal8Bit());
