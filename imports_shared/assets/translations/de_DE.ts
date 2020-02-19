@@ -1220,7 +1220,7 @@
     </message>
     <message>
         <source>Vehicle App needs to be restarted</source>
-        <translation>Die Vehicle App muss neu gestartet werden</translation>
+        <translation>Neustart der Vehicle App erforderlich</translation>
     </message>
 </context>
 <context>
@@ -1614,7 +1614,7 @@
     </message>
     <message>
         <source>Intelligent speed adaptation</source>
-        <translation>Intelligente Geschwindigkeitsanpassung</translation>
+        <translation>Intelligente Geschw.-anpassung</translation>
     </message>
     <message>
         <source>High</source>
