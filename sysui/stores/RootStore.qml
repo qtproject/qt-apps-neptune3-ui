@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -106,7 +106,9 @@ Store {
 
     readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}
 
-    property bool startupAccentColor: true
+    property var chosenColor: {0: Config._initAccentColors(0)[1].color
+                                   , 1: Config._initAccentColors(1)[4].color}
+
     readonly property SystemUI systemUISettings: SystemUI {
         id: systemUISettings
         onApplicationICWindowSwitchCountChanged: {
@@ -122,18 +124,25 @@ Store {
                 uiSettings.setRtlMode(Qt.locale(language).textDirection === Qt.RightToLeft)
             }
         }
-        onThemeChanged: {
-            // since different themes have different color pallets we update colors on theme change
-            if (uiSettings.theme === 0 /*light*/) {
-                uiSettings.accentColor = (Config._initAccentColors(0))[1].color;
-            } else { /*dark*/
-                uiSettings.accentColor = (Config._initAccentColors(1))[4].color;
-            }
 
-            root.updateThemeRequested(uiSettings.theme);
+        onThemeChanged: {
+            if (isInitialized) {
+                root.updateThemeRequested(uiSettings.theme);
+                //different themes have different color pallets, we update colors on theme change
+                uiSettings.accentColor = chosenColor[uiSettings.theme];
+            }
         }
 
-        onAccentColorChanged: { root.accentColorChanged(accentColor); }
+        onAccentColorChanged: {
+            if (isInitialized) {
+                if (Config._initAccentColors(uiSettings.theme)
+                        .some(data => data.color === uiSettings.accentColor)) {
+                    chosenColor[uiSettings.theme] = uiSettings.accentColor;
+                }
+
+                root.accentColorChanged(accentColor);
+            }
+        }
         onRtlModeChanged: Config.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
