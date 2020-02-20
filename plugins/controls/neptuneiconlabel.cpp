@@ -642,11 +642,12 @@ void NeptuneIconLabel::setAlignment(Qt::Alignment alignment)
     Q_D(NeptuneIconLabel);
     const int valign = alignment & Qt::AlignVertical_Mask;
     const int halign = alignment & Qt::AlignHorizontal_Mask;
-    const int align = (valign ? valign : Qt::AlignVCenter) | (halign ? halign : Qt::AlignHCenter);
-    if (d->alignment & align)
+    const Qt::Alignment align = (valign  ? static_cast<Qt::Alignment>(valign) : Qt::AlignVCenter)
+            | (halign ? static_cast<Qt::Alignment>(valign) : Qt::AlignHCenter);
+    if (d->alignment == align)
         return;
 
-    d->alignment = static_cast<Qt::Alignment>(align);
+    d->alignment = align;
     if (d->label) {
         d->label->setVAlign(static_cast<QQuickText::VAlignment>(valign));
         d->label->setHAlign(static_cast<QQuickText::HAlignment>(halign));
