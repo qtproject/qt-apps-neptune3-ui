@@ -44,7 +44,8 @@ PopupWindow {
     property var model: [{"text": "Purple"}, {"text" : "Deep blue"}, {"text" : "Violet"}]
 
     Item {
-        anchors.fill: parent
+        width: root.width
+        height: root.height
 
         Label {
             anchors.baseline: parent.top

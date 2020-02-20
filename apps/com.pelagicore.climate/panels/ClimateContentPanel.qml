@@ -45,8 +45,6 @@ Item {
     property var store
     property bool seatTemperaturesLinked
 
-    anchors.fill: parent
-
     onSeatTemperaturesLinkedChanged: {
         if (seatTemperaturesLinked) {
             root.store.rightSeat.setValue(root.store.leftSeat.value);

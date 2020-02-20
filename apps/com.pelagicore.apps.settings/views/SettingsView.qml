@@ -53,15 +53,13 @@ Control {
     property Item rootItem
     property QtObject wifi
 
+    property int wifiPopupWidth: Sizes.dp(910);
+    property int wifiPopupHeight : Sizes.dp(820);
+
     WiFiPopup {
         id: wifiPopup
+
         manual: false
-        readonly property point pos: mapToItem(root, width/2, height/2)
-        width: Sizes.dp(910)
-        height: Sizes.dp(820)
-        originItemX: pos.x
-        originItemY: pos.y
-        popupY: Sizes.dp(Math.round(Config.centerConsoleHeight/2 - 410))
         onConnectClicked: wifi.sendCredentials(ssid, password)
         onCancelClicked: wifi.disconnectFromAccessPoint(wifi.activeAccessPoint.ssid)
     }
@@ -142,6 +140,10 @@ Control {
 
             WiFiPanel {
                 id: wifiPanel
+
+                property int wifiPopupWidth: Sizes.dp(910);
+                property int wifiPopupHeight : Sizes.dp(820);
+
                 objectName: "wifiPanel"
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-connectivity' && connectivityPanel.view === 1
@@ -172,6 +174,13 @@ Control {
                 target: wifi
                 onCredentialsRequested: {
                     wifiPopup.ssid = ssid;
+                    wifiPopup.width = Qt.binding(() => wifiPanel.wifiPopupWidth);
+                    wifiPopup.height = Qt.binding(() => wifiPanel.wifiPopupHeight);
+                    wifiPopup.originItemX = Qt.binding(() => root.width / 2);
+                    wifiPopup.originItemY = Qt.binding(() => root.heigh / 2);
+                    wifiPopup.popupY = Qt.binding(() => {
+                        return Sizes.dp(root.height/2 - wifiPopup.height/2);
+                    });
                     wifiPopup.visible = true;
                 }
             }

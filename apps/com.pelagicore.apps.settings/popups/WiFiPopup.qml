@@ -54,113 +54,115 @@ PopupWindow {
         property bool okClicked: false
     }
 
-    Label {
-        anchors.baseline: parent.top
-        anchors.baselineOffset: Sizes.dp(78)
-        font.pixelSize: Sizes.fontSizeM
-        width: parent.width
-        text: !root.manual ? "Input password" : "Manual connection"
-        horizontalAlignment: Text.AlignHCenter
-    }
-    Image {
-        id: shadow
-        anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(120)
-        width: parent.width
-        height: Sizes.dp(sourceSize.height)
-        source: Style.image("popup-title-shadow")
-    }
-
-    ColumnLayout {
-        id: columnFields
-        spacing: Sizes.dp(50)
-        anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(170)
-        anchors.left: parent.left
-        anchors.leftMargin: Sizes.dp(100)
-        anchors.right: parent.right
-        anchors.rightMargin: Sizes.dp(100)
+    Item {
+        width: root.width
+        height: root.height
 
         Label {
-            id: ssidTitle
-            Layout.preferredHeight: Sizes.dp(50)
-            Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
-            verticalAlignment: Text.AlignBottom
-            Layout.bottomMargin: -Sizes.dp(25)
-            text: "SSID"
-            font.pixelSize: Sizes.fontSizeS
-            elide: Text.ElideRight
-            color: Style.contrastColor
-        }
-
-        TextField {
-            id: ssidTextField
-            Layout.fillWidth: true
-            Layout.preferredHeight: Sizes.dp(100)
-            font.family: Style.fontFamily
+            anchors.baseline: parent.top
+            anchors.baselineOffset: Sizes.dp(78)
             font.pixelSize: Sizes.fontSizeM
-            color: Style.contrastColor
-            selectedTextColor: Style.contrastColor
-            leftPadding: Sizes.dp(18)
-            rightPadding: Sizes.dp(63)
-            horizontalAlignment: TextInput.AlignLeft
-            readOnly: !root.manual
-
-            background: Rectangle {
-                border.color: Style.buttonColor
-                border.width: Sizes.dp(1)
-                color: "transparent"
-                radius: height/2
-            }
+            width: parent.width
+            text: !root.manual ? "Input password" : "Manual connection"
+            horizontalAlignment: Text.AlignHCenter
+        }
+        Image {
+            anchors.top: parent.top
+            anchors.topMargin: Sizes.dp(120)
+            width: parent.width
+            height: Sizes.dp(sourceSize.height)
+            source: Style.image("popup-title-shadow")
         }
 
-        Label {
-            id: passwTitle
-            Layout.preferredHeight: Sizes.dp(50)
-            Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
-            verticalAlignment: Text.AlignBottom
-            Layout.bottomMargin: -Sizes.dp(25)
-            text: "Password"
+        ColumnLayout {
+            id: columnFields
+            spacing: Sizes.dp(50)
+            anchors.top: parent.top
+            anchors.topMargin: Sizes.dp(170)
+            anchors.left: parent.left
+            anchors.leftMargin: Sizes.dp(100)
+            anchors.right: parent.right
+            anchors.rightMargin: Sizes.dp(100)
+
+            Label {
+                Layout.preferredHeight: Sizes.dp(50)
+                Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
+                verticalAlignment: Text.AlignBottom
+                Layout.bottomMargin: -Sizes.dp(25)
+                text: "SSID"
+                font.pixelSize: Sizes.fontSizeS
+                elide: Text.ElideRight
+                color: Style.contrastColor
+            }
+
+            TextField {
+                id: ssidTextField
+                Layout.fillWidth: true
+                Layout.preferredHeight: Sizes.dp(100)
+                font.family: Style.fontFamily
+                font.pixelSize: Sizes.fontSizeM
+                color: Style.contrastColor
+                selectedTextColor: Style.contrastColor
+                leftPadding: Sizes.dp(18)
+                rightPadding: Sizes.dp(63)
+                horizontalAlignment: TextInput.AlignLeft
+                readOnly: !root.manual
+
+                background: Rectangle {
+                    border.color: Style.buttonColor
+                    border.width: 1
+                    color: "transparent"
+                    radius: height/2
+                }
+            }
+
+            Label {
+                Layout.preferredHeight: Sizes.dp(50)
+                Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
+                verticalAlignment: Text.AlignBottom
+                Layout.bottomMargin: -Sizes.dp(25)
+                text: "Password"
+                font.pixelSize: Sizes.fontSizeS
+                elide: Text.ElideRight
+                color: Style.contrastColor
+            }
+
+            TextField {
+                id: passwTextField
+                Layout.fillWidth: true
+                Layout.preferredHeight: Sizes.dp(100)
+                font.family: Style.fontFamily
+                font.pixelSize: Sizes.fontSizeM
+                color: Style.contrastColor
+                selectedTextColor: Style.contrastColor
+                leftPadding: Sizes.dp(18)
+                rightPadding: Sizes.dp(63)
+                horizontalAlignment: TextInput.AlignLeft
+
+                background: Rectangle {
+                    border.color: Style.buttonColor
+                    border.width: 1
+                    color: "transparent"
+                    radius: height/2
+
+                }
+            }
+
+        }
+        Button {
+            anchors.top: columnFields.bottom
+            anchors.topMargin: Sizes.dp(100)
+            anchors.right: parent.right
+            anchors.rightMargin: Sizes.dp(100)
+            width: Sizes.dp(315)
+            height: Sizes.dp(64)
             font.pixelSize: Sizes.fontSizeS
-            elide: Text.ElideRight
-            color: Style.contrastColor
-        }
-
-        TextField {
-            id: passwTextField
-            Layout.fillWidth: true
-            Layout.preferredHeight: Sizes.dp(100)
-            font.family: Style.fontFamily
-            font.pixelSize: Sizes.fontSizeM
-            color: Style.contrastColor
-            selectedTextColor: Style.contrastColor
-            leftPadding: Sizes.dp(18)
-            rightPadding: Sizes.dp(63)
-            horizontalAlignment: TextInput.AlignLeft
-
-            background: Rectangle {
-                border.color: Style.buttonColor
-                border.width: Sizes.dp(1)
-                color: "transparent"
-                radius: height/2
-
+            text: "Connect"
+            onClicked: {
+                p.okClicked = true;
+                root.connectClicked(ssidTextField.text, passwTextField.text);
+                root.close();
             }
-        }
-
-    }
-    Button {
-        anchors.top: columnFields.bottom
-        anchors.topMargin: Sizes.dp(100)
-        anchors.right: parent.right
-        anchors.rightMargin: Sizes.dp(100)
-        width: Sizes.dp(315)
-        height: Sizes.dp(64)
-        font.pixelSize: Sizes.fontSizeS
-        text: "Connect"
-        onClicked: {
-            p.okClicked = true;
-            root.close();
-            root.connectClicked(ssidTextField.text, passwTextField.text);
         }
     }
 

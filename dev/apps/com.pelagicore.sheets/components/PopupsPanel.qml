@@ -54,10 +54,16 @@ Item {
         anchors.centerIn: parent
         text: "ListView Popup"
         onClicked: {
-            var pos = this.mapToItem(root.parent, this.width/2, this.height/2);
-            popupWithList.originItemX = pos.x;
-            popupWithList.originItemY = pos.y;
-            popupWithList.popupY = Math.round(Config.centerConsoleHeight / 4)
+            popupWithList.width = Qt.binding(() => Sizes.dp(910))
+            popupWithList.height = Qt.binding(() => Sizes.dp(450))
+
+            popupWithList.originItemX = Qt.binding(() => Sizes.dp(Config.centerConsoleWidth / 2));
+            popupWithList.originItemY = Qt.binding(() => Sizes.dp(Config.centerConsoleHeight / 2));
+
+            popupWithList.popupY = Qt.binding(() => {
+                return Sizes.dp(Config.centerConsoleHeight / 2) - popupWithList.height / 2;
+            });
+
             popupWithList.visible = true;
         }
     }
@@ -65,8 +71,9 @@ Item {
     PopupWithList {
         id: popupWithList
 
-        width: Sizes.dp(910)
-        height: Sizes.dp(450)
+        // have to forward scale from root item as PopupWithList is a Window, not an Item,
+        // so value propagation doesn't quite apply
+        Sizes.scale: root.Sizes.scale
     }
 }
 

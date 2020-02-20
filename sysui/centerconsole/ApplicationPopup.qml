@@ -56,6 +56,18 @@ PopupItem {
         objectFollowsItemSize: false
     }
 
+    Connections {
+        target: root
+        // reset popup parameters on scale change
+        onHeightChanged: {
+            if ("open" === root.state) {
+                root.originItemX = root.window.windowProperty("originItemX")
+                root.originItemY = root.window.windowProperty("originItemY")
+                root.y = window.windowProperty("popupY")
+            }
+        }
+    }
+
     Component.onCompleted: {
         var nativePopup = !!window.popup
         if (nativePopup) {

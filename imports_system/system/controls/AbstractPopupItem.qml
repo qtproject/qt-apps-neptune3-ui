@@ -46,7 +46,7 @@ Control {
 
     Keys.onEscapePressed: { root.closeHandler(); }
 
-    // X and Y potition of the popup when open.
+    // X and Y position of the popup when open.
     // By default you have it horizontally centered and vertically aligned to the bottom
     property real popupX: Math.round((root.parent.width - root.width) / 2)
     property real popupY: root.parent.height - root.height - Sizes.dp(90)
