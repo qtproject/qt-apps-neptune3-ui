@@ -36,36 +36,27 @@ import shared.utils 1.0
 import shared.Sizes 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.2
+import QtQml.Models 2.2
 
-// FIXME: Delete this in favor of ToolsColumn from controls module
-ColumnLayout {
+import shared.controls 1.0
+
+Item {
     id: root
 
-    property alias model: toolsRepeater.model
+    property alias model: toolsColumn.model
     property int currentIndex: 0
     property string serverUrl
     signal toolClicked(int index)
 
-    ButtonGroup { id: buttonGroup }
+    ToolsColumn {
+        id: toolsColumn
 
-    Repeater {
-        id: toolsRepeater
-        Layout.alignment: Qt.AlignHCenter
-
-        ToolButton {
-            objectName: "downloadAppViewButton_" + (model.name ? model.name : "unknown")
-            Layout.alignment: Qt.AlignHCenter
-            baselineOffset: 0
-            checkable: true
-            checked: root.currentIndex === index
-            icon.source: root.serverUrl + "/category/icon?id=" + model.id
-            display: AbstractButton.TextUnderIcon
-            text: qsTr(model.name)
-            font.pixelSize: Sizes.fontSizeXS
-            onClicked: {
-                root.toolClicked(index);
-            }
-            ButtonGroup.group: buttonGroup
+        width: Sizes.dp(264)
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: Sizes.dp(53)
+        onCurrentIndexChanged: {
+            root.toolClicked(currentIndex)
         }
     }
 }

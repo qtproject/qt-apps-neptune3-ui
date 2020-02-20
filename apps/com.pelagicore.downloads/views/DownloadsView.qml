@@ -151,8 +151,7 @@ Item {
             id: toolsColumn
             objectName: "downloadsAppColumn"
             Layout.preferredWidth: Sizes.dp(264)
-            Layout.preferredHeight: Sizes.dp(320)
-            Layout.alignment: Qt.AlignTop
+            Layout.fillHeight: true
             model: root.store.categoryModel
             serverUrl: root.store.appServerUrl
             onToolClicked: root.store.selectCategory(index)

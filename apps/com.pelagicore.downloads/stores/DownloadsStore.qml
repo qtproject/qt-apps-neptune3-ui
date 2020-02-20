@@ -42,7 +42,7 @@ Item {
     id: root
 
     property alias applicationModel: appModel
-    property alias categoryModel: catModel
+    property alias categoryModel: categoryListModel
     property alias appStoreConfig: appStoreConfig
     property string appServerUrl: appStoreConfig.serverUrl
     property alias cpuArch: appStoreConfig.cpuArch
@@ -138,7 +138,7 @@ Item {
     }
 
     function selectCategory(index) {
-        var category = categoryModel.get(index);
+        var category = categoryListModel.get(index);
         if (category) {
             root.categoryid = category.id;
         } else {
@@ -293,17 +293,35 @@ Item {
         property bool initialized: false
         onLoginSuccessful: {
             if (!initialized) {
-                catModel.refresh();
+                categoryListModel.refresh();
                 initialized = true;
             }
         }
     }
 
+    ListModel {
+        id: categoryListModel
+
+        function refresh() {
+            jsonCategoryModel.refresh();
+        }
+    }
+
     JSONModel {
-        id: catModel
+        id: jsonCategoryModel
+
         url: appStoreConfig.serverUrl + "/category/list"
         onStatusChanged: {
             if (status === "ready") {
+                categoryListModel.clear();
+                for (let i = 0; i < jsonCategoryModel.count; ++i) {
+                    let cat = jsonCategoryModel.get(i);
+                    categoryListModel.append({
+                        "id": cat.id, "text": cat.name,
+                        "sourceOn": root.appServerUrl + "/category/icon?id=" + cat.id,
+                        "sourceOff": root.appServerUrl + "/category/icon?id=" + cat.id,
+                    });
+                }
                 root.categoryListReady();
             }
         }
