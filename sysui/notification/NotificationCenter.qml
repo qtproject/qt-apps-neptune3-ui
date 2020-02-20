@@ -41,6 +41,8 @@ import shared.Style 1.0
 
 Item {
     id: root
+
+    state: "closed"
     states: [
         State {
             when: root.incomingNoti
@@ -79,6 +81,7 @@ Item {
             }
         },
         State {
+            name: "closed"
             when: (!root.incomingNoti && !root.openNotificationCenter)
             PropertyChanges {
                 target: root
