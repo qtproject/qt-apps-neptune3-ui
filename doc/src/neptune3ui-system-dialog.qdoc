@@ -94,6 +94,11 @@
     widgets, if the app is stopped or the widget is closed, and \c Autostart is disabled, then the
     app doesn't start and the widget isn't shown on the Home screen upon system restart.
 
+   You can remove the app if it is not built-in (installed with
+   \l{Qt Creator Plugin for Qt Application Manager}, \l{Controller}{appman-controller} or from
+   \l{Neptune 3 UI Apps}{Downloads app}). To remove the installed app, tap on the recyle bin icon
+    near the app id.
+
    \image system-dialog-apps.jpg
 
    \section1 Performance Tab
