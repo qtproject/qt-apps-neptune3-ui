@@ -202,7 +202,7 @@ Item {
 
             Timer {
                 interval: 1000
-                running: root.visible
+                running: root.visible && model.appInfo.running
                 repeat: true
                 onTriggered: {
                     processStatus.update()
