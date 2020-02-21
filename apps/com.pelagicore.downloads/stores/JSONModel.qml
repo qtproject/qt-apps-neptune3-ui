@@ -45,6 +45,12 @@ ListModel {
         status = "loading"
         clear();
         JSONBackend.serverCall(url, data, function(data) {
+            if (data === 0) {
+                status = "error";
+
+                return;
+            }
+
             for (var i = 0; i < data.length; i++) {
                 var entry = data[i];
                 append(entry);

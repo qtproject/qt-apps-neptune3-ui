@@ -34,9 +34,6 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import shared.utils 1.0
 import shared.Sizes 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
-import QtQml.Models 2.2
 
 import shared.controls 1.0
 
@@ -44,8 +41,8 @@ Item {
     id: root
 
     property alias model: toolsColumn.model
-    property int currentIndex: 0
     property string serverUrl
+
     signal toolClicked(int index)
 
     ToolsColumn {
@@ -55,8 +52,6 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(53)
-        onCurrentIndexChanged: {
-            root.toolClicked(currentIndex)
-        }
+        onClicked: root.toolClicked(currentIndex)
     }
 }

@@ -447,6 +447,21 @@ temperatures between 14° and 18°.</source>
     </message>
 </context>
 <context>
+    <name>DownloadsStates</name>
+    <message>
+        <source>Login Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching categories error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching apps error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadsStore</name>
     <message>
         <source>%1 Successfully Installed</source>
@@ -541,7 +556,7 @@ temperatures between 14° and 18°.</source>
     </message>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished">未找到app!</translation>
+        <translation type="obsolete">未找到app!</translation>
     </message>
     <message>
         <source>A Network connection is required</source>
@@ -553,6 +568,22 @@ temperatures between 14° and 18°.</source>
     </message>
     <message>
         <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is on Maintance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -39,88 +39,72 @@ import shared.utils 1.0
 QtObject {
     id: root
 
-    property bool serverOnline: false
-    property string serverReason
     property string cpuArch
     property string serverUrl: ApplicationManager.systemProperties.appStoreServerUrl
     property string userName: ApplicationManager.systemProperties.userName
     property string userPassword: ApplicationManager.systemProperties.userPassword
     readonly property string imei: ApplicationManager.systemProperties.imei
-    property  bool isReconnecting: false
+
+    readonly property int maxReconnectCount: 5
+    property int reconnectionAttempt: 0
 
     signal loginSuccessful()
+    signal connectionSuccessful()
+    signal connectionFailed()
+    signal tryConnectToServer()
+    signal loginFailed()
+    signal serverOnMaintance()
 
     property var d: QtObject {
-
-        property int attempt: 0
-        property Timer retryTimer: Timer {
-            interval: 2000
-            onTriggered: {
-                d.checkServerPrivate()
-            }
-        }
-
-        function retry() {
-            console.log(Logging.apps, "Neptune-UI::Application Store - Retry Connection");
-            if (attempt < 5) {
-                attempt += 1;
-                retryTimer.start();
-            } else {
-                root.isReconnecting = false;
-            }
-        }
-
         function checkServerPrivate() {
-            root.isReconnecting = true;
             console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
+            root.tryConnectToServer();
             var url = root.serverUrl + "/hello";
             var data = {"platform" : "NEPTUNE3", "version" : "1", "architecture": root.cpuArch};
-            JSONBackend.setErrorFunction(function () {
-                root.serverOnline = false;
-                root.serverReason = "unknown";
-                root.d.retry()
-            })
+            JSONBackend.setErrorFunction(0);
             JSONBackend.serverCall(url, data, function(data) {
                 if (data !== 0) {
                     if (data.status === "ok") {
-                        root.d.attempt = 0
-                        root.serverOnline = true;
-                        root.isReconnecting = false;
-                        root.login();
+                        root.reconnectionAttempt = 0
+                        root.connectionSuccessful();
                     } else if (data.status === "maintenance") {
-                        console.log(Logging.apps, "Server Call: maintenance");
-                        root.serverOnline = false;
-                        root.serverReason = "maintenance";
+                        console.warn(Logging.apps, "Server Call: maintenance");
+                        root.serverOnMaintance();
                     } else {
-                        console.log(Logging.apps, "Server Call Err: " + data.error);
-                        root.serverOnline = false;
-                        root.d.retry()
+                        console.warn(Logging.apps, "Server Call Err: " + data.error,
+                                    "Status: " + data.status);
+                        root.connectionFailed();
                     }
                 } else {
-                    root.serverOnline = false;
-                    root.serverReason = "unknown";
-                    root.d.retry();
+                    console.warn(Logging.apps, "Server Check Error: zero data error")
+                    root.connectionFailed();
                 }
             })
         }
     }
 
     function checkServer() {
-        root.d.attempt = 0
         root.d.checkServerPrivate()
     }
 
     function login() {
         var url = serverUrl + "/login"
         var data = { "username" : userName, "password" : userPassword, "imei" : imei }
+
+        JSONBackend.setErrorFunction(0);
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
                 if (data.status === "ok") {
                     console.log(Logging.apps, "Login Succeeded");
                     loginSuccessful();
                 } else {
-                    console.log(Logging.apps, "Login Err: " + data.error);
+                    console.warn(Logging.apps, "Login Error: " + data.error,
+                                "Status: " + data.status);
+                    root.loginFailed();
                 }
+            } else {
+                console.warn(Logging.apps, "Login Error: zero data error");
+                root.loginFailed();
             }
         })
     }

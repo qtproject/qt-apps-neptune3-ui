@@ -46,13 +46,9 @@ Item {
     property alias appStoreConfig: appStoreConfig
     property string appServerUrl: appStoreConfig.serverUrl
     property alias cpuArch: appStoreConfig.cpuArch
-    property int categoryid: 0
     property string filter: ""
     property real currentInstallationProgress: 0.0
     readonly property var installedPackages: PackageManager.packageIds()
-    readonly property bool isOnline: appStoreConfig.serverOnline
-    readonly property bool isReconnecting: appStoreConfig.isReconnecting
-    property bool isBusy: false// appModel.count == 0 && isOnline
     readonly property IntentHandler intentHandler: IntentHandler {
         intentIds: "activate-app"
         onRequestReceived: {
@@ -60,9 +56,14 @@ Item {
             request.sendReply({ "done": true })
         }
     }
+    property DownloadsStates downloadsStates: DownloadsStates {
+        sysinfo: sysinfo
+        appStoreConfig: appStoreConfig
+        jsonCategoryModel: jsonCategoryModel
+        jsonAppModel: jsonAppModel
+    }
 
     signal requestRaiseAppReceived()
-    signal categoryListReady()
 
     function formatBytes(bytes) {
         if (bytes < 1024) return qsTr("%1 Bytes").arg(bytes);
@@ -78,23 +79,26 @@ Item {
 
         var url = appStoreConfig.serverUrl + "/app/purchase";
         var data = {"id": packageId, "device_id" : "00-11-22-33-44-55" };
+        var icon = root.appServerUrl
+                + "/app/icon?id=" + packageId
+                + "&architecture=" + root.cpuArch;
 
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
                 if (data.status === "ok") {
                     console.log(Logging.apps, "start downloading");
-                    var icon = root.appServerUrl
-                            + "/app/icon?id=" + packageId
-                            + "&architecture=" + root.cpuArch;
                     var installID = PackageManager.startPackageInstallation(data.url);
                     PackageManager.acknowledgePackageInstallation(installID);
                 } else if (data.status === "fail" && data.error === "not-logged-in"){
-                    console.log(Logging.apps, ":::AppStoreServer::: not logged in");
+                    console.warn(Logging.apps, ":::AppStoreServer::: not logged in");
                     showNotification(qsTr("System is not logged in"), qsTr("System is not logged in"), icon);
                 } else {
-                    console.log(Logging.apps, ":::AppStoreServer::: download failed: " + data.error);
+                    console.warn(Logging.apps, ":::AppStoreServer::: download failed: " + data.error);
                     showNotification(qsTr("%1 Download Failed").arg(name), qsTr("%1 download failed").arg(name), icon);
                 }
+            } else {
+                console.warn(Logging.apps, ":::AppStoreServer::: download failed");
+                showNotification(qsTr("%1 Download Failed").arg(name), qsTr("%1 download failed").arg(name), icon);
             }
         })
     }
@@ -106,7 +110,7 @@ Item {
 
     function isPackageBuiltIn(packageId) {
         var pkg = PackageManager.package(packageId);
-        return pkg && pkg.builtIn;
+        return !!pkg && pkg.builtIn;
     }
 
     function isPackageBusy(packageId) {
@@ -140,12 +144,12 @@ Item {
     function selectCategory(index) {
         var category = categoryListModel.get(index);
         if (category) {
-            root.categoryid = category.id;
+            jsonAppModel.categoryId = category.id;
         } else {
-            root.categoryid = 1;
+            jsonAppModel.categoryId = 1;
         }
 
-        appModel.refresh();
+        jsonAppModel.refresh();
     }
 
     function showNotification(summary, body, icon) {
@@ -162,7 +166,7 @@ Item {
             if (isPackageBuiltIn(packageId)) {
                 return qsTr("built-in");
             } else {
-                console.warn("Uknown app package size: -1", id);
+                console.warn("Uknown app package size: -1", packageId);
                 return qsTr("Unknown size");
             }
         }
@@ -290,21 +294,10 @@ Item {
     ServerConfig {
         id: appStoreConfig
         cpuArch: sysinfo.cpu + "-" + sysinfo.kernel
-        property bool initialized: false
-        onLoginSuccessful: {
-            if (!initialized) {
-                categoryListModel.refresh();
-                initialized = true;
-            }
-        }
     }
 
     ListModel {
         id: categoryListModel
-
-        function refresh() {
-            jsonCategoryModel.refresh();
-        }
     }
 
     JSONModel {
@@ -312,6 +305,11 @@ Item {
 
         url: appStoreConfig.serverUrl + "/category/list"
         onStatusChanged: {
+            if (status === "loading" && categoryListModel.count > 0) {
+                categoryListModel.clear();
+                jsonAppModel.categoryId = 0;
+            }
+
             if (status === "ready") {
                 categoryListModel.clear();
                 for (let i = 0; i < jsonCategoryModel.count; ++i) {
@@ -322,14 +320,40 @@ Item {
                         "sourceOff": root.appServerUrl + "/category/icon?id=" + cat.id,
                     });
                 }
-                root.categoryListReady();
             }
         }
     }
 
-    JSONModel {
+    ListModel {
         id: appModel
+    }
+
+    JSONModel {
+        id: jsonAppModel
+
+        property int categoryId: 0
         url: appStoreConfig.serverUrl + "/app/list"
-        data: root.categoryid >= 0 ? ({ "filter" : root.filter , "category_id" : root.categoryid}) : ({ "filter" : root.filter})
+        data: jsonAppModel.categoryId >= 0 ? ({ "filter" : root.filter ,
+                                              "category_id" : jsonAppModel.categoryId})
+                                   : ({ "filter" : root.filter})
+        onStatusChanged: {
+            appModel.clear();
+
+            if (status === "ready") {
+                let appList = [];
+                for (let i = 0; i < jsonAppModel.count; ++i) {
+                    let app = jsonAppModel.get(i);
+                    let isInstalled = isPackageInstalledByPackageController(app.id)
+                    appList.push({
+                        "id": app.id,
+                        "name": app.name,
+                        "isInstalled": isInstalled,
+                        "packageSizeText": isInstalled ? getInstalledPackageSizeText(app.id) : "",
+                        "packageBuiltIn": isInstalled ? isPackageBuiltIn(app.id) : false
+                    });
+                }
+                appModel.append(appList)
+            }
+        }
     }
 }
