@@ -4,7 +4,10 @@ TARGET   = neptune3-ui
 
 include(../../config.pri)
 
-macos:CONFIG -= app_bundle
+macos: {
+    CONFIG -= app_bundle
+    CONFIG *= separate_debug_info
+}
 CONFIG *= no_private_qt_headers_warning link_pkgconfig
 
 QT *= appman_main-private testlib gui-private
