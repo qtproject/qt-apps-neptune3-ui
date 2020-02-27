@@ -217,4 +217,13 @@ ColumnLayout {
     Item {
         Layout.fillHeight: true
     }
+
+    Connections {
+        target: root.model
+        onCountChanged: {
+            if (currentIndex > 0 && model.count <= currentIndex) {
+                currentIndex = 0;
+            }
+        }
+    }
 }
