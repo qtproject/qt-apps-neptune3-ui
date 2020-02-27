@@ -105,17 +105,17 @@ Item {
         VehicleProxyPanel {
             id: vehicleProxyPanel
             z: 9999
+            visible: opacity != 0.0
+            Behavior on opacity {
+                DefaultNumberAnimation {}
+            }
         }
 
         Loader {
             id: vehicle3DPanelLoader
             anchors.fill: parent
             active: false
-            opacity: active ? 1.0 : 0.0
             asynchronous: true
-            Behavior on opacity {
-                DefaultNumberAnimation {}
-            }
 
             onItemChanged: {
                 if (item) {
@@ -126,7 +126,7 @@ Item {
                         item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor});
                     }
 
-                    vehicleProxyPanel.visible = Qt.binding( function() {return !item.readyToChanges} );
+                    vehicleProxyPanel.opacity = Qt.binding(() => item.readyToChanges ? 0.0 : 1.0);
 
                     item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} );
                     item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened});

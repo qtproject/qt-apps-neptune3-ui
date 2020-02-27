@@ -136,7 +136,23 @@ Item {
                 id: inputSettings
             }
 
-            components: [inputSettings, renderSettings]
+            FrameAction {
+                id: frameCounter
+            }
+
+            components: [inputSettings, renderSettings, frameCounter]
+
+            Connections {
+                id: readyToChangeConnection
+                target: frameCounter
+                enabled: !root.readyToChanges
+                property int fc: 0
+                onTriggered: {
+                    if (++fc == 3) {
+                        root.readyToChanges = true;
+                    }
+                }
+            }
 
             Camera {
                 id: camera
@@ -248,7 +264,6 @@ Item {
                 version: root.modelVersion
                 onBodyLoadedChanged: {
                     if (bodyLoaded) {
-                        root.readyToChanges = true;
                         var angle = getCurrentAngle()
                         if (angle !== lastCameraAngle) {
                             camera.panAboutViewCenter(angle - lastCameraAngle, Qt.vector3d(0, 1, 0));
