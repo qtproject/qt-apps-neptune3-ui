@@ -361,6 +361,8 @@ static void usage()
     puts("  -I <path> ........................ Add <path> to the list of import paths");
     puts("  -P <path> ........................ Add <path> to the list of plugin paths");
     puts("  -translation <translationfile> ... Set the language to run in");
+    puts("  --style-conf <style conf file> ... Sets QT_QUICK_CONTROLS_CONF");
+    puts("  --styles-path <styles path> ...... Sets QT_QUICK_CONTROLS_STYLE_PATH");
 
     puts(" ");
     exit(1);
@@ -529,6 +531,10 @@ int main(int argc, char ** argv)
                 imports.append(arguments.at(++i));
             else if (lowerArgument == QLatin1String("-p") && i + 1 < size)
                 pluginPaths.append(arguments.at(++i));
+            else if (lowerArgument == QLatin1String("--style-conf") && i + 1 < size)
+                qputenv("QT_QUICK_CONTROLS_CONF", arguments.at(++i).toLocal8Bit());
+            else if (lowerArgument == QLatin1String("--styles-path") && i + 1 < size)
+                qputenv("QT_QUICK_CONTROLS_STYLE_PATH", arguments.at(++i).toLocal8Bit());
             else if (lowerArgument == QLatin1String("--help")
                      || lowerArgument == QLatin1String("-help")
                      || lowerArgument == QLatin1String("--h")
