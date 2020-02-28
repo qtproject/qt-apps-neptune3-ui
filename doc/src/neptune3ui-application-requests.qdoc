@@ -30,6 +30,11 @@
    \page neptune3ui-requests.html
    \title Neptune 3 UI - App Requests
 
+   An application request is a collective term used in Neptune 3 UI to describe
+   an exchange of commands between apps. Application requests currently use two
+   features in \l{Qt Application Manager}: OpenDocument interface and
+   \l{Intents in Neptune 3 UI apps}.
+
    An application request is used to send a request to an application to just open
    or open in a certain state. That said, the action should be possible to be
    performed from wherever in the system.
@@ -126,4 +131,83 @@
    In the energy panel is a list with 'charging station' suggestions. If any of those is
    pressed, the maps application will directly open, loading the selected charging station's
    address.
+
+   \section1 Intents in Neptune 3 UI apps
+
+   \l{Qt Application Manager} intents enable an app to communicate with another app or with
+   System UI by sending a command and then waiting for a return value (information) in response.
+
+   The table below describes the set of intents (see \l{Qt Application Manager}{Intents System UI and Applications Example}
+   documentation) provided by apps, as well as a generalized description of how an app reacts on an
+   intent. For example, in the first row, the apps listed in "App" column react on activate-app intent
+   by opening or rising an app window.
+
+
+   \table
+    \header
+     \li Name
+     \li Functionality
+     \li App
+
+    \row
+     \li activate-app
+     \li opens or rises app window
+     \li \list
+           \li com.luxoft.vehicle
+           \li com.pelagicore.apps.settings
+           \li com.pelagicore.calendar
+           \li com.pelagicore.downloads
+           \li com.pelagicore.map
+           \li com.pelagicore.music
+           \li com.pelagicore.phone
+           \li com.pelagicore.tuner
+           \li com.luxoft.alexa
+         \endlist
+
+     \row
+      \li set-next-accent-color
+      \li switches to the next theme color
+      \li \list
+           \li com.pelagicore.apps.settings
+          \endlist
+     \row
+      \li show-destination
+      \li opens map search for text query (parameter: \c destination: text address query)
+      \li \list
+           \li com.pelagicore.map
+          \endlist
+     \row
+      \li music-command
+      \li switches music tracks (parameter: \c musiccommand: prev/next)
+      \li \list
+           \li com.pelagicore.music
+          \endlist
+
+     \row
+      \li call-support
+      \li initiates call to neptune support service (for more information
+          see \l{Chapter 2: Extend the Parking App and Integrate
+          with Intent and Notification} {Develop a Parking App})
+      \li \list
+           \li com.pelagicore.phone
+          \endlist
+     \row
+      \li trigger-voiceassistant
+      \li enables Alexa app to listen to commands
+      \li \list
+           \li com.luxoft.alexa
+          \endlist
+     \row
+      \li vehicle-control
+      \li operates vehicle's doors, trunk and sun roof. This intent requires 3 parameters:
+          \list
+           \li action: open/close
+           \li side: left/right
+           \li part: trunk/sunroof/door
+          \endlist
+      \li \list
+           \li com.luxoft.vehicle
+          \endlist
+     \endtable
+
 */
