@@ -94,6 +94,14 @@ Item {
                 visible: false
             }
             PropertyChanges {
+                target: notificationCenterBg
+                opacity: 0.0
+            }
+            PropertyChanges {
+                target: notificationLabelOnBG
+                opacity: 0.0
+            }
+            PropertyChanges {
                 target: notificationListItem
                 opacity: 0.0
                 visible: false
@@ -130,6 +138,7 @@ Item {
         id: notificationCenterBg
         anchors.fill: parent
         color: Style.offMainColor
+        Behavior on opacity { DefaultNumberAnimation { } }
     }
 
     Timer {
@@ -200,6 +209,7 @@ Item {
     }
 
     Label {
+        id: notificationLabelOnBG
         anchors.centerIn: parent
         visible: opacity > 0.0
         opacity: (root.notificationModel.count === 0) ? 1.0 : 0.0
