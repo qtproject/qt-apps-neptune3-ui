@@ -52,20 +52,13 @@ Item {
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
             text: "Simple notification"
-            property var notification1: ApplicationInterface.createNotification();
             onClicked: {
+                var notification1 = ApplicationInterface.createNotification();
                 notification1.summary = "Summary text: simple notification";
                 notification1.body = "Body text: simple notification";
                 notification1.showActionsAsIcons = true;
                 notification1.actions = [{"actionText": "Action Text"}];
                 notification1.show();
-
-            }
-            Connections {
-                target: simpleNotiButton.notification1
-                onActionTriggered: {
-                    console.log("Simple notification has been triggered")
-                }
             }
         }
 
