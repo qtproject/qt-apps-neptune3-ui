@@ -55,12 +55,7 @@ QtObject {
         }
     }
 
-    function showNotification() {
-        root.notificationToastVisible = true;
-    }
-
     function closeNotification() {
-        root.notificationToastVisible = false;
         root.notificationClosed();
     }
 
@@ -77,6 +72,7 @@ QtObject {
         while (root.count > 0) {
             removeNotification(NotificationManager.get(0).id);
         }
+
         root.notificationsCleared();
     }
 }

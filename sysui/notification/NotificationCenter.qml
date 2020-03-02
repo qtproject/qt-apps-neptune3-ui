@@ -45,48 +45,11 @@ Item {
     state: "closed"
     states: [
         State {
-            when: root.incomingNoti
-            PropertyChanges {
-                target: root
-                height: (Sizes.dp(150) + notificationToast.height)
-                y: 0
-            }
-            PropertyChanges {
-                target: notificationToast
-                opacity: 1.0
-                visible: true
-            }
-            PropertyChanges {
-                target: notificationListItem
-                opacity: 0.0
-                visible: false
-            }
-        },
-        State {
-            when: root.openNotificationCenter
-            PropertyChanges {
-                target: root
-                height: (root.totalContentHeight + notificationDefaultMargin + notificationBottomMargin)
-                y: 0
-            }
-            PropertyChanges {
-                target: notificationToast
-                opacity: 0.0
-                visible: false
-            }
-            PropertyChanges {
-                target: notificationListItem
-                opacity: 1.0
-                visible: true
-            }
-        },
-        State {
             name: "closed"
-            when: (!root.incomingNoti && !root.openNotificationCenter)
             PropertyChanges {
                 target: root
-                height:  (root.totalContentHeight + notificationDefaultMargin + notificationBottomMargin)
-                y: -root.height
+                y: -allNotificationsHeight
+                height: allNotificationsHeight
             }
             PropertyChanges {
                 target: notificationToast
@@ -94,7 +57,7 @@ Item {
                 visible: false
             }
             PropertyChanges {
-                target: notificationCenterBg
+                target: notificationCenterBG
                 opacity: 0.0
             }
             PropertyChanges {
@@ -106,70 +69,165 @@ Item {
                 opacity: 0.0
                 visible: false
             }
+            PropertyChanges {
+                target: clearListButton
+                opacity: 0.0
+            }
+        },
+        State {
+            name: "intermediate_from_closed"
+            PropertyChanges {
+                target: notificationCenterBG
+                opacity: 1.0
+            }
+            PropertyChanges {
+                target: root
+                y: -allNotificationsHeight
+                height: allNotificationsHeight
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 1.0
+                visible: true
+            }
+        },
+        State {
+            name: "incomingNotification"
+            PropertyChanges {
+                target: notificationCenterBG
+                opacity: 1.0
+            }
+            PropertyChanges {
+                target: root
+                height: oneIncomingNotificationHeight
+                y: 0
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 1.0
+                visible: true
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: clearListButton
+                opacity: 0.0
+            }
+        },
+        State {
+            name: "intermediate_from_all"
+            extend: "allNotifications"
+        },
+        State {
+            name: "allNotifications"
+            PropertyChanges {
+                target: root
+                y: 0
+                height: allNotificationsHeight
+            }
+            PropertyChanges {
+                target: notificationCenterBG
+                opacity: 1.0
+            }
+            PropertyChanges {
+                target: notificationToast
+                opacity: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: notificationListItem
+                opacity: 1.0
+                visible: true
+            }
         }
     ]
 
-    transitions: Transition {
-        PropertyAnimation { properties: "y, height"; easing.type: Easing.InOutQuad }
-        PropertyAnimation { properties: "opacity"; duration: 400 }
-    }
+    transitions: [
+        Transition {from: "*"; to: "intermediate_from_closed"}
+        , Transition {from: "*"; to: "intermediate_from_all"}
+        , Transition {
+            PropertyAnimation {
+                properties: "y, height";
+                easing.type: Easing.InOutQuad;
+            }
+            PropertyAnimation { properties: "opacity"; duration: 400 }
+        }
+    ]
 
-    readonly property int totalMaxContentHeight: (parent.height - Config.statusBarHeight - root.notificationDefaultMargin - root.notificationBottomMargin)
-    readonly property int totalContentHeight: (notificationList.contentHeight > root.totalMaxContentHeight) ? root.totalMaxContentHeight : notificationList.contentHeight
-    readonly property int listviewHeight: Math.min((root.notificationModel.count * Sizes.dp(120)), root.totalContentHeight)
+    readonly property int oneIncomingNotificationHeight: Sizes.dp(100) + notificationToast.height
+    readonly property int allNotificationsHeight: root.totalContentHeight
+                                                  + root.notificationDefaultMargin
+                                                  + root.notificationBottomMargin
+
+    readonly property int totalMaxContentHeight: parent.height
+                                                 - Config.statusBarHeight
+                                                 - root.notificationDefaultMargin
+                                                 - root.notificationBottomMargin
+    readonly property int totalContentHeight:
+            notificationList.contentHeight > root.totalMaxContentHeight
+            ? root.totalMaxContentHeight
+            : notificationList.contentHeight
+    readonly property int listviewHeight:
+        Math.min((root.notificationModel.count * Sizes.dp(120)), root.totalContentHeight)
 
     readonly property int notificationDefaultMargin: Sizes.dp(40)
     readonly property int notificationBottomMargin: Sizes.dp(110)
     readonly property int defaultTimeout: 2000
 
     property NotificationModel notificationModel
-    property bool incomingNoti: false
-    property bool openNotificationCenter: false
 
     function closeNotificationCenter() {
         // reset helper properties&timer
-        root.incomingNoti = false;
-        root.openNotificationCenter = false;
         notificationShowTimer.stop();
         notificationShowTimer.interval = root.defaultTimeout;
+        state = "closed"
     }
 
     Rectangle {
-        id: notificationCenterBg
+        id: notificationCenterBG
         anchors.fill: parent
         color: Style.offMainColor
+        visible: opacity > 0.0
         Behavior on opacity { DefaultNumberAnimation { } }
     }
 
     Timer {
         id: notificationShowTimer
         onTriggered: {
-            root.incomingNoti = false;
+            if (root.state == "incomingNotification")
+                root.state = "closed";
         }
     }
 
     Connections {
         target: root.notificationModel
         onCountChanged: {
-            if (root.incomingNoti && (root.notificationModel.count === 0)) {
-                root.incomingNoti = false;
+            if (root.notificationModel.count === 0) {
+                root.state = "closed";
             }
         }
 
         onNotificationAdded: {
-            root.incomingNoti = true;
+            state = "incomingNotification";
             notificationShowTimer.stop();
-            var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
-            if (currentNotification.timeout > root.defaultTimeout) {
-                notificationShowTimer.interval = currentNotification.timeout;
-            } else {
-                notificationShowTimer.interval = root.defaultTimeout;
-            }
+            var notification = root.notificationModel.model.get(root.notificationModel.count - 1);
+            notificationShowTimer.interval = (notification.timeout > root.defaultTimeout)
+                ? notification.timeout
+                : root.defaultTimeout;
+
             notificationShowTimer.start();
         }
 
         onNotificationClosed: {
-            root.incomingNoti = false;
+            root.state = "closed";
         }
     }
 
@@ -190,19 +248,22 @@ Item {
             interactive: (contentHeight > root.listviewHeight)
             model: root.notificationModel.model
             ScrollIndicator.vertical: ScrollIndicator { }
+            onCountChanged: {
+                positionViewAtEnd();
+            }
             delegate: NotificationItem {
                 width: notificationList.width
                 notificationIcon: model.icon
                 notificationText: model.summary
                 notificationSubtext: model.body
                 notificationImage: model.image
-                notificationActionText: (model.actions.length > 0) ? model.actions[0].actionText : ""
+                notificationActionText: model.actions.length > 0 ? model.actions[0].actionText : ""
                 onCloseClicked: {
                     root.notificationModel.removeNotification(model.id);
                 }
                 onButtonClicked: {
                     root.notificationModel.buttonClicked(model.id);
-                    root.openNotificationCenter = false;
+                    root.state = "closed";
                 }
             }
         }

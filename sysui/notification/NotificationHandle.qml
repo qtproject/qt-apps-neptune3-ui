@@ -43,30 +43,51 @@ ToolButton {
     implicitWidth: root.notificationCounterVisible ? Sizes.dp(255) : Sizes.dp(205)
     implicitHeight: Sizes.dp(Config.statusBarHeight)
 
-    property alias dragActive: handler.active
-    property alias dragTarget: handler.target
-    property int prevDragY: 0
-    property int dragDelta: 0
-    property int dragOrigin: 0
-    property int minimumY: 0
-    property int maximumY: 0
-
-    property bool swipe: Math.abs(root.prevDragY - root.dragTarget.y) > 0
-
-    property alias dragFilterTimer: dragFilterTimer
-
     property int notificationCount
     property bool notificationCounterVisible
 
-    signal activeChanged(var active)
+    property var dragTarget
+    property int parentRotation
+
+    QtObject {
+        id: d
+        property int prevDragY
+    }
 
     DragHandler {
         id: handler
-        target: root.dragTarget
-        yAxis.minimum: root.minimumY
-        yAxis.maximum: root.maximumY
+        target: root
+        onTranslationChanged: {
+            var dt = Math.sin(parentRotation* (180 / Math.PI)) * translation.x
+                    + Math.cos(parentRotation* (180 / Math.PI)) * translation.y ;
+            if (dragTarget.state === "intermediate_from_closed") {
+                if (dt > 0) { // from close -> open
+                    var delta = dt < dragTarget.allNotificationsHeight
+                                ? dt
+                                : dragTarget.allNotificationsHeight;
+                    dragTarget.y = d.prevDragY + delta;
+                }
+            } else if (dragTarget.state === "intermediate_from_all") {
+                  if (dt < 0) {  // from open -> close
+                    delta = (dt + dragTarget.allNotificationsHeight) > 0
+                        ? dt
+                        : -dragTarget.allNotificationsHeight;
+                    dragTarget.y = d.prevDragY + delta;
+                  }
+            }
+        }
         onActiveChanged: {
-            root.activeChanged(active);
+            if (active) {
+                if (dragTarget.state === "closed") {
+                    dragTarget.state = "intermediate_from_closed";
+                    d.prevDragY = dragTarget.y;
+                } else if (dragTarget.state === "allNotifications") {
+                    dragTarget.state = "intermediate_from_all";
+                    d.prevDragY = dragTarget.y;
+                }
+            } else {
+                root.released()
+            }
         }
     }
 
@@ -110,15 +131,6 @@ ToolButton {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: countRect.right
             color: Style.contrastColor
-        }
-    }
-
-    Timer {
-        id: dragFilterTimer
-        interval: 100
-        repeat: true
-        onTriggered: {
-            root.prevDragY = root.dragTarget.y;
         }
     }
 
