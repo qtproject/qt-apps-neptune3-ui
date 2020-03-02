@@ -74,5 +74,6 @@ logging:
     - "qml*=true"
     - "cursor.navigation=false"
     - "qt3ds.*=false"
+    - "shared.com.pelagicore.map.info=false"
     - "*.warning=false"
     - "*.critical=true"

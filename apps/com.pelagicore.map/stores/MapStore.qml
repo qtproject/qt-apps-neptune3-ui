@@ -127,10 +127,10 @@ QtObject {
             if (req.readyState === XMLHttpRequest.DONE) {
                 var objectArray = JSON.parse(req.responseText);
                 if (objectArray.errors !== undefined) {
-                    console.warn("Error fetching location:", objectArray.errors[0].message);
+                    console.warn(qLcMaps, "Error fetching location:", objectArray.errors[0].message);
                 } else {
                     root.positionCoordinate = QtPositioning.coordinate(objectArray.location.lat, objectArray.location.lng);
-                    console.info("Current location:", root.positionCoordinate);
+                    console.info(qLcMaps, "Current location:", root.positionCoordinate);
                 }
             }
         }
@@ -141,11 +141,11 @@ QtObject {
     function getAvailableMapsAndLocation(mapReady, supportedMapTypes) {
         if (mapReady) {
             mapTypeModel.clear();
-            console.info("Supported map types:");
+            console.info(qLcMaps, "Supported map types:");
             for (var i = 0; i < supportedMapTypes.length; i++) {
                 var map = supportedMapTypes[i];
                 mapTypeModel.append({"name": map.name, "data": map}) // fill the map type model
-                console.info("\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
+                console.info(qLcMaps, "\t", map.name, ", description:", map.description, ", style:", map.style, ", night mode:", map.night);
             }
             if (!root.offlineMapsEnabled) {
                 fetchCurrentLocation();
@@ -222,13 +222,13 @@ QtObject {
         plugin: herePlugin
         onStatusChanged: {
             if (status === GeocodeModel.Null) {
-                console.info("Search model idle");
+                console.info(qLcMaps, "Search model idle");
             } else if (status === GeocodeModel.Ready) {
-                console.info("Search model ready, results:", count)
+                console.info(qLcMaps, "Search model ready, results:", count)
             } else if (status === GeocodeModel.Loading) {
-                console.info("Search model busy");
+                console.info(qLcMaps, "Search model busy");
             } else if (status === GeocodeModel.Error) {
-                console.warn("Search model error:", error, errorString);
+                console.warn(qLcMaps, "Search model error:", error, errorString);
             }
         }
         limit: 20
@@ -251,20 +251,20 @@ QtObject {
 
         onStatusChanged: {
             if (status === RouteModel.Null) {
-                console.info("Route model idle");
+                console.info(qLcMaps, "Route model idle");
             } else if (status === RouteModel.Ready) {
-                console.info("Route model ready, results:", count)
+                console.info(qLcMaps, "Route model ready, results:", count)
                 if (count > 0) {
                     root.routeDistance = formatMeters(get(0).distance);
                     root.routeTime = formatSeconds(get(0).travelTime);
-                    console.info("Route distance (km):", root.routeDistance
+                    console.info(qLcMaps, "Route distance (km):", root.routeDistance
                                  , ", time:", root.routeTime);
-                    console.info("First coord:", get(0).segments[0].path[0])
+                    console.info(qLcMaps, "First coord:", get(0).segments[0].path[0])
                 }
             } else if (status === RouteModel.Loading) {
-                console.info("Route model busy");
+                console.info(qLcMaps, "Route model busy");
             } else if (status === RouteModel.Error) {
-                console.warn("Route model error:", error, errorString);
+                console.warn(qLcMaps, "Route model error:", error, errorString);
             }
         }
     }
@@ -282,7 +282,7 @@ QtObject {
             if (status === RouteModel.Ready) {
                 if (count > 0) {
                     root.homeRouteTime = formatSeconds(get(0).travelTime);
-                    console.info("Home route distance (km):", formatMeters(get(0).distance), ", time:", root.homeRouteTime)
+                    console.info(qLcMaps, "Home route distance (km):", formatMeters(get(0).distance), ", time:", root.homeRouteTime)
                 }
             }
         }
@@ -300,7 +300,7 @@ QtObject {
             if (status === RouteModel.Ready) {
                 if (count > 0) {
                     root.workRouteTime = formatSeconds(get(0).travelTime);
-                    console.info("Work route distance (km):", formatMeters(get(0).distance), ", time:", root.workRouteTime)
+                    console.info(qLcMaps, "Work route distance (km):", formatMeters(get(0).distance), ", time:", root.workRouteTime)
                 }
             }
         }
@@ -311,6 +311,10 @@ QtObject {
         interval: 3000
         running: false
         onTriggered: showOfflineMapInfo()
+    }
+
+    readonly property LoggingCategory qLcMaps: LoggingCategory {
+        name: "shared.com.pelagicore.map"
     }
 
     function showOfflineNotification() {
