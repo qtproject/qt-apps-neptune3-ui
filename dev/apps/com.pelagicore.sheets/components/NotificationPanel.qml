@@ -58,8 +58,6 @@ Item {
                 notification1.body = "Body text: simple notification";
                 notification1.showActionsAsIcons = true;
                 notification1.actions = [{"actionText": "Action Text"}];
-                // line below should be removed when AUTOSUITE-1366 will be fixed
-                notification1.icon = Qt.resolvedUrl("../icon.png");
                 notification1.show();
 
             }
@@ -80,8 +78,6 @@ Item {
                 notification2.summary = "Summary text: timeout notification";
                 notification2.body = "Body text: timeout 8 seconds";
                 notification2.timeout = 8000;
-                // line below should be removed when AUTOSUITE-1366 will be fixed
-                notification2.icon = Qt.resolvedUrl("../icon.png");
                 notification2.show();
             }
         }
@@ -95,8 +91,6 @@ Item {
                 notification3.summary = "Summary text: sticky notification";
                 notification3.body = "Sticky notification has an implicit timeout of 0, it will persist in the notification center";
                 notification3.sticky = true;
-                // line below should be removed when AUTOSUITE-1366 will be fixed
-                notification3.icon = Qt.resolvedUrl("../icon.png");
                 notification3.show();
             }
         }
@@ -109,8 +103,6 @@ Item {
                 var notification4 = ApplicationInterface.createNotification();
                 notification4.summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
                 notification4.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
-                // line below should be removed when AUTOSUITE-1366 will be fixed
-                notification4.icon = Qt.resolvedUrl("../icon.png");
                 notification4.show();
             }
         }
@@ -129,8 +121,6 @@ Item {
                 notification5.body = qsTr("Start route to nearest charging station?");
                 notification5.timeout = 4000;
                 notification5.actions = [{"actionText": qsTr("Show on Map")}];
-                // line below should be removed when AUTOSUITE-1366 will be fixed
-                notification5.icon = Qt.resolvedUrl("../icon.png");
                 notification5.show();
 
             }
@@ -149,8 +139,6 @@ Item {
                         notification6.summary = qsTr("Warning: Battery level is low");
                         notification6.body = qsTr("Please consider charging it in the next available station");
                         notification6.sticky = true;
-                        // line below should be removed when AUTOSUITE-1366 will be fixed
-                        notification6.icon = Qt.resolvedUrl("../icon.png");
                         notification6.show();
                     }
                     appRequestNotiButton.notification5.actionAccepted = false;

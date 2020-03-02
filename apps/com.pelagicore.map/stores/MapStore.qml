@@ -318,8 +318,6 @@ QtObject {
         notification.summary = qsTr("Offline mode");
         notification.body = qsTr("Search and navigation are not available in offline mode");
         notification.sticky = true;
-        // line below should be removed when AUTOSUITE-1366 will be fixed
-        notification.icon = Qt.resolvedUrl("../icon.png");
         notification.show();
         notificationTimer.start();
     }
@@ -329,8 +327,6 @@ QtObject {
         notification.summary = qsTr("Offline map");
         notification.body = qsTr("Offline Map only available in Light Theme");
         notification.sticky = true;
-        // line below should be removed when AUTOSUITE-1366 will be fixed
-        notification.icon = Qt.resolvedUrl("../icon.png");
         notification.show();
     }
 
@@ -339,8 +335,6 @@ QtObject {
         notification.summary = qsTr("Online map");
         notification.body = qsTr("You are now using online map from Mapbox server");
         notification.sticky = true;
-        // line below should be removed when AUTOSUITE-1366 will be fixed
-        notification.icon = Qt.resolvedUrl("../icon.png");
         notification.show();
     }
 }
