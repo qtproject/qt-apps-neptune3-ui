@@ -48,8 +48,8 @@ Item {
 
         Button {
             id: simpleNotiButton
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
             text: "Simple notification"
             property var notification1: ApplicationInterface.createNotification();
             onClicked: {
@@ -69,8 +69,8 @@ Item {
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
             text: "Timeout notification 8 secs"
             onClicked: {
                 var notification2 = ApplicationInterface.createNotification();
@@ -82,8 +82,8 @@ Item {
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
             text: "Sticky notification"
             onClicked: {
                 var notification3 = ApplicationInterface.createNotification();
@@ -95,8 +95,8 @@ Item {
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
             text: "Long text notification"
             onClicked: {
                 var notification4 = ApplicationInterface.createNotification();
@@ -111,8 +111,8 @@ Item {
         // if not, a warning notification will be shown and stored in the notification center
         Button {
             id: appRequestNotiButton
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
             text: "Notification w/ App Request"
             property var notification5: ApplicationInterface.createNotification();
             onClicked: {
