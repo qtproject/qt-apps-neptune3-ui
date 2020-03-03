@@ -258,8 +258,15 @@ Item {
                 notificationSubtext: model.body
                 notificationImage: model.image
                 notificationActionText: model.actions.length > 0 ? model.actions[0].actionText : ""
+                Behavior on height { DefaultNumberAnimation { duration: 300 } }
+                Behavior on opacity { DefaultNumberAnimation { duration: 200 } }
+                onHeightChanged: {
+                    if (height == 0)
+                        root.notificationModel.removeNotification(model.id);
+                }
                 onCloseClicked: {
-                    root.notificationModel.removeNotification(model.id);
+                    opacity = 0;
+                    height = 0;
                 }
                 onButtonClicked: {
                     root.notificationModel.buttonClicked(model.id);
