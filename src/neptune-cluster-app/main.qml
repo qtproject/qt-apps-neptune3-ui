@@ -45,12 +45,7 @@ Window {
     title: qsTr("Cluster")
     color: "black"
 
-
-    readonly property real scaleRatio: Math.min(root.width / 1920, root.height / 1080)
-    onScaleRatioChanged: {
-        root.Sizes.scale = scaleRatio
-    }
-
+    readonly property real mockedWindowsAcpectRatio: 1920 / 720
     Component.onCompleted: {
         root.Style.theme = Style.Dark;
     }
@@ -67,10 +62,18 @@ Window {
     }
 
     MockedWindows {
-        clip: true
         id: mockedWindows
-        width: height * (1920 / 720)
-        height: Sizes.dp(720)
+
+        clip: true
+        height: Math.floor(root.width / mockedWindowsAcpectRatio) <= root.height
+                ? root.width / mockedWindowsAcpectRatio
+                : root.height;
+        width: height * mockedWindowsAcpectRatio
+
+        onWidthChanged: {
+            root.Sizes.scale = mockedWindows.width / 1920;
+        }
+
         anchors.centerIn: parent
 
         ClusterView {
