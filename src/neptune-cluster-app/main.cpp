@@ -51,16 +51,24 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(QStringLiteral("luxoft.com"));
     QCoreApplication::setApplicationVersion("0.1");
     QGuiApplication app(argc, argv);
+    // force application path, it'll update @load_path and others
+    QDir::setCurrent(qApp->applicationDirPath());
 
     // @todo: add -c config file option and config file for it (json, xml, etc)
     QCommandLineParser cmdParser;
     cmdParser.setApplicationDescription(
-            "Neptune Cluster\n\n"
-            "Logging is turned off by default, use QT_LOGGING_RULES to change this\n");
+                "Neptune Cluster\n\n"
+                "Logging is turned off by default, to control log output please check command line "
+                "options or Qt Help for QT_LOGGING_RULES environment variable.\n");
     cmdParser.addHelpOption();
+    cmdParser.addVersionOption();
+    const QCommandLineOption enableDefaultLoggingOption("verbose",
+            "Enables default Qt logging filter.");
+    cmdParser.addOption(enableDefaultLoggingOption);
     cmdParser.process(app);
-
-    QLoggingCategory::setFilterRules("*=false");
+    if (!cmdParser.isSet(enableDefaultLoggingOption)) {
+        QLoggingCategory::setFilterRules("*=false");
+    }
 
     if (!qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_STYLE_PATH")) {
         qputenv("QT_QUICK_CONTROLS_STYLE_PATH"

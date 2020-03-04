@@ -4,6 +4,10 @@ TEMPLATE = app
 TARGET = neptune-cluster-app
 QT *= quick gui core ivicore
 
+isEmpty(INSTALL_PREFIX) {
+    INSTALL_PREFIX=/opt
+}
+
 # check ogl-runtime
 qtHaveModule(studio3d) {
     QT *= studio3d
@@ -14,11 +18,9 @@ CONFIG += c++11
 macos: CONFIG -= app_bundle
 
 DESTDIR = $$OUT_PWD/../../
-LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
 
-isEmpty(INSTALL_PREFIX) {
-    INSTALL_PREFIX=/opt
-}
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/)
+LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
 
 SOURCES += \
         main.cpp
