@@ -141,7 +141,8 @@ Control {
                 visible: toolsColumn.currentIcon === 'ic-color'
                 model: store.accentColorsModel
                 currentAccentColor: store.currentAccentColor
-                onAccentColorRequested: store.updateAccentColor(accentColor)
+                onAccentColorRequested: store.updateAccentColor(accentColor);
+                Component.onCompleted: store.colorSettingsUpdateCallback = update;
             }
         }
     }

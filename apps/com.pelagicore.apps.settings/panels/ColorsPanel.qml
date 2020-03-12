@@ -44,6 +44,10 @@ Control {
 
     signal accentColorRequested(color accentColor)
 
+    function update() {
+        chart.requestPaint();
+    }
+
     contentItem: ColorSelector {
         id: chart
         width: root.availableWidth

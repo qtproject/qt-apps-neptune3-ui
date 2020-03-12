@@ -42,11 +42,13 @@ QtObject {
     id: root
 
     readonly property Helper helper: Helper {}
+    property var colorSettingsUpdateCallback
     readonly property UISettings uiSettings: UISettings {
         onAccentColorChanged: {
             accentColorsModel.forEach(function(element) {
                 element.selected = Qt.colorEqual(element.color, accentColor);
             });
+            if (!!colorSettingsUpdateCallback) colorSettingsUpdateCallback();
         }
     }
 
