@@ -93,6 +93,7 @@ AbstractPopupItem {
 
     ToolButton {
         id: closeToolButton
+        z: parent.z + 1 // close button should be upper then content
         objectName: "popupClose"
         anchors.top: parent.top
         anchors.right: parent.right
