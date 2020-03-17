@@ -861,6 +861,26 @@
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>UI Accent Color changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Accent Color changed into %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Dark Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchOverlayPanel</name>

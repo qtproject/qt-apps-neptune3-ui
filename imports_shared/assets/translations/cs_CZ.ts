@@ -1683,11 +1683,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Accent Color changed</source>
-        <translation type="vanished">Barva zvýraznění UI změněna</translation>
+        <translation>Barva zvýraznění UI změněna</translation>
     </message>
     <message>
         <source>UI Accent Color changed into %1</source>
-        <translation type="vanished">Barva zvýraznění UI změněna na %1</translation>
+        <translation>Barva zvýraznění UI změněna na %1</translation>
     </message>
     <message>
         <source>UI Language changed</source>
@@ -1695,15 +1695,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Theme changed</source>
-        <translation type="vanished">Motiv UI změněn</translation>
+        <translation>Motiv UI změněn</translation>
     </message>
     <message>
         <source>UI Theme changed into Light Theme</source>
-        <translation type="vanished">Motiv UI změněn na světlý</translation>
+        <translation>Motiv UI změněn na světlý</translation>
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
-        <translation type="vanished">Motiv UI změněn na tmavý</translation>
+        <translation>Motiv UI změněn na tmavý</translation>
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>

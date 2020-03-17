@@ -124,12 +124,20 @@ QtObject {
     }
 
     function updateAccentColor(value) {
+        console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
+        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(value));
     }
 
     //value: 1 -- dark, 0 -- light
     function updateTheme(value) {
+        console.log(helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
+        if (value === 0) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Light Theme"));
+        } else if (value === 1) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Dark Theme"));
+        }
     }
 
     readonly property IntentHandler intentHandler: IntentHandler {
