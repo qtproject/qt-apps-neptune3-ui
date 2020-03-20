@@ -214,6 +214,6 @@ QtObject {
     function calculateUnitValue(value) {
         // Default value is the celsius
         return root.measurementSystem === Locale.MetricSystem || root.measurementSystem === Locale.ImperialUKSystem ?
-                    value : Math.round(value * 1.8 + 32)
+                    value.toFixed(1) : (value * 1.8 + 32).toFixed(1)
     }
 }
