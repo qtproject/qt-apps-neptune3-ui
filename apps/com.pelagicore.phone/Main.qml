@@ -88,7 +88,10 @@ ApplicationCCWindow {
         visible: opacity > 0
         anchors.fill: fullscreenTopPartBackground
         callerHandle: phone.callerHandle
+        enableOpacityMasks: store.allowOpenGLContent
     }
+
+    PhoneStore { id: store; onRequestRaiseAppReceived: root.riseWindow(); }
 
     PhoneView {
         id: phone
@@ -98,6 +101,6 @@ ApplicationCCWindow {
         height: (root.exposedRect.height + root.exposedRect.y)
         state: root.neptuneState
         onActivateApp: root.riseWindow()
-        store: PhoneStore { onRequestRaiseAppReceived: root.riseWindow(); }
+        store: store
     }
 }

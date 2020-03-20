@@ -125,6 +125,7 @@ Item {
             lastItem: (index === (favorites1Row.model.count - 1))
             maximized: (root.state === "Maximized")
             onCallWidgetClicked: { root.store.startCall(handle); }
+            enableOpacityMasks: store.allowOpenGLContent
         }
         PageIndicator {
             anchors.verticalCenter: parent.bottom
@@ -189,6 +190,7 @@ Item {
                             Layout.preferredWidth: Sizes.dp(64)
                             Layout.alignment: Qt.AlignVCenter
                             source: "../assets/profile_photos/%1.png".arg(model.handle)
+                            enableOpacityMasks: store.allowOpenGLContent
                         }
                         Label {
                             objectName: "shortCallName"

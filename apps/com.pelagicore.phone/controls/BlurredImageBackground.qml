@@ -39,13 +39,14 @@ Item {
     id: root
 
     property string callerHandle: ""
+    property bool enableOpacityMasks
 
     Image {
         id: contactImage
         anchors.fill: parent
         source: (root.callerHandle !== "") ? "../assets/profile_photos/%1.png".arg(root.callerHandle) : ""
         fillMode: Image.PreserveAspectCrop
-        visible: false
+        visible: !root.enableOpacityMasks
     }
 
     FastBlur {

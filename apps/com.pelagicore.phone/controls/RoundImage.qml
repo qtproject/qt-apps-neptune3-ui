@@ -41,6 +41,7 @@ ToolButton {
     implicitWidth: Sizes.dp(img.sourceSize.width)
     implicitHeight: Sizes.dp(img.sourceSize.height)
 
+    property bool enableOpacityMasks
     property alias source: img.source
 
     background: Rectangle {
@@ -53,7 +54,7 @@ ToolButton {
         id: img
         anchors.fill: mask
         fillMode: Image.PreserveAspectCrop
-        layer.enabled: true
+        layer.enabled: root.enableOpacityMasks
         layer.effect: OpacityMask {
             maskSource: mask
         }

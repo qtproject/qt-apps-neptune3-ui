@@ -65,6 +65,7 @@ ListView {
                     Layout.preferredHeight: Sizes.dp(64)
                     Layout.preferredWidth: Sizes.dp(64)
                     source: "../assets/profile_photos/%1.png".arg(model.handle)
+                    enableOpacityMasks: store.allowOpenGLContent
                     leftPadding: Sizes.dp(16)
                     rightPadding: Sizes.dp(16)
                 }
