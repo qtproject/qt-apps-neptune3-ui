@@ -78,7 +78,7 @@ Item {
                         , "modelVersion": root.store.modelVersion
                         , "vehicleColor": root.store.vehicle3DstudioColor
                 });
-        vehicle3DPanelLoader.active = true;
+        vehicle3DPanelLoader.active = store.allowOpenGLContent;
     }
 
     Item {
@@ -106,6 +106,9 @@ Item {
             id: vehicleProxyPanel
             z: 9999
             visible: opacity != 0.0
+            errorText: store.allowOpenGLContent
+                ? ""
+                : qsTr("The 3D car model is disabled in this runtime environment")
             Behavior on opacity {
                 DefaultNumberAnimation {}
             }
@@ -158,6 +161,7 @@ Item {
         roofOpenProgress: root.store.roofOpenProgress
         qt3DStudioAvailable: root.store.qt3DStudioAvailable
 
+        enableOpacityMasks: store.allowOpenGLContent
 
         onLeftDoorClicked: root.store.setLeftDoor()
         onRightDoorClicked: root.store.setRightDoor()

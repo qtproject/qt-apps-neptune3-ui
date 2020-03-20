@@ -823,11 +823,11 @@
 <context>
     <name>RoofPanel</name>
     <message>
-        <source>Open</source>
+        <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Close</source>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1113,6 +1113,13 @@
     </message>
     <message>
         <source>options</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleView</name>
+    <message>
+        <source>The 3D car model is disabled in this runtime environment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

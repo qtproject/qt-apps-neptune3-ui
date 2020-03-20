@@ -42,12 +42,23 @@ Item {
     id: root
     anchors.fill: parent
 
+    property string errorText: ""
+
     Image {
         id: proxyImage
         anchors.fill: parent
         source: Style.theme === Style.Dark
                 ? Paths.getImagePath("carPlaceholderCC-dark.png")
                 : Paths.getImagePath("carPlaceholderCC-light.png")
+    }
+
+    Label {
+        anchors.top: proxyImage.top
+        anchors.topMargin: Sizes.dp(160)
+        anchors.horizontalCenter: proxyImage.horizontalCenter
+        text: errorText
+        font.pixelSize: Sizes.fontSizeL
+        visible: errorText.length !== 0
     }
 
     ProgressBar {

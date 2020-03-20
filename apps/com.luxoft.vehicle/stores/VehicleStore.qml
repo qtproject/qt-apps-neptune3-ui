@@ -63,6 +63,8 @@ QtObject {
         }
     }
 
+    readonly property bool allowOpenGLContent: systemInfo.allowOpenGLContent
+
     property Settings settings3D : Settings {}
     function setRuntime(runtime) {
         settings3D.setValue("runtime3D", runtime);

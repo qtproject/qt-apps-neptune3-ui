@@ -49,6 +49,7 @@ Item {
     property bool leftDoorOpened: false
     property bool rightDoorOpened: false
     property bool trunkOpened: false
+    property bool enableOpacityMasks
 
     signal newRoofOpenProgressRequested(var progress)
 
@@ -68,7 +69,15 @@ Item {
 
     TopPanel {
         id: vehicleTopView
-        visible: false
+        visible: !root.enableOpacityMasks
+
+        rotation: root.enableOpacityMasks ? 0 : 90
+        transform: [
+            Translate {
+                x: root.enableOpacityMasks ? 0 : -width/10
+                y: root.enableOpacityMasks ? 0 : -height/20
+            }
+        ]
 
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter

@@ -2291,6 +2291,13 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>VehicleView</name>
+    <message>
+        <source>The 3D car model is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>VehicleWidgetModel</name>
     <message>
         <source>Fees</source>

@@ -47,6 +47,8 @@ Item {
     property alias trunkOpened: trunkPanel.trunkOpened
     property alias roofOpenProgress: roofPanel.roofOpenProgress
 
+    property bool enableOpacityMasks: true
+
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
@@ -85,6 +87,7 @@ Item {
             id: roofPanel
             objectName: "subView_roof"
 
+            enableOpacityMasks: root.enableOpacityMasks
             leftDoorOpened: root.leftDoorOpened
             rightDoorOpened: root.rightDoorOpened
             trunkOpened: root.trunkOpened
@@ -95,6 +98,8 @@ Item {
         FrontDoorsPanel {
             id: frontDoorsPanel
             objectName: "subView_doors"
+
+            enableOpacityMasks: root.enableOpacityMasks
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
 
@@ -107,6 +112,7 @@ Item {
             objectName: "subView_trunk"
             onTrunkClicked: root.trunkClicked()
 
+            enableOpacityMasks: root.enableOpacityMasks
             leftDoorOpened: root.leftDoorOpened
             rightDoorOpened: root.rightDoorOpened
             roofOpenProgress: root.roofOpenProgress

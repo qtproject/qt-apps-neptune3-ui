@@ -53,6 +53,7 @@ Item {
     property alias qualityModel: vehicle3DSettingsPanel.qualityModel
     property alias quality: vehicle3DSettingsPanel.quality
     property alias runtime: vehicle3DSettingsPanel.runtime
+    property alias enableOpacityMasks: doorsPanel.enableOpacityMasks
 
     signal leftDoorClicked()
     signal rightDoorClicked()
