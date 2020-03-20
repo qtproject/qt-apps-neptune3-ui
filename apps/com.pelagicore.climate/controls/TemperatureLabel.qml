@@ -39,11 +39,11 @@ import shared.Style 1.0
 import shared.Sizes 1.0
 
 Label {
-    property var seat
+    property string seat
     horizontalAlignment: Text.AlignHCenter
     font.pixelSize: Sizes.fontSizeXL
     font.weight: Font.DemiBold
     opacity: Style.opacityMedium
     // Not showing the measurement unit is the fashionable thing to do
-    text: seat ? seat.valueString + "°" : ""
+    text: seat ? seat + "°" : ""
 }

@@ -51,12 +51,12 @@ RowLayout {
     TemperatureLabel {
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         Layout.leftMargin: Sizes.dp(44)
-        seat: root.store ? root.store.leftSeat : null
+        seat: root.store ? root.store.leftSeat.localizedValue : null
     }
 
     TemperatureLabel {
         Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
         Layout.rightMargin: Sizes.dp(44)
-        seat: root.store ? root.store.rightSeat : null
+        seat: root.store ? root.store.rightSeat.localizedValue : null
     }
 }

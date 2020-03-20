@@ -40,10 +40,10 @@ import shared.Sizes 1.0
 
 RowLayout {
     id: root
-    property var seat
+    property real seat
     Label {
-        readonly property int integers: root.seat ? Math.floor(root.seat.localizedValue) : 0
-        readonly property int decimals: root.seat ? (root.seat.localizedValue - Math.floor(root.seat.localizedValue)) * 10 : 0
+        readonly property int integers: root.seat ? Math.floor(root.seat) : 0
+        readonly property int decimals: root.seat ? (root.seat - Math.floor(root.seat)) * 10 : 0
         Layout.fillHeight: true
 
         textFormat: Text.RichText
@@ -62,7 +62,7 @@ RowLayout {
         Layout.topMargin: Sizes.dp(15)
         text: {
             if (root.seat) {
-                return root.seat.measurementSystem === Locale.MetricSystem ? "°C" : "°F";
+                return  Qt.locale().measurementSystem === Locale.MetricSystem ? "°C" : "°F";
             } else {
                 return "";
             }

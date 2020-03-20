@@ -76,8 +76,9 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         height: Sizes.dp(278)
-        leftSeat: root.store ? root.store.leftSeat : null
-        rightSeat: root.store ? root.store.rightSeat : null
+        leftSeat: root.store ? root.store.calculateUnitValue(leftTempSlider.value) : null
+        rightSeat: root.store ? root.store.calculateUnitValue(rightTempSlider.value) : null
+
         zoneSynchronizationEnabled: root.seatTemperaturesLinked
         onDriverSeatTemperatureIncreased: {
             if (root.store.leftSeat.value < root.store.leftSeat.maxValue) {
@@ -141,7 +142,9 @@ Item {
         anchors.topMargin: Sizes.dp(130) - leftTempSlider.handleHeight/2
         anchors.left: parent.left
         height: Sizes.dp(1200)
-        onMoved: store.leftSeat.setValue(value);
+        onSliderReleased: {
+            root.store.leftSeat.setValue(value);
+        }
     }
 
     Connections {
@@ -163,7 +166,9 @@ Item {
         anchors.topMargin: Sizes.dp(130) - rightTempSlider.handleHeight/2
         anchors.right: parent.right
         height: Sizes.dp(1200)
-        onMoved: root.store.rightSeat.setValue(value);
+        onSliderReleased: {
+            root.store.rightSeat.setValue(value);
+        }
     }
 
     Connections {
