@@ -55,6 +55,7 @@ class SystemInfo : public QObject, public QQmlParserStatus
     Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
     Q_PROPERTY(QString qtDiag READ qtDiag NOTIFY qtDiagChanged)
     Q_PROPERTY(bool allow3dStudioPresentations READ allow3dStudioPresentations CONSTANT)
+    Q_PROPERTY(bool allowOpenGLContent READ allowOpenGLContent CONSTANT)
 
 public:
     explicit SystemInfo(QObject *parent = nullptr);
@@ -96,6 +97,7 @@ private:
     void getAddress();
     void getQtDiagInfo();
     bool allow3dStudioPresentations();
+    bool allowOpenGLContent();
 
     QStringList m_addressList;
     int m_timerId{0};
