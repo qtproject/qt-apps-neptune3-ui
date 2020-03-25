@@ -709,6 +709,10 @@
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ICMusicView</name>
@@ -881,6 +885,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="obsolete">今天你想要去哪儿？</translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

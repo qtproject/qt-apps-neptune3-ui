@@ -36,6 +36,7 @@ import QtPositioning 5.9
 import QtLocation 5.9
 import Qt.labs.platform 1.0
 import shared.utils 1.0
+import shared.com.pelagicore.systeminfo 1.0
 
 QtObject {
     id: root
@@ -54,6 +55,9 @@ QtObject {
             fetchCurrentLocation();
         }
     }
+
+    readonly property SystemInfo systemInfo: SystemInfo {}
+    readonly property bool allowMapRendering: sysinfo.allowOpenGLContent
 
     property var positionCoordinate: QtPositioning.coordinate(48.135771, 11.574052) // Munich
     property var originalPosition: positionCoordinate

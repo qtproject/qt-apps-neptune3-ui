@@ -905,6 +905,10 @@ UX na cestu</translation>
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ICMusicView</name>
@@ -1155,6 +1159,10 @@ UX na cestu</translation>
     <message>
         <source>Work</source>
         <translation type="vanished">Práce</translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

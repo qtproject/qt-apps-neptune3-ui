@@ -687,6 +687,10 @@
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ICMusicView</name>
@@ -853,6 +857,10 @@
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="obsolete">あなたはヒンジを握っていますか？</translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

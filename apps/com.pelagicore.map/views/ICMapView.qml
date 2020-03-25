@@ -40,6 +40,7 @@ import shared.Style 1.0
 import shared.Sizes 1.0
 
 import "../helpers" 1.0
+import "../panels" 1.0
 
 Item {
     id: root
@@ -52,6 +53,7 @@ Item {
     property alias activeMapType: mainMap.activeMapType
     property var path
     property var mapPlugin
+    property bool allowMapRendering
 
 
     property string nextTurnDistanceMeasuredIn
@@ -113,6 +115,7 @@ Item {
         zoomLevel: 10
         plugin: root.mapPlugin
         copyrightsVisible: false
+        visible: root.allowMapRendering
 
         MapPolyline {
             id: pathView
@@ -182,6 +185,16 @@ Item {
                 width: Sizes.dp(116/2)
                 height: Sizes.dp(135/2)
             }
+        }
+    }
+
+    Loader {
+        active: !root.allowMapRendering
+        anchors.fill: root
+        sourceComponent: ProxyErrorPanel {
+            anchors.fill: parent
+            clusterWindow: true
+            errorText: qsTr("The map is disabled in this runtime environment")
         }
     }
 }

@@ -101,6 +101,7 @@ Item {
 
     MapBoxPanel {
         id: mapBoxPanel
+        visible: root.store.allowMapRendering
         anchors.fill: parent
         plugin: root.store.mapPlugin
         center: root.store.positionCoordinate
@@ -161,6 +162,15 @@ Item {
         }
 
         onMaximizeMap: root.maximizeMap();
+    }
+
+    Loader {
+        active: !root.store.allowMapRendering
+        anchors.fill: root
+        sourceComponent: ProxyErrorPanel {
+            anchors.fill: parent
+            errorText: qsTr("The map is disabled in this runtime environment")
+        }
     }
 
     FastBlur {

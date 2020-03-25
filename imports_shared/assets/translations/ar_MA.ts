@@ -510,6 +510,10 @@
         <source>Next turn: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ICMusicView</name>
@@ -602,6 +606,13 @@
     </message>
     <message>
         <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapView</name>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

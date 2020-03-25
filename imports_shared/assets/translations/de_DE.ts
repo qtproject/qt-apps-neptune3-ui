@@ -691,6 +691,10 @@
         <source>Next turn: </source>
         <translation>Nächste Kurve: </translation>
     </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ICMusicView</name>
@@ -811,6 +815,10 @@
     <message>
         <source>Where do you wanna go today?</source>
         <translation type="obsolete">Wo soll es heute hingehen?</translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

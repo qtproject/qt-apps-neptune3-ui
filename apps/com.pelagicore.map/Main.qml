@@ -147,6 +147,7 @@ QtObject {
                 id: applicationICWindowComponent
                 ICMapView {
                     id: icMapView
+                    allowMapRendering: mainMap.store.allowMapRendering
                     anchors.fill: parent
                     mapPlugin: mainMap.store.mapPlugin
                     mapCenter: mainMap.mapCenter

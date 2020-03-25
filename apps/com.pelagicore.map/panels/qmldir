@@ -6,3 +6,4 @@ MapHeaderPanel 1.0 MapHeaderPanel.qml
 NavigationConfirmPanel 1.0 NavigationConfirmPanel.qml
 NavigationSearchPanel 1.0 NavigationSearchPanel.qml
 SearchOverlayPanel 1.0 SearchOverlayPanel.qml
+ProxyErrorPanel 1.0 ProxyErrorPanel.qml
