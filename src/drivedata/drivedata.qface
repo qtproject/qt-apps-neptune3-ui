@@ -2,6 +2,9 @@
 module DriveData 1.0;
 
 interface InstrumentCluster {
+    /* default value is false (in qface) */
+    bool enableSimulation;
+
     /*
      * In Km/H
      */

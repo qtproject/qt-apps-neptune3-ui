@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -55,7 +55,7 @@ Item {
                     speedTimer.start()
                 }
             }
-            running: backend.driveTrainState !== 2
+            running: backend.enableSimulation && backend.driveTrainState !== 2
         }
 
         property Timer simulationSetTimer: Timer {
@@ -76,7 +76,7 @@ Item {
                 }
             }
             repeat: true
-            running: backend.driveTrainState === 2
+            running: backend.enableSimulation && backend.driveTrainState === 2
         }
 
         property Timer speedTimer: Timer {
@@ -89,7 +89,7 @@ Item {
                     backend.speed = backend.speed - 1;
                 }
             }
-            repeat: true
+            repeat: backend.enableSimulation
         }
 
         property Timer powerTimer: Timer {
@@ -102,7 +102,7 @@ Item {
                 }
             }
             repeat: true
-            running: backend.driveTrainState === 2
+            running: backend.enableSimulation && backend.driveTrainState === 2
         }
 
         /*
@@ -139,7 +139,7 @@ Item {
                 backend.airbagFailure = getNewTelltaleState();
             }
             repeat: true
-            running: true
+            running: backend.enableSimulation
             function getNewTelltaleState() {
                 return Math.round(Math.random());
             }
@@ -166,7 +166,7 @@ Item {
                 }
             }
             repeat: true
-            running: true
+            running: backend.enableSimulation
         }
     }
 }

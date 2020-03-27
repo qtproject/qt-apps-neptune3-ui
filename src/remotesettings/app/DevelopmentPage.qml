@@ -1,6 +1,6 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -74,6 +74,16 @@ Flickable {
                 font.bold: true
             }
 
+            Button {
+                Layout.alignment: Qt.AlignHCenter
+                text: instrumentCluster.enableSimulation
+                      ? qsTr("Disable simulation")
+                      : qsTr("Enable simulation")
+                onClicked: {
+                    instrumentCluster.enableSimulation = !instrumentCluster.enableSimulation;
+                }
+            }
+
             GridLayout {
                 Layout.alignment: Qt.AlignHCenter
                 columns: root.width < neptuneScale(100) ? 2 : 4
@@ -100,7 +110,7 @@ Flickable {
         }
 
         GridLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             columns: root.width > 2 * (outsideTemperatureLabel.width + outsideTemperature.width + columnSpacing)
                      ? 4 : 2
@@ -185,7 +195,7 @@ Flickable {
 
 
         RowLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             // driveTrainState field
             Label {
@@ -246,7 +256,7 @@ Flickable {
         }
 
         GridLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             columns: root.width < neptuneScale(100) ? 2 : 4
 
@@ -287,7 +297,7 @@ Flickable {
             CheckBox {
                 id: stabilityControlCheckbox
                 checked: instrumentCluster.stabilityControl
-                enabled: false
+                onClicked: instrumentCluster.stabilityControl = checked
             }
 
             // leftTurn Field
@@ -317,7 +327,7 @@ Flickable {
             CheckBox {
                 id: seatBeltNotFastenedCheckbox
                 checked: instrumentCluster.seatBeltNotFastened
-                enabled: false
+                onClicked: instrumentCluster.seatBeltNotFastened = checked
             }
 
             // ABSFailure Field
@@ -327,7 +337,7 @@ Flickable {
             CheckBox {
                 id: absFailureCheckbox
                 checked: instrumentCluster.ABSFailure
-                enabled: false
+                onClicked: instrumentCluster.ABSFailure = checked
             }
 
             // parkBrake Field
@@ -337,7 +347,7 @@ Flickable {
             CheckBox {
                 id: parkBrakeCheckbox
                 checked: instrumentCluster.parkBrake
-                enabled: false
+                onClicked: instrumentCluster.parkBrake = checked
             }
 
             // tyrePressureLow Field
@@ -347,7 +357,7 @@ Flickable {
             CheckBox {
                 id: tyrePressureLowCheckbox
                 checked: instrumentCluster.tyrePressureLow
-                enabled: false
+                onClicked: instrumentCluster.tyrePressureLow = checked
             }
 
             // brakeFailure Field
@@ -357,7 +367,7 @@ Flickable {
             CheckBox {
                 id: brakeFailureCheckBox
                 checked: instrumentCluster.brakeFailure
-                enabled: false
+                onClicked: instrumentCluster.brakeFailure = checked
             }
 
             // airbagFailure Field
@@ -367,7 +377,7 @@ Flickable {
             CheckBox {
                 id: airbagFailureCheckBox
                 checked: instrumentCluster.airbagFailure
-                enabled: false
+                onClicked: instrumentCluster.airbagFailure = checked
             }
         }
 
