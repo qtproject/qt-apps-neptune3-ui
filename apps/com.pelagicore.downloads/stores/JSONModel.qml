@@ -43,8 +43,8 @@ ListModel {
 
     function refresh() {
         status = "loading"
-        clear();
-        JSONBackend.abortableServerCall(url, data, function(data) {
+        JSONBackend.serverCall(url, data, function(data) {
+            clear();
             for (var i = 0; i < data.length; i++) {
                 var entry = data[i];
                 append(entry);

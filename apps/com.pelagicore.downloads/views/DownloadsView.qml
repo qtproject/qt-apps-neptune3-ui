@@ -62,8 +62,8 @@ Item {
 
         onRunningChanged: {
             if (!running) { // preselect non-empty category
-                toolsColumn.currentTool = "Entertainment";
-                toolsColumn.toolClicked("Entertainment", 2);
+                toolsColumn.currentTool = "All";
+                toolsColumn.toolClicked("All", 0);
             }
         }
     }
