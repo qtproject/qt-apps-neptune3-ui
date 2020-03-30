@@ -60,7 +60,7 @@ QtObject {
             console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
             root.tryConnectToServer();
             var url = root.serverUrl + "/hello";
-            var data = {"platform" : "NEPTUNE3", "version" : "1", "architecture": root.cpuArch};
+            var data = {"platform" : "NEPTUNE3", "version" : "2", "architecture": root.cpuArch};
             JSONBackend.setErrorFunction(0);
             JSONBackend.serverCall(url, data, function(data) {
                 if (data !== 0) {
