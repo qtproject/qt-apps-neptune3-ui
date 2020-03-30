@@ -126,9 +126,9 @@ Flickable {
             Slider {
                 id: outsideTemperature
                 value: instrumentCluster.outsideTemperatureCelsius
-                from: -100
+                from: -60.0
                 stepSize: 0.5
-                to: 100.0
+                to: 60.0
                 onValueChanged: {
                     if (pressed) {
                         instrumentCluster.outsideTemperatureCelsius = value
@@ -151,7 +151,7 @@ Flickable {
                 value: instrumentCluster.mileageKm
                 from: 0
                 stepSize: 0.5
-                to: 9E6
+                to: 1E6
                 onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
 
                 Label {
