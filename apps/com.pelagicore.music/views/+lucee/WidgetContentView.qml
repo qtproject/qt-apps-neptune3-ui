@@ -92,7 +92,7 @@ Item {
         anchors.bottom: otherTracks.top
         anchors.bottomMargin: Sizes.dp(15)
         anchors.left: otherTracks.left
-        text: "Discover similar music"
+        text: qsTr("Discover similar music")
         font.pixelSize: Sizes.dp(26)
         font.weight: Font.Normal
         visible: root.state === "Widget3Rows"

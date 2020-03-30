@@ -46,28 +46,28 @@ GridLayout {
         icon.name: "ic-close"
     }
     Label {
-        text: "Icon only"
+        text: qsTr("Icon only")
         font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
         Layout.alignment: Qt.AlignCenter
         icon.name: "ic_back"
-        text: "Back"
+        text: qsTr("Back")
     }
     Label {
-        text: "Icon with text"
+        text: qsTr("Icon with text")
         font.pixelSize: Sizes.fontSizeS
     }
 
     ToolButton {
         Layout.alignment: Qt.AlignCenter
         icon.name: "ic-update"
-        text: "Update"
+        text: qsTr("Update")
         display: AbstractButton.TextUnderIcon
     }
     Label {
-        text: "Icon with text below"
+        text: qsTr("Icon with text below")
         font.pixelSize: Sizes.fontSizeS
     }
 
@@ -76,11 +76,11 @@ GridLayout {
         checkable: true
         checked: true
         icon.name: checked ? "ic-color_ON" : "ic-color_OFF"
-        text: "Color"
+        text: qsTr("Color")
         display: AbstractButton.TextUnderIcon
     }
     Label {
-        text: "Checkable tool button, icon + text below"
+        text: qsTr("Checkable tool button, icon + text below")
         font.pixelSize: Sizes.fontSizeS
     }
 
@@ -90,11 +90,11 @@ GridLayout {
         checked: true
         icon.name: checked ? "ic-themes_ON" : "ic-themes_OFF"
         icon.color: "green"
-        text: "Green"
+        text: qsTr("Green")
         display: AbstractButton.TextUnderIcon
     }
     Label {
-        text: "Checkable tool button, custom colored icon"
+        text: qsTr("Checkable tool button, custom colored icon")
         font.pixelSize: Sizes.fontSizeS
     }
 
@@ -105,7 +105,7 @@ GridLayout {
         icon.height: Sizes.dp(16)
     }
     Label {
-        text: "Custom icon size"
+        text: qsTr("Custom icon size")
         font.pixelSize: Sizes.fontSizeS
     }
 

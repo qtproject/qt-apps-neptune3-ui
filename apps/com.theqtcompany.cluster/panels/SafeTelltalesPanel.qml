@@ -84,7 +84,7 @@ Item {
         id: safeErrorText
         width: 800
         height: 100
-        text: "Error occurred. Recovering..."
+        text: qsTr("Error occurred. Recovering...")
         color: "white"
         runtimeEditable: true
         font.bold: true
@@ -106,7 +106,7 @@ Item {
             objectName: "speedTextLabel"
             width: 140
             height: 45
-            text: "Speed"
+            text: qsTr("Speed")
             color: "white"
             font.bold: true
             font.pixelSize: 40
@@ -226,7 +226,7 @@ Item {
             objectName: "powerTextLabel"
             width: 140
             height: 45
-            text: "Power"
+            text: qsTr("Power")
             color: "white"
             font.bold: true
             font.pixelSize: 40

@@ -70,7 +70,7 @@ Item {
             anchors.horizontalCenter: dummyWeatherImg.horizontalCenter
             anchors.top: dummyWeatherImg.bottom
             anchors.topMargin: Sizes.dp(37)
-            text: "Partly sunny, 21°C"
+            text: qsTr("Partly sunny, 21°C")
             font.pixelSize: Sizes.dp(26)
             font.weight: Font.Normal
             visible: root.state !== "Widget1Row"
@@ -97,7 +97,7 @@ Item {
             anchors.leftMargin: Sizes.dp(10)
             anchors.bottom: dummyWeatherImg.bottom
             anchors.bottomMargin: Sizes.dp(10)
-            text: "21°C"
+            text: qsTr("21°C")
             font.pixelSize: Sizes.dp(26)
             font.weight: Font.Normal
             visible: opacity > 0.0

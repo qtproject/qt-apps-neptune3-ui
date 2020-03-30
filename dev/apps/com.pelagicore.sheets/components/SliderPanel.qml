@@ -44,7 +44,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: Sizes.dp(10)
         Label {
-            text: "Vertical / Horizontal sliders"
+            text: qsTr("Vertical / Horizontal sliders")
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -67,7 +67,7 @@ Item {
             }
         }
         Label {
-            text: "Vertical / Horizontal stepper sliders"
+            text: qsTr("Vertical / Horizontal stepper sliders")
         }
         Row {
             anchors.horizontalCenter: parent.horizontalCenter

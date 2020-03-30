@@ -66,7 +66,7 @@ Item {
             primaryText: qsTr("Home")
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
-            secondaryText: "Welandergatan 29"
+            secondaryText: qsTr("Welandergatan 29")
             onClicked: root.showDestinationPoint(root.homeAddressData, secondaryText)
         }
         Rectangle {
@@ -85,7 +85,7 @@ Item {
             primaryText: qsTr("Work")
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally
-            secondaryText: "Östra Hamngatan 16"
+            secondaryText: qsTr("Östra Hamngatan 16")
             onClicked: root.showDestinationPoint(root.workAddressData, secondaryText)
         }
     }

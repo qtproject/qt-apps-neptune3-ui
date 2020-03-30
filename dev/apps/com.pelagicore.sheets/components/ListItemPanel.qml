@@ -62,21 +62,21 @@ Item {
             ListItem {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
-                text: "Basic ListItem"
+                text: qsTr("Basic ListItem")
                 dividerVisible: false
             }
 
             ListItem {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
-                text: "ListItem Text"
+                text: qsTr("ListItem Text")
                 subText: "ListItem Subtext"
             }
 
             ListItem {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
-                text: "ListItem with an image"
+                text: qsTr("ListItem with an image")
                 icon.source: Style.image("fan-speed-5")
                 icon.color: "transparent"
             }
@@ -85,24 +85,15 @@ Item {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
-                text: "ListItem with Icon"
+                text: qsTr("ListItem with Icon")
             }
 
             ListItem {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
-                text: "ListItem with Secondary Text"
-                secondaryText: "Company"
-            }
-
-            ListItem {
-                implicitWidth: Sizes.dp(765)
-                implicitHeight: Sizes.dp(104)
-                icon.name: "ic-update"
-                rightToolSymbol: "ic-close"
-                text: "ListItem with Secondary Text"
-                secondaryText: "68% of 14 MB"
+                text: qsTr("ListItem with Secondary Text")
+                secondaryText: qsTr("Company")
             }
 
             ListItem {
@@ -110,8 +101,17 @@ Item {
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 rightToolSymbol: "ic-close"
-                text: "ListItem with Looooooooooonnngggg Text"
-                secondaryText: "Loooooooong Secondary Text"
+                text: qsTr("ListItem with Secondary Text")
+                secondaryText: qsTr("68% of 14 MB")
+            }
+
+            ListItem {
+                implicitWidth: Sizes.dp(765)
+                implicitHeight: Sizes.dp(104)
+                icon.name: "ic-update"
+                rightToolSymbol: "ic-close"
+                text: qsTr("ListItem with Looooooooooonnngggg Text")
+                secondaryText: qsTr("Loooooooong Secondary Text")
             }
 
             ListItemFlatButton {
@@ -119,8 +119,8 @@ Item {
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-update"
                 subText: "subtitle"
-                text: "ListItem with button"
-                textFlatButton: "Show on map"
+                text: qsTr("ListItem with button")
+                textFlatButton: qsTr("Show on map")
                 closeButtonVisible: true
             }
 
@@ -131,8 +131,8 @@ Item {
                 icon.name: "ic-update"
                 symbolFlatButton: Style.image("ic-favorite")
                 subText: "subtitle"
-                text: "ListItem with button text"
-                textFlatButton: "Text"
+                text: qsTr("ListItem with button text")
+                textFlatButton: qsTr("Text")
             }
 
             ListItemProgress {
@@ -142,8 +142,8 @@ Item {
                 minimumValue: 0
                 maximumValue: 100
                 icon.name: "ic-placeholder"
-                text: "Downloading application"
-                secondaryText: value + " % of 46 MB"
+                text: qsTr("Downloading application")
+                secondaryText: value + qsTr(" % of 46 MB")
                 cancelable: timerDowloading.running
                 value: 0
                 onProgressCanceled: {
@@ -175,7 +175,7 @@ Item {
                 indeterminate: true
                 icon.name: "ic-placeholder"
                 cancelable: indeterminate
-                text: indeterminate ? "Downloading pending" : "Downloading canceled"
+                text: indeterminate ? qsTr("Downloading pending") : qsTr("Downloading canceled")
                 onProgressCanceled: indeterminate = false
                 onClicked: indeterminate = true
             }
@@ -195,12 +195,12 @@ Item {
                 implicitWidth: Sizes.dp(765)
                 implicitHeight: Sizes.dp(104)
                 icon.name: "ic-placeholder"
-                text: "List item with two accessory buttons"
+                text: qsTr("List item with two accessory buttons")
                 symbolAccessoryButton1: "ic-call-contrast"
                 symbolAccessoryButton2: "ic-message-contrast"
-                onAccessoryButton1Clicked: listItemTwoButtons.text = "Call clicked"
-                onAccessoryButton2Clicked: listItemTwoButtons.text = "Message clicked"
-                onClicked: listItemTwoButtons.text = "List item with two accessory buttons"
+                onAccessoryButton1Clicked: listItemTwoButtons.text = qsTr("Call clicked")
+                onAccessoryButton2Clicked: listItemTwoButtons.text = qsTr("Message clicked")
+                onClicked: listItemTwoButtons.text = qsTr("List item with two accessory buttons")
             }
         }
     }

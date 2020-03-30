@@ -54,7 +54,7 @@ Flickable {
             Layout.alignment: Qt.AlignHCenter
 
             Label {
-                text: "System UI"
+                text: qsTr("System UI")
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
             }
@@ -69,7 +69,7 @@ Flickable {
             }
 
             Label {
-                text: "Cluster"
+                text: qsTr("Cluster")
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
             }
@@ -104,7 +104,7 @@ Flickable {
 
 
         Label {
-            text: "Vehicle state"
+            text: qsTr("Vehicle state")
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
         }
@@ -250,7 +250,7 @@ Flickable {
         }
 
         Label {
-            text: "Telltales"
+            text: qsTr("Telltales")
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
         }

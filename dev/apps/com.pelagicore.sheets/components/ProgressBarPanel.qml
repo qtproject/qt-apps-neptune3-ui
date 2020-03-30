@@ -47,7 +47,7 @@ Item {
 
         Label {
             font.pixelSize: Sizes.fontSizeS
-            text: "Simple ProgressBar with background"
+            text: qsTr("Simple ProgressBar with background")
         }
 
         ProgressBar {
@@ -66,7 +66,7 @@ Item {
 
         Label {
             font.pixelSize: Sizes.fontSizeS
-            text: "Indeterminate ProgressBar with background"
+            text: qsTr("Indeterminate ProgressBar with background")
         }
 
         ProgressBar {
@@ -86,7 +86,7 @@ Item {
 
         Label {
             font.pixelSize: Sizes.fontSizeS
-            text: "Simple ProgressBar no background"
+            text: qsTr("Simple ProgressBar no background")
         }
 
         ProgressBar {
@@ -107,7 +107,7 @@ Item {
 
         Label {
             font.pixelSize: Sizes.fontSizeS
-            text: "Indeterminate ProgressBar no background"
+            text: qsTr("Indeterminate ProgressBar no background")
         }
 
         ProgressBar {

@@ -247,6 +247,23 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>CalendarMaximizedPanel</name>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Today: Mostly sunny,
+the highest temperature will be 26°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tonight: Mostly cloudy with light rain,
+temperatures between 14° and 18°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -349,6 +366,14 @@ UX na cestu</translation>
     <message>
         <source>Partly cloudy</source>
         <translation>Částečně zataženo</translation>
+    </message>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21°C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -474,6 +499,21 @@ UX na cestu</translation>
     <message>
         <source>UI Theme changed into Dark Theme</source>
         <translation type="obsolete">Motiv UI změněn na tmavý</translation>
+    </message>
+</context>
+<context>
+    <name>ConnectivityPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -781,6 +821,14 @@ UX na cestu</translation>
         <source>Work</source>
         <translation>Práce</translation>
     </message>
+    <message>
+        <source>Welandergatan 29</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Östra Hamngatan 16</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FavoriteDestinationButtons</name>
@@ -857,6 +905,18 @@ UX na cestu</translation>
         <source>%1 (%2)</source>
         <translation type="vanished">%1 (%2)</translation>
     </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Umělec</translation>
+    </message>
+    <message>
+        <source>Album</source>
+        <translation type="unfinished">Album</translation>
+    </message>
 </context>
 <context>
     <name>FullScreenTopView</name>
@@ -893,6 +953,25 @@ UX na cestu</translation>
     <message>
         <source>Search and navigation not available in offline mode.</source>
         <translation type="vanished">Hledání a navigace nedostupné v offline režimu.</translation>
+    </message>
+</context>
+<context>
+    <name>HotspotPanel</name>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1007,6 +1086,63 @@ UX na cestu</translation>
     <message>
         <source>Your parking period will be ended in 5 minutes.
                          Please extend your parking ticket or move your car.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active parking tickets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone 
+Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2h, 14 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every day 12 - 22</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other times</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1.5 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1275, Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End (2.29 $)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, Parking Olympia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1420,6 +1556,14 @@ UX na cestu</translation>
         <source>Unknown Album</source>
         <translation>Neznámé album</translation>
     </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
@@ -1751,6 +1895,21 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>SafeTelltalesPanel</name>
+    <message>
+        <source>Error occurred. Recovering...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchOverlayPanel</name>
     <message>
         <source>Back</source>
@@ -2030,6 +2189,14 @@ UX na cestu</translation>
     <message>
         <source>MHz</source>
         <translation>MHz</translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2321,6 +2488,55 @@ UX na cestu</translation>
     <message>
         <source>Enter an address</source>
         <translation type="vanished">Zadejte adresu</translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wi-Fi Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPopup</name>
+    <message>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WidgetContentView</name>
+    <message>
+        <source>Discover similar music</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

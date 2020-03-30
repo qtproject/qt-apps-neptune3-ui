@@ -83,7 +83,7 @@ ApplicationCCWindow {
 
 
             Label {
-                text: "No active parking tickets"
+                text: qsTr("No active parking tickets")
                 anchors.centerIn: parent
                 font.weight: Font.Light
                 opacity: !root.parkingStarted ? 1.0 : 0.0
@@ -111,7 +111,7 @@ ApplicationCCWindow {
                     Behavior on opacity { DefaultNumberAnimation {} }
 
                     Label {
-                        text: "Zone \nParking Olympia"
+                        text: qsTr("Zone \nParking Olympia")
                         font.weight: Font.Light
                         color: "black"
                     }
@@ -160,7 +160,7 @@ ApplicationCCWindow {
                         }
 
                         Label {
-                            text: "2h, 14 minutes"
+                            text: qsTr("2h, 14 minutes")
                             font.weight: Font.Light
                             opacity: Style.opacityHigh
                             color: "black"
@@ -195,7 +195,7 @@ ApplicationCCWindow {
                     spacing: Sizes.dp(50)
 
                     Label {
-                        text: "Zone"
+                        text: qsTr("Zone")
                         font.weight: Font.Light
                         opacity: Style.opacityMedium
                         font.pixelSize: Sizes.fontSizeL
@@ -206,21 +206,21 @@ ApplicationCCWindow {
 
                         Column {
                             Label {
-                                text: "Every day 12 - 22"
+                                text: qsTr("Every day 12 - 22")
                                 font.weight: Font.Light
                                 font.pixelSize: Sizes.fontSizeS
                                 opacity: Style.opacityMedium
                             }
 
                             Label {
-                                text: "Other times"
+                                text: qsTr("Other times")
                                 font.weight: Font.Light
                                 font.pixelSize: Sizes.fontSizeS
                                 opacity: Style.opacityMedium
                             }
 
                             Label {
-                                text: "Service fee"
+                                text: qsTr("Service fee")
                                 font.weight: Font.Light
                                 font.pixelSize: Sizes.fontSizeS
                                 opacity: Style.opacityMedium
@@ -229,14 +229,14 @@ ApplicationCCWindow {
 
                         Column {
                             Label {
-                                text: "1.5 $ / started hour"
+                                text: qsTr("1.5 $ / started hour")
                                 font.weight: Font.Light
                                 font.pixelSize: Sizes.fontSizeS
                                 opacity: Style.opacityMedium
                             }
 
                             Label {
-                                text: "1 $ / started hour"
+                                text: qsTr("1 $ / started hour")
                                 font.weight: Font.Light
                                 font.pixelSize: Sizes.fontSizeS
                                 opacity: Style.opacityMedium
@@ -257,7 +257,7 @@ ApplicationCCWindow {
 
                     Label {
                         anchors.right: parent.right
-                        text: "1275, Parking Olympia"
+                        text: qsTr("1275, Parking Olympia")
                         font.weight: Font.Light
                         opacity: Style.opacityMedium
                     }
@@ -269,7 +269,7 @@ ApplicationCCWindow {
                         font.pixelSize: Sizes.fontSizeM
                         checkable: true
                         checked: root.parkingStarted
-                        text: !root.parkingStarted ? "Start" : "End (2.29 $)"
+                        text: !root.parkingStarted ? qsTr("Start") : qsTr("End (2.29 $)")
 
                         background: Rectangle {
                             color: {

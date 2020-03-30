@@ -52,7 +52,7 @@ Item {
         width: Sizes.dp(300)
         height: Sizes.dp(200)
         anchors.centerIn: parent
-        text: "ListView Popup"
+        text: qsTr("ListView Popup")
         onClicked: {
             popupWithList.width = Qt.binding(() => Sizes.dp(910))
             popupWithList.height = Qt.binding(() => Sizes.dp(450))

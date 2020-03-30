@@ -63,7 +63,7 @@ PopupWindow {
             anchors.baselineOffset: Sizes.dp(78)
             font.pixelSize: Sizes.fontSizeM
             width: parent.width
-            text: !root.manual ? "Input password" : "Manual connection"
+            text: !root.manual ? qsTr("Input password") : qsTr("Manual connection")
             horizontalAlignment: Text.AlignHCenter
         }
         Image {
@@ -89,7 +89,7 @@ PopupWindow {
                 Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                 verticalAlignment: Text.AlignBottom
                 Layout.bottomMargin: -Sizes.dp(25)
-                text: "SSID"
+                text: qsTr("SSID")
                 font.pixelSize: Sizes.fontSizeS
                 elide: Text.ElideRight
                 color: Style.contrastColor
@@ -121,7 +121,7 @@ PopupWindow {
                 Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                 verticalAlignment: Text.AlignBottom
                 Layout.bottomMargin: -Sizes.dp(25)
-                text: "Password"
+                text: qsTr("Password")
                 font.pixelSize: Sizes.fontSizeS
                 elide: Text.ElideRight
                 color: Style.contrastColor
@@ -157,7 +157,7 @@ PopupWindow {
             width: Sizes.dp(315)
             height: Sizes.dp(64)
             font.pixelSize: Sizes.fontSizeS
-            text: "Connect"
+            text: qsTr("Connect")
             onClicked: {
                 p.okClicked = true;
                 root.connectClicked(ssidTextField.text, passwTextField.text);

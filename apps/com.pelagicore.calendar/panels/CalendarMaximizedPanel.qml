@@ -96,17 +96,17 @@ Item {
             Column {
                 spacing: Sizes.dp(20)
                 Label {
-                    text: "Partly sunny, 21°C"
+                    text: qsTr("Partly sunny, 21°C")
                     font.pixelSize: Sizes.dp(27)
                 }
 
                 Label {
-                    text: "Today: Mostly sunny,\nthe highest temperature will be 26°."
+                    text: qsTr("Today: Mostly sunny,\nthe highest temperature will be 26°.")
                     font.pixelSize: Sizes.dp(18)
                 }
 
                 Label {
-                    text: "Tonight: Mostly cloudy with light rain,\ntemperatures between 14° and 18°."
+                    text: qsTr("Tonight: Mostly cloudy with light rain,\ntemperatures between 14° and 18°.")
                     font.pixelSize: Sizes.dp(18)
                 }
             }

@@ -52,7 +52,7 @@ PopupWindow {
             anchors.baselineOffset: Sizes.dp(78)
             font.pixelSize: Sizes.fontSizeM
             width: parent.width
-            text: "Choose color"
+            text: qsTr("Choose color")
             horizontalAlignment: Text.AlignHCenter
         }
         Image {

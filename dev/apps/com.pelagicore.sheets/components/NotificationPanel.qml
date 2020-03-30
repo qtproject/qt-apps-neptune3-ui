@@ -51,13 +51,13 @@ Item {
             id: simpleNotiButton
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
-            text: "Simple notification"
+            text: qsTr("Simple notification")
             onClicked: {
                 var notification1 = ApplicationInterface.createNotification();
-                notification1.summary = "Summary text: simple notification";
-                notification1.body = "Body text: simple notification";
+                notification1.summary = qsTr("Summary text: simple notification");
+                notification1.body = qsTr("Body text: simple notification");
                 notification1.showActionsAsIcons = true;
-                notification1.actions = [{"actionText": "Action Text"}];
+                notification1.actions = [{"actionText": qsTr("Action Text")}];
                 notification1.show();
             }
         }
@@ -65,11 +65,11 @@ Item {
         Button {
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
-            text: "Timeout notification 8 secs"
+            text: qsTr("Timeout notification 8 secs")
             onClicked: {
                 var notification2 = ApplicationInterface.createNotification();
-                notification2.summary = "Summary text: timeout notification";
-                notification2.body = "Body text: timeout 8 seconds";
+                notification2.summary = qsTr("Summary text: timeout notification");
+                notification2.body = qsTr("Body text: timeout 8 seconds");
                 notification2.timeout = 8000;
                 notification2.show();
             }
@@ -78,11 +78,11 @@ Item {
         Button {
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
-            text: "Sticky notification"
+            text: qsTr("Sticky notification")
             onClicked: {
                 var notification3 = ApplicationInterface.createNotification();
-                notification3.summary = "Summary text: sticky notification";
-                notification3.body = "Sticky notification has an implicit timeout of 0, it will persist in the notification center";
+                notification3.summary = qsTr("Summary text: sticky notification");
+                notification3.body = qsTr("Sticky notification has an implicit timeout of 0, it will persist in the notification center");
                 notification3.sticky = true;
                 notification3.show();
             }
@@ -91,7 +91,7 @@ Item {
         Button {
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
-            text: "Long text notification"
+            text: qsTr("Long text notification")
             onClicked: {
                 var notification4 = ApplicationInterface.createNotification();
                 notification4.summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
@@ -107,7 +107,7 @@ Item {
             id: appRequestNotiButton
             implicitWidth: Sizes.dp(500)
             implicitHeight: Sizes.dp(64)
-            text: "Notification w/ App Request"
+            text: qsTr("Notification w/ App Request")
             property var notification5: ApplicationInterface.createNotification();
             onClicked: {
                 notification5.summary = qsTr("Battery level is low");
