@@ -15,6 +15,12 @@ macos: {
     HEADERS += safewindow_mac.h
 }
 
+win32 {
+    wrapper.files = neptune3-ui-qsr-cluster_wrapper.bat
+    wrapper.path = $$INSTALL_PREFIX/neptune3
+    INSTALLS += wrapper
+}
+
 QT = core gui qtsaferenderer network ivicore
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
