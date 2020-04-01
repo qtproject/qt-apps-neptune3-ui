@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.sheets'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Sheets'
   de: 'Sheets'
@@ -13,5 +11,10 @@ name:
   zh: 'Sheets'
   ja: 'Sheets'
   ko: 'Sheets'
+
+applications:
+  - id:      'com.pelagicore.sheets'
+    code:    'Main.qml'
+    runtime: 'qml'
 
 categories: [ 'dev' ]

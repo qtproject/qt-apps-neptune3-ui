@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.apps.settings'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'General Settings'
   cs: 'Obecná nastavení'
@@ -14,7 +12,12 @@ name:
   ja: '一般設定'
   ko: '일반 설정'
 
-applicationProperties: { private: { squishPort: 7729 } }
+applications:
+  - id:     'com.pelagicore.apps.settings'
+    code:    'Main.qml'
+    runtime: 'qml'
+    applicationProperties: { private: { squishPort: 7729 } }
+
 categories: [ 'app' ]
 intents:
 - id: activate-app

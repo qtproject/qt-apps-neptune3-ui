@@ -1,12 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.theqtcompany.cluster'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
-runtimeParameters:
-    importPaths: [ '.' ]
 name:
   en: 'Instrument Cluster'
   de: 'Instrumentengruppe'
@@ -16,8 +12,14 @@ name:
   ja: '計器クラスタ'
   ko: '계기판'
 
-applicationProperties:
-    private:
+applications:
+  - id:      'com.theqtcompany.cluster'
+    code:    'Main.qml'
+    runtime: 'qml'
+    runtimeParameters:
+      importPaths: [ '.' ]
+    applicationProperties:
+      private:
         squishPort: 7723
 
 categories: [ 'cluster' ]

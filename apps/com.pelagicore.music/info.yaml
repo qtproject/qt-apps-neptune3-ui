@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.music'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Music'
   de: 'Musik'
@@ -13,8 +11,12 @@ name:
   zh: '音乐'
   ja: '音楽'
   ko: '음악'
+applications:
+  - id:      'com.pelagicore.music'
+    code:    'Main.qml'
+    runtime: 'qml'
+    applicationProperties: { private: { squishPort: 7727 } }
 
-applicationProperties: { private: { squishPort: 7727 } }
 categories: [ 'media', 'widget' ]
 intents:
 - id: activate-app

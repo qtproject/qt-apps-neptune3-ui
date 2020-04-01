@@ -1,13 +1,15 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.climate'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Climate'
   de: 'Klima'
 
-applicationProperties: { private: { squishPort: 7722 } }
+applications:
+  - id:      'com.pelagicore.climate'
+    code:    'Main.qml'
+    runtime: 'qml'
+    applicationProperties: { private: { squishPort: 7722 } }
 categories: [ 'bottombar' ]

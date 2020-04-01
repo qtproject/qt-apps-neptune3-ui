@@ -1,15 +1,18 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.tuner'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Tuner'
   de: 'Tuner'
 
-applicationProperties: { private: { squishPort: 7731 } }
+applications:
+  - id:      'com.pelagicore.tuner'
+    code:    'Main.qml'
+    runtime: 'qml'
+    applicationProperties: { private: { squishPort: 7731 } }
+
 categories: [ 'media' ]
 intents:
 - id: activate-app
