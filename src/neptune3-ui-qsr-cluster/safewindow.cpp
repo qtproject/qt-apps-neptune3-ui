@@ -74,6 +74,21 @@ SafeWindow::SafeWindow(const SafeRenderer::QSafeSize &size,
             // transparent om Mac QTBUG-77637
             SafeWindowMac::setWindowTransparent(reinterpret_cast<void*>(this->winId()));
         #endif
+        #ifdef Q_OS_WIN32
+                // QWindow doesn't allow making window background transparent on Windows,
+                // we have to use native calls to set black color as transparent.
+                // We make window stay on top as rise() function doesn't work as it does on
+                // macOS and Linux platforms (still remains under cluster window)
+                this->setFlag(Qt::WindowStaysOnTopHint);
+                this->setFlag(Qt::WindowTitleHint);
+                this->setFlag(Qt::WindowSystemMenuHint);
+                this->setFlag(Qt::WindowCloseButtonHint);
+
+                HWND hwnd = reinterpret_cast<HWND>(this->winId());
+                SetWindowLong(hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+                SetLayeredWindowAttributes(hwnd, 0, 0, LWA_COLORKEY);
+        #endif
+
         QSurfaceFormat fmt = format();
         fmt.setAlphaBufferSize(8);
         setFormat(fmt);

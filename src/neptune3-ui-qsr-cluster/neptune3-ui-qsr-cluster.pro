@@ -19,6 +19,7 @@ win32 {
     wrapper.files = neptune3-ui-qsr-cluster_wrapper.bat
     wrapper.path = $$INSTALL_PREFIX/neptune3
     INSTALLS += wrapper
+    LIBS += -lUser32
 }
 
 QT = core gui qtsaferenderer network ivicore
