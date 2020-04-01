@@ -54,10 +54,10 @@ AbstractCenterConsole {
         id: luxoftIcon
         anchors.centerIn: bottomBar
         source: Style.image("luxoft-footer")
+        fillMode: Image.PreserveAspectFit
+        width: root.width / 6
         MouseArea {
             anchors.fill: parent
-            anchors.topMargin: - Sizes.dp(10)
-            anchors.bottomMargin: - Sizes.dp(10)
             onClicked: about.open()
         }
     }
