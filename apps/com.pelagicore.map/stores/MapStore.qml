@@ -248,11 +248,6 @@ QtObject {
         }
         plugin: herePlugin
 
-
-        onModelAboutToBeReset: {
-            root.routeSegments = null;
-        }
-
         onStatusChanged: {
             if (status === RouteModel.Null) {
                 console.info(qLcMaps, "Route model idle");

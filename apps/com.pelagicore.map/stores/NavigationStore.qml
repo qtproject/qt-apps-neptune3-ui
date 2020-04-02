@@ -48,6 +48,11 @@ QtObject {
         mapZoomLevel: root.mapZoomLevel
         mapTilt: root.mapTilt
         mapCenter: root.mapCenter
+        onIsInitializedChanged: {
+            naviState.nextTurn = "";
+            naviState.nextTurnDistanceMeasuredIn = "";
+            naviState.nextTurnDistance = 0;
+        }
     }
 
     // input properties
