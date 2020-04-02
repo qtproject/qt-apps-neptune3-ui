@@ -84,6 +84,7 @@ Item {
 
     Studio3D {
         anchors.fill: parent
+        enabled: false
         ViewerSettings {
             scaleMode: ViewerSettings.ScaleModeFit
 //            showRenderStats: true
