@@ -216,7 +216,7 @@ Store {
 
                     //found app with "guess-app" part, send intent to this app
                     if (appId !== "") {
-                        request = IntentClient.sendIntentRequest("activate-app", appId, { });
+                        let request = IntentClient.sendIntentRequest("activate-app", appId, { });
                         request.onReplyReceived.connect(function() {
                             if (request.succeeded) {
                                 var result = request.result;
