@@ -43,8 +43,8 @@ ListModel {
 
     function refresh() {
         status = "loading"
-        clear();
         JSONBackend.serverCall(url, data, function(data) {
+            clear();
             if (data === 0) {
                 status = "error";
 

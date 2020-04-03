@@ -183,6 +183,7 @@ Item {
             model: root.store.categoryModel
             serverUrl: root.store.appServerUrl
             onToolClicked: root.store.selectCategory(index)
+            onRefresh: root.store.categoryModel.refresh()
         }
 
         DownloadAppList {

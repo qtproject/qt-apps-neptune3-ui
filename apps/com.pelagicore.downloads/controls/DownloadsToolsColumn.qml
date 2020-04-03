@@ -44,14 +44,52 @@ Item {
     property string serverUrl
 
     signal toolClicked(int index)
+    signal refresh()
+
+    BusyIndicator {
+        id: busyIndicator
+
+        running: false
+        anchors.horizontalCenter: root.horizontalCenter
+        opacity: 0.0;
+        visible: opacity > 0.0
+        width: Sizes.dp(100); height: width
+    }
 
     ToolsColumn {
         id: toolsColumn
 
+        property bool refreshRequired: false
+
+        interactive: true
         width: Sizes.dp(264)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: Sizes.dp(53)
         onClicked: root.toolClicked(currentIndex)
+        onContentYChanged: {
+            if (atYBeginning) {
+                var d = Math.abs(contentY);
+                busyIndicator.opacity = d / busyIndicator.height;
+                if (d > busyIndicator.height) {
+                    if (!busyIndicator.running) {
+                        busyIndicator.running = true;
+                        refreshRequired = true;
+                    }
+                } else {
+                    busyIndicator.running = false;
+                    // if we drag back - no refresh
+                    if (dragging)
+                        refreshRequired = false;
+                }
+            }
+        }
+        onMovementEnded: {
+            busyIndicator.opacity = 0.0;
+            if (refreshRequired) {
+                refreshRequired = false;
+                refresh();
+            }
+        }
     }
 }

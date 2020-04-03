@@ -298,6 +298,9 @@ Item {
 
     ListModel {
         id: categoryListModel
+        function refresh() {
+            jsonCategoryModel.refresh();
+        }
     }
 
     JSONModel {

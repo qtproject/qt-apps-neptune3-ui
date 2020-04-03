@@ -304,6 +304,12 @@ DSM.StateMachine {
                         signal: jsonAppModel.onStatusChanged
                         guard: jsonAppModel.status === "loading"
                     }
+
+                    DSM.SignalTransition {
+                        targetState: fetchingCategoriesState
+                        signal: jsonCategoryModel.onStatusChanged
+                        guard: jsonCategoryModel.status === "loading"
+                    }
                 }
             }
         }

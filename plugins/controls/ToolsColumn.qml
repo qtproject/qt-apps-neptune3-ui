@@ -40,7 +40,7 @@ import shared.utils 1.0
 /*!
     \qmltype ToolsColumn
     \inqmlmodule controls
-    \inherits ColumnLayout
+    \inherits ListView
     \since 5.11
     \brief The tools column component for Neptune 3 UI applications.
 
@@ -101,11 +101,13 @@ import shared.utils 1.0
     \endqml
 */
 
-ColumnLayout {
+ListView {
     id: root
 
-    width: Sizes.dp(135)
+    implicitWidth: Sizes.dp(135)
+    implicitHeight: root.contentHeight
     spacing: Sizes.dp(24)
+    interactive: false
 
     /*!
         \qmlproperty enumeration ToolsColumn::iconFillMode
@@ -134,36 +136,14 @@ ColumnLayout {
     property real iconRectHeight: 0
 
     /*!
-        \qmlproperty int ToolsColumn::currentIndex
-
-        This property holds the current selected index of the tools column.
-
-        This property's default is 0.
-    */
-    property int currentIndex: 0
-
-    /*!
         \qmlproperty string ToolsColumn::currentText
         \readonly
 
         This property holds the current selected text of the tools column.
     */
-    readonly property string currentText: model && model.count > currentIndex
-                                                ?  model.get(currentIndex).text
-                                                : ""
-    /*!
-        \qmlproperty string ToolsColumn::currentItem
-
-        This property holds the current selected item of the tools column.
-    */
-    property Item currentItem: repeater.itemAt(currentIndex)
-
-    /*!
-        \qmlproperty var ToolsColumn::model
-
-        This property holds the model to be delegated in the tools column.
-    */
-    property alias model: repeater.model
+    readonly property string currentText: model && currentIndex > -1 && model.count > currentIndex
+                                          ?  model.get(currentIndex).text
+                                          : ""
 
     /*!
         \qmlproperty string ToolsColumn::translationContext
@@ -184,13 +164,8 @@ ColumnLayout {
 
     ButtonGroup { id: buttonGroup }
 
-    Repeater {
-        id: repeater
-
-        ToolButton {
-            Layout.preferredWidth: root.width
-            Layout.preferredHeight: Sizes.dp(140)
-            Layout.alignment: Qt.AlignHCenter
+    delegate: ToolButton {
+            height: Sizes.dp(140); width: root.width
             objectName: model.objectName ? model.objectName : ""
             baselineOffset: 0
             iconFillMode: root.iconFillMode
@@ -212,11 +187,6 @@ ColumnLayout {
             }
             ButtonGroup.group: buttonGroup
         }
-    }
-
-    Item {
-        Layout.fillHeight: true
-    }
 
     Connections {
         target: root.model

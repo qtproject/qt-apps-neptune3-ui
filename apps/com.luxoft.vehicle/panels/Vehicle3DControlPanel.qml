@@ -68,7 +68,6 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         width: Sizes.dp(264)
-        height: Sizes.dp(460)
         translationContext: "VehicleToolsColumn"
     }
 
