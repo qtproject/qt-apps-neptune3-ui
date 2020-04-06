@@ -204,11 +204,17 @@ Store {
         onDisambiguationRequest: {
             //process "activate-app" intent sent with part of app name (guess-app) as parameter
             if (potentialIntents.length > 0 && potentialIntents[0].intentId === "activate-app") {
-                if (parameters["guess-app"] && parameters["guess-app"] !== "") {
+                var guess_app = parameters["guess-app"];
+                if (guess_app && guess_app !== "") {
+                    if (guess_app === "home") {
+                        // if "home" is called, go to home view
+                        applicationModel.goHome();
+                    }
+
                     var appId = "";
 
                     for (var i = 0; i < potentialIntents.length; i++) {
-                        if (potentialIntents[i].applicationId.includes(parameters["guess-app"])) {
+                        if (potentialIntents[i].applicationId.includes(guess_app)) {
                             appId = potentialIntents[i].applicationId;
                             break;
                         }
