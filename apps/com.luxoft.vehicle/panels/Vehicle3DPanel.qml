@@ -81,6 +81,68 @@ Item {
                 }
             }
 
+            QtObject {
+                id: d
+                readonly property vector2d base2d : Qt.vector2d(0.0, -15.0)
+                property real pixelAndTimeMagicCoeff: 0.5
+                property var trajectory: []
+                property var trajectoryV: []
+            }
+
+            function getCurrentAngle() {
+                var cameraPos = camera.position;
+                var vec2d = Qt.vector2d(-cameraPos.x, cameraPos.z);
+                var angle = 0.0;
+                angle = -Math.atan2(vec2d.x, vec2d.y);
+                angle = angle < 0 ? angle + 2*Math.PI : angle;
+                return angle * 180 / Math.PI;
+            }
+
+            MouseArea {
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: Sizes.dp(652)
+                z: 40
+
+                onReleased: {
+                    d.trajectory = []
+                }
+
+
+                onPositionChanged: {
+                    if (pressed) {
+                        d.trajectory.push(mouseX);
+                        d.trajectoryV.push(mouseY);
+                        if (d.trajectory.length > 2) {
+                            var dx = 0
+                            for (var i = 1; i < d.trajectory.length; ++i) {
+                                dx += d.trajectory[i] - d.trajectory[i - 1];
+                            }
+
+                            if (dx !== 0) {
+                                camera.panAboutViewCenter(-dx * d.pixelAndTimeMagicCoeff
+                                                               , Qt.vector3d(0, 1, 0));
+                                root.cameraPanAngleInput = getCurrentAngle();
+                            }
+
+                            d.trajectory = []
+                        }
+                    }
+                }
+            }
+
+            Connections {
+                target: root
+                onCameraPanAngleOutputChanged: {
+                    var angle = getCurrentAngle()
+                    if (root.clusterView && angle !== root.cameraPanAngleOutput) {
+                     camera.panAboutViewCenter(root.cameraPanAngleOutput - angle
+                                               , Qt.vector3d(0, 1, 0));
+                    }
+                }
+            }
+
             Scene3D {
                 anchors.fill: parent
                 aspects: ["input", "logic"]
@@ -112,13 +174,6 @@ Item {
                         position:   Qt.vector3d(0.0, 5.0, 18.0)
                         viewCenter: Qt.vector3d(0.0, 1.6, 0.0)
                         upVector:   Qt.vector3d(0.0, 1.0, 0.0)
-                    }
-
-                    CameraController {
-                        camera: camera
-                        enabled: !root.clusterView
-                        onCameraPanAngleInputChanged: root.cameraPanAngleInput = cameraPanAngleInput
-                        cameraPanAngleOutput: root.cameraPanAngleOutput
                     }
 
                     CookTorranceMaterial {

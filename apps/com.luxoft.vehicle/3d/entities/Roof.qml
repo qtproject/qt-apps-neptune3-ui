@@ -50,12 +50,8 @@ Entity {
     Transform {
         id: transform
         readonly property real translationZ: -1.15
-        matrix: {
-            var m = Qt.matrix4x4();
-            m.translate(Qt.vector3d(0, 0, translationZ * openProgress));
-            m.scale(Qt.vector3d(1, 1, 1 - openProgress));
-            return m;
-        }
+        translation: Qt.vector3d(0, 0, translationZ * openProgress)
+        scale3D: Qt.vector3d(1, 1, 1 - openProgress)
     }
 
     Mesh {
