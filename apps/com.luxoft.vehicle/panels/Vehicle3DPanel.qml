@@ -184,6 +184,13 @@ Item {
                     }
 
                     CookTorranceMaterial {
+                        id: rubberMaterial
+                        albedo: "black"
+                        metalness: 0.9
+                        roughness: 0.5
+                    }
+
+                    CookTorranceMaterial {
                         id: whiteHood
                         albedo: "white"
                         metalness: 0.1
@@ -195,6 +202,13 @@ Item {
                         albedo: "black"
                         metalness: 0.1
                         roughness: 0.2
+                    }
+
+                    CookTorranceMaterial {
+                        id: wheelChromeMaterial
+                        albedo: "black"
+                        metalness: 0.1
+                        roughness: 0.7
                     }
 
                     CookTorranceMaterial {

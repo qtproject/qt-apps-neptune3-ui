@@ -68,23 +68,15 @@ Entity {
             id: wheelMesh
             source: Paths.getModelPath("front_wheel_chrome.obj")
         }
-        components: [wheelMesh, chromeMaterial]
+        components: [wheelMesh, wheelChromeMaterial]
     }
 
     Entity {
-        components: [
-            Mesh {
-                source: Paths.getModelPath("front_tires.obj")
-            },
-            DiffuseMapMaterial {
-                id: frontTiresMaterial
-                diffuse: Texture2D {
-                    TextureImage {
-                        source: Paths.getImagePath("front_tires.png")
-                    }
-                }
-            }
-        ]
+        Mesh {
+            id: tiresMesh
+            source: Paths.getModelPath("front_tires.obj")
+        }
+        components: [tiresMesh, rubberMaterial]
     }
 
     NumberAnimation {
