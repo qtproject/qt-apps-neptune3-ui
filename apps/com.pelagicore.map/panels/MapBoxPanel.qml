@@ -171,7 +171,7 @@ Item {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: guidanceMode ? Sizes.dp(810) : 0
+        anchors.rightMargin: guidanceMode && root.state === "Maximized" ? Sizes.dp(810) : 0
         anchors.top: parent.top
         opacity: root.state !== "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
