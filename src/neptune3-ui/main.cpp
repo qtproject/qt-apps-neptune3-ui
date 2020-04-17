@@ -114,6 +114,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
+        QFontDatabase::addApplicationFont(QCoreApplication::applicationDirPath()
+                                          + "/imports_shared/assets/fonts/DejaVuSans.ttf");
 
         // load the Qt translations
         QTranslator qtTranslator;
@@ -153,8 +155,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
-
-        QFontDatabase::addApplicationFont(QCoreApplication::applicationDirPath() + "/imports_shared/assets/fonts/DejaVuSans.ttf");
 
         auto ctx = a.qmlEngine()->rootContext();
         ctx->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
