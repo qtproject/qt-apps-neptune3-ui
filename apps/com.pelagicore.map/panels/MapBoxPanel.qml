@@ -204,6 +204,13 @@ Item {
         }
         Behavior on tilt { DefaultSmoothedAnimation {} }
 
+        // WARNING: this is a really bad code here, but i don't know any other way to force map
+        // to be updated, it matters when we change widget size (we need to synch from/cur markers)
+        onHeightChanged: {
+            mainMap.pan(1,0)
+            mainMap.pan(-1,0)
+        }
+
         zoomLevel: 10
         copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
         gesture {
