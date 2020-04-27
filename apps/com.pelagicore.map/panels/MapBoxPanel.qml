@@ -57,7 +57,6 @@ Item {
     property alias bearing: mainMap.bearing
     property alias zoomLevel: mainMap.zoomLevel
     property alias mapHeader: header
-
     property string destination
     property RouteModel model
     property string routeDistance
@@ -68,15 +67,122 @@ Item {
     property var destCoord: QtPositioning.coordinate()
 
     property bool offlineMapsEnabled
-    property bool navigationMode
-    property bool guidanceMode
+
     property var currentLocation
+    property var locationFromNavigator
+    property real directionFromNavigator
 
     signal openSearchTextInput()
     signal maximizeMap()
     signal startNavigationRequested()
     signal stopNavigationRequested()
-    signal showRouteRequested(var destCoord, string description)
+    signal showRouteRequested()
+    signal showDestinationPointRequested(var destCoord, string description)
+
+    // visual part of some elements are controlled by the following property
+    property string neptuneWindowState
+    state: "initial"
+    states: [
+        State {
+            // just a map w/o any additional items in it
+            name: "initial"
+            PropertyChanges {
+                target: posMarker
+                coordinate: QtPositioning.coordinate()
+                rotation: 0.0
+                visible: false
+            }
+            PropertyChanges {
+                target: destMarker
+                visible: false
+            }
+            PropertyChanges {
+                target: routeSegmentsView
+                visible: false
+            }
+            PropertyChanges {
+                target: mainMap
+                center: root.currentLocation
+                zoomLevel: 10
+            }
+        },
+        State {
+            // the map with selected destination marker (if destination is valid)
+            name: "destination_selection"
+            PropertyChanges {
+                target: posMarker
+                visible: false
+            }
+            PropertyChanges {
+                target: destMarker
+                visible: root.destCoord.isValid
+                coordinate: root.destCoord ? root.destCoord : QtPositioning.coordinate()
+            }
+            PropertyChanges {
+                target: routeSegmentsView
+                visible: false
+            }
+            PropertyChanges {
+                target: mainMap
+                zoomLevel: 10
+                center: root.destCoord
+            }
+        },
+        State {
+            // destination is selected, showRoute is called
+            name: "route_selection"
+            PropertyChanges {
+                target: posMarker
+                visible: posMarker.coordinate.isValid
+                coordinate: root.model && root.model.status === RouteModel.Ready
+                                    && root.model.count > 0
+                            ? root.model.get(0).segments[0].path[0]
+                            : QtPositioning.coordinate()
+                rotation: root.model && root.model.status === RouteModel.Ready
+                          && root.model.count > 0
+                          ? root.model.get(0).segments[0].path[0].azimuthTo(
+                                root.model.get(0).segments[0].path[1])
+                          : 0
+            }
+            PropertyChanges {
+                target: destMarker
+                visible: root.destCoord.isValid
+                coordinate: root.destCoord ? root.destCoord : QtPositioning.coordinate()
+            }
+            PropertyChanges {
+                target: routeSegmentsView
+                visible: true
+                model: root.model
+            }
+        },
+        State {
+            name: "demo_driving"
+            extend: "route_selection"
+        }
+    ]
+
+    SequentialAnimation {
+        id: demoAnimation
+        readonly property int zoomLvl: 15
+
+        PauseAnimation {
+            duration: 200
+        }
+
+        CoordinateAnimation {
+            target: mainMap
+            property: "center"
+            duration: mainMap.center !== root.locationFromNavigator ? 2000 : 0
+            to: root.locationFromNavigator
+        }
+
+        NumberAnimation {
+            target: mainMap
+            property: "zoomLevel"
+            duration: mainMap.zoomLevel !== demoAnimation.zoomLvl ? 1500 : 0
+            to: demoAnimation.zoomLvl
+        }
+    }
 
     function zoomIn() {
         mainMap.zoomLevel += 1.0;
@@ -89,17 +195,22 @@ Item {
     Map {
         id: mainMap
         anchors.fill: parent
-        anchors.topMargin: (root.state === "Widget3Rows") ? header.height/2 : 0
+        anchors.topMargin: root.neptuneWindowState === "Widget3Rows"
+                && root.state !== "demo_driving" ? header.height/3 : 0
         Behavior on anchors.topMargin { DefaultNumberAnimation {} }
-        Behavior on center { enabled: root.mapInteractive; CoordinateAnimation { easing.type: Easing.InOutCirc; duration: 540 } }
+        Behavior on center {
+            enabled: root.mapInteractive;
+            CoordinateAnimation { easing.type: Easing.InOutCirc; duration: 540 }
+        }
         Behavior on tilt { DefaultSmoothedAnimation {} }
+
         zoomLevel: 10
         copyrightsVisible: false // customize the default (c) appearance below in MapCopyrightNotice
         gesture {
             enabled: root.mapInteractive
             // effectively disable the rotation gesture
-            acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture | MapGestureArea.FlickGesture |
-                              MapGestureArea.TiltGesture
+            acceptedGestures: MapGestureArea.PanGesture | MapGestureArea.PinchGesture
+                              | MapGestureArea.FlickGesture | MapGestureArea.TiltGesture
         }
 
         onErrorChanged: {
@@ -113,12 +224,12 @@ Item {
         }
 
         MapItemView {
+            id: routeSegmentsView
             autoFitViewport: true
-            model: root.guidanceMode ? root.model : null
             delegate: MapRoute {
                 route: routeData
-                line.color: "#798bd9"
-                line.width: Sizes.dp(3)
+                line.color: Style.accentColor
+                line.width: Sizes.dp(8)
                 smooth: true
                 opacity: Style.opacityHigh
             }
@@ -127,9 +238,6 @@ Item {
         MapQuickItem {
             id: destMarker
             anchorPoint: Qt.point(markerImage.width * 0.5, markerImage.height * 0.8)
-            coordinate: root.destCoord ? root.destCoord : QtPositioning.coordinate()
-            visible: root.navigationMode && root.destCoord.isValid
-
             sourceItem: Image {
                 id: markerImage
                 source: Qt.resolvedUrl("../assets/pin-destination.png")
@@ -141,18 +249,12 @@ Item {
         MapQuickItem {
             id: posMarker
             anchorPoint: Qt.point(posImage.width * 0.5, posImage.height * 0.5)
-            coordinate: root.routeSegments && root.routeSegments[0] ? root.routeSegments[0].path[0]
-                                                                       : QtPositioning.coordinate()
-            visible: root.guidanceMode
-
             sourceItem: Image {
                 id: posImage
                 source: Qt.resolvedUrl("../assets/pin-your-position.png")
                 width: Sizes.dp(116/2)
                 height: Sizes.dp(135/2)
             }
-            rotation: root.routeSegments ? root.routeSegments[0].path[0].azimuthTo(root.routeSegments[0].path[1])
-                                               : 0
         }
     }
 
@@ -160,8 +262,8 @@ Item {
         id: mask
         anchors.fill: mainMap
         source: Helper.localAsset("bg-home-navigation-overlay", Style.theme)
-        visible: root.state === "Maximized"
-        scale: root.state === "Maximized" ? 1.2 : 1.6
+        visible: root.neptuneWindowState === "Maximized"
+        scale: root.neptuneWindowState === "Maximized" ? 1.2 : 1.6
         Behavior on scale {
             DefaultNumberAnimation { }
         }
@@ -171,17 +273,14 @@ Item {
         id: header
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.rightMargin: guidanceMode && root.state === "Maximized" ? Sizes.dp(810) : 0
         anchors.top: parent.top
-        opacity: root.state !== "Widget1Row" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         Behavior on anchors.rightMargin { DefaultNumberAnimation {} }
         visible: opacity > 0
+        neptuneWindowState: root.neptuneWindowState
         state: root.state
 
         offlineMapsEnabled: root.offlineMapsEnabled
-        navigationMode: root.navigationMode
-        guidanceMode: root.guidanceMode
         currentLocation: root.currentLocation
         destination: root.destination
         routeDistance: root.routeDistance
@@ -190,21 +289,18 @@ Item {
         workRouteTime: root.workRouteTime
 
         onOpenSearchTextInput: root.openSearchTextInput()
+        onShowRoute: {
+            root.showRouteRequested();
+        }
         onStartNavigation: {
             root.startNavigationRequested();
-            root.maximizeMap();
-            root.guidanceMode = true;
         }
         onStopNavigation: {
             root.stopNavigationRequested();
-            root.navigationMode = false;
-            root.guidanceMode = false;
         }
-        onShowRoute: {
-            root.showRouteRequested(destCoord, description);
+        onShowDestinationPoint: {
+            root.showDestinationPointRequested(destCoord, description);
             root.center = destCoord;
-            root.navigationMode = true;
-            root.maximizeMap();
         }
     }
 
@@ -214,7 +310,7 @@ Item {
         anchors.top: header.bottom
         anchors.topMargin: Sizes.dp(240)
         checkable: true
-        opacity: root.state === "Maximized" ? 1 : 0
+        opacity: root.neptuneWindowState === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         width: Sizes.dp(background.sourceSize.width)
@@ -230,12 +326,13 @@ Item {
     }
 
     ToolButton {
+        id: centerToCurrentLocationButton
         anchors.right: parent.right
         anchors.rightMargin: Sizes.dp(27)
         anchors.top: header.bottom
         anchors.topMargin: Sizes.dp(240)
         checkable: true
-        opacity: root.state === "Maximized" ? 1 : 0
+        opacity: root.neptuneWindowState === "Maximized" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
         visible: opacity > 0
         width: Sizes.dp(background.sourceSize.width)
@@ -245,11 +342,18 @@ Item {
             height: Sizes.dp(sourceSize.height)
             source: Helper.localAsset("floating-button-bg", Style.theme)
         }
-        enabled: !checked
         checked: mainMap.center === root.currentLocation
         icon.source: checked ? Qt.resolvedUrl("../assets/ic-my-position_ON.png")
                              : Qt.resolvedUrl("../assets/ic-my-position_OFF.png")
-        onToggled: mainMap.center = root.currentLocation;
+        onClicked: {
+            if (checked) {
+                mainMap.zoomLevel = 15;
+            }
+        }
+        onToggled: {
+            mainMap.center = root.currentLocation;
+            mainMap.zoomLevel = 15;
+        }
     }
 
     MapCopyrightNotice {

@@ -60,7 +60,7 @@ Window {
 
     MapView {
         anchors.fill: parent
-        state: "Maximized"
+        neptuneWindowState: "Maximized"
         store: MapStore {
             currentLocationCoord: positionCoordinate
             onOfflineMapsEnabledChanged: getAvailableMapsAndLocation()

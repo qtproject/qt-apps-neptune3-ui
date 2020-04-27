@@ -44,11 +44,10 @@ Item {
     id: root
 
     property int destinationButtonrowHeight: 0
-    property bool navigationMode: false
-    property bool guidanceMode: false
 
-    height: destinationButtonsPanel.visible ? Sizes.dp(destinationButtonsPanel.sourceSize.height) : searchPanel.height
-
+    height: destinationButtonsPanel.visible
+            ? Sizes.dp(destinationButtonsPanel.sourceSize.height)
+            : searchPanel.height
     ScalableBorderImage {
         id: outerShadow
         anchors.top: destinationButtonsPanel.top
@@ -56,8 +55,9 @@ Item {
         anchors.left: destinationButtonsPanel.left
         anchors.right: destinationButtonsPanel.right
         anchors.rightMargin: -Sizes.dp(45 * .5)
-        height: root.navigationMode && !root.guidanceMode ? Sizes.dp(sourceSize.height) - root.destinationButtonrowHeight
-                                                          : Sizes.dp(sourceSize.height)
+        height: root.state === "initial"
+                ? Sizes.dp(sourceSize.height) * 0.7
+                : Sizes.dp(sourceSize.height) * 0.7 - root.destinationButtonrowHeight
         source: Helper.localAsset("panel-shadow", Style.theme)
         border {
             //don't change these values without knowing the exact size of source image
@@ -76,7 +76,8 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: -Sizes.dp(45)
         source: Helper.localAsset("panel-more-contrast-background", Style.theme)
-        visible: !root.navigationMode || root.guidanceMode
+        visible: root.state === "initial"
+        height: Sizes.dp(sourceSize.height) * 0.7
         border {
             //don't change these values without knowing the exact size of source image
             //QTBUG-73768 if border exceeds source image size, app crashes, avoid Sizes.dp here
@@ -102,8 +103,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.rightMargin: -Sizes.dp(45)
-        height: root.guidanceMode ? Sizes.dp(sourceSize.height) :
-                                    Sizes.dp(destinationButtonsPanel.sourceSize.height) - root.destinationButtonrowHeight
+        height: Sizes.dp(destinationButtonsPanel.sourceSize.height) * 0.7
+                    - root.destinationButtonrowHeight
         source: Helper.localAsset("panel-background", Style.theme)
         border {
             //don't change these values without knowing the exact size of source image

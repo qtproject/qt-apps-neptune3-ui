@@ -52,7 +52,7 @@ Item {
     property string homeRouteTime: ""
     property string workRouteTime: ""
 
-    signal showRoute(var destCoord, string description)
+    signal showDestinationPoint(var destCoord, string description)
 
     RowLayout {
         anchors.fill: parent
@@ -67,7 +67,7 @@ Item {
             extendedText: homeRouteTime
             //TODO: add properties to the root object to access this externally
             secondaryText: "Welandergatan 29"
-            onClicked: root.showRoute(root.homeAddressData, secondaryText)
+            onClicked: root.showDestinationPoint(root.homeAddressData, secondaryText)
         }
         Rectangle {
             Layout.fillHeight: true
@@ -86,7 +86,7 @@ Item {
             extendedText: workRouteTime
             //TODO: add properties to the root object to access this externally
             secondaryText: "Östra Hamngatan 16"
-            onClicked: root.showRoute(root.workAddressData, secondaryText)
+            onClicked: root.showDestinationPoint(root.workAddressData, secondaryText)
         }
     }
 }

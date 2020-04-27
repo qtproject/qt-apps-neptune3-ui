@@ -981,7 +981,11 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>NavigationConfirmPanel</name>
     <message>
         <source>Start Navigation</source>
-        <translation type="unfinished">开始导航</translation>
+        <translation type="obsolete">开始导航</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -999,7 +1003,7 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">今天你想要去哪儿？</translation>
+        <translation type="obsolete">今天你想要去哪儿？</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1008,6 +1012,10 @@ If it is wrong, you can just delete first two charactor, just ues &quot;源&quot
     <message>
         <source>Search not available offline</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
+        <translation>你想去哪里？</translation>
     </message>
 </context>
 <context>

@@ -853,7 +853,7 @@
 <context>
     <name>NavigationConfirmPanel</name>
     <message>
-        <source>Start Navigation</source>
+        <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -868,7 +868,7 @@
     <name>NavigationSearchPanel</name>
     <message>
         <source>Where do you wanna go today?</source>
-        <translation type="unfinished">Wo soll es heute hingehen?</translation>
+        <translation type="obsolete">Wo soll es heute hingehen?</translation>
     </message>
     <message>
         <source>Search</source>
@@ -877,6 +877,10 @@
     <message>
         <source>Search not available offline</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where do you want to go?</source>
+        <translation>Wo soll es hingehen?</translation>
     </message>
 </context>
 <context>

@@ -39,39 +39,39 @@ import shared.Style 1.0
 import shared.Sizes 1.0
 import "../helpers" 1.0
 
-Row {
+RowLayout {
     id: root
 
-    property bool guidanceMode: false
+    property string neptuneWindowState
+
     property string destination: ""
     property string routeDistance: ""
     property string routeTime: ""
 
+    signal showRoute()
     signal startNavigation()
     signal stopNavigation()
 
     spacing: Sizes.dp(45 * .5)
 
-    ToolButton {
-        width: Sizes.dp(45 * .9)
-        height: width
-        visible: root.guidanceMode
-        icon.source: Qt.resolvedUrl("../assets/ic-end-route.png")
-        onClicked: root.stopNavigation()
-    }
-
     RowLayout {
-        width: root.guidanceMode ? parent.width : parent.width / 2
-        anchors.verticalCenter: parent.verticalCenter
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignVCenter
         spacing: Sizes.dp(45 * .7)
+        width: parent.width / 2
 
         ToolButton {
             Layout.leftMargin: parent.spacing
             width: Sizes.dp(45)
             height: width
             enabled: visible
-            visible: !root.guidanceMode
-            icon.name: LayoutMirroring.enabled ? "ic_forward" : "ic_back"
+            visible: root.state === "route_selection"
+                     || root.state === "destination_selection"
+                     || root.state === "demo_driving"
+            icon.name: root.state === "demo_driving"
+                       ? "" : LayoutMirroring.enabled ? "ic_forward" : "ic_back"
+            icon.source: root.state === "demo_driving"
+                        ? Qt.resolvedUrl("../assets/ic-end-route.png") : ""
             onClicked: root.stopNavigation()
         }
 
@@ -96,10 +96,12 @@ Row {
         id: startNavigationButton
         width: parent.width / 3
         height: Sizes.dp(80)
-        anchors.verticalCenter: parent.verticalCenter
+        Layout.alignment: Qt.AlignVCenter
         scale: pressed ? 1.1 : 1.0
-        visible: !root.guidanceMode
+        visible: root.state === "destination_selection"
+                 || root.state === "route_selection"
         Behavior on scale { NumberAnimation { duration: 50 } }
+        Behavior on opacity { NumberAnimation { duration: 150 } }
 
         contentItem: Item {
             Row {
@@ -109,17 +111,37 @@ Row {
                     anchors.verticalCenter: parent.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: Helper.localAsset("ic-start-navigation", Style.theme)
-                    opacity: startNavigationButton.enabled ? Style.opacityHigh : Style.defaultDisabledOpacity
+                    opacity: startNavigationButton.enabled
+                             ? Style.opacityHigh
+                             : Style.defaultDisabledOpacity
                     width: Sizes.dp(sourceSize.width)
                     height: Sizes.dp(sourceSize.height)
                 }
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Start Navigation")
+                    text: qsTr("Start")
                     font.pixelSize: Sizes.fontSizeS
                 }
             }
         }
-        onClicked: root.startNavigation()
+
+        onClicked: {
+            if (root.state === "destination_selection") {
+                startNavigationButton.enabled = false;
+                startNavigationButton.opacity = 0.0
+                root.showRoute();
+                mDirtyHackTemporaryTimer.start();
+            }
+        }
+
+    }
+
+    Timer {
+        id:mDirtyHackTemporaryTimer
+        interval: 2500
+        onTriggered: {
+            startNavigationButton.enabled = true;
+            root.startNavigation();
+        }
     }
 }

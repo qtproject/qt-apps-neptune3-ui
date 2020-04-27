@@ -43,10 +43,14 @@ Item {
     id: root
 
     height: widgetBackgroundImage.height
+    property string neptuneWindowState
 
     Image {
         id: widgetBackgroundImage
-        height: root.state === "Widget3Rows" ? Sizes.dp(sourceSize.height) : Sizes.dp(sourceSize.height/2)
+        height: root.neptuneWindowState === "Widget3Rows"
+                ? root.state === "initial"
+                        ? Sizes.dp(sourceSize.height) : Sizes.dp(sourceSize.height/2)
+                : Sizes.dp(sourceSize.height/2)
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
