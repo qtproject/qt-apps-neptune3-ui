@@ -47,7 +47,7 @@ import shared.utils 1.0
     The ToolsColumn provides a custom column of tool buttons for Neptune 3 UI Applications
     to follow the specification where only one of them can be selected at any given time.
 
-    \image tools-column.jpg
+    \image tools-column.png
 
     See \l{Neptune 3 UI Components and Interfaces} to see more available components in
     Neptune 3 UI.
