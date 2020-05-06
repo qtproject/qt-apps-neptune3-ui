@@ -364,7 +364,7 @@
 
    \section3 ListItem
 
-   \image sheet-app-listitem.png
+   \image sheets-app-listitem.png
 
    \section3 Notifications
 
@@ -372,7 +372,7 @@
 
    \section3 Popups
 
-   \image sheets-app-popups.png
+   \image sheets-app-popup.png
    \image sheets-app-popupcolor.png
 
    \section3 ProgressBar
@@ -381,7 +381,7 @@
 
    \section3 Slider
 
-   \image sheets-app-slider
+   \image sheets-app-slider.png
 
    \section3 ToolButton
 

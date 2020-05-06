@@ -226,7 +226,7 @@ created, it's shown for a few seconds on top of the UI. If that notification is 
 stored in the notification center afterwards. The user can then decide to keep these notifications
 or remove each of them.
 
-\image center-stack-notification-center.jpg
+\image center-stack-notification-center.png
 
 To create a notification, first, you need to import QtApplicationManager 2.0. Then, you can create
 a Notification object as part of the Parking App. Suppose you want to inform the user that the
