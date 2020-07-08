@@ -196,10 +196,14 @@ Item {
         id: virtualKeyboard
         asynchronous: true
         source: "VirtualKeyboard.qml"
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottom: root.bottom
+        width: root.width
         z: 101
+
+        onLoaded: {
+            item.parentRotation = Qt.binding(() => root.rotation);
+        }
     }
 
     UIShortcuts {

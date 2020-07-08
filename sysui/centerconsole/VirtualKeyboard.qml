@@ -40,24 +40,31 @@ Item {
     id: root
 
     readonly property bool isOpen: inputPanel.state === "active"
-
+    property real parentRotation: 0
     height: inputPanel.height
 
     InputPanel {
         id: inputPanel
-        anchors.left: parent.left
-        anchors.right: parent.right
+        width: root.width
+        rotation: parentRotation
+        transformOrigin: Item.TopLeft
 
         states: [
             State {
                 name: "active"
                 when: inputPanel.active
-                PropertyChanges { target: inputPanel; y: 0; visible: true }
+                PropertyChanges {
+                    target: inputPanel; y: root.mapToItem(null, 0, 0).y;
+                    visible: true; x: root.mapToItem(null, 0, 0).x
+                }
             },
             State {
                 name: "hidden"
                 when: !inputPanel.active
-                PropertyChanges { target: inputPanel; y: height; visible: false }
+                PropertyChanges {
+                    target: inputPanel; y: root.mapToItem(null, 0, 0).y + height;
+                    visible: false; x: root.mapToItem(null, 0, 0).x
+                }
             }
         ]
 
@@ -73,6 +80,5 @@ Item {
                 DefaultNumberAnimation { target: inputPanel; property: "y" }
             }
         ]
-
     }
 }
