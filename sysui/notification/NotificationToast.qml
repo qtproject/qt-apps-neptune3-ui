@@ -55,7 +55,7 @@ NotificationItem {
 
     Connections {
         target: root.notificationModel
-        onNotificationAdded: {
+        function onNotificationAdded() {
             var currentNotification = root.notificationModel.model.get(root.notificationModel.count - 1);
             priv.notificationId = currentNotification.id;
             root.notificationIcon = currentNotification.icon;
@@ -71,7 +71,7 @@ NotificationItem {
             }
         }
 
-        onNotificationClosed: {
+        function onNotificationClosed() {
             priv.notificationId = -1;
         }
     }

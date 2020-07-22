@@ -164,7 +164,7 @@ Item {
 
                 Connections {
                     target: model.appInfo
-                    onActiveChanged: {
+                    function onActiveChanged() {
                         if (model.appInfo.active) {
                             appButton.checked = true;
                         } else {

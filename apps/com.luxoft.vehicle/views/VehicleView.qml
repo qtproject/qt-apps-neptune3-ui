@@ -99,7 +99,9 @@ Item {
 
         Connections {
             target: vehicle3DPanelLoader.item
-            onLastCameraAngleChanged: root.store.cameraAngleView = target.lastCameraAngle
+            function onLastCameraAngleChanged() {
+                root.store.cameraAngleView = target.lastCameraAngle;
+            }
         }
 
         VehicleProxyPanel {

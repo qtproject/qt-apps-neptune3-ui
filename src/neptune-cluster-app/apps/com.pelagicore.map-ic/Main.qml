@@ -80,7 +80,7 @@ Item {
 
         Connections {
             target: store
-            onNavigationDemoActiveChanged: {
+            function onNavigationDemoActiveChanged() {
                 if (store.navigationDemoActive) {
                     icMapView.path = store.routePoints;
                     icMapView.state = "demo_driving";

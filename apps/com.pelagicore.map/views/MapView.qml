@@ -81,7 +81,7 @@ Item {
     Connections {
         target: root.store
 
-        onRequestNavigationReceived: {
+        function onRequestNavigationReceived(address, coord, boundingBox) {
             root.maximizeMap();
             root.store.navigationDemoActive = false;
             mapBoxPanel.state = "initial";
@@ -96,7 +96,7 @@ Item {
             mapBoxPanel.state = "destination_selection";
         }
 
-        onRequestRaiseAppReceived: { root.maximizeMap(); }
+        function onRequestRaiseAppReceived() { root.maximizeMap(); }
     }
 
     MapBoxPanel {

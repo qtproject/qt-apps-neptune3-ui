@@ -40,7 +40,7 @@ QtObject {
     property var surfaceItems: []
     property Connections conn: Connections {
         target: ApplicationManager
-        onEmitSurface: {
+        function onEmitSurface(index, item) {
             surfaceItems[index] = item
             root.surfaceItemReady(index, item)
         }

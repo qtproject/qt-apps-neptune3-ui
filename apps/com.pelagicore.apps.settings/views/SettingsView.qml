@@ -172,7 +172,7 @@ Control {
 
             Connections {
                 target: wifi
-                onCredentialsRequested: {
+                function onCredentialsRequested(ssid) {
                     wifiPopup.ssid = ssid;
                     wifiPopup.width = Qt.binding(() => wifiPanel.wifiPopupWidth);
                     wifiPopup.height = Qt.binding(() => wifiPanel.wifiPopupHeight);

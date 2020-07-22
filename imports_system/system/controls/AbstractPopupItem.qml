@@ -100,7 +100,7 @@ Control {
     Connections {
         target: parent ? parent : null
         ignoreUnknownSignals: true
-        onOverlayClicked: {
+        function onOverlayClicked() {
             root.closeHandler()
         }
     }

@@ -445,8 +445,8 @@ ListModel {
 
     property var appManConns: Connections {
         target: ApplicationManager
-        onApplicationWasActivated: d.reactOnAppActivation(id);
-        onApplicationRunStateChanged: {
+        function onApplicationWasActivated(id, aliasId) { d.reactOnAppActivation(id); }
+        function onApplicationRunStateChanged(id, runState) {
             var appInfo = root.applicationFromId(id);
             if (!appInfo) {
                 return;
@@ -497,14 +497,14 @@ ListModel {
             }
         }
 
-        onApplicationAdded: {
+        function onApplicationAdded(id) {
             var app = ApplicationManager.application(id);
             d.appendApplication(app);
 
             fillStartListsForCurrentModel();
         }
 
-        onApplicationAboutToBeRemoved: {
+        function onApplicationAboutToBeRemoved(id) {
             var appInfo = null;
             var index;
 
@@ -537,7 +537,7 @@ ListModel {
             root.appRemoved(appInfo);
         }
 
-        onShuttingDownChanged: {
+        function onShuttingDownChanged() {
             if (ApplicationManager.shuttingDown) {
                 root.shuttingDown();
             }
@@ -547,7 +547,7 @@ ListModel {
     property var winManConns: Connections {
         target: WindowManager
 
-        onWindowAdded: {
+        function onWindowAdded(window) {
             var appInfo = applicationFromId(window.application.id);
 
             var isRegularApp = !!appInfo && !root.isSystemApp(appInfo);
@@ -590,7 +590,7 @@ ListModel {
             }
         }
 
-        onWindowAboutToBeRemoved: {
+        function onWindowAboutToBeRemoved(window) {
             var appInfo = applicationFromId(window.application.id);
             if (!appInfo) {
                 if (d.isInstrumentClusterApp(window.application)) {
@@ -613,7 +613,7 @@ ListModel {
             }
         }
 
-        onWindowPropertyChanged: {
+        function onWindowPropertyChanged(window, name, value) {
             var appInfo = applicationFromId(window.application.id);
             switch (name) {
             case "activationCount":

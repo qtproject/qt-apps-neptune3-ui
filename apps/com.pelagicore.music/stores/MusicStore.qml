@@ -145,7 +145,7 @@ Store {
     property Connections con: Connections {
         target: player.playQueue
 
-        onRowsInserted: {
+        function onRowsInserted(parentIndex, first, last) {
             console.log(Logging.apps, "Music Queue / Playlist Row Inserted: ", first);
             player.playQueue.currentIndex = first;
         }

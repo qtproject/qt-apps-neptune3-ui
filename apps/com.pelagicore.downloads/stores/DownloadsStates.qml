@@ -184,7 +184,7 @@ DSM.StateMachine {
 
                 Connections {
                     target: appStoreConfig
-                    onLoginFailed: {
+                    function onLoginFailed() {
                         connectedErrorState.errorText = qsTr("Login Failed");
                     }
                 }
@@ -223,7 +223,7 @@ DSM.StateMachine {
 
                     Connections {
                         target: jsonCategoryModel
-                        onStatusChanged: {
+                        function onStatusChanged() {
                             if (jsonCategoryModel.status === "error")
                                 connectedErrorState.errorText = qsTr("Fetching categories error");
                         }
@@ -277,7 +277,7 @@ DSM.StateMachine {
 
                     Connections {
                         target: jsonAppModel
-                        onStatusChanged: {
+                        function onStatusChanged() {
                             if (jsonAppModel.status === "error")
                                 connectedErrorState.errorText = qsTr("Fetching apps error");
                         }

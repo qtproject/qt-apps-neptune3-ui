@@ -119,12 +119,12 @@ Item {
             }
             Connections {
                 target: appRequestNotiButton.notification5
-                onActionTriggered: {
+                function onActionTriggered() {
                     IntentClient.sendIntentRequest("show-destination", "com.pelagicore.map"
                             , {"destination": "Polis Park Kaningos Athens"});
                     appRequestNotiButton.notification5.actionAccepted = true;
                 }
-                onVisibleChanged: {
+                function onVisibleChanged() {
                     if (!appRequestNotiButton.notification5.visible && !appRequestNotiButton.notification5.actionAccepted) {
                         //if action is not accepted, show warning
                         // it's sticky, so first hide it to be able to show it again

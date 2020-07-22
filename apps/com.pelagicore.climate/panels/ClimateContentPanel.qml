@@ -147,7 +147,7 @@ Item {
 
     Connections {
         target: root.store ? root.store.leftSeat : null
-        onValueChanged: {
+        function onValueChanged() {
             if (!leftTempSlider.pressed) {
                 leftTempSlider.value = target.value
             }
@@ -171,7 +171,7 @@ Item {
 
     Connections {
         target: root.store ? root.store.rightSeat : null
-        onValueChanged: {
+        function onValueChanged() {
             if (!rightTempSlider.pressed) {
                 rightTempSlider.value = target.value
             }

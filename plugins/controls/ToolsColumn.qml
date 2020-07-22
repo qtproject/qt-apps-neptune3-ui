@@ -190,7 +190,7 @@ ListView {
 
     Connections {
         target: root.model
-        onCountChanged: {
+        function onCountChanged() {
             if (currentIndex > 0 && model.count <= currentIndex) {
                 currentIndex = 0;
             }

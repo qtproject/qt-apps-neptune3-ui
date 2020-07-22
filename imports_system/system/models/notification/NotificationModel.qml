@@ -46,11 +46,11 @@ QtObject {
 
     readonly property Connections notificationManagerConnection: Connections {
         target: root.model
-        onNotificationAdded: {
+        function onNotificationAdded() {
             root.notificationAdded();
         }
 
-        onNotificationAboutToBeRemoved: {
+        function onNotificationAboutToBeRemoved() {
             root.notificationRemoved();
         }
     }

@@ -45,8 +45,8 @@ Slider {
 
     Connections {
         target: root
-        onPressedChanged: {
-            if (!pressed)
+        function onPressedChanged() {
+            if (!root.pressed)
                 root.sliderReleased()
         }
     }

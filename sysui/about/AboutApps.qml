@@ -86,7 +86,7 @@ Item {
     Connections {
         target: applicationModel
         ignoreUnknownSignals: true
-        onAppRemoved: {
+        function onAppRemoved(appInfo) {
             runningAppsModel.removeAppInfo(appInfo)
         }
     }

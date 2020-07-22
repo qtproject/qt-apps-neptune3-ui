@@ -201,7 +201,7 @@ Store {
 
     readonly property Connections instentServerConnection: Connections {
         target: IntentServer
-        onDisambiguationRequest: {
+        function onDisambiguationRequest(requestId, potentialIntents, parameters) {
             //process "activate-app" intent sent with part of app name (guess-app) as parameter
             if (potentialIntents.length > 0 && potentialIntents[0].intentId === "activate-app") {
                 var guess_app = parameters["guess-app"];

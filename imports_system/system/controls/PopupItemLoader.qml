@@ -64,7 +64,7 @@ Loader {
 
     Connections {
         target: item
-        onClosed: {
+        function onClosed() {
             root.closed();
         }
     }

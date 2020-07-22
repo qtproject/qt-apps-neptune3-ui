@@ -59,7 +59,7 @@ PopupItem {
     Connections {
         target: root
         // reset popup parameters on scale change
-        onHeightChanged: {
+        function onHeightChanged() {
             if ("open" === root.state) {
                 root.originItemX = root.window.windowProperty("originItemX")
                 root.originItemY = root.window.windowProperty("originItemY")

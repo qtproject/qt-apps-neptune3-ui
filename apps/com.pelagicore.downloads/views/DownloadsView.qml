@@ -215,7 +215,7 @@ Item {
 
             Connections {
                 target: root.store
-                onInstalledPackagesChanged: {
+                function onInstalledPackagesChanged() {
                     // update states of app items, pass functions to update function
                     appList.refreshAppsInfo(root.store.isPackageInstalledByPackageController,
                                             root.store.isPackageBuiltIn,
@@ -333,7 +333,7 @@ Item {
 
                 Connections {
                     target: root
-                    onStateChanged: { updateStatesList(); }
+                    function onStateChanged() { updateStatesList(); }
                 }
             }
 

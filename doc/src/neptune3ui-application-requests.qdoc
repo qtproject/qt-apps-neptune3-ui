@@ -86,7 +86,7 @@
    Connections {
        target: ApplicationInterface
        //handle here all specific app behavior
-       onOpenDocument: {
+       function onOpenDocument: {
            //process documentUrl "getmeto/Donald Weese Ct, Las Vegas"
        }
    }

@@ -75,7 +75,7 @@ Item {
 
     Connections {
         target: GamepadManager
-        onGamepadConnected: {
+        function onGamepadConnected(deviceId) {
             gamepad1.deviceId = deviceId
         }
     }

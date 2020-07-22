@@ -167,7 +167,7 @@ QtObject {
 
                     Connections {
                         target: mainMap.store
-                        onNavigationDemoActiveChanged: {
+                        function onNavigationDemoActiveChanged() {
                             if (mainMap.store.navigationDemoActive) {
                                 icMapView.path = mainMap.store.routeModel.get(0).path;
                                 icMapView.state = "demo_driving";

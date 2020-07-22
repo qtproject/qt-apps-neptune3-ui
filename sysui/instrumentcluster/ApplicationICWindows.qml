@@ -62,7 +62,7 @@ Item {
         delegate: QtObject {
             property var con: Connections {
                 target: model.appInfo
-                onIcWindowChanged: {
+                function onIcWindowChanged() {
                     if (model.appInfo.icWindow) {
                         var appInList = false;
                         for (var i = 0; i < applicationICWindowList.count; i++) {

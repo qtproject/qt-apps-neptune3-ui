@@ -152,7 +152,7 @@ Item {
 
                     Connections {
                         target: root
-                        onDateClicked: {
+                        function onDateClicked() {
                             weatherIcon.randomIndex = Math.floor((Math.random() * (3)) + 0);
                         }
                     }

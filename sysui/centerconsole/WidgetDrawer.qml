@@ -88,7 +88,7 @@ Item {
 
     Connections {
         target: handl.drag
-        onActiveChanged: {
+        function onActiveChanged() {
             if (handl.drag.active) {
                 d.lastX = root.x;
                 d.direction = 0;

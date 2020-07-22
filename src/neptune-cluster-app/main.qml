@@ -57,8 +57,8 @@ Window {
 
     Connections {
         target: clrst.uiSettings
-        onThemeChanged: root.Style.theme = clrst.uiSettings.theme
-        onAccentColorChanged: root.Style.accentColor = clrst.uiSettings.accentColor
+        function onThemeChanged() { root.Style.theme = clrst.uiSettings.theme }
+        function onAccentColorChanged() { root.Style.accentColor = clrst.uiSettings.accentColor }
     }
 
     MockedWindows {

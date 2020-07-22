@@ -99,7 +99,9 @@ ListView {
 
         Connections {
             target: d
-            onInstalledPackagesChanged: {
+            function onInstalledPackagesChanged(isPackageInstalledByPackageControllerFunc,
+                                                isPackageBuiltInFunc,
+                                                getInstalledPackageSizeTextFunc) {
                 // functions are passed as parameters to signal
                 model.isInstalled = isPackageInstalledByPackageControllerFunc(model.id);
                 if (isInstalled) {

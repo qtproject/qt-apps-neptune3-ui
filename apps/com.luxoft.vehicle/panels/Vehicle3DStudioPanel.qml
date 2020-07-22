@@ -120,7 +120,7 @@ Item {
         id: readyToChangeConnection
         target: studio3D
         property int fc: 0
-        onFrameUpdate: {
+        function onFrameUpdate() {
             fc += 1;
             // skip first 10 frames to be sure that all content is ready
             if (fc > 10) {

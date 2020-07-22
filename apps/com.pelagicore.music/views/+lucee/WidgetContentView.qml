@@ -71,7 +71,7 @@ Item {
         onNextClicked: store.nextSong()
         Connections {
             target: store
-            onSongModelPopulated: { artAndTitlesBlock.populateModel(); }
+            function onSongModelPopulated() { artAndTitlesBlock.populateModel(); }
         }
     }
 

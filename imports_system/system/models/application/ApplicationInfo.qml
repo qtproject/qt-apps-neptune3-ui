@@ -198,7 +198,7 @@ QtObject {
             target: root.application
             enabled: target != null
             ignoreUnknownSignals: true
-            onRunStateChanged: {
+            function onRunStateChanged() {
                 if (root.application.runState === ApplicationObject.NotRunning) {
                     d.startCallTime = null;
                 }
@@ -209,7 +209,7 @@ QtObject {
             target: d.window && d.window.waylandSurface ? d.window.waylandSurface : null
             enabled: target != null && d.windowFirstFrameTime === null
             ignoreUnknownSignals: true
-            onRedraw: {
+            function onRedraw() {
                 d.windowFirstFrameTime = Date.now();
             }
         }
@@ -218,7 +218,7 @@ QtObject {
             target: d.icWindow && d.icWindow.waylandSurface ? d.icWindow.waylandSurface : null
             enabled: target != null && d.icWindowFirstFrameTime === null
             ignoreUnknownSignals: true
-            onRedraw: {
+            function onRedraw() {
                 d.icWindowFirstFrameTime = Date.now();
             }
         }

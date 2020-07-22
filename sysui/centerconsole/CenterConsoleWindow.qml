@@ -88,7 +88,7 @@ Window {
                 , root.store.settingsStore.defaultAutostartApps)
         readonly property string autorecoverApps: root.store.settingsStore.value("autorecoverApps"
                 , root.store.settingsStore.defaultAutorecoverApps)
-        onFrameSwapped: {
+        function onFrameSwapped() {
             /*
                 The UI is loaded in two steps
                 This is done in order to ensure that something is rendered on the screen as

@@ -203,8 +203,10 @@ Item {
     Connections {
         target: PackageManager
 
-        onTaskProgressChanged: root.currentInstallationProgress = progress
-        onTaskFailed: {
+        function onTaskProgressChanged(taskId, progress) {
+            root.currentInstallationProgress = progress
+        }
+        function onTaskFailed(taskId) {
             var packageId = PackageManager.taskPackageId(taskId);
             var icon = PackageManager.package("com.pelagicore.downloads").icon;
             var pkg = null;
@@ -230,7 +232,7 @@ Item {
 
             currentInstallationProgress = 0.0;
         }
-        onTaskFinished: {
+        function onTaskFinished(taskId) {
             var packageId = PackageManager.taskPackageId(taskId);
             var icon = PackageManager.package("com.pelagicore.downloads").icon;
             var pkg = null;

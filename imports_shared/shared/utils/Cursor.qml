@@ -88,10 +88,10 @@ Loader {
 
     Connections {
         target: item
-        onActivated: {
+        function onActivated() {
             root.activated();
         }
-        onPressAndHold: {
+        function onPressAndHold() {
             root.pressAndHold();
         }
     }

@@ -219,14 +219,16 @@ Item {
             Repeater {
                 model: 4
                 Image {
+                    id: weatherIcon
+
                     width: Sizes.dp(80)
                     height: Sizes.dp(80)
                     fillMode: Image.PreserveAspectFit
 
                     Connections {
                         target: root
-                        onDateClicked: {
-                            randomIndex = Math.floor((Math.random() * (3)) + 0);
+                        function onDateClicked() {
+                            weatherIcon.randomIndex = Math.floor((Math.random() * (3)) + 0);
                         }
                     }
 
@@ -255,12 +257,14 @@ Item {
             delegatedItemWidth: eventList.width
             interactive: false
             delegate: EventListItem {
+                id: item
+
                 property int randomIndex: Math.floor((Math.random() * (8)) + 0)
 
                 Connections {
                     target: root
-                    onDateClicked: {
-                        randomIndex = Math.floor((Math.random() * (8)) + 0);
+                    function onDateClicked() {
+                        item.randomIndex = Math.floor((Math.random() * (8)) + 0);
                     }
                 }
 

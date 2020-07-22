@@ -147,7 +147,7 @@ Item {
                 target: frameCounter
                 enabled: !root.readyToChanges
                 property int fc: 0
-                onTriggered: {
+                function onTriggered() {
                     if (++fc == 3) {
                         root.readyToChanges = true;
                     }

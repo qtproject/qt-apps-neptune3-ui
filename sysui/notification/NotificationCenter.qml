@@ -209,13 +209,13 @@ Item {
 
     Connections {
         target: root.notificationModel
-        onCountChanged: {
+        function onCountChanged() {
             if (root.notificationModel.count === 0) {
                 root.state = "closed";
             }
         }
 
-        onNotificationAdded: {
+        function onNotificationAdded() {
             state = "incomingNotification";
             notificationShowTimer.stop();
             var notification = root.notificationModel.model.get(root.notificationModel.count - 1);
@@ -226,7 +226,7 @@ Item {
             notificationShowTimer.start();
         }
 
-        onNotificationClosed: {
+        function onNotificationClosed() {
             root.state = "closed";
         }
     }

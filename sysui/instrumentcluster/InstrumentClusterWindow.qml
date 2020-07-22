@@ -101,17 +101,17 @@ Window {
     Connections {
         target: root
         enabled: root.clusterStore.qsrEnabled
-        onXChanged: sendWindowStateToSafeUI();
-        onYChanged: sendWindowStateToSafeUI();
-        onActiveChanged: sendWindowStateToSafeUI();
+        function onXChanged() { sendWindowStateToSafeUI(); }
+        function onYChanged() { sendWindowStateToSafeUI(); }
+        function onActiveChanged() { sendWindowStateToSafeUI(); }
     }
     Connections {
         target: uiSlot
         enabled: root.clusterStore.qsrEnabled
-        onWidthChanged: sendWindowStateToSafeUI();
-        onHeightChanged: sendWindowStateToSafeUI();
-        onYChanged: sendWindowStateToSafeUI();
-        onXChanged: sendWindowStateToSafeUI();
+        function onWidthChanged() { sendWindowStateToSafeUI(); }
+        function onHeightChanged() { sendWindowStateToSafeUI(); }
+        function onYChanged() { sendWindowStateToSafeUI(); }
+        function onXChanged() { sendWindowStateToSafeUI(); }
     }
 
     Item {

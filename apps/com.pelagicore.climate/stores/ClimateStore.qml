@@ -195,7 +195,7 @@ QtObject {
 
         property var conns: Connections {
             target: climateControl
-            onAirflowDirectionsChanged: airflow.updateProperties()
+            function onAirflowDirectionsChanged() { airflow.updateProperties() }
         }
 
         function updateProperties() {

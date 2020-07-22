@@ -194,13 +194,13 @@ Item {
 
             Connections {
                 target: root
-                onLightThemeVisibleChanged: {
+                function onLightThemeVisibleChanged() {
                     if (!changeGaugesMainColorAnimation.running && !changeThemeAnimation.running) {
                         changeThemeAnimation.start()
                     }
                 }
 
-                onGaugesMainColorChanged: {
+                function onGaugesMainColorChanged() {
                     if (!changeGaugesMainColorAnimation.running && !changeThemeAnimation.running) {
                         changeGaugesMainColorAnimation.start();
                     }

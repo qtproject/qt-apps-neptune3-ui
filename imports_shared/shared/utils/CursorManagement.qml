@@ -80,10 +80,10 @@ Item {
 
     Connections {
         target: (parent.pressed !== undefined) ? parent : null
-        onPressed: {
+        function onPressed() {
             pressAndHoldSim.start();
         }
-        onPressedChanged: {
+        function onPressedChanged() {
             root.pressed = parent.pressed;
         }
     }
