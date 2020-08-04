@@ -89,7 +89,6 @@ Item {
             d.trajectory = []
         }
 
-
         onPositionChanged: {
             if (pressed) {
                 d.trajectory.push(mouseX);
@@ -150,6 +149,9 @@ Item {
                 function onTriggered() {
                     if (++fc == 3) {
                         root.readyToChanges = true;
+                        // force scene to redraw (workaround for AUTOSUITE-1598)
+                        renderSettings.renderPolicy = RenderSettings.Always;
+                        renderSettings.renderPolicy = RenderSettings.OnDemand;
                     }
                 }
             }
