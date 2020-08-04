@@ -131,7 +131,7 @@ Item {
                         item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor});
                     }
 
-                    vehicleProxyPanel.opacity = Qt.binding(() => item.readyToChanges ? 0.0 : 1.0);
+                    vehicleProxyPanel.opacity = Qt.binding(() => !!item && item.readyToChanges ? 0.0 : 1.0);
 
                     item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} );
                     item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened});
