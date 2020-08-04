@@ -1,7 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
+** Copyright (C) 2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -29,33 +28,28 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
+#include <QQmlExtensionPlugin>
+#include <QQmlEngine>
 
-.pragma library
-.import shared.FileUtils 1.0 as FU
+#include "fileUtils.h"
 
-// see vehicle app info.yaml for description
-function getModelPath(name, version) {
-    version = version || "original";
+class FileUtilsPlugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid)
 
-    if (version === "original" || version === "optimized") {
-        return Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
+public:
+    void registerTypes(const char *uri) override
+    {
+        Q_ASSERT(uri == QLatin1String("shared.FileUtils"));
+        qmlRegisterSingletonType<FileUtils>(uri, 1, 0, "FileUtils",
+                [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *{
+                    Q_UNUSED(engine)
+                    Q_UNUSED(scriptEngine)
+                    auto fileUtils = new FileUtils;
+                    return fileUtils;
+                });
     }
+};
 
-    if (version === "mixedFormats") {
-        var pathObj = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
-        var pathStl = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".stl")
-        return FU.FileUtils.existsFileFromUrl(pathObj) ? pathObj : pathStl
-    }
-}
-
-function getImagePath(name) {
-    return Qt.resolvedUrl("../assets/images/" + name)
-}
-
-function getMaterialPath(name) {
-    return Qt.resolvedUrl("../assets/shaders/" + name)
-}
-
-function localQt3DStudioPresentationAsset(relativePresentationPath) {
-    return "../assets/3dCar/" + relativePresentationPath;
-}
+#include "fileUtilsPlugin.moc"

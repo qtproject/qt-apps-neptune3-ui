@@ -9,6 +9,7 @@ SUBDIRS = \
           systeminfo \
           eventslisteners \
           com.pelagicore.map \
+          fileutils \
 
 !isEmpty(SQUISH_PREFIX) {
     SUBDIRS += squishhook

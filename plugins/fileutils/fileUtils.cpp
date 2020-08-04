@@ -1,10 +1,9 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
-** Copyright (C) 2018 Pelagicore AG
+** Copyright (C) 2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 UI.
+** This file is part of the Neptune IVI UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -30,32 +29,17 @@
 **
 ****************************************************************************/
 
-.pragma library
-.import shared.FileUtils 1.0 as FU
+#include "fileUtils.h"
 
-// see vehicle app info.yaml for description
-function getModelPath(name, version) {
-    version = version || "original";
+#include <QUrl>
+#include <QFile>
 
-    if (version === "original" || version === "optimized") {
-        return Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
-    }
-
-    if (version === "mixedFormats") {
-        var pathObj = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
-        var pathStl = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".stl")
-        return FU.FileUtils.existsFileFromUrl(pathObj) ? pathObj : pathStl
-    }
+FileUtils::FileUtils(QObject *parent) : QObject(parent)
+{
 }
 
-function getImagePath(name) {
-    return Qt.resolvedUrl("../assets/images/" + name)
-}
-
-function getMaterialPath(name) {
-    return Qt.resolvedUrl("../assets/shaders/" + name)
-}
-
-function localQt3DStudioPresentationAsset(relativePresentationPath) {
-    return "../assets/3dCar/" + relativePresentationPath;
+bool FileUtils::existsFileFromUrl(const QString &fileUrl)
+{
+    QUrl url(fileUrl);
+    return QFile::exists(url.path());
 }

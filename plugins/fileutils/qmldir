@@ -1,0 +1,2 @@
+module shared.FileUtils
+plugin fileutilsplugin
