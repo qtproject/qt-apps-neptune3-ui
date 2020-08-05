@@ -1538,21 +1538,6 @@ Parking Olympia</source>
     </message>
 </context>
 <context>
-    <name>SafeTelltalesPanel</name>
-    <message>
-        <source>Error occurred. Recovering...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SearchOverlayPanel</name>
     <message>
         <source>Back</source>
