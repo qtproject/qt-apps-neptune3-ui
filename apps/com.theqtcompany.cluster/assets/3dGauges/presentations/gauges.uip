@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <UIP version="6" >
 	<Project >
-		<ProjectSettings author="" company="" presentationWidth="1280" presentationHeight="480" maintainAspect="False" preferKtx="False" >
+		<ProjectSettings author="" company="" presentationWidth="1280" presentationHeight="480" maintainAspect="False" preferKtx="False" flipCompressedTextures="False" >
 			<CustomColors count="16" >#ff902f #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff #ffffff</CustomColors>
 		</ProjectSettings>
 		<BufferData >
-			<ImageBuffer sourcepath="../maps/Glass-alpha05.png" hasTransparency="True" />
-			<ImageBuffer sourcepath="../maps/Rpm7-w.png" hasTransparency="True" />
-			<ImageBuffer sourcepath="../maps/Rpm7.png" hasTransparency="True" />
+			<ImageBuffer sourcepath="../maps/Glass-alpha05.png" hasTransparency="True" hasOpaquePixels="True" />
+			<ImageBuffer sourcepath="../maps/OpenfootageNET_garage-512.hdr" hasTransparency="False" />
+			<ImageBuffer sourcepath="../maps/Rpm7-w.png" hasTransparency="True" hasOpaquePixels="True" />
+			<ImageBuffer sourcepath="../maps/Rpm7.png" hasTransparency="True" hasOpaquePixels="True" />
+			<ImageBuffer sourcepath="../maps/chromeMap.jpg" hasTransparency="False" hasOpaquePixels="True" />
 			<ImageBuffer sourcepath="../maps/gradient_lines_001-w.png" hasTransparency="True" hasOpaquePixels="True" />
-			<ImageBuffer sourcepath="../maps/kmh260-w.png" hasTransparency="True" />
-			<ImageBuffer sourcepath="../maps/kmh260.png" hasTransparency="True" />
+			<ImageBuffer sourcepath="../maps/gradient_lines_001.png" hasTransparency="False" hasOpaquePixels="True" />
+			<ImageBuffer sourcepath="../maps/kmh260-w.png" hasTransparency="True" hasOpaquePixels="True" />
+			<ImageBuffer sourcepath="../maps/kmh260.png" hasTransparency="True" hasOpaquePixels="True" />
 			<ImageBuffer sourcepath="../models/roundbg_1/maps/gradient.png" hasTransparency="True" hasOpaquePixels="True" />
 		</BufferData>
 		<Graph >
@@ -52,7 +55,6 @@
 										<Model id="qt_gauge_background_round_1_u36878" variants="" name="qt_gauge_background_round_1" importid="qt_gauge_background_round_1" orientation="Right Handed" position="0 0 0" rotation="0 0 0" rotationorder="XYZr" scale="1 1 1" sourcepath="../models/roundbg_1/meshes/qt_gauge_background_round_1.mesh" >
 											<Material id="background_1_u45992" name="background_1" blendmode="Normal" diffuse="1 1 1 1" diffusemap="#background_1_002_u15278" emissivepower="0" importid="background_1" opacity="100" specularamount="0" >
 												<Image id="background_1_002_u15278" name="background_1_diffusemap" importid="background_1_diffusemap" sourcepath="../models/roundbg_1/maps/gradient.png" />
-												<Image id="background_1_002_u33809" />
 											</Material>
 										</Model>
 									</Group>
@@ -250,9 +252,8 @@
 					<Add ref="#Default_u30340" name="Default" blendmode="Normal" diffuse="0.435294 0 0 1" shaderlighting="Pixel" specularroughness="0.001" speculartint="1 1 1 1" vertexcolors="False" />
 					<Add ref="#roundbg_1_u44870" name="roundbg_white" controlledproperty="$lightThemeVisible eyeball" endtime="24083" importfile="models/roundbg_1/roundbg_1.import" locked="False" position="0 -0.002 0" scale="0.89 0.9 0.89" sourcepath="../models/roundbg_1/roundbg_1.import" />
 					<Add ref="#qt_gauge_background_round_1_u36878" controlledproperty="$lightThemeVisible eyeball" endtime="24083" importfile="models/roundbg_1/roundbg_1.import" locked="False" />
-					<Add ref="#background_1_u45992" bumpamount="1" controlledproperty="$mainLightColor diffuse" diffuse="1 0.490196 0.498039 1" emissivepower="0" importfile="models/roundbg_1/roundbg_1.import" ior="0.5" locked="False" shaderlighting="Pixel" specularamount="0" specularreflection="#background_1_002_u33809" specularroughness="0.001" transparencymode="Default" vertexcolors="False" />
+					<Add ref="#background_1_u45992" blendmode="Normal" bumpamount="1" controlledproperty="$mainLightColor diffuse" cullmode="None" diffuse="1 0.490196 0.498039 1" emissivepower="0" fresnelPower="0" importfile="models/roundbg_1/roundbg_1.import" ior="0" locked="False" shaderlighting="Pixel" specularamount="1" specularroughness="0.001" speculartint="0 0 0 1" transparencymode="Default" vertexcolors="False" />
 					<Add ref="#background_1_002_u15278" importfile="models/roundbg_1/roundbg_1.import" locked="False" scaleu="1" sourcepath="../maps/gradient_lines_001-w.png" subpresentation="" tilingmodehorz="Tiled" />
-					<Add ref="#background_1_002_u33809" locked="False" mappingmode="Environmental Mapping" scaleu="1" sourcepath="../maps/OpenfootageNET_garage-512.hdr" />
 					<Add ref="#tickmark_260_u42690" name="tickmark_260White" controlledproperty="$lightThemeVisible eyeball" endtime="24083" importfile="models/tickmark_260/tickmark_260.import" locked="False" position="0 -0.001 0" sourcepath="../models/tickmark_260/tickmark_260.import" />
 					<Add ref="#qt_gauge_tickmarks_260_u62208" endtime="24083" importfile="models/tickmark_260/tickmark_260.import" locked="False" />
 					<Add ref="#black_u24126" name="black_tickmarks" diffuse="0 0 0 1" shaderlighting="None" />
@@ -284,7 +285,7 @@
 				<Add ref="#qt_gauge_needles_u26269" endtime="3000" importfile="models/needle_2/needle_2.import" rotation="0 2575 0" />
 				<Add ref="#qt_gauge_needles:red_u52137" blendmode="Normal" diffuse="0.666667 0 0 1" emissivecolor="1 1 1 1" importfile="models/needle_2/needle_2.import" shaderlighting="None" specularroughness="1" />
 				<Add ref="#qt_gauge_needles:black_u14627" diffuse="0.34902 0.34902 0.34902 1" importfile="models/needle_2/needle_2.import" shaderlighting="Pixel" />
-				<Add ref="#qt_gauge_u63520" diffuse="0 0 0 1" importfile="models/needle_2/needle_2.import" specularamount="2.5" specularreflection="#qt_gauge_needles:solidWhite_u45933" />
+				<Add ref="#qt_gauge_u63520" diffuse="0 0 0 1" importfile="models/needle_2/needle_2.import" specularamount="0.5" specularreflection="#qt_gauge_needles:solidWhite_u45933" vertexcolors="False" />
 				<Add ref="#qt_gauge_needles:solidWhite_u45933" mappingmode="Environmental Mapping" sourcepath="../maps/OpenfootageNET_garage-512.hdr" subpresentation="" />
 				<State id="GaugeNeedle-Slide1_u19461" name="Slide1" initialplaystate="Play" playmode="PingPong" />
 			</State>
@@ -294,7 +295,7 @@
 				<Add ref="#qt_gauge_needles_2_u17133" controlledproperty="" endtime="3000" importfile="models/needle_2/needle_2.import" />
 				<Add ref="#qt_gauge_needles:red_transparent_u41926" blendmode="Normal" controlledproperty="" diffuse="0.666667 0 0 1" importfile="models/needle_2/needle_2.import" shaderlighting="None" specularamount="0" speculartint="1 1 1 1" transparencymode="Default" />
 				<Add ref="#qt_gauge_needles:black_solid_u25928" diffuse="0.34902 0.34902 0.34902 1" importfile="models/needle_2/needle_2.import" shaderlighting="Pixel" />
-				<Add ref="#qt_gauge_needles:solidWhite_u26596" diffuse="0 0 0 1" importfile="models/needle_2/needle_2.import" specularamount="2.5" specularreflection="#qt_gauge_needles:solidWhite_001_u31188" vertexcolors="False" />
+				<Add ref="#qt_gauge_needles:solidWhite_u26596" diffuse="0 0 0 1" importfile="models/needle_2/needle_2.import" specularamount="0.5" specularreflection="#qt_gauge_needles:solidWhite_001_u31188" vertexcolors="False" />
 				<Add ref="#qt_gauge_needles:solidWhite_001_u31188" mappingmode="Environmental Mapping" sourcepath="../maps/OpenfootageNET_garage-512.hdr" subpresentation="" />
 				<State id="GaugeNeedle-Slide1_u62154" name="Slide1" initialplaystate="Play" playmode="PingPong" >
 					<Set ref="#GaugeNeedle_u58092" endtime="7000" />
