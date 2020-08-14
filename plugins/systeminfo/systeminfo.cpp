@@ -153,9 +153,9 @@ bool SystemInfo::allow3dStudioPresentations()
 
     if (globalShareContext && globalShareContext->isValid()) {
         return (globalShareContext->isOpenGLES()
-                        && globalShareContext->format().version() >= qMakePair(3,0))
+                        && globalShareContext->format().version() >= qMakePair(2,0))
                 || (!globalShareContext->isOpenGLES()
-                        && globalShareContext->format().version() >= qMakePair(4,3));
+                        && globalShareContext->format().version() >= qMakePair(3,3));
     }
 #endif
 
