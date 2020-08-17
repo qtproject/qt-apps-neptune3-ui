@@ -45,6 +45,10 @@ Item {
     id: root
 
     property VehicleStore store
+
+    // This timer is used to make the order of creation transparent
+    // 1) read settings (reread to be sure, it's a synch op), get chosen runtime
+    // 2) load the chosen model
     Timer {
         id: delayTimer
         interval: 1
@@ -55,12 +59,35 @@ Item {
         }
     }
 
+    // This timer is a workaround to prevent 3DStudio presentation from too fast reload
+    Timer {
+        id: studioReloadTimer
+        interval: 2000
+        running: false
+        onTriggered: {
+            loadVehiclePanel();
+        }
+    }
+
+    // we don't change visible manually, it is changed by sysui, when another app is called
+    // or the same app is called again, even if it is maximized right now
     onVisibleChanged: {
-        if (!visible) {
-            vehicle3DPanelLoader.active = false;
-        } else {
-            if (!delayTimer.running && !vehicle3DPanelLoader.active)
-                loadVehiclePanel();
+        // the app was already launched and is restored (e.g. Vehicle -> Home -> Vehicle)
+        if (root.store.runtime3D === "qt3d") {
+            if (visible && !!vehicle3DPanelLoader.item) {
+                // vehicle is loaded, but it is hidden (AUTOSUITE-1598)
+                // we force redraw, to make it visible
+                vehicle3DPanelLoader.item.forceRedraw();
+            }
+        } else if (root.store.runtime3D === "3DStudio") {
+            if (!visible && !!vehicle3DPanelLoader.item) {
+                vehicle3DPanelLoader.source = "" // force to remove current instance
+            }
+
+            if (visible) {
+                vehicleProxyPanel.opacity = 1.0; // enable proxy with the progress bar
+                studioReloadTimer.start();
+            }
         }
     }
 
@@ -71,11 +98,11 @@ Item {
                         ? "../panels/Vehicle3DPanel.qml" : "../panels/Vehicle3DStudioPanel.qml"
                 , {
                         "leftDoorOpen": root.store.leftDoorOpened
-                        , "rightDoorOpen": root.store.rightDoorOpen
-                        , "trunkOpen": root.store.trunkOpen
+                        , "rightDoorOpen": root.store.rightDoorOpened
+                        , "trunkOpen": root.store.trunkOpened
                         , "roofOpenProgress": root.store.roofOpenProgress
-                        , "lastCameraAngle": root.store.lastCameraAngle
-                        , "modelVersion": root.store.modelVersion
+                        , "lastCameraAngle": root.store.cameraAngleView
+                        , "modelVersion": root.store.model3DVersion
                         , "vehicleColor": root.store.vehicle3DstudioColor
                 });
         vehicle3DPanelLoader.active = store.allowOpenGLContent;

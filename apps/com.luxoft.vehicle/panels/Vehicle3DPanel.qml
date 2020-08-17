@@ -78,6 +78,14 @@ Item {
         return angle * 180 / Math.PI;
     }
 
+    function forceRedraw() {
+        // force scene to redraw (workaround for AUTOSUITE-1598)
+        // see FrameAction below: we force render policy to be 'Always' for at least 5 seconds
+        // this time should be enough to make model shown
+        // after this we set renderPolicy back to OnDemand to reduce cpu consuming
+        renderSettings.renderPolicy = RenderSettings.Always;
+    }
+
     MouseArea {
         anchors.top: parent.top
         anchors.left: parent.left
@@ -137,6 +145,16 @@ Item {
 
             FrameAction {
                 id: frameCounter
+                property real dtime: 0.0
+                onTriggered: {
+                    if (renderSettings.renderPolicy === RenderSettings.Always) {
+                        dtime += dt;
+                        if (dtime > 5.0) {
+                            dtime = 0;
+                            renderSettings.renderPolicy = RenderSettings.OnDemand;
+                        }
+                    }
+                }
             }
 
             components: [inputSettings, renderSettings, frameCounter]
@@ -149,9 +167,7 @@ Item {
                 function onTriggered() {
                     if (++fc == 3) {
                         root.readyToChanges = true;
-                        // force scene to redraw (workaround for AUTOSUITE-1598)
-                        renderSettings.renderPolicy = RenderSettings.Always;
-                        renderSettings.renderPolicy = RenderSettings.OnDemand;
+                        root.forceRedraw();
                     }
                 }
             }
