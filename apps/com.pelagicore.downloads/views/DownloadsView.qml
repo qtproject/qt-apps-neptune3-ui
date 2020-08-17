@@ -206,7 +206,7 @@ Item {
                 if (root.store.isPackageInstalledByPackageController(appId)) {
                     root.store.uninstallPackage(appId, appName);
                 } else {
-                    root.store.download(appId, appName);
+                    root.store.download(appId, appName, purchaseId, iconUrl);
                 }
             }
             onAppClicked: { root.store.tryStartApp(appId); }

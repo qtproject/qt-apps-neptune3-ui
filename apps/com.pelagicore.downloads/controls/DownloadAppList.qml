@@ -46,7 +46,7 @@ ListView {
     property var applicationModel
     property real currentInstallationProgress
 
-    signal toolClicked(string appId, string appName)
+    signal toolClicked(string appId, string appName, string purchaseId, string iconUrl)
     signal appClicked(string appId)
 
     function refreshAppsInfo(isPackageInstalledByPackageControllerFunc,
@@ -74,8 +74,7 @@ ListView {
         property bool packageBuiltIn: model.packageBuiltIn
 
         width: Sizes.dp(720); height: Sizes.dp(100)
-        icon.source: root.appServerUrl + "/app/icon?id=" + model.id
-                     + "&architecture=" + root.cpuArch
+        icon.source: model.iconUrl
         text: model.name
         subText: model.id
         secondaryText: delegatedItem.isInstalled ? delegatedItem.packageSizeText
@@ -93,7 +92,7 @@ ListView {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;
             }
-            root.toolClicked(model.id, model.name);
+            root.toolClicked(model.id, model.name, model.purchaseId, model.iconUrl);
         }
         onClicked: root.appClicked(model.id)
 

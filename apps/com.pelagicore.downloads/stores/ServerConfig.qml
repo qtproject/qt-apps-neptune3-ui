@@ -40,6 +40,7 @@ QtObject {
     id: root
 
     property string cpuArch
+    property string qtVersion
     property string serverUrl: ApplicationManager.systemProperties.appStoreServerUrl
     property string userName: ApplicationManager.systemProperties.userName
     property string userPassword: ApplicationManager.systemProperties.userPassword
@@ -60,7 +61,14 @@ QtObject {
             console.log(Logging.apps, "Neptune-UI::Application Store - Check Server");
             root.tryConnectToServer();
             var url = root.serverUrl + "/hello";
-            var data = {"platform" : "NEPTUNE3", "version" : "2", "architecture": root.cpuArch};
+            var data = {
+                "platform" : "NEPTUNE3",
+                "version" : "2",
+                "architecture": root.cpuArch,
+                "require_tag" :
+                    "build_target:" + (WindowManager.runningOnDesktop ? "desktop" : "embedded")
+                    + ",qt:" + root.qtVersion
+            };
             JSONBackend.setErrorFunction(0);
             JSONBackend.serverCall(url, data, function(data) {
                 if (data !== 0) {

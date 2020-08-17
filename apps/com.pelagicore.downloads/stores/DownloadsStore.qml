@@ -71,17 +71,15 @@ Item {
         else return qsTr("%1 GB").arg((bytes / 1073741824).toFixed(2));
     }
 
-    function download(packageId, name) {
+    function download(packageId, name, purchaseId, iconUrl) {
         if (isPackageBusy(packageId)) {
             console.warn("Package busy... Abort download");
             return;
         }
 
         var url = appStoreConfig.serverUrl + "/app/purchase";
-        var data = {"id": packageId, "device_id" : "00-11-22-33-44-55" };
-        var icon = root.appServerUrl
-                + "/app/icon?id=" + packageId
-                + "&architecture=" + root.cpuArch;
+        var data = {"purchaseId": purchaseId, "device_id" : "00-11-22-33-44-55" };
+        var icon = iconUrl
 
         JSONBackend.serverCall(url, data, function(data) {
             if (data !== 0) {
@@ -296,6 +294,7 @@ Item {
     ServerConfig {
         id: appStoreConfig
         cpuArch: sysinfo.cpu + "-" + sysinfo.kernel
+        qtVersion: sysinfo.qtVersion
     }
 
     ListModel {
@@ -354,7 +353,9 @@ Item {
                         "name": app.name,
                         "isInstalled": isInstalled,
                         "packageSizeText": isInstalled ? getInstalledPackageSizeText(app.id) : "",
-                        "packageBuiltIn": isInstalled ? isPackageBuiltIn(app.id) : false
+                        "packageBuiltIn": isInstalled ? isPackageBuiltIn(app.id) : false,
+                        "purchaseId": app.purchaseId,
+                        "iconUrl": app.iconUrl
                     });
                 }
                 appModel.append(appList)
