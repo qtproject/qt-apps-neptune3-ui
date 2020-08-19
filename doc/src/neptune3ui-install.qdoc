@@ -109,8 +109,8 @@
     \section2 Dependencies
 
     \list
-        \li \l{Qt Application Manager} 5.13
-        \li \l{Qt IVI} 5.13
+        \li \l{Qt Application Manager} 5.15
+        \li \l{Qt IVI} 5.15
         \li \l{Qt Safe Renderer} 1.1 (optional)
         \li \l{Qt 3D Studio} (optional)
     \endlist
@@ -119,9 +119,9 @@
 
    \list 1
         \li Clone the repositories mentioned in \l{Install Qt Automotive Suite}.
-        \li Build \l{Qt Application Manager} against Qt 5.13. For more detailed build
+        \li Build \l{Qt Application Manager} against Qt 5.15. For more detailed build
             instructions, see \l{Qt Applicaton Manager Installation}.
-        \li Build \l{Qt IVI} against Qt 5.13. For more detailed build instructions, see
+        \li Build \l{Qt IVI} against Qt 5.15. For more detailed build instructions, see
             \l[QtIvi]{Installation}.
         \li Run the following command in a terminal, to build Neptune 3 UI:
             \badcode
