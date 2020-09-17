@@ -27,8 +27,8 @@
 
 /*!
 
- \page neptune-3ui-systemd-service-settings.html
- \title Neptune 3 UI systemd Service Settings
+ \page neptune3ui-systemd-service-settings.html
+ \title Neptune 3 UI - Systemd Service Settings
  \brief Description of settings used to start Neptune 3 UI as a systemd service.
 
  There are three sections in Neptune 3 UI service file:

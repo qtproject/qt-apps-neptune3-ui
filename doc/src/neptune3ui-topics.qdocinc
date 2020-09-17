@@ -66,6 +66,7 @@
 
 \list
     \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
+    \li \l {Neptune 3 UI - Systemd Service Settings}{Systemd Service Settings}
     \li \l {Develop a Parking App}
     \li \l {Neptune 3 UI - Deployment Server}{Deployment Server}
 \endlist
