@@ -2,9 +2,17 @@ DriveData:
     config_simulator:
         simulationFile: "qrc:/plugin_resource/simulation.qml"
 
+DriveData.InstrumentCluster#enableSimulation:
+    config_simulator:
+        default: true
+
 DriveData.InstrumentCluster#ePower:
     config_simulator:
         default: 100
+
+DriveData.InstrumentCluster#speed:
+    config_simulator:
+        default: 45
 
 DriveData.InstrumentCluster#speedLimit:
     config_simulator:

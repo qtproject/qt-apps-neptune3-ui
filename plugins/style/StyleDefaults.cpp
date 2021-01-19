@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -83,8 +83,6 @@ StyleDefaults::StyleDefaults()
     CHECK_KEY("Theme")
     m_data.theme = settings.value("Theme").toString() == QString("Light") ? StyleData::Light : StyleData::Dark;
 
-    FETCH_COLOR(m_data.accentColor, "AccentColor")
-
     QStringList themes = settings.childGroups();
 
     if (themes.contains("Light")) {
@@ -102,6 +100,7 @@ StyleDefaults::StyleDefaults()
 
 void StyleDefaults::loadTheme(StyleData::ThemeData &data, QSettings &settings)
 {
+    FETCH_COLOR(data.accentColor, "AccentColor");
     FETCH_COLOR(data.backgroundColor, "BackgroundColor");
     FETCH_COLOR(data.buttonColor, "ButtonColor");
     FETCH_COLOR(data.highlightedButtonColor, "HighlightedButtonColor");

@@ -48,10 +48,11 @@ NeptuneWindow {
     visible: true
     title: qsTr("Instrument Cluster")
 
+    width: Sizes.dp(Config.instrumentClusterWidth)
+    height: root.width / Config.instrumentClusterUIAspectRatio
+
     Component.onCompleted: {
         setWindowProperty("windowType", "instrumentcluster");
-        root.width = Sizes.dp(Config.instrumentClusterWidth)
-        root.height = root.width / Config.instrumentClusterUIAspectRatio
     }
 
     ClusterView {
@@ -80,6 +81,13 @@ NeptuneWindow {
                 item.brakeFailureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.brakeFailure})
                 item.airbagFailureOn = Qt.binding( function() {return clusterView.store.vehicleInterface.airbagFailure})
             }
+        }
+    }
+
+    onWindowPropertyChanged: {
+        if (name === "clusterUIMode") {
+            //set UI mode for cluster: no app or some app running under cluster view
+            clusterView.store.behaviourInterface.clusterUIMode = value
         }
     }
 }

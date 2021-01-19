@@ -66,10 +66,12 @@ Item {
     property bool acceptsCursor: true
     property bool hasCursor: parent.CursorNavigation.hasCursor
     property bool pressed: false
+    property int angleOffset: 0
 
     signal activated()
     signal pressAndHold()
 
+    CursorNavigation.angleOffset: root.angleOffset
     CursorNavigation.acceptsCursor: root.acceptsCursor
     CursorNavigation.trapsCursor: root.trapsCursor
     CursorNavigation.onActivated: {
@@ -78,10 +80,10 @@ Item {
 
     Connections {
         target: (parent.pressed !== undefined) ? parent : null
-        onPressed: {
+        function onPressed() {
             pressAndHoldSim.start();
         }
-        onPressedChanged: {
+        function onPressedChanged() {
             root.pressed = parent.pressed;
         }
     }

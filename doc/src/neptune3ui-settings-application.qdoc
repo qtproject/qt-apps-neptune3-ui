@@ -36,7 +36,7 @@
 
    \section1 Languages Settings
 
-   \image settings-app-languages.jpg
+   \image settings-app-languages.png
 
    Settings application contains a language settings menu that allows the user to
    set the global language used in Neptune 3 UI.
@@ -50,35 +50,40 @@
    \li Japanese Language
    \li Chinese Language
    \li Korean Language
+   \li Arabic
    \endlist
+
+   Users don't need to restart the UI to make the UI layout change
+   from "left-to-right" to "right-to-left" and vice versa
+   when switching between Arabic and other supported languages.
 
    \section1 Date and Time Settings
 
-   \image settings-app-timezone.jpg
+   \image settings-app-timezone.png
 
    Settings application contains a date and time settings menu that allows the user to
    set the time format and time zone.
 
    \section1 Themes Settings
 
-   \image settings-app-themes.jpg
+   \image settings-app-themes.png
 
-   Neptune 3 UI supports two type of themes, dark theme and light theme. By default,
-   light theme is used. The user can change the UI theme through the Settings application
-   to switch between dark and light theme.
+   Neptune 3 UI supports two type of themes - dark and light. By default,
+   dark theme is used. The user can switch between dark and light themes
+   in the Settings App.
 
-   The images below show how the dark theme looks like:
+   The images below show how the light theme looks like:
 
-   \image neptune-dark-theme1.jpg
+   \image neptune-light-theme1.png
 
-   \image neptune-dark-theme2.jpg
+   \image neptune-light-theme2.png
 
    \section1 Accent Color Settings
 
-   \image settings-app-accent-color.jpg
-
    Neptune 3 UI provides eight options of color to be used as the accent color. The
-   default color is orange.
+   default color is green, as shown on the image below:
+
+   \image settings-app-accent-color.png
 
    The following images show how it looks when the accent color is being changed.
 

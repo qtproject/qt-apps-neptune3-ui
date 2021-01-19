@@ -72,11 +72,13 @@ AbstractApplicationWidget {
 
     // Application icon
     NeptuneIconLabel {
-        width: Sizes.dp(25)
-        height: Sizes.dp(25)
+        display: NeptuneIconLabel.IconOnly
+        iconFillMode: Image.PreserveAspectFit
+        iconRectHeight: Sizes.dp(25)
+        iconRectWidth: iconRectHeight
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.top: widgetStripe.top
-        anchors.topMargin: widgetStripe.border.top * 0.8
+        anchors.topMargin: iconRectHeight * 0.8
         icon.source: root.appInfo ? root.appInfo.icon : null
         icon.color: "white"
         opacity: root.active ? 0 : 1
@@ -107,24 +109,24 @@ AbstractApplicationWidget {
     ToolButton {
         anchors.horizontalCenter: widgetStripe.horizontalCenter
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: implicitWidth
 
         objectName: "appWidgetClose_" + (root.appInfo ?
                                             (root.appInfo.id ? root.appInfo.id : "none")
                                             : "nothing"
                                             )
-        implicitWidth: widgetStripe.width + Sizes.dp(18)
-        implicitHeight: width
+        implicitWidth: Sizes.dp(25)
+        implicitHeight: implicitWidth
         visible: root.buttonsVisible
 
         onClicked: root.closeClicked()
-
-        contentItem: NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(25)
-            height: Sizes.dp(25)
-            icon.color: "white"
-            icon.source: Style.image("ic-widget-close")
-        }
+        iconFillMode: Image.PreserveAspectFit
+        display: NeptuneIconLabel.IconOnly
+        iconRectHeight: implicitWidth
+        iconRectWidth: implicitWidth
+        icon.color: "white"
+        icon.source: Style.image("ic-widget-close")
+        padding: 0
     }
 
     // Maximize button

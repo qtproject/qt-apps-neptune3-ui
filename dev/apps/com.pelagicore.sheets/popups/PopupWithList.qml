@@ -44,14 +44,15 @@ PopupWindow {
     property var model: [{"text": "Purple"}, {"text" : "Deep blue"}, {"text" : "Violet"}]
 
     Item {
-        anchors.fill: parent
+        width: root.width
+        height: root.height
 
         Label {
             anchors.baseline: parent.top
             anchors.baselineOffset: Sizes.dp(78)
             font.pixelSize: Sizes.fontSizeM
             width: parent.width
-            text: "Choose color"
+            text: qsTr("Choose color")
             horizontalAlignment: Text.AlignHCenter
         }
         Image {

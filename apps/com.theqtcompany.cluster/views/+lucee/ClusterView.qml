@@ -31,10 +31,9 @@
 
 import QtQuick 2.8
 import QtQuick.Window 2.2
-import shared.com.pelagicore.remotesettings 1.0
-import application.windows 1.0
-import shared.animations 1.0
 
+import shared.com.pelagicore.remotesettings 1.0
+import shared.animations 1.0
 import shared.Sizes 1.0
 import shared.Style 1.0
 
@@ -85,6 +84,7 @@ Item {
         mileage: store.vehicleInterface.mileage
         mileageUnits: store.localization.mileageUnits
         speedUnits: store.localization.speedUnits
+        clusterUIMode: store.behaviourInterface.clusterUIMode
 
         Behavior on opacity {
             DefaultNumberAnimation {}

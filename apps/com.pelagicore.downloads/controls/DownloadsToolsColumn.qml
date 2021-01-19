@@ -34,38 +34,62 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import shared.utils 1.0
 import shared.Sizes 1.0
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.2
 
-// FIXME: Delete this in favor of ToolsColumn from controls module
-ColumnLayout {
+import shared.controls 1.0
+
+Item {
     id: root
 
-    property alias model: toolsRepeater.model
-    property int currentIndex: 0
+    property alias model: toolsColumn.model
     property string serverUrl
+
     signal toolClicked(int index)
+    signal refresh()
 
-    ButtonGroup { id: buttonGroup }
+    BusyIndicator {
+        id: busyIndicator
 
-    Repeater {
-        id: toolsRepeater
-        Layout.alignment: Qt.AlignHCenter
+        running: false
+        anchors.horizontalCenter: root.horizontalCenter
+        opacity: 0.0;
+        visible: opacity > 0.0
+        width: Sizes.dp(100); height: width
+    }
 
-        ToolButton {
-            objectName: "downloadAppViewButton_" + (model.name ? model.name : "unknown")
-            Layout.alignment: Qt.AlignHCenter
-            baselineOffset: 0
-            checkable: true
-            checked: root.currentIndex === index
-            icon.source: root.serverUrl + "/category/icon?id=" + model.id
-            display: AbstractButton.TextUnderIcon
-            text: qsTr(model.name)
-            font.pixelSize: Sizes.fontSizeXS
-            onClicked: {
-                root.toolClicked(index);
+    ToolsColumn {
+        id: toolsColumn
+
+        property bool refreshRequired: false
+
+        interactive: true
+        width: Sizes.dp(264)
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: Sizes.dp(53)
+        onClicked: root.toolClicked(currentIndex)
+        onContentYChanged: {
+            if (atYBeginning) {
+                var d = Math.abs(contentY);
+                busyIndicator.opacity = d / busyIndicator.height;
+                if (d > busyIndicator.height) {
+                    if (!busyIndicator.running) {
+                        busyIndicator.running = true;
+                        refreshRequired = true;
+                    }
+                } else {
+                    busyIndicator.running = false;
+                    // if we drag back - no refresh
+                    if (dragging)
+                        refreshRequired = false;
+                }
             }
-            ButtonGroup.group: buttonGroup
+        }
+        onMovementEnded: {
+            busyIndicator.opacity = 0.0;
+            if (refreshRequired) {
+                refreshRequired = false;
+                refresh();
+            }
         }
     }
 }

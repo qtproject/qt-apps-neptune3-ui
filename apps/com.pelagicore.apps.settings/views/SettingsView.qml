@@ -53,15 +53,13 @@ Control {
     property Item rootItem
     property QtObject wifi
 
+    property int wifiPopupWidth: Sizes.dp(910);
+    property int wifiPopupHeight : Sizes.dp(820);
+
     WiFiPopup {
         id: wifiPopup
+
         manual: false
-        readonly property point pos: mapToItem(root, width/2, height/2)
-        width: Sizes.dp(910)
-        height: Sizes.dp(820)
-        originItemX: pos.x
-        originItemY: pos.y
-        popupY: Sizes.dp(Math.round(Config.centerConsoleHeight/2 - 410))
         onConnectClicked: wifi.sendCredentials(ssid, password)
         onCancelClicked: wifi.disconnectFromAccessPoint(wifi.activeAccessPoint.ssid)
     }
@@ -87,6 +85,7 @@ Control {
 
             ToolsColumn {
                 id: toolsColumn
+                width: Sizes.dp(140)
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: Sizes.dp(53)
@@ -98,19 +97,19 @@ Control {
 
                 ListModel {
                     id: fullTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "connectivity"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "themes"); icon: 'ic-themes'; objectName: "themesViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                 }
 
                 ListModel {
                     id: themelessTabsModel
-                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "connectivity"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "languages"); icon: 'ic-languages'; objectName: "languageViewButton"}
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "date"); icon: 'ic-time'; objectName: "dateViewButton" }
                     ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "colors"); icon: 'ic-color'; objectName: "colorsViewButton" }
+                    ListElement { text: QT_TRANSLATE_NOOP("SettingsToolsColumn", "network"); icon: 'ic-connectivity'; objectName: "connectivityViewButton" }
                 }
             }
         }
@@ -141,6 +140,10 @@ Control {
 
             WiFiPanel {
                 id: wifiPanel
+
+                property int wifiPopupWidth: Sizes.dp(910);
+                property int wifiPopupHeight : Sizes.dp(820);
+
                 objectName: "wifiPanel"
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-connectivity' && connectivityPanel.view === 1
@@ -169,8 +172,15 @@ Control {
 
             Connections {
                 target: wifi
-                onCredentialsRequested: {
+                function onCredentialsRequested(ssid) {
                     wifiPopup.ssid = ssid;
+                    wifiPopup.width = Qt.binding(() => wifiPanel.wifiPopupWidth);
+                    wifiPopup.height = Qt.binding(() => wifiPanel.wifiPopupHeight);
+                    wifiPopup.originItemX = Qt.binding(() => root.width / 2);
+                    wifiPopup.originItemY = Qt.binding(() => root.heigh / 2);
+                    wifiPopup.popupY = Qt.binding(() => {
+                        return Sizes.dp(root.height/2 - wifiPopup.height/2);
+                    });
                     wifiPopup.visible = true;
                 }
             }

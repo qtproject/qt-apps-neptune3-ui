@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -57,7 +57,7 @@ Style *Style::qmlAttachedProperties(QObject *object)
 void Style::init()
 {
     m_theme = StyleDefaults::instance()->data().theme;
-    m_accentColor = StyleDefaults::instance()->data().accentColor;
+    m_accentColor = StyleDefaults::instance()->dataFromTheme(m_theme).accentColor;
 
     QQuickAttachedObject::init();
 }

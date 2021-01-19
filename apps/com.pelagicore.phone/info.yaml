@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.phone'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Phone'
   de: 'Telefon'
@@ -14,8 +12,14 @@ name:
   ja: '電話'
   ko: '전화'
 
+applications:
+- id:      'com.pelagicore.phone'
+  code:    'Main.qml'
+  runtime: 'qml'
+  applicationProperties: { private: { squishPort: 7728 } }
+
 intents:
 - id: call-support
+- id: activate-app
 
-applicationProperties: { private: { squishPort: 7728 } }
 categories: [ 'phone', 'widget' ]

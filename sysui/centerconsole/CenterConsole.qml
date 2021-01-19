@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -61,19 +62,8 @@ AbstractCenterConsole {
         anchors.leftMargin: Sizes.dp(27)
         icon.name: root.store.volumeStore.volumeIcon
         onClicked: volumePopup.open()
-        enabled: !mainContentArea.item.launcherOpen
+        enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
-
-        // content item of ToolButton is not scaled correctly in some screen resolutions
-        // need to revert this changes once: QTBUG-72569 is fixed.
-        contentItem: null
-        NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(50)
-            height: Sizes.dp(50)
-            icon: leftIcon.icon
-            color: leftIcon.icon.color
-        }
     }
 
     ToolButton {
@@ -85,19 +75,8 @@ AbstractCenterConsole {
         anchors.rightMargin: Sizes.dp(27)
         icon.name: "qt-badge"
         onClicked: about.open()
-        enabled: !mainContentArea.item.launcherOpen
+        enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
-
-        // content item of ToolButton is not scaled correctly in some screen resolutions
-        // need to revert this changes once: QTBUG-72569 is fixed.
-        contentItem: null
-        NeptuneIconLabel {
-            anchors.centerIn: parent
-            width: Sizes.dp(50)
-            height: Sizes.dp(50)
-            icon: rightIcon.icon
-            color: rightIcon.icon.color
-        }
     }
 
     PopupItemLoader {
@@ -106,7 +85,10 @@ AbstractCenterConsole {
         popupParent: root.popupParent
         popupX: originItem.mapToItem(parent, 0, 0).x + (LayoutMirroring.enabled ? -width + leftIcon.width: 0)
         originItem: leftIcon
-        Binding { target: volumePopup.item; property: "model"; value: root.store.volumeStore }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: volumePopup.item; property: "model"; value: root.store.volumeStore;
+        }
         onClosed: { leftIcon.forceActiveFocus(); }
     }
 

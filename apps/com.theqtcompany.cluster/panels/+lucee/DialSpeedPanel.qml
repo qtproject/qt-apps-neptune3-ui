@@ -91,6 +91,7 @@ Item {
         actual rect showing
     */
     DropShadow{
+        id: speedRectangleShadow
         anchors.fill: speedRectangle
         horizontalOffset: 0
         verticalOffset: 0
@@ -105,6 +106,7 @@ Item {
         speed label
     */
     Label {
+        id: speedLabel
         anchors.baseline: speedRectangle.baseline
         anchors.baselineOffset: Sizes.dp(150)
         anchors.horizontalCenter: speedRectangle.horizontalCenter
@@ -119,6 +121,7 @@ Item {
         speed units label
     */
     Label {
+        id: unitsLabel
         anchors.horizontalCenter: speedRectangle.horizontalCenter
         anchors.bottom: speedRectangle.bottom
         anchors.bottomMargin: Sizes.dp(20)
@@ -173,5 +176,28 @@ Item {
         valueText: root.navigationRouteDistance.toFixed(1)
         valueUnits: root.mileageUnits
         icon: Utils.localAsset("ic-distance", Style.theme)
+    }
+
+    state: "speed_center"
+    states: [
+        State {
+            // "Cluster with app" mode, turn on when app is shown in the cluster
+            name: "speed_right"
+            PropertyChanges { target: speedRectangle;
+                x: rtlMode ? root.screenCenter.x - speedRectangle.width / 2 - Sizes.dp(485) :
+                       root.screenCenter.x - speedRectangle.width / 2 + Sizes.dp(485);
+                width: Sizes.dp(300); height: Sizes.dp(150); radius: Sizes.dp(37) }
+            PropertyChanges { target: speedLabel; font.pixelSize: Sizes.dp(100);
+                        anchors.baselineOffset: Sizes.dp(100) }
+            PropertyChanges { target: unitsLabel; font.pixelSize: Sizes.dp(20);
+                        anchors.bottomMargin: Sizes.dp(15) }
+            PropertyChanges { target: speedRectangleShadow; opacity: 0.8 }
+        }
+    ]
+
+    transitions: Transition {
+        NumberAnimation {
+            properties: "x,y,width,height,font.pixelSize,anchors.baselineOffset,radius,anchors.bottomMargin,opacity";
+            duration: 500; easing.type: Easing.InOutQuad }
     }
 }

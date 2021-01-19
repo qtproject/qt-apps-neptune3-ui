@@ -50,11 +50,9 @@ PopupWindow {
     LayoutMirroring.enabled: false
     LayoutMirroring.childrenInherit: true
 
-    width: Sizes.dp(910)
-    height: Sizes.dp(1426)
-
     ClimateContentPanel {
-        anchors.fill: parent
+        width: root.width
+        height: root.height
         store: root.store
         seatTemperaturesLinked: root.seatTemperaturesLinked
     }

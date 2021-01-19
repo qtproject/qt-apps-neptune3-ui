@@ -46,18 +46,21 @@ Item {
     property alias leftDoorOpened: doorsPanel.leftDoorOpened
     property alias rightDoorOpened: doorsPanel.rightDoorOpened
     property alias trunkOpened: doorsPanel.trunkOpened
+    property alias roofOpenProgress: doorsPanel.roofOpenProgress
     property alias menuModel: toolsColumn.model
     property alias controlModel: supportPanel.model
     property alias qt3DStudioAvailable: vehicle3DSettingsPanel.qt3DStudioAvailable
     property alias qualityModel: vehicle3DSettingsPanel.qualityModel
     property alias quality: vehicle3DSettingsPanel.quality
     property alias runtime: vehicle3DSettingsPanel.runtime
+    property alias enableOpacityMasks: doorsPanel.enableOpacityMasks
 
     signal leftDoorClicked()
     signal rightDoorClicked()
     signal trunkClicked()
-    signal roofOpenProgressChanged(var value)
+    signal newRoofOpenProgressRequested(var progress)
     signal showNotificationAboutChange()
+    signal intentToMapRequested(var intentId, var params)
 
     ToolsColumn {
         id: toolsColumn
@@ -65,7 +68,6 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         width: Sizes.dp(264)
-        height: Sizes.dp(460)
         translationContext: "VehicleToolsColumn"
     }
 
@@ -80,14 +82,17 @@ Item {
         currentIndex: toolsColumn.currentIndex
 
         SupportPanel { id: supportPanel; objectName: "vehicleSupportPanel" }
-        EnergyPanel { objectName: "vehicleEnergyPanel"}
+        EnergyPanel {
+            objectName: "vehicleEnergyPanel"
+            onIntentToMapRequested: root.intentToMapRequested(intentId, params)
+        }
         DoorsPanel {
             id: doorsPanel
             objectName: "vehicleDoorsPanel"
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
             onTrunkClicked: root.trunkClicked()
-            onRoofOpenProgressChanged: root.roofOpenProgressChanged(roofOpenProgress)
+            onNewRoofOpenProgressRequested: root.newRoofOpenProgressRequested(progress)
         }
         TiresPanel { objectName: "vehicleTiresPanel" }
         Settings3DPanel {

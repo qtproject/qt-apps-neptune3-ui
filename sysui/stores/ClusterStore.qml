@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import QtApplicationManager.SystemUI 2.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
@@ -48,6 +49,7 @@ QtObject {
     readonly property var clusterScreen: Qt.application.screens.length > 1
             ? Qt.application.screens[1] : Qt.application.screens[0]
     readonly property var _clusterAvailableBinding: Binding {
+        restoreMode: Binding.RestoreBinding
         target: clusterSettings
         when: clusterSettings.isInitialized
         property: "available"
@@ -63,15 +65,22 @@ QtObject {
     property int clusterPosition: 1 // 0: top 1: center 2: bottom
 
     onClusterScreenChanged: {
-        if (qsrEnabled || !adjustSizesForScreen) {
-            desktopWidth = Config.instrumentClusterWidth;
-            desktopHeight = Config.instrumentClusterHeight;
-        } else {
+        if (adjustSizesForScreen) {
             var tempWidth = Math.ceil(clusterScreen.width * 0.9);
             desktopWidth = tempWidth > Config.instrumentClusterWidth
                     ? Config.instrumentClusterWidth
                     : tempWidth;
-            desktopHeight = Math.ceil(desktopWidth / Config.instrumentClusterUIAspectRatio);
+            if (qsrEnabled) {
+                // Desktop demo case: make window 20% higher than cluster panel, so qsr
+                // window will not overlap cluster window title bar
+                desktopHeight = Math.ceil(desktopWidth / Config.instrumentClusterUIAspectRatio
+                                          * 1.2);
+            } else {
+                desktopHeight = Math.ceil(desktopWidth / Config.instrumentClusterUIAspectRatio);
+            }
+        } else {
+            desktopWidth = Config.instrumentClusterWidth;
+            desktopHeight = Config.instrumentClusterHeight;
         }
     }
 }

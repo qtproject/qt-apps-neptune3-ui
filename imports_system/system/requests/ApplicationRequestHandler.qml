@@ -111,7 +111,7 @@ QtObject {
 
     readonly property var appManConns: Connections {
         target: ApplicationManager
-        onOpenUrlRequested: {
+        function onOpenUrlRequested(requestId, url, mimeType, possibleAppIds) {
             sendRequest(requestId, possibleAppIds);
         }
     }

@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.6
+import QtQml 2.14
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 
@@ -55,7 +56,10 @@ Item {
         popupX: (root.LayoutMirroring.enabled ? root.parent.width - width - Sizes.dp(5) : Sizes.dp(5))
         popupY: originPos.y
         originItem: volumeIcon
-        Binding { target: volumePopup.item; property: "model"; value: root.model.volumeStore }
+        Binding {
+            restoreMode: Binding.RestoreBinding
+            target: volumePopup.item; property: "model"; value: root.model.volumeStore;
+        }
     }
     property var voiceAssitantWindow
 
@@ -68,7 +72,8 @@ Item {
         spacing: Sizes.dp(5)
 
         ToolButton {
-            Layout.preferredWidth: Sizes.dp(60)
+            padding: 0
+            Layout.preferredWidth: Sizes.dp(64)
             Layout.fillHeight: true
             id: volumeIcon
             objectName: "volumePopupButton"

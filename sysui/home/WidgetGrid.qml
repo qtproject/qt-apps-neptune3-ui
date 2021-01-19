@@ -467,20 +467,9 @@ Item {
                             appInfo.asWidget = false;
                         }
 
-                        onActiveChanged: {
-                            if (active) {
-                                //keep widget state of item on index when maximized
-                                widgetStateWhenMaximized = widgetState;
-                                clickedIndexWhenMaximized = index;
-                            }
-                        }
-
                         widgetState: {
                             if (!appInfo || !appInfo.asWidget) {
                                 return "";
-                            } else if ((widgetStateWhenMaximized !== "") && (clickedIndexWhenMaximized > -1)
-                                        && (clickedIndexWhenMaximized === index)) {
-                                return widgetStateWhenMaximized;
                             } else {
                                 switch (Math.round(height / (root.rowHeight - root.resizerHandleHeight))) {
                                 case 0:
@@ -515,6 +504,7 @@ Item {
                                 return "home"
                             }
                         }
+
                         states: [
                             State {
                                 name: "home"
@@ -619,8 +609,6 @@ Item {
                         // to figure out which handle is being dragged without having to know about the
                         // size of their touch areas.
                         onPressed: {
-                            widgetStateWhenMaximized = "";
-                            clickedIndexWhenMaximized = -1;
                             pressedYDelta = mouseY - (height / 2);
                             widgetColumn.onResizeHandlePressed(mapToItem(root, mouseX, height / 2))
                         }

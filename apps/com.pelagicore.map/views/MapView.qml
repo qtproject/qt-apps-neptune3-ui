@@ -81,7 +81,8 @@ Item {
     Connections {
         target: root.store
 
-        onRequestNavigationReceived: {
+        function onRequestNavigationReceived(address, coord, boundingBox) {
+            root.maximizeMap();
             root.store.navigationDemoActive = false;
             mapBoxPanel.state = "initial";
             mapBoxPanel.center = coord;
@@ -94,10 +95,13 @@ Item {
             }
             mapBoxPanel.state = "destination_selection";
         }
+
+        function onRequestRaiseAppReceived() { root.maximizeMap(); }
     }
 
     MapBoxPanel {
         id: mapBoxPanel
+        visible: root.store.allowMapRendering
         anchors.fill: parent
         plugin: root.store.mapPlugin
         center: root.store.positionCoordinate
@@ -158,6 +162,15 @@ Item {
         }
 
         onMaximizeMap: root.maximizeMap();
+    }
+
+    Loader {
+        active: !root.store.allowMapRendering
+        anchors.fill: root
+        sourceComponent: ProxyErrorPanel {
+            anchors.fill: parent
+            errorText: qsTr("The map is disabled in this runtime environment")
+        }
     }
 
     FastBlur {

@@ -40,14 +40,14 @@ import shared.utils 1.0
 /*!
     \qmltype ToolsColumn
     \inqmlmodule controls
-    \inherits ColumnLayout
+    \inherits ListView
     \since 5.11
     \brief The tools column component for Neptune 3 UI applications.
 
     The ToolsColumn provides a custom column of tool buttons for Neptune 3 UI Applications
     to follow the specification where only one of them can be selected at any given time.
 
-    \image tools-column.jpg
+    \image tools-column.png
 
     See \l{Neptune 3 UI Components and Interfaces} to see more available components in
     Neptune 3 UI.
@@ -101,20 +101,39 @@ import shared.utils 1.0
     \endqml
 */
 
-ColumnLayout {
+ListView {
     id: root
 
-    width: Sizes.dp(135)
+    implicitWidth: Sizes.dp(135)
+    implicitHeight: root.contentHeight
     spacing: Sizes.dp(24)
+    interactive: false
 
     /*!
-        \qmlproperty int ToolsColumn::currentIndex
+        \qmlproperty enumeration ToolsColumn::iconFillMode
 
-        This property holds the current selected index of the tools column.
-
-        This property's default is 0.
+        Set this property to define what happens when the item's icon image has a different size
+        than the item. Please refer to \l{Image::fillMode} for possible values.
+        For values other than Image.Pad \l{ToolsColumn::iconRectWidth} and
+        \l {ToolsColumn::iconRectHeight} should be defined.
     */
-    property int currentIndex: 0
+    property int iconFillMode: Image.Pad
+
+    /*!
+        \qmlpropery real ToolsColumn::iconRectWidth
+
+        Set this property to define width of rectangle area for icon when
+        \l{ToolsColumn::iconfillMode} has other value than Image.Pad.
+    */
+    property real iconRectWidth: 0
+
+    /*!
+        \qmlpropery real ToolsColumn::iconRectHeight
+
+        Set this property to define height of rectangle area for icon when
+        \l{ToolsColumn::iconfillMode} has other value than Image.Pad.
+    */
+    property real iconRectHeight: 0
 
     /*!
         \qmlproperty string ToolsColumn::currentText
@@ -122,21 +141,9 @@ ColumnLayout {
 
         This property holds the current selected text of the tools column.
     */
-    readonly property string currentText: model ? model.get(currentIndex).text : ""
-
-    /*!
-        \qmlproperty string ToolsColumn::currentItem
-
-        This property holds the current selected item of the tools column.
-    */
-    property Item currentItem: repeater.itemAt(currentIndex)
-
-    /*!
-        \qmlproperty var ToolsColumn::model
-
-        This property holds the model to be delegated in the tools column.
-    */
-    property alias model: repeater.model
+    readonly property string currentText: model && currentIndex > -1 && model.count > currentIndex
+                                          ?  model.get(currentIndex).text
+                                          : ""
 
     /*!
         \qmlproperty string ToolsColumn::translationContext
@@ -157,15 +164,13 @@ ColumnLayout {
 
     ButtonGroup { id: buttonGroup }
 
-    Repeater {
-        id: repeater
-
-        ToolButton {
-            Layout.preferredWidth: Sizes.dp(135)
-            Layout.preferredHeight: Sizes.dp(140)
-            Layout.alignment: Qt.AlignHCenter
+    delegate: ToolButton {
+            height: Sizes.dp(140); width: root.width
             objectName: model.objectName ? model.objectName : ""
             baselineOffset: 0
+            iconFillMode: root.iconFillMode
+            iconRectWidth: root.iconRectWidth
+            iconRectHeight: root.iconRectHeight
             checkable: true
             checked: root.currentIndex === index
             icon.name: model.icon ? (checked ? model.icon + "_ON" : model.icon + "_OFF") : ""
@@ -182,9 +187,13 @@ ColumnLayout {
             }
             ButtonGroup.group: buttonGroup
         }
-    }
 
-    Item {
-        Layout.fillHeight: true
+    Connections {
+        target: root.model
+        function onCountChanged() {
+            if (currentIndex > 0 && model.count <= currentIndex) {
+                currentIndex = 0;
+            }
+        }
     }
 }

@@ -92,6 +92,24 @@ QtObject {
             onMaximizeMap: {
                 mainWindow.riseWindow()
             }
+
+            onMapCenterChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapCenter = [mainMap.mapCenter.latitude
+                                             , mainMap.mapCenter.longitude ];
+            }
+            onMapZoomLevelChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapZoomLevel = mainMap.mapZoomLevel;
+            }
+            onMapTiltChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapTilt = mainMap.mapTilt;
+            }
+            onMapBearingChanged: {
+                if (mainMap.mapReady)
+                    store.mainMapBearing = mainMap.mapBearing;
+            }
         }
 
         // need a bit delay to give it a time to fetch the real internet status
@@ -129,6 +147,7 @@ QtObject {
                 id: applicationICWindowComponent
                 ICMapView {
                     id: icMapView
+                    allowMapRendering: mainMap.store.allowMapRendering
                     anchors.fill: parent
                     mapPlugin: mainMap.store.mapPlugin
                     mapCenter: mainMap.mapCenter
@@ -136,12 +155,19 @@ QtObject {
                     mapTilt: mainMap.mapTilt
                     mapBearing: mainMap.mapBearing
                     activeMapType: Style.theme === Style.Light ?
-                                   mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultLightThemeId)
-                                   : mainMap.store.getMapType(icMapView.mapReady, mainMap.store.defaultDarkThemeId);
+                                   mainMap.store.getMapType(icMapView.mapReady
+                                                            , mainMap.store.defaultLightThemeId)
+                                   : mainMap.store.getMapType(icMapView.mapReady
+                                                              , mainMap.store.defaultDarkThemeId);
+
+                    nextTurnDistanceMeasuredIn:
+                        mainMap.store.navigationStore.nextTurnDistanceMeasuredIn
+                    nextTurnDistance: mainMap.store.navigationStore.nextTurnDistance
+                    naviGuideDirection: mainMap.store.navigationStore.naviGuideDirection
 
                     Connections {
                         target: mainMap.store
-                        onNavigationDemoActiveChanged: {
+                        function onNavigationDemoActiveChanged() {
                             if (mainMap.store.navigationDemoActive) {
                                 icMapView.path = mainMap.store.routeModel.get(0).path;
                                 icMapView.state = "demo_driving";

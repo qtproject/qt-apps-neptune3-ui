@@ -11,5 +11,5 @@ QFACE_SOURCES = ../parking.qface
 
 macos: QMAKE_SONAME_PREFIX = @rpath
 
-target.path = /apps/chapter3-middleware/
+target.path = $$[QT_INSTALL_EXAMPLES]/neptune3-ui/chapter3-middleware/
 INSTALLS += target

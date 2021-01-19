@@ -8,8 +8,8 @@ formatType: am-configuration
 applications:
   builtinAppsManifestDir: "${CONFIG_PWD}/apps"
   installedAppsManifestDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/manifests"
-  appImageMountDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/image-mounts"
-  database: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps.db"
+  installationDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
+  documentDir: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
 
 # QML apps will be able to import from modules...
 
@@ -17,13 +17,13 @@ runtimes:
   qml:
     importPaths: [ "${CONFIG_PWD}/imports_shared" ]
     environmentVariables:
-       QT_PLUGIN_PATH: ${CONFIG_PWD}
-       SERVER_CONF_PATH: ${CONFIG_PWD}/server.conf
+       QT_PLUGIN_PATH: "${CONFIG_PWD}"
+       SERVER_CONF_PATH: "${CONFIG_PWD}/server.conf"
   native:
     importPaths: [ "${CONFIG_PWD}/imports_shared" ]
     environmentVariables:
-      QT_PLUGIN_PATH: ${CONFIG_PWD}
-      SERVER_CONF_PATH: ${CONFIG_PWD}/server.conf
+      QT_PLUGIN_PATH: "${CONFIG_PWD}"
+      SERVER_CONF_PATH: "${CONFIG_PWD}/server.conf"
 
 # ... as well as the SystemUI
 
@@ -50,7 +50,7 @@ systemProperties:
       qsrServerPort: '1111'
       showSystemAppsInLauncher: no
     private:
-      appStoreServerUrl: 'http://chaos.pelagicore.net:9090'
+      appStoreServerUrl: 'http://demoappsdeploy.qt.io:8514'
       userName: 't'
       userPassword: 't'
       imei: '112163001487801'
@@ -69,16 +69,11 @@ logging:
   rules:
     - "*=false"
     - "qt.*=false"
+    - "qt.gamepad*=true"
     - "am.*=false"
     - "qml*=true"
-    - "*.warning=true"
+    - "cursor.navigation=false"
+    - "qt3ds.*=false"
+    - "shared.com.pelagicore.map.info=false"
+    - "*.warning=false"
     - "*.critical=true"
-
-# simulate an internal and a SD-card installation location
-
-installationLocations:
-- id: "internal-0"
-  installationPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/apps"
-  documentPath: "${stdpath:AppLocalDataLocation}/neptune3-ui/docs"
-  mountPoint: "${stdpath:AppLocalDataLocation}"
-  isDefault: true

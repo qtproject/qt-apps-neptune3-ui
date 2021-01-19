@@ -122,7 +122,7 @@ ListItemBasic {
 
         Connections {
             target: root
-            onClicked: switchDelegate.toggle()
+            function onClicked() { switchDelegate.toggle() }
         }
     }
 }

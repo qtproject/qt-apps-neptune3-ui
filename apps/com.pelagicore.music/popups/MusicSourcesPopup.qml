@@ -51,7 +51,8 @@ PopupWindow {
     Item {
         id: popupContent
 
-        anchors.fill: parent
+        width: root.width
+        height: root.height
 
         Label {
             id: header

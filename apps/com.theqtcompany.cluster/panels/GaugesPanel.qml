@@ -48,6 +48,7 @@ Item {
     property alias cruiseSpeed: ds.cruiseSpeed
     property alias drivetrain:dp.drivetrain
     property alias ePower: dp.ePower
+    property int clusterUIMode // unused here
 
     property bool rtlMode
     onRtlModeChanged: d.restart()

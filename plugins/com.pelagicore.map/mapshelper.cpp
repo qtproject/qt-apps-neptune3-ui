@@ -57,12 +57,14 @@ QString MapsHelper::appPath() const
     return m_appPath;
 }
 
-void MapsHelper::initMap()
+void MapsHelper::initMap(const QString &uniqueDirName)
 {
     // copy mapboxgl offline DB
     const QString sourceFile = m_appPath + QStringLiteral("maps/mapboxgl.db");
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-    const QString destFile = destDir + QStringLiteral("/mapboxgl.db");
+    const QString destFile = destDir
+            + (uniqueDirName.isEmpty() ? uniqueDirName : '/' + uniqueDirName)
+            + QStringLiteral("/mapboxgl.db");
 
     QString subSourceFile = sourceFile.mid(7);
     QDir dir;

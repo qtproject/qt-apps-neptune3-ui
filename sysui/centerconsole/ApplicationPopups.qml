@@ -60,7 +60,7 @@ Item {
 
             Connections {
                 target: model.window
-                onContentStateChanged: {
+                function onContentStateChanged() {
                     if (model.window.contentState === WindowObject.NoSurface) {
                         // client has closed his PopupWindow. Animate accordingly.
                         appPopup.close();

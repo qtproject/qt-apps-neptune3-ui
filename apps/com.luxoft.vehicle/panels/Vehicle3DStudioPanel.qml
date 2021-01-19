@@ -31,7 +31,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.3
-import QtStudio3D 2.1
+import QtStudio3D.OpenGL 2.5
 
 import shared.utils 1.0
 import shared.Style 1.0
@@ -58,7 +58,6 @@ Item {
         property var trajectory: []
         property var trajectoryV: []
     }
-
 
     onLeftDoorOpenChanged: {
         if (leftDoorOpen) {
@@ -106,7 +105,7 @@ Item {
                         dx += d.trajectory[i] - d.trajectory[i - 1];
                     }
 
-                    if (dx != 0) {
+                    if (dx !== 0) {
                         presentation.angleHorizontal -= dx * coef;
                         root.lastCameraAngle = presentation.angleHorizontal - 270;
                     }
@@ -121,7 +120,7 @@ Item {
         id: readyToChangeConnection
         target: studio3D
         property int fc: 0
-        onFrameUpdate: {
+        function onFrameUpdate() {
             fc += 1;
             // skip first 10 frames to be sure that all content is ready
             if (fc > 10) {
@@ -141,6 +140,12 @@ Item {
         anchors.leftMargin: Sizes.dp(60)
         height: Sizes.dp(380)
         width: Sizes.dp(960)
+
+       ViewerSettings {
+           scaleMode: ViewerSettings.ScaleModeFit
+//           uncomment to display render statistics from ogl-runtime
+//           showRenderStats: true
+       }
 
         Presentation {
             id: presentation
@@ -216,7 +221,10 @@ Item {
 
             DataInput {
                 name: "diffuseColor"
-                value: Qt.vector3d(root.vehicleColor.r, root.vehicleColor.g, root.vehicleColor.b)
+                value: Qt.vector4d(root.vehicleColor.r
+                                   , root.vehicleColor.g
+                                   , root.vehicleColor.b
+                                   , root.vehicleColor.a)
             }
         }
     }

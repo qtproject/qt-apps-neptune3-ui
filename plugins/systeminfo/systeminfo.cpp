@@ -36,6 +36,8 @@
 #include <QSysInfo>
 #include <QLibraryInfo>
 #include <QtQml/qqmlinfo.h>
+#include <QtGui/QOpenGLContext>
+#include <QtGlobal>
 
 #include "systeminfo.h"
 
@@ -89,15 +91,15 @@ void SystemInfo::init()
 void SystemInfo::getAddress()
 {
     m_addressList.clear();
-    for (const QNetworkInterface &interface : QNetworkInterface::allInterfaces()) {
-        if (interface.flags().testFlag(QNetworkInterface::IsUp)
-                && !interface.flags().testFlag(QNetworkInterface::IsLoopBack)
-                && interface.type() != QNetworkInterface::InterfaceType::Unknown
-                && interface.type() != QNetworkInterface::InterfaceType::Loopback
-                && interface.type() != QNetworkInterface::InterfaceType::Virtual) {
-            for (const QNetworkAddressEntry &entry : interface.addressEntries()) {
-                if (interface.hardwareAddress() != QLatin1String("00:00:00:00:00:00")) {
-                    m_addressList.append(interface.name() + QLatin1String(" ") + entry.ip().toString() + QLatin1String(" ") + interface.hardwareAddress());
+    for (const QNetworkInterface &_interface : QNetworkInterface::allInterfaces()) {
+        if (_interface.flags().testFlag(QNetworkInterface::IsUp)
+                && !_interface.flags().testFlag(QNetworkInterface::IsLoopBack)
+                && _interface.type() != QNetworkInterface::InterfaceType::Unknown
+                && _interface.type() != QNetworkInterface::InterfaceType::Loopback
+                && _interface.type() != QNetworkInterface::InterfaceType::Virtual) {
+            for (const QNetworkAddressEntry &entry : _interface.addressEntries()) {
+                if (_interface.hardwareAddress() != QLatin1String("00:00:00:00:00:00")) {
+                    m_addressList.append(_interface.name() + QLatin1String(" ") + entry.ip().toString() + QLatin1String(" ") + _interface.hardwareAddress());
                     emit addressListChanged();
                 }
             }
@@ -142,6 +144,32 @@ void SystemInfo::getQtDiagInfo()
     });
     m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
 #endif
+}
+
+bool SystemInfo::allow3dStudioPresentations()
+{
+#ifndef QT_NO_OPENGL
+    QOpenGLContext *globalShareContext = QOpenGLContext::globalShareContext();
+
+    if (globalShareContext && globalShareContext->isValid()) {
+        return (globalShareContext->isOpenGLES()
+                        && globalShareContext->format().version() >= qMakePair(2,0))
+                || (!globalShareContext->isOpenGLES()
+                        && globalShareContext->format().version() >= qMakePair(3,3));
+    }
+#endif
+
+    return false;
+}
+
+bool SystemInfo::allowOpenGLContent()
+{
+#ifndef QT_NO_OPENGL
+    QOpenGLContext *globalShareContext = QOpenGLContext::globalShareContext();
+    return globalShareContext && globalShareContext->isValid();
+#endif
+
+    return false;
 }
 
 void SystemInfo::timerEvent(QTimerEvent *event)
@@ -305,6 +333,21 @@ QString SystemInfo::kernelVersion() const
 QString SystemInfo::qtDiag() const
 {
     return m_qtDiagContents;
+}
+
+QVariant SystemInfo::readEnvironmentVariable(const QString &name) const
+{
+    return qgetenv(name.toLocal8Bit());
+}
+
+bool SystemInfo::isEnvironmentVariableSet(const QString &name) const
+{
+    return !qgetenv(name.toLocal8Bit()).isNull();
+}
+
+bool SystemInfo::isEnvironmentVariableEmpty(const QString &name) const
+{
+    return qgetenv(name.toLocal8Bit()).isEmpty();
 }
 
 void SystemInfo::classBegin()

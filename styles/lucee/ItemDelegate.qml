@@ -60,6 +60,9 @@ T.ItemDelegate {
     font.weight: Font.Light
 
     Cursor {
+        onActivated: {
+            control.clicked();
+        }
         onPressAndHold: {
             control.pressAndHold();
         }

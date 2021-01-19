@@ -33,7 +33,6 @@
 .pragma library
 .import shared.utils 1.0 as Utils
 
-var request = new XMLHttpRequest()
 var errorCounter = 0
 var errorFunc = 0
 
@@ -42,8 +41,8 @@ function setErrorFunction(func) {
     errorFunc = func
 }
 
-function serverCall(url, data, dataReadyFunction, xhr) {
-    var i = 0
+function serverCall(url, data, dataReadyFunction) {
+    var i = 0;
     for (var key in data)
     {
         if (i === 0) {
@@ -51,40 +50,37 @@ function serverCall(url, data, dataReadyFunction, xhr) {
         } else {
             url += "&" + key+ "=" + data[key];
         }
-        i++
+        i++;
     }
 
-    // when no xhr is defined use the global one and reuse it
-    if (xhr === undefined) {
-        xhr = new XMLHttpRequest()
-    }
-
-    console.log(Utils.Logging.sysui, "HTTP GET to " + url);
-    if (xhr.readyState !== 0) {
-        xhr.abort();
-    }
+    var xhr = new XMLHttpRequest();
+    console.log(Utils.Logging.apps, "HTTP GET to " + url);
     xhr.open("GET", url);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-
             if (xhr.responseText !== "") {
-                errorCounter = 0
-                var data = JSON.parse(xhr.responseText);
-                return dataReadyFunction(data)
-            } else {
-                console.log(Utils.Logging.sysui, "JSONBackend: " + xhr.status + xhr.statusText)
-                errorCounter++
-                if (errorCounter >= 3 && errorFunc) {
-                    errorFunc()
+                errorCounter = 0;
+                var data = 0;
+
+                try {
+                    data = JSON.parse(xhr.responseText);
+                } catch(e) {
+                    console.warn(Utils.Logging.apps, "JSONBackend error parsing answer:",
+                                 xhr.responseText);
                 }
 
-                return dataReadyFunction(0)
+                return dataReadyFunction(data);
+            } else {
+                console.warn(Utils.Logging.apps, "JSONBackend: status:", xhr.status,
+                             xhr.statusText);
+                errorCounter++;
+                if (errorCounter >= 3 && errorFunc) {
+                    errorFunc();
+                }
+
+                return dataReadyFunction(0);
             }
         }
     }
     xhr.send();
-}
-
-function abortableServerCall(url, data, dataReadyFunction) {
-    serverCall(url,data,dataReadyFunction,request)
 }

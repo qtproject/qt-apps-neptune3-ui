@@ -33,7 +33,9 @@
 import QtQuick 2.8
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
+import shared.com.pelagicore.systeminfo 1.0
 import QtApplicationManager.Application 2.0
+import QtApplicationManager 2.0
 import Qt.labs.settings 1.0
 
 QtObject {
@@ -49,15 +51,19 @@ QtObject {
     property bool qt3DStudioAvailable: false
     property color vehicle3DstudioColor
 
-    // here we use loader to prevent build failures in case when Qt3DStudio is not available in the libs
+    readonly property SystemInfo systemInfo: SystemInfo {}
+    // here we use loader to prevent build failures in case
+    // when Qt3DStudio is not available in the libs
     property Loader qt3DStudioAvailableChecker: Loader {
         visible: false
         source: "../helpers/Qt3DStudioAvailable.qml"
         onLoaded: {
-            root.qt3DStudioAvailable = true
+            root.qt3DStudioAvailable = systemInfo.allow3dStudioPresentations
             source = ""
         }
     }
+
+    readonly property bool allowOpenGLContent: systemInfo.allowOpenGLContent
 
     property Settings settings3D : Settings {}
     function setRuntime(runtime) {
@@ -133,58 +139,62 @@ QtObject {
     property InstrumentCluster cluster: InstrumentCluster { id: cluster }
 
     readonly property IntentHandler intentHandler: IntentHandler {
-        intentIds: "vehicle-control"
+        intentIds: ["vehicle-control", "activate-app"]
         onRequestReceived: {
-            var action  = request.parameters["action"];
-            var side    = request.parameters["side"];
-            var part    = request.parameters["part"];
+            switch (request.intentId) {
+            case "vehicle-control":
+                var action  = request.parameters["action"];
+                var side    = request.parameters["side"];
+                var part    = request.parameters["part"];
 
-            switch (part) {
-                case "trunk":
-                    if (action === "open") {
-                        root.trunkOpened = true;
-                        uiSettings.trunkOpen = true;
-                    }
-                    if (action === "close") {
-                        root.trunkOpened = false;
-                        uiSettings.trunkOpen = false;
-                    }
-                break; //trunk
-                case "sunroof":
-                    if (action === "open") {
-                        root.roofOpenProgress = 1.0;
-                        uiSettings.roofOpenProgress = 1.0;
-                    }
-                    if (action === "close") {
-                        root.roofOpenProgress = 0.0;
-                        uiSettings.roofOpenProgress = 0.0;
-                    }
-                break; //sunroof
-                case "door":
-                    if (side === "left") {
+                switch (part) {
+                    case "trunk":
                         if (action === "open") {
-                            root.leftDoorOpened = true;
-                            uiSettings.door1Open = true;
+                            uiSettings.trunkOpen = true;
+                        } else if (action === "close") {
+                            uiSettings.trunkOpen = false;
                         }
-                        if (action === "close") {
-                            root.leftDoorOpened = false;
-                            uiSettings.door1Open  = false;
-                        }
-                    }
-                    if (side === "right") {
+                        break; //trunk
+                    case "sunroof":
                         if (action === "open") {
-                            root.rightDoorOpened = true;
-                            uiSettings.door2Open  = true;
+                            uiSettings.roofOpenProgress = 1.0;
+                        } else if (action === "close") {
+                            uiSettings.roofOpenProgress = 0.0;
                         }
-                        if (action === "close") {
-                            root.rightDoorOpened = false;
-                            uiSettings.door2Open  = false;
+                        break; //sunroof
+                    case "door":
+                        if (side === "left") {
+                            if (action === "open") {
+                                uiSettings.door1Open = true;
+                            } else if (action === "close") {
+                                uiSettings.door1Open  = false;
+                            }
+                        } else if (side === "right") {
+                            if (action === "open") {
+                                uiSettings.door2Open  = true;
+                            } else if (action === "close") {
+                                uiSettings.door2Open  = false;
+                            }
                         }
-                    }
-                break; //door
-            }//switch
+                        break; //door
+                    default:
+                        break;
+                } //switch part
+
+                root.requestRaiseAppReceived();
+                request.sendReply({ "done": true })
+                break;
+            case "activate-app":
+                root.requestRaiseAppReceived();
+                request.sendReply({ "done": true })
+                break;
+            default:
+                break;
+            } //switch intent id
         }
     }
+
+    signal requestRaiseAppReceived()
 
     function setTrunk() {
         if (root.trunkOpened) {
@@ -219,5 +229,9 @@ QtObject {
     function setRoofOpenProgress(value) {
         root.roofOpenProgress = value;
         uiSettings.roofOpenProgress = value;
+    }
+
+    function createIntentToMap(intentId, params) {
+        IntentClient.sendIntentRequest(intentId, "com.pelagicore.map", params);
     }
 }

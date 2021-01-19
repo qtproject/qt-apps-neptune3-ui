@@ -46,39 +46,46 @@ Item {
     property bool leftDoorOpened: false
     property bool rightDoorOpened: false
     property real roofOpenProgress: 0.0
+    property bool enableOpacityMasks
 
     signal trunkClicked()
 
-    Rectangle {
-        id: carImageMask
+    Item {
+        anchors.fill: parent
+        clip: true
+        visible: true
 
-        anchors.fill: vehicleTopView
-        gradient: Gradient {
-            GradientStop { position: 0.22; color: "#00000000" }
-            GradientStop { position: 0.44; color: "#ff000000" }
-            GradientStop { position: 1.0; color: "#ff000000" }
+        Rectangle {
+            id: carImageMask
+
+            anchors.fill: vehicleTopView
+            gradient: Gradient {
+                GradientStop { position: 0.22; color: "#00000000" }
+                GradientStop { position: 0.44; color: "#ff000000" }
+                GradientStop { position: 1.0; color: "#ff000000" }
+            }
+            visible: false
         }
-        visible: false
-    }
 
-    OpacityMask {
-        anchors.fill: vehicleTopView
-        maskSource: carImageMask
-        source: vehicleTopView
-    }
+        OpacityMask {
+            anchors.fill: vehicleTopView
+            maskSource: carImageMask
+            source: vehicleTopView
+        }
 
-    TopPanel {
-        id: vehicleTopView
+        TopPanel {
+            id: vehicleTopView
 
-        anchors.top: parent.top
-        anchors.topMargin: Sizes.dp(-160)
-        anchors.horizontalCenter: parent.horizontalCenter
-        visible: false
+            anchors.top: parent.top
+            anchors.topMargin: Sizes.dp(-160)
+            anchors.horizontalCenter: parent.horizontalCenter
+            visible: !root.enableOpacityMasks
 
-        trunkOpen: root.trunkOpened
-        leftDoorOpen: root.leftDoorOpened
-        rightDoorOpen: root.rightDoorOpened
-        roofOpenProgress: root.roofOpenProgress
+            trunkOpen: root.trunkOpened
+            leftDoorOpen: root.leftDoorOpened
+            rightDoorOpen: root.rightDoorOpened
+            roofOpenProgress: root.roofOpenProgress
+        }
     }
 
     VehicleButton {

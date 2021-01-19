@@ -46,21 +46,16 @@ QtObject {
 
     readonly property Connections notificationManagerConnection: Connections {
         target: root.model
-        onNotificationAdded: {
+        function onNotificationAdded() {
             root.notificationAdded();
         }
 
-        onNotificationAboutToBeRemoved: {
+        function onNotificationAboutToBeRemoved() {
             root.notificationRemoved();
         }
     }
 
-    function showNotification() {
-        root.notificationToastVisible = true;
-    }
-
     function closeNotification() {
-        root.notificationToastVisible = false;
         root.notificationClosed();
     }
 
@@ -77,6 +72,7 @@ QtObject {
         while (root.count > 0) {
             removeNotification(NotificationManager.get(0).id);
         }
+
         root.notificationsCleared();
     }
 }

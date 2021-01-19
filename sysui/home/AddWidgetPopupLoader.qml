@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtQml 2.14
 
 /*
     A seamless wrapper for AddWidgetPopup that loads it on demand
@@ -56,7 +57,7 @@ Loader {
 
     Connections {
         target: item
-        onClosed: {
+        function onClosed() {
             root.closed();
         }
     }
@@ -86,7 +87,16 @@ Loader {
         }
     }
 
-    Binding { target: root.item; property: "parent"; value: root.popupParent }
-    Binding { target: root.item; property: "originItem"; value: root.originItem }
-    Binding { target: root.item; property: "model"; value: root.model }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "parent"; value: root.popupParent;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "originItem"; value: root.originItem;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "model"; value: root.model;
+    }
 }

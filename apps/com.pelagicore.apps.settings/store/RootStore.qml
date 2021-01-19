@@ -32,6 +32,9 @@
 
 import QtQml 2.2
 import QtQml.Models 2.3
+
+import QtApplicationManager.Application 2.0
+
 import shared.utils 1.0
 import shared.Style 1.0
 import shared.Connectivity 1.0
@@ -77,6 +80,7 @@ QtObject {
     function updateLanguage(languageCode, language) {
         console.log(helper.category, 'updateLanguage: ' + languageCode)
         uiSettings.setLanguage(languageCode);
+        uiSettings.setRtlMode(Qt.locale(languageCode).textDirection === Qt.RightToLeft);
         helper.showNotification(qsTr("UI Language changed"), qsTr("UI Language changed into %1 (%2)").arg(language).arg(languageCode));
     }
 
@@ -86,11 +90,7 @@ QtObject {
     }
 
     // Accent Colors & themes segment
-    property bool startupAccentColor: true
     property var accentColorsModel: Config._initAccentColors(uiSettings.theme)
-    property string lighThemeLastAccColor: "#d35756"
-    property string darkThemeLastAccColor: "#b75034"
-
     readonly property ListModel themeModel: ListModel {
         // TODO: This data will be populated from settings server later
         // the server stores the "theme" as an integer
@@ -101,47 +101,64 @@ QtObject {
     readonly property UISettings uiSettings: UISettings {
         onAccentColorChanged: {
             root.accentColorsModel.forEach(function(element) {
-                var c1 = Qt.lighter(element.color, 1.0)
-                var c2 = Qt.lighter(accentColor, 1.0)
-                element.selected = Qt.colorEqual(element.color, accentColor)
-                        ||  Math.abs(c1.r - c2.r) + Math.abs(c1.g - c2.g) + Math.abs(c1.b - c2.b) < 0.01;
-
+                element.selected = Qt.colorEqual(element.color, accentColor);
             });
-            if (startupAccentColor) {
-                //Prevent setting back light theme's last accent color in cases when the UI
-                //was closed with light theme set. If this is the case, reset dark theme's
-                //default accent color.
-                var accColorInPalette = root.accentColorsModel.find(function(color) {
-                    return (color.color === accentColor);
-                });
-                if (accColorInPalette === undefined) {
-                    uiSettings.accentColor = accentColorsModel[0].color;
-                }
-                startupAccentColor = false;
+        }
+    }
+
+    function selectNextAccentColor() {
+        var selected = -1;
+        for (var i = 0; i < root.accentColorsModel.length; ++i) {
+            if (root.accentColorsModel[i].selected === true) {
+                selected = i;
+                break;
             }
+        }
+
+        if (selected >= 0) {
+            root.accentColorsModel[selected].selected = false;
+            selected = selected === root.accentColorsModel.length - 1 ? 0 : selected + 1;
+            root.accentColorsModel[selected].selected = true;
+            updateAccentColor(root.accentColorsModel[selected].color);
         }
     }
 
     function updateAccentColor(value) {
+        console.log(helper.category, 'updateAccentColor: ', value)
         uiSettings.accentColor = value;
+        helper.showNotification(qsTr("UI Accent Color changed"), qsTr("UI Accent Color changed into %1").arg(value));
     }
 
+    //value: 1 -- dark, 0 -- light
     function updateTheme(value) {
-        if (value === 1 && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
-            root.lighThemeLastAccColor = uiSettings.accentColor;
-        } else if (value === 0 && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
-            root.darkThemeLastAccColor = uiSettings.accentColor;
-        }
+        console.log(helper.category, 'updateTheme: ', value)
         uiSettings.setTheme(value);
-        //set previous to theme accentColor
-        if (lighThemeLastAccColor !== "" && value === 0) {
-            updateAccentColor(root.lighThemeLastAccColor);
-        } else if (darkThemeLastAccColor !== "" && value === 1) {
-            updateAccentColor(root.darkThemeLastAccColor);
-        } else {
-            updateAccentColor(root.accentColorsModel[0].color);
+        if (value === 0) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Light Theme"));
+        } else if (value === 1) {
+            helper.showNotification(qsTr("UI Theme changed"), qsTr("UI Theme changed into Dark Theme"));
         }
     }
+
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: ["activate-app", "set-next-accent-color"]
+        onRequestReceived: {
+            switch (request.intentId) {
+            case "activate-app":
+                root.requestRaiseAppReceived()
+                request.sendReply({ "done": true })
+                break;
+            case "set-next-accent-color":
+                selectNextAccentColor();
+                request.sendReply({ "done": true })
+                break;
+            default:
+                request.sendReply({ "done": true })
+                break;
+            }
+        }
+    }
+    signal requestRaiseAppReceived()
 
     // Initialization
     Component.onCompleted: {

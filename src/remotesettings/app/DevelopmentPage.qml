@@ -1,6 +1,6 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -54,7 +54,7 @@ Flickable {
             Layout.alignment: Qt.AlignHCenter
 
             Label {
-                text: "System UI"
+                text: qsTr("System UI")
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
             }
@@ -69,9 +69,19 @@ Flickable {
             }
 
             Label {
-                text: "Cluster"
+                text: qsTr("Cluster")
                 Layout.alignment: Qt.AlignHCenter
                 font.bold: true
+            }
+
+            Button {
+                Layout.alignment: Qt.AlignHCenter
+                text: instrumentCluster.enableSimulation
+                      ? qsTr("Disable simulation")
+                      : qsTr("Enable simulation")
+                onClicked: {
+                    instrumentCluster.enableSimulation = !instrumentCluster.enableSimulation;
+                }
             }
 
             GridLayout {
@@ -94,13 +104,13 @@ Flickable {
 
 
         Label {
-            text: "Vehicle state"
+            text: qsTr("Vehicle state")
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
         }
 
         GridLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             columns: root.width > 2 * (outsideTemperatureLabel.width + outsideTemperature.width + columnSpacing)
                      ? 4 : 2
@@ -116,9 +126,9 @@ Flickable {
             Slider {
                 id: outsideTemperature
                 value: instrumentCluster.outsideTemperatureCelsius
-                from: -100
+                from: -60.0
                 stepSize: 0.5
-                to: 100.0
+                to: 60.0
                 onValueChanged: {
                     if (pressed) {
                         instrumentCluster.outsideTemperatureCelsius = value
@@ -141,37 +151,22 @@ Flickable {
                 value: instrumentCluster.mileageKm
                 from: 0
                 stepSize: 0.5
-                to: 9E6
+                to: 1E6
                 onValueChanged: if (pressed) { instrumentCluster.mileageKm = value }
-
-                Label {
-                    anchors.centerIn: parent.handle
-                    anchors.verticalCenterOffset: - parent.handle.height * 2
-                    text: parent.value
-                }
-            }
-
-            // Route progress
-            Label {
-                text: qsTr("Route \n progress, %")
-            }
-            Slider {
-                id: routeProgressSlider
-                from: 0
-                to: 1.0
-                stepSize: 0.01
-                value: instrumentCluster.navigationProgressPercents
-                onValueChanged: {
-                    if (pressed) {
-                        instrumentCluster.navigationProgressPercents = value
-                    }
-                }
 
                 Label {
                     anchors.centerIn: parent.handle
                     anchors.verticalCenterOffset: - parent.handle.height * 2
                     text: parent.value.toFixed(2)
                 }
+            }
+
+            // Route progress
+            Label {
+                text: qsTr("Route \n progress, % ")
+            }
+            Label {
+                text: (100.0 * instrumentCluster.navigationProgressPercents).toFixed(0)
             }
 
             // Route distance
@@ -200,7 +195,7 @@ Flickable {
 
 
         RowLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             // driveTrainState field
             Label {
@@ -245,60 +240,23 @@ Flickable {
             Layout.alignment: Qt.AlignHCenter
             spacing: 50
 
-            //Driving mode range Field
-            Dial {
-                id: drivingModeRangeDial
-                from: 0
-                to: 1000
-                stepSize: 1.0
-                value: instrumentCluster.drivingModeRangeKm
-                onMoved: instrumentCluster.drivingModeRangeKm = value
-
-                Label {
-                    text: qsTr("Range:")
-                    anchors.bottom: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-                Label {
-                    text: Math.round(parent.value)
-                    anchors.top: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+            Label {
+                text: qsTr("Range: ") + instrumentCluster.drivingModeRangeKm
             }
 
-            // ECO mode range Field
-            Dial {
-                id: ecoModeRangeDial
-                from: 0
-                to: 500
-                stepSize: 1.0
-                value: instrumentCluster.drivingModeECORangeKm
-                onMoved: instrumentCluster.drivingModeECORangeKm = value
-
-                Label {
-                    text: qsTr("ECO Range:")
-                    anchors.bottom: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-
-
-                Label {
-                    text: Math.round(parent.value)
-                    anchors.top: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+            Label {
+                text: qsTr("ECO Range: ") + instrumentCluster.drivingModeECORangeKm
             }
         }
 
         Label {
-            text: "Telltales"
+            text: qsTr("Telltales")
             Layout.alignment: Qt.AlignHCenter
             font.bold: true
         }
 
         GridLayout {
-            enabled: instrumentCluster.isConnected
+            enabled: instrumentCluster.isConnected && !instrumentCluster.enableSimulation
             Layout.alignment: Qt.AlignHCenter
             columns: root.width < neptuneScale(100) ? 2 : 4
 

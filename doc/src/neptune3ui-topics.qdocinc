@@ -45,6 +45,7 @@
     \li \l {Neptune 3 UI - Companion App}{Companion App}
     \li \l {Neptune 3 UI - Configure Screens on Embedded Linux}{Configure Screens on Embedded Linux}
     \li \l {Neptune 3 UI - Squish Automated UI Testing}{Squish Automated UI Testing}
+    \li \l {Neptune 3 UI - Voice Assistant}{Voice Assistant}
 \endlist
 
 \section2 Application Insights
@@ -65,7 +66,9 @@
 
 \list
     \li \l {Neptune 3 UI - Components and Interfaces}{Components and Interfaces}
+    \li \l {Neptune 3 UI - Systemd Service Settings}{Systemd Service Settings}
     \li \l {Develop a Parking App}
+    \li \l {Neptune 3 UI - Deployment Server}{Deployment Server}
 \endlist
 //! [content]
 */

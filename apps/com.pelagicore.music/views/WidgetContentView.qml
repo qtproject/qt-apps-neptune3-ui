@@ -119,7 +119,7 @@ Item {
         onNextClicked: root.store.nextSong()
         Connections {
             target: root.store
-            onSongModelPopulated: { artAndTitlesBlock.populateModel(); }
+            function onSongModelPopulated() { artAndTitlesBlock.populateModel(); }
         }
     }
 

@@ -34,7 +34,7 @@
 import QtQuick 2.8
 import QtQuick.Window 2.2
 import shared.com.pelagicore.remotesettings 1.0
-import application.windows 1.0
+//import application.windows 1.0
 
 import shared.Sizes 1.0
 import shared.Style 1.0
@@ -79,6 +79,7 @@ Item {
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
             item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
+            item.clusterUIMode = Qt.binding( function() {return store.behaviourInterface.clusterUIMode})
         }
     }
 
@@ -99,6 +100,7 @@ Item {
             item.cruiseSpeed = Qt.binding( function() {return store.vehicleInterface.speedCruise})
             item.ePower = Qt.binding( function() {return store.vehicleInterface.ePower})
             item.drivetrain = Qt.binding( function() {return store.vehicleInterface.driveTrainState})
+            item.clusterUIMode = Qt.binding( function() {return store.behaviourInterface.clusterUIMode})
         }
     }
 

@@ -48,6 +48,7 @@ Control {
     property alias source: contactImage.source
     property bool lastItem: false
     property bool maximized: false
+    property bool enableOpacityMasks
     signal callWidgetClicked(var handle)
 
     background: Image {
@@ -78,6 +79,7 @@ Control {
             anchors.verticalCenter: parent.verticalCenter
             opacity: 1
             enabled: false
+            enableOpacityMasks: root.enableOpacityMasks
         }
 
         Column {
@@ -103,6 +105,10 @@ Control {
                 text: model.phoneNumbers.get(0).number + " - " + model.phoneNumbers.get(0).name
                 elide: Text.ElideRight
             }
+        }
+
+        MouseArea {
+            anchors.fill: parent
         }
 
         ToolButton {

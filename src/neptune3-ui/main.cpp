@@ -36,9 +36,10 @@
 #include <QtIviCore/QtIviCoreVersion>
 #include <QtAppManMain/main.h>
 #include <QtAppManMain/defaultconfiguration.h>
-#include <QtAppManPackage/package.h>
-#include <QtAppManInstaller/sudo.h>
+#include <QtAppManPackage/packageutilities.h>
+#include <QtAppManManager/sudo.h>
 #include <QtAppManWindow/touchemulation.h>
+#include <QtGui/QFontDatabase>
 #include <QGuiApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
@@ -90,11 +91,10 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     Logging::initialize();
 
-    Package::ensureCorrectLocale();
+    PackageUtilities::ensureCorrectLocale();
 
     try {
-        QStringList deploymentWarnings;
-        Sudo::forkServer(Sudo::DropPrivilegesPermanently, &deploymentWarnings);
+        Sudo::forkServer(Sudo::DropPrivilegesPermanently);
 
         qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
@@ -114,6 +114,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
+        QFontDatabase::addApplicationFont(QCoreApplication::applicationDirPath()
+                                          + "/imports_shared/assets/fonts/DejaVuSans.ttf");
 
         // load the Qt translations
         QTranslator qtTranslator;
@@ -128,7 +130,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #endif
 
         cfg.parse();
-        a.setup(&cfg, deploymentWarnings);
+        a.setup(&cfg);
 
 #ifdef USE_QT_SAFE_RENDERER
         //Set env variables for Qt Safe Renderer for sending heartbeats

@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
@@ -81,15 +82,32 @@ Item {
         }
         onClicked: {
             if (currentText === "sources") {
+                //set model each time to ensure data accuracy
+                musicSourcesPopup.model = root.store.musicSourcesModel
+
                 //FIXME in multiprocess store.musicSourcesModel.length returns 1
                 //even though is more. When spotify and/or web radio are uninstalled
                 //and installed again, then it updates fine.
-                var pos = currentItem.mapToItem(root.rootItem, currentItem.width/2, currentItem.height/2);
+                let pos = currentItem.mapToItem(root.rootItem,
+                                                currentItem.width / 2,
+                                                currentItem.height / 2);
+                let posX = pos.x / root.Sizes.scale;
+                let posY = pos.y / root.Sizes.scale;
 
-                //set model each time to ensure data accuracy
-                musicSourcesPopup.model = root.store.musicSourcesModel
-                musicSourcesPopup.originItemX = pos.x;
-                musicSourcesPopup.originItemY = pos.y;
+                // caclulate popup height based on musicSources list items
+                // + 200 for header & margins
+                musicSourcesPopup.height = Qt.binding(() => {
+                    return musicSourcesPopup.model
+                        ? root.Sizes.dp(200 + (musicSourcesPopup.model.count * 96))
+                        : root.Sizes.dp(296);
+                });
+                musicSourcesPopup.width = Qt.binding(() => root.Sizes.dp(910))
+                musicSourcesPopup.originItemX = Qt.binding(() => root.Sizes.dp(posX));
+                musicSourcesPopup.originItemY = Qt.binding(() => root.Sizes.dp(posY));
+                musicSourcesPopup.popupY = Qt.binding(() => {
+                    return root.Sizes.dp(Config.centerConsoleHeight / 4);
+                });
+
                 musicSourcesPopup.visible = true;
             }
         }
@@ -98,23 +116,13 @@ Item {
     MusicSourcesPopup {
         id: musicSourcesPopup
 
-        // MusicSourcesPopup a Window, not an Item, propagation of attached property values don't work
-        // So have to use the Sizes from elsewhere, from an actual Item.
-
-        width: root.Sizes.dp(910)
-
-        // caclulate popup height based on musicSources list items
-        // + 200 for header & margins
-        height: model ? root.Sizes.dp(200 + (model.count * 96)) : root.Sizes.dp(296)
-
-        popupY: root.Sizes.dp(Config.centerConsoleHeight / 4)
-
         onSwitchSourceClicked: {
             store.switchSource(source)
         }
     }
 
     Binding {
+        restoreMode: Binding.RestoreBinding;
         target: root.store; property: "contentType";
         value: {
             switch (toolsColumn.currentText) {

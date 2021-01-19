@@ -49,31 +49,47 @@ import shared.Sizes 1.0
      SomeItem {}
   }
  */
-MouseArea {
+Item {
     id: root
-    drag.target: root
-    drag.axis: Drag.XAxis
-    drag.filterChildren: dragEnabled
-    drag.minimumX: 0
-    drag.maximumX: root.width - stickOutWidth
-
-    opacity: 0.5 + 0.5*(1 - (root.x - drag.minimumX)/(drag.maximumX - drag.minimumX))
-
-    // Whether the drag behavior is enabled.
-    property bool dragEnabled: true
 
     // how much of it should be sticking out from the right side of the display when
     // the widget drawer has been closed
     readonly property real stickOutWidth: Sizes.dp(90)
 
+    property Item slot: widgetDrawerSlot
+    property alias slotWidth: widgetDrawerSlot.width
+    property alias slotHeight: widgetDrawerSlot.height
+    property alias empty: widgetDrawerSlot.empty
+
     // true if in full view, false if it's tucked away on the right side of the display
     property bool open: true
     onOpenChanged: d.applyOpenState()
 
+    opacity: 0.5 + 0.5 * (1 - Math.abs(root.x) / d.widthWithoutStick)
+
+    Item {
+        id: widgetDrawerSlot
+        anchors.horizontalCenter: root.horizontalCenter
+        readonly property bool empty: children.length === 0
+    }
+
+    MouseArea {
+        id: handl
+        width: root.stickOutWidth
+        height: root.height
+        anchors.left: root.left
+
+        drag.target: root
+        drag.axis: Drag.XAxis
+
+        drag.minimumX: d.layoutMirroringEnabled ? - d.widthWithoutStick : 0
+        drag.maximumX: d.layoutMirroringEnabled ? 0 : d.widthWithoutStick
+    }
+
     Connections {
-        target: drag
-        onActiveChanged: {
-            if (root.drag.active) {
+        target: handl.drag
+        function onActiveChanged() {
+            if (handl.drag.active) {
                 d.lastX = root.x;
                 d.direction = 0;
                 d.dragging = true;
@@ -102,12 +118,19 @@ MouseArea {
         property int direction
         property bool dragging: false
         readonly property real minimumDrag: Sizes.dp(90)
+        readonly property real widthWithoutStick: root.width - root.stickOutWidth
+        readonly property bool layoutMirroringEnabled: root.LayoutMirroring.enabled
+
+        onLayoutMirroringEnabledChanged: {
+            d.dragging = true
+            d.applyOpenState()
+        }
 
         function applyOpenState() {
             if (root.open) {
-                root.x = root.drag.minimumX;
+                root.x = 0;
             } else {
-                root.x = root.drag.maximumX;
+                root.x = d.layoutMirroringEnabled ? - d.widthWithoutStick : d.widthWithoutStick;
             }
         }
     }
@@ -115,7 +138,8 @@ MouseArea {
         if (!d.dragging) {
             return;
         }
-        if (x > d.lastX) {
+        let isDirectionForOpening = d.layoutMirroringEnabled ? (x < d.lastX) : (x > d.lastX)
+        if (isDirectionForOpening) {
             if (d.direction !== 1) {
                 d.direction = 1;
                 d.startX = x;

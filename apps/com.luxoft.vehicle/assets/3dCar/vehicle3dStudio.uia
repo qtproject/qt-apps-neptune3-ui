@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <application xmlns="http://qt.io/qt3dstudio/uia">
     <assets initial="vehicle3dStudio">
-        <presentation src="presentations/vehicle3dStudio.uip" id="vehicle3dStudio"/>
-        <dataInput type="Vector3" name="diffuseColor"/>
-        <dataInput type="Vector3" name="leftDoorRotation"/>
-        <dataInput type="Vector3" name="rightDoorRotation"/>
-        <dataInput type="Vector3" name="sunRoofPosition"/>
-        <dataInput type="Vector3" name="sunRoofRotation"/>
-        <dataInput type="Vector3" name="trunkRotation"/>
-        <dataInput type="Vector3" name="vehicleRotation"/>
+        <presentation id="vehicle3dStudio" src="presentations/vehicle3dStudio.uip"/>
+        <dataInput metadata="" name="diffuseColor" type="Vector4"/>
+        <dataInput metadata="" name="leftDoorRotation" type="Vector3"/>
+        <dataInput metadata="" name="rightDoorRotation" type="Vector3"/>
+        <dataInput metadata="" name="sunRoofPosition" type="Vector3"/>
+        <dataInput metadata="" name="sunRoofRotation" type="Vector3"/>
+        <dataInput metadata="" name="trunkRotation" type="Vector3"/>
+        <dataInput metadata="" name="vehicleRotation" type="Vector3"/>
     </assets>
     <statemachine ref="#logic">
         <visual-states>

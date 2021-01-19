@@ -30,9 +30,10 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtApplicationManager.Application 2.0
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
-import QtApplicationManager.Application 2.0
+import shared.com.pelagicore.systeminfo 1.0
 
 /*!
     \qmltype ClusterStore
@@ -50,6 +51,7 @@ RootStoreInterface {
     readonly property UISettings uiSettings: UISettings {}
     // true if QtSafeRenderer is enabled
     readonly property bool qsrEnabled: ApplicationInterface.systemProperties["qsrEnabled"]
+    readonly property SystemInfo systemInfo: SystemInfo {}
 
     vehicleInterface: VehicleInterface {
         speed: clusterDataSource.speed
@@ -88,7 +90,8 @@ RootStoreInterface {
             }
         }
 
-        threeDGauges: qt3DStudioAvailable && uiSettings.threeDGauges
+        threeDGauges: systemInfo.allow3dStudioPresentations && qt3DStudioAvailable
+                      && uiSettings.threeDGauges
         hideGauges: uiSettings.hideGauges
         navigationMode: uiSettings.navigationMode
     }

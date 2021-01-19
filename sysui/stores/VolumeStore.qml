@@ -36,7 +36,12 @@ import QtIvi.Media 1.0
 QtObject {
     id: root
 
-    readonly property MediaPlayer player: MediaPlayer { id: player }
+    readonly property MediaPlayer player: MediaPlayer {
+        id: player
+        Component.onCompleted: {
+            player.volume = root.volume;
+        }
+    }
 
 
     property var uiSettings

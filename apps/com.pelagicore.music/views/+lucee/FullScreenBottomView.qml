@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
+import QtQml 2.14
 import shared.utils 1.0
 import shared.controls 1.0
 import shared.animations 1.0
@@ -78,6 +79,7 @@ Item {
     }
 
     Binding {
+        restoreMode: Binding.RestoreBinding;
         target: root.store; property: "contentType";
         value: {
             switch (rowViewOptions.currentText) {
@@ -159,7 +161,7 @@ Item {
             width: Sizes.dp(130)
             height: Sizes.dp(50)
             font.pixelSize: Sizes.dp(17)
-            text: "Title"
+            text: qsTr("Title")
             textFormat: Text.RichText
             font.weight: rowViewOptions.currentText === "track" ? Font.Bold : Font.Light
             color: rowViewOptions.currentText === "track" ? Style.accentColor : "#5e5d5d"
@@ -177,7 +179,7 @@ Item {
             width: Sizes.dp(130)
             height: Sizes.dp(50)
             font.pixelSize: Sizes.dp(17)
-            text: "Artist"
+            text: qsTr("Artist")
             textFormat: Text.RichText
             font.weight: rowViewOptions.currentText === "artists" ? Font.Bold : Font.Light
             color: rowViewOptions.currentText === "artists" ? Style.accentColor : "#5e5d5d"
@@ -195,7 +197,7 @@ Item {
             width: Sizes.dp(130)
             height: Sizes.dp(50)
             font.pixelSize: Sizes.dp(17)
-            text: "Album"
+            text: qsTr("Album")
             textFormat: Text.RichText
             font.weight: rowViewOptions.currentText === "albums" ? Font.Bold : Font.Light
             color: rowViewOptions.currentText === "albums" ? Style.accentColor : "#5e5d5d"

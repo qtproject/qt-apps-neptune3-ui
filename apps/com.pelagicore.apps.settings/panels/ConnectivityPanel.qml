@@ -55,7 +55,7 @@ Control {
         ListItem {
             id: wifiItem
             width: root.width
-            text: "WiFi"
+            text: qsTr("Wi-Fi")
             rightToolSymbol: "ic-next-level"
             enabled: root.wifiAvailable
             onClicked: root.wifiClicked()
@@ -64,7 +64,7 @@ Control {
         ListItem {
             id: hotspotItem
             width: root.width
-            text: "Hotspot"
+            text: qsTr("Hotspot")
             rightToolSymbol: "ic-next-level"
             enabled: root.wifiAvailable
             onClicked: root.hotspotClicked()
@@ -73,7 +73,7 @@ Control {
         ListItem {
             id: bluetoothItem
             width: root.width
-            text: "Bluetooth"
+            text: qsTr("Bluetooth")
             rightToolSymbol: "ic-next-level"
             dividerVisible: false
         }

@@ -1,0 +1,139 @@
+/****************************************************************************
+**
+** Copyright (C) 2020 Luxoft Sweden AB
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Neptune module of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL-QTAS$
+** Commercial License Usage
+** Licensees holding valid commercial Qt Automotive Suite licenses may use
+** this file in accordance with the commercial license agreement provided
+** with the Software or, alternatively, in accordance with the terms
+** contained in a written agreement between you and The Qt Company.  For
+** licensing terms and conditions see https://www.qt.io/terms-conditions.
+** For further information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+ \page neptune3ui-systemd-service-settings.html
+ \title Neptune 3 UI - Systemd Service Settings
+ \brief Description of settings used to start Neptune 3 UI as a systemd service.
+
+ There are three sections in Neptune 3 UI service file:
+
+ \list
+  \li [Unit]
+  \li [Service]
+  \li [Install]
+ \endlist
+
+ \section1 [Unit] Section
+
+ This section describes the service itself, including dependencies and/or conflicts,
+ as well as loading order.
+
+ The section consists of a number of variables, as follows:
+
+ \table
+  \header
+   \li Variable
+   \li Description
+
+  \row
+   \li Description=Neptune3-UI
+   \li Service description displayed by system tools
+
+  \row
+   \li After=dbus.service dbus-session@root.service systemd-user-sessions.service ivi-services.target
+   \li Loading order (After=dbus.service). It means that Neptune 3 UI systemd Service will be loaded
+       after dbus.service. Then goes dbus user session (there are two sessions - user and system session), and
+       a number of services providing data for Neptune 3 UI (ivi-services.target).
+
+  \row
+   \li Wants=ivi-services.target dbus-session@root.service
+   \li Tells that ivi-services.target and dbus user session are in direct dependence.
+
+  \row
+   \li Conflicts=neptune-qsr.service
+       Before=neptune-qsr.service
+       OnFailure=neptune-qsr.service
+   \li These variables describe the startup behavior: first, neptune3-ui starts, then it conflicts with
+       QSR Content app. Also, those variables mean that QSR content app should start, if neptune3-ui
+       crashes. It could be just {conflicts}, but in this case systemd does not wait for
+       complete shut down of Neptune 3 UI and shuts down both of the services.
+  \endtable
+
+  \section1 [Service] Section
+
+  This section describes, how the service starts up and what parameters are used for that.
+
+  \table
+   \header
+    \li Variable
+    \li Description
+
+   \row
+    \li User=root
+    \li Start as a root user (administrator in linux/unix).
+
+   \row
+    \li ExecStart=/opt/neptune3/neptune3-ui -r --dbus session -c am-config-neptune.yaml
+    \li Sevice startup command.
+
+   \row
+    \li WorkingDirectory=/opt/neptune3
+    \li Catalog, to which systemd switches to before service is started.
+
+   \row
+    \li EnvironmentFile=/etc/default/qt
+    \li Environment variables are loaded from the file in format \c Variable=value
+
+   \row
+    \li Environment=AM_STARTUP_TIMER=1
+    \li When set to "1", this variable enables measuring of time needed to
+        start up the Neptune 3 UI. In this case, the measured time value is displayed
+        in the system menu.
+        When set to "0", the measuring of time needed to start up the Neptune 3 UI
+        is turned off, and is not displayed in the system menu.
+
+   \row
+    \li Environment=QT_QPA_EGLFS_HIDECURSOR=1
+    \li This variable manages visibility of mouse cursor: when set to "1" mouse cursor
+        is hidden, when set to "0" it is visible.
+
+   \endtable
+
+   \section1 [Install] Section
+
+   In this section it's determined, how the service file will be installed.
+
+  \table
+   \header
+    \li Variable
+    \li Description
+
+   \row
+    \li WantedBy=multi-user.target
+    \li In this use case the service file is a part of multi-user system target. That's why it
+        will be installed as one of dependencies.
+
+   \endtable
+
+   \note In any case of changes in .service file, it's necessary to run \c {systemctl daemon-reload},
+         otherwise \c systemd will not reload the file changes and will use the old file.
+
+
+
+ */

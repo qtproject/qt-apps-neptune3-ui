@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import QtQml 2.14
 
 import system.controls 1.0
 
@@ -51,7 +52,16 @@ PopupItemLoader {
     state: item ? item.state : ""
     readonly property string currentTabName: item ? item.currentTabName : ""
 
-    Binding { target: root.item; property: "applicationModel"; value: root.applicationModel }
-    Binding { target: root.item; property: "systemModel"; value: root.systemModel }
-    Binding { target: root.item; property: "sysInfo"; value: root.sysInfo }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "applicationModel"; value: root.applicationModel;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "systemModel"; value: root.systemModel;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.item; property: "sysInfo"; value: root.sysInfo;
+    }
 }

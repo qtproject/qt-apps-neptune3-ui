@@ -31,12 +31,13 @@
 
 #include "neptuneiconlabel.h"
 #include "neptuneiconlabel_p.h"
-#include <QtQuickControls2/private/qquickiconimage_p.h> // #include "qquickiconimage_p.h"
-#include <QtQuickControls2/private/qquickmnemoniclabel_p.h> // #include "qquickmnemoniclabel_p.h"
+#include <QtQuickControls2/private/qquickiconimage_p.h>
+#include <QtQuickControls2/private/qquickmnemoniclabel_p.h>
 
 #include <QtGui/private/qguiapplication_p.h>
 #include <QtQuick/private/qquickitem_p.h>
 #include <QtQuick/private/qquicktext_p.h>
+#include <QtQml>
 
 #include <QFileSelector>
 
@@ -85,13 +86,14 @@ bool NeptuneIconLabelPrivate::createImage()
         return false;
 
     image = new QQuickIconImage(q);
+    QObject::connect(image, &QQuickIconImage::statusChanged,
+                     q, &NeptuneIconLabel::onImageStatusChanged);
     watchChanges(image);
     beginClass(image);
     image->setObjectName(QStringLiteral("image"));
     image->setName(icon.name());
     QFileSelector selector;
     image->setSource(selector.select(icon.source()));
-    image->setSourceSize(QSize(icon.width(), icon.height()));
     image->setColor(icon.color());
     QQmlEngine::setContextForObject(image, qmlContext(q));
     if (componentComplete)
@@ -125,7 +127,6 @@ void NeptuneIconLabelPrivate::syncImage()
     image->setName(icon.name());
     QFileSelector selector;
     image->setSource(selector.select(icon.source()));
-    image->setSourceSize(QSize(icon.width(), icon.height()));
     image->setColor(icon.color());
     const int valign = alignment & Qt::AlignVertical_Mask;
     image->setVerticalAlignment(static_cast<QQuickImage::VAlignment>(valign));
@@ -209,26 +210,43 @@ void NeptuneIconLabelPrivate::updateOrSyncLabel()
 void NeptuneIconLabelPrivate::updateImplicitSize()
 {
     Q_Q(NeptuneIconLabel);
+
     const bool showIcon = image && hasIcon();
     const bool showText = label && hasText();
     const qreal horizontalPadding = leftPadding + rightPadding;
     const qreal verticalPadding = topPadding + bottomPadding;
-    const qreal iconImplicitWidth = showIcon ? image->implicitWidth() : 0;
-    const qreal iconImplicitHeight = showIcon ? image->implicitHeight() : 0;
+    qreal iconImplicitWidth = showIcon ? image->implicitWidth() : 0;
+    qreal iconImplicitHeight = showIcon ? image->implicitHeight() : 0;
     const qreal textImplicitWidth = showText ? label->implicitWidth() : 0;
     const qreal textImplicitHeight = showText ? label->implicitHeight() : 0;
     const qreal effectiveSpacing = showText && showIcon && image->implicitWidth() > 0 ? spacing : 0;
-    const qreal implicitWidth = display == NeptuneIconLabel::TextBesideIcon ? iconImplicitWidth + textImplicitWidth + effectiveSpacing
-                                                                           : qMax(iconImplicitWidth, textImplicitWidth);
-    const qreal implicitHeight = display == NeptuneIconLabel::TextUnderIcon ? iconImplicitHeight + textImplicitHeight + effectiveSpacing
-                                                                           : qMax(iconImplicitHeight, textImplicitHeight);
+
+    // for Pad we apply scaling to image object, so it will be *iconScale size in result
+    // implicitWidth of image is equal to 1.0 scaled image
+    if (iconFillMode == QQuickImage::Pad) {
+        iconImplicitWidth *= iconScale;
+        iconImplicitHeight *= iconScale;
+    } else {
+        iconImplicitWidth = iconRectWidth;
+        iconImplicitHeight = iconRectHeight;
+    }
+
+    const qreal implicitWidth = display == NeptuneIconLabel::TextBesideIcon
+            ? iconImplicitWidth + textImplicitWidth + effectiveSpacing
+            : qMax(iconImplicitWidth, textImplicitWidth);
+    const qreal implicitHeight = display == NeptuneIconLabel::TextUnderIcon
+            ? iconImplicitHeight + textImplicitHeight + effectiveSpacing
+            : qMax(iconImplicitHeight, textImplicitHeight);
+
     q->setImplicitSize(implicitWidth + horizontalPadding, implicitHeight + verticalPadding);
 }
 
 // adapted from QStyle::alignedRect()
-static QRectF alignedRect(bool mirrored, Qt::Alignment alignment, const QSizeF &size, const QRectF &rectangle)
+static QRectF alignedRect(bool mirrored, Qt::Alignment alignment, const QSizeF &size,
+                          const QRectF &rectangle)
 {
-    alignment = QGuiApplicationPrivate::visualAlignment(mirrored ? Qt::RightToLeft : Qt::LeftToRight, alignment);
+    alignment = QGuiApplicationPrivate::visualAlignment(mirrored ? Qt::RightToLeft
+                                                                 : Qt::LeftToRight, alignment);
     qreal x = rectangle.x();
     qreal y = rectangle.y();
     const qreal w = size.width();
@@ -244,31 +262,74 @@ static QRectF alignedRect(bool mirrored, Qt::Alignment alignment, const QSizeF &
     return QRectF(x, y, w, h);
 }
 
+void NeptuneIconLabelPrivate::applyIconSizeAndPosition(const QRectF &iconRect) {
+    Q_ASSERT(image);
+
+    // if we are using scaled image we have first to upscale and shift image item
+    // according to iconScale (image.scale()), so when item is actually scaled, it will
+    // be the iconRect size at iconRect.topLeft position
+    // Do nothing in case of zero scale or 1.0 scale, just apply calculated iconRect
+    if (image->scale() > 0 && !qFuzzyCompare(image->scale(), 1.0)) {
+        image->setSize(iconRect.size() / image->scale());
+        const QPointF shift{(image->size().width() - iconRect.size().width()) * 0.5,
+                            (image->size().height() - iconRect.size().height()) * 0.5};
+        image->setPosition(iconRect.topLeft() - shift);
+    } else {
+        // To avoid aliasing, apply only integer values for position
+        // and size. Only valid for non-Pad mode
+        image->setSize(iconRect.size().toSize());
+        image->setPosition(iconRect.topLeft().toPoint());
+    }
+}
+
 void NeptuneIconLabelPrivate::layout()
 {
+    // layout() is called to arrange image and text elements inside NeptuneIconLabel item
+    //
+    // We have:
+    // 1. available area to fit
+    // 2. pre-defined icon rect size for image of iconRectWidth x iconRectHeight
+    // 3. fillMode
+    // If fill mode is not Pad, then we are trying to fit image inside pre-defined icon rect
+    // If pre-defined icon rect doesn't fit available size, min size is selected for resulting image
+    // rect
+    // If Pad mode is set, image is displayed according to defined iconScale multiplied by
+    // (source image pixel size). With Pad set image will be sliced by NeptuneIconLabel item borders
+
     if (!componentComplete)
         return;
 
     const qreal availableWidth = width - leftPadding - rightPadding;
     const qreal availableHeight = height - topPadding - bottomPadding;
 
+    // these sizes later compared to available item size, minimum is selected
+    qreal iconWidth{iconRectWidth};
+    qreal iconHeight{iconRectHeight};
+
+    if (image && image->status() == QQuickImageBase::Ready && iconFillMode == QQuickImage::Pad) {
+        // if Pad mode, use implicit size * iconScale
+        // implicit size is set after image is loaded
+        iconWidth = image->implicitWidth() * iconScale;
+        iconHeight = image->implicitHeight() * iconScale;
+    }
+
     switch (display) {
     case NeptuneIconLabel::IconOnly:
-        if (image) {
+        if (image && image->status() == QQuickImageBase::Ready) {
+            // Align rect for image according to available space
             const QRectF iconRect = alignedRect(mirrored, alignment,
-                                                QSizeF(qMin(image->implicitWidth() * iconScale, availableWidth),
-                                                       qMin(image->implicitHeight() * iconScale, availableHeight)),
-                                                QRectF(leftPadding, topPadding, availableWidth, availableHeight));
-            image->setSize(iconRect.size());
-            image->setPosition(iconRect.topLeft());
+                    QSizeF(qMin(iconWidth, availableWidth),
+                        qMin(iconHeight, availableHeight)),
+                    QRectF(leftPadding, topPadding, availableWidth, availableHeight));
+            applyIconSizeAndPosition(iconRect);
         }
         break;
     case NeptuneIconLabel::TextOnly:
         if (label) {
             const QRectF textRect = alignedRect(mirrored, alignment,
-                                                QSizeF(qMin(label->implicitWidth(), availableWidth),
-                                                       qMin(label->implicitHeight(), availableHeight)),
-                                                QRectF(leftPadding, topPadding, availableWidth, availableHeight));
+                    QSizeF(qMin(label->implicitWidth(), availableWidth),
+                        qMin(label->implicitHeight(), availableHeight)),
+                        QRectF(leftPadding, topPadding, availableWidth, availableHeight));
             label->setSize(textRect.size());
             label->setPosition(textRect.topLeft());
         }
@@ -276,67 +337,72 @@ void NeptuneIconLabelPrivate::layout()
 
     case NeptuneIconLabel::TextUnderIcon: {
         // Work out the sizes first, as the positions depend on them.
-        QSizeF iconSize;
-        QSizeF textSize;
-        if (image) {
-            iconSize.setWidth(qMin(image->implicitWidth() * iconScale, availableWidth));
-            iconSize.setHeight(qMin(image->implicitHeight() * iconScale, availableHeight));
+        QSizeF iconSize{0.0, 0.0};
+        QSizeF textSize{0.0, 0.0};
+        if (image && image->status() == QQuickImageBase::Ready) {
+            iconSize.setWidth(qMin(iconWidth, availableWidth));
+            iconSize.setHeight(qMin(iconHeight, availableHeight));
         }
         qreal effectiveSpacing = 0;
         if (label) {
             if (!iconSize.isEmpty())
                 effectiveSpacing = spacing;
             textSize.setWidth(qMin(label->implicitWidth(), availableWidth));
-            textSize.setHeight(qMin(label->implicitHeight(), availableHeight - iconSize.height() - effectiveSpacing));
+            textSize.setHeight(qMin(label->implicitHeight(),
+                                    availableHeight - iconSize.height() - effectiveSpacing));
         }
 
         QRectF combinedRect = alignedRect(mirrored, alignment,
-                                          QSizeF(qMax(iconSize.width(), textSize.width()),
-                                                 iconSize.height() + effectiveSpacing + textSize.height()),
-                                          QRectF(leftPadding, topPadding, availableWidth, availableHeight));
-        if (image) {
-            QRectF iconRect = alignedRect(mirrored, Qt::AlignHCenter | Qt::AlignTop, iconSize, combinedRect);
-            image->setSize(iconRect.size());
-            image->setPosition(iconRect.topLeft());
+                            QSizeF(qMax(iconSize.width(), textSize.width()),
+                            iconSize.height() + effectiveSpacing + textSize.height()),
+                            QRectF(leftPadding, topPadding, availableWidth, availableHeight));
+        if (image && image->status() == QQuickImageBase::Ready) {
+            // Align rect for image according to available space
+            QRectF iconRect = alignedRect(mirrored, Qt::AlignHCenter | Qt::AlignTop, iconSize,
+                                          combinedRect);
+            applyIconSizeAndPosition(iconRect);
         }
         if (label) {
-            QRectF textRect = alignedRect(mirrored, Qt::AlignHCenter | Qt::AlignBottom, textSize, combinedRect);
+            QRectF textRect = alignedRect(mirrored, Qt::AlignHCenter | Qt::AlignBottom, textSize,
+                                          combinedRect);
             label->setSize(textRect.size());
             label->setPosition(textRect.topLeft());
         }
         break;
     }
-
-    case NeptuneIconLabel::TextBesideIcon:
     default:
+        // includes case NeptuneIconLabel::TextBesideIcon:
         // Work out the sizes first, as the positions depend on them.
-        QSizeF iconSize(0, 0);
-        QSizeF textSize(0, 0);
-        if (image) {
-            iconSize.setWidth(qMin(image->implicitWidth() * iconScale, availableWidth));
-            iconSize.setHeight(qMin(image->implicitHeight() * iconScale, availableHeight));
+        QSizeF iconSize{0.0, 0.0};
+        QSizeF textSize{0.0, 0.0};
+        if (image && image->status() == QQuickImageBase::Ready) {
+            iconSize.setWidth(qMin(iconWidth, availableWidth));
+            iconSize.setHeight(qMin(iconHeight, availableHeight));
         }
         qreal effectiveSpacing = 0;
         if (label) {
             if (!iconSize.isEmpty())
                 effectiveSpacing = spacing;
-            textSize.setWidth(qMin(label->implicitWidth(), availableWidth - iconSize.width() - effectiveSpacing));
+            textSize.setWidth(qMin(label->implicitWidth(),
+                                   availableWidth - iconSize.width() - effectiveSpacing));
             textSize.setHeight(qMin(label->implicitHeight(), availableHeight));
         }
 
         const QRectF combinedRect = alignedRect(mirrored, alignment,
-                                                QSizeF(iconSize.width() + effectiveSpacing + textSize.width(),
-                                                       qMax(iconSize.height(), textSize.height())),
-                                                QRectF(leftPadding, topPadding, availableWidth, availableHeight));
-        if (image) {
-            const QRectF iconRect = alignedRect(mirrored, Qt::AlignLeft | Qt::AlignVCenter, iconSize, combinedRect);
-            image->setSize(iconRect.size());
-            image->setPosition(iconRect.topLeft());
+                                QSizeF(iconSize.width() + effectiveSpacing + textSize.width(),
+                                qMax(iconSize.height(), textSize.height())),
+                                QRectF(leftPadding, topPadding, availableWidth, availableHeight));
+        if (image && image->status() == QQuickImageBase::Ready) {
+            // Align rect for image according to available space
+            const QRectF iconRect = alignedRect(mirrored, Qt::AlignLeft | Qt::AlignVCenter,
+                                                iconSize, combinedRect);
+            applyIconSizeAndPosition(iconRect);
         }
         if (label) {
-            const QRectF textRect = alignedRect(mirrored, Qt::AlignRight | Qt::AlignVCenter, textSize, combinedRect);
+            const QRectF textRect = alignedRect(mirrored, Qt::AlignRight | Qt::AlignVCenter,
+                                                textSize, combinedRect);
             label->setSize(textRect.size());
-            label->setPosition(textRect.topLeft());
+            label->setPosition(textRect.topLeft().toPoint());
         }
         break;
     }
@@ -380,6 +446,32 @@ void NeptuneIconLabelPrivate::itemDestroyed(QQuickItem *item)
         label = nullptr;
 }
 
+void NeptuneIconLabelPrivate::applyIconScaleForPadMode() {
+    // works only for Pad fill mode (default)
+    if (iconFillMode != QQuickImage::Pad)
+        return;
+
+    image->setScale(iconScale);
+    updateImplicitSize();
+    layout();
+}
+
+void NeptuneIconLabelPrivate::applyIconRect() {
+    // works only for non-Pad fill mode
+    if (iconFillMode == QQuickImage::Pad)
+        return;
+
+    // in non-pad mode scale is not used for image inner object, reset it
+    // it is fitted inside desired rect
+    if (!qFuzzyCompare(image->scale(), 1.0)) {
+        image->setScale(1.0);
+    }
+
+    image->setFillMode(iconFillMode);
+    updateImplicitSize();
+    layout();
+}
+
 NeptuneIconLabel::NeptuneIconLabel(QQuickItem *parent)
     : QQuickItem(*(new NeptuneIconLabelPrivate), parent)
 {
@@ -403,6 +495,7 @@ QQuickIcon NeptuneIconLabel::icon() const
 void NeptuneIconLabel::setIcon(const QQuickIcon &icon)
 {
     Q_D(NeptuneIconLabel);
+
     if (d->icon == icon)
         return;
 
@@ -419,10 +512,19 @@ qreal NeptuneIconLabel::iconScale() const
 void NeptuneIconLabel::setIconScale(qreal scale)
 {
     Q_D(NeptuneIconLabel);
-    if (d->iconScale == scale)
+    if (qFuzzyCompare(d->iconScale, scale))
         return;
 
+    if (qFuzzyCompare(scale, 0.0) || scale < 0.0) {
+       qmlWarning(this) << "Invalid scale value: " << scale << "must be greater than zero";
+       return;
+    }
+
     d->iconScale = scale;
+    if (d->image && d->image->status() == QQuickImageBase::Ready
+            && d->iconFillMode == QQuickImage::Pad) {
+        d->applyIconScaleForPadMode();
+    }
 }
 
 QString NeptuneIconLabel::text() const
@@ -540,11 +642,12 @@ void NeptuneIconLabel::setAlignment(Qt::Alignment alignment)
     Q_D(NeptuneIconLabel);
     const int valign = alignment & Qt::AlignVertical_Mask;
     const int halign = alignment & Qt::AlignHorizontal_Mask;
-    const uint align = (valign ? valign : Qt::AlignVCenter) | (halign ? halign : Qt::AlignHCenter);
+    const Qt::Alignment align = (valign  ? static_cast<Qt::Alignment>(valign) : Qt::AlignVCenter)
+            | (halign ? static_cast<Qt::Alignment>(valign) : Qt::AlignHCenter);
     if (d->alignment == align)
         return;
 
-    d->alignment = static_cast<Qt::Alignment>(align);
+    d->alignment = align;
     if (d->label) {
         d->label->setVAlign(static_cast<QQuickText::VAlignment>(valign));
         d->label->setHAlign(static_cast<QQuickText::HAlignment>(halign));
@@ -647,6 +750,7 @@ void NeptuneIconLabel::resetBottomPadding()
 void NeptuneIconLabel::componentComplete()
 {
     Q_D(NeptuneIconLabel);
+
     if (d->image)
         completeComponent(d->image);
     if (d->label)
@@ -659,7 +763,91 @@ void NeptuneIconLabel::geometryChanged(const QRectF &newGeometry, const QRectF &
 {
     Q_D(NeptuneIconLabel);
     QQuickItem::geometryChanged(newGeometry, oldGeometry);
-    d->layout();
+
+    //layout operates only by width and height, skip layout updates on rect x,y change
+    if (newGeometry.size() != oldGeometry.size()) {
+        d->layout();
+    }
 }
 
+void NeptuneIconLabel::onImageStatusChanged(QQuickImageBase::Status status)
+{
+    Q_D(NeptuneIconLabel);
+
+    if (status == QQuickImageBase::Ready) {
+        // When we create image object we don't know about it's pixel size until it is loaded
+        // We need image source pixel size to correctly display scaled image
+
+        // In Pad mode we scale sourceSize according to iconScale size = pixel size x iconScale
+        // In other modes we scale sourceSize to fit in desired iconRectWidth x iconRectHeight
+        if (d->iconFillMode == QQuickImage::Pad) {
+            d->applyIconScaleForPadMode();
+        } else if (d->iconRectWidth > 0.0 && d->iconRectHeight > 0.0) {
+            d->applyIconRect();
+        }
+    }
+}
+
+QQuickImage::FillMode NeptuneIconLabel::iconFillMode() const {
+    Q_D(const NeptuneIconLabel);
+
+    return d->iconFillMode;
+}
+
+void NeptuneIconLabel::setIconFillMode(QQuickImage::FillMode mode) {
+    Q_D(NeptuneIconLabel);
+
+    if (d->iconFillMode == mode)
+        return;
+
+    d->iconFillMode = mode;
+
+    if (d->image && d->image->status() == QQuickImageBase::Ready) {
+        if (d->iconFillMode == QQuickImage::Pad) {
+            d->applyIconScaleForPadMode();
+        } else if (d->iconRectWidth > 0 && d->iconRectHeight > 0) {
+            d->applyIconRect();
+        }
+    }
+}
+
+void NeptuneIconLabel::setIconRectWidth(qreal width) {
+    Q_D(NeptuneIconLabel);
+
+    if (qFuzzyCompare(d->iconRectWidth, width))
+        return;
+
+    d->iconRectWidth = width;
+    if (d->image && d->image->status() == QQuickImageBase::Ready && d->iconRectHeight > 0.0
+            && d->iconFillMode != QQuickImage::Pad) {
+        d->applyIconRect();
+    }
+    Q_EMIT iconRectWidthChanged();
+}
+
+void NeptuneIconLabel::setIconRectHeight(qreal height) {
+    Q_D(NeptuneIconLabel);
+
+    if (qFuzzyCompare(d->iconRectHeight, height))
+        return;
+
+    d->iconRectHeight = height;
+    if (d->image && d->image->status() == QQuickImageBase::Ready && d->iconRectWidth > 0
+            && d->iconFillMode != QQuickImage::Pad) {
+        d->applyIconRect();
+    }
+    Q_EMIT iconRectHeightChanged();
+}
+
+qreal NeptuneIconLabel::iconRectWidth() const {
+    Q_D(const NeptuneIconLabel);
+
+    return d->iconRectWidth;
+}
+
+qreal NeptuneIconLabel::iconRectHeight() const {
+    Q_D(const NeptuneIconLabel);
+
+    return d->iconRectHeight;
+}
 QT_END_NAMESPACE

@@ -36,6 +36,7 @@ import QtQuick.Layouts 1.3
 
 import shared.Sizes 1.0
 import QtApplicationManager.Application 2.0
+import QtApplicationManager 2.0
 
 Item {
     id: root
@@ -48,56 +49,49 @@ Item {
 
         Button {
             id: simpleNotiButton
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
-            text: "Simple notification"
-            property var notification1: ApplicationInterface.createNotification();
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
+            text: qsTr("Simple notification")
             onClicked: {
-                notification1.summary = "Summary text: simple notification";
-                notification1.body = "Body text: simple notification";
+                var notification1 = ApplicationInterface.createNotification();
+                notification1.summary = qsTr("Summary text: simple notification");
+                notification1.body = qsTr("Body text: simple notification");
                 notification1.showActionsAsIcons = true;
-                notification1.actions = [{"actionText": "Action Text"}];
+                notification1.actions = [{"actionText": qsTr("Action Text")}];
                 notification1.show();
-
-            }
-            Connections {
-                target: simpleNotiButton.notification1
-                onActionTriggered: {
-                    console.log("Simple notification has been triggered")
-                }
             }
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
-            text: "Timeout notification 8 secs"
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
+            text: qsTr("Timeout notification 8 secs")
             onClicked: {
                 var notification2 = ApplicationInterface.createNotification();
-                notification2.summary = "Summary text: timeout notification";
-                notification2.body = "Body text: timeout 8 seconds";
+                notification2.summary = qsTr("Summary text: timeout notification");
+                notification2.body = qsTr("Body text: timeout 8 seconds");
                 notification2.timeout = 8000;
                 notification2.show();
             }
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
-            text: "Sticky notification"
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
+            text: qsTr("Sticky notification")
             onClicked: {
                 var notification3 = ApplicationInterface.createNotification();
-                notification3.summary = "Summary text: sticky notification";
-                notification3.body = "Sticky notification has an implicit timeout of 0, it will persist in the notification center";
+                notification3.summary = qsTr("Summary text: sticky notification");
+                notification3.body = qsTr("Sticky notification has an implicit timeout of 0, it will persist in the notification center");
                 notification3.sticky = true;
                 notification3.show();
             }
         }
 
         Button {
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
-            text: "Long text notification"
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
+            text: qsTr("Long text notification")
             onClicked: {
                 var notification4 = ApplicationInterface.createNotification();
                 notification4.summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa sunt similia: hebes acies est cuipiam oculorum, corpore alius senescit; Negat esse eam, inquit, propter se expetendam. Quoniam, si dis placet, ab Epicuro loqui discimus. At, illa, ut vobis placet, partem quandam tuetur, reliquam deserit. Scaevola tribunus plebis ferret ad plebem vellentne de ea re quaeri.";
@@ -111,9 +105,9 @@ Item {
         // if not, a warning notification will be shown and stored in the notification center
         Button {
             id: appRequestNotiButton
-            width: Sizes.dp(500)
-            height: Sizes.dp(64)
-            text: "Notification w/ App Request"
+            implicitWidth: Sizes.dp(500)
+            implicitHeight: Sizes.dp(64)
+            text: qsTr("Notification w/ App Request")
             property var notification5: ApplicationInterface.createNotification();
             onClicked: {
                 notification5.summary = qsTr("Battery level is low");
@@ -125,12 +119,12 @@ Item {
             }
             Connections {
                 target: appRequestNotiButton.notification5
-                onActionTriggered: {
-                    //jump to navigation app
-                    Qt.openUrlExternally("x-map://getMeTo/Polis Park Kaningos Athens");
+                function onActionTriggered() {
+                    IntentClient.sendIntentRequest("show-destination", "com.pelagicore.map"
+                            , {"destination": "Polis Park Kaningos Athens"});
                     appRequestNotiButton.notification5.actionAccepted = true;
                 }
-                onVisibleChanged: {
+                function onVisibleChanged() {
                     if (!appRequestNotiButton.notification5.visible && !appRequestNotiButton.notification5.actionAccepted) {
                         //if action is not accepted, show warning
                         // it's sticky, so first hide it to be able to show it again

@@ -5,10 +5,10 @@ FILES += info.yaml \
          Main.qml
 
 assets.files += assets/*
-assets.path = /apps/chapter3-middleware/assets
+assets.path = $$[QT_INSTALL_EXAMPLES]/neptune3-ui/chapter3-middleware/assets
 
 app.files = $$FILES
-app.path = /apps/chapter3-middleware
+app.path = $$[QT_INSTALL_EXAMPLES]/neptune3-ui/chapter3-middleware
 
 INSTALLS += app assets
 

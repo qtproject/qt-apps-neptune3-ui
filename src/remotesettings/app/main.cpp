@@ -33,6 +33,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QDir>
+#include <QtCore/QCommandLineParser>
 #include <QtIviCore/QtIviCoreVersion>
 #include "client.h"
 
@@ -43,8 +44,26 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setApplicationName(QStringLiteral("Neptune Companion"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Luxoft Sweden AB"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("luxoft.com"));
     QCoreApplication::setApplicationVersion(STR(NEPTUNE_COMPANION_APP_VERSION));
     QGuiApplication app(argc, argv);
+
+    QCommandLineParser cmdParser;
+    cmdParser.setApplicationDescription(
+                "Neptune Companion\n\n"
+                "Logging is turned off by default, to control log output please check command line "
+                "options or Qt Help for QT_LOGGING_RULES environment variable.\n");
+    cmdParser.addHelpOption();
+    cmdParser.addVersionOption();
+    const QCommandLineOption enableDefaultLoggingOption("verbose",
+                                                        "Enables default Qt logging filter.");
+    cmdParser.addOption(enableDefaultLoggingOption);
+    cmdParser.process(app);
+    if (!cmdParser.isSet(enableDefaultLoggingOption)) {
+        QLoggingCategory::setFilterRules("*=false");
+    }
 
     Client client;
 

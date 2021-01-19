@@ -143,7 +143,7 @@ ApplicationWindow {
 
         Connections {
             target: client
-            onServerUrlChanged: {
+            function onServerUrlChanged() {
                 if (client.serverUrl.toString().length)
                     connectionDialog.url = client.serverUrl.toString();
                 else
@@ -153,7 +153,7 @@ ApplicationWindow {
 
         Connections {
             target: client
-            onConnectedChanged: {
+            function onConnectedChanged() {
                 if (client.connected)
                     connectionDialog.close();
             }

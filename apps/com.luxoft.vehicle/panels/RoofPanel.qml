@@ -45,10 +45,13 @@ import "../controls" 1.0
 Item {
     id: root
 
-    property alias roofOpenProgress: vehicleTopView.roofOpenProgress
+    property real roofOpenProgress: 0.0
     property bool leftDoorOpened: false
     property bool rightDoorOpened: false
     property bool trunkOpened: false
+    property bool enableOpacityMasks
+
+    signal newRoofOpenProgressRequested(var progress)
 
     Behavior on roofOpenProgress { DefaultNumberAnimation { duration: 800 } }
 
@@ -66,7 +69,15 @@ Item {
 
     TopPanel {
         id: vehicleTopView
-        visible: false
+        visible: !root.enableOpacityMasks
+
+        rotation: root.enableOpacityMasks ? 0 : 90
+        transform: [
+            Translate {
+                x: root.enableOpacityMasks ? 0 : -width/10
+                y: root.enableOpacityMasks ? 0 : -height/20
+            }
+        ]
 
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
@@ -74,6 +85,7 @@ Item {
         leftDoorOpen: root.leftDoorOpened
         rightDoorOpen: root.rightDoorOpened
         trunkOpen: root.trunkOpened
+        roofOpenProgress: root.roofOpenProgress
     }
 
     OpacityMask {
@@ -87,26 +99,15 @@ Item {
     }
 
     VehicleButton {
-        id: roofOpenButton
-        objectName: "roofOpenButton"
+        id: roofButton
+        objectName: "roofButton"
 
-        anchors.top: om.verticalCenter
-        anchors.topMargin: -height
-        anchors.right: parent.right
+        anchors.bottom: om.bottom
+        anchors.bottomMargin: Sizes.dp(135)
+        anchors.horizontalCenter: parent.horizontalCenter
         state: "REGULAR"
-        text: qsTr("Close")
-        onClicked: root.roofOpenProgress = 0.0
-    }
-
-    VehicleButton {
-        id: roofCloseButton
-        objectName: "roofCloseButton"
-
-        anchors.top: om.verticalCenter
-        anchors.topMargin: -height
-        anchors.left: parent.left
-        state: "REGULAR"
-        text: qsTr("Open")
-        onClicked: root.roofOpenProgress = 1.0
+        text: root.roofOpenProgress > 0.0 ? qsTr("Close") : qsTr("Open")
+        onClicked: root.roofOpenProgress < 1.0 ? root.newRoofOpenProgressRequested(1.0) :
+                                                 root.newRoofOpenProgressRequested(0.0)
     }
 }

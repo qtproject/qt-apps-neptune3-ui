@@ -39,4 +39,12 @@ Store {
     property bool navigationMode: false
     property bool twentyFourHourTimeFormat: true // 24 hour vs am/pm
     property bool qt3DStudioAvailable: false
+
+    /*
+        cluster UI mode
+        0 - empty app (default)
+        1 - app is shown behind gauges
+        2 - navigation mode
+   */
+    property int clusterUIMode: 0
 }

@@ -67,14 +67,11 @@ ListModel {
     // Whether the Neptune 3 UI runs on single- / multi-process mode.
     readonly property bool singleProcess: ApplicationManager.singleProcess
 
-    // Holds list of autostart applications ids, only initialized on Neptune startup
-    // afterward values are taken from
-    property string autostartApps: ""
-
     signal shuttingDown()
     signal applicationPopupAdded(var window)
     signal autostartAppsListChanged()
     signal autorecoverAppsListChanged()
+    signal widgetStatesChanged()
     signal appRemoved(var appInfo);
 
     // Populate the model
@@ -287,11 +284,10 @@ ListModel {
         property Component appInfoComponent: Component { ApplicationInfo{} }
 
         function appendApplication(app) {
-            var appInfo = appInfoComponent.createObject(root, {"application":app});
+            var appInfo = appInfoComponent.createObject(root, {"application": app});
             appInfo.localeCode = Qt.binding(function() { return root.localeCode; });
 
             appInfo.isSystemApp = root.isSystemApp(app)
-            appInfo.autostart = (root.autostartApps.indexOf(appInfo.id) > -1)
 
             if (d.isInstrumentClusterApp(app)) {
                 d.instrumentClusterAppInfo = appInfo;
@@ -302,25 +298,6 @@ ListModel {
             }
 
             root.append({"appInfo": appInfo})
-
-            if (appInfo.autostart && !d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
-                appInfo.start();
-                goHome();
-            }
-
-            // check if additional screen is attached and cluster is expected to be shown
-            if (root.showCluster) {
-                if (appInfo.autostart && d.isInstrumentClusterApp(app)) {
-                    appInfo.start();
-                }
-            }
-
-            // check if additional screen is attached and hud is expected to be shown
-            if (root.showHUD) {
-                if (appInfo.autostart && d.isHUDApp(app)) {
-                    appInfo.start();
-                }
-            }
         }
 
         function deserializeWidgetStates(widgetStates)
@@ -373,6 +350,7 @@ ListModel {
                 }
             }
         }
+
         function deserializeAutostart(str)
         {
             //reset to defaults
@@ -390,6 +368,23 @@ ListModel {
 
                 if (appInfo)
                     appInfo.autostart = true;
+                else continue;
+
+                var app = appInfo.application;
+                if (!d.isInstrumentClusterApp(app) && !d.isHUDApp(app)) {
+                    appInfo.start();
+                    goHome(); // TODO: whether it always necessary?
+                }
+
+                // check if additional screen is attached and cluster is expected to be shown
+                if (root.showCluster && d.isInstrumentClusterApp(app)) {
+                    appInfo.start();
+                }
+
+                // check if additional screen is attached and hud is expected to be shown
+                if (root.showHUD && d.isHUDApp(app)) {
+                    appInfo.start();
+                }
             }
         }
 
@@ -404,18 +399,54 @@ ListModel {
         }
     }
 
+    // this function iterates through current model and tries to fill 'runBefore' and 'runAfter' for
+    // each appInfo inside it with available in current model appInfo-s
+    function fillStartListsForCurrentModel() {
+        // this loop works with AppInfo objects
+        for (var i = 0; i < count; ++i) {
+            var appInfo = get(i).appInfo;
+            var runBefore = appInfo.application.applicationProperties["runBefore"];
+            if (!!runBefore) {
+                for (var rbi in runBefore) {
+                    var rb_app = root.applicationFromId(runBefore[rbi]);
+                    if (!!rb_app)
+                        appInfo.runBefore.push(rb_app);
+                }
+            }
+
+            var runAfter = appInfo.application.applicationProperties["runAfter"];
+            if (!!runAfter) {
+                for (var ra in runAfter) {
+                    var ra_app = root.applicationFromId(ra);
+                    if (!!ra_app)
+                        appInfo.runAfter.push(ra_app);
+                }
+            }
+        }
+
+        for (i = 0; i < count; ++i) {
+            appInfo = get(i).appInfo;
+            appInfo.runBefore = [...new Set(appInfo.runBefore)];
+            appInfo.runAfter = [...new Set(appInfo.runAfter)];
+        }
+    }
+
     Component.onCompleted: {
+        // details: the loop below fills the application model from 'raw' QtAM::application
+        // with AppInfo objects
         var i;
         for (i = 0; i < ApplicationManager.count; i++) {
             var app = ApplicationManager.application(i);
             d.appendApplication(app);
         }
+
+        fillStartListsForCurrentModel();
     }
 
     property var appManConns: Connections {
         target: ApplicationManager
-        onApplicationWasActivated: d.reactOnAppActivation(id);
-        onApplicationRunStateChanged: {
+        function onApplicationWasActivated(id, aliasId) { d.reactOnAppActivation(id); }
+        function onApplicationRunStateChanged(id, runState) {
             var appInfo = root.applicationFromId(id);
             if (!appInfo) {
                 return;
@@ -466,12 +497,14 @@ ListModel {
             }
         }
 
-        onApplicationAdded: {
+        function onApplicationAdded(id) {
             var app = ApplicationManager.application(id);
             d.appendApplication(app);
+
+            fillStartListsForCurrentModel();
         }
 
-        onApplicationAboutToBeRemoved: {
+        function onApplicationAboutToBeRemoved(id) {
             var appInfo = null;
             var index;
 
@@ -504,7 +537,7 @@ ListModel {
             root.appRemoved(appInfo);
         }
 
-        onShuttingDownChanged: {
+        function onShuttingDownChanged() {
             if (ApplicationManager.shuttingDown) {
                 root.shuttingDown();
             }
@@ -514,18 +547,18 @@ ListModel {
     property var winManConns: Connections {
         target: WindowManager
 
-        onWindowAdded: {
+        function onWindowAdded(window) {
             var appInfo = applicationFromId(window.application.id);
 
             var isRegularApp = !!appInfo && !root.isSystemApp(appInfo);
 
-            var isPopupWindow = window.windowProperty("windowType") === "popup";
+            var isPopupWindow = window.windowProperty("windowType") === "popup" || !!window.popup;
 
             if (isPopupWindow) {
                 root.applicationPopupAdded(window)
             }
 
-            if (isRegularApp) {
+            if (isRegularApp && !isPopupWindow) {
                 var isApplicationICWindow = window.windowProperty("windowType") === "instrumentcluster";
                 var isApplicationCCWindow = !window.windowProperty("windowType");
 
@@ -539,7 +572,7 @@ ListModel {
             // application will be added to the bottom bar window as well
             }
 
-            if (d.isBottomBarApp(window.application) && window.windowProperty("windowType") !== "popup") {
+            if (d.isBottomBarApp(window.application) && !isPopupWindow) {
                 d.bottomBarAppInfo.priv.window = window;
             }
 
@@ -557,7 +590,7 @@ ListModel {
             }
         }
 
-        onWindowAboutToBeRemoved: {
+        function onWindowAboutToBeRemoved(window) {
             var appInfo = applicationFromId(window.application.id);
             if (!appInfo) {
                 if (d.isInstrumentClusterApp(window.application)) {
@@ -580,7 +613,7 @@ ListModel {
             }
         }
 
-        onWindowPropertyChanged: {
+        function onWindowPropertyChanged(window, name, value) {
             var appInfo = applicationFromId(window.application.id);
             switch (name) {
             case "activationCount":
@@ -588,6 +621,10 @@ ListModel {
                 //already running app e.g. from intent
                 window.application.activated();
                 d.reactOnAppActivation(window.application.id);
+                break;
+            case "neptuneState":
+                if (window.windowProperty(name).startsWith("Widget") && root.activeAppInfo === null)
+                    root.widgetStatesChanged()
                 break;
             }
         }

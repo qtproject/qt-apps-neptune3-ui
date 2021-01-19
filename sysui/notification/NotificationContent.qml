@@ -39,7 +39,7 @@ import shared.Sizes 1.0
 ModalOverlay {
     id: root
 
-    showModalOverlay: notificationCenter.openNotificationCenter
+    showModalOverlay: notificationCenter.state === "allNotifications"
     onOverlayClicked: {
         notificationCenter.closeNotificationCenter();
     }
@@ -66,45 +66,25 @@ ModalOverlay {
         anchors.horizontalCenter: root.horizontalCenter
         anchors.top: notificationCenter.bottom
         notificationCount: notificationModel.count
-        notificationCounterVisible: ((notificationCount > 0) && !notificationCenter.openNotificationCenter)
+        notificationCounterVisible: notificationCount > 0
+                                    &&  notificationCenter.state !== "allNotifications"
         dragTarget: notificationCenter
-        minimumY: -notificationCenter.height
-        maximumY: 0
-        onActiveChanged: {
-            if (active) {
-                notificationHandle.prevDragY = notificationHandle.dragTarget.y;
-            } else {
-                if (!notificationHandle.dragActive && notificationHandle.swipe) {
-                    if (notificationCenter.openNotificationCenter && notificationHandle.dragDelta > 0) {
-                        notificationCenter.openNotificationCenter = true;
-                    } else if (notificationCenter.openNotificationCenter && notificationHandle.dragDelta < 0) {
-                        notificationCenter.openNotificationCenter = false;
-                    } else {
-                        notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
-                    }
+        parentRotation: root.rotation
+
+        onReleased: {
+            if (notificationCenter.state === "intermediate_from_closed"
+                    || notificationCenter.state === "intermediate_from_all")
+            {
+                if (-notificationCenter.y < notificationCenter.allNotificationsHeight / 2) {
+                    notificationCenter.state = "allNotifications";
                 } else {
-                    notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
+                    notificationCenter.state = "closed";
                 }
-
-                // stop drag filter timer
-                notificationHandle.dragFilterTimer.running = false;
-                notificationHandle.dragDelta = (notificationCenter.y - notificationHandle.dragOrigin + Sizes.dp(130));
+            } else if (notificationCenter.state === "allNotifications") {
+                notificationCenter.state = "closed";
+            } else {
+                notificationCenter.state = "allNotifications";
             }
-        }
-
-        onClicked: {
-            //open notificationCenter
-            notificationCenter.openNotificationCenter = !notificationCenter.openNotificationCenter;
-        }
-
-        onPressed: {
-            // reset values
-            notificationHandle.dragDelta = 0;
-            notificationHandle.dragOrigin = notificationHandle.dragTarget.y;
-            notificationHandle.prevDragY = notificationHandle.dragTarget.y;
-
-            // start drag filter timer
-            notificationHandle.dragFilterTimer.running = true;
         }
     }
 }

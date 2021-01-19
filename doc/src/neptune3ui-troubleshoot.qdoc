@@ -33,11 +33,11 @@
     can be configured via Qt's \l{https://doc.qt.io/qt-5/qloggingcategory.html}{Logging Category System}.
     In addition to controlling the categories using the \c QT_LOGGING_RULES environment variable
     and the global \c qtlogging.ini, the QtApplicationManager, which is Neptune 3 UI's base, also
-    allows you to define these categories as part of the \c am-config.yaml file.
+    allows you to define these categories as a part of the \c am-config.yaml file.
 
     \note On embedded systems, Neptune 3 UI is started with systemd. Here, you can control the
     categories using environment variables or custom command-line arguments, via the
-    \c neptune.service file.
+    \c neptune.service file. For more information, see \l{Neptune 3 UI systemd Service Settings}.
 
     \section1 Recreate the Application Database
 

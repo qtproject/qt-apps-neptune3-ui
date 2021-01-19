@@ -49,10 +49,12 @@
 ****************************************************************************/
 
 import QtQuick 2.13
+import QtQml 2.14
 import shared.utils 1.0
 
 Loader {
     id: root
+
     anchors.fill: parent
     source: Config.cursorLoaderSource
 
@@ -63,17 +65,33 @@ Loader {
     signal activated()
     signal pressAndHold()
 
-    Binding { target: item; property:"parent"; value: root.parent; when: item }
-    Binding { target: item; property:"trapsCursor"; value: root.trapsCursor; when: item }
-    Binding { target: item; property:"acceptsCursor"; value: root.acceptsCursor; when: item }
-    Binding { target: root; property:"hasCursor"; value: item.hasCursor; when: item}
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"parent"; value: root.parent; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"trapsCursor"; value: root.trapsCursor; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"acceptsCursor"; value: root.acceptsCursor; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: item; property:"angleOffset"; value: Config.cursorAngleOffset; when: item;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root; property:"hasCursor"; value: item.hasCursor; when: item;
+    }
 
     Connections {
         target: item
-        onActivated: {
+        function onActivated() {
             root.activated();
         }
-        onPressAndHold: {
+        function onPressAndHold() {
             root.pressAndHold();
         }
     }

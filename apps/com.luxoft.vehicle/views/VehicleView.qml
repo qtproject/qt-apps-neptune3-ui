@@ -45,6 +45,10 @@ Item {
     id: root
 
     property VehicleStore store
+
+    // This timer is used to make the order of creation transparent
+    // 1) read settings (reread to be sure, it's a synch op), get chosen runtime
+    // 2) load the chosen model
     Timer {
         id: delayTimer
         interval: 1
@@ -55,12 +59,35 @@ Item {
         }
     }
 
+    // This timer is a workaround to prevent 3DStudio presentation from too fast reload
+    Timer {
+        id: studioReloadTimer
+        interval: 2000
+        running: false
+        onTriggered: {
+            loadVehiclePanel();
+        }
+    }
+
+    // we don't change visible manually, it is changed by sysui, when another app is called
+    // or the same app is called again, even if it is maximized right now
     onVisibleChanged: {
-        if (!visible) {
-            vehicle3DPanelLoader.active = false;
-        } else {
-            if (!delayTimer.running && !vehicle3DPanelLoader.active)
-                loadVehiclePanel();
+        // the app was already launched and is restored (e.g. Vehicle -> Home -> Vehicle)
+        if (root.store.runtime3D === "qt3d") {
+            if (visible && !!vehicle3DPanelLoader.item) {
+                // vehicle is loaded, but it is hidden (AUTOSUITE-1598)
+                // we force redraw, to make it visible
+                vehicle3DPanelLoader.item.forceRedraw();
+            }
+        } else if (root.store.runtime3D === "3DStudio") {
+            if (!visible && !!vehicle3DPanelLoader.item) {
+                vehicle3DPanelLoader.source = "" // force to remove current instance
+            }
+
+            if (visible) {
+                vehicleProxyPanel.opacity = 1.0; // enable proxy with the progress bar
+                studioReloadTimer.start();
+            }
         }
     }
 
@@ -71,14 +98,14 @@ Item {
                         ? "../panels/Vehicle3DPanel.qml" : "../panels/Vehicle3DStudioPanel.qml"
                 , {
                         "leftDoorOpen": root.store.leftDoorOpened
-                        , "rightDoorOpen": root.store.rightDoorOpen
-                        , "trunkOpen": root.store.trunkOpen
+                        , "rightDoorOpen": root.store.rightDoorOpened
+                        , "trunkOpen": root.store.trunkOpened
                         , "roofOpenProgress": root.store.roofOpenProgress
-                        , "lastCameraAngle": root.store.lastCameraAngle
-                        , "modelVersion": root.store.modelVersion
+                        , "lastCameraAngle": root.store.cameraAngleView
+                        , "modelVersion": root.store.model3DVersion
                         , "vehicleColor": root.store.vehicle3DstudioColor
                 });
-        vehicle3DPanelLoader.active = true;
+        vehicle3DPanelLoader.active = store.allowOpenGLContent;
     }
 
     Item {
@@ -99,27 +126,20 @@ Item {
 
         Connections {
             target: vehicle3DPanelLoader.item
-            onLastCameraAngleChanged: root.store.cameraAngleView = target.lastCameraAngle
+            function onLastCameraAngleChanged() {
+                root.store.cameraAngleView = target.lastCameraAngle;
+            }
         }
 
         VehicleProxyPanel {
             id: vehicleProxyPanel
             z: 9999
-        }
-
-        // In some cases Scene3D doesn't create anything, such cases are really hard to reproduce,
-        // in these situations UI is frozen, timer is used to check that rendering is started
-        Timer {
-            id: reloadTimer
-            interval: 30000
-            onTriggered: {
-                // if after 30s qt3d scene doesn't respond even with first frame we try to reload it
-                if (store.runtime3D === "qt3d" && !vehicle3DPanelLoader.item.renderStarted) {
-                    vehicle3DPanelLoader.active = false;
-                    vehicle3DPanelLoader.setSource("");
-                    vehicle3DPanelLoader.active = true;
-                    loadVehiclePanel();
-                }
+            visible: opacity != 0.0
+            errorText: store.allowOpenGLContent
+                ? ""
+                : qsTr("The 3D car model is disabled in this runtime environment")
+            Behavior on opacity {
+                DefaultNumberAnimation {}
             }
         }
 
@@ -127,25 +147,18 @@ Item {
             id: vehicle3DPanelLoader
             anchors.fill: parent
             active: false
-            opacity: active ? 1.0 : 0.0
             asynchronous: true
-            Behavior on opacity {
-                DefaultNumberAnimation {}
-            }
 
             onItemChanged: {
                 if (item) {
                     var currentRuntimeQt3D = store.runtime3D === "qt3d";
-                    reloadTimer.running = currentRuntimeQt3D;
                     if (currentRuntimeQt3D) {
                         item.modelVersion = Qt.binding( function() {return root.store.model3DVersion});
-                        reloadTimer.running = Qt.binding( function() {return item ? !item.renderStarted : false} );
                     } else {
                         item.vehicleColor = Qt.binding( function() {return root.store.vehicle3DstudioColor});
-                        reloadTimer.stop();
                     }
 
-                    vehicleProxyPanel.visible = Qt.binding( function() {return !item.readyToChanges} );
+                    vehicleProxyPanel.opacity = Qt.binding(() => !!item && item.readyToChanges ? 0.0 : 1.0);
 
                     item.leftDoorOpen = Qt.binding( function() {return root.store.leftDoorOpened} );
                     item.rightDoorOpen = Qt.binding( function() {return root.store.rightDoorOpened});
@@ -174,13 +187,15 @@ Item {
         leftDoorOpened: root.store.leftDoorOpened
         rightDoorOpened: root.store.rightDoorOpened
         trunkOpened: root.store.trunkOpened
+        roofOpenProgress: root.store.roofOpenProgress
         qt3DStudioAvailable: root.store.qt3DStudioAvailable
 
+        enableOpacityMasks: store.allowOpenGLContent
 
         onLeftDoorClicked: root.store.setLeftDoor()
         onRightDoorClicked: root.store.setRightDoor()
         onTrunkClicked: root.store.setTrunk()
-        onRoofOpenProgressChanged: root.store.setRoofOpenProgress(value)
+        onNewRoofOpenProgressRequested: root.store.setRoofOpenProgress(progress)
 
         onRuntimeChanged: { root.store.setRuntime(runtime); }
 
@@ -192,5 +207,6 @@ Item {
         }
 
         onShowNotificationAboutChange: store.showNotificationAboutChange()
+        onIntentToMapRequested: { root.store.createIntentToMap(intentId, params) }
     }
 }

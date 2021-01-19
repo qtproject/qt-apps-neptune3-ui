@@ -57,7 +57,7 @@ ApplicationCCWindow {
 
         state: root.neptuneState
         bottomWidgetHide: root.exposedRect.height === root.targetHeight
-        store: CalendarStore { }
+        store: CalendarStore { onRequestRaiseAppReceived: root.riseWindow(); }
     }
 }
 

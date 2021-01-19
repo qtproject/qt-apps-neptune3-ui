@@ -39,12 +39,21 @@ import shared.Sizes 1.0
 
 Slider {
     id: root
-    width: Sizes.dp(180)
-
-    orientation: Qt.Vertical
-    snapMode: Slider.SnapOnRelease
-    live: false
-    stepSize: 0.5
 
     readonly property real handleHeight: handle.height
+    signal sliderReleased()
+
+    Connections {
+        target: root
+        function onPressedChanged() {
+            if (!root.pressed)
+                root.sliderReleased()
+        }
+    }
+
+    width: Sizes.dp(180)
+    orientation: Qt.Vertical
+    snapMode: Slider.SnapOnRelease
+    live: true
+    stepSize: 0.5
 }

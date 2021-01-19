@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import shared.utils 1.0
 import stores 1.0
 import QtQuick.Window 2.3
@@ -44,8 +45,16 @@ Window {
     property alias mainCenterConsole: mainCenterConsole
     property RootStore store
 
-    Binding {target: root.store.centerConsole; property: "windowWidth"; value: root.width }
-    Binding {target: root.store.centerConsole; property: "windowHeight"; value: root.height }
+    signal nextICAppIsRequested()
+
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.centerConsole; property: "windowWidth"; value: root.width;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.centerConsole; property: "windowHeight"; value: root.height;
+    }
 
     title: store.centerConsole.title
     color: "black"
@@ -73,24 +82,31 @@ Window {
     Connections {
         id: windowConns
         target: root
-        onFrameSwapped: {
+        readonly property string widgetStates: root.store.settingsStore.value("widgetStates"
+                , root.store.settingsStore.defaultWidgetStates)
+        readonly property string autostartApps: root.store.settingsStore.value("autostartApps"
+                , root.store.settingsStore.defaultAutostartApps)
+        readonly property string autorecoverApps: root.store.settingsStore.value("autorecoverApps"
+                , root.store.settingsStore.defaultAutorecoverApps)
+        function onFrameSwapped() {
             /*
-                        The UI is loaded in two steps
-                        This is done in order to ensure that something is rendered on the screen as
-                        soon as possible during start up.
+                The UI is loaded in two steps
+                This is done in order to ensure that something is rendered on the screen as
+                soon as possible during start up.
 
-                        Only the lightest elements are present upon creation of this component.
-                        They are the ones that will be present on the very first rendered frame.
+                Only the lightest elements are present upon creation of this component.
+                They are the ones that will be present on the very first rendered frame.
 
-                        Others, which are more complex and thus take more time to load, will be
-                        loaded afterwards, once this function is called.
-                     */
-            root.store.applicationModel.populate(root.store.settingsStore.value("widgetStates", root.store.settingsStore.defaultWidgetStates),
-                root.store.settingsStore.value("autostartApps", root.store.settingsStore.defaultAutostartApps),
-                root.store.settingsStore.value("autorecoverApps", root.store.settingsStore.defaultAutorecoverApps));
-            centerConsole.mainContentArea.active = true;
-            notificationLoader.active = true;
-            windowConns.enabled = false;
+                Others, which are more complex and thus take more time to load, will be
+                loaded afterwards, once this function is called.
+             */
+            if (root.store.applicationModel.count > 0) {
+                root.store.applicationModel.populate(
+                            widgetStates, autostartApps, autorecoverApps);
+                centerConsole.mainContentArea.active = true;
+                notificationLoader.active = true;
+                windowConns.enabled = false;
+            }
         }
     }
 
@@ -114,7 +130,11 @@ Window {
 
         Loader {
             sourceComponent: Component {
-                GamePadController {}
+                GamePadController {
+                    onButtonBPressed: root.nextICAppIsRequested();
+                    onButtonR1Pressed: root.store.musicStore.sendIntent("next");
+                    onButtonL1Pressed: root.store.musicStore.sendIntent("prev");
+                }
             }
             active: root.store.enableCursorManagement
         }
@@ -143,8 +163,11 @@ Window {
             anchors.fill: centerConsole
             source: "../notification/NotificationContent.qml"
 
-            Binding { target: notificationLoader.item; property: "target";
-                value: popupParent.showModalOverlay ? popupParent : centerConsole }
+            Binding {
+                restoreMode: Binding.RestoreBinding;
+                target: notificationLoader.item; property: "target";
+                value: popupParent.showModalOverlay ? popupParent : centerConsole;
+            }
         }
 
         CenterConsoleMonitorOverlay {

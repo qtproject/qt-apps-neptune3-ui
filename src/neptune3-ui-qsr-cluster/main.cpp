@@ -37,6 +37,7 @@ functional safety standards and it depends on Qt classes.
 You should not use this example in production environment.
 */
 #include <QtGui>
+#include <QtGui/QFontDatabase>
 
 #include <QtSafeRenderer/qsafelayout.h>
 #include <QtSafeRenderer/qsafechecksum.h>
@@ -51,25 +52,42 @@ int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
 
+    QFontDatabase::addApplicationFont("imports_shared/assets/fonts/DejaVuSans.ttf");
+
     QDir::setCurrent(qApp->applicationDirPath());
 
     SafeRenderer::QSafeLayoutFileReader layout("qsr-safelayout/SafeTelltalesPanel.srl");
 
-    //Demo case, update window position on Cluster window move
-    QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
-    bool stickToCluster = settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool();
+    //Demo case, update window position on non-Safe UI cluster window position change and resize
+    bool stickToCluster = false;
+    if (SafeWindow::isRunningOnDesktop()) {
+        QSettings settings(QStringLiteral("Luxoft Sweden AB"), QStringLiteral("QSRCluster"));
+        stickToCluster = settings.value(QStringLiteral("gui/stick_to_cluster"), true).toBool();
+    }
 
     SafeRenderer::QSafeSize screenSize;
     if (stickToCluster) {
-        screenSize.setWidth(layout.size().width());
-        screenSize.setHeight(layout.size().height());
+        // Demo Desktop case
+        // if layout doesn't fit on screen -> resize it to fit for the startup
+        // as we don't have info about non-safe UI window size and also avoid snapping on
+        // screen edges (it won't be possible to move or resize window)
+        QSize availSize = qApp->primaryScreen()->availableSize();
+        if (availSize.width() < layout.size().width() * 1.1
+            || availSize.height() < layout.size().height() * 1.1) {
+            QSize windowSize(layout.size().width(), layout.size().height());
+            windowSize.scale(availSize * 0.9, Qt::KeepAspectRatio);
+            screenSize.setWidth(windowSize.width());
+            screenSize.setHeight(windowSize.height());
+        } else {
+            screenSize.setWidth(layout.size().width());
+            screenSize.setHeight(layout.size().height());
+        }
     } else {
         screenSize.setWidth(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().width()));
         screenSize.setHeight(static_cast<SafeRenderer::quint32>(qApp->primaryScreen()->size().height()));
     }
 
-    SafeWindow telltaleWindow(screenSize, layout.size());
-    telltaleWindow.setFlag(Qt::WindowDoesNotAcceptFocus, true);
+    SafeWindow telltaleWindow(screenSize, layout.size(), stickToCluster);
 
     NeptuneSafeStateManager stateManager(telltaleWindow, layout);
 
@@ -98,6 +116,8 @@ int main(int argc, char **argv)
 
     if (stickToCluster) {
         QObject::connect(&msgHandler, &TcpMsgHandler::mainWindowPosGot, &telltaleWindow, &SafeWindow::moveWindow);
+        QObject::connect(&msgHandler, &TcpMsgHandler::mainWindowPanelSizeGot, &telltaleWindow, &SafeWindow::resizeWindow);
+        QObject::connect(&msgHandler, &TcpMsgHandler::mainWindowPanelOriginGot, &telltaleWindow, &SafeWindow::applyPanelOrigin);
     }
 
     //Remote settings server client

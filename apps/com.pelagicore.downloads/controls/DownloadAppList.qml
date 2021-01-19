@@ -41,44 +41,76 @@ import shared.Sizes 1.0
 ListView {
     id: root
 
-    property var store
+    property string appServerUrl
+    property string cpuArch
+    property var applicationModel
+    property real currentInstallationProgress
 
-    signal toolClicked(string appId, string appName)
+    signal toolClicked(string appId, string appName, string purchaseId, string iconUrl)
+    signal appClicked(string appId)
 
-    model: root.store.applicationModel
+    function refreshAppsInfo(isPackageInstalledByPackageControllerFunc,
+                             isPackageBuiltInFunc, getInstalledPackageSizeTextFunc) {
+        d.installedPackagesChanged(isPackageInstalledByPackageControllerFunc,
+                                   isPackageBuiltInFunc, getInstalledPackageSizeTextFunc);
+    }
+
+    QtObject {
+        id: d
+
+        signal installedPackagesChanged(var isPackageInstalledByPackageControllerFunc,
+                                        var isPackageBuiltInFunc,
+                                        var getInstalledPackageSizeTextFunc)
+    }
+
+    model: root.applicationModel
     currentIndex: -1
     delegate: ListItemProgress {
         id: delegatedItem
         objectName: "itemDownloadApp_" + model.id
-        property bool isInstalled: root.store.isInstalled(model.id)
 
-        width: Sizes.dp(675)
-        height: Sizes.dp(100)
-        icon.source: root.store.appServerUrl + "/app/icon?id=" + model.id
+        property bool isInstalled: model.isInstalled
+        property string packageSizeText: model.packageSizeText
+        property bool packageBuiltIn: model.packageBuiltIn
+
+        width: Sizes.dp(720); height: Sizes.dp(100)
+        icon.source: model.iconUrl
         text: model.name
         subText: model.id
-        secondaryText: delegatedItem.isInstalled ? root.store.getInstalledApplicationSize(model.id)
-                                                 : ""
+        secondaryText: delegatedItem.isInstalled ? delegatedItem.packageSizeText
+                                                 : ( delegatedItem.packageBuiltIn ?
+                                                        qsTr("update") : "" )
         cancelSymbol: delegatedItem.isInstalled ? "ic-close" : "ic-download_OFF"
-        value: root.store.currentInstallationProgress
+        value: root.currentInstallationProgress
         onValueChanged: {
             if (value === 1.0) {
                 root.currentIndex = -1;
             }
         }
-        progressVisible: root.currentIndex === index && root.store.currentInstallationProgress < 1.0
+        progressVisible: root.currentIndex === index && root.currentInstallationProgress < 1.0
         onProgressCanceled: {
             if (!delegatedItem.isInstalled) {
                 root.currentIndex = index;
             }
-            root.toolClicked(model.id, model.name);
+            root.toolClicked(model.id, model.name, model.purchaseId, model.iconUrl);
         }
+        onClicked: root.appClicked(model.id)
+
         Connections {
-            target: root.store
-            onInstalledAppsChanged: {
-                isInstalled = root.store.isInstalled(model.id)
+            target: d
+            function onInstalledPackagesChanged(isPackageInstalledByPackageControllerFunc,
+                                                isPackageBuiltInFunc,
+                                                getInstalledPackageSizeTextFunc) {
+                // functions are passed as parameters to signal
+                model.isInstalled = isPackageInstalledByPackageControllerFunc(model.id);
+                if (isInstalled) {
+                    model.packageBuiltIn = isPackageBuiltInFunc(model.id);
+                    model.packageSizeText = getInstalledPackageSizeTextFunc(model.id);
+                } else {
+                    model.packageBuiltIn = false;
+                    model.packageSizeText = "";
+                }
             }
         }
-
     }
 }

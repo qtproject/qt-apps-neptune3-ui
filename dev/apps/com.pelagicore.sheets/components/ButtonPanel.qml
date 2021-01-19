@@ -59,14 +59,14 @@ Item {
                 implicitWidth: Sizes.dp(315)
                 implicitHeight: Sizes.dp(64)
                 font.pixelSize: Sizes.fontSizeS
-                text: "This is a button"
+                text: qsTr("This is a button")
             }
 
             Button {
                 implicitWidth: Sizes.dp(315)
                 implicitHeight: Sizes.dp(64)
                 font.pixelSize: Sizes.fontSizeS
-                text: "Disabled Button"
+                text: qsTr("Disabled Button")
                 enabled: false
             }
 
@@ -74,7 +74,7 @@ Item {
                 implicitWidth: Sizes.dp(315)
                 implicitHeight: Sizes.dp(64)
                 font.pixelSize: Sizes.fontSizeS
-                text: "Button Checkable"
+                text: qsTr("Button Checkable")
                 checkable: true
             }
         }
@@ -87,7 +87,7 @@ Item {
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Small button"
+                text: qsTr("Small button")
             }
             Button {
                 implicitHeight: smallButtonHeight
@@ -95,7 +95,7 @@ Item {
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Small button"
+                text: qsTr("Small button")
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
             Button {
@@ -104,7 +104,7 @@ Item {
                 leftPadding: smallButtonPadding
                 rightPadding: smallButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Checkable"
+                text: qsTr("Checkable")
                 icon.name: checked ? "ic-steering-wheel-heat_ON" : "ic-steering-wheel-heat_OFF"
                 checkable: true
             }
@@ -112,7 +112,7 @@ Item {
         RowLayout {
             spacing: Sizes.dp(13)
             Button {
-                text: "Large button"
+                text: qsTr("Large button")
                 implicitHeight: largeButtonHeight
                 implicitWidth: Sizes.dp(315)
                 leftPadding: largeButtonPadding
@@ -126,7 +126,7 @@ Item {
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Large button"
+                text: qsTr("Large button")
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
             Button {
@@ -135,7 +135,7 @@ Item {
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Checkable"
+                text: qsTr("Checkable")
                 icon.name: checked ? "ic-seat-heat-passenger_ON" : "ic-seat-heat-passenger_OFF"
                 checkable: true
             }
@@ -144,7 +144,7 @@ Item {
             spacing: Sizes.dp(13)
 
             Label {
-                text: "Custom background:"
+                text: qsTr("Custom background:")
             }
 
             Button {
@@ -171,7 +171,7 @@ Item {
                     opacity: 1
                 }
                 icon.name: "ic-seat-heat-passenger_OFF"
-                text: "text"
+                text: qsTr("text")
                 font.pixelSize: Sizes.fontSizeS
                 display: AbstractButton.TextUnderIcon
                 spacing: 0
@@ -184,7 +184,7 @@ Item {
                 implicitWidth: Sizes.dp(500)
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
-                text: "Wide button"
+                text: qsTr("Wide button")
                 font.pixelSize: Sizes.fontSizeS
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
@@ -194,7 +194,7 @@ Item {
                 leftPadding: largeButtonPadding
                 rightPadding: largeButtonPadding
                 font.pixelSize: Sizes.fontSizeS
-                text: "Elide too long text"
+                text: qsTr("Elide too long text")
                 icon.name: "ic-steering-wheel-heat_OFF"
             }
         }

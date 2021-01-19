@@ -117,6 +117,23 @@
     </message>
 </context>
 <context>
+    <name>CalendarMaximizedPanel</name>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Today: Mostly sunny,
+the highest temperature will be 26°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tonight: Mostly cloudy with light rain,
+temperatures between 14° and 18°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -135,6 +152,14 @@
     <name>CalendarWidgetPanel</name>
     <message>
         <source>Partly cloudy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21°C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -168,6 +193,21 @@
     <name>ClimateContentPanel</name>
     <message>
         <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConnectivityPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -231,6 +271,28 @@
     </message>
 </context>
 <context>
+    <name>DownloadAppList</name>
+    <message>
+        <source>update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsStates</name>
+    <message>
+        <source>Login Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching categories error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching apps error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadsStore</name>
     <message>
         <source>%1 Successfully Installed</source>
@@ -288,6 +350,30 @@
         <source>%1 GB</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>built-in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Updates successfully Uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 updates successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadsView</name>
@@ -300,10 +386,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No apps found!</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>A Network connection is required</source>
         <translation type="unfinished"></translation>
     </message>
@@ -313,6 +395,22 @@
     </message>
     <message>
         <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is on Maintance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -373,10 +471,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show on map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>21</source>
         <translation type="unfinished"></translation>
     </message>
@@ -396,6 +490,10 @@
         <source>Faiss Dr, Las Vegas</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Open map</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FavDestinationButtonsPanel</name>
@@ -405,6 +503,14 @@
     </message>
     <message>
         <source>Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welandergatan 29</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Östra Hamngatan 16</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -428,6 +534,21 @@
     </message>
 </context>
 <context>
+    <name>FullScreenBottomView</name>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Album</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FullScreenTopView</name>
     <message>
         <source>Next</source>
@@ -447,6 +568,36 @@
     </message>
 </context>
 <context>
+    <name>HotspotPanel</name>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ICMapView</name>
+    <message>
+        <source>Next turn: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ICMusicView</name>
     <message>
         <source>Track unavailable</source>
@@ -460,16 +611,69 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>km/h</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Your parking period is about to end</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Your parking period will be ended in 5 minutes.
                          Please extend your parking ticket or move your car.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active parking tickets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone 
+Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2h, 14 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every day 12 - 22</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other times</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1.5 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1275, Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End (2.29 $)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, Parking Olympia</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -556,6 +760,13 @@
     </message>
     <message>
         <source>You are now using online map from Mapbox server</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MapView</name>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -661,6 +872,14 @@
         <source>Unknown Album</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
@@ -704,6 +923,17 @@
     </message>
     <message>
         <source>Where do you want to go?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NavigationStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>m</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -816,6 +1046,26 @@
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>UI Accent Color changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Accent Color changed into %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Light Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UI Theme changed into Dark Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchOverlayPanel</name>
@@ -866,7 +1116,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>connectivity</source>
+        <source>network</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpeedPanel</name>
+    <message>
+        <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -932,6 +1189,14 @@
     </message>
     <message>
         <source>MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1021,6 +1286,62 @@
     </message>
     <message>
         <source>options</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VehicleView</name>
+    <message>
+        <source>The 3D car model is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wi-Fi Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPopup</name>
+    <message>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WidgetContentView</name>
+    <message>
+        <source>Discover similar music</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

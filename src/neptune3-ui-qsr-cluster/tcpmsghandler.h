@@ -63,6 +63,8 @@ private:
 
 signals:
     void mainWindowPosGot(int x, int y);
+    void mainWindowPanelSizeGot(int width, int height);
+    void mainWindowPanelOriginGot(int dx, int dy);
 
 private:
     NeptuneSafeStateManager *m_stateManager;

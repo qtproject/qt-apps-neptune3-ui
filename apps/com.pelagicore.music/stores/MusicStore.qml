@@ -133,11 +133,11 @@ Store {
     property ListModel musicSourcesModel: ListModel {
         id: musicSourcesModel
         ListElement {
-            text: "Music"
+            text: qsTr("Music")
             appId: "com.pelagicore.music"
         }
         ListElement {
-            text: "AM/FM Radio"
+            text: qsTr("AM/FM Radio")
             appId: "com.pelagicore.tuner"
         }
     }
@@ -145,7 +145,7 @@ Store {
     property Connections con: Connections {
         target: player.playQueue
 
-        onRowsInserted: {
+        function onRowsInserted(parentIndex, first, last) {
             console.log(Logging.apps, "Music Queue / Playlist Row Inserted: ", first);
             player.playQueue.currentIndex = first;
         }
@@ -158,6 +158,20 @@ Store {
             request.sendReply({ "done": true })
         }
     }
+
+    property IntentHandler intentHandler2: IntentHandler {
+            intentIds: "music-command"
+            onRequestReceived: {
+                var receivedCommand = request.parameters["musiccommand"];
+                request.sendReply({ "done": true })
+
+                if (receivedCommand === "next") {
+                    root.nextSong();
+                } else if (receivedCommand === "prev") {
+                    root.previousSong();
+                }
+            }
+        }
 
     signal requestToRise()
     signal songModelPopulated()

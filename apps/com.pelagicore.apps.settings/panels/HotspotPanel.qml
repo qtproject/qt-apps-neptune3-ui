@@ -86,7 +86,7 @@ Control {
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: Sizes.fontSizeS
                     elide: Text.ElideRight
-                    text: "Hotspot"
+                    text: qsTr("Hotspot")
                 }
                 Rectangle {
                     id: headerDivider
@@ -104,7 +104,7 @@ Control {
             }
 
             SwitchDelegate {
-                text: "Hotspot Enabled"
+                text: qsTr("Hotspot Enabled")
                 width: root.width
                 checked: root.hotspotEnabled
                 onToggled: root.hotspotEnabled = checked
@@ -120,7 +120,7 @@ Control {
             Label {
                 id: ssidTitle
                 width: root.width
-                text: "SSID"
+                text: qsTr("SSID")
                 font.pixelSize: Sizes.fontSizeS
                 elide: Text.ElideRight
                 color: Style.contrastColor
@@ -162,7 +162,7 @@ Control {
             Label {
                 id: passwTitle
                 width: root.width
-                text: "Password"
+                text: qsTr("Password")
                 font.pixelSize: Sizes.fontSizeS
                 elide: Text.ElideRight
                 color: Style.contrastColor

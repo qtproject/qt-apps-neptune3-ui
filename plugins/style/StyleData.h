@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -37,9 +37,9 @@
 struct StyleData
 {
     enum Theme { Light = 0, Dark = 1 } theme;
-    QColor accentColor;
 
     struct ThemeData {
+        QColor accentColor;
         QColor backgroundColor;
         QColor buttonColor;
         QColor highlightedButtonColor;

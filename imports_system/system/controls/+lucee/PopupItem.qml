@@ -40,6 +40,9 @@ import shared.controls 1.0
 AbstractPopupItem {
     id: root
 
+    property alias closeToolButton: closeToolButton
+    property alias popupBg: popupBg
+
     onVisibleChanged: {
         if (visible) {
             //put cursor on close button as default
@@ -63,6 +66,7 @@ AbstractPopupItem {
         }
     }
     background: ScalableBorderImage {
+        id: popupBg
         anchors.fill: root
         source: Style.image("popup-background-9patch")
         anchors.leftMargin: Sizes.dp(-7)
@@ -89,20 +93,15 @@ AbstractPopupItem {
 
     ToolButton {
         id: closeToolButton
+        z: parent.z + 1 // close button should be upper then content
         objectName: "popupClose"
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.margins: Sizes.dp(17)
         width: Sizes.dp(50)
         height: Sizes.dp(50)
-
-        contentItem: NeptuneIconLabel {
-            anchors.centerIn: parent
-            icon.color: Style.accentColor
-            icon.name: "ic-close"
-            iconScale: Sizes.scale
-        }
-
+        icon.color: Style.accentColor
+        icon.name: "ic-close"
         onClicked: { root.closeHandler(); }
     }
 }

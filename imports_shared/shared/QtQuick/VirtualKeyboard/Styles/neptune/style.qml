@@ -40,7 +40,7 @@ import shared.utils 1.0 as Utils
 KeyboardStyle {
     id: currentStyle
     readonly property bool compactSelectionList: [InputEngine.Pinyin, InputEngine.Cangjie].indexOf(InputContext.inputEngine.inputMode) !== -1
-    readonly property string fontFamily: "Open Sans"
+    readonly property string fontFamily: "DejaVu Sans"
     readonly property real keyBackgroundMargin: Math.round(13 * scaleHint)
     readonly property real keyContentMargin: Math.round(45 * scaleHint)
     readonly property real keyIconScale: scaleHint * 0.6

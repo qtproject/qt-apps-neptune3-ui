@@ -247,6 +247,23 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>CalendarMaximizedPanel</name>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Today: Mostly sunny,
+the highest temperature will be 26°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tonight: Mostly cloudy with light rain,
+temperatures between 14° and 18°.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CalendarToolsColumn</name>
     <message>
         <source>year</source>
@@ -349,6 +366,14 @@ UX na cestu</translation>
     <message>
         <source>Partly cloudy</source>
         <translation>Částečně zataženo</translation>
+    </message>
+    <message>
+        <source>Partly sunny, 21°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>21°C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -477,6 +502,21 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>ConnectivityPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bluetooth</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CpuMonitor</name>
     <message>
         <source>CPU: </source>
@@ -566,6 +606,28 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>DownloadAppList</name>
+    <message>
+        <source>update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadsStates</name>
+    <message>
+        <source>Login Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching categories error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetching apps error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadsStore</name>
     <message>
         <source>%1 Successfully Installed</source>
@@ -623,6 +685,30 @@ UX na cestu</translation>
         <source>%1 GB</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>built-in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 successfully updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Updates successfully Uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 updates successfully uninstalled</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DownloadsView</name>
@@ -640,7 +726,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>No apps found!</source>
-        <translation type="unfinished">Žádné aplikace nenalezeny!</translation>
+        <translation type="obsolete">Žádné aplikace nenalezeny!</translation>
     </message>
     <message>
         <source>A Network connection is required</source>
@@ -652,6 +738,22 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Retry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server is on Maintance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No apps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -713,7 +815,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>Show on map</source>
-        <translation>Zobrazit na mapě</translation>
+        <translation type="vanished">Zobrazit na mapě</translation>
     </message>
     <message>
         <source>21</source>
@@ -735,6 +837,10 @@ UX na cestu</translation>
         <source>Faiss Dr, Las Vegas</source>
         <translation>Faiss Dr, Las Vegas</translation>
     </message>
+    <message>
+        <source>Open map</source>
+        <translation>Otevřít mapu</translation>
+    </message>
 </context>
 <context>
     <name>FavDestinationButtonsPanel</name>
@@ -745,6 +851,14 @@ UX na cestu</translation>
     <message>
         <source>Work</source>
         <translation>Práce</translation>
+    </message>
+    <message>
+        <source>Welandergatan 29</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Östra Hamngatan 16</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -822,6 +936,18 @@ UX na cestu</translation>
         <source>%1 (%2)</source>
         <translation type="vanished">%1 (%2)</translation>
     </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <translation type="unfinished">Umělec</translation>
+    </message>
+    <message>
+        <source>Album</source>
+        <translation type="unfinished">Album</translation>
+    </message>
 </context>
 <context>
     <name>FullScreenTopView</name>
@@ -858,6 +984,40 @@ UX na cestu</translation>
     <message>
         <source>Search and navigation not available in offline mode.</source>
         <translation type="vanished">Hledání a navigace nedostupné v offline režimu.</translation>
+    </message>
+</context>
+<context>
+    <name>HotspotPanel</name>
+    <message>
+        <source>Hotspot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hotspot Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ICMapView</name>
+    <message>
+        <source>km</source>
+        <translation type="obsolete">km</translation>
+    </message>
+    <message>
+        <source>Next turn: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -948,7 +1108,7 @@ UX na cestu</translation>
     </message>
     <message>
         <source>km/h</source>
-        <translation type="unfinished">km/h</translation>
+        <translation type="obsolete">km/h</translation>
     </message>
     <message>
         <source>Your parking period is about to end</source>
@@ -958,6 +1118,70 @@ UX na cestu</translation>
         <source>Your parking period will be ended in 5 minutes.
                          Please extend your parking ticket or move your car.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active parking tickets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone 
+Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2h, 14 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every day 12 - 22</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other times</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1.5 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 $ / started hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1275, Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End (2.29 $)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Call for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>, Parking Olympia</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainView</name>
+    <message>
+        <source>km/h</source>
+        <translation type="obsolete">km/h</translation>
     </message>
 </context>
 <context>
@@ -1102,6 +1326,10 @@ UX na cestu</translation>
     <message>
         <source>Work</source>
         <translation type="vanished">Práce</translation>
+    </message>
+    <message>
+        <source>The map is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1359,6 +1587,14 @@ UX na cestu</translation>
         <source>Unknown Album</source>
         <translation>Neznámé album</translation>
     </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MusicToolsColumn</name>
@@ -1396,6 +1632,13 @@ UX na cestu</translation>
     <message>
         <source>Browse</source>
         <translation type="obsolete">Procházet</translation>
+    </message>
+</context>
+<context>
+    <name>NaviPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="obsolete">km/h</translation>
     </message>
 </context>
 <context>
@@ -1448,6 +1691,17 @@ UX na cestu</translation>
     <message>
         <source>Where do you want to go?</source>
         <translation>Kam se chcete vydat?</translation>
+    </message>
+</context>
+<context>
+    <name>NavigationStore</name>
+    <message>
+        <source>km</source>
+        <translation type="unfinished">km</translation>
+    </message>
+    <message>
+        <source>m</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1612,11 +1866,11 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Accent Color changed</source>
-        <translation type="vanished">Barva zvýraznění UI změněna</translation>
+        <translation>Barva zvýraznění UI změněna</translation>
     </message>
     <message>
         <source>UI Accent Color changed into %1</source>
-        <translation type="vanished">Barva zvýraznění UI změněna na %1</translation>
+        <translation>Barva zvýraznění UI změněna na %1</translation>
     </message>
     <message>
         <source>UI Language changed</source>
@@ -1624,15 +1878,15 @@ UX na cestu</translation>
     </message>
     <message>
         <source>UI Theme changed</source>
-        <translation type="vanished">Motiv UI změněn</translation>
+        <translation>Motiv UI změněn</translation>
     </message>
     <message>
         <source>UI Theme changed into Light Theme</source>
-        <translation type="vanished">Motiv UI změněn na světlý</translation>
+        <translation>Motiv UI změněn na světlý</translation>
     </message>
     <message>
         <source>UI Theme changed into Dark Theme</source>
-        <translation type="vanished">Motiv UI změněn na tmavý</translation>
+        <translation>Motiv UI změněn na tmavý</translation>
     </message>
     <message>
         <source>UI Language changed into %1 (%2)</source>
@@ -1778,8 +2032,15 @@ UX na cestu</translation>
         <translation>barvy</translation>
     </message>
     <message>
-        <source>connectivity</source>
+        <source>network</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpeedPanel</name>
+    <message>
+        <source>km/h</source>
+        <translation type="unfinished">km/h</translation>
     </message>
 </context>
 <context>
@@ -1944,6 +2205,14 @@ UX na cestu</translation>
     <message>
         <source>MHz</source>
         <translation>MHz</translation>
+    </message>
+    <message>
+        <source>AM/FM Radio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2205,6 +2474,13 @@ UX na cestu</translation>
     </message>
 </context>
 <context>
+    <name>VehicleView</name>
+    <message>
+        <source>The 3D car model is disabled in this runtime environment</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>VehicleWidgetModel</name>
     <message>
         <source>Fees</source>
@@ -2228,6 +2504,55 @@ UX na cestu</translation>
     <message>
         <source>Enter an address</source>
         <translation type="vanished">Zadejte adresu</translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPanel</name>
+    <message>
+        <source>Wi-Fi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wi-Fi Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WiFiPopup</name>
+    <message>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WidgetContentView</name>
+    <message>
+        <source>Discover similar music</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

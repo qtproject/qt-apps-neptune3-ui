@@ -98,6 +98,9 @@ ListItemBasic {
 
     Cursor {
         acceptsCursor: (root.rightToolSymbol === "")
+        onActivated: {
+            root.clicked();
+        }
     }
 
     accessoryDelegateComponent1: Label {

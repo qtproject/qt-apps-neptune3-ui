@@ -54,7 +54,11 @@ T.ComboBox {
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
 
-    Cursor { }
+    Cursor {
+        onActivated: {
+            control.clicked();
+        }
+    }
 
     delegate: ItemDelegate {
         width: parent.width

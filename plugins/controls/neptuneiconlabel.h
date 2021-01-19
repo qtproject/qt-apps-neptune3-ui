@@ -35,6 +35,8 @@
 #include <QtQuick/qquickitem.h>
 #include <QtQuickControls2/private/qtquickcontrols2global_p.h>
 #include <QtQuickTemplates2/private/qquickicon_p.h>
+#include <QtQuick/private/qquickimagebase_p.h>
+#include <QtQuick/private/qquickimage_p.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -56,6 +58,11 @@ class NeptuneIconLabel : public QQuickItem
     Q_PROPERTY(qreal leftPadding READ leftPadding WRITE setLeftPadding RESET resetLeftPadding FINAL)
     Q_PROPERTY(qreal rightPadding READ rightPadding WRITE setRightPadding RESET resetRightPadding FINAL)
     Q_PROPERTY(qreal bottomPadding READ bottomPadding WRITE setBottomPadding RESET resetBottomPadding FINAL)
+    Q_PROPERTY(QQuickImage::FillMode iconFillMode READ iconFillMode WRITE setIconFillMode FINAL)
+    Q_PROPERTY(qreal iconRectWidth READ iconRectWidth WRITE setIconRectWidth
+               NOTIFY iconRectWidthChanged)
+    Q_PROPERTY(qreal iconRectHeight READ iconRectHeight WRITE setIconRectHeight
+               NOTIFY iconRectHeightChanged)
 
 public:
     enum Display {
@@ -68,6 +75,9 @@ public:
 
     explicit NeptuneIconLabel(QQuickItem *parent = nullptr);
     ~NeptuneIconLabel();
+
+    QQuickImage::FillMode iconFillMode() const;
+    void setIconFillMode(QQuickImage::FillMode mode);
 
     QQuickIcon icon() const;
     void setIcon(const QQuickIcon &icon);
@@ -112,9 +122,22 @@ public:
     void setBottomPadding(qreal padding);
     void resetBottomPadding();
 
+    qreal iconRectWidth() const;
+    void setIconRectWidth(qreal width);
+
+    qreal iconRectHeight() const;
+    void setIconRectHeight(qreal height);
+
+Q_SIGNALS:
+    void iconRectWidthChanged();
+    void iconRectHeightChanged();
+
 protected:
     void componentComplete() override;
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
+
+private Q_SLOTS:
+    void onImageStatusChanged(QQuickImageBase::Status);
 
 private:
     Q_DISABLE_COPY(NeptuneIconLabel)

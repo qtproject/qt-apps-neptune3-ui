@@ -43,30 +43,51 @@ ToolButton {
     implicitWidth: root.notificationCounterVisible ? Sizes.dp(255) : Sizes.dp(205)
     implicitHeight: Sizes.dp(Config.statusBarHeight)
 
-    property alias dragActive: handler.active
-    property alias dragTarget: handler.target
-    property int prevDragY: 0
-    property int dragDelta: 0
-    property int dragOrigin: 0
-    property int minimumY: 0
-    property int maximumY: 0
-
-    property bool swipe: Math.abs(root.prevDragY - root.dragTarget.y) > 0
-
-    property alias dragFilterTimer: dragFilterTimer
-
     property int notificationCount
     property bool notificationCounterVisible
 
-    signal activeChanged(var active)
+    property var dragTarget
+    property int parentRotation
+
+    QtObject {
+        id: d
+        property int prevDragY
+    }
 
     DragHandler {
         id: handler
-        target: root.dragTarget
-        yAxis.minimum: root.minimumY
-        yAxis.maximum: root.maximumY
+        target: root
+        onTranslationChanged: {
+            var dt = Math.sin(parentRotation* (180 / Math.PI)) * translation.x
+                    + Math.cos(parentRotation* (180 / Math.PI)) * translation.y ;
+            if (dragTarget.state === "intermediate_from_closed") {
+                if (dt > 0) { // from close -> open
+                    var delta = dt < dragTarget.allNotificationsHeight
+                                ? dt
+                                : dragTarget.allNotificationsHeight;
+                    dragTarget.y = d.prevDragY + delta;
+                }
+            } else if (dragTarget.state === "intermediate_from_all") {
+                  if (dt < 0) {  // from open -> close
+                    delta = (dt + dragTarget.allNotificationsHeight) > 0
+                        ? dt
+                        : -dragTarget.allNotificationsHeight;
+                    dragTarget.y = d.prevDragY + delta;
+                  }
+            }
+        }
         onActiveChanged: {
-            root.activeChanged(active);
+            if (active) {
+                if (dragTarget.state === "closed") {
+                    dragTarget.state = "intermediate_from_closed";
+                    d.prevDragY = dragTarget.y;
+                } else if (dragTarget.state === "allNotifications") {
+                    dragTarget.state = "intermediate_from_all";
+                    d.prevDragY = dragTarget.y;
+                }
+            } else {
+                root.released()
+            }
         }
     }
 
@@ -77,48 +98,113 @@ ToolButton {
         anchors.horizontalCenter: parent.horizontalCenter
 
         Rectangle {
-            anchors.verticalCenter: parent.verticalCenter
-            width: root.notificationCounterVisible ? Sizes.dp(100) : Sizes.dp(200)
+            width: Sizes.dp(100)
             height: Sizes.dp(4)
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: countRect.left
             color: Style.contrastColor
         }
 
         Rectangle {
+            id: countRect
+
             width: Sizes.dp(45)
-            height: Sizes.dp(30)
-            radius: height / 2
+            height: Sizes.dp(4)
             anchors.centerIn: parent
-            opacity: root.notificationCounterVisible ? 1 : 0
-            visible: opacity > 0
-            color: "transparent"
+            color: Style.contrastColor
             border.color: Style.contrastColor
 
             Label {
                 id: countLabel
+
                 anchors.centerIn: parent
                 font.pixelSize: Sizes.fontSizeXS
                 text: root.notificationCount
                 color: Style.contrastColor
+                visible: false
             }
         }
 
         Rectangle {
             width: Sizes.dp(100)
             height: Sizes.dp(4)
-            anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            opacity: root.notificationCounterVisible ? 1 : 0
-            visible: opacity > 0
+            anchors.left: countRect.right
             color: Style.contrastColor
         }
     }
 
-    Timer {
-        id: dragFilterTimer
-        interval: 100
-        repeat: true
-        onTriggered: {
-            root.prevDragY = root.dragTarget.y;
+    states: [
+        State {
+            name: "notificationCounterVisible"
+            when: root.notificationCounterVisible
+            changes: [
+                PropertyChanges {
+                    target: countRect
+                    height: Sizes.dp(30)
+                    radius: height / 2
+                    color: "transparent"
+                },
+                PropertyChanges {
+                    target: countLabel
+                    visible: true
+                }
+            ]
+        },
+        State {
+            name: "notificationCounterInvisible"
+            when: !root.notificationCounterVisible
+            changes: [
+                PropertyChanges {
+                    target: countRect
+                    height: Sizes.dp(4)
+                    radius: 0
+                    color: Style.contrastColor
+                },
+                PropertyChanges {
+                    target: countLabel
+                    visible: false
+                }
+            ]
         }
-    }
+    ]
+
+    transitions: [
+        Transition {
+            to: "notificationCounterInvisible"
+            SequentialAnimation {
+                PauseAnimation {
+                    duration: 400
+                }
+                PropertyAction {
+                    target: countLabel
+                    property: "visible"
+                    value: false
+                }
+                NumberAnimation {
+                    target: countRect
+                    properties: "height, radius"
+                    duration: 200
+                }
+            }
+        },
+        Transition {
+            to: "notificationCounterVisible"
+            SequentialAnimation {
+                PauseAnimation {
+                    duration: 400
+                }
+                NumberAnimation {
+                    target: countRect
+                    properties: "height, radius"
+                    duration: 200
+                }
+                PropertyAction {
+                    target: countLabel
+                    property: "visible"
+                    value: true
+                }
+            }
+        }
+    ]
 }

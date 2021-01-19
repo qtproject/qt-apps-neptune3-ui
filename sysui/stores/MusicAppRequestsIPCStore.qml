@@ -73,7 +73,7 @@ ApplicationIPCInterface {
 
     property var appmanCnx: Connections {
         target: ApplicationManager
-        onApplicationAdded: {
+        function onApplicationAdded(id) {
             if (id === "com.pelagicore.spotify") {
                 root.spotifyInstalled = true;
             }
@@ -81,7 +81,7 @@ ApplicationIPCInterface {
                 root.webradioInstalled = true;
             }
         }
-        onApplicationAboutToBeRemoved: {
+        function onApplicationAboutToBeRemoved(id) {
             if (id === "com.pelagicore.spotify") {
                 root.spotifyInstalled = false;
             }

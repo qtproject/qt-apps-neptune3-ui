@@ -52,6 +52,9 @@ T.RadioButton {
     spacing: Sizes.dp(8)
 
     Cursor {
+        onActivated: {
+            control.clicked();
+        }
         onPressAndHold: {
             control.pressAndHold();
         }

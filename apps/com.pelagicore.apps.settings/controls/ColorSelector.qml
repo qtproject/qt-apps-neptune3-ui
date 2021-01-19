@@ -45,8 +45,8 @@ Control {
     signal accentColorRequested(color accentColor)
 
     background: Image {
-        height: Sizes.dp(sourceSize.width)
         width: Sizes.dp(sourceSize.width)
+        height: width
         source: Style.image("colorSelector/color-wheel")
 
         Image {
@@ -59,43 +59,16 @@ Control {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                // find out which area is clicked
-
-                if (mouseX > width / 2) {
-                    //left
-                    if (mouseY < height / 2) {
-                        //top left
-                        if (mouseX < height - mouseY) {
-                            root.accentColorRequested(chartData[0].color);
-                        } else {
-                            root.accentColorRequested(chartData[1].color);
-                        }
-                    } else {
-                        //bottom left
-                        if (mouseX > mouseY) {
-                            root.accentColorRequested(chartData[2].color);
-                        } else {
-                            root.accentColorRequested(chartData[3].color);
-                        }
-                    }
-
-                } else {
-                    //right
-                    if (mouseY < height / 2) {
-                        //top right
-                        if (mouseX < mouseY) {
-                            root.accentColorRequested(chartData[6].color);
-                        } else {
-                            root.accentColorRequested(chartData[7].color);
-                        }
-                    } else {
-                        //bottom right
-                        if (mouseX > height - mouseY) {
-                            root.accentColorRequested(chartData[4].color);
-                        } else {
-                            root.accentColorRequested(chartData[5].color);
-                        }
-                    }
+                // circle with chartData.length sectors, the selected one is bigger then others
+                // here we decide on which area click/touch was made
+                var x0 = parent.width / 2;
+                var y0 = parent.height / 2;
+                var distance = Math.sqrt((mouseX - x0) ** 2 + (mouseY - y0) ** 2);
+                if (distance > parent.width / 20 && chartData.length > 0) {
+                    var sector = 2 * Math.PI / chartData.length;
+                    var angle = Math.atan2(mouseY - y0, mouseX - x0) + Math.PI / 2;
+                    angle = angle < 0.0 ? angle + 2 * Math.PI : angle;
+                    root.accentColorRequested(chartData[(angle / sector) | 0].color);
                 }
             }
         }

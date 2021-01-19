@@ -34,6 +34,7 @@
 import QtQuick 2.8
 import QtApplicationManager.Application 2.0
 import shared.utils 1.0
+import shared.com.pelagicore.systeminfo 1.0
 
 Store {
     id: root
@@ -41,16 +42,28 @@ Store {
     property bool ongoingCall: false
     property string callerHandle: ""
     property alias callDuration: callTimer.duration
+    readonly property SystemInfo systemInfo: SystemInfo {}
+    readonly property bool allowOpenGLContent: systemInfo.allowOpenGLContent
 
 //! [parking intent handler]
     readonly property IntentHandler intentHandler: IntentHandler {
-        intentIds: "call-support"
+        intentIds: ["call-support", "activate-app"]
         onRequestReceived: {
-            root.startCall("neptunesupport");
-            request.sendReply({ "done": true });
+            switch (request.intentId) {
+            case "call-support":
+                root.startCall("neptunesupport");
+                request.sendReply({ "done": true });
+                break;
+            case "activate-app":
+                root.requestRaiseAppReceived()
+                request.sendReply({ "done": true })
+                break;
+            }
         }
     }
 //! [parking intent handler]
+
+    signal requestRaiseAppReceived()
 
     function findPerson(handle) {
         for (var i = 0; i < contactsModel.count; i++) {

@@ -32,10 +32,15 @@
 
 import QtQuick 2.10
 import QtLocation 5.9
+import QtPositioning 5.14
+import QtQuick.Controls 2.13
 
 import shared.animations 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
+
+import "../helpers" 1.0
+import "../panels" 1.0
 
 Item {
     id: root
@@ -48,6 +53,12 @@ Item {
     property alias activeMapType: mainMap.activeMapType
     property var path
     property var mapPlugin
+    property bool allowMapRendering
+
+
+    property string nextTurnDistanceMeasuredIn
+    property real nextTurnDistance
+    property string naviGuideDirection
 
     state: "initial"
     states: [
@@ -89,8 +100,13 @@ Item {
                 visible: true
                 path: root.path
             }
+            PropertyChanges {
+                target: instructions
+                visible: root.naviGuideDirection !== ""
+            }
         }
     ]
+
     Map {
         id: mainMap
         anchors.fill: parent
@@ -99,6 +115,7 @@ Item {
         zoomLevel: 10
         plugin: root.mapPlugin
         copyrightsVisible: false
+        visible: root.allowMapRendering
 
         MapPolyline {
             id: pathView
@@ -119,6 +136,46 @@ Item {
             }
         }
 
+        Item {
+            id: instructions
+            visible: false
+            anchors.top: posMarker.bottom
+            anchors.topMargin: Sizes.dp(100)
+            anchors.horizontalCenter: posMarker.horizontalCenter
+            width: Sizes.dp(660)
+            height: Sizes.dp(100)
+
+            Rectangle {
+                anchors.fill: parent
+                opacity: 0.5
+                color: Style.theme === Style.Dark ? "black" : "white"
+                radius: 10
+            }
+
+            Label {
+                width: Sizes.dp(400)
+                height: Sizes.dp(100)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: Sizes.dp(30)
+                opacity: 0.9
+                font.pixelSize: Sizes.fontSizeXL
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                text: qsTr("Next turn: ") + root.nextTurnDistance
+                      + " " + root.nextTurnDistanceMeasuredIn
+            }
+
+            Image {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: Sizes.dp(30)
+                source: root.naviGuideDirection !== ""
+                    ? Helper.localAsset(root.naviGuideDirection, Style.theme)
+                    : ""
+            }
+        }
+
         MapQuickItem {
             id: posMarker
             anchorPoint: Qt.point(posImage.width * 0.5, posImage.height * 0.5)
@@ -128,6 +185,16 @@ Item {
                 width: Sizes.dp(116/2)
                 height: Sizes.dp(135/2)
             }
+        }
+    }
+
+    Loader {
+        active: !root.allowMapRendering
+        anchors.fill: root
+        sourceComponent: ProxyErrorPanel {
+            anchors.fill: parent
+            clusterWindow: true
+            errorText: qsTr("The map is disabled in this runtime environment")
         }
     }
 }

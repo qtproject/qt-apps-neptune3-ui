@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -56,6 +57,11 @@ Item {
     readonly property Item bottomBar: bottomBar
 
     rotation: store.centerConsole.rotation
+
+    // Default binding, acts like "constrainHeight" to avoid zero sizes when switching
+    // between root states through default state
+    width: root.store.centerConsole.availableWidth
+    height: Math.round(root.width / Config.centerConsoleAspectRatio)
 
     // If the Window aspect ratio differs from Config.centerConsoleAspectRatio the Center Console item will be
     // letterboxed so that a Config.centerConsoleAspectRatio is preserved.
@@ -84,8 +90,16 @@ Item {
         root.store.languageTimer.start();
     }
 
-    Binding { target: root.store.systemStore; property: "activeAppInfo"; value: root.store.applicationModel.activeAppInfo }
-    Binding { target: root.store.systemStore; property: "monitorEnabled"; value: about.state === "open" && about.currentTabName === "system" }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.systemStore; property: "activeAppInfo";
+        value: root.store.applicationModel.activeAppInfo;
+    }
+    Binding {
+        restoreMode: Binding.RestoreBinding;
+        target: root.store.systemStore; property: "monitorEnabled";
+        value: about.state === "open" && about.currentTabName === "system";
+    }
 
     Image {
         anchors.fill: parent
@@ -107,14 +121,42 @@ Item {
         source: "MainContentArea.qml"
         anchors.fill: parent
 
-        Binding { target: mainContentArea.item; property: "applicationModel"; value: root.store.applicationModel }
-        Binding { target: mainContentArea.item; property: "launcherY"; value: statusBar.y + statusBar.height }
-        Binding { target: mainContentArea.item; property: "homeBottomMargin"; value: bottomBar.height }
-        Binding { target: mainContentArea.item; property: "popupParent"; value: root.popupParent }
-        Binding { target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard.item }
-        Binding { target: mainContentArea.item; property: "enableOpacityMask"; value: root.store.hardwareVariant !== 'low' }
-        Binding { target: mainContentArea.item; property: "devMode"; value: root.store.devMode }
-        Binding { target: mainContentArea.item; property: "showSystemAppsInLauncher"; value: root.store.showSystemAppsInLauncher }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "applicationModel";
+            value: root.store.applicationModel;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "launcherY";
+            value: statusBar.y + statusBar.height;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "homeBottomMargin"; value: bottomBar.height;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "popupParent"; value: root.popupParent;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "virtualKeyboard"; value: virtualKeyboard.item;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "enableOpacityMask";
+            value: root.store.hardwareVariant !== 'low';
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "devMode"; value: root.store.devMode;
+        }
+        Binding {
+            restoreMode: Binding.RestoreBinding;
+            target: mainContentArea.item; property: "showSystemAppsInLauncher";
+            value: root.store.showSystemAppsInLauncher;
+        }
     }
 
     StatusBar {
@@ -136,7 +178,7 @@ Item {
         id: bottomBar
         width: root.width
         height: Sizes.dp(Config.bottomBarHeight)
-        enabled: !mainContentArea.item.launcherOpen
+        enabled: mainContentArea.item && !mainContentArea.item.launcherOpen
         opacity: enabled ? 1.0 : 0.6
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -152,11 +194,16 @@ Item {
 
     Loader {
         id: virtualKeyboard
+        asynchronous: true
         source: "VirtualKeyboard.qml"
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottom: root.bottom
+        width: root.width
         z: 101
+
+        onLoaded: {
+            item.parentRotation = Qt.binding(() => root.rotation);
+        }
     }
 
     UIShortcuts {
@@ -195,6 +242,9 @@ Item {
             } else {
                 root.store.clusterStore.clusterPosition = root.store.clusterStore.clusterPosition + 1;
             }
+        }
+        onCtrlVPressed: {
+            root.store.triggerVoiceAssitant();
         }
     }
 }

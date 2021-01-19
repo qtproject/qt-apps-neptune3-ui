@@ -1,10 +1,8 @@
 formatVersion: 1
-formatType: am-application
+formatType: am-package
 ---
 id:      'com.pelagicore.map'
 icon:    'icon.png'
-code:    'Main.qml'
-runtime: 'qml'
 name:
   en: 'Maps'
   de: 'Karten'
@@ -14,6 +12,14 @@ name:
   ja: '地図'
   ko: '지도'
 
-applicationProperties: { private: { squishPort: 7726 } }
+applications:
+- id:      'com.pelagicore.map'
+  code:    'Main.qml'
+  runtime: 'qml'
+  applicationProperties: { private: { squishPort: 7726 } }
+
 categories: [ 'navigation', 'widget' ]
-mimeTypes: [ 'x-scheme-handler/x-map' ]
+intents:
+- id: show-destination
+- id: activate-app
+

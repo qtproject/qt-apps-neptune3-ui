@@ -97,7 +97,7 @@ Control {
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: Sizes.fontSizeS
                     elide: Text.ElideRight
-                    text: "WiFi"
+                    text: qsTr("Wi-Fi")
                 }
                 Rectangle {
                     id: headerDivider
@@ -115,7 +115,7 @@ Control {
             }
 
             SwitchDelegate {
-                text: "WiFi Enabled"
+                text: qsTr("Wi-Fi Enabled")
                 width: root.width
                 checked: root.wifiEnabled
                 onToggled: root.wifiEnabled = checked
@@ -153,7 +153,7 @@ Control {
                             rightPadding: Sizes.dp(30)
                             topPadding: Sizes.dp(8)
                             bottomPadding: Sizes.dp(8)
-                            text: "Disconnect"
+                            text: qsTr("Disconnect")
                             enabled: root.selectedWiFiStatus !== "Disconnecting"
                             font.pixelSize: Sizes.fontSizeS
                             onClicked: root.disconnectFromWiFiClicked( root.selectedWiFiSSID )
@@ -206,7 +206,7 @@ Control {
                                 }
                             }
                             text: model.modelData.ssid
-                            secondaryText: model.modelData.connected ? "Connected" : ""
+                            secondaryText: model.modelData.connected ? qsTr("Connected") : ""
                             rightToolSymbol: model.modelData.security != 0 ? "ic_secured_connection" : ""
                             dividerVisible: index !== wifiListView.count - 1
                             onClicked: root.connectToWiFiClicked(model.modelData.ssid)

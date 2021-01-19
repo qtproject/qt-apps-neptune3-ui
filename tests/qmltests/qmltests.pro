@@ -16,6 +16,11 @@ win32 {
 
 CONFIG += qmltestcase
 
+# these defines Styles for qml as it is not possible to set them via Qt Test
+# used to set env variables
+DEFINES *= STYLE_CONF_PATH=\""\\\"$$BUILD_DIR/styles/neptune/style.conf\\\""\"
+DEFINES *= STYLES_PATH=\""\\\"$$BUILD_DIR/styles\\\""\"
+
 # TODO: Check what is the import precedence to ensure Qt looks for modules first in the
 # build dir and only after in the installation dir.
 IMPORTPATH = $$BUILD_DIR/imports_shared \
@@ -36,5 +41,7 @@ for(COMPONENT_NAME, COMPONENT_NAMES) {
     !isEmpty(IMPORTPATH) {
         for(import, IMPORTPATH): $${targetName}.commands += -I \"$$import\"
     }
+    $${targetName}.commands += --style-conf $$BUILD_DIR/styles/neptune/style.conf
+    $${targetName}.commands += --styles-path $$BUILD_DIR/styles
     $${targetName}.commands += $$PWD/tst_$${COMPONENT_NAME}.qml
 }

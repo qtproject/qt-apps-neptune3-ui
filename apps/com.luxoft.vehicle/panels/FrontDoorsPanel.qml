@@ -50,6 +50,7 @@ Item {
     property bool rightDoorOpened: false
     property bool trunkOpened: false
     property real roofOpenProgress: 0.0
+    property bool enableOpacityMasks
 
     signal leftDoorClicked()
     signal rightDoorClicked()
@@ -100,7 +101,7 @@ Item {
     TopPanel {
         id: vehicleTopView
         anchors.horizontalCenter: parent.horizontalCenter
-        visible: false
+        visible: !root.enableOpacityMasks
 
         leftDoorOpen: root.leftDoorOpened
         rightDoorOpen: root.rightDoorOpened

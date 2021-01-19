@@ -40,6 +40,7 @@ import QtGraphicalEffects 1.0
 import shared.utils 1.0
 import shared.Style 1.0
 import shared.Sizes 1.0
+import shared.controls 1.0
 
 /*!
     \qmltype ListItemBasic
@@ -164,17 +165,28 @@ ItemDelegate {
 
             Item {
                 //spacer, to trigger 24px margin to the left of first element
-                width: Sizes.dp(1)
-                height: parent.height
+                implicitWidth: Sizes.dp(1)
+                Layout.fillHeight: true
             }
 
-            IconLabel {
-                opacity: Style.opacityHigh
-                scale: Sizes.scale
-                spacing: root.spacing
-                mirrored: root.mirrored
-                display: root.display
-                icon: root.icon
+            Item {
+                Layout.fillHeight: true
+                implicitWidth: root.implicitHeight
+                visible: root.icon.source.toString() !== "" || root.icon.name !== ""
+                NeptuneIconLabel {
+                    opacity: Style.opacityHigh
+                    iconScale: Sizes.scale
+                    spacing: root.spacing
+                    mirrored: root.mirrored
+                    display: root.display
+                    icon: root.icon
+                    anchors.centerIn: parent
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: root.clicked()
+                    }
+                }
             }
 
             ColumnLayout {
@@ -196,6 +208,11 @@ ItemDelegate {
                     opacity: Style.opacityHigh
                     visible: root.text
                     color: Style.contrastColor
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: root.clicked()
+                    }
                 }
 
                 Label {

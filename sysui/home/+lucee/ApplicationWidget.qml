@@ -83,8 +83,10 @@ AbstractApplicationWidget {
 
     // Application icon
     NeptuneIconLabel {
-        width: Sizes.dp(35)
-        height: Sizes.dp(35)
+        display: NeptuneIconLabel.IconOnly
+        iconFillMode: Image.PreserveAspectFit
+        iconRectHeight: Sizes.dp(35)
+        iconRectWidth: iconRectHeight
         anchors.centerIn: widgetStripe
         icon.source: root.appInfo ? root.appInfo.icon : null
         icon.color: "white"

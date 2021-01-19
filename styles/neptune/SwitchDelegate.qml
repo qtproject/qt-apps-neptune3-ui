@@ -61,7 +61,11 @@ T.SwitchDelegate {
     font.family: Style.fontFamily
     font.weight: Font.Light
 
-    Cursor { }
+    Cursor {
+        onActivated: {
+            control.toggle();
+        }
+    }
 
     indicator: PaddedRectangle {
         implicitWidth: Sizes.dp(56)

@@ -153,12 +153,27 @@ void TcpMsgHandler::readData()
                 }
 
                 if (event.type() == SafeRenderer::EventSetPosition) {
-                    const SafeRenderer::QSafeEventPosition &movePos = static_cast<const SafeRenderer::QSafeEventPosition &>(event);
-                    const char* item = "mainWindow";
+                    const SafeRenderer::QSafeEventPosition &eventData =
+                        static_cast<const SafeRenderer::QSafeEventPosition &>(event);
+                    const char* itemWindowPos = "mainWindowPos";
+                    const char* itemPanelSize = "mainWindowPanelSize";
+                    const char* itemPanelOrigin = "mainWindowPanelOrigin";
+
                     //Demo case, move telltales over Cluster window
-                    if (movePos.id() == SafeRenderer::qsafe_hash(item, SafeRenderer::safe_strlen(item))) {
-                        //skip handling, just apply position
-                        emit mainWindowPosGot(static_cast<int>(movePos.x()), static_cast<int>(movePos.y()));
+                    if (eventData.id() == SafeRenderer::qsafe_hash(itemWindowPos,
+                                                        SafeRenderer::safe_strlen(itemWindowPos))) {
+                        //skip handling, just apply window position
+                        emit mainWindowPosGot(eventData.x(), eventData.y());
+                        continue;
+                    } else if (eventData.id() == SafeRenderer::qsafe_hash(itemPanelSize,
+                                                        SafeRenderer::safe_strlen(itemPanelSize))) {
+                        // got cluster panel size
+                        emit mainWindowPanelSizeGot(eventData.x(), eventData.y());
+                        continue;
+                    } else if (eventData.id() == SafeRenderer::qsafe_hash(itemPanelOrigin,
+                                                      SafeRenderer::safe_strlen(itemPanelOrigin))) {
+                        // got cluster panel position inside window
+                        emit mainWindowPanelOriginGot(eventData.x(), eventData.y());
                         continue;
                     }
                 }

@@ -56,7 +56,7 @@ Item {
         var margin = root.homeBottomMargin;
         if (widgetDrawer.open && widgetDrawer.visible)
             margin = Math.max(margin, activeApplicationSlot.height - widgetDrawer.y);
-        if (root.virtualKeyboard.isOpen)
+        if (root.virtualKeyboard && root.virtualKeyboard.isOpen)
             margin = Math.max(margin, root.virtualKeyboard.y);
         return margin;
     }
@@ -90,7 +90,7 @@ Item {
                 // widgets will reparent themselves to the active application slot when active
                 activeApplicationParent: activeApplicationSlot
                 moveBottomWidgetToDrawer: !widgetDrawer.showingHomePage
-                widgetDrawer: widgetDrawerSlot
+                widgetDrawer: widgetDrawer.slot
                 popupParent: root.popupParent
                 exposedRectTopMargin: launcher.y + Sizes.dp(Config.launcherHeight)
                 exposedRectBottomMargin: root.activeAppBottomMargin
@@ -123,16 +123,9 @@ Item {
                 height: homePage.rowHeight
                 anchors.bottom: homePage.bottom
 
-                dragEnabled: !showingHomePage
-                visible: !showingHomePage && !widgetDrawerSlot.empty
-
-                Item {
-                    id: widgetDrawerSlot
-                    width: homePage.widgetWidth
-                    height: homePage.rowHeight
-                    anchors.horizontalCenter: widgetDrawer.horizontalCenter
-                    readonly property bool empty: children.length === 0
-                }
+                slotWidth: homePage.widgetWidth
+                slotHeight: homePage.rowHeight
+                visible: !showingHomePage && !widgetDrawer.empty
 
                 property bool showingHomePage: !root.applicationModel || root.applicationModel.activeAppInfo === null
                 onShowingHomePageChanged: {

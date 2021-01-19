@@ -89,7 +89,7 @@ Item {
         runtimeEditable: true
         font.bold: true
         font.pixelSize: 40
-        font.family: "Open Sans"
+        font.family: "DejaVu Sans"
         visible: false
         anchors.centerIn: root
         horizontalAlignment: Text.AlignHCenter
@@ -110,7 +110,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
             x: 221
@@ -127,7 +127,7 @@ Item {
             runtimeEditable: true
             font.bold: true
             font.pixelSize: 80
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
             x: 191
@@ -141,7 +141,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             text: "km/h"
             visible: false
             horizontalAlignment: Text.AlignHCenter
@@ -230,7 +230,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
             x: 609
@@ -248,7 +248,7 @@ Item {
             runtimeEditable: true
             font.bold: true
             font.pixelSize: 80
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             visible: false
             horizontalAlignment: Text.AlignHCenter
             x: 576
@@ -264,7 +264,7 @@ Item {
             color: "white"
             font.bold: true
             font.pixelSize: 40
-            font.family: "Open Sans"
+            font.family: "DejaVu Sans"
             text: "%"
             visible: false
             horizontalAlignment: Text.AlignHCenter

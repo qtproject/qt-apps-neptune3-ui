@@ -58,7 +58,7 @@ RowLayout {
     TemperatureLabel {
         Layout.leftMargin: Sizes.dp(36)
         Layout.rightMargin: Sizes.dp(36)
-        seat: root.store ? root.store.leftSeat : null
+        seat: root.store ? root.store.leftSeat.localizedValue : null
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)
@@ -77,7 +77,7 @@ RowLayout {
     TemperatureLabel {
         Layout.leftMargin: Sizes.dp(36)
         Layout.rightMargin: Sizes.dp(36)
-        seat: root.store ? root.store.rightSeat : null
+        seat: root.store ? root.store.rightSeat.localizedValue : null
     }
     Image {
         Layout.preferredWidth: Sizes.dp(sourceSize.width)

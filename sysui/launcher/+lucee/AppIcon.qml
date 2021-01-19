@@ -37,6 +37,9 @@ import shared.Style 1.0
 NeptuneIconLabel {
     property bool checked: false
     property string source
+    iconFillMode: Image.PreserveAspectFit
+    iconRectHeight: height
+    iconRectWidth: width
     icon.color: checked ? Style.accentColor : "white"
     icon.source: source
 }

@@ -96,17 +96,17 @@ Item {
             Column {
                 spacing: Sizes.dp(20)
                 Label {
-                    text: "Partly sunny, 21°C"
+                    text: qsTr("Partly sunny, 21°C")
                     font.pixelSize: Sizes.dp(27)
                 }
 
                 Label {
-                    text: "Today: Mostly sunny,\nthe highest temperature will be 26°."
+                    text: qsTr("Today: Mostly sunny,\nthe highest temperature will be 26°.")
                     font.pixelSize: Sizes.dp(18)
                 }
 
                 Label {
-                    text: "Tonight: Mostly cloudy with light rain,\ntemperatures between 14° and 18°."
+                    text: qsTr("Tonight: Mostly cloudy with light rain,\ntemperatures between 14° and 18°.")
                     font.pixelSize: Sizes.dp(18)
                 }
             }
@@ -219,14 +219,16 @@ Item {
             Repeater {
                 model: 4
                 Image {
+                    id: weatherIcon
+
                     width: Sizes.dp(80)
                     height: Sizes.dp(80)
                     fillMode: Image.PreserveAspectFit
 
                     Connections {
                         target: root
-                        onDateClicked: {
-                            randomIndex = Math.floor((Math.random() * (3)) + 0);
+                        function onDateClicked() {
+                            weatherIcon.randomIndex = Math.floor((Math.random() * (3)) + 0);
                         }
                     }
 
@@ -255,12 +257,14 @@ Item {
             delegatedItemWidth: eventList.width
             interactive: false
             delegate: EventListItem {
+                id: item
+
                 property int randomIndex: Math.floor((Math.random() * (8)) + 0)
 
                 Connections {
                     target: root
-                    onDateClicked: {
-                        randomIndex = Math.floor((Math.random() * (8)) + 0);
+                    function onDateClicked() {
+                        item.randomIndex = Math.floor((Math.random() * (8)) + 0);
                     }
                 }
 

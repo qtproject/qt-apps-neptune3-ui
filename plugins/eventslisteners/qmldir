@@ -1,0 +1,3 @@
+module shared.com.luxoft.eventslisteners
+plugin eventslistenersplugin
+

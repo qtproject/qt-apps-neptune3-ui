@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
@@ -52,11 +52,15 @@ Store {
     readonly property ClusterStore clusterStore: ClusterStore { id: clusterStore }
     readonly property HUDStore hudStore: HUDStore {}
     readonly property CenterConsoleStore centerConsole: CenterConsoleStore {}
+    readonly property MusicStore musicStore: MusicStore {}
     readonly property string hardwareVariant: ApplicationManager.systemProperties.hardwareVariant
     property alias clusterAvailable: clusterStore.clusterAvailable
 
     readonly property bool enableCursorManagement: ApplicationManager.systemProperties.enableCursorManagement
-    onEnableCursorManagementChanged: { Config.enableCursorManagement = root.enableCursorManagement; }
+    onEnableCursorManagementChanged: {
+        Config.cursorAngleOffset =Qt.binding(function(){return centerConsole.isLandscape ? 90 : 0});
+        Config.enableCursorManagement = root.enableCursorManagement;
+    }
 
     readonly property bool devMode: ApplicationManager.systemProperties.devMode
 
@@ -73,7 +77,6 @@ Store {
     readonly property var applicationModel: ApplicationModel {
         id: applicationModel
         localeCode: Config.languageLocale
-        autostartApps: settingsStore.value("autostartApps", settingsStore.defaultAutostartApps)
         showCluster: (WindowManager.runningOnDesktop || Qt.application.screens.length > 1) && root.clusterStore.showCluster
         showHUD: root.hudStore.showHUD
 
@@ -96,11 +99,17 @@ Store {
         onAutostartAppsListChanged: { settingsStore.setValue("autostartApps", applicationModel.serializeAutostart()); }
         onAutorecoverAppsListChanged: { settingsStore.setValue("autorecoverApps", applicationModel.serializeAutorecover()); }
         onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
+        onWidgetStatesChanged: {
+            settingsStore.setValue("widgetStates", applicationModel.serializeWidgetStates());
+        }
     }
 
     readonly property ApplicationPopupsStore applicationPopupsStore: ApplicationPopupsStore {}
 
-    property bool startupAccentColor: true
+
+    property var chosenColor: {0: Config._initAccentColors(0)[1].color
+                                   , 1: Config._initAccentColors(1)[4].color}
+
     readonly property SystemUI systemUISettings: SystemUI {
         id: systemUISettings
         onApplicationICWindowSwitchCountChanged: {
@@ -116,24 +125,29 @@ Store {
         onLanguageChanged: {
             if (language !== Config.languageLocale) {
                 Config.languageLocale = language;
+                uiSettings.setRtlMode(Qt.locale(language).textDirection === Qt.RightToLeft)
             }
         }
-        onThemeChanged: root.updateThemeRequested(uiSettings.theme)
+
+        onThemeChanged: {
+            if (isInitialized) {
+                root.updateThemeRequested(uiSettings.theme);
+                //different themes have different color pallets, we update colors on theme change
+                uiSettings.accentColor = chosenColor[uiSettings.theme];
+            }
+        }
+
         onAccentColorChanged: {
-            root.accentColorChanged(accentColor);
-            if (startupAccentColor) {
-                //Prevent setting back light theme's last accent color in cases when the UI
-                //was closed with light theme set. If this is the case, reset dark theme's
-                //default accent color.
-                var accColorInPalette = root.accentColorsModel.find(function(color) {
-                    return (color.color === accentColor);
-                });
-                if (accColorInPalette === undefined) {
-                    uiSettings.accentColor = root.accentColorsModel[0].color;
+            if (isInitialized) {
+                if (Config._initAccentColors(uiSettings.theme)
+                        .some(data => data.color === uiSettings.accentColor)) {
+                    chosenColor[uiSettings.theme] = uiSettings.accentColor;
                 }
-                startupAccentColor = false;
+
+                root.accentColorChanged(accentColor);
             }
         }
+
         onRtlModeChanged: Config.rtlMode = uiSettings.rtlMode
         Component.onCompleted: {
             Qt.callLater(function() {
@@ -152,6 +166,11 @@ Store {
                     } else {
                         uiSettings.setLanguage("en_US");
                     }
+                }
+                // first connection of SystemUI to UISettings backend, got all variables
+                // from it, init available translations if languages list is empty
+                if (languages.length === 0) {
+                    languages = Config.translation.availableTranslations;
                 }
             }
         }
@@ -184,6 +203,45 @@ Store {
     readonly property bool layoutMirroringChildreninherit: true
     readonly property bool runningOnSingleScreenEmbedded: !WindowManager.runningOnDesktop
                                                    && (Qt.application.screens.length === 1)
+
+    readonly property Connections instentServerConnection: Connections {
+        target: IntentServer
+        function onDisambiguationRequest(requestId, potentialIntents, parameters) {
+            //process "activate-app" intent sent with part of app name (guess-app) as parameter
+            if (potentialIntents.length > 0 && potentialIntents[0].intentId === "activate-app") {
+                var guess_app = parameters["guess-app"];
+                if (guess_app && guess_app !== "") {
+                    if (guess_app === "home") {
+                        // if "home" is called, go to home view
+                        applicationModel.goHome();
+                    }
+
+                    var appId = "";
+
+                    for (var i = 0; i < potentialIntents.length; i++) {
+                        if (potentialIntents[i].applicationId.includes(guess_app)) {
+                            appId = potentialIntents[i].applicationId;
+                            break;
+                        }
+                    }
+
+                    //found app with "guess-app" part, send intent to this app
+                    if (appId !== "") {
+                        let request = IntentClient.sendIntentRequest("activate-app", appId, { });
+                        request.onReplyReceived.connect(function() {
+                            if (request.succeeded) {
+                                var result = request.result;
+                                console.log(Logging.apps, "Intent result: " + result.done);
+                            } else {
+                                console.log(Logging.apps, "Intent request failed: ",
+                                            request.errorMessage);
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    }
 
     signal updateThemeRequested(var currentTheme)
     signal accentColorChanged(var newAccentColor)
@@ -228,25 +286,20 @@ Store {
         root.triggerNotificationInfo(tempDirPath);
     }
 
+    //value: 1 -- dark, 0 -- light
     function updateTheme(value) {
-        if ((value === 1) && (root.lighThemeLastAccColor !== uiSettings.accentColor)) {
-            root.lighThemeLastAccColor = uiSettings.accentColor;
-        } else if ((value === 0) && (root.darkThemeLastAccColor !== uiSettings.accentColor)) {
-            root.darkThemeLastAccColor = uiSettings.accentColor;
-        }
-        uiSettings.setTheme(value);
-        root.accentColorsModel = Config._initAccentColors(value);
-        //set previous to theme accentColor
-        if ((lighThemeLastAccColor !== "") && (value === 0)) {
-            uiSettings.accentColor = root.lighThemeLastAccColor;
-        } else if ((darkThemeLastAccColor !== "") && (value === 1)) {
-            uiSettings.accentColor = root.darkThemeLastAccColor;
-        } else {
-            uiSettings.accentColor = root.accentColorsModel[0].color;
+        if (value !== uiSettings.theme) {
+            uiSettings.setTheme(value);
         }
     }
 
-    Component.onCompleted: {
-        root.accentColorsModel = Config._initAccentColors(Style.theme);
+    function triggerVoiceAssitant() {
+        var request = IntentClient.sendIntentRequest("trigger-voiceassistant", { });
+        request.onReplyReceived.connect(function() {
+            if (request.succeeded)
+                var result = request.result;
+            else
+                console.log("Intent request failed: " + request.errorMessage);
+        })
     }
 }

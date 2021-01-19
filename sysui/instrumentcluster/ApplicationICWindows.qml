@@ -42,7 +42,9 @@ Item {
     property var applicationModel
 
     function next() {
-        if ( selectedIndex + 1 < applicationICWindowList.count) {
+        // go to the next app. If last, set index out of list to make
+        // selectedApplicationId change to "" -> show "no app" in cluster
+        if ( selectedIndex + 1 <= applicationICWindowList.count) {
             selectedIndex++;
         } else {
             selectedIndex = 0;
@@ -60,7 +62,7 @@ Item {
         delegate: QtObject {
             property var con: Connections {
                 target: model.appInfo
-                onIcWindowChanged: {
+                function onIcWindowChanged() {
                     if (model.appInfo.icWindow) {
                         var appInList = false;
                         for (var i = 0; i < applicationICWindowList.count; i++) {

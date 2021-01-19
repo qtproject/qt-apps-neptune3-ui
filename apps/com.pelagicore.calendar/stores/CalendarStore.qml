@@ -32,6 +32,7 @@
 
 import QtQuick 2.8
 import shared.utils 1.0
+import QtApplicationManager.Application 2.0
 
 Store {
     id: root
@@ -95,4 +96,12 @@ Store {
         }
     }
 
+    readonly property IntentHandler intentHandler: IntentHandler {
+        intentIds: "activate-app"
+        onRequestReceived: {
+            root.requestRaiseAppReceived()
+            request.sendReply({ "done": true })
+        }
+    }
+    signal requestRaiseAppReceived()
 }

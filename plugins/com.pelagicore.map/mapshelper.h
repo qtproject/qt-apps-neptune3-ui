@@ -48,7 +48,7 @@ public:
     void setAppPath(const QString &appPath);
     QString appPath() const;
 
-    Q_INVOKABLE void initMap();
+    Q_INVOKABLE void initMap(const QString &uniqueDirName = QString());
 
 signals:
     void appPathChanged();

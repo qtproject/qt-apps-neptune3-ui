@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.7
+import QtQml 2.14
 import shared.utils 1.0
 import QtQuick.Window 2.3
 import system.controls 1.0
@@ -52,32 +53,29 @@ Window {
         applicationICWindows.next();
     }
 
-    //Demo case to stick QtSafeRendererWindow to Cluster on Desktop
-    //should be also enabled on "Safe" part
-    function sendWindowCoordsToSafeUI(x, y) {
-        var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
-                    QtObject {
-                        function sendClusterWindowPos(x,y) {
-                            SafeMessage.moveItem(\"mainWindow\", Qt.point(x, y))
-                        }
-                    }
-                ", root, "sendMessageObject")
-        sendMessageObject.sendClusterWindowPos(x, y);
+    // Demo case to stick QtSafeRendererWindow to Cluster on Desktop
+    // should be also enabled on "Safe" part
+    // send x,y of window, x,y of uiSlot (contains cluster view item) inside window,
+    // width and height of uiSlot item
+    function sendWindowStateToSafeUI() {
+        if (root.clusterStore.runningOnDesktop) {
+            var sendMessageObject = Qt.createQmlObject(
+                    "import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                     QtObject {
+                         function sendClusterWindowState(x,y, dx, dy, width, height) {
+                             SafeMessage.moveItem(\"mainWindowPos\", Qt.point(x, y))
+                             SafeMessage.moveItem(\"mainWindowPanelOrigin\", Qt.point(dx, dy))
+                             SafeMessage.moveItem(\"mainWindowPanelSize\", Qt.point(width, height))
+                         }
+                     }", root, "sendMessageObject");
+            sendMessageObject.sendClusterWindowState(root.x, root.y, uiSlot.x, uiSlot.y,
+                                                   uiSlot.width, uiSlot.height);
+        }
     }
 
     color: "black"
     title: root.clusterStore.clusterTitle
     screen: root.clusterStore.clusterScreen
-
-    onWidthChanged: {
-        root.contentItem.Sizes.scale = root.width / Config.instrumentClusterWidth;
-    }
-
-    //send (if enabled) cluster window positions to QSR Safe UI, 180 is cluster item top margin
-    //QSR Safe UI window then moves to cluster item 0,0 position
-    onXChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
-    onYChanged: if (root.clusterStore.qsrEnabled) sendWindowCoordsToSafeUI(root.x, root.y + 180);
-
 
     Component.onCompleted: {
         // Would like to use a regular property binding instead. But it doesn't work and I don't know why
@@ -94,6 +92,26 @@ Window {
             root.width = clusterStore.desktopWidth;
             root.height = clusterStore.desktopHeight;
         }
+    }
+
+    // Use these two Connections to send (if qsr enabled) cluster window positions to QSR Safe UI
+    // QSR Safe UI window then moves to cluster item 0,0 position
+    // panel properties for scale are sent from SafeTelltalesPanel
+    // Desktop-specific demo case
+    Connections {
+        target: root
+        enabled: root.clusterStore.qsrEnabled
+        function onXChanged() { sendWindowStateToSafeUI(); }
+        function onYChanged() { sendWindowStateToSafeUI(); }
+        function onActiveChanged() { sendWindowStateToSafeUI(); }
+    }
+    Connections {
+        target: uiSlot
+        enabled: root.clusterStore.qsrEnabled
+        function onWidthChanged() { sendWindowStateToSafeUI(); }
+        function onHeightChanged() { sendWindowStateToSafeUI(); }
+        function onYChanged() { sendWindowStateToSafeUI(); }
+        function onXChanged() { sendWindowStateToSafeUI(); }
     }
 
     Item {
@@ -132,9 +150,16 @@ Window {
             }
         ]
 
-        width: parent.width
-        height: width / Config.instrumentClusterUIAspectRatio
+        anchors.horizontalCenter: parent.horizontalCenter
         rotation: root.invertedOrientation ? 180 : 0
+        height: Math.floor(root.width / Config.instrumentClusterUIAspectRatio) <= root.height
+                ? root.width / Config.instrumentClusterUIAspectRatio
+                : root.height;
+        width: height * Config.instrumentClusterUIAspectRatio
+
+        onWidthChanged: {
+            root.contentItem.Sizes.scale = uiSlot.width / Config.instrumentClusterWidth;
+        }
 
         Image {
             anchors.fill: parent
@@ -148,7 +173,7 @@ Window {
             anchors.fill: parent
             applicationModel: root.applicationModel
 
-            visible: !empty
+            visible: !empty && (selectedApplicationId !== "")
 
             readonly property bool selectedNavigation: {
                 if (root.applicationModel) {
@@ -159,7 +184,34 @@ Window {
                 }
                 return false;
             }
-            Binding { target: uiSettings; property: "navigationMode"; value: applicationICWindows.selectedNavigation }
+
+            onSelectedApplicationIdChanged: {
+                /*
+                    change UI mode of cluster according to app behind gauges
+                */
+                var clusterUIMode = 0; //no app running default
+
+                if (selectedApplicationId !== "") {
+                    var app = root.applicationModel.applicationFromId(selectedApplicationId)
+                    if (app) {
+                        if (app.categories.indexOf("navigation") !== -1) {
+                            clusterUIMode = 2; //navi app
+                        } else {
+                            clusterUIMode = 1; //some app
+                        }
+                    }
+                }
+
+                if ( root.applicationModel.instrumentClusterAppInfo &&
+                        root.applicationModel.instrumentClusterAppInfo.window ) {
+                    root.applicationModel.instrumentClusterAppInfo.window.setWindowProperty("clusterUIMode", clusterUIMode)
+                }
+            }
+            Binding {
+                restoreMode: Binding.RestoreBinding;
+                target: uiSettings; property: "navigationMode";
+                value: applicationICWindows.selectedNavigation;
+            }
         }
 
         ApplicationICWindowItem {

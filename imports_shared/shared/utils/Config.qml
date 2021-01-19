@@ -70,6 +70,7 @@ QtObject {
         }
         root.cursorLoaderSource = cursorLoader.source;
     }
+    property int cursorAngleOffset: 0
     property string cursorLoaderSource: ""
     //"Guinea pig" loader.This is to prevent the endless warnings for
     //CursorNavigation plugin not installed when this is not available. Here is

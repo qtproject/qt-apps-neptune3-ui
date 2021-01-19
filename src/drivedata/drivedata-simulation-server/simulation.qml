@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2019 Luxoft Sweden AB
+** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the Neptune 3 UI.
@@ -55,7 +55,7 @@ Item {
                     speedTimer.start()
                 }
             }
-            running: backend.driveTrainState !== 2
+            running: backend.enableSimulation && backend.driveTrainState !== 2
         }
 
         property Timer simulationSetTimer: Timer {
@@ -76,7 +76,7 @@ Item {
                 }
             }
             repeat: true
-            running: backend.driveTrainState === 2
+            running: backend.enableSimulation && backend.driveTrainState === 2
         }
 
         property Timer speedTimer: Timer {
@@ -89,7 +89,7 @@ Item {
                     backend.speed = backend.speed - 1;
                 }
             }
-            repeat: true
+            repeat: backend.enableSimulation
         }
 
         property Timer powerTimer: Timer {
@@ -102,7 +102,71 @@ Item {
                 }
             }
             repeat: true
-            running: backend.driveTrainState === 2
+            running: backend.enableSimulation && backend.driveTrainState === 2
+        }
+
+        /*
+          One shot timer to have values initialized
+        */
+        property Timer initTimer: Timer {
+            interval: 2000
+            onTriggered: {
+                backend.lowBeamHeadlight = true;
+                backend.outsideTemperatureCelsius = 20.0;
+                backend.mileageKm = 8124;
+                backend.drivingModeRangeKm = 600;
+                backend.drivingModeECORangeKm = 720;
+                backend.navigationProgressPercents = 0.7;
+                backend.navigationRouteDistanceKm = 42;
+            }
+            repeat: false
+            running: true
+        }
+
+        /*
+          Telltales simulation
+            - left/right turn, lights are controlled manually
+        */
+        property Timer telltalesTimer: Timer {
+            interval: 3000
+            onTriggered: {
+                backend.stabilityControl = getNewTelltaleState();
+                backend.seatBeltNotFastened = getNewTelltaleState();
+                backend.ABSFailure = getNewTelltaleState();
+                backend.parkBrake = getNewTelltaleState();
+                backend.tyrePressureLow = getNewTelltaleState();
+                backend.brakeFailure = getNewTelltaleState();
+                backend.airbagFailure = getNewTelltaleState();
+            }
+            repeat: true
+            running: backend.enableSimulation
+            function getNewTelltaleState() {
+                return Math.round(Math.random());
+            }
+        }
+
+        /*
+          Lucee elements timer
+        */
+        property Timer luceeTimer: Timer {
+            interval: 2000
+            onTriggered: {
+                backend.mileageKm = backend.mileageKm + 0.2;
+
+                backend.drivingModeRangeKm = backend.drivingModeRangeKm - 0.2;
+                backend.drivingModeECORangeKm = backend.drivingModeRangeKm - 0.2;
+                if (backend.drivingModeRangeKm < 20) {
+                    backend.drivingModeRangeKm = 1000;
+                    backend.drivingModeECORangeKm = 1200;
+                }
+
+                backend.navigationProgressPercents = backend.navigationProgressPercents + 0.01
+                if (backend.navigationProgressPercents > 1.0) {
+                    backend.navigationProgressPercents = 0.0;
+                }
+            }
+            repeat: true
+            running: backend.enableSimulation
         }
     }
 }

@@ -48,21 +48,34 @@ Item {
 
     property ClimateStore store
 
-    ToolButton {
-        id: climateToolButton
-        objectName: "climateAreaMouseArea"
-        implicitWidth: (contentItem.childrenRect.width + Sizes.dp(40))
-        implicitHeight: parent.height
+    ClimateIndicatorPanel {
+        id: indicatorPanel
+        store: root.store
         anchors.centerIn: parent
-        contentItem: ClimateIndicatorPanel {
-            store: root.store
-        }
+    }
+
+    ToolButton {
+        objectName: "climateAreaMouseArea"
+        anchors.fill: indicatorPanel
         onClicked: {
             climatePopup.store = root.store;
+
+            climatePopup.width = Qt.binding(() => Sizes.dp(910));
+            climatePopup.height = Qt.binding(() => Sizes.dp(1426));
+
+            climatePopup.originItemX = Qt.binding(() => {
+                return Sizes.dp(Config.centerConsoleWidth / 2);
+            });
+            climatePopup.originItemY = Qt.binding(() => {
+                return Sizes.dp(Config.centerConsoleHeight) - Math.round(root.height / 2);
+            });
+            climatePopup.popupY = Qt.binding(() => {
+                return Sizes.dp(Config.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
+            });
+
             climatePopup.visible = true;
         }
     }
-
 
     ClimatePopup {
         id: climatePopup
@@ -70,9 +83,5 @@ Item {
         // have to forward scale from root item as ClimatePopup is a Window, not an Item,
         // so value propagation doesn't quite apply
         Sizes.scale: root.Sizes.scale
-
-        originItemX: Sizes.dp(Config.centerConsoleWidth / 2);
-        originItemY: Sizes.dp(Config.centerConsoleHeight) - Math.round(root.height / 2);
-        popupY: Sizes.dp(Config.centerConsoleHeight) - climatePopup.height - Sizes.dp(90);
     }
 }

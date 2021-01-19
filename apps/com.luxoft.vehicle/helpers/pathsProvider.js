@@ -31,14 +31,7 @@
 ****************************************************************************/
 
 .pragma library
-
-function doesFileExist(url) {
-    var req = new XMLHttpRequest();
-    req.open('HEAD', url, false);
-    req.send();
-    return req.status == 200;
-}
-
+.import shared.FileUtils 1.0 as FU
 
 // see vehicle app info.yaml for description
 function getModelPath(name, version) {
@@ -51,7 +44,7 @@ function getModelPath(name, version) {
     if (version === "mixedFormats") {
         var pathObj = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".obj")
         var pathStl = Qt.resolvedUrl("../assets/models/" + version + "/" + name + ".stl")
-        return doesFileExist(pathObj) ? pathObj : pathStl
+        return FU.FileUtils.existsFileFromUrl(pathObj) ? pathObj : pathStl
     }
 }
 
