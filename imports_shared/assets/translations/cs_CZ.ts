@@ -1409,8 +1409,8 @@ Parking Olympia</source>
         <translation>Qt Application Manager: %1</translation>
     </message>
     <message>
-        <source>Qt IVI: %1</source>
-        <translation>Qt IVI: %1</translation>
+        <source>Qt IF: %1</source>
+        <translation>Qt IF: %1</translation>
     </message>
     <message>
         <source>Neptune 3: %1 %2</source>

@@ -33,7 +33,7 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import QtQuick.Shapes 1.0
 import shared.controls 1.0
 import "../helpers" 1.0

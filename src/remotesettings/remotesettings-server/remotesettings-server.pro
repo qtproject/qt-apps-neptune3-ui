@@ -2,15 +2,15 @@ QT -= gui
 
 CONFIG += c++11 console
 macos: CONFIG -= app_bundle
-CONFIG += ivigenerator
+CONFIG += ifcodegen
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 include($$SOURCE_DIR/config.pri)
 
-QFACE_FORMAT = server_qtro
-QFACE_SOURCES = ../remotesettings.qface
+IFCODEGEN_TEMPLATE = server_qtro
+IFCODEGEN_SOURCES = ../remotesettings.qface
 
 SOURCES += \
     main.cpp\

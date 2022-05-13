@@ -4,15 +4,15 @@ QT += qml
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(drivedata)
 INCLUDEPATH += $$OUT_PWD/../frontend
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 include($$SOURCE_DIR/config.pri)
 
-QFACE_FORMAT = qmlplugin
-QFACE_SOURCES = ../drivedata.qface
+IFCODEGEN_TEMPLATE = qmlplugin
+IFCODEGEN_SOURCES = ../drivedata.qface
 
-load(ivigenerator)
+load(ifcodegen)
 
 # the qmlplugin template provides the URI variable to read the uri from the qface files, but this
 # already contains the shared prefix, and the qmlplugin prf adds one as well

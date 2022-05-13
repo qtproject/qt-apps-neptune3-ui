@@ -35,7 +35,6 @@ import application.windows 1.0
 import shared.utils 1.0
 import shared.animations 1.0
 import shared.controls 1.0
-import QtGraphicalEffects 1.0
 
 import shared.Style 1.0
 import shared.Sizes 1.0

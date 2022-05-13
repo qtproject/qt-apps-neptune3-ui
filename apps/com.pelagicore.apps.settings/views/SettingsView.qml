@@ -240,7 +240,7 @@ Control {
                 anchors.fill: parent
                 visible: toolsColumn.currentIcon === 'ic-color'
                 model: store.accentColorsModel
-                onAccentColorRequested: store.updateAccentColor(accentColor)
+                onAccentColorRequested: function(accentColor) { store.updateAccentColor(accentColor) }
             }
         }
     }

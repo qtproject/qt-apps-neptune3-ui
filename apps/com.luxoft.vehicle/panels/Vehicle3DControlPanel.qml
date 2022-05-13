@@ -32,7 +32,6 @@
 
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 
 import shared.controls 1.0
@@ -84,7 +83,7 @@ Item {
         SupportPanel { id: supportPanel; objectName: "vehicleSupportPanel" }
         EnergyPanel {
             objectName: "vehicleEnergyPanel"
-            onIntentToMapRequested: root.intentToMapRequested(intentId, params)
+            onIntentToMapRequested: function(intentId) { root.intentToMapRequested(intentId, params) }
         }
         DoorsPanel {
             id: doorsPanel
@@ -92,7 +91,7 @@ Item {
             onLeftDoorClicked: root.leftDoorClicked()
             onRightDoorClicked: root.rightDoorClicked()
             onTrunkClicked: root.trunkClicked()
-            onNewRoofOpenProgressRequested: root.newRoofOpenProgressRequested(progress)
+            onNewRoofOpenProgressRequested: function(progress) { root.newRoofOpenProgressRequested(progress) }
         }
         TiresPanel { objectName: "vehicleTiresPanel" }
         Settings3DPanel {

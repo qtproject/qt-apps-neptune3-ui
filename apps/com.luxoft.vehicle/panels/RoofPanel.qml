@@ -32,7 +32,7 @@
 
 import QtQuick 2.9
 import QtQuick.Controls 2.3
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts 1.3
 
 import shared.Sizes 1.0

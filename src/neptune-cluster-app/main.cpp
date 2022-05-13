@@ -45,7 +45,6 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName(QStringLiteral("Neptune Cluster"));
     QCoreApplication::setOrganizationName(QStringLiteral("Luxoft Sweden AB"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("luxoft.com"));

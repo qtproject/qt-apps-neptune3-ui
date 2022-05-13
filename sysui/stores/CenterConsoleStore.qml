@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import QtApplicationManager.SystemUI 2.0
 import shared.utils 1.0
 

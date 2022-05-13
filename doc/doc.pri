@@ -1,5 +1,5 @@
 CONFIG += force_qt
-QT *= quick ivicore
+QT *= quick interfaceframework
 
 INCLUDEPATH += $$OUT_PWD/../src/remotesettings/frontend \
                $$OUT_PWD/../src/drivedata/frontend \

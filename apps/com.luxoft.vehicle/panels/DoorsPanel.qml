@@ -92,7 +92,7 @@ Item {
             rightDoorOpened: root.rightDoorOpened
             trunkOpened: root.trunkOpened
 
-            onNewRoofOpenProgressRequested: root.newRoofOpenProgressRequested(progress)
+            onNewRoofOpenProgressRequested: function(progress) { root.newRoofOpenProgressRequested(progress) }
         }
 
         FrontDoorsPanel {

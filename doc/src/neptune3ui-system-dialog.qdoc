@@ -47,7 +47,7 @@
    resources as well)
    \li Network (Internet Connection) Status
    \li Connected Network Devices with all their address information
-   \li Version: shows which Neptune 3 UI, Application Manager and Qt IVI versions are being
+   \li Version: shows which Neptune 3 UI, Application Manager and Qt Interface Framework versions are being
        used
    \li Platform: shows which operating system, Qt version, and OpenGL are being used.
    \endlist

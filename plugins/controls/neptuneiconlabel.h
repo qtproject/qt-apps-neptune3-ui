@@ -33,7 +33,6 @@
 #define NEPTUNEICONLABEL_H
 
 #include <QtQuick/qquickitem.h>
-#include <QtQuickControls2/private/qtquickcontrols2global_p.h>
 #include <QtQuickTemplates2/private/qquickicon_p.h>
 #include <QtQuick/private/qquickimagebase_p.h>
 #include <QtQuick/private/qquickimage_p.h>
@@ -134,7 +133,7 @@ Q_SIGNALS:
 
 protected:
     void componentComplete() override;
-    void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
+    void geometryChange(const QRectF &newGeometry, const QRectF &oldGeometry) override;
 
 private Q_SLOTS:
     void onImageStatusChanged(QQuickImageBase::Status);

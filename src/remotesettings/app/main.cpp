@@ -34,7 +34,7 @@
 #include <QQmlContext>
 #include <QDir>
 #include <QtCore/QCommandLineParser>
-#include <QtIviCore/QtIviCoreVersion>
+#include <QtInterfaceFramework/QtInterfaceFrameworkVersion>
 #include "client.h"
 
 // code to transform a macro into a string literal
@@ -43,7 +43,6 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName(QStringLiteral("Neptune Companion"));
     QCoreApplication::setOrganizationName(QStringLiteral("Luxoft Sweden AB"));
     QCoreApplication::setOrganizationDomain(QStringLiteral("luxoft.com"));
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
     engine.addImportPath(QDir::currentPath()+QStringLiteral("/imports_shared/"));
     engine.rootContext()->setContextProperty(QStringLiteral("client"), &client);
     engine.rootContext()->setContextProperty("neptuneGitRevision", STR(NEPTUNE_GIT_REVISION));
-    engine.rootContext()->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
+    engine.rootContext()->setContextProperty("qtifVersion", QTINTERFACEFRAMEWORK_VERSION_STR);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

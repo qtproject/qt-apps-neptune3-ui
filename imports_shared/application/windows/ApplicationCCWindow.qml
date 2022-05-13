@@ -132,7 +132,7 @@ NeptuneWindow {
         root.setWindowProperty("activationCount", d.activationCount++)
     }
 
-    onWindowPropertyChanged: {
+    onWindowPropertyChanged: function(name, value) {
         switch (name) {
         case "exposedRectBottomMargin":
             d.exposedRectBottomMargin = value;

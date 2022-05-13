@@ -22,7 +22,7 @@ win32 {
     LIBS += -lUser32
 }
 
-QT = core gui qtsaferenderer network ivicore
+QT = core gui qtsaferenderer network interfaceframework
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings) -l$$qtLibraryTarget(drivedata)
 

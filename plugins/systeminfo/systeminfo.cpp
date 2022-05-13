@@ -4,7 +4,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -118,7 +118,7 @@ void SystemInfo::getQtDiagInfo()
 {
     m_qtDiagContents.clear();
     // first try in the current Qt dir
-    QString qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"), {QLibraryInfo::location(QLibraryInfo::BinariesPath)});
+    QString qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"), {QLibraryInfo::path(QLibraryInfo::BinariesPath)});
     if (qtdiagExe.isEmpty()) {
         // try in $PATH
         qtdiagExe = QStandardPaths::findExecutable(QStringLiteral("qtdiag"));
@@ -142,7 +142,7 @@ void SystemInfo::getQtDiagInfo()
         m_qtDiagContents.prepend(QObject::tr("Output from %1:").arg(qtdiagExe) + QStringLiteral("\n\n"));
         emit qtDiagChanged();
     });
-    m_diagProc->start(qtdiagExe, QProcess::ReadOnly);
+    m_diagProc->start(qtdiagExe, { }, QProcess::ReadOnly);
 #endif
 }
 
@@ -174,10 +174,11 @@ bool SystemInfo::allowOpenGLContent()
 
 void SystemInfo::timerEvent(QTimerEvent *event)
 {
+return;
     Q_UNUSED(event);
     getAddress();
     auto reply = m_networkManager->get(QNetworkRequest(QUrl("https://www.google.com")));
-    connect(reply, QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
+    connect(reply, &QNetworkReply::errorOccurred,
         [=](QNetworkReply::NetworkError code) {
             updateInternetAccessStatus(code == QNetworkReply::NetworkError::NoError);
         }

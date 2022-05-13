@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** Copyright (C) 2019-2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
@@ -401,7 +401,7 @@ Flickable {
             }
 
             Label {
-                text: qsTr("Qt IVI Version: ") + qtiviVersion
+                text: qsTr("Qt IF Version: ") + qtifVersion
                 Layout.alignment: Qt.AlignHCenter
             }
         }

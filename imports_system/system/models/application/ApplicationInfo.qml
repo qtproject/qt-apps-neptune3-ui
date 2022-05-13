@@ -78,8 +78,8 @@ QtObject {
     readonly property var categories: application ? application.categories : []
     readonly property string name: {
         if (application) {
-            var result = application.name(d.languageCode);
-            return result ? result : application.name("en");
+            var result = application.names[d.languageCode];
+            return result ? result : application.names["en"];
         } else {
             return "???";
         }

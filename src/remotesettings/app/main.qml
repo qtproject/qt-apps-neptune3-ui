@@ -32,8 +32,8 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import QtIvi 1.0
-import QtIvi.Media 1.0
+import QtInterfaceFramework
+import QtInterfaceFramework.Media
 import shared.com.pelagicore.remotesettings 1.0
 import shared.com.pelagicore.drivedata 1.0
 
@@ -93,11 +93,11 @@ ApplicationWindow {
 
         property bool isConnected: false
 
-        onIsInitializedChanged: {
+        onIsInitializedChanged: function(isInitialized) {
             isConnected = isInitialized;
         }
 
-        onErrorChanged: {
+        onErrorChanged: function(error) {
             if (error > 0) {
                 //Any other state then NoError=0
                 isConnected = false;
@@ -126,7 +126,7 @@ ApplicationWindow {
         lastUrls: client.lastUrls
         anchors.centerIn: parent
 
-        onAccepted: {
+        onAccepted: function(accepted) {
             if (accepted) {
                 client.connectToServer(url);
                 uiSettings.setServiceObject(null);

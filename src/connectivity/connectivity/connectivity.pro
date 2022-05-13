@@ -1,12 +1,12 @@
 TARGET = $$qtLibraryTarget(Connectivity)
 TEMPLATE = lib
-CONFIG += ivigenerator
+CONFIG += ifcodegen
 
-QT += ivicore ivicore-private qml quick
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT += interfaceframework interfaceframework-private qml quick
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
-QFACE_SOURCES = ../connectivity.qface
+IFCODEGEN_SOURCES = ../connectivity.qface
 
 DESTDIR = $$LIB_DESTDIR
 DEFINES += QT_BUILD_CONNECTIVITY_LIB

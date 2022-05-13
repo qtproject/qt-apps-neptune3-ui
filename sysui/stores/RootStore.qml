@@ -47,7 +47,6 @@ Store {
     id: root
 
     readonly property SystemStore systemStore: SystemStore {}
-    readonly property var musicAppRequestsIPC: MusicAppRequestsIPCStore  {}
     readonly property SettingsStore settingsStore: SettingsStore {}
     readonly property ClusterStore clusterStore: ClusterStore { id: clusterStore }
     readonly property HUDStore hudStore: HUDStore {}
@@ -98,7 +97,7 @@ Store {
         }
         onAutostartAppsListChanged: { settingsStore.setValue("autostartApps", applicationModel.serializeAutostart()); }
         onAutorecoverAppsListChanged: { settingsStore.setValue("autorecoverApps", applicationModel.serializeAutorecover()); }
-        onApplicationPopupAdded: applicationPopupsStore.appPopupsModel.append({"window":window});
+        onApplicationPopupAdded: function(window) { applicationPopupsStore.appPopupsModel.append({"window":window}) }
         onWidgetStatesChanged: {
             settingsStore.setValue("widgetStates", applicationModel.serializeWidgetStates());
         }
@@ -122,7 +121,7 @@ Store {
     property string lighThemeLastAccColor: "#d35756"
     property string darkThemeLastAccColor: "#b75034"
     readonly property UISettings uiSettings: UISettings {
-        onLanguageChanged: {
+        onLanguageChanged: function(language) {
             if (language !== Config.languageLocale) {
                 Config.languageLocale = language;
                 uiSettings.setRtlMode(Qt.locale(language).textDirection === Qt.RightToLeft)
@@ -137,7 +136,7 @@ Store {
             }
         }
 
-        onAccentColorChanged: {
+        onAccentColorChanged: function(accentColor) {
             if (isInitialized) {
                 if (Config._initAccentColors(uiSettings.theme)
                         .some(data => data.color === uiSettings.accentColor)) {
@@ -156,7 +155,7 @@ Store {
                 }
             });
         }
-        onIsInitializedChanged: {
+        onIsInitializedChanged: function(isInitialized) {
             if (isInitialized) {
                 theme = root.initialTheme;
 
@@ -175,11 +174,11 @@ Store {
             }
         }
 
-        onVolumeChanged: {
+        onVolumeChanged: function(volume) {
             volumeStore.player.volume = volume * 100;
         }
 
-        onMutedChanged: {
+        onMutedChanged: function(muted) {
             volumeStore.player.muted = muted;
         }
     }
@@ -253,7 +252,7 @@ Store {
         request.open("PUT", fileUrl);
         request.send("Neptune 3: %1 %2".arg(Qt.application.version).arg(neptuneInfo) + "\n" +
                      "Qt Application Manager: %1".arg(qtamVersion) + "\n" +
-                     "Qt IVI: %1".arg(qtiviVersion) + "\n\n" +
+                     "Qt IF: %1".arg(qtifVersion) + "\n\n" +
                      text);
     }
 

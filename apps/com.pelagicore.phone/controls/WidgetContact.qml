@@ -33,7 +33,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 
 import shared.effects 1.0
 import shared.animations 1.0
@@ -121,16 +121,20 @@ Control {
             icon.name: "ic-call-contrast"
             icon.color: "white"
 
-            background: Image {
-                id: callButtonBackground
+            background: Item {
                 anchors.centerIn: parent
-                width: Sizes.dp(sourceSize.width)
-                height: Sizes.dp(sourceSize.height)
-                source: Style.image("ic_button-bg")
-                fillMode: Image.PreserveAspectFit
+                width: callButtonBackground.width
+                height: callButtonBackground.height
+                Image {
+                    id: callButtonBackground
+                    width: Sizes.dp(sourceSize.width)
+                    height: Sizes.dp(sourceSize.height)
+                    source: Style.image("ic_button-bg")
+                    fillMode: Image.PreserveAspectFit
 
-                ScalableColorOverlay {
-                    anchors.fill: parent
+                }
+                ColorOverlay {
+                    anchors.fill: callButtonBackground
                     source: callButtonBackground
                     color: Style.accentColor
                 }

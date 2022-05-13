@@ -99,7 +99,7 @@ QtObject {
     }
 
     readonly property UISettings uiSettings: UISettings {
-        onAccentColorChanged: {
+        onAccentColorChanged: function(accentColor) {
             root.accentColorsModel.forEach(function(element) {
                 element.selected = Qt.colorEqual(element.color, accentColor);
             });

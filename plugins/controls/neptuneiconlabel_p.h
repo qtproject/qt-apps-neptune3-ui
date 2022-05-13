@@ -33,7 +33,6 @@
 #define NEPTUNEICONLABEL_P_H
 
 #include <QtQuick/private/qquickitem_p.h>
-#include <QtQuickControls2/private/qtquickcontrols2global_p.h>
 #include <QtQuickTemplates2/private/qquickicon_p.h>
 #include <QtQuick/private/qquickimage_p.h>
 #include <QtQuick/private/qquickrectangle_p.h>

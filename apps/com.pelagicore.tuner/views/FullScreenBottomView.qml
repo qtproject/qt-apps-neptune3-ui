@@ -106,7 +106,7 @@ Item {
         anchors.top: parent.top
         height: parent.height
         listView.model: root.store.currentPresetModel
-        onItemClicked: {
+        onItemClicked: function(index) {
             root.store.setFrequency(root.store.currentPresetModel.get(index).freq);
         }
     }

@@ -174,7 +174,7 @@ Item {
         Item {
             id: delegateRoot
 
-            width: parent.width
+            width: ListView.view.width
             implicitHeight: Sizes.dp(265)
 
             function getWindowTypeName(window) {

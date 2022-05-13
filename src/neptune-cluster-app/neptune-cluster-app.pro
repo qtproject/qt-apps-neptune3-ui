@@ -2,7 +2,7 @@ requires(linux|macos) # @todo add win
 
 TEMPLATE = app
 TARGET = neptune-cluster-app
-QT *= quick gui core ivicore
+QT *= quick gui core interfaceframework
 
 isEmpty(INSTALL_PREFIX) {
     INSTALL_PREFIX=/opt

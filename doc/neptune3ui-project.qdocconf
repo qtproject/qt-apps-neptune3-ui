@@ -24,7 +24,7 @@ depends += qtcore \
            qtquick \
            qtqml \
            qtgui \
-           qtivi \
+           interfaceframework \
            applicationmanager \
            qt3d \
            qt3dstudio \

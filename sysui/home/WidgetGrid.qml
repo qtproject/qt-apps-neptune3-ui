@@ -448,11 +448,11 @@ Item {
                         property real dragStartTouchPosY
                         property real dragTouchPosY
 
-                        onDraggedOntoPos: {
+                        onDraggedOntoPos: function(pos) {
                             dragTouchPosY = appWidget.mapToItem(root, pos.x, pos.y).y;
                             widgetColumn.onWidgetMoved(repeaterDelegate);
                         }
-                        onDragStarted: {
+                        onDragStarted: function(pos) {
                             dragStartPosY = appWidget.mapToItem(root, 0, 0).y
                             dragTouchPosY = dragStartTouchPosY = appWidget.mapToItem(root, pos.x, pos.y).y
                             beingDragged = true;

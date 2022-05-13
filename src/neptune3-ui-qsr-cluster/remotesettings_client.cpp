@@ -58,9 +58,9 @@ RemoteSettings_Client::RemoteSettings_Client(QObject *parent) : QObject(parent),
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &RemoteSettings_Client::onCMTimeout);
     connect(&m_connectionMonitoring, &ConnectionMonitoring::counterChanged,
             this, &RemoteSettings_Client::onCMCounterChanged);
-    connect(&m_connectionMonitoring, &QIviAbstractFeature::isInitializedChanged,
+    connect(&m_connectionMonitoring, &QIfAbstractFeature::isInitializedChanged,
             this, &RemoteSettings_Client::updateConnectionStatus);
-    connect(&m_connectionMonitoring, &QIviAbstractFeature::errorChanged,
+    connect(&m_connectionMonitoring, &QIfAbstractFeature::errorChanged,
             this, &RemoteSettings_Client::updateConnectionStatus);
     connect(&m_reconnectionTimer, &QTimer::timeout, this, &RemoteSettings_Client::onReconnectionTimeout);
     readSettings();
@@ -142,7 +142,7 @@ void RemoteSettings_Client::connectToServer(const QString &serverUrl)
 void RemoteSettings_Client::updateConnectionStatus()
 {
     bool c = m_connectionMonitoring.isInitialized() &&
-             m_connectionMonitoring.error()==QIviAbstractFeature::NoError &&
+             m_connectionMonitoring.error()==QIfAbstractFeature::NoError &&
              !m_timedOut;
     if (c == m_connected)
         return;

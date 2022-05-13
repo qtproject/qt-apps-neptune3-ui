@@ -82,7 +82,7 @@ ApplicationManagerWindow {
     */
     readonly property bool isRightToLeft: Config.rtlMode
 
-    onWindowPropertyChanged: {
+    onWindowPropertyChanged: function(name, value) {
         switch (name) {
         case "neptuneScale":
             root.Sizes.scale = value;

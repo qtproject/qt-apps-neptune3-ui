@@ -191,7 +191,7 @@
         \li Clone the Qt 3D Studio runtime git repository from
         \l{https://code.qt.io/cgit/qt3dstudio/qt3d-runtime.git/}
         \li Next, build and install the Qt 3D Studio runtime from the branch 2.1.
-        \li Finally, build and install \l{Qt Application Manager}, \l{Qt IVI} and then
+        \li Finally, build and install \l{Qt Application Manager}, \l{Qt Interface Framework} and then
         \l{Neptune 3 UI} as explained in the Installation sections of those components.
    \endlist
 

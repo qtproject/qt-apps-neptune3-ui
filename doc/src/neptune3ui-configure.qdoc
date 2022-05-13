@@ -128,10 +128,6 @@
    in Neptune 3 UI. When enabled, the Sheets app is included in the Application Launcher and
    developers can see all of the components that Neptune 3 UI supports, to develop an app.
 
-   The \c enableCursorManagement option can be set to \c yes or \c no, to enable or disable the
-   Cursor Support in Neptune 3 UI's Center Console only. When enabled, it's possible to navigate
-   the Center Console with input methods other than touch, such as a keyboard or a gamepad.
-
    The \c hardwareVariant parameter can be used to specify the type of hardware used. According to
    the variant, features are enabled or disabled depending on whether the hardware supports them.
    Currently, this parameter accepts two values: \c high or \c low. If set to \c low, some

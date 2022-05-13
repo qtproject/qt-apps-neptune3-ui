@@ -31,8 +31,8 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtIvi 1.0
-import QtIvi.Media 1.0
+import QtInterfaceFramework
+import QtInterfaceFramework.Media
 
 import shared.utils 1.0
 

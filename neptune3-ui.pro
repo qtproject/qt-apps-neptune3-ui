@@ -1,12 +1,12 @@
 requires(linux|android|macos|win32:!winrt)
 
-QT_FOR_CONFIG += ivicore
+QT_FOR_CONFIG += interfaceframework
 
-!qtHaveModule(ivicore)|!qtConfig(ivigenerator) {
-    log("$$escape_expand(\\n\\n) *** No ivigenerator available: Make sure QtIvi is installed and configured correctly ***$$escape_expand(\\n\\n)")
-    CONFIG += no_ivigenerator_available
+!qtHaveModule(interfaceframework)|!qtConfig(ifcodegen) {
+    log("$$escape_expand(\\n\\n) *** No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly ***$$escape_expand(\\n\\n)")
+    CONFIG += no_ifgenerator_available
 }
-requires(!no_ivigenerator_available)
+requires(!no_ifgenerator_available)
 requires(qtHaveModule(appman_main-private))
 
 !qtHaveModule(qtsaferenderer)|load(qtsaferenderer-tools):!qtsaferenderer-tools-available {

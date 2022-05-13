@@ -33,8 +33,8 @@
 import QtQuick 2.8
 import QtApplicationManager.Application 2.0
 import QtApplicationManager 2.0
-import QtIvi 1.0
-import QtIvi.Media 1.0
+import QtInterfaceFramework
+import QtInterfaceFramework.Media
 import shared.utils 1.0
 
 Store {
@@ -77,10 +77,12 @@ Store {
     property string headerTextInArtistsView: ""
     property string headerTextInAlbumsView: ""
 
-    property SearchAndBrowseModel searchAndBrowseModel: SearchAndBrowseModel {
+    property FilterAndBrowseModel searchAndBrowseModel: FilterAndBrowseModel {
         id: searchBrowseModel
         contentType: ""
-        onContentTypeChanged: console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
+        onContentTypeChanged: function(contentType) {
+            console.log(Logging.apps, "Music App::Content Type Change: ", contentType)
+        }
         serviceObject: root.player.serviceObject
 
         onCountChanged: {
@@ -107,7 +109,7 @@ Store {
     readonly property MediaIndexerControl indexerControl: MediaIndexerControl {
         property bool databaseReloaded: false
         property bool modelPopulated: false
-        onProgressChanged: {
+        onProgressChanged: function(progress) {
             // SearchAndBrowseModel need to be reloaded when indexing process reach 20 %
             // to get the music data and after indexing process is done.
             // Without reloading the model, Neptune 3 won't see any music during the first

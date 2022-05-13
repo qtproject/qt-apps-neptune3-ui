@@ -35,10 +35,10 @@ import shared.Connectivity.simulation 1.0
 Item {
     WiFiBackend {
         id: backend
-        property var settings : IviSimulator.findData(IviSimulator.simulationData, "WiFi")
+        property var settings : IfSimulator.findData(IfSimulator.simulationData, "WiFi")
 
         function initialize() {
-            IviSimulator.initializeDefault(settings, backend)
+            IfSimulator.initializeDefault(settings, backend)
             Base.initialize()
 
             for (var i = 0; i < 7; i++) {
@@ -127,7 +127,7 @@ Item {
             }
         }
 
-        function connectToAccessPoint(qtIviReply, ssid) {
+        function connectToAccessPoint(qtIfReply, ssid) {
             for (var j = 0; j < backend.allAccessPoints.length; j++) {
                 if (backend.accessPoints[j].ssid == ssid) {
                     var security = backend.allAccessPoints[j].security
@@ -143,12 +143,12 @@ Item {
                 }
             }
 
-            qtIviReply.setSuccess(0)
-            return qtIviReply
+            qtIfReply.setSuccess(0)
+            return qtIfReply
         }
 
 
-        function sendCredentials(qtIviReply, ssid, password) {
+        function sendCredentials(qtIfReply, ssid, password) {
             var success = false;
             for (var j = 0; j < backend.allAccessPoints.length; j++) {
                 if ( backend.activeAccessPoint.ssid == backend.allAccessPoints[j].ssid ) {
@@ -160,24 +160,24 @@ Item {
             }
 
             if (success) {
-                qtIviReply.setSuccess(0)
+                qtIfReply.setSuccess(0)
             } else {
-                qtIviReply.setFailed()
+                qtIfReply.setFailed()
             }
-            return qtIviReply
+            return qtIfReply
         }
 
-        function disconnectFromAccessPoint(qtIviReply, ssid) {
+        function disconnectFromAccessPoint(qtIfReply, ssid) {
             backend.connectionStatus = WiFi.Disconnecting
             timerDisconnecting.start()
-            qtIviReply.setSuccess(0)
-            return qtIviReply
+            qtIfReply.setSuccess(0)
+            return qtIfReply
         }
 
         readonly property Connections backendSignals: Connections {
             target: backend
-            onEnabledChanged: {
-                if (!backend.enabled) {
+            function onEnabledChanged(enabled) {
+                if (!enabled) {
                     for (var j = 0; j < backend.allAccessPoints.length; j++) {
                         backend.allAccessPoints[j].connected = false
                     }

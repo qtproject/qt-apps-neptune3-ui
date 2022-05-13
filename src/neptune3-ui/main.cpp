@@ -32,13 +32,13 @@
 
 #include <QtAppManCommon/global.h>
 #include <QtAppManCommon/logging.h>
+#include <QtAppManCommon/startuptimer.h>
 #include <QtAppManCommonVersion>
-#include <QtIviCore/QtIviCoreVersion>
+#include <QtInterfaceFramework/QtInterfaceFrameworkVersion>
 #include <QtAppManMain/main.h>
 #include <QtAppManMain/defaultconfiguration.h>
 #include <QtAppManPackage/packageutilities.h>
 #include <QtAppManManager/sudo.h>
-#include <QtAppManWindow/touchemulation.h>
 #include <QtGui/QFontDatabase>
 #include <QGuiApplication>
 #include <QTranslator>
@@ -46,7 +46,6 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QProcess>
-#include <QTouchDevice>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
@@ -74,12 +73,14 @@ void startExtraProcess(const QString &name) {
     QObject::connect(qApp, &QCoreApplication::aboutToQuit, [serverProcess] () {
         serverProcess->terminate();
     });
-    serverProcess->start(name, QProcess::ReadOnly);
+    serverProcess->start(name, {}, QProcess::ReadOnly);
 #endif
 }
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+    StartupTimer::instance()->checkpoint("entered main");
+
 #ifdef Q_OS_ANDROID
     qputenv("QML_DISABLE_DISK_CACHE", "1");
 #endif
@@ -89,14 +90,14 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(qSL("luxoft.com"));
     QCoreApplication::setApplicationVersion(STR(NEPTUNE_VERSION));
 
-    Logging::initialize();
-
-    PackageUtilities::ensureCorrectLocale();
+    Logging::initialize(argc, argv);
+    StartupTimer::instance()->checkpoint("after basic initialization");
 
     try {
         Sudo::forkServer(Sudo::DropPrivilegesPermanently);
+        StartupTimer::instance()->checkpoint("after sudo server fork");
 
-        qputenv("QTIVIMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
+        qputenv("QTIFMEDIA_SIMULATOR_DATABASE", QFile::encodeName(QDir::homePath() + "/media.db"));
         qputenv("QT_IM_MODULE", "qtvirtualkeyboard");
 
 #if defined(Q_OS_ANDROID) || defined(Q_OS_IOS)
@@ -109,8 +110,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         Main a(argc, argv);
 
         // start the server; the server itself will ensure one instance only
-        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivivehiclefunctions-simulation-server");
-        startExtraProcess(QLibraryInfo::location(QLibraryInfo::BinariesPath) + "/ivimedia-simulation-server");
+        startExtraProcess(QLibraryInfo::path(QLibraryInfo::BinariesPath) + "/ifvehiclefunctions-simulation-server");
+        startExtraProcess(QLibraryInfo::path(QLibraryInfo::BinariesPath) + "/ifmedia-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/drivedata-simulation-server");
         startExtraProcess(QCoreApplication::applicationDirPath() + "/remotesettings-server");
 #endif
@@ -119,24 +120,25 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
         // load the Qt translations
         QTranslator qtTranslator;
-        if (qtTranslator.load(QLocale(), qSL("qt_"), QString(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+        if (qtTranslator.load(QLocale(), qSL("qt_"), QString(), QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
             a.installTranslator(&qtTranslator);
         }
 
 #ifdef Q_OS_ANDROID
-        DefaultConfiguration cfg(QStringList({ qSL("assets:/am-config-neptune.yaml"), qSL("assets:/am-config-android.yaml") }), QString());
+        Configuration cfg({ qSL("assets:/am-config-neptune.yaml"), qSL("assets:/am-config-android.yaml") }, { });
 #else
-        DefaultConfiguration cfg(QStringList(QCoreApplication::applicationDirPath() + qSL("/am-config-neptune.yaml")), QString());
+        Configuration cfg({ QCoreApplication::applicationDirPath() + qSL("/am-config-neptune.yaml") }, { });
 #endif
+        cfg.parseWithArguments(QCoreApplication::arguments());
+        StartupTimer::instance()->checkpoint("after command line parse");
 
-        cfg.parse();
         a.setup(&cfg);
 
 #ifdef USE_QT_SAFE_RENDERER
         //Set env variables for Qt Safe Renderer for sending heartbeats
         //env variables are used to start TCP client to connect to "safe ui" part
         //qsrEnabled also switches loading of Safe Telltales in Cluster View
-        bool    qsrEnabled = cfg.rawSystemProperties()["public"].toMap()["qsrEnabled"].toBool();
+        bool qsrEnabled = cfg.rawSystemProperties()["public"].toMap()["qsrEnabled"].toBool();
         if (qsrEnabled)
         {
             QString qsrIp   = cfg.rawSystemProperties()["public"].toMap()["qsrServerAddress"].toString();
@@ -152,14 +154,13 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 #ifdef Q_OS_ANDROID
         a.qmlEngine()->setUrlInterceptor(new UrlInterceptor);
 #endif
-
         a.loadQml(cfg.loadDummyData());
         a.showWindow(cfg.fullscreen() && !cfg.noFullscreen());
 
         auto ctx = a.qmlEngine()->rootContext();
         ctx->setContextProperty("neptuneInfo", STR(NEPTUNE_INFO));
         ctx->setContextProperty("qtamVersion", QTAPPMANCOMMON_VERSION_STR);
-        ctx->setContextProperty("qtiviVersion", QTIVICORE_VERSION_STR);
+        ctx->setContextProperty("qtifVersion", QTINTERFACEFRAMEWORK_VERSION_STR);
 
         return MainBase::exec();
     } catch (const std::exception &e) {

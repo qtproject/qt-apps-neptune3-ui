@@ -41,7 +41,7 @@ import system.controls 1.0
 PopupItemLoader {
     id: root
 
-    source: "AboutPopup.qml"
+    source: Qt.resolvedUrl("./AboutPopup.qml")
 
     // to be set/called from outside
     property var applicationModel

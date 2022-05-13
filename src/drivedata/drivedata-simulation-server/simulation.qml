@@ -35,10 +35,10 @@ import shared.com.pelagicore.drivedata.simulation 1.0
 Item {
     InstrumentClusterBackend {
         id: backend
-        property var settings : IviSimulator.findData(IviSimulator.simulationData, "InstrumentCluster")
+        property var settings : IfSimulator.findData(IfSimulator.simulationData, "InstrumentCluster")
 
         function initialize() {
-            IviSimulator.initializeDefault(settings, backend)
+            IfSimulator.initializeDefault(settings, backend)
             Base.initialize()
         }
 

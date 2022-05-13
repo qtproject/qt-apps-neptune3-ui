@@ -31,34 +31,35 @@
 ****************************************************************************/
 
 .pragma library
+.import QtQml as Qml
 
 function orientationFromString(str) {
     str = str.trim().toLowerCase().replace('-','').replace('_','').replace('orientation','')
 
     if (str === "portrait") {
-        return Qt.PortraitOrientation;
-    } else if (str === "invertedportrait") {
-        return Qt.InvertedPortraitOrientation;
-    } else if (str === "landscape") {
-        return Qt.LandscapeOrientation;
+        return Qml.Qt.PortraitOrientation;
+   } else if (str === "invertedportrait") {
+       return Qml.Qt.InvertedPortraitOrientation;
+   } else if (str === "landscape") {
+        return Qml.Qt.LandscapeOrientation;
     } else if (str === "invertedlandscape") {
-        return Qt.InvertedLandscapeOrientation;
+        return Qml.Qt.InvertedLandscapeOrientation;
     } else {
         // default to portrait
-        return Qt.PortraitOrientation;
+        return Qml.Qt.PortraitOrientation;
     }
 }
 
 function invertOrientation(orientation) {
     switch (orientation) {
-        case Qt.PortraitOrientation:
-            return Qt.InvertedPortraitOrientation;
-        case Qt.InvertedPortraitOrientation:
-            return Qt.PortraitOrientation;
-        case Qt.LandscapeOrientation:
-            return Qt.InvertedLandscapeOrientation;
-        case Qt.InvertedLandscapeOrientation:
-            return Qt.LandscapeOrientation;
+        case Qml.Qt.PortraitOrientation:
+            return Qml.Qt.InvertedPortraitOrientation;
+        case Qml.Qt.InvertedPortraitOrientation:
+            return Qml.Qt.PortraitOrientation;
+        case Qml.Qt.LandscapeOrientation:
+            return Qml.Qt.InvertedLandscapeOrientation;
+        case Qml.Qt.InvertedLandscapeOrientation:
+            return Qml.Qt.LandscapeOrientation;
         default:
             return orientation;
     }
@@ -67,26 +68,26 @@ function invertOrientation(orientation) {
 function rotateDisplay(orientation, isLandscape) {
     if (isLandscape) {
         switch (orientation) {
-            case Qt.PortraitOrientation:
+            case Qml.Qt.PortraitOrientation:
                 return 90;
-            case Qt.LandscapeOrientation:
+            case Qml.Qt.LandscapeOrientation:
                 return 0;
-            case Qt.InvertedPortraitOrientation:
+            case Qml.Qt.InvertedPortraitOrientation:
                 return -90;
-            case Qt.InvertedLandscapeOrientation:
+            case Qml.Qt.InvertedLandscapeOrientation:
                 return 180;
             default:
                 return 0;
         }
     } else {
         switch (orientation) {
-            case Qt.PortraitOrientation:
+            case Qml.Qt.PortraitOrientation:
                 return 0;
-            case Qt.LandscapeOrientation:
+            case Qml.Qt.LandscapeOrientation:
                 return -90;
-            case Qt.InvertedPortraitOrientation:
+            case Qml.Qt.InvertedPortraitOrientation:
                 return 180;
-            case Qt.InvertedLandscapeOrientation:
+            case Qml.Qt.InvertedLandscapeOrientation:
                 return 90;
             default:
                 return 0;

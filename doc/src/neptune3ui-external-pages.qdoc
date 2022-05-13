@@ -27,12 +27,12 @@
 ****************************************************************************/
 
 /*!
-    \externalpage http://www.qt.io/qt-automotive-suite/
+    \externalpage https://www.qt.io/qt-automotive-suite/
     \title Qt Automotive Suite Product
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtAutomotiveSuite/
+    \externalpage https://doc.qt.io/QtAutomotiveSuite/
     \title Qt Automotive Suite
 */
 
@@ -52,18 +52,18 @@
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtApplicationManager/manifest.html
+    \externalpage https://doc.qt.io/QtApplicationManager/manifest.html
     \title Qt Application Manager Manifest File
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtApplicationManager/qml-qtapplicationmanager-notification.html
+    \externalpage https://doc.qt.io/QtApplicationManager/qml-qtapplicationmanager-notification.html
     \title Notification
 */
 
 /*!
-    \externalpage https://doc.qt.io/QtIVI/index.html
-    \title Qt IVI
+    \externalpage https://doc.qt.io/QtInterfaceFramework/index.html
+    \title Qt InterfaceFramework
 */
 
 /*!
@@ -72,52 +72,52 @@
  */
 
 /*!
-    \externalpage http://doc.qt.io/QtForDeviceCreation/qtee-custom-embedded-linux-image.html
+    \externalpage https://doc.qt.io/QtForDeviceCreation/qtee-custom-embedded-linux-image.html
     \title Building eLinux Image
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtForDeviceCreation/qtee-requirements-x11.html#requirements-for-boot-to-qt-emulator
+    \externalpage https://doc.qt.io/QtForDeviceCreation/qtee-requirements-x11.html#requirements-for-boot-to-qt-emulator
     \title Emulator Requirements for Linux/x11
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtForDeviceCreation/qtee-requirements-windows.html#requirements-for-boot-to-qt-emulator
+    \externalpage https://doc.qt.io/QtForDeviceCreation/qtee-requirements-windows.html#requirements-for-boot-to-qt-emulator
     \title Emulator Requirements for Windows
 */
 
 /*!
-    \externalpage http://doc.qt.io/qt-5/qtquickcontrols2-environment.html
+    \externalpage https://doc.qt.io/qt-5/qtquickcontrols2-environment.html
     \title Qt QuickControls 2 Environment Variables
 */
 
 /*!
-    \externalpage http://code.qt.io/cgit/qt/qtapplicationmanager.git/
+    \externalpage https://code.qt.io/cgit/qt/qtapplicationmanager.git/
     \title Qt Application Manager Git Repository
 */
 
 /*!
-    \externalpage http://code.qt.io/cgit/qt/qtivi.git/
-    \title Qt IVI Git Repository
+    \externalpage https://code.qt.io/cgit/qt/qtinterfaceframework.git/
+    \title Qt InterfaceFramework Git Repository
 */
 
 /*!
-    \externalpage http://code.qt.io/cgit/qt-apps/neptune3-ui.git/
+    \externalpage https://code.qt.io/cgit/qt-apps/neptune3-ui.git/
     \title Neptune3-UI Git Repository
 */
 
 /*!
-    \externalpage http://developer.gnome.org/notification-spec/
+    \externalpage https://developer.gnome.org/notification-spec/
     \title GNOME Desktop Notifications Specification
 */
 
 /*!
-    \externalpage http://doc.qt.io/qtcreator/creator-project-qmake.html
+    \externalpage https://doc.qt.io/qtcreator/creator-project-qmake.html
     \title Create Project Qmake
 */
 
 /*!
-    \externalpage http://doc.qt.io/qtcreator/creator-build-settings.html#build-steps
+    \externalpage https://doc.qt.io/qtcreator/creator-build-settings.html#build-steps
     \title Build Steps
 */
 
@@ -142,13 +142,13 @@
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtIVI/ipc-integration.html
-    \title Qt IVI Inter-Process Communication Integration
+    \externalpage https://doc.qt.io/QtInterfaceFramework/ipc-integration.html
+    \title Qt InterfaceFramework Inter-Process Communication Integration
 */
 
 /*!
-    \externalpage http://doc.qt.io/QtIVI/qtivi-ivicore-qface-ivi-remote-example.html
-    \title Qt IVI Generator Remote Objects Example
+    \externalpage https://doc.qt.io/QtInterfaceFramework/qtinterfaceframework-interfaceframework-qface-remote-example.html
+    \title Qt InterfaceFramework Generator Remote Objects Example
 */
 
 /*!

@@ -1,19 +1,19 @@
 TARGET = $$qtLibraryTarget(drivedata)
 TEMPLATE = lib
-CONFIG += ivigenerator
+CONFIG += ifcodegen
 DESTDIR = $$LIB_DESTDIR
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 macos: QMAKE_SONAME_PREFIX = @rpath
 
 include($$SOURCE_DIR/config.pri)
 
 DEFINES += QT_BUILD_DRIVEDATA_LIB
-QT += ivicore ivicore-private qml
+QT += interfaceframework interfaceframework-private qml
 
-QFACE_SOURCES = ../drivedata.qface
+IFCODEGEN_SOURCES = ../drivedata.qface
 
 target.path = $$INSTALL_PREFIX/neptune3/lib
 win32:target.path = $$INSTALL_PREFIX/neptune3/

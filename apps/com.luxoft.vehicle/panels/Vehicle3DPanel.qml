@@ -146,7 +146,7 @@ Item {
             FrameAction {
                 id: frameCounter
                 property real dtime: 0.0
-                onTriggered: {
+                onTriggered: function(dt) {
                     if (renderSettings.renderPolicy === RenderSettings.Always) {
                         dtime += dt;
                         if (dtime > 5.0) {

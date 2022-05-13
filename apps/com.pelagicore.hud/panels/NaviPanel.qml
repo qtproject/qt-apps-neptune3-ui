@@ -30,8 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls
 import shared.Style 1.0
 import shared.Sizes 1.0
 import shared.animations 1.0
@@ -57,7 +56,8 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         height: Sizes.dp(120)
         width: Sizes.dp(20)
-        orientation: Qt.Vertical
+        transformOrigin: Item.Center
+        rotation: 270
         visible: opacity > 0.0
         opacity: root.nextTurnDistance <= 300 && root.nextTurnDistanceMeasuredIn === "m" ? 1 : 0
         Behavior on opacity { DefaultNumberAnimation {} }
@@ -65,19 +65,17 @@ Item {
         value: root.nextTurnDistance <= 300 && root.nextTurnDistanceMeasuredIn === "m"
                ? root.nextTurnDistance / 300 : 0.0
 
-        style: ProgressBarStyle {
-            background: Rectangle {
-                radius: 2
-                color: "transparent"
-                border.color: "gray"
-                border.width: Sizes.dp(1)
-                implicitHeight: Sizes.dp(200)
-                implicitWidth: Sizes.dp(20)
-            }
-            progress: Rectangle {
-                color: "lightsteelblue"
-                border.color: "steelblue"
-            }
+        background: Rectangle {
+            radius: 2
+            color: "transparent"
+            border.color: "gray"
+            border.width: Sizes.dp(1)
+            implicitHeight: Sizes.dp(200)
+            implicitWidth: Sizes.dp(20)
+        }
+        contentItem: Rectangle {
+            color: "lightsteelblue"
+            border.color: "steelblue"
         }
     }
 }

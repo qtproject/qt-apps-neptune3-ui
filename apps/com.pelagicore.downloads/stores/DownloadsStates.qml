@@ -106,7 +106,7 @@ DSM.StateMachine {
             }
             DSM.SignalTransition {
                 targetState: serverOnMaintanceState
-                signal: appStoreConfig.serverOnMaintanceState
+                signal: appStoreConfig.serverOnMaintance
             }
         }
 

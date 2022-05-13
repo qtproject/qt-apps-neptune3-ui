@@ -31,8 +31,8 @@
 
 #include "neptuneiconlabel.h"
 #include "neptuneiconlabel_p.h"
-#include <QtQuickControls2/private/qquickiconimage_p.h>
-#include <QtQuickControls2/private/qquickmnemoniclabel_p.h>
+#include <QtQuickControls2Impl/private/qquickiconimage_p.h>
+#include <QtQuickControls2Impl/private/qquickmnemoniclabel_p.h>
 
 #include <QtGui/private/qguiapplication_p.h>
 #include <QtQuick/private/qquickitem_p.h>
@@ -759,10 +759,10 @@ void NeptuneIconLabel::componentComplete()
     d->layout();
 }
 
-void NeptuneIconLabel::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
+void NeptuneIconLabel::geometryChange(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
     Q_D(NeptuneIconLabel);
-    QQuickItem::geometryChanged(newGeometry, oldGeometry);
+    QQuickItem::geometryChange(newGeometry, oldGeometry);
 
     //layout operates only by width and height, skip layout updates on rect x,y change
     if (newGeometry.size() != oldGeometry.size()) {

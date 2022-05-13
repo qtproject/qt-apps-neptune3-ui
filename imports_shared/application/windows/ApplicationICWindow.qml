@@ -89,7 +89,7 @@ NeptuneWindow {
         visible = true;
     }
 
-    onWindowPropertyChanged: {
+    onWindowPropertyChanged: function(name, value) {
         switch (name) {
         case "performanceMonitorEnabled":
             performanceOverlay.fpsVisible = value;

@@ -49,7 +49,7 @@ QtObject {
     readonly property RootStore store: RootStore {
         clusterAvailable: instrumentClusterWindowLoader.item && instrumentClusterWindowLoader.item.visible
 
-        onAccentColorChanged: {
+        onAccentColorChanged: function(newAccentColor) {
             centerConsoleWindow.contentItem.Style.accentColor = newAccentColor;
             if (instrumentClusterWindowLoader.item) {
                 instrumentClusterWindowLoader.item.contentItem.Style.accentColor = newAccentColor;
@@ -59,7 +59,7 @@ QtObject {
             }
         }
 
-        onGrabImageRequested: {
+        onGrabImageRequested: function(screenshotCCPath, screenshotICPath) {
             centerConsoleWindow.mainCenterConsole.grabToImage(function(result) {
                 var ret = result.saveToFile(screenshotCCPath);
                 console.info("Screenshot was", ret ? "" : "NOT", "saved to file", screenshotCCPath);
@@ -73,7 +73,7 @@ QtObject {
             }
         }
 
-        onUpdateThemeRequested: {
+        onUpdateThemeRequested: function(currentTheme) {
             var chosenTheme = currentTheme === 0 ? Style.Light : Style.Dark;
             if (centerConsoleWindow.popupParent.visible) {
                 centerConsoleWindow.popupParent.updateOverlay();

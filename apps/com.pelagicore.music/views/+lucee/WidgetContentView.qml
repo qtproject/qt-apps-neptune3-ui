@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtGraphicalEffects 1.12
+import Qt5Compat.GraphicalEffects
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 

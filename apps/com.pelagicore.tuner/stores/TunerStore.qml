@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtMultimedia 5.9
+import QtMultimedia
 import QtApplicationManager.Application 2.0
 import QtApplicationManager 2.0
 import shared.utils 1.0
@@ -114,7 +114,7 @@ Store {
         }
     }
 
-    // TODO: Simulation models. QtIVI models are not updated yet and only have two available stations.
+    // TODO: Simulation models. QtInterfaceFramework models are not updated yet and only have two available stations.
     readonly property ListModel fm1Stations: ListModel {
         ListElement {
             freq: 87.5

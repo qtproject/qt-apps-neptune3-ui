@@ -31,9 +31,8 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick.Controls
 import QtQuick.Layouts 1.3
-import Qt.labs.calendar 1.0
 import shared.animations 1.0
 import shared.controls 1.0
 import shared.utils 1.0

@@ -78,7 +78,7 @@ Item {
 
             MouseArea {
                 anchors.fill: parent
-                onPressAndHold: {
+                onPressAndHold: function(mouse) {
                     root.screenshotRequested();
                     mouse.accepted = true;
                 }

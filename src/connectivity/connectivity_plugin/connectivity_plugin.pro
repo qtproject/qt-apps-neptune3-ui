@@ -1,19 +1,19 @@
 TEMPLATE = lib
 CONFIG += plugin
-QT += ivicore qml
+QT += interfaceframework qml
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(Connectivity)
 INCLUDEPATH += $$OUT_PWD/../connectivity
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 include($$SOURCE_DIR/config.pri)
 
-QFACE_FORMAT = qmlplugin
-QFACE_SOURCES = ../connectivity.qface
+IFCODEGEN_TEMPLATE = qmlplugin
+IFCODEGEN_SOURCES = ../connectivity.qface
 
-load(ivigenerator)
+load(ifcodegen)
 
 uri = Connectivity
 EXTRA_FILES += $$OUT_PWD/qmldir \

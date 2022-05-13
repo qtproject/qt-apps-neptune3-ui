@@ -31,6 +31,7 @@
 ****************************************************************************/
 
 import QtQuick 2.10
+import Qt5Compat.GraphicalEffects
 import shared.utils 1.0
 import shared.controls 1.0
 import QtQuick.Controls 2.3
@@ -64,16 +65,19 @@ Row {
         icon.color: "white"
         onClicked: root.playClicked()
 
-        background: Image {
-            id: playButtonBackground
+        background: Item {
             anchors.centerIn: parent
-            width: Sizes.dp(sourceSize.width)
-            height: Sizes.dp(sourceSize.height)
-            source: Style.image("ic_button-bg")
-            fillMode: Image.PreserveAspectFit
-
-            ScalableColorOverlay {
-                anchors.fill: parent
+            width: playButtonBackground.width
+            height: playButtonBackground.height
+            Image {
+                id: playButtonBackground
+                width: Sizes.dp(sourceSize.width)
+                height: Sizes.dp(sourceSize.height)
+                source: Style.image("ic_button-bg")
+                fillMode: Image.PreserveAspectFit
+            }
+            ColorOverlay {
+                anchors.fill: playButtonBackground
                 source: playButtonBackground
                 color: Style.accentColor
             }

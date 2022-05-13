@@ -32,7 +32,7 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import QtQuick.Shapes 1.0
 import "../helpers" 1.0
 import shared.Style 1.0

@@ -54,7 +54,7 @@ import QtQuick 2.10
 import Example.Parking.simulation 1.0
 
 QtObject {
-    property var settings : IviSimulator.findData(IviSimulator.simulationData, "ParkingInfo")
+    property var settings : IfSimulator.findData(IfSimulator.simulationData, "ParkingInfo")
     property bool defaultInitialized: false
     property LoggingCategory qLcParkingInfo: LoggingCategory {
         name: "example.parking.simulation.parkinginfobackend"
@@ -64,7 +64,7 @@ QtObject {
         function initialize() {
             console.log(qLcParkingInfo, "INITIALIZE")
             if (!defaultInitialized) {
-                IviSimulator.initializeDefault(settings, backend)
+                IfSimulator.initializeDefault(settings, backend)
                 defaultInitialized = true
             }
             Base.initialize()

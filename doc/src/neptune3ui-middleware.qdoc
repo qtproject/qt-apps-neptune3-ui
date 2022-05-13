@@ -30,14 +30,14 @@
    \title Neptune 3 UI - Middleware
    \brief Describes Neptune 3 UI's middleware implementation.
 
-   Neptune 3 UI uses QtIvi, its autogenerator tools, QtIviVehicleFunctions, and QtIviMedia to
+   Neptune 3 UI uses QtInterfaceFramework, its autogenerator tools, QtIfVehicleFunctions, and QtIfMedia to
    implement Middleware APIs in an automotive UI context. There are two such APIs that Neptune 3 UI
    implements and utilizes: \c RemoteSettings and \c DriveData.
 
    Neptune 3 UI connects to their corresponding remote services: \c remotesettings-server and the
    \c drivedata-simulation-server. In this case, a remote service refers to an independent process,
-   possibly running on a different host. For an introduction to QtIvi's middleware services, see
-   \l {Qt IVI Inter-Process Communication Integration}.
+   possibly running on a different host. For an introduction to QtInterfaceFramework's middleware services, see
+   \l {Qt Interface Framework Inter-Process Communication Integration}.
 
    \section1 Why use Middleware
 
@@ -67,13 +67,13 @@
 
    \section1 Implementation
 
-   The middleware architecture is based on QtIVI and its \l {Qt IVI Autogenerator}{ivigenerator}
+   The middleware architecture is based on QtInterfaceFramework and its \l {Qt Interface Framework Generator}{ifcodegen}
    tool. Neptune 3 UI's built-in apps, the companion app, and System UI all connect to the remote
    services through auto-generated components. Communication between the middleware services and
    frontends is achieved with QtRemoteObjects. This is done transparently; you can replace this
    communication with other messaging mechanisms, without changing the APIs.
 
-   QtIvi-based middleware is described in \c{.qface} files; for each file, the QtIVI autogenerator
+   QtInterfaceFramework-based middleware is described in \c{.qface} files; for each file, the QtInterfaceFramework autogenerator
    generates these distinct components: frontend, backend plugin, and a separate service
    executable.
 
@@ -94,7 +94,7 @@
    \endlist
 
    As discussed above, the \b remotesettings.qface file is the interface description that the
-   \c ivigenerator takes as input. The \b frontend is a shared library containing a C++
+   \c ifcodegen takes as input. The \b frontend is a shared library containing a C++
    implementation of our middleware and the interface to implement a backend for it. Whether the
    middleware service is remote or not, is hidden from the code that uses the frontend (opaque).
    For example, all methods in the frontend's interface are asynchronous. For convenience, the
@@ -126,10 +126,10 @@
 
    \section2 Related Information
    \list
-      \li See \l{Qt IVI Inter-Process Communication Integration} and
-         \l {Generate QtRemoteObjects based backends with the Qt IVI Generator} for a more
+      \li See \l{Qt Interface Framework Inter-Process Communication Integration} and
+         \l {Generate QtRemoteObjects based backends with the Qt Interface Framework Generator} for a more
          detailed explanation and a walkthrough on generating middleware services.
-      \li See \l{Qt IVI Simulation System} for more info about simulations.
+      \li See \l{Qt Interface Framework Simulation System} for more info about simulations.
       \li See \l{Develop a Parking App}
    \endlist
 

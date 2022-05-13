@@ -31,14 +31,14 @@
 ****************************************************************************/
 
 import QtQuick 2.8
-import QtIvi.VehicleFunctions 1.0
+import QtInterfaceFramework.VehicleFunctions 1.0
 
 QtObject {
     id: root
 
     property ClimateControl climateControl: ClimateControl {
         discoveryMode: ClimateControl.AutoDiscovery
-        onIsInitializedChanged: {
+        onIsInitializedChanged: function() {
             if (isInitialized) {
                 leftSeat.setValue(21.5)
                 rightSeat.setValue(21.5)
@@ -173,7 +173,7 @@ QtObject {
 
     // ClimateControl.airfloDirections is a bitfield. Manipulating bitfields is a PITA.
     // Convert it into a nice set of booleans instead.
-    // TODO: Change the QtIVI interface from bitfield to booleans so that this wrapping is no longer needed
+    // TODO: Change the QtInterfaceFramework interface from bitfield to booleans so that this wrapping is no longer needed
     property QtObject airflow: QtObject {
         id: airflow
         property bool _lock: false

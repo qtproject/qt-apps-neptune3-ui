@@ -46,7 +46,7 @@ Control {
         id: colorsChart
         width: root.availableWidth
         height: root.availableHeight
-        onAccentColorRequested: {
+        onAccentColorRequested: function(accentColor) {
             root.accentColorRequested(accentColor);
         }
     }

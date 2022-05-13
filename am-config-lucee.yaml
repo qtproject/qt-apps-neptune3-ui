@@ -15,13 +15,13 @@ applications:
 
 runtimes:
   qml:
-    importPaths: [ "${CONFIG_PWD}/imports_shared" ]
+    importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/styles" ]
     environmentVariables:
        QT_PLUGIN_PATH: "${CONFIG_PWD}"
        SERVER_CONF_PATH: "${CONFIG_PWD}/server.conf"
        QT_FILE_SELECTORS: lucee
   native:
-    importPaths: [ "${CONFIG_PWD}/imports_shared" ]
+    importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/styles" ]
     environmentVariables:
       QT_PLUGIN_PATH: "${CONFIG_PWD}"
       SERVER_CONF_PATH: "${CONFIG_PWD}/server.conf"
@@ -31,11 +31,11 @@ runtimes:
 
 ui:
   fullscreen: no
-  style: "${CONFIG_PWD}/styles/lucee"
+  style: "LuceeStyle"
   iconThemeName: "lucee"
   iconThemeSearchPaths: [ "${CONFIG_PWD}/imports_shared/assets/icons" ]
   mainQml: "${CONFIG_PWD}/Main.qml"
-  importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui" ]
+  importPaths: [ "${CONFIG_PWD}/imports_shared", "${CONFIG_PWD}/imports_system", "${CONFIG_PWD}/sysui", "${CONFIG_PWD}/styles" ]
   windowIcon: "${CONFIG_PWD}/imports_shared/assets/icons/lucee/sysui/ic-menu-home.png"
   enableTouchEmulation: yes
 

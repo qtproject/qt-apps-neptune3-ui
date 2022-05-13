@@ -87,7 +87,7 @@ AbstractPopupItem {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.AllButtons
-            onWheel: wheel.accepted = true;
+            onWheel: function(wheel) { wheel.accepted = true }
         }
     }
 

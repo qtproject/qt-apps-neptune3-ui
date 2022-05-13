@@ -43,7 +43,7 @@
    \li Provide UI designers with methods to control the look-and-feel.
    \li Improve flexibility by enabling
        \l{Qt Automotive Suite Product} {Qt Automotive Suite} to integrate with
-       external tools, such as 3D tools, Maps, Qt IVI, and more.
+       external tools, such as 3D tools, Maps, Qt Interface Framework, and more.
    \li Provide a multi-process UI that forms a base for an IVI system.
    \endlist
 
@@ -56,7 +56,7 @@
        takes care of the application and window management.
    \li Can be integrated with various car 3D model technologies.
    \li Can be integrated with various navigation solutions.
-   \li Utilizes the \l{Qt IVI} module, that provides C++ classes and QML types
+   \li Utilizes the \l{Qt Interface Framework} module, that provides C++ classes and QML types
        to access vehicle features, as well as a core API to implement new IVI
        features.
    \li Supports \l{Neptune 3 UI Cursor Management Support}{cursor management}
@@ -110,7 +110,7 @@
    \row
        \li Music App (\c musicapp)
        \li A Media app that can play music that was previously indexed by
-           \l{Qt IVI} using the Qt Multimedia backend.
+           \l{Qt Interface Framework} using the Qt Multimedia backend.
    \row
        \li \l{Neptune 3 UI - Maps App}{Maps App} (\c mapapp)
        \li A Maps app that is created using the MapBoxGL plugin from Qt
@@ -131,7 +131,7 @@
    \row
        \li Tuner App (\c tunerapp)
        \li A media app that has a pre-set station list, provided by the
-           simulation backend from \l{Qt IVI}.
+           simulation backend from \l{Qt Interface Framework}.
    \row
        \li Downloads App (\c downloadsapp)
        \li Allows the user to install apps from the Neptune Deployment Store
@@ -391,7 +391,7 @@
 
    The Climate Bar is located at the bottom of the \l{Center Console Display}.
    Tapping on it displays a climate panel with some simulation data interface
-   to \l{Qt IVI} as shown in the following image:
+   to \l{Qt Interface Framework} as shown in the following image:
 
    \image center-stack-climate.png
 

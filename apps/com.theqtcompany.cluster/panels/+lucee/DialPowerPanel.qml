@@ -31,7 +31,6 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
 import QtQuick.Shapes 1.12
 import shared.controls 1.0
 import "../helpers" 1.0

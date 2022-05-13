@@ -1,19 +1,19 @@
 QT -= gui
 
 macos: CONFIG -= app_bundle
-CONFIG += ivigenerator
+CONFIG += ifcodegen
 
 include($$SOURCE_DIR/config.pri)
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available")
 
 TEMPLATE = app
 
-QT += core ivicore
+QT += core interfaceframework
 
-QFACE_FORMAT = server_qtro_simulator
-QFACE_SOURCES = ../drivedata.qface
+IFCODEGEN_TEMPLATE = server_qtro_simulator
+IFCODEGEN_SOURCES = ../drivedata.qface
 
 RESOURCES += plugin_resource.qrc
 QML_IMPORT_PATH = $$OUT_PWD/qml

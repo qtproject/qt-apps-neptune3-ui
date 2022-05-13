@@ -824,7 +824,7 @@ Parking Olympia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Qt IVI: %1</source>
+        <source>Qt IF: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -33,6 +33,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QQuickStyle>
+#include <QQmlEngine>
 
 #define CHECK_KEY(key) \
     if (!settings.contains(key)) { \
@@ -49,6 +50,13 @@
     variable = settings.value(key).toReal();
 
 StyleDefaults *StyleDefaults::m_instance = nullptr;
+QQmlEngine *StyleDefaults::m_engine = nullptr;
+
+void StyleDefaults::setEngine(QQmlEngine *e)
+{
+    if (!m_engine && e)
+        m_engine = e;
+}
 
 StyleDefaults *StyleDefaults::instance()
 {
@@ -62,7 +70,19 @@ StyleDefaults::StyleDefaults()
 {
     const char *confFileName = "style.conf";
 
-    QDir chosenStyleDir(QDir(QQuickStyle::path()).absoluteFilePath(QQuickStyle::name()));
+    QDir chosenStyleDir = QStringLiteral("/does-not-exist0000000000000000");
+
+    Q_ASSERT(m_engine);
+    const QString name = QQuickStyle::name();
+    const auto paths = m_engine->importPathList();
+
+    for (const auto &path : paths) {
+        QDir d(path);
+        if (d.cd(name)) {
+            chosenStyleDir = d;
+            break;
+        }
+    }
 
     if (!chosenStyleDir.exists()) {
         qCritical() << "Style: directory for the chosen style does not exist:" << chosenStyleDir.absolutePath();

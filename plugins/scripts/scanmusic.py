@@ -7,7 +7,7 @@
 ** Copyright (C) 2018 Pelagicore AG
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage

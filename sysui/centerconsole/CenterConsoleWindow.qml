@@ -128,17 +128,6 @@ Window {
         id: mainCenterConsole
         anchors.fill: parent
 
-        Loader {
-            sourceComponent: Component {
-                GamePadController {
-                    onButtonBPressed: root.nextICAppIsRequested();
-                    onButtonR1Pressed: root.store.musicStore.sendIntent("next");
-                    onButtonL1Pressed: root.store.musicStore.sendIntent("prev");
-                }
-            }
-            active: root.store.enableCursorManagement
-        }
-
         CenterConsole {
             id: centerConsole
             anchors.centerIn: parent

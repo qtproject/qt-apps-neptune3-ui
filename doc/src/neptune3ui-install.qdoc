@@ -43,9 +43,9 @@
 
     \section1 Run Neptune 3 UI from a Qt Automotive Suite Installation
 
-    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt IVI} to provide support for both a
-    Center Console display and an Instrument Cluster. It also uses the Qt IVI plugins and its
-    \c ivigenerator to generate and access various services. Neptune 3 UI offers a multi-process
+    Neptune 3 UI depends on \l{Qt Application Manager} and \l{Qt InterfaceFramework} to provide support for both a
+    Center Console display and an Instrument Cluster. It also uses the Qt InterfaceFramework plugins and its
+    \c ifcodegen to generate and access various services. Neptune 3 UI offers a multi-process
     application model using a central System UI and various apps. The System UI provides an
     application launcher to start and stop apps; it also acts as a full-fledged compositor.
     Additionally, the \l{Qt Creator Plugin for Qt Application Manager} lets you develop and deploy
@@ -101,7 +101,7 @@
     \section2 Prerequisites
 
     \list
-        \li \b{Qt 5.12} or higher
+        \li \b{Qt 6.2.5} or higher
         \li To support multi-process mode, your Qt installation must include the \c qtwayland
             submodule, and be built with Open GL ES \c{(-opengl es2 -opengles3)}.
     \endlist
@@ -109,8 +109,8 @@
     \section2 Dependencies
 
     \list
-        \li \l{Qt Application Manager} 5.15
-        \li \l{Qt IVI} 5.15
+        \li \l{Qt Application Manager} 6.2.5+
+        \li \l{Qt InterfaceFramework} 6.2.5+
         \li \l{Qt Safe Renderer} 1.1 (optional)
         \li \l{Qt 3D Studio} (optional)
     \endlist
@@ -119,10 +119,10 @@
 
    \list 1
         \li Clone the repositories mentioned in \l{Install Qt Automotive Suite}.
-        \li Build \l{Qt Application Manager} against Qt 5.15. For more detailed build
+        \li Build \l{Qt Application Manager} against Qt 6.2.5. For more detailed build
             instructions, see \l{Qt Applicaton Manager Installation}.
-        \li Build \l{Qt IVI} against Qt 5.15. For more detailed build instructions, see
-            \l[QtIvi]{Installation}.
+        \li Build \l{Qt InterfaceFramework} against Qt 6.2.5. For more detailed build instructions, see
+            \l[QtInterfaceFramework]{Installation}.
         \li Run the following command in a terminal, to build Neptune 3 UI:
             \badcode
             qmake neptune3-ui.pro

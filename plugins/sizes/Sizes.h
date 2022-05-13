@@ -36,7 +36,7 @@
 #include <QtCore/QScopedPointer>
 #include <QJSValue>
 
-#include <QtQuickControls2/private/qquickattachedobject_p.h>
+#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
 
 class StyleData;
 

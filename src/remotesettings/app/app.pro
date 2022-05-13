@@ -1,7 +1,7 @@
 VERSION  = 5.15.1
 TARGET = neptune-companion-app
 DESTDIR = $$BUILD_DIR
-QT += quick ivicore ivimedia
+QT += quick interfaceframework ifmedia
 CONFIG += c++11
 macos: CONFIG -= app_bundle
 

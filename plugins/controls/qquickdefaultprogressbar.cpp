@@ -39,7 +39,7 @@
 #include <QtCore/qeasingcurve.h>
 #include <QtQuick/private/qquickitem_p.h>
 #include <QtQuick/private/qsgadaptationlayer_p.h>
-#include <QtQuickControls2/private/qquickanimatednode_p.h>
+#include <QtQuickControls2Impl/private/qquickanimatednode_p.h>
 
 QT_BEGIN_NAMESPACE
 

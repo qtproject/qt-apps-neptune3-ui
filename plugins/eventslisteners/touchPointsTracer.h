@@ -3,7 +3,7 @@
 ** Copyright (C) 2019 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage
@@ -72,11 +72,11 @@ public:
                     || event->type() == QEvent::TouchEnd
                     || event->type() == QEvent::TouchUpdate) {
                 auto tEvent = static_cast<QTouchEvent *>(event);
-                const QList<QTouchEvent::TouchPoint> touchPoints = tEvent->touchPoints();
+                const QList<QTouchEvent::TouchPoint> touchPoints = tEvent->points();
                 QVector<int> points;
                 points.reserve(touchPoints.size() * 2); // 2 int = point
                 for (auto && tp : touchPoints) {
-                    QPoint point = tp.pos().toPoint();
+                    QPoint point = tp.position().toPoint();
                     points << point.x() << point.y();
                 }
 

@@ -31,7 +31,7 @@
 
 import QtQuick 2.12
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import QtQuick.Shapes 1.12
 import shared.controls 1.0
 import "../helpers" 1.0
@@ -96,7 +96,6 @@ Item {
         horizontalOffset: 0
         verticalOffset: 0
         radius: Sizes.dp(10)
-        samples: 10
         color: "gray"
         source: speedRectangle
         opacity: 0.7

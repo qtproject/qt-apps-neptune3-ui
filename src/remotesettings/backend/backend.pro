@@ -1,32 +1,32 @@
 TEMPLATE=lib
-TARGET = $$qt5LibraryTarget(remotesettings_backend_qtro, "plugins/qtivi/")
-CONFIG += ivigenerator plugin
+TARGET = $$qt5LibraryTarget(remotesettings_backend_qtro, "plugins/interfaceframework/")
+CONFIG += ifcodegen plugin
 
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 include($$SOURCE_DIR/config.pri)
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(remotesettings)
-DESTDIR = $$BUILD_DIR/qtivi
+DESTDIR = $$BUILD_DIR/interfaceframework
 
 #needed for the android deployment to work
-android: DESTDIR = $$BUILD_DIR/plugins/qtivi
+android: DESTDIR = $$BUILD_DIR/plugins/interfaceframework
 
 CONFIG += warn_off
 INCLUDEPATH += $$OUT_PWD/../frontend
-PLUGIN_TYPE = qtivi
-PLUGIN_EXTENDS = qtivi
+PLUGIN_TYPE = interfaceframework
+PLUGIN_EXTENDS = interfaceframework
 PLUGIN_CLASS_NAME = IviSettingsBackendInterface
 
-QT += core ivicore
+QT += core interfaceframework
 
-QFACE_FORMAT = backend_qtro
-QFACE_SOURCES = ../remotesettings.qface
+IFCODEGEN_TEMPLATE = backend_qtro
+IFCODEGEN_SOURCES = ../remotesettings.qface
 
 DEPENDPATH += $$OUT_PWD/../backend
 
-QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/qtivi)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/interfaceframework)
 
-target.path = $$INSTALL_PREFIX/neptune3/qtivi
+target.path = $$INSTALL_PREFIX/neptune3/interfaceframework
 INSTALLS += target

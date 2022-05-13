@@ -195,11 +195,11 @@ Item {
         onLeftDoorClicked: root.store.setLeftDoor()
         onRightDoorClicked: root.store.setRightDoor()
         onTrunkClicked: root.store.setTrunk()
-        onNewRoofOpenProgressRequested: root.store.setRoofOpenProgress(progress)
+        onNewRoofOpenProgressRequested: function(progress) { root.store.setRoofOpenProgress(progress) } 
 
-        onRuntimeChanged: { root.store.setRuntime(runtime); }
+        onRuntimeChanged: function(runtime) { root.store.setRuntime(runtime) }
 
-        onQualityChanged: {
+        onQualityChanged: function(quality) {
             if (root.store.model3DVersion !== quality) {
                 root.store.model3DVersion = quality;
                 root.store.setModelQuality(quality);
@@ -207,6 +207,6 @@ Item {
         }
 
         onShowNotificationAboutChange: store.showNotificationAboutChange()
-        onIntentToMapRequested: { root.store.createIntentToMap(intentId, params) }
+        onIntentToMapRequested: function(intentId, params) { root.store.createIntentToMap(intentId, params) }
     }
 }

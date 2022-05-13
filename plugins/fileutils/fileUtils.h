@@ -3,7 +3,7 @@
 ** Copyright (C) 2020 Luxoft Sweden AB
 ** Contact: https://www.qt.io/licensing/
 **
-** This file is part of the Neptune 3 IVI UI.
+** This file is part of the Neptune 3 UI.
 **
 ** $QT_BEGIN_LICENSE:GPL-QTAS$
 ** Commercial License Usage

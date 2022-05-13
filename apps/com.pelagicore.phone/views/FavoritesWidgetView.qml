@@ -124,7 +124,7 @@ Item {
             source: "../assets/profile_photos/%1.png".arg(model.handle)
             lastItem: (index === (favorites1Row.model.count - 1))
             maximized: (root.state === "Maximized")
-            onCallWidgetClicked: { root.store.startCall(handle); }
+            onCallWidgetClicked: function(handle) { root.store.startCall(handle); }
             enableOpacityMasks: store.allowOpenGLContent
         }
         PageIndicator {

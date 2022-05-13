@@ -35,9 +35,12 @@
 
 #include <QSettings>
 
+QT_FORWARD_DECLARE_CLASS(QQmlEngine)
+
 class StyleDefaults
 {
 public:
+    static void setEngine(QQmlEngine *e);
     static StyleDefaults *instance();
 
     const StyleData &data() const { return m_data; }
@@ -56,4 +59,5 @@ private:
     QString m_imagePath;
 
     static StyleDefaults *m_instance;
+    static QQmlEngine *m_engine;
 };

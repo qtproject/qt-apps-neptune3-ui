@@ -32,7 +32,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import QtIvi.Media 1.0
+import QtInterfaceFramework.Media
 
 Flickable {
     id: root

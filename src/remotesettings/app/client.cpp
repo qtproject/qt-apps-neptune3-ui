@@ -61,9 +61,9 @@ Client::Client(QObject *parent) : QObject(parent),
     connect(&m_connectionMonitoringTimer, &QTimer::timeout, this, &Client::onCMTimeout);
     connect(&m_connectionMonitoring, &ConnectionMonitoring::counterChanged,
             this, &Client::onCMCounterChanged);
-    connect(&m_connectionMonitoring, &QIviAbstractFeature::isInitializedChanged,
+    connect(&m_connectionMonitoring, &QIfAbstractFeature::isInitializedChanged,
             this, &Client::updateConnectionStatus);
-    connect(&m_connectionMonitoring, &QIviAbstractFeature::errorChanged,
+    connect(&m_connectionMonitoring, &QIfAbstractFeature::errorChanged,
             this, &Client::updateConnectionStatus);
     connect(&m_reconnectionTimer, &QTimer::timeout, this, &Client::onReconnectionTimeout);
     readSettings();
@@ -130,7 +130,7 @@ void Client::connectToServer(const QString &serverUrl)
     settings.setValue(QStringLiteral("Registry"), driveDataUrl.toString());
     settings.endGroup();
     settings.sync();
-    settings.beginGroup(QStringLiteral("qtivimedia"));
+    settings.beginGroup(QStringLiteral("qtifmedia"));
     settings.setValue(QStringLiteral("Registry"), iviMediaUrl.toString());
     settings.endGroup();
     settings.sync();
@@ -151,7 +151,7 @@ void Client::connectToServer(const QString &serverUrl)
 void Client::updateConnectionStatus()
 {
     bool c = m_connectionMonitoring.isInitialized() &&
-             m_connectionMonitoring.error()==QIviAbstractFeature::NoError &&
+             m_connectionMonitoring.error()==QIfAbstractFeature::NoError &&
              !m_timedOut;
     if (c == m_connected)
         return;

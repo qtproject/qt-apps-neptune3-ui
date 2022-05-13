@@ -35,7 +35,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import QtPositioning 5.9
 import QtLocation 5.9
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 
 import Qt.labs.platform 1.0
 

@@ -46,14 +46,15 @@ Control {
 
     background: Image {
         width: Sizes.dp(sourceSize.width)
-        height: width
+        height: Sizes.dp(sourceSize.height)
         source: Style.image("colorSelector/color-wheel")
+        fillMode: Image.PreserveAspectFit 
 
         Image {
             //selected color overlay
-            height: Sizes.dp(sourceSize.width)
-            width: Sizes.dp(sourceSize.height)
+	    anchors.fill: parent
             source: Style.image("colorSelector/"+Style.accentColor)
+            fillMode: parent.fillMode
         }
 
         MouseArea {

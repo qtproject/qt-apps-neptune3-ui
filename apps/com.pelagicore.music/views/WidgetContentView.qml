@@ -85,7 +85,7 @@ Item {
                     listView.model: store.musicPlaylist
                     listView.interactive: false
                     musicPlaying: root.store.playing
-                    onItemClicked: {
+                    onItemClicked: function(index) {
                         store.musicPlaylist.currentIndex = index;
                         store.player.play();
                     }
@@ -145,7 +145,7 @@ Item {
         visible: opacity > 0
         value: store.currentTrackPosition
         progressText: store.elapsedTime + " / " + store.totalTime
-        onUpdatePosition: store.updatePosition(value)
+        onUpdatePosition: function(value) { store.updatePosition(value) }
     }
 
     MusicTools {

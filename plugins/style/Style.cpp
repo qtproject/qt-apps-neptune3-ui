@@ -51,6 +51,7 @@ Style::~Style()
 
 Style *Style::qmlAttachedProperties(QObject *object)
 {
+    StyleDefaults::setEngine(qmlEngine(object));
     return new Style(object);
 }
 

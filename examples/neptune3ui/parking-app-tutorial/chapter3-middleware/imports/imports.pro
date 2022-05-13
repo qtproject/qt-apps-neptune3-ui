@@ -1,15 +1,15 @@
 TEMPLATE = lib
 CONFIG += plugin
-QT += ivicore
+QT += interfaceframework
 
 LIBS += -L$$OUT_PWD/../ -l$$qtLibraryTarget(Parking)
 INCLUDEPATH += $$OUT_PWD/../frontend
 QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/../../../
 
-QFACE_FORMAT = qmlplugin
-QFACE_SOURCES = ../parking.qface
+IFCODEGEN_TEMPLATE = qmlplugin
+IFCODEGEN_SOURCES = ../parking.qface
 
-load(ivigenerator)
+load(ifcodegen)
 
 DESTDIR = $$OUT_PWD/$$replace(URI, \\., /)
 

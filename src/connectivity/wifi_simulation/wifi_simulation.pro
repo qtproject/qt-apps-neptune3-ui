@@ -1,28 +1,28 @@
 TEMPLATE = lib
 TARGET = $$qtLibraryTarget(wifi_simulation)
-CONFIG += ivigenerator plugin
+CONFIG += ifcodegen plugin
 
-QT += core ivicore
-QT_FOR_CONFIG += ivicore
-!qtConfig(ivigenerator): error("No ivigenerator available: Make sure QtIvi is installed and configured correctly")
+QT += core interfaceframework
+QT_FOR_CONFIG += interfaceframework
+!qtConfig(ifcodegen): error("No ifcodegen available: Make sure QtInterfaceFramework is installed and configured correctly")
 
 LIBS += -L$$LIB_DESTDIR -l$$qtLibraryTarget(Connectivity)
-DESTDIR = $$BUILD_DIR/qtivi
+DESTDIR = $$BUILD_DIR/interfaceframework
 
 include($$SOURCE_DIR/config.pri)
 
-QFACE_FORMAT = backend_simulator
-QFACE_SOURCES = ../connectivity.qface
-PLUGIN_TYPE = qtivi
+IFCODEGEN_TEMPLATE = backend_simulator
+IFCODEGEN_SOURCES = ../connectivity.qface
+PLUGIN_TYPE = interfaceframework
 
 INCLUDEPATH += $$OUT_PWD/../connectivity
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$OUT_PWD/../connectivity/qml
 
-QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/qtivi)
+QMAKE_RPATHDIR += $$QMAKE_REL_RPATH_BASE/$$relative_path($$INSTALL_PREFIX/neptune3/lib, $$INSTALL_PREFIX/neptune3/interfaceframework)
 
-target.path = $$INSTALL_PREFIX/neptune3/qtivi
+target.path = $$INSTALL_PREFIX/neptune3/interfaceframework
 INSTALLS += target
 
 RESOURCES += plugin_resource.qrc

@@ -33,10 +33,10 @@
 import QtQuick 2.0
 
 QtObject {
-    property int discoveryMode: 0 /* QIviAbstractFeature::NoAutoDiscovery */
+    property int discoveryMode: 0 /* QIfAbstractFeature::NoAutoDiscovery */
     property int steeringWheelHeater: 0
     property bool recirculationEnabled: false
-    property int recirculationMode: 0 /* QtIviVehicleFunctionsModule::RecirculationOff */
+    property int recirculationMode: 0 /* QtIfVehicleFunctionsModule::RecirculationOff */
     property bool airConditioningEnabled: true
     property bool defrostEnabled: false
     property bool heaterEnabled: true

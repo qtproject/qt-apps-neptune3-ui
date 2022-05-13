@@ -30,8 +30,7 @@
 ****************************************************************************/
 
 import QtQuick 2.9
-import QtGraphicalEffects 1.12
-
+import Qt5Compat.GraphicalEffects
 import shared.animations 1.0
 import shared.Sizes 1.0
 

@@ -59,7 +59,7 @@ NeptuneWindow {
         }
     }
 
-    onWindowPropertyChanged: {
+    onWindowPropertyChanged: function(name, value) {
         if (name === "neptuneLanguageLocale") {
             climateStore.measurementSystem = Qt.locale().measurementSystem
         }

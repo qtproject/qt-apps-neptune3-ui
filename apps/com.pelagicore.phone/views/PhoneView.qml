@@ -97,7 +97,7 @@ Item {
         state: root.state
         store: root.store
         ongoingCall: root.store.ongoingCall
-        onCallEndRequested: root.store.endCall(handle)
+        onCallEndRequested: function(handle) { root.store.endCall(handle) }
         onKeypadRequested: {
             toolsColumn.currentIndex = 3; // keypad
             root.activateApp();

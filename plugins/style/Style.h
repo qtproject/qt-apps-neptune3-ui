@@ -33,7 +33,7 @@
 
 #include "StyleData.h"
 
-#include <QtQuickControls2/private/qquickattachedobject_p.h>
+#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
 #include <QJSValue>
 
 class Style : public QQuickAttachedObject
