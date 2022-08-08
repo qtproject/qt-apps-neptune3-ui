@@ -29,7 +29,7 @@
 **
 ****************************************************************************/
 
-import QtStudio3D.OpenGL 2.5
-import QtQuick 2.8
+import QtStudio3D.OpenGL
+import QtQuick
 
 Item {}

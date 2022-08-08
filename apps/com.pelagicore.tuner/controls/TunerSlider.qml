@@ -30,16 +30,16 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Layouts 1.2
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
-import shared.utils 1.0
-import shared.controls 1.0
-import shared.Style 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.utils
+import shared.controls
+import shared.Style
+import shared.Style
+import shared.Sizes
 
 Slider {
     //TODO adapt it to AM band frequencies

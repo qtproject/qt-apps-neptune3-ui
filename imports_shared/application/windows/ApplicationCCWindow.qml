@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.11
-import shared.controls 1.0
-import shared.utils 1.0
-import shared.animations 1.0
-import shared.Sizes 1.0
+import QtQuick
+import shared.controls
+import shared.utils
+import shared.animations
+import shared.Sizes
 
 /*!
     \qmltype ApplicationCCWindow
@@ -54,8 +54,8 @@ import shared.Sizes 1.0
     The following example uses \l{ApplicationCCWindow} as a root element:
 
     \qml
-    import QtQuick 2.10
-    import application.windows 1.0
+    import QtQuick
+    import application.windows
 
     ApplicationCCWindow {
         id: root

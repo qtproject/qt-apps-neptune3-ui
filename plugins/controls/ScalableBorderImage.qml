@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 /*!
     \qmltype ScalableBorderImage
@@ -52,8 +52,8 @@ import shared.Sizes 1.0
     The following example uses \l{ScalableBorderImage}:
 
     \qml
-    import QtQuick 2.10
-    import shared.controls 1.0
+    import QtQuick
+    import shared.controls
 
     Item {
         id: root

@@ -30,17 +30,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import QtQml.Models 2.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQml.Models
 
-import shared.utils 1.0
-import shared.controls 1.0
-import shared.animations 1.0
+import shared.utils
+import shared.controls
+import shared.animations
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
 Control {
     id: root

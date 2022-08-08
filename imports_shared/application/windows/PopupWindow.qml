@@ -31,8 +31,8 @@
 ****************************************************************************/
 
 
-import QtQuick 2.6
-import shared.Style 1.0
+import QtQuick
+import shared.Style
 
 /*!
     \qmltype PopupWindow

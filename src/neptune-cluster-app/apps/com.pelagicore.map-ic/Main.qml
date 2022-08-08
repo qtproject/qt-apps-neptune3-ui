@@ -29,18 +29,18 @@
 **
 ****************************************************************************/
 
-import QtQuick.Controls 2.2
+import QtQuick.Controls
 
-import QtQuick 2.9
-import QtPositioning 5.9
+import QtQuick
+import QtPositioning
 
-import shared.com.pelagicore.map 1.0
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.com.pelagicore.map
+import shared.utils
+import shared.Style
+import shared.Sizes
 
-import "views" 1.0
-import "stores" 1.0
+import "views"
+import "stores"
 
 Item {
     MapStore {

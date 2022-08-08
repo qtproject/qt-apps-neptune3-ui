@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtQml 2.14
-import shared.utils 1.0
-import QtQuick.Window 2.3
-import system.controls 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtQml
+import shared.utils
+import QtQuick.Window
+import system.controls
+import shared.Style
+import shared.Sizes
 
 Window {
     id: root
@@ -60,7 +60,7 @@ Window {
     function sendWindowStateToSafeUI() {
         if (root.clusterStore.runningOnDesktop) {
             var sendMessageObject = Qt.createQmlObject(
-                    "import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                    "import QtQuick 2.0;  import Qt.SafeRenderer;
                      QtObject {
                          function sendClusterWindowState(x,y, dx, dy, width, height) {
                              SafeMessage.moveItem(\"mainWindowPos\", Qt.point(x, y))

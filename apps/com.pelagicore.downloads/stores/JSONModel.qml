@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import "JSONBackend.js" as JSONBackend
 
 ListModel {

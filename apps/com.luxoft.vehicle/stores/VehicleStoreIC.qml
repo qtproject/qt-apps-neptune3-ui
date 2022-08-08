@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
+import QtQuick
+import shared.com.pelagicore.remotesettings
+import shared.com.pelagicore.drivedata
 
 
 QtObject {

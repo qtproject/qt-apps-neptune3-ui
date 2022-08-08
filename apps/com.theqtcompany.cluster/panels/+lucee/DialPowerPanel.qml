@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.2
-import QtQuick.Shapes 1.12
-import shared.controls 1.0
-import "../helpers" 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Shapes
+import shared.controls
+import "../helpers"
+import shared.Style
+import shared.Sizes
 
 /*
     Holds lucee style Battery gauge, current gear indicator, outside temperature

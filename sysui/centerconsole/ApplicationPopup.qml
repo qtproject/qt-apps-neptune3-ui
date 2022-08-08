@@ -37,10 +37,10 @@
     \brief Displays the content of an application's PopupWindow inside a PopupItem in System-UI
 */
 
-import QtQuick 2.7
-import system.controls 1.0
+import QtQuick
+import system.controls
 
-import shared.Style 1.0
+import shared.Style
 
 PopupItem {
     id: root

@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
-import application.windows 1.0
-import shared.utils 1.0
+import QtQuick
+import QtQuick.Controls
+import application.windows
+import shared.utils
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
 PopupWindow {
     id: root

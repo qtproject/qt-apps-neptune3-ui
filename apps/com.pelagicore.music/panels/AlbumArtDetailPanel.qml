@@ -30,16 +30,16 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.11
+import QtQuick
 import Qt5Compat.GraphicalEffects
-import QtQuick.Controls 2.2
-import shared.utils 1.0
-import shared.animations 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
-import shared.effects 1.0
+import QtQuick.Controls
+import shared.utils
+import shared.animations
+import shared.Style
+import shared.Sizes
+import shared.effects
 
-import "../controls" 1.0
+import "../controls"
 
 Item {
     id: root

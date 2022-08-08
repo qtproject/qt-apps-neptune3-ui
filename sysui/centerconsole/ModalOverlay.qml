@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick
 import Qt5Compat.GraphicalEffects
 
-import shared.animations 1.0
-import shared.utils 1.0
-import shared.Sizes 1.0
+import shared.animations
+import shared.utils
+import shared.Sizes
 
 // We can't use Popup from QtQuick.Controls as it doesn't support a rotated scene,
 // hence the implementation of our own modal overlay scheme

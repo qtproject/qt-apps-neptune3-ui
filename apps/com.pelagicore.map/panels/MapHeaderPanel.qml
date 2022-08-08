@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
-import QtPositioning 5.9
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtPositioning
 
-import shared.utils 1.0
-import shared.Sizes 1.0
-import shared.controls 1.0 as NeptuneControls
-import shared.animations 1.0
+import shared.utils
+import shared.Sizes
+import shared.controls as NeptuneControls
+import shared.animations
 
 Item {
     id: root

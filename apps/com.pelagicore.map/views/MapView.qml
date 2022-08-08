@@ -30,26 +30,26 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import QtPositioning 5.9
-import QtLocation 5.9
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtPositioning
+import QtLocation
 import Qt5Compat.GraphicalEffects
 
-import Qt.labs.platform 1.0
+import Qt.labs.platform
 
-import shared.utils 1.0
-import shared.controls 1.0 as NeptuneControls
-import shared.animations 1.0
+import shared.utils
+import shared.controls as NeptuneControls
+import shared.animations
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
-import "../controls" 1.0
-import "../panels" 1.0
-import "../stores" 1.0
-import "../helpers" 1.0
+import "../controls"
+import "../panels"
+import "../stores"
+import "../helpers"
 
 Item {
     id: root

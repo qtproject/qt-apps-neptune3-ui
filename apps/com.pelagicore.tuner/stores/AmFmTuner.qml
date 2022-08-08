@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import shared.utils 1.0
+import QtQuick
+import shared.utils
 
 QtObject {
     id: root

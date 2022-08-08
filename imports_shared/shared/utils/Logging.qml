@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 pragma Singleton
-import QtQuick 2.8
+import QtQuick
 
 QtObject {
     readonly property var sysui: LoggingCategory {

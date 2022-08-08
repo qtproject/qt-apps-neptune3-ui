@@ -30,17 +30,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-import shared.animations 1.0
-import shared.utils 1.0
-import shared.controls 1.0
-import system.controls 1.0
+import shared.animations
+import shared.utils
+import shared.controls
+import system.controls
 
-import shared.Style 1.0
-import shared.Sizes 1.0
-import home 1.0
+import shared.Style
+import shared.Sizes
+import home
 
 AbstractApplicationWidget {
     id: root

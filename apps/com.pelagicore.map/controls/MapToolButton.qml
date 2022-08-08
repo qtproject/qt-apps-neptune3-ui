@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtQuick.Controls
+import shared.utils
+import shared.Style
+import shared.Sizes
 
 ToolButton {
     id: root

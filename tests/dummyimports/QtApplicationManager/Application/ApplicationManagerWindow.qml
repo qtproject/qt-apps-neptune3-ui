@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtApplicationManager 2.0
+import QtQuick
+import QtApplicationManager
 
 Item {
     id: root

@@ -29,12 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQml.StateMachine 1.0 as DSM
+import QtQuick
+import QtQml.StateMachine as DSM
 
 import "JSONBackend.js" as JSONBackend
-import shared.com.pelagicore.systeminfo 1.0
-import shared.utils 1.0
+import shared.com.pelagicore.systeminfo
+import shared.utils
 
 DSM.StateMachine {
     running: true

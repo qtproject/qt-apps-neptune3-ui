@@ -32,8 +32,8 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
 T.TabBar {
     id: control

@@ -31,14 +31,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
-import QtQuick.Shapes 1.0
-import shared.controls 1.0
-import "../helpers" 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick.Shapes
+import shared.controls
+import "../helpers"
+import shared.Style
+import shared.Sizes
 
 Item {
     id: root

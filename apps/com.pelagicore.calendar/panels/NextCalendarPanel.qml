@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.2
-import shared.utils 1.0
-import shared.controls 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
-import "../controls" 1.0
+import QtQuick.Layouts
+import shared.utils
+import shared.controls
+import shared.Style
+import shared.Sizes
+import "../controls"
 
 Item {
     id: root

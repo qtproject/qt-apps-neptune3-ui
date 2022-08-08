@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtInterfaceFramework.VehicleFunctions 1.0
+import QtQuick
+import QtInterfaceFramework.VehicleFunctions
 
 QtObject {
     id: root

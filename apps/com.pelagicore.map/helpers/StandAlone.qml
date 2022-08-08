@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Window 2.3
-import QtQml 2.14
+import QtQuick
+import QtQuick.Window
+import QtQml
 
-import shared.utils 1.0
-import shared.Style 1.0
+import shared.utils
+import shared.Style
 
 import "../stores"
 import "../views"

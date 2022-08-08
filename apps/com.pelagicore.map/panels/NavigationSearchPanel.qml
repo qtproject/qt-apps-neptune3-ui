@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
-import shared.controls 1.0 as NeptuneControls
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
-import "../helpers" 1.0
+import shared.controls as NeptuneControls
+import shared.utils
+import shared.Style
+import shared.Sizes
+import "../helpers"
 
 Row {
     id: root

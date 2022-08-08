@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtApplicationManager.Application 2.0
+import QtQuick
+import QtApplicationManager.Application
 
 /*!
     \qmltype NotificationInterface

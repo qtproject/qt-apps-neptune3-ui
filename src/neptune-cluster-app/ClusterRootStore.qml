@@ -29,12 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
-import shared.utils 1.0
+import QtQuick
+import shared.com.pelagicore.remotesettings
+import shared.com.pelagicore.drivedata
+import shared.utils
 
-import "../apps/com.theqtcompany.cluster/stores" 1.0
+import "../apps/com.theqtcompany.cluster/stores"
 
 RootStoreInterface {
     id: root

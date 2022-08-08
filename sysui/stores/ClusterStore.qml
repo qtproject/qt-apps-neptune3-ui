@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQml 2.14
-import QtApplicationManager.SystemUI 2.0
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
-import shared.utils 1.0
+import QtQuick
+import QtQml
+import QtApplicationManager.SystemUI
+import shared.com.pelagicore.remotesettings
+import shared.com.pelagicore.drivedata
+import shared.utils
 
 QtObject {
     id: root

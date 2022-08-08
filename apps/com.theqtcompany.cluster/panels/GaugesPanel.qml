@@ -31,9 +31,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import shared.Sizes 1.0
-import shared.utils 1.0
+import QtQuick
+import shared.Sizes
+import shared.utils
 
 Item {
     id: root

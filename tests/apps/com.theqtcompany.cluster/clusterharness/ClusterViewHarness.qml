@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Window 2.2
-import shared.utils 1.0
+import QtQuick
+import QtQuick.Window
+import shared.utils
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
-import views 1.0
-import stores 1.0
+import views
+import stores
 
 Item {
     id: root

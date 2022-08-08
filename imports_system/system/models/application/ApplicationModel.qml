@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtApplicationManager.SystemUI 2.0
-import system.requests 1.0
+import QtQuick
+import QtApplicationManager.SystemUI
+import system.requests
 
 /*
   A list of ApplicationInfo objects.
@@ -389,7 +389,7 @@ ListModel {
         }
 
         function sendNotification(summary, body, icon) {
-            var notification = Qt.createQmlObject("import QtApplicationManager 2.0; Notification {}", root, "notification")
+            var notification = Qt.createQmlObject("import QtApplicationManager; Notification {}", root, "notification")
             notification.summary = summary;
             notification.body = body;
             notification.icon = icon;

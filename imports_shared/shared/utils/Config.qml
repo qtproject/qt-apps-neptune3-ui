@@ -31,10 +31,10 @@
 ****************************************************************************/
 
 pragma Singleton
-import QtQuick 2.6
+import QtQuick
 
-import shared.Style 1.0
-import shared.com.pelagicore.translation 1.0
+import shared.Style
+import shared.com.pelagicore.translation
 
 QtObject {
     id: root

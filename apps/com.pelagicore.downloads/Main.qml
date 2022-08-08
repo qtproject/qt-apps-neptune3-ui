@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import application.windows 1.0
-import shared.utils 1.0
-import shared.Sizes 1.0
-import QtQuick.Controls 2.2
-import "views" 1.0
-import "stores" 1.0
+import QtQuick
+import application.windows
+import shared.utils
+import shared.Sizes
+import QtQuick.Controls
+import "views"
+import "stores"
 
 ApplicationCCWindow {
     id: root

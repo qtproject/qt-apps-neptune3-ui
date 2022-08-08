@@ -36,12 +36,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Templates 2.3 as T
+import QtQuick
+import QtQuick.Templates as T
 
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.utils
+import shared.Style
+import shared.Sizes
 
 T.Slider {
     id: control

@@ -29,7 +29,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
+import QtQuick
 
 /*!
     \qmltype ScalableColorOverlay
@@ -46,8 +46,8 @@ import QtQuick 2.12
     The following example uses \l{ScalableColorOverlay}:
 
     \qml
-    import QtQuick 2.10
-    import shared.effects 1.0
+    import QtQuick
+    import shared.effects
 
     Item {
         id: root

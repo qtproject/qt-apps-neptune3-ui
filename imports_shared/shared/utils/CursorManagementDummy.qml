@@ -48,7 +48,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
+import QtQuick
 
 //all-input wrapper dummy
 Item {

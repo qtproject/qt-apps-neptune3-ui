@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
-import shared.Sizes 1.0
-import shared.utils 1.0
+import shared.Sizes
+import shared.utils
 
 MonitorOverlay {
     id: root

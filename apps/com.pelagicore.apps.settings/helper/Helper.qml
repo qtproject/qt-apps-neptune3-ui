@@ -29,9 +29,9 @@
 **
 ****************************************************************************/
 
-import QtQml 2.2
-import QtQuick 2.8
-import QtApplicationManager.Application 2.0
+import QtQml
+import QtQuick
+import QtApplicationManager.Application
 
 QtObject {
     id: root

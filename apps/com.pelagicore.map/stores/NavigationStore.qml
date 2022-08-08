@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import QtLocation 5.9
-import QtPositioning 5.9
-import shared.animations 1.0
-import shared.com.pelagicore.drivedata 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtLocation
+import QtPositioning
+import shared.animations
+import shared.com.pelagicore.drivedata
 
 /// class that takes route segments, prepares demo from it, and produces
 /// points and vehicle(arrow marker / map bearing) angle

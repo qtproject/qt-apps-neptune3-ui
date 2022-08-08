@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Templates 2.2 as T
-import QtQuick.Controls 2.2
-import QtQuick.Controls.impl 2.2
-import shared.Style 1.0
-import shared.Sizes 1.0
-import shared.utils 1.0
+import QtQuick
+import QtQuick.Templates as T
+import QtQuick.Controls
+import QtQuick.Controls.impl
+import shared.Style
+import shared.Sizes
+import shared.utils
 
 T.Dialog {
     id: control

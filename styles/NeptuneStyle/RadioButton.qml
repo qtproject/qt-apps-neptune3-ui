@@ -35,9 +35,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Templates as T
 
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.utils
+import shared.Style
+import shared.Sizes
 
 T.RadioButton {
     id: control

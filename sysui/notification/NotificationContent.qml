@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import centerconsole 1.0
-import shared.animations 1.0
-import system.models.notification 1.0
-import shared.Sizes 1.0
+import QtQuick
+import centerconsole
+import shared.animations
+import system.models.notification
+import shared.Sizes
 
 ModalOverlay {
     id: root

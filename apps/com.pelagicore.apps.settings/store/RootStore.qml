@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQml 2.2
-import QtQml.Models 2.3
+import QtQml
+import QtQml.Models
 
-import QtApplicationManager.Application 2.0
+import QtApplicationManager.Application
 
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Connectivity 1.0
-import shared.com.pelagicore.remotesettings 1.0
+import shared.utils
+import shared.Style
+import shared.Connectivity
+import shared.com.pelagicore.remotesettings
 
 import "../helper"
 

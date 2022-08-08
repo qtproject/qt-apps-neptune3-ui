@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Templates 2.1 as T
-import shared.Style 1.0
+import QtQuick
+import QtQuick.Templates as T
+import shared.Style
 
 T.Pane {
     id: control

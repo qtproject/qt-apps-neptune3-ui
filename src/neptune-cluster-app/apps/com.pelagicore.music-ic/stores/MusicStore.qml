@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import QtInterfaceFramework
 import QtInterfaceFramework.Media
 
-import shared.utils 1.0
+import shared.utils
 
 Store {
     id: root

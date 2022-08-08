@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import QtMultimedia
-import QtApplicationManager.Application 2.0
-import QtApplicationManager 2.0
-import shared.utils 1.0
+import QtApplicationManager.Application
+import QtApplicationManager
+import shared.utils
 
 Store {
     id: root

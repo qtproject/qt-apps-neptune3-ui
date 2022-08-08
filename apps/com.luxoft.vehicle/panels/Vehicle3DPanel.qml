@@ -30,21 +30,21 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.14
-import Qt3D.Core 2.14
-import Qt3D.Render 2.14
-import Qt3D.Extras 2.14
-import Qt3D.Input 2.14
-import Qt3D.Logic 2.14
-import QtQuick.Scene3D 2.14
-import QtQuick.Controls 2.14
+import QtQuick
+import Qt3D.Core
+import Qt3D.Render
+import Qt3D.Extras
+import Qt3D.Input
+import Qt3D.Logic
+import QtQuick.Scene3D
+import QtQuick.Controls
 
-import shared.Sizes 1.0
+import shared.Sizes
 
-import "../helpers"  1.0
-import "../3d/materials" 1.0
-import "../3d/entities" 1.0
-import "../3d/settings" 1.0
+import "../helpers"
+import "../3d/materials"
+import "../3d/entities"
+import "../3d/settings"
 
 Item {
     id: root

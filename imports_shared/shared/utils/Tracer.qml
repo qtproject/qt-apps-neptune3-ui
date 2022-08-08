@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import shared.utils 1.0
+import QtQuick
+import shared.utils
 
 /*!
     \qmltype Tracer
@@ -48,8 +48,8 @@ import shared.utils 1.0
     The following example shows how to use \l{Tracer}:
 
     \qml
-    import QtQuick 2.10
-    import shared.utils 1.0
+    import QtQuick
+    import shared.utils
 
     Rectangle {
         id: root

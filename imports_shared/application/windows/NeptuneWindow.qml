@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtApplicationManager.Application 2.0
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtApplicationManager.Application
+import shared.utils
+import shared.Style
+import shared.Sizes
 
 /*!
     \qmltype NeptuneWindow
@@ -52,8 +52,8 @@ import shared.Sizes 1.0
     The following example uses \l{NeptuneWindow}:
 
     \qml
-    import QtQuick 2.10
-    import application.windows 1.0
+    import QtQuick
+    import application.windows
 
     NeptuneWindow {
         id: root

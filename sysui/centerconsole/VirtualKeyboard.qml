@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtQuick.VirtualKeyboard 2.1
-import QtQuick.VirtualKeyboard.Settings 2.1
+import QtQuick
+import QtQuick.VirtualKeyboard
+import QtQuick.VirtualKeyboard.Settings
 
-import shared.animations 1.0
+import shared.animations
 
 Item {
     id: root

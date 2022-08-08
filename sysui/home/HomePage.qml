@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
-import shared.Sizes 1.0
+import QtQuick
+import QtQuick.Controls
+import shared.Sizes
 
 AbstractHomePage {
     id: root

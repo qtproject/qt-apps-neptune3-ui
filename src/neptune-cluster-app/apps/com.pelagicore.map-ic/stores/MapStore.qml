@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtPositioning 5.9
-import QtLocation 5.9
-import Qt.labs.platform 1.0
-import shared.utils 1.0
+import QtQuick
+import QtPositioning
+import QtLocation
+import Qt.labs.platform
+import shared.utils
 
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.drivedata 1.0
+import shared.com.pelagicore.remotesettings
+import shared.com.pelagicore.drivedata
 
 QtObject {
     id: root

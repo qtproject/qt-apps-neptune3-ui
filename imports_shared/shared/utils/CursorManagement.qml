@@ -48,8 +48,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import CursorNavigation 1.0
+import QtQuick
+import CursorNavigation
 
 //all-input wrapper
 Item {

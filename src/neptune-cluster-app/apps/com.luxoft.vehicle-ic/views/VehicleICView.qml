@@ -29,12 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick
 
-import shared.Sizes 1.0
+import shared.Sizes
 
-import "../panels" 1.0
-import "../stores" 1.0
+import "../panels"
+import "../stores"
 
 Item {
     id: root

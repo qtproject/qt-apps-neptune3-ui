@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import Qt.labs.folderlistmodel 2.2
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import shared.controls 1.0
-import shared.utils 1.0
+import QtQuick
+import Qt.labs.folderlistmodel
+import QtQuick.Controls
+import QtQuick.Layouts
+import shared.controls
+import shared.utils
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
 Item {
     id: root

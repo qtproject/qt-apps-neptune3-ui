@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtTest 1.1
+import QtTest
 
 /*
     Collects some generally useful functions for test cases.

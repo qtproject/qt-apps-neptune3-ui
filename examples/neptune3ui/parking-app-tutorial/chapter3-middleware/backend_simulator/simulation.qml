@@ -50,8 +50,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import Example.Parking.simulation 1.0
+import QtQuick
+import Example.Parking.simulation
 
 QtObject {
     property var settings : IfSimulator.findData(IfSimulator.simulationData, "ParkingInfo")

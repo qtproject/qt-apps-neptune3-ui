@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import Qt.labs.settings 1.0
+import QtQuick
+import Qt.labs.settings
 
 Settings {
     id: root

@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Controls 2.5
+import QtQuick
+import QtQuick.Controls
 
-import shared.Sizes 1.0
-import shared.Style 1.0
+import shared.Sizes
+import shared.Style
 
-import "../helpers"  1.0
+import "../helpers"
 
 Item {
     id: root

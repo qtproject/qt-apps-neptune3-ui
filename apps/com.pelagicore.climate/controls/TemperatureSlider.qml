@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
-import shared.utils 1.0
+import shared.utils
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 Slider {
     id: root

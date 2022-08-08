@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQml 2.14
+import QtQuick
+import QtQml
 
 /*
     A seamless wrapper for AddWidgetPopup that loads it on demand

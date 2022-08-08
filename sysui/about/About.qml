@@ -30,10 +30,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQml 2.14
+import QtQuick
+import QtQml
 
-import system.controls 1.0
+import system.controls
 
 /*
     A seamless wrapper for AboutPopup that loads it on demand

@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.0
-import shared.Sizes 1.0
-import shared.utils 1.0
-import shared.controls 1.0
-import shared.animations 1.0
-import system.models.notification 1.0
-import shared.Style 1.0
+import QtQuick
+import QtQuick.Controls
+import shared.Sizes
+import shared.utils
+import shared.controls
+import shared.animations
+import system.models.notification
+import shared.Style
 
 Item {
     id: root

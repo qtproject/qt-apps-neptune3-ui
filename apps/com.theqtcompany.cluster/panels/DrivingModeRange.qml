@@ -29,10 +29,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Shapes 1.12
-import shared.Sizes 1.0
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Shapes
+import shared.Sizes
+import QtQuick.Controls
 
 /*!
     A lucee component for selected mode and range it provides

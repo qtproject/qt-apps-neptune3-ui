@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtGamepad 1.0
+import QtQuick
+import QtGamepad
 
 Item {
     id: root

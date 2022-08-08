@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import shared.utils 1.0
-import shared.Style 1.0
+import QtQuick
+import shared.utils
+import shared.Style
 
 /*!
     \qmltype ApplicationICWindow
@@ -53,8 +53,8 @@ import shared.Style 1.0
     The following example uses \l{ApplicationICWindow}:
 
     \qml
-    import QtQuick 2.10
-    import application.windows 1.0
+    import QtQuick
+    import application.windows
 
     QtObject {
         property var mainWindow: ApplicationCCWindow {

@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick
 
 /*!
     \qmltype DefaultSmoothedAnimation
@@ -48,8 +48,8 @@ import QtQuick 2.6
     The following example shows how to use \l{DefaultSmoothedAnimation}:
 
     \qml
-    import QtQuick 2.10
-    import shared.animations 1.0
+    import QtQuick
+    import shared.animations
 
     Rectangle {
         id: root

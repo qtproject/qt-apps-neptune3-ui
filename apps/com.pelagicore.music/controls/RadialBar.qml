@@ -30,10 +30,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQml 2.2
-import shared.Style 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtQml
+import shared.Style
+import shared.Sizes
 
 Item {
     id: root

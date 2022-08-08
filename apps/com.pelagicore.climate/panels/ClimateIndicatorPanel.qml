@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import "../controls" 1.0
-import "../helpers" 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import "../controls"
+import "../helpers"
+import shared.Style
+import shared.Sizes
 
 RowLayout {
     id: root

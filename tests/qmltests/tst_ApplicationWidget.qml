@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtTest 1.1
+import QtQuick
+import QtTest
 
 // sysui, for getting ApplicationWidget
-import home 1.0
+import home
 
 Item {
     width: 600

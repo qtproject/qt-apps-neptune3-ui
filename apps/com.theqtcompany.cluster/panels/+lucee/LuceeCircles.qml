@@ -29,11 +29,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Shapes 1.12
-import shared.Sizes 1.0
+import QtQuick
+import QtQuick.Shapes
+import shared.Sizes
 import Qt5Compat.GraphicalEffects
-import QtQuick.Controls 2.2
+import QtQuick.Controls
 
 /*
   A component for left and right parts of circles inside GaugesPanel for lucee style

@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
-import shared.effects 1.0
-import shared.animations 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.effects
+import shared.animations
+import shared.Style
+import shared.Sizes
 
 Control {
     id: root

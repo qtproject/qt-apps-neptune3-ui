@@ -29,12 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.2
-import QtQuick.Shapes 1.12
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Shapes
 
-import shared.Sizes 1.0
-import shared.Style 1.0
+import shared.Sizes
+import shared.Style
 
 /*
     A lucee component for rounded gauge

@@ -29,8 +29,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import shared.Connectivity.simulation 1.0
+import QtQuick
+import shared.Connectivity.simulation
 
 Item {
     WiFiBackend {

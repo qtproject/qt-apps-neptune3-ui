@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import shared.utils 1.0
+import QtQuick
+import QtQuick.Controls
+import shared.utils
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 Row {
     id: root

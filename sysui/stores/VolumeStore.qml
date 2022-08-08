@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtInterfaceFramework.Media 1.0
+import QtQuick
+import QtInterfaceFramework.Media
 
 QtObject {
     id: root

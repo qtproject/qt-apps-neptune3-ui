@@ -29,15 +29,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.3
-import QtStudio3D.OpenGL 2.5
+import QtQuick
+import QtQuick.Controls
+import QtStudio3D.OpenGL
 
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.utils
+import shared.Style
+import shared.Sizes
 
-import "../helpers" 1.0
+import "../helpers"
 
 Item {
     id: root

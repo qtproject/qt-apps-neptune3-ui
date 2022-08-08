@@ -30,17 +30,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtLocation 5.9
-import QtPositioning 5.14
-import QtQuick.Controls 2.13
+import QtQuick
+import QtLocation
+import QtPositioning
+import QtQuick.Controls
 
-import shared.animations 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.animations
+import shared.Style
+import shared.Sizes
 
-import "../helpers" 1.0
-import "../panels" 1.0
+import "../helpers"
+import "../panels"
 
 Item {
     id: root

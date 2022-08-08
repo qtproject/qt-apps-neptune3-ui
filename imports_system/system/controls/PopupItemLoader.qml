@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQml 2.14
+import QtQuick
+import QtQml
 
 /*
     Loads a PopupItem on demand

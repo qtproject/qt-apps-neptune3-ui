@@ -29,11 +29,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
-import "views" 1.0
-import "stores" 1.0
+import "views"
+import "stores"
 
 Item {
     id: root

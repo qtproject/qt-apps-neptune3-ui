@@ -30,15 +30,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import Qt3D.Core 2.0
-import Qt3D.Render 2.9
-import Qt3D.Extras 2.9
-import Qt3D.Input 2.0
-import QtQuick.Scene3D 2.0
+import QtQuick
+import Qt3D.Core
+import Qt3D.Render
+import Qt3D.Extras
+import Qt3D.Input
+import QtQuick.Scene3D
 
-import "../../helpers" 1.0
-import "../../3d/materials" 1.0
+import "../../helpers"
+import "../../3d/materials"
 
 Entity {
     CookTorranceMaterial {

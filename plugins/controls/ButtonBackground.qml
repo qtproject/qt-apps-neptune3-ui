@@ -30,10 +30,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick
 
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.Style
+import shared.Sizes
 
 Rectangle {
     border.width: !parent.enabled && !parent.checked ? Sizes.dp(2) : 0

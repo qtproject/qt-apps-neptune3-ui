@@ -29,7 +29,7 @@
 **
 ****************************************************************************/
 
-import shared.utils 1.0
+import shared.utils
 
 Store {
     id: root

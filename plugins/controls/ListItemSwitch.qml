@@ -30,10 +30,10 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
+import QtQuick
+import QtQuick.Controls
 
-import shared.Style 1.0
+import shared.Style
 
 /*!
     \qmltype ListItemSwitch
@@ -52,8 +52,8 @@ import shared.Style 1.0
     The following example uses \l{ListItemSwitch}:
 
     \qml
-    import QtQuick 2.10
-    import shared.controls 1.0
+    import QtQuick
+    import shared.controls
 
     Item {
         id: root

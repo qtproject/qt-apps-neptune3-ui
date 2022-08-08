@@ -30,18 +30,18 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtQuick.Controls 2.2
-import QtQuick.Window 2.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Window
 
-import centerconsole 1.0
-import notification 1.0
-import instrumentcluster 1.0
-import hud 1.0
-import stores 1.0
+import centerconsole
+import notification
+import instrumentcluster
+import hud
+import stores
 
-import shared.utils 1.0
-import shared.Style 1.0
+import shared.utils
+import shared.Style
 
 QtObject {
     id: root

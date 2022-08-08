@@ -29,8 +29,8 @@
 ** SPDX-License-Identifier: GPL-3.0
 **
 ****************************************************************************/
-import QtQuick 2.10
-import QtApplicationManager.SystemUI 2.0
+import QtQuick
+import QtApplicationManager.SystemUI
 
 /*!
     \qmltype ApplicationRequestHandler

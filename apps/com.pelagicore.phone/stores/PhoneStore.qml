@@ -31,10 +31,10 @@
 ****************************************************************************/
 
 
-import QtQuick 2.8
-import QtApplicationManager.Application 2.0
-import shared.utils 1.0
-import shared.com.pelagicore.systeminfo 1.0
+import QtQuick
+import QtApplicationManager.Application
+import shared.utils
+import shared.com.pelagicore.systeminfo
 
 Store {
     id: root

@@ -50,18 +50,18 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import shared.utils 1.0
-import shared.animations 1.0
-import QtQuick.Controls 2.2
-import QtApplicationManager 2.0
+import QtQuick
+import shared.utils
+import shared.animations
+import QtQuick.Controls
+import QtApplicationManager
 
-import application.windows 1.0
-import shared.Sizes 1.0
-import shared.Style 1.0
-import shared.controls 1.0
+import application.windows
+import shared.Sizes
+import shared.Style
+import shared.controls
 
-import Example.Parking 1.0
+import Example.Parking
 
 ApplicationCCWindow {
     id: root

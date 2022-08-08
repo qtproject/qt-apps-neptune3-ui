@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtTest 1.1
+import QtQuick
+import QtTest
 
 // sysui, for getting WidgetGrid
-import home 1.0
+import home
 
-import shared.utils 1.0
+import shared.utils
 
 Item {
     id: root

@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import shared.controls 1.0
-import shared.Style 1.0
+import QtQuick
+import shared.controls
+import shared.Style
 
 NeptuneIconLabel {
     property bool checked: false

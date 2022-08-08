@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import shared.Sizes 1.0
-import QtApplicationManager.Application 2.0
-import QtApplicationManager 2.0
+import shared.Sizes
+import QtApplicationManager.Application
+import QtApplicationManager
 
 Item {
     id: root

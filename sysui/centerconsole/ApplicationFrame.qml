@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
+import QtQuick
 
-import shared.animations 1.0
-import system.controls 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.animations
+import system.controls
+import shared.Style
+import shared.Sizes
 
 /*
     Displays the main window of a given application using in and out transition animations

@@ -31,7 +31,7 @@
 ****************************************************************************/
 
 pragma Singleton
-import QtQuick 2.2
+import QtQuick
 
 ListModel {
     id: root

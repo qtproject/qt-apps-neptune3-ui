@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 
 /*
     Keyboard shortcuts to simulate specific UI events when triggered.

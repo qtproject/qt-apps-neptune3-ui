@@ -30,9 +30,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import shared.utils 1.0
-import shared.Sizes 1.0
+import QtQuick
+import shared.utils
+import shared.Sizes
 
 /*
   Displays a child item on the screen which can be dismissed by swiping it to the right.

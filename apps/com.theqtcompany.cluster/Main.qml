@@ -31,17 +31,17 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import QtQuick.Window 2.2
-import shared.com.pelagicore.remotesettings 1.0
-import application.windows 1.0
+import QtQuick
+import QtQuick.Window
+import shared.com.pelagicore.remotesettings
+import application.windows
 
-import shared.utils 1.0
-import shared.Sizes 1.0
-import shared.Style 1.0
+import shared.utils
+import shared.Sizes
+import shared.Style
 
-import "views" 1.0
-import "stores" 1.0
+import "views"
+import "stores"
 
 NeptuneWindow {
     id: root

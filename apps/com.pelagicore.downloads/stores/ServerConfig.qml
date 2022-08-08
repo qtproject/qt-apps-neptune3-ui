@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
+import QtQuick
 import "JSONBackend.js" as JSONBackend
-import QtApplicationManager.SystemUI 2.0
+import QtApplicationManager.SystemUI
 
-import shared.utils 1.0
+import shared.utils
 
 QtObject {
     id: root

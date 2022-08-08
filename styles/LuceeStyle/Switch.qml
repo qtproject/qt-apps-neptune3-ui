@@ -36,15 +36,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Templates 2.3 as T
-import QtQuick.Controls 2.3
-import QtQuick.Controls.impl 2.3
+import QtQuick
+import QtQuick.Templates as T
+import QtQuick.Controls
+import QtQuick.Controls.impl
 
-import shared.utils 1.0
-import shared.animations 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
+import shared.utils
+import shared.animations
+import shared.Style
+import shared.Sizes
 
 T.Switch {
     id: control

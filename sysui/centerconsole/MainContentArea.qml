@@ -30,14 +30,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
+import QtQuick
 import Qt5Compat.GraphicalEffects
-import shared.animations 1.0
-import home 1.0
-import launcher 1.0
-import shared.utils 1.0
+import shared.animations
+import home
+import launcher
+import shared.utils
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 Item {
     id: root

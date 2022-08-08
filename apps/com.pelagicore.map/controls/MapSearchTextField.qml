@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
-import QtQuick.Controls 2.0
-import shared.utils 1.0
-import shared.Style 1.0
-import shared.Sizes 1.0
-import "../helpers" 1.0
+import QtQuick
+import QtQuick.Controls
+import shared.utils
+import shared.Style
+import shared.Sizes
+import "../helpers"
 
 TextField {
     id: root

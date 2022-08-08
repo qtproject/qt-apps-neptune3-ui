@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import application.windows 1.0
-import shared.utils 1.0
+import QtQuick
+import application.windows
+import shared.utils
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 import "views"
 import "store"

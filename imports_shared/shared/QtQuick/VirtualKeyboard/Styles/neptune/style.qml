@@ -30,11 +30,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.VirtualKeyboard 2.1
-import QtQuick.VirtualKeyboard.Styles 2.1
+import QtQuick
+import QtQuick.VirtualKeyboard
+import QtQuick.VirtualKeyboard.Styles
 
-import shared.utils 1.0 as Utils
+import shared.utils as Utils
 
 KeyboardStyle {
     id: currentStyle

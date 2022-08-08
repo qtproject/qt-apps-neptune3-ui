@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Controls 2.5
-import Qt.labs.folderlistmodel 2.2
+import QtQuick
+import QtQuick.Controls
+import Qt.labs.folderlistmodel
 
-import shared.Sizes 1.0
+import shared.Sizes
 
-import "../sysui/launcher" 1.0
+import "../sysui/launcher"
 
 Item {
     id: root

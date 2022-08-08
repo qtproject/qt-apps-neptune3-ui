@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.6
+import QtQuick
 
 Image {
     property bool checked: false

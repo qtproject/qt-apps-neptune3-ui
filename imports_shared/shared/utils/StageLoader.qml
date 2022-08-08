@@ -30,8 +30,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import shared.utils 1.0
+import QtQuick
+import shared.utils
 
 Loader {
     id: root

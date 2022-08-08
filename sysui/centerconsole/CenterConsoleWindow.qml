@@ -30,13 +30,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.7
-import QtQml 2.14
-import shared.utils 1.0
-import stores 1.0
-import QtQuick.Window 2.3
+import QtQuick
+import QtQml
+import shared.utils
+import stores
+import QtQuick.Window
 
-import shared.Sizes 1.0
+import shared.Sizes
 
 Window {
     id: root

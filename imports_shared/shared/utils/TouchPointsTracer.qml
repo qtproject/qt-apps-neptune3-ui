@@ -29,12 +29,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQuick.Controls 2.2
+import QtQuick
+import QtQuick.Controls
 
-import shared.Style 1.0
-import shared.Sizes 1.0
-import shared.com.luxoft.eventslisteners 1.0
+import shared.Style
+import shared.Sizes
+import shared.com.luxoft.eventslisteners
 
 
 /*!
@@ -51,8 +51,8 @@ import shared.com.luxoft.eventslisteners 1.0
     The code snippet below shows how to use \l{TouchPointsTracer}:
 
     \qml
-    import QtQuick 2.10
-    import shared.utils 1.0
+    import QtQuick
+    import shared.utils
 
     Window {
         id: root

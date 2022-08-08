@@ -30,7 +30,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
+import QtQuick
 
 QtObject {
     property int discoveryMode: 0 /* QIfAbstractFeature::NoAutoDiscovery */

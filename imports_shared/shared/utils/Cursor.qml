@@ -48,9 +48,9 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.13
-import QtQml 2.14
-import shared.utils 1.0
+import QtQuick
+import QtQml
+import shared.utils
 
 Loader {
     id: root

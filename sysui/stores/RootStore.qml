@@ -30,18 +30,18 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.8
-import Qt.labs.platform 1.0
-import QtApplicationManager 2.0
-import QtApplicationManager.Application 2.0
-import QtApplicationManager.SystemUI 2.0
-import shared.utils 1.0
-import shared.Style 1.0
+import QtQuick
+import Qt.labs.platform
+import QtApplicationManager
+import QtApplicationManager.Application
+import QtApplicationManager.SystemUI
+import shared.utils
+import shared.Style
 
-import system.models.application 1.0
+import system.models.application
 
-import shared.com.pelagicore.remotesettings 1.0
-import shared.com.pelagicore.systeminfo 1.0
+import shared.com.pelagicore.remotesettings
+import shared.com.pelagicore.systeminfo
 
 Store {
     id: root
@@ -84,7 +84,7 @@ Store {
             settingsStore.setValue("widgetStates", applicationModel.serializeWidgetStates());
             if (clusterStore.qsrEnabled) {
                 //not to have direct dependency on QtSafeRenderer
-                var sendMessageObject = Qt.createQmlObject("import QtQuick 2.0;  import Qt.SafeRenderer 1.1;
+                var sendMessageObject = Qt.createQmlObject("import QtQuick;  import Qt.SafeRenderer;
                         QtObject {
                             function sendShuttingDown() {
                                 SafeMessage.sendHeartBeat(1) //sends one message with 1 ms expire timeout

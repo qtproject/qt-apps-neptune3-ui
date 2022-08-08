@@ -29,13 +29,13 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.12
-import QtQuick.Window 2.12
+import QtQuick
+import QtQuick.Window
 
-import shared.Style 1.0
-import shared.Sizes 1.0
-import "../apps/com.theqtcompany.cluster/stores" 1.0
-import "../apps/com.theqtcompany.cluster/views" 1.0
+import shared.Style
+import shared.Sizes
+import "../apps/com.theqtcompany.cluster/stores"
+import "../apps/com.theqtcompany.cluster/views"
 
 Window {
     id: root

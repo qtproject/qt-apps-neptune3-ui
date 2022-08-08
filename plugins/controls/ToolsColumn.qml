@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.2
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
-import shared.Sizes 1.0
-import shared.utils 1.0
+import shared.Sizes
+import shared.utils
 
 /*!
     \qmltype ToolsColumn
@@ -64,8 +64,8 @@ import shared.utils 1.0
     The following example uses \l{ToolsColumn} with icons defined by theme:
 
     \qml
-    import QtQuick 2.10
-    import shared.controls 1.0
+    import QtQuick
+    import shared.controls
 
     Item {
         id: root
@@ -83,8 +83,8 @@ import shared.utils 1.0
     The following example uses \l{ToolsColumn} with icons defined by source URL:
 
     \qml
-    import QtQuick 2.10
-    import shared.controls 1.0
+    import QtQuick
+    import shared.controls
 
     Item {
         id: root

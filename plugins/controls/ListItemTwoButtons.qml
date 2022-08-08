@@ -30,12 +30,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.10
-import QtQuick.Controls 2.3
+import QtQuick
+import QtQuick.Controls
 
-import shared.controls 1.0
-import shared.utils 1.0
-import shared.Sizes 1.0
+import shared.controls
+import shared.utils
+import shared.Sizes
 
 /*!
     \qmltype ListItemTwoButtons
@@ -54,8 +54,8 @@ import shared.Sizes 1.0
     The following example uses \l{ListItemTwoButtons}:
 
     \qml
-    import QtQuick 2.10
-    import shared.controls 1.0
+    import QtQuick
+    import shared.controls
 
     Item {
         id: root

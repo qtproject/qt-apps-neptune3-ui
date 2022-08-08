@@ -29,15 +29,15 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.9
-import shared.Sizes 1.0
-import shared.Style 1.0
-import shared.utils 1.0
-import QtQuick.Shapes 1.12
-import QtQuick.Controls 2.2
-import QtStudio3D.OpenGL 2.5
+import QtQuick
+import shared.Sizes
+import shared.Style
+import shared.utils
+import QtQuick.Shapes
+import QtQuick.Controls
+import QtStudio3D.OpenGL
 
-import "../helpers" 1.0
+import "../helpers"
 
 /*
   \qmltype GaugesPanel

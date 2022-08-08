@@ -31,8 +31,8 @@
 ****************************************************************************/
 
 pragma Singleton
-import QtQuick 2.2
-import QtApplicationManager 2.0
+import QtQuick
+import QtApplicationManager
 
 QtObject {
     id: root

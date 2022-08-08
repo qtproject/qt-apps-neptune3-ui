@@ -31,11 +31,11 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.3
-import "../controls" 1.0
-import "../helpers" 1.0
-import shared.Sizes 1.0
+import QtQuick
+import QtQuick.Layouts
+import "../controls"
+import "../helpers"
+import shared.Sizes
 
 Item {
     id: root
