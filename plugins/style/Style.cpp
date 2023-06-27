@@ -40,9 +40,9 @@
 #include <QtQml/qqmlinfo.h>
 
 Style::Style(QObject *parent)
-    : QQuickAttachedObject(parent)
+    : QQuickAttachedPropertyPropagator(parent)
 {
-    init();
+    initialize();
 }
 
 Style::~Style()
@@ -55,15 +55,15 @@ Style *Style::qmlAttachedProperties(QObject *object)
     return new Style(object);
 }
 
-void Style::init()
+void Style::initialize()
 {
     m_theme = StyleDefaults::instance()->data().theme;
     m_accentColor = StyleDefaults::instance()->dataFromTheme(m_theme).accentColor;
 
-    QQuickAttachedObject::init();
+    QQuickAttachedPropertyPropagator::initialize();
 }
 
-void Style::attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent)
+void Style::attachedParentChange(QQuickAttachedPropertyPropagator *newParent, QQuickAttachedPropertyPropagator *oldParent)
 {
     Q_UNUSED(oldParent);
     Style* parentStyle = qobject_cast<Style *>(newParent);
@@ -125,7 +125,7 @@ bool Style::supportsMultipleThemes() const
 
 void Style::propagateAccentColor()
 {
-    for (QQuickAttachedObject *child : attachedChildren()) {
+    for (QQuickAttachedPropertyPropagator *child : attachedChildren()) {
         Style* basicStyle = qobject_cast<Style *>(child);
         if (basicStyle)
             basicStyle->setAccentColor(m_accentColor);
@@ -134,7 +134,7 @@ void Style::propagateAccentColor()
 
 void Style::propagateTheme()
 {
-    for (QQuickAttachedObject *child : attachedChildren()) {
+    for (QQuickAttachedPropertyPropagator *child : attachedChildren()) {
         Style* basicStyle = qobject_cast<Style *>(child);
         if (basicStyle)
             basicStyle->setTheme(static_cast<Theme>(m_theme));

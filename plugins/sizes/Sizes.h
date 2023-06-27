@@ -35,12 +35,23 @@
 #include <QtCore/QSharedPointer>
 #include <QtCore/QScopedPointer>
 #include <QJSValue>
+#include <QQmlEngine>
 
-#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
+#  include <QtQuickControls2/private/qquickstyle_p.h>
+class QQuickAttachedPropertyPropagator : public QQuickAttachedObject
+{
+protected:
+    void initialize() { QQuickAttachedObject::init(); }
+};
+
+#else
+#  include <QtQuickControls2/QQuickAttachedPropertyPropagator>
+#endif
 
 class StyleData;
 
-class Sizes : public QQuickAttachedObject
+class Sizes : public QQuickAttachedPropertyPropagator
 {
     Q_OBJECT
 
@@ -96,7 +107,7 @@ public:
     QJSValue dp() const;
 
 protected:
-    void init();
+    void initialize();
 signals:
     void scaleChanged();
 
@@ -105,7 +116,7 @@ private:
     mutable QJSValue m_dp;
 
 protected:
-    void attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent) override;
+    void attachedParentChange(QQuickAttachedPropertyPropagator *newParent, QQuickAttachedPropertyPropagator *oldParent) override;
     void inheritStyle(const StyleData &data);
     void propagateStyle(const StyleData &data);
     void propagateScale();

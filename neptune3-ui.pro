@@ -13,21 +13,21 @@ requires(qtHaveModule(appman_main-private))
     log("$$escape_expand(\\n\\n) *** The qtsaferenderer module or tools are not available: Make sure that QtSafeRenderer is installed and configured correctly ***$$escape_expand(\\n\\n)")
 }
 
-!qtHaveModule(studio3d){
+disable-studio3d|!qtHaveModule(studio3d){
     log("$$escape_expand(\\n\\n)[Warning] The studio3d optional module is not available. $$escape_expand(\\n)[Warning] Neptune 3 UI can't show some 3D content made with Qt 3D Studio without this module.$$escape_expand(\\n)[Warning] To show this content install the ogl-runtime.$$escape_expand(\\n\\n)")
 }
 
+TEMPLATE = subdirs
+CONFIG *= ordered
+SUBDIRS = src
+
 enable-examples {
-    NEPTUNE3-UI_BUILD_PARTS = $$QT_BUILD_PARTS
-    NEPTUNE3-UI_BUILD_PARTS *= examples
+    SUBDIRS *= examples
 }
 
 enable-tests {
-    NEPTUNE3-UI_BUILD_PARTS = $$QT_BUILD_PARTS
-    NEPTUNE3-UI_BUILD_PARTS *= tests
+    SUBDIRS *= tests
 }
-
-load(qt_parts)
 
 include(config.pri)
 
@@ -35,7 +35,7 @@ SUBDIRS += plugins
 SUBDIRS += doc
 
 copydata.file = copydata.pro
-copydata.depends += sub_src
+copydata.depends += src
 copydata.depends += plugins
 SUBDIRS += copydata
 

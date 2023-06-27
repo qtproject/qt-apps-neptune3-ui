@@ -33,10 +33,22 @@
 
 #include "StyleData.h"
 
-#include <QtQuickControls2Impl/private/qquickattachedobject_p.h>
 #include <QJSValue>
+#include <QQmlEngine>
 
-class Style : public QQuickAttachedObject
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
+#  include <QtQuickControls2/private/qquickstyle_p.h>
+class QQuickAttachedPropertyPropagator : public QQuickAttachedObject
+{
+protected:
+    void initialize() { QQuickAttachedObject::init(); }
+};
+
+#else
+#  include <QtQuickControls2/QQuickAttachedPropertyPropagator>
+#endif
+
+class Style : public QQuickAttachedPropertyPropagator
 {
     Q_OBJECT
     Q_PROPERTY(Theme theme READ theme WRITE setTheme NOTIFY themeChanged FINAL)
@@ -120,8 +132,8 @@ public:
     QJSValue image();
 
 protected:
-    void init();
-    void attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent) override;
+    void initialize();
+    void attachedParentChange(QQuickAttachedPropertyPropagator *newParent, QQuickAttachedPropertyPropagator *oldParent) override;
 
 signals:
     void accentColorChanged();

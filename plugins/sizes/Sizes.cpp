@@ -35,9 +35,6 @@
 #include <QtGui/QGuiApplication>
 #include <QQmlEngine>
 
-#include <QtQuickControls2/private/qquickstyle_p.h>
-
-
 
 class StyleData {
 public:
@@ -80,10 +77,10 @@ public:
 static StyleData GlobalStyleData;
 
 Sizes::Sizes(QObject *parent)
-    : QQuickAttachedObject(parent)
+    : QQuickAttachedPropertyPropagator(parent)
     , m_data(new StyleData(GlobalStyleData))
 {
-    init();
+    initialize();
 }
 
 Sizes::~Sizes()
@@ -130,13 +127,13 @@ int Sizes::fontSizeXXL() const
     return qRound(m_data->fontSizeXXL * m_data->scale);
 }
 
-void Sizes::init()
+void Sizes::initialize()
 {
     m_data.reset(new StyleData(GlobalStyleData));
-    QQuickAttachedObject::init();
+    QQuickAttachedPropertyPropagator::initialize();
 }
 
-void Sizes::attachedParentChange(QQuickAttachedObject *newParent, QQuickAttachedObject *oldParent)
+void Sizes::attachedParentChange(QQuickAttachedPropertyPropagator *newParent, QQuickAttachedPropertyPropagator *oldParent)
 {
     Q_UNUSED(oldParent)
     Sizes* neptune = qobject_cast<Sizes *>(newParent);
@@ -181,7 +178,7 @@ void Sizes::setScale(qreal value)
 
 void Sizes::propagateScale()
 {
-    for (QQuickAttachedObject *child : attachedChildren()) {
+    for (QQuickAttachedPropertyPropagator *child : attachedChildren()) {
         Sizes* neptune = qobject_cast<Sizes *>(child);
         if (neptune && !qFuzzyCompare(neptune->scale(), m_data->scale))
             neptune->setScale(m_data->scale);

@@ -9,7 +9,7 @@ isEmpty(INSTALL_PREFIX) {
 }
 
 # check ogl-runtime
-qtHaveModule(studio3d) {
+!disable-studio3d:qtHaveModule(studio3d) {
     QT *= studio3d
     DEFINES *= STUDIO3D_RUNTIME_INSTALLED
 }
